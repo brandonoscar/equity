@@ -13,7 +13,7 @@ fields:
   parcel_id: PARCELID
   owner1: OWNERNME1
   owner2: OWNERNME2
-  mail_line1: PSTLADRESS
+  mail_full: PSTLADRESS
   land_value: LNDVALUE
   bldg_value: IMPVALUE
   total_value: ESTFMKVALUE

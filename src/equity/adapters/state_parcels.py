@@ -38,11 +38,28 @@ from equity.schema.ids import stable_id
 
 STATES_DIR = CONFIG_DIR / "states"
 CANONICAL = (
-    "parcel_id", "owner1", "owner2", "mail_line1", "mail_line2", "mail_city", "mail_state",
-    "mail_zip", "land_value", "bldg_value", "total_value", "assessed_value", "tax_year",
-    "deed_book", "deed_page",
+    "parcel_id", "owner1", "owner2", "mail_line1", "mail_line2", "mail_full", "mail_city",
+    "mail_state", "mail_zip", "land_value", "bldg_value", "total_value", "assessed_value",
+    "tax_year", "deed_book", "deed_page",
 )  # fmt: skip
-PII_CANONICAL = ("owner1", "owner2", "mail_line1", "mail_line2")
+PII_CANONICAL = ("owner1", "owner2", "mail_line1", "mail_line2", "mail_full")
+# One-string postal address: "LINE , CITY, ST 12345[-6789]". Without the comma layout the
+# whole string stays as the street line: we never guess where a street ends and a city begins.
+_FULL = re.compile(
+    r"^(?P<line>.+?)\s*,\s*(?P<city>[^,]+?)\s*,\s*"
+    r"(?P<st>[A-Za-z]{2})\s+(?P<zip>\d{5})(?:-?\d{4})?\s*$"
+)
+
+
+def parse_full_address(text: str) -> tuple[str, str | None, str | None, str | None]:
+    """-> (line, city, state, zip5)."""
+    m = _FULL.match(text)
+    if m is None:
+        return " ".join(text.split()), None, None, None
+    return (" ".join(m.group("line").split()), " ".join(m.group("city").split()),
+            m.group("st").upper(), m.group("zip"))  # fmt: skip
+
+
 _ZIP = re.compile(r"^\s*(\d{5})")
 _NULLS = {"", "NULL", "NONE", "N/A", "<NULL>"}
 
@@ -336,6 +353,10 @@ class StateParcelAdapter(ArcGISCountyAdapter):
         city, st = _text(self._get(a, "mail_city")), _text(self._get(a, "mail_state"))
         m = _ZIP.match(str(self._get(a, "mail_zip") or ""))
         zip5 = m.group(1) if m else None
+        full = _text(self._get(a, "mail_full"))
+        if full and not (lines or city or zip5):
+            line, city, st, zip5 = parse_full_address(full)
+            lines = [line]
         if not (lines or city or zip5):
             return None
         norm_key = "|".join(clean(x or "") for x in (" ".join(lines), city, st, zip5))

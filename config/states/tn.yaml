@@ -102,7 +102,7 @@ fields:
   land_value: LANDVALUE
   bldg_value: IMPVALUE
   total_value: APPRAISAL
-value_basis: "LANDVALUE/IMPVALUE/APPRAISAL = appraised land, improvement and total value from the state IMPACT CAMA extract (no assessed-value field in this layer). The layer has no tax-year or extract-date field, so no tax_year is mapped and no assessment facts are emitted; raw values stay in source records. 13 of 86 counties carry no values (e.g. Anderson, Sullivan, Hamblen)."
+value_basis: "LANDVALUE/IMPVALUE/APPRAISAL = appraised land, improvement and total value from the state IMPACT CAMA extract (no assessed-value field in this layer). The layer has no tax-year or extract-date field, so no tax_year is mapped and no assessment facts are emitted; raw values stay in source records. 12 of 86 counties carry no values (Anderson, Carroll, Cocke, Decatur, Fayette, Hamblen, Henry, Lewis, Overton, Sullivan, Warren, White)."
 terms:
   url: https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html
   summary: "Comptroller Office of Local Government land-use parcel layer served by TN STS (tnmap.tn.gov), 'derived semi-annually from property assessment data extracted from the state's IMPACT CAMA system'; free, no login; no license text on the layer. NO OWNER NAMES OR MAILING ADDRESSES (owner data is only in the Comptroller's per-county shapefile + Assessment_Data dbf, which needs a manual form per county and states: 'We do not offer bulk or historical downloads, nor any recurring extracts or other automated downloads'). The same page says shapefile data can be used 'for any use case, including consumption in a commercial application/software'."

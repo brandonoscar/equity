@@ -222,3 +222,29 @@ def test_use_restrictions_are_recorded_in_source_terms(tmp_path: Path) -> None:
     assert cls().source_row()["terms_summary"].startswith("RESTRICTED[no_mailing_list,no_resale] ")
     plain = adapter_for(load_config(_cfg(tmp_path)))
     assert not plain().source_row()["terms_summary"].startswith("RESTRICTED")
+
+
+@pytest.mark.parametrize(
+    ("text", "parsed"),
+    [
+        ("123 N MAIN ST , MADISON, WI 53703", ("123 N MAIN ST", "MADISON", "WI", "53703")),
+        ("PO BOX 9 , EAU CLAIRE, wi 54701-1234", ("PO BOX 9", "EAU CLAIRE", "WI", "54701")),
+        ("123 MAIN ST ANYTOWN WI 53703", ("123 MAIN ST ANYTOWN WI 53703", None, None, None)),
+    ],
+)
+def test_parse_full_address(text: str, parsed: tuple[str | None, ...]) -> None:
+    from equity.adapters.state_parcels import parse_full_address
+
+    assert parse_full_address(text) == parsed
+
+
+def test_mail_full_used_when_no_split_fields(tmp_path: Path) -> None:
+    fields = {"parcel_id": "PID", "owner1": "OWN", "mail_full": "ADDR", "total_value": "TV",
+              "tax_year": {"const": 2025}}  # fmt: skip
+    cls = adapter_for(load_config(_cfg(tmp_path, fields=fields)))
+    assert "ADDR" in cls.pii_fields
+    out = _rows(cls, [{"OID": 1, "PID": "1", "CO": "061", "OWN": "X", "TV": 1,
+                       "ADDR": "1 MAIN ST , MORGANTOWN, WV 26505"}])  # fmt: skip
+    (addr,) = [r for t, r in out if t == "address"]
+    assert (addr["line1"], addr["city"], addr["state"], addr["zip5"]) == (
+        "1 MAIN ST", "MORGANTOWN", "WV", "26505")  # fmt: skip
