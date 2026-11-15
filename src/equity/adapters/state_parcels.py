@@ -66,6 +66,9 @@ class StateConfig:
     value_basis: str
     assessment_valid_from: str = "tax_year_jan1"
     extra_pii: tuple[str, ...] = field(default_factory=tuple)
+    # Published limits on use (e.g. no_mailing_list, no_resale). Recorded in source terms so
+    # exports that would violate them can be blocked.
+    use_restrictions: tuple[str, ...] = field(default_factory=tuple)
 
     @property
     def state_fips(self) -> str:
@@ -128,6 +131,7 @@ def load_config(path: Path) -> StateConfig:
         value_basis=str(data["value_basis"]),
         assessment_valid_from=str(data.get("assessment_valid_from", "tax_year_jan1")),
         extra_pii=tuple(data.get("extra_pii", ())),
+        use_restrictions=tuple(sorted(data.get("use_restrictions", ()))),
     )
 
 
@@ -178,7 +182,14 @@ class StateParcelAdapter(ArcGISCountyAdapter):
             "access_method": "arcgis",
             "base_url": self.config.layer_url,
             "terms_url": t.get("url"),
-            "terms_summary": f"{t['summary']} | values: {self.config.value_basis}",
+            "terms_summary": (
+                (
+                    f"RESTRICTED[{','.join(self.config.use_restrictions)}] "
+                    if self.config.use_restrictions
+                    else ""
+                )
+                + f"{t['summary']} | values: {self.config.value_basis}"
+            ),
             "terms_checked_on": t["checked_on"],
             "robots_checked_on": t.get("robots_checked_on", t["checked_on"]),
             "cost_model": t["cost_model"],

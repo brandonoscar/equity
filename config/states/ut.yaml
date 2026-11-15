@@ -1,0 +1,29 @@
+# DRAFT, not installed: services1.arcgis.com answers /robots.txt with HTTP 403 ("Invalid URL"),
+# which equity.adapters.http.PoliteClient treats as disallow-all. Verified live with curl 2026-11-15.
+source_id: ut.statewide.parcels
+state: UT
+layer_url: https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/UtahStatewideParcels/FeatureServer/0
+order_by: OBJECTID
+page_size: 1000
+min_interval_s: 1.0
+# County holds the county name with spaces removed ("BoxElder", "SaltLake", "SanJuan").
+county:
+  field: County
+  format: code_map
+  code_map: {
+    "Beaver": "001", "BoxElder": "003", "Cache": "005", "Carbon": "007", "Daggett": "009",
+    "Davis": "011", "Duchesne": "013", "Emery": "015", "Garfield": "017", "Grand": "019",
+    "Iron": "021", "Juab": "023", "Kane": "025", "Millard": "027", "Morgan": "029",
+    "Piute": "031", "Rich": "033", "SaltLake": "035", "SanJuan": "037", "Sanpete": "039",
+    "Sevier": "041", "Summit": "043", "Tooele": "045", "Uintah": "047", "Utah": "049",
+    "Wasatch": "051", "Washington": "053", "Wayne": "055", "Weber": "057"
+  }
+fields:
+  parcel_id: PARCEL_ID
+value_basis: "no value, owner or tax-year fields in the statewide basic layer (HB113 limits it to boundary, parcel id, parcel address, owner type and recorder contact); market values exist only in the 29 per-county Parcels_<County>_LIR layers"
+terms:
+  url: https://gis.utah.gov/products/sgid/cadastre/parcels/
+  summary: "UGRC SGID Utah Statewide Parcels, aggregated from all 29 county recorders (1,600,618 rows on 2026-11-15; Sanpete current as of 2015). UGRC parcels page: 'There are no constraints or warranties with regard to the use of this dataset. Users are encouraged to attribute content to: State of Utah, SGID.' Item license: provided 'as is' for informational purposes only. HB113 intent: exclude attributes counties rely on for data sales. gis.utah.gov robots.txt allows all (Crawl-delay 1)."
+  checked_on: 2026-11-15
+  robots_checked_on: 2026-11-15
+  cost_model: free

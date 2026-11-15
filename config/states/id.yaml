@@ -1,0 +1,44 @@
+# DRAFT, not installed: services1.arcgis.com answers /robots.txt with HTTP 403 ("Invalid URL"),
+# which equity.adapters.http.PoliteClient treats as disallow-all. Verified live with curl 2026-11-15.
+# Also read the Idaho Code 74-120 mailing-list term below before using owner/mailing fields.
+source_id: id.statewide.parcels
+state: ID
+layer_url: https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Public_Idaho_Parcels_/FeatureServer/7
+order_by: OBJECTID
+page_size: 1000
+min_interval_s: 1.0
+# County holds the county name; FIPS (5-digit) is null on 220 Nez Perce rows, so key on the name.
+county:
+  field: County
+  format: code_map
+  code_map: {
+    "Ada": "001", "Adams": "003", "Bannock": "005", "Bear Lake": "007", "Benewah": "009", "Bingham": "011",
+    "Blaine": "013", "Boise": "015", "Bonner": "017", "Bonneville": "019", "Boundary": "021", "Butte": "023",
+    "Camas": "025", "Canyon": "027", "Caribou": "029", "Cassia": "031", "Clark": "033", "Clearwater": "035",
+    "Custer": "037", "Elmore": "039", "Franklin": "041", "Fremont": "043", "Gem": "045", "Gooding": "047",
+    "Idaho": "049", "Jefferson": "051", "Jerome": "053", "Kootenai": "055", "Latah": "057", "Lemhi": "059",
+    "Lewis": "061", "Lincoln": "063", "Madison": "065", "Minidoka": "067", "Nez Perce": "069", "Oneida": "071",
+    "Owyhee": "073", "Payette": "075", "Power": "077", "Shoshone": "079", "Teton": "081", "Twin Falls": "083",
+    "Valley": "085", "Washington": "087"
+  }
+fields:
+  parcel_id: PARCEL_ID
+  owner1: OWNER1
+  owner2: OWNER2
+  mail_line1: MAIL_ADD1
+  mail_line2: MAIL_ADD2
+  mail_city: MAIL_CITY
+  mail_state: MAIL_STATE
+  mail_zip: MAIL_ZIP
+  land_value: VAL_LAND
+  bldg_value: VAL_IMPVTS
+  total_value: VAL_TOTAL
+  tax_year: {year_of: UPDATED}
+value_basis: "VAL_LAND / VAL_IMPVTS / VAL_TOTAL = county assessor land, improvement and total values per the Idaho Parcel Data Exchange Standard (S4232); no tax-year field, so tax_year = year of UPDATED (county submission date, 2024-2025); values present for 8 of 13 counties"
+terms:
+  url: https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Public_Idaho_Parcels_/FeatureServer/info/iteminfo
+  summary: "Idaho ITS 'Public Idaho Parcels' (13 of 44 counties, 381,144 rows on 2026-11-15). License: no warranty, use at user's sole risk; 'Pursuant to Idaho Code 74-120, the information provided by the County is not being distributed for use as a mailing list or telephone number list, and no list of persons prepared by County may be used as a mailing list or a telephone list unless such use is expressly permitted by Idaho law.'"
+  checked_on: 2026-11-15
+  robots_checked_on: 2026-11-15
+  cost_model: free
+use_restrictions: [no_mailing_list]

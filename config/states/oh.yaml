@@ -1,0 +1,23 @@
+# DRAFT, not installed: blocked because services2.arcgis.com answers /robots.txt with HTTP 403
+# ("Invalid URL", no robots file published) and PoliteClient treats 401/403 as disallow-all.
+# The ODNR copy (gis.ohiodnr.gov) is excluded by its robots.txt (Disallow: /).
+# Table 1 (Cama) carries owner Name; layer 0 (Parcels) carries the mailing address. No values in either.
+source_id: oh.statewide.parcels
+state: OH
+layer_url: https://services2.arcgis.com/MlJ0G8iWUyC7jAmu/arcgis/rest/services/OhioStatewidePacels_full_view/FeatureServer/1
+order_by: OBJECTID
+page_size: 1000
+min_interval_s: 1.0
+county:
+  field: County
+  format: name
+fields:
+  parcel_id: LocalParcelID
+  owner1: Name
+value_basis: "no value fields in the public view; values are with the 88 county auditors"
+terms:
+  url: https://ohioparcels-geohio.hub.arcgis.com/
+  summary: "OGRIP (Ohio DAS) Ohio Statewide Parcels Public View, 88 counties; licenseInfo: 'available for public use at the user's own risk and provided for informational purposes only', 'as is', no commercial-use clause"
+  checked_on: 2026-11-15
+  robots_checked_on: 2026-11-15
+  cost_model: free

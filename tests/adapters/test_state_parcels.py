@@ -212,3 +212,13 @@ def test_partitions_by_county_and_by_oid_window(tmp_path: Path) -> None:
     assert windows == [{"oid_min": "1", "oid_max": "50001"},
                        {"oid_min": "50001", "oid_max": "100001"},
                        {"oid_min": "100001", "oid_max": "150001"}]  # fmt: skip
+
+
+def test_use_restrictions_are_recorded_in_source_terms(tmp_path: Path) -> None:
+    cls = adapter_for(
+        load_config(_cfg(tmp_path, use_restrictions=["no_resale", "no_mailing_list"]))
+    )
+    assert cls.config.use_restrictions == ("no_mailing_list", "no_resale")
+    assert cls().source_row()["terms_summary"].startswith("RESTRICTED[no_mailing_list,no_resale] ")
+    plain = adapter_for(load_config(_cfg(tmp_path)))
+    assert not plain().source_row()["terms_summary"].startswith("RESTRICTED")

@@ -49,3 +49,4 @@ terms:
   checked_on: 2026-11-15
   robots_checked_on: 2026-11-15
   cost_model: free
+use_restrictions: [attribution_required, no_resale]
