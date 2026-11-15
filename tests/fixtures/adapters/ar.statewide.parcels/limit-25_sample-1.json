@@ -1,0 +1,281 @@
+{
+ "attributes": [
+  {
+   "assessvalue": 8000.0,
+   "camadate": 1783314000000,
+   "countyfips": "005",
+   "impvalue": 25905.0,
+   "landvalue": 14100.0,
+   "objectid": 1,
+   "ownername": "TESTOWNER F25FDA",
+   "parcelid": "001-00352-008",
+   "totalvalue": 40005.0
+  },
+  {
+   "assessvalue": 0.0,
+   "camadate": 1783314000000,
+   "countyfips": "005",
+   "impvalue": 0.0,
+   "landvalue": 0.0,
+   "objectid": 2,
+   "ownername": "TESTOWNER D99470 INC",
+   "parcelid": "001-00351-401",
+   "totalvalue": 0.0
+  },
+  {
+   "assessvalue": 9600.0,
+   "camadate": 1783314000000,
+   "countyfips": "005",
+   "impvalue": 42505.0,
+   "landvalue": 11190.0,
+   "objectid": 3,
+   "ownername": "TESTOWNER 20D856",
+   "parcelid": "001-00290-000",
+   "totalvalue": 53695.0
+  },
+  {
+   "assessvalue": 474.0,
+   "camadate": 1783314000000,
+   "countyfips": "005",
+   "impvalue": 0.0,
+   "landvalue": 2370.0,
+   "objectid": 4,
+   "ownername": "TESTOWNER D0E332",
+   "parcelid": "001-00232-101",
+   "totalvalue": 2370.0
+  },
+  {
+   "assessvalue": 10000.0,
+   "camadate": 1783314000000,
+   "countyfips": "005",
+   "impvalue": 116545.0,
+   "landvalue": 30000.0,
+   "objectid": 5,
+   "ownername": "TESTOWNER 0F057E",
+   "parcelid": "001-00195-000",
+   "totalvalue": 146545.0
+  },
+  {
+   "assessvalue": 320.0,
+   "camadate": 1783314000000,
+   "countyfips": "005",
+   "impvalue": 0.0,
+   "landvalue": 2100.0,
+   "objectid": 6,
+   "ownername": "TESTOWNER A7B559",
+   "parcelid": "001-00433-000",
+   "totalvalue": 2100.0
+  },
+  {
+   "assessvalue": 246.0,
+   "camadate": 1783314000000,
+   "countyfips": "005",
+   "impvalue": 0.0,
+   "landvalue": 1230.0,
+   "objectid": 7,
+   "ownername": "TESTOWNER D68792",
+   "parcelid": "001-00019-004",
+   "totalvalue": 1230.0
+  },
+  {
+   "assessvalue": 0.0,
+   "camadate": 1783314000000,
+   "countyfips": "005",
+   "impvalue": 0.0,
+   "landvalue": 0.0,
+   "objectid": 8,
+   "ownername": "TESTOWNER D99470 INC",
+   "parcelid": "001-00361-100",
+   "totalvalue": 0.0
+  },
+  {
+   "assessvalue": 1540.0,
+   "camadate": 1783314000000,
+   "countyfips": "005",
+   "impvalue": 0.0,
+   "landvalue": 10000.0,
+   "objectid": 9,
+   "ownername": "TESTOWNER CCA0C6",
+   "parcelid": "001-00459-000",
+   "totalvalue": 10000.0
+  },
+  {
+   "assessvalue": 0.0,
+   "camadate": 1783314000000,
+   "countyfips": "005",
+   "impvalue": 0.0,
+   "landvalue": 0.0,
+   "objectid": 10,
+   "ownername": "TESTOWNER 2EA92E",
+   "parcelid": "001-00135-001",
+   "totalvalue": 0.0
+  },
+  {
+   "assessvalue": 1710.0,
+   "camadate": 1783314000000,
+   "countyfips": "005",
+   "impvalue": 0.0,
+   "landvalue": 11100.0,
+   "objectid": 11,
+   "ownername": "TESTOWNER 8E827A LLC",
+   "parcelid": "001-00355-027",
+   "totalvalue": 11100.0
+  },
+  {
+   "assessvalue": 1520.0,
+   "camadate": 1783314000000,
+   "countyfips": "005",
+   "impvalue": 0.0,
+   "landvalue": 9870.0,
+   "objectid": 12,
+   "ownername": "TESTOWNER 4075BE",
+   "parcelid": "001-00469-000",
+   "totalvalue": 9870.0
+  },
+  {
+   "assessvalue": 234.0,
+   "camadate": 1783314000000,
+   "countyfips": "005",
+   "impvalue": 0.0,
+   "landvalue": 1170.0,
+   "objectid": 13,
+   "ownername": "TESTOWNER B56710",
+   "parcelid": "001-00257-004",
+   "totalvalue": 1170.0
+  },
+  {
+   "assessvalue": 41083.0,
+   "camadate": 1783314000000,
+   "countyfips": "005",
+   "impvalue": 340500.0,
+   "landvalue": 7065.0,
+   "objectid": 14,
+   "ownername": "TESTOWNER 77BEF2",
+   "parcelid": "001-00196-000",
+   "totalvalue": 347565.0
+  },
+  {
+   "assessvalue": 518.0,
+   "camadate": 1783314000000,
+   "countyfips": "005",
+   "impvalue": 0.0,
+   "landvalue": 3510.0,
+   "objectid": 15,
+   "ownername": "TESTOWNER ABDDD6",
+   "parcelid": "001-00070-000",
+   "totalvalue": 3510.0
+  },
+  {
+   "assessvalue": 17084.0,
+   "camadate": 1783314000000,
+   "countyfips": "005",
+   "impvalue": 81745.0,
+   "landvalue": 3675.0,
+   "objectid": 16,
+   "ownername": "TESTOWNER EE6E45 LLC",
+   "parcelid": "001-00558-004",
+   "totalvalue": 85420.0
+  },
+  {
+   "assessvalue": 115.0,
+   "camadate": 1783314000000,
+   "countyfips": "005",
+   "impvalue": 0.0,
+   "landvalue": 575.0,
+   "objectid": 17,
+   "ownername": "TESTOWNER 97395B",
+   "parcelid": "001-07213-000",
+   "totalvalue": 575.0
+  },
+  {
+   "assessvalue": 19450.0,
+   "camadate": 1783314000000,
+   "countyfips": "005",
+   "impvalue": 82930.0,
+   "landvalue": 40000.0,
+   "objectid": 18,
+   "ownername": "TESTOWNER B0948E",
+   "parcelid": "009-00283-004",
+   "totalvalue": 122930.0
+  },
+  {
+   "assessvalue": 79.0,
+   "camadate": 1783314000000,
+   "countyfips": "005",
+   "impvalue": 0.0,
+   "landvalue": 395.0,
+   "objectid": 19,
+   "ownername": "TESTOWNER 18CC8C",
+   "parcelid": "001-07212-000",
+   "totalvalue": 395.0
+  },
+  {
+   "assessvalue": 165.0,
+   "camadate": 1783314000000,
+   "countyfips": "005",
+   "impvalue": 0.0,
+   "landvalue": 825.0,
+   "objectid": 20,
+   "ownername": "TESTOWNER C66E91",
+   "parcelid": "009-02955-006",
+   "totalvalue": 825.0
+  },
+  {
+   "assessvalue": 0.0,
+   "camadate": 1783314000000,
+   "countyfips": "005",
+   "impvalue": 0.0,
+   "landvalue": 0.0,
+   "objectid": 21,
+   "ownername": "TESTOWNER 4588F6",
+   "parcelid": "001-07365-001",
+   "totalvalue": 0.0
+  },
+  {
+   "assessvalue": 362.0,
+   "camadate": 1783314000000,
+   "countyfips": "005",
+   "impvalue": 0.0,
+   "landvalue": 1810.0,
+   "objectid": 22,
+   "ownername": "TESTOWNER 5CF67F LLC",
+   "parcelid": "001-08590-000",
+   "totalvalue": 1810.0
+  },
+  {
+   "assessvalue": 0.0,
+   "camadate": 1783314000000,
+   "countyfips": "005",
+   "impvalue": 0.0,
+   "landvalue": 0.0,
+   "objectid": 23,
+   "ownername": "TESTOWNER 27C71F INC",
+   "parcelid": "001-03107-002",
+   "totalvalue": 0.0
+  },
+  {
+   "assessvalue": 885.0,
+   "camadate": 1783314000000,
+   "countyfips": "005",
+   "impvalue": 0.0,
+   "landvalue": 4425.0,
+   "objectid": 24,
+   "ownername": "TESTOWNER 3E0AFB",
+   "parcelid": "001-07668-000",
+   "totalvalue": 4425.0
+  },
+  {
+   "assessvalue": 6880.0,
+   "camadate": 1783314000000,
+   "countyfips": "005",
+   "impvalue": 0.0,
+   "landvalue": 34400.0,
+   "objectid": 25,
+   "ownername": "TESTOWNER 9FE33E",
+   "parcelid": "007-00853-000",
+   "totalvalue": 34400.0
+  }
+ ],
+ "layer": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Planning_Cadastre/FeatureServer/6",
+ "where": "1=1"
+}

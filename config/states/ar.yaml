@@ -1,0 +1,24 @@
+source_id: ar.statewide.parcels
+state: AR
+layer_url: https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Planning_Cadastre/FeatureServer/6
+order_by: objectid
+page_size: 200
+min_interval_s: 1.0
+county:
+  field: countyfips
+  format: fips3
+fields:
+  parcel_id: parcelid
+  owner1: ownername
+  land_value: landvalue
+  bldg_value: impvalue
+  total_value: totalvalue
+  assessed_value: assessvalue
+  tax_year: {year_of: camadate}
+value_basis: "landvalue/impvalue/totalvalue = county CAMA appraised values; assessvalue = assessed (AR assesses at 20% of market); tax year = year of camadate (CAMA extract date)"
+terms:
+  url: https://gis.arkansas.gov/
+  summary: "Arkansas GIS Office CAMP parcels, free download, county-assessor sourced; no license text found; situs address only (no owner mailing address)"
+  checked_on: 2026-11-15
+  robots_checked_on: 2026-11-15
+  cost_model: free
