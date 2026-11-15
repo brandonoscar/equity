@@ -1,0 +1,10 @@
+# Protected paths. With branch protection "Require review from Code Owners" on, changes here
+# need Brandon's approval. The agent must never weaken anything in these paths to pass CI.
+/tests/golden/          @brandonoscar
+/ci/                    @brandonoscar
+/.github/               @brandonoscar
+/Makefile               @brandonoscar
+/pyproject.toml         @brandonoscar
+/config/sol.yaml        @brandonoscar
+/config/rules.yaml      @brandonoscar
+/config/doc_types.yaml  @brandonoscar

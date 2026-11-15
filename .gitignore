@@ -1,0 +1,23 @@
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.coverage
+coverage.json
+htmlcov/
+mutants/
+dist/
+build/
+*.egg-info/
+
+# Local data: raw fetches, DuckDB files, Parquet lakes. Never committed (repo is public).
+data/
+*.duckdb
+*.duckdb.wal
+
+# Private business configuration (target states, buy criteria). Never committed.
+config/private/*
+!config/private/README.md

@@ -1,0 +1,59 @@
+name: nightly
+
+on:
+  schedule:
+    - cron: "41 8 * * *"   # 08:41 UTC daily
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+env:
+  UV_VERSION: "0.11.32"
+
+jobs:
+  adapter-health:
+    # Live check of every registered adapter against its recorded fixture shape.
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with: { version: "${{ env.UV_VERSION }}" }
+      - run: make sync
+      - id: health
+        run: |
+          set +e
+          uv run --locked python -m equity.adapters.health > health.json
+          echo "rc=$?" >> "$GITHUB_OUTPUT"
+      - if: steps.health.outputs.rc != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          title="Adapter health failure $(date -u +%F)"
+          if ! gh issue list --state open --search "in:title \"$title\"" --json number --jq '.[0].number' | grep -q .; then
+            { echo "A source changed format or went down. Report:"; echo '```json'; cat health.json; echo '```'; } > body.md
+            gh issue create --title "$title" --body-file body.md
+          fi
+
+  mutation:
+    # Mutation testing on rules/ and matching/. Surviving mutants become an issue.
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with: { version: "${{ env.UV_VERSION }}" }
+      - run: make sync
+      - run: uv run --locked mutmut run || true
+      - id: survivors
+        run: |
+          uv run --locked mutmut results > mutants.txt || true
+          n=$(grep -c ': survived' mutants.txt || true)
+          echo "count=${n:-0}" >> "$GITHUB_OUTPUT"
+      - if: steps.survivors.outputs.count != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          title="Surviving mutants $(date -u +%F)"
+          { echo "Mutants that no test killed (rules/ and matching/):"; echo '```'; grep ': survived' mutants.txt; echo '```'; } > body.md
+          gh issue create --title "$title" --body-file body.md
