@@ -116,3 +116,9 @@ def test_where_rejects_bad_county() -> None:
     assert WVStatewideParcels().where(FetchRequest({"county_number": "31"})) == "CountyCode=31"
     with pytest.raises(ValueError, match="1-55"):
         WVStatewideParcels().where(FetchRequest({"county_number": "56"}))
+
+
+def test_partitions_cover_all_55_counties() -> None:
+    plan = list(WVStatewideParcels().partitions())
+    assert len(plan) == 55
+    assert plan[30] == {"county_number": "31"}

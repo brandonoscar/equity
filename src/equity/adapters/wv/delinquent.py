@@ -60,6 +60,10 @@ class WVDelinquentProperties(ArcGISCountyAdapter):
             "cost_model": "free",
         }
 
+    def partitions(self) -> Iterator[dict[str, str]]:
+        for n in range(1, 56):
+            yield {"county_number": str(n)}
+
     def where(self, request: FetchRequest) -> str:
         """params: county_number (1-55)."""
         county = int(request.params["county_number"])

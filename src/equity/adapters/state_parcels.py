@@ -17,6 +17,7 @@ Config keys (see config/states/README.md):
 
 from __future__ import annotations
 
+import json
 import re
 from collections.abc import Iterator, Mapping
 from dataclasses import dataclass, field
@@ -31,7 +32,7 @@ from equity.adapters.base import Fetched, FetchRequest, NormalizedRow
 from equity.adapters.http import PoliteClient
 from equity.adapters.rows import RecordContext
 from equity.config import CONFIG_DIR
-from equity.geo import County, county_by_fips, county_by_name, state_fips
+from equity.geo import County, counties_in, county_by_fips, county_by_name, state_fips
 from equity.matching.orgs import classify, clean
 from equity.schema.ids import stable_id
 
@@ -230,6 +231,26 @@ class StateParcelAdapter(ArcGISCountyAdapter):
         if p.get("sample"):
             return "1=1"
         raise StateConfigError("need county_fips, oid_min/oid_max, or sample")
+
+    def partitions(self, window: int = 50_000) -> Iterator[dict[str, str]]:
+        """Fetch plan for the whole state: one request per county when the layer has a
+        county code we can filter on, otherwise object-id windows (one live stats query)."""
+        spec = self.config.county
+        if "constant" in spec or spec.get("format") in ("fips3", "fips5", "int", "code_map"):
+            for c in counties_in(self.config.state):
+                yield {"county_fips": c.county_fips}
+            return
+        oid = self.config.order_by
+        stats = json.dumps([
+            {"statisticType": "min", "onStatisticField": oid, "outStatisticFieldName": "lo"},
+            {"statisticType": "max", "onStatisticField": oid, "outStatisticFieldName": "hi"},
+        ])  # fmt: skip
+        resp = self.client.get(self.layer_url + "/query",
+                               {"where": "1=1", "outStatistics": stats, "f": "json"})  # fmt: skip
+        attrs = json.loads(resp.content)["features"][0]["attributes"]
+        lo, hi = int(attrs["lo"]), int(attrs["hi"])
+        for start in range(lo, hi + 1, window):
+            yield {"oid_min": str(start), "oid_max": str(start + window)}
 
     # -- normalization ------------------------------------------------------------------
     def _get(self, attrs: Mapping[str, Any], canonical: str) -> Any:

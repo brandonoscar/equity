@@ -63,3 +63,7 @@ def test_where() -> None:
     assert WVDelinquentProperties().where(FetchRequest({"county_number": "31"})) == "CountyID='31'"
     with pytest.raises(ValueError, match="1-55"):
         WVDelinquentProperties().where(FetchRequest({"county_number": "0"}))
+
+
+def test_partitions_cover_all_55_counties() -> None:
+    assert len(list(WVDelinquentProperties().partitions())) == 55

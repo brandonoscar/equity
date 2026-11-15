@@ -188,3 +188,27 @@ def test_all_configs_load() -> None:
     adapters = all_state_adapters()
     assert len(adapters) == len(CONFIGS)
     assert len({a.source_id for a in adapters}) == len(adapters)
+
+
+def test_partitions_by_county_and_by_oid_window(tmp_path: Path) -> None:
+    cls = adapter_for(load_config(_cfg(tmp_path)))
+    plan = list(cls().partitions())
+    assert len(plan) == 55
+    assert plan[30] == {"county_fips": "061"}
+
+    from collections.abc import Mapping as _M
+
+    from equity.adapters.http import PoliteClient
+
+    def transport(url: str, headers: _M[str, str], timeout: float) -> tuple[int, bytes, str]:
+        if url.endswith("robots.txt"):
+            return 404, b"", ""
+        body = {"features": [{"attributes": {"lo": 1, "hi": 120000}}]}
+        return 200, json.dumps(body).encode(), "application/json"
+
+    named = adapter_for(load_config(_cfg(tmp_path, county={"field": "C", "format": "name"})))
+    client = PoliteClient(min_interval_s=0, transport=transport, sleep=lambda s: None)
+    windows = list(named(client).partitions(window=50_000))
+    assert windows == [{"oid_min": "1", "oid_max": "50001"},
+                       {"oid_min": "50001", "oid_max": "100001"},
+                       {"oid_min": "100001", "oid_max": "150001"}]  # fmt: skip
