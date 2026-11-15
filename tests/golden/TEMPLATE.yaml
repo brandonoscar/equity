@@ -1,0 +1,44 @@
+# Golden case template. Copy to cases/<state>-<county>-<case>.yaml and fill in by hand.
+schema_version: 1
+case_id: "WV-MONONGALIA-00-C-000"     # stable id for this golden case
+verified_by: ""                         # who traced it
+verified_on: "YYYY-MM-DD"               # when the documents were read
+as_of: "YYYY-MM-DD"                     # the date the answer is true for
+
+judgment:
+  court: ""                             # e.g. Monongalia County Circuit Court
+  case_number: ""
+  debtor_names: [""]                    # exactly as on the judgment
+  creditor: ""
+  amount: "0.00"
+  entered_on: "YYYY-MM-DD"
+  lien_docketed: { instrument: "", recorded_on: "YYYY-MM-DD" }   # county judgment lien docket
+  source: ""                            # where you read it
+
+debtor_entities:                        # LLCs/corps the debtor controls, with the evidence
+  - name: ""
+    sos_id: ""
+    relationship: ""                    # member | manager | officer | registered_agent
+    source: ""
+
+parcels:                                # every parcel the debtor or its entities owned on as_of
+  - parcel_id: ""                       # county parcel id as printed
+    owner_of_record: ""
+    vesting_deed: { instrument: "", book: "", page: "", recorded_on: "YYYY-MM-DD", consideration: "0.00" }
+    appraised_total: "0.00"
+    assessed_value: "0.00"
+    tax_year: 0
+    liens_in_priority_order:            # senior first; include ours where it falls
+      - instrument: ""
+        doc_type: ""                    # DEED_OF_TRUST | JUDGMENT_LIEN | MECHANICS_LIEN | ...
+        recorded_on: "YYYY-MM-DD"
+        holder: ""
+        amount: "0.00"
+        released: false
+        source: ""
+    liens_ahead_of_ours_total: "0.00"
+    estimated_equity: "0.00"            # per the Phase 4 formula, computed by hand
+    flags: []                           # transfer_after_judgment | nominal_consideration | related_party_grantee
+    notes: ""
+
+expected_ranking_score: null            # leave null until the Phase 5 ranking is defined

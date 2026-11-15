@@ -1,0 +1,31 @@
+# Thresholds for deterministic rules (Phases 3-5). Every null is a decision for Brandon.
+# Code refuses to run a rule whose parameters are null; it never substitutes a default.
+schema_version: 1
+
+matching:
+  # rapidfuzz token_sort_ratio cutoff (0-100) for a name to count as a candidate match.
+  name_similarity_cutoff: null  # TODO(Brandon): proposed starting value 92, review after gold cases
+  # Corroborating signals required before an automatic link (same mailing address, same
+  # registered agent, same parcel, same case).
+  min_corroborating_signals: null  # TODO(Brandon): proposed 1
+
+transfer_flags:
+  # A conveyance at or below this consideration is "nominal".
+  nominal_consideration_max: null  # TODO(Brandon): e.g. 100.00
+  # Or below this fraction of the appraised value at the time.
+  nominal_fraction_of_appraised: null  # TODO(Brandon): e.g. 0.10
+  # Which related-party tests are on. Each is a separate deterministic rule.
+  related_party_rules:
+    same_surname: null          # TODO(Brandon): true/false
+    same_mailing_address: null  # TODO(Brandon)
+    debtor_is_member_or_agent_of_grantee_llc: null  # TODO(Brandon)
+
+valuation:
+  # Assessed-to-appraised ratio per state, when a source publishes appraised only.
+  assessed_ratio:
+    WV: null  # TODO(Brandon): statute says 60%? confirm and cite
+
+priority:
+  # Ordering rule for the lien stack. Only 'recording_date' is planned for v1.
+  method: recording_date
+  same_day_tiebreak: null  # TODO(Brandon): recorded_seq (book/page order) or instrument number?

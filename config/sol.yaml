@@ -1,0 +1,423 @@
+# Judgment enforceability by state. Filled in by Brandon, never by code or by Claude.
+# Every value starts as null. Rules that need a null value refuse to run for that state
+# and report it, instead of guessing.
+#
+# Fields per state:
+#   judgment_enforceable_years: years a judgment can be enforced/executed on without renewal
+#   lien_years:                 years a docketed judgment lien on real property lasts
+#   renewable:                  true/false
+#   renewal_years:              length of each renewal
+#   renewal_keeps_priority:     true/false (does a renewed lien keep its original place?)
+#   statute:                    citation(s)
+#   confirmed_by:               who confirmed it, and when
+
+schema_version: 1
+states:
+  AL:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  AK:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  AZ:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  AR:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  CA:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  CO:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  CT:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  DE:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  DC:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  FL:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  GA:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  HI:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  ID:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  IL:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  IN:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  IA:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  KS:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  KY:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  LA:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  ME:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  MD:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  MA:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  MI:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  MN:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  MS:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  MO:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  MT:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  NE:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  NV:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  NH:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  NJ:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  NM:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  NY:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  NC:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  ND:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  OH:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  OK:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  OR:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  PA:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  RI:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  SC:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  SD:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  TN:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  TX:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  UT:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  VT:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  VA:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  WA:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  WV:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  WI:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
+  WY:  # TODO(Brandon)
+    judgment_enforceable_years: null
+    lien_years: null
+    renewable: null
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: null
+    confirmed_by: null
