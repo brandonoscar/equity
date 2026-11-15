@@ -1,0 +1,24 @@
+source_id: mn.statewide.parcels
+state: MN
+layer_url: https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_mngeo/plan_parcels_open/MapServer/0
+order_by: objectid
+page_size: 1000
+min_interval_s: 1.0
+county:
+  field: co_code
+  format: fips5
+fields:
+  parcel_id: county_pin
+  owner1: owner_name
+  owner2: owner_more
+  land_value: emv_land
+  bldg_value: emv_bldg
+  total_value: emv_total
+  tax_year: tax_year
+value_basis: "emv_land/emv_bldg/emv_total = county estimated market value (EMV) per the MN GAC parcel standard; tax_year = taxes-payable year (EMV is for the prior assessment year, mkt_year, where filled); tax_year is 0 or null for several counties, so those rows carry no assessment"
+terms:
+  url: https://gisdata.mn.gov/dataset/plan-parcels-open
+  summary: "MnGeo 'Parcels, Compiled from Opt-In Open Data Counties' (60 of 87 counties as of 2026-11-15); metadata access constraint 'None', no license specified; State makes no warranties for use or reuse; owner_name empty for some counties (e.g. Clay, Scott, Stearns); owner mailing lines (own_add_l1..l4) are free-form and not mapped"
+  checked_on: 2026-11-15
+  robots_checked_on: 2026-11-15
+  cost_model: free

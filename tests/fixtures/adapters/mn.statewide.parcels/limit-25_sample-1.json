@@ -1,0 +1,281 @@
+{
+ "attributes": [
+  {
+   "co_code": "27027",
+   "county_pin": "24-038-0010",
+   "emv_bldg": 154100,
+   "emv_land": 27000,
+   "emv_total": 181100,
+   "objectid": 1,
+   "owner_more": null,
+   "owner_name": null,
+   "tax_year": 2026
+  },
+  {
+   "co_code": "27027",
+   "county_pin": "08-012-0400",
+   "emv_bldg": 0,
+   "emv_land": 564200,
+   "emv_total": 564200,
+   "objectid": 2,
+   "owner_more": null,
+   "owner_name": null,
+   "tax_year": 2026
+  },
+  {
+   "co_code": "27027",
+   "county_pin": "58-818-5010",
+   "emv_bldg": 278100,
+   "emv_land": 39400,
+   "emv_total": 317500,
+   "objectid": 3,
+   "owner_more": null,
+   "owner_name": null,
+   "tax_year": 2026
+  },
+  {
+   "co_code": "27027",
+   "county_pin": "58-645-0600",
+   "emv_bldg": 299600,
+   "emv_land": 34900,
+   "emv_total": 334500,
+   "objectid": 4,
+   "owner_more": null,
+   "owner_name": null,
+   "tax_year": 2026
+  },
+  {
+   "co_code": "27131",
+   "county_pin": null,
+   "emv_bldg": 0,
+   "emv_land": 0,
+   "emv_total": 0,
+   "objectid": 5,
+   "owner_more": null,
+   "owner_name": null,
+   "tax_year": 0
+  },
+  {
+   "co_code": "27003",
+   "county_pin": "133124330027",
+   "emv_bldg": 242400,
+   "emv_land": 91400,
+   "emv_total": 333800,
+   "objectid": 6,
+   "owner_more": null,
+   "owner_name": "TESTOWNER 95E70B",
+   "tax_year": 2026
+  },
+  {
+   "co_code": "27053",
+   "county_pin": "2302924310440",
+   "emv_bldg": 398000,
+   "emv_land": 32000,
+   "emv_total": 430000,
+   "objectid": 7,
+   "owner_more": null,
+   "owner_name": "TESTOWNER F1B24A",
+   "tax_year": 0
+  },
+  {
+   "co_code": "27147",
+   "county_pin": "040111300",
+   "emv_bldg": 0,
+   "emv_land": 747500,
+   "emv_total": 747500,
+   "objectid": 8,
+   "owner_more": null,
+   "owner_name": "TESTOWNER A145C8",
+   "tax_year": null
+  },
+  {
+   "co_code": "27155",
+   "county_pin": "23-0395000",
+   "emv_bldg": null,
+   "emv_land": null,
+   "emv_total": null,
+   "objectid": 9,
+   "owner_more": null,
+   "owner_name": null,
+   "tax_year": 2026
+  },
+  {
+   "co_code": "27139",
+   "county_pin": "040100190",
+   "emv_bldg": 286800,
+   "emv_land": 168900,
+   "emv_total": 455700,
+   "objectid": 10,
+   "owner_more": null,
+   "owner_name": null,
+   "tax_year": 2027
+  },
+  {
+   "co_code": "27163",
+   "county_pin": "2002721330184",
+   "emv_bldg": 202000,
+   "emv_land": 50000,
+   "emv_total": 252000,
+   "objectid": 11,
+   "owner_more": null,
+   "owner_name": "TESTOWNER BB83EC",
+   "tax_year": 2027
+  },
+  {
+   "co_code": "27019",
+   "county_pin": "258140470",
+   "emv_bldg": 424000,
+   "emv_land": 165000,
+   "emv_total": 589000,
+   "objectid": 12,
+   "owner_more": null,
+   "owner_name": null,
+   "tax_year": 0
+  },
+  {
+   "co_code": "27021",
+   "county_pin": "42-004-2206",
+   "emv_bldg": 117900,
+   "emv_land": 34400,
+   "emv_total": 152300,
+   "objectid": 13,
+   "owner_more": null,
+   "owner_name": "TESTOWNER A89878",
+   "tax_year": 2026
+  },
+  {
+   "co_code": "27037",
+   "county_pin": "346744502090",
+   "emv_bldg": 282000,
+   "emv_land": 137300,
+   "emv_total": 419300,
+   "objectid": 14,
+   "owner_more": null,
+   "owner_name": "TESTOWNER F716B8",
+   "tax_year": 2027
+  },
+  {
+   "co_code": "27053",
+   "county_pin": "3612023120152",
+   "emv_bldg": 436600,
+   "emv_land": 100000,
+   "emv_total": 536600,
+   "objectid": 15,
+   "owner_more": null,
+   "owner_name": "TESTOWNER CFF825",
+   "tax_year": 0
+  },
+  {
+   "co_code": "27099",
+   "county_pin": "18-050-0150",
+   "emv_bldg": 0,
+   "emv_land": 16200,
+   "emv_total": 16200,
+   "objectid": 16,
+   "owner_more": null,
+   "owner_name": "TESTOWNER BCD46A",
+   "tax_year": null
+  },
+  {
+   "co_code": "27109",
+   "county_pin": "640123005806",
+   "emv_bldg": 163900,
+   "emv_land": 40000,
+   "emv_total": 203900,
+   "objectid": 17,
+   "owner_more": null,
+   "owner_name": "TESTOWNER 743212",
+   "tax_year": 2026
+  },
+  {
+   "co_code": "27123",
+   "county_pin": "302922140046",
+   "emv_bldg": 319400,
+   "emv_land": 25000,
+   "emv_total": 344400,
+   "objectid": 18,
+   "owner_more": null,
+   "owner_name": "TESTOWNER C3267C",
+   "tax_year": 2026
+  },
+  {
+   "co_code": "27137",
+   "county_pin": "510-0011-01305",
+   "emv_bldg": 0,
+   "emv_land": 8100,
+   "emv_total": 8100,
+   "objectid": 19,
+   "owner_more": null,
+   "owner_name": "TESTOWNER F66283",
+   "tax_year": 2026
+  },
+  {
+   "co_code": "27139",
+   "county_pin": "262610060",
+   "emv_bldg": 303900,
+   "emv_land": 132900,
+   "emv_total": 436800,
+   "objectid": 20,
+   "owner_more": null,
+   "owner_name": null,
+   "tax_year": 2027
+  },
+  {
+   "co_code": "27139",
+   "county_pin": "273270240",
+   "emv_bldg": 192400,
+   "emv_land": 76100,
+   "emv_total": 268500,
+   "objectid": 21,
+   "owner_more": null,
+   "owner_name": null,
+   "tax_year": 2027
+  },
+  {
+   "co_code": "27001",
+   "county_pin": "29-1-515500",
+   "emv_bldg": 653600,
+   "emv_land": 103300,
+   "emv_total": 756900,
+   "objectid": 22,
+   "owner_more": null,
+   "owner_name": "TESTOWNER 143250",
+   "tax_year": 2027
+  },
+  {
+   "co_code": "27019",
+   "county_pin": "653090120",
+   "emv_bldg": 390500,
+   "emv_land": 210000,
+   "emv_total": 600500,
+   "objectid": 23,
+   "owner_more": null,
+   "owner_name": null,
+   "tax_year": 0
+  },
+  {
+   "co_code": "27037",
+   "county_pin": "021811501210",
+   "emv_bldg": 420200,
+   "emv_land": 107000,
+   "emv_total": 527200,
+   "objectid": 24,
+   "owner_more": null,
+   "owner_name": "TESTOWNER 0E3817",
+   "tax_year": 2027
+  },
+  {
+   "co_code": "27037",
+   "county_pin": "024580001110",
+   "emv_bldg": 531400,
+   "emv_land": 634400,
+   "emv_total": 1165800,
+   "objectid": 25,
+   "owner_more": null,
+   "owner_name": "TESTOWNER 686550",
+   "tax_year": 2027
+  }
+ ],
+ "layer": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_mngeo/plan_parcels_open/MapServer/0",
+ "where": "1=1"
+}

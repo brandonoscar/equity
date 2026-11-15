@@ -1,0 +1,51 @@
+source_id: co.statewide.parcels
+state: CO
+layer_url: https://gis.colorado.gov/Public/rest/services/Address_and_Parcel/Colorado_Public_Parcels/MapServer/0
+order_by: OBJECTID
+page_size: 1000
+min_interval_s: 1.0
+# countyFips is text and inconsistent: some counties send "001", others "27" (no leading zero).
+# code_map accepts both spellings so county-partitioned queries match every row.
+county:
+  field: countyFips
+  format: code_map
+  code_map: {
+    "001": "001", "1": "001", "003": "003", "3": "003", "005": "005", "5": "005",
+    "007": "007", "7": "007", "009": "009", "9": "009", "011": "011", "11": "011",
+    "013": "013", "13": "013", "014": "014", "14": "014", "015": "015", "15": "015",
+    "017": "017", "17": "017", "019": "019", "19": "019", "021": "021", "21": "021",
+    "023": "023", "23": "023", "025": "025", "25": "025", "027": "027", "27": "027",
+    "029": "029", "29": "029", "031": "031", "31": "031", "033": "033", "33": "033",
+    "035": "035", "35": "035", "037": "037", "37": "037", "039": "039", "39": "039",
+    "041": "041", "41": "041", "043": "043", "43": "043", "045": "045", "45": "045",
+    "047": "047", "47": "047", "049": "049", "49": "049", "051": "051", "51": "051",
+    "053": "053", "53": "053", "055": "055", "55": "055", "057": "057", "57": "057",
+    "059": "059", "59": "059", "061": "061", "61": "061", "063": "063", "63": "063",
+    "065": "065", "65": "065", "067": "067", "67": "067", "069": "069", "69": "069",
+    "071": "071", "71": "071", "073": "073", "73": "073", "075": "075", "75": "075",
+    "077": "077", "77": "077", "079": "079", "79": "079", "081": "081", "81": "081",
+    "083": "083", "83": "083", "085": "085", "85": "085", "087": "087", "87": "087",
+    "089": "089", "89": "089", "091": "091", "91": "091", "093": "093", "93": "093",
+    "095": "095", "95": "095", "097": "097", "97": "097", "099": "099", "99": "099",
+    "101": "101", "103": "103", "105": "105", "107": "107", "109": "109", "111": "111",
+    "113": "113", "115": "115", "117": "117", "119": "119", "121": "121", "123": "123",
+    "125": "125"
+  }
+fields:
+  parcel_id: parcel_id
+  owner1: owner
+  owner2: owner2
+  mail_line1: ownerAdd
+  mail_city: ownAddCty
+  mail_state: ownAddStt
+  mail_zip: ownAddZip
+  total_value: apprValTot
+  assessed_value: asedValTot
+  tax_year: {const: 2026}
+value_basis: "apprValTot = 'Parcel Total Value' and asedValTot = 'Taxable Value', both as sent by each county assessor (text fields); OIT received the county extracts Mar-Oct 2026 (dateReceived); the layer has no tax-year field, so tax_year is the constant 2026 (extract vintage), not a certified roll year"
+terms:
+  url: https://gis.colorado.gov/Public/rest/services/Address_and_Parcel/Colorado_Public_Parcels/MapServer/info/iteminfo
+  summary: "Colorado OIT GIS composite of counties that chose 'Public' sharing (45 of 64 counties, 2,599,937 rows on 2026-11-15). Published terms: 'Resale of this data is strictly forbidden. Commercial use of the data is allowed so long as the State of Colorado is attributed in relevant application documentation' (suggested statement: 'State of Colorado Public parcels were accessed on [DATE] from https://gis.colorado.gov/public/rest/services/Address_and_Parcel'); 'Resale' means download, repackaging and reselling of this service; use at one's own risk, no warranty. No robots.txt on host (404)."
+  checked_on: 2026-11-15
+  robots_checked_on: 2026-11-15
+  cost_model: free
