@@ -3,11 +3,18 @@
 from __future__ import annotations
 
 from equity.adapters.base import REGISTRY, Adapter, register
+from equity.adapters.federal.ecf_rss import NDWVBankruptcyRSS, NDWVDistrictRSS
 from equity.adapters.wv.delinquent import WVDelinquentProperties
 from equity.adapters.wv.parcelweb import MonongaliaParcelWeb
 from equity.adapters.wv.statewide_parcels import WVStatewideParcels
 
-for _cls in (WVStatewideParcels, WVDelinquentProperties, MonongaliaParcelWeb):
+for _cls in (
+    WVStatewideParcels,
+    WVDelinquentProperties,
+    MonongaliaParcelWeb,
+    NDWVDistrictRSS,
+    NDWVBankruptcyRSS,
+):
     if _cls not in REGISTRY:
         register(_cls)
 

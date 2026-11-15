@@ -49,13 +49,23 @@ def main(argv: list[str]) -> int:
     adapter = cls()  # type: ignore[abstract]
     fetched = adapter.fetch(FetchRequest(params))
     custom = getattr(cls, "scrub_fixture", None)
+    out = FIXTURES / source_id
+    out.mkdir(parents=True, exist_ok=True)
+    if fetched.content_type.split(";")[0].strip() in (
+        "text/xml",
+        "application/xml",
+        "application/rss+xml",
+    ):
+        assert custom is not None, "XML fixtures need an adapter scrub_fixture"
+        path = out / "feed.xml"
+        path.write_bytes(custom(fetched.content))
+        print(f"wrote {path} ({len(path.read_bytes())} bytes)")
+        return 0
     if custom is not None:
         data = json.loads(custom(fetched.content))
     else:
         pii: tuple[str, ...] = getattr(cls, "pii_fields", ())
         data = scrub(json.loads(fetched.content), pii)
-    out = FIXTURES / source_id
-    out.mkdir(parents=True, exist_ok=True)
     name = "_".join(f"{k}-{v.replace('/', '')}" for k, v in sorted(params.items())) or "sample"
     path = out / f"{name}.json"
     path.write_text(json.dumps(data, sort_keys=True, indent=1) + "\n", encoding="utf-8")

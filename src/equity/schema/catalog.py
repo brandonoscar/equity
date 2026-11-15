@@ -94,7 +94,7 @@ FACT_TABLES: dict[str, FactTable] = {
         ),
         FactTable(
             "docket_entry",
-            ("case_uid", "entry_no", "entry_date"),
+            ("case_uid", "entry_no", "entry_date", "text"),
             event_date="entry_date",
             not_after_retrieval=("entry_date",),
         ),
