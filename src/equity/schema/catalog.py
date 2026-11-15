@@ -16,7 +16,7 @@ PROVENANCE_COLUMNS: tuple[str, ...] = (
 )
 TRANSACTION_COLUMNS: tuple[str, ...] = ("ingested_at", "superseded_at")
 # Columns the loader owns. Callers never pass them.
-LOADER_COLUMNS: tuple[str, ...] = ("row_id", *TRANSACTION_COLUMNS)
+LOADER_COLUMNS: tuple[str, ...] = ("row_id", "fact_hash", *TRANSACTION_COLUMNS)
 
 
 @dataclass(frozen=True)

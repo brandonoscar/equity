@@ -113,6 +113,16 @@ def _content_hash(table: str, row: Mapping[str, Any], columns: Iterable[str]) ->
     return stable_id(table, *[f"{c}={canonical(row.get(c))}" for c in cols])
 
 
+def convert_row(table: str, raw: Mapping[str, Any], types: Mapping[str, str]) -> dict[str, Any]:
+    unknown = set(raw) - set(types)
+    if unknown:
+        raise LoadError(f"{table}: unknown columns {sorted(unknown)}")
+    owned = set(raw) & set(LOADER_COLUMNS) if table in FACT_TABLES else set()
+    if owned:
+        raise LoadError(f"{table}: loader-owned columns must not be passed: {sorted(owned)}")
+    return {c: _convert(raw.get(c), types[c], c) for c in raw}
+
+
 def load_rows(
     con: duckdb.DuckDBPyConnection,
     table: str,
@@ -123,13 +133,7 @@ def load_rows(
     stats = stats or LoadStats()
     types = column_types(con, table)
     for raw in rows:
-        unknown = set(raw) - set(types)
-        if unknown:
-            raise LoadError(f"{table}: unknown columns {sorted(unknown)}")
-        owned = set(raw) & set(LOADER_COLUMNS) if table in FACT_TABLES else set()
-        if owned:
-            raise LoadError(f"{table}: loader-owned columns must not be passed: {sorted(owned)}")
-        row = {c: _convert(raw.get(c), types[c], c) for c in raw}
+        row = convert_row(table, raw, types)
         if table in FACT_TABLES:
             _load_fact(con, table, row, types, clock, stats)
         else:
@@ -158,14 +162,20 @@ def _load_plain(
     stats.inserted += 1
 
 
-def _load_fact(
-    con: duckdb.DuckDBPyConnection,
-    table: str,
-    row: dict[str, Any],
-    types: Mapping[str, str],
-    clock: Clock,
-    stats: LoadStats,
-) -> None:
+@dataclass(frozen=True)
+class PreparedFact:
+    row: dict[str, Any]  # converted values, without loader-owned columns
+    key_cols: tuple[str, ...]
+    key_text: str
+    fact_hash: str
+    row_id: str
+
+
+def prepare_fact(table: str, row: dict[str, Any], types: Mapping[str, str]) -> PreparedFact:
+    """Validate a converted fact row and compute its key, content hash and row id.
+
+    Shared by the row loader and the bulk loader so both produce identical rows.
+    """
     spec = FACT_TABLES[table]
     missing = [c for c in PROVENANCE_COLUMNS if row.get(c) in (None, "")]
     if missing:
@@ -175,34 +185,47 @@ def _load_fact(
         if c not in row:
             raise LoadError(f"{table}: missing domain-key column {c}")
     fact_cols = [c for c in _fact_columns(types) if c not in spec.unhashed]
-    new_hash = _content_hash(table, row, fact_cols)
+    fact_hash = _content_hash(table, row, fact_cols)
+    # The domain key is part of the id: two facts with identical content but different keys
+    # (e.g. the same issue on two records) are different rows.
+    key_text = "|".join(canonical(row[c]) for c in key_cols)
+    row_id = stable_id(table, key_text, fact_hash, canonical(row["retrieved_at"]))
+    return PreparedFact(row, key_cols, key_text, fact_hash, row_id)
 
+
+def _load_fact(
+    con: duckdb.DuckDBPyConnection,
+    table: str,
+    row: dict[str, Any],
+    types: Mapping[str, str],
+    clock: Clock,
+    stats: LoadStats,
+) -> None:
+    prep = prepare_fact(table, row, types)
+    key_cols = prep.key_cols
     where = " AND ".join(f"{c} IS NULL" if row[c] is None else f"{c} = ?" for c in key_cols)
     params = [row[c] for c in key_cols if row[c] is not None]
     current = con.execute(
-        f"SELECT * FROM {table} WHERE superseded_at IS NULL AND {where}",  # noqa: S608
+        f"SELECT row_id, fact_hash FROM {table} WHERE superseded_at IS NULL AND {where}",  # noqa: S608
         params,
     ).fetchall()
-    names = [d[0] for d in con.description or []]
     now = clock()
     if len(current) > 1:
         raise LoadError(f"{table}: more than one current row for key {params}")
     if current:
-        cur = dict(zip(names, current[0], strict=True))
-        if _content_hash(table, cur, fact_cols) == new_hash:
+        cur_row_id, cur_hash = current[0]
+        if cur_hash == prep.fact_hash:
             stats.unchanged += 1
             return
         con.execute(
             f"UPDATE {table} SET superseded_at = ? WHERE row_id = ?",  # noqa: S608
-            [now, cur["row_id"]],
+            [now, cur_row_id],
         )
         stats.superseded += 1
 
     full = dict(row)
-    # The domain key is part of the id: two facts with identical content but different keys
-    # (e.g. the same issue on two records) are different rows.
-    key_text = "|".join(canonical(row[c]) for c in key_cols)
-    full["row_id"] = stable_id(table, key_text, new_hash, canonical(row["retrieved_at"]))
+    full["row_id"] = prep.row_id
+    full["fact_hash"] = prep.fact_hash
     full["ingested_at"] = now
     full["superseded_at"] = None
     _insert(con, table, full)

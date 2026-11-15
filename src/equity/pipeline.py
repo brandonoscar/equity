@@ -13,6 +13,7 @@ from typing import Any
 
 import duckdb
 
+from equity.schema.bulk import load_bulk
 from equity.schema.catalog import all_tables, primary_key
 from equity.schema.clock import Clock
 from equity.schema.load import LoadError, LoadStats, load_rows
@@ -30,12 +31,24 @@ def read_jsonl(path: Path) -> Iterator[tuple[str, dict[str, Any]]]:
             yield str(obj["table"]), dict(obj["row"])
 
 
-def ingest(con: duckdb.DuckDBPyConnection, inputs: list[Path], clock: Clock) -> LoadStats:
-    """Load files in the given order; within a file, line order."""
+def ingest(
+    con: duckdb.DuckDBPyConnection, inputs: list[Path], clock: Clock, bulk: bool = False
+) -> LoadStats:
+    """Load files in the given order; within a file, line order.
+
+    bulk=True groups each file's rows by table and uses the set-based loader.
+    """
     stats = LoadStats()
     for path in inputs:
+        if not bulk:
+            for table, row in read_jsonl(path):
+                load_rows(con, table, [row], clock, stats)
+            continue
+        by_table: dict[str, list[dict[str, Any]]] = {}
         for table, row in read_jsonl(path):
-            load_rows(con, table, [row], clock, stats)
+            by_table.setdefault(table, []).append(row)
+        for table, rows in by_table.items():
+            load_bulk(con, table, rows, clock, stats)
     return stats
 
 
@@ -62,7 +75,9 @@ def export_snapshot(con: duckdb.DuckDBPyConnection, out_dir: Path) -> list[Path]
     return written
 
 
-def run_manifest(db_path: str, manifest_path: Path) -> duckdb.DuckDBPyConnection:
+def run_manifest(
+    db_path: str, manifest_path: Path, bulk: bool = False
+) -> duckdb.DuckDBPyConnection:
     """Run batches listed in a manifest, each ingested at its stated instant.
 
     Manifest: {"batches": [{"ingested_at": ISO-8601 with tz, "files": [...]}, ...]}.
@@ -81,5 +96,5 @@ def run_manifest(db_path: str, manifest_path: Path) -> duckdb.DuckDBPyConnection
     migrate(con, fixed_clock(first))
     for batch in batches:
         clock = fixed_clock(datetime.fromisoformat(batch["ingested_at"]))
-        ingest(con, [manifest_path.parent / f for f in batch["files"]], clock)
+        ingest(con, [manifest_path.parent / f for f in batch["files"]], clock, bulk=bulk)
     return con
