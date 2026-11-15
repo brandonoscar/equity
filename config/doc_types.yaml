@@ -1,0 +1,44 @@
+# Classification of normalized doc_type values. These say *what kind* of document something is.
+# They do NOT rank liens: priority is a Phase 4 rule with its own config.
+# TODO(Brandon): confirm every list. Nothing here is a legal conclusion until you sign off.
+
+# Documents that create a monetary encumbrance on real property.
+lien_doc_types:
+  - DEED_OF_TRUST
+  - MORTGAGE
+  - JUDGMENT_LIEN
+  - ABSTRACT_OF_JUDGMENT
+  - MECHANICS_LIEN
+  - STATUTORY_LIEN
+  - TAX_LIEN_STATE
+  - TAX_LIEN_FEDERAL
+
+# Recorded notices reported alongside the lien stack but not counted as liens.
+notice_doc_types:
+  - LIS_PENDENS
+
+# Liens/notices that must be tied to a specific parcel. Invariant: none may exist without an
+# instrument_parcel row.
+parcel_specific_doc_types:
+  - DEED_OF_TRUST
+  - MORTGAGE
+  - MECHANICS_LIEN
+  - LIS_PENDENS
+
+# General liens that attach to a debtor's real property rather than a named parcel. They reach a
+# parcel through the debtor's resolved ownership (open question 19 in docs/phase0.md).
+general_lien_doc_types:
+  - JUDGMENT_LIEN
+  - ABSTRACT_OF_JUDGMENT
+  - TAX_LIEN_STATE
+  - TAX_LIEN_FEDERAL
+  - STATUTORY_LIEN
+
+# instrument_ref types that end the referenced instrument everywhere.
+terminating_ref_types:
+  - releases
+  - satisfies_judgment
+
+# instrument_ref types that end the referenced instrument only for scope_parcel_uid.
+parcel_scoped_terminating_ref_types:
+  - partial_release

@@ -1,0 +1,19 @@
+{
+  "batches": [
+    {
+      "ingested_at": "2026-02-01T00:00:00+00:00",
+      "files": [
+        "00_sources.jsonl",
+        "10_assessor.jsonl",
+        "20_recorder.jsonl",
+        "30_court.jsonl"
+      ]
+    },
+    {
+      "ingested_at": "2026-03-02T00:00:00+00:00",
+      "files": [
+        "40_assessor_correction.jsonl"
+      ]
+    }
+  ]
+}
