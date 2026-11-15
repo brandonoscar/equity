@@ -1,0 +1,21 @@
+source_id: de.statewide.parcels
+state: DE
+# FirstMap (Delaware DTI / Office of State Planning) "State Parcels", compiled monthly from the
+# three county parcel files. Despite the service description ("with Ownership Information"),
+# the public layer carries only PIN, ACRES, COUNTY and UPDATED: no owner, no values.
+layer_url: https://enterprise.firstmap.delaware.gov/arcgis/rest/services/PlanningCadastre/DE_StateParcels/FeatureServer/0
+order_by: OBJECTID
+page_size: 1000
+min_interval_s: 1.0
+county:
+  field: COUNTY        # "New Castle" | "Kent" | "Sussex"; name format, so fetch by oid range
+  format: name
+fields:
+  parcel_id: PIN       # county parcel number, format differs by county
+value_basis: "no value fields in this layer (parcel ids only); owner and assessed values are in county assessment systems"
+terms:
+  url: https://enterprise.firstmap.delaware.gov/arcgis/rest/services/PlanningCadastre/DE_StateParcels/FeatureServer/info/metadata
+  summary: "FirstMap free public ArcGIS REST, no login; service metadata has no license or use-limit text (useLimit empty); FirstMap pages describe data as provided 'as is' with no State liability. No commercial-use or mailing-list restriction found."
+  checked_on: 2026-11-15
+  robots_checked_on: 2026-11-15
+  cost_model: free

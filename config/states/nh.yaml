@@ -1,0 +1,260 @@
+source_id: nh.statewide.parcels
+state: NH
+# NH Dept. of Revenue Administration Parcel Mosaic (hosted by UNH GRANIT). Public layer has
+# parcel ids, town, land-use code and situs street only: no owner, no values.
+layer_url: https://nhgeodata.unh.edu/nhgeodata/rest/services/CAD/ParcelMosaic/MapServer/1
+order_by: OBJECTID
+page_size: 1000
+min_interval_s: 1.0
+# TownID -> county FIPS. CountyId (1-10, alphabetical: Belknap=1 ... Sullivan=10) is null on
+# about 15.7k rows but TownID is always set; this map was built from the layer's own
+# TownID/CountyId pairs (one county per town, 236 towns, 2026-11-15), FIPS = 2*CountyId-1.
+county:
+  field: TownID
+  format: code_map
+  code_map:
+    "4001": "019"   # Acworth
+    "4002": "003"   # ALBANY
+    "4003": "009"   # Alexandria
+    "4004": "013"   # Allenstown
+    "4005": "005"   # Alstead
+    "4006": "001"   # Alton
+    "4007": "011"   # Amherst
+    "4008": "013"   # ANDOVER
+    "4009": "011"   # Antrim
+    "4010": "009"   # Ashland
+    "4011": "015"   # Atkinson
+    "4012": "015"   # Auburn
+    "4013": "001"   # Barnstead
+    "4014": "017"   # Barrington
+    "4015": "003"   # BARTLETT
+    "4016": "009"   # Bath
+    "4017": "011"   # BEDFORD
+    "4018": "001"   # Belmont
+    "4019": "011"   # BENNINGTON
+    "4020": "009"   # BENTON
+    "4021": "007"   # Berlin
+    "4022": "009"   # Bethlehem
+    "4023": "013"   # BOSCAWEN
+    "4024": "013"   # Bow
+    "4025": "013"   # Bradford
+    "4026": "015"   # Brentwood
+    "4027": "009"   # Bridgewater
+    "4028": "009"   # Bristol
+    "4029": "003"   # Brookfield
+    "4030": "011"   # Brookline
+    "4031": "009"   # Campton
+    "4032": "009"   # CANAAN
+    "4033": "015"   # CANDIA
+    "4034": "013"   # CANTERBURY
+    "4035": "007"   # Carroll
+    "4036": "001"   # Center Harbor
+    "4037": "019"   # Charlestown
+    "4038": "003"   # CHATHAM
+    "4039": "015"   # Chester
+    "4040": "005"   # Chesterfield
+    "4041": "013"   # CHICHESTER
+    "4042": "019"   # CLAREMONT
+    "4043": "007"   # Clarksville
+    "4044": "007"   # Colebrook
+    "4045": "007"   # Columbia
+    "4046": "013"   # CONCORD
+    "4047": "003"   # Conway
+    "4048": "019"   # CORNISH
+    "4049": "019"   # CROYDON
+    "4050": "007"   # Dalton
+    "4051": "013"   # DANBURY
+    "4052": "015"   # Danville
+    "4053": "015"   # Deerfield
+    "4054": "011"   # DEERING
+    "4055": "015"   # DERRY
+    "4057": "009"   # DORCHESTER
+    "4058": "017"   # DOVER
+    "4059": "005"   # DUBLIN
+    "4060": "007"   # DUMMER
+    "4061": "013"   # Dunbarton
+    "4062": "017"   # DURHAM
+    "4063": "015"   # EAST KINGSTON
+    "4064": "009"   # EASTON
+    "4065": "003"   # Eaton
+    "4066": "003"   # Effingham
+    "4067": "009"   # ELLSWORTH
+    "4068": "009"   # Enfield
+    "4069": "015"   # Epping
+    "4070": "013"   # Epsom
+    "4071": "007"   # Errol
+    "4072": "015"   # Exeter
+    "4073": "017"   # FARMINGTON
+    "4074": "005"   # FITZWILLIAM
+    "4075": "011"   # Francestown
+    "4076": "009"   # FRANCONIA
+    "4077": "013"   # Franklin
+    "4078": "003"   # Freedom
+    "4079": "015"   # Fremont
+    "4080": "001"   # Gilford
+    "4081": "001"   # Gilmanton
+    "4082": "005"   # GILSUM
+    "4083": "011"   # GOFFSTOWN
+    "4084": "007"   # Gorham
+    "4085": "019"   # Goshen
+    "4086": "009"   # GRAFTON
+    "4087": "019"   # Grantham
+    "4088": "011"   # Greenfield
+    "4089": "015"   # GREENLAND
+    "4090": "011"   # GREENVILLE
+    "4091": "009"   # GROTON
+    "4092": "015"   # HAMPSTEAD
+    "4093": "015"   # Hampton
+    "4094": "015"   # HAMPTON FALLS
+    "4095": "011"   # HANCOCK
+    "4096": "009"   # Hanover
+    "4097": "005"   # HARRISVILLE
+    "4098": "003"   # HARTS LOCATION
+    "4099": "009"   # Haverhill
+    "4100": "009"   # HEBRON
+    "4101": "013"   # Henniker
+    "4102": "013"   # HILL
+    "4103": "011"   # Hillsborough
+    "4104": "005"   # Hinsdale
+    "4105": "009"   # Holderness
+    "4106": "011"   # Hollis
+    "4107": "013"   # Hooksett
+    "4108": "013"   # Hopkinton
+    "4109": "011"   # Hudson
+    "4110": "003"   # JACKSON
+    "4111": "005"   # Jaffrey
+    "4112": "007"   # Jefferson
+    "4113": "005"   # Keene
+    "4114": "015"   # KENSINGTON
+    "4115": "015"   # Kingston
+    "4116": "001"   # Laconia
+    "4117": "007"   # LANCASTER
+    "4118": "009"   # LANDAFF
+    "4119": "019"   # LANGDON
+    "4120": "009"   # Lebanon
+    "4121": "017"   # Lee
+    "4122": "019"   # Lempster
+    "4123": "009"   # Lincoln
+    "4124": "009"   # Lisbon
+    "4125": "011"   # Litchfield
+    "4126": "009"   # LITTLETON
+    "4127": "015"   # LONDONDERRY
+    "4128": "013"   # Loudon
+    "4129": "009"   # Lyman
+    "4130": "009"   # Lyme
+    "4131": "011"   # Lyndeborough
+    "4132": "017"   # MADBURY
+    "4133": "003"   # MADISON
+    "4134": "011"   # MANCHESTER
+    "4135": "005"   # MARLBOROUGH
+    "4136": "005"   # Marlow
+    "4137": "011"   # Mason
+    "4138": "001"   # Meredith
+    "4139": "011"   # Merrimack
+    "4140": "017"   # Middleton
+    "4141": "007"   # MILAN
+    "4142": "011"   # Milford
+    "4143": "017"   # Milton
+    "4144": "009"   # MONROE
+    "4145": "011"   # Mont Vernon
+    "4146": "003"   # Moultonborough
+    "4147": "011"   # Nashua
+    "4148": "005"   # NELSON
+    "4149": "011"   # NEW BOSTON
+    "4150": "015"   # NEW CASTLE
+    "4151": "017"   # New Durham
+    "4152": "001"   # New Hampton
+    "4153": "011"   # New Ipswich
+    "4154": "013"   # New London
+    "4155": "013"   # Newbury
+    "4156": "015"   # Newfields
+    "4157": "015"   # NEWINGTON
+    "4158": "015"   # NEWMARKET
+    "4159": "019"   # Newport
+    "4160": "015"   # Newton
+    "4161": "015"   # NORTH HAMPTON
+    "4162": "013"   # Northfield
+    "4163": "007"   # Northumberland
+    "4164": "015"   # Northwood
+    "4165": "015"   # Nottingham
+    "4166": "009"   # ORANGE
+    "4167": "009"   # ORFORD
+    "4168": "003"   # Ossipee
+    "4169": "011"   # Pelham
+    "4170": "013"   # Pembroke
+    "4171": "011"   # Peterborough
+    "4172": "009"   # PIERMONT
+    "4173": "007"   # PITTSBURG
+    "4174": "013"   # Pittsfield
+    "4175": "019"   # Plainfield
+    "4176": "015"   # Plaistow
+    "4177": "009"   # Plymouth
+    "4178": "015"   # Portsmouth
+    "4179": "007"   # RANDOLPH
+    "4180": "015"   # Raymond
+    "4181": "005"   # RICHMOND
+    "4182": "005"   # Rindge
+    "4183": "017"   # Rochester
+    "4184": "017"   # ROLLINSFORD
+    "4185": "005"   # ROXBURY
+    "4186": "009"   # Rumney
+    "4187": "015"   # Rye
+    "4188": "015"   # Salem
+    "4189": "013"   # Salisbury
+    "4190": "001"   # Sanbornton
+    "4191": "015"   # Sandown
+    "4192": "003"   # Sandwich
+    "4193": "015"   # SEABROOK
+    "4194": "011"   # SHARON
+    "4195": "007"   # SHELBURNE
+    "4196": "017"   # SOMERSWORTH
+    "4197": "015"   # SOUTH HAMPTON
+    "4198": "019"   # SPRINGFIELD
+    "4199": "007"   # Stark
+    "4200": "007"   # Stewartstown
+    "4201": "005"   # Stoddard
+    "4202": "017"   # STRAFFORD
+    "4203": "007"   # Stratford
+    "4204": "015"   # Stratham
+    "4205": "009"   # Sugar Hill
+    "4206": "005"   # SULLIVAN
+    "4207": "019"   # Sunapee
+    "4208": "005"   # SURRY
+    "4209": "013"   # Sutton
+    "4210": "005"   # Swanzey
+    "4211": "003"   # Tamworth
+    "4212": "011"   # TEMPLE
+    "4213": "009"   # Thornton
+    "4214": "001"   # Tilton
+    "4215": "005"   # TROY
+    "4216": "003"   # Tuftonboro
+    "4217": "019"   # Unity
+    "4218": "003"   # Wakefield
+    "4219": "005"   # WALPOLE
+    "4220": "013"   # Warner
+    "4221": "009"   # Warren
+    "4222": "019"   # WASHINGTON
+    "4223": "009"   # Waterville Valley
+    "4224": "011"   # Weare
+    "4225": "013"   # Webster
+    "4226": "009"   # WENTWORTH
+    "4227": "005"   # WESTMORELAND
+    "4228": "007"   # Whitefield
+    "4229": "013"   # WILMOT
+    "4230": "011"   # WILTON
+    "4231": "005"   # WINCHESTER
+    "4232": "015"   # Windham
+    "4233": "011"   # WINDSOR
+    "4234": "003"   # Wolfeboro
+    "4235": "009"   # Woodstock
+    "4248": "003"   # HALES LOCATION
+    "4300": "007"   # UNINCORPORATED
+fields:
+  parcel_id: NH_GIS_ID   # statewide id: county + town id + "-" + local PID
+value_basis: "no value fields in the public layer (parcel ids only); assessed values are held by the 234 municipal assessors"
+terms:
+  url: https://nhgeodata.unh.edu/nhgeodata/rest/services/CAD/ParcelMosaic/MapServer
+  summary: "NH DRA Parcel Mosaic via UNH GRANIT, free public REST, no login; service copyright 'NHDRA, Axiomatic, Inc.'; no license or use-limit text in service or layer metadata. No commercial-use or mailing-list restriction found (license not published on the REST endpoint)."
+  checked_on: 2026-11-15
+  robots_checked_on: 2026-11-15
+  cost_model: free

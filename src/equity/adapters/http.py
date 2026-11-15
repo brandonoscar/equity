@@ -21,7 +21,7 @@ Transport = Callable[[str, Mapping[str, str], float], tuple[int, bytes, str]]
 
 
 class AccessDenied(RuntimeError):
-    """robots.txt disallows the URL."""
+    """robots.txt disallows the URL, or robots.txt was unreachable (RFC 9309: disallow)."""
 
 
 @dataclass(frozen=True)
@@ -74,12 +74,15 @@ class PoliteClient:
             except OSError:
                 status, body = 599, b""
             self._last[parts.netloc] = self.monotonic()
-            if status in (401, 403):
-                rp.disallow_all = True  # same convention as urllib.robotparser.read()
-            elif 200 <= status < 300:
+            # RFC 9309 (Robots Exclusion Protocol), section 2.3.1:
+            #   2xx: obey the file;  4xx "unavailable" (incl. 401/403): no restrictions;
+            #   5xx or network error "unreachable": assume complete disallow.
+            if 200 <= status < 300:
                 rp.parse(body.decode("utf-8", errors="replace").splitlines())
+            elif 400 <= status < 500:
+                rp.parse([])
             else:
-                rp.parse([])  # 404 / unreachable: no rules, as major crawlers treat it
+                rp.disallow_all = True
             self._robots[origin] = rp
         return self._robots[origin]
 

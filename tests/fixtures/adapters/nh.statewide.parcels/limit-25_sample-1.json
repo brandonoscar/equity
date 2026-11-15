@@ -1,0 +1,131 @@
+{
+ "attributes": [
+  {
+   "NH_GIS_ID": "104001-252-010-000",
+   "OBJECTID": 65017,
+   "TownID": "4001"
+  },
+  {
+   "NH_GIS_ID": "104001-252-006-000",
+   "OBJECTID": 65018,
+   "TownID": "4001"
+  },
+  {
+   "NH_GIS_ID": "104001-229-066-000",
+   "OBJECTID": 65019,
+   "TownID": "4001"
+  },
+  {
+   "NH_GIS_ID": "104001-227-016-000",
+   "OBJECTID": 65020,
+   "TownID": "4001"
+  },
+  {
+   "NH_GIS_ID": "104001-228-011-000",
+   "OBJECTID": 65021,
+   "TownID": "4001"
+  },
+  {
+   "NH_GIS_ID": "104001-229-074-000",
+   "OBJECTID": 65022,
+   "TownID": "4001"
+  },
+  {
+   "NH_GIS_ID": "104001-229-037-000",
+   "OBJECTID": 65023,
+   "TownID": "4001"
+  },
+  {
+   "NH_GIS_ID": "104001-215-008-000",
+   "OBJECTID": 65024,
+   "TownID": "4001"
+  },
+  {
+   "NH_GIS_ID": "104001-216-019-000",
+   "OBJECTID": 65025,
+   "TownID": "4001"
+  },
+  {
+   "NH_GIS_ID": "104001-201-135-000",
+   "OBJECTID": 65026,
+   "TownID": "4001"
+  },
+  {
+   "NH_GIS_ID": "104001-201-098-000",
+   "OBJECTID": 65027,
+   "TownID": "4001"
+  },
+  {
+   "NH_GIS_ID": "104001-227-016-000",
+   "OBJECTID": 65028,
+   "TownID": "4001"
+  },
+  {
+   "NH_GIS_ID": "104001-229-067-000",
+   "OBJECTID": 65029,
+   "TownID": "4001"
+  },
+  {
+   "NH_GIS_ID": "104001-229-018-000",
+   "OBJECTID": 65030,
+   "TownID": "4001"
+  },
+  {
+   "NH_GIS_ID": "104001-227-003-000",
+   "OBJECTID": 65031,
+   "TownID": "4001"
+  },
+  {
+   "NH_GIS_ID": "104001-228-014-000",
+   "OBJECTID": 65032,
+   "TownID": "4001"
+  },
+  {
+   "NH_GIS_ID": "104001-235-017-000",
+   "OBJECTID": 65033,
+   "TownID": "4001"
+  },
+  {
+   "NH_GIS_ID": "104001-236-006-000",
+   "OBJECTID": 65034,
+   "TownID": "4001"
+  },
+  {
+   "NH_GIS_ID": "104001-234-006-000",
+   "OBJECTID": 65035,
+   "TownID": "4001"
+  },
+  {
+   "NH_GIS_ID": "104001-214-006-000",
+   "OBJECTID": 65036,
+   "TownID": "4001"
+  },
+  {
+   "NH_GIS_ID": "104001-201-136-000",
+   "OBJECTID": 65037,
+   "TownID": "4001"
+  },
+  {
+   "NH_GIS_ID": "104001-248-010-000",
+   "OBJECTID": 65038,
+   "TownID": "4001"
+  },
+  {
+   "NH_GIS_ID": "104001-247-022-001",
+   "OBJECTID": 65039,
+   "TownID": "4001"
+  },
+  {
+   "NH_GIS_ID": "104001-246-053-000",
+   "OBJECTID": 65040,
+   "TownID": "4001"
+  },
+  {
+   "NH_GIS_ID": "104001-246-040-000",
+   "OBJECTID": 65041,
+   "TownID": "4001"
+  }
+ ],
+ "layer": "https://nhgeodata.unh.edu/nhgeodata/rest/services/CAD/ParcelMosaic/MapServer/1",
+ "where": "1=1"
+}

@@ -56,7 +56,11 @@ def test_robots_disallow_blocks_request() -> None:
     assert net.calls.count("https://a.test/robots.txt") == 1  # cached per origin
 
 
-@pytest.mark.parametrize(("status", "allowed"), [(404, True), (500, True), (403, False)])
+# RFC 9309 section 2.3.1: 4xx (including 401/403) = unavailable = no restrictions;
+# 5xx = unreachable = complete disallow.
+@pytest.mark.parametrize(
+    ("status", "allowed"), [(404, True), (403, True), (401, True), (500, False), (503, False)]
+)
 def test_robots_status_conventions(status: int, allowed: bool) -> None:
     net = FakeNet({"https://b.test/robots.txt": (status, b""), "https://b.test/": (200, b"ok")})
     c = client(net, FakeClock())
@@ -67,9 +71,11 @@ def test_robots_status_conventions(status: int, allowed: bool) -> None:
             c.get("https://b.test/x")
 
 
-def test_unreachable_robots_means_no_rules() -> None:
-    net = FakeNet({"https://c.test/x": (200, b"ok")})
-    assert client(net, FakeClock()).get("https://c.test/x").status == 200
+def test_unreachable_robots_means_disallow() -> None:
+    net = FakeNet({"https://c.test/x": (200, b"ok")})  # robots.txt raises OSError
+    with pytest.raises(AccessDenied):
+        client(net, FakeClock()).get("https://c.test/x")
+    assert net.calls == ["https://c.test/robots.txt"]  # the page itself was never requested
 
 
 def test_requests_to_one_host_are_spaced() -> None:

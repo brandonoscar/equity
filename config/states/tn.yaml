@@ -1,0 +1,111 @@
+source_id: tn.statewide.parcels
+state: TN
+layer_url: https://tnmap.tn.gov/arcgis/rest/services/ENVIRONMENTAL/COMPTROLLER_OLG_LANDUSE/MapServer/2
+order_by: OBJECTID
+page_size: 1000
+min_interval_s: 1.0
+# COUNTY holds upper-case county names; mapped to FIPS so county_fips partitioning works.
+# The 86 counties whose CAMA the Comptroller maintains. Not in this layer: Chester, Davidson,
+# Hamilton, Hickman, Knox, Montgomery, Rutherford, Shelby, Williamson.
+county:
+  field: COUNTY
+  format: code_map
+  code_map:
+    "ANDERSON": "001"
+    "BEDFORD": "003"
+    "BENTON": "005"
+    "BLEDSOE": "007"
+    "BLOUNT": "009"
+    "BRADLEY": "011"
+    "CAMPBELL": "013"
+    "CANNON": "015"
+    "CARROLL": "017"
+    "CARTER": "019"
+    "CHEATHAM": "021"
+    "CLAIBORNE": "025"
+    "CLAY": "027"
+    "COCKE": "029"
+    "COFFEE": "031"
+    "CROCKETT": "033"
+    "CUMBERLAND": "035"
+    "DECATUR": "039"
+    "DEKALB": "041"
+    "DICKSON": "043"
+    "DYER": "045"
+    "FAYETTE": "047"
+    "FENTRESS": "049"
+    "FRANKLIN": "051"
+    "GIBSON": "053"
+    "GILES": "055"
+    "GRAINGER": "057"
+    "GREENE": "059"
+    "GRUNDY": "061"
+    "HAMBLEN": "063"
+    "HANCOCK": "067"
+    "HARDEMAN": "069"
+    "HARDIN": "071"
+    "HAWKINS": "073"
+    "HAYWOOD": "075"
+    "HENDERSON": "077"
+    "HENRY": "079"
+    "HOUSTON": "083"
+    "HUMPHREYS": "085"
+    "JACKSON": "087"
+    "JEFFERSON": "089"
+    "JOHNSON": "091"
+    "LAKE": "095"
+    "LAUDERDALE": "097"
+    "LAWRENCE": "099"
+    "LEWIS": "101"
+    "LINCOLN": "103"
+    "LOUDON": "105"
+    "MACON": "111"
+    "MADISON": "113"
+    "MARION": "115"
+    "MARSHALL": "117"
+    "MAURY": "119"
+    "MCMINN": "107"
+    "MCNAIRY": "109"
+    "MEIGS": "121"
+    "MONROE": "123"
+    "MOORE": "127"
+    "MORGAN": "129"
+    "OBION": "131"
+    "OVERTON": "133"
+    "PERRY": "135"
+    "PICKETT": "137"
+    "POLK": "139"
+    "PUTNAM": "141"
+    "RHEA": "143"
+    "ROANE": "145"
+    "ROBERTSON": "147"
+    "SCOTT": "151"
+    "SEQUATCHIE": "153"
+    "SEVIER": "155"
+    "SMITH": "159"
+    "STEWART": "161"
+    "SULLIVAN": "163"
+    "SUMNER": "165"
+    "TIPTON": "167"
+    "TROUSDALE": "169"
+    "UNICOI": "171"
+    "UNION": "173"
+    "VAN BUREN": "175"
+    "WARREN": "177"
+    "WASHINGTON": "179"
+    "WAYNE": "181"
+    "WEAKLEY": "183"
+    "WHITE": "185"
+    "WILSON": "189"
+fields:
+  parcel_id: GISLINK
+  land_value: LANDVALUE
+  bldg_value: IMPVALUE
+  total_value: APPRAISAL
+value_basis: "LANDVALUE/IMPVALUE/APPRAISAL = appraised land, improvement and total value from the state IMPACT CAMA extract (no assessed-value field in this layer). The layer has no tax-year or extract-date field, so no tax_year is mapped and no assessment facts are emitted; raw values stay in source records. 13 of 86 counties carry no values (e.g. Anderson, Sullivan, Hamblen)."
+terms:
+  url: https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html
+  summary: "Comptroller Office of Local Government land-use parcel layer served by TN STS (tnmap.tn.gov), 'derived semi-annually from property assessment data extracted from the state's IMPACT CAMA system'; free, no login; no license text on the layer. NO OWNER NAMES OR MAILING ADDRESSES (owner data is only in the Comptroller's per-county shapefile + Assessment_Data dbf, which needs a manual form per county and states: 'We do not offer bulk or historical downloads, nor any recurring extracts or other automated downloads'). The same page says shapefile data can be used 'for any use case, including consumption in a commercial application/software'."
+  checked_on: 2026-11-15
+  robots_checked_on: 2026-11-15
+  cost_model: free

@@ -45,7 +45,7 @@ fields:
 value_basis: "apprValTot = 'Parcel Total Value' and asedValTot = 'Taxable Value', both as sent by each county assessor (text fields); OIT received the county extracts Mar-Oct 2026 (dateReceived); the layer has no tax-year field, so tax_year is the constant 2026 (extract vintage), not a certified roll year"
 terms:
   url: https://gis.colorado.gov/Public/rest/services/Address_and_Parcel/Colorado_Public_Parcels/MapServer/info/iteminfo
-  summary: "Colorado OIT GIS composite of counties that chose 'Public' sharing (45 of 64 counties, 2,599,937 rows on 2026-11-15). Published terms: 'Resale of this data is strictly forbidden. Commercial use of the data is allowed so long as the State of Colorado is attributed in relevant application documentation' (suggested statement: 'State of Colorado Public parcels were accessed on [DATE] from https://gis.colorado.gov/public/rest/services/Address_and_Parcel'); 'Resale' means download, repackaging and reselling of this service; use at one's own risk, no warranty. No robots.txt on host (404)."
+  summary: "Colorado OIT GIS composite of counties that chose 'Public' sharing (44 of 64 counties, 2,599,937 rows on 2026-11-15). Published terms: 'Resale of this data is strictly forbidden. Commercial use of the data is allowed so long as the State of Colorado is attributed in relevant application documentation' (suggested statement: 'State of Colorado Public parcels were accessed on [DATE] from https://gis.colorado.gov/public/rest/services/Address_and_Parcel'); 'Resale' means download, repackaging and reselling of this service; use at one's own risk, no warranty. No robots.txt on host (404)."
   checked_on: 2026-11-15
   robots_checked_on: 2026-11-15
   cost_model: free

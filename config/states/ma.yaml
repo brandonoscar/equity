@@ -1,0 +1,387 @@
+source_id: ma.statewide.parcels
+state: MA
+# MassGIS Level 3 standardized assessor extract (L3_ASSESS table): one row per assessor record,
+# owner, mailing address, values and last-sale book/page. Joins to parcel polygons on LOC_ID.
+layer_url: https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/AGOL/MassachusettsPropertyTaxParcels/FeatureServer/4
+order_by: OBJECTID
+page_size: 1000
+min_interval_s: 1.0
+# TOWN_ID is the MassGIS town identifier (1-351). Map built from MassGIS Census2020_Towns
+# (TOWN_ID -> COUNTYFP20). TOWN_ID is an integer field, so fetch by oid_min/oid_max: the
+# code_map county_fips where clause quotes the code and this server rejects TOWN_ID='55'.
+county:
+  field: TOWN_ID
+  format: code_map
+  code_map:
+    "1": "023"   # Abington
+    "2": "017"   # Acton
+    "3": "005"   # Acushnet
+    "4": "003"   # Adams
+    "5": "013"   # Agawam
+    "6": "003"   # Alford
+    "7": "009"   # Amesbury
+    "8": "015"   # Amherst
+    "9": "009"   # Andover
+    "10": "017"   # Arlington
+    "11": "027"   # Ashburnham
+    "12": "017"   # Ashby
+    "13": "011"   # Ashfield
+    "14": "017"   # Ashland
+    "15": "027"   # Athol
+    "16": "005"   # Attleboro
+    "17": "027"   # Auburn
+    "18": "021"   # Avon
+    "19": "017"   # Ayer
+    "20": "001"   # Barnstable
+    "21": "027"   # Barre
+    "22": "003"   # Becket
+    "23": "017"   # Bedford
+    "24": "015"   # Belchertown
+    "25": "021"   # Bellingham
+    "26": "017"   # Belmont
+    "27": "005"   # Berkley
+    "28": "027"   # Berlin
+    "29": "011"   # Bernardston
+    "30": "009"   # Beverly
+    "31": "017"   # Billerica
+    "32": "027"   # Blackstone
+    "33": "013"   # Blandford
+    "34": "027"   # Bolton
+    "35": "025"   # Boston
+    "36": "001"   # Bourne
+    "37": "017"   # Boxborough
+    "38": "009"   # Boxford
+    "39": "027"   # Boylston
+    "40": "021"   # Braintree
+    "41": "001"   # Brewster
+    "42": "023"   # Bridgewater
+    "43": "013"   # Brimfield
+    "44": "023"   # Brockton
+    "45": "027"   # Brookfield
+    "46": "021"   # Brookline
+    "47": "011"   # Buckland
+    "48": "017"   # Burlington
+    "49": "017"   # Cambridge
+    "50": "021"   # Canton
+    "51": "017"   # Carlisle
+    "52": "023"   # Carver
+    "53": "011"   # Charlemont
+    "54": "027"   # Charlton
+    "55": "001"   # Chatham
+    "56": "017"   # Chelmsford
+    "57": "025"   # Chelsea
+    "58": "003"   # Cheshire
+    "59": "013"   # Chester
+    "60": "015"   # Chesterfield
+    "61": "013"   # Chicopee
+    "62": "007"   # Chilmark
+    "63": "003"   # Clarksburg
+    "64": "027"   # Clinton
+    "65": "021"   # Cohasset
+    "66": "011"   # Colrain
+    "67": "017"   # Concord
+    "68": "011"   # Conway
+    "69": "015"   # Cummington
+    "70": "003"   # Dalton
+    "71": "009"   # Danvers
+    "72": "005"   # Dartmouth
+    "73": "021"   # Dedham
+    "74": "011"   # Deerfield
+    "75": "001"   # Dennis
+    "76": "005"   # Dighton
+    "77": "027"   # Douglas
+    "78": "021"   # Dover
+    "79": "017"   # Dracut
+    "80": "027"   # Dudley
+    "81": "017"   # Dunstable
+    "82": "023"   # Duxbury
+    "83": "023"   # East Bridgewater
+    "84": "027"   # East Brookfield
+    "85": "013"   # East Longmeadow
+    "86": "001"   # Eastham
+    "87": "015"   # Easthampton
+    "88": "005"   # Easton
+    "89": "007"   # Edgartown
+    "90": "003"   # Egremont
+    "91": "011"   # Erving
+    "92": "009"   # Essex
+    "93": "017"   # Everett
+    "94": "005"   # Fairhaven
+    "95": "005"   # Fall River
+    "96": "001"   # Falmouth
+    "97": "027"   # Fitchburg
+    "98": "003"   # Florida
+    "99": "021"   # Foxborough
+    "100": "017"   # Framingham
+    "101": "021"   # Franklin
+    "102": "005"   # Freetown
+    "103": "027"   # Gardner
+    "104": "007"   # Aquinnah
+    "105": "009"   # Georgetown
+    "106": "011"   # Gill
+    "107": "009"   # Gloucester
+    "108": "015"   # Goshen
+    "109": "007"   # Gosnold
+    "110": "027"   # Grafton
+    "111": "015"   # Granby
+    "112": "013"   # Granville
+    "113": "003"   # Great Barrington
+    "114": "011"   # Greenfield
+    "115": "017"   # Groton
+    "116": "009"   # Groveland
+    "117": "015"   # Hadley
+    "118": "023"   # Halifax
+    "119": "009"   # Hamilton
+    "120": "013"   # Hampden
+    "121": "003"   # Hancock
+    "122": "023"   # Hanover
+    "123": "023"   # Hanson
+    "124": "027"   # Hardwick
+    "125": "027"   # Harvard
+    "126": "001"   # Harwich
+    "127": "015"   # Hatfield
+    "128": "009"   # Haverhill
+    "129": "011"   # Hawley
+    "130": "011"   # Heath
+    "131": "023"   # Hingham
+    "132": "003"   # Hinsdale
+    "133": "021"   # Holbrook
+    "134": "027"   # Holden
+    "135": "013"   # Holland
+    "136": "017"   # Holliston
+    "137": "013"   # Holyoke
+    "138": "027"   # Hopedale
+    "139": "017"   # Hopkinton
+    "140": "027"   # Hubbardston
+    "141": "017"   # Hudson
+    "142": "023"   # Hull
+    "143": "015"   # Huntington
+    "144": "009"   # Ipswich
+    "145": "023"   # Kingston
+    "146": "023"   # Lakeville
+    "147": "027"   # Lancaster
+    "148": "003"   # Lanesborough
+    "149": "009"   # Lawrence
+    "150": "003"   # Lee
+    "151": "027"   # Leicester
+    "152": "003"   # Lenox
+    "153": "027"   # Leominster
+    "154": "011"   # Leverett
+    "155": "017"   # Lexington
+    "156": "011"   # Leyden
+    "157": "017"   # Lincoln
+    "158": "017"   # Littleton
+    "159": "013"   # Longmeadow
+    "160": "017"   # Lowell
+    "161": "013"   # Ludlow
+    "162": "027"   # Lunenburg
+    "163": "009"   # Lynn
+    "164": "009"   # Lynnfield
+    "165": "017"   # Malden
+    "166": "009"   # Manchester-By-The-Sea
+    "167": "005"   # Mansfield
+    "168": "009"   # Marblehead
+    "169": "023"   # Marion
+    "170": "017"   # Marlborough
+    "171": "023"   # Marshfield
+    "172": "001"   # Mashpee
+    "173": "023"   # Mattapoisett
+    "174": "017"   # Maynard
+    "175": "021"   # Medfield
+    "176": "017"   # Medford
+    "177": "021"   # Medway
+    "178": "017"   # Melrose
+    "179": "027"   # Mendon
+    "180": "009"   # Merrimac
+    "181": "009"   # Methuen
+    "182": "023"   # Middleborough
+    "183": "015"   # Middlefield
+    "184": "009"   # Middleton
+    "185": "027"   # Milford
+    "186": "027"   # Millbury
+    "187": "021"   # Millis
+    "188": "027"   # Millville
+    "189": "021"   # Milton
+    "190": "011"   # Monroe
+    "191": "013"   # Monson
+    "192": "011"   # Montague
+    "193": "003"   # Monterey
+    "194": "013"   # Montgomery
+    "195": "003"   # Mount Washington
+    "196": "009"   # Nahant
+    "197": "019"   # Nantucket
+    "198": "017"   # Natick
+    "199": "021"   # Needham
+    "200": "003"   # New Ashford
+    "201": "005"   # New Bedford
+    "202": "027"   # New Braintree
+    "203": "003"   # New Marlborough
+    "204": "011"   # New Salem
+    "205": "009"   # Newbury
+    "206": "009"   # Newburyport
+    "207": "017"   # Newton
+    "208": "021"   # Norfolk
+    "209": "003"   # North Adams
+    "210": "009"   # North Andover
+    "211": "005"   # North Attleborough
+    "212": "027"   # North Brookfield
+    "213": "017"   # North Reading
+    "214": "015"   # Northampton
+    "215": "027"   # Northborough
+    "216": "027"   # Northbridge
+    "217": "011"   # Northfield
+    "218": "005"   # Norton
+    "219": "023"   # Norwell
+    "220": "021"   # Norwood
+    "221": "007"   # Oak Bluffs
+    "222": "027"   # Oakham
+    "223": "011"   # Orange
+    "224": "001"   # Orleans
+    "225": "003"   # Otis
+    "226": "027"   # Oxford
+    "227": "013"   # Palmer
+    "228": "027"   # Paxton
+    "229": "009"   # Peabody
+    "230": "015"   # Pelham
+    "231": "023"   # Pembroke
+    "232": "017"   # Pepperell
+    "233": "003"   # Peru
+    "234": "027"   # Petersham
+    "235": "027"   # Phillipston
+    "236": "003"   # Pittsfield
+    "237": "015"   # Plainfield
+    "238": "021"   # Plainville
+    "239": "023"   # Plymouth
+    "240": "023"   # Plympton
+    "241": "027"   # Princeton
+    "242": "001"   # Provincetown
+    "243": "021"   # Quincy
+    "244": "021"   # Randolph
+    "245": "005"   # Raynham
+    "246": "017"   # Reading
+    "247": "005"   # Rehoboth
+    "248": "025"   # Revere
+    "249": "003"   # Richmond
+    "250": "023"   # Rochester
+    "251": "023"   # Rockland
+    "252": "009"   # Rockport
+    "253": "011"   # Rowe
+    "254": "009"   # Rowley
+    "255": "027"   # Royalston
+    "256": "013"   # Russell
+    "257": "027"   # Rutland
+    "258": "009"   # Salem
+    "259": "009"   # Salisbury
+    "260": "003"   # Sandisfield
+    "261": "001"   # Sandwich
+    "262": "009"   # Saugus
+    "263": "003"   # Savoy
+    "264": "023"   # Scituate
+    "265": "005"   # Seekonk
+    "266": "021"   # Sharon
+    "267": "003"   # Sheffield
+    "268": "011"   # Shelburne
+    "269": "017"   # Sherborn
+    "270": "017"   # Shirley
+    "271": "027"   # Shrewsbury
+    "272": "011"   # Shutesbury
+    "273": "005"   # Somerset
+    "274": "017"   # Somerville
+    "275": "015"   # South Hadley
+    "276": "015"   # Southampton
+    "277": "027"   # Southborough
+    "278": "027"   # Southbridge
+    "279": "013"   # Southwick
+    "280": "027"   # Spencer
+    "281": "013"   # Springfield
+    "282": "027"   # Sterling
+    "283": "003"   # Stockbridge
+    "284": "017"   # Stoneham
+    "285": "021"   # Stoughton
+    "286": "017"   # Stow
+    "287": "027"   # Sturbridge
+    "288": "017"   # Sudbury
+    "289": "011"   # Sunderland
+    "290": "027"   # Sutton
+    "291": "009"   # Swampscott
+    "292": "005"   # Swansea
+    "293": "005"   # Taunton
+    "294": "027"   # Templeton
+    "295": "017"   # Tewksbury
+    "296": "007"   # Tisbury
+    "297": "013"   # Tolland
+    "298": "009"   # Topsfield
+    "299": "017"   # Townsend
+    "300": "001"   # Truro
+    "301": "017"   # Tyngsborough
+    "302": "003"   # Tyringham
+    "303": "027"   # Upton
+    "304": "027"   # Uxbridge
+    "305": "017"   # Wakefield
+    "306": "013"   # Wales
+    "307": "021"   # Walpole
+    "308": "017"   # Waltham
+    "309": "015"   # Ware
+    "310": "023"   # Wareham
+    "311": "027"   # Warren
+    "312": "011"   # Warwick
+    "313": "003"   # Washington
+    "314": "017"   # Watertown
+    "315": "017"   # Wayland
+    "316": "027"   # Webster
+    "317": "021"   # Wellesley
+    "318": "001"   # Wellfleet
+    "319": "011"   # Wendell
+    "320": "009"   # Wenham
+    "321": "027"   # West Boylston
+    "322": "023"   # West Bridgewater
+    "323": "027"   # West Brookfield
+    "324": "009"   # West Newbury
+    "325": "013"   # West Springfield
+    "326": "003"   # West Stockbridge
+    "327": "007"   # West Tisbury
+    "328": "027"   # Westborough
+    "329": "013"   # Westfield
+    "330": "017"   # Westford
+    "331": "015"   # Westhampton
+    "332": "027"   # Westminster
+    "333": "017"   # Weston
+    "334": "005"   # Westport
+    "335": "021"   # Westwood
+    "336": "021"   # Weymouth
+    "337": "011"   # Whately
+    "338": "023"   # Whitman
+    "339": "013"   # Wilbraham
+    "340": "015"   # Williamsburg
+    "341": "003"   # Williamstown
+    "342": "017"   # Wilmington
+    "343": "027"   # Winchendon
+    "344": "017"   # Winchester
+    "345": "003"   # Windsor
+    "346": "025"   # Winthrop
+    "347": "017"   # Woburn
+    "348": "027"   # Worcester
+    "349": "015"   # Worthington
+    "350": "021"   # Wrentham
+    "351": "001"   # Yarmouth
+fields:
+  parcel_id: MA_PROP_ID       # MassGIS-assigned, unique statewide (M<town>_<PROP_ID>)
+  owner1: OWNER1
+  mail_line1: OWN_ADDR
+  mail_city: OWN_CITY
+  mail_state: OWN_STATE
+  mail_zip: OWN_ZIP
+  land_value: LAND_VAL
+  bldg_value: BLDG_VAL
+  total_value: TOTAL_VAL
+  tax_year: FY
+  deed_book: LS_BOOK
+  deed_page: LS_PAGE
+value_basis: "LAND_VAL/BLDG_VAL/TOTAL_VAL = current assessed values from the municipal assessor (MassGIS L3 standard: 'Current total assessed value for land and structures'; TOTAL_VAL may include categories not in land+bldg, OTHER_VAL not mapped); FY = fiscal year of the assessed value (MA fiscal year starts July 1)"
+assessment_valid_from: prior_july1
+terms:
+  url: https://www.mass.gov/info-details/massgis-data-property-tax-parcels
+  summary: "MassGIS (EOTSS) standardized assessor parcels, free download/REST, no license text found; service licenseInfo: 'Assessor's parcel mapping is a representation of property boundaries, not an authoritative source.' No commercial-use or mailing-list restriction found. Municipal FY vintages vary (some towns years stale)."
+  checked_on: 2026-11-15
+  robots_checked_on: 2026-11-15
+  cost_model: free

@@ -1,0 +1,131 @@
+{
+ "attributes": [
+  {
+   "county": "Hawaii",
+   "objectid": 1,
+   "tmk_txt": "389014053"
+  },
+  {
+   "county": "Hawaii",
+   "objectid": 2,
+   "tmk_txt": "388009112"
+  },
+  {
+   "county": "Hawaii",
+   "objectid": 3,
+   "tmk_txt": "388009113"
+  },
+  {
+   "county": "Hawaii",
+   "objectid": 4,
+   "tmk_txt": "388009114"
+  },
+  {
+   "county": "Hawaii",
+   "objectid": 5,
+   "tmk_txt": "388009115"
+  },
+  {
+   "county": "Hawaii",
+   "objectid": 6,
+   "tmk_txt": "388009116"
+  },
+  {
+   "county": "Hawaii",
+   "objectid": 7,
+   "tmk_txt": "388009117"
+  },
+  {
+   "county": "Hawaii",
+   "objectid": 8,
+   "tmk_txt": "388009118"
+  },
+  {
+   "county": "Hawaii",
+   "objectid": 9,
+   "tmk_txt": "388009119"
+  },
+  {
+   "county": "Hawaii",
+   "objectid": 10,
+   "tmk_txt": "388009120"
+  },
+  {
+   "county": "Hawaii",
+   "objectid": 11,
+   "tmk_txt": "388009121"
+  },
+  {
+   "county": "Hawaii",
+   "objectid": 12,
+   "tmk_txt": "388009124"
+  },
+  {
+   "county": "Hawaii",
+   "objectid": 13,
+   "tmk_txt": "388009125"
+  },
+  {
+   "county": "Hawaii",
+   "objectid": 14,
+   "tmk_txt": "388009126"
+  },
+  {
+   "county": "Hawaii",
+   "objectid": 15,
+   "tmk_txt": "388009127"
+  },
+  {
+   "county": "Hawaii",
+   "objectid": 16,
+   "tmk_txt": "388009128"
+  },
+  {
+   "county": "Hawaii",
+   "objectid": 17,
+   "tmk_txt": "388009129"
+  },
+  {
+   "county": "Hawaii",
+   "objectid": 18,
+   "tmk_txt": "388009130"
+  },
+  {
+   "county": "Hawaii",
+   "objectid": 19,
+   "tmk_txt": "392018028"
+  },
+  {
+   "county": "Hawaii",
+   "objectid": 20,
+   "tmk_txt": "392018030"
+  },
+  {
+   "county": "Hawaii",
+   "objectid": 21,
+   "tmk_txt": "392018031"
+  },
+  {
+   "county": "Hawaii",
+   "objectid": 22,
+   "tmk_txt": "392018032"
+  },
+  {
+   "county": "Hawaii",
+   "objectid": 23,
+   "tmk_txt": "392018035"
+  },
+  {
+   "county": "Hawaii",
+   "objectid": 24,
+   "tmk_txt": "392018036"
+  },
+  {
+   "county": "Hawaii",
+   "objectid": 25,
+   "tmk_txt": "392003063"
+  }
+ ],
+ "layer": "https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServer/25",
+ "where": "1=1"
+}
