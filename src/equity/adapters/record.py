@@ -48,11 +48,15 @@ def main(argv: list[str]) -> int:
     cls = by_source_id(source_id)
     adapter = cls()  # type: ignore[abstract]
     fetched = adapter.fetch(FetchRequest(params))
-    pii: tuple[str, ...] = getattr(cls, "pii_fields", ())
-    data = scrub(json.loads(fetched.content), pii)
+    custom = getattr(cls, "scrub_fixture", None)
+    if custom is not None:
+        data = json.loads(custom(fetched.content))
+    else:
+        pii: tuple[str, ...] = getattr(cls, "pii_fields", ())
+        data = scrub(json.loads(fetched.content), pii)
     out = FIXTURES / source_id
     out.mkdir(parents=True, exist_ok=True)
-    name = "_".join(f"{k}-{v}" for k, v in sorted(params.items())) or "sample"
+    name = "_".join(f"{k}-{v.replace('/', '')}" for k, v in sorted(params.items())) or "sample"
     path = out / f"{name}.json"
     path.write_text(json.dumps(data, sort_keys=True, indent=1) + "\n", encoding="utf-8")
     print(f"wrote {path} ({len(path.read_bytes())} bytes)")

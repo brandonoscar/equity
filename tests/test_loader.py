@@ -152,3 +152,10 @@ def test_canonical_forms() -> None:
     assert canonical(date(2020, 1, 2)) == "2020-01-02"
     assert canonical(b"\x01") == "01"
     assert canonical(0.5) == "0.5"
+
+
+def test_same_content_under_different_keys_gets_distinct_rows(empty_db) -> None:  # type: ignore[no-untyped-def]
+    issue = {"issue_code": "x", "target_table": "t", "detail": {"a": 1}}
+    load_rows(empty_db, "data_issue", [{**issue, **_prov("K1")}, {**issue, **_prov("K2")}], T1)
+    n = empty_db.execute("SELECT count(DISTINCT row_id) FROM data_issue").fetchone()
+    assert n == (2,)

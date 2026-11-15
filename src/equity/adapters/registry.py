@@ -4,9 +4,10 @@ from __future__ import annotations
 
 from equity.adapters.base import REGISTRY, Adapter, register
 from equity.adapters.wv.delinquent import WVDelinquentProperties
+from equity.adapters.wv.parcelweb import MonongaliaParcelWeb
 from equity.adapters.wv.statewide_parcels import WVStatewideParcels
 
-for _cls in (WVStatewideParcels, WVDelinquentProperties):
+for _cls in (WVStatewideParcels, WVDelinquentProperties, MonongaliaParcelWeb):
     if _cls not in REGISTRY:
         register(_cls)
 

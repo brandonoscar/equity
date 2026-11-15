@@ -39,6 +39,7 @@ FACT_TABLES: dict[str, FactTable] = {
     t.name: t
     for t in (
         FactTable("party", ("party_id",)),
+        FactTable("data_issue", ("record_key", "issue_code")),
         FactTable("business", ("sos_id", "valid_from"), interval=True),
         FactTable("business_role", ("sos_id", "party_id", "role", "valid_from"), interval=True),
         FactTable("parcel", ("parcel_uid",)),

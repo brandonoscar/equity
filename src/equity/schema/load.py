@@ -199,7 +199,10 @@ def _load_fact(
         stats.superseded += 1
 
     full = dict(row)
-    full["row_id"] = stable_id(table, new_hash, canonical(row["retrieved_at"]))
+    # The domain key is part of the id: two facts with identical content but different keys
+    # (e.g. the same issue on two records) are different rows.
+    key_text = "|".join(canonical(row[c]) for c in key_cols)
+    full["row_id"] = stable_id(table, key_text, new_hash, canonical(row["retrieved_at"]))
     full["ingested_at"] = now
     full["superseded_at"] = None
     _insert(con, table, full)

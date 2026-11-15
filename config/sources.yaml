@@ -18,3 +18,8 @@ wv.monongalia.assessor.arcgis:
 wv.statewide.delinquent:
   min_interval_s: 1.0
   page_size: 2000
+
+wv.monongalia.assessor.parcelweb:
+  # HTML search on a small county server: go slow.
+  min_interval_s: 3.0
+  rows_per_page: 20
