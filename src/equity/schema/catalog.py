@@ -99,6 +99,12 @@ FACT_TABLES: dict[str, FactTable] = {
         ),
         FactTable("tax_bill", ("parcel_uid", "tax_year", "ticket"), event_date="as_of"),
         FactTable(
+            "tax_delinquency_snapshot",
+            ("parcel_uid", "certificate_no"),
+            not_after_retrieval=("observed_on",),
+            unhashed=("observed_on",),
+        ),
+        FactTable(
             "tax_sale_event",
             ("parcel_uid", "event", "event_date"),
             event_date="event_date",

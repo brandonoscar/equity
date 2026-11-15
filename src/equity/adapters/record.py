@@ -48,7 +48,7 @@ def main(argv: list[str]) -> int:
     cls = by_source_id(source_id)
     adapter = cls()  # type: ignore[abstract]
     fetched = adapter.fetch(FetchRequest(params))
-    pii: tuple[str, ...] = getattr(sys.modules[cls.__module__], "PII_FIELDS", ())
+    pii: tuple[str, ...] = getattr(cls, "pii_fields", ())
     data = scrub(json.loads(fetched.content), pii)
     out = FIXTURES / source_id
     out.mkdir(parents=True, exist_ok=True)

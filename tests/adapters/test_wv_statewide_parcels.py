@@ -10,7 +10,7 @@ from typing import Any
 
 import pytest
 
-from equity.adapters.base import Fetched
+from equity.adapters.base import Fetched, FetchRequest
 from equity.adapters.wv.statewide_parcels import (
     FIELDS,
     WVStatewideParcels,
@@ -112,6 +112,7 @@ def test_valid_from_rules() -> None:
         valid_from_for(2026, "guess")
 
 
-def test_query_rejects_bad_county() -> None:
+def test_where_rejects_bad_county() -> None:
+    assert WVStatewideParcels().where(FetchRequest({"county_number": "31"})) == "CountyCode=31"
     with pytest.raises(ValueError, match="1-55"):
-        WVStatewideParcels().query(56)
+        WVStatewideParcels().where(FetchRequest({"county_number": "56"}))
