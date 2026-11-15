@@ -8,13 +8,13 @@ Date: 2026-11-15. Everything marked **VERIFIED** was fetched from the official s
 ## 0. Decisions needed before Phase 1
 
 1. **Recorder access (blocker for the most valuable adapter).** The County Clerk's record search sits behind an anti-bot slider CAPTCHA, and its terms say "This service is for viewing only. Please do not attempt to copy documents from this site." There's no compliant way to automate it. Options:
-   - (a) Ask the Clerk for an electronic index export (and images) under W. Va. Code §59-1-10(e). The fee is a "reasonable fee, not to exceed cost". **Recommended.** You or the buyer would need to make the request. A draft request is in §7.
+   - (a) Ask the Clerk for an electronic index export (and images) under W. Va. Code §59-1-10(e). The fee is a "reasonable fee, not to exceed cost". **Recommended.** You or your partner would need to make the request. A draft request is in §7.
    - (b) Ask the vendor (Compiled Technologies) whether it offers a subscriber or bulk feed for Monongalia.
    - (c) Don't automate the recorder in v1. Hand-pull documents for golden cases only.
 2. **OCR test (brief item 3).** It can't run yet. It needs 20 purchased document copies (≈ $60–$70 for the first 2–3 pages of each, or ≈ $320 for full documents). See §3. Approve the spend, or fold it into the request in decision 1.
 3. **Circuit court judgments.** WVPASS (statewide circuit records) requires registration and login, and caps each search at 100 results. Non-negotiable 6 rules out automation behind a login. Options: request bulk data from the WV Supreme Court Administrative Office, or get judgment liens from the County Clerk's judgment lien docket (same access problem as decision 1).
 4. **WV Secretary of State bulk data is a paid subscription.** See §2.5 for price and terms. The free entity search is usable record-by-record.
-5. **Pilot choice.** Monongalia is workable for parcels, assessments, ownership history and tax status, all of which are open. It's blocked on recorder and court data. It's also outside the buyer's enforcement states (the buyer's list: FL, OH, LA, NY, NJ, IN, MI, GA, AL, TX, CA, NC, SC, PA), though the sourcing memo says "West Virginia first, then Pennsylvania". See §4.
+5. **Pilot choice.** Monongalia is workable for parcels, assessments, ownership history and tax status, all of which are open. It's blocked on recorder and court data. It may also sit outside the buyer's target states. That list belongs in private config, not in this public repo. See §4.
 
 ---
 
@@ -66,7 +66,7 @@ All fetches used a normal browser User-Agent, a handful of requests per host, an
 | Tax office (Sheriff) | **Software Systems, Inc.** tax inquiry (`monongalia.softwaresystems.com`) | HTML form POST | No | Free | No robots.txt (404). No terms on page | None published | Yes (HTML) |
 | Delinquent tax sales | WV State Auditor (see §2.4) | see §2.4 | see §2.4 | see §2.4 | see §2.4 | see §2.4 | see §2.4 |
 | Circuit Clerk | **WVPASS** (i3 Verticals, for the WV Supreme Court), `wvpass.courtswva.com` | Web app, **registration + login** | No public bulk offer found | Search free. Downloads $0.25/page + card fee | Login required. 100-result cap per search (FROM SEARCH) | Unknown | **No** (login) |
-| Magistrate Court | `mcrsearch.courtswv.gov` | Web search | No | Free | Civil cap is below the buyer's $30K minimum | Unknown | Not needed |
+| Magistrate Court | `mcrsearch.courtswv.gov` | Web search | No | Free | Civil cap is likely below the buyer's minimum file size | Unknown | Not needed |
 | WV Secretary of State | see §2.5 | | | | | | |
 | PACER NDWV + bankruptcy | see §2.6 | | | | | | |
 
@@ -95,7 +95,7 @@ Three public surfaces:
 ### 2.3 Circuit Clerk and judgments
 - **WVPASS** (VERIFIED from the Supreme Court's 2025-02-24 release and the `courtswv.gov/court-record-access` page): all 55 circuit courts, public civil and criminal cases from 1999 on. "Registration to use the new system is free… The WVPASS search function will be free for registered users." Downloads cost $0.25/page plus a card fee. Vendor i3 Verticals. Host `wvpass.courtswva.com`. 100-result search cap (FROM SEARCH). No published bulk or API program found.
 - **Judgment liens on real property are recorded at the County Clerk** (fee schedule lists "Judgment" and "Execution" as recordable instruments). In WV, the judgment lien docket is kept by the county commission's clerk (see §2.7 for statute citations). For our question (does a judgment encumber real property, and in what order), **the Clerk's judgment docket matters more than the circuit file**, but it has the same access problem as §2.1.
-- Magistrate courts: separate system. Civil jurisdiction is capped below the buyer's $30K minimum (cap amount from memory, to confirm), so this is low priority.
+- Magistrate courts: separate system. Civil jurisdiction is capped low (amount from memory, to confirm), likely below the buyer's minimum file size, so this is low priority.
 
 ### 2.4 Tax office and delinquency
 - **Sheriff tax inquiry** (VERIFIED): vendor Software Systems, Inc. Search by taxpayer name, account, tax year + ticket, or district/map/parcel/sub-parcel. Filters: tax year, real/personal, **paid/unpaid**. Results grid: Ticket, Type, Taxpayer Name, Address, Half-Year Tax. The field names visible in page source are `TATYR, TATICK, TATSUF, TANAM1, TAASID, TADIST, TAMAP, TAPARC, TASPAR, TASPID, TA2PDF, TAADR, TATAX, TARCD, TACNTY`.
@@ -120,7 +120,7 @@ Three public surfaces:
 | Return-to address | Yes (detail panel; VERIFIED) | | |
 | **Deed consideration** | NOT VERIFIED | Likely on image and transfer-tax stamp | **ParcelWeb sale price (VERIFIED)** |
 | **Deed-of-trust principal amount** | NOT VERIFIED; unlikely | **Likely image-only** | none |
-| **Maturity date** (needed for the buyer's "lapsed mortgage" screen) | No (strong expectation) | **Image-only** | none |
+| **Maturity date** (needed for a lapsed-senior-lien screen) | No (strong expectation) | **Image-only** | none |
 | **Judgment amount / judgment date** | NOT VERIFIED | Likely on image (abstract/order) | Circuit file (WVPASS, login) |
 | Tenancy (survivorship, husband/wife) | No | On deed image | **ParcelWeb flags (VERIFIED)** |
 
@@ -148,10 +148,10 @@ When copies are in hand, the test is mechanical: `tesseract` 5.x (apt package, n
 1. **Recorder automation is blocked** (CAPTCHA + view-only terms). The adapter you rank most valuable can't be built until the Clerk agrees to an export.
 2. **Court judgments are behind WVPASS login.** A bulk request goes to the Supreme Court Administrative Office.
 3. **SOS bulk data costs money** (§2.5).
-4. **WV isn't one of the buyer's enforcement states.** the buyer's list is FL, OH, LA, NY, NJ, IN, MI, GA, AL, TX, CA, NC, SC, PA. A Monongalia lead list may produce files the buyer wouldn't buy unless it adds WV or works them through a partner.
-5. Small volume: about 106K people. The count of commercial judgments ≥ $30K and ≥ 2 years old may be in the dozens, not hundreds. Fine for golden files, thin for a ranked CSV.
+4. **WV may not be a target state for the buyer** (the list is in private config). If it isn't, a Monongalia lead list produces files nobody will buy.
+5. Small volume: about 106K people. The count of commercial judgments above the buyer's size and age floor may be in the dozens, not hundreds. Fine for golden files, thin for a ranked CSV.
 
-**Recommendation:** keep Monongalia for Tier-1 parcel and ownership work and as the schema test bed, since its open data is good. Send the Clerk and Supreme Court requests now. In parallel, consider a second pilot in an enforcement state with published bulk recorder data. **Hillsborough County, FL** is a candidate: the Clerk publishes three Official Records index files per business day plus monthly civil bulk files (FROM SEARCH, `hillsclerk.com/Records-and-Reports/Public-Data-Files`), and Florida's statewide parcel file is free (see §5). I haven't verified it in depth; that would be a short follow-up if you want it.
+**Recommendation:** keep Monongalia for Tier-1 parcel and ownership work and as the schema test bed, since its open data is good. Send the Clerk and Supreme Court requests now. In parallel, consider a second pilot in a target state with published bulk recorder data. **Hillsborough County, FL** is a candidate: the Clerk publishes three Official Records index files per business day plus monthly civil bulk files (FROM SEARCH, `hillsclerk.com/Records-and-Reports/Public-Data-Files`), and Florida's statewide parcel file is free (see §5). I haven't verified it in depth; that would be a short follow-up if you want it.
 
 ---
 
@@ -173,7 +173,7 @@ Full per-state tables with publisher, endpoint, coverage, terms and sources: [`p
 
 \* value fields LIKELY, not confirmed.
 
-### 5.2 the buyer's enforcement states (what matters for the buyer)
+### 5.2 Selected states (example set; the real target list lives in private config)
 | State | Free statewide owner + value? |
 |---|---|
 | FL | **Yes** (FDOR NAL + parcel files, all 67 counties). Watch item: UF GeoPlan pulled parcel layers in Oct 2025 at the state's request |
@@ -185,14 +185,14 @@ Full per-state tables with publisher, endpoint, coverage, terms and sources: [`p
 | NJ | Values yes, **owner names redacted** |
 | LA, MI, GA, AL, CA, SC, PA | **No.** County-by-county |
 
-Only 2 of the buyer's 14 enforcement states have complete free owner + value data. 7 have no statewide source at all.
+Only 2 of these 14 states have complete free owner + value data. 7 have no statewide source at all.
 
 ### 5.3 What the gap costs (cached list prices, NOT quotes, NOT approved)
 - ReportAll statewide files: CA $6,000, IL $6,000, IA $6,000, MI $7,000, TX $7,000, GA $9,000. Single counties: $200–$400.
 - Regrid list price (2023): about $8K–$12K per state per year, or $300–$500 per county. Current nationwide license price not captured.
-- Rough fill for the 7 county-by-county enforcement states (LA, MI, GA, AL, CA, SC, PA): **≈ $42K–$63K one-time** (ReportAll-style statewide files) or **≈ $56K–$84K/yr** (Regrid 2023 pricing). Owner backfill for NJ, IN and the partial NY and TX counties would come on top.
+- Rough fill for the 7 county-by-county states above (LA, MI, GA, AL, CA, SC, PA): **≈ $42K–$63K one-time** (ReportAll-style statewide files) or **≈ $56K–$84K/yr** (Regrid 2023 pricing). Owner backfill for NJ, IN and the partial NY and TX counties would come on top.
 - Rough fill for all 30+ states lacking free owner data: **≈ $180K–$270K** one-time at ReportAll-style prices.
-- Cheaper path for a deal-driven business: buy **single counties ($200–$400)** only where the buyer has a live file. This fits the adapter pattern: one adapter per purchased county file.
+- Cheaper path for a deal-driven business: buy **single counties ($200–$400)** only where there's a live file. This fits the adapter pattern: one adapter per purchased county file.
 
 ### 5.4 Legal and terms red flags for commercial use
 - **IN** IC 5-14-3-3(f): no commercial name/address lists.
@@ -322,16 +322,16 @@ The graph in the brief is a set of edge views over these tables: `entity —link
 ### Legal rules (config with TODO, never encoded by me)
 8. Lien priority rule for WV: race-notice under §40-1-9? How do judgment liens rank against later deeds of trust? Purchase-money priority? Federal and state tax lien super-priority?
 9. Judgment lien life and renewal in WV (§38-3-18 and related): duration, renewal mechanics, and whether renewal keeps priority.
-10. Deed-of-trust lapse ("ancient mortgage") rule for WV, needed for the buyer's lapsed-mortgage screen. Which date starts the clock, and what is the period?
-11. Homestead exemption amount and who qualifies, in WV and in each enforcement state.
+10. Deed-of-trust lapse ("ancient mortgage") rule for WV, needed for a lapsed-senior-lien screen. Which date starts the clock, and what is the period?
+11. Homestead exemption amount and who qualifies, in WV and in each target state.
 12. Tenancy by the entirety: does WV recognize it? ParcelWeb exposes "Survivorship" and "Husband/Wife" flags, so the code can *flag* but not *decide*.
 13. Statute-of-limitations table: you said you'd fill it in. I'll ship `config/sol.yaml` with every state present and every value `null # TODO(Brandon)`.
 14. "Nominal consideration" threshold for transfer flags (e.g. ≤ $10, or < X% of appraised). Config value, needs your number.
 15. "Related-party grantee" definition: same surname? same mailing address? LLC where the debtor is a member or agent? Each is a separate config-switchable rule.
 
 ### Scope
-16. Pilot: Monongalia only, or Monongalia + one county in an enforcement state (Hillsborough, FL suggested)? See §4.
-17. the buyer buys **commercial** judgments ≥ $30K, roughly ≥ 2 years old. Should the Phase 5 CSV filter to these by default?
+16. Pilot: Monongalia only, or Monongalia + one county in a target state (Hillsborough, FL suggested)? See §4.
+17. Should the Phase 5 CSV filter by default to the buyer's criteria (commercial, minimum amount, minimum age)? Thresholds would live in private config.
 18. "No evals": I read this as dropping the gold-set precision/recall harness from the earlier draft and keeping only your exact-match golden files (`tests/golden/`, written by you) and the Phase 5 snapshot. Correct?
 19. The invariant "no lien without a parcel" conflicts with WV judgment liens, which attach to all of the debtor's real property in the county, not to one parcel. Proposal: judgment liens link to parcels *through* the debtor's resolved ownership, and the invariant applies to parcel-specific liens (deeds of trust, mechanics' liens, lis pendens). Confirm.
 20. CI protection: GitHub branch protection and CODEOWNERS need repo-admin settings. I can write the files, but you have to turn branch protection on. Also: add CAPTCHA-solving packages to the blocklist?
