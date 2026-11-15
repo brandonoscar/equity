@@ -248,3 +248,98 @@ def test_mail_full_used_when_no_split_fields(tmp_path: Path) -> None:
     (addr,) = [r for t, r in out if t == "address"]
     assert (addr["line1"], addr["city"], addr["state"], addr["zip5"]) == (
         "1 MAIN ST", "MORGANTOWN", "WV", "26505")  # fmt: skip
+
+
+def _fake_server(responses: list[dict[str, Any]], seen: list[str]):  # type: ignore[no-untyped-def]
+    from collections.abc import Mapping as _M
+
+    from equity.adapters.http import PoliteClient
+
+    served: list[str] = []
+
+    def transport(url: str, headers: _M[str, str], timeout: float) -> tuple[int, bytes, str]:
+        if url.endswith("robots.txt"):
+            return 404, b"", ""
+        seen.append(url)
+        served.append(url)
+        return 200, json.dumps(responses[len(served) - 1]).encode(), "application/json"
+
+    return PoliteClient(min_interval_s=0, transport=transport, sleep=lambda s: None,
+                        now=lambda: AT)  # fmt: skip
+
+
+def test_multiple_layers_with_per_layer_county(tmp_path: Path) -> None:
+    layers = [{"url": "https://x.test/FS/1", "county": {"constant": "001"}},
+              "https://x.test/FS/2/"]  # fmt: skip
+    cfg = load_config(_cfg(tmp_path, layers=layers))
+    assert cfg.layer_count == 2
+    assert cfg.layer_url == "https://x.test/FeatureServer/0"  # explicit layer_url kept
+    cls = adapter_for(cfg)
+    seen: list[str] = []
+    stats = {"features": [{"attributes": {"lo": 1, "hi": 3}}]}
+    plan = list(cls(_fake_server([stats], seen)).partitions(window=10))
+    assert plan[0] == {"layer": "0", "oid_min": "1", "oid_max": "11"}  # constant county
+    assert plan[1] == {"layer": "1", "county_fips": "001"}  # county field on layer 2
+    page = {"features": [{"attributes": {"OID": 1, "PID": "9", "TV": 5}}]}
+    a = cls(_fake_server([page], seen))
+    fetched = a.fetch(FetchRequest({"layer": "0", "oid_min": "1", "oid_max": "11"}))
+    assert fetched.request.startswith("https://x.test/FS/1/query")
+    assert a.layer_of(fetched) == 0
+    out = [(r.table, dict(r.row)) for r in a.normalize(fetched)]
+    assert [r["parcel_uid"] for t, r in out if t == "parcel"] == ["54001-9"]
+
+
+def test_layers_without_layer_url_and_bad_layer(tmp_path: Path) -> None:
+    path = _cfg(tmp_path, layers=["https://x.test/FS/5"])
+    data = yaml.safe_load(path.read_text())
+    del data["layer_url"]
+    path.write_text(yaml.safe_dump(data))
+    assert load_config(path).layer_url == "https://x.test/FS/5"
+    del data["layers"]
+    path.write_text(yaml.safe_dump(data))
+    with pytest.raises(StateConfigError, match="layer_url or layers"):
+        load_config(path)
+    data["layers"] = [42]
+    path.write_text(yaml.safe_dump(data))
+    with pytest.raises(StateConfigError, match="each layer"):
+        load_config(path)
+
+
+def test_no_paging_mode_uses_small_windows(tmp_path: Path) -> None:
+    cls = adapter_for(load_config(_cfg(tmp_path, paginate=False, page_size=2)))
+    seen: list[str] = []
+    stats = {"features": [{"attributes": {"lo": 1, "hi": 4}}]}
+    plan = list(cls(_fake_server([stats], seen)).partitions())
+    assert plan == [{"oid_min": "1", "oid_max": "3"}, {"oid_min": "3", "oid_max": "5"}]
+    page = {"features": [{"attributes": {"OID": 1, "PID": "1", "CO": "061"}}]}
+    a = cls(_fake_server([page], seen))
+    a.fetch(FetchRequest({"oid_min": "1", "oid_max": "3"}))
+    assert "resultOffset" not in seen[-1]
+    assert "orderByFields" not in seen[-1]
+    from equity.adapters.arcgis import ArcGISError
+
+    too_big = {"features": [], "exceededTransferLimit": True}
+    with pytest.raises(ArcGISError, match="record limit"):
+        cls(_fake_server([too_big], seen)).fetch(FetchRequest({"oid_min": "1", "oid_max": "3"}))
+
+
+def test_state_health_respects_paging_mode(tmp_path: Path) -> None:
+    for paginate, marker in ((True, "resultRecordCount"), (False, "OID+IN")):
+        cls = adapter_for(load_config(_cfg(tmp_path, paginate=paginate)))
+        seen: list[str] = []
+        attrs = dict.fromkeys(cls.fields, 1)
+        ok = cls(_fake_server([{"features": [{"attributes": attrs}]}], seen)).health()
+        assert ok.ok
+        assert marker in seen[-1]
+        bad = cls(_fake_server([{"features": [{"attributes": {"X": 1}}]}], seen)).health()
+        assert not bad.ok
+
+    from collections.abc import Mapping as _M
+
+    from equity.adapters.http import PoliteClient
+
+    def broken(url: str, headers: _M[str, str], timeout: float) -> tuple[int, bytes, str]:
+        return (404, b"", "") if url.endswith("robots.txt") else (502, b"<html>", "text/html")
+
+    down = cls(PoliteClient(min_interval_s=0, transport=broken, sleep=lambda s: None)).health()
+    assert not down.ok

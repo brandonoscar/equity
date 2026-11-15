@@ -22,18 +22,23 @@ class ArcGISQuery:
     order_by: Sequence[str]
     page_size: int
     return_geometry: bool = False
+    # Some servers reject resultOffset/resultRecordCount/orderByFields. Then each query must
+    # be a window small enough to come back whole (e.g. an object-id range <= maxRecordCount).
+    paginate: bool = True
 
     def params(self, offset: int) -> dict[str, str]:
-        return {
+        p = {
             "where": self.where,
             "outFields": ",".join(self.out_fields),
-            "orderByFields": ",".join(self.order_by),
-            "resultOffset": str(offset),
-            "resultRecordCount": str(self.page_size),
             "returnGeometry": "true" if self.return_geometry else "false",
             "outSR": "4326",
             "f": "json",
         }
+        if self.paginate:
+            p["orderByFields"] = ",".join(self.order_by)
+            p["resultOffset"] = str(offset)
+            p["resultRecordCount"] = str(self.page_size)
+        return p
 
 
 def parse_page(body: bytes) -> tuple[list[dict[str, Any]], bool]:
@@ -63,6 +68,10 @@ def fetch_all(
         page, more = parse_page(resp.content)
         features.extend(page)
         responses.append(resp)
+        if not query.paginate:
+            if more:
+                raise ArcGISError("window exceeds the server's record limit; use smaller windows")
+            return features, responses
         if not more or not page or (sample and len(responses) >= max_pages):
             return features, responses
         offset += len(page)

@@ -1,0 +1,29 @@
+source_id: ms.statewide.parcels
+state: MS
+layers:
+  - https://gis.mississippi.edu/server/rest/services/Cadastral/MS_Parcels_August_2024/MapServer/1
+  - https://gis.mississippi.edu/server/rest/services/Cadastral/MS_Parcels_August_2024/MapServer/2
+order_by: FID
+page_size: 2000
+paginate: false
+min_interval_s: 1.0
+county:
+  field: STCNTYFIPS
+  format: fips5
+fields:
+  parcel_id: PARNO
+  owner1: OWNNAME
+  mail_line1: MAILADD1
+  mail_city: MCITY1
+  mail_state: MSTATE1
+  mail_zip: MZIP1
+  land_value: LANDVAL
+  total_value: TOTVAL
+  tax_year: TAXYEAR
+value_basis: "LANDVAL = land value, TOTVAL = total value as reported by each county's CAMA in the MDEQ/MARIS cadastral framework (Aug 2024 release); IMPVAL1/IMPVAL2 (improvements) not mapped"
+terms:
+  url: https://maris.mississippi.edu/MARISdata/Parcels/MS_StatewideParcels_Aug2024/
+  summary: "MDEQ MDEM Cadastral Framework hosted by MARIS, all 82 counties in two layers (West 878,999 + East 1,127,050 rows); MARIS disclaimer: 'for general informational purposes only' and not legal data; free, no login; no commercial-use or mailing-list restriction found. Server does not support paging: fetched by FID windows of 2,000"
+  checked_on: 2026-11-15
+  robots_checked_on: 2026-11-15
+  cost_model: free

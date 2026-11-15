@@ -27,10 +27,11 @@ from typing import Any, ClassVar
 
 import yaml
 
+from equity.adapters.arcgis import ArcGISQuery, fetch_all
 from equity.adapters.arcgis_adapter import ArcGISCountyAdapter
-from equity.adapters.base import Fetched, FetchRequest, NormalizedRow
+from equity.adapters.base import Fetched, FetchRequest, HealthReport, NormalizedRow
 from equity.adapters.http import PoliteClient
-from equity.adapters.rows import RecordContext
+from equity.adapters.rows import RecordContext, canonical_json
 from equity.config import CONFIG_DIR
 from equity.geo import County, counties_in, county_by_fips, county_by_name, state_fips
 from equity.matching.orgs import classify, clean
@@ -69,6 +70,13 @@ class StateConfigError(ValueError):
 
 
 @dataclass(frozen=True)
+class LayerSpec:
+    url: str
+    # Per-layer county rule (e.g. one layer per county: {constant: "001"}); None = config's.
+    county: Mapping[str, Any] | None = None
+
+
+@dataclass(frozen=True)
 class StateConfig:
     path: Path
     source_id: str
@@ -86,6 +94,18 @@ class StateConfig:
     # Published limits on use (e.g. no_mailing_list, no_resale). Recorded in source terms so
     # exports that would violate them can be blocked.
     use_restrictions: tuple[str, ...] = field(default_factory=tuple)
+    layers: tuple[LayerSpec, ...] = ()
+    paginate: bool = True
+
+    def layer(self, index: int) -> LayerSpec:
+        return self.layers[index] if self.layers else LayerSpec(self.layer_url)
+
+    @property
+    def layer_count(self) -> int:
+        return len(self.layers) or 1
+
+    def county_spec(self, index: int) -> Mapping[str, Any]:
+        return self.layer(index).county or self.county
 
     @property
     def state_fips(self) -> str:
@@ -101,8 +121,10 @@ class StateConfig:
         names |= {v for v in self.fields.values() if isinstance(v, str)}
         names |= {str(v["year_of"]) for v in self.fields.values()
                   if isinstance(v, dict) and "year_of" in v}  # fmt: skip
-        if "field" in self.county:
-            names.add(str(self.county["field"]))
+        for i in range(self.layer_count):
+            spec = self.county_spec(i)
+            if "field" in spec:
+                names.add(str(spec["field"]))
         return tuple(sorted(names))
 
     @property
@@ -115,11 +137,20 @@ def load_config(path: Path) -> StateConfig:
     data = yaml.safe_load(path.read_text(encoding="utf-8"))
     if not isinstance(data, dict):
         raise StateConfigError(f"{path.name}: expected a mapping")
-    required = ("source_id", "state", "layer_url", "order_by", "county", "fields", "terms",
-                "value_basis")  # fmt: skip
+    required = ("source_id", "state", "order_by", "county", "fields", "terms", "value_basis")
     missing = [k for k in required if k not in data]
+    if "layer_url" not in data and "layers" not in data:
+        missing.append("layer_url or layers")
     if missing:
         raise StateConfigError(f"{path.name}: missing {missing}")
+    layers: list[LayerSpec] = []
+    for item in data.get("layers") or []:
+        if isinstance(item, str):
+            layers.append(LayerSpec(item.rstrip("/")))
+        elif isinstance(item, dict) and "url" in item:
+            layers.append(LayerSpec(str(item["url"]).rstrip("/"), item.get("county")))
+        else:
+            raise StateConfigError(f"{path.name}: each layer is a URL or {{url, county}}")
     unknown = set(data["fields"]) - set(CANONICAL)
     if unknown:
         raise StateConfigError(f"{path.name}: unknown canonical fields {sorted(unknown)}")
@@ -138,7 +169,7 @@ def load_config(path: Path) -> StateConfig:
         path=path,
         source_id=str(data["source_id"]),
         state=str(data["state"]).upper(),
-        layer_url=str(data["layer_url"]).rstrip("/"),
+        layer_url=str(data.get("layer_url") or layers[0].url).rstrip("/"),
         order_by=str(data["order_by"]),
         page_size=int(data.get("page_size", 1000)),
         min_interval_s=float(data.get("min_interval_s", 1.0)),
@@ -149,6 +180,8 @@ def load_config(path: Path) -> StateConfig:
         assessment_valid_from=str(data.get("assessment_valid_from", "tax_year_jan1")),
         extra_pii=tuple(data.get("extra_pii", ())),
         use_restrictions=tuple(sorted(data.get("use_restrictions", ()))),
+        layers=tuple(layers),
+        paginate=bool(data.get("paginate", True)),
     )
 
 
@@ -213,8 +246,8 @@ class StateParcelAdapter(ArcGISCountyAdapter):
         }
 
     # -- partitioning -------------------------------------------------------------------
-    def county_of(self, attrs: Mapping[str, Any]) -> County:
-        spec = self.config.county
+    def county_of(self, attrs: Mapping[str, Any], layer: int = 0) -> County:
+        spec = self.config.county_spec(layer)
         st = self.config.state
         if "constant" in spec:
             return county_by_fips(st, str(spec["constant"]))
@@ -237,7 +270,7 @@ class StateParcelAdapter(ArcGISCountyAdapter):
     def where(self, request: FetchRequest) -> str:
         """params: county_fips (3 digits) | oid_min + oid_max | sample=1 (fixtures)."""
         p = request.params
-        spec = self.config.county
+        spec = self.config.county_spec(int(p.get("layer", "0")))
         if "county_fips" in p:
             county = county_by_fips(self.config.state, p["county_fips"])
             if "constant" in spec:
@@ -261,24 +294,67 @@ class StateParcelAdapter(ArcGISCountyAdapter):
         raise StateConfigError("need county_fips, oid_min/oid_max, or sample")
 
     def partitions(self, window: int = 50_000) -> Iterator[dict[str, str]]:
-        """Fetch plan for the whole state: one request per county when the layer has a
-        county code we can filter on, otherwise object-id windows (one live stats query)."""
-        spec = self.config.county
-        if "constant" in spec or spec.get("format") in ("fips3", "fips5", "int", "code_map"):
-            for c in counties_in(self.config.state):
-                yield {"county_fips": c.county_fips}
-            return
+        """Fetch plan for the whole state, per layer: one request per county when the layer
+        has a county code to filter on, otherwise object-id windows (one stats query each).
+        Without server paging, windows are capped at page_size."""
+        if not self.config.paginate:
+            window = min(window, self.config.page_size)
+        for i in range(self.config.layer_count):
+            spec = self.config.county_spec(i)
+            base = {"layer": str(i)} if self.config.layers else {}
+            if spec.get("format") in ("fips3", "fips5", "int", "code_map") and self.config.paginate:
+                for c in counties_in(self.config.state):
+                    yield {**base, "county_fips": c.county_fips}
+                continue
+            oid = self.config.order_by
+            stats = json.dumps([
+                {"statisticType": "min", "onStatisticField": oid, "outStatisticFieldName": "lo"},
+                {"statisticType": "max", "onStatisticField": oid, "outStatisticFieldName": "hi"},
+            ])  # fmt: skip
+            url = self.config.layer(i).url
+            params = {"where": "1=1", "outStatistics": stats, "f": "json"}
+            resp = self.client.get(url + "/query", params)
+            attrs = json.loads(resp.content)["features"][0]["attributes"]
+            lo, hi = int(attrs["lo"]), int(attrs["hi"])
+            for start in range(lo, hi + 1, window):
+                yield {**base, "oid_min": str(start), "oid_max": str(start + window)}
+
+    def fetch(self, request: FetchRequest) -> Fetched:
+        """Like the base fetch, but on the requested layer and honoring `paginate`."""
+        index = int(request.params.get("layer", "0"))
+        url = self.config.layer(index).url
+        limit = request.params.get("limit")
+        page = int(limit) if limit is not None else self.config.page_size
+        q = ArcGISQuery(url, self.where(request), self.fields, self.order_by, page,
+                        paginate=self.config.paginate)  # fmt: skip
+        features, responses = fetch_all(
+            self.client, q, max_pages=1 if limit else 10_000, sample=limit is not None
+        )
+        body = canonical_json({"layer": url, "where": q.where,
+                               "attributes": [f["attributes"] for f in features]})  # fmt: skip
+        return Fetched(self.source_id, f"{url}/query?where={q.where}",
+                       responses[-1].retrieved_at, 200, body, "application/json")  # fmt: skip
+
+    def health(self) -> HealthReport:
+        """Live: the first layer answers a tiny query with every mapped field present."""
         oid = self.config.order_by
-        stats = json.dumps([
-            {"statisticType": "min", "onStatisticField": oid, "outStatisticFieldName": "lo"},
-            {"statisticType": "max", "onStatisticField": oid, "outStatisticFieldName": "hi"},
-        ])  # fmt: skip
-        resp = self.client.get(self.layer_url + "/query",
-                               {"where": "1=1", "outStatistics": stats, "f": "json"})  # fmt: skip
-        attrs = json.loads(resp.content)["features"][0]["attributes"]
-        lo, hi = int(attrs["lo"]), int(attrs["hi"])
-        for start in range(lo, hi + 1, window):
-            yield {"oid_min": str(start), "oid_max": str(start + window)}
+        where = "1=1" if self.config.paginate else f"{oid} IN (0, 1, 2)"
+        q = ArcGISQuery(self.config.layer(0).url, where, self.fields, self.order_by, 1,
+                        paginate=self.config.paginate)  # fmt: skip
+        try:
+            resp = self.client.get(q.layer_url + "/query", q.params(0))
+            feats = json.loads(resp.content).get("features") or []
+        except (ValueError, OSError) as exc:
+            return HealthReport(self.source_id, False, self.client.now(), repr(exc))
+        shape = tuple(sorted(feats[0]["attributes"])) if feats else ()
+        ok = resp.status == 200 and shape == tuple(sorted(self.fields))
+        detail = "ok" if ok else f"status={resp.status} fields={list(shape)}"
+        return HealthReport(self.source_id, ok, self.client.now(), detail, shape)
+
+    def layer_of(self, fetched: Fetched) -> int:
+        matches = [i for i in range(self.config.layer_count)
+                   if fetched.request.startswith(self.config.layer(i).url + "/")]  # fmt: skip
+        return matches[0] if matches else 0
 
     # -- normalization ------------------------------------------------------------------
     def _get(self, attrs: Mapping[str, Any], canonical: str) -> Any:
@@ -297,6 +373,7 @@ class StateParcelAdapter(ArcGISCountyAdapter):
 
     def normalize(self, fetched: Fetched) -> Iterator[NormalizedRow]:
         cfg = self.config
+        layer = self.layer_of(fetched)
         observed = fetched.retrieved_at.astimezone(UTC).date()
         groups: dict[str, list[Mapping[str, Any]]] = {}
         for attrs in self.attributes(fetched):
@@ -310,7 +387,7 @@ class StateParcelAdapter(ArcGISCountyAdapter):
                 key=lambda x: (x.get(cfg.order_by) is None, str(x.get(cfg.order_by)).zfill(20)),
             )
             try:
-                county = self.county_of(a)
+                county = self.county_of(a, layer)
             except KeyError:
                 continue  # no county, no stable key: skip rather than guess
             uid = f"{county.fips5}-{local_id}"
