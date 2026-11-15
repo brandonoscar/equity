@@ -155,7 +155,63 @@ When copies are in hand, the test is mechanical: `tesseract` 5.x (apt package, n
 
 ---
 
-<!-- 5. 50-state catalog -->
+## 5. Free statewide parcel sources (50 states + DC)
+
+Full per-state tables with publisher, endpoint, coverage, terms and sources: [`parcel-catalog/states-A-M.md`](parcel-catalog/states-A-M.md) and [`parcel-catalog/states-M-W.md`](parcel-catalog/states-M-W.md).
+
+**Confidence.** Only **WV was fetched directly**. Every other state comes from web-search results, because those hosts are outside this session's network allowlist. VERIFIED\* means search results summarized the official page and named its fields. LIKELY means the information is secondary or inferred. Before an adapter is built for a state, its REST field list (`?f=pjson`) and license page must be fetched.
+
+### 5.1 Summary
+| Category | States | Count |
+|---|---|---|
+| Free statewide, owner **and** value, all or nearly all counties | AR, CT, DC, FL, MA, MD\*, MS\*, MT, NC, TN (86/95), VT\*, **WV**, WI | 13 |
+| Free, owner + value, **partial** coverage | CO (opt-in), MN (opt-in, 59/87), NY (38/62), TX (not all 254) | 4 |
+| Free statewide, owner yes, value unconfirmed | DE, OH, ND | 3 |
+| Boundaries (some with value) but **no owner** in the free layer | NJ (owner redacted, Daniel's Law), WA, IN (owner only in a separate DLGF table, with a commercial-use statute), HI, UT, VA, NH, ME (partial towns) | 8 |
+| Statewide layer exists, fields unknown | NE | 1 |
+| **County-by-county** (no public statewide layer) | AL, AK, AZ, CA, GA, ID, IL, IA, KS, KY, LA, MI, MO, NV, NM, OK, OR, PA, RI, SC, SD, WY | 22 |
+
+\* value fields LIKELY, not confirmed.
+
+### 5.2 the buyer's enforcement states (what matters for the buyer)
+| State | Free statewide owner + value? |
+|---|---|
+| FL | **Yes** (FDOR NAL + parcel files, all 67 counties). Watch item: UF GeoPlan pulled parcel layers in Oct 2025 at the state's request |
+| NC | **Yes** (NC OneMap, all 100 counties). Terms page not read |
+| OH | Owner yes (ODNR copy), value unconfirmed |
+| NY | Partial: 38 of 62 counties |
+| TX | Partial: not all 254 counties |
+| IN | Boundaries free. Owner and value only via DLGF tables, and **IC 5-14-3-3(f) bars giving name/address lists to commercial entities for commercial purposes** |
+| NJ | Values yes, **owner names redacted** |
+| LA, MI, GA, AL, CA, SC, PA | **No.** County-by-county |
+
+Only 2 of the buyer's 14 enforcement states have complete free owner + value data. 7 have no statewide source at all.
+
+### 5.3 What the gap costs (cached list prices, NOT quotes, NOT approved)
+- ReportAll statewide files: CA $6,000, IL $6,000, IA $6,000, MI $7,000, TX $7,000, GA $9,000. Single counties: $200–$400.
+- Regrid list price (2023): about $8K–$12K per state per year, or $300–$500 per county. Current nationwide license price not captured.
+- Rough fill for the 7 county-by-county enforcement states (LA, MI, GA, AL, CA, SC, PA): **≈ $42K–$63K one-time** (ReportAll-style statewide files) or **≈ $56K–$84K/yr** (Regrid 2023 pricing). Owner backfill for NJ, IN and the partial NY and TX counties would come on top.
+- Rough fill for all 30+ states lacking free owner data: **≈ $180K–$270K** one-time at ReportAll-style prices.
+- Cheaper path for a deal-driven business: buy **single counties ($200–$400)** only where the buyer has a live file. This fits the adapter pattern: one adapter per purchased county file.
+
+### 5.4 Legal and terms red flags for commercial use
+- **IN** IC 5-14-3-3(f): no commercial name/address lists.
+- **MT** MCA 2-6-1017 (cited in metadata): agencies may not distribute lists of persons for unsolicited contact.
+- **ID**: the restricted layer bans mailing-list use.
+- **NV**: the state water-resources (DWR) copy is not redistributable.
+- **WA**: some counties limit the owner version to state agencies.
+- Explicitly open licenses: **CT (CC0), UT (CC BY 4.0), DC (CC BY 4.0), MN (no constraint)**, and **TN** ("can be used in a commercial application").
+- Everything else is "free" without a stated license. Each adapter's `source.terms_summary` records what was read and when.
+
+### 5.5 WV statewide layer (VERIFIED, directly queried)
+- `services.wvgis.wvu.edu/arcgis/rest/services/Planning_Cadastre/WV_Parcels/MapServer`:
+  - Layer 0 holds polygons.
+  - Table 11 `ParcelSummary` holds 1,503,439 rows across all 55 counties, all TaxYear 2026. Fields: owner 1/2, care-of, full mailing address with ZIP, **DeedBook/DeedPage**, **pending new owner + NewBook/NewPage**, tax class, land use, building details, Land/Building/Total appraisal.
+  - maxRecordCount 2000, paging supported.
+  - Monongalia (county 31): 55,287 polygons, 65,497 summary rows.
+- **Free bulk download:** `data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/Parcels/WVGISTC_2026/` (statewide ≈ 532 MB, Monongalia ≈ 356 MB). Free under SB 588 (2017). No commercial-use clause found, but one code section mentions maps "for sale", so get written confirmation.
+- **Statewide delinquent properties** service (same server, `Planning_Cadastre/Delinquent_Properties`), **updated weekly** from the State Auditor's delinquent and non-entered lands records. Fields: certificate number, status, deed book/page, owner, account number. **This is a free tax-delinquency feed for the pilot**, and better than scraping the Sheriff.
+- For Tier 1, this replaces the county ArcGIS layer as the primary WV source: same data family, a bulk file instead of paging, and statewide. The county layer and ParcelWeb stay as Tier-2 sources for ownership history and sale price.
 
 ## 6. Proposed schema
 
