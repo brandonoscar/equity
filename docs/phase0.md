@@ -1,6 +1,6 @@
 # Phase 0: Orientation
 
-Status: research only, no pipeline code. Waiting for approval before Phase 1.
+Status: complete. Phase 1 (CI + schema) started on 2026-11-15 after "just keep going". Decisions in §0 are still open: nothing that costs money, needs a signed agreement, or sits behind a login or CAPTCHA has been used.
 Date: 2026-11-15. Everything marked **VERIFIED** was fetched from the official source during this session. **FROM SEARCH** means it was only seen in search results. **NOT VERIFIED** means it's an inference or a guess and is listed in §7.
 
 ---
@@ -13,7 +13,7 @@ Date: 2026-11-15. Everything marked **VERIFIED** was fetched from the official s
    - (c) Don't automate the recorder in v1. Hand-pull documents for golden cases only.
 2. **OCR test (brief item 3).** It can't run yet. It needs 20 purchased document copies (≈ $60–$70 for the first 2–3 pages of each, or ≈ $320 for full documents). See §3. Approve the spend, or fold it into the request in decision 1.
 3. **Circuit court judgments.** WVPASS (statewide circuit records) requires registration and login, and caps each search at 100 results. Non-negotiable 6 rules out automation behind a login. Options: request bulk data from the WV Supreme Court Administrative Office, or get judgment liens from the County Clerk's judgment lien docket (same access problem as decision 1).
-4. **WV Secretary of State bulk data is a paid subscription.** See §2.5 for price and terms. The free entity search is usable record-by-record.
+4. **WV Secretary of State bulk data is paid.** Business entity database: $12,000 one-time + $1,750/month, with a signed Monthly Account Holder Agreement. The cheaper compliant path is the **Custom List Service at $25 minimum + $0.05/record**, filterable by charter county, officer and agent. A monthly Monongalia pull would likely cost tens of dollars. **Approve or decline.** The free entity search is behind reCAPTCHA v3, so it can't be automated.
 5. **Pilot choice.** Monongalia is workable for parcels, assessments, ownership history and tax status, all of which are open. It's blocked on recorder and court data. It may also sit outside the buyer's target states. That list belongs in private config, not in this public repo. See §4.
 
 ---
@@ -64,11 +64,11 @@ All fetches used a normal browser User-Agent, a handful of requests per host, an
 | Assessor: transfer history ("ParcelWeb") | `monongalia.wvassessor.com/parcelweb` (ASP.NET WebForms) | HTML search + detail pages | No | Free | No robots.txt (404). No terms on page | None published | Yes (HTML, last resort) |
 | Assessor: property record card | WV Integrated Assessment System (`wvias.io`), WV State Tax Dept | Linked per parcel from the GIS layer | Not checked | Free (presumed) | Not checked | Not checked | Not checked |
 | Tax office (Sheriff) | **Software Systems, Inc.** tax inquiry (`monongalia.softwaresystems.com`) | HTML form POST | No | Free | No robots.txt (404). No terms on page | None published | Yes (HTML) |
-| Delinquent tax sales | WV State Auditor (see §2.4) | see §2.4 | see §2.4 | see §2.4 | see §2.4 | see §2.4 | see §2.4 |
+| Delinquent tax sales | WV State Auditor (since SB 552, 2022). Statewide delinquent layer on WVGISTC | **ArcGIS REST** (weekly) | Yes (paging) | Free | None stated | 2,000/query | **Yes** |
 | Circuit Clerk | **WVPASS** (i3 Verticals, for the WV Supreme Court), `wvpass.courtswva.com` | Web app, **registration + login** | No public bulk offer found | Search free. Downloads $0.25/page + card fee | Login required. 100-result cap per search (FROM SEARCH) | Unknown | **No** (login) |
 | Magistrate Court | `mcrsearch.courtswv.gov` | Web search | No | Free | Civil cap is likely below the buyer's minimum file size | Unknown | Not needed |
-| WV Secretary of State | see §2.5 | | | | | | |
-| PACER NDWV + bankruptcy | see §2.6 | | | | | | |
+| WV Secretary of State | WV.gov apps (in-house) | Search behind reCAPTCHA v3. Bulk by signed agreement. Custom List by order | Bulk: $12,000 + $1,750/mo. Custom List: $25 + $0.05/record | Paid | Resale needs a separate contract ($1,800/db/yr) | n/a | **Only via a paid list** |
+| PACER NDWV + bankruptcy | CM/ECF (`ecf.wvnd`, `ecf.wvnb`) | PACER (login, approved paid source). Free RSS feeds | No | $0.10/page, $3/doc cap, waived ≤ $30/quarter | Terms bar automated harvesting that avoids billing | n/a | RSS yes. PACER per-case |
 
 ### 2.1 Recorder: Monongalia County Clerk (VERIFIED)
 - Official site `www.monongaliacountyclerk.com` (Joomla) links to `https://searchrecords.monongaliacountyclerk.com/`.
@@ -100,9 +100,39 @@ Three public surfaces:
 ### 2.4 Tax office and delinquency
 - **Sheriff tax inquiry** (VERIFIED): vendor Software Systems, Inc. Search by taxpayer name, account, tax year + ticket, or district/map/parcel/sub-parcel. Filters: tax year, real/personal, **paid/unpaid**. Results grid: Ticket, Type, Taxpayer Name, Address, Half-Year Tax. The field names visible in page source are `TATYR, TATICK, TATSUF, TANAM1, TAASID, TADIST, TAMAP, TAPARC, TASPAR, TASPID, TA2PDF, TAADR, TATAX, TARCD, TACNTY`.
 - ⚠️ **Security note:** the results page echoes its full SQL statement in an HTML comment, with the search text spliced into a `LIKE '…%'` clause. That pattern usually means a SQL-injection hole on a county system. I sent only one ordinary name search and did nothing else. Our adapter will use only the normal form. You may want to tell the county (Sheriff's office or the vendor).
-- Sheriff duties per its site: collects real and personal property tax, mails statements in July, sells delinquent real estate taxes in November (FROM SEARCH; sale mechanics in §2.4b).
+- Sheriff duties per its site: collects real and personal property tax, mails statements in July. The site still says the Sheriff "sells delinquent real estate taxes in November", but since 2022 the State Auditor runs the sales (§2.4b).
 
-<!-- 2.4b, 2.5, 2.6, 2.7 filled from research agents -->
+### 2.4b Delinquent taxes and tax sales
+Full detail: [`sources/wv-state-federal.md`](sources/wv-state-federal.md) §C.
+- Since **SB 552 (2022)** the **State Auditor** sells tax liens, not the Sheriff (FROM SEARCH). The Sheriff publishes the delinquent list as a newspaper legal ad by Sept 10 and certifies unpaid parcels to the Auditor on Oct 31. The Sheriff's web page still says it sells in November, which is stale.
+- `www.wvsao.gov` reset every connection from this sandbox. Its listings appear to be HTML only.
+- **Best free source: the WVGISTC statewide Delinquent Properties layer** (§5.5), updated weekly from the Auditor's delinquent and non-entered lands records. Fields: certificate number, status, deed book/page, owner, account number. VERIFIED.
+
+### 2.5 WV Secretary of State (VERIFIED unless marked)
+- **Free Business Entity Search** (`apps.wv.gov/SOS/BusinessEntitySearch/`): Google **reCAPTCHA v3**, entity-name search only. Can't be automated under non-negotiable 6.
+- **Officer and agent detail pages** (`apps.sos.wv.gov/business/corporations/`): not reachable from the sandbox. FROM SEARCH.
+- **Bulk Data Service:** requires a WV.gov login, a signed **Monthly Account Holder Agreement** and a request form.
+  - Business Organizations: **$12,000 one-time + $1,750/month**.
+  - UCC: **$12,360 + $15,000/yr**.
+  - Reselling needs a **Contract for Commercial Resale** ($1,800/database/year) and bars passing on the bulk format. UCC images also need a notarized NDA.
+  - Monthly Account Holder fee: not found.
+- **Business Entity Custom List Service:** **$25 minimum + $0.05/record**. Filters include officer name, agent name, charter county (Monongalia available) and date ranges. No CAPTCHA seen on the list builder. **The cheapest compliant feed of entities, officers and agents.** Needs your approval (cost).
+- **UCC search orders:** $10 + $1/page + $3 portal fee. UCC online search uses reCAPTCHA Enterprise.
+
+### 2.6 PACER and federal courts (VERIFIED unless marked)
+- Monongalia sits in the **Northern District of WV, Clarksburg division** (office code 1) for both the district court (`ecf.wvnd.uscourts.gov`) and the bankruptcy court (`ecf.wvnb.uscourts.gov`).
+- **Fees:** $0.10/page, $3 cap per document (search results and reports uncapped), waived if a quarter totals ≤ $30.
+- **Terms:** they prohibit automated harvesting of PACER's free areas and any collection that avoids billing. Our PACER adapter will make metered, billed requests, one case at a time, and log the cost of every call.
+- **Free RSS feed** (district): `ecf.wvnd.uscourts.gov/cgi-bin/rss_outside.pl` covers all entry types for 24 hours. It gives case number, caption and entry type, not docket text. The bankruptcy court has a feed too; its entry types weren't checked.
+- **PACER Case Locator API:** documented (PCL API user guide, Oct 2026). It's metered like PACER.
+- **CourtListener/RECAP:** robots.txt blocks crawling. The API needs a free account token, with reported limits of 5/min, 50/hr and 125/day. Commercial-scale use reportedly needs a Free Law Project agreement (FROM SEARCH). Treat it as a paid/agreement source until confirmed.
+
+### 2.7 WV law pointers (for you to confirm, never encoded)
+FROM SEARCH unless marked. Details and quotes are in [`sources/wv-state-federal.md`](sources/wv-state-federal.md) §D.
+- **§38-3-6:** money judgments are a lien on the defendant's real estate while valid. **§38-3-7:** not a lien against a bona fide purchaser unless docketed (§38-3-5), plus a 10-year limit against purchasers absent execution.
+- **§38-3-18:** execution within 10 years; further executions within 10 years of the last return day. Exceptions in §38-3-19.
+- **§38-10-4(a):** bankruptcy homestead **$35,000** (VERIFIED from current text quoted in 2026 HB 5393). Non-bankruptcy homestead: Const. art. VI §48 and §38-9-1, **$5,000** (FROM SEARCH).
+- **§40-1-9:** recording statute ("void as to creditors and subsequent purchasers for valuable consideration without notice, until … admitted to record"). Race-notice vs notice is your call.
 
 ---
 
