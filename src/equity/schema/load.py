@@ -174,7 +174,7 @@ def _load_fact(
     for c in key_cols:
         if c not in row:
             raise LoadError(f"{table}: missing domain-key column {c}")
-    fact_cols = _fact_columns(types)
+    fact_cols = [c for c in _fact_columns(types) if c not in spec.unhashed]
     new_hash = _content_hash(table, row, fact_cols)
 
     where = " AND ".join(f"{c} IS NULL" if row[c] is None else f"{c} = ?" for c in key_cols)

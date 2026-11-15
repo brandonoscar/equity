@@ -174,6 +174,8 @@ def invariant_violations(con: duckdb.DuckDBPyConnection, doc_types: DocTypes) ->
         ("instrument_ref", "to_uid", "instrument", "instrument_uid"),
         ("ownership_period", "parcel_uid", "parcel", "parcel_uid"),
         ("ownership_period", "party_id", "party", "party_id"),
+        ("owner_snapshot", "parcel_uid", "parcel", "parcel_uid"),
+        ("owner_snapshot", "party_id", "party", "party_id"),
         ("case_party", "case_uid", "court_case", "case_uid"),
         ("case_party", "party_id", "party", "party_id"),
         ("judgment", "case_uid", "court_case", "case_uid"),

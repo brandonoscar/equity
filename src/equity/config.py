@@ -51,3 +51,11 @@ def doc_types(config_dir: Path | None = None) -> DocTypes:
         terminating_refs=_str_tuple(data, "terminating_ref_types"),
         parcel_scoped_terminating_refs=_str_tuple(data, "parcel_scoped_terminating_ref_types"),
     )
+
+
+def source_params(source_id: str, config_dir: Path | None = None) -> dict[str, Any]:
+    data = _load("sources.yaml", config_dir)
+    params = data.get(source_id)
+    if not isinstance(params, dict):
+        raise KeyError(f"config/sources.yaml has no section for {source_id!r}")
+    return params

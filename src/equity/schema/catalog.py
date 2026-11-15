@@ -30,6 +30,9 @@ class FactTable:
     interval: bool = False
     # Date columns that must not be later than the retrieval date.
     not_after_retrieval: tuple[str, ...] = ()
+    # Columns excluded from change detection: the first loaded value is kept (e.g. the date a
+    # snapshot value was first observed).
+    unhashed: tuple[str, ...] = ()
 
 
 FACT_TABLES: dict[str, FactTable] = {
@@ -46,6 +49,12 @@ FACT_TABLES: dict[str, FactTable] = {
             ("parcel_uid", "owner_seq", "valid_from"),
             interval=True,
             not_after_retrieval=("valid_from",),
+        ),
+        FactTable(
+            "owner_snapshot",
+            ("parcel_uid", "owner_seq"),
+            not_after_retrieval=("observed_on",),
+            unhashed=("observed_on",),
         ),
         FactTable(
             "instrument",

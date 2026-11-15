@@ -1,0 +1,20 @@
+# Per-source parameters that are conventions or policy, not code. TODO(Brandon) items need a call.
+schema_version: 1
+
+wv.statewide.parcels:
+  # How values labeled "tax year N" map to valid time for as-of queries.
+  #   tax_year_jan1:  in effect from Jan 1 of N (a convention, not a legal claim)
+  #   prior_july1:    in effect from July 1 of N-1 (WV's assessment date, if confirmed)
+  assessment_valid_from: tax_year_jan1  # TODO(Brandon): confirm or switch to prior_july1
+  # Politeness: seconds between requests to services.wvgis.wvu.edu.
+  min_interval_s: 1.0
+  page_size: 2000
+
+wv.monongalia.assessor.arcgis:
+  assessment_valid_from: tax_year_jan1  # TODO(Brandon): same question as above
+  min_interval_s: 1.0
+  page_size: 1000
+
+wv.statewide.delinquent:
+  min_interval_s: 1.0
+  page_size: 2000

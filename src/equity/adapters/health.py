@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 import sys
 
-from equity.adapters.base import REGISTRY
+from equity.adapters.registry import REGISTRY
 
 
 def main() -> int:

@@ -16,7 +16,6 @@ import pytest
 
 from equity.adapters import health
 from equity.adapters.base import (
-    REGISTRY,
     Adapter,
     Fetched,
     FetchRequest,
@@ -24,6 +23,8 @@ from equity.adapters.base import (
     NormalizedRow,
     register,
 )
+from equity.adapters.registry import REGISTRY
+from equity.adapters.rows import fetch_id
 from equity.quality.gates import provenance_violations
 from equity.schema.clock import fixed_clock
 from equity.schema.ids import sha256_hex
@@ -53,7 +54,7 @@ def check_contract(cls: type[Adapter], fixture_files: list[Path], con) -> None: 
             "application/octet-stream",
         )
         load_rows(con, "fetch_log", [{
-            "fetch_id": sha256_hex(content)[:32], "source_id": cls.source_id,
+            "fetch_id": fetch_id(fetched), "source_id": cls.source_id,
             "adapter": cls.__name__, "adapter_version": cls.adapter_version,
             "request": fetched.request, "retrieved_at": fetched.retrieved_at,
             "http_status": 200, "content_sha256": sha256_hex(content),
@@ -105,7 +106,7 @@ class _Dummy(Adapter):
         sha = sha256_hex(fetched.content)
         srid = f"sr-{sha[:16]}"
         yield NormalizedRow("source_record", {
-            "source_record_id": srid, "fetch_id": sha[:32], "source_id": self.source_id,
+            "source_record_id": srid, "fetch_id": fetch_id(fetched), "source_id": self.source_id,
             "record_key": "K1", "record_type": "row", "raw_sha256": sha,
             "first_seen_at": fetched.retrieved_at, "last_seen_at": fetched.retrieved_at,
         })  # fmt: skip

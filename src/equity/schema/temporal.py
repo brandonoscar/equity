@@ -150,3 +150,33 @@ def assessment_as_of(
     if row is None:
         return None
     return AssessmentAsOf(str(row[0]), int(row[1]), row[2], row[3], str(row[4]))
+
+
+@dataclass(frozen=True)
+class SnapshotOwner:
+    parcel_uid: str
+    owner_seq: int
+    party_id: str
+    raw_name: str
+    source_id: str
+    observed_on: date
+    row_id: str
+
+
+def snapshot_owners(
+    con: duckdb.DuckDBPyConnection, parcel_uid: str, known_as_of: datetime
+) -> list[SnapshotOwner]:
+    """Owners listed by snapshot sources, as our database knew them at `known_as_of`."""
+    sql = f"""
+        SELECT s.parcel_uid, s.owner_seq, s.party_id, p.raw_name, s.source_id, s.observed_on,
+               s.row_id
+        FROM owner_snapshot s
+        JOIN party p ON p.party_id = s.party_id AND {_known("p")}
+        WHERE s.parcel_uid = $parcel AND {_known("s")}
+        ORDER BY s.source_id, s.owner_seq, s.row_id
+    """  # noqa: S608 - only fixed aliases are interpolated
+    rows = con.execute(sql, {"parcel": parcel_uid, "known": known_as_of}).fetchall()
+    return [
+        SnapshotOwner(str(r[0]), int(r[1]), str(r[2]), str(r[3]), str(r[4]), r[5], str(r[6]))
+        for r in rows
+    ]
