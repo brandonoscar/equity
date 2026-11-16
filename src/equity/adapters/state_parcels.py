@@ -66,6 +66,19 @@ def parse_city_state_zip(text: str) -> tuple[str | None, str | None, str | None]
     return " ".join(m.group("city").split()).rstrip(","), m.group("st").upper(), m.group("zip")
 
 
+def normalized_address(
+    street: str | None, city: str | None, state: str | None, zip5: str | None
+) -> dict[str, Any] | None:
+    """An address row holds only normalized parts, so one norm_key always means one content.
+    The raw text stays in the source record."""
+    parts = [clean(x or "") or None for x in (street, city, state)]
+    if not (parts[0] or parts[1] or zip5):
+        return None
+    norm_key = "|".join(p or "" for p in (*parts, zip5))
+    return {"address_id": stable_id("address", norm_key), "line1": parts[0], "line2": None,
+            "city": parts[1], "state": parts[2], "zip5": zip5, "norm_key": norm_key}  # fmt: skip
+
+
 def parse_full_address(text: str) -> tuple[str, str | None, str | None, str | None]:
     """-> (line, city, state, zip5)."""
     m = _FULL.match(text)
@@ -479,10 +492,7 @@ class StateParcelAdapter(ArcGISCountyAdapter):
             lines = [line]
         if not (lines or city or zip5):
             return None
-        norm_key = "|".join(clean(x or "") for x in (" ".join(lines), city, st, zip5))
-        return {"address_id": stable_id("address", norm_key), "line1": lines[0] if lines else None,
-                "line2": " ".join(lines[1:]) or None, "city": city, "state": st, "zip5": zip5,
-                "norm_key": norm_key}  # fmt: skip
+        return normalized_address(" ".join(lines), city, st, zip5)
 
 
 def adapter_for(cfg: StateConfig) -> type[StateParcelAdapter]:

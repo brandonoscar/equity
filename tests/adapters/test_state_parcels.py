@@ -380,6 +380,7 @@ def test_composite_ids_numeric_codes_and_csz(tmp_path: Path) -> None:
     ]
     (addr,) = [r for t, r in out if t == "address"]
     assert (addr["city"], addr["state"], addr["zip5"]) == ("MORGANTOWN", "WV", "26505")
+    assert addr["line1"] == "1 MAIN"
 
 
 def test_sparse_object_ids_get_dense_windows(tmp_path: Path) -> None:
@@ -394,3 +395,12 @@ def test_sparse_object_ids_get_dense_windows(tmp_path: Path) -> None:
     assert plan == [{"oid_min": "1000000", "oid_max": "5000001"},
                     {"oid_min": "9000000", "oid_max": "9000001"}]  # fmt: skip
     assert "returnIdsOnly" in seen[-1]
+
+
+def test_address_rows_are_normalized_value_objects() -> None:
+    from equity.adapters.state_parcels import normalized_address
+
+    a = normalized_address("12 Main St.", "Morgantown", "wv", "26505")
+    b = normalized_address("12 MAIN ST", "MORGANTOWN", "WV", "26505")
+    assert a == b  # same key, same content: re-loads never conflict
+    assert normalized_address(None, None, "WV", None) is None

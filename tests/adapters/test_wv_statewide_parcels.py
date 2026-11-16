@@ -101,7 +101,7 @@ def test_address_rows() -> None:
                            OwnerCity="Morgantown", OwnerStateCode="WV",
                            OwnerZipCode="26505-1234"))  # fmt: skip
     assert a is not None
-    assert (a["line1"], a["line2"], a["zip5"]) == ("PO Box 12", "Apt. 3", "26505")
+    assert (a["line1"], a["line2"], a["zip5"]) == ("PO BOX 12 APT 3", None, "26505")
     assert a["norm_key"] == "PO BOX 12 APT 3|MORGANTOWN|WV|26505"
 
 

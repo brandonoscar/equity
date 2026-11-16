@@ -15,6 +15,7 @@ from typing import Any, ClassVar
 from equity.adapters.arcgis_adapter import ArcGISCountyAdapter
 from equity.adapters.base import Fetched, FetchRequest, NormalizedRow
 from equity.adapters.rows import RecordContext
+from equity.adapters.state_parcels import normalized_address
 from equity.adapters.wv.parcel_ids import county_fips, normalize_parid, parcel_uid_from_clean
 from equity.matching.orgs import classify, clean
 from equity.schema.ids import stable_id
@@ -68,22 +69,12 @@ def choose_row(rows: list[Mapping[str, Any]]) -> Mapping[str, Any]:
 
 def address_row(a: Mapping[str, Any]) -> dict[str, Any] | None:
     parts = [_text(a.get(k)) for k in ("OwnerAddress1", "OwnerAddress2", "OwnerAddress3")]
-    lines = [p for p in parts if p]
-    city, state = _text(a.get("OwnerCity")), _text(a.get("OwnerStateCode"))
+    street = " ".join(p for p in parts if p) or None
     zip_match = _ZIP.match(str(a.get("OwnerZipCode") or ""))
     zip5 = zip_match.group(1) if zip_match else None
-    if not (lines or city or zip5):
-        return None
-    norm_key = "|".join(clean(x or "") for x in (" ".join(lines), city, state, zip5))
-    return {
-        "address_id": stable_id("address", norm_key),
-        "line1": lines[0] if lines else None,
-        "line2": " ".join(lines[1:]) or None,
-        "city": city,
-        "state": state,
-        "zip5": zip5,
-        "norm_key": norm_key,
-    }
+    return normalized_address(
+        street, _text(a.get("OwnerCity")), _text(a.get("OwnerStateCode")), zip5
+    )
 
 
 class WVStatewideParcels(ArcGISCountyAdapter):
