@@ -404,3 +404,42 @@ def test_address_rows_are_normalized_value_objects() -> None:
     b = normalized_address("12 MAIN ST", "MORGANTOWN", "WV", "26505")
     assert a == b  # same key, same content: re-loads never conflict
     assert normalized_address(None, None, "WV", None) is None
+
+
+def test_fixed_filter_and_deed_ref(tmp_path: Path) -> None:
+    fields = {"parcel_id": "PID", "owner1": "OWN", "deed_ref": "DREF", "total_value": "TV",
+              "tax_year": {"const": 2025}}  # fmt: skip
+    pattern = r"(?P<book>\d+)\s*[-/]\s*(?P<page>\d+)"
+    cls = adapter_for(load_config(_cfg(tmp_path, fields=fields, filter="ROLL_YEAR = 2026",
+                                       deed_ref_pattern=pattern)))  # fmt: skip
+    a = cls()
+    assert a.where(FetchRequest({"county_fips": "061"})) == "(ROLL_YEAR = 2026) AND (CO='061')"
+    out = _rows(
+        cls,
+        [
+            {"OID": 1, "PID": "1", "CO": "061", "OWN": "X", "DREF": "282 - 520", "TV": 1},
+            {"OID": 2, "PID": "2", "CO": "061", "OWN": "Y", "DREF": "see plat", "TV": 1},
+        ],
+    )
+    snaps = {r["parcel_uid"]: (r["deed_book"], r["deed_page"]) for t, r in out
+             if t == "owner_snapshot"}  # fmt: skip
+    assert snaps == {"54061-1": ("282", "520"), "54061-2": (None, None)}
+    seen: list[str] = []
+    stats = {"features": [{"attributes": {"lo": 1, "hi": 2}}]}
+    named = adapter_for(load_config(_cfg(tmp_path, county={"constant": "061"},
+                                         filter="ROLL_YEAR = 2026")))  # fmt: skip
+    list(named(_fake_server([stats, {"count": 2}], seen)).partitions())
+    assert all("ROLL_YEAR" in u for u in seen)
+
+
+@pytest.mark.parametrize(
+    ("over", "message"),
+    [
+        ({"fields": {"parcel_id": "P", "deed_ref": "D"}}, "needs deed_ref_pattern"),
+        ({"fields": {"parcel_id": "P", "deed_ref": "D"}, "deed_ref_pattern": r"(\d+)"},
+         "named"),
+    ],
+)  # fmt: skip
+def test_deed_ref_validation(tmp_path: Path, over: dict[str, Any], message: str) -> None:
+    with pytest.raises(StateConfigError, match=message):
+        load_config(_cfg(tmp_path, **over))

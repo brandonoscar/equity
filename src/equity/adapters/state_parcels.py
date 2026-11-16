@@ -43,7 +43,7 @@ COUNTIES_DIR = CONFIG_DIR / "counties"
 CANONICAL = (
     "parcel_id", "owner1", "owner2", "mail_line1", "mail_line2", "mail_full",
     "mail_city_state_zip", "mail_city", "mail_state", "mail_zip", "land_value", "bldg_value",
-    "total_value", "assessed_value", "tax_year", "deed_book", "deed_page",
+    "total_value", "assessed_value", "tax_year", "deed_book", "deed_page", "deed_ref",
 )  # fmt: skip
 PII_CANONICAL = ("owner1", "owner2", "mail_line1", "mail_line2", "mail_full")
 # One-string postal address: "LINE , CITY, ST 12345[-6789]". Without the comma layout the
@@ -123,6 +123,11 @@ class StateConfig:
     use_restrictions: tuple[str, ...] = field(default_factory=tuple)
     layers: tuple[LayerSpec, ...] = ()
     paginate: bool = True
+    # Fixed where clause ANDed into every query (e.g. "ROLL_YEAR = 2026" for layers that keep
+    # one row per parcel per year).
+    base_filter: str | None = None
+    # Regex with named groups `book` and `page` for a combined deed reference ("282 - 520").
+    deed_ref_pattern: str | None = None
 
     def layer(self, index: int) -> LayerSpec:
         return self.layers[index] if self.layers else LayerSpec(self.layer_url)
@@ -184,6 +189,12 @@ def load_config(path: Path) -> StateConfig:
         raise StateConfigError(f"{path.name}: unknown canonical fields {sorted(unknown)}")
     if "parcel_id" not in data["fields"]:
         raise StateConfigError(f"{path.name}: fields.parcel_id is required")
+    pattern = data.get("deed_ref_pattern")
+    if "deed_ref" in data["fields"]:
+        if not pattern:
+            raise StateConfigError(f"{path.name}: fields.deed_ref needs deed_ref_pattern")
+        if not {"book", "page"} <= set(re.compile(pattern).groupindex):
+            raise StateConfigError(f"{path.name}: deed_ref_pattern needs named groups book, page")
     county = data["county"]
     if not ("constant" in county or ("field" in county and "format" in county)):
         raise StateConfigError(f"{path.name}: county needs constant, or field + format")
@@ -210,6 +221,8 @@ def load_config(path: Path) -> StateConfig:
         use_restrictions=tuple(sorted(data.get("use_restrictions", ()))),
         layers=tuple(layers),
         paginate=bool(data.get("paginate", True)),
+        base_filter=data.get("filter"),
+        deed_ref_pattern=data.get("deed_ref_pattern"),
     )
 
 
@@ -296,6 +309,13 @@ class StateParcelAdapter(ArcGISCountyAdapter):
         raise StateConfigError(f"unknown county format {fmt!r}")
 
     def where(self, request: FetchRequest) -> str:
+        """Partition clause, ANDed with the config's fixed filter when there is one."""
+        clause = self._partition_where(request)
+        if self.config.base_filter:
+            return f"({self.config.base_filter}) AND ({clause})"
+        return clause
+
+    def _partition_where(self, request: FetchRequest) -> str:
         """params: county_fips (3 digits) | oid_min + oid_max | sample=1 (fixtures)."""
         p = request.params
         spec = self.config.county_spec(int(p.get("layer", "0")))
@@ -341,7 +361,11 @@ class StateParcelAdapter(ArcGISCountyAdapter):
                 {"statisticType": "max", "onStatisticField": oid, "outStatisticFieldName": "hi"},
             ])  # fmt: skip
             url = self.config.layer(i).url
-            params = {"where": "1=1", "outStatistics": stats, "f": "json"}
+            params = {
+                "where": self.config.base_filter or "1=1",
+                "outStatistics": stats,
+                "f": "json",
+            }
             resp = self.client.get(url + "/query", params)
             raw_attrs = json.loads(resp.content)["features"][0]["attributes"]
             attrs = {str(k).lower(): v for k, v in raw_attrs.items()}  # some servers upper-case
@@ -356,12 +380,12 @@ class StateParcelAdapter(ArcGISCountyAdapter):
                 yield {**base, "oid_min": str(start), "oid_max": str(start + window)}
 
     def _count(self, url: str) -> int:
-        params = {"where": "1=1", "returnCountOnly": "true", "f": "json"}
+        params = {"where": self.config.base_filter or "1=1", "returnCountOnly": "true", "f": "json"}
         resp = self.client.get(url + "/query", params)
         return int(json.loads(resp.content).get("count") or 0)
 
     def _dense_windows(self, url: str, window: int) -> Iterator[dict[str, str]]:
-        params = {"where": "1=1", "returnIdsOnly": "true", "f": "json"}
+        params = {"where": self.config.base_filter or "1=1", "returnIdsOnly": "true", "f": "json"}
         resp = self.client.get(url + "/query", params)
         ids = sorted(int(i) for i in json.loads(resp.content).get("objectIds") or [])
         for i in range(0, len(ids), window):
@@ -459,9 +483,9 @@ class StateParcelAdapter(ArcGISCountyAdapter):
                                party_kind=nc.party_kind, org_form=nc.org_form,
                                org_name_norm=nc.org_name_norm,
                                address_id=None if addr is None else addr["address_id"])  # fmt: skip
+                book, page = self._deed(a)
                 yield ctx.fact("owner_snapshot", parcel_uid=uid, owner_seq=seq,
-                               party_id=party_id, deed_book=_text(self._get(a, "deed_book")),
-                               deed_page=_text(self._get(a, "deed_page")),
+                               party_id=party_id, deed_book=book, deed_page=page,
                                observed_on=observed)  # fmt: skip
             year_raw = _text(self._get(a, "tax_year"))
             values = {
@@ -476,6 +500,15 @@ class StateParcelAdapter(ArcGISCountyAdapter):
                     yield ctx.fact("parcel_assessment", parcel_uid=uid, tax_year=year,
                                    valid_from=_valid_from(year, cfg.assessment_valid_from),
                                    **values)  # fmt: skip
+
+    def _deed(self, a: Mapping[str, Any]) -> tuple[str | None, str | None]:
+        book, page = _text(self._get(a, "deed_book")), _text(self._get(a, "deed_page"))
+        ref = _text(self._get(a, "deed_ref"))
+        if ref and self.config.deed_ref_pattern and not (book or page):
+            m = re.search(self.config.deed_ref_pattern, ref)
+            if m:  # no match: leave both empty rather than guess
+                book, page = m.group("book"), m.group("page")
+        return book, page
 
     def _address(self, a: Mapping[str, Any]) -> dict[str, Any] | None:
         lines = [x for x in (_text(self._get(a, "mail_line1")), _text(self._get(a, "mail_line2")))
