@@ -308,7 +308,7 @@ def test_layers_without_layer_url_and_bad_layer(tmp_path: Path) -> None:
 def test_no_paging_mode_uses_small_windows(tmp_path: Path) -> None:
     cls = adapter_for(load_config(_cfg(tmp_path, paginate=False, page_size=2)))
     seen: list[str] = []
-    stats = {"features": [{"attributes": {"lo": 1, "hi": 4}}]}
+    stats = {"features": [{"attributes": {"LO": 1, "HI": 4}}]}  # upper-cased by some servers
     plan = list(cls(_fake_server([stats], seen)).partitions())
     assert plan == [{"oid_min": "1", "oid_max": "3"}, {"oid_min": "3", "oid_max": "5"}]
     page = {"features": [{"attributes": {"OID": 1, "PID": "1", "CO": "061"}}]}

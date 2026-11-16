@@ -316,7 +316,8 @@ class StateParcelAdapter(ArcGISCountyAdapter):
             url = self.config.layer(i).url
             params = {"where": "1=1", "outStatistics": stats, "f": "json"}
             resp = self.client.get(url + "/query", params)
-            attrs = json.loads(resp.content)["features"][0]["attributes"]
+            raw_attrs = json.loads(resp.content)["features"][0]["attributes"]
+            attrs = {str(k).lower(): v for k, v in raw_attrs.items()}  # some servers upper-case
             lo, hi = int(attrs["lo"]), int(attrs["hi"])
             for start in range(lo, hi + 1, window):
                 yield {**base, "oid_min": str(start), "oid_max": str(start + window)}
