@@ -1,0 +1,23 @@
+source_id: pa.bucks.parcels
+state: PA
+# Bucks County parcels with owner and assessment, as republished on PASDA ('Bucks County -
+# Parcels 202605'; record MODIFY_DAT runs to 2026-05-21). ADDRESS is the property (situs)
+# address with no city or ZIP, so no mailing address is mapped. CARE_OF is not mapped.
+layer_url: https://mapservices.pasda.psu.edu/server/rest/services/pasda/BucksCounty/MapServer/17
+order_by: OBJECTID
+page_size: 1000          # maxRecordCount 1000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "017"}
+fields:
+  parcel_id: PARCEL_NUM    # e.g. 52-001-025-010 (municipality-map-block-lot)
+  owner1: OWNER1
+  owner2: OWNER2
+  assessed_value: TOTAL_VALU
+  tax_year: {const: 2026}
+value_basis: "TOTAL_VALU = total assessed value (Bucks County assesses on its 1972 base-year values, so this is far below market value); LAND_VALUE / BUILDING_V are its land and building parts and are not mapped (there are no assessed-component columns). No tax-year field: tax_year is the const 2026, the county/municipal tax year of the May 2026 extract. Bump the const when PASDA publishes a newer extract."
+terms:
+  url: https://mapservices.pasda.psu.edu/server/rest/services/pasda/BucksCounty/MapServer/17
+  summary: "Bucks County PA parcels served by PASDA, Pennsylvania's public geospatial clearinghouse at Penn State. Free REST, no login; 237,546 polygons on 2026-11-16. Service iteminfo has empty licenseInfo and accessInformation and the layer metadata holds only a title; the per-dataset PASDA metadata page (www.pasda.psu.edu) could not be read from this environment. No commercial-use or mailing-list restriction found. mapservices.pasda.psu.edu /robots.txt answers 404 (RFC 9309: no rules)."
+  checked_on: 2026-11-16
+  robots_checked_on: 2026-11-16
+  cost_model: free

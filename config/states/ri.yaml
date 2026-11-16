@@ -1,0 +1,64 @@
+source_id: ri.statewide.parcels
+state: RI
+# RIDEM "Assessors Tax Parcels (polygons)" on the RIGIS/RIDEM server: one polygon per municipal
+# assessor plat/lot, all 39 municipalities. Ids only: no owner, mailing or value fields.
+layer_url: https://risegis.ri.gov/hosting/rest/services/RIDEM/Tax_Parcels/MapServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+# TownCode: 2-letter municipality code (39 values). Codes were matched to towns by name and
+# parcel count; NE (Newport) and WA (Warren) were confirmed by layer extent on 2026-11-16.
+county:
+  field: TownCode
+  format: code_map
+  code_map:
+    BA: "001"   # Barrington (Bristol)
+    BR: "001"   # Bristol (Bristol)
+    WA: "001"   # Warren (Bristol)
+    CO: "003"   # Coventry (Kent)
+    EG: "003"   # East Greenwich (Kent)
+    WK: "003"   # Warwick (Kent)
+    WG: "003"   # West Greenwich (Kent)
+    WW: "003"   # West Warwick (Kent)
+    JA: "005"   # Jamestown (Newport)
+    LC: "005"   # Little Compton (Newport)
+    MI: "005"   # Middletown (Newport)
+    NE: "005"   # Newport (Newport)
+    PO: "005"   # Portsmouth (Newport)
+    TI: "005"   # Tiverton (Newport)
+    BU: "007"   # Burrillville (Providence)
+    CF: "007"   # Central Falls (Providence)
+    CR: "007"   # Cranston (Providence)
+    CU: "007"   # Cumberland (Providence)
+    EP: "007"   # East Providence (Providence)
+    FO: "007"   # Foster (Providence)
+    GL: "007"   # Glocester (Providence)
+    JO: "007"   # Johnston (Providence)
+    LI: "007"   # Lincoln (Providence)
+    NP: "007"   # North Providence (Providence)
+    NS: "007"   # North Smithfield (Providence)
+    PA: "007"   # Pawtucket (Providence)
+    PR: "007"   # Providence (Providence)
+    SC: "007"   # Scituate (Providence)
+    SM: "007"   # Smithfield (Providence)
+    WO: "007"   # Woonsocket (Providence)
+    CH: "009"   # Charlestown (Washington)
+    EX: "009"   # Exeter (Washington)
+    HO: "009"   # Hopkinton (Washington)
+    NA: "009"   # Narragansett (Washington)
+    BI: "009"   # New Shoreham / Block Island (Washington)
+    NK: "009"   # North Kingstown (Washington)
+    RI: "009"   # Richmond (Washington)
+    SK: "009"   # South Kingstown (Washington)
+    WY: "009"   # Westerly (Washington)
+fields:
+  # PlatLot already starts with the town code ("NK 001-001"; 0 rows without the prefix or
+  # null on 2026-11-16), so it is unique statewide. The adapter strips the space.
+  parcel_id: PlatLot
+value_basis: "No value fields in this layer (Acres, impervious/developed/open-space percentages and overlay flags only). Owner names, mailing addresses and assessed values are only in the 39 municipal assessors' systems."
+terms:
+  url: https://risegis.ri.gov/hosting/rest/services/RIDEM/Tax_Parcels/MapServer
+  summary: "RIDEM / RIGIS 'Assessors Tax Parcels (polygons)', copyright 'RI State, 37 Towns'; free REST, no login; 394,167 polygons in 39 municipalities on 2026-11-16 (Providence 45,988; Warwick 38,086; Cranston 31,885). Vintage varies by town (Last_UPD '2015' for 15 towns, up to '2025'). Use limitation: any public-facing parcel viewer must carry a disclaimer that the data is 'for general reference, informational, planning and guidance use ONLY, and is NOT a legally authoritative boundary and is NOT the product of a Professional Land Survey' (RIGIS-RIBORPLS MOU 2023). No commercial-use or mailing-list restriction stated. risegis.ri.gov /robots.txt answers 404 (RFC 9309: no rules)."
+  checked_on: 2026-11-16
+  robots_checked_on: 2026-11-16
+  cost_model: free

@@ -1,0 +1,106 @@
+{
+ "attributes": [
+  {
+   "OBJECTID": 1,
+   "PIN": "0102P00193000000"
+  },
+  {
+   "OBJECTID": 2,
+   "PIN": "0124F00169000000"
+  },
+  {
+   "OBJECTID": 3,
+   "PIN": "0006K00358000000"
+  },
+  {
+   "OBJECTID": 4,
+   "PIN": "0858M00274000000"
+  },
+  {
+   "OBJECTID": 5,
+   "PIN": "0407J00004000000"
+  },
+  {
+   "OBJECTID": 6,
+   "PIN": "0469E00274000000"
+  },
+  {
+   "OBJECTID": 7,
+   "PIN": "0080G00237000000"
+  },
+  {
+   "OBJECTID": 8,
+   "PIN": "0178S00299000000"
+  },
+  {
+   "OBJECTID": 9,
+   "PIN": "1209P00169000000"
+  },
+  {
+   "OBJECTID": 10,
+   "PIN": "0065K00182000000"
+  },
+  {
+   "OBJECTID": 11,
+   "PIN": "0231N00002000000"
+  },
+  {
+   "OBJECTID": 12,
+   "PIN": "0228J00235000000"
+  },
+  {
+   "OBJECTID": 13,
+   "PIN": "0973B00313000000"
+  },
+  {
+   "OBJECTID": 14,
+   "PIN": "0017J00210000000"
+  },
+  {
+   "OBJECTID": 15,
+   "PIN": "8000T03525000000"
+  },
+  {
+   "OBJECTID": 16,
+   "PIN": "0237N00305000000"
+  },
+  {
+   "OBJECTID": 17,
+   "PIN": "0012J00200000000"
+  },
+  {
+   "OBJECTID": 18,
+   "PIN": "0301K00064000000"
+  },
+  {
+   "OBJECTID": 19,
+   "PIN": "0627K00300000000"
+  },
+  {
+   "OBJECTID": 20,
+   "PIN": "0132S00270000000"
+  },
+  {
+   "OBJECTID": 21,
+   "PIN": "0391K00352000000"
+  },
+  {
+   "OBJECTID": 22,
+   "PIN": "0173N00352000000"
+  },
+  {
+   "OBJECTID": 23,
+   "PIN": "0389S00130000000"
+  },
+  {
+   "OBJECTID": 24,
+   "PIN": "0176M00210000000"
+  },
+  {
+   "OBJECTID": 25,
+   "PIN": "1672J00293000000"
+  }
+ ],
+ "layer": "https://mapservices.pasda.psu.edu/server/rest/services/pasda/AlleghenyCounty/MapServer/25",
+ "where": "1=1"
+}
