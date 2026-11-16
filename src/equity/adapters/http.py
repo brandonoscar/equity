@@ -5,6 +5,7 @@ politeness rules are tested offline.
 
 from __future__ import annotations
 
+import gzip
 import time
 import urllib.error
 import urllib.parse
@@ -33,15 +34,26 @@ class Response:
     retrieved_at: datetime
 
 
+def decode_body(body: bytes, content_encoding: str | None) -> bytes:
+    """Undo gzip transfer compression. Stored raw bytes are always the decoded body."""
+    if (content_encoding or "").strip().lower() == "gzip":
+        return gzip.decompress(body)
+    return body
+
+
 def urllib_transport(
     url: str, headers: Mapping[str, str], timeout: float
 ) -> tuple[int, bytes, str]:
-    req = urllib.request.Request(url, headers=dict(headers))  # noqa: S310 - https URLs only
+    # gzip cuts transfer ~10-25x on JSON APIs (Socrata, ArcGIS) at no cost to the server.
+    hdrs = {**headers, "Accept-Encoding": "gzip"}
+    req = urllib.request.Request(url, headers=hdrs)  # noqa: S310 - https URLs only
     try:
         with urllib.request.urlopen(req, timeout=timeout) as resp:  # noqa: S310
-            return int(resp.status), resp.read(), str(resp.headers.get("Content-Type", ""))
+            body = decode_body(resp.read(), resp.headers.get("Content-Encoding"))
+            return int(resp.status), body, str(resp.headers.get("Content-Type", ""))
     except urllib.error.HTTPError as err:
-        return int(err.code), err.read(), str(err.headers.get("Content-Type", ""))
+        body = decode_body(err.read(), err.headers.get("Content-Encoding"))
+        return int(err.code), body, str(err.headers.get("Content-Type", ""))
 
 
 RETRY_STATUSES = frozenset({429, 500, 502, 503, 504})
@@ -63,8 +75,9 @@ class PoliteClient:
     _last: dict[str, float] = field(default_factory=dict)
     _robots: dict[str, urllib.robotparser.RobotFileParser] = field(default_factory=dict)
 
-    def _wait_turn(self, host: str) -> None:
-        wait = self._last.get(host, float("-inf")) + self.min_interval_s - self.monotonic()
+    def _wait_turn(self, host: str, interval_s: float | None = None) -> None:
+        gap = self.min_interval_s if interval_s is None else interval_s
+        wait = self._last.get(host, float("-inf")) + gap - self.monotonic()
         if wait > 0:
             self.sleep(wait)
 
@@ -95,12 +108,16 @@ class PoliteClient:
 
     def get(self, url: str, params: Mapping[str, str] | None = None) -> Response:
         full = url + ("?" + urllib.parse.urlencode(sorted(params.items())) if params else "")
-        if not self._robots_for(full).can_fetch(self.user_agent, full):
+        robots = self._robots_for(full)
+        if not robots.can_fetch(self.user_agent, full):
             raise AccessDenied(f"robots.txt disallows {full}")
         host = urllib.parse.urlsplit(full).netloc
+        # A robots.txt Crawl-delay longer than our own spacing wins.
+        delay = robots.crawl_delay(self.user_agent)
+        gap = max(self.min_interval_s, float(delay)) if delay else self.min_interval_s
         attempt = 0
         while True:
-            self._wait_turn(host)
+            self._wait_turn(host, gap)
             try:
                 status, body, ctype = self.transport(
                     full, {"User-Agent": self.user_agent}, self.timeout_s

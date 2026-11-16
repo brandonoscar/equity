@@ -1,0 +1,734 @@
+# NYC ACRIS (City Register) document codes -> normalized instrument fields.
+# Generated from the live Document Control Codes table (data.cityofnewyork.us 7isb-wh4c,
+# 126 rows, fetched 2026-11-16). `parties` are ACRIS's party1/2/3 labels for the code; a
+# party row's role is label_roles[label]. Codes not listed map to OTHER with no reference.
+#
+# TODO(Brandon): every doc_type and ref_type below is a classification call. In particular:
+#  - JUDG is mapped to COURT_ORDER: ACRIS judgments are title judgments (partition, quiet
+#    title, foreclosure). NY money judgments are docketed with the County Clerk (CPLR 5018),
+#    not recorded in ACRIS.
+#  - TLS (tax lien sale certificate) is OTHER for now; the lien sale list is loaded separately.
+#  - FTL (federal lien, other) and LOCC (condo common charges) are STATUTORY_LIEN.
+#  - WFL (withdrawal of federal tax lien notice) is treated as a release.
+#  - TODD (transfer-on-death deed) is OTHER: it moves nothing until death.
+#  - document_amt 0 is read as 'amount not stated' (zero_amount_is_unknown).
+zero_amount_is_unknown: true
+boroughs:  # ACRIS borough -> county FIPS and NYS SWIS (from the NYS tax parcel layer)
+  '1': {county_fips: '36061', swis: '620100'}  # Manhattan
+  '2': {county_fips: '36005', swis: '600100'}  # Bronx
+  '3': {county_fips: '36047', swis: '610100'}  # Brooklyn
+  '4': {county_fips: '36081', swis: '630100'}  # Queens
+  '5': {county_fips: '36085', swis: '640100'}  # Staten Island (rare: Richmond keeps its own)
+# Pre-2003 document ids, fetched in three-character prefix ranges (FT_100 ... FT_499).
+legacy_prefixes: [FT_1, FT_2, FT_3, FT_4, BK_6, BK_7, BK_8]
+codes:
+  "AALR":
+    description: "ASGN OF ASGN OF L&R"
+    class: "MORTGAGES & INSTRUMENTS"
+    doc_type: OTHER
+    parties: ["ASSIGNOR", "ASSIGNEE"]
+  "ACON":
+    description: "ASSIGN/TERM OF CONTRACT/BID"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: OTHER
+    parties: ["PARTY ONE", "PARTY TWO"]
+  "ADEC":
+    description: "AMENDED CONDO DECLARATION"
+    class: "OTHER DOCUMENTS"
+    doc_type: OTHER
+    parties: ["PARTY ONE"]
+  "AGMT":
+    description: "AGREEMENT"
+    class: "MORTGAGES & INSTRUMENTS"
+    doc_type: MODIFICATION
+    ref_type: modifies
+    parties: ["PARTY 1", "PARTY 2"]
+  "AIRRIGHT":
+    description: "AIR RIGHTS"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: OTHER
+    parties: ["GRANTOR/SELLER", "GRANTEE/BUYER"]
+  "AL&R":
+    description: "ASSIGNMENT OF LEASES AND RENTS"
+    class: "MORTGAGES & INSTRUMENTS"
+    doc_type: OTHER
+    parties: ["ASSIGNOR", "ASSIGNEE"]
+  "AMFL":
+    description: "AMENDMENT OF FEDERAL LIEN"
+    class: "UCC AND FEDERAL LIENS"
+    doc_type: MODIFICATION
+    ref_type: modifies
+    parties: ["DEBTOR", "SECURED PARTY"]
+  "AMND":
+    description: "UCC3 AMENDMENT"
+    class: "UCC AND FEDERAL LIENS"
+    doc_type: MODIFICATION
+    ref_type: modifies
+    parties: ["DEBTOR", "SECURED PARTY"]
+  "AMTL":
+    description: "AMENDMENT OF TAX LIEN"
+    class: "OTHER DOCUMENTS"
+    doc_type: MODIFICATION
+    ref_type: modifies
+    parties: ["PARTY 1", "PARTY 2"]
+  "AMTX":
+    description: "ADDITIONAL MORTGAGE TAX"
+    class: "MORTGAGES & INSTRUMENTS"
+    doc_type: OTHER
+    parties: ["PAYER", "PARTY TWO"]
+  "APPRT":
+    description: "APP. ORDER BREAKDWN OFFICE USE"
+    class: "MORTGAGES & INSTRUMENTS"
+    doc_type: OTHER
+    parties: ["MORTGAGER/BORROWER", "MORTGAGEE/LENDER"]
+  "ASGN":
+    description: "UCC3 ASSIGNMENT"
+    class: "UCC AND FEDERAL LIENS"
+    doc_type: ASSIGNMENT
+    ref_type: assigns
+    parties: ["DEBTOR", "SECURED PARTY", "NEW SECURED PARTY"]
+  "ASPM":
+    description: "ASSUMPTION OF MORTGAGE"
+    class: "MORTGAGES & INSTRUMENTS"
+    doc_type: MODIFICATION
+    ref_type: modifies
+    parties: ["MORTGAGER/BORROWER", "MORTGAGEE/LENDER"]
+  "ASST":
+    description: "ASSIGNMENT, MORTGAGE"
+    class: "MORTGAGES & INSTRUMENTS"
+    doc_type: ASSIGNMENT
+    ref_type: assigns
+    parties: ["ASSIGNOR/OLD LENDER", "ASSIGNEE/NEW LENDER"]
+  "ASSTO":
+    description: "ASSIGNMENT OF LEASE"
+    class: "OTHER DOCUMENTS"
+    doc_type: OTHER
+    parties: ["PARTY 1", "PARTY 2"]
+  "ASTU":
+    description: "UNIT ASSIGNMENT"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: DEED
+    parties: ["GRANTOR/SELLER", "GRANTEE/BUYER"]
+  "ASUM":
+    description: "UCC3 ASSUMPTION"
+    class: "UCC AND FEDERAL LIENS"
+    doc_type: MODIFICATION
+    ref_type: modifies
+    parties: ["DEBTOR", "SECURED PARTY"]
+  "ATL":
+    description: "ASSIGNMENT OF TAX LIEN"
+    class: "OTHER DOCUMENTS"
+    doc_type: ASSIGNMENT
+    ref_type: assigns
+    parties: ["PARTY 1", "PARTY 2"]
+  "BOND":
+    description: "BOND"
+    class: "OTHER DOCUMENTS"
+    doc_type: OTHER
+    parties: ["DEBTOR", "SECURED PARTY"]
+  "BRUP":
+    description: "UCC3 BANKRUPTCY"
+    class: "UCC AND FEDERAL LIENS"
+    doc_type: OTHER
+    parties: ["DEBTOR", "SECURED PARTY"]
+  "CALR":
+    description: "CANCEL/TERM ASGN L&R"
+    class: "OTHER DOCUMENTS"
+    doc_type: OTHER
+    parties: ["PARTY ONE", "PARTY TWO"]
+  "CDEC":
+    description: "CONDO DECLARATION"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: OTHER
+    parties: ["PARTY 1"]
+  "CERR":
+    description: "CERTIFICATE OF REDUCTION"
+    class: "MORTGAGES & INSTRUMENTS"
+    doc_type: MODIFICATION
+    ref_type: modifies
+    parties: ["MORTGAGER/BORROWER", "MORTGAGEE/LENDER"]
+  "CERT":
+    description: "CERTIFICATE"
+    class: "OTHER DOCUMENTS"
+    doc_type: OTHER
+    parties: ["PARTY 1", "PARTY 2"]
+  "CMTG":
+    description: "COLLATERAL MORTGAGE"
+    class: "MORTGAGES & INSTRUMENTS"
+    doc_type: MORTGAGE
+    parties: ["MORTGAGOR", "MORTGAGEE"]
+  "CNFL":
+    description: "CONTINUATION OF FEDERAL LIEN"
+    class: "UCC AND FEDERAL LIENS"
+    doc_type: EXTENSION
+    ref_type: extends
+    parties: ["DEBTOR", "SECURED PARTY"]
+  "CNTR":
+    description: "CONTRACT OF SALE"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: OTHER
+    parties: ["GRANTOR/SELLER", "GRANTEE/BUYER"]
+  "CODP":
+    description: "CONDEMNATION PROCEEDINGS"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: OTHER
+    parties: ["PARTY 1", "PARTY 2"]
+  "CONDEED":
+    description: "CONFIRMATORY DEED"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: DEED
+    parties: ["GRANTOR/SELLER", "GRANTEE/BUYER"]
+  "CONS":
+    description: "CONSENT"
+    class: "OTHER DOCUMENTS"
+    doc_type: OTHER
+    parties: ["PARTY 1"]
+  "CONT":
+    description: "UCC3 CONTINUATION"
+    class: "UCC AND FEDERAL LIENS"
+    doc_type: EXTENSION
+    ref_type: extends
+    parties: ["DEBTOR", "SECURED PARTY"]
+  "CORP":
+    description: "UCC 5 CORRECTION STATEMENT"
+    class: "UCC AND FEDERAL LIENS"
+    doc_type: MODIFICATION
+    ref_type: corrects
+    parties: ["PARTY 1", "PARTY 2", "PARTY 3"]
+  "CORR":
+    description: "CORRECTION DOC-OFFICE USE ONLY"
+    class: "OTHER DOCUMENTS"
+    doc_type: OTHER
+    parties: ["PARTY 1", "PARTY 2", "PARTY 3"]
+  "CORR, LE":
+    description: "CORRECT LIFE ESTATE OFFICE USE"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: DEED
+    ref_type: corrects
+    parties: ["GRANTOR/SELLER", "GRANTEE/BUYER", "LIFE ESTATE RETAINED"]
+  "CORRD":
+    description: "CORRECTION DEED"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: DEED
+    ref_type: corrects
+    parties: ["GRANTOR/SELLER", "GRANTEE/BUYER"]
+  "CORRM":
+    description: "CORRECTION MORTGAGE"
+    class: "MORTGAGES & INSTRUMENTS"
+    doc_type: MORTGAGE
+    ref_type: corrects
+    parties: ["MORTGAGOR/BORROWER", "MORTGAGEE/LENDER"]
+  "CTOR":
+    description: "COURT ORDER"
+    class: "OTHER DOCUMENTS"
+    doc_type: COURT_ORDER
+    parties: ["PARTY 1/GRANTOR", "PARTY 2/GRANTEE"]
+  "DCTO":
+    description: "COURT ORDER ADVERSE POSS."
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: COURT_ORDER
+    parties: ["PARTY 1", "PARTY 2"]
+  "DECL":
+    description: "DECLARATION"
+    class: "OTHER DOCUMENTS"
+    doc_type: OTHER
+    parties: ["PARTY 1", "PARTY 2"]
+  "DECM":
+    description: "DECLARATION OF MERGER"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: OTHER
+    parties: ["PARTY ONE", "PARTY TWO"]
+  "DEED":
+    description: "DEED"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: DEED
+    parties: ["GRANTOR/SELLER", "GRANTEE/BUYER"]
+  "DEED COR":
+    description: "CORRECT  INDEX/DEED-OFFICE USE"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: DEED
+    ref_type: corrects
+    parties: ["GRANTOR", "GRANTEE"]
+  "DEED, LE":
+    description: "LIFE ESTATE DEED"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: DEED
+    parties: ["GRANTOR/SELLER", "GRANTEE/BUYER", "LIFE ESTATE RETAINED"]
+  "DEED, RC":
+    description: "DEED WITH RESTRICTIVE COVENANT"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: DEED
+    parties: ["GRANTOR/SELLER", "GRANTEE/BUYER"]
+  "DEED, TS":
+    description: "TIMESHARE DEED"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: DEED
+    parties: ["GRANTOR/SELLER", "GRANTEE/BUYER"]
+  "DEEDO":
+    description: "DEED, OTHER"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: DEED
+    parties: ["GRANTOR", "GRANTEE"]
+  "DEEDP":
+    description: "DEED, PRE RPT TAX"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: DEED
+    parties: ["GRANTOR/SELLER", "GRANTEE/BUYER"]
+  "DEMM":
+    description: "DECLARATION OF MODIFI OF MRT"
+    class: "MORTGAGES & INSTRUMENTS"
+    doc_type: MODIFICATION
+    ref_type: modifies
+    parties: ["MORTGAGER/BORROWER", "MORTGAGEE/LENDER"]
+  "DEVR":
+    description: "DEVELOPMENT RIGHTS"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: OTHER
+    parties: ["PARTY ONE", "PARTY TWO"]
+  "DPFTL":
+    description: "DISCHARGE OF PROPERTY FROM FTL"
+    class: "UCC AND FEDERAL LIENS"
+    doc_type: PARTIAL_RELEASE
+    ref_type: partial_release
+    parties: ["DEBTOR", "SECURED PARTY"]
+  "DTL":
+    description: "DISCHARGE OF TAX LIEN"
+    class: "OTHER DOCUMENTS"
+    doc_type: RELEASE
+    ref_type: releases
+    parties: ["SECURED PARTY"]
+  "EASE":
+    description: "EASEMENT"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: OTHER
+    parties: ["GRANTOR/SELLER", "GRANTEE/BUYER"]
+  "ESRM":
+    description: "ESTOPPAL REMOVAL OFFICE USE ON"
+    class: "OTHER DOCUMENTS"
+    doc_type: OTHER
+    parties: ["PARTY ONE", "PARTY TWO"]
+  "ESTL":
+    description: "ESTOPPEL FOR OFFICE USE ONLY"
+    class: "OTHER DOCUMENTS"
+    doc_type: OTHER
+    parties: ["MORTGAGOR", "NYC"]
+  "FL":
+    description: "FEDERAL LIEN-IRS"
+    class: "UCC AND FEDERAL LIENS"
+    doc_type: TAX_LIEN_FEDERAL
+    parties: ["DEBTOR", "SECURED PARTY"]
+  "FTL":
+    description: "FEDERAL LIEN, OTHER"
+    class: "UCC AND FEDERAL LIENS"
+    doc_type: STATUTORY_LIEN
+    parties: ["DEBTOR", "SECURED PARTY"]
+  "IDED":
+    description: "IN REM DEED"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: DEED
+    parties: ["GRANTOR/SELLER", "GRANTEE/BUYER"]
+  "INIC":
+    description: "INITIAL COOP UCC1"
+    class: "UCC AND FEDERAL LIENS"
+    doc_type: FIXTURE_FILING
+    parties: ["DEBTOR", "SECURED PARTY", "ASSIGNEE"]
+  "INIT":
+    description: "INITIAL UCC1"
+    class: "UCC AND FEDERAL LIENS"
+    doc_type: FIXTURE_FILING
+    parties: ["DEBTOR", "SECURED PARTY", "ASSIGNEE"]
+  "JUDG":
+    description: "JUDGMENT"
+    class: "OTHER DOCUMENTS"
+    doc_type: COURT_ORDER
+    parties: ["PARTY 1", "PARTY 2"]
+  "LDMK":
+    description: "LANDMARK DESIGNATION"
+    class: "OTHER DOCUMENTS"
+    doc_type: OTHER
+    parties: ["PARTY 1", "PARTY 2"]
+  "LEAS":
+    description: "LEASE"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: LEASE
+    parties: ["LESSOR/LANDLORD", "LESSEE/TENANT"]
+  "LIC":
+    description: "LICENSE"
+    class: "OTHER DOCUMENTS"
+    doc_type: OTHER
+    parties: ["PARTY 1", "PARTY 2"]
+  "LOCC":
+    description: "LIEN OF COMMON CHARGES"
+    class: "OTHER DOCUMENTS"
+    doc_type: STATUTORY_LIEN
+    parties: ["PARTY ONE/DEBTOR", "PARTY TWO/SECURED PA"]
+  "LTPA":
+    description: "LETTERS  PATENT"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: DEED
+    parties: ["GRANTOR/SELLER", "GRANTEE/BUYER"]
+  "M&CON":
+    description: "MORTGAGE AND CONSOLIDATION"
+    class: "MORTGAGES & INSTRUMENTS"
+    doc_type: MORTGAGE
+    parties: ["MORTGAGOR", "MORTGAGEE"]
+  "MAPS":
+    description: "MAPS"
+    class: "OTHER DOCUMENTS"
+    doc_type: OTHER
+    parties: ["PARTY 1"]
+  "MCON":
+    description: "MEMORANDUM OF CONTRACT"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: OTHER
+    parties: ["PARTY ONE", "PARTY TWO"]
+  "MERG":
+    description: "MERGER"
+    class: "OTHER DOCUMENTS"
+    doc_type: OTHER
+    parties: ["PARTY 1", "PARTY 2"]
+  "MISC":
+    description: "MISCELLANEOUS"
+    class: "OTHER DOCUMENTS"
+    doc_type: OTHER
+    parties: ["PARTY 1", "PARTY 2"]
+  "MLEA":
+    description: "MEMORANDUM OF LEASE"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: LEASE
+    parties: ["LESSOR", "LESSEE"]
+  "MMTG":
+    description: "MASTER MORTGAGE"
+    class: "MORTGAGES & INSTRUMENTS"
+    doc_type: OTHER
+    parties: ["MORTGAGEE/LENDER"]
+  "MTGE":
+    description: "MORTGAGE"
+    class: "MORTGAGES & INSTRUMENTS"
+    doc_type: MORTGAGE
+    parties: ["MORTGAGOR/BORROWER", "MORTGAGEE/LENDER"]
+  "NAFTL":
+    description: "CERT NONATTCHMENT FED TAX LIEN"
+    class: "UCC AND FEDERAL LIENS"
+    doc_type: OTHER
+    parties: ["PARTY ONE", "PARTY TWO"]
+  "NAPP":
+    description: "NOTICE OF APPROPRIATION"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: OTHER
+    parties: ["PARTY ONE", "PARTY TWO"]
+  "NTXL":
+    description: "NOTICE OF  ESTATE TAX LIEN"
+    class: "UCC AND FEDERAL LIENS"
+    doc_type: TAX_LIEN_FEDERAL
+    parties: ["PARTY ONE", "IRS"]
+  "PAT":
+    description: "POWER OF ATTORNEY"
+    class: "OTHER DOCUMENTS"
+    doc_type: POWER_OF_ATTORNEY
+    parties: ["PARTY ONE", "PARTY TWO"]
+  "PRCFL":
+    description: "PARTIAL REVOCATION OF CERT RFL"
+    class: "UCC AND FEDERAL LIENS"
+    doc_type: OTHER
+    parties: ["DEBTOR", "SECURED PARTY"]
+  "PREL":
+    description: "PARTIAL RELEASE OF MORTGAGE"
+    class: "MORTGAGES & INSTRUMENTS"
+    doc_type: PARTIAL_RELEASE
+    ref_type: partial_release
+    parties: ["PARTY ONE", "PARTY TWO"]
+  "PRFL":
+    description: "PARTIAL RELEASE OF FED LIEN"
+    class: "UCC AND FEDERAL LIENS"
+    doc_type: PARTIAL_RELEASE
+    ref_type: partial_release
+    parties: ["DEBTOR", "SECURED PARTY"]
+  "PSAT":
+    description: "PARTIAL SATISFACTION"
+    class: "MORTGAGES & INSTRUMENTS"
+    doc_type: PARTIAL_RELEASE
+    ref_type: partial_release
+    parties: ["MORTGAGER/BORROWER", "MORTGAGEE/LENDER"]
+  "PSGN":
+    description: "UCC3 PARTIAL ASSIGNMENT"
+    class: "UCC AND FEDERAL LIENS"
+    doc_type: ASSIGNMENT
+    ref_type: assigns
+    parties: ["DEBTOR", "SECURED PARTY"]
+  "PWFL":
+    description: "PARTIAL WITHDRAWL OF FED LIEN"
+    class: "UCC AND FEDERAL LIENS"
+    doc_type: PARTIAL_RELEASE
+    ref_type: partial_release
+    parties: ["PARTY ONE", "PARTY TWO"]
+  "RCRFL":
+    description: "REVOCATION OF CERTIF. OF RFL"
+    class: "UCC AND FEDERAL LIENS"
+    doc_type: OTHER
+    parties: ["DEBTOR", "SECURED PARTY"]
+  "REIT":
+    description: "REAL ESTATE INV TRUST DEED"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: DEED
+    parties: ["GRANTOR/SELLER", "GRANTEE/BUYER"]
+  "REL":
+    description: "RELEASE"
+    class: "MORTGAGES & INSTRUMENTS"
+    doc_type: RELEASE
+    ref_type: releases
+    parties: ["PARTY 1", "PARTY 2"]
+  "RESO":
+    description: "RESOLUTION"
+    class: "OTHER DOCUMENTS"
+    doc_type: OTHER
+    parties: ["PARTY 1", "PARTY 2"]
+  "RETT":
+    description: "NYS REAL ESTATE TRANSFER TAX"
+    class: "OTHER DOCUMENTS"
+    doc_type: OTHER
+    parties: ["GRANTOR/SELLER", "GRANTEE/BUYER"]
+  "RFL":
+    description: "RELEASE OF FEDERAL LIEN"
+    class: "UCC AND FEDERAL LIENS"
+    doc_type: RELEASE
+    ref_type: releases
+    parties: ["DEBTOR", "SECURED PARTY"]
+  "RFTL":
+    description: "RELEASE OF FEDERAL TAX LIEN"
+    class: "UCC AND FEDERAL LIENS"
+    doc_type: RELEASE
+    ref_type: releases
+    parties: ["DEBTOR", "SECURED PARTY"]
+  "RLSE":
+    description: "UCC3 RELEASE/UCC AMENDMENT"
+    class: "UCC AND FEDERAL LIENS"
+    doc_type: MODIFICATION
+    ref_type: modifies
+    parties: ["DEBTOR", "SECURED PARTY"]
+  "RPAT":
+    description: "REVOCATION OF POWER OF ATTORNE"
+    class: "OTHER DOCUMENTS"
+    doc_type: OTHER
+    parties: ["PARTY 1", "PARTY 2"]
+  "RPTT":
+    description: "NYC REAL PROPERTY TRANSFER TAX"
+    class: "OTHER DOCUMENTS"
+    doc_type: OTHER
+    parties: ["GRANTOR/SELLER", "GRANTEE/BUYER"]
+  "RPTT&RET":
+    description: "BOTH RPTT AND RETT"
+    class: "OTHER DOCUMENTS"
+    doc_type: OTHER
+    parties: ["GRANTOR/SELLER", "GRANTEE/BUYER"]
+  "RTOD":
+    description: "REVOCATION OF TOD DEED"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: OTHER
+    parties: ["TRANSFEROR", "DESGNTD BENEFICIARY"]
+  "RTXL":
+    description: "RELEASE OF ESTATE TAX LIEN"
+    class: "OTHER DOCUMENTS"
+    doc_type: RELEASE
+    ref_type: releases
+    parties: ["DECEDENT"]
+  "SAGE":
+    description: "SUNDRY AGREEMENT"
+    class: "OTHER DOCUMENTS"
+    doc_type: OTHER
+    parties: ["PARTY 1", "PARTY 2"]
+  "SAT":
+    description: "SATISFACTION OF MORTGAGE"
+    class: "MORTGAGES & INSTRUMENTS"
+    doc_type: RELEASE
+    ref_type: releases
+    parties: ["MORTGAGER/BORROWER", "MORTGAGEE/LENDER"]
+  "SCDEC":
+    description: "DECLARATION OF CONDO IN CONDO"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: OTHER
+    parties: ["PARTY 1"]
+  "SI CORR":
+    description: "SI BILLING UPDATE OFFICE USE"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: OTHER
+    parties: ["GRANTOR", "GRANTEE"]
+  "SMIS":
+    description: "SUNDRY MISCELLANEOUS"
+    class: "OTHER DOCUMENTS"
+    doc_type: OTHER
+    parties: ["PARTY 1"]
+  "SMTG":
+    description: "SUNDRY MORTGAGE"
+    class: "MORTGAGES & INSTRUMENTS"
+    doc_type: MORTGAGE
+    parties: ["MORTGAGER/BORROWER", "MORTGAGEE/LENDER"]
+  "SPRD":
+    description: "MORTGAGE SPREADER AGREEMENT"
+    class: "MORTGAGES & INSTRUMENTS"
+    doc_type: MODIFICATION
+    ref_type: modifies
+    parties: ["PARTY ONE/MORTGAGOR", "PARTY TWO/MORTGAGEE"]
+  "STP":
+    description: "STREET PROCEDURE"
+    class: "OTHER DOCUMENTS"
+    doc_type: OTHER
+    parties: ["PARTY 1", "PARTY 2"]
+  "SUBL":
+    description: "SUBORDINATION OF LEASE"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: SUBORDINATION
+    ref_type: subordinates
+    parties: ["PARTY 1", "PARTY 2"]
+  "SUBM":
+    description: "SUBORDINATION OF MORTGAGE"
+    class: "MORTGAGES & INSTRUMENTS"
+    doc_type: SUBORDINATION
+    ref_type: subordinates
+    parties: ["PARTY ONE", "PARTY TWO"]
+  "SUBO":
+    description: "UCC3 SUBORDINATION"
+    class: "UCC AND FEDERAL LIENS"
+    doc_type: SUBORDINATION
+    ref_type: subordinates
+    parties: ["DEBTOR", "SECURED PARTY"]
+  "TERA":
+    description: "TERMINATION OF AGREEMENT"
+    class: "OTHER DOCUMENTS"
+    doc_type: OTHER
+    parties: ["PARTY 1", "PARTY 2"]
+  "TERDECL":
+    description: "TERM. OF CONDO DECLARATION"
+    class: "OTHER DOCUMENTS"
+    doc_type: OTHER
+    parties: ["PARTY 1", "PARTY 2"]
+  "TERL":
+    description: "TERMINATION OF LEASE OR MEMO"
+    class: "OTHER DOCUMENTS"
+    doc_type: OTHER
+    parties: ["LESSOR", "LESSEE"]
+  "TERM":
+    description: "UCC3 TERMINATION"
+    class: "UCC AND FEDERAL LIENS"
+    doc_type: RELEASE
+    ref_type: releases
+    parties: ["DEBTOR", "SECURED PARTY"]
+  "TERT":
+    description: "TERMINATION OF TRUST"
+    class: "OTHER DOCUMENTS"
+    doc_type: OTHER
+    parties: ["PARTY 1", "PARTY 2"]
+  "TL&R":
+    description: "TERMINATION OF ASSIGN OF L&R"
+    class: "OTHER DOCUMENTS"
+    doc_type: OTHER
+    parties: ["PARTY ONE", "PARTY TWO"]
+  "TLS":
+    description: "TAX LIEN SALE CERTIFICATE"
+    class: "OTHER DOCUMENTS"
+    doc_type: OTHER
+    parties: ["PARTY 1", "PARTY 2"]
+  "TODD":
+    description: "TRANSFER ON DEATH DEED"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: OTHER
+    parties: ["TRANSFEROR", "DESGNTD BENEFICIARY"]
+  "TOLCC":
+    description: "TERM OF LIEN OF COMMON CHARGES"
+    class: "OTHER DOCUMENTS"
+    doc_type: RELEASE
+    ref_type: releases
+    parties: ["PARTY ONE", "PARTY TWO"]
+  "TORREN":
+    description: "TORREN"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: OTHER
+    parties: ["PARTY  1", "PARTY  2"]
+  "UCC ADEN":
+    description: "UCC COOPERATIVE ADDENDUM"
+    class: "UCC AND FEDERAL LIENS"
+    doc_type: FIXTURE_FILING
+    parties: ["DEBTOR", "SECURED PARTY"]
+  "UCC1":
+    description: "UNIFORM COMMERCIAL CODE 1"
+    class: "UCC AND FEDERAL LIENS"
+    doc_type: FIXTURE_FILING
+    parties: ["DEBTOR", "SECURED PARTY", "ASSIGNEE"]
+  "UCC3":
+    description: "UNIFORM COMMERCIAL CODE 3"
+    class: "UCC AND FEDERAL LIENS"
+    doc_type: MODIFICATION
+    ref_type: modifies
+    parties: ["DEBTOR", "SECURED PARTY"]
+  "VAC":
+    description: "VACATE ORDER"
+    class: "DEEDS AND OTHER CONVEYANCES"
+    doc_type: OTHER
+    parties: ["PARTY 1"]
+  "WFL":
+    description: "WITHDRAWAL OF A FED LIEN"
+    class: "UCC AND FEDERAL LIENS"
+    doc_type: RELEASE
+    ref_type: releases
+    parties: ["PARTY ONE", "PARTY TWO"]
+  "WILL":
+    description: "CERTIFIED COPY OF WILL"
+    class: "OTHER DOCUMENTS"
+    doc_type: OTHER
+    parties: ["PARTY 1", "PARTY 2"]
+  "WSAT":
+    description: "WITHHELD SATISFACTION"
+    class: "MORTGAGES & INSTRUMENTS"
+    doc_type: OTHER
+    parties: ["MORTGAGER/BORROWER", "MORTGAGEE/LENDER"]
+  "XXXX":
+    description: "APPRT BREAKDWN OFFICE USE ONLY"
+    class: "MORTGAGES & INSTRUMENTS"
+    doc_type: OTHER
+    parties: ["MORTGAGOR", "MORTGAGEE"]
+  "ZONE":
+    description: "ZONING LOT DESCRIPTION"
+    class: "OTHER DOCUMENTS"
+    doc_type: OTHER
+    parties: ["PARTY ONE"]
+label_roles:  # ACRIS party label -> instrument_party.role
+  "ASSIGNEE": assignee
+  "ASSIGNEE/NEW LENDER": assignee
+  "ASSIGNOR": assignor
+  "ASSIGNOR/OLD LENDER": assignor
+  "DEBTOR": debtor
+  "DECEDENT": debtor
+  "DESGNTD BENEFICIARY": grantee
+  "GRANTEE": grantee
+  "GRANTEE/BUYER": grantee
+  "GRANTOR": grantor
+  "GRANTOR/SELLER": grantor
+  "IRS": creditor
+  "LESSEE": grantee
+  "LESSEE/TENANT": grantee
+  "LESSOR": grantor
+  "LESSOR/LANDLORD": grantor
+  "LIFE ESTATE RETAINED": other
+  "MORTGAGEE": lender
+  "MORTGAGEE/LENDER": lender
+  "MORTGAGER/BORROWER": borrower
+  "MORTGAGOR": borrower
+  "MORTGAGOR/BORROWER": borrower
+  "NEW SECURED PARTY": creditor
+  "NYC": creditor
+  "PARTY  1": other
+  "PARTY  2": other
+  "PARTY 1": other
+  "PARTY 1/GRANTOR": grantor
+  "PARTY 2": other
+  "PARTY 2/GRANTEE": grantee
+  "PARTY 3": other
+  "PARTY ONE": other
+  "PARTY ONE/DEBTOR": debtor
+  "PARTY ONE/MORTGAGOR": borrower
+  "PARTY TWO": other
+  "PARTY TWO/MORTGAGEE": lender
+  "PARTY TWO/SECURED PA": creditor
+  "PAYER": debtor
+  "SECURED PARTY": creditor
+  "TRANSFEROR": grantor

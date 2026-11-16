@@ -7,7 +7,7 @@ from datetime import UTC, datetime
 
 import pytest
 
-from equity.adapters.http import AccessDenied, PoliteClient
+from equity.adapters.http import AccessDenied, PoliteClient, decode_body
 
 
 class FakeNet:
@@ -88,6 +88,26 @@ def test_requests_to_one_host_are_spaced() -> None:
     assert net.calls[-1] == "https://d.test/2?a=1&b=2"  # params sorted: stable request strings
 
 
+def test_robots_crawl_delay_longer_than_ours_is_honored() -> None:
+    robots = b"User-agent: *\nCrawl-delay: 5\nDisallow:\n"
+    net = FakeNet({"https://e.test/robots.txt": (200, robots), "https://e.test/": (200, b"ok")})
+    clock = FakeClock()
+    c = client(net, clock, interval=2.0)
+    c.get("https://e.test/1")
+    c.get("https://e.test/2")
+    # page 1 waits 5 s after the robots fetch, page 2 waits 5 s after page 1
+    assert clock.slept == [5.0, 5.0]
+
+
+def test_crawl_delay_shorter_than_ours_does_not_speed_us_up() -> None:
+    robots = b"User-agent: *\nCrawl-delay: 1\n"
+    net = FakeNet({"https://f.test/robots.txt": (200, robots), "https://f.test/": (200, b"ok")})
+    clock = FakeClock()
+    c = client(net, clock, interval=3.0)
+    c.get("https://f.test/1")
+    assert clock.slept == [3.0]
+
+
 def test_transient_failures_are_retried_with_backoff() -> None:
     attempts: list[str] = []
 
@@ -126,3 +146,13 @@ def test_retries_give_up() -> None:
 
     c = PoliteClient(min_interval_s=0, transport=busy, sleep=FakeClock().sleep, retries=1)
     assert c.get("https://g.test/x").status == 429  # surfaced after retries
+
+
+def test_gzip_bodies_are_decoded_and_others_pass_through() -> None:
+    import gzip
+
+    raw = b'{"a": 1}'
+    assert decode_body(gzip.compress(raw), "gzip") == raw
+    assert decode_body(gzip.compress(raw), " GZIP ") == raw
+    assert decode_body(raw, None) == raw
+    assert decode_body(raw, "identity") == raw

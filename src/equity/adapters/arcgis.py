@@ -51,6 +51,41 @@ def parse_page(body: bytes) -> tuple[list[dict[str, Any]], bool]:
     return feats, bool(data.get("exceededTransferLimit"))
 
 
+TRANSIENT_ERROR_CODES = frozenset({500, 502, 503, 504})
+
+
+# ArcGIS Online answers some queries under load with this generic 400, and the same query
+# succeeds moments later (seen on the Florida cadastral layer at resultOffset 100000,
+# 2026-11-16). Specific 400s ("Invalid field ...") are real errors and are not retried.
+TRANSIENT_400_PREFIX = "Cannot perform query"
+
+
+def _is_transient(body: bytes) -> bool:
+    """An empty or cut-off body, a 5xx error object, or ArcGIS Online's generic busy-400."""
+    try:
+        data = json.loads(body)
+    except ValueError:
+        return True
+    err = data.get("error") if isinstance(data, dict) else None
+    if not isinstance(err, dict):
+        return False
+    if err.get("code") in TRANSIENT_ERROR_CODES:
+        return True
+    return err.get("code") == 400 and str(err.get("message", "")).startswith(TRANSIENT_400_PREFIX)
+
+
+def get_page(client: PoliteClient, query: ArcGISQuery, offset: int) -> Response:
+    """One query page. A 200 whose body is empty, truncated or a 5xx error object is retried
+    with the client's backoff, like an HTTP 5xx; the last response surfaces if it persists."""
+    attempt = 0
+    while True:
+        resp = client.get(query.layer_url + "/query", query.params(offset))
+        if resp.status != 200 or not _is_transient(resp.content) or attempt >= client.retries:
+            return resp
+        client.sleep(client.backoff_s * (2**attempt))
+        attempt += 1
+
+
 def fetch_all(
     client: PoliteClient, query: ArcGISQuery, max_pages: int = 10_000, sample: bool = False
 ) -> tuple[list[dict[str, Any]], list[Response]]:
@@ -62,7 +97,7 @@ def fetch_all(
     responses: list[Response] = []
     offset = 0
     for _ in range(max_pages):
-        resp = client.get(query.layer_url + "/query", query.params(offset))
+        resp = get_page(client, query, offset)
         if resp.status != 200:
             raise ArcGISError(f"HTTP {resp.status} from {resp.url}")
         page, more = parse_page(resp.content)

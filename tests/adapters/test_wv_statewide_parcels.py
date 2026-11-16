@@ -87,6 +87,21 @@ def test_duplicate_parcel_rows_pick_the_carded_row_deterministically() -> None:
     assert totals == ["5000.00"]
 
 
+def test_negative_appraisal_is_an_issue_not_a_value() -> None:
+    attrs = _attrs(LandAppraisal=-1200, BuildingAppraisal=800, TotalAppraisal=-400)
+    body = json.dumps({"layer": "x", "where": "y", "attributes": [attrs]}).encode()
+    out = rows(body)
+    a = next(r for t, r in out if t == "parcel_assessment")
+    assert (a["appraised_land"], a["appraised_bldg"], a["appraised_total"]) == (
+        None,
+        "800.00",
+        None,
+    )
+    issue = next(r for t, r in out if t == "data_issue")
+    assert issue["issue_code"] == "negative_amount"
+    assert issue["detail"] == {"LandAppraisal": "-1200.00", "TotalAppraisal": "-400.00"}
+
+
 def test_rows_without_owner_tax_year_or_parcel_id() -> None:
     body = json.dumps({"layer": "x", "where": "y", "attributes": [
         _attrs(TaxYear=None, ParcelID=None), _attrs(CleanParcelID=None)]}).encode()  # fmt: skip

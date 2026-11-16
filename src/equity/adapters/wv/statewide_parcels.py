@@ -35,6 +35,7 @@ PII_FIELDS: tuple[str, ...] = (
     "Owner1", "Owner2", "CareOf", "OwnerAddress1", "OwnerAddress2", "OwnerAddress3",
 )  # fmt: skip
 _ZIP = re.compile(r"^\s*(\d{5})")
+VALUE_FIELDS = ("LandAppraisal", "BuildingAppraisal", "TotalAppraisal")
 
 
 def _text(value: Any) -> str | None:
@@ -164,13 +165,22 @@ class WVStatewideParcels(ArcGISCountyAdapter):
                 )
             if a.get("TaxYear"):
                 year = int(a["TaxYear"])
+                money = {k: _money(a.get(k)) for k in VALUE_FIELDS}
+                negative = {k: v for k, v in money.items() if v is not None and float(v) < 0}
+                if negative:
+                    # A negative appraisal is a source error: keep it out of the fact, on record.
+                    yield ctx.fact(
+                        "data_issue", issue_code="negative_amount",
+                        target_table="parcel_assessment", detail=negative,
+                    )  # fmt: skip
+                    money = {k: (None if k in negative else v) for k, v in money.items()}
                 yield ctx.fact(
                     "parcel_assessment",
                     parcel_uid=uid,
                     tax_year=year,
-                    appraised_land=_money(a.get("LandAppraisal")),
-                    appraised_bldg=_money(a.get("BuildingAppraisal")),
-                    appraised_total=_money(a.get("TotalAppraisal")),
+                    appraised_land=money["LandAppraisal"],
+                    appraised_bldg=money["BuildingAppraisal"],
+                    appraised_total=money["TotalAppraisal"],
                     tax_class=_text(a.get("TaxClass")),
                     valid_from=valid_from_for(year, rule),
                 )

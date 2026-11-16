@@ -57,3 +57,61 @@ def test_errors_surface() -> None:
         parse_page(b'{"error": {"code": 400, "message": "Unable"}}')
     with pytest.raises(ArcGISError, match="no features"):
         parse_page(b"{}")
+
+
+class RawClient:
+    """Returns the given bodies in order (HTTP 200), recording backoff sleeps."""
+
+    retries = 3
+    backoff_s = 2.0
+
+    def __init__(self, bodies: list[bytes]) -> None:
+        self.bodies = bodies
+        self.calls = 0
+        self.slept: list[float] = []
+
+    def sleep(self, s: float) -> None:
+        self.slept.append(s)
+
+    def get(self, url: str, params: dict[str, str]) -> Response:
+        body = self.bodies[min(self.calls, len(self.bodies) - 1)]
+        self.calls += 1
+        return Response(url, 200, body, "application/json", datetime(2026, 1, 1, tzinfo=UTC))
+
+
+def test_empty_or_cut_off_bodies_are_retried_with_backoff() -> None:
+    good = json.dumps(_page([1], False)).encode()
+    c = RawClient([b"", b'{"features": [', good])
+    feats, resps = fetch_all(c, Q)  # type: ignore[arg-type]
+    assert [f["attributes"]["ID"] for f in feats] == [1]
+    assert c.calls == 3 and c.slept == [2.0, 4.0]
+    assert len(resps) == 1  # only the good response is kept as provenance
+
+
+def test_server_5xx_error_object_is_retried_but_specific_4xx_is_not() -> None:
+    good = json.dumps(_page([7], False)).encode()
+    c = RawClient([b'{"error": {"code": 503, "message": "busy"}}', good])
+    feats, _ = fetch_all(c, Q)  # type: ignore[arg-type]
+    assert [f["attributes"]["ID"] for f in feats] == [7] and c.slept == [2.0]
+    bad = RawClient([b'{"error": {"code": 400, "message": "Invalid field: FOO"}}'])
+    with pytest.raises(ArcGISError, match="Invalid field"):
+        fetch_all(bad, Q)  # type: ignore[arg-type]
+    assert bad.calls == 1
+
+
+def test_arcgis_online_generic_400_is_retried() -> None:
+    busy = b'{"error": {"code": 400, "message": "Cannot perform query. Invalid query parameters."}}'
+    c = RawClient([busy, json.dumps(_page([3], False)).encode()])
+    feats, _ = fetch_all(c, Q)  # type: ignore[arg-type]
+    assert [f["attributes"]["ID"] for f in feats] == [3] and c.calls == 2
+    stuck = RawClient([busy])
+    with pytest.raises(ArcGISError, match="Cannot perform query"):
+        fetch_all(stuck, Q)  # type: ignore[arg-type]
+    assert stuck.calls == 4
+
+
+def test_persistent_empty_body_surfaces_after_retries() -> None:
+    c = RawClient([b""])
+    with pytest.raises(json.JSONDecodeError):
+        fetch_all(c, Q)  # type: ignore[arg-type]
+    assert c.calls == 4 and c.slept == [2.0, 4.0, 8.0]
