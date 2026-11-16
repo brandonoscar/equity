@@ -1,0 +1,156 @@
+{
+ "attributes": [
+  {
+   "OBJECTID": 1,
+   "TAX_ID": "02-24-378-004",
+   "mborsev_0": 152100,
+   "ownername1": "TESTOWNER 06D577"
+  },
+  {
+   "OBJECTID": 2,
+   "TAX_ID": "02-24-351-020",
+   "mborsev_0": 99900,
+   "ownername1": "TESTOWNER D43871"
+  },
+  {
+   "OBJECTID": 3,
+   "TAX_ID": "02-23-476-036",
+   "mborsev_0": 230000,
+   "ownername1": "TESTOWNER 7DD739"
+  },
+  {
+   "OBJECTID": 4,
+   "TAX_ID": "02-24-351-019",
+   "mborsev_0": 113700,
+   "ownername1": "TESTOWNER 82ADDE"
+  },
+  {
+   "OBJECTID": 5,
+   "TAX_ID": "02-21-400-004",
+   "mborsev_0": 22300,
+   "ownername1": "TESTOWNER BD3B4B"
+  },
+  {
+   "OBJECTID": 6,
+   "TAX_ID": "02-20-300-014",
+   "mborsev_0": 448800,
+   "ownername1": "TESTOWNER F7A5E7"
+  },
+  {
+   "OBJECTID": 7,
+   "TAX_ID": "02-31-300-002",
+   "mborsev_0": 2200,
+   "ownername1": "TESTOWNER 03E1FD"
+  },
+  {
+   "OBJECTID": 8,
+   "TAX_ID": "02-24-352-011",
+   "mborsev_0": 81100,
+   "ownername1": "TESTOWNER B128BF"
+  },
+  {
+   "OBJECTID": 9,
+   "TAX_ID": "02-31-300-004",
+   "mborsev_0": 2242200,
+   "ownername1": "TESTOWNER EE1D7C"
+  },
+  {
+   "OBJECTID": 10,
+   "TAX_ID": "02-24-332-016",
+   "mborsev_0": 148100,
+   "ownername1": "TESTOWNER 5B4B31"
+  },
+  {
+   "OBJECTID": 11,
+   "TAX_ID": "02-24-352-002",
+   "mborsev_0": 100900,
+   "ownername1": "TESTOWNER 70FA6D"
+  },
+  {
+   "OBJECTID": 12,
+   "TAX_ID": "02-23-300-008",
+   "mborsev_0": 128000,
+   "ownername1": "TESTOWNER 7636F5"
+  },
+  {
+   "OBJECTID": 13,
+   "TAX_ID": "02-24-378-005",
+   "mborsev_0": 169100,
+   "ownername1": "TESTOWNER B1B187"
+  },
+  {
+   "OBJECTID": 14,
+   "TAX_ID": "02-24-351-022",
+   "mborsev_0": 91400,
+   "ownername1": "TESTOWNER C19F58"
+  },
+  {
+   "OBJECTID": 15,
+   "TAX_ID": "02-24-353-015",
+   "mborsev_0": 86500,
+   "ownername1": "TESTOWNER AE35FB"
+  },
+  {
+   "OBJECTID": 16,
+   "TAX_ID": "02-24-351-021",
+   "mborsev_0": 85400,
+   "ownername1": "TESTOWNER 171DF6"
+  },
+  {
+   "OBJECTID": 17,
+   "TAX_ID": "02-23-300-004",
+   "mborsev_0": 211500,
+   "ownername1": "TESTOWNER B7F2D4"
+  },
+  {
+   "OBJECTID": 18,
+   "TAX_ID": "02-24-352-012",
+   "mborsev_0": 69300,
+   "ownername1": "TESTOWNER 22470C"
+  },
+  {
+   "OBJECTID": 19,
+   "TAX_ID": "02-24-353-012",
+   "mborsev_0": 55500,
+   "ownername1": "TESTOWNER 71E856"
+  },
+  {
+   "OBJECTID": 20,
+   "TAX_ID": "02-24-352-003",
+   "mborsev_0": 115000,
+   "ownername1": "TESTOWNER 7027DC"
+  },
+  {
+   "OBJECTID": 21,
+   "TAX_ID": "02-19-300-007",
+   "mborsev_0": 333400,
+   "ownername1": "TESTOWNER E6AD5F"
+  },
+  {
+   "OBJECTID": 22,
+   "TAX_ID": "02-23-476-005",
+   "mborsev_0": 119000,
+   "ownername1": "TESTOWNER CBC0ED"
+  },
+  {
+   "OBJECTID": 23,
+   "TAX_ID": "02-24-351-012",
+   "mborsev_0": 0,
+   "ownername1": "TESTOWNER 878E21"
+  },
+  {
+   "OBJECTID": 24,
+   "TAX_ID": "02-24-351-003",
+   "mborsev_0": 93500,
+   "ownername1": "TESTOWNER E6FAED"
+  },
+  {
+   "OBJECTID": 25,
+   "TAX_ID": "02-22-400-009",
+   "mborsev_0": 322600,
+   "ownername1": "TESTOWNER 7105DC"
+  }
+ ],
+ "layer": "https://services6.arcgis.com/K0qS4r8AEJxrE8em/arcgis/rest/services/Macomb_County_Parcel_Data/FeatureServer/10",
+ "where": "1=1"
+}

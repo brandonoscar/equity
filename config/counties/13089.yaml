@@ -1,0 +1,26 @@
+source_id: ga.dekalb.parcels
+state: GA
+layer_url: https://dcgis.dekalbcountyga.gov/hosted/rest/services/PropertyAppraisal/Parcels_IASWorld/FeatureServer/0
+order_by: OBJECTID
+page_size: 1000          # maxRecordCount 2000
+min_interval_s: 1.0
+county: {constant: "089"}
+fields:
+  parcel_id: PARCELID
+  owner1: OWNERNME1
+  owner2: OWNERNME2
+  mail_line1: PSTLADDRESS
+  mail_city: PSTLCITY
+  mail_state: PSTLSTATE
+  mail_zip: PSTLZIP5
+  land_value: LNDVALUE
+  total_value: TOTAPR1
+  assessed_value: CNTASSDVAL
+  tax_year: {const: 2026}
+value_basis: "TOTAPR1 = total appraised (fair market) value; CNTASSDVAL = 'Current Assessed Value' (Georgia assesses at 40% of fair market value); LNDVALUE = land value (often empty). There is no tax-year field: tax_year is the const 2026 because CNTASSDVAL is the current (2026) digest assessment and LASTUPDATE reached 2026-11-04 when checked. Bump the const when the county rolls to the 2027 digest. PRVASSDVAL (previous assessed) is not mapped."
+terms:
+  url: https://dcgis.dekalbcountyga.gov/hosted/rest/services/PropertyAppraisal/Parcels_IASWorld/FeatureServer/0
+  summary: "DeKalb County GIS Department, Parcels_IASWorld (iasWorld CAMA and tax data joined to parcels); public FeatureServer, free, no login, 246,604 rows on 2026-11-16. The layer has redundant geometry for condominium units. No license or use-constraint text in the layer metadata (copyright: DeKalb County GIS Department)."
+  checked_on: 2026-11-16
+  robots_checked_on: 2026-11-16
+  cost_model: free

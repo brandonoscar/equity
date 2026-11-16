@@ -1,0 +1,24 @@
+source_id: mi.wayne.parcels
+state: MI
+layer_url: https://services2.arcgis.com/qvkbeam7Wirps6zC/arcgis/rest/services/parcel_file_current/FeatureServer/0
+order_by: ObjectId
+page_size: 1000          # maxRecordCount 1000
+min_interval_s: 1.0
+county: {constant: "163"}
+fields:
+  parcel_id: parcel_id
+  owner1: taxpayer_1
+  owner2: taxpayer_2
+  mail_line1: taxpayer_address
+  mail_city: taxpayer_city
+  mail_state: taxpayer_state
+  mail_zip: taxpayer_zip_code
+  assessed_value: amt_assessed_value
+  tax_year: {const: 2026}
+value_basis: "COVERS THE CITY OF DETROIT ONLY (377,940 parcels), not the rest of Wayne County. Owners are the assessor's taxpayer of record (taxpayer_1/2). amt_assessed_value = assessed value (Michigan: 50% of true cash value); amt_taxable_value (capped) and amt_land_value are not mapped. tax_year is the const 2026: the item says these are 'the parcel boundaries for the 2026 tax year'. Bump the const when the item moves to 2027."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=3c784c118e5c4083b37038e9b38573df
+  summary: "City of Detroit Office of the Assessor, 'Parcels (Current)', updated daily (Detroit Open Data Portal, City of Detroit ArcGIS Online org). Free, no login. No licenseInfo on the item. No commercial-use or mailing-list restriction found. Wayne County outside Detroit has no free owner layer reachable from here."
+  checked_on: 2026-11-16
+  robots_checked_on: 2026-11-16
+  cost_model: free

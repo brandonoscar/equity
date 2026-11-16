@@ -1,0 +1,19 @@
+source_id: ga.fulton.parcels
+state: GA
+layer_url: https://gismaps.fultoncountyga.gov/arcgispub/rest/services/OpenData/Tax_Parcels/MapServer/0
+order_by: OBJECTID
+page_size: 1000          # maxRecordCount 2000
+min_interval_s: 1.0
+county: {constant: "121"}
+fields:
+  parcel_id: ParcelID
+  owner1: Owner
+  mail_line1: OwnerAddr1   # street line
+  mail_line2: OwnerAddr2   # "CITY ST ZIP" in one string, no commas (not split; see report)
+value_basis: "No value fields are published in this layer (the service description mentions assessed/appraised values, but the layer has none). TaxYear = 2027 on every row: the Board of Assessors' working parcel dataset for the next digest, 'not considered final until the completion of the digest' (about mid-year). Not mapped because there are no values to date."
+terms:
+  url: https://gismaps.fultoncountyga.gov/arcgispub/rest/services/OpenData/Tax_Parcels/MapServer
+  summary: "Fulton County Board of Assessors tax parcels (OpenData folder, public MapServer, 373,402 rows on 2026-11-16); free, no login. No license or use-constraint text in the service or layer metadata. The service describes the data as a work in progress until the annual digest is complete."
+  checked_on: 2026-11-16
+  robots_checked_on: 2026-11-16
+  cost_model: free

@@ -1,0 +1,156 @@
+{
+ "attributes": [
+  {
+   "ImprovementValue": "565,978",
+   "LandValue": "242,621",
+   "OBJECTID": 1,
+   "ParcelNumber": "111841231"
+  },
+  {
+   "ImprovementValue": "608,940",
+   "LandValue": "262,098",
+   "OBJECTID": 2,
+   "ParcelNumber": "111841205"
+  },
+  {
+   "ImprovementValue": "572,220",
+   "LandValue": "244,292",
+   "OBJECTID": 3,
+   "ParcelNumber": "111841232"
+  },
+  {
+   "ImprovementValue": "466,140",
+   "LandValue": "251,573",
+   "OBJECTID": 4,
+   "ParcelNumber": "111843109"
+  },
+  {
+   "ImprovementValue": "0",
+   "LandValue": "0",
+   "OBJECTID": 5,
+   "ParcelNumber": "111842122"
+  },
+  {
+   "ImprovementValue": "0",
+   "LandValue": "0",
+   "OBJECTID": 6,
+   "ParcelNumber": "111842221"
+  },
+  {
+   "ImprovementValue": "535,806",
+   "LandValue": "230,642",
+   "OBJECTID": 7,
+   "ParcelNumber": "111843213"
+  },
+  {
+   "ImprovementValue": "0",
+   "LandValue": "0",
+   "OBJECTID": 8,
+   "ParcelNumber": "111842141"
+  },
+  {
+   "ImprovementValue": "586,500",
+   "LandValue": "251,748",
+   "OBJECTID": 9,
+   "ParcelNumber": "111843518"
+  },
+  {
+   "ImprovementValue": "0",
+   "LandValue": "0",
+   "OBJECTID": 10,
+   "ParcelNumber": "111842156"
+  },
+  {
+   "ImprovementValue": "0",
+   "LandValue": "0",
+   "OBJECTID": 11,
+   "ParcelNumber": "111842242"
+  },
+  {
+   "ImprovementValue": "442,013",
+   "LandValue": "84,156",
+   "OBJECTID": 12,
+   "ParcelNumber": "022656215"
+  },
+  {
+   "ImprovementValue": "482,886",
+   "LandValue": "84,156",
+   "OBJECTID": 13,
+   "ParcelNumber": "022656201"
+  },
+  {
+   "ImprovementValue": "656,031",
+   "LandValue": "93,779",
+   "OBJECTID": 14,
+   "ParcelNumber": "022654223"
+  },
+  {
+   "ImprovementValue": "461,387",
+   "LandValue": "242,898",
+   "OBJECTID": 15,
+   "ParcelNumber": "022654245"
+  },
+  {
+   "ImprovementValue": "215,835",
+   "LandValue": "116,219",
+   "OBJECTID": 16,
+   "ParcelNumber": "022655242"
+  },
+  {
+   "ImprovementValue": "706,465",
+   "LandValue": "100,029",
+   "OBJECTID": 17,
+   "ParcelNumber": "022654246"
+  },
+  {
+   "ImprovementValue": "487,652",
+   "LandValue": "262,583",
+   "OBJECTID": 18,
+   "ParcelNumber": "022656204"
+  },
+  {
+   "ImprovementValue": "525,819",
+   "LandValue": "175,273",
+   "OBJECTID": 19,
+   "ParcelNumber": "022655236"
+  },
+  {
+   "ImprovementValue": "548,408",
+   "LandValue": "83,777",
+   "OBJECTID": 20,
+   "ParcelNumber": "022655243"
+  },
+  {
+   "ImprovementValue": "502,820",
+   "LandValue": "167,607",
+   "OBJECTID": 21,
+   "ParcelNumber": "022654248"
+  },
+  {
+   "ImprovementValue": "488,905",
+   "LandValue": "126,785",
+   "OBJECTID": 22,
+   "ParcelNumber": "022655237"
+  },
+  {
+   "ImprovementValue": "420,273",
+   "LandValue": "83,777",
+   "OBJECTID": 23,
+   "ParcelNumber": "022656202"
+  },
+  {
+   "ImprovementValue": "23,164",
+   "LandValue": "41",
+   "OBJECTID": 24,
+   "ParcelNumber": "022654260"
+  },
+  {
+   "ImprovementValue": "665,696",
+   "LandValue": "221,899",
+   "OBJECTID": 25,
+   "ParcelNumber": "022654222"
+  }
+ ],
+ "layer": "https://services.arcgis.com/aA3snZwJfFkVyDuP/arcgis/rest/services/Parcels_for_San_Bernardino_County/FeatureServer/0",
+ "where": "1=1"
+}

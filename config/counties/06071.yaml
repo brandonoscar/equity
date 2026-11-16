@@ -1,0 +1,19 @@
+source_id: ca.sanbernardino.parcels
+state: CA
+layer_url: https://services.arcgis.com/aA3snZwJfFkVyDuP/arcgis/rest/services/Parcels_for_San_Bernardino_County/FeatureServer/0
+order_by: OBJECTID
+page_size: 1000          # maxRecordCount 1000
+min_interval_s: 1.0
+county: {constant: "071"}
+fields:
+  parcel_id: ParcelNumber
+  land_value: LandValue
+  bldg_value: ImprovementValue
+  tax_year: {const: 2026}
+value_basis: "NO OWNER NAMES: OwnerName is 'Protected Per CA Gov Code 7928.205' on every row, so it is not mapped. LandValue / ImprovementValue = secured roll values (Prop 13 factored base-year value, i.e. the assessed full value), as text with thousands separators. ExemptionValue and PersonalPropertyValue are not mapped. tax_year is the const 2026: the 2026-27 roll (lien date 2026-01-01), since the layer was last edited 2026-11-13. Bump the const when the 2027-28 roll is published (July). BaseYear is the Prop 13 base year, not the roll year."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=9ca3e6b812d1473fb42eafd412a16139
+  summary: "County of San Bernardino (SBCo GIS), 'Parcels with Redacted Owner Name'. Public, free, no login, 840,352 rows on 2026-11-16. licenseInfo: 'San Bernardino County makes no warranty, representation or guaranty of the content, sequence, accuracy, timeliness or completeness of the data provided herein. The user of this map should not rely solely on the data provided herein for any reason.' No commercial-use or mailing-list restriction stated."
+  checked_on: 2026-11-16
+  robots_checked_on: 2026-11-16
+  cost_model: free

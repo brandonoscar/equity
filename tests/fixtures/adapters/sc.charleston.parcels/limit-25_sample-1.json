@@ -1,0 +1,156 @@
+{
+ "attributes": [
+  {
+   "OBJECTID": 1,
+   "OWNER1": "TESTOWNER 96CAB1",
+   "OWNER2": "TESTOWNER D56107",
+   "PID": "5580000616"
+  },
+  {
+   "OBJECTID": 2,
+   "OWNER1": "TESTOWNER 1AE75B",
+   "OWNER2": "TESTOWNER 85F556",
+   "PID": "3580500036"
+  },
+  {
+   "OBJECTID": 3,
+   "OWNER1": "TESTOWNER E422FB",
+   "OWNER2": "TESTOWNER 162EE6",
+   "PID": "4250700331"
+  },
+  {
+   "OBJECTID": 4,
+   "OWNER1": "TESTOWNER 10913C LLC",
+   "OWNER2": "",
+   "PID": "2641500114"
+  },
+  {
+   "OBJECTID": 5,
+   "OWNER1": "TESTOWNER 3C6526 LLC",
+   "OWNER2": "",
+   "PID": "4841600035"
+  },
+  {
+   "OBJECTID": 6,
+   "OWNER1": "TESTOWNER A2C42F",
+   "OWNER2": "TESTOWNER 302316",
+   "PID": "4391500074"
+  },
+  {
+   "OBJECTID": 7,
+   "OWNER1": "TESTOWNER 4BF2DB",
+   "OWNER2": "TESTOWNER ACBE31",
+   "PID": "4040700033"
+  },
+  {
+   "OBJECTID": 8,
+   "OWNER1": "TESTOWNER 225D09",
+   "OWNER2": "TESTOWNER 600972",
+   "PID": "5320500129"
+  },
+  {
+   "OBJECTID": 9,
+   "OWNER1": "TESTOWNER 811708",
+   "OWNER2": "",
+   "PID": "3010000548"
+  },
+  {
+   "OBJECTID": 10,
+   "OWNER1": "TESTOWNER 821AA1",
+   "OWNER2": "",
+   "PID": "4280600019"
+  },
+  {
+   "OBJECTID": 11,
+   "OWNER1": "TESTOWNER 2A0240",
+   "OWNER2": "TESTOWNER 1ABA75",
+   "PID": "1520000080"
+  },
+  {
+   "OBJECTID": 12,
+   "OWNER1": "TESTOWNER A80113",
+   "OWNER2": "TESTOWNER 4F8691",
+   "PID": "3540100206"
+  },
+  {
+   "OBJECTID": 13,
+   "OWNER1": "TESTOWNER EEF82D",
+   "OWNER2": "TESTOWNER 8B13EC INC",
+   "PID": "5140500103"
+  },
+  {
+   "OBJECTID": 14,
+   "OWNER1": "TESTOWNER AE5DD0",
+   "OWNER2": "",
+   "PID": "4111600239"
+  },
+  {
+   "OBJECTID": 15,
+   "OWNER1": "TESTOWNER 775506",
+   "OWNER2": "TESTOWNER E01261",
+   "PID": "3400000339"
+  },
+  {
+   "OBJECTID": 16,
+   "OWNER1": "TESTOWNER 3FAE4A",
+   "OWNER2": "",
+   "PID": "4850700020"
+  },
+  {
+   "OBJECTID": 17,
+   "OWNER1": "TESTOWNER FC0008",
+   "OWNER2": "TESTOWNER E17CE5",
+   "PID": "5941200146"
+  },
+  {
+   "OBJECTID": 18,
+   "OWNER1": "TESTOWNER 0C1BC0",
+   "OWNER2": "",
+   "PID": "4631501037"
+  },
+  {
+   "OBJECTID": 19,
+   "OWNER1": "TESTOWNER D4BBA1",
+   "OWNER2": "TESTOWNER D5C666",
+   "PID": "3551500102"
+  },
+  {
+   "OBJECTID": 20,
+   "OWNER1": "TESTOWNER CEF52D",
+   "OWNER2": "",
+   "PID": "4631004079"
+  },
+  {
+   "OBJECTID": 21,
+   "OWNER1": "TESTOWNER B0CF1E",
+   "OWNER2": "",
+   "PID": "4261000113"
+  },
+  {
+   "OBJECTID": 22,
+   "OWNER1": "TESTOWNER E6F9BC",
+   "OWNER2": "TESTOWNER B61A8D",
+   "PID": "4310000280"
+  },
+  {
+   "OBJECTID": 23,
+   "OWNER1": "TESTOWNER 8452D2 LLC",
+   "OWNER2": "",
+   "PID": "3281000087"
+  },
+  {
+   "OBJECTID": 24,
+   "OWNER1": "TESTOWNER 9EFE79",
+   "OWNER2": "",
+   "PID": "3510600157"
+  },
+  {
+   "OBJECTID": 25,
+   "OWNER1": "TESTOWNER D6E14D",
+   "OWNER2": "TESTOWNER B77356",
+   "PID": "3950600278"
+  }
+ ],
+ "layer": "https://gisccapps.charlestoncounty.org/arcgis/rest/services/GIS_VIEWER/New_Public_Search/MapServer/7",
+ "where": "1=1"
+}
