@@ -86,3 +86,43 @@ def test_requests_to_one_host_are_spaced() -> None:
     c.get("https://d.test/2", {"b": "2", "a": "1"})
     assert clock.slept == [2.0, 2.0]  # robots then page 1, then page 2
     assert net.calls[-1] == "https://d.test/2?a=1&b=2"  # params sorted: stable request strings
+
+
+def test_transient_failures_are_retried_with_backoff() -> None:
+    attempts: list[str] = []
+
+    def flaky(url: str, headers: Mapping[str, str], timeout: float) -> tuple[int, bytes, str]:
+        if url.endswith("robots.txt"):
+            return 404, b"", ""
+        attempts.append(url)
+        if len(attempts) == 1:
+            raise ConnectionResetError("reset")
+        if len(attempts) == 2:
+            return 503, b"busy", "text/plain"
+        return 200, b"ok", "text/plain"
+
+    clock = FakeClock()
+    c = PoliteClient(min_interval_s=0, transport=flaky, sleep=clock.sleep,
+                     monotonic=clock.monotonic)  # fmt: skip
+    assert c.get("https://e.test/x").content == b"ok"
+    assert len(attempts) == 3
+    assert clock.slept == [2.0, 4.0]
+
+
+def test_retries_give_up() -> None:
+    def down(url: str, headers: Mapping[str, str], timeout: float) -> tuple[int, bytes, str]:
+        if url.endswith("robots.txt"):
+            return 404, b"", ""
+        raise TimeoutError("timed out")
+
+    clock = FakeClock()
+    c = PoliteClient(min_interval_s=0, transport=down, sleep=clock.sleep, retries=2)
+    with pytest.raises(TimeoutError):
+        c.get("https://f.test/x")
+    assert clock.slept == [2.0, 4.0]
+
+    def busy(url: str, headers: Mapping[str, str], timeout: float) -> tuple[int, bytes, str]:
+        return (404, b"", "") if url.endswith("robots.txt") else (429, b"slow down", "")
+
+    c = PoliteClient(min_interval_s=0, transport=busy, sleep=FakeClock().sleep, retries=1)
+    assert c.get("https://g.test/x").status == 429  # surfaced after retries

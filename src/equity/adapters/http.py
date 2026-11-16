@@ -44,9 +44,16 @@ def urllib_transport(
         return int(err.code), err.read(), str(err.headers.get("Content-Type", ""))
 
 
+RETRY_STATUSES = frozenset({429, 500, 502, 503, 504})
+
+
 @dataclass
 class PoliteClient:
     min_interval_s: float = 1.0
+    # Transient failures (dropped connections, 429, 5xx) are retried with exponential
+    # backoff: 2, 4, 8 s, then the error (or the last response) surfaces.
+    retries: int = 3
+    backoff_s: float = 2.0
     timeout_s: float = 60.0
     user_agent: str = USER_AGENT
     transport: Transport = urllib_transport
@@ -91,7 +98,20 @@ class PoliteClient:
         if not self._robots_for(full).can_fetch(self.user_agent, full):
             raise AccessDenied(f"robots.txt disallows {full}")
         host = urllib.parse.urlsplit(full).netloc
-        self._wait_turn(host)
-        status, body, ctype = self.transport(full, {"User-Agent": self.user_agent}, self.timeout_s)
-        self._last[host] = self.monotonic()
-        return Response(full, status, body, ctype, self.now())
+        attempt = 0
+        while True:
+            self._wait_turn(host)
+            try:
+                status, body, ctype = self.transport(
+                    full, {"User-Agent": self.user_agent}, self.timeout_s
+                )
+            except OSError:  # includes http.client.RemoteDisconnected, timeouts, resets
+                self._last[host] = self.monotonic()
+                if attempt >= self.retries:
+                    raise
+            else:
+                self._last[host] = self.monotonic()
+                if status not in RETRY_STATUSES or attempt >= self.retries:
+                    return Response(full, status, body, ctype, self.now())
+            self.sleep(self.backoff_s * (2**attempt))
+            attempt += 1
