@@ -1,0 +1,25 @@
+source_id: ca.riverside.parcels
+state: CA
+# Riverside County RCIT parcels map service (Assessor CREST join). The OpenData copy
+# (arcgis_mapping/.../OpenData/Assessor/MapServer/50, PARCELS_CREST) has the same rows and
+# documents PRIMARY_OWNER / ALL_OWNER_LIST in its metadata, but publishes them without the
+# owner columns; this public map service carries them.
+layer_url: https://gis.countyofriverside.us/arcgis/rest/services/parcels/Parcels/MapServer/0
+order_by: OBJECTID
+page_size: 1000          # maxRecordCount 2000
+min_interval_s: 1.0
+county: {constant: "065"}
+fields:
+  parcel_id: APN
+  land_value: LAND
+  bldg_value: STRUCTURES
+  tax_year: {const: 2026}
+value_basis: "LAND / STRUCTURES = assessed land and structure values from the Assessor's CREST roll (Prop 13 factored base-year value). They match CREST_TAXYEAR (OpenData/Assessor/MapServer/100), whose only TAX_YEAR is 2027, i.e. fiscal year 2026-27. tax_year is the const 2026, the lien-date year (January 1, 2026), as for Los Angeles (RollYear) and San Bernardino. Bump the const when CREST_TAXYEAR moves to 2028."
+terms:
+  url: https://gis.countyofriverside.us/arcgis/rest/services/parcels/Parcels/MapServer
+  summary: "County of Riverside RCIT GIS, public parcels map service, no token. Free, no login, 913,693 rows on 2026-11-16 (912,832 with PRIMARY_OWNER). No license, use-constraint or copyright text in the service or item metadata (OpenData layer copyright: RCIT). The county's OpenData layer leaves the owner-name columns out; owner names here come from the non-OpenData map service."
+  checked_on: 2026-11-16
+  robots_checked_on: 2026-11-16
+  cost_model: free
+# Owner and mailing fields removed 2026-11-16: the county's open-data copy deliberately omits
+# owner names; a separate public service exposes them. DECISION for Brandon before re-adding.

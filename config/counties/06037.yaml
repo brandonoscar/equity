@@ -1,0 +1,26 @@
+source_id: ca.losangeles.parcels
+state: CA
+# LA County Assessor 'Assessor Parcel Data Roll 2026' (cumulative table, to hold rolls 2026-2030).
+# The live public.gis.lacounty.gov parcel services answer an Incapsula WAF challenge (403) and
+# are not used.
+layer_url: https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Assessor%20Parcel%20Data%20Roll%202026/FeatureServer/0
+order_by: OBJECTID
+page_size: 1000          # maxRecordCount 1000
+min_interval_s: 1.0
+county: {constant: "037"}
+# The table holds 2,428,433 rows with RollYear '2026' (OBJECTID 1-2428433) and the same number
+# again with RollYear null (OBJECTID 2428434-4856866). Keep the 2026 roll; bump each July.
+filter: "RollYear = '2026'"
+fields:
+  parcel_id: AIN           # 10-digit Assessor Identification Number
+  land_value: Roll_LandValue
+  bldg_value: Roll_ImpValue
+  total_value: Roll_totLandImp
+  tax_year: RollYear
+value_basis: "NO OWNER NAMES: California assessors do not publish owner names here. Roll_LandValue / Roll_ImpValue / Roll_totLandImp = secured roll values for land, improvements and land+improvements (Prop 13 factored base-year value, i.e. the assessed full value). Roll_TotalValue (adds fixtures and personal property), exemptions and netTaxableValue are not mapped. tax_year = RollYear (lien date January 1 of that year; the 2026 roll is fiscal year 2026-27)."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=0d3ac33a76e1495bb7fc522a8085729c
+  summary: "Los Angeles County Office of the Assessor, 'Assessor Parcel Data Roll 2026' (County of Los Angeles ArcGIS Online org). Free, no login, 2,428,433 rows for roll 2026 on 2026-11-16. licenseInfo points to the eGIS Hub Terms of Use, which grant 'a license to copy, publish, distribute and/or transmit the Data, to adapt the Data and to exploit the Data for commercial and/or personal use', not in a way that suggests County endorsement; data as is."
+  checked_on: 2026-11-16
+  robots_checked_on: 2026-11-16
+  cost_model: free

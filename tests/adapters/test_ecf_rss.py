@@ -27,9 +27,10 @@ def rows(cls, content: bytes) -> list[tuple[str, dict[str, Any]]]:  # type: igno
 
 
 def test_bankruptcy_fixture() -> None:
-    out = rows(NDWVBankruptcyRSS, (FIX / "us.wvnb.rss/feed.xml").read_bytes())
+    content = (FIX / "us.wvnb.rss/feed.xml").read_bytes()
+    out = rows(NDWVBankruptcyRSS, content)
     counts = Counter(t for t, _ in out)
-    assert counts["docket_entry"] == counts["source_record"] == 60
+    assert counts["docket_entry"] == counts["source_record"] == content.count(b"<item>")
     cases = [r for t, r in out if t == "court_case"]
     assert all(r["court_id"] == "wvnb" for r in cases)
     assert {r["case_type"] for r in cases} <= {"bk", "ap"}  # cases and adversary proceedings
@@ -56,11 +57,20 @@ def test_district_fixture() -> None:
         ("1:25-bk-00040 Doe, Jane", ("1", "25", "bk", "40", "Doe, Jane")),
         ("5:26-cv-00725-JPB Acme LLC v. Roe", ("5", "26", "cv", "725", "Acme LLC v. Roe")),
         ("1:26-ap-00001", ("1", "26", "ap", "1", "")),
+        ("26-31038- Doe, Jane", ("0", "26", "bk", "31038", "Doe, Jane")),
+        ("26-55830-pwb Roe LLC", ("0", "26", "bk", "55830", "Roe LLC")),
+        ("26-05199-pwb Lincoln v. Roe", ("0", "26", "ap", "5199", "Lincoln v. Roe")),
+        ("26-35279-mvl7 Doe", ("0", "26", "bk", "35279", "Doe")),
+        ("26-23147 Doe", ("0", "26", "bk", "23147", "Doe")),
         ("not a case", None),
     ],
 )
 def test_parse_case(title: str, expected: tuple[str, ...] | None) -> None:
-    assert parse_case(title) == expected
+    assert parse_case(title, bankruptcy_court=True) == expected
+
+
+def test_untyped_numbers_outside_bankruptcy_are_civil() -> None:
+    assert parse_case("26-00012 Acme v. Roe") == ("0", "26", "cv", "12", "Acme v. Roe")
 
 
 @pytest.mark.parametrize(

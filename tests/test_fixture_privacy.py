@@ -39,3 +39,23 @@ def test_parcelweb_fixtures_have_only_pseudonyms() -> None:
             _, rows = results_table(page)
             assert all(r.cells[3].startswith("TESTOWNER") or not r.cells[3] for r in rows)
             assert 'name="__VIEWSTATE"' not in page or 'value="SCRUBBED"' in page
+
+
+def test_rss_fixtures_have_only_pseudonyms() -> None:
+    import re
+    import xml.etree.ElementTree as ET
+
+    from equity.adapters.federal.ecf_rss import parse_case
+
+    for path in sorted(ROOT.glob("us.*.rss/feed.xml")):
+        channel = ET.parse(path).getroot().find("channel")  # noqa: S314 - our own fixtures
+        assert channel is not None
+        for item in channel.findall("item"):
+            title = " ".join((item.findtext("title") or "").split())
+            parsed = parse_case(title, bankruptcy_court=True)
+            assert parsed is not None, f"{path.parent.name}: unparsed title would leak names"
+            caption = parsed[-1]
+            for part in re.split(r"\s+v\.?\s+", caption) if caption else []:
+                assert part.startswith("TESTOWNER"), f"{path.parent.name}: unscrubbed caption"
+            trustee = re.search(r"Trustee:\s*([^\[]+?)\s*\[", item.findtext("description") or "")
+            assert trustee is None or trustee.group(1).startswith("TESTOWNER")

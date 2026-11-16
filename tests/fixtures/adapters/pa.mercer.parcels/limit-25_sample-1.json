@@ -1,0 +1,156 @@
+{
+ "attributes": [
+  {
+   "Comb_Own_1": "TESTOWNER DD9338",
+   "Comb_Owner": "TESTOWNER 331521",
+   "OBJECTID": 1,
+   "Parcel_Id": "01 111 001"
+  },
+  {
+   "Comb_Own_1": "TESTOWNER 2B92AE",
+   "Comb_Owner": "TESTOWNER BC8F95",
+   "OBJECTID": 2,
+   "Parcel_Id": "01 111 002"
+  },
+  {
+   "Comb_Own_1": "TESTOWNER 307A17",
+   "Comb_Owner": "TESTOWNER EE63D4",
+   "OBJECTID": 3,
+   "Parcel_Id": "01 111 002 001"
+  },
+  {
+   "Comb_Own_1": "TESTOWNER 29A396",
+   "Comb_Owner": "TESTOWNER 6DCA1B",
+   "OBJECTID": 4,
+   "Parcel_Id": "01 124 001"
+  },
+  {
+   "Comb_Own_1": "TESTOWNER 35068E",
+   "Comb_Owner": "TESTOWNER 46B781",
+   "OBJECTID": 5,
+   "Parcel_Id": "01 124 002"
+  },
+  {
+   "Comb_Own_1": "TESTOWNER E4974C",
+   "Comb_Owner": "TESTOWNER E70B10",
+   "OBJECTID": 6,
+   "Parcel_Id": "01 124 002 001"
+  },
+  {
+   "Comb_Own_1": "TESTOWNER AA41E2",
+   "Comb_Owner": "TESTOWNER EBCBDB",
+   "OBJECTID": 7,
+   "Parcel_Id": "01 124 003"
+  },
+  {
+   "Comb_Own_1": "TESTOWNER 594471",
+   "Comb_Owner": "TESTOWNER 857CA8 LLC",
+   "OBJECTID": 8,
+   "Parcel_Id": "01 124 003 001"
+  },
+  {
+   "Comb_Own_1": "TESTOWNER 88988C",
+   "Comb_Owner": "TESTOWNER 3C02DE",
+   "OBJECTID": 9,
+   "Parcel_Id": "01 124 003 002"
+  },
+  {
+   "Comb_Own_1": "TESTOWNER B2EE04",
+   "Comb_Owner": "TESTOWNER DA6D72",
+   "OBJECTID": 10,
+   "Parcel_Id": "01 124 004"
+  },
+  {
+   "Comb_Own_1": "TESTOWNER 307A17",
+   "Comb_Owner": "TESTOWNER EE63D4",
+   "OBJECTID": 11,
+   "Parcel_Id": "01 124 005"
+  },
+  {
+   "Comb_Own_1": "TESTOWNER EB1A9B",
+   "Comb_Owner": "TESTOWNER F23706",
+   "OBJECTID": 12,
+   "Parcel_Id": "01 124 006"
+  },
+  {
+   "Comb_Own_1": "TESTOWNER 450263",
+   "Comb_Owner": "TESTOWNER 343238",
+   "OBJECTID": 13,
+   "Parcel_Id": "01 124 006 001"
+  },
+  {
+   "Comb_Own_1": "TESTOWNER E89874",
+   "Comb_Owner": "TESTOWNER 09B0AF",
+   "OBJECTID": 14,
+   "Parcel_Id": "01 124 006 001 001"
+  },
+  {
+   "Comb_Own_1": "TESTOWNER 5C9307",
+   "Comb_Owner": "TESTOWNER 187E19",
+   "OBJECTID": 15,
+   "Parcel_Id": "01 124 007"
+  },
+  {
+   "Comb_Own_1": "TESTOWNER AA41E2",
+   "Comb_Owner": "TESTOWNER EBCBDB",
+   "OBJECTID": 16,
+   "Parcel_Id": "01 124 008"
+  },
+  {
+   "Comb_Own_1": "TESTOWNER 84B3E5",
+   "Comb_Owner": "TESTOWNER 1832A6",
+   "OBJECTID": 17,
+   "Parcel_Id": "01 124 009"
+  },
+  {
+   "Comb_Own_1": "TESTOWNER 8D9E64",
+   "Comb_Owner": "TESTOWNER E9988A",
+   "OBJECTID": 18,
+   "Parcel_Id": "01 124 010"
+  },
+  {
+   "Comb_Own_1": "TESTOWNER 6C59A7",
+   "Comb_Owner": "TESTOWNER AA636A",
+   "OBJECTID": 19,
+   "Parcel_Id": "01 124 011"
+  },
+  {
+   "Comb_Own_1": "TESTOWNER 492115",
+   "Comb_Owner": "TESTOWNER 062392",
+   "OBJECTID": 20,
+   "Parcel_Id": "01 124 012"
+  },
+  {
+   "Comb_Own_1": "TESTOWNER 27D235",
+   "Comb_Owner": "TESTOWNER 04D24D",
+   "OBJECTID": 21,
+   "Parcel_Id": "01 124 013"
+  },
+  {
+   "Comb_Own_1": "TESTOWNER 27D235",
+   "Comb_Owner": "TESTOWNER 04D24D",
+   "OBJECTID": 22,
+   "Parcel_Id": "01 124 014"
+  },
+  {
+   "Comb_Own_1": "TESTOWNER DA1D97",
+   "Comb_Owner": "TESTOWNER DFF578",
+   "OBJECTID": 23,
+   "Parcel_Id": "01 124 015"
+  },
+  {
+   "Comb_Own_1": "TESTOWNER FBE685",
+   "Comb_Owner": "TESTOWNER B10C10",
+   "OBJECTID": 24,
+   "Parcel_Id": "01 124 016"
+  },
+  {
+   "Comb_Own_1": "TESTOWNER 27D235",
+   "Comb_Owner": "TESTOWNER 04D24D",
+   "OBJECTID": 25,
+   "Parcel_Id": "01 124 017"
+  }
+ ],
+ "layer": "https://mapservices.pasda.psu.edu/server/rest/services/pasda/MercerCounty/MapServer/0",
+ "where": "1=1"
+}

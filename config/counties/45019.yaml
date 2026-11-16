@@ -9,7 +9,9 @@ fields:
   parcel_id: PID
   owner1: OWNER1
   owner2: OWNER2
-value_basis: "No value fields in this layer. The mailing address is split into MAIL_ST_NO / MAIL_ST_NAME / MAIL_ST_TYPE / MAIL_2ND_ADDR / MAIL_CITY / MAIL_STATE / MAIL_ZIP and the adapter cannot join street parts, so no mailing address is mapped. City/state/zip alone would give many unrelated owners the same address_id. DEED_BOOK_PAGE holds book and page in one string (e.g. 'M447-130'), so it is not mapped either."
+  deed_ref: DEED_BOOK_PAGE   # 'M447-130', '0094-661'; '-' (empty) on 3,833 rows does not match
+deed_ref_pattern: '^(?P<book>[A-Z]?\d+)-(?P<page>\d+)$'
+value_basis: "No value fields in this layer. The mailing address is split into MAIL_ST_NO / MAIL_ST_NAME / MAIL_ST_TYPE / MAIL_2ND_ADDR / MAIL_CITY / MAIL_STATE / MAIL_ZIP and the adapter cannot join street parts, so no mailing address is mapped. City/state/zip alone would give many unrelated owners the same address_id. DEED_BOOK_PAGE ('<book>-<page>', book with an optional letter prefix) is split by deed_ref_pattern into deed book and page."
 terms:
   url: https://gisccapps.charlestoncounty.org/arcgis/rest/services/GIS_VIEWER/New_Public_Search/MapServer
   summary: "Charleston County SC GIS, 'Parcels ***Assessor Maintained***' layer of the public parcel-search map service (no token; the older GIS_VIEWER/Public_Search service needs a token and is not used). Free, no login, 197,789 rows on 2026-11-16. No license or use-constraint text in the service metadata (copyright: Charleston County SC)."

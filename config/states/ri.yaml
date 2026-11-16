@@ -51,6 +51,12 @@ county:
     RI: "009"   # Richmond (Washington)
     SK: "009"   # South Kingstown (Washington)
     WY: "009"   # Westerly (Washington)
+# 1,185 rows (roads, water, gaps) carry only the bare town code as PlatLot ('PR', 'WO  ', ...),
+# which would collapse into one fake parcel per town. Position 4 is the first plat character
+# in a real id ('NK 001-001'), so rows with nothing there are dropped. Other descriptive
+# placeholders ('JA Paper Street', 'WW MEDIAN', 'PA NO PARCEL ID', 'GL ROW'; about 900 rows in
+# 60 values) are kept: each becomes a single unowned parcel.
+filter: "SUBSTRING(PlatLot FROM 4 FOR 1) <> ''"
 fields:
   # PlatLot already starts with the town code ("NK 001-001"; 0 rows without the prefix or
   # null on 2026-11-16), so it is unique statewide. The adapter strips the space.

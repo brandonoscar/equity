@@ -1,0 +1,156 @@
+{
+ "attributes": [
+  {
+   "APN": "101020001",
+   "LAND": null,
+   "OBJECTID": 1,
+   "STRUCTURES": null
+  },
+  {
+   "APN": "101020003",
+   "LAND": 0.0,
+   "OBJECTID": 2,
+   "STRUCTURES": 0.0
+  },
+  {
+   "APN": "101030001",
+   "LAND": 0.0,
+   "OBJECTID": 3,
+   "STRUCTURES": 0.0
+  },
+  {
+   "APN": "101030005",
+   "LAND": 0.0,
+   "OBJECTID": 4,
+   "STRUCTURES": 0.0
+  },
+  {
+   "APN": "101040004",
+   "LAND": null,
+   "OBJECTID": 5,
+   "STRUCTURES": null
+  },
+  {
+   "APN": "101040005",
+   "LAND": 1448966.0,
+   "OBJECTID": 6,
+   "STRUCTURES": 0.0
+  },
+  {
+   "APN": "101040011",
+   "LAND": null,
+   "OBJECTID": 7,
+   "STRUCTURES": null
+  },
+  {
+   "APN": "101040012",
+   "LAND": 12225.0,
+   "OBJECTID": 8,
+   "STRUCTURES": 0.0
+  },
+  {
+   "APN": "101050002",
+   "LAND": null,
+   "OBJECTID": 9,
+   "STRUCTURES": null
+  },
+  {
+   "APN": "101050004",
+   "LAND": null,
+   "OBJECTID": 10,
+   "STRUCTURES": null
+  },
+  {
+   "APN": "101050009",
+   "LAND": null,
+   "OBJECTID": 11,
+   "STRUCTURES": null
+  },
+  {
+   "APN": "101060001",
+   "LAND": 0.0,
+   "OBJECTID": 12,
+   "STRUCTURES": 0.0
+  },
+  {
+   "APN": "101100001",
+   "LAND": 0.0,
+   "OBJECTID": 13,
+   "STRUCTURES": 0.0
+  },
+  {
+   "APN": "101120006",
+   "LAND": 7322.0,
+   "OBJECTID": 14,
+   "STRUCTURES": 795.0
+  },
+  {
+   "APN": "101120008",
+   "LAND": null,
+   "OBJECTID": 15,
+   "STRUCTURES": null
+  },
+  {
+   "APN": "101120009",
+   "LAND": null,
+   "OBJECTID": 16,
+   "STRUCTURES": null
+  },
+  {
+   "APN": "101130002",
+   "LAND": 99440.0,
+   "OBJECTID": 17,
+   "STRUCTURES": 0.0
+  },
+  {
+   "APN": "101130013",
+   "LAND": 0.0,
+   "OBJECTID": 18,
+   "STRUCTURES": 0.0
+  },
+  {
+   "APN": "101130016",
+   "LAND": 0.0,
+   "OBJECTID": 19,
+   "STRUCTURES": 0.0
+  },
+  {
+   "APN": "101130086",
+   "LAND": null,
+   "OBJECTID": 20,
+   "STRUCTURES": null
+  },
+  {
+   "APN": "101130088",
+   "LAND": null,
+   "OBJECTID": 21,
+   "STRUCTURES": null
+  },
+  {
+   "APN": "101140007",
+   "LAND": 951.0,
+   "OBJECTID": 22,
+   "STRUCTURES": 0.0
+  },
+  {
+   "APN": "101140010",
+   "LAND": 706.0,
+   "OBJECTID": 23,
+   "STRUCTURES": 700.0
+  },
+  {
+   "APN": "101140027",
+   "LAND": null,
+   "OBJECTID": 24,
+   "STRUCTURES": null
+  },
+  {
+   "APN": "101170001",
+   "LAND": null,
+   "OBJECTID": 25,
+   "STRUCTURES": null
+  }
+ ],
+ "layer": "https://gis.countyofriverside.us/arcgis/rest/services/parcels/Parcels/MapServer/0",
+ "where": "1=1"
+}

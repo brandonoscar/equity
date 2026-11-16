@@ -127,5 +127,5 @@
   }
  ],
  "layer": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Tax_Parcels/MapServer/0",
- "where": "1=1"
+ "where": "(SUBSTRING(PlatLot FROM 4 FOR 1) <> '') AND (1=1)"
 }

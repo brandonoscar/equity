@@ -1,0 +1,28 @@
+source_id: pa.washington.parcels
+state: PA
+# Washington County (PA) Department of Tax Revenue parcels with owner and mailing address, as
+# republished on PASDA ('Washington County Parcels 202611'). No value fields.
+layer_url: https://mapservices.pasda.psu.edu/server/rest/services/pasda/WashingtonCounty/MapServer/7
+order_by: OBJECTID       # the OID field (alias OBJECTID_1)
+page_size: 1000          # maxRecordCount 1000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "125"}
+# 23 unowned gap polygons share the placeholder PIN 333-333-33-33-3333-33 (no owner, no
+# municipality); they would collapse into one fake parcel, so they are filtered out.
+filter: "PIN <> '333-333-33-33-3333-33'"
+fields:
+  parcel_id: PIN           # e.g. 151-010-00-00-0013-00
+  owner1: owndat_own
+  owner2: owndat_o_1
+  mail_line1: owndat_add
+  mail_line2: owndat_a_1   # second street line (e.g. PO box); blank on most rows
+  mail_city: owndat_cit
+  mail_state: owndat_sta
+  mail_zip: owndat_zip
+value_basis: "No value fields in this layer (owner, mailing address, situs address, class and acreage only)."
+terms:
+  url: https://mapservices.pasda.psu.edu/server/rest/services/pasda/WashingtonCounty/MapServer/7
+  summary: "Washington County PA parcels ('developed by the Department of Tax Revenue'; copyright Washington County, Pennsylvania) served by PASDA at Penn State. Free REST, no login; 122,105 polygons on 2026-11-16. Layer description: use of the data 'indicates the acceptance of and agreement to be legally bound by the terms of Washington County': informational purposes only, no guarantee of accuracy, no liability, no warranty, and 'If user disseminates said data in any form or fashion to a third party, the user agrees to indemnify and hold harmless Washington County ... from any and all claims'. No fee, login, commercial-use or mailing-list restriction stated. mapservices.pasda.psu.edu /robots.txt answers 404 (RFC 9309: no rules)."
+  checked_on: 2026-11-16
+  robots_checked_on: 2026-11-16
+  cost_model: free

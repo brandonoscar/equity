@@ -1,0 +1,27 @@
+source_id: ga.cobb.parcels
+state: GA
+layer_url: https://gis.cobbcounty.org/gisserver/rest/services/tax/taxassessorsdaily/MapServer/0
+order_by: OBJECTID
+page_size: 1000          # maxRecordCount 1000
+min_interval_s: 1.0
+county: {constant: "067"}
+use_restrictions: [no_resale]
+fields:
+  parcel_id: PARID         # equals PIN on every sampled row
+  owner1: OWNER_NAM1
+  owner2: OWNER_NAM2
+  mail_line1: OWNER_ADDR
+  mail_city: OWNER_CITY
+  mail_state: OWNER_STAT
+  mail_zip: OWNER_ZIP
+  land_value: FMV_LAND
+  bldg_value: FMV_BLDG
+  total_value: FMV_TOTAL
+  assessed_value: ASV_TOTAL
+value_basis: "FMV_LAND/FMV_BLDG/FMV_TOTAL = Board of Tax Assessors fair market value; ASV_TOTAL = assessed value (40% of FMV in Georgia; ASV_LAND/ASV_BLDG not mapped). tax_year is NOT mapped, so no assessment facts are emitted: the layer has no roll-year field, and it is the Assessors' daily CAMA extract (ParcelSales holds sales through 2026-11-05). In November it may already carry next year's working digest, as Fulton's layer does (TaxYear 2027), so a const 2026 would be a guess. No deed book/page in this layer (ParcelSales has sale history only)."
+terms:
+  url: https://gis.cobbcounty.org/gisserver/rest/services/tax/taxassessorsdaily/MapServer
+  summary: "Cobb County GA Tax Assessors' daily parcel layer (tax/taxassessorsdaily, 'CobbParcels'), public MapServer, no token. Free, no login, 280,021 rows on 2026-11-16. Service copyrightText: 'Copyright Cobb County. All rights reserved.' Item licenseInfo is empty. The county also sells the countywide parcel dataset (GIS data sales price list), so no_resale is recorded conservatively."
+  checked_on: 2026-11-16
+  robots_checked_on: 2026-11-16
+  cost_model: free

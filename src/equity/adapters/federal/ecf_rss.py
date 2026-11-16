@@ -9,11 +9,13 @@ bankruptcies this system tracks.
 
 from __future__ import annotations
 
+import html
 import re
 import xml.etree.ElementTree as ET
 from collections.abc import Iterator, Mapping
 from datetime import UTC, date
 from email.utils import parsedate_to_datetime
+from pathlib import Path
 from typing import Any, ClassVar
 
 from equity.adapters.base import Adapter, Fetched, FetchRequest, HealthReport, NormalizedRow
@@ -22,7 +24,11 @@ from equity.adapters.rows import RecordContext
 from equity.matching.orgs import classify, clean
 from equity.schema.ids import stable_id
 
-_CASE = re.compile(r"^(\d+):(\d{2})-([a-z]{2})-(\d{3,6})(?:-[A-Z0-9]+)*\s*(.*)$")
+# Case-number layouts seen in CM/ECF feeds:
+#   1:25-bk-00040 Caption       office:yy-type-number (district style)
+#   26-31038- Caption           yy-number-[judge initials] (many bankruptcy courts)
+#   26-55830-pwb Caption / 26-23147 Caption / 26-35279-mvl7 Caption
+_CASE = re.compile(r"^(?:(\d+):)?(\d{2})-(?:([a-z]{2})-)?(\d{3,6})(?:-[A-Za-z0-9]*)*(?:\s+(.*))?$")
 _BK = re.compile(
     r"Type:\s*(?P<type>\w+)\s+Office:\s*(?P<office>\d+)\s+Chapter:\s*(?P<chapter>\w+)"
     r"(?:\s+Trustee:\s*(?P<trustee>.*?))?\s*\[(?P<entry>[^\]]+)\]\s*\(?\s*(?P<doc>\d+)?",
@@ -39,13 +45,21 @@ def _text(el: ET.Element, tag: str) -> str:
     return " ".join((el.findtext(tag) or "").split())
 
 
-def parse_case(title: str) -> tuple[str, str, str, str, str] | None:
-    """'1:25-bk-00040 Doe, Jane' -> (office, yy, type, number, caption)."""
-    m = _CASE.match(title)
+def parse_case(title: str, bankruptcy_court: bool = False) -> tuple[str, str, str, str, str] | None:
+    """Case number and caption -> (office, yy, type, number, caption).
+
+    When the number carries no type (bankruptcy-court style), the type is decided by a fixed
+    rule: in a bankruptcy court a caption of the form "A v. B" is an adversary proceeding
+    ("ap"), anything else is the bankruptcy case ("bk"). Outside bankruptcy courts an untyped
+    number is "cv"."""
+    m = _CASE.match(" ".join(title.split()))
     if m is None:
         return None
     office, yy, ctype, num, caption = m.groups()
-    return office, yy, ctype, num.lstrip("0") or "0", caption.strip()
+    caption = (caption or "").strip()
+    if ctype is None:
+        ctype = ("ap" if _VS.search(caption) else "bk") if bankruptcy_court else "cv"
+    return office or "0", yy, ctype, num.lstrip("0") or "0", caption
 
 
 def caption_parties(ctype: str, caption: str) -> list[tuple[str, str]]:
@@ -79,7 +93,7 @@ class ECFRecentEntries(Adapter):
     def source_row(self) -> Mapping[str, Any]:
         return {
             "source_id": self.source_id,
-            "kind": "bankruptcy" if self.court_id.endswith("b") else "court",
+            "kind": "bankruptcy" if self.court_id.endswith("b") else "court",  # e.g. flmb, njb
             "jurisdiction": self.court_id,
             "access_method": "feed",
             "base_url": self.url,
@@ -109,7 +123,7 @@ class ECFRecentEntries(Adapter):
             title = _text(item, "title")
             # Descriptions carry escaped HTML (the document number is a link): strip tags.
             desc = " ".join(_TAGS.sub(" ", item.findtext("description") or "").split())
-            parsed = parse_case(title)
+            parsed = parse_case(title, bankruptcy_court=self.court_id.endswith("b"))
             pub = _text(item, "pubDate")
             if parsed is None or not pub:
                 continue
@@ -175,20 +189,24 @@ class ECFRecentEntries(Adapter):
 
     @staticmethod
     def scrub_fixture(content: bytes) -> bytes:
-        """Replace caption and trustee names with pseudonyms (public repo)."""
+        """Replace caption and trustee names with pseudonyms (public repo). Every <title> that
+        parses as a case gets its caption replaced; titles that don't parse are left as they
+        are and must not contain names (tests/test_fixture_privacy.py checks every item)."""
         from equity.adapters.record import pseudonym
 
         text = content.decode("utf-8")
 
         def title(m: re.Match[str]) -> str:
-            parsed = parse_case(m.group(2))
+            raw = html.unescape(m.group(2))
+            parsed = parse_case(raw, bankruptcy_court=True)
             if parsed is None:
                 return m.group(0)
-            *_, caption = parsed
+            caption = parsed[-1]
+            number = " ".join(raw.split())[: len(" ".join(raw.split())) - len(caption)].strip()
             fake = " v. ".join(pseudonym("Owner", p) for p in _VS.split(caption)) if caption else ""
-            return f"{m.group(1)}{m.group(2)[: len(m.group(2)) - len(caption)]}{fake}{m.group(3)}"
+            return f"{m.group(1)}{html.escape(number)} {fake}{m.group(3)}".replace(" </", "</")
 
-        text = re.sub(r"(<title>)(\d+:\d{2}-[a-z]{2}-\d+[^<]*)(</title>)", title, text)
+        text = re.sub(r"(<title>)([^<]*)(</title>)", title, text)
         text = re.sub(
             r"(Trustee:\s*)([^\[<]+?)(\s*\[)",
             lambda m: m.group(1) + pseudonym("Owner", m.group(2)) + m.group(3),
@@ -207,3 +225,30 @@ class NDWVBankruptcyRSS(ECFRecentEntries):
     source_id: ClassVar[str] = "us.wvnb.rss"
     court_id: ClassVar[str] = "wvnb"
     host: ClassVar[str] = "ecf.wvnb.uscourts.gov"
+
+
+def court_adapters(config_dir: Path | None = None) -> list[type[ECFRecentEntries]]:
+    """Adapter classes for the courts in config/courts.yaml `enabled` (source_id us.<id>.rss).
+
+    A court is enabled once its host is reachable and a scrubbed feed fixture is recorded;
+    `planned` lists the rest.
+    """
+    import yaml
+
+    from equity.config import CONFIG_DIR
+
+    data = yaml.safe_load(((config_dir or CONFIG_DIR) / "courts.yaml").read_text())
+    planned = {cid: st for st, ids in data["courts"].items() for cid in ids}
+    out: list[type[ECFRecentEntries]] = []
+    for cid in sorted(data.get("enabled") or []):
+        if cid not in planned:
+            raise ValueError(f"enabled court {cid!r} is not listed under courts")
+        attrs = {
+            "source_id": f"us.{cid}.rss",
+            "court_id": cid,
+            "host": f"ecf.{cid}.uscourts.gov",
+            "jurisdiction": planned[cid],
+            "__module__": __name__,
+        }
+        out.append(type(f"ECF_{cid}", (ECFRecentEntries,), attrs))
+    return out
