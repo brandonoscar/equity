@@ -1,0 +1,58 @@
+source_id: md.statewide.parcels
+state: MD
+# Maryland Department of Planning "Parcel Points" (MdProperty View), one point per SDAT real
+# property account, served from mdgeodata.md.gov, the MD iMAP mirror. The primary host
+# geodata.md.gov answered 503 "emergency maintenance" for /robots.txt on 2026-11-15/16, which
+# RFC 9309 treats as disallow-all, so it is not used. mdgeodata.md.gov answers 404 for
+# /robots.txt (no rules).
+# No layer on this server carries an owner name (Parcel Points, Parcel Boundaries, Property
+# Sales and CAMA all lack OWNNAME*). Owner mailing fields exist (OWNADD1/OWNADD2/OWNCITY/
+# OWNSTATE/OWNERZIP) but are not mapped: without an owner there is no party to attach the
+# address to. DR1LIBER/DR1FOLIO (deed liber/folio) are likewise not mapped (no owner snapshot).
+layer_url: https://mdgeodata.md.gov/imap/rest/services/PlanningCadastre/MD_PropertyData/MapServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+# JURSCODE: MDP 4-letter jurisdiction code, 24 values (23 counties + Baltimore City).
+county:
+  field: JURSCODE
+  format: code_map
+  code_map:
+    ALLE: "001"   # Allegany
+    ANNE: "003"   # Anne Arundel
+    BACO: "005"   # Baltimore County
+    CALV: "009"   # Calvert
+    CARO: "011"   # Caroline
+    CARR: "013"   # Carroll
+    CECI: "015"   # Cecil
+    CHAR: "017"   # Charles
+    DORC: "019"   # Dorchester
+    FRED: "021"   # Frederick
+    GARR: "023"   # Garrett
+    HARF: "025"   # Harford
+    HOWA: "027"   # Howard
+    KENT: "029"   # Kent
+    MONT: "031"   # Montgomery
+    PRIN: "033"   # Prince George's
+    QUEE: "035"   # Queen Anne's
+    STMA: "037"   # St. Mary's
+    SOME: "039"   # Somerset
+    TALB: "041"   # Talbot
+    WASH: "043"   # Washington
+    WICO: "045"   # Wicomico
+    WORC: "047"   # Worcester
+    BACI: "510"   # Baltimore City
+fields:
+  parcel_id: ACCTID          # SDAT account id: 2-digit county + 2-digit district + account
+  land_value: NFMLNDVL       # "New Appraised Land Value"
+  bldg_value: NFMIMPVL       # "New Appraised Improvement Value"
+  total_value: NFMTTLVL      # "New Appraised Full Value"
+  tax_year: {const: 2027}
+value_basis: "NFMLNDVL/NFMIMPVL/NFMTTLVL = SDAT full cash (market) value of land, improvements and total from each account's most recent triennial reassessment (aliases 'New Appraised Land/Improvement/Full Value'). LASTASSD (last date assessed) spans 2022-2026 because one third of the state is reassessed each year; every row's value is the current-cycle full value in force for the levy year that began 2026-07-01 (SDATDATE '2026AUG' = date of the SDAT linkage; 484,695 rows have LASTASSD 202601). tax_year is the const 2027 = Maryland fiscal/levy year July 2026 - June 2027 (valid_from 2026-07-01 via prior_july1). These are full values, not the phased-in taxable assessment (no phase-in field in this layer). Bump the const each August when SDATDATE moves to the next year."
+assessment_valid_from: prior_july1
+terms:
+  url: https://mdgeodata.md.gov/imap/rest/services/PlanningCadastre/MD_PropertyData/MapServer
+  summary: "Maryland Department of Planning / SDAT parcel points (MD iMAP, copyright 'MD iMAP, MDP, SDAT'), free REST, no login; 2,395,737 points in all 24 jurisdictions on 2026-11-16 (MONT 348,637; PRIN 309,690; BACO 303,709; BACI 237,226; ANNE 225,164). Item licenseInfo is empty. Service description: tax maps 'are NOT to be construed or used as a legal description'; 'Planning does not provide any guarantee of accuracy or completeness'; no liability for damages. No commercial-use or mailing-list restriction stated. No owner names on any MD iMAP layer (SDAT shows owners only per account on sdat.dat.maryland.gov)."
+  checked_on: 2026-11-16
+  robots_checked_on: 2026-11-16
+  cost_model: free
