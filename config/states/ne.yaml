@@ -1,0 +1,23 @@
+source_id: ne.statewide.parcels
+state: NE
+layer_url: https://gis.ne.gov/Enterprise/rest/services/StatewideParcelsExternal/FeatureServer/0
+order_by: OBJECTID
+page_size: 1000
+min_interval_s: 1.0
+# County_ID holds the 3-digit county FIPS code ("001" Adams ... "185" York), all 93 counties.
+county:
+  field: County_ID
+  format: fips3
+fields:
+  parcel_id: Parcel_ID
+  land_value: Land_Value
+  bldg_value: Improvements_Value
+  assessed_value: Total_Assessed_Value
+  tax_year: {const: 2025}
+value_basis: "Land_Value/Improvements_Value/Total_Assessed_Value = county assessor assessed values from each county's CAMA extract (Total = Land + Improvements; Nebraska assesses residential/commercial at actual value and agricultural land at 75% of actual value, so Land_Value is not market value for ag parcels). Other_Impr_Value (a subset of improvements) and Ag_Land_Value are not mapped. tax_year is the constant 2025 because the portal item is 'Statewide Parcel dataset for 2025 parcels'; per-county CAMAUpdate dates run mostly 2025-05 to 2026-04 (a few 1900-01-01 placeholders) (Douglas/Lancaster stamped 2026-01-01, Lincoln 2026-04-28), so a few counties may carry 2026 values. Parcel_ID is the county's own parcel number (State_PID = County_ID + Parcel_ID, with leading zeros dropped for some counties); 4,891 rows have no Parcel_ID and are skipped. No owner names or mailing addresses in this layer (Ownership_Type is a mixed class/ownership code, blank or UNKNOWN for 83% of rows); Sales_Date/Sales_Value exist but are not mapped."
+terms:
+  url: https://gis.ne.gov/portal/home/item.html?id=7075c70fd53449d58f26642852234b2d
+  summary: "Nebraska OCIO statewide parcel snapshot built from county assessor shapefiles and CAMA data, all 93 counties, 1,154,898 rows (2026-11-16); free, no login. Portal item licenseInfo: 'This information is for general use and analysis, but the authority of this information lies with the counties.' Credits: Nebraska County Assessors. No commercial-use, resale or mailing-list clause found. gis.ne.gov /robots.txt redirects to a 404 (no rules)."
+  checked_on: 2026-11-16
+  robots_checked_on: 2026-11-16
+  cost_model: free

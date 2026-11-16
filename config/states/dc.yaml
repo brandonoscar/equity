@@ -15,7 +15,7 @@ fields:
   mail_line1: ADDRESS1          # "Tax billing address Part 1" (street)
   # ADDRESS2 is empty in every row (count 0, 2026-11-15). CITYSTZIP holds city, state and
   # ZIP+4 in one string ("<CITY> <ST> <ZIP>"), so it goes in line 2 rather than mail_city.
-  mail_line2: CITYSTZIP
+  mail_city_state_zip: CITYSTZIP
   land_value: PHASELAND         # "Current Land"
   bldg_value: PHASEBUILD        # "Current Build"
   total_value: ASSESSMENT       # "Current Assessed Value Total"

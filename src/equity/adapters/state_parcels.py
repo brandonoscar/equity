@@ -41,9 +41,9 @@ STATES_DIR = CONFIG_DIR / "states"
 # Same format, one file per county, for states without a free statewide layer.
 COUNTIES_DIR = CONFIG_DIR / "counties"
 CANONICAL = (
-    "parcel_id", "owner1", "owner2", "mail_line1", "mail_line2", "mail_full", "mail_city",
-    "mail_state", "mail_zip", "land_value", "bldg_value", "total_value", "assessed_value",
-    "tax_year", "deed_book", "deed_page",
+    "parcel_id", "owner1", "owner2", "mail_line1", "mail_line2", "mail_full",
+    "mail_city_state_zip", "mail_city", "mail_state", "mail_zip", "land_value", "bldg_value",
+    "total_value", "assessed_value", "tax_year", "deed_book", "deed_page",
 )  # fmt: skip
 PII_CANONICAL = ("owner1", "owner2", "mail_line1", "mail_line2", "mail_full")
 # One-string postal address: "LINE , CITY, ST 12345[-6789]". Without the comma layout the
@@ -52,6 +52,18 @@ _FULL = re.compile(
     r"^(?P<line>.+?)\s*,\s*(?P<city>[^,]+?)\s*,\s*"
     r"(?P<st>[A-Za-z]{2})\s+(?P<zip>\d{5})(?:-?\d{4})?\s*$"
 )
+
+
+_CSZ = re.compile(r"^(?P<city>.+?)[,\s]+(?P<st>[A-Za-z]{2})\s+(?P<zip>\d{5})(?:-?\d{4})?\s*$")
+
+
+def parse_city_state_zip(text: str) -> tuple[str | None, str | None, str | None]:
+    """'WASHINGTON DC 20001-1234' / 'Austin, TX 78701' -> (city, state, zip5). The field holds
+    only city/state/ZIP, so everything before the 2-letter state is the city."""
+    m = _CSZ.match(text.strip())
+    if m is None:
+        return None, None, None
+    return " ".join(m.group("city").split()).rstrip(","), m.group("st").upper(), m.group("zip")
 
 
 def parse_full_address(text: str) -> tuple[str, str | None, str | None, str | None]:
@@ -121,6 +133,7 @@ class StateConfig:
     def source_fields(self) -> tuple[str, ...]:
         names = {self.order_by}
         names |= {v for v in self.fields.values() if isinstance(v, str)}
+        names |= {str(x) for v in self.fields.values() if isinstance(v, list) for x in v}
         names |= {str(v["year_of"]) for v in self.fields.values()
                   if isinstance(v, dict) and "year_of" in v}  # fmt: skip
         for i in range(self.layer_count):
@@ -287,7 +300,8 @@ class StateParcelAdapter(ArcGISCountyAdapter):
             if fmt == "name":
                 raise StateConfigError("name-partitioned layers are fetched by oid range")
             codes = [k for k, v in spec["code_map"].items() if str(v) == county.county_fips]
-            return " OR ".join(f"{fld}='{c}'" for c in codes) or "1=0"
+            q = "" if spec.get("numeric") else "'"  # integer code fields reject quoted literals
+            return " OR ".join(f"{fld}={q}{c}{q}" for c in codes) or "1=0"
         if "oid_min" in p and "oid_max" in p:
             lo, hi = int(p["oid_min"]), int(p["oid_max"])
             return f"{self.config.order_by}>={lo} AND {self.config.order_by}<{hi}"
@@ -372,6 +386,10 @@ class StateParcelAdapter(ArcGISCountyAdapter):
             return datetime.fromtimestamp(int(ms) / 1000, tz=UTC).year
         if isinstance(spec, str):
             return attrs.get(spec)
+        if isinstance(spec, list):
+            # Composite key, e.g. [TOWN_ID, PROP_ID]: all parts required, joined with '-'.
+            parts = [_text(attrs.get(str(f))) for f in spec]
+            return None if any(p is None for p in parts) else "-".join(str(p) for p in parts)
         return None
 
     def normalize(self, fetched: Fetched) -> Iterator[NormalizedRow]:
@@ -433,6 +451,9 @@ class StateParcelAdapter(ArcGISCountyAdapter):
         city, st = _text(self._get(a, "mail_city")), _text(self._get(a, "mail_state"))
         m = _ZIP.match(str(self._get(a, "mail_zip") or ""))
         zip5 = m.group(1) if m else None
+        csz = _text(self._get(a, "mail_city_state_zip"))
+        if csz and not (city or zip5):
+            city, st, zip5 = parse_city_state_zip(csz)
         full = _text(self._get(a, "mail_full"))
         if full and not (lines or city or zip5):
             line, city, st, zip5 = parse_full_address(full)

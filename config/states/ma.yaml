@@ -16,6 +16,7 @@ min_interval_s: 1.0
 county:
   field: TOWN_ID
   format: code_map
+  numeric: true          # TOWN_ID is an integer field: unquoted where clauses
   code_map:
     "1": "023"   # Abington
     "2": "017"   # Acton
@@ -373,7 +374,7 @@ fields:
   # it would collide across towns in a county. Several assessor records can share one LOC_ID
   # (mostly condominium units, about 363k rows with USE_CODE 102*): the adapter keeps the
   # lowest OBJECTID per LOC_ID.
-  parcel_id: LOC_ID
+  parcel_id: [TOWN_ID, PROP_ID]   # PROP_ID is unique within a town; keeps condo units
   owner1: OWNER1
   mail_line1: OWN_ADDR
   mail_city: OWN_CITY

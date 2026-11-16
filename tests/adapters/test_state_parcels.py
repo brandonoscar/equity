@@ -343,3 +343,40 @@ def test_state_health_respects_paging_mode(tmp_path: Path) -> None:
 
     down = cls(PoliteClient(min_interval_s=0, transport=broken, sleep=lambda s: None)).health()
     assert not down.ok
+
+
+@pytest.mark.parametrize(
+    ("text", "parsed"),
+    [
+        ("WASHINGTON DC 20001-1234", ("WASHINGTON", "DC", "20001")),
+        ("Saint Paul, mn 55101", ("Saint Paul", "MN", "55101")),
+        ("NOWHERE", (None, None, None)),
+    ],
+)
+def test_parse_city_state_zip(text: str, parsed: tuple[str | None, ...]) -> None:
+    from equity.adapters.state_parcels import parse_city_state_zip
+
+    assert parse_city_state_zip(text) == parsed
+
+
+def test_composite_ids_numeric_codes_and_csz(tmp_path: Path) -> None:
+    fields = {"parcel_id": ["TOWN", "PROP"], "owner1": "OWN", "mail_line1": "M1",
+              "mail_city_state_zip": "CSZ", "total_value": "TV",
+              "tax_year": {"const": 2025}}  # fmt: skip
+    county = {"field": "TOWN", "format": "code_map", "numeric": True,
+              "code_map": {"35": "061", "57": "061"}}  # fmt: skip
+    cls = adapter_for(load_config(_cfg(tmp_path, fields=fields, county=county)))
+    assert {"TOWN", "PROP", "CSZ"} <= set(cls.fields)
+    assert cls().where(FetchRequest({"county_fips": "061"})) == "TOWN=35 OR TOWN=57"
+    out = _rows(cls, [
+        {"OID": 1, "TOWN": 35, "PROP": "A-1", "OWN": "X", "M1": "1 Main",
+         "CSZ": "MORGANTOWN WV 26505", "TV": 1},
+        {"OID": 2, "TOWN": 35, "PROP": "A-2", "OWN": "Y", "TV": 1},
+        {"OID": 3, "TOWN": 35, "PROP": None, "OWN": "Z", "TV": 1},
+    ])  # fmt: skip
+    assert sorted(r["parcel_uid"] for t, r in out if t == "parcel") == [
+        "54061-35-A-1",
+        "54061-35-A-2",
+    ]
+    (addr,) = [r for t, r in out if t == "address"]
+    assert (addr["city"], addr["state"], addr["zip5"]) == ("MORGANTOWN", "WV", "26505")

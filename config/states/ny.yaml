@@ -1,0 +1,76 @@
+source_id: ny.statewide.parcels
+state: NY
+# NYS ITS Geospatial Services "NYS Tax Parcels Public" (2025 parcels, published May 2026), as
+# hosted by NYS GIS on ArcGIS Online. Only the 38 counties that let ITS redistribute their data
+# (incl. the five NYC boroughs); the other 24 counties must be obtained from each county.
+# (gisservices.its.ny.gov copy answered "Service ... not started" on 2026-11-15.)
+layer_url: https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/ArcGIS/rest/services/NYS_Tax_Parcels_Public/FeatureServer/1
+order_by: OBJECTID
+page_size: 1000
+min_interval_s: 1.0
+# COUNTY_NAME as spelled in the layer ("NewYork", "StLawrence" have no space, so the name
+# format cannot resolve them). The 38 counties present on 2026-11-15; a county added later is
+# skipped until it is added here.
+county:
+  field: COUNTY_NAME
+  format: code_map
+  code_map:
+    Albany: "001"
+    Bronx: "005"
+    Broome: "007"
+    Cayuga: "011"
+    Chautauqua: "013"
+    Cortland: "023"
+    Erie: "029"
+    Genesee: "037"
+    Greene: "039"
+    Hamilton: "041"
+    Kings: "047"
+    Lewis: "049"
+    Livingston: "051"
+    Montgomery: "057"
+    NewYork: "061"
+    Oneida: "065"
+    Onondaga: "067"
+    Ontario: "069"
+    Orange: "071"
+    Oswego: "075"
+    Otsego: "077"
+    Putnam: "079"
+    Queens: "081"
+    Rensselaer: "083"
+    Richmond: "085"
+    Rockland: "087"
+    Schuyler: "097"
+    StLawrence: "089"
+    Steuben: "101"
+    Suffolk: "103"
+    Sullivan: "105"
+    Tioga: "107"
+    Tompkins: "109"
+    Ulster: "111"
+    Warren: "113"
+    Wayne: "117"
+    Westchester: "119"
+    Wyoming: "121"
+fields:
+  parcel_id: SWIS_SBL_ID      # 6-digit SWIS municipality code + 20-char SBL, unique statewide
+  owner1: PRIMARY_OWNER
+  owner2: ADD_OWNER
+  mail_line1: MAIL_ADDR
+  mail_line2: PO_BOX
+  mail_city: MAIL_CITY
+  mail_state: MAIL_STATE
+  mail_zip: MAIL_ZIP
+  total_value: FULL_MARKET_VAL
+  assessed_value: TOTAL_AV
+  tax_year: ROLL_YR
+  deed_book: BOOK
+  deed_page: PAGE
+value_basis: "FULL_MARKET_VAL = full market value from the 2025 assessment roll (ORPTS); TOTAL_AV = total assessed value (municipal level of assessment varies); LAND_AV (assessed land) not mapped to keep bases separate; tax_year = ROLL_YR (assessment roll year)"
+terms:
+  url: https://gis.ny.gov/parcels
+  summary: "NYS ITS Geospatial Services, free public web service and download, no login; Use Limitations: 'GIS parcel data is for planning and general use purposes only and is not a substitute for a legal parcel survey'; data accepted 'as is'. Counties keep the right to control distribution, so only 38 counties are included. No commercial-use or mailing-list restriction stated"
+  checked_on: 2026-11-15
+  robots_checked_on: 2026-11-15
+  cost_model: free
