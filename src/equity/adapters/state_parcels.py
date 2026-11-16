@@ -38,6 +38,8 @@ from equity.matching.orgs import classify, clean
 from equity.schema.ids import stable_id
 
 STATES_DIR = CONFIG_DIR / "states"
+# Same format, one file per county, for states without a free statewide layer.
+COUNTIES_DIR = CONFIG_DIR / "counties"
 CANONICAL = (
     "parcel_id", "owner1", "owner2", "mail_line1", "mail_line2", "mail_full", "mail_city",
     "mail_state", "mail_zip", "land_value", "bldg_value", "total_value", "assessed_value",
@@ -443,7 +445,7 @@ class StateParcelAdapter(ArcGISCountyAdapter):
 
 
 def adapter_for(cfg: StateConfig) -> type[StateParcelAdapter]:
-    name = "StateParcels_" + cfg.state
+    name = "Parcels_" + cfg.source_id.replace(".", "_")
     return type(
         name,
         (StateParcelAdapter,),
@@ -460,5 +462,9 @@ def adapter_for(cfg: StateConfig) -> type[StateParcelAdapter]:
     )
 
 
-def all_state_adapters(states_dir: Path = STATES_DIR) -> list[type[StateParcelAdapter]]:
-    return [adapter_for(load_config(p)) for p in sorted(states_dir.glob("*.yaml"))]
+def config_paths(*dirs: Path) -> list[Path]:
+    return [p for d in (dirs or (STATES_DIR, COUNTIES_DIR)) for p in sorted(d.glob("*.yaml"))]
+
+
+def all_state_adapters(*dirs: Path) -> list[type[StateParcelAdapter]]:
+    return [adapter_for(load_config(p)) for p in config_paths(*dirs)]

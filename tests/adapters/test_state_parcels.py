@@ -14,10 +14,10 @@ import yaml
 
 from equity.adapters.base import Fetched, FetchRequest
 from equity.adapters.state_parcels import (
-    STATES_DIR,
     StateConfigError,
     adapter_for,
     all_state_adapters,
+    config_paths,
     load_config,
     norm_parcel_id,
 )
@@ -161,7 +161,7 @@ def test_year_of_and_pii(tmp_path: Path) -> None:
 
 # --- every real state config ------------------------------------------------------------
 
-CONFIGS = sorted(STATES_DIR.glob("*.yaml"))
+CONFIGS = config_paths()
 
 
 @pytest.mark.parametrize("path", CONFIGS, ids=lambda p: p.stem)
