@@ -4,6 +4,7 @@
     uv run python -m equity.lake run --max-parallel 6            # every source, by priority
     uv run python -m equity.lake catalog                         # (re)build catalog views
     uv run python -m equity.lake status                          # rows per source
+    uv run python -m equity.lake plan ny.nyc.acris.real --set codes='JUDG|TLS'   # subset plan
 
 Each source is ingested into a scratch DuckDB, exported to zstd Parquet under
 data/lake/<source_id>/<table>.parquet, and the scratch file is deleted. Raw responses stay
@@ -106,6 +107,23 @@ def build(source_id: str, raw_dir: Path = DATA / "raw") -> dict[str, int]:
     return dict(total)
 
 
+def write_plan(source_id: str, extra: dict[str, str], lake: Path | None = None) -> int:
+    """Write a source's partition plan with `extra` params added to every partition (e.g. a
+    doc-code filter), so a later `build` loads that subset. Refuses once building started:
+    finished parts were made under the old plan."""
+    from equity.adapters.registry import by_source_id
+    from equity.ingest import partitions
+
+    out = (lake or LAKE) / source_id
+    if any((out / "_parts").glob("*.json")):
+        raise RuntimeError(f"{source_id}: parts already built; remove {out} to re-plan")
+    out.mkdir(parents=True, exist_ok=True)
+    adapter = by_source_id(source_id)()  # type: ignore[abstract]
+    requests = [{**params, **extra} for params in partitions(adapter)]
+    (out / "_plan.json").write_text(json.dumps(requests, indent=1))
+    return len(requests)
+
+
 def build_catalog(lake: Path = LAKE, catalog: Path = CATALOG) -> list[str]:
     """Views named like the schema tables, each reading that table's Parquet parts from every
     source folder. Tables without any Parquet yet stay as empty migrated tables."""
@@ -135,6 +153,9 @@ def _host(source_id: str) -> str:
 
     cls = by_source_id(source_id)
     url = getattr(cls, "layer_url", "") or getattr(cls, "url", "")
+    if not url:
+        # Adapters without a URL attribute name their endpoint in the source row.
+        url = cls().source_row().get("base_url", "")  # type: ignore[abstract]
     return urllib.parse.urlsplit(str(url)).netloc or source_id
 
 
@@ -208,6 +229,9 @@ def main(argv: list[str]) -> int:
     r.add_argument("--max-parallel", type=int, default=6)
     r.add_argument("--min-free-gb", type=float, default=5.0)
     r.add_argument("--only", nargs="*")
+    pl = sub.add_parser("plan")
+    pl.add_argument("source_id")
+    pl.add_argument("--set", nargs="*", default=[], help="key=value added to every partition")
     sub.add_parser("catalog")
     sub.add_parser("status")
     args = ap.parse_args(argv)
@@ -215,6 +239,9 @@ def main(argv: list[str]) -> int:
         print(json.dumps(build(args.source_id), indent=2, sort_keys=True))
     elif args.cmd == "run":
         run_all(args.max_parallel, args.min_free_gb, args.only)
+    elif args.cmd == "plan":
+        extra = dict(kv.split("=", 1) for kv in args.set)
+        print(f"{args.source_id}: {write_plan(args.source_id, extra)} partitions planned")
     elif args.cmd == "catalog":
         print(build_catalog())
     else:

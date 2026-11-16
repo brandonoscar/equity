@@ -69,3 +69,46 @@ def test_main_status(tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys) ->
     monkeypatch.setattr(lake, "status", lambda lake_dir=tmp_path: {"a": {"parcel": 3}})
     assert lake.main(["status"]) == 0
     assert '"total_parcels": 3' in capsys.readouterr().out
+
+
+def test_write_plan_adds_params_and_refuses_after_build(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+    capsys,  # type: ignore[no-untyped-def]
+) -> None:
+    import json
+
+    from .test_ingest import Planned
+
+    monkeypatch.setattr(lake, "LAKE", tmp_path / "lake")
+    monkeypatch.setattr(lake, "WORK", tmp_path / "work")
+    monkeypatch.setattr("equity.adapters.registry.by_source_id", lambda sid: Planned)
+    assert lake.main(["plan", "test.tiny", "--set", "codes=A|B"]) == 0
+    assert "2 partitions planned" in capsys.readouterr().out
+    plan = json.loads((tmp_path / "lake" / "test.tiny" / "_plan.json").read_text())
+    assert all(p["codes"] == "A|B" for p in plan) and len(plan) == 2
+    (tmp_path / "lake" / "test.tiny" / "_parts").mkdir()
+    (tmp_path / "lake" / "test.tiny" / "_parts" / "00000.json").write_text("{}")
+    with pytest.raises(RuntimeError, match="already built"):
+        lake.write_plan("test.tiny", {}, tmp_path / "lake")
+
+
+def test_host_comes_from_the_url_attribute_or_the_source_row(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    class WithUrl:
+        layer_url = "https://gis.example.gov/arcgis/rest/services/X/MapServer/0"
+
+    class WithRow:
+        def source_row(self) -> dict[str, str]:
+            return {"base_url": "https://data.example.gov/resource/abcd-1234.json"}
+
+    class Neither:
+        def source_row(self) -> dict[str, str]:
+            return {}
+
+    classes = {"a": WithUrl, "b": WithRow, "c": Neither}
+    monkeypatch.setattr("equity.adapters.registry.by_source_id", lambda sid: classes[sid])
+    assert lake._host("a") == "gis.example.gov"
+    assert lake._host("b") == "data.example.gov"  # one host = one build at a time
+    assert lake._host("c") == "c"

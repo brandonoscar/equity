@@ -1,0 +1,24 @@
+# New York Department of State, "Active Corporations: Beginning 1800" (data.ny.gov n9v6-gdp6):
+# active entities as of the last business day of the month. Roles are inline columns.
+# TODO(Brandon): role valid_from is the filing date (the true start of a role is not
+# published); the DOS process address is where legal papers are served, not an office.
+source_id: ny.sos.business
+state: NY
+jurisdiction: "36"
+portal: https://data.ny.gov
+dataset: n9v6-gdp6
+key: dos_id
+terms_url: https://data.ny.gov/download/77gx-ii52/application%2Fpdf
+terms_summary: "NY Open Data terms: free to use; no warranty. No restriction on commercial use found."
+checked_on: 2026-11-16
+business:
+  name: current_entity_name
+  status_value: Active  # every row of this dataset is an active entity
+  formed_on: initial_dos_filing_date
+  principal: {street: [location_address_1, location_address_2], city: location_city, state: location_state, zip: location_zip}
+  mailing: {street: [dos_process_address_1, dos_process_address_2], city: dos_process_city, state: dos_process_state, zip: dos_process_zip}
+roles:
+  - {role: registered_agent, name: registered_agent_name, address: {street: [registered_agent_address_1, registered_agent_address_2], city: registered_agent_city, state: registered_agent_state, zip: registered_agent_zip}}
+  - {role: officer, title: CHAIRMAN OR CEO, name: chairman_name, address: {street: [chairman_address_1, chairman_address_2], city: chairman_city, state: chairman_state, zip: chairman_zip}}
+  - {role: other, title: DOS PROCESS, name: dos_process_name, address: {street: [dos_process_address_1, dos_process_address_2], city: dos_process_city, state: dos_process_state, zip: dos_process_zip}}
+pii_fields: [current_entity_name, dos_process_name, dos_process_address_1, dos_process_address_2, chairman_name, chairman_address_1, chairman_address_2, registered_agent_name, registered_agent_address_1, registered_agent_address_2, location_name, location_address_1, location_address_2]

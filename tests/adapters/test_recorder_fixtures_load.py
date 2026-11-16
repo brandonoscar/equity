@@ -24,7 +24,16 @@ CLOCK = fixed_clock(datetime(2026, 11, 16, 13, tzinfo=UTC))
 
 @pytest.mark.parametrize(
     "source_id",
-    ["ny.nyc.acris.real", "ny.nyc.acris.personal", "pa.philadelphia.rtt", "fl.hillsborough.or"],
+    [
+        "ny.nyc.acris.real",
+        "ny.nyc.acris.personal",
+        "pa.philadelphia.rtt",
+        "fl.hillsborough.or",
+        "ny.sos.business",
+        "co.sos.business",
+        "ct.sos.business",
+        "or.sos.business",
+    ],
 )
 def test_fixture_rows_load(source_id: str, empty_db: duckdb.DuckDBPyConnection) -> None:
     cls = by_source_id(source_id)
@@ -42,6 +51,7 @@ def test_fixture_rows_load(source_id: str, empty_db: duckdb.DuckDBPyConnection) 
     rows = list(adapter.normalize(fetched))
     for item in rows:
         load_rows(empty_db, item.table, [dict(item.row)], CLOCK)
-    n = empty_db.execute("SELECT count(*) FROM instrument").fetchone()
+    table = "business" if ".sos." in source_id else "instrument"
+    n = empty_db.execute(f"SELECT count(*) FROM {table}").fetchone()
     assert n is not None and n[0] > 0
     assert provenance_violations(empty_db) == []

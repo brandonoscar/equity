@@ -53,6 +53,7 @@ CONFIG = "recorders/ny.nyc.acris.yaml"
 PII_FIELDS: tuple[str, ...] = ("name", "address_1", "address_2")
 # Amount columns: deeds and leases carry a price; everything else a secured or lien amount.
 CONSIDERATION_DOC_TYPES = frozenset({"DEED", "LEASE"})
+ID_CHUNK = 300  # document ids per "document_id in (...)" query: keeps URLs near 6 KB
 
 
 @dataclass(frozen=True)
@@ -225,22 +226,36 @@ class AcrisAdapter(Adapter):
         return rows
 
     def fetch(self, request: FetchRequest) -> Fetched:
-        """All four datasets for one document_id range. `limit` (fixtures) keeps the first N
-        master rows and fetches the other datasets for exactly those documents."""
+        """All four datasets for one document_id range.
+
+        `codes` ('|'-separated doc codes; some codes contain commas) keeps only documents of
+        those types. `limit` (fixtures) keeps the first N master rows. In both cases the other
+        three datasets are read for exactly the kept documents, ID_CHUNK ids per query."""
         params = dict(request.params)
         limit = _int(params.pop("limit", None))
+        codes = [c for c in params.pop("codes", "").split("|") if c]
         where = self.where(params)
+        if codes:
+            where += " AND doc_type in (" + ",".join(quote(c) for c in codes) + ")"
         f = self.family
         master = self._rows(f.master, where, limit)
-        if limit:
-            where = self.where({"ids": ",".join(r["document_id"] for r in master)})
+        if limit or codes:
+            ids = sorted({str(r["document_id"]) for r in master})
+            chunks = [ids[i : i + ID_CHUNK] for i in range(0, len(ids), ID_CHUNK)]
+            related = [self.where({"ids": ",".join(c)}) for c in chunks]
+        else:
+            related = [where]
+
+        def rows(dataset: str) -> list[dict[str, Any]]:
+            return [r for w in related for r in self._rows(dataset, w)]
+
         body = {
             "portal": PORTAL,
             "where": where,
             "master": master,
-            "legals": self._rows(f.legals, where),
-            "parties": self._rows(f.parties, where),
-            "references": self._rows(f.references, where),
+            "legals": rows(f.legals),
+            "parties": rows(f.parties),
+            "references": rows(f.references),
         }
         return Fetched(
             source_id=self.source_id,

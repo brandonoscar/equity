@@ -1,0 +1,28 @@
+# Connecticut Business Registry (data.ct.gov): Business Master n7gp-d28j (Public Domain), with
+# Principals ka36-64k6 (business_id) and Agents qh2m-n44y (business_key), both = master id.
+# TODO(Brandon): principals with no designation are "other" (often members or managers, but
+# the dataset does not say); role valid_from is the registration date.
+source_id: ct.sos.business
+state: CT
+jurisdiction: "09"
+portal: https://data.ct.gov
+dataset: n7gp-d28j
+key: id
+terms_url: https://data.ct.gov/Business/Connecticut-Business-Registry-Business-Master/n7gp-d28j
+terms_summary: "Public Domain (dataset license field)."
+checked_on: 2026-11-16
+business:
+  name: name
+  status: status
+  formed_on: date_registration
+  principal: {street: [billingstreet, billing_unit], city: billingcity, state: billingstate, zip: billingpostalcode}
+role_datasets:
+  - dataset: ka36-64k6
+    key: business_id
+    role_field: designation
+    role_map: {Officer: officer, Director: director, "Officer;Director": officer}
+    holder: {role: other, name: name__c, name_parts: [firstname, middlename, lastname, suffix], address: {street: [business_street_address_1, business_street_address_2, business_street_address_3], city: business_city, state: business_state, zip: business_zip_code}}
+  - dataset: qh2m-n44y
+    key: business_key  # = master id (this dataset's business_id is the account number)
+    holder: {role: registered_agent, name: name__c, name_parts: [firstname, middlename, lastname, suffix], address: {street: [business_street_address_1, business_street_address_2, business_street_address_3], city: business_city, state: business_state, zip: business_zip_code}}
+pii_fields: [name, billingstreet, billing_unit, mailing_address, records_address_street, office_jurisdiction_address, record_address, business_email_address, category_survey_email_address, name__c, firstname, middlename, lastname, business_street_address_1, business_street_address_2, business_street_address_3, business_address, residence_address, residence_street_address, residence_street_address_1, residence_street_address_2, mailing_street_address_1, mailing_street_address_2, mailing_street_address_3, agent_phone, email]

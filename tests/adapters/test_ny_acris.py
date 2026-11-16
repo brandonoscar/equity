@@ -9,6 +9,8 @@ from decimal import Decimal
 from pathlib import Path
 from typing import Any
 
+import pytest
+
 from equity.adapters.base import Fetched, FetchRequest
 from equity.adapters.http import Response
 from equity.adapters.ny.acris import (
@@ -228,6 +230,28 @@ def test_fetch_reads_four_datasets_and_limit_pins_document_ids() -> None:
     AcrisRealProperty(client).fetch(FetchRequest({"lo": "2019", "hi": "2020", "limit": "1"}))  # type: ignore[arg-type]
     assert client.queries[0][1]["$limit"] == "1"
     assert client.queries[1][1]["$where"] == "document_id in ('A1')"
+
+
+def test_fetch_by_doc_codes_reads_related_rows_in_id_chunks(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    import equity.adapters.ny.acris as acris
+
+    monkeypatch.setattr(acris, "ID_CHUNK", 2)
+    fam = AcrisRealProperty.family
+    client = FakeSocrata({fam.master: [_doc("A3"), _doc("A1"), _doc("A2")],
+                          fam.parties: [{"document_id": "A1", "name": "X"}]})  # fmt: skip
+    params = {"lo": "2019", "hi": "2020", "codes": "JUDG|DEED, LE"}
+    body = json.loads(AcrisRealProperty(client).fetch(FetchRequest(params)).content)  # type: ignore[arg-type]
+    master_where = client.queries[0][1]["$where"]
+    assert master_where.endswith("AND doc_type in ('JUDG','DEED, LE')")
+    related = [q[1]["$where"] for q in client.queries[1:]]
+    assert related == ["document_id in ('A1','A2')", "document_id in ('A3')"] * 3
+    # The fake ignores $where, so each chunk returns the party row again: two copies.
+    assert len(body["parties"]) == 2
+    empty = FakeSocrata({})
+    AcrisRealProperty(empty).fetch(FetchRequest(params))  # type: ignore[arg-type]
+    assert len(empty.queries) == 1  # no documents: nothing else is read
 
 
 def test_partitions_and_health() -> None:
