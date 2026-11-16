@@ -51,7 +51,9 @@ def test_fixture_rows_load(source_id: str, empty_db: duckdb.DuckDBPyConnection) 
     rows = list(adapter.normalize(fetched))
     for item in rows:
         load_rows(empty_db, item.table, [dict(item.row)], CLOCK)
-    table = "business" if ".sos." in source_id else "instrument"
+    table = ("business" if ".sos." in source_id
+             else "court_case" if "civil" in source_id or "garnish" in source_id
+             else "instrument")  # fmt: skip
     n = empty_db.execute(f"SELECT count(*) FROM {table}").fetchone()
     assert n is not None and n[0] > 0
     assert provenance_violations(empty_db) == []

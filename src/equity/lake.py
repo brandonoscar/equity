@@ -23,6 +23,7 @@ import time
 import urllib.parse
 from collections import defaultdict
 from pathlib import Path
+from typing import Any
 
 import duckdb
 
@@ -87,6 +88,8 @@ def build(source_id: str, raw_dir: Path = DATA / "raw") -> dict[str, int]:
     else:
         requests = list(partitions(adapter))
         plan_path.write_text(json.dumps(requests, indent=1))
+    if getattr(adapter, "single_store", False):
+        return _build_single_store(source_id, adapter, requests, out, raw_dir)
     for i, params in enumerate(requests):
         part = f"{i:05d}"
         marker = done_dir / f"{part}.json"
@@ -105,6 +108,26 @@ def build(source_id: str, raw_dir: Path = DATA / "raw") -> dict[str, int]:
             total[t] += n
     (out / "_counts.json").write_text(json.dumps(dict(total), indent=2, sort_keys=True))
     return dict(total)
+
+
+def _build_single_store(
+    source_id: str, adapter: Any, requests: list[dict[str, str]], out: Path, raw_dir: Path
+) -> dict[str, int]:
+    """Snapshot series (weekly lists, daily files with corrections): one key can come back in
+    a later partition, so every partition is loaded in order into ONE store, where the loader
+    supersedes or keeps rows, and exported as one part. Rebuilt whole each time."""
+    from equity.ingest import run
+
+    work_db = WORK / f"{source_id}-all.duckdb"
+    work_db.unlink(missing_ok=True)
+    run(adapter, str(work_db), raw_dir, requests)
+    for old in out.glob("*/*.parquet"):
+        old.unlink()
+    counts = export_part(work_db, out, "00000")
+    work_db.unlink(missing_ok=True)
+    Path(str(work_db) + ".wal").unlink(missing_ok=True)
+    (out / "_counts.json").write_text(json.dumps(counts, indent=2, sort_keys=True))
+    return counts
 
 
 def write_plan(source_id: str, extra: dict[str, str], lake: Path | None = None) -> int:

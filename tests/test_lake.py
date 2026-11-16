@@ -112,3 +112,23 @@ def test_host_comes_from_the_url_attribute_or_the_source_row(
     assert lake._host("a") == "gis.example.gov"
     assert lake._host("b") == "data.example.gov"  # one host = one build at a time
     assert lake._host("c") == "c"
+
+
+def test_single_store_sources_load_every_partition_into_one_part(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    from .test_ingest import Planned
+
+    class Series(Planned):
+        single_store = True
+
+    monkeypatch.setattr(lake, "LAKE", tmp_path / "lake")
+    monkeypatch.setattr(lake, "WORK", tmp_path / "work")
+    monkeypatch.setattr("equity.adapters.registry.by_source_id", lambda sid: Series)
+    out = tmp_path / "lake" / "test.tiny"
+    (out / "parcel").mkdir(parents=True)
+    (out / "parcel" / "00007.parquet").write_bytes(b"stale")
+    counts = lake.build("test.tiny", raw_dir=tmp_path / "raw")
+    assert counts["parcel"] == 3
+    assert sorted(p.name for p in (out / "parcel").glob("*.parquet")) == ["00000.parquet"]
+    assert not list((tmp_path / "work").glob("*.duckdb"))

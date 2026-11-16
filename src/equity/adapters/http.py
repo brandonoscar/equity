@@ -6,6 +6,7 @@ politeness rules are tested offline.
 from __future__ import annotations
 
 import gzip
+import http.client
 import time
 import urllib.error
 import urllib.parse
@@ -122,7 +123,9 @@ class PoliteClient:
                 status, body, ctype = self.transport(
                     full, {"User-Agent": self.user_agent}, self.timeout_s
                 )
-            except OSError:  # includes http.client.RemoteDisconnected, timeouts, resets
+            # OSError covers resets, timeouts and RemoteDisconnected; HTTPException covers a
+            # body cut off mid-transfer (IncompleteRead), which is not an OSError.
+            except (OSError, http.client.HTTPException):
                 self._last[host] = self.monotonic()
                 if attempt >= self.retries:
                     raise

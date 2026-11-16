@@ -1,0 +1,30 @@
+# Hillsborough County (FL) Clerk, Circuit and County Civil public data files
+# (publicrec.hillsclerk.com/Civil/). Codes seen in the monthly case files of 2025-12 and
+# 2026-10 (fetched 2026-11-16).
+#
+# The monthly case file reports cases FILED in that month, with status and the latest
+# judgment/disposition code as of the report date. Only codes listed under judgment_codes
+# become judgment rows; dispositions (dismissals, possession-only judgments, stipulations)
+# stay on the case as its status.
+#
+# TODO(Brandon): confirm. In particular:
+#  - JFP (judgment for possession, evictions) is not treated as a money judgment.
+#  - FJ (final judgment) is judgment_type 'other': the file does not say money vs equitable.
+#  - Plaintiff/defendant come from the case style "A vs B"; garnishment rows name the
+#    judgment creditor (plaintiff), debtor (defendant) and garnishee directly.
+judgment_codes:
+  FJ: other
+  FJZ: other
+  DJ: default
+  DFJ: default
+  CFJ: consent
+  FJD: deficiency
+garnishment_events:
+  Date_Writ_of_Garnishment_filed: WRIT OF GARNISHMENT FILED
+  Date_Writ_of_Garnishment_Issued: WRIT OF GARNISHMENT ISSUED
+  Return_of_Non_Service_Date: RETURN OF NON-SERVICE
+filing_party_roles:
+  Plaintiff: plaintiff
+  Defendant: defendant
+  Petitioner: plaintiff
+  Respondent: defendant

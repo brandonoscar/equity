@@ -156,3 +156,23 @@ def test_gzip_bodies_are_decoded_and_others_pass_through() -> None:
     assert decode_body(gzip.compress(raw), " GZIP ") == raw
     assert decode_body(raw, None) == raw
     assert decode_body(raw, "identity") == raw
+
+
+def test_cut_off_transfers_are_retried() -> None:
+    import http.client
+
+    calls: list[str] = []
+
+    def cut(url: str, headers: Mapping[str, str], timeout: float) -> tuple[int, bytes, str]:
+        if url.endswith("robots.txt"):
+            return 404, b"", ""
+        calls.append(url)
+        if len(calls) == 1:
+            raise http.client.IncompleteRead(b"partial", 100)
+        return 200, b"whole", "text/plain"
+
+    clock = FakeClock()
+    c = PoliteClient(min_interval_s=0.0, transport=cut, sleep=clock.sleep,
+                     monotonic=clock.monotonic)  # fmt: skip
+    assert c.get("https://g.test/x").content == b"whole"
+    assert len(calls) == 2 and clock.slept == [2.0]

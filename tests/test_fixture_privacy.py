@@ -59,3 +59,33 @@ def test_rss_fixtures_have_only_pseudonyms() -> None:
                 assert part.startswith("TESTOWNER"), f"{path.parent.name}: unscrubbed caption"
             trustee = re.search(r"Trustee:\s*([^\[]+?)\s*\[", item.findtext("description") or "")
             assert trustee is None or trustee.group(1).startswith("TESTOWNER")
+
+
+def test_csv_fixtures_have_only_pseudonyms() -> None:
+    from equity.adapters.fl.hillsborough_civil import (
+        HillsboroughCivilCases,
+        HillsboroughCivilFilings,
+        HillsboroughGarnishment,
+        read_csv,
+        split_style,
+    )
+
+    for cls in (HillsboroughCivilCases, HillsboroughCivilFilings, HillsboroughGarnishment):
+        paths = sorted((ROOT / cls.source_id).glob("*.json"))
+        assert paths, cls.source_id
+        for path in paths:
+            for row in read_csv(json.loads(path.read_text())["csv"]):
+                for col in cls.pii_columns:
+                    v = row.get(col, "")
+                    assert not v or v.startswith("TESTOWNER") or v.endswith(" TEST ST"), col
+                for col in cls.style_columns:
+                    for side in split_style(row.get(col, "")):
+                        assert side is None or side.startswith("TESTOWNER"), col
+
+
+def test_official_records_party_names_are_pseudonyms() -> None:
+    for path in sorted((ROOT / "fl.hillsborough.or").glob("*.json")):
+        for line in json.loads(path.read_text())["p"].splitlines():
+            cells = line.split("|")
+            if len(cells) > 5 and cells[5].strip():
+                assert cells[5].startswith("TESTOWNER")

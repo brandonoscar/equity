@@ -229,8 +229,9 @@ class AcrisAdapter(Adapter):
         """All four datasets for one document_id range.
 
         `codes` ('|'-separated doc codes; some codes contain commas) keeps only documents of
-        those types. `limit` (fixtures) keeps the first N master rows. In both cases the other
-        three datasets are read for exactly the kept documents, ID_CHUNK ids per query."""
+        those types: the other three datasets are read for the same id range (a few queries)
+        and only the kept documents' rows are stored. `limit` (fixtures) keeps the first N
+        master rows and reads the other datasets for exactly those ids, ID_CHUNK per query."""
         params = dict(request.params)
         limit = _int(params.pop("limit", None))
         codes = [c for c in params.pop("codes", "").split("|") if c]
@@ -239,15 +240,19 @@ class AcrisAdapter(Adapter):
             where += " AND doc_type in (" + ",".join(quote(c) for c in codes) + ")"
         f = self.family
         master = self._rows(f.master, where, limit)
-        if limit or codes:
-            ids = sorted({str(r["document_id"]) for r in master})
-            chunks = [ids[i : i + ID_CHUNK] for i in range(0, len(ids), ID_CHUNK)]
+        ids = {str(r["document_id"]) for r in master}
+        if limit:
+            ordered = sorted(ids)
+            chunks = [ordered[i : i + ID_CHUNK] for i in range(0, len(ordered), ID_CHUNK)]
             related = [self.where({"ids": ",".join(c)}) for c in chunks]
+        elif codes and not ids:
+            related = []
         else:
-            related = [where]
+            related = [self.where(params)]
 
         def rows(dataset: str) -> list[dict[str, Any]]:
-            return [r for w in related for r in self._rows(dataset, w)]
+            got = [r for w in related for r in self._rows(dataset, w)]
+            return [r for r in got if str(r.get("document_id")) in ids] if codes else got
 
         body = {
             "portal": PORTAL,

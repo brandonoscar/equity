@@ -118,6 +118,8 @@ class HillsboroughOfficialRecords(Adapter):
     source_id: ClassVar[str] = "fl.hillsborough.or"
     adapter_version: ClassVar[str] = "1"
     access_method: ClassVar[str] = "bulk"
+    # A corrected record comes back in a later day's file: load all days into one store.
+    single_store: ClassVar[bool] = True
 
     def __init__(self, client: PoliteClient | None = None) -> None:
         self.client = client or PoliteClient(min_interval_s=1.0, timeout_s=120.0)
