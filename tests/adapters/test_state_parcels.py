@@ -277,7 +277,7 @@ def test_multiple_layers_with_per_layer_county(tmp_path: Path) -> None:
     cls = adapter_for(cfg)
     seen: list[str] = []
     stats = {"features": [{"attributes": {"lo": 1, "hi": 3}}]}
-    plan = list(cls(_fake_server([stats], seen)).partitions(window=10))
+    plan = list(cls(_fake_server([stats, {"count": 3}], seen)).partitions(window=10))
     assert plan[0] == {"layer": "0", "oid_min": "1", "oid_max": "11"}  # constant county
     assert plan[1] == {"layer": "1", "county_fips": "001"}  # county field on layer 2
     page = {"features": [{"attributes": {"OID": 1, "PID": "9", "TV": 5}}]}
@@ -309,7 +309,7 @@ def test_no_paging_mode_uses_small_windows(tmp_path: Path) -> None:
     cls = adapter_for(load_config(_cfg(tmp_path, paginate=False, page_size=2)))
     seen: list[str] = []
     stats = {"features": [{"attributes": {"LO": 1, "HI": 4}}]}  # upper-cased by some servers
-    plan = list(cls(_fake_server([stats], seen)).partitions())
+    plan = list(cls(_fake_server([stats, {"count": 4}], seen)).partitions())
     assert plan == [{"oid_min": "1", "oid_max": "3"}, {"oid_min": "3", "oid_max": "5"}]
     page = {"features": [{"attributes": {"OID": 1, "PID": "1", "CO": "061"}}]}
     a = cls(_fake_server([page], seen))
@@ -380,3 +380,17 @@ def test_composite_ids_numeric_codes_and_csz(tmp_path: Path) -> None:
     ]
     (addr,) = [r for t, r in out if t == "address"]
     assert (addr["city"], addr["state"], addr["zip5"]) == ("MORGANTOWN", "WV", "26505")
+
+
+def test_sparse_object_ids_get_dense_windows(tmp_path: Path) -> None:
+    cls = adapter_for(load_config(_cfg(tmp_path, county={"constant": "061"})))
+    seen: list[str] = []
+    responses = [
+        {"features": [{"attributes": {"LO": 1_000_000, "HI": 9_000_000}}]},
+        {"count": 3},
+        {"objectIds": [9_000_000, 1_000_000, 5_000_000]},
+    ]
+    plan = list(cls(_fake_server(responses, seen)).partitions(window=2))
+    assert plan == [{"oid_min": "1000000", "oid_max": "5000001"},
+                    {"oid_min": "9000000", "oid_max": "9000001"}]  # fmt: skip
+    assert "returnIdsOnly" in seen[-1]

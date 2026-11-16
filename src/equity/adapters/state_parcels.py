@@ -333,8 +333,27 @@ class StateParcelAdapter(ArcGISCountyAdapter):
             raw_attrs = json.loads(resp.content)["features"][0]["attributes"]
             attrs = {str(k).lower(): v for k, v in raw_attrs.items()}  # some servers upper-case
             lo, hi = int(attrs["lo"]), int(attrs["hi"])
+            count = self._count(url)
+            if count and (hi - lo + 1) > 4 * count:
+                # Sparse ids: fixed-width windows would be mostly empty. Cut windows from the
+                # actual id list instead (one returnIdsOnly request).
+                yield from ({**base, **w} for w in self._dense_windows(url, window))
+                continue
             for start in range(lo, hi + 1, window):
                 yield {**base, "oid_min": str(start), "oid_max": str(start + window)}
+
+    def _count(self, url: str) -> int:
+        params = {"where": "1=1", "returnCountOnly": "true", "f": "json"}
+        resp = self.client.get(url + "/query", params)
+        return int(json.loads(resp.content).get("count") or 0)
+
+    def _dense_windows(self, url: str, window: int) -> Iterator[dict[str, str]]:
+        params = {"where": "1=1", "returnIdsOnly": "true", "f": "json"}
+        resp = self.client.get(url + "/query", params)
+        ids = sorted(int(i) for i in json.loads(resp.content).get("objectIds") or [])
+        for i in range(0, len(ids), window):
+            chunk = ids[i : i + window]
+            yield {"oid_min": str(chunk[0]), "oid_max": str(chunk[-1] + 1)}
 
     def fetch(self, request: FetchRequest) -> Fetched:
         """Like the base fetch, but on the requested layer and honoring `paginate`."""
