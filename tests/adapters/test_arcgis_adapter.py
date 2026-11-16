@@ -21,7 +21,9 @@ def fake_client(pages: list[dict[str, object]], status: int = 200) -> PoliteClie
         if url.endswith("/robots.txt"):
             return 404, b"", ""
         calls.append(url)
-        return status, json.dumps(pages[len(calls) - 1]).encode(), "application/json"
+        # Replay the last page once exhausted (retries on 5xx ask again).
+        page = pages[min(len(calls), len(pages)) - 1]
+        return status, json.dumps(page).encode(), "application/json"
 
     return PoliteClient(min_interval_s=0, transport=transport, sleep=lambda s: None,
                         now=lambda: datetime(2026, 11, 15, tzinfo=UTC))  # fmt: skip
