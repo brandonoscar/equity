@@ -1,0 +1,52 @@
+source_id: ut.lir.parcels
+state: UT
+# One UGRC "Land Information Records" (tax-roll) layer per county; the county comes from the
+# layer, not a field. Values only: complements ut.statewide.parcels (same PARCEL_ID keys).
+layers:
+  - {url: "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_Beaver_LIR/FeatureServer/0", county: {constant: "001"}}  # Beaver
+  - {url: "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_BoxElder_LIR/FeatureServer/0", county: {constant: "003"}}  # BoxElder
+  - {url: "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_Cache_LIR/FeatureServer/0", county: {constant: "005"}}  # Cache
+  - {url: "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_Carbon_LIR/FeatureServer/0", county: {constant: "007"}}  # Carbon
+  - {url: "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_Daggett_LIR/FeatureServer/0", county: {constant: "009"}}  # Daggett
+  - {url: "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_Davis_LIR/FeatureServer/0", county: {constant: "011"}}  # Davis
+  - {url: "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_Duchesne_LIR/FeatureServer/0", county: {constant: "013"}}  # Duchesne
+  - {url: "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_Emery_LIR/FeatureServer/0", county: {constant: "015"}}  # Emery
+  - {url: "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_Garfield_LIR/FeatureServer/0", county: {constant: "017"}}  # Garfield
+  - {url: "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_Grand_LIR/FeatureServer/0", county: {constant: "019"}}  # Grand
+  - {url: "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_Iron_LIR/FeatureServer/0", county: {constant: "021"}}  # Iron
+  - {url: "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_Juab_LIR/FeatureServer/0", county: {constant: "023"}}  # Juab
+  - {url: "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_Kane_LIR/FeatureServer/0", county: {constant: "025"}}  # Kane
+  - {url: "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_Millard_LIR/FeatureServer/0", county: {constant: "027"}}  # Millard
+  - {url: "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_Morgan_LIR/FeatureServer/0", county: {constant: "029"}}  # Morgan
+  - {url: "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_Piute_LIR/FeatureServer/0", county: {constant: "031"}}  # Piute
+  - {url: "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_Rich_LIR/FeatureServer/0", county: {constant: "033"}}  # Rich
+  - {url: "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_SaltLake_LIR/FeatureServer/0", county: {constant: "035"}}  # SaltLake
+  - {url: "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_SanJuan_LIR/FeatureServer/0", county: {constant: "037"}}  # SanJuan
+  - {url: "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_Sanpete_LIR/FeatureServer/0", county: {constant: "039"}}  # Sanpete
+  - {url: "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_Sevier_LIR/FeatureServer/0", county: {constant: "041"}}  # Sevier
+  - {url: "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_Summit_LIR/FeatureServer/0", county: {constant: "043"}}  # Summit
+  - {url: "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_Tooele_LIR/FeatureServer/0", county: {constant: "045"}}  # Tooele
+  - {url: "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_Uintah_LIR/FeatureServer/0", county: {constant: "047"}}  # Uintah
+  - {url: "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_Utah_LIR/FeatureServer/0", county: {constant: "049"}}  # Utah
+  - {url: "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_Wasatch_LIR/FeatureServer/0", county: {constant: "051"}}  # Wasatch
+  - {url: "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_Washington_LIR/FeatureServer/0", county: {constant: "053"}}  # Washington
+  - {url: "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_Wayne_LIR/FeatureServer/0", county: {constant: "055"}}  # Wayne
+  - {url: "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_Weber_LIR/FeatureServer/0", county: {constant: "057"}}  # Weber
+order_by: OBJECTID
+page_size: 1000
+min_interval_s: 1.0
+# Required key; every layer above sets its own county constant, which takes precedence.
+county:
+  constant: "001"
+fields:
+  parcel_id: PARCEL_ID
+  land_value: LAND_MKT_VALUE
+  total_value: TOTAL_MKT_VALUE
+  tax_year: {year_of: CURRENT_ASOF}
+value_basis: "TOTAL_MKT_VALUE / LAND_MKT_VALUE = market value of the parcel (land + structures + other improvements) and of the land 'as determined by the Assessor for the most current tax year' (LIR schema); the LIR product is meant to follow each county's tax-roll finalization (May 22). No improvement-only or taxable/assessed field (Utah taxes primary residences on 55% of market value; not applied here). tax_year = year of CURRENT_ASOF, the county's 'parcels current as of' date, one value per county on 2026-11-16: 2026 for Cache, Kane, Morgan, Piute, Rich, Salt Lake, Utah, Washington, Weber; 2025 for Beaver, Carbon, Davis, Duchesne, Garfield, Grand, Juab, Millard, Sanpete, Sevier, Summit, Tooele, Uintah, Wayne; 2024 for Daggett, Emery, Iron, San Juan, Wasatch; 2020 for Box Elder. Value fill varies (e.g. Davis 81,543 of 152,563 rows, Sanpete 3,356 of 12,976, Carbon 11,448 of 26,736 carry TOTAL_MKT_VALUE). No owner or mailing fields (HB113)."
+terms:
+  url: https://gis.utah.gov/products/sgid/cadastre/parcels/
+  summary: "UGRC SGID Parcels_<County>_LIR, 29 per-county layers built from county assessor tax-roll extracts under the voluntary LIR work-group program; 1,771,774 rows in all on 2026-11-16 (Salt Lake 399,432; Utah 289,858; Weber 153,163; Davis 152,563). AGOL item licenseInfo (e.g. 'Utah Salt Lake County Parcels LIR'): provided 'as is' for informational purposes only, no warranty, hold-harmless, and 'licensed under a Creative Commons Attribution 4.0 International License'. UGRC parcels page: 'There are no constraints or warranties with regard to the use of this dataset. Users are encouraged to attribute content to: State of Utah, SGID.' Each row's DISCLAIMER field points to http://www.utah.gov/disclaimer.html. services1.arcgis.com /robots.txt answers 403 (RFC 9309: no rules); gis.utah.gov robots allows all."
+  checked_on: 2026-11-16
+  robots_checked_on: 2026-11-16
+  cost_model: free
