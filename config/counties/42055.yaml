@@ -1,0 +1,28 @@
+source_id: pa.franklin.parcels
+state: PA
+# Franklin County (PA) parcels with owner and mailing address, as republished on PASDA
+# ('Franklin County Parcels 202606'; CAMA_MODIF 2026-06-08). The layer description says "NO
+# associated CAMA", but owner and mailing fields are filled. The assessment fields
+# (PRC_TTL_AS, DT_*_TOT) are 0 on every row, so no values are mapped. All rows have
+# Historical = 0 (no retired parcels) on 2026-11-16.
+layer_url: https://mapservices.pasda.psu.edu/server/rest/services/pasda/FranklinCounty/MapServer/0
+order_by: OBJECTID
+page_size: 1000          # maxRecordCount 1000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "055"}
+fields:
+  parcel_id: Name          # tax parcel number, e.g. 18-0K08.-035.-000000
+  owner1: FULL_OWNER
+  owner2: SECOND_OWN
+  mail_line1: OWNER_ADDR   # first street line; filled on 2,030 rows only
+  mail_line2: OWNER_AD_1   # street line (or second line when OWNER_ADDR is filled)
+  mail_city: OWNER_CITY
+  mail_state: OWNER_STAT
+  mail_zip: OWNER_ZIP
+value_basis: "No usable value fields: PRC_TTL_AS / PRC_TTL__1 / PRC_TTL__2 and the DT_*_TOT tax totals are 0 on every row (0 rows with PRC_TTL_AS > 0 on 2026-11-16). SLH_DEED_B is an instrument number ('24-024034'), not book/page, so it is not mapped."
+terms:
+  url: https://mapservices.pasda.psu.edu/server/rest/services/pasda/FranklinCounty/MapServer/0
+  summary: "Franklin County PA parcels (copyright 'Franklin County GIS Department, Sidwell Co.'; polygons 'derived from original documents (deeds & surveys) by the Sidwell Co in 2013 and maintained since by County GIS staff') served by PASDA at Penn State. Free REST, no login; 69,390 polygons on 2026-11-16. No license or use-constraint text in the service; the per-dataset PASDA metadata page (www.pasda.psu.edu) could not be read from this environment. No commercial-use or mailing-list restriction found. mapservices.pasda.psu.edu /robots.txt answers 404 (RFC 9309: no rules)."
+  checked_on: 2026-11-16
+  robots_checked_on: 2026-11-16
+  cost_model: free

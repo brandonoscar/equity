@@ -1,0 +1,27 @@
+source_id: pa.berks.parcels
+state: PA
+# County of Berks parcels with owner, mailing address, assessment and deed book/page, as
+# republished on PASDA ('Berks County - Parcels 202601'; DATADATE 2026-01-09 on every row).
+layer_url: https://mapservices.pasda.psu.edu/server/rest/services/pasda/BerksCounty/MapServer/6
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "011"}
+fields:
+  parcel_id: PROPID        # 14 digits: 2-digit tax district + 12-digit PIN
+  owner1: NAME1
+  # FULLMAILAD is "STREET  CITY ST ZIP[-4]" in one string, a double space before the city and
+  # no commas, so the adapter keeps the whole string as the street line (city/state/ZIP not
+  # split; see report).
+  mail_full: FULLMAILAD
+  assessed_value: VALUTOTAL
+  tax_year: {year_of: DATADATE}
+  deed_book: DEEDBOOK
+  deed_page: DEEDPAGE
+value_basis: "VALUTOTAL = total assessed value (Berks County assesses on its 1994 base-year values); VALULAND / VALUBLDG are its land and building parts and VALULNDMKT a land market value, none mapped (there are no assessed-component columns). tax_year = year of DATADATE, the extract date (2026-01-09 on every row, so 2026). DEEDBOOK/DEEDPAGE = recorder of deeds book and page (or instrument year and number) of the last deed."
+terms:
+  url: https://mapservices.pasda.psu.edu/server/rest/services/pasda/BerksCounty/MapServer/6
+  summary: "County of Berks parcels ('digital parcel boundaries ... continually corrected, updated, and otherwise maintained by the County of Berks') served by PASDA, Pennsylvania's public geospatial clearinghouse at Penn State. Free REST, no login; 156,838 polygons on 2026-11-16. Service iteminfo has empty licenseInfo; the per-dataset PASDA metadata page (www.pasda.psu.edu) could not be read from this environment. No commercial-use or mailing-list restriction found. mapservices.pasda.psu.edu /robots.txt answers 404 (RFC 9309: no rules)."
+  checked_on: 2026-11-16
+  robots_checked_on: 2026-11-16
+  cost_model: free

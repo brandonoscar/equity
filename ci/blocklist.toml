@@ -1,0 +1,58 @@
+# Packages, import names and hosts that must never appear in this project.
+# Protected by CODEOWNERS. Grow it; never shrink it without Brandon's review.
+# Patterns use shell-style globs (fnmatch). Package names are compared after PEP 503
+# normalization (lowercase, runs of -_. become -).
+
+[ai]
+# Non-negotiable 1: no LLM calls, no embeddings, no ML models in the runtime.
+packages = [
+    "openai", "anthropic", "litellm", "langchain", "langchain-*", "langgraph*", "langsmith",
+    "llama-index*", "llama-cpp-python", "llamaindex*", "transformers", "torch", "torchvision",
+    "torchaudio", "tensorflow*", "keras", "jax", "jaxlib", "flax", "sentence-transformers",
+    "huggingface-hub", "tokenizers", "safetensors", "accelerate", "diffusers", "peft", "trl",
+    "vllm", "ollama", "cohere", "mistralai", "google-generativeai", "google-genai",
+    "google-cloud-aiplatform", "vertexai", "groq", "together", "replicate", "fireworks-ai",
+    "instructor", "dspy*", "guidance", "outlines", "semantic-kernel", "autogen*", "pyautogen",
+    "crewai*", "haystack-ai", "farm-haystack", "chromadb", "faiss*", "pinecone*", "weaviate*",
+    "qdrant-client", "lancedb", "sentencepiece", "onnx", "onnxruntime*", "scikit-learn",
+    "sklearn", "xgboost", "lightgbm", "catboost", "spacy", "nltk", "gensim", "fastai",
+    "dedupe", "dedupe-*", "splink", "recordlinkage", "zingg*", "fasttext*", "flair",
+    "stanza", "allennlp", "openai-*", "anthropic-*", "tiktoken", "voyageai", "jina*",
+    "boto3-bedrock*", "langfuse", "magentic", "marvin", "mirascope", "pydantic-ai*",
+    "smolagents", "agno", "phidata",
+]
+modules = [
+    "openai", "anthropic", "litellm", "langchain*", "langgraph*", "langsmith", "llama_index*",
+    "llama_cpp", "transformers", "torch", "torchvision", "tensorflow", "keras", "jax", "flax",
+    "sentence_transformers", "huggingface_hub", "tokenizers", "safetensors", "accelerate",
+    "diffusers", "peft", "trl", "vllm", "ollama", "cohere", "mistralai", "google.generativeai",
+    "google.genai", "vertexai", "groq", "together", "replicate", "instructor", "dspy",
+    "guidance", "outlines", "semantic_kernel", "autogen*", "crewai*", "haystack", "chromadb",
+    "faiss", "pinecone", "weaviate", "qdrant_client", "lancedb", "sentencepiece", "onnx",
+    "onnxruntime", "sklearn", "xgboost", "lightgbm", "catboost", "spacy", "nltk", "gensim",
+    "fastai", "dedupe", "splink", "recordlinkage", "fasttext", "flair", "stanza", "allennlp",
+    "tiktoken", "voyageai", "pydantic_ai", "smolagents",
+]
+# Hosted model endpoints. A raw HTTP call to one of these is an LLM call too.
+hosts = [
+    "api.openai.com", "api.anthropic.com", "generativelanguage.googleapis.com",
+    "aiplatform.googleapis.com", "api.mistral.ai", "api.cohere.ai", "api.cohere.com",
+    "api.groq.com", "api.together.xyz", "api.replicate.com", "api-inference.huggingface.co",
+    "router.huggingface.co", "bedrock-runtime", "openai.azure.com", "api.deepseek.com",
+    "api.x.ai", "api.perplexity.ai", "openrouter.ai",
+]
+
+[access]
+# Non-negotiable 6: no CAPTCHA solving, no login automation against public portals.
+packages = [
+    "anticaptchaofficial", "python-anticaptcha", "2captcha-python", "twocaptcha", "capsolver",
+    "capmonster-python", "deathbycaptcha*", "nopecha", "undetected-chromedriver",
+    "selenium-stealth", "playwright-stealth", "cloudscraper",
+]
+modules = [
+    "anticaptchaofficial", "python_anticaptcha", "twocaptcha", "capsolver", "capmonster_python",
+    "undetected_chromedriver", "selenium_stealth", "playwright_stealth", "cloudscraper",
+]
+hosts = [
+    "api.anti-captcha.com", "2captcha.com", "api.capsolver.com", "api.capmonster.cloud",
+]

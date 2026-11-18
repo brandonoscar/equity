@@ -1,0 +1,6 @@
+# Coverage floors (line + branch). Protected by CODEOWNERS. Never lower these to pass CI.
+overall = 80
+
+[packages]
+"equity/rules/" = 95
+"equity/matching/" = 95

@@ -1,0 +1,19 @@
+source_id: mi.macomb.parcels
+state: MI
+layer_url: https://services6.arcgis.com/K0qS4r8AEJxrE8em/arcgis/rest/services/Macomb_County_Parcel_Data/FeatureServer/10
+order_by: OBJECTID
+page_size: 1000          # maxRecordCount 2000
+min_interval_s: 1.0
+county: {constant: "099"}
+fields:
+  parcel_id: TAX_ID
+  owner1: ownername1
+  assessed_value: mborsev_0
+  tax_year: {const: 2026}
+value_basis: "mborsev_0 = State Equalized Value after the March Board of Review (Michigan SEV = 50% of true cash value); mbortax = taxable value (capped under Proposal A), not mapped. tax_year is the const 2026 (the 2026 March Board of Review roll; layer last edited 2026-10-20). Bump the const after the 2027 March Board of Review. No mailing address is published."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=60ba5af8824f4ff2a3ebb74a09eecc30
+  summary: "Macomb County, Michigan (ArcGIS Online org 'Macomb County, Michigan', MCMAP), 'Parcels (Macomb County Open Data)' tax parcels with owner name, SEV and taxable value. Public, free, no login, 332,993 rows on 2026-11-16. No licenseInfo on the item or its parent item. No commercial-use or mailing-list restriction found."
+  checked_on: 2026-11-16
+  robots_checked_on: 2026-11-16
+  cost_model: free

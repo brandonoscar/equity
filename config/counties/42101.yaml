@@ -1,0 +1,22 @@
+source_id: pa.philadelphia.parcels
+state: PA
+layer_url: https://services.arcgis.com/fLeGjb7u4uXqeF9q/arcgis/rest/services/OPA_PROPERTIES_PUBLIC/FeatureServer/0
+order_by: objectid
+page_size: 1000          # maxRecordCount 2000
+min_interval_s: 1.0
+county: {constant: "101"}
+fields:
+  parcel_id: parcel_number   # OPA account number
+  owner1: owner_1
+  owner2: owner_2
+  mail_line1: mailing_street   # delivery line; mailing_address_1 (an attention or company line on 66k rows) is not mapped
+  mail_zip: mailing_zip      # mailing_city_state is "CITY ST" in one string (not split; see report)
+  total_value: market_value
+  tax_year: {const: 2027}
+value_basis: "market_value = OPA certified market value (Philadelphia assesses at 100% of market value; taxable_land/taxable_building/exempt_* split it after exemptions and are not mapped). tax_year is the const 2027: the City's assessments layer (same org) gives year 2027 for the market_value now in OPA_PROPERTIES_PUBLIC, certified in spring 2026 (assessment_date 2026-04-29). Bump the const when OPA certifies tax year 2028. book_and_page is one string with no separator, so deed_book/deed_page are not mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=286094c5c9034a38b826afed954da6f3
+  summary: "City of Philadelphia Office of Property Assessment, OPA_PROPERTIES_PUBLIC ('Property characteristics, ownership information, and most recent assessment'), published by maps.phl.data (OpenDataPhilly). Free, no login, 583,715 rows on 2026-11-16. licenseInfo: 'The City of Philadelphia reserves all rights in the City's databases and any data contained therein ... makes no representation about the accuracy of any specific information in this data and is provided as is and without Warranty of any kind. The user of this data will assume complete responsibility for any and all occurrences resulting from its use or display and will hold the City of Philadelphia harmless'. No commercial-use or mailing-list restriction stated."
+  checked_on: 2026-11-16
+  robots_checked_on: 2026-11-16
+  cost_model: free

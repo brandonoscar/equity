@@ -1,0 +1,21 @@
+source_id: hi.statewide.parcels
+state: HI
+layer_url: https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServer/25
+order_by: objectid
+page_size: 1000
+min_interval_s: 1.0
+# county holds the county name. Kalawao County (005) has no separate rows: its parcels are in
+# Maui County's TMK data, so they key to 15009.
+county:
+  field: county
+  format: code_map
+  code_map: {"Hawaii": "001", "Honolulu": "003", "Kauai": "007", "Maui": "009"}
+fields:
+  parcel_id: tmk_txt
+value_basis: "no value, owner or tax-year fields in this layer (boundaries and TMK ids only); owner and assessed values are in each county's real property assessment data"
+terms:
+  url: https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServer/info/iteminfo
+  summary: "Hawaii Statewide GIS Program (Office of Planning and Sustainable Development) 'Statewide TMKs', merged from all 4 counties as of May 2026 (384,035 rows on 2026-11-15). Published disclaimer: derived from public records, not warranted for content or accuracy, not a legal representation; 'Attributes are for assessment purposes only and are subject to change at any time'. No license or commercial-use clause found. No robots.txt on host (404)."
+  checked_on: 2026-11-15
+  robots_checked_on: 2026-11-15
+  cost_model: free

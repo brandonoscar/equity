@@ -1,0 +1,281 @@
+{
+ "attributes": [
+  {
+   "FULL_OWNER": "TESTOWNER A1F074",
+   "Name": "23-0Q20P-009.-000000",
+   "OBJECTID": 1,
+   "OWNER_ADDR": " ",
+   "OWNER_AD_1": "TESTOWNER F21059",
+   "OWNER_CITY": "SABILLASVILLE",
+   "OWNER_STAT": "MD",
+   "OWNER_ZIP": "21780",
+   "SECOND_OWN": " "
+  },
+  {
+   "FULL_OWNER": "TESTOWNER A1F074",
+   "Name": "23-0Q20P-007.-000000",
+   "OBJECTID": 2,
+   "OWNER_ADDR": " ",
+   "OWNER_AD_1": "TESTOWNER F21059",
+   "OWNER_CITY": "SABILLASVILLE",
+   "OWNER_STAT": "MD",
+   "OWNER_ZIP": "21780",
+   "SECOND_OWN": " "
+  },
+  {
+   "FULL_OWNER": "TESTOWNER 405D69",
+   "Name": "23-0Q20Q-021.-000000",
+   "OBJECTID": 3,
+   "OWNER_ADDR": " ",
+   "OWNER_AD_1": "TESTOWNER C852B8",
+   "OWNER_CITY": "FLORENCE",
+   "OWNER_STAT": "SC",
+   "OWNER_ZIP": "29501",
+   "SECOND_OWN": " "
+  },
+  {
+   "FULL_OWNER": "TESTOWNER 8BBE95",
+   "Name": "23-0Q16.-089.-000000",
+   "OBJECTID": 4,
+   "OWNER_ADDR": " ",
+   "OWNER_AD_1": "TESTOWNER 457E11",
+   "OWNER_CITY": "WAYNESBORO",
+   "OWNER_STAT": "PA",
+   "OWNER_ZIP": "17268-9079",
+   "SECOND_OWN": " "
+  },
+  {
+   "FULL_OWNER": "TESTOWNER 182DE4",
+   "Name": "23-0Q20.-052.-000000",
+   "OBJECTID": 5,
+   "OWNER_ADDR": " ",
+   "OWNER_AD_1": "TESTOWNER 310455",
+   "OWNER_CITY": "WAYNESBORO",
+   "OWNER_STAT": "PA",
+   "OWNER_ZIP": "17268",
+   "SECOND_OWN": " "
+  },
+  {
+   "FULL_OWNER": "TESTOWNER 851449",
+   "Name": "23-0Q20Q-020.-000000",
+   "OBJECTID": 6,
+   "OWNER_ADDR": " ",
+   "OWNER_AD_1": "TESTOWNER 600E9A",
+   "OWNER_CITY": "KENSINGTON",
+   "OWNER_STAT": "MD",
+   "OWNER_ZIP": "20895",
+   "SECOND_OWN": " "
+  },
+  {
+   "FULL_OWNER": "TESTOWNER 0E6478 LLC",
+   "Name": "23-0Q19.-090.-000000",
+   "OBJECTID": 7,
+   "OWNER_ADDR": " ",
+   "OWNER_AD_1": "TESTOWNER 4F4533",
+   "OWNER_CITY": "HAGERSTOWN",
+   "OWNER_STAT": "MD",
+   "OWNER_ZIP": "21740",
+   "SECOND_OWN": " "
+  },
+  {
+   "FULL_OWNER": "TESTOWNER 0FA1EB",
+   "Name": "23-0Q20P-013A-000000",
+   "OBJECTID": 8,
+   "OWNER_ADDR": " ",
+   "OWNER_AD_1": "TESTOWNER 8CBCE3",
+   "OWNER_CITY": "SABILLASVILLE",
+   "OWNER_STAT": "MD",
+   "OWNER_ZIP": "21780",
+   "SECOND_OWN": " "
+  },
+  {
+   "FULL_OWNER": "TESTOWNER 988D59",
+   "Name": "23-0Q19.-344.-000000",
+   "OBJECTID": 9,
+   "OWNER_ADDR": " ",
+   "OWNER_AD_1": "TESTOWNER 7D804A",
+   "OWNER_CITY": "WAYNESBORO",
+   "OWNER_STAT": "PA",
+   "OWNER_ZIP": "17268",
+   "SECOND_OWN": " "
+  },
+  {
+   "FULL_OWNER": "TESTOWNER 2BACD8",
+   "Name": "23-0Q19.-091.-000000",
+   "OBJECTID": 10,
+   "OWNER_ADDR": " ",
+   "OWNER_AD_1": "TESTOWNER F7CE14",
+   "OWNER_CITY": "CASCADE",
+   "OWNER_STAT": "MD",
+   "OWNER_ZIP": "21719",
+   "SECOND_OWN": " "
+  },
+  {
+   "FULL_OWNER": "TESTOWNER 0FA1EB",
+   "Name": "23-0Q20P-010.-000000",
+   "OBJECTID": 11,
+   "OWNER_ADDR": " ",
+   "OWNER_AD_1": "TESTOWNER 8CBCE3",
+   "OWNER_CITY": "SABILLASVILLE",
+   "OWNER_STAT": "MD",
+   "OWNER_ZIP": "21780",
+   "SECOND_OWN": " "
+  },
+  {
+   "FULL_OWNER": "TESTOWNER 7FA87F LLC",
+   "Name": "23-0Q20P-006B-000000",
+   "OBJECTID": 12,
+   "OWNER_ADDR": " ",
+   "OWNER_AD_1": "TESTOWNER B045B4",
+   "OWNER_CITY": "WASHINGTON",
+   "OWNER_STAT": "DC",
+   "OWNER_ZIP": "20015",
+   "SECOND_OWN": " "
+  },
+  {
+   "FULL_OWNER": "TESTOWNER 4AE8D4",
+   "Name": "23-0Q20Q-062A-000000",
+   "OBJECTID": 13,
+   "OWNER_ADDR": " ",
+   "OWNER_AD_1": "TESTOWNER EF7796",
+   "OWNER_CITY": "SABILLASVILLE",
+   "OWNER_STAT": "MD",
+   "OWNER_ZIP": "21780",
+   "SECOND_OWN": " "
+  },
+  {
+   "FULL_OWNER": "TESTOWNER 8F8E96",
+   "Name": "23-0Q20Q-062.-000000",
+   "OBJECTID": 14,
+   "OWNER_ADDR": " ",
+   "OWNER_AD_1": "TESTOWNER E4FD83",
+   "OWNER_CITY": "SABILLASVILLE",
+   "OWNER_STAT": "MD",
+   "OWNER_ZIP": "21780",
+   "SECOND_OWN": " "
+  },
+  {
+   "FULL_OWNER": "TESTOWNER 3BB9D9",
+   "Name": "23-0Q20Q-013.-000000",
+   "OBJECTID": 15,
+   "OWNER_ADDR": " ",
+   "OWNER_AD_1": "TESTOWNER 5EB03F",
+   "OWNER_CITY": "BRADDOCK HEIGHTS",
+   "OWNER_STAT": "MD",
+   "OWNER_ZIP": "21714",
+   "SECOND_OWN": " "
+  },
+  {
+   "FULL_OWNER": "TESTOWNER B1CD52",
+   "Name": "23-0Q19.-092.-000000",
+   "OBJECTID": 16,
+   "OWNER_ADDR": " ",
+   "OWNER_AD_1": "TESTOWNER CE634E",
+   "OWNER_CITY": "WAYNESBORO",
+   "OWNER_STAT": "PA",
+   "OWNER_ZIP": "17268",
+   "SECOND_OWN": " "
+  },
+  {
+   "FULL_OWNER": "TESTOWNER 221A5F",
+   "Name": "23-0Q19.-384.-000000",
+   "OBJECTID": 17,
+   "OWNER_ADDR": " ",
+   "OWNER_AD_1": "TESTOWNER E691FC",
+   "OWNER_CITY": "WAYNESBORO",
+   "OWNER_STAT": "PA",
+   "OWNER_ZIP": "17268",
+   "SECOND_OWN": "TESTOWNER 818A9C"
+  },
+  {
+   "FULL_OWNER": "TESTOWNER 67D2C6",
+   "Name": "23-0Q19.-066A-000000",
+   "OBJECTID": 18,
+   "OWNER_ADDR": " ",
+   "OWNER_AD_1": "TESTOWNER 0F1D67",
+   "OWNER_CITY": "WAYNESBORO",
+   "OWNER_STAT": "PA",
+   "OWNER_ZIP": "17268",
+   "SECOND_OWN": "TESTOWNER 2EB92C"
+  },
+  {
+   "FULL_OWNER": "TESTOWNER C584B7",
+   "Name": "23-0Q20P-034.-000000",
+   "OBJECTID": 19,
+   "OWNER_ADDR": " ",
+   "OWNER_AD_1": "TESTOWNER 655163",
+   "OWNER_CITY": "CASCADE",
+   "OWNER_STAT": "MD",
+   "OWNER_ZIP": "21719",
+   "SECOND_OWN": " "
+  },
+  {
+   "FULL_OWNER": "TESTOWNER BEC683",
+   "Name": "23-0Q19.-092A-000000",
+   "OBJECTID": 20,
+   "OWNER_ADDR": " ",
+   "OWNER_AD_1": "TESTOWNER 152B5F",
+   "OWNER_CITY": "CARROLL VALLEY",
+   "OWNER_STAT": "PA",
+   "OWNER_ZIP": "17320",
+   "SECOND_OWN": " "
+  },
+  {
+   "FULL_OWNER": "TESTOWNER F089AC",
+   "Name": "23-0Q19.-383.-000000",
+   "OBJECTID": 21,
+   "OWNER_ADDR": " ",
+   "OWNER_AD_1": "TESTOWNER 77E090",
+   "OWNER_CITY": "WAYNESBORO",
+   "OWNER_STAT": "PA",
+   "OWNER_ZIP": "17268",
+   "SECOND_OWN": " "
+  },
+  {
+   "FULL_OWNER": "TESTOWNER 270A43",
+   "Name": "23-0Q20.-135.-000000",
+   "OBJECTID": 22,
+   "OWNER_ADDR": " ",
+   "OWNER_AD_1": "TESTOWNER 4AB8F9",
+   "OWNER_CITY": "WAYNESBORO",
+   "OWNER_STAT": "PA",
+   "OWNER_ZIP": "17268",
+   "SECOND_OWN": "TESTOWNER 0E380C"
+  },
+  {
+   "FULL_OWNER": "TESTOWNER 71153D",
+   "Name": "23-0Q19.-200.-000000",
+   "OBJECTID": 23,
+   "OWNER_ADDR": " ",
+   "OWNER_AD_1": "TESTOWNER 8BE46B",
+   "OWNER_CITY": "ROUZERVILLE",
+   "OWNER_STAT": "PA",
+   "OWNER_ZIP": "17250",
+   "SECOND_OWN": " "
+  },
+  {
+   "FULL_OWNER": "TESTOWNER DD5092 LLC",
+   "Name": "23-0Q20P-013.-000000",
+   "OBJECTID": 24,
+   "OWNER_ADDR": " ",
+   "OWNER_AD_1": "TESTOWNER 89E340",
+   "OWNER_CITY": "WAYNESBORO",
+   "OWNER_STAT": "PA",
+   "OWNER_ZIP": "17268",
+   "SECOND_OWN": " "
+  },
+  {
+   "FULL_OWNER": "TESTOWNER 89E2B0",
+   "Name": "23-0Q19.-345.-000000",
+   "OBJECTID": 25,
+   "OWNER_ADDR": " ",
+   "OWNER_AD_1": "TESTOWNER F8110E",
+   "OWNER_CITY": "WAYNESBORO",
+   "OWNER_STAT": "PA",
+   "OWNER_ZIP": "17268",
+   "SECOND_OWN": " "
+  }
+ ],
+ "layer": "https://mapservices.pasda.psu.edu/server/rest/services/pasda/FranklinCounty/MapServer/0",
+ "where": "1=1"
+}

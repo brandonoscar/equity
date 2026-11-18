@@ -1,0 +1,31 @@
+source_id: al.madison.parcels
+state: AL
+# Madison County AL parcels with Revenue Commission owner, mailing, values and deed, published
+# by the City of Madison on its public-facing data viewer service (countywide, not only the city).
+layer_url: https://maps.madisonal.gov/arcgis/rest/services/DV_BoundariesPro_MIL1/MapServer/10
+order_by: OBJECTID
+page_size: 1000          # maxRecordCount 2000
+min_interval_s: 1.0
+county: {constant: "089"}
+# One row per parcel per tax year: 190,671 rows for 2026 (190,615 distinct ParcelNum; the rest
+# are multipart duplicates), 14,504 rows for 2027 (next year's records, assessed value 0) and
+# 1,173 rows with no TaxYear or ParcelNum. Keep the current roll only. Bump when 2027 is billed.
+filter: "TaxYear = 2026"
+fields:
+  parcel_id: ParcelNum     # e.g. 04-07-36-0-001-055.000; PIN is the numeric account key
+  owner1: AccountOwner     # tax-account owner ('LAST, FIRST ...'); PropertyOwner (long free text with fractional interests) is not mapped
+  mail_full: MailingAddress   # 'STREET, CITY, ST ZIP[-4]'
+  land_value: TotalLandValue
+  bldg_value: TotalBuildingValue
+  total_value: TotalAppraisedValue
+  assessed_value: TotalAssessedValue
+  tax_year: TaxYear
+  deed_book: DeedBook      # modern instruments use the year as book and the instrument number as page
+  deed_page: DeedPage
+value_basis: "TotalLandValue/TotalBuildingValue/TotalAppraisedValue = Revenue Commission appraised (market) value; TotalAssessedValue = assessed value (10% residential / 20% other classes in Alabama). TotalUseValue (current-use value) is not mapped. tax_year = TaxYear, restricted to 2026 by the filter. Alabama values property as of October 1 of the prior year; the adapter's tax_year_jan1 rule dates the 2026 assessment 2026-01-01."
+terms:
+  url: https://maps.madisonal.gov/arcgis/rest/services/DV_BoundariesPro_MIL1/MapServer
+  summary: "City of Madison AL GIS, 'External, Public-Facing Interactive Web Map' service, layer 'Madison County Parcels' (Madison County Revenue Commission data). Free, no login, 206,348 rows (190,671 for tax year 2026) on 2026-11-16. No license, use-constraint or copyright text in the service or item metadata."
+  checked_on: 2026-11-16
+  robots_checked_on: 2026-11-16
+  cost_model: free

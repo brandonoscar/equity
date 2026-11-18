@@ -1,0 +1,181 @@
+{
+ "attributes": [
+  {
+   "COUNTY_NM": "1",
+   "OBJECTID": 1,
+   "ORIG_PARCEL_ID": "2038010000001",
+   "VALUE_BLDG": 0,
+   "VALUE_LAND": 111100
+  },
+  {
+   "COUNTY_NM": "1",
+   "OBJECTID": 2,
+   "ORIG_PARCEL_ID": "2038020000001",
+   "VALUE_BLDG": 0,
+   "VALUE_LAND": 118700
+  },
+  {
+   "COUNTY_NM": "1",
+   "OBJECTID": 3,
+   "ORIG_PARCEL_ID": "2038030000001",
+   "VALUE_BLDG": 0,
+   "VALUE_LAND": 119400
+  },
+  {
+   "COUNTY_NM": "1",
+   "OBJECTID": 4,
+   "ORIG_PARCEL_ID": "2038040000001",
+   "VALUE_BLDG": 0,
+   "VALUE_LAND": 125700
+  },
+  {
+   "COUNTY_NM": "1",
+   "OBJECTID": 5,
+   "ORIG_PARCEL_ID": "2038050000001",
+   "VALUE_BLDG": 0,
+   "VALUE_LAND": 139600
+  },
+  {
+   "COUNTY_NM": "1",
+   "OBJECTID": 6,
+   "ORIG_PARCEL_ID": "2037020000001",
+   "VALUE_BLDG": 0,
+   "VALUE_LAND": 342100
+  },
+  {
+   "COUNTY_NM": "1",
+   "OBJECTID": 7,
+   "ORIG_PARCEL_ID": "2037030300001",
+   "VALUE_BLDG": 1600,
+   "VALUE_LAND": 454200
+  },
+  {
+   "COUNTY_NM": "1",
+   "OBJECTID": 8,
+   "ORIG_PARCEL_ID": "2037030220001",
+   "VALUE_BLDG": 0,
+   "VALUE_LAND": 20100
+  },
+  {
+   "COUNTY_NM": "1",
+   "OBJECTID": 9,
+   "ORIG_PARCEL_ID": "2037040100001",
+   "VALUE_BLDG": 0,
+   "VALUE_LAND": 59500
+  },
+  {
+   "COUNTY_NM": "1",
+   "OBJECTID": 10,
+   "ORIG_PARCEL_ID": "2037050000001",
+   "VALUE_BLDG": 0,
+   "VALUE_LAND": 101900
+  },
+  {
+   "COUNTY_NM": "1",
+   "OBJECTID": 11,
+   "ORIG_PARCEL_ID": "2037060000001",
+   "VALUE_BLDG": 0,
+   "VALUE_LAND": 173300
+  },
+  {
+   "COUNTY_NM": "1",
+   "OBJECTID": 12,
+   "ORIG_PARCEL_ID": "2036030000001",
+   "VALUE_BLDG": 0,
+   "VALUE_LAND": 180900
+  },
+  {
+   "COUNTY_NM": "1",
+   "OBJECTID": 13,
+   "ORIG_PARCEL_ID": "2036040100001",
+   "VALUE_BLDG": 0,
+   "VALUE_LAND": 39800
+  },
+  {
+   "COUNTY_NM": "1",
+   "OBJECTID": 14,
+   "ORIG_PARCEL_ID": "2036050000001",
+   "VALUE_BLDG": 0,
+   "VALUE_LAND": 327700
+  },
+  {
+   "COUNTY_NM": "1",
+   "OBJECTID": 15,
+   "ORIG_PARCEL_ID": "2037040400001",
+   "VALUE_BLDG": 58400,
+   "VALUE_LAND": 229000
+  },
+  {
+   "COUNTY_NM": "1",
+   "OBJECTID": 16,
+   "ORIG_PARCEL_ID": "2038110000001",
+   "VALUE_BLDG": 0,
+   "VALUE_LAND": 161600
+  },
+  {
+   "COUNTY_NM": "1",
+   "OBJECTID": 17,
+   "ORIG_PARCEL_ID": "2038100000001",
+   "VALUE_BLDG": 0,
+   "VALUE_LAND": 154000
+  },
+  {
+   "COUNTY_NM": "1",
+   "OBJECTID": 18,
+   "ORIG_PARCEL_ID": "2036040300001",
+   "VALUE_BLDG": 0,
+   "VALUE_LAND": 71000
+  },
+  {
+   "COUNTY_NM": "1",
+   "OBJECTID": 19,
+   "ORIG_PARCEL_ID": "2038090000001",
+   "VALUE_BLDG": 0,
+   "VALUE_LAND": 163800
+  },
+  {
+   "COUNTY_NM": "1",
+   "OBJECTID": 20,
+   "ORIG_PARCEL_ID": "2038080000001",
+   "VALUE_BLDG": 0,
+   "VALUE_LAND": 287300
+  },
+  {
+   "COUNTY_NM": "1",
+   "OBJECTID": 21,
+   "ORIG_PARCEL_ID": "2037040330001",
+   "VALUE_BLDG": 0,
+   "VALUE_LAND": 10100
+  },
+  {
+   "COUNTY_NM": "1",
+   "OBJECTID": 22,
+   "ORIG_PARCEL_ID": "2038060330001",
+   "VALUE_BLDG": 0,
+   "VALUE_LAND": 800
+  },
+  {
+   "COUNTY_NM": "1",
+   "OBJECTID": 23,
+   "ORIG_PARCEL_ID": "2038070220001",
+   "VALUE_BLDG": 0,
+   "VALUE_LAND": 5000
+  },
+  {
+   "COUNTY_NM": "1",
+   "OBJECTID": 24,
+   "ORIG_PARCEL_ID": "2037100100001",
+   "VALUE_BLDG": 0,
+   "VALUE_LAND": 107500
+  },
+  {
+   "COUNTY_NM": "1",
+   "OBJECTID": 25,
+   "ORIG_PARCEL_ID": "2037100200001",
+   "VALUE_BLDG": 0,
+   "VALUE_LAND": 33300
+  }
+ ],
+ "layer": "https://services.arcgis.com/jsIt88o09Q0r1j8h/ArcGIS/rest/services/Current_Parcels/FeatureServer/0",
+ "where": "1=1"
+}

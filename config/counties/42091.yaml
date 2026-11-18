@@ -1,0 +1,26 @@
+source_id: pa.montgomery.parcels
+state: PA
+layer_url: https://services1.arcgis.com/kOChldNuKsox8qZD/arcgis/rest/services/Montgomery_County_Parcels/FeatureServer/6
+order_by: OBJECTID
+page_size: 1000          # maxRecordCount 1000
+min_interval_s: 1.0
+county: {constant: "091"}
+fields:
+  parcel_id: PARCEL
+  owner1: OWN1
+  owner2: OWN2
+  mail_line1: ADDR1
+  mail_line2: ADDR2
+  mail_zip: ZIP1_ZIP2        # ADDR3 is "CITY ST ZIP" in one string (not split; see report)
+  total_value: TOTAL_APPR
+  assessed_value: TOTAL_ASSE
+  tax_year: {const: 2026}
+  deed_book: DEED_BOOK
+  deed_page: DEED_PAGE
+value_basis: "TOTAL_APPR = total appraised value; TOTAL_ASSE = total assessed value (Montgomery County uses a base-year system with assessed = appraised). No tax-year field: tax_year is the const 2026, the current county/municipal tax year, because the monthly assessment extract was last changed 2025-12-17 (ASSMT_CHGD) for most parcels. Bump the const each January. DEED_BOOK/DEED_PAGE = recorder of deeds book and page of the last deed."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=228cad7975554088a350bee4caf3ca45
+  summary: "Montgomery County PA GIS (Montco_GIS), 'Parcel boundaries and property assessment information ... a download from the county's assessment database and is updated monthly'. Free, no login, 310,164 rows on 2026-11-16. licenseInfo: 'Montgomery County provides this data as a free and open resource ... All data is provided as is without warranties of any kind ... it should not be construed or used as a legal description.' No commercial-use or mailing-list restriction stated."
+  checked_on: 2026-11-16
+  robots_checked_on: 2026-11-16
+  cost_model: free

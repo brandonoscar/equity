@@ -1,0 +1,43 @@
+# DRAFT, not installed: services.arcgis.com answers /robots.txt with HTTP 403 ("Invalid URL"),
+# which equity.adapters.http.PoliteClient treats as disallow-all. Verified live with curl 2026-11-15.
+source_id: wa.statewide.parcels
+state: WA
+layer_url: https://services.arcgis.com/jsIt88o09Q0r1j8h/ArcGIS/rest/services/Current_Parcels/FeatureServer/0
+order_by: OBJECTID
+page_size: 1000
+min_interval_s: 1.0
+# COUNTY_NM holds the county FIPS number without leading zeros ("1", "33") for most counties and
+# a name for four ("GraysHarbor", "PendOreille", "SanJuan", "Walla Walla"). FIPS_NR is null for
+# every Asotin row, so COUNTY_NM is the only complete county key.
+county:
+  field: COUNTY_NM
+  format: code_map
+  code_map: {
+    "001": "001", "1": "001", "003": "003", "3": "003", "005": "005", "5": "005",
+    "007": "007", "7": "007", "009": "009", "9": "009", "011": "011", "11": "011",
+    "013": "013", "13": "013", "015": "015", "15": "015", "017": "017", "17": "017",
+    "019": "019", "19": "019", "021": "021", "21": "021", "023": "023", "23": "023",
+    "025": "025", "25": "025", "027": "027", "27": "027", "029": "029", "29": "029",
+    "031": "031", "31": "031", "033": "033", "33": "033", "035": "035", "35": "035",
+    "037": "037", "37": "037", "039": "039", "39": "039", "041": "041", "41": "041",
+    "043": "043", "43": "043", "045": "045", "45": "045", "047": "047", "47": "047",
+    "049": "049", "49": "049", "051": "051", "51": "051", "053": "053", "53": "053",
+    "055": "055", "55": "055", "057": "057", "57": "057", "059": "059", "59": "059",
+    "061": "061", "61": "061", "063": "063", "63": "063", "065": "065", "65": "065",
+    "067": "067", "67": "067", "069": "069", "69": "069", "071": "071", "71": "071",
+    "073": "073", "73": "073", "075": "075", "75": "075", "077": "077", "77": "077",
+    "GraysHarbor": "027", "Grays Harbor": "027", "PendOreille": "051", "Pend Oreille": "051",
+    "SanJuan": "055", "San Juan": "055", "Walla Walla": "071", "WallaWalla": "071"
+  }
+fields:
+  parcel_id: ORIG_PARCEL_ID
+  land_value: VALUE_LAND
+  bldg_value: VALUE_BLDG
+  tax_year: {const: 2026}
+value_basis: "VALUE_LAND = 'Market Land Value', VALUE_BLDG = 'Market Building Value' as supplied by each county assessor (no total field); layer is the annual 'Parcels_2026' snapshot (updated April 2026) with no tax-year field, so tax_year is the constant 2026 (snapshot vintage), not a certified roll year"
+terms:
+  url: https://services.arcgis.com/jsIt88o09Q0r1j8h/ArcGIS/rest/services/Current_Parcels/FeatureServer/info/iteminfo
+  summary: "WaTech / Washington State Geoportal statewide parcels, public no-owner version (39 of 39 counties, 3,321,859 rows on 2026-11-15). License text: provided 'for informational purposes only', not for legal, engineering or surveying purposes, 'as a convenience to the public', no warranty; no commercial-use or resale clause found. Owner/taxpayer names exist only in a state-internal version (not used). Host services.arcgis.com serves no robots.txt."
+  checked_on: 2026-11-15
+  robots_checked_on: 2026-11-15
+  cost_model: free

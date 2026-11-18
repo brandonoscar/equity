@@ -1,0 +1,206 @@
+{
+ "attributes": [
+  {
+   "ACCTID": "0101088483",
+   "JURSCODE": "ALLE",
+   "NFMIMPVL": 146800,
+   "NFMLNDVL": 52100,
+   "NFMTTLVL": 198900,
+   "OBJECTID": 1
+  },
+  {
+   "ACCTID": "0101088491",
+   "JURSCODE": "ALLE",
+   "NFMIMPVL": null,
+   "NFMLNDVL": 1900,
+   "NFMTTLVL": 1900,
+   "OBJECTID": 2
+  },
+  {
+   "ACCTID": "0101088521",
+   "JURSCODE": "ALLE",
+   "NFMIMPVL": null,
+   "NFMLNDVL": 55500,
+   "NFMTTLVL": 55500,
+   "OBJECTID": 3
+  },
+  {
+   "ACCTID": "0101088874",
+   "JURSCODE": "ALLE",
+   "NFMIMPVL": 81800,
+   "NFMLNDVL": 55400,
+   "NFMTTLVL": 137200,
+   "OBJECTID": 4
+  },
+  {
+   "ACCTID": "0101088920",
+   "JURSCODE": "ALLE",
+   "NFMIMPVL": 214900,
+   "NFMLNDVL": 76300,
+   "NFMTTLVL": 291200,
+   "OBJECTID": 5
+  },
+  {
+   "ACCTID": "0101089048",
+   "JURSCODE": "ALLE",
+   "NFMIMPVL": 61800,
+   "NFMLNDVL": 48300,
+   "NFMTTLVL": 110100,
+   "OBJECTID": 6
+  },
+  {
+   "ACCTID": "0101089056",
+   "JURSCODE": "ALLE",
+   "NFMIMPVL": null,
+   "NFMLNDVL": 52000,
+   "NFMTTLVL": 52000,
+   "OBJECTID": 7
+  },
+  {
+   "ACCTID": "0101089064",
+   "JURSCODE": "ALLE",
+   "NFMIMPVL": 129700,
+   "NFMLNDVL": 44900,
+   "NFMTTLVL": 174600,
+   "OBJECTID": 8
+  },
+  {
+   "ACCTID": "0101089072",
+   "JURSCODE": "ALLE",
+   "NFMIMPVL": 116400,
+   "NFMLNDVL": 48200,
+   "NFMTTLVL": 164600,
+   "OBJECTID": 9
+  },
+  {
+   "ACCTID": "0101089080",
+   "JURSCODE": "ALLE",
+   "NFMIMPVL": 187300,
+   "NFMLNDVL": 52100,
+   "NFMTTLVL": 239400,
+   "OBJECTID": 10
+  },
+  {
+   "ACCTID": "0101089099",
+   "JURSCODE": "ALLE",
+   "NFMIMPVL": null,
+   "NFMLNDVL": 3900,
+   "NFMTTLVL": 3900,
+   "OBJECTID": 11
+  },
+  {
+   "ACCTID": "0101089102",
+   "JURSCODE": "ALLE",
+   "NFMIMPVL": null,
+   "NFMLNDVL": 5800,
+   "NFMTTLVL": 5800,
+   "OBJECTID": 12
+  },
+  {
+   "ACCTID": "0101089110",
+   "JURSCODE": "ALLE",
+   "NFMIMPVL": null,
+   "NFMLNDVL": 40500,
+   "NFMTTLVL": 40500,
+   "OBJECTID": 13
+  },
+  {
+   "ACCTID": "0101089137",
+   "JURSCODE": "ALLE",
+   "NFMIMPVL": null,
+   "NFMLNDVL": 38800,
+   "NFMTTLVL": 38800,
+   "OBJECTID": 14
+  },
+  {
+   "ACCTID": "0101089307",
+   "JURSCODE": "ALLE",
+   "NFMIMPVL": 61800,
+   "NFMLNDVL": 67000,
+   "NFMTTLVL": 128800,
+   "OBJECTID": 15
+  },
+  {
+   "ACCTID": "0101089315",
+   "JURSCODE": "ALLE",
+   "NFMIMPVL": 2700,
+   "NFMLNDVL": 43700,
+   "NFMTTLVL": 46400,
+   "OBJECTID": 16
+  },
+  {
+   "ACCTID": "0101089323",
+   "JURSCODE": "ALLE",
+   "NFMIMPVL": null,
+   "NFMLNDVL": 55200,
+   "NFMTTLVL": 55200,
+   "OBJECTID": 17
+  },
+  {
+   "ACCTID": "0101089331",
+   "JURSCODE": "ALLE",
+   "NFMIMPVL": null,
+   "NFMLNDVL": 47900,
+   "NFMTTLVL": 47900,
+   "OBJECTID": 18
+  },
+  {
+   "ACCTID": "0101089358",
+   "JURSCODE": "ALLE",
+   "NFMIMPVL": null,
+   "NFMLNDVL": 2800,
+   "NFMTTLVL": 2800,
+   "OBJECTID": 19
+  },
+  {
+   "ACCTID": "0101089366",
+   "JURSCODE": "ALLE",
+   "NFMIMPVL": null,
+   "NFMLNDVL": 5600,
+   "NFMTTLVL": 5600,
+   "OBJECTID": 20
+  },
+  {
+   "ACCTID": "0101089536",
+   "JURSCODE": "ALLE",
+   "NFMIMPVL": 86300,
+   "NFMLNDVL": 63100,
+   "NFMTTLVL": 149400,
+   "OBJECTID": 21
+  },
+  {
+   "ACCTID": "0101089544",
+   "JURSCODE": "ALLE",
+   "NFMIMPVL": 239700,
+   "NFMLNDVL": 52100,
+   "NFMTTLVL": 291800,
+   "OBJECTID": 22
+  },
+  {
+   "ACCTID": "0101089625",
+   "JURSCODE": "ALLE",
+   "NFMIMPVL": 343300,
+   "NFMLNDVL": 58000,
+   "NFMTTLVL": 401300,
+   "OBJECTID": 23
+  },
+  {
+   "ACCTID": "0101089633",
+   "JURSCODE": "ALLE",
+   "NFMIMPVL": null,
+   "NFMLNDVL": 900,
+   "NFMTTLVL": 900,
+   "OBJECTID": 24
+  },
+  {
+   "ACCTID": "0101089641",
+   "JURSCODE": "ALLE",
+   "NFMIMPVL": 261500,
+   "NFMLNDVL": 59900,
+   "NFMTTLVL": 321400,
+   "OBJECTID": 25
+  }
+ ],
+ "layer": "https://mdgeodata.md.gov/imap/rest/services/PlanningCadastre/MD_PropertyData/MapServer/0",
+ "where": "1=1"
+}

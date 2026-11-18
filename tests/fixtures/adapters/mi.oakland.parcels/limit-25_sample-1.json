@@ -1,0 +1,131 @@
+{
+ "attributes": [
+  {
+   "ASSESSEDVALUE": 1024850,
+   "KEYPIN": "2536483012",
+   "OBJECTID_12": 1
+  },
+  {
+   "ASSESSEDVALUE": 808730,
+   "KEYPIN": "2536483011",
+   "OBJECTID_12": 2
+  },
+  {
+   "ASSESSEDVALUE": 262280,
+   "KEYPIN": "2536483007",
+   "OBJECTID_12": 3
+  },
+  {
+   "ASSESSEDVALUE": 703700,
+   "KEYPIN": "2536482003",
+   "OBJECTID_12": 4
+  },
+  {
+   "ASSESSEDVALUE": 116660,
+   "KEYPIN": "2536482002",
+   "OBJECTID_12": 5
+  },
+  {
+   "ASSESSEDVALUE": 103120,
+   "KEYPIN": "2536481037",
+   "OBJECTID_12": 6
+  },
+  {
+   "ASSESSEDVALUE": 9600,
+   "KEYPIN": "2536481036",
+   "OBJECTID_12": 7
+  },
+  {
+   "ASSESSEDVALUE": 9600,
+   "KEYPIN": "2536481035",
+   "OBJECTID_12": 8
+  },
+  {
+   "ASSESSEDVALUE": 79270,
+   "KEYPIN": "2536481028",
+   "OBJECTID_12": 9
+  },
+  {
+   "ASSESSEDVALUE": 47840,
+   "KEYPIN": "2536481027",
+   "OBJECTID_12": 10
+  },
+  {
+   "ASSESSEDVALUE": 107530,
+   "KEYPIN": "2536481026",
+   "OBJECTID_12": 11
+  },
+  {
+   "ASSESSEDVALUE": 78340,
+   "KEYPIN": "2536481025",
+   "OBJECTID_12": 12
+  },
+  {
+   "ASSESSEDVALUE": 125440,
+   "KEYPIN": "2536481024",
+   "OBJECTID_12": 13
+  },
+  {
+   "ASSESSEDVALUE": 39910,
+   "KEYPIN": "2536481023",
+   "OBJECTID_12": 14
+  },
+  {
+   "ASSESSEDVALUE": 150710,
+   "KEYPIN": "2536481022",
+   "OBJECTID_12": 15
+  },
+  {
+   "ASSESSEDVALUE": 150020,
+   "KEYPIN": "2536481021",
+   "OBJECTID_12": 16
+  },
+  {
+   "ASSESSEDVALUE": 98780,
+   "KEYPIN": "2536481019",
+   "OBJECTID_12": 17
+  },
+  {
+   "ASSESSEDVALUE": 151400,
+   "KEYPIN": "2536481018",
+   "OBJECTID_12": 18
+  },
+  {
+   "ASSESSEDVALUE": 52160,
+   "KEYPIN": "2536481017",
+   "OBJECTID_12": 19
+  },
+  {
+   "ASSESSEDVALUE": 42390,
+   "KEYPIN": "2536481016",
+   "OBJECTID_12": 20
+  },
+  {
+   "ASSESSEDVALUE": 43130,
+   "KEYPIN": "2536481015",
+   "OBJECTID_12": 21
+  },
+  {
+   "ASSESSEDVALUE": 70410,
+   "KEYPIN": "2536481014",
+   "OBJECTID_12": 22
+  },
+  {
+   "ASSESSEDVALUE": 62970,
+   "KEYPIN": "2536481013",
+   "OBJECTID_12": 23
+  },
+  {
+   "ASSESSEDVALUE": 58610,
+   "KEYPIN": "2536481012",
+   "OBJECTID_12": 24
+  },
+  {
+   "ASSESSEDVALUE": 71500,
+   "KEYPIN": "2536481011",
+   "OBJECTID_12": 25
+  }
+ ],
+ "layer": "https://gisservices.oakgov.com/arcgis/rest/services/Enterprise/EnterpriseOpenParcelDataMapService/MapServer/1",
+ "where": "1=1"
+}

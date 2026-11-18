@@ -1,0 +1,22 @@
+# Federal courts whose public CM/ECF "Recent Entries" RSS feed is ingested.
+# Host is https://ecf.<id>.uscourts.gov/cgi-bin/rss_outside.pl. Free, no login, no PACER fee.
+# Bankruptcy court ids end in "b". Order: the buyer's enforcement states first, then pilot.
+schema_version: 1
+# Courts with a recorded fixture and a reachable host. Others are planned.
+enabled: [flmb, flsb, flnb, nysb, paeb, ohnb, njb, ganb, txnb]  # nyeb, txsb: feed not RSS when checked 2026-11-16
+courts:
+  FL: [flnd, flmd, flsd, flnb, flmb, flsb]
+  OH: [ohnd, ohsd, ohnb, ohsb]
+  LA: [laed, lamd, lawd, laeb, lamb, lawb]
+  NY: [nynd, nyed, nysd, nywd, nynb, nyeb, nysb, nywb]
+  NJ: [njd, njb]
+  IN: [innd, insd, innb, insb]
+  MI: [mied, miwd, mieb, miwb]
+  GA: [gand, gamd, gasd, ganb, gamb, gasb]
+  AL: [alnd, almd, alsd, alnb, almb, alsb]
+  TX: [txnd, txed, txsd, txwd, txnb, txeb, txsb, txwb]
+  CA: [cand, caed, cacd, casd, canb, caeb, cacb, casb]
+  NC: [nced, ncmd, ncwd, nceb, ncmb, ncwb]
+  SC: [scd, scb]
+  PA: [paed, pamd, pawd, paeb, pamb, pawb]
+  WV: [wvnd, wvsd, wvnb, wvsb]

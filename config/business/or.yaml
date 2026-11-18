@@ -1,0 +1,24 @@
+# Oregon Secretary of State, "Active Businesses - ALL" (data.oregon.gov tckn-sxa6): one row per
+# associated name (registered agent, authorized representative, principal place of business,
+# mailing address), grouped here by registry_number.
+# TODO(Brandon): authorized representatives are "other"; role valid_from is the registry date.
+source_id: or.sos.business
+state: OR
+jurisdiction: "41"
+portal: https://data.oregon.gov
+dataset: tckn-sxa6
+key: registry_number
+terms_url: https://data.oregon.gov/Business/Active-Businesses-ALL/tckn-sxa6
+terms_summary: "Public record published by the Secretary of State; no license text on the dataset."
+checked_on: 2026-11-16
+business:
+  name: business_name
+  formed_on: registry_date
+grouped:
+  type_field: associated_name_type
+  address: {street: [address, address_continued], city: city, state: state, zip: zip}
+  addresses: {PRINCIPAL PLACE OF BUSINESS: principal, MAILING ADDRESS: mailing}
+  roles:
+    REGISTERED AGENT: {role: registered_agent, org: entity_of_record_name, name_parts: [first_name, middle_name, last_name, suffix]}
+    AUTHORIZED REPRESENTATIVE: {role: other, org: entity_of_record_name, name_parts: [first_name, middle_name, last_name, suffix]}
+pii_fields: [business_name, first_name, middle_name, last_name, entity_of_record_name, address, address_continued]

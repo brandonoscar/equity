@@ -1,0 +1,131 @@
+{
+ "attributes": [
+  {
+   "OBJECTID": 1,
+   "PlatLot": "NK 001-001",
+   "TownCode": "NK"
+  },
+  {
+   "OBJECTID": 2,
+   "PlatLot": "NK 001-002",
+   "TownCode": "NK"
+  },
+  {
+   "OBJECTID": 3,
+   "PlatLot": "NK 001-003",
+   "TownCode": "NK"
+  },
+  {
+   "OBJECTID": 4,
+   "PlatLot": "NK 001-004",
+   "TownCode": "NK"
+  },
+  {
+   "OBJECTID": 5,
+   "PlatLot": "NK 001-007",
+   "TownCode": "NK"
+  },
+  {
+   "OBJECTID": 6,
+   "PlatLot": "NK 001-009",
+   "TownCode": "NK"
+  },
+  {
+   "OBJECTID": 7,
+   "PlatLot": "NK 001-010",
+   "TownCode": "NK"
+  },
+  {
+   "OBJECTID": 8,
+   "PlatLot": "NK 001-011",
+   "TownCode": "NK"
+  },
+  {
+   "OBJECTID": 9,
+   "PlatLot": "NK 001-013",
+   "TownCode": "NK"
+  },
+  {
+   "OBJECTID": 10,
+   "PlatLot": "NK 001-014",
+   "TownCode": "NK"
+  },
+  {
+   "OBJECTID": 11,
+   "PlatLot": "NK 001-015",
+   "TownCode": "NK"
+  },
+  {
+   "OBJECTID": 12,
+   "PlatLot": "NK 001-016",
+   "TownCode": "NK"
+  },
+  {
+   "OBJECTID": 13,
+   "PlatLot": "NK 001-017",
+   "TownCode": "NK"
+  },
+  {
+   "OBJECTID": 14,
+   "PlatLot": "NK 001-018",
+   "TownCode": "NK"
+  },
+  {
+   "OBJECTID": 15,
+   "PlatLot": "NK 001-019",
+   "TownCode": "NK"
+  },
+  {
+   "OBJECTID": 16,
+   "PlatLot": "NK 001-020",
+   "TownCode": "NK"
+  },
+  {
+   "OBJECTID": 17,
+   "PlatLot": "NK 001-021",
+   "TownCode": "NK"
+  },
+  {
+   "OBJECTID": 18,
+   "PlatLot": "NK 001-022",
+   "TownCode": "NK"
+  },
+  {
+   "OBJECTID": 19,
+   "PlatLot": "NK 001-023",
+   "TownCode": "NK"
+  },
+  {
+   "OBJECTID": 20,
+   "PlatLot": "NK 001-024",
+   "TownCode": "NK"
+  },
+  {
+   "OBJECTID": 21,
+   "PlatLot": "NK 001-025",
+   "TownCode": "NK"
+  },
+  {
+   "OBJECTID": 22,
+   "PlatLot": "NK 001-026",
+   "TownCode": "NK"
+  },
+  {
+   "OBJECTID": 23,
+   "PlatLot": "NK 001-027",
+   "TownCode": "NK"
+  },
+  {
+   "OBJECTID": 24,
+   "PlatLot": "NK 001-028",
+   "TownCode": "NK"
+  },
+  {
+   "OBJECTID": 25,
+   "PlatLot": "NK 001-029",
+   "TownCode": "NK"
+  }
+ ],
+ "layer": "https://risegis.ri.gov/hosting/rest/services/RIDEM/Tax_Parcels/MapServer/0",
+ "where": "(SUBSTRING(PlatLot FROM 4 FOR 1) <> '') AND (1=1)"
+}

@@ -1,0 +1,131 @@
+{
+ "attributes": [
+  {
+   "COUNTY": "New Castle",
+   "OBJECTID": 21516097,
+   "PIN": "0600100001"
+  },
+  {
+   "COUNTY": "New Castle",
+   "OBJECTID": 21516098,
+   "PIN": "0600100002"
+  },
+  {
+   "COUNTY": "New Castle",
+   "OBJECTID": 21516099,
+   "PIN": "0600100003"
+  },
+  {
+   "COUNTY": "New Castle",
+   "OBJECTID": 21516100,
+   "PIN": "0600100004"
+  },
+  {
+   "COUNTY": "New Castle",
+   "OBJECTID": 21516101,
+   "PIN": "0600100006"
+  },
+  {
+   "COUNTY": "New Castle",
+   "OBJECTID": 21516102,
+   "PIN": "0600200001"
+  },
+  {
+   "COUNTY": "New Castle",
+   "OBJECTID": 21516103,
+   "PIN": "0600200002"
+  },
+  {
+   "COUNTY": "New Castle",
+   "OBJECTID": 21516104,
+   "PIN": "0600200003"
+  },
+  {
+   "COUNTY": "New Castle",
+   "OBJECTID": 21516105,
+   "PIN": "0600200005"
+  },
+  {
+   "COUNTY": "New Castle",
+   "OBJECTID": 21516106,
+   "PIN": "0600200006"
+  },
+  {
+   "COUNTY": "New Castle",
+   "OBJECTID": 21516107,
+   "PIN": "0600300001"
+  },
+  {
+   "COUNTY": "New Castle",
+   "OBJECTID": 21516108,
+   "PIN": "0600300002"
+  },
+  {
+   "COUNTY": "New Castle",
+   "OBJECTID": 21516109,
+   "PIN": "0600300003"
+  },
+  {
+   "COUNTY": "New Castle",
+   "OBJECTID": 21516110,
+   "PIN": "0600300004"
+  },
+  {
+   "COUNTY": "New Castle",
+   "OBJECTID": 21516111,
+   "PIN": "0600400025"
+  },
+  {
+   "COUNTY": "New Castle",
+   "OBJECTID": 21516112,
+   "PIN": "0600500001"
+  },
+  {
+   "COUNTY": "New Castle",
+   "OBJECTID": 21516113,
+   "PIN": "0600500002"
+  },
+  {
+   "COUNTY": "New Castle",
+   "OBJECTID": 21516114,
+   "PIN": "0600500003"
+  },
+  {
+   "COUNTY": "New Castle",
+   "OBJECTID": 21516115,
+   "PIN": "0600500004"
+  },
+  {
+   "COUNTY": "New Castle",
+   "OBJECTID": 21516116,
+   "PIN": "0600500005"
+  },
+  {
+   "COUNTY": "New Castle",
+   "OBJECTID": 21516117,
+   "PIN": "0600500006"
+  },
+  {
+   "COUNTY": "New Castle",
+   "OBJECTID": 21516118,
+   "PIN": "0600500007"
+  },
+  {
+   "COUNTY": "New Castle",
+   "OBJECTID": 21516119,
+   "PIN": "0600500008"
+  },
+  {
+   "COUNTY": "New Castle",
+   "OBJECTID": 21516120,
+   "PIN": "0600500009"
+  },
+  {
+   "COUNTY": "New Castle",
+   "OBJECTID": 21516121,
+   "PIN": "0600500010"
+  }
+ ],
+ "layer": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/PlanningCadastre/DE_StateParcels/FeatureServer/0",
+ "where": "1=1"
+}

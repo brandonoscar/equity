@@ -1,0 +1,231 @@
+{
+ "attributes": [
+  {
+   "mailing_street": "TESTOWNER C933C3",
+   "mailing_zip": "19140-3203",
+   "market_value": 115700,
+   "objectid": 1,
+   "owner_1": "TESTOWNER 9542CD",
+   "owner_2": null,
+   "parcel_number": "432279800"
+  },
+  {
+   "mailing_street": "TESTOWNER 3FC9B7",
+   "mailing_zip": "11757",
+   "market_value": 117500,
+   "objectid": 2,
+   "owner_1": "TESTOWNER 5E2BC1 LLC",
+   "owner_2": null,
+   "parcel_number": "441277700"
+  },
+  {
+   "mailing_street": "TESTOWNER FBD865",
+   "mailing_zip": "19124-2201",
+   "market_value": 148000,
+   "objectid": 3,
+   "owner_1": "TESTOWNER FBDC05",
+   "owner_2": null,
+   "parcel_number": "622452700"
+  },
+  {
+   "mailing_street": "TESTOWNER A444A4",
+   "mailing_zip": "19126-1526",
+   "market_value": 187400,
+   "objectid": 4,
+   "owner_1": "TESTOWNER CDB429",
+   "owner_2": "TESTOWNER 84C0C3",
+   "parcel_number": "101056100"
+  },
+  {
+   "mailing_street": "TESTOWNER B0C01B",
+   "mailing_zip": "19150-3112",
+   "market_value": 202900,
+   "objectid": 5,
+   "owner_1": "TESTOWNER 758B83",
+   "owner_2": "TESTOWNER 76DEA2",
+   "parcel_number": "502066600"
+  },
+  {
+   "mailing_street": "TESTOWNER 80B52D",
+   "mailing_zip": "19152",
+   "market_value": 313500,
+   "objectid": 6,
+   "owner_1": "TESTOWNER 40CBA1",
+   "owner_2": "TESTOWNER 12C432",
+   "parcel_number": "562422500"
+  },
+  {
+   "mailing_street": "TESTOWNER 34856C",
+   "mailing_zip": "19149",
+   "market_value": 71000,
+   "objectid": 7,
+   "owner_1": "TESTOWNER A70F59 LLC",
+   "owner_2": null,
+   "parcel_number": "362299100"
+  },
+  {
+   "mailing_street": "TESTOWNER AB24A8",
+   "mailing_zip": "19038",
+   "market_value": 86300,
+   "objectid": 8,
+   "owner_1": "TESTOWNER C868F4",
+   "owner_2": null,
+   "parcel_number": "131019900"
+  },
+  {
+   "mailing_street": "TESTOWNER 1D2F5B",
+   "mailing_zip": "19121-3704",
+   "market_value": 372800,
+   "objectid": 9,
+   "owner_1": "TESTOWNER 276806",
+   "owner_2": null,
+   "parcel_number": "292059800"
+  },
+  {
+   "mailing_street": "TESTOWNER 5E9D08",
+   "mailing_zip": "19124",
+   "market_value": 153400,
+   "objectid": 10,
+   "owner_1": "TESTOWNER A0FCD6",
+   "owner_2": "TESTOWNER 2FF99F",
+   "parcel_number": "273041300"
+  },
+  {
+   "mailing_street": "TESTOWNER 406564",
+   "mailing_zip": "19145-1614",
+   "market_value": 222800,
+   "objectid": 11,
+   "owner_1": "TESTOWNER 16756A",
+   "owner_2": null,
+   "parcel_number": "482350100"
+  },
+  {
+   "mailing_street": "TESTOWNER 3561A0",
+   "mailing_zip": "19130-1222",
+   "market_value": 491900,
+   "objectid": 12,
+   "owner_1": "TESTOWNER 1054E2",
+   "owner_2": "TESTOWNER 579535",
+   "parcel_number": "292003900"
+  },
+  {
+   "mailing_street": "TESTOWNER 267B5C",
+   "mailing_zip": "10543",
+   "market_value": 547100,
+   "objectid": 13,
+   "owner_1": "TESTOWNER 258557 LLC",
+   "owner_2": null,
+   "parcel_number": "881064005"
+  },
+  {
+   "mailing_street": "TESTOWNER 0017CE",
+   "mailing_zip": "19134-5125",
+   "market_value": 328400,
+   "objectid": 14,
+   "owner_1": "TESTOWNER 281712",
+   "owner_2": "TESTOWNER AB3911",
+   "parcel_number": "251310000"
+  },
+  {
+   "mailing_street": "TESTOWNER 5E6CE2",
+   "mailing_zip": "19136-3524",
+   "market_value": 256800,
+   "objectid": 15,
+   "owner_1": "TESTOWNER 8010B0",
+   "owner_2": null,
+   "parcel_number": "642177100"
+  },
+  {
+   "mailing_street": "TESTOWNER 6D6E04",
+   "mailing_zip": "19154",
+   "market_value": 284500,
+   "objectid": 16,
+   "owner_1": "TESTOWNER B59742",
+   "owner_2": null,
+   "parcel_number": "442187500"
+  },
+  {
+   "mailing_street": "TESTOWNER 77437D",
+   "mailing_zip": "19131-3411",
+   "market_value": 153800,
+   "objectid": 17,
+   "owner_1": "TESTOWNER 6DBCBD",
+   "owner_2": null,
+   "parcel_number": "043239300"
+  },
+  {
+   "mailing_street": "TESTOWNER BD6FD7",
+   "mailing_zip": "19131-3202",
+   "market_value": 141200,
+   "objectid": 18,
+   "owner_1": "TESTOWNER 2CAA1B",
+   "owner_2": "TESTOWNER ADB5BD",
+   "parcel_number": "521126600"
+  },
+  {
+   "mailing_street": "TESTOWNER 75E9E6",
+   "mailing_zip": "75019",
+   "market_value": 144200,
+   "objectid": 19,
+   "owner_1": "TESTOWNER 6AFC66",
+   "owner_2": "TESTOWNER C7CD76",
+   "parcel_number": "406305600"
+  },
+  {
+   "mailing_street": "TESTOWNER 5189CD",
+   "mailing_zip": "60062",
+   "market_value": 48900,
+   "objectid": 20,
+   "owner_1": "TESTOWNER C20FD1 LLC",
+   "owner_2": null,
+   "parcel_number": "282367900"
+  },
+  {
+   "mailing_street": "TESTOWNER B15B1C",
+   "mailing_zip": "19134-2105",
+   "market_value": 124900,
+   "objectid": 21,
+   "owner_1": "TESTOWNER C38405",
+   "owner_2": "TESTOWNER EFBA7F",
+   "parcel_number": "452264100"
+  },
+  {
+   "mailing_street": "TESTOWNER BCA269",
+   "mailing_zip": "19145-2705",
+   "market_value": 167500,
+   "objectid": 22,
+   "owner_1": "TESTOWNER AE89DB",
+   "owner_2": null,
+   "parcel_number": "482166200"
+  },
+  {
+   "mailing_street": "TESTOWNER D1EED3",
+   "mailing_zip": "19104",
+   "market_value": 749600,
+   "objectid": 23,
+   "owner_1": "TESTOWNER 755681",
+   "owner_2": null,
+   "parcel_number": "241065500"
+  },
+  {
+   "mailing_street": "TESTOWNER 9EA0E7",
+   "mailing_zip": "33409",
+   "market_value": 173800,
+   "objectid": 24,
+   "owner_1": "TESTOWNER 656CB8",
+   "owner_2": "TESTOWNER 1FE5F8",
+   "parcel_number": "621475600"
+  },
+  {
+   "mailing_street": "TESTOWNER 455E00",
+   "mailing_zip": "75024",
+   "market_value": 219100,
+   "objectid": 25,
+   "owner_1": "TESTOWNER EE8C58",
+   "owner_2": null,
+   "parcel_number": "043135300"
+  }
+ ],
+ "layer": "https://services.arcgis.com/fLeGjb7u4uXqeF9q/arcgis/rest/services/OPA_PROPERTIES_PUBLIC/FeatureServer/0",
+ "where": "1=1"
+}

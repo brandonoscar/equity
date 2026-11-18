@@ -1,0 +1,281 @@
+{
+ "attributes": [
+  {
+   "OBJECTID": 1,
+   "PIN": "120-005-09-99-0072-01T",
+   "owndat_a_1": " ",
+   "owndat_add": "TESTOWNER A2CFC9",
+   "owndat_cit": "WASHINGTON",
+   "owndat_o_1": " ",
+   "owndat_own": "TESTOWNER BBDB6E LLC",
+   "owndat_sta": "PA",
+   "owndat_zip": "15301"
+  },
+  {
+   "OBJECTID": 2,
+   "PIN": "120-005-09-99-0073-03T",
+   "owndat_a_1": " ",
+   "owndat_add": "TESTOWNER E5F03C",
+   "owndat_cit": "WASHINGTON",
+   "owndat_o_1": " ",
+   "owndat_own": "TESTOWNER 010F56",
+   "owndat_sta": "PA",
+   "owndat_zip": "15301"
+  },
+  {
+   "OBJECTID": 3,
+   "PIN": "120-005-09-99-0074-01T",
+   "owndat_a_1": " ",
+   "owndat_add": "TESTOWNER 7AAB3C",
+   "owndat_cit": "CANONSBURG",
+   "owndat_o_1": " ",
+   "owndat_own": "TESTOWNER 04B433",
+   "owndat_sta": "PA",
+   "owndat_zip": "15317"
+  },
+  {
+   "OBJECTID": 4,
+   "PIN": "140-001-00-00-0017-00",
+   "owndat_a_1": " ",
+   "owndat_add": "TESTOWNER 9675DC",
+   "owndat_cit": "MCDONALD",
+   "owndat_o_1": " ",
+   "owndat_own": "TESTOWNER C4669F",
+   "owndat_sta": "PA",
+   "owndat_zip": "15057"
+  },
+  {
+   "OBJECTID": 5,
+   "PIN": "140-007-00-00-0022-00",
+   "owndat_a_1": " ",
+   "owndat_add": "TESTOWNER BD8936",
+   "owndat_cit": "MCDONALD",
+   "owndat_o_1": " ",
+   "owndat_own": "TESTOWNER 724DA3",
+   "owndat_sta": "PA",
+   "owndat_zip": "15057"
+  },
+  {
+   "OBJECTID": 6,
+   "PIN": "140-012-00-00-0048-15",
+   "owndat_a_1": " ",
+   "owndat_add": "TESTOWNER 40415B",
+   "owndat_cit": "PITTSBURGH",
+   "owndat_o_1": "TESTOWNER C8B603 LLC",
+   "owndat_own": "TESTOWNER FFDE8C",
+   "owndat_sta": "PA",
+   "owndat_zip": "15233"
+  },
+  {
+   "OBJECTID": 7,
+   "PIN": "260-013-00-01-0024-00",
+   "owndat_a_1": " ",
+   "owndat_add": "TESTOWNER 52FE25",
+   "owndat_cit": "HOUSTON",
+   "owndat_o_1": " ",
+   "owndat_own": "TESTOWNER 0B3B07",
+   "owndat_sta": "TX",
+   "owndat_zip": "77069"
+  },
+  {
+   "OBJECTID": 31,
+   "PIN": "335-001-00-00-0001-00",
+   "owndat_a_1": " ",
+   "owndat_add": "TESTOWNER 15F7C8",
+   "owndat_cit": "WASHINGTON",
+   "owndat_o_1": " ",
+   "owndat_own": "TESTOWNER 432014",
+   "owndat_sta": "PA",
+   "owndat_zip": "15301"
+  },
+  {
+   "OBJECTID": 32,
+   "PIN": "335-001-00-00-0002-00",
+   "owndat_a_1": " ",
+   "owndat_add": "TESTOWNER 15F7C8",
+   "owndat_cit": "WASHINGTON",
+   "owndat_o_1": " ",
+   "owndat_own": "TESTOWNER 432014",
+   "owndat_sta": "PA",
+   "owndat_zip": "15301"
+  },
+  {
+   "OBJECTID": 33,
+   "PIN": "335-001-00-00-0002-01",
+   "owndat_a_1": " ",
+   "owndat_add": "TESTOWNER 9A83E7",
+   "owndat_cit": "WASHINGTON",
+   "owndat_o_1": " ",
+   "owndat_own": "TESTOWNER C81582",
+   "owndat_sta": "PA",
+   "owndat_zip": "15301"
+  },
+  {
+   "OBJECTID": 34,
+   "PIN": "335-001-00-00-0003-00",
+   "owndat_a_1": " ",
+   "owndat_add": "TESTOWNER 03FE5F",
+   "owndat_cit": "WASHINGTON",
+   "owndat_o_1": " ",
+   "owndat_own": "TESTOWNER 94AFC7 LP",
+   "owndat_sta": "PA",
+   "owndat_zip": "15301"
+  },
+  {
+   "OBJECTID": 35,
+   "PIN": "335-001-00-00-0004-00",
+   "owndat_a_1": " ",
+   "owndat_add": "TESTOWNER 15F7C8",
+   "owndat_cit": "WASHINGTON",
+   "owndat_o_1": " ",
+   "owndat_own": "TESTOWNER 8D5937 LLC",
+   "owndat_sta": "PA",
+   "owndat_zip": "15301"
+  },
+  {
+   "OBJECTID": 36,
+   "PIN": "335-001-00-00-0004-01",
+   "owndat_a_1": " ",
+   "owndat_add": "TESTOWNER 75D471",
+   "owndat_cit": "WASHINGTON",
+   "owndat_o_1": " ",
+   "owndat_own": "TESTOWNER 08DCBF",
+   "owndat_sta": "PA",
+   "owndat_zip": "15301"
+  },
+  {
+   "OBJECTID": 37,
+   "PIN": "335-001-00-00-0004-02",
+   "owndat_a_1": " ",
+   "owndat_add": "TESTOWNER 2ACA26",
+   "owndat_cit": "WASHINGTON",
+   "owndat_o_1": " ",
+   "owndat_own": "TESTOWNER 993A78",
+   "owndat_sta": "PA",
+   "owndat_zip": "15301"
+  },
+  {
+   "OBJECTID": 38,
+   "PIN": "335-001-00-00-0004-03",
+   "owndat_a_1": " ",
+   "owndat_add": "TESTOWNER 2ACA26",
+   "owndat_cit": "WASHINGTON",
+   "owndat_o_1": " ",
+   "owndat_own": "TESTOWNER 2B2B4A",
+   "owndat_sta": "PA",
+   "owndat_zip": "15301"
+  },
+  {
+   "OBJECTID": 39,
+   "PIN": "335-001-00-00-0004-04",
+   "owndat_a_1": " ",
+   "owndat_add": "TESTOWNER 59A9E6",
+   "owndat_cit": "WASHINGTON",
+   "owndat_o_1": " ",
+   "owndat_own": "TESTOWNER BFB5C5",
+   "owndat_sta": "PA",
+   "owndat_zip": "15301"
+  },
+  {
+   "OBJECTID": 40,
+   "PIN": "335-001-00-00-0005-00",
+   "owndat_a_1": " ",
+   "owndat_add": "TESTOWNER CD172D",
+   "owndat_cit": "WASHINGTON",
+   "owndat_o_1": " ",
+   "owndat_own": "TESTOWNER DF7C89",
+   "owndat_sta": "PA",
+   "owndat_zip": "15301"
+  },
+  {
+   "OBJECTID": 41,
+   "PIN": "335-001-00-00-0006-00",
+   "owndat_a_1": " ",
+   "owndat_add": "TESTOWNER 8A9CE2",
+   "owndat_cit": "WASHINGTON",
+   "owndat_o_1": " ",
+   "owndat_own": "TESTOWNER EE610F",
+   "owndat_sta": "PA",
+   "owndat_zip": "15301"
+  },
+  {
+   "OBJECTID": 42,
+   "PIN": "335-001-00-00-0006-01",
+   "owndat_a_1": " ",
+   "owndat_add": "TESTOWNER CD172D",
+   "owndat_cit": "WASHINGTON",
+   "owndat_o_1": " ",
+   "owndat_own": "TESTOWNER DF7C89",
+   "owndat_sta": "PA",
+   "owndat_zip": "15301"
+  },
+  {
+   "OBJECTID": 43,
+   "PIN": "440-023-00-00-0027-00",
+   "owndat_a_1": " ",
+   "owndat_add": "TESTOWNER 6D9583",
+   "owndat_cit": "MONONGAHELA",
+   "owndat_o_1": "TESTOWNER 5DFA13",
+   "owndat_own": "TESTOWNER 2DCA45",
+   "owndat_sta": "PA",
+   "owndat_zip": "15063"
+  },
+  {
+   "OBJECTID": 44,
+   "PIN": "480-003-09-99-0005-01T",
+   "owndat_a_1": " ",
+   "owndat_add": "TESTOWNER 2E6A6F",
+   "owndat_cit": "NEW EAGLE",
+   "owndat_o_1": " ",
+   "owndat_own": "TESTOWNER 450C96 INC",
+   "owndat_sta": "PA",
+   "owndat_zip": "15067"
+  },
+  {
+   "OBJECTID": 45,
+   "PIN": "540-002-00-00-0030-00",
+   "owndat_a_1": " ",
+   "owndat_add": "TESTOWNER D46BF8",
+   "owndat_cit": "VENETIA",
+   "owndat_o_1": " ",
+   "owndat_own": "TESTOWNER 020919",
+   "owndat_sta": "PA",
+   "owndat_zip": "15367"
+  },
+  {
+   "OBJECTID": 46,
+   "PIN": "550-017-00-00-0024-00",
+   "owndat_a_1": " ",
+   "owndat_add": "TESTOWNER 3CADD6",
+   "owndat_cit": "AVELLA",
+   "owndat_o_1": "TESTOWNER 5D86E1",
+   "owndat_own": "TESTOWNER A63F76",
+   "owndat_sta": "PA",
+   "owndat_zip": "15312"
+  },
+  {
+   "OBJECTID": 47,
+   "PIN": "550-017-00-00-0024-01",
+   "owndat_a_1": " ",
+   "owndat_add": "TESTOWNER C9BFC2",
+   "owndat_cit": "MC DONALD",
+   "owndat_o_1": " ",
+   "owndat_own": "TESTOWNER 2C1AC8",
+   "owndat_sta": "PA",
+   "owndat_zip": "15057"
+  },
+  {
+   "OBJECTID": 48,
+   "PIN": "550-017-00-00-0024-02",
+   "owndat_a_1": " ",
+   "owndat_add": "TESTOWNER 6C785D",
+   "owndat_cit": "MC DONALD",
+   "owndat_o_1": " ",
+   "owndat_own": "TESTOWNER ED5B0B",
+   "owndat_sta": "PA",
+   "owndat_zip": "15057"
+  }
+ ],
+ "layer": "https://mapservices.pasda.psu.edu/server/rest/services/pasda/WashingtonCounty/MapServer/7",
+ "where": "(PIN <> '333-333-33-33-3333-33') AND (1=1)"
+}

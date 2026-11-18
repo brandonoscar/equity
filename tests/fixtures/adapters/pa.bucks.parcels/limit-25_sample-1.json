@@ -1,0 +1,181 @@
+{
+ "attributes": [
+  {
+   "OBJECTID": 1,
+   "OWNER1": "TESTOWNER 1E5056",
+   "OWNER2": " ",
+   "PARCEL_NUM": "54-010-001-914",
+   "TOTAL_VALU": 15200
+  },
+  {
+   "OBJECTID": 2,
+   "OWNER1": "TESTOWNER 3E45D2",
+   "OWNER2": " ",
+   "PARCEL_NUM": "54-010-001-913",
+   "TOTAL_VALU": 15520
+  },
+  {
+   "OBJECTID": 3,
+   "OWNER1": "TESTOWNER FE7A50",
+   "OWNER2": " ",
+   "PARCEL_NUM": "54-010-001-912",
+   "TOTAL_VALU": 15520
+  },
+  {
+   "OBJECTID": 4,
+   "OWNER1": "TESTOWNER F1F975",
+   "OWNER2": " ",
+   "PARCEL_NUM": "54-010-001-911",
+   "TOTAL_VALU": 15200
+  },
+  {
+   "OBJECTID": 5,
+   "OWNER1": "TESTOWNER 163A80",
+   "OWNER2": " ",
+   "PARCEL_NUM": "54-010-001-910",
+   "TOTAL_VALU": 13400
+  },
+  {
+   "OBJECTID": 6,
+   "OWNER1": "TESTOWNER F0E1C0",
+   "OWNER2": " ",
+   "PARCEL_NUM": "54-010-001-909",
+   "TOTAL_VALU": 17320
+  },
+  {
+   "OBJECTID": 7,
+   "OWNER1": "TESTOWNER 87A5B4",
+   "OWNER2": " ",
+   "PARCEL_NUM": "54-010-001-908",
+   "TOTAL_VALU": 17040
+  },
+  {
+   "OBJECTID": 8,
+   "OWNER1": "TESTOWNER 67E971",
+   "OWNER2": " ",
+   "PARCEL_NUM": "54-010-001-907",
+   "TOTAL_VALU": 17040
+  },
+  {
+   "OBJECTID": 9,
+   "OWNER1": "TESTOWNER 6F3487",
+   "OWNER2": " ",
+   "PARCEL_NUM": "54-010-001-906",
+   "TOTAL_VALU": 17320
+  },
+  {
+   "OBJECTID": 10,
+   "OWNER1": "TESTOWNER DF7E2F",
+   "OWNER2": "TESTOWNER 86CFCD",
+   "PARCEL_NUM": "54-010-001-905",
+   "TOTAL_VALU": 13400
+  },
+  {
+   "OBJECTID": 11,
+   "OWNER1": "TESTOWNER DC5328",
+   "OWNER2": " ",
+   "PARCEL_NUM": "54-010-001-904",
+   "TOTAL_VALU": 13080
+  },
+  {
+   "OBJECTID": 12,
+   "OWNER1": "TESTOWNER 46A9F5",
+   "OWNER2": " ",
+   "PARCEL_NUM": "54-010-001-903",
+   "TOTAL_VALU": 13400
+  },
+  {
+   "OBJECTID": 13,
+   "OWNER1": "TESTOWNER 93C924",
+   "OWNER2": "TESTOWNER B42BF0",
+   "PARCEL_NUM": "54-010-001-902",
+   "TOTAL_VALU": 13400
+  },
+  {
+   "OBJECTID": 14,
+   "OWNER1": "TESTOWNER A2D039",
+   "OWNER2": " ",
+   "PARCEL_NUM": "54-010-001-901",
+   "TOTAL_VALU": 13080
+  },
+  {
+   "OBJECTID": 15,
+   "OWNER1": "TESTOWNER 3C691E",
+   "OWNER2": " ",
+   "PARCEL_NUM": "54-010-001-810",
+   "TOTAL_VALU": 14920
+  },
+  {
+   "OBJECTID": 16,
+   "OWNER1": "TESTOWNER FD9226",
+   "OWNER2": " ",
+   "PARCEL_NUM": "54-010-001-809",
+   "TOTAL_VALU": 15200
+  },
+  {
+   "OBJECTID": 17,
+   "OWNER1": "TESTOWNER 427AA8",
+   "OWNER2": " ",
+   "PARCEL_NUM": "54-010-001-808",
+   "TOTAL_VALU": 13080
+  },
+  {
+   "OBJECTID": 18,
+   "OWNER1": "TESTOWNER 068E78",
+   "OWNER2": "TESTOWNER 03D42D",
+   "PARCEL_NUM": "54-010-001-807",
+   "TOTAL_VALU": 12760
+  },
+  {
+   "OBJECTID": 19,
+   "OWNER1": "TESTOWNER 55B067",
+   "OWNER2": " ",
+   "PARCEL_NUM": "54-010-001-806",
+   "TOTAL_VALU": 12760
+  },
+  {
+   "OBJECTID": 20,
+   "OWNER1": "TESTOWNER C8723D",
+   "OWNER2": "TESTOWNER 310071",
+   "PARCEL_NUM": "54-010-001-805",
+   "TOTAL_VALU": 13080
+  },
+  {
+   "OBJECTID": 21,
+   "OWNER1": "TESTOWNER BE6D88",
+   "OWNER2": "TESTOWNER DF0843",
+   "PARCEL_NUM": "54-010-001-804",
+   "TOTAL_VALU": 17320
+  },
+  {
+   "OBJECTID": 22,
+   "OWNER1": "TESTOWNER 628C40",
+   "OWNER2": " ",
+   "PARCEL_NUM": "54-010-001-803",
+   "TOTAL_VALU": 17040
+  },
+  {
+   "OBJECTID": 23,
+   "OWNER1": "TESTOWNER 6C8188",
+   "OWNER2": " ",
+   "PARCEL_NUM": "54-010-001-802",
+   "TOTAL_VALU": 14280
+  },
+  {
+   "OBJECTID": 24,
+   "OWNER1": "TESTOWNER 519193",
+   "OWNER2": "TESTOWNER B05415",
+   "PARCEL_NUM": "54-010-001-801",
+   "TOTAL_VALU": 14280
+  },
+  {
+   "OBJECTID": 25,
+   "OWNER1": "TESTOWNER 5C7658",
+   "OWNER2": " ",
+   "PARCEL_NUM": "54-010-001-714",
+   "TOTAL_VALU": 15200
+  }
+ ],
+ "layer": "https://mapservices.pasda.psu.edu/server/rest/services/pasda/BucksCounty/MapServer/17",
+ "where": "1=1"
+}

@@ -1,0 +1,106 @@
+{
+ "attributes": [
+  {
+   "OBJECTID": 1,
+   "TaxPin": "14010048010400"
+  },
+  {
+   "OBJECTID": 2,
+   "TaxPin": "45029053002300"
+  },
+  {
+   "OBJECTID": 3,
+   "TaxPin": "30018070001800"
+  },
+  {
+   "OBJECTID": 4,
+   "TaxPin": "30018077000300"
+  },
+  {
+   "OBJECTID": 5,
+   "TaxPin": "42015079001100"
+  },
+  {
+   "OBJECTID": 6,
+   "TaxPin": "03018026000102"
+  },
+  {
+   "OBJECTID": 7,
+   "TaxPin": "30019082000800"
+  },
+  {
+   "OBJECTID": 8,
+   "TaxPin": "30018077000100"
+  },
+  {
+   "OBJECTID": 9,
+   "TaxPin": "03020037001100"
+  },
+  {
+   "OBJECTID": 10,
+   "TaxPin": "43012035000401"
+  },
+  {
+   "OBJECTID": 11,
+   "TaxPin": "43020033000801"
+  },
+  {
+   "OBJECTID": 12,
+   "TaxPin": "30018076000200"
+  },
+  {
+   "OBJECTID": 13,
+   "TaxPin": "43020033000700"
+  },
+  {
+   "OBJECTID": 14,
+   "TaxPin": "30018076000100"
+  },
+  {
+   "OBJECTID": 15,
+   "TaxPin": "30018075000100"
+  },
+  {
+   "OBJECTID": 16,
+   "TaxPin": "42015075001002"
+  },
+  {
+   "OBJECTID": 17,
+   "TaxPin": "04027068000203"
+  },
+  {
+   "OBJECTID": 18,
+   "TaxPin": "04027068000202"
+  },
+  {
+   "OBJECTID": 19,
+   "TaxPin": "11017050101000"
+  },
+  {
+   "OBJECTID": 20,
+   "TaxPin": "45029053002309"
+  },
+  {
+   "OBJECTID": 21,
+   "TaxPin": "21074001001500"
+  },
+  {
+   "OBJECTID": 22,
+   "TaxPin": "04027068000201"
+  },
+  {
+   "OBJECTID": 23,
+   "TaxPin": "30020086001106"
+  },
+  {
+   "OBJECTID": 24,
+   "TaxPin": "04019064000901"
+  },
+  {
+   "OBJECTID": 25,
+   "TaxPin": "43013040001601"
+  }
+ ],
+ "layer": "https://mapservices.pasda.psu.edu/server/rest/services/pasda/ErieCountyParcels/MapServer/0",
+ "where": "1=1"
+}

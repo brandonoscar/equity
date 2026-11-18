@@ -1,0 +1,52 @@
+source_id: wy.statewide.parcels
+state: WY
+layer_url: https://gis2.statelands.wyo.gov/arcgis/rest/services/oslisde/Parcels2025/MapServer/0
+order_by: OBJECTID
+page_size: 1000
+min_interval_s: 1.0
+# jurisdicti holds the upper-case county name with spaces removed ("BIGHORN", "HOTSPRINGS").
+county:
+  field: jurisdicti
+  format: code_map
+  code_map:
+    "ALBANY": "001"
+    "BIGHORN": "003"
+    "CAMPBELL": "005"
+    "CARBON": "007"
+    "CONVERSE": "009"
+    "CROOK": "011"
+    "FREMONT": "013"
+    "GOSHEN": "015"
+    "HOTSPRINGS": "017"
+    "JOHNSON": "019"
+    "LARAMIE": "021"
+    "LINCOLN": "023"
+    "NATRONA": "025"
+    "NIOBRARA": "027"
+    "PARK": "029"
+    "PLATTE": "031"
+    "SHERIDAN": "033"
+    "SUBLETTE": "035"
+    "SWEETWATER": "037"
+    "TETON": "039"
+    "UINTA": "041"
+    "WASHAKIE": "043"
+    "WESTON": "045"
+fields:
+  parcel_id: parcelnb
+  owner1: ownername1
+  owner2: ownername2
+  mail_line1: mailaddres
+  mail_city: mailcity
+  mail_state: mailstate
+  mail_zip: mailzipcod
+  total_value: actualvalu
+  assessed_value: assessedva
+  tax_year: taxyear
+value_basis: "actualvalu = county assessor actual (fair market) value; assessedva = assessed value after Wyoming's statutory assessment ratios (W.S. 39-13-103: 9.5% for most property, 11.5% industrial; agricultural land valued on productivity, not market); Laramie residential samples run about 7.1% of actualvalu, consistent with 9.5% less a 25% residential exemption, so assessedva is net of exemptions. taxyear = source tax-year field (2025 for every row on 2026-11-16). No separate land/improvement split (landgrossa/landgrosss look like gross land area and are not mapped). About 11% of rows have a blank owner and zero values (e.g. the first ~1,000 Natrona rows); 2,943 rows have a blank parcelnb and are skipped."
+terms:
+  url: https://gis2.statelands.wyo.gov/arcgis/rest/services/oslisde/Parcels2025/MapServer
+  summary: "Wyoming Department of Revenue statewide parcel layer (the 2023 edition on the same server is named WDR_FC_Parcels2023; WY DEQ's copies credit 'Wyoming Department of Revenue, County Assessors') republished by the Office of State Lands and Investments on its public ArcGIS server; all 23 counties, 373,048 rows, tax year 2025, anonymous access, no login. The service, its itemInfo and layer metadata carry no description, license or use constraint. The DOR's own State Parcel Viewer (wyo-prop-div.wyo.gov) offers the same GIS parcel data free behind a click-through disclaimer whose text could not be read from this sandbox (host blocked), so any conditions in that disclaimer are UNVERIFIED. gis2.statelands.wyo.gov /robots.txt returns 404 (no rules)."
+  checked_on: 2026-11-16
+  robots_checked_on: 2026-11-16
+  cost_model: free

@@ -1,0 +1,47 @@
+# Philadelphia Department of Records "Real Estate Transfers" (rtt_summary) document_type
+# values -> normalized instrument fields, plus the roles of the grantors and grantees columns.
+# Values are inconsistent free text; these are the spellings seen in samples across the table
+# on 2026-11-16. A value not listed maps to OTHER and is reported as a data_issue.
+#
+# Party direction was checked on sampled rows: on satisfactions and releases the grantor is
+# the lender and the grantee the borrower; on lis pendens the grantee is the court.
+#
+# TODO(Brandon): confirm every mapping. In particular:
+#  - DEED SHERIFF / SHERIFF'S DEED are DEED (title passes at the sheriff sale).
+#  - Judgments, municipal liens and mechanic's liens are filed with the Prothonotary, not
+#    the Recorder of Deeds, so none of them are in this table.
+#  - RTT records no mortgage principal: total_consideration is read only for deeds.
+consideration_doc_types: [DEED]
+types:
+  DEED: {doc_type: DEED, grantors: grantor, grantees: grantee}
+  DEED MISCELLANEOUS: {doc_type: DEED, grantors: grantor, grantees: grantee}
+  MISCELLANEOUS DEED: {doc_type: DEED, grantors: grantor, grantees: grantee}
+  DEED MISCELLANEOUS TAXABLE: {doc_type: DEED, grantors: grantor, grantees: grantee}
+  MISCELLANEOUS DEED TAXABLE: {doc_type: DEED, grantors: grantor, grantees: grantee}
+  DEED RTT - OTHER: {doc_type: DEED, grantors: grantor, grantees: grantee}
+  DEED SHERIFF: {doc_type: DEED, grantors: grantor, grantees: grantee}
+  SHERIFF'S DEED: {doc_type: DEED, grantors: grantor, grantees: grantee}
+  DEED OF CONDEMNATION: {doc_type: DEED, grantors: grantor, grantees: grantee}
+  DEED - DECEASED: {doc_type: DEED, grantors: grantor, grantees: grantee}
+  DEED - ADVERSE POSSESSION: {doc_type: DEED, grantors: grantor, grantees: grantee}
+  MORTGAGE: {doc_type: MORTGAGE, grantors: borrower, grantees: lender}
+  ASSIGNMENT OF MORTGAGE: {doc_type: ASSIGNMENT, grantors: assignor, grantees: assignee}
+  ASSIGNMENT: {doc_type: ASSIGNMENT, grantors: assignor, grantees: assignee}
+  SATISFACTION: {doc_type: RELEASE, grantors: lender, grantees: borrower}
+  SATISFACTION OF MORTGAGE: {doc_type: RELEASE, grantors: lender, grantees: borrower}
+  RELEASE OF MORTGAGE: {doc_type: RELEASE, grantors: lender, grantees: borrower}
+  DM - LIS PENDENS: {doc_type: LIS_PENDENS, grantors: other, grantees: other}
+  POWER OF ATTORNEY: {doc_type: POWER_OF_ATTORNEY, grantors: other, grantees: other}
+  ORIGINAL FINANCING STATEMENT: {doc_type: FIXTURE_FILING, grantors: debtor, grantees: creditor}
+  CONTINUATION: {doc_type: EXTENSION, grantors: debtor, grantees: creditor}
+  TERMINATION: {doc_type: RELEASE, grantors: debtor, grantees: creditor}
+  AMENDMENT: {doc_type: OTHER, grantors: other, grantees: other}
+  DECLARATION OF CONDOMINIUM: {doc_type: OTHER, grantors: other, grantees: other}
+  AMENDMENT TO CONDOMINIUM: {doc_type: OTHER, grantors: other, grantees: other}
+  AMENDMENT TO DECLARATION OF CONDOMINIUM: {doc_type: OTHER, grantors: other, grantees: other}
+  DECLARATION OF PLANNED COMMUNITY: {doc_type: OTHER, grantors: other, grantees: other}
+  AMENDMENT TO DECLARATION OF PLANNED COMMUNITY: {doc_type: OTHER, grantors: other, grantees: other}
+  NOTARY COMMISSION: {doc_type: OTHER, grantors: other, grantees: other}
+  CERTIFICATE OF STOCK TRANSFER: {doc_type: OTHER, grantors: other, grantees: other}
+  ALL OTHER MISCELLANEOUS INSTRUMENTS: {doc_type: OTHER, grantors: other, grantees: other}
+  AFFIDAVIT OF STREET OPENING: {doc_type: OTHER, grantors: other, grantees: other}

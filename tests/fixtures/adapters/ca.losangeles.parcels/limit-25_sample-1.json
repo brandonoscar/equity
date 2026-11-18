@@ -1,0 +1,206 @@
+{
+ "attributes": [
+  {
+   "AIN": "2004001003",
+   "OBJECTID": 1,
+   "RollYear": "2026",
+   "Roll_ImpValue": 313342,
+   "Roll_LandValue": 740440,
+   "Roll_totLandImp": 1053782
+  },
+  {
+   "AIN": "2004001004",
+   "OBJECTID": 2,
+   "RollYear": "2026",
+   "Roll_ImpValue": 266215,
+   "Roll_LandValue": 385506,
+   "Roll_totLandImp": 651721
+  },
+  {
+   "AIN": "2004001005",
+   "OBJECTID": 3,
+   "RollYear": "2026",
+   "Roll_ImpValue": 206583,
+   "Roll_LandValue": 547610,
+   "Roll_totLandImp": 754193
+  },
+  {
+   "AIN": "2004001008",
+   "OBJECTID": 4,
+   "RollYear": "2026",
+   "Roll_ImpValue": 230878,
+   "Roll_LandValue": 133608,
+   "Roll_totLandImp": 364486
+  },
+  {
+   "AIN": "2004001009",
+   "OBJECTID": 5,
+   "RollYear": "2026",
+   "Roll_ImpValue": 218496,
+   "Roll_LandValue": 145585,
+   "Roll_totLandImp": 364081
+  },
+  {
+   "AIN": "2004001010",
+   "OBJECTID": 6,
+   "RollYear": "2026",
+   "Roll_ImpValue": 218387,
+   "Roll_LandValue": 129079,
+   "Roll_totLandImp": 347466
+  },
+  {
+   "AIN": "2004001011",
+   "OBJECTID": 7,
+   "RollYear": "2026",
+   "Roll_ImpValue": 179724,
+   "Roll_LandValue": 127507,
+   "Roll_totLandImp": 307231
+  },
+  {
+   "AIN": "2004001012",
+   "OBJECTID": 8,
+   "RollYear": "2026",
+   "Roll_ImpValue": 282410,
+   "Roll_LandValue": 474640,
+   "Roll_totLandImp": 757050
+  },
+  {
+   "AIN": "2004001013",
+   "OBJECTID": 9,
+   "RollYear": "2026",
+   "Roll_ImpValue": 332983,
+   "Roll_LandValue": 215240,
+   "Roll_totLandImp": 548223
+  },
+  {
+   "AIN": "2004001014",
+   "OBJECTID": 10,
+   "RollYear": "2026",
+   "Roll_ImpValue": 291200,
+   "Roll_LandValue": 332971,
+   "Roll_totLandImp": 624171
+  },
+  {
+   "AIN": "2004001015",
+   "OBJECTID": 11,
+   "RollYear": "2026",
+   "Roll_ImpValue": 214230,
+   "Roll_LandValue": 120572,
+   "Roll_totLandImp": 334802
+  },
+  {
+   "AIN": "2004001016",
+   "OBJECTID": 12,
+   "RollYear": "2026",
+   "Roll_ImpValue": 160084,
+   "Roll_LandValue": 129079,
+   "Roll_totLandImp": 289163
+  },
+  {
+   "AIN": "2004001017",
+   "OBJECTID": 13,
+   "RollYear": "2026",
+   "Roll_ImpValue": 289562,
+   "Roll_LandValue": 144323,
+   "Roll_totLandImp": 433885
+  },
+  {
+   "AIN": "2004020028",
+   "OBJECTID": 14,
+   "RollYear": "2026",
+   "Roll_ImpValue": 203737,
+   "Roll_LandValue": 170835,
+   "Roll_totLandImp": 374572
+  },
+  {
+   "AIN": "2005009027",
+   "OBJECTID": 15,
+   "RollYear": "2026",
+   "Roll_ImpValue": 53484,
+   "Roll_LandValue": 27976,
+   "Roll_totLandImp": 81460
+  },
+  {
+   "AIN": "2004001018",
+   "OBJECTID": 16,
+   "RollYear": "2026",
+   "Roll_ImpValue": 281504,
+   "Roll_LandValue": 588579,
+   "Roll_totLandImp": 870083
+  },
+  {
+   "AIN": "2004001019",
+   "OBJECTID": 17,
+   "RollYear": "2026",
+   "Roll_ImpValue": 244067,
+   "Roll_LandValue": 614759,
+   "Roll_totLandImp": 858826
+  },
+  {
+   "AIN": "2004001022",
+   "OBJECTID": 18,
+   "RollYear": "2026",
+   "Roll_ImpValue": 225276,
+   "Roll_LandValue": 322889,
+   "Roll_totLandImp": 548165
+  },
+  {
+   "AIN": "2004001025",
+   "OBJECTID": 19,
+   "RollYear": "2026",
+   "Roll_ImpValue": 223743,
+   "Roll_LandValue": 145004,
+   "Roll_totLandImp": 368747
+  },
+  {
+   "AIN": "2004001026",
+   "OBJECTID": 20,
+   "RollYear": "2026",
+   "Roll_ImpValue": 179718,
+   "Roll_LandValue": 125194,
+   "Roll_totLandImp": 304912
+  },
+  {
+   "AIN": "2004001027",
+   "OBJECTID": 21,
+   "RollYear": "2026",
+   "Roll_ImpValue": 244965,
+   "Roll_LandValue": 402722,
+   "Roll_totLandImp": 647687
+  },
+  {
+   "AIN": "2004001028",
+   "OBJECTID": 22,
+   "RollYear": "2026",
+   "Roll_ImpValue": 401359,
+   "Roll_LandValue": 650746,
+   "Roll_totLandImp": 1052105
+  },
+  {
+   "AIN": "2004001029",
+   "OBJECTID": 23,
+   "RollYear": "2026",
+   "Roll_ImpValue": 290635,
+   "Roll_LandValue": 270343,
+   "Roll_totLandImp": 560978
+  },
+  {
+   "AIN": "2004001030",
+   "OBJECTID": 24,
+   "RollYear": "2026",
+   "Roll_ImpValue": 299546,
+   "Roll_LandValue": 284485,
+   "Roll_totLandImp": 584031
+  },
+  {
+   "AIN": "2004001031",
+   "OBJECTID": 25,
+   "RollYear": "2026",
+   "Roll_ImpValue": 314835,
+   "Roll_LandValue": 597698,
+   "Roll_totLandImp": 912533
+  }
+ ],
+ "layer": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Assessor%20Parcel%20Data%20Roll%202026/FeatureServer/0",
+ "where": "(RollYear = '2026') AND (1=1)"
+}

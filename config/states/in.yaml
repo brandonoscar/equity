@@ -1,0 +1,19 @@
+source_id: in.statewide.parcels
+state: IN
+layer_url: https://gisdata.in.gov/server/rest/services/Hosted/Parcel_Boundaries_of_Indiana_Current/FeatureServer/0
+order_by: objectid
+page_size: 1000
+min_interval_s: 1.0
+county:
+  field: county_fips
+  format: fips5
+fields:
+  parcel_id: parcel_id
+value_basis: "boundaries only: this layer has no owner or value fields; owner and assessed value are in the separate DLGF real-property tables (Indiana Gateway download), joinable on parcel number"
+terms:
+  url: https://dataharvest.gio.in.gov/pages/data-access
+  summary: "IGIO GIS Data Harvest, parcel boundaries from county agencies, all 92 counties; published licenseInfo: provided 'AS IS', citation 'requested, but not required', no use restriction stated for the layer; owner/value data (DLGF) is subject to Indiana APRA IC 5-14-3-3(f) limits on disclosing lists of names and addresses to commercial entities for commercial purposes; 2026 HEA 1360 APRA amendments (data scraping) not reviewed"
+  checked_on: 2026-11-15
+  robots_checked_on: 2026-11-15
+  cost_model: free
+use_restrictions: [no_commercial_name_address_lists]

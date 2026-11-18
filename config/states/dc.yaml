@@ -1,0 +1,29 @@
+source_id: dc.statewide.parcels
+state: DC
+# OCFO Integrated Tax System Public Extract (ITSPE): one row per tax lot (SSL), owner,
+# tax-billing address and assessed values. Table (no geometry); polygons join on SSL.
+layer_url: https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Property_and_Land/MapServer/53
+order_by: OBJECTID
+page_size: 1000
+min_interval_s: 1.0
+county:
+  constant: "001"   # District of Columbia is a single county-equivalent
+fields:
+  parcel_id: SSL                # Square, Suffix, Lot (spaces removed by the adapter)
+  owner1: OWNERNAME
+  owner2: OWNNAME2
+  mail_line1: ADDRESS1          # "Tax billing address Part 1" (street)
+  # ADDRESS2 is empty in every row (count 0, 2026-11-15). CITYSTZIP holds city, state and
+  # ZIP+4 in one string ("<CITY> <ST> <ZIP>"), so it goes in line 2 rather than mail_city.
+  mail_city_state_zip: CITYSTZIP
+  land_value: PHASELAND         # "Current Land"
+  bldg_value: PHASEBUILD        # "Current Build"
+  total_value: ASSESSMENT       # "Current Assessed Value Total"
+  tax_year: CY1YEAR             # "Current Year Description" (e.g. "2026")
+value_basis: "PHASELAND/PHASEBUILD/ASSESSMENT = OCFO current-year assessed land, building and total (source aliases 'Current Land', 'Current Build', 'Current Assessed Value Total'); NEWTOTAL (proposed) and CAPCURR (capped assessment) not mapped; tax year = CY1YEAR"
+terms:
+  url: https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Property_and_Land/MapServer/53/metadata
+  summary: "DC OCFO / DC GIS, free REST; layer metadata useLimit: 'This work is licensed under a Creative Commons Attribution 4.0 International License.' (attribution required; no commercial-use or mailing-list restriction stated)"
+  checked_on: 2026-11-15
+  robots_checked_on: 2026-11-15
+  cost_model: free

@@ -1,0 +1,22 @@
+# Colorado Secretary of State, "Business Entities in Colorado" (data.colorado.gov 4ykn-tg5h),
+# Public Domain. One row per entity with its registered agent; no officers published.
+# TODO(Brandon): agent valid_from is the formation date (true start not published).
+source_id: co.sos.business
+state: CO
+jurisdiction: "08"
+portal: https://data.colorado.gov
+dataset: 4ykn-tg5h
+key: entityid
+key_is_number: true
+terms_url: https://data.colorado.gov/Business/Business-Entities-in-Colorado/4ykn-tg5h
+terms_summary: "Public Domain (dataset license field)."
+checked_on: 2026-11-16
+business:
+  name: entityname
+  status: entitystatus
+  formed_on: entityformdate
+  principal: {street: [principaladdress1, principaladdress2], city: principalcity, state: principalstate, zip: principalzipcode}
+  mailing: {street: [mailingaddress1, mailingaddress2], city: mailingcity, state: mailingstate, zip: mailingzipcode}
+roles:
+  - {role: registered_agent, org: agentorganizationname, name_parts: [agentfirstname, agentmiddlename, agentlastname, agentsuffix], address: {street: [agentprincipaladdress1, agentprincipaladdress2], city: agentprincipalcity, state: agentprincipalstate, zip: agentprincipalzipcode}}
+pii_fields: [entityname, principaladdress1, principaladdress2, mailingaddress1, mailingaddress2, agentfirstname, agentmiddlename, agentlastname, agentorganizationname, agentprincipaladdress1, agentprincipaladdress2, agentmailingaddress1, agentmailingaddress2]

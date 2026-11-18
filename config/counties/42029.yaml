@@ -1,0 +1,30 @@
+source_id: pa.chester.parcels
+state: PA
+# Chester County parcels with owner, mailing address, assessment and deed book/page, as
+# republished on PASDA ('Chester County Parcels 202611').
+layer_url: https://mapservices.pasda.psu.edu/server/rest/services/pasda/ChesterCounty/MapServer/11
+order_by: OBJECTID_1     # the OID field (alias FID); OBJECTID is a plain integer copy
+page_size: 1000          # maxRecordCount 1000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "029"}
+fields:
+  parcel_id: UPI           # Uniform Parcel Identifier, e.g. 53-3H-90
+  owner1: OWN1
+  owner2: OWN2
+  # ADDR1-ADDR3 are lines whose last non-blank line is "CITY ST" (no ZIP); ZIP1 holds the ZIP.
+  # For about 95% of rows ADDR1 is the street and ADDR2 the city line; 10,403 rows put a c/o
+  # line in ADDR1, the street in ADDR2 and the city in ADDR3. Only ADDR1 + ZIP1 are mapped, so
+  # the city line never lands in the street (see report: needs a last-line city/state rule).
+  mail_line1: ADDR1
+  mail_zip: ZIP1
+  assessed_value: TOT_ASSESS
+  tax_year: TAXYR
+  deed_book: BOOK
+  deed_page: PAGE
+value_basis: "TOT_ASSESS = total assessed value (Chester County assesses on its 1996 base-year values); LOT_ASSESS / PROP_ASSES are its land and improvement parts and are not mapped (there are no assessed-component columns). FMV319 / FMV515 are 0 in the rows sampled and are not mapped. TAXYR = tax year of the roll (2027 on 193,301 rows, 0 on 1,469, which emit no assessment). BOOK/PAGE = recorder of deeds book and page of the last deed."
+terms:
+  url: https://mapservices.pasda.psu.edu/server/rest/services/pasda/ChesterCounty/MapServer/11
+  summary: "Chester County PA parcels served by PASDA, Pennsylvania's public geospatial clearinghouse at Penn State. Free REST, no login; 194,770 polygons on 2026-11-16. Service iteminfo has empty licenseInfo and accessInformation; the per-dataset PASDA metadata page (www.pasda.psu.edu) could not be read from this environment. No commercial-use or mailing-list restriction found. mapservices.pasda.psu.edu /robots.txt answers 404 (RFC 9309: no rules)."
+  checked_on: 2026-11-16
+  robots_checked_on: 2026-11-16
+  cost_model: free

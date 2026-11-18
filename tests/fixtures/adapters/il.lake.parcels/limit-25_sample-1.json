@@ -1,0 +1,256 @@
+{
+ "attributes": [
+  {
+   "OBJECTID": 1,
+   "PIN": "0101300001",
+   "taxpayer_addr_city": "GLENVIEW",
+   "taxpayer_addr_line_1": "TESTOWNER 4A888D",
+   "taxpayer_addr_line_2": null,
+   "taxpayer_addr_state": "IL",
+   "taxpayer_addr_zip": "60025 3704",
+   "taxpayer_name": "TESTOWNER 5434B0 LLC"
+  },
+  {
+   "OBJECTID": 2,
+   "PIN": "0101300003",
+   "taxpayer_addr_city": "ANTIOCH",
+   "taxpayer_addr_line_1": "TESTOWNER 3FF523",
+   "taxpayer_addr_line_2": null,
+   "taxpayer_addr_state": "IL",
+   "taxpayer_addr_zip": "60002 7918",
+   "taxpayer_name": "TESTOWNER 07585A"
+  },
+  {
+   "OBJECTID": 3,
+   "PIN": "0101300004",
+   "taxpayer_addr_city": "ANTIOCH",
+   "taxpayer_addr_line_1": "TESTOWNER E6DBE0",
+   "taxpayer_addr_line_2": null,
+   "taxpayer_addr_state": "IL",
+   "taxpayer_addr_zip": "60002 7918",
+   "taxpayer_name": "TESTOWNER 07B8C9"
+  },
+  {
+   "OBJECTID": 4,
+   "PIN": "0101300005",
+   "taxpayer_addr_city": "ANTIOCH",
+   "taxpayer_addr_line_1": "TESTOWNER 3FF523",
+   "taxpayer_addr_line_2": null,
+   "taxpayer_addr_state": "IL",
+   "taxpayer_addr_zip": "60002 7918",
+   "taxpayer_name": "TESTOWNER 07585A"
+  },
+  {
+   "OBJECTID": 5,
+   "PIN": "0101300006",
+   "taxpayer_addr_city": "ANTIOCH",
+   "taxpayer_addr_line_1": "TESTOWNER 014D27",
+   "taxpayer_addr_line_2": null,
+   "taxpayer_addr_state": "IL",
+   "taxpayer_addr_zip": "60002 7918",
+   "taxpayer_name": "TESTOWNER 66B787"
+  },
+  {
+   "OBJECTID": 6,
+   "PIN": "0101300007",
+   "taxpayer_addr_city": "ANTIOCH",
+   "taxpayer_addr_line_1": "TESTOWNER 60BE48",
+   "taxpayer_addr_line_2": null,
+   "taxpayer_addr_state": "IL",
+   "taxpayer_addr_zip": "60002 7918",
+   "taxpayer_name": "TESTOWNER 004707"
+  },
+  {
+   "OBJECTID": 7,
+   "PIN": "0101300008",
+   "taxpayer_addr_city": "ANTIOCH",
+   "taxpayer_addr_line_1": "TESTOWNER 959797",
+   "taxpayer_addr_line_2": null,
+   "taxpayer_addr_state": "IL",
+   "taxpayer_addr_zip": "60002 7435",
+   "taxpayer_name": "TESTOWNER 4636C6"
+  },
+  {
+   "OBJECTID": 8,
+   "PIN": "0101300009",
+   "taxpayer_addr_city": "ANTIOCH",
+   "taxpayer_addr_line_1": "TESTOWNER 6E06F7",
+   "taxpayer_addr_line_2": null,
+   "taxpayer_addr_state": "IL",
+   "taxpayer_addr_zip": "60002 7406",
+   "taxpayer_name": "TESTOWNER 805592"
+  },
+  {
+   "OBJECTID": 9,
+   "PIN": "0101300010",
+   "taxpayer_addr_city": "ANTIOCH",
+   "taxpayer_addr_line_1": "TESTOWNER DAD6DC",
+   "taxpayer_addr_line_2": null,
+   "taxpayer_addr_state": "IL",
+   "taxpayer_addr_zip": "60002 9025",
+   "taxpayer_name": "TESTOWNER 8361DD"
+  },
+  {
+   "OBJECTID": 10,
+   "PIN": "0101300012",
+   "taxpayer_addr_city": "ANTIOCH",
+   "taxpayer_addr_line_1": "TESTOWNER 80676D",
+   "taxpayer_addr_line_2": null,
+   "taxpayer_addr_state": "IL",
+   "taxpayer_addr_zip": "60002 8826",
+   "taxpayer_name": "TESTOWNER 906CF9"
+  },
+  {
+   "OBJECTID": 11,
+   "PIN": "0101300013",
+   "taxpayer_addr_city": "ANTIOCH",
+   "taxpayer_addr_line_1": "TESTOWNER 35C1AD",
+   "taxpayer_addr_line_2": null,
+   "taxpayer_addr_state": "IL",
+   "taxpayer_addr_zip": "60002 8826",
+   "taxpayer_name": "TESTOWNER BF455E"
+  },
+  {
+   "OBJECTID": 12,
+   "PIN": "0101300014",
+   "taxpayer_addr_city": "ANTIOCH",
+   "taxpayer_addr_line_1": "TESTOWNER E85FFB",
+   "taxpayer_addr_line_2": null,
+   "taxpayer_addr_state": "IL",
+   "taxpayer_addr_zip": "60002 8948",
+   "taxpayer_name": "TESTOWNER 2F21FB"
+  },
+  {
+   "OBJECTID": 13,
+   "PIN": "0101300015",
+   "taxpayer_addr_city": "ANTIOCH",
+   "taxpayer_addr_line_1": "TESTOWNER 64BFA3",
+   "taxpayer_addr_line_2": null,
+   "taxpayer_addr_state": "IL",
+   "taxpayer_addr_zip": "60002 8830",
+   "taxpayer_name": "TESTOWNER C60558"
+  },
+  {
+   "OBJECTID": 14,
+   "PIN": "0101300016",
+   "taxpayer_addr_city": "ANTIOCH",
+   "taxpayer_addr_line_1": "TESTOWNER D110B9",
+   "taxpayer_addr_line_2": null,
+   "taxpayer_addr_state": "IL",
+   "taxpayer_addr_zip": "60002 8826",
+   "taxpayer_name": "TESTOWNER B43443"
+  },
+  {
+   "OBJECTID": 15,
+   "PIN": "0101301001",
+   "taxpayer_addr_city": "ANTIOCH",
+   "taxpayer_addr_line_1": "TESTOWNER B9BDEC",
+   "taxpayer_addr_line_2": null,
+   "taxpayer_addr_state": "IL",
+   "taxpayer_addr_zip": "60002",
+   "taxpayer_name": "TESTOWNER F613B0"
+  },
+  {
+   "OBJECTID": 16,
+   "PIN": "0101301002",
+   "taxpayer_addr_city": "ANTIOCH",
+   "taxpayer_addr_line_1": "TESTOWNER CC1348",
+   "taxpayer_addr_line_2": null,
+   "taxpayer_addr_state": "IL",
+   "taxpayer_addr_zip": "60002 2919",
+   "taxpayer_name": "TESTOWNER F613B0"
+  },
+  {
+   "OBJECTID": 17,
+   "PIN": "0101301003",
+   "taxpayer_addr_city": "ANTIOCH",
+   "taxpayer_addr_line_1": "TESTOWNER CC1348",
+   "taxpayer_addr_line_2": null,
+   "taxpayer_addr_state": "IL",
+   "taxpayer_addr_zip": "60002 2919",
+   "taxpayer_name": "TESTOWNER F613B0"
+  },
+  {
+   "OBJECTID": 18,
+   "PIN": "0101301004",
+   "taxpayer_addr_city": "HICKORY HILLS",
+   "taxpayer_addr_line_1": "TESTOWNER B4217C",
+   "taxpayer_addr_line_2": null,
+   "taxpayer_addr_state": "IL",
+   "taxpayer_addr_zip": "60457 1342",
+   "taxpayer_name": "TESTOWNER A90901"
+  },
+  {
+   "OBJECTID": 19,
+   "PIN": "0101301005",
+   "taxpayer_addr_city": "HICKORY HILLS",
+   "taxpayer_addr_line_1": "TESTOWNER B4217C",
+   "taxpayer_addr_line_2": null,
+   "taxpayer_addr_state": "IL",
+   "taxpayer_addr_zip": "60457 1342",
+   "taxpayer_name": "TESTOWNER B4BA23"
+  },
+  {
+   "OBJECTID": 20,
+   "PIN": "0101301006",
+   "taxpayer_addr_city": "ANTIOCH",
+   "taxpayer_addr_line_1": "TESTOWNER 3B2676",
+   "taxpayer_addr_line_2": null,
+   "taxpayer_addr_state": "IL",
+   "taxpayer_addr_zip": "60002 8827",
+   "taxpayer_name": "TESTOWNER 469E29"
+  },
+  {
+   "OBJECTID": 21,
+   "PIN": "0101301010",
+   "taxpayer_addr_city": "ANTIOCH",
+   "taxpayer_addr_line_1": "TESTOWNER 683F77",
+   "taxpayer_addr_line_2": null,
+   "taxpayer_addr_state": "IL",
+   "taxpayer_addr_zip": "60002 8827",
+   "taxpayer_name": "TESTOWNER 2BBB7C"
+  },
+  {
+   "OBJECTID": 22,
+   "PIN": "0101301011",
+   "taxpayer_addr_city": "ANTIOCH",
+   "taxpayer_addr_line_1": "TESTOWNER 683F77",
+   "taxpayer_addr_line_2": null,
+   "taxpayer_addr_state": "IL",
+   "taxpayer_addr_zip": "60002 8827",
+   "taxpayer_name": "TESTOWNER 2BBB7C"
+  },
+  {
+   "OBJECTID": 23,
+   "PIN": "0101301012",
+   "taxpayer_addr_city": "ANTIOCH",
+   "taxpayer_addr_line_1": "TESTOWNER 4A0DE7",
+   "taxpayer_addr_line_2": null,
+   "taxpayer_addr_state": "IL",
+   "taxpayer_addr_zip": "60002 8830",
+   "taxpayer_name": "TESTOWNER 786BF2"
+  },
+  {
+   "OBJECTID": 24,
+   "PIN": "0101301013",
+   "taxpayer_addr_city": "ANTIOCH",
+   "taxpayer_addr_line_1": "TESTOWNER 4A0DE7",
+   "taxpayer_addr_line_2": null,
+   "taxpayer_addr_state": "IL",
+   "taxpayer_addr_zip": "60002 8830",
+   "taxpayer_name": "TESTOWNER 786BF2"
+  },
+  {
+   "OBJECTID": 25,
+   "PIN": "0101301016",
+   "taxpayer_addr_city": "ANTIOCH",
+   "taxpayer_addr_line_1": "TESTOWNER D1E20E",
+   "taxpayer_addr_line_2": null,
+   "taxpayer_addr_state": "IL",
+   "taxpayer_addr_zip": "60002 8823",
+   "taxpayer_name": "TESTOWNER 8ED88B"
+  }
+ ],
+ "layer": "https://services3.arcgis.com/HESxeTbDliKKvec2/arcgis/rest/services/OpenData_ParcelPolygons/FeatureServer/0",
+ "where": "1=1"
+}

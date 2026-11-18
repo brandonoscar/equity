@@ -1,0 +1,28 @@
+# DRAFT, not installed: blocked because services1.arcgis.com answers /robots.txt with HTTP 403
+# ("Invalid URL", no robots file published) and PoliteClient treats 401/403 as disallow-all.
+source_id: nd.statewide.parcels
+state: ND
+layer_url: https://services1.arcgis.com/GOcSXpzwBHyk2nog/arcgis/rest/services/NDGISHUB_Parcels/FeatureServer/1
+order_by: OBJECTID
+page_size: 1000
+min_interval_s: 1.0
+county:
+  field: CountyFIPS
+  format: fips5
+fields:
+  parcel_id: ParcelID
+  owner1: OwnerName
+  owner2: Owner2Name
+  mail_line1: OwnerMailingAddress
+  mail_city: OwnerCity
+  mail_state: OwnerState
+  mail_zip: OwnerZip
+  total_value: TotalValue
+  tax_year: TaxRollYear
+value_basis: "TotalValue = sum of the tax roll's category values (agricultural/residential/commercial/exempt land and structure); the layer does not state the valuation basis; TaxRollYear = tax roll year (null for ~18% of rows)"
+terms:
+  url: https://gishubdata-ndgov.hub.arcgis.com/datasets/NDGOV::parcels
+  summary: "ND State Parcel Program (NDIT / GIS Hub), Parcels_TaxRoll table, all 53 counties, rural focus (some city parcels missing); licenseInfo: no warranty, not a survey, consult county for current data; no commercial-use clause found"
+  checked_on: 2026-11-15
+  robots_checked_on: 2026-11-15
+  cost_model: free

@@ -1,0 +1,106 @@
+{
+ "attributes": [
+  {
+   "ACCOUNT": "6001825200000",
+   "OBJECTID": 1
+  },
+  {
+   "ACCOUNT": "1605983400000",
+   "OBJECTID": 2
+  },
+  {
+   "ACCOUNT": "4100398500000",
+   "OBJECTID": 3
+  },
+  {
+   "ACCOUNT": "3902278700000",
+   "OBJECTID": 4
+  },
+  {
+   "ACCOUNT": "2708724400000",
+   "OBJECTID": 5
+  },
+  {
+   "ACCOUNT": "5607525200000",
+   "OBJECTID": 6
+  },
+  {
+   "ACCOUNT": "3206128200000",
+   "OBJECTID": 7
+  },
+  {
+   "ACCOUNT": "4506078000000",
+   "OBJECTID": 8
+  },
+  {
+   "ACCOUNT": "2501268900000",
+   "OBJECTID": 9
+  },
+  {
+   "ACCOUNT": "3383641500000",
+   "OBJECTID": 10
+  },
+  {
+   "ACCOUNT": "0809218700000",
+   "OBJECTID": 11
+  },
+  {
+   "ACCOUNT": "6000871400000",
+   "OBJECTID": 12
+  },
+  {
+   "ACCOUNT": "3396935600000",
+   "OBJECTID": 13
+  },
+  {
+   "ACCOUNT": "5209857800000",
+   "OBJECTID": 14
+  },
+  {
+   "ACCOUNT": "3907968600000",
+   "OBJECTID": 15
+  },
+  {
+   "ACCOUNT": "3008428500000",
+   "OBJECTID": 16
+  },
+  {
+   "ACCOUNT": "3907235800000",
+   "OBJECTID": 17
+  },
+  {
+   "ACCOUNT": "3384485200000",
+   "OBJECTID": 18
+  },
+  {
+   "ACCOUNT": "2006335300000",
+   "OBJECTID": 19
+  },
+  {
+   "ACCOUNT": "3006428600000",
+   "OBJECTID": 20
+  },
+  {
+   "ACCOUNT": "3208057300000",
+   "OBJECTID": 21
+  },
+  {
+   "ACCOUNT": "6008421100000",
+   "OBJECTID": 22
+  },
+  {
+   "ACCOUNT": "3902782700000",
+   "OBJECTID": 23
+  },
+  {
+   "ACCOUNT": "4101610800000",
+   "OBJECTID": 24
+  },
+  {
+   "ACCOUNT": "3389578200000",
+   "OBJECTID": 25
+  }
+ ],
+ "layer": "https://mapservices.pasda.psu.edu/server/rest/services/pasda/LancasterCounty/MapServer/21",
+ "where": "1=1"
+}

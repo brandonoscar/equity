@@ -1,0 +1,98 @@
+source_id: fl.statewide.parcels
+state: FL
+layer_url: https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0
+order_by: OBJECTID
+page_size: 1000
+min_interval_s: 1.0
+county:
+  field: CO_NO        # FDOR county number 11-77 (alphabetical, Miami-Dade = 23)
+  format: code_map
+  code_map:
+    "11": "001"   # Alachua
+    "12": "003"   # Baker
+    "13": "005"   # Bay
+    "14": "007"   # Bradford
+    "15": "009"   # Brevard
+    "16": "011"   # Broward
+    "17": "013"   # Calhoun
+    "18": "015"   # Charlotte
+    "19": "017"   # Citrus
+    "20": "019"   # Clay
+    "21": "021"   # Collier
+    "22": "023"   # Columbia
+    "23": "086"   # Miami-Dade
+    "24": "027"   # DeSoto
+    "25": "029"   # Dixie
+    "26": "031"   # Duval
+    "27": "033"   # Escambia
+    "28": "035"   # Flagler
+    "29": "037"   # Franklin
+    "30": "039"   # Gadsden
+    "31": "041"   # Gilchrist
+    "32": "043"   # Glades
+    "33": "045"   # Gulf
+    "34": "047"   # Hamilton
+    "35": "049"   # Hardee
+    "36": "051"   # Hendry
+    "37": "053"   # Hernando
+    "38": "055"   # Highlands
+    "39": "057"   # Hillsborough
+    "40": "059"   # Holmes
+    "41": "061"   # Indian River
+    "42": "063"   # Jackson
+    "43": "065"   # Jefferson
+    "44": "067"   # Lafayette
+    "45": "069"   # Lake
+    "46": "071"   # Lee
+    "47": "073"   # Leon
+    "48": "075"   # Levy
+    "49": "077"   # Liberty
+    "50": "079"   # Madison
+    "51": "081"   # Manatee
+    "52": "083"   # Marion
+    "53": "085"   # Martin
+    "54": "087"   # Monroe
+    "55": "089"   # Nassau
+    "56": "091"   # Okaloosa
+    "57": "093"   # Okeechobee
+    "58": "095"   # Orange
+    "59": "097"   # Osceola
+    "60": "099"   # Palm Beach
+    "61": "101"   # Pasco
+    "62": "103"   # Pinellas
+    "63": "105"   # Polk
+    "64": "107"   # Putnam
+    "65": "109"   # St. Johns
+    "66": "111"   # St. Lucie
+    "67": "113"   # Santa Rosa
+    "68": "115"   # Sarasota
+    "69": "117"   # Seminole
+    "70": "119"   # Sumter
+    "71": "121"   # Suwannee
+    "72": "123"   # Taylor
+    "73": "125"   # Union
+    "74": "127"   # Volusia
+    "75": "129"   # Wakulla
+    "76": "131"   # Walton
+    "77": "133"   # Washington
+fields:
+  parcel_id: PARCEL_ID
+  owner1: OWN_NAME
+  mail_line1: OWN_ADDR1
+  mail_line2: OWN_ADDR2
+  mail_city: OWN_CITY
+  mail_state: OWN_STATE
+  mail_zip: OWN_ZIPCD
+  land_value: LND_VAL
+  total_value: JV
+  assessed_value: AV_SD
+  tax_year: ASMNT_YR
+  deed_book: OR_BOOK1
+  deed_page: OR_PAGE1
+value_basis: "JV = just (market) value; AV_SD = assessed value for school-district levy; LND_VAL = land value; ASMNT_YR = assessment year of the joined NAL roll; OR_BOOK1/OR_PAGE1 = official-records book/page of the most recent qualified sale"
+terms:
+  url: https://floridarevenue.com/property/Pages/DataPortal_RequestAssessmentRollGISData.aspx
+  summary: "FDOR Property Tax Oversight PAR parcels (county PA shapefiles joined to the NAL roll) hosted by the Florida GIO; free, no login. Item licenseInfo: 'The Department does not generate or maintain the data used to compile this statewide parcel map. The Department does not guarantee the accuracy, or completeness, or the compliance with public records laws of this parcel GIS data. The data is owned and maintained by each Florida county's property appraiser's office'. Published as public records under ch. 119 F.S.; records exempt under s.119.071 are omitted. No commercial-use or mailing-list restriction stated."
+  checked_on: 2026-11-15
+  robots_checked_on: 2026-11-15
+  cost_model: free

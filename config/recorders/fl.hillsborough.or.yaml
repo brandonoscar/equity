@@ -1,0 +1,56 @@
+# Hillsborough County (FL) Clerk, Official Records daily index files
+# (publicrec.hillsclerk.com/OfficialRecords/DailyIndexes, pipe-delimited D and P files).
+# Each D row carries its own code and description; codes seen in the 2026-11-04 file.
+#
+# FROM/TO are the clerk's direct/reverse index names. In the sampled rows FROM is the side
+# holding the claim (judgment creditor, lienor, secured party, satisfying lienholder) and TO
+# the side owing it; on deeds and mortgages FROM is the grantor / borrower.
+#
+# TODO(Brandon): confirm every mapping. In particular:
+#  - JUD and CCJ are JUDGMENT_LIEN. In Florida a recorded certified copy of a judgment is a lien
+#    on the debtor's real property in the county (Fla. Stat. 55.10) only if it meets that
+#    statute's requirements (e.g. the creditor's address). We do not check that here.
+#  - LN ("LIEN") is STATUTORY_LIEN; it also covers construction (mechanic's) liens, which the
+#    index does not tell apart.
+#  - LNCORPTX is TAX_LIEN_STATE (Department of Revenue).
+#  - SAT/REL/PR roles are creditor/debtor because one code covers mortgage and judgment
+#    satisfactions alike.
+#  - The index has no parcel id: instruments link to parcels only through a later
+#    legal-description or owner-name step.
+#  - exclude: family-law and vital records are not loaded at all (data minimization).
+consideration_doc_types: [DEED]
+exclude_codes: [DC, DRCP, DRJUD, ODNPFL]
+exclude_descriptions: [MARRIAGE RECORD, DEATH CERTIFICATE]
+codes:
+  JUD: {doc_type: JUDGMENT_LIEN, frm: creditor, to: debtor}
+  CCJ: {doc_type: JUDGMENT_LIEN, frm: creditor, to: debtor}
+  D: {doc_type: DEED, frm: grantor, to: grantee}
+  AGD: {doc_type: LAND_CONTRACT, frm: grantor, to: grantee}
+  MTG: {doc_type: MORTGAGE, frm: borrower, to: lender}
+  MTGNIT: {doc_type: MORTGAGE, frm: borrower, to: lender}
+  MTGNT: {doc_type: MORTGAGE, frm: borrower, to: lender}
+  MTGREV: {doc_type: MORTGAGE, frm: borrower, to: lender}
+  ASG: {doc_type: ASSIGNMENT, frm: assignor, to: assignee}
+  MOD: {doc_type: MODIFICATION, frm: other, to: other}
+  SAT: {doc_type: RELEASE, frm: creditor, to: debtor}
+  REL: {doc_type: RELEASE, frm: creditor, to: debtor}
+  PR: {doc_type: PARTIAL_RELEASE, frm: creditor, to: debtor}
+  LN: {doc_type: STATUTORY_LIEN, frm: creditor, to: debtor}
+  LNCORPTX: {doc_type: TAX_LIEN_STATE, frm: creditor, to: debtor}
+  LP: {doc_type: LIS_PENDENS, frm: other, to: other}
+  RELLP: {doc_type: RELEASE, frm: other, to: other}
+  FIN: {doc_type: FIXTURE_FILING, frm: creditor, to: debtor}
+  TER: {doc_type: RELEASE, frm: creditor, to: debtor}
+  ORD: {doc_type: COURT_ORDER, frm: other, to: other}
+  COHOME: {doc_type: COURT_ORDER, frm: other, to: other}
+  CP: {doc_type: OTHER, frm: other, to: other}
+  AFF: {doc_type: AFFIDAVIT, frm: other, to: other}
+  POA: {doc_type: POWER_OF_ATTORNEY, frm: other, to: other}
+  EAS: {doc_type: OTHER, frm: grantor, to: grantee}
+  NOC: {doc_type: OTHER, frm: other, to: other}
+  AGR: {doc_type: OTHER, frm: other, to: other}
+  PRO: {doc_type: OTHER, frm: other, to: other}
+  NOT: {doc_type: OTHER, frm: other, to: other}
+  GOV: {doc_type: OTHER, frm: other, to: other}
+  CTF: {doc_type: OTHER, frm: other, to: other}
+  BND: {doc_type: OTHER, frm: other, to: other}

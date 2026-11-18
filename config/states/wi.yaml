@@ -1,0 +1,28 @@
+# DRAFT, not installed: blocked because services3.arcgis.com answers /robots.txt with HTTP 403
+# ("Invalid URL", no robots file published) and PoliteClient treats 401/403 as disallow-all.
+source_id: wi.statewide.parcels
+state: WI
+layer_url: https://services3.arcgis.com/n6uYoouQZW75n5WI/ArcGIS/rest/services/Wisconsin_Statewide_Parcels_DB/FeatureServer/0
+order_by: OBJECTID
+page_size: 1000
+min_interval_s: 1.0
+county:
+  field: PARCELFIPS
+  format: fips3
+fields:
+  parcel_id: PARCELID
+  owner1: OWNERNME1
+  owner2: OWNERNME2
+  mail_full: PSTLADRESS
+  land_value: LNDVALUE
+  bldg_value: IMPVALUE
+  total_value: ESTFMKVALUE
+  assessed_value: CNTASSDVALUE
+  tax_year: TAXROLLYEAR
+value_basis: "LNDVALUE/IMPVALUE = local assessed land/improvement value; CNTASSDVALUE = total assessed value; ESTFMKVALUE = estimated fair market value (assessed value adjusted by the municipality's assessment ratio; null for ag/MFL classes); TAXROLLYEAR = tax roll year of the attributes (lags geometry ~1 year)"
+terms:
+  url: https://www.sco.wisc.edu/parcels/data/
+  summary: "WI DOA / State Cartographer's Office Statewide Parcel Map V12 (2026), all 72 counties, free; PSTLADRESS is one unsplit postal-address string"
+  checked_on: 2026-11-15
+  robots_checked_on: 2026-11-15
+  cost_model: free

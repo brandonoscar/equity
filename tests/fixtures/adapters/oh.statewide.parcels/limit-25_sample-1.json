@@ -1,0 +1,156 @@
+{
+ "attributes": [
+  {
+   "County": "Champaign",
+   "LocalParcelID": "K482500023300700",
+   "Name": "TESTOWNER 39E789",
+   "OBJECTID": 1
+  },
+  {
+   "County": "Champaign",
+   "LocalParcelID": "K482500023301100",
+   "Name": "TESTOWNER 8A86D0",
+   "OBJECTID": 2
+  },
+  {
+   "County": "Champaign",
+   "LocalParcelID": "K482500023301400",
+   "Name": "TESTOWNER 6F772F",
+   "OBJECTID": 3
+  },
+  {
+   "County": "Champaign",
+   "LocalParcelID": "K482500023400400",
+   "Name": "TESTOWNER 3E5095",
+   "OBJECTID": 4
+  },
+  {
+   "County": "Champaign",
+   "LocalParcelID": "K482500023400800",
+   "Name": "TESTOWNER 47E1CC",
+   "OBJECTID": 5
+  },
+  {
+   "County": "Champaign",
+   "LocalParcelID": "K482500023401100",
+   "Name": "TESTOWNER FB4A0B",
+   "OBJECTID": 6
+  },
+  {
+   "County": "Champaign",
+   "LocalParcelID": "K482500023401500",
+   "Name": "TESTOWNER 18E658",
+   "OBJECTID": 7
+  },
+  {
+   "County": "Champaign",
+   "LocalParcelID": "K482500023401900",
+   "Name": "TESTOWNER 302951",
+   "OBJECTID": 8
+  },
+  {
+   "County": "Champaign",
+   "LocalParcelID": "K482500023402200",
+   "Name": "TESTOWNER D5995C",
+   "OBJECTID": 9
+  },
+  {
+   "County": "Champaign",
+   "LocalParcelID": "K482500023402600",
+   "Name": "TESTOWNER F9BDFD",
+   "OBJECTID": 10
+  },
+  {
+   "County": "Champaign",
+   "LocalParcelID": "B050212050000800",
+   "Name": "TESTOWNER 835159",
+   "OBJECTID": 11
+  },
+  {
+   "County": "Champaign",
+   "LocalParcelID": "K482500023403300",
+   "Name": "TESTOWNER DFDE24",
+   "OBJECTID": 12
+  },
+  {
+   "County": "Champaign",
+   "LocalParcelID": "K482500023403700",
+   "Name": "TESTOWNER 12DA45",
+   "OBJECTID": 13
+  },
+  {
+   "County": "Champaign",
+   "LocalParcelID": "A010112180005600",
+   "Name": "TESTOWNER FA089A",
+   "OBJECTID": 14
+  },
+  {
+   "County": "Champaign",
+   "LocalParcelID": "K482500023500300",
+   "Name": "TESTOWNER C67B34",
+   "OBJECTID": 15
+  },
+  {
+   "County": "Champaign",
+   "LocalParcelID": "K482500023500700",
+   "Name": "TESTOWNER 029A7F",
+   "OBJECTID": 16
+  },
+  {
+   "County": "Champaign",
+   "LocalParcelID": "B050299050000001",
+   "Name": "TESTOWNER B449E3",
+   "OBJECTID": 17
+  },
+  {
+   "County": "Champaign",
+   "LocalParcelID": "K482500023501301",
+   "Name": "TESTOWNER 787689",
+   "OBJECTID": 18
+  },
+  {
+   "County": "Champaign",
+   "LocalParcelID": "K482500023501700",
+   "Name": "TESTOWNER B3474F",
+   "OBJECTID": 19
+  },
+  {
+   "County": "Champaign",
+   "LocalParcelID": "K482500023502000",
+   "Name": "TESTOWNER 653ABF",
+   "OBJECTID": 20
+  },
+  {
+   "County": "Champaign",
+   "LocalParcelID": "K482500023502400",
+   "Name": "TESTOWNER 8D8220",
+   "OBJECTID": 21
+  },
+  {
+   "County": "Champaign",
+   "LocalParcelID": "K482500023502800",
+   "Name": "TESTOWNER 8C888A",
+   "OBJECTID": 22
+  },
+  {
+   "County": "Champaign",
+   "LocalParcelID": "K482500023800300",
+   "Name": "TESTOWNER 79BFF8",
+   "OBJECTID": 23
+  },
+  {
+   "County": "Champaign",
+   "LocalParcelID": "K482500023800700",
+   "Name": "TESTOWNER 2D69D5",
+   "OBJECTID": 24
+  },
+  {
+   "County": "Champaign",
+   "LocalParcelID": "K482500023801000",
+   "Name": "TESTOWNER 142091",
+   "OBJECTID": 25
+  }
+ ],
+ "layer": "https://services2.arcgis.com/MlJ0G8iWUyC7jAmu/arcgis/rest/services/OhioStatewidePacels_full_view/FeatureServer/1",
+ "where": "1=1"
+}

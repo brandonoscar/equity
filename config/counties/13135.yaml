@@ -1,0 +1,27 @@
+source_id: ga.gwinnett.parcels
+state: GA
+layer_url: https://services3.arcgis.com/RfpmnkSAQleRbndX/arcgis/rest/services/FYT_Owner_Data/FeatureServer/1
+order_by: OBJECTID
+page_size: 1000          # maxRecordCount 2000
+min_interval_s: 1.0
+county: {constant: "135"}
+fields:
+  parcel_id: TAXPIN        # tax-roll PIN with the R (real) prefix, e.g. "R6324 031"
+  owner1: OWNER1
+  owner2: OWNER2
+  mail_line1: MAILADDR
+  mail_city: MAILCITY
+  mail_state: MAILSTAT
+  mail_zip: MAILZIP
+  land_value: LANDVAL1
+  bldg_value: DWLGVAL1
+  total_value: TOTVAL1
+  assessed_value: TAXTOT1
+  tax_year: {const: 2026}
+value_basis: "TOTVAL1 = total appraised (fair market) value; LANDVAL1 = land; DWLGVAL1 = dwelling value; TAXTOT1 = assessed value (40% of TOTVAL1, Georgia's assessment ratio). Values are text fields. No tax-year field: tax_year is the const 2026 (current digest; layer last edited 2026-10-12). Bump the const when the digest rolls. DOC1REF holds the deed book and page in one string (e.g. '47237 723'), so deed_book/deed_page are not mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=67eb72963c1c49628857d85fa1f48b43
+  summary: "Gwinnett County GIS (ArcGIS Online user GwinnettCountyGIS), FYT_Owner_Data: 'Gwinnett County Parcel layer joined with Tax data to show parcel and owner information together'. Public hosted layer, free, no login, 305,466 rows on 2026-11-16. No licenseInfo on this item. The county's open-data Land Parcels item says: 'ALL DATA IS PROVIDED AS IS, WITH ALL FAULTS, WITHOUT WARRANTY OF ANY KIND ... This map is the proprietary product of Gwinnett County'. No commercial-use or mailing-list restriction stated."
+  checked_on: 2026-11-16
+  robots_checked_on: 2026-11-16
+  cost_model: free
