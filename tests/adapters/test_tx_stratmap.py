@@ -156,13 +156,28 @@ def test_fetch_rejects_bad_downloads(tmp_path: Path) -> None:
         a.fetch(FetchRequest({"key": key, "size": str(len(blob) + 1)}))
     got = json.loads(a.fetch(FetchRequest({"key": key, "size": str(len(blob))})).content)
     assert len(got["attributes"]) == 10  # cp1252 path
-    two = io.BytesIO()
-    with zipfile.ZipFile(two, "w") as zf:
-        zf.writestr("a.dbf", b"")
-        zf.writestr("b.dbf", b"")
-    a = adapter({key: two.getvalue()}, tmp_path)
-    with pytest.raises(ValueError, match=r"one \.dbf"):
-        a.fetch(FetchRequest({"key": key, "size": str(len(two.getvalue()))}))
+    empty = io.BytesIO()
+    with zipfile.ZipFile(empty, "w") as zf:
+        zf.writestr("readme.txt", b"")
+    a = adapter({key: empty.getvalue()}, tmp_path)
+    with pytest.raises(ValueError, match=r"no \.dbf"):
+        a.fetch(FetchRequest({"key": key, "size": str(len(empty.getvalue()))}))
+
+
+def test_split_county_files_read_as_one_table(tmp_path: Path) -> None:
+    key = PREFIX + "stratmap26-landparcels_48201_lp.zip"
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w") as zf:
+        zf.writestr("shp/harris-west_48201.dbf", make_dbf(ROWS[5:]))
+        zf.writestr("shp/harris-east_48201.dbf", make_dbf(ROWS[:5]))
+    blob = buf.getvalue()
+    a = adapter({key: blob}, tmp_path)
+    base = {"key": key, "size": str(len(blob)), "slices": "3"}
+    got = [json.loads(a.fetch(FetchRequest({**base, "slice": str(i)})).content)["attributes"]
+           for i in range(3)]  # fmt: skip
+    ids = [r["PROP_ID"] for part in got for r in part]
+    assert ids == [f"P{i}" for i in range(10)]  # east (P0-P4) then west, no gaps or repeats
+    assert [r["_row"] for part in got for r in part] == [str(i) for i in range(10)]
 
 
 def test_fixture_normalizes() -> None:

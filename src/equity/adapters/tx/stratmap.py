@@ -106,20 +106,31 @@ class TexasStratMapParcels(_Base):  # type: ignore[valid-type,misc]
         index, slices = int(p.get("slice", "0")), int(p.get("slices", "1"))
         content, retrieved_at = self._zip_bytes(key, size)
         with zipfile.ZipFile(io.BytesIO(content)) as zf:
-            dbf = [n for n in zf.namelist() if n.lower().endswith(".dbf")]
-            if len(dbf) != 1:
-                raise ValueError(f"{key}: expected one .dbf, found {dbf}")
+            # Large counties ship split files (Harris: -east and -west): read them in name
+            # order as one table, so record numbers are stable across slices.
+            dbfs = sorted(n for n in zf.namelist() if n.lower().endswith(".dbf"))
+            if not dbfs:
+                raise ValueError(f"{key}: no .dbf in the zip")
             cpg = [n for n in zf.namelist() if n.lower().endswith(".cpg")]
             encoding = zf.read(cpg[0]).decode("ascii").strip().lower() if cpg else "utf-8"
             encoding = "utf-8" if encoding in ("utf-8", "utf8") else "cp1252"
-            with zf.open(dbf[0]) as f:
-                total = record_count(f)
+            counts = []
+            for name in dbfs:
+                with zf.open(name) as f:
+                    counts.append(record_count(f))
+            total = sum(counts)
             start, stop = total * index // slices, total * (index + 1) // slices
             if "limit" in p:
                 stop = min(stop, start + int(p["limit"]))
-            with zf.open(dbf[0]) as f:
-                rows = [{**rec, "_row": str(i)}
-                        for i, rec in read_records(f, start, stop, encoding)]  # fmt: skip
+            rows: list[dict[str, Any]] = []
+            offset = 0
+            for name, n in zip(dbfs, counts, strict=True):
+                lo, hi = max(start - offset, 0), min(stop - offset, n)
+                if lo < hi:
+                    with zf.open(name) as f:
+                        rows += [{**rec, "_row": str(offset + i)}
+                                 for i, rec in read_records(f, lo, hi, encoding)]  # fmt: skip
+                offset += n
         if index == slices - 1 and "limit" not in p:
             (self.cache_dir / Path(key).name).unlink(missing_ok=True)
         body = canonical_json({"layer": self.config.layer_url, "key": key,
