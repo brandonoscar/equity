@@ -21,7 +21,12 @@ Checked 2026-11-18. Coverage by state is generated in `docs/coverage.md`.
   | NM | Doña Ana, Sandoval |
   | OK | Canadian, Oklahoma |
   | OR | Deschutes, Marion (Marion has no owner names) |
-  | VA | Alexandria, Chesterfield, Loudoun, Richmond |
+  | VA | Alexandria, Chesterfield, Loudoun, Prince William, Richmond |
+| OK (added) | Tulsa |
+| IA (added) | Johnson |
+| SD | Lincoln |
+| OR (added) | Jackson |
+| AZ (added) | Mohave (2023 data) |
 
   Four Arizona layers (Cochise, Pima, Pinal, Yuma) come from the state water agency's copy,
   which asks users not to pass the data on (`no_redistribution`).
@@ -43,7 +48,21 @@ statute's definition covers any use where the requester "can reasonably anticipa
 of monetary gain" from the records. Finding assets behind purchased judgments does that.
 Maricopa and Yavapai stay out unless we file their commercial-use statement and pay.
 
-## Blocked by the session's network allowlist (not yet checked)
+## Checked after the allowlist change (2026-11-18), still held back
+
+| County | Why |
+|---|---|
+| Sedgwick, KS | The site's firewall rejects range and statistics queries. Loading it would mean reshaping queries around that block, which needs your decision. |
+| Pennington, SD | Individual owners' names are split into separate fields, so we would get surnames only. |
+| Chesapeake, VA | The city removes owner names from its own open-data release. |
+| Newport News, VA | Owner names are only in the permitting app's backend, not in a published dataset. |
+| Fairfax, Arlington, VA | No layer with owner names. |
+| Polk, IA | HTML search forms only. Getting the data would mean scraping. |
+| Virginia Beach VA, Greene MO, Bernalillo NM | robots.txt unreachable, which counts as disallowed. |
+| St. Charles MO, Minnehaha SD | A bot challenge or firewall blocks access. We don't work around those. |
+| Shawnee, KS | No data service found. |
+
+## Blocked by the session's network allowlist (as first found)
 
 These hosts may serve free owner layers, but this session couldn't reach them. The biggest
 missing counties are:

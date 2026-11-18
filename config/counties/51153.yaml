@@ -1,0 +1,27 @@
+source_id: va.prince_william.parcels
+state: VA
+# Prince William County 'OpenData' map service (feeds the county GIS Data Portal), layer 0 'Parcels',
+# with CAMA owner/mailing fields joined (CAMA_*). 160,096 rows; 156,476 with CAMA_OWNER_CUR.
+# Table 80 'Parcel Ownership' in the same service is empty (0 rows) on 2026-11-18.
+layer_url: https://gisweb.pwcva.gov/arcgis/rest/services/OpenData/OpenData/MapServer/0
+order_by: objectid
+page_size: 1000          # maxRecordCount 1000
+min_interval_s: 1.0
+county: {constant: "153"}
+fields:
+  parcel_id: GPIN          # equals CAMA_MAPBLOLOT on the sampled row
+  owner1: CAMA_OWNER_CUR
+  mail_line1: CAMA_ADDRESS2
+  mail_line2: CAMA_ADDRESS3
+  mail_city: CAMA_CITY
+  mail_state: CAMA_STATE
+  mail_zip: CAMA_ZIPCODE
+  deed_book: DEED_BOOK     # populated on 63,675 rows; newer deeds use INSTR_NUM instead (not mapped)
+  deed_page: DEED_PAGE
+value_basis: "No value fields in this layer. CAMA_DEEDOWNER (deed owner) and CAMA_ACCOUNT_NO are not mapped. tax_year not mapped (no roll-year field)."
+terms:
+  url: https://gisweb.pwcva.gov/arcgis/rest/services/OpenData/OpenData/MapServer
+  summary: "Prince William County VA GIS 'OpenData' MapServer (backs the county GIS Data Portal), public, no token. Free, no login, 160,096 rows on 2026-11-18. copyrightText empty; itemInfo licenseInfo/accessInformation empty; layer metadata not published (404). No use-constraint text found on this host; the county's portal disclaimer page (pwcva.gov) was not reachable from here. gisweb.pwcva.gov /robots.txt answers 404 (allowed)."
+  checked_on: 2026-11-18
+  robots_checked_on: 2026-11-18
+  cost_model: free

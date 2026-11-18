@@ -1,0 +1,29 @@
+source_id: or.jackson.parcels
+state: OR
+# Jackson County OR Property/Taxlots2 (v2 schema June 2026, updated weekly). One feature per owner
+# per account: multi-owner accounts repeat, and the adapter keeps the lowest OBJECTID row, so
+# co-owners beyond the first are dropped. CONTRACT (contract purchaser, 344 rows) and INCAREOF
+# are not mapped.
+layer_url: https://jcportal.jacksoncountyor.gov/server/rest/services/Property/Taxlots2/FeatureServer/1
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "029"}
+fields:
+  parcel_id: ACCOUNT       # tax account; MAPTAXLOT can hold several accounts (e.g. improvement-only)
+  owner1: FEEOWNER
+  mail_line1: ADDRESS1
+  mail_line2: ADDRESS2
+  mail_city: CITY
+  mail_state: STATE
+  mail_zip: ZIPCODE
+  land_value: LANDRMV
+  bldg_value: IMPRMV
+  assessed_value: ASSESSEDVALUE
+value_basis: "LANDRMV/IMPRMV = real market value (land, improvements); no total RMV field, so total_value is not mapped. ASSESSEDVALUE = Measure 50 assessed value (LANDAV/IMPRAV not mapped). No tax-year or deed fields."
+terms:
+  url: https://jcportal.jacksoncountyor.gov/server/rest/services/Property/Taxlots2/FeatureServer
+  summary: "Jackson County OR public FeatureServer (Query,Extract), no token. Free, no login, 103,660 rows on 2026-11-18. copyrightText/accessInformation: 'Jackson County Assessor's office. Jackson County GIS department'; licenseInfo only 'Spatial data should not be used to determine property boundaries.' No use-constraint text. jcportal.jacksoncountyor.gov /robots.txt 302-redirects to the portal home HTML page (no robots rules, allowed)."
+  checked_on: 2026-11-18
+  robots_checked_on: 2026-11-18
+  cost_model: free
