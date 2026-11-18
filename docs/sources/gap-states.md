@@ -38,8 +38,10 @@ Checked 2026-11-18. Coverage by state is generated in `docs/coverage.md`.
 | Oregon Metro (Multnomah, Washington, Clackamas) and Lane | Owner names are removed from the free data; the paid RLIS and RLID subscriptions have them. |
 | Mat-Su, AK | License is internal use only, with no transfer to third parties. |
 
-`TODO(Brandon)`: decide whether this project is a "commercial purpose" under Arizona's
-A.R.S. 39-121.03. If it is not, Maricopa and Yavapai can be revisited.
+**Decided 2026-11-18: this project is a "commercial purpose" under A.R.S. 39-121.03.** The
+statute's definition covers any use where the requester "can reasonably anticipate the receipt
+of monetary gain" from the records. Finding assets behind purchased judgments does that.
+Maricopa and Yavapai stay out unless we file their commercial-use statement and pay.
 
 ## Blocked by the session's network allowlist (not yet checked)
 
