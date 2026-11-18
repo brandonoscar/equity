@@ -14,7 +14,7 @@ build/
 *.egg-info/
 
 # Local data: raw fetches, DuckDB files, Parquet lakes. Never committed (repo is public).
-data/
+/data/
 *.duckdb
 *.duckdb.wal
 
