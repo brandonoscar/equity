@@ -1,0 +1,27 @@
+source_id: mo.jackson.parcels
+state: MO
+# Jackson County MO GIS 'Parcel Information' layer 1 'Parcels_Tyler' (parcel fabric joined to the
+# Tyler CAMA extract; item snippet 'Extracted Aug 3'; data last edited 2026-09-10). 311,130 rows,
+# 300,221 distinct PARID; 412 rows have no CAMA join (PARID/OWNER_NAMES null). Layer 0 is the
+# same CAMA table without geometry. PARCEL_ADDRESS = situs (not mapped).
+layer_url: https://services3.arcgis.com/4LOAHoFXfea6Y3Et/ArcGIS/rest/services/Parcel_Information/FeatureServer/1
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000
+min_interval_s: 1.0
+county: {constant: "095"}
+# HIDENAME='Y' on 11 rows (name suppression flag); excluded conservatively.
+filter: "HIDENAME IS NULL OR HIDENAME <> 'Y'"
+fields:
+  parcel_id: PARID
+  owner1: OWNER_NAMES      # comma-joined owner list with trailing blanks, e.g. 'NAME, , '
+  mail_full: OWNER_ADDRESS # 'STREET  CITY, ST 99999' (no comma after street, so the adapter keeps it all as the street line)
+  total_value: MKTVAL
+  assessed_value: ASDVAL
+  tax_year: TAXYR
+value_basis: "MKTVAL = Assessment Department market value; ASDVAL = assessed value (Missouri: 19% residential, 12% agricultural, 32% commercial); TAXVAL = taxable value (equal to ASDVAL on sampled rows, not mapped). TAXYR = 2026 on 310,718 rows. No land/building split. Owner and mailing data are as of the Aug 2026 CAMA extract, not the fetch date."
+terms:
+  url: https://services3.arcgis.com/4LOAHoFXfea6Y3Et/ArcGIS/rest/services/Parcel_Information/FeatureServer
+  summary: "Jackson County, Missouri GIS (AGOL org 'Jackson County, Missouri GIS', item 'Parcel Information'), public hosted FeatureServer, no token. Free, no login, 311,130 rows on 2026-11-18. No license, use-constraint or access text in the item. services3.arcgis.com /robots.txt answers 403 (RFC 9309: allowed). Also see 2026_parcels/FeatureServer/0 (301,075 rows, no owner fields)."
+  checked_on: 2026-11-18
+  robots_checked_on: 2026-11-18
+  cost_model: free

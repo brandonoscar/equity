@@ -1,0 +1,30 @@
+source_id: va.chesterfield.parcels
+state: VA
+# Chesterfield County 'ParcelsEnriched' (Cadastral_ProdA layer 3): parcels joined to CAMA.
+# 151,015 rows, 145,421 distinct GPIN (condo/stacked rows repeat GPIN); 152 rows have no CAMA join.
+# Situs: Address/Zip (not mapped). Name is a 15-digit tax id string, not a person name.
+layer_url: https://services3.arcgis.com/TsynfzBSE6sXfoLq/arcgis/rest/services/Cadastral_ProdA/FeatureServer/3
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000
+min_interval_s: 1.0
+county: {constant: "041"}
+fields:
+  parcel_id: GPIN
+  owner1: OwnerName
+  mail_line1: OwnerAddress
+  mail_city: OwnerCity
+  mail_state: OwnerState
+  mail_zip: OwnerZip
+  land_value: FairMarketValue
+  bldg_value: ImprovementValue
+  assessed_value: TotalAssessment
+  tax_year: AssessmentYear
+  deed_book: DeedBook
+  deed_page: Page
+value_basis: "From sampled rows: FairMarketValue = land fair-market value; LandUseValue = land-use (use-value taxation) land value, 0 when not enrolled; ImprovementValue = improvements; TotalAssessment = (LandUseValue if enrolled else FairMarketValue) + ImprovementValue, i.e. the taxable assessment (Virginia assesses at 100% of FMV). total_value is not mapped because no field holds total FMV for land-use parcels. AssessmentYear = 2026 on 150,863 rows. Semantics inferred from arithmetic, not from county documentation."
+terms:
+  url: https://services3.arcgis.com/TsynfzBSE6sXfoLq/arcgis/rest/services/Cadastral_ProdA/FeatureServer
+  summary: "Chesterfield County VA GIS (item 'Cadastral_ProdA', owner ChesterfieldVA), public hosted FeatureServer, no token. Free, no login, 151,015 rows on 2026-11-18 (data edited 2026-11-18). No license or use-constraint text in the item; accessInformation 'Chesterfield, GIS, VA'. services3.arcgis.com /robots.txt answers 403 (RFC 9309: allowed). The older Cadastral/FeatureServer/3 (maxRecordCount 1000, 146,864 rows) is the same schema."
+  checked_on: 2026-11-18
+  robots_checked_on: 2026-11-18
+  cost_model: free

@@ -1,0 +1,231 @@
+{
+ "attributes": [
+  {
+   "MAP_TAXLOT": "1407000000100",
+   "M_ADDRESS": null,
+   "M_CITY": null,
+   "M_STATE": null,
+   "M_ZIP": null,
+   "OBJECTID": 1,
+   "OWNER": "TESTOWNER 1563FD"
+  },
+  {
+   "MAP_TAXLOT": "1408000000100",
+   "M_ADDRESS": "3908 TEST ST",
+   "M_CITY": "LYONS",
+   "M_STATE": "OR",
+   "M_ZIP": "97358",
+   "OBJECTID": 2,
+   "OWNER": "TESTOWNER 3ACDC1 LLC"
+  },
+  {
+   "MAP_TAXLOT": "1408000000200",
+   "M_ADDRESS": null,
+   "M_CITY": null,
+   "M_STATE": null,
+   "M_ZIP": null,
+   "OBJECTID": 3,
+   "OWNER": "TESTOWNER 1563FD"
+  },
+  {
+   "MAP_TAXLOT": "1408000000201",
+   "M_ADDRESS": "3908 TEST ST",
+   "M_CITY": "LYONS",
+   "M_STATE": "OR",
+   "M_ZIP": "97358",
+   "OBJECTID": 4,
+   "OWNER": "TESTOWNER 0D42B7 LLC"
+  },
+  {
+   "MAP_TAXLOT": "1408000000202",
+   "M_ADDRESS": "3908 TEST ST",
+   "M_CITY": "LYONS",
+   "M_STATE": "OR",
+   "M_ZIP": "97358",
+   "OBJECTID": 5,
+   "OWNER": "TESTOWNER 3ACDC1 LLC"
+  },
+  {
+   "MAP_TAXLOT": "1408000000300",
+   "M_ADDRESS": "3908 TEST ST",
+   "M_CITY": "LYONS",
+   "M_STATE": "OR",
+   "M_ZIP": "97358",
+   "OBJECTID": 6,
+   "OWNER": "TESTOWNER 3ACDC1 LLC"
+  },
+  {
+   "MAP_TAXLOT": "1408000000400",
+   "M_ADDRESS": "3908 TEST ST",
+   "M_CITY": "LYONS",
+   "M_STATE": "OR",
+   "M_ZIP": "97358",
+   "OBJECTID": 7,
+   "OWNER": "TESTOWNER 3ACDC1 LLC"
+  },
+  {
+   "MAP_TAXLOT": "1408000000500",
+   "M_ADDRESS": "3908 TEST ST",
+   "M_CITY": "LYONS",
+   "M_STATE": "OR",
+   "M_ZIP": "97358",
+   "OBJECTID": 8,
+   "OWNER": "TESTOWNER 3ACDC1 LLC"
+  },
+  {
+   "MAP_TAXLOT": "1409000000100",
+   "M_ADDRESS": null,
+   "M_CITY": null,
+   "M_STATE": null,
+   "M_ZIP": null,
+   "OBJECTID": 9,
+   "OWNER": "TESTOWNER 1563FD"
+  },
+  {
+   "MAP_TAXLOT": "1409000000100",
+   "M_ADDRESS": null,
+   "M_CITY": null,
+   "M_STATE": null,
+   "M_ZIP": null,
+   "OBJECTID": 10,
+   "OWNER": "TESTOWNER 1563FD"
+  },
+  {
+   "MAP_TAXLOT": "1409000000200",
+   "M_ADDRESS": "7791 TEST ST",
+   "M_CITY": "HOUSTON",
+   "M_STATE": "TX",
+   "M_ZIP": "77019",
+   "OBJECTID": 11,
+   "OWNER": "TESTOWNER FF102C"
+  },
+  {
+   "MAP_TAXLOT": "1409000000201",
+   "M_ADDRESS": "940 TEST ST",
+   "M_CITY": "SAN FRANCISCO",
+   "M_STATE": "CA",
+   "M_ZIP": "94118",
+   "OBJECTID": 12,
+   "OWNER": "TESTOWNER 237C49"
+  },
+  {
+   "MAP_TAXLOT": "1409000000202",
+   "M_ADDRESS": "6514 TEST ST",
+   "M_CITY": "SISTERS",
+   "M_STATE": "OR",
+   "M_ZIP": "97759-8000",
+   "OBJECTID": 13,
+   "OWNER": "TESTOWNER 169B43"
+  },
+  {
+   "MAP_TAXLOT": "1409000000202",
+   "M_ADDRESS": "6514 TEST ST",
+   "M_CITY": "SISTERS",
+   "M_STATE": "OR",
+   "M_ZIP": "97759-8000",
+   "OBJECTID": 14,
+   "OWNER": "TESTOWNER 169B43"
+  },
+  {
+   "MAP_TAXLOT": "1409000000300",
+   "M_ADDRESS": null,
+   "M_CITY": null,
+   "M_STATE": null,
+   "M_ZIP": null,
+   "OBJECTID": 15,
+   "OWNER": "TESTOWNER 1563FD"
+  },
+  {
+   "MAP_TAXLOT": "1409000000400",
+   "M_ADDRESS": "3908 TEST ST",
+   "M_CITY": "LYONS",
+   "M_STATE": "OR",
+   "M_ZIP": "97358",
+   "OBJECTID": 16,
+   "OWNER": "TESTOWNER 3ACDC1 LLC"
+  },
+  {
+   "MAP_TAXLOT": "1409000000500",
+   "M_ADDRESS": null,
+   "M_CITY": null,
+   "M_STATE": null,
+   "M_ZIP": null,
+   "OBJECTID": 17,
+   "OWNER": "TESTOWNER 1563FD"
+  },
+  {
+   "MAP_TAXLOT": "1409000000800",
+   "M_ADDRESS": "242 TEST ST",
+   "M_CITY": "PORTLAND",
+   "M_STATE": "OR",
+   "M_ZIP": "97213",
+   "OBJECTID": 18,
+   "OWNER": "TESTOWNER EE6927 LLC"
+  },
+  {
+   "MAP_TAXLOT": "1409000000800",
+   "M_ADDRESS": "242 TEST ST",
+   "M_CITY": "PORTLAND",
+   "M_STATE": "OR",
+   "M_ZIP": "97213",
+   "OBJECTID": 19,
+   "OWNER": "TESTOWNER EE6927 LLC"
+  },
+  {
+   "MAP_TAXLOT": "1409000000801",
+   "M_ADDRESS": "242 TEST ST",
+   "M_CITY": "PORTLAND",
+   "M_STATE": "OR",
+   "M_ZIP": "97213",
+   "OBJECTID": 20,
+   "OWNER": "TESTOWNER EE6927 LLC"
+  },
+  {
+   "MAP_TAXLOT": "1409000001200",
+   "M_ADDRESS": "3395 TEST ST",
+   "M_CITY": "N/A/A",
+   "M_STATE": null,
+   "M_ZIP": null,
+   "OBJECTID": 21,
+   "OWNER": "TESTOWNER 1563FD"
+  },
+  {
+   "MAP_TAXLOT": "1409000001400",
+   "M_ADDRESS": null,
+   "M_CITY": null,
+   "M_STATE": null,
+   "M_ZIP": null,
+   "OBJECTID": 22,
+   "OWNER": "TESTOWNER 1563FD"
+  },
+  {
+   "MAP_TAXLOT": "1409000001500",
+   "M_ADDRESS": "3908 TEST ST",
+   "M_CITY": "LYONS",
+   "M_STATE": "OR",
+   "M_ZIP": "97358",
+   "OBJECTID": 23,
+   "OWNER": "TESTOWNER 3ACDC1 LLC"
+  },
+  {
+   "MAP_TAXLOT": "1409000001600",
+   "M_ADDRESS": null,
+   "M_CITY": null,
+   "M_STATE": null,
+   "M_ZIP": null,
+   "OBJECTID": 24,
+   "OWNER": "TESTOWNER 1563FD"
+  },
+  {
+   "MAP_TAXLOT": "1409000001700",
+   "M_ADDRESS": "3908 TEST ST",
+   "M_CITY": "LYONS",
+   "M_STATE": "OR",
+   "M_ZIP": "97358",
+   "OBJECTID": 25,
+   "OWNER": "TESTOWNER 3ACDC1 LLC"
+  }
+ ],
+ "layer": "https://services1.arcgis.com/znO8Hz1SuVVohYhZ/arcgis/rest/services/Taxlots/FeatureServer/4",
+ "where": "1=1"
+}

@@ -14,6 +14,7 @@ from equity.adapters.fl.hillsborough_or import HillsboroughOfficialRecords
 from equity.adapters.ny.acris import AcrisPersonalProperty, AcrisRealProperty
 from equity.adapters.pa.philadelphia_rtt import PhiladelphiaRTT
 from equity.adapters.state_parcels import all_state_adapters
+from equity.adapters.tx.stratmap import TexasStratMapParcels
 from equity.adapters.wv.delinquent import WVDelinquentProperties
 from equity.adapters.wv.parcelweb import MonongaliaParcelWeb
 from equity.adapters.wv.statewide_parcels import WVStatewideParcels
@@ -25,6 +26,7 @@ for _cls in (
     NDWVDistrictRSS,
     NDWVBankruptcyRSS,
     *all_state_adapters(),
+    TexasStratMapParcels,
     AcrisRealProperty,
     AcrisPersonalProperty,
     PhiladelphiaRTT,

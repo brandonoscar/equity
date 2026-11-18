@@ -1,0 +1,26 @@
+source_id: or.marion.parcels
+state: OR
+# Marion County "Parcels" hosted layer (Marion_County, item ada32398d70d4d1d8ccf9deab1829da0).
+# The county's OPEN DATA view of the same rows (Parcels_OpenDataView, item 9e496e9558ae476e9b65e1cf51b2594a)
+# says: "Ownership information has been removed and a written request must be made for this
+# information." This public layer carries OWNERNAME / OWNERADDR / OWNERCSZ anyway.
+layer_url: https://services1.arcgis.com/sYGZnQPdJ0azuLyn/arcgis/rest/services/Parcels/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000
+min_interval_s: 1.0
+county: {constant: "047"}
+fields:
+  parcel_id: TAXLOT
+  land_value: RMVLND
+  bldg_value: RMVIMP
+  total_value: RMVTOTAL
+  assessed_value: ASSDVAL
+value_basis: "RMVLND / RMVIMP / RMVTOTAL = Real Market Value (land, improvements, total); ASSDVAL = Oregon Measure 50 maximum assessed value. No roll-year field (LASTUPDATE is an edit timestamp), so tax_year is not mapped. Sale instrument fields INSTNUM/INSTTYPE/INSTDATE/SALEPRICE exist but are not deed book/page."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=ada32398d70d4d1d8ccf9deab1829da0
+  summary: "Marion County OR, public hosted FeatureServer, no token. Free, no login, 115,870 rows on 2026-11-18. licenseInfo is an accuracy disclaimer. The county's open-data copy removes ownership and requires a written request for it, so owner fields are NOT mapped (same pattern as Riverside CA). robots.txt on services1.arcgis.com returns 403 (allowed)."
+  checked_on: 2026-11-18
+  robots_checked_on: 2026-11-18
+  cost_model: free
+# Owner fields (OWNERNAME, OWNERADDR, OWNERCSZ) deliberately left out: county policy routes ownership
+# through a written request. DECISION for Brandon before adding.

@@ -1,0 +1,131 @@
+{
+ "attributes": [
+  {
+   "OBJECTID": 1,
+   "Owner_List": "TESTOWNER 0E26B0 CORP",
+   "Parcel_ID": "1036068321352"
+  },
+  {
+   "OBJECTID": 2,
+   "Owner_List": "TESTOWNER 0E26B0 CORP",
+   "Parcel_ID": "1036069188031"
+  },
+  {
+   "OBJECTID": 3,
+   "Owner_List": "TESTOWNER 0E26B0 CORP",
+   "Parcel_ID": "1036068171081"
+  },
+  {
+   "OBJECTID": 4,
+   "Owner_List": "TESTOWNER 0E26B0 CORP",
+   "Parcel_ID": "1036068034249"
+  },
+  {
+   "OBJECTID": 5,
+   "Owner_List": "TESTOWNER 0E26B0 CORP",
+   "Parcel_ID": "1035067502467"
+  },
+  {
+   "OBJECTID": 6,
+   "Owner_List": "TESTOWNER 0E26B0 CORP",
+   "Parcel_ID": "1035069490027"
+  },
+  {
+   "OBJECTID": 7,
+   "Owner_List": "TESTOWNER 0E26B0 CORP",
+   "Parcel_ID": "1035067351580"
+  },
+  {
+   "OBJECTID": 8,
+   "Owner_List": "TESTOWNER 0E26B0 CORP",
+   "Parcel_ID": "1035068340472"
+  },
+  {
+   "OBJECTID": 9,
+   "Owner_List": "TESTOWNER 0E26B0 CORP",
+   "Parcel_ID": "1035068244235"
+  },
+  {
+   "OBJECTID": 10,
+   "Owner_List": "TESTOWNER 081883",
+   "Parcel_ID": "1035069075515"
+  },
+  {
+   "OBJECTID": 11,
+   "Owner_List": "TESTOWNER 984EB0",
+   "Parcel_ID": "1034070508331"
+  },
+  {
+   "OBJECTID": 12,
+   "Owner_List": "TESTOWNER 0E26B0 CORP",
+   "Parcel_ID": "1035068091487"
+  },
+  {
+   "OBJECTID": 13,
+   "Owner_List": "TESTOWNER 6CD8A8",
+   "Parcel_ID": "1034067481207"
+  },
+  {
+   "OBJECTID": 14,
+   "Owner_List": "TESTOWNER 722486",
+   "Parcel_ID": "1035074264132"
+  },
+  {
+   "OBJECTID": 15,
+   "Owner_List": "TESTOWNER 8A427B",
+   "Parcel_ID": "1034067445241"
+  },
+  {
+   "OBJECTID": 16,
+   "Owner_List": "TESTOWNER 9592EB",
+   "Parcel_ID": "1034070446334"
+  },
+  {
+   "OBJECTID": 17,
+   "Owner_List": "TESTOWNER 515D47",
+   "Parcel_ID": "1034067415268"
+  },
+  {
+   "OBJECTID": 18,
+   "Owner_List": "TESTOWNER 081883",
+   "Parcel_ID": "1034069472490"
+  },
+  {
+   "OBJECTID": 19,
+   "Owner_List": "TESTOWNER D8EDA6",
+   "Parcel_ID": "1034067439209"
+  },
+  {
+   "OBJECTID": 20,
+   "Owner_List": "TESTOWNER CB39A5",
+   "Parcel_ID": "1034070470174"
+  },
+  {
+   "OBJECTID": 21,
+   "Owner_List": "TESTOWNER 97585F",
+   "Parcel_ID": "1034067385282"
+  },
+  {
+   "OBJECTID": 22,
+   "Owner_List": "TESTOWNER DFB7E5",
+   "Parcel_ID": "1034067388199"
+  },
+  {
+   "OBJECTID": 23,
+   "Owner_List": "TESTOWNER A2CB51",
+   "Parcel_ID": "1034067362290"
+  },
+  {
+   "OBJECTID": 24,
+   "Owner_List": "TESTOWNER 235707",
+   "Parcel_ID": "1034070379336"
+  },
+  {
+   "OBJECTID": 25,
+   "Owner_List": "TESTOWNER 081883",
+   "Parcel_ID": "1034069368505"
+  }
+ ],
+ "layer": "https://services3.arcgis.com/CkhxOCyQmitz4nLa/arcgis/rest/services/Sandoval_County_Parcels/FeatureServer/0",
+ "where": "1=1"
+}

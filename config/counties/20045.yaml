@@ -1,0 +1,27 @@
+source_id: ks.douglas.parcels
+state: KS
+# Douglas County, KS property ownership polygons published by the City of Lawrence GIS
+# ("Parcel", updated weekly). Owner and mailing address; no value fields.
+layer_url: https://services.arcgis.com/8O9UlSTnqjKptoda/arcgis/rest/services/Parcel/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "045"}
+use_restrictions: [no_mailing_list, no_resale]
+fields:
+  parcel_id: PARCELNUMBER
+  owner1: owner1
+  owner2: owner2           # owner3 also exists, not mapped
+  mail_line1: address
+  mail_city: city
+  mail_state: state
+  mail_zip: zip
+  deed_book: book
+  deed_page: page
+value_basis: "No value fields in this layer (deed book/page, plat, tax unit, school, legal, situs only)."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=08285f4b4aca41a785afcc47c5044d2e
+  summary: "City of Lawrence GIS item 'Parcel' (accessInformation 'Douglas County, Kansas'), public, no token, 41,801 rows on 2026-11-18 (owner1 filled on 41,791). licenseInfo: as-is disclaimer plus 'The user shall not use the information (including lists of names and/or addresses) for the purpose of selling or offering for sale any property or service to any person listed ... Further, the user shall not sell, give or otherwise make available ... any list of names and/or addresses ... for the purpose of allowing that person to sell ... or profit from the information' (mirrors K.S.A. 45-230). services*.arcgis.com /robots.txt answers HTTP 403 'Invalid URL' (RFC 9309: 4xx = no rules, allowed; the repo PoliteClient currently treats 401/403 as disallow-all, see states_midwest.md blocker 1)."
+  checked_on: 2026-11-18
+  robots_checked_on: 2026-11-18
+  cost_model: free

@@ -1,0 +1,27 @@
+source_id: or.deschutes.parcels
+state: OR
+# Deschutes County Assessor's hosted Taxlots service (DeschutesCo, item 901cdd4a5ca24cc3b72cc8e3e0f11f02).
+# Layer 0 (Taxlot polygons) has no owner or value fields; owners/mailing are in non-spatial table 4
+# (GIS_MAILING), keyed by MAP_TAXLOT. Values are in table 7 (GIS_ROLLVALUES: Taxlot, RMV_Land,
+# RMV_Impr, RMV_Total, AV_Total), not joined here. Table 5 (GIS_OWNERS, 210,977 rows) lists every
+# owner name per taxlot.
+layer_url: https://services1.arcgis.com/znO8Hz1SuVVohYhZ/arcgis/rest/services/Taxlots/FeatureServer/4
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000
+min_interval_s: 1.0
+county: {constant: "017"}
+extra_pii: [AGENT, IN_CARE_OF]
+fields:
+  parcel_id: MAP_TAXLOT
+  owner1: OWNER
+  mail_line1: M_ADDRESS
+  mail_city: M_CITY
+  mail_state: M_STATE
+  mail_zip: M_ZIP
+value_basis: "No value fields in this table. Values live in Taxlots/FeatureServer/7 (GIS_ROLLVALUES: RMV_* = real market value, AV_Total = Oregon Measure 50 assessed value), keyed by Taxlot = MAP_TAXLOT; a second config on that table would be needed. One row per account (112,400 rows vs 109,596 taxlots), so a taxlot can repeat."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=901cdd4a5ca24cc3b72cc8e3e0f11f02
+  summary: "Deschutes County Assessor's Office, public hosted FeatureServer, no token. Free, no login; GIS_MAILING table 112,400 rows on 2026-11-18. Item licenseInfo: 'Free to download and use'. robots.txt on services1.arcgis.com returns 403 (allowed)."
+  checked_on: 2026-11-18
+  robots_checked_on: 2026-11-18
+  cost_model: free

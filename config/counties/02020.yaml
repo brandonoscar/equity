@@ -1,0 +1,30 @@
+source_id: ak.anchorage.parcels
+state: AK
+# Municipality of Anchorage hosted layer (MOA_HostedServices, item 57d6ff611f444d75a1bf2b4a1d340163),
+# parcels merged with Property Appraisal CAMA, "updated daily (except weekends)".
+layer_url: https://services2.arcgis.com/Ce3DhLRthdwbHlfF/arcgis/rest/services/PropertyInformation_Hosted/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000
+min_interval_s: 1.0
+county: {constant: "020"}
+extra_pii: [Owner_Line_1, Owner_Line_2, Owner_Line_3, Owner_Line_4, Parcel_Address]
+fields:
+  parcel_id: Parcel_ID
+  owner1: Owner_Name
+  mail_line1: Owner_Address
+  mail_city: Owner_City
+  mail_state: Owner_State
+  mail_zip: Owner_Zip
+  land_value: Appraised_Land_Value
+  bldg_value: Appraised_Building_Value
+  total_value: Appraised_Total_Value
+  tax_year: Appraisal_Year
+  deed_book: Deed_Book
+  deed_page: Deed_Page
+value_basis: "Appraised_Land_Value / Appraised_Building_Value / Appraised_Total_Value = MOA Property Appraisal appraised (full) value for Appraisal_Year (2026 on sampled rows). Taxable_Value / NetTaxableValue (after exemptions) and the two prior-year value sets (*_Previous, *_Previous_2) are not mapped. Layer includes lease and condo-unit rows (GIS_Category), so row count exceeds distinct land parcels. Deed_Book/Deed_Page often null."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=57d6ff611f444d75a1bf2b4a1d340163
+  summary: "Municipality of Anchorage, public hosted FeatureServer, no token. Free, no login, 99,793 rows on 2026-11-18. Item licenseInfo: 'for public use'; accessInformation: Municipality of Anchorage. No copyright text on the service. robots.txt on services2.arcgis.com returns 403 (4xx = allowed per RFC 9309)."
+  checked_on: 2026-11-18
+  robots_checked_on: 2026-11-18
+  cost_model: free

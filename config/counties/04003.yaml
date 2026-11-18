@@ -1,0 +1,21 @@
+source_id: az.cochise.parcels
+state: AZ
+# ADWR's ArcGIS Online copy of the per-county parcel layers (same data as azwatermaps.azwater.gov
+# General/Parcels/MapServer, which is blocked from this environment). Owner name only:
+# no mailing address and no value fields.
+layer_url: https://services.arcgis.com/C34zQ7veRS0V1t04/arcgis/rest/services/Parcels/FeatureServer/1
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "003"}
+use_restrictions: [no_redistribution]
+fields:
+  parcel_id: APN         # never null on 2026-11-18
+  owner1: OWNER_NAME
+value_basis: "No value fields in this layer (OBJECTID, ID, COUNTY, APN, BOOK, MAP, PARCEL, SUFFIX, SITE_ADDRESS, SITE_CITY, SITE_ZIP, OWNER_NAME, URL, ACRES_US)."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=c33b63281f80430f89db6f3401154674
+  summary: "122,935 (OWNER_NAME filled on 115,142) rows on 2026-11-18. ADWR item licenseInfo (the ADWR Data Disclaimer, read 2026-11-18 from the AGOL item, since www.azwater.gov is blocked here): data provided 'as is', no warranty, ADWR and the State 'retain any intellectual property interest, including copyright', and 'The Department requests that persons receiving and using this information not make it available to others for their re-use' (recorded as no_redistribution). Nothing forbids automated access; no login/token/fee. County Assessor data republished by ADWR (data last edited 2026-04-21), so A.R.S. 39-121.03 (commercial-purpose public-records requests need a verified statement and may carry a fee) is the state-law backdrop for commercial use. services.arcgis.com /robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed; note repo PoliteClient treats 403 as disallow)."
+  checked_on: 2026-11-18
+  robots_checked_on: 2026-11-18
+  cost_model: free

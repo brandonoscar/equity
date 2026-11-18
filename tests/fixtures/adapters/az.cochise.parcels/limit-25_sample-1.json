@@ -1,0 +1,131 @@
+{
+ "attributes": [
+  {
+   "APN": "10102001",
+   "OBJECTID": 1,
+   "OWNER_NAME": "TESTOWNER 95E790"
+  },
+  {
+   "APN": "10102002",
+   "OBJECTID": 2,
+   "OWNER_NAME": "TESTOWNER D3728D"
+  },
+  {
+   "APN": "10102003",
+   "OBJECTID": 3,
+   "OWNER_NAME": "TESTOWNER 552187"
+  },
+  {
+   "APN": "10102004",
+   "OBJECTID": 4,
+   "OWNER_NAME": "TESTOWNER 997C25"
+  },
+  {
+   "APN": "10102005",
+   "OBJECTID": 5,
+   "OWNER_NAME": "TESTOWNER 8100B9"
+  },
+  {
+   "APN": "10102006",
+   "OBJECTID": 6,
+   "OWNER_NAME": "TESTOWNER 56103B"
+  },
+  {
+   "APN": "10102007",
+   "OBJECTID": 7,
+   "OWNER_NAME": "TESTOWNER B21E5C"
+  },
+  {
+   "APN": "10102008",
+   "OBJECTID": 8,
+   "OWNER_NAME": "TESTOWNER 18392F"
+  },
+  {
+   "APN": "10102009B",
+   "OBJECTID": 9,
+   "OWNER_NAME": "TESTOWNER D43036"
+  },
+  {
+   "APN": "10102009C",
+   "OBJECTID": 10,
+   "OWNER_NAME": "TESTOWNER D43036"
+  },
+  {
+   "APN": "10102010",
+   "OBJECTID": 11,
+   "OWNER_NAME": "TESTOWNER AB54FC"
+  },
+  {
+   "APN": "10102011",
+   "OBJECTID": 12,
+   "OWNER_NAME": "TESTOWNER C5D6CE"
+  },
+  {
+   "APN": "10102012",
+   "OBJECTID": 13,
+   "OWNER_NAME": "TESTOWNER CA6E72"
+  },
+  {
+   "APN": "10102013",
+   "OBJECTID": 14,
+   "OWNER_NAME": "TESTOWNER 15D422"
+  },
+  {
+   "APN": "10102014",
+   "OBJECTID": 15,
+   "OWNER_NAME": "TESTOWNER 15D422"
+  },
+  {
+   "APN": "10102015",
+   "OBJECTID": 16,
+   "OWNER_NAME": "TESTOWNER 269FC1"
+  },
+  {
+   "APN": "10102016",
+   "OBJECTID": 17,
+   "OWNER_NAME": "TESTOWNER C861B3"
+  },
+  {
+   "APN": "10102016A",
+   "OBJECTID": 18,
+   "OWNER_NAME": "TESTOWNER C86D40"
+  },
+  {
+   "APN": "10102017A",
+   "OBJECTID": 19,
+   "OWNER_NAME": "TESTOWNER CA356B"
+  },
+  {
+   "APN": "10102017B",
+   "OBJECTID": 20,
+   "OWNER_NAME": "TESTOWNER CA356B"
+  },
+  {
+   "APN": "10102017C",
+   "OBJECTID": 21,
+   "OWNER_NAME": "TESTOWNER CA356B"
+  },
+  {
+   "APN": "10102018",
+   "OBJECTID": 22,
+   "OWNER_NAME": "TESTOWNER 4FFF1A"
+  },
+  {
+   "APN": "10102019",
+   "OBJECTID": 23,
+   "OWNER_NAME": "TESTOWNER 5142B5"
+  },
+  {
+   "APN": "10102020",
+   "OBJECTID": 24,
+   "OWNER_NAME": "TESTOWNER D40C19 CORP"
+  },
+  {
+   "APN": "10102021A",
+   "OBJECTID": 25,
+   "OWNER_NAME": "TESTOWNER 879516"
+  }
+ ],
+ "layer": "https://services.arcgis.com/C34zQ7veRS0V1t04/arcgis/rest/services/Parcels/FeatureServer/1",
+ "where": "1=1"
+}

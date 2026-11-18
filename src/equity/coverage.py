@@ -93,7 +93,9 @@ def render(table: list[Row]) -> str:
 
 def main(notes_path: Path = NOTES) -> int:
     notes = yaml.safe_load(notes_path.read_text()) if notes_path.exists() else {}
-    configs = [load_config(p) for p in config_paths()]
+    # Bulk-file parcel adapters (e.g. Texas county zips) use the same config format.
+    paths = [*config_paths(), *sorted((CONFIG_DIR / "bulk").glob("*.yaml"))]
+    configs = [load_config(p) for p in paths]
     sys.stdout.write(render(rows(configs, notes or {})))
     return 0
 

@@ -1,0 +1,18 @@
+source_id: nm.sandoval.parcels
+state: NM
+# Sandoval County Assessor parcels (SCMapping, item f4a88ddb93324ec2b9f83ce8233071ec).
+layer_url: https://services3.arcgis.com/CkhxOCyQmitz4nLa/arcgis/rest/services/Sandoval_County_Parcels/FeatureServer/0
+order_by: OBJECTID
+page_size: 1000          # maxRecordCount 1000
+min_interval_s: 1.0
+county: {constant: "043"}
+fields:
+  parcel_id: Parcel_ID
+  owner1: Owner_List
+value_basis: "No value, mailing-address or tax-year fields in this layer: owner names only (Owner_List, possibly several names in one string). Account_No (e.g. R142800) is the tax account; Parcel_ID is the UPC. Bk_Pg / Reception_ are blank on sampled rows, so no deed reference mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=f4a88ddb93324ec2b9f83ce8233071ec
+  summary: "Sandoval County Assessor's Office, public hosted FeatureServer, no token. Free, no login, 151,990 rows on 2026-11-18 (item last modified 2026-03-05). licenseInfo: 'For reference use only. Not for legal use.' No resale or use limit stated. robots.txt on services3.arcgis.com returns 403 (allowed)."
+  checked_on: 2026-11-18
+  robots_checked_on: 2026-11-18
+  cost_model: free

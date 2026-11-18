@@ -1,0 +1,281 @@
+{
+ "attributes": [
+  {
+   "OBJECTID": 1,
+   "OWNERNAME2": null,
+   "OWN_ADD": "TESTOWNER 3F3C04",
+   "OWN_ADD2": null,
+   "OWN_CITY": "ALEXANDRIA",
+   "OWN_NAME": "TESTOWNER 04D17A",
+   "OWN_STAT": "VA",
+   "OWN_ZIP": "22314",
+   "PID_RE": "075.01-04-08"
+  },
+  {
+   "OBJECTID": 2,
+   "OWNERNAME2": null,
+   "OWN_ADD": "TESTOWNER 3047E6",
+   "OWN_ADD2": null,
+   "OWN_CITY": "ALEXANDRIA",
+   "OWN_NAME": "TESTOWNER 789FA4 LLC",
+   "OWN_STAT": "VA",
+   "OWN_ZIP": "223143218",
+   "PID_RE": "075.01-04-10"
+  },
+  {
+   "OBJECTID": 3,
+   "OWNERNAME2": null,
+   "OWN_ADD": "TESTOWNER 2A86F9",
+   "OWN_ADD2": null,
+   "OWN_CITY": "ALEXANDRIA",
+   "OWN_NAME": "TESTOWNER 04D17A",
+   "OWN_STAT": "VA",
+   "OWN_ZIP": "223131500",
+   "PID_RE": "034.02-01-01"
+  },
+  {
+   "OBJECTID": 4,
+   "OWNERNAME2": null,
+   "OWN_ADD": "TESTOWNER 47C037",
+   "OWN_ADD2": null,
+   "OWN_CITY": "ALEXANDRIA",
+   "OWN_NAME": "TESTOWNER 062A4F",
+   "OWN_STAT": "VA",
+   "OWN_ZIP": "22301",
+   "PID_RE": "034.04-0B-00"
+  },
+  {
+   "OBJECTID": 5,
+   "OWNERNAME2": "TESTOWNER FFD8ED",
+   "OWN_ADD": "TESTOWNER AF4D26",
+   "OWN_ADD2": null,
+   "OWN_CITY": "SPRINGFIELD",
+   "OWN_NAME": "TESTOWNER 30A77F",
+   "OWN_STAT": "VA",
+   "OWN_ZIP": "22151",
+   "PID_RE": "064.02-06-21.0"
+  },
+  {
+   "OBJECTID": 6,
+   "OWNERNAME2": null,
+   "OWN_ADD": "TESTOWNER BA7FC4",
+   "OWN_ADD2": null,
+   "OWN_CITY": "ALEXANDRIA",
+   "OWN_NAME": "TESTOWNER 8D3953",
+   "OWN_STAT": "VA",
+   "OWN_ZIP": "223022518",
+   "PID_RE": "023.01-04-34.L1"
+  },
+  {
+   "OBJECTID": 7,
+   "OWNERNAME2": null,
+   "OWN_ADD": "TESTOWNER DDC7FD",
+   "OWN_ADD2": null,
+   "OWN_CITY": "ALEXANDRIA",
+   "OWN_NAME": "TESTOWNER 3E096B",
+   "OWN_STAT": "VA",
+   "OWN_ZIP": "223130154",
+   "PID_RE": "064.03-04-14.B"
+  },
+  {
+   "OBJECTID": 8,
+   "OWNERNAME2": null,
+   "OWN_ADD": "TESTOWNER 3F3C04",
+   "OWN_ADD2": null,
+   "OWN_CITY": "ALEXANDRIA",
+   "OWN_NAME": "TESTOWNER 221E1F",
+   "OWN_STAT": "VA",
+   "OWN_ZIP": "223143211",
+   "PID_RE": "074.01-11-30.0"
+  },
+  {
+   "OBJECTID": 9,
+   "OWNERNAME2": "TESTOWNER 7DDCD4",
+   "OWN_ADD": "TESTOWNER E639DF",
+   "OWN_ADD2": null,
+   "OWN_CITY": "ARLINGTON",
+   "OWN_NAME": "TESTOWNER 775FB4",
+   "OWN_STAT": "VA",
+   "OWN_ZIP": "222033765",
+   "PID_RE": "074.04-05-13.0"
+  },
+  {
+   "OBJECTID": 10,
+   "OWNERNAME2": null,
+   "OWN_ADD": "TESTOWNER F0ED28",
+   "OWN_ADD2": null,
+   "OWN_CITY": "ALEXANDRIA",
+   "OWN_NAME": "TESTOWNER 40E695",
+   "OWN_STAT": "VA",
+   "OWN_ZIP": "22314",
+   "PID_RE": "055.03-0A-00"
+  },
+  {
+   "OBJECTID": 11,
+   "OWNERNAME2": null,
+   "OWN_ADD": "TESTOWNER 33BFD6",
+   "OWN_ADD2": null,
+   "OWN_CITY": "ALEXANDRIA",
+   "OWN_NAME": "TESTOWNER 9B8E59",
+   "OWN_STAT": "VA",
+   "OWN_ZIP": "22302",
+   "PID_RE": "022.04-01-02"
+  },
+  {
+   "OBJECTID": 12,
+   "OWNERNAME2": null,
+   "OWN_ADD": "TESTOWNER FE56A0 LLC",
+   "OWN_ADD2": "TESTOWNER AFC5CB",
+   "OWN_CITY": "ALEXANDRIA",
+   "OWN_NAME": "TESTOWNER 64A1F5 CORP",
+   "OWN_STAT": "VA",
+   "OWN_ZIP": "223141524",
+   "PID_RE": "075.01-02-01.04"
+  },
+  {
+   "OBJECTID": 13,
+   "OWNERNAME2": null,
+   "OWN_ADD": "TESTOWNER FE56A0 LLC",
+   "OWN_ADD2": "TESTOWNER AFC5CB",
+   "OWN_CITY": "ALEXANDRIA",
+   "OWN_NAME": "TESTOWNER 64A1F5 CORP",
+   "OWN_STAT": "VA",
+   "OWN_ZIP": "223141524",
+   "PID_RE": "075.01-02-01.05"
+  },
+  {
+   "OBJECTID": 14,
+   "OWNERNAME2": null,
+   "OWN_ADD": "TESTOWNER FE56A0 LLC",
+   "OWN_ADD2": "TESTOWNER AFC5CB",
+   "OWN_CITY": "ALEXANDRIA",
+   "OWN_NAME": "TESTOWNER 64A1F5 CORP",
+   "OWN_STAT": "VA",
+   "OWN_ZIP": "223141524",
+   "PID_RE": "075.01-02-01.03"
+  },
+  {
+   "OBJECTID": 15,
+   "OWNERNAME2": null,
+   "OWN_ADD": "TESTOWNER BDF5BF",
+   "OWN_ADD2": null,
+   "OWN_CITY": "ALEXANDRIA",
+   "OWN_NAME": "TESTOWNER 3384B1",
+   "OWN_STAT": "VA",
+   "OWN_ZIP": "22301",
+   "PID_RE": "053.02-03-10"
+  },
+  {
+   "OBJECTID": 16,
+   "OWNERNAME2": null,
+   "OWN_ADD": "TESTOWNER 72903E",
+   "OWN_ADD2": null,
+   "OWN_CITY": "ALEXANDRIA",
+   "OWN_NAME": "TESTOWNER 8D56C5",
+   "OWN_STAT": "VA",
+   "OWN_ZIP": "22314",
+   "PID_RE": "073.02-0B-00"
+  },
+  {
+   "OBJECTID": 17,
+   "OWNERNAME2": null,
+   "OWN_ADD": "TESTOWNER C58A9B",
+   "OWN_ADD2": "TESTOWNER 96719E",
+   "OWN_CITY": "ALEXANDRIA",
+   "OWN_NAME": "TESTOWNER 950121 LP",
+   "OWN_STAT": "VA",
+   "OWN_ZIP": "22314",
+   "PID_RE": "074.02-11-25.0Z"
+  },
+  {
+   "OBJECTID": 18,
+   "OWNERNAME2": null,
+   "OWN_ADD": "TESTOWNER 338FAA",
+   "OWN_ADD2": null,
+   "OWN_CITY": "RICHMOND",
+   "OWN_NAME": "TESTOWNER 6B2222",
+   "OWN_STAT": "VA",
+   "OWN_ZIP": "232191926",
+   "PID_RE": "044.02-08-04"
+  },
+  {
+   "OBJECTID": 19,
+   "OWNERNAME2": null,
+   "OWN_ADD": "TESTOWNER 59FA49",
+   "OWN_ADD2": null,
+   "OWN_CITY": "ALEXANDRIA",
+   "OWN_NAME": "TESTOWNER C23091",
+   "OWN_STAT": "VA",
+   "OWN_ZIP": "22314",
+   "PID_RE": "055.01-0A-00"
+  },
+  {
+   "OBJECTID": 20,
+   "OWNERNAME2": null,
+   "OWN_ADD": "TESTOWNER 2A86F9",
+   "OWN_ADD2": null,
+   "OWN_CITY": "ALEXANDRIA",
+   "OWN_NAME": "TESTOWNER 04D17A",
+   "OWN_STAT": "VA",
+   "OWN_ZIP": "22313",
+   "PID_RE": "065.03-08-54.0Z"
+  },
+  {
+   "OBJECTID": 21,
+   "OWNERNAME2": null,
+   "OWN_ADD": "TESTOWNER D7679A",
+   "OWN_ADD2": null,
+   "OWN_CITY": "ALEXANDRIA",
+   "OWN_NAME": "TESTOWNER 8FCBCC LLC",
+   "OWN_STAT": "VA",
+   "OWN_ZIP": "223143862",
+   "PID_RE": "075.03-04-03"
+  },
+  {
+   "OBJECTID": 22,
+   "OWNERNAME2": null,
+   "OWN_ADD": "TESTOWNER 852636",
+   "OWN_ADD2": "TESTOWNER 3188AC",
+   "OWN_CITY": "ANNANDALE",
+   "OWN_NAME": "TESTOWNER BFEFF7 LLC",
+   "OWN_STAT": "VA",
+   "OWN_ZIP": "220032632",
+   "PID_RE": "074.01-0E-000"
+  },
+  {
+   "OBJECTID": 23,
+   "OWNERNAME2": null,
+   "OWN_ADD": "TESTOWNER B64EE5",
+   "OWN_ADD2": null,
+   "OWN_CITY": "ALEXANDRIA",
+   "OWN_NAME": "TESTOWNER 311714",
+   "OWN_STAT": "VA",
+   "OWN_ZIP": "22301",
+   "PID_RE": "063.01-11-19.C"
+  },
+  {
+   "OBJECTID": 24,
+   "OWNERNAME2": null,
+   "OWN_ADD": "TESTOWNER 4CBF52",
+   "OWN_ADD2": "TESTOWNER FCBF49",
+   "OWN_CITY": "ALEXANDRIA",
+   "OWN_NAME": "TESTOWNER 524B24",
+   "OWN_STAT": "VA",
+   "OWN_ZIP": "223115089",
+   "PID_RE": "034.02-02-02"
+  },
+  {
+   "OBJECTID": 25,
+   "OWNERNAME2": null,
+   "OWN_ADD": "TESTOWNER CCB175",
+   "OWN_ADD2": null,
+   "OWN_CITY": "ALEXANDRIA",
+   "OWN_NAME": "TESTOWNER 69D1F6",
+   "OWN_STAT": "VA",
+   "OWN_ZIP": "22304",
+   "PID_RE": "058.01-0A-00"
+  }
+ ],
+ "layer": "https://services2.arcgis.com/ChYV69FhfjwkvRmy/ArcGIS/rest/services/Alexandria_Parcels/FeatureServer/0",
+ "where": "1=1"
+}

@@ -1,0 +1,29 @@
+source_id: ok.canadian.parcels
+state: OK
+# Canadian County Assessor 'Parcel Data (External)' (ParcelDataService_2_view layer 3).
+# 85,668 rows, 85,172 distinct parcel_id. situs / situs_city / situs_zip = situs (not mapped).
+layer_url: https://services2.arcgis.com/0NjdXxmJp53hZWPd/ArcGIS/rest/services/ParcelDataService_2_view/FeatureServer/3
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000
+min_interval_s: 1.0
+county: {constant: "017"}
+fields:
+  parcel_id: parcel_id
+  owner1: owners_name
+  mail_line1: mail_address
+  mail_city: mail_city
+  mail_state: mail_state
+  mail_zip: mail_zip
+  land_value: land_val
+  bldg_value: bldg_val
+  total_value: total_val
+  assessed_value: total_assess
+  tax_year: {const: 2026}
+extra_pii: [mail_info, mail_info2]
+value_basis: "land_val / bldg_val (+ outbldg_val, mh_val, not mapped) sum to total_val = Assessor fair cash value; cap_val = capped taxable market value; total_assess = assessed value (12% of cap_val in Canadian County); taxable_val = assessed after exemptions (not mapped). No tax-year field: tax_year is the const 2026 (data edited 2026-11-13). mail_info / mail_info2 are c/o lines (null on sampled rows)."
+terms:
+  url: https://services2.arcgis.com/0NjdXxmJp53hZWPd/ArcGIS/rest/services/ParcelDataService_2_view/FeatureServer
+  summary: "Canadian County OK Assessor's Office (item 'Canadian County Parcel Data (Public)', owner CanadianCounty), public hosted FeatureServer view, no token. Free, no login, 85,668 rows on 2026-11-18. licenseInfo: informational/planning use only, not survey-grade, no warranty; no prohibition on automated access or redistribution. services2.arcgis.com /robots.txt answers 403 (RFC 9309: allowed)."
+  checked_on: 2026-11-18
+  robots_checked_on: 2026-11-18
+  cost_model: free
