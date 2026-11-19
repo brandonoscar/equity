@@ -385,9 +385,9 @@ class AcrisAdapter(Adapter):
             n = _int(r.get("party_type"))
             label = spec.parties[n - 1] if n is not None and 1 <= n <= len(spec.parties) else ""
             role = cfg.label_roles.get(label, "other")
-            addr = tuple(_text(r.get(k)) or "" for k in ("address_1", "address_2", "city",
-                                                           "state", "zip"))  # fmt: skip
-            by_role[role].add((name, *addr))  # type: ignore[arg-type]
+            contact = tuple(_text(r.get(k)) or "" for k in ("address_1", "address_2", "city",
+                                                              "state", "zip"))  # fmt: skip
+            by_role[role].add((name, *contact))  # type: ignore[arg-type]
         for role in sorted(by_role):
             # Server row order is not stable across refreshes: order parties by content.
             for seq, (name, a1, a2, city, state, zipc) in enumerate(sorted(by_role[role]), 1):

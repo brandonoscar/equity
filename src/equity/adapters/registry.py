@@ -19,7 +19,7 @@ from equity.adapters.wv.delinquent import WVDelinquentProperties
 from equity.adapters.wv.parcelweb import MonongaliaParcelWeb
 from equity.adapters.wv.statewide_parcels import WVStatewideParcels
 
-for _cls in (
+_ALL: tuple[type[Adapter], ...] = (
     WVStatewideParcels,
     WVDelinquentProperties,
     MonongaliaParcelWeb,
@@ -37,7 +37,8 @@ for _cls in (
     *all_registry_adapters(),
     # NDWV keeps its original source ids; config/courts.yaml adds every other court.
     *[c for c in court_adapters() if c.court_id not in ("wvnd", "wvnb")],
-):
+)
+for _cls in _ALL:
     if _cls not in REGISTRY:
         register(_cls)
 

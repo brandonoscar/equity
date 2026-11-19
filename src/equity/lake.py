@@ -85,7 +85,7 @@ def build(source_id: str, raw_dir: Path = DATA / "raw") -> dict[str, int]:
     out = LAKE / source_id
     done_dir = out / "_parts"
     done_dir.mkdir(parents=True, exist_ok=True)
-    adapter = by_source_id(source_id)()  # type: ignore[abstract]
+    adapter = by_source_id(source_id)()
     plan_path = out / "_plan.json"
     if plan_path.exists():
         requests = json.loads(plan_path.read_text())
@@ -145,7 +145,7 @@ def write_plan(source_id: str, extra: dict[str, str], lake: Path | None = None) 
     if any((out / "_parts").glob("*.json")):
         raise RuntimeError(f"{source_id}: parts already built; remove {out} to re-plan")
     out.mkdir(parents=True, exist_ok=True)
-    adapter = by_source_id(source_id)()  # type: ignore[abstract]
+    adapter = by_source_id(source_id)()
     requests = [{**params, **extra} for params in partitions(adapter)]
     (out / "_plan.json").write_text(json.dumps(requests, indent=1))
     return len(requests)
@@ -162,7 +162,7 @@ def replan(source_id: str, lake: Path | None = None) -> tuple[int, int]:
     plan = json.loads((out / "_plan.json").read_text())
     done_dir = out / "_parts"
     done = {int(m.stem) for m in done_dir.glob("*.json")}
-    adapter = by_source_id(source_id)()  # type: ignore[abstract]
+    adapter = by_source_id(source_id)()
     split = getattr(adapter, "split_partition", None)
     kept = [i for i in range(len(plan)) if i in done]
     # Windows from an earlier replan are folded back into their county first, so replanning
@@ -226,7 +226,7 @@ def _host(source_id: str) -> str:
     url = getattr(cls, "layer_url", "") or getattr(cls, "url", "")
     if not url:
         # Adapters without a URL attribute name their endpoint in the source row.
-        url = cls().source_row().get("base_url", "")  # type: ignore[abstract]
+        url = cls().source_row().get("base_url", "")
     return urllib.parse.urlsplit(str(url)).netloc or source_id
 
 
@@ -243,7 +243,7 @@ def plan(source_ids: list[str]) -> list[str]:
 def run_all(max_parallel: int, min_free_gb: float, only: list[str] | None = None) -> None:
     """Build sources in priority order, at most one per host at a time, stopping new builds
     when free disk drops below min_free_gb."""
-    from equity.adapters.registry import REGISTRY
+    from equity.adapters.base import REGISTRY
 
     wanted = (".parcels",)
     parcel_sources = [

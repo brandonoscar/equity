@@ -103,7 +103,7 @@ class PoliteClient:
             elif 400 <= status < 500:
                 rp.parse([])
             else:
-                rp.disallow_all = True
+                rp.disallow_all = True  # type: ignore[attr-defined]  # missing from typeshed
             self._robots[origin] = rp
         return self._robots[origin]
 

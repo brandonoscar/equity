@@ -4,9 +4,9 @@
 UV  ?= uv
 RUN := $(UV) run --locked
 
-.PHONY: check sync lint format types noai secrets test coverage fixtures mutation health
+.PHONY: check sync lint format types noai secrets hygiene audit workflows test coverage fixtures mutation health
 
-check: sync lint types noai secrets test coverage
+check: sync lint types noai secrets hygiene workflows audit test coverage
 
 sync:
 	$(UV) sync --locked
@@ -20,13 +20,22 @@ format:
 	$(RUN) ruff format .
 
 types:
-	$(RUN) mypy --strict src/equity/rules src/equity/matching src/equity/schema src/equity/quality
+	$(RUN) mypy --strict src/equity ci
 
 noai:
 	$(RUN) python ci/check_no_ai.py
 
 secrets:
 	$(RUN) python ci/secrets_scan.py
+
+hygiene:
+	$(RUN) python ci/check_repo_hygiene.py
+
+workflows:
+	$(RUN) actionlint
+
+audit:
+	$(RUN) python ci/audit_deps.py
 
 test:
 	$(RUN) pytest --cov=equity --cov-branch --cov-report=term-missing:skip-covered --cov-report=json:coverage.json
