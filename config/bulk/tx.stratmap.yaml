@@ -1,0 +1,34 @@
+# Texas statewide parcels: TxGIO StratMap Land Parcels, one shapefile zip per county.
+# Read by src/equity/adapters/tx/stratmap.py (bulk files, not an ArcGIS layer).
+#
+# Access decision (Brandon, 2026-11-18): use the public S3 copy. TxGIO's REST service has
+# queries disabled, the official download host (data.geographic.texas.gov) refuses non-browser
+# clients, and its API robots.txt answers 500 (RFC 9309: disallow). The same county zips are
+# published in TxGIO's public S3 bucket, whose robots.txt answers 403 (RFC 9309: allow).
+source_id: tx.statewide.parcels
+state: TX
+# The StratMap 2026 Land Parcels collection in the bucket. New vintages get a new collection id.
+layer_url: https://s3.amazonaws.com/data.tnris.org/1d33dafb-6e9c-40ac-887d-f4577909ed9b/resources/
+order_by: _row            # record index in the county's .dbf, added by the adapter
+min_interval_s: 1.0
+county: {field: FIPS, format: fips5}
+fields:
+  parcel_id: PROP_ID      # appraisal district property id
+  owner1: OWNER_NAME
+  mail_line1: MAIL_LINE1
+  mail_line2: MAIL_LINE2
+  mail_city: MAIL_CITY
+  mail_state: MAIL_STAT
+  mail_zip: MAIL_ZIP
+  land_value: LAND_VALUE
+  bldg_value: IMP_VALUE
+  total_value: MKT_VALUE
+  tax_year: TAX_YEAR
+extra_pii: [NAME_CARE, MAIL_ADDR]   # care-of name and one-string mailing address: personal data
+value_basis: "LAND_VALUE/IMP_VALUE/MKT_VALUE = appraisal district land, improvement and market value, filled where the district supplied them (TxGIO land parcel schema). TAX_YEAR = roll year supplied by the district. NAME_CARE (care-of) is not mapped as an owner."
+terms:
+  url: https://www.geographic.texas.gov/stratmap/land-parcels.html
+  summary: "TxGIO StratMap Land Parcels 2026: county appraisal district parcels compiled statewide 'at no cost'. Metadata useLimit: no responsibility for accuracy, not survey grade. No license or commercial-use clause found. Read from the public S3 bucket data.tnris.org (see access decision above)."
+  checked_on: 2026-11-18
+  robots_checked_on: 2026-11-18
+  cost_model: free

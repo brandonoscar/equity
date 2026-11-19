@@ -1,0 +1,24 @@
+source_id: az.coconino.parcels
+state: AZ
+# Coconino County GIS "Parcels Public View" (layer name ParcelOwnerInfo): APN, Tyler account,
+# situs, owner name and split owner mailing address. No value fields.
+layer_url: https://services1.arcgis.com/Rlvx5g8pKeK13apH/arcgis/rest/services/Coconino_County_Parcels_Public_View/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "005"}
+fields:
+  parcel_id: APN           # null on 1 row
+  owner1: OWNERNAME
+  mail_line1: OWNERADDRESS_ADDRESS1
+  mail_line2: OWNERADDRESS_ADDRESS2
+  mail_city: OWNERADDRESS_CITY
+  mail_state: OWNERADDRESS_STATE
+  mail_zip: OWNERADDRESS_ZIP
+value_basis: "No value fields in this layer. Values would need the Coconino Assessor (not in this view)."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=ea335b255e6946b7ab0e17a9c3135e59
+  summary: "Coconino County GIS public hosted view, no token, 78,595 rows on 2026-11-18 (OWNERNAME filled on 78,496; data last edited 2026-11-18). licenseInfo is a no-warranty disclaimer citing A.R.S. 37-178 (agency held harmless for shared geospatial data); no commercial, resale or mailing-list clause found. A.R.S. 39-121.03 (commercial-purpose public-records requests) is the general Arizona backdrop. services*.arcgis.com /robots.txt answers HTTP 403 'Invalid URL' (RFC 9309: 4xx = no rules, allowed; the repo PoliteClient currently treats 401/403 as disallow-all, see states_midwest.md blocker 1)."
+  checked_on: 2026-11-18
+  robots_checked_on: 2026-11-18
+  cost_model: free

@@ -1,0 +1,31 @@
+source_id: ia.johnson.parcels
+state: IA
+# Johnson County IA 'Land_Records' service, layer 18 'Parcels' (all parcels incl. condos).
+# One row per PPN. Mailing block: MailingName (not mapped; may differ from deed holder),
+# MailingAddress1 (extra/c-o line, usually empty; not mapped), MailingAddress2 = street,
+# MailingAddress3 = 'CITY, ST' (no ZIP, so it cannot go through mail_city_state_zip; not mapped),
+# MailingZipCode = ZIP. ContractOwner1-4 hold contract buyers (equitable owners; 4 fields, not mapped).
+layer_url: https://gis.johnsoncountyiowa.gov/arcgis/rest/services/Land_Records/MapServer/18
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "103"}
+fields:
+  parcel_id: PPN
+  owner1: DeedHolder1
+  owner2: DeedHolder2
+  mail_line1: MailingAddress2
+  mail_zip: MailingZipCode
+  land_value: LandValue_Full
+  total_value: TotalValue_Full
+  assessed_value: TotalValue_Assessed
+  tax_year: Year             # layer lists the field as 'year'; query results key it 'Year'
+  deed_book: DeedBook
+  deed_page: DeedPage
+value_basis: "LandValue_Full/TotalValue_Full = assessor's full (100% actual) value; TotalValue_Assessed = assessed value; TotalValue_Taxable (after rollback/credits) not mapped. Building value is split into BldgValue_Full and DwellValue_Full, so bldg_value is not mapped. Year = '2026' or null (distinct values 2026-11-18), the Jan 1 assessment year."
+terms:
+  url: https://gis.johnsoncountyiowa.gov/arcgis/rest/services/Land_Records/MapServer
+  summary: "Johnson County IA public MapServer, no token. Free, no login, 74,442 rows on 2026-11-18. copyrightText 'Johnson County'; item accessInformation 'Johnson County', licenseInfo empty; no use-constraint text on the service. gis.johnsoncountyiowa.gov /robots.txt answers 404 (no rules, allowed)."
+  checked_on: 2026-11-18
+  robots_checked_on: 2026-11-18
+  cost_model: free

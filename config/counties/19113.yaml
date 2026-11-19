@@ -1,0 +1,33 @@
+source_id: ia.linn.parcels
+state: IA
+# Linn County, Iowa "Real Estate Parcel": parcel geometry joined to the county tax system,
+# updated about daily (data last edited 2026-11-18). Deed and contract owners, split mailing
+# address, assessed values and tax history.
+layer_url: https://services.arcgis.com/i14SLLmXo7Hn9vNc/arcgis/rest/services/RealEstateParcel/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "113"}
+use_restrictions: [no_resale]
+fields:
+  parcel_id: GPN
+  owner1: OwnerDeed
+  owner2: OwnerContract
+  mail_line1: OwnerAddress
+  mail_city: OwnerCity
+  mail_state: OwnerState
+  mail_zip: OwnerZip
+  land_value: ValueLand
+  bldg_value: ValueImproved
+  total_value: ValueTotal
+  assessed_value: ValueTaxableTotal
+  tax_year: AssessmentYear
+  deed_book: RecorderBook
+  deed_page: RecorderPage
+value_basis: "ValueLand/ValueImproved/ValueTotal = assessor's assessed (100% market) value for AssessmentYear (2026 on all 105,937 rows); ValueAssessed* = assessed after exemptions; ValueTaxableTotal = taxable value after Iowa rollback for TaxYear (2025 on sampled row, taxes payable the following year), so assessed_value and tax_year come from different years. AssessmentYear1-5 / TaxYear1-5 hold history, not mapped. OwnerAttention (c/o) not mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=7c99f1a69ce14bdbaed102439cadc70e
+  summary: "Linn County GIS item 'Real Estate Parcel', public, no token, 105,937 rows on 2026-11-18 (OwnerDeed filled on 105,641). licenseInfo: 'No person shall sell, give, reproduce, or receive for the purpose of selling or offering for sale, any portion of the data provided herein.' plus a no-warranty clause. Recorded as no_resale. services*.arcgis.com /robots.txt answers HTTP 403 'Invalid URL' (RFC 9309: 4xx = no rules, allowed; the repo PoliteClient currently treats 401/403 as disallow-all, see states_midwest.md blocker 1)."
+  checked_on: 2026-11-18
+  robots_checked_on: 2026-11-18
+  cost_model: free

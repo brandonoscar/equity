@@ -1,0 +1,28 @@
+source_id: va.loudoun.parcels
+state: VA
+# Loudoun County hosted layer 'STACKED_PARCELS_OWNER1' (owner data joined to stacked parcels,
+# overwritten by a county script; data last edited 2026-11-16). One row per PA_MCPI (154,354 distinct).
+# No assessed/market values in this layer. PRI_PREMISE_ADD is the situs address (not mapped).
+layer_url: https://services1.arcgis.com/MxjRokvPm7bjslyR/ArcGIS/rest/services/Stacked_Parcels_Owner/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000
+min_interval_s: 1.0
+county: {constant: "107"}
+# HIDENAME='Y' on 1,804 rows (owner asked for the name to be withheld online), yet OWNER is still
+# populated there. Excluded conservatively; drop the filter only after a policy decision.
+filter: "HIDENAME IS NULL OR HIDENAME <> 'Y'"
+fields:
+  parcel_id: PA_MCPI
+  owner1: OWNER
+  mail_line1: OWNER_ADDRESS1
+  mail_line2: OWNER_ADDRESS2
+  mail_city: OWNER_CITY
+  mail_state: OWNER_STATE
+  mail_zip: OWNER_ZIP1
+value_basis: "No value fields in this layer (owner, mailing address, plat/subdivision, legal acreage, NBHD only). Loudoun assessments live on logis.loudoun.gov (blocked from this environment)."
+terms:
+  url: https://services1.arcgis.com/MxjRokvPm7bjslyR/ArcGIS/rest/services/Stacked_Parcels_Owner/FeatureServer
+  summary: "Loudoun County VA (AGOL org 'LoudounCounty'), item 'Stacked_Parcels_Owner', public hosted FeatureServer, no token. Free, no login, 154,354 rows on 2026-11-18. Item licenseInfo is just 'Loudoun County, VA'; no use-constraint text. services1.arcgis.com /robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-18
+  robots_checked_on: 2026-11-18
+  cost_model: free

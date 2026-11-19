@@ -1,0 +1,28 @@
+source_id: va.richmond_city.parcels
+state: VA
+# City of Richmond 'Parcels' (parcel geometry joined to CAMA). Stacked: 1,228 rows have CountOfPIN>1
+# (one row per PIN on shared polygons). MaskedOwner and Mailable present; MaskedOwner was null on all
+# rows checked. AsrLocationBldgNo is situs house number (not mapped).
+layer_url: https://services1.arcgis.com/k3vhq11XkBNeeOfM/ArcGIS/rest/services/Parcels/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000
+min_interval_s: 1.0
+county: {constant: "760"}
+fields:
+  parcel_id: PIN
+  owner1: OwnerName
+  mail_line1: MailAddress
+  mail_city: MailCity
+  mail_state: MailState
+  mail_zip: MailZip
+  land_value: LandValue
+  bldg_value: DwellingValue
+  total_value: TotalValue
+  tax_year: {const: 2026}
+value_basis: "LandValue / DwellingValue / TotalValue = City Assessor of Real Estate assessed values (Virginia assesses at 100% of fair market value, so these are both total and assessed). AssessmentDate is 2026-07-01 on 76,807 of 76,961 rows (fiscal-year roll start; the roll is as of 2026-01-01), so tax_year is the const 2026. Bump when AssessmentDate moves to 2027."
+terms:
+  url: https://services1.arcgis.com/k3vhq11XkBNeeOfM/ArcGIS/rest/services/Parcels/FeatureServer
+  summary: "City of Richmond VA (AGOL org richmondvagis), item 'Parcels' ('City of Richmond property ownership information'), public hosted FeatureServer, no token. Free, no login, 76,961 rows on 2026-11-18 (data edited 2026-11-14). licenseInfo: 'No warranty is expressed or implied regarding the use of this data...'; no use restriction. services1.arcgis.com /robots.txt answers 403 (RFC 9309: allowed)."
+  checked_on: 2026-11-18
+  robots_checked_on: 2026-11-18
+  cost_model: free

@@ -1,0 +1,27 @@
+source_id: ak.kenai_peninsula.parcels
+state: AK
+# KPB "Redacted Parcels" view (KPBAdmin, item c9617081ff4f4b45939af5bb359f79b6): tax parcels joined
+# to CAMA/tax data; "some ownership information has been removed at the request of the landowners".
+layer_url: https://services.arcgis.com/ba4DH9pIcqkXJVfl/arcgis/rest/services/Redacted_Parcels_view/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000
+min_interval_s: 1.0
+county: {constant: "122"}
+extra_pii: [ATTENTION, PHYSICAL_ADDRESSES]
+fields:
+  parcel_id: PARCEL_ID
+  owner1: OWNER
+  mail_line1: MAILING_ADDRESS
+  mail_city: MAILING_CITY
+  mail_state: MAILING_STATE
+  mail_zip: MAILING_ZIP
+  land_value: LAND_VALUE
+  bldg_value: IMPROVEMENT_VALUE
+  total_value: ASSESSED_VALUE
+value_basis: "LAND_VALUE / IMPROVEMENT_VALUE / ASSESSED_VALUE = KPB Assessing assessed (full) value; ASSESSED_VALUE = land + improvement on sampled rows. TAXABLE_VALUE (after exemptions) not mapped. No tax-year field, so tax_year is not mapped. Owner names on opted-out parcels are removed by the borough. No deed reference (PLAT is a plat-document URL)."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=c9617081ff4f4b45939af5bb359f79b6
+  summary: "Kenai Peninsula Borough, public hosted FeatureServer view, no token. Free, no login, 66,557 rows on 2026-11-18. licenseInfo: liability/warranty disclaimer plus indemnify-and-hold-harmless clause 'by accepting this material'; no resale or use limit stated. Borough removes owner info on request (opt-out). robots.txt on services.arcgis.com returns 403 (allowed)."
+  checked_on: 2026-11-18
+  robots_checked_on: 2026-11-18
+  cost_model: free

@@ -1,0 +1,29 @@
+source_id: ky.boone.parcels
+state: KY
+# Boone County Planning Commission GIS 'Tax Parcels' (PVA data joined). 55,348 rows, one per PIDN.
+# SITEADD1/SITEPOST/SITEZIP = situs (not mapped). CNTYFIPS = 21015 on every row checked.
+layer_url: https://services1.arcgis.com/kleO5B3qko1eLO4Z/ArcGIS/rest/services/Tax_Parcels/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000
+min_interval_s: 1.0
+county: {constant: "015"}
+fields:
+  parcel_id: PIDN
+  owner1: PRCLOWNR1
+  owner2: PRCLOWNR2
+  mail_line1: MAILADD1
+  mail_line2: MAILADD2
+  mail_city: MAILPOST
+  mail_state: MAILSTATE
+  mail_zip: MAILZIP
+  assessed_value: ASSESSVALU
+  tax_year: {const: 2026}
+  deed_ref: DEEDBKPG1
+deed_ref_pattern: '^(?P<book>\d+)/(?P<page>\d+)$'   # e.g. '1022/329' (most recent of three sales)
+value_basis: "ASSESSVALU = PVA assessed value (Kentucky assesses real property at 100% of fair cash value), with ASSESSTYPE describing the class. No land/building split. No tax-year field: tax_year is the const 2026 (January 1, 2026 assessment; layer data edited 2026-11-17). Bump the const when the 2027 roll is certified. DEEDBKPG1/SALEDATE1/SALEPRICE1 = latest sale; 2 and 3 are older sales (not mapped)."
+terms:
+  url: https://services1.arcgis.com/kleO5B3qko1eLO4Z/ArcGIS/rest/services/Tax_Parcels/FeatureServer
+  summary: "Boone County KY Planning Commission, GIS Services Division (item 'Tax Parcels', owner sgay_BCPC), public hosted FeatureServer, no token. Free, no login, 55,348 rows on 2026-11-18 (52 with no owner). No license or use-constraint text in the item. services1.arcgis.com /robots.txt answers 403 (RFC 9309: allowed)."
+  checked_on: 2026-11-18
+  robots_checked_on: 2026-11-18
+  cost_model: free

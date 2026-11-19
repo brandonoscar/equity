@@ -1,0 +1,27 @@
+source_id: ak.fairbanks_north_star.parcels
+state: AK
+# FNSB Assessing Dept hosted layer (internet_gis_FNSB, item 4af1635b48c1490784c5f9cb1e0a8a49).
+# A second FNSB copy (Tax_Parcel_Info_FNSB, 59,021 rows) has the same tax fields but is older.
+layer_url: https://services.arcgis.com/f4rR7WnIfGBdVYFd/arcgis/rest/services/FNSB_Parcels_with_Taxroll_Information/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000
+min_interval_s: 1.0
+county: {constant: "090"}
+extra_pii: [Owner3]
+fields:
+  parcel_id: PAN
+  owner1: Owner1
+  owner2: Owner2
+  mail_line1: Mailing_Address
+  mail_city_state_zip: CityStateZip
+  land_value: Land_Value
+  bldg_value: Improvements
+  total_value: Total_Value
+  tax_year: Tax_Year
+value_basis: "Land_Value / Improvements / Total_Value = FNSB Assessing taxroll assessed (full) value for Tax_Year (2026 on sampled rows). Tax_Status (TAXABLE/EXEMPT) and MillRate not mapped. No deed reference (LRM_GEOM_DOC is a geometry-source document, not a deed). Owner3 exists but is not a canonical field; listed as extra PII. CityStateZip is one string like 'CITY ST 99703 0406'."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=4af1635b48c1490784c5f9cb1e0a8a49
+  summary: "Fairbanks North Star Borough, public hosted FeatureServer, no token. Free, no login, 63,959 rows on 2026-11-18. Item licenseInfo is an accuracy disclaimer only ('for informational purposes only ... none of it constitutes legal documentation'); no use, resale or copyright restriction stated. accessInformation: FNSB Assessing Department. robots.txt on services.arcgis.com returns 403 (allowed)."
+  checked_on: 2026-11-18
+  robots_checked_on: 2026-11-18
+  cost_model: free

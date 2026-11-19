@@ -1,0 +1,131 @@
+{
+ "attributes": [
+  {
+   "APN": "40264142",
+   "OBJECTID": 1,
+   "OWNER_NAME": " "
+  },
+  {
+   "APN": "10101002",
+   "OBJECTID": 2,
+   "OWNER_NAME": "TESTOWNER BDFAAE"
+  },
+  {
+   "APN": "10101004",
+   "OBJECTID": 3,
+   "OWNER_NAME": "TESTOWNER BDFAAE"
+  },
+  {
+   "APN": "10104006",
+   "OBJECTID": 4,
+   "OWNER_NAME": "TESTOWNER BDFAAE"
+  },
+  {
+   "APN": "10101003",
+   "OBJECTID": 5,
+   "OWNER_NAME": "TESTOWNER BDFAAE"
+  },
+  {
+   "APN": "10101005",
+   "OBJECTID": 6,
+   "OWNER_NAME": "TESTOWNER BDFAAE"
+  },
+  {
+   "APN": "10104001",
+   "OBJECTID": 7,
+   "OWNER_NAME": "TESTOWNER BDFAAE"
+  },
+  {
+   "APN": "10104005",
+   "OBJECTID": 8,
+   "OWNER_NAME": "TESTOWNER D61576"
+  },
+  {
+   "APN": "10102002",
+   "OBJECTID": 9,
+   "OWNER_NAME": "TESTOWNER BDFAAE"
+  },
+  {
+   "APN": "10102003",
+   "OBJECTID": 10,
+   "OWNER_NAME": "TESTOWNER BDFAAE"
+  },
+  {
+   "APN": "10103002",
+   "OBJECTID": 11,
+   "OWNER_NAME": "TESTOWNER 967A1C"
+  },
+  {
+   "APN": "10103004",
+   "OBJECTID": 12,
+   "OWNER_NAME": "TESTOWNER 3F692A"
+  },
+  {
+   "APN": "10105002",
+   "OBJECTID": 13,
+   "OWNER_NAME": "TESTOWNER BDFAAE"
+  },
+  {
+   "APN": "10105003",
+   "OBJECTID": 14,
+   "OWNER_NAME": "TESTOWNER BDFAAE"
+  },
+  {
+   "APN": "10103005",
+   "OBJECTID": 15,
+   "OWNER_NAME": "TESTOWNER BDFAAE"
+  },
+  {
+   "APN": "10105004",
+   "OBJECTID": 16,
+   "OWNER_NAME": "TESTOWNER BDFAAE"
+  },
+  {
+   "APN": "10107001",
+   "OBJECTID": 17,
+   "OWNER_NAME": "TESTOWNER BDFAAE"
+  },
+  {
+   "APN": "10108002",
+   "OBJECTID": 18,
+   "OWNER_NAME": "TESTOWNER 69A60D LLC"
+  },
+  {
+   "APN": "10108003",
+   "OBJECTID": 19,
+   "OWNER_NAME": "TESTOWNER 3EA7E8"
+  },
+  {
+   "APN": "10108004",
+   "OBJECTID": 20,
+   "OWNER_NAME": "TESTOWNER 8C4632"
+  },
+  {
+   "APN": "10111009",
+   "OBJECTID": 21,
+   "OWNER_NAME": "TESTOWNER B66361"
+  },
+  {
+   "APN": "10111010",
+   "OBJECTID": 22,
+   "OWNER_NAME": "TESTOWNER B66361"
+  },
+  {
+   "APN": "10108006",
+   "OBJECTID": 23,
+   "OWNER_NAME": "TESTOWNER BDFAAE"
+  },
+  {
+   "APN": "10108007",
+   "OBJECTID": 24,
+   "OWNER_NAME": "TESTOWNER BDFAAE"
+  },
+  {
+   "APN": "10108008",
+   "OBJECTID": 25,
+   "OWNER_NAME": "TESTOWNER BDFAAE"
+  }
+ ],
+ "layer": "https://azwatermaps.azwater.gov/arcgis/rest/services/General/Parcels/MapServer/8",
+ "where": "1=1"
+}

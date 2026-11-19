@@ -1,0 +1,24 @@
+source_id: sd.lincoln.parcels
+state: SD
+# Lincoln County SD ParcelRelate/MapServer table 1 (DBO.GIS_Parcels, assessor table). One row per
+# Parcel_ID. OBJECTIDs start near 4,918,105 (adapter falls back to returnIdsOnly windows if sparse).
+# Mailing block: Add1 = extra name/c-o line (often empty; not mapped), Add2 = street,
+# Add3 = 'CITY ST' without ZIP (cannot go through mail_city_state_zip; not mapped), Zip = ZIP.
+# Not using AppealsPortal/FeatureServer/21 (same table but an editable service).
+layer_url: https://gis.lincolncountysd.gov/arcgis/rest/services/ParcelRelate/MapServer/1
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "083"}
+fields:
+  parcel_id: Parcel_ID
+  owner1: Name
+  mail_line1: Add2
+  mail_zip: Zip
+value_basis: "Values are per assessment class (Class1/Value1 ... Class5/Value15); there is no total, land or building split, so no value fields are mapped. No tax-year or deed fields."
+terms:
+  url: https://gis.lincolncountysd.gov/arcgis/rest/services/ParcelRelate/MapServer
+  summary: "Lincoln County SD public MapServer ('Parcels with assessor table related'), no token. Free, no login, 33,247 rows on 2026-11-18. copyrightText, accessInformation and licenseInfo empty; no use-constraint text found. gis.lincolncountysd.gov /robots.txt answers 404 (no rules, allowed)."
+  checked_on: 2026-11-18
+  robots_checked_on: 2026-11-18
+  cost_model: free

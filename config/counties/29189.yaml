@@ -1,0 +1,35 @@
+source_id: mo.st_louis_county.parcels
+state: MO
+# St. Louis County Assessor / GIS Service Center 'Pardata_Juris' (parcels + assessor data +
+# jurisdictions). WARNING: the hosted layer is loaded by repeated appends: 783,706 rows on
+# 2026-11-18 but only 401,704 distinct LOCATOR, and one LOCATOR sampled appears 4 times
+# (OBJECTIDs 530585/657966/785344/900001, different EditDate, same values). Keep the highest
+# OBJECTID per LOCATOR (or confirm the adapter's dedupe) before using it. The older
+# STLCOparcels layer is clean but frozen at TAXYR 2020; do not use it.
+layer_url: https://services2.arcgis.com/w657bnjzrjguNyOy/ArcGIS/rest/services/Pardata_Juris/FeatureServer/1
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000
+min_interval_s: 1.0
+county: {constant: "189"}
+fields:
+  parcel_id: LOCATOR
+  owner1: OWNER_NAME
+  mail_line1: OWN_ADD
+  mail_city: OWN_CITY
+  mail_state: OWN_STATE
+  mail_zip: OWN_ZIP
+  land_value: APPLANDVAL
+  bldg_value: APPIMPVAL
+  total_value: TOTAPVAL
+  assessed_value: TOTASSMT
+  tax_year: TAXYR
+  deed_ref: DEEDBKPG
+deed_ref_pattern: '^(?P<book>\d+)-(?P<page>\d+)$'   # e.g. '23433-259'
+extra_pii: [CAREOF]
+value_basis: "APPLANDVAL / APPIMPVAL / TOTAPVAL = Assessor appraised (market) values; ASSTLANDVAL / ASSTIMPVAL / TOTASSMT = assessed values (Missouri: 19% residential, 12% agricultural, 32% commercial of appraised). TAXYR = 2026 on 781,870 rows (null on 1,836). DEEDBKPG = recorder book-page."
+terms:
+  url: https://services2.arcgis.com/w657bnjzrjguNyOy/ArcGIS/rest/services/Pardata_Juris/FeatureServer
+  summary: "St. Louis County MO (AGOL org of St. Louis County GIS, item 'Pardata_Juris', copyright 'St. Louis County Assessor's Office, St. Louis County GIS Service Center'), public hosted FeatureServer, no token. Free, no login, 783,706 rows / 401,704 distinct parcels on 2026-11-18 (data edited 2026-11-10). licenseInfo is a no-warranty / hold-harmless disclaimer ('Do not make business decisions based on this data before validating...'); no prohibition on automated access or redistribution found. services2.arcgis.com /robots.txt answers 403 (RFC 9309: allowed)."
+  checked_on: 2026-11-18
+  robots_checked_on: 2026-11-18
+  cost_model: free

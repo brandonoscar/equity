@@ -1,0 +1,25 @@
+source_id: va.alexandria_city.parcels
+state: VA
+# City of Alexandria 'RealEstate_Parcels' (parcels, condo master cards and condos). Updated
+# annually in February (data last edited 2026-04-06). No value fields. ADDRESS_GIS = situs (not mapped).
+layer_url: https://services2.arcgis.com/ChYV69FhfjwkvRmy/ArcGIS/rest/services/Alexandria_Parcels/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000
+min_interval_s: 1.0
+county: {constant: "510"}
+fields:
+  parcel_id: PID_RE
+  owner1: OWN_NAME
+  owner2: OWNERNAME2
+  mail_line1: OWN_ADD
+  mail_line2: OWN_ADD2
+  mail_city: OWN_CITY
+  mail_state: OWN_STAT
+  mail_zip: OWN_ZIP
+value_basis: "No value fields in this layer (owner, mailing address, land code, zoning, LAND_SF, INSTRUMENT only). Assessments are on the city's real estate site (not ArcGIS)."
+terms:
+  url: https://services2.arcgis.com/ChYV69FhfjwkvRmy/ArcGIS/rest/services/Alexandria_Parcels/FeatureServer
+  summary: "City of Alexandria VA GIS (AGOL org AlexGIS), item 'Alexandria Parcels', public hosted FeatureServer, no token. Free, no login, 47,414 rows on 2026-11-18. Item licenseInfo: 'cc0'. Owner data originates with the Department of Real Estate Assessments. services2.arcgis.com /robots.txt answers 403 (RFC 9309: allowed)."
+  checked_on: 2026-11-18
+  robots_checked_on: 2026-11-18
+  cost_model: free
