@@ -52,10 +52,14 @@ def export_part(work_db: Path, out_dir: Path, part: str) -> dict[str, int]:
                 continue
             target = out_dir / table / f"{part}.parquet"
             target.parent.mkdir(parents=True, exist_ok=True)
+            # Write under a temporary name and rename when complete, so a build stopped
+            # mid-write never leaves a truncated part for the catalog or the storage sync.
+            tmp = target.with_suffix(".parquet.tmp")
             con.execute(
-                f"COPY (SELECT * FROM {table}) TO '{target.as_posix()}' "  # noqa: S608
+                f"COPY (SELECT * FROM {table}) TO '{tmp.as_posix()}' "  # noqa: S608
                 "(FORMAT PARQUET, COMPRESSION ZSTD)"
             )
+            tmp.replace(target)
             counts[table] = n
     finally:
         con.close()
