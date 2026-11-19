@@ -6,6 +6,7 @@ layer_url: https://services1.arcgis.com/RbMX0mRVOFNTdLzd/ArcGIS/rest/services/Ma
 order_by: OBJECTID
 page_size: 1000
 min_interval_s: 1.0
+county_window: 20000      # each county in 20k-id windows, so one fetch fits a short session
 # GEOCODE (5-digit town geocode): first 2 digits are the county FIPS (verified against layer 10
 # COUNTY). List = every GEOCODE in the ADB table or the polygon layer on 2026-11-15; a town
 # that starts submitting later is skipped until added (a prefix transform would avoid that).

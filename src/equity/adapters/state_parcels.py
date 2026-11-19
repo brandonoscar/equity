@@ -132,6 +132,9 @@ class StateConfig:
     # county, for layers whose counties are too big to fetch in one go (Florida). The county
     # still comes from each row's county field.
     partition_window: int | None = None
+    # Split each county into object-id windows of this many ids (one stats query per county
+    # at plan time), so a big county is many small fetches instead of one long one.
+    county_window: int | None = None
 
     def layer(self, index: int) -> LayerSpec:
         return self.layers[index] if self.layers else LayerSpec(self.layer_url)
@@ -228,6 +231,7 @@ def load_config(path: Path) -> StateConfig:
         base_filter=data.get("filter"),
         deed_ref_pattern=data.get("deed_ref_pattern"),
         partition_window=int(data["partition_window"]) if "partition_window" in data else None,
+        county_window=int(data["county_window"]) if "county_window" in data else None,
     )
 
 
@@ -321,31 +325,63 @@ class StateParcelAdapter(ArcGISCountyAdapter):
         return clause
 
     def _partition_where(self, request: FetchRequest) -> str:
-        """params: county_fips (3 digits) | oid_min + oid_max | sample=1 (fixtures)."""
+        """params: county_fips (3 digits) and/or oid_min + oid_max | sample=1 (fixtures)."""
         p = request.params
-        spec = self.config.county_spec(int(p.get("layer", "0")))
+        clauses = []
         if "county_fips" in p:
-            county = county_by_fips(self.config.state, p["county_fips"])
-            if "constant" in spec:
-                return "1=1"
-            fld, fmt = str(spec["field"]), spec["format"]
-            if fmt == "fips3":
-                return f"{fld}='{county.county_fips}'"
-            if fmt == "fips5":
-                return f"{fld}='{county.fips5}'"
-            if fmt == "int":
-                return f"{fld}={int(county.county_fips)}"
-            if fmt == "name":
-                raise StateConfigError("name-partitioned layers are fetched by oid range")
-            codes = [k for k, v in spec["code_map"].items() if str(v) == county.county_fips]
-            q = "" if spec.get("numeric") else "'"  # integer code fields reject quoted literals
-            return " OR ".join(f"{fld}={q}{c}{q}" for c in codes) or "1=0"
+            clauses.append(self._county_clause(p["county_fips"], int(p.get("layer", "0"))))
         if "oid_min" in p and "oid_max" in p:
             lo, hi = int(p["oid_min"]), int(p["oid_max"])
-            return f"{self.config.order_by}>={lo} AND {self.config.order_by}<{hi}"
+            clauses.append(f"{self.config.order_by}>={lo} AND {self.config.order_by}<{hi}")
+        if len(clauses) == 2 and clauses[0] == "1=1":
+            clauses = clauses[1:]
+        if clauses:
+            return " AND ".join(f"({c})" for c in clauses) if len(clauses) > 1 else clauses[0]
         if p.get("sample"):
             return "1=1"
         raise StateConfigError("need county_fips, oid_min/oid_max, or sample")
+
+    def _county_clause(self, county_fips: str, layer: int) -> str:
+        spec = self.config.county_spec(layer)
+        county = county_by_fips(self.config.state, county_fips)
+        if "constant" in spec:
+            return "1=1"
+        fld, fmt = str(spec["field"]), spec["format"]
+        if fmt == "fips3":
+            return f"{fld}='{county.county_fips}'"
+        if fmt == "fips5":
+            return f"{fld}='{county.fips5}'"
+        if fmt == "int":
+            return f"{fld}={int(county.county_fips)}"
+        if fmt == "name":
+            raise StateConfigError("name-partitioned layers are fetched by oid range")
+        codes = [k for k, v in spec["code_map"].items() if str(v) == county.county_fips]
+        q = "" if spec.get("numeric") else "'"  # integer code fields reject quoted literals
+        return " OR ".join(f"{fld}={q}{c}{q}" for c in codes) or "1=0"
+
+    def split_partition(self, params: Mapping[str, str]) -> list[dict[str, str]]:
+        """A county partition cut into windows of county_window records each, from the
+        county's actual object-id list (one returnIdsOnly query), so no window is empty even
+        when ids are scattered. Anything else, or a config without county_window, comes back
+        unchanged."""
+        size = self.config.county_window
+        if not size or "county_fips" not in params or "oid_min" in params:
+            return [dict(params)]
+        layer = int(params.get("layer", "0"))
+        where = self._county_clause(params["county_fips"], layer)
+        if self.config.base_filter:
+            where = f"({self.config.base_filter}) AND ({where})"
+        q = {"where": where, "returnIdsOnly": "true", "f": "json"}
+        resp = self.client.get(self.config.layer(layer).url + "/query", q)
+        body = json.loads(resp.content)
+        if "error" in body:
+            raise StateConfigError(f"id list for county {params['county_fips']}: {body['error']}")
+        ids = sorted(int(i) for i in body.get("objectIds") or [])
+        out: list[dict[str, str]] = []
+        for i in range(0, len(ids), size):
+            chunk = ids[i : i + size]
+            out.append({**params, "oid_min": str(chunk[0]), "oid_max": str(chunk[-1] + 1)})
+        return out
 
     def partitions(self, window: int = 50_000) -> Iterator[dict[str, str]]:
         """Fetch plan for the whole state, per layer: one request per county when the layer
@@ -361,7 +397,7 @@ class StateParcelAdapter(ArcGISCountyAdapter):
             by_county = spec.get("format") in ("fips3", "fips5", "int", "code_map")
             if by_county and self.config.paginate and not self.config.partition_window:
                 for c in counties_in(self.config.state):
-                    yield {**base, "county_fips": c.county_fips}
+                    yield from self.split_partition({**base, "county_fips": c.county_fips})
                 continue
             oid = self.config.order_by
             stats = json.dumps([

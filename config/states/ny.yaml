@@ -8,6 +8,7 @@ layer_url: https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/ArcGIS/rest/services/NY
 order_by: OBJECTID
 page_size: 1000
 min_interval_s: 1.0
+county_window: 20000      # each county in 20k-id windows, so one fetch fits a short session
 # COUNTY_NAME as spelled in the layer ("NewYork", "StLawrence" have no space, so the name
 # format cannot resolve them). The 38 counties present on 2026-11-15; a county added later is
 # skipped until it is added here.

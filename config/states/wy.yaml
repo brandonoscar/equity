@@ -4,6 +4,7 @@ layer_url: https://gis2.statelands.wyo.gov/arcgis/rest/services/oslisde/Parcels2
 order_by: OBJECTID
 page_size: 1000
 min_interval_s: 1.0
+county_window: 20000      # each county in 20k-id windows, so one fetch fits a short session
 # jurisdicti holds the upper-case county name with spaces removed ("BIGHORN", "HOTSPRINGS").
 county:
   field: jurisdicti

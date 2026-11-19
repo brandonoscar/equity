@@ -4,6 +4,7 @@ layer_url: https://gis.colorado.gov/Public/rest/services/Address_and_Parcel/Colo
 order_by: OBJECTID
 page_size: 1000
 min_interval_s: 1.0
+county_window: 20000      # each county in 20k-id windows, so one fetch fits a short session
 # countyFips is text and inconsistent: some counties send "001", others "27" (no leading zero).
 # code_map accepts both spellings so county-partitioned queries match every row.
 county:

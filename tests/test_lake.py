@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 import pytest
@@ -132,3 +133,40 @@ def test_single_store_sources_load_every_partition_into_one_part(
     assert counts["parcel"] == 3
     assert sorted(p.name for p in (out / "parcel").glob("*.parquet")) == ["00000.parquet"]
     assert not list((tmp_path / "work").glob("*.duckdb"))
+
+
+def test_replan_keeps_finished_parts_and_splits_the_rest(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setattr(lake, "WORK", tmp_path / "work")
+    (tmp_path / "work").mkdir()
+    (tmp_path / "work" / "s-00001.duckdb").write_text("stale")
+
+    class Splitter:
+        def split_partition(self, params: dict[str, str]) -> list[dict[str, str]]:
+            if params["county_fips"] == "003":
+                return []  # empty county
+            return [{**params, "oid_min": str(i), "oid_max": str(i + 1)} for i in (1, 2)]
+
+    monkeypatch.setattr("equity.adapters.registry.by_source_id", lambda sid: Splitter)
+    out = tmp_path / "lake" / "s"
+    (out / "_parts").mkdir(parents=True)
+    (out / "parcel").mkdir()
+    plan = [{"county_fips": c} for c in ("001", "002", "003", "004")]
+    (out / "_plan.json").write_text(json.dumps(plan))
+    for i in (1, 3):  # counties 002 and 004 are finished
+        (out / "_parts" / f"{i:05d}.json").write_text(json.dumps({"params": plan[i]}))
+        (out / "parcel" / f"{i:05d}.parquet").write_text(f"part{i}")
+    kept, pending = lake.replan("s", tmp_path / "lake")
+    assert (kept, pending) == (2, 2)
+    new = json.loads((out / "_plan.json").read_text())
+    assert new[:2] == [{"county_fips": "002"}, {"county_fips": "004"}]
+    assert new[2:] == [{"county_fips": "001", "oid_min": "1", "oid_max": "2"},
+                       {"county_fips": "001", "oid_min": "2", "oid_max": "3"}]  # fmt: skip
+    assert (out / "parcel" / "00000.parquet").read_text() == "part1"
+    assert (out / "parcel" / "00001.parquet").read_text() == "part3"
+    assert sorted(p.name for p in (out / "_parts").iterdir()) == ["00000.json", "00001.json"]
+    assert not (tmp_path / "work" / "s-00001.duckdb").exists()
+    # Replanning again folds the old windows back into their county and re-cuts it.
+    assert lake.replan("s", tmp_path / "lake") == (2, 2)
+    assert json.loads((out / "_plan.json").read_text()) == new

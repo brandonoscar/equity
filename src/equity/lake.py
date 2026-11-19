@@ -147,6 +147,50 @@ def write_plan(source_id: str, extra: dict[str, str], lake: Path | None = None) 
     return len(requests)
 
 
+def replan(source_id: str, lake: Path | None = None) -> tuple[int, int]:
+    """Re-cut the unfinished partitions of a source that is part-way built, keeping every
+    finished part. Finished parts are renumbered to the front of the new plan (Parquet files
+    and markers renamed to match); each unfinished partition is replaced by the adapter's
+    split_partition() pieces. Returns (kept, new partitions)."""
+    from equity.adapters.registry import by_source_id
+
+    out = (lake or LAKE) / source_id
+    plan = json.loads((out / "_plan.json").read_text())
+    done_dir = out / "_parts"
+    done = {int(m.stem) for m in done_dir.glob("*.json")}
+    adapter = by_source_id(source_id)()  # type: ignore[abstract]
+    split = getattr(adapter, "split_partition", None)
+    kept = [i for i in range(len(plan)) if i in done]
+    # Windows from an earlier replan are folded back into their county first, so replanning
+    # again re-cuts them instead of keeping the old cut.
+    todo: list[dict[str, str]] = []
+    for i, params in enumerate(plan):
+        if i in done:
+            continue
+        base = params
+        if split and "county_fips" in params:
+            base = {k: v for k, v in params.items() if k not in ("oid_min", "oid_max")}
+        if base not in todo:
+            todo.append(base)
+    pending: list[dict[str, str]] = []
+    for params in todo:
+        pending.extend(split(params) if split else [params])
+    # Two-phase rename so old and new part numbers never collide.
+    moves = {old: new for new, old in enumerate(kept)}
+    for stage in ("tmp", "final"):
+        for old, new in moves.items():
+            src_name = f"{old:05d}" if stage == "tmp" else f"tmp{old:05d}"
+            dst_name = f"tmp{old:05d}" if stage == "tmp" else f"{new:05d}"
+            for f in out.glob(f"*/{src_name}.parquet"):
+                f.rename(f.with_name(f"{dst_name}.parquet"))
+            (done_dir / f"{src_name}.json").rename(done_dir / f"{dst_name}.json")
+    new_plan = [plan[i] for i in kept] + pending
+    (out / "_plan.json").write_text(json.dumps(new_plan, indent=1))
+    for w in WORK.glob(f"{source_id}-*.duckdb*"):
+        w.unlink()
+    return len(kept), len(pending)
+
+
 def build_catalog(lake: Path = LAKE, catalog: Path = CATALOG) -> list[str]:
     """Views named like the schema tables, each reading that table's Parquet parts from every
     source folder. Tables without any Parquet yet stay as empty migrated tables."""
@@ -255,6 +299,8 @@ def main(argv: list[str]) -> int:
     pl = sub.add_parser("plan")
     pl.add_argument("source_id")
     pl.add_argument("--set", nargs="*", default=[], help="key=value added to every partition")
+    rp = sub.add_parser("replan", help="split unfinished partitions, keep finished parts")
+    rp.add_argument("source_id")
     sub.add_parser("catalog")
     sub.add_parser("status")
     args = ap.parse_args(argv)
@@ -265,6 +311,9 @@ def main(argv: list[str]) -> int:
     elif args.cmd == "plan":
         extra = dict(kv.split("=", 1) for kv in args.set)
         print(f"{args.source_id}: {write_plan(args.source_id, extra)} partitions planned")
+    elif args.cmd == "replan":
+        kept, pending = replan(args.source_id)
+        print(f"{args.source_id}: kept {kept} finished parts, {pending} partitions to go")
     elif args.cmd == "catalog":
         print(build_catalog())
     else:

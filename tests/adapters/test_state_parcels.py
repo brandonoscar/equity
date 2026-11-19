@@ -238,6 +238,47 @@ def test_partition_window_overrides_county_partitions(tmp_path: Path) -> None:
     assert load_config(_cfg(tmp_path)).partition_window is None
 
 
+def test_county_window_splits_each_county_by_its_id_list(tmp_path: Path) -> None:
+    from collections.abc import Mapping as _M
+    from urllib.parse import parse_qs, urlsplit
+
+    from equity.adapters.base import FetchRequest
+    from equity.adapters.http import PoliteClient
+
+    wheres: list[str] = []
+
+    def transport(url: str, headers: _M[str, str], timeout: float) -> tuple[int, bytes, str]:
+        if url.endswith("robots.txt"):
+            return 404, b"", ""
+        where = parse_qs(urlsplit(url).query)["where"][0]
+        wheres.append(where)
+        if "'003'" in where:
+            body: dict[str, Any] = {"objectIds": None}  # county with no rows
+        elif "'005'" in where:
+            body = {"error": {"code": 400, "message": "bad"}}
+        else:  # scattered ids: windows follow the ids, not the id range
+            body = {"objectIds": [907, 101, 102, 5000, 5001, 103, 104, 105, 106, 107, 108, 109]}
+        return 200, json.dumps(body).encode(), "application/json"
+
+    cfg = load_config(_cfg(tmp_path, county_window=5, filter="Y=1"))
+    client = PoliteClient(min_interval_s=0, transport=transport, sleep=lambda s: None)
+    a = adapter_for(cfg)(client)
+    assert a.split_partition({"county_fips": "001"}) == [
+        {"county_fips": "001", "oid_min": "101", "oid_max": "106"},
+        {"county_fips": "001", "oid_min": "106", "oid_max": "908"},
+        {"county_fips": "001", "oid_min": "5000", "oid_max": "5002"}]  # fmt: skip
+    assert wheres[-1].startswith("(Y=1) AND (")
+    assert a.split_partition({"county_fips": "003"}) == []
+    with pytest.raises(StateConfigError, match="id list for county 005"):
+        a.split_partition({"county_fips": "005"})
+    already = {"county_fips": "001", "oid_min": "1", "oid_max": "2"}
+    assert a.split_partition(already) == [already]
+    plain = adapter_for(load_config(_cfg(tmp_path)))()
+    assert plain.split_partition({"county_fips": "1"}) == [{"county_fips": "1"}]
+    w = a.where(FetchRequest({"county_fips": "001", "oid_min": "5", "oid_max": "9"}))
+    assert w.startswith("(Y=1) AND ((") and "OID>=5 AND OID<9" in w
+
+
 def test_use_restrictions_are_recorded_in_source_terms(tmp_path: Path) -> None:
     cls = adapter_for(
         load_config(_cfg(tmp_path, use_restrictions=["no_resale", "no_mailing_list"]))

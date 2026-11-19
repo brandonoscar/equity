@@ -4,6 +4,7 @@ layer_url: https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_mn
 order_by: objectid
 page_size: 1000
 min_interval_s: 1.0
+county_window: 20000      # each county in 20k-id windows, so one fetch fits a short session
 county:
   field: co_code
   format: fips5
