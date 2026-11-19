@@ -115,3 +115,31 @@ def test_persistent_empty_body_surfaces_after_retries() -> None:
     with pytest.raises(json.JSONDecodeError):
         fetch_all(c, Q)  # type: ignore[arg-type]
     assert c.calls == 4 and c.slept == [2.0, 4.0, 8.0]
+
+
+def test_get_json_retries_busy_answers() -> None:
+    from equity.adapters.arcgis import get_json
+
+    busy = b'{"error":{"code":400,"message":"","details":["Unable to perform query. x"]}}'
+    real = b'{"error":{"code":400,"message":"","details":["Invalid field: X"]}}'
+
+    class Seq:
+        retries = 2
+        backoff_s = 0.0
+
+        def __init__(self, bodies: list[bytes]) -> None:
+            self.bodies = bodies
+
+        def sleep(self, s: float) -> None:
+            pass
+
+        def get(self, url: str, params: object = None) -> object:
+            from datetime import UTC, datetime
+
+            from equity.adapters.http import Response
+
+            return Response(url, 200, self.bodies.pop(0), "application/json", datetime.now(UTC))
+
+    assert get_json(Seq([busy, b"", b'{"count": 3}']), "u", {}) == {"count": 3}  # type: ignore[arg-type]
+    assert "error" in get_json(Seq([real]), "u", {})  # type: ignore[arg-type]
+    assert "error" in get_json(Seq([busy, busy, busy]), "u", {})  # type: ignore[arg-type]

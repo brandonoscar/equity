@@ -27,7 +27,7 @@ from typing import Any, ClassVar
 
 import yaml
 
-from equity.adapters.arcgis import ArcGISQuery, fetch_all
+from equity.adapters.arcgis import ArcGISQuery, fetch_all, get_json
 from equity.adapters.arcgis_adapter import ArcGISCountyAdapter
 from equity.adapters.base import Fetched, FetchRequest, HealthReport, NormalizedRow
 from equity.adapters.http import PoliteClient
@@ -372,8 +372,7 @@ class StateParcelAdapter(ArcGISCountyAdapter):
         if self.config.base_filter:
             where = f"({self.config.base_filter}) AND ({where})"
         q = {"where": where, "returnIdsOnly": "true", "f": "json"}
-        resp = self.client.get(self.config.layer(layer).url + "/query", q)
-        body = json.loads(resp.content)
+        body = get_json(self.client, self.config.layer(layer).url + "/query", q)
         if "error" in body:
             raise StateConfigError(f"id list for county {params['county_fips']}: {body['error']}")
         ids = sorted(int(i) for i in body.get("objectIds") or [])
@@ -410,8 +409,10 @@ class StateParcelAdapter(ArcGISCountyAdapter):
                 "outStatistics": stats,
                 "f": "json",
             }
-            resp = self.client.get(url + "/query", params)
-            raw_attrs = json.loads(resp.content)["features"][0]["attributes"]
+            body = get_json(self.client, url + "/query", params)
+            if "features" not in body:
+                raise StateConfigError(f"id range for {url}: {body.get('error', body)}")
+            raw_attrs = body["features"][0]["attributes"]
             attrs = {str(k).lower(): v for k, v in raw_attrs.items()}  # some servers upper-case
             lo, hi = int(attrs["lo"]), int(attrs["hi"])
             count = self._count(url)

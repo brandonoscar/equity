@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import json
-from collections.abc import Sequence
+from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from typing import Any
 
@@ -58,6 +58,9 @@ TRANSIENT_ERROR_CODES = frozenset({500, 502, 503, 504})
 # succeeds moments later (seen on the Florida cadastral layer at resultOffset 100000,
 # 2026-11-16). Specific 400s ("Invalid field ...") are real errors and are not retried.
 TRANSIENT_400_PREFIX = "Cannot perform query"
+# The same busy answer on some hosted layers: empty message, this in details. The identical
+# query succeeds on retry (MassGIS parcels, 2026-11-19).
+TRANSIENT_400_DETAIL = "Unable to perform query"
 
 
 def _is_transient(body: bytes) -> bool:
@@ -71,7 +74,24 @@ def _is_transient(body: bytes) -> bool:
         return False
     if err.get("code") in TRANSIENT_ERROR_CODES:
         return True
-    return err.get("code") == 400 and str(err.get("message", "")).startswith(TRANSIENT_400_PREFIX)
+    if err.get("code") != 400:
+        return False
+    details = " ".join(str(d) for d in err.get("details") or [])
+    return str(err.get("message", "")).startswith(TRANSIENT_400_PREFIX) or (
+        not err.get("message") and details.startswith(TRANSIENT_400_DETAIL)
+    )
+
+
+def get_json(client: PoliteClient, url: str, params: Mapping[str, str]) -> Any:
+    """One metadata query (counts, id lists, statistics), parsed, retried like a page when the
+    answer is transient. A persistent error object is returned for the caller to report."""
+    attempt = 0
+    while True:
+        resp = client.get(url, params)
+        if not _is_transient(resp.content) or attempt >= client.retries:
+            return json.loads(resp.content)
+        client.sleep(client.backoff_s * 2**attempt)
+        attempt += 1
 
 
 def get_page(client: PoliteClient, query: ArcGISQuery, offset: int) -> Response:

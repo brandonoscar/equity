@@ -508,3 +508,19 @@ def test_fixed_filter_and_deed_ref(tmp_path: Path) -> None:
 def test_deed_ref_validation(tmp_path: Path, over: dict[str, Any], message: str) -> None:
     with pytest.raises(StateConfigError, match=message):
         load_config(_cfg(tmp_path, **over))
+
+
+def test_id_range_error_is_reported(tmp_path: Path) -> None:
+    from collections.abc import Mapping as _M
+
+    from equity.adapters.http import PoliteClient
+
+    def transport(url: str, headers: _M[str, str], timeout: float) -> tuple[int, bytes, str]:
+        if url.endswith("robots.txt"):
+            return 404, b"", ""
+        return 200, b'{"error":{"code":400,"message":"Invalid field"}}', "application/json"
+
+    named = adapter_for(load_config(_cfg(tmp_path, county={"field": "C", "format": "name"})))
+    client = PoliteClient(min_interval_s=0, transport=transport, sleep=lambda s: None)
+    with pytest.raises(StateConfigError, match="id range for"):
+        list(named(client).partitions())
