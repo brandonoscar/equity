@@ -128,6 +128,10 @@ class StateConfig:
     base_filter: str | None = None
     # Regex with named groups `book` and `page` for a combined deed reference ("282 - 520").
     deed_ref_pattern: str | None = None
+    # Split the layer into object-id windows of this many ids instead of one request per
+    # county, for layers whose counties are too big to fetch in one go (Florida). The county
+    # still comes from each row's county field.
+    partition_window: int | None = None
 
     def layer(self, index: int) -> LayerSpec:
         return self.layers[index] if self.layers else LayerSpec(self.layer_url)
@@ -223,6 +227,7 @@ def load_config(path: Path) -> StateConfig:
         paginate=bool(data.get("paginate", True)),
         base_filter=data.get("filter"),
         deed_ref_pattern=data.get("deed_ref_pattern"),
+        partition_window=int(data["partition_window"]) if "partition_window" in data else None,
     )
 
 
@@ -346,12 +351,15 @@ class StateParcelAdapter(ArcGISCountyAdapter):
         """Fetch plan for the whole state, per layer: one request per county when the layer
         has a county code to filter on, otherwise object-id windows (one stats query each).
         Without server paging, windows are capped at page_size."""
+        if self.config.partition_window:
+            window = self.config.partition_window
         if not self.config.paginate:
             window = min(window, self.config.page_size)
         for i in range(self.config.layer_count):
             spec = self.config.county_spec(i)
             base = {"layer": str(i)} if self.config.layers else {}
-            if spec.get("format") in ("fips3", "fips5", "int", "code_map") and self.config.paginate:
+            by_county = spec.get("format") in ("fips3", "fips5", "int", "code_map")
+            if by_county and self.config.paginate and not self.config.partition_window:
                 for c in counties_in(self.config.state):
                     yield {**base, "county_fips": c.county_fips}
                 continue

@@ -214,6 +214,30 @@ def test_partitions_by_county_and_by_oid_window(tmp_path: Path) -> None:
                        {"oid_min": "100001", "oid_max": "150001"}]  # fmt: skip
 
 
+def test_partition_window_overrides_county_partitions(tmp_path: Path) -> None:
+    """Counties too big for one fetch: id windows of the configured size, county per row."""
+    from collections.abc import Mapping as _M
+
+    from equity.adapters.http import PoliteClient
+
+    def transport(url: str, headers: _M[str, str], timeout: float) -> tuple[int, bytes, str]:
+        if url.endswith("robots.txt"):
+            return 404, b"", ""
+        if "returnCountOnly" in url:
+            return 200, json.dumps({"count": 45000}).encode(), "application/json"
+        body = {"features": [{"attributes": {"lo": 1, "hi": 45000}}]}
+        return 200, json.dumps(body).encode(), "application/json"
+
+    cfg = load_config(_cfg(tmp_path, partition_window=20000))
+    assert cfg.partition_window == 20000
+    client = PoliteClient(min_interval_s=0, transport=transport, sleep=lambda s: None)
+    windows = list(adapter_for(cfg)(client).partitions())
+    assert windows == [{"oid_min": "1", "oid_max": "20001"},
+                       {"oid_min": "20001", "oid_max": "40001"},
+                       {"oid_min": "40001", "oid_max": "60001"}]  # fmt: skip
+    assert load_config(_cfg(tmp_path)).partition_window is None
+
+
 def test_use_restrictions_are_recorded_in_source_terms(tmp_path: Path) -> None:
     cls = adapter_for(
         load_config(_cfg(tmp_path, use_restrictions=["no_resale", "no_mailing_list"]))
