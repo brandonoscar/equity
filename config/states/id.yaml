@@ -23,6 +23,10 @@ county:
     "Valley": "085", "Washington": "087"
   }
 fields:
+  situs_line1: SITE_ADD
+  situs_city: SITE_CITY
+  situs_zip: SITE_ZIP
+  homestead: HOME_EXMPT
   parcel_id: PARCEL_ID
   owner1: OWNER1
   owner2: OWNER2

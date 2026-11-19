@@ -3,126 +3,151 @@
   {
    "NH_GIS_ID": "104001-252-010-000",
    "OBJECTID": 65017,
+   "StreetAddress": "2639 TEST ST",
    "TownID": "4001"
   },
   {
    "NH_GIS_ID": "104001-252-006-000",
    "OBJECTID": 65018,
+   "StreetAddress": "3741 TEST ST",
    "TownID": "4001"
   },
   {
    "NH_GIS_ID": "104001-229-066-000",
    "OBJECTID": 65019,
+   "StreetAddress": "2581 TEST ST",
    "TownID": "4001"
   },
   {
    "NH_GIS_ID": "104001-227-016-000",
    "OBJECTID": 65020,
+   "StreetAddress": "5835 TEST ST",
    "TownID": "4001"
   },
   {
    "NH_GIS_ID": "104001-228-011-000",
    "OBJECTID": 65021,
+   "StreetAddress": "6059 TEST ST",
    "TownID": "4001"
   },
   {
    "NH_GIS_ID": "104001-229-074-000",
    "OBJECTID": 65022,
+   "StreetAddress": "6546 TEST ST",
    "TownID": "4001"
   },
   {
    "NH_GIS_ID": "104001-229-037-000",
    "OBJECTID": 65023,
+   "StreetAddress": "1493 TEST ST",
    "TownID": "4001"
   },
   {
    "NH_GIS_ID": "104001-215-008-000",
    "OBJECTID": 65024,
+   "StreetAddress": "5863 TEST ST",
    "TownID": "4001"
   },
   {
    "NH_GIS_ID": "104001-216-019-000",
    "OBJECTID": 65025,
+   "StreetAddress": "7135 TEST ST",
    "TownID": "4001"
   },
   {
    "NH_GIS_ID": "104001-201-135-000",
    "OBJECTID": 65026,
+   "StreetAddress": "1662 TEST ST",
    "TownID": "4001"
   },
   {
    "NH_GIS_ID": "104001-201-098-000",
    "OBJECTID": 65027,
+   "StreetAddress": "2661 TEST ST",
    "TownID": "4001"
   },
   {
    "NH_GIS_ID": "104001-227-016-000",
    "OBJECTID": 65028,
+   "StreetAddress": "5835 TEST ST",
    "TownID": "4001"
   },
   {
    "NH_GIS_ID": "104001-229-067-000",
    "OBJECTID": 65029,
+   "StreetAddress": "8915 TEST ST",
    "TownID": "4001"
   },
   {
    "NH_GIS_ID": "104001-229-018-000",
    "OBJECTID": 65030,
+   "StreetAddress": "5020 TEST ST",
    "TownID": "4001"
   },
   {
    "NH_GIS_ID": "104001-227-003-000",
    "OBJECTID": 65031,
+   "StreetAddress": "401 TEST ST",
    "TownID": "4001"
   },
   {
    "NH_GIS_ID": "104001-228-014-000",
    "OBJECTID": 65032,
+   "StreetAddress": "2952 TEST ST",
    "TownID": "4001"
   },
   {
    "NH_GIS_ID": "104001-235-017-000",
    "OBJECTID": 65033,
+   "StreetAddress": "2952 TEST ST",
    "TownID": "4001"
   },
   {
    "NH_GIS_ID": "104001-236-006-000",
    "OBJECTID": 65034,
+   "StreetAddress": "3513 TEST ST",
    "TownID": "4001"
   },
   {
    "NH_GIS_ID": "104001-234-006-000",
    "OBJECTID": 65035,
+   "StreetAddress": "6884 TEST ST",
    "TownID": "4001"
   },
   {
    "NH_GIS_ID": "104001-214-006-000",
    "OBJECTID": 65036,
+   "StreetAddress": "5863 TEST ST",
    "TownID": "4001"
   },
   {
    "NH_GIS_ID": "104001-201-136-000",
    "OBJECTID": 65037,
+   "StreetAddress": "1662 TEST ST",
    "TownID": "4001"
   },
   {
    "NH_GIS_ID": "104001-248-010-000",
    "OBJECTID": 65038,
+   "StreetAddress": "8640 TEST ST",
    "TownID": "4001"
   },
   {
    "NH_GIS_ID": "104001-247-022-001",
    "OBJECTID": 65039,
+   "StreetAddress": null,
    "TownID": "4001"
   },
   {
    "NH_GIS_ID": "104001-246-053-000",
    "OBJECTID": 65040,
+   "StreetAddress": "267 TEST ST",
    "TownID": "4001"
   },
   {
    "NH_GIS_ID": "104001-246-040-000",
    "OBJECTID": 65041,
+   "StreetAddress": "8992 TEST ST",
    "TownID": "4001"
   }
  ],

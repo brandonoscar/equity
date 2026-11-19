@@ -11,6 +11,8 @@ county:
   field: PARCELFIPS
   format: fips3
 fields:
+  situs_line1: SITEADRESS
+  situs_zip: ZIPCODE
   parcel_id: PARCELID
   owner1: OWNERNME1
   owner2: OWNERNME2

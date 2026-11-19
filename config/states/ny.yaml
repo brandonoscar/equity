@@ -55,6 +55,10 @@ county:
     Westchester: "119"
     Wyoming: "121"
 fields:
+  situs_line1: PARCEL_ADDR
+  situs_city: CITYTOWN_NAME
+  situs_zip: LOC_ZIP
+  owner_type: OWNER_TYPE
   parcel_id: SWIS_SBL_ID      # 6-digit SWIS municipality code + 20-char SBL, unique statewide
   owner1: PRIMARY_OWNER
   owner2: ADD_OWNER

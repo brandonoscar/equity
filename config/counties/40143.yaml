@@ -10,6 +10,10 @@ min_interval_s: 1.0
 county: {constant: "143"}
 use_restrictions: [no_resale]
 fields:
+  situs_line1: PropertyAddress
+  situs_city: PropertyCity
+  situs_zip: PropertyZIP
+  homestead: HomesteadExemption
   parcel_id: ParcelNo      # AccountNo = 'R' + ParcelNo on the sampled row
   owner1: Name1
   owner2: Name2

@@ -5,7 +5,11 @@
    "Improvements_Value": 0.0,
    "Land_Value": 33230.0,
    "OBJECTID": 1152847,
+   "Ownership_Type": "",
    "Parcel_ID": "880035497",
+   "Ph_City": "ELYRIA",
+   "Ph_Zip5": "68837",
+   "Situs_Address": "",
    "Total_Assessed_Value": 33230.0
   },
   {
@@ -13,7 +17,11 @@
    "Improvements_Value": 877065.0,
    "Land_Value": 39785.0,
    "OBJECTID": 1152848,
+   "Ownership_Type": "",
    "Parcel_ID": "001221500",
+   "Ph_City": "BROKEN BOW",
+   "Ph_Zip5": "68822",
+   "Situs_Address": "1245 TEST ST",
    "Total_Assessed_Value": 916850.0
   },
   {
@@ -21,7 +29,11 @@
    "Improvements_Value": 1401052.0,
    "Land_Value": 32480.0,
    "OBJECTID": 1152849,
+   "Ownership_Type": "",
    "Parcel_ID": "001065000",
+   "Ph_City": "",
+   "Ph_Zip5": "",
+   "Situs_Address": "4539 TEST ST",
    "Total_Assessed_Value": 1433532.0
   },
   {
@@ -29,7 +41,11 @@
    "Improvements_Value": 609377.0,
    "Land_Value": 222896.0,
    "OBJECTID": 1152850,
+   "Ownership_Type": "",
    "Parcel_ID": "001238200",
+   "Ph_City": "BROKEN BOW",
+   "Ph_Zip5": "68822",
+   "Situs_Address": "7984 TEST ST",
    "Total_Assessed_Value": 832273.0
   },
   {
@@ -37,7 +53,11 @@
    "Improvements_Value": 272329.0,
    "Land_Value": 11528.0,
    "OBJECTID": 1152851,
+   "Ownership_Type": "",
    "Parcel_ID": "001063010",
+   "Ph_City": "BROKEN BOW",
+   "Ph_Zip5": "68822",
+   "Situs_Address": "6396 TEST ST",
    "Total_Assessed_Value": 283857.0
   },
   {
@@ -45,7 +65,11 @@
    "Improvements_Value": 910362.0,
    "Land_Value": 90944.0,
    "OBJECTID": 1152852,
+   "Ownership_Type": "",
    "Parcel_ID": "001065600",
+   "Ph_City": "BROKEN BOW",
+   "Ph_Zip5": "68822",
+   "Situs_Address": "3498 TEST ST",
    "Total_Assessed_Value": 1001306.0
   },
   {
@@ -53,7 +77,11 @@
    "Improvements_Value": 523085.0,
    "Land_Value": 58500.0,
    "OBJECTID": 1152853,
+   "Ownership_Type": "",
    "Parcel_ID": "001139200",
+   "Ph_City": "",
+   "Ph_Zip5": "",
+   "Situs_Address": "",
    "Total_Assessed_Value": 581585.0
   },
   {
@@ -61,7 +89,11 @@
    "Improvements_Value": 817316.0,
    "Land_Value": 58464.0,
    "OBJECTID": 1152854,
+   "Ownership_Type": "",
    "Parcel_ID": "001065100",
+   "Ph_City": "BROKEN BOW",
+   "Ph_Zip5": "68822",
+   "Situs_Address": "1653 TEST ST",
    "Total_Assessed_Value": 875780.0
   },
   {
@@ -69,7 +101,11 @@
    "Improvements_Value": 811764.0,
    "Land_Value": 61435.0,
    "OBJECTID": 1152855,
+   "Ownership_Type": "",
    "Parcel_ID": "001153100",
+   "Ph_City": "",
+   "Ph_Zip5": "",
+   "Situs_Address": "",
    "Total_Assessed_Value": 873199.0
   },
   {
@@ -77,7 +113,11 @@
    "Improvements_Value": 2472870.0,
    "Land_Value": 428167.0,
    "OBJECTID": 1152856,
+   "Ownership_Type": "",
    "Parcel_ID": "000506705",
+   "Ph_City": "BROKEN BOW",
+   "Ph_Zip5": "68822",
+   "Situs_Address": "8676 TEST ST",
    "Total_Assessed_Value": 2901037.0
   },
   {
@@ -85,7 +125,11 @@
    "Improvements_Value": 475698.0,
    "Land_Value": 93933.0,
    "OBJECTID": 1152857,
+   "Ownership_Type": "",
    "Parcel_ID": "000506699",
+   "Ph_City": "BROKEN BOW",
+   "Ph_Zip5": "68822",
+   "Situs_Address": "2975 TEST ST",
    "Total_Assessed_Value": 569631.0
   },
   {
@@ -93,7 +137,11 @@
    "Improvements_Value": 273396.0,
    "Land_Value": 193013.0,
    "OBJECTID": 1152858,
+   "Ownership_Type": "",
    "Parcel_ID": "000506706",
+   "Ph_City": "BROKEN BOW",
+   "Ph_Zip5": "68822",
+   "Situs_Address": "2823 TEST ST",
    "Total_Assessed_Value": 466409.0
   },
   {
@@ -101,7 +149,11 @@
    "Improvements_Value": 127104.0,
    "Land_Value": 17952.0,
    "OBJECTID": 1152859,
+   "Ownership_Type": "",
    "Parcel_ID": "001234400",
+   "Ph_City": "BROKEN BOW",
+   "Ph_Zip5": "68822",
+   "Situs_Address": "1224 TEST ST",
    "Total_Assessed_Value": 145056.0
   },
   {
@@ -109,7 +161,11 @@
    "Improvements_Value": 5219478.0,
    "Land_Value": 545052.0,
    "OBJECTID": 1152860,
+   "Ownership_Type": "",
    "Parcel_ID": "000172050",
+   "Ph_City": "ANSELMO",
+   "Ph_Zip5": "68813",
+   "Situs_Address": "6762 TEST ST",
    "Total_Assessed_Value": 5764530.0
   },
   {
@@ -117,7 +173,11 @@
    "Improvements_Value": 79080.0,
    "Land_Value": 35720.0,
    "OBJECTID": 1152861,
+   "Ownership_Type": "",
    "Parcel_ID": "0001279.15",
+   "Ph_City": "SUPERIOR",
+   "Ph_Zip5": "68978",
+   "Situs_Address": "1764 TEST ST",
    "Total_Assessed_Value": 114800.0
   },
   {
@@ -125,7 +185,11 @@
    "Improvements_Value": 316315.0,
    "Land_Value": 29900.0,
    "OBJECTID": 1152862,
+   "Ownership_Type": "",
    "Parcel_ID": "0001279.16",
+   "Ph_City": "SUPERIOR",
+   "Ph_Zip5": "68978",
+   "Situs_Address": "2342 TEST ST",
    "Total_Assessed_Value": 346215.0
   },
   {
@@ -133,7 +197,11 @@
    "Improvements_Value": 316315.0,
    "Land_Value": 29900.0,
    "OBJECTID": 1152863,
+   "Ownership_Type": "",
    "Parcel_ID": "0001279.17",
+   "Ph_City": "SUPERIOR",
+   "Ph_Zip5": "68978",
+   "Situs_Address": "6993 TEST ST",
    "Total_Assessed_Value": 346215.0
   },
   {
@@ -141,7 +209,11 @@
    "Improvements_Value": 316315.0,
    "Land_Value": 29900.0,
    "OBJECTID": 1152864,
+   "Ownership_Type": "",
    "Parcel_ID": "0001279.18",
+   "Ph_City": "SUPERIOR",
+   "Ph_Zip5": "68978",
+   "Situs_Address": "7488 TEST ST",
    "Total_Assessed_Value": 346215.0
   },
   {
@@ -149,7 +221,11 @@
    "Improvements_Value": 305415.0,
    "Land_Value": 44215.0,
    "OBJECTID": 1152865,
+   "Ownership_Type": "",
    "Parcel_ID": "0001279.19",
+   "Ph_City": "SUPERIOR",
+   "Ph_Zip5": "68978",
+   "Situs_Address": "4329 TEST ST",
    "Total_Assessed_Value": 349630.0
   },
   {
@@ -157,7 +233,11 @@
    "Improvements_Value": 12518405.0,
    "Land_Value": 750000.0,
    "OBJECTID": 1152866,
+   "Ownership_Type": "",
    "Parcel_ID": "0003539.00",
+   "Ph_City": "",
+   "Ph_Zip5": "",
+   "Situs_Address": "",
    "Total_Assessed_Value": 13268405.0
   },
   {
@@ -165,7 +245,11 @@
    "Improvements_Value": 0.0,
    "Land_Value": 1276110.0,
    "OBJECTID": 1152867,
+   "Ownership_Type": "",
    "Parcel_ID": "0001814.00",
+   "Ph_City": "",
+   "Ph_Zip5": "",
+   "Situs_Address": "",
    "Total_Assessed_Value": 1276110.0
   },
   {
@@ -173,7 +257,11 @@
    "Improvements_Value": 0.0,
    "Land_Value": 649785.0,
    "OBJECTID": 1152868,
+   "Ownership_Type": "",
    "Parcel_ID": "0001875.00",
+   "Ph_City": "",
+   "Ph_Zip5": "",
+   "Situs_Address": "",
    "Total_Assessed_Value": 649785.0
   },
   {
@@ -181,7 +269,11 @@
    "Improvements_Value": 0.0,
    "Land_Value": 663325.0,
    "OBJECTID": 1152869,
+   "Ownership_Type": "",
    "Parcel_ID": "0001876.00",
+   "Ph_City": "",
+   "Ph_Zip5": "",
+   "Situs_Address": "",
    "Total_Assessed_Value": 663325.0
   },
   {
@@ -189,7 +281,11 @@
    "Improvements_Value": 0.0,
    "Land_Value": 1122515.0,
    "OBJECTID": 1152870,
+   "Ownership_Type": "",
    "Parcel_ID": "0001880.00",
+   "Ph_City": "",
+   "Ph_Zip5": "",
+   "Situs_Address": "",
    "Total_Assessed_Value": 1122515.0
   },
   {
@@ -197,7 +293,11 @@
    "Improvements_Value": 0.0,
    "Land_Value": 585060.0,
    "OBJECTID": 1152871,
+   "Ownership_Type": "",
    "Parcel_ID": "0001881.00",
+   "Ph_City": "",
+   "Ph_Zip5": "",
+   "Situs_Address": "",
    "Total_Assessed_Value": 585060.0
   }
  ],

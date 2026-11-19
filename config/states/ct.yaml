@@ -182,6 +182,9 @@ county:
     "Woodbury": "005"
     "Woodstock": "015"
 fields:
+  situs_line1: Location
+  situs_city: Property_City
+  situs_zip: Property_Zip
   parcel_id: CAMA_Link        # "<town cousub FIPS>-<link>", unique statewide; Parcel_ID is town-scoped
   owner1: Owner
   owner2: Co_Owner

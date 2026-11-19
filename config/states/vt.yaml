@@ -269,6 +269,7 @@ county:
     "WOODSTOCK": "027"
     "WORCESTER": "023"
 fields:
+  situs_line1: E911ADDR
   parcel_id: SPAN             # School Property Account Number, statewide; null on ~13.8k unmatched polygons
   owner1: OWNER1
   owner2: OWNER2

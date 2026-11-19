@@ -33,6 +33,8 @@ county:
     "125": "125"
   }
 fields:
+  situs_full: situsAdd
+  situs_zip: sitAddZip
   parcel_id: parcel_id
   owner1: owner
   owner2: owner2

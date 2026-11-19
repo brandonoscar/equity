@@ -4,151 +4,176 @@
    "OBJECTID": 1,
    "TAX_ID": "02-24-378-004",
    "mborsev_0": 152100,
-   "ownername1": "TESTOWNER 06D577"
+   "ownername1": "TESTOWNER 06D577",
+   "propstreetcombined": "TESTOWNER F4B81B"
   },
   {
    "OBJECTID": 2,
    "TAX_ID": "02-24-351-020",
    "mborsev_0": 99900,
-   "ownername1": "TESTOWNER D43871"
+   "ownername1": "TESTOWNER D43871",
+   "propstreetcombined": "TESTOWNER E35C12"
   },
   {
    "OBJECTID": 3,
    "TAX_ID": "02-23-476-036",
    "mborsev_0": 230000,
-   "ownername1": "TESTOWNER 7DD739"
+   "ownername1": "TESTOWNER 7DD739",
+   "propstreetcombined": "TESTOWNER D677C2"
   },
   {
    "OBJECTID": 4,
    "TAX_ID": "02-24-351-019",
    "mborsev_0": 113700,
-   "ownername1": "TESTOWNER 82ADDE"
+   "ownername1": "TESTOWNER 82ADDE",
+   "propstreetcombined": "TESTOWNER 8A0897"
   },
   {
    "OBJECTID": 5,
    "TAX_ID": "02-21-400-004",
    "mborsev_0": 22300,
-   "ownername1": "TESTOWNER BD3B4B"
+   "ownername1": "TESTOWNER BD3B4B",
+   "propstreetcombined": "TESTOWNER 7D7F56"
   },
   {
    "OBJECTID": 6,
    "TAX_ID": "02-20-300-014",
    "mborsev_0": 448800,
-   "ownername1": "TESTOWNER F7A5E7"
+   "ownername1": "TESTOWNER F7A5E7",
+   "propstreetcombined": "TESTOWNER 20E481"
   },
   {
    "OBJECTID": 7,
    "TAX_ID": "02-31-300-002",
    "mborsev_0": 2200,
-   "ownername1": "TESTOWNER 03E1FD"
+   "ownername1": "TESTOWNER 03E1FD",
+   "propstreetcombined": "TESTOWNER 1374DD"
   },
   {
    "OBJECTID": 8,
    "TAX_ID": "02-24-352-011",
    "mborsev_0": 81100,
-   "ownername1": "TESTOWNER B128BF"
+   "ownername1": "TESTOWNER B128BF",
+   "propstreetcombined": "TESTOWNER 6F9DDE"
   },
   {
    "OBJECTID": 9,
    "TAX_ID": "02-31-300-004",
    "mborsev_0": 2242200,
-   "ownername1": "TESTOWNER EE1D7C"
+   "ownername1": "TESTOWNER EE1D7C",
+   "propstreetcombined": "TESTOWNER A2AC14"
   },
   {
    "OBJECTID": 10,
    "TAX_ID": "02-24-332-016",
    "mborsev_0": 148100,
-   "ownername1": "TESTOWNER 5B4B31"
+   "ownername1": "TESTOWNER 5B4B31",
+   "propstreetcombined": "TESTOWNER 427DB8"
   },
   {
    "OBJECTID": 11,
    "TAX_ID": "02-24-352-002",
    "mborsev_0": 100900,
-   "ownername1": "TESTOWNER 70FA6D"
+   "ownername1": "TESTOWNER 70FA6D",
+   "propstreetcombined": "TESTOWNER 7FE3FB"
   },
   {
    "OBJECTID": 12,
    "TAX_ID": "02-23-300-008",
    "mborsev_0": 128000,
-   "ownername1": "TESTOWNER 7636F5"
+   "ownername1": "TESTOWNER 7636F5",
+   "propstreetcombined": "TESTOWNER A3A93C"
   },
   {
    "OBJECTID": 13,
    "TAX_ID": "02-24-378-005",
    "mborsev_0": 169100,
-   "ownername1": "TESTOWNER B1B187"
+   "ownername1": "TESTOWNER B1B187",
+   "propstreetcombined": "TESTOWNER 99A2E3"
   },
   {
    "OBJECTID": 14,
    "TAX_ID": "02-24-351-022",
    "mborsev_0": 91400,
-   "ownername1": "TESTOWNER C19F58"
+   "ownername1": "TESTOWNER C19F58",
+   "propstreetcombined": "TESTOWNER AAF344"
   },
   {
    "OBJECTID": 15,
    "TAX_ID": "02-24-353-015",
    "mborsev_0": 86500,
-   "ownername1": "TESTOWNER AE35FB"
+   "ownername1": "TESTOWNER AE35FB",
+   "propstreetcombined": "TESTOWNER B4913C"
   },
   {
    "OBJECTID": 16,
    "TAX_ID": "02-24-351-021",
    "mborsev_0": 85400,
-   "ownername1": "TESTOWNER 171DF6"
+   "ownername1": "TESTOWNER 171DF6",
+   "propstreetcombined": "TESTOWNER 184188"
   },
   {
    "OBJECTID": 17,
    "TAX_ID": "02-23-300-004",
    "mborsev_0": 211500,
-   "ownername1": "TESTOWNER B7F2D4"
+   "ownername1": "TESTOWNER B7F2D4",
+   "propstreetcombined": "TESTOWNER C106E8"
   },
   {
    "OBJECTID": 18,
    "TAX_ID": "02-24-352-012",
    "mborsev_0": 69300,
-   "ownername1": "TESTOWNER 22470C"
+   "ownername1": "TESTOWNER 22470C",
+   "propstreetcombined": "TESTOWNER AF3EA6"
   },
   {
    "OBJECTID": 19,
    "TAX_ID": "02-24-353-012",
    "mborsev_0": 55500,
-   "ownername1": "TESTOWNER 71E856"
+   "ownername1": "TESTOWNER 71E856",
+   "propstreetcombined": "TESTOWNER 225CC8"
   },
   {
    "OBJECTID": 20,
    "TAX_ID": "02-24-352-003",
    "mborsev_0": 115000,
-   "ownername1": "TESTOWNER 7027DC"
+   "ownername1": "TESTOWNER 7027DC",
+   "propstreetcombined": "TESTOWNER 0919B4"
   },
   {
    "OBJECTID": 21,
    "TAX_ID": "02-19-300-007",
    "mborsev_0": 333400,
-   "ownername1": "TESTOWNER E6AD5F"
+   "ownername1": "TESTOWNER E6AD5F",
+   "propstreetcombined": "TESTOWNER 3905FB"
   },
   {
    "OBJECTID": 22,
    "TAX_ID": "02-23-476-005",
    "mborsev_0": 119000,
-   "ownername1": "TESTOWNER CBC0ED"
+   "ownername1": "TESTOWNER CBC0ED",
+   "propstreetcombined": "TESTOWNER CC0066"
   },
   {
    "OBJECTID": 23,
    "TAX_ID": "02-24-351-012",
    "mborsev_0": 0,
-   "ownername1": "TESTOWNER 878E21"
+   "ownername1": "TESTOWNER 878E21",
+   "propstreetcombined": "TESTOWNER 24C888"
   },
   {
    "OBJECTID": 24,
    "TAX_ID": "02-24-351-003",
    "mborsev_0": 93500,
-   "ownername1": "TESTOWNER E6FAED"
+   "ownername1": "TESTOWNER E6FAED",
+   "propstreetcombined": "TESTOWNER 2301F0"
   },
   {
    "OBJECTID": 25,
    "TAX_ID": "02-22-400-009",
    "mborsev_0": 322600,
-   "ownername1": "TESTOWNER 7105DC"
+   "ownername1": "TESTOWNER 7105DC",
+   "propstreetcombined": "TESTOWNER 48C5B9"
   }
  ],
  "layer": "https://services6.arcgis.com/K0qS4r8AEJxrE8em/arcgis/rest/services/Macomb_County_Parcel_Data/FeatureServer/10",

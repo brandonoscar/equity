@@ -34,6 +34,7 @@ county:
     "WASHAKIE": "043"
     "WESTON": "045"
 fields:
+  situs_line1: locationad
   parcel_id: parcelnb
   owner1: ownername1
   owner2: ownername2

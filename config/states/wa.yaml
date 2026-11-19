@@ -31,6 +31,9 @@ county:
     "SanJuan": "055", "San Juan": "055", "Walla Walla": "071", "WallaWalla": "071"
   }
 fields:
+  situs_line1: SITUS_ADDRESS
+  situs_city: SITUS_CITY_NM
+  situs_zip: SITUS_ZIP_NR
   parcel_id: ORIG_PARCEL_ID
   land_value: VALUE_LAND
   bldg_value: VALUE_BLDG

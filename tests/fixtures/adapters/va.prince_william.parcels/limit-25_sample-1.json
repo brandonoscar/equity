@@ -7,9 +7,13 @@
    "CAMA_OWNER_CUR": "TESTOWNER 622C10",
    "CAMA_STATE": "VA",
    "CAMA_ZIPCODE": "20105",
+   "CITY": "HAYMARKET",
    "DEED_BOOK": null,
    "DEED_PAGE": null,
    "GPIN": "7202-85-9380",
+   "ST_NAME": "LOUDOUN",
+   "ST_NO": 999,
+   "ZIP": "20169",
    "objectid": 693
   },
   {
@@ -19,9 +23,13 @@
    "CAMA_OWNER_CUR": "TESTOWNER 546A86",
    "CAMA_STATE": "VA",
    "CAMA_ZIPCODE": "20105",
+   "CITY": "HAYMARKET",
    "DEED_BOOK": null,
    "DEED_PAGE": null,
    "GPIN": "7202-95-0436",
+   "ST_NAME": "LOUDOUN",
+   "ST_NO": 1051,
+   "ZIP": "20169",
    "objectid": 694
   },
   {
@@ -31,9 +39,13 @@
    "CAMA_OWNER_CUR": "TESTOWNER 468928",
    "CAMA_STATE": "VA",
    "CAMA_ZIPCODE": "20169",
+   "CITY": "HAYMARKET",
    "DEED_BOOK": "2615",
    "DEED_PAGE": "0776",
    "GPIN": "7202-94-6388",
+   "ST_NAME": "LOUDOUN",
+   "ST_NO": 1101,
+   "ZIP": "20169",
    "objectid": 695
   },
   {
@@ -43,9 +55,13 @@
    "CAMA_OWNER_CUR": "TESTOWNER 75B244",
    "CAMA_STATE": "VA",
    "CAMA_ZIPCODE": "20169",
+   "CITY": "HAYMARKET",
    "DEED_BOOK": "2592",
    "DEED_PAGE": "0695",
    "GPIN": "7202-84-8831",
+   "ST_NAME": "LOUDOUN",
+   "ST_NO": 1046,
+   "ZIP": "20169",
    "objectid": 696
   },
   {
@@ -55,9 +71,13 @@
    "CAMA_OWNER_CUR": "TESTOWNER B8FFD1 LLC",
    "CAMA_STATE": "VA",
    "CAMA_ZIPCODE": "20169",
+   "CITY": "HAYMARKET",
    "DEED_BOOK": null,
    "DEED_PAGE": null,
    "GPIN": "7202-84-1880",
+   "ST_NAME": "MOUNTAIN",
+   "ST_NO": 1101,
+   "ZIP": "20169",
    "objectid": 697
   },
   {
@@ -67,9 +87,13 @@
    "CAMA_OWNER_CUR": "TESTOWNER 6AC507",
    "CAMA_STATE": "VA",
    "CAMA_ZIPCODE": "20169",
+   "CITY": "HAYMARKET",
    "DEED_BOOK": "2763",
    "DEED_PAGE": "1434",
    "GPIN": "7202-64-6764",
+   "ST_NAME": "MOUNTAIN",
+   "ST_NO": 1201,
+   "ZIP": "20169",
    "objectid": 698
   },
   {
@@ -79,9 +103,13 @@
    "CAMA_OWNER_CUR": "TESTOWNER 7FD166",
    "CAMA_STATE": "VA",
    "CAMA_ZIPCODE": "22030-6325",
+   "CITY": "HAYMARKET",
    "DEED_BOOK": null,
    "DEED_PAGE": null,
    "GPIN": "7202-84-1121",
+   "ST_NAME": "ENFIELD CHASE",
+   "ST_NO": 1121,
+   "ZIP": "20169",
    "objectid": 699
   },
   {
@@ -91,9 +119,13 @@
    "CAMA_OWNER_CUR": "TESTOWNER CF3A4E",
    "CAMA_STATE": "VA",
    "CAMA_ZIPCODE": "20169-1020",
+   "CITY": "HAYMARKET",
    "DEED_BOOK": "2675",
    "DEED_PAGE": "0715",
    "GPIN": "7202-64-6709",
+   "ST_NAME": "MOUNTAIN",
+   "ST_NO": 1215,
+   "ZIP": "20169",
    "objectid": 700
   },
   {
@@ -103,9 +135,13 @@
    "CAMA_OWNER_CUR": "TESTOWNER A574F0",
    "CAMA_STATE": "VA",
    "CAMA_ZIPCODE": "20169",
+   "CITY": "HAYMARKET",
    "DEED_BOOK": null,
    "DEED_PAGE": null,
    "GPIN": "7202-93-7589",
+   "ST_NAME": "LOUDOUN",
+   "ST_NO": 1120,
+   "ZIP": "20169",
    "objectid": 701
   },
   {
@@ -115,9 +151,13 @@
    "CAMA_OWNER_CUR": "TESTOWNER CFE4B4 LLC",
    "CAMA_STATE": "VA",
    "CAMA_ZIPCODE": "22192",
+   "CITY": "HAYMARKET",
    "DEED_BOOK": null,
    "DEED_PAGE": null,
    "GPIN": "7302-03-9126",
+   "ST_NAME": "LOUDOUN",
+   "ST_NO": 1109,
+   "ZIP": "20169",
    "objectid": 702
   },
   {
@@ -127,9 +167,13 @@
    "CAMA_OWNER_CUR": "TESTOWNER 5B56C6",
    "CAMA_STATE": "VA",
    "CAMA_ZIPCODE": "20169",
+   "CITY": "HAYMARKET",
    "DEED_BOOK": "2867",
    "DEED_PAGE": "1182",
    "GPIN": "7202-82-9381",
+   "ST_NAME": "TAYLORS MILL",
+   "ST_NO": 15001,
+   "ZIP": "20169",
    "objectid": 703
   },
   {
@@ -139,9 +183,13 @@
    "CAMA_OWNER_CUR": "TESTOWNER 608ED6",
    "CAMA_STATE": "VA",
    "CAMA_ZIPCODE": "20169",
+   "CITY": "HAYMARKET",
    "DEED_BOOK": null,
    "DEED_PAGE": null,
    "GPIN": "7202-83-5017",
+   "ST_NAME": "TAYLORS MILL",
+   "ST_NO": 15021,
+   "ZIP": "20169",
    "objectid": 704
   },
   {
@@ -151,9 +199,13 @@
    "CAMA_OWNER_CUR": "TESTOWNER ED30F2",
    "CAMA_STATE": "VA",
    "CAMA_ZIPCODE": "20169",
+   "CITY": "HAYMARKET",
    "DEED_BOOK": null,
    "DEED_PAGE": null,
    "GPIN": "7202-93-1904",
+   "ST_NAME": "LOUDOUN",
+   "ST_NO": 1080,
+   "ZIP": "20169",
    "objectid": 705
   },
   {
@@ -163,9 +215,13 @@
    "CAMA_OWNER_CUR": "TESTOWNER C076D5",
    "CAMA_STATE": "VA",
    "CAMA_ZIPCODE": "20169",
+   "CITY": "HAYMARKET",
    "DEED_BOOK": "2519",
    "DEED_PAGE": "1763",
    "GPIN": "7202-93-7924",
+   "ST_NAME": "LOUDOUN",
+   "ST_NO": 1140,
+   "ZIP": "20169",
    "objectid": 706
   },
   {
@@ -175,9 +231,13 @@
    "CAMA_OWNER_CUR": "TESTOWNER 4D1B84",
    "CAMA_STATE": "VA",
    "CAMA_ZIPCODE": "20169-1034",
+   "CITY": "HAYMARKET",
    "DEED_BOOK": "2519",
    "DEED_PAGE": "0999",
    "GPIN": "7202-83-1707",
+   "ST_NAME": "TAYLORS MILL",
+   "ST_NO": 15031,
+   "ZIP": "20169",
    "objectid": 707
   },
   {
@@ -187,9 +247,13 @@
    "CAMA_OWNER_CUR": "TESTOWNER 61CD86",
    "CAMA_STATE": "VA",
    "CAMA_ZIPCODE": "20169",
+   "CITY": "HAYMARKET",
    "DEED_BOOK": "WB76",
    "DEED_PAGE": "0138",
    "GPIN": "7202-83-9758",
+   "ST_NAME": "LOUDOUN",
+   "ST_NO": 1052,
+   "ZIP": "20169",
    "objectid": 708
   },
   {
@@ -199,9 +263,13 @@
    "CAMA_OWNER_CUR": "TESTOWNER 260F14",
    "CAMA_STATE": "VA",
    "CAMA_ZIPCODE": "20169-1020",
+   "CITY": "HAYMARKET",
    "DEED_BOOK": "2724",
    "DEED_PAGE": "1366",
    "GPIN": "7202-53-9139",
+   "ST_NAME": "MOUNTAIN",
+   "ST_NO": 1251,
+   "ZIP": "20169",
    "objectid": 709
   },
   {
@@ -211,9 +279,13 @@
    "CAMA_OWNER_CUR": "TESTOWNER EF783A",
    "CAMA_STATE": "VA",
    "CAMA_ZIPCODE": "20169",
+   "CITY": "HAYMARKET",
    "DEED_BOOK": null,
    "DEED_PAGE": null,
    "GPIN": "7202-73-7503",
+   "ST_NAME": "TAYLORS MILL",
+   "ST_NO": 15051,
+   "ZIP": "20169",
    "objectid": 710
   },
   {
@@ -223,9 +295,13 @@
    "CAMA_OWNER_CUR": "TESTOWNER 9837E7 CORP",
    "CAMA_STATE": "VA",
    "CAMA_ZIPCODE": "20169-1233",
+   "CITY": "HAYMARKET",
    "DEED_BOOK": null,
    "DEED_PAGE": null,
    "GPIN": "7302-22-8943",
+   "ST_NAME": "JAMES MADISON",
+   "ST_NO": 1215,
+   "ZIP": "20169",
    "objectid": 711
   },
   {
@@ -235,9 +311,13 @@
    "CAMA_OWNER_CUR": "TESTOWNER 717339",
    "CAMA_STATE": "VA",
    "CAMA_ZIPCODE": "20169",
+   "CITY": "HAYMARKET",
    "DEED_BOOK": null,
    "DEED_PAGE": null,
    "GPIN": "7302-23-9200",
+   "ST_NAME": "JAMES MADISON",
+   "ST_NO": 1205,
+   "ZIP": "20169",
    "objectid": 712
   },
   {
@@ -247,9 +327,13 @@
    "CAMA_OWNER_CUR": "TESTOWNER 48408F",
    "CAMA_STATE": "VA",
    "CAMA_ZIPCODE": "20169",
+   "CITY": "HAYMARKET",
    "DEED_BOOK": null,
    "DEED_PAGE": null,
    "GPIN": "7202-53-9500",
+   "ST_NAME": "MOUNTAIN",
+   "ST_NO": 1261,
+   "ZIP": "20169",
    "objectid": 713
   },
   {
@@ -259,9 +343,13 @@
    "CAMA_OWNER_CUR": "TESTOWNER 4CD346",
    "CAMA_STATE": "VA",
    "CAMA_ZIPCODE": "20169",
+   "CITY": "HAYMARKET",
    "DEED_BOOK": "2757",
    "DEED_PAGE": "1852",
    "GPIN": "7202-52-3772",
+   "ST_NAME": "MOUNTAIN",
+   "ST_NO": 1401,
+   "ZIP": "20169",
    "objectid": 714
   },
   {
@@ -271,9 +359,13 @@
    "CAMA_OWNER_CUR": "TESTOWNER 3F2D72",
    "CAMA_STATE": "VA",
    "CAMA_ZIPCODE": "20169",
+   "CITY": "HAYMARKET",
    "DEED_BOOK": "2183",
    "DEED_PAGE": "1620",
    "GPIN": "7202-52-7175",
+   "ST_NAME": "SPRING LAKE",
+   "ST_NO": 1400,
+   "ZIP": "20169",
    "objectid": 715
   },
   {
@@ -283,9 +375,13 @@
    "CAMA_OWNER_CUR": "TESTOWNER 8CC32E",
    "CAMA_STATE": "VA",
    "CAMA_ZIPCODE": "20169-1017",
+   "CITY": "HAYMARKET",
    "DEED_BOOK": "1968",
    "DEED_PAGE": "1714",
    "GPIN": "7202-42-8075",
+   "ST_NAME": "MOUNTAIN",
+   "ST_NO": 1402,
+   "ZIP": "20169",
    "objectid": 716
   },
   {
@@ -295,9 +391,13 @@
    "CAMA_OWNER_CUR": "TESTOWNER E077BE",
    "CAMA_STATE": "VA",
    "CAMA_ZIPCODE": "20169",
+   "CITY": "HAYMARKET",
    "DEED_BOOK": "1599",
    "DEED_PAGE": "1135",
    "GPIN": "7202-62-1371",
+   "ST_NAME": "SPRING LAKE",
+   "ST_NO": 1401,
+   "ZIP": "20169",
    "objectid": 717
   }
  ],

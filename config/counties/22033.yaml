@@ -6,6 +6,8 @@ page_size: 1000          # maxRecordCount 2000. Do not request SALE_YEAR: with i
 min_interval_s: 1.0
 county: {constant: "033"}
 fields:
+  situs_line1: PHYSICAL_ADDRESS
+  homestead: SUM_HOMESTEAD_EXEMPTION
   parcel_id: ASSESSMENT_NUM   # 2,769 rows hold the placeholder '000-0000-0' and collapse into one parcel
   owner1: OWNER
   mail_line1: OWNER_ADDRESS

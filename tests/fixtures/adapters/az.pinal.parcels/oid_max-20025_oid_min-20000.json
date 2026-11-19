@@ -3,127 +3,202 @@
   {
    "APN": "50111013C",
    "OBJECTID": 20000,
-   "OWNER_NAME": "TESTOWNER FDC079"
+   "OWNER_NAME": "TESTOWNER FDC079",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "503703910",
    "OBJECTID": 20001,
-   "OWNER_NAME": "TESTOWNER DF55BF LLC"
+   "OWNER_NAME": "TESTOWNER DF55BF LLC",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "503702690",
    "OBJECTID": 20002,
-   "OWNER_NAME": "TESTOWNER DF55BF LLC"
+   "OWNER_NAME": "TESTOWNER DF55BF LLC",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "503701360",
    "OBJECTID": 20003,
-   "OWNER_NAME": "TESTOWNER 050276"
+   "OWNER_NAME": "TESTOWNER 050276",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "503702710",
    "OBJECTID": 20004,
-   "OWNER_NAME": "TESTOWNER DF55BF LLC"
+   "OWNER_NAME": "TESTOWNER DF55BF LLC",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "503704350",
    "OBJECTID": 20005,
-   "OWNER_NAME": "TESTOWNER DF55BF LLC"
+   "OWNER_NAME": "TESTOWNER DF55BF LLC",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "503704460",
    "OBJECTID": 20006,
-   "OWNER_NAME": "TESTOWNER DF55BF LLC"
+   "OWNER_NAME": "TESTOWNER DF55BF LLC",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "503704220",
    "OBJECTID": 20007,
-   "OWNER_NAME": "TESTOWNER D6141E"
+   "OWNER_NAME": "TESTOWNER D6141E",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "503702490",
    "OBJECTID": 20008,
-   "OWNER_NAME": "TESTOWNER DF55BF LLC"
+   "OWNER_NAME": "TESTOWNER DF55BF LLC",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "503702040",
    "OBJECTID": 20009,
-   "OWNER_NAME": "TESTOWNER DF55BF LLC"
+   "OWNER_NAME": "TESTOWNER DF55BF LLC",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "505220210",
    "OBJECTID": 20010,
-   "OWNER_NAME": "TESTOWNER 929EBF"
+   "OWNER_NAME": "TESTOWNER 929EBF",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "503704090",
    "OBJECTID": 20011,
-   "OWNER_NAME": "TESTOWNER DF55BF LLC"
+   "OWNER_NAME": "TESTOWNER DF55BF LLC",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "503160190",
    "OBJECTID": 20012,
-   "OWNER_NAME": "TESTOWNER C33392"
+   "OWNER_NAME": "TESTOWNER C33392",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "503160060",
    "OBJECTID": 20013,
-   "OWNER_NAME": "TESTOWNER 4AACFC"
+   "OWNER_NAME": "TESTOWNER 4AACFC",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "503160050",
    "OBJECTID": 20014,
-   "OWNER_NAME": "TESTOWNER 4AACFC"
+   "OWNER_NAME": "TESTOWNER 4AACFC",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "503160040",
    "OBJECTID": 20015,
-   "OWNER_NAME": "TESTOWNER 489AE2"
+   "OWNER_NAME": "TESTOWNER 489AE2",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "503160030",
    "OBJECTID": 20016,
-   "OWNER_NAME": "TESTOWNER AA31F5"
+   "OWNER_NAME": "TESTOWNER AA31F5",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "503160020",
    "OBJECTID": 20017,
-   "OWNER_NAME": "TESTOWNER C40DDD"
+   "OWNER_NAME": "TESTOWNER C40DDD",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "503160010",
    "OBJECTID": 20018,
-   "OWNER_NAME": "TESTOWNER C40DDD"
+   "OWNER_NAME": "TESTOWNER C40DDD",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "50522022C",
    "OBJECTID": 20019,
-   "OWNER_NAME": "TESTOWNER 929EBF"
+   "OWNER_NAME": "TESTOWNER 929EBF",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "504240250",
    "OBJECTID": 20020,
-   "OWNER_NAME": "TESTOWNER D5EB72"
+   "OWNER_NAME": "TESTOWNER D5EB72",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "505220230",
    "OBJECTID": 20021,
-   "OWNER_NAME": "TESTOWNER 929EBF"
+   "OWNER_NAME": "TESTOWNER 929EBF",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "503702310",
    "OBJECTID": 20022,
-   "OWNER_NAME": "TESTOWNER DF55BF LLC"
+   "OWNER_NAME": "TESTOWNER DF55BF LLC",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "503702280",
    "OBJECTID": 20023,
-   "OWNER_NAME": "TESTOWNER DF55BF LLC"
+   "OWNER_NAME": "TESTOWNER DF55BF LLC",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "503704190",
    "OBJECTID": 20024,
-   "OWNER_NAME": "TESTOWNER DF55BF LLC"
+   "OWNER_NAME": "TESTOWNER DF55BF LLC",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   }
  ],
  "layer": "https://services.arcgis.com/C34zQ7veRS0V1t04/arcgis/rest/services/Parcels/FeatureServer/11",

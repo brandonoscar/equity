@@ -9,6 +9,7 @@ page_size: 1000          # maxRecordCount 1000; supportsPagination true
 min_interval_s: 1.0
 county: {constant: "017"}
 fields:
+  situs_line1: ADDRESS
   parcel_id: PARCEL_NUM    # e.g. 52-001-025-010 (municipality-map-block-lot)
   owner1: OWNER1
   owner2: OWNER2

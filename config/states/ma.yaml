@@ -371,6 +371,9 @@ county:
     "350": "021"   # Wrentham
     "351": "001"   # Yarmouth
 fields:
+  situs_line1: SITE_ADDR
+  situs_city: CITY
+  situs_zip: ZIP
   # LOC_ID is the MassGIS statewide parcel-polygon id. PROP_ID is unique only within a town, so
   # it would collide across towns in a county. Several assessor records can share one LOC_ID
   # (mostly condominium units, about 363k rows with USE_CODE 102*): the adapter keeps the

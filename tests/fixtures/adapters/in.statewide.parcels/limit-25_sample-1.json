@@ -3,127 +3,202 @@
   {
    "county_fips": "18111",
    "objectid": 1,
-   "parcel_id": "564130801801"
+   "parcel_id": "564130801801",
+   "prop_add": null,
+   "prop_city": null,
+   "prop_zip": null
   },
   {
    "county_fips": "18111",
    "objectid": 2,
-   "parcel_id": "564100700301"
+   "parcel_id": "564100700301",
+   "prop_add": null,
+   "prop_city": null,
+   "prop_zip": null
   },
   {
    "county_fips": "18035",
    "objectid": 3,
-   "parcel_id": null
+   "parcel_id": null,
+   "prop_add": null,
+   "prop_city": null,
+   "prop_zip": null
   },
   {
    "county_fips": "18093",
    "objectid": 4,
-   "parcel_id": "CITY OF MITCHELL"
+   "parcel_id": "CITY OF MITCHELL",
+   "prop_add": null,
+   "prop_city": null,
+   "prop_zip": null
   },
   {
    "county_fips": "18067",
    "objectid": 5,
-   "parcel_id": "34-10-08-200-GAP.000-002"
+   "parcel_id": "34-10-08-200-GAP.000-002",
+   "prop_add": null,
+   "prop_city": null,
+   "prop_zip": null
   },
   {
    "county_fips": "18033",
    "objectid": 6,
-   "parcel_id": null
+   "parcel_id": null,
+   "prop_add": null,
+   "prop_city": null,
+   "prop_zip": null
   },
   {
    "county_fips": "18035",
    "objectid": 7,
-   "parcel_id": null
+   "parcel_id": null,
+   "prop_add": null,
+   "prop_city": null,
+   "prop_zip": null
   },
   {
    "county_fips": "18035",
    "objectid": 8,
-   "parcel_id": null
+   "parcel_id": null,
+   "prop_add": null,
+   "prop_city": null,
+   "prop_zip": null
   },
   {
    "county_fips": "18067",
    "objectid": 9,
-   "parcel_id": "34-08-23-401-GAP.000-021"
+   "parcel_id": "34-08-23-401-GAP.000-021",
+   "prop_add": null,
+   "prop_city": null,
+   "prop_zip": null
   },
   {
    "county_fips": "18157",
    "objectid": 10,
-   "parcel_id": null
+   "parcel_id": null,
+   "prop_add": null,
+   "prop_city": null,
+   "prop_zip": null
   },
   {
    "county_fips": "18033",
    "objectid": 11,
-   "parcel_id": null
+   "parcel_id": null,
+   "prop_add": null,
+   "prop_city": null,
+   "prop_zip": null
   },
   {
    "county_fips": "18089",
    "objectid": 12,
-   "parcel_id": "<New parcel>"
+   "parcel_id": "<New parcel>",
+   "prop_add": null,
+   "prop_city": null,
+   "prop_zip": null
   },
   {
    "county_fips": "18033",
    "objectid": 13,
-   "parcel_id": null
+   "parcel_id": null,
+   "prop_add": null,
+   "prop_city": null,
+   "prop_zip": null
   },
   {
    "county_fips": "18033",
    "objectid": 14,
-   "parcel_id": null
+   "parcel_id": null,
+   "prop_add": null,
+   "prop_city": null,
+   "prop_zip": null
   },
   {
    "county_fips": "18089",
    "objectid": 15,
-   "parcel_id": "<New parcel>"
+   "parcel_id": "<New parcel>",
+   "prop_add": null,
+   "prop_city": null,
+   "prop_zip": null
   },
   {
    "county_fips": "18001",
    "objectid": 16,
-   "parcel_id": null
+   "parcel_id": null,
+   "prop_add": null,
+   "prop_city": null,
+   "prop_zip": null
   },
   {
    "county_fips": "18065",
    "objectid": 17,
-   "parcel_id": null
+   "parcel_id": null,
+   "prop_add": null,
+   "prop_city": null,
+   "prop_zip": null
   },
   {
    "county_fips": "18033",
    "objectid": 18,
-   "parcel_id": null
+   "parcel_id": null,
+   "prop_add": null,
+   "prop_city": null,
+   "prop_zip": null
   },
   {
    "county_fips": "18033",
    "objectid": 19,
-   "parcel_id": null
+   "parcel_id": null,
+   "prop_add": null,
+   "prop_city": null,
+   "prop_zip": null
   },
   {
    "county_fips": "18151",
    "objectid": 20,
-   "parcel_id": "76-06-21-220-1UN.K00-011"
+   "parcel_id": "76-06-21-220-1UN.K00-011",
+   "prop_add": null,
+   "prop_city": null,
+   "prop_zip": null
   },
   {
    "county_fips": "18093",
    "objectid": 21,
-   "parcel_id": "LOST LAND"
+   "parcel_id": "LOST LAND",
+   "prop_add": null,
+   "prop_city": null,
+   "prop_zip": null
   },
   {
    "county_fips": "18033",
    "objectid": 22,
-   "parcel_id": null
+   "parcel_id": null,
+   "prop_add": null,
+   "prop_city": null,
+   "prop_zip": null
   },
   {
    "county_fips": "18001",
    "objectid": 23,
-   "parcel_id": null
+   "parcel_id": null,
+   "prop_add": null,
+   "prop_city": null,
+   "prop_zip": null
   },
   {
    "county_fips": "18033",
    "objectid": 24,
-   "parcel_id": null
+   "parcel_id": null,
+   "prop_add": null,
+   "prop_city": null,
+   "prop_zip": null
   },
   {
    "county_fips": "18033",
    "objectid": 25,
-   "parcel_id": null
+   "parcel_id": null,
+   "prop_add": null,
+   "prop_city": null,
+   "prop_zip": null
   }
  ],
  "layer": "https://gisdata.in.gov/server/rest/services/Hosted/Parcel_Boundaries_of_Indiana_Current/FeatureServer/0",

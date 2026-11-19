@@ -99,6 +99,9 @@ county:
     "WHITE": "185"
     "WILSON": "189"
 fields:
+  situs_line1: ADDRESS
+  situs_city: CITY
+  situs_zip: ZIP
   parcel_id: GISLINK
   land_value: LANDVALUE
   bldg_value: IMPVALUE

@@ -11,7 +11,9 @@
    "owner": "TESTOWNER A6D3BA",
    "owner2": "TESTOWNER E5BA0C",
    "ownerAdd": "TESTOWNER 75F062",
-   "parcel_id": "0171901104005"
+   "parcel_id": "0171901104005",
+   "sitAddZip": null,
+   "situsAdd": "TESTOWNER 949309"
   },
   {
    "OBJECTID": 2,
@@ -24,7 +26,9 @@
    "owner": "TESTOWNER 844B9E",
    "owner2": null,
    "ownerAdd": "TESTOWNER 4EC59A",
-   "parcel_id": "0171906305058"
+   "parcel_id": "0171906305058",
+   "sitAddZip": null,
+   "situsAdd": "TESTOWNER E117FC"
   },
   {
    "OBJECTID": 3,
@@ -37,7 +41,9 @@
    "owner": "TESTOWNER 00F121",
    "owner2": null,
    "ownerAdd": "TESTOWNER 39C90E",
-   "parcel_id": "0171906305063"
+   "parcel_id": "0171906305063",
+   "sitAddZip": null,
+   "situsAdd": "TESTOWNER 7855EF"
   },
   {
    "OBJECTID": 4,
@@ -50,7 +56,9 @@
    "owner": "TESTOWNER 356BDE",
    "owner2": null,
    "ownerAdd": "TESTOWNER 75D564",
-   "parcel_id": "0171906305062"
+   "parcel_id": "0171906305062",
+   "sitAddZip": null,
+   "situsAdd": "TESTOWNER B8C974"
   },
   {
    "OBJECTID": 5,
@@ -63,7 +71,9 @@
    "owner": "TESTOWNER AB39E1",
    "owner2": null,
    "ownerAdd": "TESTOWNER 3702D8",
-   "parcel_id": "0171906305059"
+   "parcel_id": "0171906305059",
+   "sitAddZip": null,
+   "situsAdd": "TESTOWNER 03166C"
   },
   {
    "OBJECTID": 6,
@@ -76,7 +86,9 @@
    "owner": "TESTOWNER 91DBBC LLC",
    "owner2": null,
    "ownerAdd": "TESTOWNER DDA095",
-   "parcel_id": "0171906305057"
+   "parcel_id": "0171906305057",
+   "sitAddZip": null,
+   "situsAdd": "TESTOWNER E45335"
   },
   {
    "OBJECTID": 7,
@@ -89,7 +101,9 @@
    "owner": "TESTOWNER DEF34A",
    "owner2": null,
    "ownerAdd": "TESTOWNER 6321E1",
-   "parcel_id": "0171906305056"
+   "parcel_id": "0171906305056",
+   "sitAddZip": null,
+   "situsAdd": "TESTOWNER 4FDABE"
   },
   {
    "OBJECTID": 8,
@@ -102,7 +116,9 @@
    "owner": "TESTOWNER E237B1",
    "owner2": "TESTOWNER 6C002F",
    "ownerAdd": "TESTOWNER 5EC1E2",
-   "parcel_id": "0171906305060"
+   "parcel_id": "0171906305060",
+   "sitAddZip": null,
+   "situsAdd": "TESTOWNER FC0122"
   },
   {
    "OBJECTID": 9,
@@ -115,7 +131,9 @@
    "owner": "TESTOWNER BD07AA",
    "owner2": null,
    "ownerAdd": "TESTOWNER D89798",
-   "parcel_id": "0171906305061"
+   "parcel_id": "0171906305061",
+   "sitAddZip": null,
+   "situsAdd": "TESTOWNER 1FEDEC"
   },
   {
    "OBJECTID": 10,
@@ -128,7 +146,9 @@
    "owner": "TESTOWNER 84A4CF",
    "owner2": "TESTOWNER A5D17B",
    "ownerAdd": "TESTOWNER BE2E50",
-   "parcel_id": "0171906305050"
+   "parcel_id": "0171906305050",
+   "sitAddZip": null,
+   "situsAdd": "TESTOWNER B3FCC1"
   },
   {
    "OBJECTID": 11,
@@ -141,7 +161,9 @@
    "owner": "TESTOWNER 5E04A3",
    "owner2": null,
    "ownerAdd": "TESTOWNER 2E3C54",
-   "parcel_id": "0171906305055"
+   "parcel_id": "0171906305055",
+   "sitAddZip": null,
+   "situsAdd": "TESTOWNER 7DBE1F"
   },
   {
    "OBJECTID": 12,
@@ -154,7 +176,9 @@
    "owner": "TESTOWNER B0FE43",
    "owner2": null,
    "ownerAdd": "TESTOWNER 21C4B2",
-   "parcel_id": "0171906305054"
+   "parcel_id": "0171906305054",
+   "sitAddZip": null,
+   "situsAdd": "TESTOWNER 9051FC"
   },
   {
    "OBJECTID": 13,
@@ -167,7 +191,9 @@
    "owner": "TESTOWNER 8F7828",
    "owner2": null,
    "ownerAdd": "TESTOWNER 1B30B4",
-   "parcel_id": "0171906305051"
+   "parcel_id": "0171906305051",
+   "sitAddZip": null,
+   "situsAdd": "TESTOWNER EEEC3E"
   },
   {
    "OBJECTID": 14,
@@ -180,7 +206,9 @@
    "owner": "TESTOWNER BBC70D",
    "owner2": null,
    "ownerAdd": "TESTOWNER F8A6E5",
-   "parcel_id": "0171906305052"
+   "parcel_id": "0171906305052",
+   "sitAddZip": null,
+   "situsAdd": "TESTOWNER 82CF6D"
   },
   {
    "OBJECTID": 15,
@@ -193,7 +221,9 @@
    "owner": "TESTOWNER EF9CDE",
    "owner2": null,
    "ownerAdd": "TESTOWNER AB30F7",
-   "parcel_id": "0171906305053"
+   "parcel_id": "0171906305053",
+   "sitAddZip": null,
+   "situsAdd": "TESTOWNER ABD107"
   },
   {
    "OBJECTID": 16,
@@ -206,7 +236,9 @@
    "owner": "TESTOWNER 9D8C13",
    "owner2": null,
    "ownerAdd": "TESTOWNER 23B530",
-   "parcel_id": "0171906305049"
+   "parcel_id": "0171906305049",
+   "sitAddZip": null,
+   "situsAdd": "TESTOWNER BABF77"
   },
   {
    "OBJECTID": 17,
@@ -219,7 +251,9 @@
    "owner": "TESTOWNER 35A0CE",
    "owner2": null,
    "ownerAdd": "TESTOWNER 98084A",
-   "parcel_id": "0171906305048"
+   "parcel_id": "0171906305048",
+   "sitAddZip": null,
+   "situsAdd": "TESTOWNER A9F4CB"
   },
   {
    "OBJECTID": 18,
@@ -232,7 +266,9 @@
    "owner": "TESTOWNER C538D3 INC",
    "owner2": "TESTOWNER F13579",
    "ownerAdd": "TESTOWNER FEC231",
-   "parcel_id": "0171906141030"
+   "parcel_id": "0171906141030",
+   "sitAddZip": null,
+   "situsAdd": "TESTOWNER 9A4772"
   },
   {
    "OBJECTID": 19,
@@ -245,7 +281,9 @@
    "owner": "TESTOWNER 0D177D",
    "owner2": null,
    "ownerAdd": "TESTOWNER D04DFB",
-   "parcel_id": "0171906138020"
+   "parcel_id": "0171906138020",
+   "sitAddZip": null,
+   "situsAdd": "TESTOWNER 5BFF15"
   },
   {
    "OBJECTID": 20,
@@ -258,7 +296,9 @@
    "owner": "TESTOWNER 7C27FD",
    "owner2": "TESTOWNER D51742",
    "ownerAdd": "TESTOWNER E61696",
-   "parcel_id": "0171906138021"
+   "parcel_id": "0171906138021",
+   "sitAddZip": null,
+   "situsAdd": "TESTOWNER 94B9C9"
   },
   {
    "OBJECTID": 21,
@@ -271,7 +311,9 @@
    "owner": "TESTOWNER 31DA55",
    "owner2": "TESTOWNER 0AE7CF",
    "ownerAdd": "TESTOWNER 7260EC",
-   "parcel_id": "0171906138022"
+   "parcel_id": "0171906138022",
+   "sitAddZip": null,
+   "situsAdd": "TESTOWNER 4AF7C7"
   },
   {
    "OBJECTID": 22,
@@ -284,7 +326,9 @@
    "owner": "TESTOWNER E40713",
    "owner2": "TESTOWNER 6F033E",
    "ownerAdd": "TESTOWNER AF79F9",
-   "parcel_id": "0171906138023"
+   "parcel_id": "0171906138023",
+   "sitAddZip": null,
+   "situsAdd": "TESTOWNER F688C1"
   },
   {
    "OBJECTID": 23,
@@ -297,7 +341,9 @@
    "owner": "TESTOWNER 01C474",
    "owner2": "TESTOWNER 14285E",
    "ownerAdd": "TESTOWNER 35663A",
-   "parcel_id": "0171906137071"
+   "parcel_id": "0171906137071",
+   "sitAddZip": null,
+   "situsAdd": "TESTOWNER FB21D5"
   },
   {
    "OBJECTID": 24,
@@ -310,7 +356,9 @@
    "owner": "TESTOWNER 05166D",
    "owner2": "TESTOWNER 209E00",
    "ownerAdd": "TESTOWNER 647DF0",
-   "parcel_id": "0171906137072"
+   "parcel_id": "0171906137072",
+   "sitAddZip": null,
+   "situsAdd": "TESTOWNER F128EC"
   },
   {
    "OBJECTID": 25,
@@ -323,7 +371,9 @@
    "owner": "TESTOWNER 031FC6",
    "owner2": "TESTOWNER 8DC0B9",
    "ownerAdd": "TESTOWNER 0AFB4B",
-   "parcel_id": "0171906141022"
+   "parcel_id": "0171906141022",
+   "sitAddZip": null,
+   "situsAdd": "TESTOWNER 10AD51"
   }
  ],
  "layer": "https://gis.colorado.gov/Public/rest/services/Address_and_Parcel/Colorado_Public_Parcels/MapServer/0",

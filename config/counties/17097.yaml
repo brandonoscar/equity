@@ -6,6 +6,9 @@ page_size: 1000          # maxRecordCount 2000
 min_interval_s: 1.0
 county: {constant: "097"}
 fields:
+  situs_line1: situs_addr_line_1_First
+  situs_city: situs_addr_city_First
+  situs_zip: situs_addr_zip_legdat_First
   parcel_id: PIN
   owner1: taxpayer_name
   mail_line1: taxpayer_addr_line_1

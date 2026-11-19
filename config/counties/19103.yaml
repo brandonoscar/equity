@@ -11,6 +11,10 @@ page_size: 2000          # maxRecordCount 2000; supportsPagination true
 min_interval_s: 1.0
 county: {constant: "103"}
 fields:
+  situs_line1: PropertyAddress
+  situs_city: City
+  situs_zip: ZipCode
+  homestead: HomesteadCredit_Applied
   parcel_id: PPN
   owner1: DeedHolder1
   owner2: DeedHolder2

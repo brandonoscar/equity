@@ -9,6 +9,9 @@ county:
   field: countyfips
   format: fips3
 fields:
+  situs_line1: adrlabel
+  situs_city: adrcity
+  situs_zip: adrzip5
   parcel_id: parcelid
   owner1: ownername
   land_value: landvalue

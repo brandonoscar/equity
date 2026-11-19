@@ -6,6 +6,10 @@ page_size: 1000          # maxRecordCount 2000
 min_interval_s: 1.0
 county: {constant: "043"}
 fields:
+  situs_line1: PROPADDRL1
+  situs_city: PROPCITY
+  situs_zip: PROPZIP
+  owner_type: OWNERSHIP_TYPE
   parcel_id: PIN
   owner1: BILLNAME         # tax-bill name (taxpayer), 25 characters, may be truncated
   mail_line1: BILLADDRL1

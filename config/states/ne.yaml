@@ -10,6 +10,10 @@ county:
   field: County_ID
   format: fips3
 fields:
+  situs_line1: Situs_Address
+  situs_city: Ph_City
+  situs_zip: Ph_Zip5
+  owner_type: Ownership_Type
   parcel_id: Parcel_ID
   land_value: Land_Value
   bldg_value: Improvements_Value

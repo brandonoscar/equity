@@ -8,6 +8,7 @@ page_size: 1000          # maxRecordCount 1000; supportsPagination true
 min_interval_s: 1.0
 county: {constant: "085"}
 fields:
+  situs_line1: Situs_Desc
   parcel_id: Parcel_Id     # e.g. "26 075 002 002" (spaces removed by the adapter)
   owner1: Comb_Owner
   # Comb_Own_1 is "STREET   CITY, ST ZIP" (three spaces, one comma), not the two-comma layout

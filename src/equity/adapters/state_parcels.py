@@ -44,8 +44,33 @@ CANONICAL = (
     "parcel_id", "owner1", "owner2", "mail_line1", "mail_line2", "mail_full",
     "mail_city_state_zip", "mail_city", "mail_state", "mail_zip", "land_value", "bldg_value",
     "total_value", "assessed_value", "tax_year", "deed_book", "deed_page", "deed_ref",
+    "situs_line1", "situs_full", "situs_city", "situs_state", "situs_zip",
+    "owner_type", "homestead",
 )  # fmt: skip
-PII_CANONICAL = ("owner1", "owner2", "mail_line1", "mail_line2", "mail_full")
+# Situs addresses are often the owner's home: pseudonymized in fixtures like mailing addresses.
+PII_CANONICAL = ("owner1", "owner2", "mail_line1", "mail_line2", "mail_full",
+                 "situs_line1", "situs_full")  # fmt: skip
+_TRUE = {"Y", "YES", "T", "TRUE", "H", "HX", "HOMESTEAD", "ENROLLED"}
+_FALSE = {"N", "NO", "F", "FALSE", "NOT ENROLLED", "NON-HOMESTEAD", "NON HOMESTEAD", "NONHOMESTEAD"}
+
+
+def parse_homestead(value: Any) -> bool | None:
+    """Homestead flag from a roll field: a positive amount (e.g. Florida's homestead just
+    value) or a yes/no code is True/False; anything else is unknown (None), never guessed."""
+    text = _text(value)
+    if text is None:
+        return None
+    up = text.upper()
+    if up in _TRUE:
+        return True
+    if up in _FALSE:
+        return False
+    try:
+        return float(up.replace(",", "").replace("$", "")) > 0
+    except ValueError:
+        return None
+
+
 # One-string postal address: "LINE , CITY, ST 12345[-6789]". Without the comma layout the
 # whole string stays as the street line: we never guess where a street ends and a city begins.
 _FULL = re.compile(
@@ -515,12 +540,17 @@ class StateParcelAdapter(ArcGISCountyAdapter):
             uid = f"{county.fips5}-{local_id}"
             ctx = RecordContext(fetched, county.fips5, local_id, "parcel", dict(a))
             yield ctx.source_record()
-            yield ctx.fact("parcel", parcel_uid=uid, parid_raw=local_id)
+            situs = self._situs(a)
+            if situs is not None:
+                yield NormalizedRow("address", situs)
+            situs_id = None if situs is None else situs["address_id"]
+            yield ctx.fact("parcel", parcel_uid=uid, parid_raw=local_id, situs_address_id=situs_id)
             addr = self._address(a)
             if addr is not None:
                 yield NormalizedRow("address", addr)
             owners = [n for n in (_text(self._get(a, "owner1")), _text(self._get(a, "owner2")))
                       if n]  # fmt: skip
+            owner_type = _text(self._get(a, "owner_type"))
             for seq, name in enumerate(owners, start=1):
                 nc = classify(name)
                 party_id = stable_id(self.source_id, local_id, "owner", str(seq), clean(name))
@@ -531,7 +561,7 @@ class StateParcelAdapter(ArcGISCountyAdapter):
                 book, page = self._deed(a)
                 yield ctx.fact("owner_snapshot", parcel_uid=uid, owner_seq=seq,
                                party_id=party_id, deed_book=book, deed_page=page,
-                               observed_on=observed)  # fmt: skip
+                               owner_type=owner_type, observed_on=observed)  # fmt: skip
             year_raw = _text(self._get(a, "tax_year"))
             values = {
                 "appraised_land": _money(self._get(a, "land_value")),
@@ -544,6 +574,7 @@ class StateParcelAdapter(ArcGISCountyAdapter):
                 if 1800 <= year <= 2200:
                     yield ctx.fact("parcel_assessment", parcel_uid=uid, tax_year=year,
                                    valid_from=_valid_from(year, cfg.assessment_valid_from),
+                                   homestead=parse_homestead(self._get(a, "homestead")),
                                    **values)  # fmt: skip
 
     def _deed(self, a: Mapping[str, Any]) -> tuple[str | None, str | None]:
@@ -554,6 +585,24 @@ class StateParcelAdapter(ArcGISCountyAdapter):
             if m:  # no match: leave both empty rather than guess
                 book, page = m.group("book"), m.group("page")
         return book, page
+
+    def _situs(self, a: Mapping[str, Any]) -> dict[str, Any] | None:
+        """The property's own address. A one-string situs is split only when it carries the
+        'LINE, CITY, ST ZIP' layout; otherwise it is kept whole as the street line."""
+        spec = self.config.fields.get("situs_line1")
+        if isinstance(spec, list):  # house number, prefix, street, suffix: joined, gaps skipped
+            line = _text(" ".join(p for p in (_text(a.get(str(f))) for f in spec) if p))
+        else:
+            line = _text(self._get(a, "situs_line1"))
+        city, st = _text(self._get(a, "situs_city")), _text(self._get(a, "situs_state"))
+        m = _ZIP.match(str(self._get(a, "situs_zip") or ""))
+        zip5 = m.group(1) if m else None
+        full = _text(self._get(a, "situs_full"))
+        if full and not (line or city or zip5):
+            line, city, st, zip5 = parse_full_address(full)
+        if not (line or city or zip5):
+            return None
+        return normalized_address(line, city, st or self.config.state, zip5)
 
     def _address(self, a: Mapping[str, Any]) -> dict[str, Any] | None:
         lines = [x for x in (_text(self._get(a, "mail_line1")), _text(self._get(a, "mail_line2")))

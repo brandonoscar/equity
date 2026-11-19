@@ -9,6 +9,7 @@
    "owner1": null,
    "owner2": null,
    "page": null,
+   "situs": null,
    "state": null,
    "zip": "99999"
   },
@@ -21,6 +22,7 @@
    "owner1": null,
    "owner2": null,
    "page": null,
+   "situs": null,
    "state": null,
    "zip": "99999"
   },
@@ -33,6 +35,7 @@
    "owner1": null,
    "owner2": null,
    "page": null,
+   "situs": null,
    "state": null,
    "zip": "99999"
   },
@@ -45,6 +48,7 @@
    "owner1": null,
    "owner2": null,
    "page": null,
+   "situs": null,
    "state": null,
    "zip": "99999"
   },
@@ -57,6 +61,7 @@
    "owner1": null,
    "owner2": null,
    "page": null,
+   "situs": null,
    "state": null,
    "zip": "99999"
   },
@@ -69,6 +74,7 @@
    "owner1": null,
    "owner2": null,
    "page": null,
+   "situs": null,
    "state": null,
    "zip": "99999"
   },
@@ -81,6 +87,7 @@
    "owner1": null,
    "owner2": null,
    "page": null,
+   "situs": null,
    "state": null,
    "zip": "99999"
   },
@@ -93,6 +100,7 @@
    "owner1": null,
    "owner2": null,
    "page": null,
+   "situs": null,
    "state": null,
    "zip": "99999"
   },
@@ -105,6 +113,7 @@
    "owner1": null,
    "owner2": null,
    "page": null,
+   "situs": null,
    "state": null,
    "zip": "99999"
   },
@@ -117,6 +126,7 @@
    "owner1": null,
    "owner2": null,
    "page": null,
+   "situs": null,
    "state": null,
    "zip": "99999"
   },
@@ -129,6 +139,7 @@
    "owner1": "TESTOWNER 4824F0 LP",
    "owner2": "",
    "page": "5454",
+   "situs": "TESTOWNER A06DA0",
    "state": "KS",
    "zip": "66085"
   },
@@ -141,6 +152,7 @@
    "owner1": "TESTOWNER 933D9B",
    "owner2": "",
    "page": "5627",
+   "situs": "TESTOWNER C1450F",
    "state": "KS",
    "zip": "66050"
   },
@@ -153,6 +165,7 @@
    "owner1": "TESTOWNER CBE434",
    "owner2": "TESTOWNER D19BEF",
    "page": "4765",
+   "situs": "TESTOWNER 06682D",
    "state": "KS",
    "zip": "66050"
   },
@@ -165,6 +178,7 @@
    "owner1": "TESTOWNER C43F07",
    "owner2": "TESTOWNER D7A254",
    "page": "623 ",
+   "situs": "TESTOWNER E97DAD",
    "state": "KS",
    "zip": "66049"
   },
@@ -177,6 +191,7 @@
    "owner1": "TESTOWNER AD3E44 LLC",
    "owner2": "",
    "page": "1356",
+   "situs": "TESTOWNER 91CAA7",
    "state": "CA",
    "zip": "94596"
   },
@@ -189,6 +204,7 @@
    "owner1": "TESTOWNER 0A5B28 INC",
    "owner2": "",
    "page": "2030",
+   "situs": "TESTOWNER 51F66B",
    "state": "KS",
    "zip": "66047"
   },
@@ -201,6 +217,7 @@
    "owner1": "TESTOWNER 744A8B",
    "owner2": "TESTOWNER F996A0",
    "page": "3721",
+   "situs": "TESTOWNER 853DF0",
    "state": "KS",
    "zip": "66047"
   },
@@ -213,6 +230,7 @@
    "owner1": "TESTOWNER 744A8B",
    "owner2": "TESTOWNER F996A0",
    "page": "1960",
+   "situs": "TESTOWNER AB215D",
    "state": "KS",
    "zip": "66047"
   },
@@ -225,6 +243,7 @@
    "owner1": "TESTOWNER 0A5B28 INC",
    "owner2": "",
    "page": "2030",
+   "situs": "TESTOWNER C1E1F1",
    "state": "KS",
    "zip": "66047"
   },
@@ -237,6 +256,7 @@
    "owner1": "TESTOWNER 744A8B",
    "owner2": "TESTOWNER F996A0",
    "page": "3924",
+   "situs": "TESTOWNER 3B4950",
    "state": "KS",
    "zip": "66047"
   },
@@ -249,6 +269,7 @@
    "owner1": "TESTOWNER 744A8B",
    "owner2": "TESTOWNER F996A0",
    "page": "3707",
+   "situs": "TESTOWNER 7E7708",
    "state": "KS",
    "zip": "66047"
   },
@@ -261,6 +282,7 @@
    "owner1": "TESTOWNER 744A8B",
    "owner2": "TESTOWNER F996A0",
    "page": "3707",
+   "situs": "TESTOWNER 6C80EA",
    "state": "KS",
    "zip": "66047"
   },
@@ -273,6 +295,7 @@
    "owner1": "TESTOWNER 744A8B",
    "owner2": "TESTOWNER F996A0",
    "page": "2147",
+   "situs": "TESTOWNER 922775",
    "state": "KS",
    "zip": "66047"
   },
@@ -285,6 +308,7 @@
    "owner1": "TESTOWNER A27B24",
    "owner2": "TESTOWNER 0C26FD",
    "page": "1213",
+   "situs": "TESTOWNER 818232",
    "state": "KS",
    "zip": "66049"
   },
@@ -297,6 +321,7 @@
    "owner1": "TESTOWNER 744A8B",
    "owner2": "TESTOWNER F996A0",
    "page": "2147",
+   "situs": "TESTOWNER 136A1B",
    "state": "KS",
    "zip": "66047"
   }

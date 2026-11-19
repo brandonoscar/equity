@@ -20,6 +20,10 @@ county:
     "Wasatch": "051", "Washington": "053", "Wayne": "055", "Weber": "057"
   }
 fields:
+  situs_line1: PARCEL_ADD
+  situs_city: PARCEL_CITY
+  situs_zip: PARCEL_ZIP
+  owner_type: OWN_TYPE
   parcel_id: PARCEL_ID
 value_basis: "no value, owner or tax-year fields in the statewide basic layer (HB113 limits it to boundary, parcel id, parcel address, owner type and recorder contact); market values exist only in the 29 per-county Parcels_<County>_LIR layers"
 terms:

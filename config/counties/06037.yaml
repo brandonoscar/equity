@@ -12,6 +12,9 @@ county: {constant: "037"}
 # again with RollYear null (OBJECTID 2428434-4856866). Keep the 2026 roll; bump each July.
 filter: "RollYear = '2026'"
 fields:
+  situs_line1: PropertyLocation
+  situs_city: SitusCity
+  situs_zip: SitusZIP5
   parcel_id: AIN           # 10-digit Assessor Identification Number
   land_value: Roll_LandValue
   bldg_value: Roll_ImpValue

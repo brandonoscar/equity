@@ -1,6 +1,7 @@
 {
  "attributes": [
   {
+   "ADDRESS_GIS": "3635 TEST ST",
    "OBJECTID": 1,
    "OWNERNAME2": null,
    "OWN_ADD": "TESTOWNER 3F3C04",
@@ -12,6 +13,7 @@
    "PID_RE": "075.01-04-08"
   },
   {
+   "ADDRESS_GIS": "8327 TEST ST",
    "OBJECTID": 2,
    "OWNERNAME2": null,
    "OWN_ADD": "TESTOWNER 3047E6",
@@ -23,6 +25,7 @@
    "PID_RE": "075.01-04-10"
   },
   {
+   "ADDRESS_GIS": "7171 TEST ST",
    "OBJECTID": 3,
    "OWNERNAME2": null,
    "OWN_ADD": "TESTOWNER 2A86F9",
@@ -34,6 +37,7 @@
    "PID_RE": "034.02-01-01"
   },
   {
+   "ADDRESS_GIS": "4535 TEST ST",
    "OBJECTID": 4,
    "OWNERNAME2": null,
    "OWN_ADD": "TESTOWNER 47C037",
@@ -45,6 +49,7 @@
    "PID_RE": "034.04-0B-00"
   },
   {
+   "ADDRESS_GIS": "1793 TEST ST",
    "OBJECTID": 5,
    "OWNERNAME2": "TESTOWNER FFD8ED",
    "OWN_ADD": "TESTOWNER AF4D26",
@@ -56,6 +61,7 @@
    "PID_RE": "064.02-06-21.0"
   },
   {
+   "ADDRESS_GIS": "1212 TEST ST",
    "OBJECTID": 6,
    "OWNERNAME2": null,
    "OWN_ADD": "TESTOWNER BA7FC4",
@@ -67,6 +73,7 @@
    "PID_RE": "023.01-04-34.L1"
   },
   {
+   "ADDRESS_GIS": "2504 TEST ST",
    "OBJECTID": 7,
    "OWNERNAME2": null,
    "OWN_ADD": "TESTOWNER DDC7FD",
@@ -78,6 +85,7 @@
    "PID_RE": "064.03-04-14.B"
   },
   {
+   "ADDRESS_GIS": "6928 TEST ST",
    "OBJECTID": 8,
    "OWNERNAME2": null,
    "OWN_ADD": "TESTOWNER 3F3C04",
@@ -89,6 +97,7 @@
    "PID_RE": "074.01-11-30.0"
   },
   {
+   "ADDRESS_GIS": "2329 TEST ST",
    "OBJECTID": 9,
    "OWNERNAME2": "TESTOWNER 7DDCD4",
    "OWN_ADD": "TESTOWNER E639DF",
@@ -100,6 +109,7 @@
    "PID_RE": "074.04-05-13.0"
   },
   {
+   "ADDRESS_GIS": "2585 TEST ST",
    "OBJECTID": 10,
    "OWNERNAME2": null,
    "OWN_ADD": "TESTOWNER F0ED28",
@@ -111,6 +121,7 @@
    "PID_RE": "055.03-0A-00"
   },
   {
+   "ADDRESS_GIS": "1264 TEST ST",
    "OBJECTID": 11,
    "OWNERNAME2": null,
    "OWN_ADD": "TESTOWNER 33BFD6",
@@ -122,6 +133,7 @@
    "PID_RE": "022.04-01-02"
   },
   {
+   "ADDRESS_GIS": "2349 TEST ST",
    "OBJECTID": 12,
    "OWNERNAME2": null,
    "OWN_ADD": "TESTOWNER FE56A0 LLC",
@@ -133,6 +145,7 @@
    "PID_RE": "075.01-02-01.04"
   },
   {
+   "ADDRESS_GIS": "3116 TEST ST",
    "OBJECTID": 13,
    "OWNERNAME2": null,
    "OWN_ADD": "TESTOWNER FE56A0 LLC",
@@ -144,6 +157,7 @@
    "PID_RE": "075.01-02-01.05"
   },
   {
+   "ADDRESS_GIS": "4863 TEST ST",
    "OBJECTID": 14,
    "OWNERNAME2": null,
    "OWN_ADD": "TESTOWNER FE56A0 LLC",
@@ -155,6 +169,7 @@
    "PID_RE": "075.01-02-01.03"
   },
   {
+   "ADDRESS_GIS": "6138 TEST ST",
    "OBJECTID": 15,
    "OWNERNAME2": null,
    "OWN_ADD": "TESTOWNER BDF5BF",
@@ -166,6 +181,7 @@
    "PID_RE": "053.02-03-10"
   },
   {
+   "ADDRESS_GIS": "5006 TEST ST",
    "OBJECTID": 16,
    "OWNERNAME2": null,
    "OWN_ADD": "TESTOWNER 72903E",
@@ -177,6 +193,7 @@
    "PID_RE": "073.02-0B-00"
   },
   {
+   "ADDRESS_GIS": "2033 TEST ST",
    "OBJECTID": 17,
    "OWNERNAME2": null,
    "OWN_ADD": "TESTOWNER C58A9B",
@@ -188,6 +205,7 @@
    "PID_RE": "074.02-11-25.0Z"
   },
   {
+   "ADDRESS_GIS": "5970 TEST ST",
    "OBJECTID": 18,
    "OWNERNAME2": null,
    "OWN_ADD": "TESTOWNER 338FAA",
@@ -199,6 +217,7 @@
    "PID_RE": "044.02-08-04"
   },
   {
+   "ADDRESS_GIS": "5498 TEST ST",
    "OBJECTID": 19,
    "OWNERNAME2": null,
    "OWN_ADD": "TESTOWNER 59FA49",
@@ -210,6 +229,7 @@
    "PID_RE": "055.01-0A-00"
   },
   {
+   "ADDRESS_GIS": "3326 TEST ST",
    "OBJECTID": 20,
    "OWNERNAME2": null,
    "OWN_ADD": "TESTOWNER 2A86F9",
@@ -221,6 +241,7 @@
    "PID_RE": "065.03-08-54.0Z"
   },
   {
+   "ADDRESS_GIS": "6897 TEST ST",
    "OBJECTID": 21,
    "OWNERNAME2": null,
    "OWN_ADD": "TESTOWNER D7679A",
@@ -232,6 +253,7 @@
    "PID_RE": "075.03-04-03"
   },
   {
+   "ADDRESS_GIS": "1225 TEST ST",
    "OBJECTID": 22,
    "OWNERNAME2": null,
    "OWN_ADD": "TESTOWNER 852636",
@@ -243,6 +265,7 @@
    "PID_RE": "074.01-0E-000"
   },
   {
+   "ADDRESS_GIS": "4442 TEST ST",
    "OBJECTID": 23,
    "OWNERNAME2": null,
    "OWN_ADD": "TESTOWNER B64EE5",
@@ -254,6 +277,7 @@
    "PID_RE": "063.01-11-19.C"
   },
   {
+   "ADDRESS_GIS": "2021 TEST ST",
    "OBJECTID": 24,
    "OWNERNAME2": null,
    "OWN_ADD": "TESTOWNER 4CBF52",
@@ -265,6 +289,7 @@
    "PID_RE": "034.02-02-02"
   },
   {
+   "ADDRESS_GIS": "7184 TEST ST",
    "OBJECTID": 25,
    "OWNERNAME2": null,
    "OWN_ADD": "TESTOWNER CCB175",

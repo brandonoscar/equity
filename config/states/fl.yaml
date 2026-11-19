@@ -78,6 +78,10 @@ county:
     "76": "131"   # Walton
     "77": "133"   # Washington
 fields:
+  situs_line1: PHY_ADDR1
+  situs_city: PHY_CITY
+  situs_zip: PHY_ZIPCD
+  homestead: JV_HMSTD
   parcel_id: PARCEL_ID
   owner1: OWN_NAME
   mail_line1: OWN_ADDR1

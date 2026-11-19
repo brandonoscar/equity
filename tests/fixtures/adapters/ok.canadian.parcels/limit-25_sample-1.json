@@ -10,6 +10,9 @@
    "mail_zip": "73036-",
    "owners_name": "TESTOWNER 027AE4 LLC",
    "parcel_id": "310181-030000-000275",
+   "situs": "TESTOWNER 666C47",
+   "situs_city": "UNINCORPORATED",
+   "situs_zip": "73047",
    "total_assess": 2469,
    "total_val": 29266
   },
@@ -23,6 +26,9 @@
    "mail_zip": "73036-",
    "owners_name": "TESTOWNER 027AE4 LLC",
    "parcel_id": "310181-030000-000269",
+   "situs": null,
+   "situs_city": "UNINCORPORATED",
+   "situs_zip": "73047",
    "total_assess": 540,
    "total_val": 4500
   },
@@ -36,6 +42,9 @@
    "mail_zip": "73036-",
    "owners_name": "TESTOWNER 88DDA2",
    "parcel_id": "310181-030000-000255",
+   "situs": "TESTOWNER 9064E9",
+   "situs_city": "UNINCORPORATED",
+   "situs_zip": "73047",
    "total_assess": 180,
    "total_val": 1500
   },
@@ -49,6 +58,9 @@
    "mail_zip": "73036-",
    "owners_name": "TESTOWNER 534144",
    "parcel_id": "310181-030000-000253",
+   "situs": null,
+   "situs_city": "UNINCORPORATED",
+   "situs_zip": "73047",
    "total_assess": 180,
    "total_val": 1500
   },
@@ -62,6 +74,9 @@
    "mail_zip": "73130-",
    "owners_name": "TESTOWNER 7D073B",
    "parcel_id": "310181-030000-000251",
+   "situs": null,
+   "situs_city": "UNINCORPORATED",
+   "situs_zip": "73047",
    "total_assess": 180,
    "total_val": 1500
   },
@@ -75,6 +90,9 @@
    "mail_zip": "73130-",
    "owners_name": "TESTOWNER 7D073B",
    "parcel_id": "310181-030000-000249",
+   "situs": "TESTOWNER 347EBE",
+   "situs_city": "UNINCORPORATED",
+   "situs_zip": "73047",
    "total_assess": 1134,
    "total_val": 9451
   },
@@ -88,6 +106,9 @@
    "mail_zip": "73047",
    "owners_name": "TESTOWNER 1E953B",
    "parcel_id": "310181-030000-000245",
+   "situs": null,
+   "situs_city": "UNINCORPORATED",
+   "situs_zip": "73047",
    "total_assess": 36,
    "total_val": 300
   },
@@ -101,6 +122,9 @@
    "mail_zip": "73047",
    "owners_name": "TESTOWNER 3170E2",
    "parcel_id": "310181-030000-000241",
+   "situs": "TESTOWNER ABEB75",
+   "situs_city": "UNINCORPORATED",
+   "situs_zip": "73047",
    "total_assess": 3662,
    "total_val": 45143
   },
@@ -114,6 +138,9 @@
    "mail_zip": "73047-",
    "owners_name": "TESTOWNER 494467",
    "parcel_id": "310181-030000-000235",
+   "situs": "TESTOWNER 632EEB",
+   "situs_city": "UNINCORPORATED",
+   "situs_zip": "73047",
    "total_assess": 3566,
    "total_val": 40268
   },
@@ -127,6 +154,9 @@
    "mail_zip": "73047-",
    "owners_name": "TESTOWNER 494467",
    "parcel_id": "310181-030000-000233",
+   "situs": null,
+   "situs_city": "UNINCORPORATED",
+   "situs_zip": "73047",
    "total_assess": 180,
    "total_val": 1500
   },
@@ -140,6 +170,9 @@
    "mail_zip": "73942-0000",
    "owners_name": "TESTOWNER 294558",
    "parcel_id": "310181-030000-000231",
+   "situs": "TESTOWNER 486C6A",
+   "situs_city": "UNINCORPORATED",
+   "situs_zip": "73047",
    "total_assess": 3603,
    "total_val": 38803
   },
@@ -153,6 +186,9 @@
    "mail_zip": "73107",
    "owners_name": "TESTOWNER 134329",
    "parcel_id": "310181-030000-000229",
+   "situs": "TESTOWNER 4DCC39",
+   "situs_city": "UNINCORPORATED",
+   "situs_zip": "73047",
    "total_assess": 2557,
    "total_val": 29236
   },
@@ -166,6 +202,9 @@
    "mail_zip": "68901-",
    "owners_name": "TESTOWNER CFBDC2",
    "parcel_id": "310181-030000-000225",
+   "situs": "TESTOWNER 60433F",
+   "situs_city": "UNINCORPORATED",
+   "situs_zip": "73047",
    "total_assess": 943,
    "total_val": 9344
   },
@@ -179,6 +218,9 @@
    "mail_zip": "73036-0000",
    "owners_name": "TESTOWNER 91F215",
    "parcel_id": "310181-030000-000223",
+   "situs": null,
+   "situs_city": "UNINCORPORATED",
+   "situs_zip": "73047",
    "total_assess": 180,
    "total_val": 1500
   },
@@ -192,6 +234,9 @@
    "mail_zip": "73036-0000",
    "owners_name": "TESTOWNER 91F215",
    "parcel_id": "310181-030000-000221",
+   "situs": "TESTOWNER FE34D4",
+   "situs_city": "UNINCORPORATED",
+   "situs_zip": "73047",
    "total_assess": 2190,
    "total_val": 20762
   },
@@ -205,6 +250,9 @@
    "mail_zip": "73047",
    "owners_name": "TESTOWNER F87C04",
    "parcel_id": "310181-030000-000219",
+   "situs": "TESTOWNER 64803B",
+   "situs_city": "UNINCORPORATED",
+   "situs_zip": "73047",
    "total_assess": 13085,
    "total_val": 146793
   },
@@ -218,6 +266,9 @@
    "mail_zip": "73008-",
    "owners_name": "TESTOWNER 8E264B",
    "parcel_id": "310181-030000-000211",
+   "situs": "TESTOWNER 014861",
+   "situs_city": "UNINCORPORATED",
+   "situs_zip": "73047",
    "total_assess": 6033,
    "total_val": 65240
   },
@@ -231,6 +282,9 @@
    "mail_zip": "73047-0000",
    "owners_name": "TESTOWNER 863B96 INC",
    "parcel_id": "310181-030000-000201",
+   "situs": null,
+   "situs_city": "UNINCORPORATED",
+   "situs_zip": "73047",
    "total_assess": 36,
    "total_val": 300
   },
@@ -244,6 +298,9 @@
    "mail_zip": "73132-",
    "owners_name": "TESTOWNER 4005AD",
    "parcel_id": "310181-030000-000168",
+   "situs": "TESTOWNER 0F2332",
+   "situs_city": "UNINCORPORATED",
+   "situs_zip": "73047",
    "total_assess": 2636,
    "total_val": 29334
   },
@@ -257,6 +314,9 @@
    "mail_zip": "73047-0000",
    "owners_name": "TESTOWNER 863B96 INC",
    "parcel_id": "310181-030000-000166",
+   "situs": null,
+   "situs_city": "UNINCORPORATED",
+   "situs_zip": "73047",
    "total_assess": 36,
    "total_val": 300
   },
@@ -270,6 +330,9 @@
    "mail_zip": "73047",
    "owners_name": "TESTOWNER 863B96 INC",
    "parcel_id": "310181-030000-000154",
+   "situs": null,
+   "situs_city": "UNINCORPORATED",
+   "situs_zip": "73047",
    "total_assess": 36,
    "total_val": 300
   },
@@ -283,6 +346,9 @@
    "mail_zip": "73047",
    "owners_name": "TESTOWNER 863B96 INC",
    "parcel_id": "310181-030000-000152",
+   "situs": null,
+   "situs_city": "UNINCORPORATED",
+   "situs_zip": "73047",
    "total_assess": 36,
    "total_val": 300
   },
@@ -296,6 +362,9 @@
    "mail_zip": "73047",
    "owners_name": "TESTOWNER 863B96 INC",
    "parcel_id": "310181-030000-000151",
+   "situs": null,
+   "situs_city": "UNINCORPORATED",
+   "situs_zip": "73047",
    "total_assess": 180,
    "total_val": 1500
   },
@@ -309,6 +378,9 @@
    "mail_zip": "73047",
    "owners_name": "TESTOWNER 0EBA5D LLC",
    "parcel_id": "310181-030000-000134",
+   "situs": "TESTOWNER EBE3C9",
+   "situs_city": "UNINCORPORATED",
+   "situs_zip": "73047",
    "total_assess": 8591,
    "total_val": 71594
   },
@@ -322,6 +394,9 @@
    "mail_zip": "73129-0000",
    "owners_name": "TESTOWNER 98565E",
    "parcel_id": "310181-030000-000133",
+   "situs": null,
+   "situs_city": "UNINCORPORATED",
+   "situs_zip": "73047",
    "total_assess": 180,
    "total_val": 1500
   }

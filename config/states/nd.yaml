@@ -11,6 +11,9 @@ county:
   field: CountyFIPS
   format: fips5
 fields:
+  situs_line1: PropertyAddress
+  situs_city: PropertyCity
+  situs_zip: PropertyZip
   parcel_id: ParcelID
   owner1: OwnerName
   owner2: Owner2Name

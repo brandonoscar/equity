@@ -6,6 +6,7 @@ page_size: 1000          # maxRecordCount 1000
 min_interval_s: 1.0
 county: {constant: "071"}
 fields:
+  homestead: HomeOwnerExemption
   parcel_id: ParcelNumber
   land_value: LandValue
   bldg_value: ImprovementValue

@@ -39,6 +39,8 @@ min_interval_s: 1.0
 county:
   constant: "001"
 fields:
+  situs_line1: PARCEL_ADD
+  situs_city: PARCEL_CITY
   parcel_id: PARCEL_ID
   land_value: LAND_MKT_VALUE
   total_value: TOTAL_MKT_VALUE

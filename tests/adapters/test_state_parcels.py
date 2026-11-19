@@ -524,3 +524,43 @@ def test_id_range_error_is_reported(tmp_path: Path) -> None:
     client = PoliteClient(min_interval_s=0, transport=transport, sleep=lambda s: None)
     with pytest.raises(StateConfigError, match="id range for"):
         list(named(client).partitions())
+
+
+def test_homestead_values() -> None:
+    from equity.adapters.state_parcels import parse_homestead
+
+    assert [parse_homestead(v) for v in ("Yes", "Y", "Homestead", "1", 7500, "$25,000.00")] == [
+        True
+    ] * 6
+    assert [parse_homestead(v) for v in ("No", "NOT ENROLLED", "Non-Homestead", "0", 0)] == [
+        False
+    ] * 5
+    assert [parse_homestead(v) for v in (None, "", "None", "S1", "SENIOR")] == [None] * 5
+
+
+def test_situs_owner_type_and_homestead_reach_the_rows(tmp_path: Path) -> None:
+    fields = {"parcel_id": "PID", "owner1": "OWN", "situs_line1": ["NUM", "ST"],
+              "situs_city": "SC", "situs_zip": "SZ", "owner_type": "OT", "homestead": "HX",
+              "total_value": "TV", "tax_year": {"const": 2026}}  # fmt: skip
+    a = adapter_for(load_config(_cfg(tmp_path, fields=fields, county={"constant": "001"})))()
+    body = {"attributes": [
+        {"OID": 1, "PID": "1", "OWN": "ANN LEE", "NUM": "12", "ST": "MAIN ST", "SC": "Elkins",
+         "SZ": "26241-1234", "OT": "Individual", "HX": "Y", "TV": 100},
+        {"OID": 2, "PID": "2", "OWN": "B LLC", "NUM": None, "ST": None, "TV": 5}]}  # fmt: skip
+    f = Fetched("zz.test.parcels", "https://x.test/FeatureServer/0/query", AT, 200,
+                json.dumps(body).encode(), "")  # fmt: skip
+    rows = list(a.normalize(f))
+    parcels = {r.row["parid_raw"]: r.row for r in rows if r.table == "parcel"}
+    addrs = {r.row["address_id"]: r.row for r in rows if r.table == "address"}
+    situs = addrs[parcels["1"]["situs_address_id"]]
+    assert (situs["line1"], situs["city"], situs["state"], situs["zip5"]) == (
+        "12 MAIN ST", "ELKINS", "WV", "26241")  # fmt: skip
+    assert parcels["2"]["situs_address_id"] is None
+    owners = {r.row["parcel_uid"]: r.row for r in rows if r.table == "owner_snapshot"}
+    assert owners["54001-1"]["owner_type"] == "Individual"
+    hx = {r.row["parcel_uid"]: r.row["homestead"] for r in rows if r.table == "parcel_assessment"}
+    assert hx == {"54001-1": True, "54001-2": None}
+    full = adapter_for(load_config(_cfg(tmp_path, fields={"parcel_id": "PID",
+                                                          "situs_full": "SF"})))()  # fmt: skip
+    assert full._situs({"SF": "5 OAK RD, ELKINS, WV 26241"})["line1"] == "5 OAK RD"
+    assert full._situs({"SF": None}) is None

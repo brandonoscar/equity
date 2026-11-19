@@ -10,6 +10,7 @@ page_size: 2000          # maxRecordCount 2000; supportsPagination true
 min_interval_s: 1.0
 county: {constant: "029"}
 fields:
+  situs_line1: SITEADD
   parcel_id: ACCOUNT       # tax account; MAPTAXLOT can hold several accounts (e.g. improvement-only)
   owner1: FEEOWNER
   mail_line1: ADDRESS1

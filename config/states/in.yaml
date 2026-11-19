@@ -9,6 +9,9 @@ county:
   field: county_fips
   format: fips5
 fields:
+  situs_line1: prop_add
+  situs_city: prop_city
+  situs_zip: prop_zip
   parcel_id: parcel_id
 value_basis: "boundaries only: this layer has no owner or value fields; owner and assessed value are in the separate DLGF real-property tables (Indiana Gateway download), joinable on parcel number"
 terms:

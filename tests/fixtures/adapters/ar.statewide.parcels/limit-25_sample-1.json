@@ -1,6 +1,9 @@
 {
  "attributes": [
   {
+   "adrcity": "ELIZABETH",
+   "adrlabel": "TESTOWNER E8B8E1",
+   "adrzip5": 72531,
    "assessvalue": 8000.0,
    "camadate": 1783314000000,
    "countyfips": "005",
@@ -12,6 +15,9 @@
    "totalvalue": 40005.0
   },
   {
+   "adrcity": "Rural",
+   "adrlabel": "TESTOWNER F255E6",
+   "adrzip5": 0,
    "assessvalue": 0.0,
    "camadate": 1783314000000,
    "countyfips": "005",
@@ -23,6 +29,9 @@
    "totalvalue": 0.0
   },
   {
+   "adrcity": "CALICO ROCK",
+   "adrlabel": "TESTOWNER 10DB7B",
+   "adrzip5": 72519,
    "assessvalue": 9600.0,
    "camadate": 1783314000000,
    "countyfips": "005",
@@ -34,6 +43,9 @@
    "totalvalue": 53695.0
   },
   {
+   "adrcity": "JORDAN",
+   "adrlabel": "TESTOWNER 14E440",
+   "adrzip5": 72519,
    "assessvalue": 474.0,
    "camadate": 1783314000000,
    "countyfips": "005",
@@ -45,6 +57,9 @@
    "totalvalue": 2370.0
   },
   {
+   "adrcity": "NORFORK",
+   "adrlabel": "TESTOWNER 4104D6",
+   "adrzip5": 72658,
    "assessvalue": 10000.0,
    "camadate": 1783314000000,
    "countyfips": "005",
@@ -56,6 +71,9 @@
    "totalvalue": 146545.0
   },
   {
+   "adrcity": "ELIZABETH",
+   "adrlabel": "TESTOWNER 3EDD6B",
+   "adrzip5": 72531,
    "assessvalue": 320.0,
    "camadate": 1783314000000,
    "countyfips": "005",
@@ -67,6 +85,9 @@
    "totalvalue": 2100.0
   },
   {
+   "adrcity": "Rural",
+   "adrlabel": "TESTOWNER B010A1",
+   "adrzip5": 0,
    "assessvalue": 246.0,
    "camadate": 1783314000000,
    "countyfips": "005",
@@ -78,6 +99,9 @@
    "totalvalue": 1230.0
   },
   {
+   "adrcity": "Rural",
+   "adrlabel": "TESTOWNER 036238",
+   "adrzip5": 0,
    "assessvalue": 0.0,
    "camadate": 1783314000000,
    "countyfips": "005",
@@ -89,6 +113,9 @@
    "totalvalue": 0.0
   },
   {
+   "adrcity": "ELIZABETH",
+   "adrlabel": "TESTOWNER 9BD7AE",
+   "adrzip5": 72531,
    "assessvalue": 1540.0,
    "camadate": 1783314000000,
    "countyfips": "005",
@@ -100,6 +127,9 @@
    "totalvalue": 10000.0
   },
   {
+   "adrcity": null,
+   "adrlabel": null,
+   "adrzip5": 0,
    "assessvalue": 0.0,
    "camadate": 1783314000000,
    "countyfips": "005",
@@ -111,6 +141,9 @@
    "totalvalue": 0.0
   },
   {
+   "adrcity": "ELIZABETH",
+   "adrlabel": "TESTOWNER 64A3BB",
+   "adrzip5": 72531,
    "assessvalue": 1710.0,
    "camadate": 1783314000000,
    "countyfips": "005",
@@ -122,6 +155,9 @@
    "totalvalue": 11100.0
   },
   {
+   "adrcity": "ELIZABETH",
+   "adrlabel": "TESTOWNER 9BD7AE",
+   "adrzip5": 72531,
    "assessvalue": 1520.0,
    "camadate": 1783314000000,
    "countyfips": "005",
@@ -133,6 +169,9 @@
    "totalvalue": 9870.0
   },
   {
+   "adrcity": "JORDAN",
+   "adrlabel": "TESTOWNER 02A899",
+   "adrzip5": 72519,
    "assessvalue": 234.0,
    "camadate": 1783314000000,
    "countyfips": "005",
@@ -144,6 +183,9 @@
    "totalvalue": 1170.0
   },
   {
+   "adrcity": "NORFORK",
+   "adrlabel": "TESTOWNER 4373F6",
+   "adrzip5": 72658,
    "assessvalue": 41083.0,
    "camadate": 1783314000000,
    "countyfips": "005",
@@ -155,6 +197,9 @@
    "totalvalue": 347565.0
   },
   {
+   "adrcity": "ELIZABETH",
+   "adrlabel": "TESTOWNER 6A8CDC",
+   "adrzip5": 72531,
    "assessvalue": 518.0,
    "camadate": 1783314000000,
    "countyfips": "005",
@@ -166,6 +211,9 @@
    "totalvalue": 3510.0
   },
   {
+   "adrcity": "HENDERSON",
+   "adrlabel": "TESTOWNER AD016C",
+   "adrzip5": 72544,
    "assessvalue": 17084.0,
    "camadate": 1783314000000,
    "countyfips": "005",
@@ -177,6 +225,9 @@
    "totalvalue": 85420.0
   },
   {
+   "adrcity": null,
+   "adrlabel": null,
+   "adrzip5": 0,
    "assessvalue": 115.0,
    "camadate": 1783314000000,
    "countyfips": "005",
@@ -188,6 +239,9 @@
    "totalvalue": 575.0
   },
   {
+   "adrcity": "SALESVILLE",
+   "adrlabel": "TESTOWNER 2AD135",
+   "adrzip5": 72653,
    "assessvalue": 19450.0,
    "camadate": 1783314000000,
    "countyfips": "005",
@@ -199,6 +253,9 @@
    "totalvalue": 122930.0
   },
   {
+   "adrcity": "MOUNTAIN HOME",
+   "adrlabel": "TESTOWNER 0C2FE1",
+   "adrzip5": 72653,
    "assessvalue": 79.0,
    "camadate": 1783314000000,
    "countyfips": "005",
@@ -210,6 +267,9 @@
    "totalvalue": 395.0
   },
   {
+   "adrcity": "SALESVILLE",
+   "adrlabel": "TESTOWNER 0F51B1",
+   "adrzip5": 72653,
    "assessvalue": 165.0,
    "camadate": 1783314000000,
    "countyfips": "005",
@@ -221,6 +281,9 @@
    "totalvalue": 825.0
   },
   {
+   "adrcity": "Rural",
+   "adrlabel": "TESTOWNER 850534",
+   "adrzip5": 0,
    "assessvalue": 0.0,
    "camadate": 1783314000000,
    "countyfips": "005",
@@ -232,6 +295,9 @@
    "totalvalue": 0.0
   },
   {
+   "adrcity": "GASSVILLE",
+   "adrlabel": "TESTOWNER 465066",
+   "adrzip5": 72635,
    "assessvalue": 362.0,
    "camadate": 1783314000000,
    "countyfips": "005",
@@ -243,6 +309,9 @@
    "totalvalue": 1810.0
   },
   {
+   "adrcity": null,
+   "adrlabel": null,
+   "adrzip5": 0,
    "assessvalue": 0.0,
    "camadate": 1783314000000,
    "countyfips": "005",
@@ -254,6 +323,9 @@
    "totalvalue": 0.0
   },
   {
+   "adrcity": "Rural",
+   "adrlabel": "TESTOWNER 6BF601",
+   "adrzip5": 0,
    "assessvalue": 885.0,
    "camadate": 1783314000000,
    "countyfips": "005",
@@ -265,6 +337,9 @@
    "totalvalue": 4425.0
   },
   {
+   "adrcity": "MOUNTAIN HOME",
+   "adrlabel": "TESTOWNER 321582",
+   "adrzip5": 72653,
    "assessvalue": 6880.0,
    "camadate": 1783314000000,
    "countyfips": "005",

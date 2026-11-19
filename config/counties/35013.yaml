@@ -9,6 +9,7 @@ min_interval_s: 1.0
 county: {constant: "013"}
 extra_pii: [CAREOFNAME, DEEDHOLDER, SITUSADDRS]
 fields:
+  situs_line1: SITUSADDRS
   parcel_id: PARCELNUMBER
   owner1: OWNERNAME
   mail_line1: MAILADDR1

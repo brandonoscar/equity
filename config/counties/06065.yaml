@@ -10,6 +10,8 @@ page_size: 1000          # maxRecordCount 2000
 min_interval_s: 1.0
 county: {constant: "065"}
 fields:
+  situs_line1: SITUS_STREET
+  situs_city: SITUS_CITY
   parcel_id: APN
   land_value: LAND
   bldg_value: STRUCTURES

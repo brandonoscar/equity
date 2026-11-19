@@ -10,6 +10,7 @@
    "IMPRMV": 0,
    "LANDRMV": 0,
    "OBJECTID": 1,
+   "SITEADD": "TESTOWNER 536905",
    "STATE": null,
    "ZIPCODE": "0"
   },
@@ -23,6 +24,7 @@
    "IMPRMV": 90890,
    "LANDRMV": 0,
    "OBJECTID": 2,
+   "SITEADD": "TESTOWNER 0779A0",
    "STATE": "OR",
    "ZIPCODE": "97502-0066"
   },
@@ -36,6 +38,7 @@
    "IMPRMV": 0,
    "LANDRMV": 0,
    "OBJECTID": 3,
+   "SITEADD": "TESTOWNER 2A4CB2",
    "STATE": null,
    "ZIPCODE": "0"
   },
@@ -49,6 +52,7 @@
    "IMPRMV": 88990,
    "LANDRMV": 0,
    "OBJECTID": 4,
+   "SITEADD": "TESTOWNER 444822",
    "STATE": "OR",
    "ZIPCODE": "97501-8155"
   },
@@ -62,6 +66,7 @@
    "IMPRMV": 89150,
    "LANDRMV": 0,
    "OBJECTID": 5,
+   "SITEADD": "TESTOWNER 612FB9",
    "STATE": "CA",
    "ZIPCODE": "94930"
   },
@@ -75,6 +80,7 @@
    "IMPRMV": 78640,
    "LANDRMV": 0,
    "OBJECTID": 6,
+   "SITEADD": "TESTOWNER 01743A",
    "STATE": "OR",
    "ZIPCODE": "97701-9304"
   },
@@ -88,6 +94,7 @@
    "IMPRMV": 106680,
    "LANDRMV": 0,
    "OBJECTID": 7,
+   "SITEADD": "TESTOWNER 4F1FDD",
    "STATE": "WA",
    "ZIPCODE": "98070-8210"
   },
@@ -101,6 +108,7 @@
    "IMPRMV": 110260,
    "LANDRMV": 0,
    "OBJECTID": 8,
+   "SITEADD": "TESTOWNER A57033",
    "STATE": "TX",
    "ZIPCODE": "78676-5557"
   },
@@ -114,6 +122,7 @@
    "IMPRMV": 103700,
    "LANDRMV": 0,
    "OBJECTID": 9,
+   "SITEADD": "TESTOWNER 528B1E",
    "STATE": "CA",
    "ZIPCODE": "95927-0192"
   },
@@ -127,6 +136,7 @@
    "IMPRMV": 101970,
    "LANDRMV": 0,
    "OBJECTID": 10,
+   "SITEADD": "TESTOWNER 7B2351",
    "STATE": "OR",
    "ZIPCODE": "97501-8515"
   },
@@ -140,6 +150,7 @@
    "IMPRMV": 137930,
    "LANDRMV": 0,
    "OBJECTID": 11,
+   "SITEADD": "TESTOWNER 2DB032",
    "STATE": "OR",
    "ZIPCODE": "97504-9025"
   },
@@ -153,6 +164,7 @@
    "IMPRMV": 163830,
    "LANDRMV": 0,
    "OBJECTID": 12,
+   "SITEADD": "TESTOWNER 7E194A",
    "STATE": "OR",
    "ZIPCODE": "97520-1943"
   },
@@ -166,6 +178,7 @@
    "IMPRMV": 158950,
    "LANDRMV": 0,
    "OBJECTID": 13,
+   "SITEADD": "TESTOWNER 15D53E",
    "STATE": "OR",
    "ZIPCODE": "97603-5252"
   },
@@ -179,6 +192,7 @@
    "IMPRMV": 180800,
    "LANDRMV": 0,
    "OBJECTID": 14,
+   "SITEADD": "TESTOWNER 11B7BF",
    "STATE": "OR",
    "ZIPCODE": "97355-2963"
   },
@@ -192,6 +206,7 @@
    "IMPRMV": 208280,
    "LANDRMV": 0,
    "OBJECTID": 15,
+   "SITEADD": "TESTOWNER 61D036",
    "STATE": "OR",
    "ZIPCODE": "97526-2452"
   },
@@ -205,6 +220,7 @@
    "IMPRMV": 147870,
    "LANDRMV": 0,
    "OBJECTID": 16,
+   "SITEADD": "TESTOWNER BFE2A4",
    "STATE": "OR",
    "ZIPCODE": "97526-1513"
   },
@@ -218,6 +234,7 @@
    "IMPRMV": 130280,
    "LANDRMV": 0,
    "OBJECTID": 17,
+   "SITEADD": "TESTOWNER A9CD15",
    "STATE": "WY",
    "ZIPCODE": "83002-0600"
   },
@@ -231,6 +248,7 @@
    "IMPRMV": 106470,
    "LANDRMV": 0,
    "OBJECTID": 18,
+   "SITEADD": "TESTOWNER 6C8B25",
    "STATE": "AK",
    "ZIPCODE": "99615-9430"
   },
@@ -244,6 +262,7 @@
    "IMPRMV": 141580,
    "LANDRMV": 0,
    "OBJECTID": 19,
+   "SITEADD": "TESTOWNER 95A5F8",
    "STATE": "OR",
    "ZIPCODE": "97603"
   },
@@ -257,6 +276,7 @@
    "IMPRMV": 130950,
    "LANDRMV": 0,
    "OBJECTID": 20,
+   "SITEADD": "TESTOWNER 0B00B8",
    "STATE": "OR",
    "ZIPCODE": "97504-9279"
   },
@@ -270,6 +290,7 @@
    "IMPRMV": 108620,
    "LANDRMV": 0,
    "OBJECTID": 21,
+   "SITEADD": "TESTOWNER 3C1B8D",
    "STATE": "OR",
    "ZIPCODE": "97540-0346"
   },
@@ -283,6 +304,7 @@
    "IMPRMV": 123750,
    "LANDRMV": 0,
    "OBJECTID": 22,
+   "SITEADD": "TESTOWNER 106F4A",
    "STATE": "OR",
    "ZIPCODE": "97526-3436"
   },
@@ -296,6 +318,7 @@
    "IMPRMV": 109680,
    "LANDRMV": 0,
    "OBJECTID": 23,
+   "SITEADD": "TESTOWNER F87BAD",
    "STATE": "OR",
    "ZIPCODE": "97633"
   },
@@ -309,6 +332,7 @@
    "IMPRMV": 109020,
    "LANDRMV": 0,
    "OBJECTID": 24,
+   "SITEADD": "TESTOWNER 270A5A",
    "STATE": "CA",
    "ZIPCODE": "90266-3371"
   },
@@ -322,6 +346,7 @@
    "IMPRMV": 118320,
    "LANDRMV": 0,
    "OBJECTID": 25,
+   "SITEADD": "TESTOWNER 417489",
    "STATE": "OR",
    "ZIPCODE": "97471-1863"
   }

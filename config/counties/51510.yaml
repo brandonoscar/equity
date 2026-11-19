@@ -8,6 +8,7 @@ page_size: 2000          # maxRecordCount 2000
 min_interval_s: 1.0
 county: {constant: "510"}
 fields:
+  situs_line1: ADDRESS_GIS
   parcel_id: PID_RE
   owner1: OWN_NAME
   owner2: OWNERNAME2

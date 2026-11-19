@@ -579,6 +579,7 @@ county:
     "2122": "041"
     "2123": "041"
 fields:
+  situs_line1: PROP_LOC
   parcel_id: PAMS_PIN         # "<mun>_<block>_<lot>[_<qual>]", unique statewide
   # Not mapped: OWNER_NAME (blank); ST_ADDRESS/CITY_STATE/ZIP_CODE (MOD-IV owner mailing
   # address of a redacted owner, and Daniel's Law also covers covered persons' addresses);

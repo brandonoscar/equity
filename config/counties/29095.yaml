@@ -12,6 +12,7 @@ county: {constant: "095"}
 # HIDENAME='Y' on 11 rows (name suppression flag); excluded conservatively.
 filter: "HIDENAME IS NULL OR HIDENAME <> 'Y'"
 fields:
+  situs_line1: PARCEL_ADDRESS
   parcel_id: PARID
   owner1: OWNER_NAMES      # comma-joined owner list with trailing blanks, e.g. 'NAME, , '
   mail_full: OWNER_ADDRESS # 'STREET  CITY, ST 99999' (no comma after street, so the adapter keeps it all as the street line)

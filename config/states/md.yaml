@@ -44,6 +44,9 @@ county:
     WORC: "047"   # Worcester
     BACI: "510"   # Baltimore City
 fields:
+  situs_line1: ADDRESS
+  situs_city: PREMCITY
+  situs_zip: PREMZIP
   parcel_id: ACCTID          # SDAT account id: 2-digit county + 2-digit district + account
   land_value: NFMLNDVL       # "New Appraised Land Value"
   bldg_value: NFMIMPVL       # "New Appraised Improvement Value"
