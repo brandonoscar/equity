@@ -240,17 +240,20 @@ def plan(source_ids: list[str]) -> list[str]:
     return sorted(source_ids, key=rank)
 
 
+def parcel_sources() -> list[str]:
+    """Every registered parcel source (what `run` builds when not given --only)."""
+    from equity.adapters.registry import REGISTRY
+
+    return [
+        c.source_id for c in REGISTRY
+        if c.source_id.endswith(".parcels") or c.source_id == "wv.statewide.delinquent"
+    ]  # fmt: skip
+
+
 def run_all(max_parallel: int, min_free_gb: float, only: list[str] | None = None) -> None:
     """Build sources in priority order, at most one per host at a time, stopping new builds
     when free disk drops below min_free_gb."""
-    from equity.adapters.base import REGISTRY
-
-    wanted = (".parcels",)
-    parcel_sources = [
-        c.source_id for c in REGISTRY
-        if c.source_id.endswith(wanted) or c.source_id == "wv.statewide.delinquent"
-    ]  # fmt: skip
-    queue = plan(only or parcel_sources)
+    queue = plan(only or parcel_sources())
     queue = [s for s in queue if not (LAKE / s / "_counts.json").exists()]
     running: dict[str, tuple[subprocess.Popen[bytes], str]] = {}
     busy_hosts: set[str] = set()

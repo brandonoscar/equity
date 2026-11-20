@@ -170,3 +170,25 @@ def test_replan_keeps_finished_parts_and_splits_the_rest(
     # Replanning again folds the old windows back into their county and re-cuts it.
     assert lake.replan("s", tmp_path / "lake") == (2, 2)
     assert json.loads((out / "_plan.json").read_text()) == new
+
+
+def test_source_lists_are_complete_in_a_fresh_interpreter() -> None:
+    """Regression: an import change once left the runner and the health check with an empty
+    adapter list. Inside pytest other tests have already registered every adapter, so each
+    entry point is checked in its own clean process, importing only what its CLI imports."""
+    import subprocess
+    import sys
+
+    def fresh(code: str) -> list[str]:
+        run = subprocess.run([sys.executable, "-c", code], check=True,  # noqa: S603
+                             capture_output=True, text=True)  # fmt: skip
+        return run.stdout.split()
+
+    n, has_tx, has_fl = fresh(
+        "from equity import lake\n"
+        "s = lake.parcel_sources()\n"
+        "print(len(s), 'tx.statewide.parcels' in s, 'fl.statewide.parcels' in s)\n"
+    )
+    assert int(n) > 50 and has_tx == "True" and has_fl == "True"
+    (adapters,) = fresh("from equity.adapters import health\nprint(len(health.REGISTRY))\n")
+    assert int(adapters) > int(n)

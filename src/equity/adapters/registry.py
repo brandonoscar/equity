@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from equity.adapters.base import REGISTRY, Adapter, register
+# REGISTRY is re-exported: importing it from here guarantees every adapter below is registered.
+from equity.adapters.base import REGISTRY as REGISTRY
+from equity.adapters.base import Adapter, register
 from equity.adapters.business_registry import all_registry_adapters
 from equity.adapters.federal.ecf_rss import NDWVBankruptcyRSS, NDWVDistrictRSS, court_adapters
 from equity.adapters.fl.hillsborough_civil import (
