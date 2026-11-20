@@ -10,7 +10,7 @@ county: {constant: "045"}
 use_restrictions: [no_mailing_list, no_resale]
 fields:
   situs_line1: situs
-  parcel_id: PARCELNUMBER
+  parcel_id: JOINPIN       # full Kansas PIN; PARCELNUMBER holds only its last segment
   owner1: owner1
   owner2: owner2           # owner3 also exists, not mapped
   mail_line1: address

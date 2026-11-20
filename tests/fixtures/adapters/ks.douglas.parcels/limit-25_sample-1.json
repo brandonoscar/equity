@@ -1,8 +1,8 @@
 {
  "attributes": [
   {
+   "JOINPIN": "067-36-0-30-08-011.00-0",
    "OBJECTID": 292601,
-   "PARCELNUMBER": "11.00",
    "address": null,
    "book": null,
    "city": null,
@@ -14,8 +14,8 @@
    "zip": "99999"
   },
   {
+   "JOINPIN": "074-18-0-00-00-005.01-0",
    "OBJECTID": 292602,
-   "PARCELNUMBER": "05.01",
    "address": null,
    "book": null,
    "city": null,
@@ -27,8 +27,8 @@
    "zip": "99999"
   },
   {
+   "JOINPIN": "074-18-0-00-00-007.01-0",
    "OBJECTID": 292603,
-   "PARCELNUMBER": "07.01",
    "address": null,
    "book": null,
    "city": null,
@@ -40,8 +40,8 @@
    "zip": "99999"
   },
   {
+   "JOINPIN": "079-30-0-30-23-001.00-0",
    "OBJECTID": 292604,
-   "PARCELNUMBER": "1.00",
    "address": null,
    "book": null,
    "city": null,
@@ -53,8 +53,8 @@
    "zip": "99999"
   },
   {
+   "JOINPIN": "079-30-0-30-25-003.00-0",
    "OBJECTID": 292605,
-   "PARCELNUMBER": "03.00",
    "address": null,
    "book": null,
    "city": null,
@@ -66,8 +66,8 @@
    "zip": "99999"
   },
   {
+   "JOINPIN": "079-30-0-30-25-001.00-0",
    "OBJECTID": 292606,
-   "PARCELNUMBER": "1.00",
    "address": null,
    "book": null,
    "city": null,
@@ -79,8 +79,8 @@
    "zip": "99999"
   },
   {
+   "JOINPIN": "203-08-0-00-00-016.01-0",
    "OBJECTID": 292607,
-   "PARCELNUMBER": "16.01",
    "address": null,
    "book": null,
    "city": null,
@@ -92,8 +92,8 @@
    "zip": "99999"
   },
   {
+   "JOINPIN": "079-31-0-20-15-002.00-2",
    "OBJECTID": 292608,
-   "PARCELNUMBER": "02.00",
    "address": null,
    "book": null,
    "city": null,
@@ -105,8 +105,8 @@
    "zip": "99999"
   },
   {
+   "JOINPIN": "205-15-0-00-00-003.07-0",
    "OBJECTID": 292609,
-   "PARCELNUMBER": "03.07",
    "address": null,
    "book": null,
    "city": null,
@@ -118,8 +118,8 @@
    "zip": "99999"
   },
   {
+   "JOINPIN": "068-27-0-10-02-034.00-0",
    "OBJECTID": 292610,
-   "PARCELNUMBER": "34.00",
    "address": null,
    "book": null,
    "city": null,
@@ -131,8 +131,8 @@
    "zip": "99999"
   },
   {
+   "JOINPIN": "017-35-0-00-00-001.00-0",
    "OBJECTID": 292611,
-   "PARCELNUMBER": "1.00",
    "address": "6688 TEST ST",
    "book": "1206",
    "city": "STILWELL",
@@ -144,8 +144,8 @@
    "zip": "66085"
   },
   {
+   "JOINPIN": "027-35-0-30-02-001.01-0",
    "OBJECTID": 292612,
-   "PARCELNUMBER": "1.01",
    "address": "6784 TEST ST",
    "book": "1044",
    "city": "LECOMPTON",
@@ -157,8 +157,8 @@
    "zip": "66050"
   },
   {
+   "JOINPIN": "028-34-0-40-07-014.00-0",
    "OBJECTID": 292613,
-   "PARCELNUMBER": "14.00",
    "address": "6300 TEST ST",
    "book": "1234",
    "city": "LECOMPTON",
@@ -170,8 +170,8 @@
    "zip": "66050"
   },
   {
+   "JOINPIN": "055-22-0-00-00-004.00-0",
    "OBJECTID": 292614,
-   "PARCELNUMBER": "04.00",
    "address": "5637 TEST ST",
    "book": "1251",
    "city": "LAWRENCE",
@@ -183,8 +183,8 @@
    "zip": "66049"
   },
   {
+   "JOINPIN": "068-28-0-40-06-002.00-0",
    "OBJECTID": 292615,
-   "PARCELNUMBER": "02.00",
    "address": "7118 TEST ST",
    "book": "1242",
    "city": "WALNUT CREEK",
@@ -196,8 +196,8 @@
    "zip": "94596"
   },
   {
+   "JOINPIN": "068-28-0-40-07-001.00-0",
    "OBJECTID": 292616,
-   "PARCELNUMBER": "1.00",
    "address": "2497 TEST ST",
    "book": "650 ",
    "city": "LAWRENCE",
@@ -209,8 +209,8 @@
    "zip": "66047"
   },
   {
+   "JOINPIN": "068-28-0-40-07-002.00-0",
    "OBJECTID": 292617,
-   "PARCELNUMBER": "02.00",
    "address": "2497 TEST ST",
    "book": "1049",
    "city": "LAWRENCE",
@@ -222,8 +222,8 @@
    "zip": "66047"
   },
   {
+   "JOINPIN": "068-28-0-40-07-003.00-0",
    "OBJECTID": 292618,
-   "PARCELNUMBER": "03.00",
    "address": "2497 TEST ST",
    "book": "1132",
    "city": "LAWRENCE",
@@ -235,8 +235,8 @@
    "zip": "66047"
   },
   {
+   "JOINPIN": "068-28-0-40-07-004.00-0",
    "OBJECTID": 292619,
-   "PARCELNUMBER": "04.00",
    "address": "2497 TEST ST",
    "book": "650 ",
    "city": "LAWRENCE",
@@ -248,8 +248,8 @@
    "zip": "66047"
   },
   {
+   "JOINPIN": "068-28-0-40-07-005.00-0",
    "OBJECTID": 292620,
-   "PARCELNUMBER": "05.00",
    "address": "2497 TEST ST",
    "book": "1031",
    "city": "LAWRENCE",
@@ -261,8 +261,8 @@
    "zip": "66047"
   },
   {
+   "JOINPIN": "068-28-0-40-07-006.00-0",
    "OBJECTID": 292621,
-   "PARCELNUMBER": "06.00",
    "address": "2497 TEST ST",
    "book": "1244",
    "city": "LAWRENCE",
@@ -274,8 +274,8 @@
    "zip": "66047"
   },
   {
+   "JOINPIN": "068-28-0-40-07-006.01-0",
    "OBJECTID": 292622,
-   "PARCELNUMBER": "06.01",
    "address": "2497 TEST ST",
    "book": "1244",
    "city": "LAWRENCE",
@@ -287,8 +287,8 @@
    "zip": "66047"
   },
   {
+   "JOINPIN": "068-28-0-40-07-007.00-0",
    "OBJECTID": 292623,
-   "PARCELNUMBER": "07.00",
    "address": "2497 TEST ST",
    "book": "1003",
    "city": "LAWRENCE",
@@ -300,8 +300,8 @@
    "zip": "66047"
   },
   {
+   "JOINPIN": "055-22-0-00-00-005.00-0",
    "OBJECTID": 292624,
-   "PARCELNUMBER": "05.00",
    "address": "8466 TEST ST",
    "book": "1227",
    "city": "LAWRENCE",
@@ -313,8 +313,8 @@
    "zip": "66049"
   },
   {
+   "JOINPIN": "068-28-0-40-07-007.01-0",
    "OBJECTID": 292625,
-   "PARCELNUMBER": "07.01",
    "address": "2497 TEST ST",
    "book": "1003",
    "city": "LAWRENCE",
