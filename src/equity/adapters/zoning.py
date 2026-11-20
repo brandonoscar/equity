@@ -94,6 +94,40 @@ def _text(value: Any) -> str | None:
     return s or None
 
 
+def district_rows(
+    fetched: Fetched,
+    features: Sequence[Mapping[str, Any]],
+    uid_prefix: str,
+    order_by: str,
+    fields: Mapping[str, str],
+    state_fips_code: str,
+    default_jurisdiction: str | None = None,
+) -> Iterator[NormalizedRow]:
+    """source_record + zoning_district rows for features that have a shape and an id."""
+    for feat in features:
+        attrs = feat.get("attributes") or {}
+        rings = (feat.get("geometry") or {}).get("rings") or []
+        rings = [[[round(x, DIGITS), round(y, DIGITS)] for x, y, *_ in r] for r in rings if r]
+        oid = attrs.get(order_by)
+        if not rings or oid is None:
+            continue  # no shape or no stable key: skip rather than guess
+        uid = f"{uid_prefix}-{int(oid)}"
+        ctx = RecordContext(fetched, state_fips_code, uid, "zoning_district", attrs)
+        xmin, ymin, xmax, ymax = _ring_box(rings)
+        mapped = {k: _text(attrs.get(fields[k])) if k in fields else None for k in FIELDS}
+        yield ctx.source_record()
+        yield ctx.fact(
+            "zoning_district",
+            zone_uid=uid,
+            jurisdiction_name=mapped["jurisdiction"] or default_jurisdiction,
+            zone_code=mapped["zone_code"],
+            zone_desc=mapped["zone_desc"],
+            zone_class=mapped["zone_class"],
+            geom_rings=json.dumps(rings, separators=(",", ":")),
+            xmin=xmin, ymin=ymin, xmax=xmax, ymax=ymax,
+        )  # fmt: skip
+
+
 class ZoningAdapter(Adapter):
     config: ClassVar[ZoningConfig]
     adapter_version: ClassVar[str] = "1"
@@ -151,32 +185,11 @@ class ZoningAdapter(Adapter):
 
     def normalize(self, fetched: Fetched) -> Iterator[NormalizedRow]:
         data = json.loads(fetched.content)
-        layer = (
-            self.config.layers.index(data["layer"]) if data["layer"] in self.config.layers else 0
-        )
-        f = self.config.fields
-        for feat in data.get("features") or []:
-            attrs = feat.get("attributes") or {}
-            rings = (feat.get("geometry") or {}).get("rings") or []
-            rings = [[[round(x, DIGITS), round(y, DIGITS)] for x, y, *_ in r] for r in rings if r]
-            oid = attrs.get(self.config.order_by)
-            if not rings or oid is None:
-                continue  # no shape or no stable key: skip rather than guess
-            uid = f"{layer}-{int(oid)}"
-            ctx = RecordContext(fetched, self.config.state_fips, uid, "zoning_district", attrs)
-            xmin, ymin, xmax, ymax = _ring_box(rings)
-            mapped = {k: _text(attrs.get(f[k])) if k in f else None for k in FIELDS}
-            yield ctx.source_record()
-            yield ctx.fact(
-                "zoning_district",
-                zone_uid=uid,
-                jurisdiction_name=mapped["jurisdiction"],
-                zone_code=mapped["zone_code"],
-                zone_desc=mapped["zone_desc"],
-                zone_class=mapped["zone_class"],
-                geom_rings=json.dumps(rings, separators=(",", ":")),
-                xmin=xmin, ymin=ymin, xmax=xmax, ymax=ymax,
-            )  # fmt: skip
+        layers = self.config.layers
+        layer = layers.index(data["layer"]) if data["layer"] in layers else 0
+        yield from district_rows(fetched, data.get("features") or [], str(layer),
+                                 self.config.order_by, self.config.fields,
+                                 self.config.state_fips)  # fmt: skip
 
     def health(self) -> HealthReport:
         url = self.config.layers[0]
@@ -194,3 +207,85 @@ def zoning_adapter_for(cfg: ZoningConfig) -> type[ZoningAdapter]:
 
 def all_zoning_adapters(directory: Path = ZONING_DIR) -> list[type[ZoningAdapter]]:
     return [zoning_adapter_for(load_zoning_config(p)) for p in sorted(directory.glob("*.yaml"))]
+
+
+# --- city and county layers from the ArcGIS Online catalog ---------------------------------
+
+LOCAL_CATALOG = ZONING_DIR / "local_layers.json"
+
+
+class LocalZoningAdapter(Adapter):
+    """Every loadable layer in config/zoning/local_layers.json (built by equity.zoning_catalog),
+    one source. Partitions name the catalog item, so a rebuilt catalog keeps old plans valid."""
+
+    source_id: ClassVar[str] = "us.local.zoning"
+    adapter_version: ClassVar[str] = "1"
+    access_method: ClassVar[str] = "arcgis"
+    pii_fields: ClassVar[tuple[str, ...]] = ()
+    catalog_path: ClassVar[Path] = LOCAL_CATALOG
+    page_size: ClassVar[int] = 1000
+
+    def __init__(self, client: PoliteClient | None = None) -> None:
+        self.client = client or PoliteClient(min_interval_s=1.0)
+        data = json.loads(self.catalog_path.read_text())
+        loadable = set(data["loadable_license_classes"])
+        self.items = {e["item_id"]: e for e in data["layers"] if e["license_class"] in loadable}
+
+    def source_row(self) -> Mapping[str, Any]:
+        return {
+            "source_id": self.source_id,
+            "kind": "zoning",
+            "jurisdiction": "US",
+            "access_method": "arcgis",
+            "base_url": "https://www.arcgis.com/sharing/rest/search",
+            "terms_url": "https://www.arcgis.com/",
+            "terms_summary": (
+                f"{len(self.items)} city and county zoning layers marked authoritative by their "
+                "publishers on ArcGIS Online, kept only where the item's licenseInfo is open or "
+                "a disclaimer without use restrictions (see equity.zoning_catalog and "
+                "config/zoning/local_layers.json, which also lists excluded and review items)."
+            ),
+            "terms_checked_on": "2026-11-20",
+            "robots_checked_on": "2026-11-20",
+            "cost_model": "free",
+        }
+
+    def partitions(self) -> Iterator[dict[str, str]]:
+        for item_id in sorted(self.items):
+            url = self.items[item_id]["layer_url"]
+            body = get_json(self.client, url + "/query",
+                            {"where": "1=1", "returnIdsOnly": "true", "f": "json"})  # fmt: skip
+            ids = sorted(int(x) for x in body.get("objectIds") or [])
+            for w in _id_windows(ids, self.page_size):
+                yield {"item": item_id, **w}
+
+    def fetch(self, request: FetchRequest) -> Fetched:
+        item = self.items[request.params["item"]]
+        url, oid = item["layer_url"], item["order_by"]
+        p = request.params
+        where = f"{oid}>={int(p['oid_min'])} AND {oid}<{int(p['oid_max'])}" if "oid_min" in p \
+            else "1=1"  # fmt: skip
+        limit = p.get("limit")
+        q = ArcGISQuery(url, where, ("*",), (oid,), int(limit or self.page_size),
+                        return_geometry=True)  # fmt: skip
+        features, responses = fetch_all(self.client, q, max_pages=1 if limit else 10_000,
+                                        sample=limit is not None)  # fmt: skip
+        body = canonical_json({"item": item["item_id"], "layer": url, "where": where,
+                               "features": features})  # fmt: skip
+        return Fetched(self.source_id, f"{url}/query?where={where}",
+                       responses[-1].retrieved_at, 200, body, "application/json")  # fmt: skip
+
+    def normalize(self, fetched: Fetched) -> Iterator[NormalizedRow]:
+        data = json.loads(fetched.content)
+        item = self.items.get(data["item"])
+        if item is None:
+            return  # dropped from the catalog since this was fetched
+        default = item.get("access") or item.get("title")
+        yield from district_rows(fetched, data.get("features") or [], item["item_id"],
+                                 item["order_by"], item["fields"], item["state_fips"],
+                                 default)  # fmt: skip
+
+    def health(self) -> HealthReport:
+        ok = bool(self.items)
+        return HealthReport(self.source_id, ok, datetime.now(UTC),
+                            f"{len(self.items)} loadable layers in the catalog")  # fmt: skip

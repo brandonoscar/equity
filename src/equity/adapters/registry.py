@@ -6,6 +6,7 @@ from __future__ import annotations
 from equity.adapters.base import REGISTRY as REGISTRY
 from equity.adapters.base import Adapter, register
 from equity.adapters.business_registry import all_registry_adapters
+from equity.adapters.code_links import NJMunicipalCodeLinks
 from equity.adapters.federal.ecf_rss import NDWVBankruptcyRSS, NDWVDistrictRSS, court_adapters
 from equity.adapters.fl.hillsborough_civil import (
     HillsboroughCivilCases,
@@ -30,6 +31,7 @@ _ALL: tuple[type[Adapter], ...] = (
     NDWVBankruptcyRSS,
     *all_state_adapters(),
     *all_zoning_adapters(),
+    NJMunicipalCodeLinks,
     TexasStratMapParcels,
     AcrisRealProperty,
     AcrisPersonalProperty,
