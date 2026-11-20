@@ -253,8 +253,15 @@ class LocalZoningAdapter(Adapter):
     def partitions(self) -> Iterator[dict[str, str]]:
         for item_id in sorted(self.items):
             url = self.items[item_id]["layer_url"]
-            body = get_json(self.client, url + "/query",
-                            {"where": "1=1", "returnIdsOnly": "true", "f": "json"})  # fmt: skip
+            try:
+                body = get_json(self.client, url + "/query",
+                                {"where": "1=1", "returnIdsOnly": "true", "f": "json"})  # fmt: skip
+            except Exception as exc:  # one dead layer must not stop the plan
+                print(f"skip {item_id}: {str(exc)[:80]}", flush=True)
+                continue
+            if "error" in body:
+                print(f"skip {item_id}: {body['error']}", flush=True)
+                continue
             ids = sorted(int(x) for x in body.get("objectIds") or [])
             for w in _id_windows(ids, self.page_size):
                 yield {"item": item_id, **w}

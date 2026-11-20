@@ -212,3 +212,15 @@ def test_zone_field_fallback_skips_geometry_and_ids() -> None:
         pick_zone_field(["OBJECTID", "Shape_Area_Zone", "ZoneDistrictLabel"]) == "ZoneDistrictLabel"
     )
     assert pick_zone_field(["OBJECTID", "ZONE_ID", "OverlayZone"]) is None
+
+
+def test_local_plan_skips_layers_that_error(tmp_path: Path) -> None:
+    cat = {"loadable_license_classes": ["open"], "layers": [
+        {"item_id": "a", "title": "Zoning", "access": "", "license_class": "open",
+         "state_fips": "54", "layer_url": "https://services1.arcgis.com/a/FeatureServer/0",
+         "order_by": "FID", "fields": {}}], "review": [], "excluded": []}  # fmt: skip
+    path = tmp_path / "local.json"
+    path.write_text(json.dumps(cat))
+    _Local.catalog_path = path
+    assert list(_Local(_client({"returnIdsOnly": {"error": {"code": 500}}})).partitions()) == []
+    assert list(_Local(_client({})).partitions()) == []  # 404 everywhere
