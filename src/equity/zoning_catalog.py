@@ -108,6 +108,19 @@ def pick_field(fields: Sequence[str], preferred: Sequence[str]) -> str | None:
     return None
 
 
+def pick_zone_field(fields: Sequence[str]) -> str | None:
+    """The zone-code field: a preferred name, else the first name containing ZON that is not
+    a geometry, date or id column."""
+    exact = pick_field(fields, CODE_FIELDS)
+    if exact is not None:
+        return exact
+    for f in fields:
+        u = f.upper()
+        if "ZON" in u and not re.search(r"SHAPE|AREA|LEN|DATE|_ID$|^ID|OVERLAY|ORD|URL|LINK", u):
+            return f
+    return None
+
+
 # --- Census state outlines (ESRI shapefile polygons, read without extra libraries) --------
 
 
@@ -199,7 +212,7 @@ def pick_layer(client: PoliteClient, service_url: str) -> dict[str, Any] | None:
         url = f"{service_url.rstrip('/')}/{lyr['id']}"
         meta = get_json(client, url, {"f": "json"})
         names = [f["name"] for f in meta.get("fields") or []]
-        code = pick_field(names, CODE_FIELDS)
+        code = pick_zone_field(names)
         if code is None:
             continue
         return {
@@ -302,7 +315,8 @@ def main(argv: list[str] | None = None) -> int:
 
     cat = build(client, states, cache, save)
     save(cache)
-    args.out.write_text(json.dumps(cat, indent=1, sort_keys=True) + "\n")
+    # Compact JSON keeps the catalog under the repo's 1 MB tracked-file limit.
+    args.out.write_text(json.dumps(cat, sort_keys=True, separators=(",", ":")) + "\n")
     print(f"{len(cat['layers'])} loadable, {len(cat['review'])} to review, "
           f"{len(cat['excluded'])} excluded -> {args.out}")  # fmt: skip
     return 0

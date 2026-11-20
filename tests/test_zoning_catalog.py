@@ -202,3 +202,13 @@ def test_build_reuses_cached_service_reads() -> None:
     states = [StateShape("54", (0, 0, 10, 10), (SQUARE,))]
     cat = build(_client(routes), states, cache)
     assert cat["layers"][0]["fields"] == {"zone_code": "ZONING"}
+
+
+def test_zone_field_fallback_skips_geometry_and_ids() -> None:
+    from equity.zoning_catalog import pick_zone_field
+
+    assert pick_zone_field(["OBJECTID", "ZONING"]) == "ZONING"
+    assert (
+        pick_zone_field(["OBJECTID", "Shape_Area_Zone", "ZoneDistrictLabel"]) == "ZoneDistrictLabel"
+    )
+    assert pick_zone_field(["OBJECTID", "ZONE_ID", "OverlayZone"]) is None
