@@ -526,6 +526,29 @@ def test_id_range_error_is_reported(tmp_path: Path) -> None:
         list(named(client).partitions())
 
 
+def test_refused_statistics_fall_back_to_the_id_list(tmp_path: Path) -> None:
+    """MARIS (Mississippi) answers 400 to outStatistics but serves returnIdsOnly."""
+    from collections.abc import Mapping as _M
+
+    from equity.adapters.http import PoliteClient
+
+    def transport(url: str, headers: _M[str, str], timeout: float) -> tuple[int, bytes, str]:
+        if url.endswith("robots.txt"):
+            return 404, b"", ""
+        if "outStatistics" in url:
+            body: dict[str, Any] = {"error": {"code": 400, "message": "Unable to complete"}}
+        else:
+            body = {"objectIdFieldName": "OID", "objectIds": [9, 0, 1, 2, 3, 4, 5, 6, 7, 8]}
+        return 200, json.dumps(body).encode(), "application/json"
+
+    cfg = load_config(_cfg(tmp_path, partition_window=4))
+    client = PoliteClient(min_interval_s=0, transport=transport, sleep=lambda s: None)
+    assert list(adapter_for(cfg)(client).partitions()) == [
+        {"oid_min": "0", "oid_max": "4"},
+        {"oid_min": "4", "oid_max": "8"},
+        {"oid_min": "8", "oid_max": "10"}]  # fmt: skip
+
+
 def test_homestead_values() -> None:
     from equity.adapters.state_parcels import parse_homestead
 

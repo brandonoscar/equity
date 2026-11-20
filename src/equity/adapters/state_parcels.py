@@ -436,7 +436,15 @@ class StateParcelAdapter(ArcGISCountyAdapter):
             }
             body = get_json(self.client, url + "/query", params)
             if "features" not in body:
-                raise StateConfigError(f"id range for {url}: {body.get('error', body)}")
+                # Some servers (e.g. MARIS for Mississippi) refuse statistics queries but answer
+                # returnIdsOnly. Cut windows from the id list instead; fail only if both refuse.
+                ids = self._id_list(url)
+                if ids is None:
+                    raise StateConfigError(
+                        f"id range for {url}: {body.get('error', body)}; id list refused too"
+                    )
+                yield from ({**base, **w} for w in _id_windows(ids, window))
+                continue
             raw_attrs = body["features"][0]["attributes"]
             attrs = {str(k).lower(): v for k, v in raw_attrs.items()}  # some servers upper-case
             lo, hi = int(attrs["lo"]), int(attrs["hi"])
@@ -454,13 +462,19 @@ class StateParcelAdapter(ArcGISCountyAdapter):
         resp = self.client.get(url + "/query", params)
         return int(json.loads(resp.content).get("count") or 0)
 
-    def _dense_windows(self, url: str, window: int) -> Iterator[dict[str, str]]:
+    def _id_list(self, url: str) -> list[int] | None:
+        """Every object id in the layer (one returnIdsOnly request), or None if refused."""
         params = {"where": self.config.base_filter or "1=1", "returnIdsOnly": "true", "f": "json"}
-        resp = self.client.get(url + "/query", params)
-        ids = sorted(int(i) for i in json.loads(resp.content).get("objectIds") or [])
-        for i in range(0, len(ids), window):
-            chunk = ids[i : i + window]
-            yield {"oid_min": str(chunk[0]), "oid_max": str(chunk[-1] + 1)}
+        body = get_json(self.client, url + "/query", params)
+        if "error" in body:
+            return None
+        return sorted(int(i) for i in body.get("objectIds") or [])
+
+    def _dense_windows(self, url: str, window: int) -> Iterator[dict[str, str]]:
+        ids = self._id_list(url)
+        if ids is None:
+            raise StateConfigError(f"id list for {url} refused")
+        yield from _id_windows(ids, window)
 
     def fetch(self, request: FetchRequest) -> Fetched:
         """Like the base fetch, but on the requested layer and honoring `paginate`."""
@@ -646,3 +660,10 @@ def config_paths(*dirs: Path) -> list[Path]:
 
 def all_state_adapters(*dirs: Path) -> list[type[StateParcelAdapter]]:
     return [adapter_for(load_config(p)) for p in config_paths(*dirs)]
+
+
+def _id_windows(ids: list[int], window: int) -> Iterator[dict[str, str]]:
+    """Half-open oid windows holding at most `window` actual ids each."""
+    for i in range(0, len(ids), window):
+        chunk = ids[i : i + window]
+        yield {"oid_min": str(chunk[0]), "oid_max": str(chunk[-1] + 1)}
