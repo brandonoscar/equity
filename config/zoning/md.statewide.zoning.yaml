@@ -1,0 +1,15 @@
+source_id: md.statewide.zoning
+state: MD
+layers:
+  - https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/Generalized_Zoning_2025_Draft/FeatureServer/0
+page_size: 1000
+fields:
+  jurisdiction: MUNICIPALITY_NAME
+  zone_code: ZONING
+  zone_desc: GENZONE
+  zone_class: GENZONE_CAT
+terms:
+  url: https://planning.maryland.gov/
+  summary: "Maryland Generalized Zoning 2025, Maryland Dept. of Planning (ArcGIS Online mirror of mdpgis.mdp.state.md.us): county zoning in 11 generalized classes plus municipal annexations through Sept 2025. State of Maryland disclaimer only ('as is'); no reuse restriction found."
+  checked_on: 2026-11-20
+  cost_model: free

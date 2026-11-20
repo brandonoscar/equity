@@ -1,0 +1,14 @@
+source_id: vt.statewide.zoning
+state: VT
+layers:
+  - https://services1.arcgis.com/rnCtPMpypTkqwvYT/arcgis/rest/services/Vermont_Zoning_Public_View/FeatureServer/8
+page_size: 1000
+fields:
+  jurisdiction: JXTN
+  zone_code: ABB_DIST_NAME
+  zone_desc: DIST_NAME
+terms:
+  url: https://files.vcgi.vermont.gov/other/policies/vermont-open-geodata-policy.html
+  summary: "Vermont Zoning Public View, Agency of Commerce and Community Development (from the UVM Vermont Zoning Atlas). ArcGIS licenseInfo empty; UVM's related web map is marked CC BY; Vermont Open Geodata Policy: no cost, no login."
+  checked_on: 2026-11-20
+  cost_model: free

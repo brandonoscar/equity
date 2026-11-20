@@ -20,6 +20,7 @@ from equity.adapters.tx.stratmap import TexasStratMapParcels
 from equity.adapters.wv.delinquent import WVDelinquentProperties
 from equity.adapters.wv.parcelweb import MonongaliaParcelWeb
 from equity.adapters.wv.statewide_parcels import WVStatewideParcels
+from equity.adapters.zoning import all_zoning_adapters
 
 _ALL: tuple[type[Adapter], ...] = (
     WVStatewideParcels,
@@ -28,6 +29,7 @@ _ALL: tuple[type[Adapter], ...] = (
     NDWVDistrictRSS,
     NDWVBankruptcyRSS,
     *all_state_adapters(),
+    *all_zoning_adapters(),
     TexasStratMapParcels,
     AcrisRealProperty,
     AcrisPersonalProperty,

@@ -1,0 +1,15 @@
+source_id: nh.statewide.zoning
+state: NH
+layers:
+  - https://services1.arcgis.com/aguSsLS841Hp3EC4/arcgis/rest/services/NH_Zoning_Atlas_Full_Districts/FeatureServer/0
+page_size: 1000
+fields:
+  jurisdiction: Jurisdiction
+  zone_code: AbbreviatedDistrict
+  zone_desc: Full_District_Name
+  zone_class: Type_of_Zoning_District
+terms:
+  url: https://www.anselm.edu/
+  summary: "New Hampshire Zoning Atlas Full Districts, Saint Anselm College Center for Ethics in Society (National Zoning Atlas method; regulatory attributes kept in the raw response). 'Informational only', no liability; no reuse restriction found."
+  checked_on: 2026-11-20
+  cost_model: free

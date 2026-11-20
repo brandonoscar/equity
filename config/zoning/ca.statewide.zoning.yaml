@@ -1,0 +1,16 @@
+source_id: ca.statewide.zoning
+state: CA
+layers:
+  - https://services8.arcgis.com/Xr1lDrwMv89PhjD9/arcgis/rest/services/California_Statewide_Zoning_North/FeatureServer/1
+  - https://services8.arcgis.com/Xr1lDrwMv89PhjD9/arcgis/rest/services/California_Statewide_Zoning_South/FeatureServer/0
+page_size: 1000
+fields:
+  jurisdiction: Jurisdiction
+  zone_code: Code
+  zone_desc: Description
+  zone_class: New_Class
+terms:
+  url: https://data.ca.gov/
+  summary: "California Statewide Zoning North/South, Governor's Office of Land Use and Climate Innovation (formerly OPR): 535 of 539 jurisdictions, zoning transferred onto assessor parcel shapes (2024-10-17 data). ArcGIS licenseInfo empty; data.gov lists 'License not specified'; description is a disclaimer ('provided as a public service, for informational purposes only'). Free, no login."
+  checked_on: 2026-11-20
+  cost_model: free

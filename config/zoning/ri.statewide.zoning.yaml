@@ -1,0 +1,15 @@
+source_id: ri.statewide.zoning
+state: RI
+layers:
+  - https://services2.arcgis.com/S8zZg9pg23JUEexQ/arcgis/rest/services/RI_Zoning/FeatureServer/1
+page_size: 1000
+fields:
+  jurisdiction: MUNI_NAME
+  zone_code: ZONE_CODE
+  zone_desc: ZONE_DESC
+  zone_class: CZONE_CODE
+terms:
+  url: https://www.rigis.org/
+  summary: "Rhode Island Municipal Zoning Classifications, RIGIS / URI EDC (Land Use 2050), all 39 municipalities. Shared under the RIGIS license agreement: as-is; acknowledge RIGIS and the producer in derived products."
+  checked_on: 2026-11-20
+  cost_model: free

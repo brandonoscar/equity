@@ -1,0 +1,71 @@
+{
+ "features": [
+  {
+   "attributes": {
+    "ABBREVIATION": "H",
+    "ACRES": 0.00046969,
+    "GENZONE": "COMMERCIAL",
+    "GENZONE_CAT": "https://planning.maryland.gov/Documents/OurProducts/GeneralizedZoningAttributeData_WEB.pdf",
+    "JURSCODE": "WASH",
+    "MUNICIPALITY_NAME": "HAGERSTOWN",
+    "OBJECTID": 6587,
+    "OVERLAY": " ",
+    "Shape__Area": 1.9007568359375,
+    "Shape__Length": 35.45098347405563,
+    "Source": "https://planning.maryland.gov/Documents/Offsite/2021-GenZone-Dataset-info.pdf",
+    "UPDATEYR": "20200000",
+    "ZONING": "H-CG"
+   },
+   "geometry": {
+    "rings": [
+     [
+      [
+       -77.7042929314534,
+       39.6281599497718
+      ],
+      [
+       -77.7042989456633,
+       39.6281481060766
+      ],
+      [
+       -77.7043010098472,
+       39.6281524512143
+      ],
+      [
+       -77.7042750142875,
+       39.6282008192925
+      ],
+      [
+       -77.7042929314534,
+       39.6281599497718
+      ]
+     ],
+     [
+      [
+       -77.7043582298669,
+       39.6284155222424
+      ],
+      [
+       -77.7044103774871,
+       39.6283209287174
+      ],
+      [
+       -77.7044113516755,
+       39.6283214416916
+      ],
+      [
+       -77.7044047848789,
+       39.6283337020976
+      ],
+      [
+       -77.7043582298669,
+       39.6284155222424
+      ]
+     ]
+    ]
+   }
+  }
+ ],
+ "layer": "https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/Generalized_Zoning_2025_Draft/FeatureServer/0",
+ "where": "OBJECTID>=6587 AND OBJECTID<6588"
+}
