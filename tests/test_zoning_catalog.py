@@ -187,8 +187,8 @@ def test_local_adapter_plans_fetches_and_normalizes(tmp_path: Path) -> None:
     rows = [r.row for r in a.normalize(f) if r.table == "zoning_district"]
     assert [(r["zone_uid"], r["zone_code"], r["jurisdiction_name"], r["jurisdiction"])
             for r in rows] == [("a-3", "R-1", "Town of X", "54")]  # fmt: skip
-    gone = Fetched(a.source_id, "x", datetime(2026, 11, 20, tzinfo=UTC), 200,
-                   json.dumps({"item": "old", "features": feats}).encode(), "")  # fmt: skip
+    old = json.dumps({"layer": "https://gone.test/0", "features": feats}).encode()
+    gone = Fetched(a.source_id, "x", datetime(2026, 11, 20, tzinfo=UTC), 200, old, "")
     assert list(a.normalize(gone)) == []
     assert a.health().ok and a.source_row()["kind"] == "zoning"
 

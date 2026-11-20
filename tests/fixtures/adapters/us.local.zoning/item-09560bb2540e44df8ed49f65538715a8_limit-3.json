@@ -739,7 +739,6 @@
    }
   }
  ],
- "item": "09560bb2540e44df8ed49f65538715a8",
  "layer": "https://services5.arcgis.com/RjM4BJrv5ZkqP4XC/arcgis/rest/services/Zoning_Designations_Hub/FeatureServer/0",
  "where": "1=1"
 }

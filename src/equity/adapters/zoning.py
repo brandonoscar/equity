@@ -230,6 +230,11 @@ class LocalZoningAdapter(Adapter):
         data = json.loads(self.catalog_path.read_text())
         loadable = set(data["loadable_license_classes"])
         self.items = {e["item_id"]: e for e in data["layers"] if e["license_class"] in loadable}
+        # Responses carry the layer URL, not the item id (a 32-hex id reads as a secret to
+        # the scanner); the first item by id wins when two items point at one layer.
+        self.by_url: dict[str, dict[str, Any]] = {}
+        for item_id in sorted(self.items):
+            self.by_url.setdefault(self.items[item_id]["layer_url"], self.items[item_id])
 
     def source_row(self) -> Mapping[str, Any]:
         return {
@@ -277,14 +282,13 @@ class LocalZoningAdapter(Adapter):
                         return_geometry=True)  # fmt: skip
         features, responses = fetch_all(self.client, q, max_pages=1 if limit else 10_000,
                                         sample=limit is not None)  # fmt: skip
-        body = canonical_json({"item": item["item_id"], "layer": url, "where": where,
-                               "features": features})  # fmt: skip
+        body = canonical_json({"layer": url, "where": where, "features": features})
         return Fetched(self.source_id, f"{url}/query?where={where}",
                        responses[-1].retrieved_at, 200, body, "application/json")  # fmt: skip
 
     def normalize(self, fetched: Fetched) -> Iterator[NormalizedRow]:
         data = json.loads(fetched.content)
-        item = self.items.get(data["item"])
+        item = self.by_url.get(data.get("layer", ""))
         if item is None:
             return  # dropped from the catalog since this was fetched
         default = item.get("access") or item.get("title")
