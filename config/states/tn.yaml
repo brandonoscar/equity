@@ -99,6 +99,7 @@ county:
     "WHITE": "185"
     "WILSON": "189"
 fields:
+  land_use_desc: LU_CLASSIFICATION
   situs_line1: ADDRESS
   situs_city: CITY
   situs_zip: ZIP

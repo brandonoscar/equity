@@ -587,3 +587,21 @@ def test_situs_owner_type_and_homestead_reach_the_rows(tmp_path: Path) -> None:
                                                           "situs_full": "SF"})))()  # fmt: skip
     assert full._situs({"SF": "5 OAK RD, ELKINS, WV 26241"})["line1"] == "5 OAK RD"
     assert full._situs({"SF": None}) is None
+
+
+def test_land_use_and_zoning_reach_the_parcel_rows(tmp_path: Path) -> None:
+    fields = {"parcel_id": "PID", "land_use_code": "LUC", "land_use_desc": "LUD", "zoning": "ZN"}
+    a = adapter_for(load_config(_cfg(tmp_path, fields=fields, county={"constant": "001"})))
+    out = _rows(a, [{"OID": 1, "PID": "1", "LUC": "0100", "LUD": " Single Family ", "ZN": "R-1"},
+                    {"OID": 2, "PID": "2", "LUC": "", "LUD": None}])  # fmt: skip
+    parcels = {r["parid_raw"]: r for t, r in out if t == "parcel"}
+    assert (
+        parcels["1"]["land_use_code"],
+        parcels["1"]["land_use_desc"],
+        parcels["1"]["zoning"],
+    ) == ("0100", "Single Family", "R-1")
+    assert (
+        parcels["2"]["land_use_code"],
+        parcels["2"]["land_use_desc"],
+        parcels["2"]["zoning"],
+    ) == (None, None, None)

@@ -7,14 +7,16 @@
    "Appraised_Total_Value": 1349400,
    "Deed_Book": null,
    "Deed_Page": null,
-   "OBJECTID": 217454962,
+   "Land_Use": "Rail / Bus / Air Terminal",
+   "OBJECTID": 217554755,
    "Owner_Address": "5837 TEST ST",
    "Owner_City": "CHICAGO",
    "Owner_Name": "TESTOWNER 71704D INC",
    "Owner_State": "IL",
    "Owner_Zip": "60606",
    "Parcel_Address": "4686 TEST ST",
-   "Parcel_ID": "01038131017"
+   "Parcel_ID": "01038131017",
+   "Zoning_District": "TR"
   },
   {
    "Appraisal_Year": 2026,
@@ -23,14 +25,16 @@
    "Appraised_Total_Value": 1349400,
    "Deed_Book": null,
    "Deed_Page": null,
-   "OBJECTID": 217454963,
+   "Land_Use": "Rail / Bus / Air Terminal",
+   "OBJECTID": 217554756,
    "Owner_Address": "5837 TEST ST",
    "Owner_City": "CHICAGO",
    "Owner_Name": "TESTOWNER 71704D INC",
    "Owner_State": "IL",
    "Owner_Zip": "60606",
    "Parcel_Address": "4686 TEST ST",
-   "Parcel_ID": "01038131017"
+   "Parcel_ID": "01038131017",
+   "Zoning_District": "TR"
   },
   {
    "Appraisal_Year": 2026,
@@ -39,14 +43,16 @@
    "Appraised_Total_Value": 74600,
    "Deed_Book": 2026,
    "Deed_Page": 45290,
-   "OBJECTID": 217454964,
+   "Land_Use": "Residential Vacant Land",
+   "OBJECTID": 217554757,
    "Owner_Address": "3287 TEST ST",
    "Owner_City": "PALMER",
    "Owner_Name": "TESTOWNER 0758E8",
    "Owner_State": "AK",
    "Owner_Zip": "99645",
    "Parcel_Address": "1699 TEST ST",
-   "Parcel_ID": "00502115000"
+   "Parcel_ID": "00502115000",
+   "Zoning_District": "R2M"
   },
   {
    "Appraisal_Year": 2026,
@@ -55,14 +61,16 @@
    "Appraised_Total_Value": 680700,
    "Deed_Book": 2962,
    "Deed_Page": 120,
-   "OBJECTID": 217454965,
+   "Land_Use": "Residential 1 Family",
+   "OBJECTID": 217554758,
    "Owner_Address": "4717 TEST ST",
    "Owner_City": "ANCHORAGE",
    "Owner_Name": "TESTOWNER 7C7B0E",
    "Owner_State": "AK",
    "Owner_Zip": "99516-5035",
    "Parcel_Address": "7819 TEST ST",
-   "Parcel_ID": "02004124000"
+   "Parcel_ID": "02004124000",
+   "Zoning_District": "R6"
   },
   {
    "Appraisal_Year": 2026,
@@ -71,14 +79,16 @@
    "Appraised_Total_Value": 353800,
    "Deed_Book": 2471,
    "Deed_Page": 707,
-   "OBJECTID": 217454966,
+   "Land_Use": "Residential 1 Family",
+   "OBJECTID": 217554759,
    "Owner_Address": "5564 TEST ST",
    "Owner_City": "ANCHORAGE",
    "Owner_Name": "TESTOWNER 47DE34",
    "Owner_State": "AK",
    "Owner_Zip": "99502-3073",
    "Parcel_Address": "2721 TEST ST",
-   "Parcel_ID": "01215208000"
+   "Parcel_ID": "01215208000",
+   "Zoning_District": "R1"
   },
   {
    "Appraisal_Year": 2026,
@@ -87,14 +97,16 @@
    "Appraised_Total_Value": 483700,
    "Deed_Book": 2017,
    "Deed_Page": 9802,
-   "OBJECTID": 217454967,
+   "Land_Use": "Office Bldg - low rise 1-4 lvls",
+   "OBJECTID": 217554760,
    "Owner_Address": "1867 TEST ST",
    "Owner_City": "ANCHORAGE",
    "Owner_Name": "TESTOWNER 89F38A LLC",
    "Owner_State": "AK",
    "Owner_Zip": "99503-2844",
    "Parcel_Address": "3977 TEST ST",
-   "Parcel_ID": "00901454000"
+   "Parcel_ID": "00901454000",
+   "Zoning_District": "B3"
   },
   {
    "Appraisal_Year": 2026,
@@ -103,14 +115,16 @@
    "Appraised_Total_Value": 79600,
    "Deed_Book": 2025,
    "Deed_Page": 228430,
-   "OBJECTID": 217454968,
+   "Land_Use": "Residential Vacant Land",
+   "OBJECTID": 217554761,
    "Owner_Address": "4658 TEST ST",
    "Owner_City": "CHUGIAK",
    "Owner_Name": "TESTOWNER 8A1C3E",
    "Owner_State": "AK",
    "Owner_Zip": "99567-    ",
    "Parcel_Address": "9093 TEST ST",
-   "Parcel_ID": "05151104000"
+   "Parcel_ID": "05151104000",
+   "Zoning_District": "CER6"
   },
   {
    "Appraisal_Year": 2026,
@@ -119,14 +133,16 @@
    "Appraised_Total_Value": 493700,
    "Deed_Book": 2012,
    "Deed_Page": 29119,
-   "OBJECTID": 217454969,
+   "Land_Use": "Residential 1 Family",
+   "OBJECTID": 217554762,
    "Owner_Address": "2618 TEST ST",
    "Owner_City": "ANCHORAGE",
    "Owner_Name": "TESTOWNER C01F7A",
    "Owner_State": "AK",
    "Owner_Zip": "99518-1831",
    "Parcel_Address": "1484 TEST ST",
-   "Parcel_ID": "01301318000"
+   "Parcel_ID": "01301318000",
+   "Zoning_District": "R2M"
   },
   {
    "Appraisal_Year": 2026,
@@ -135,14 +151,16 @@
    "Appraised_Total_Value": 623700,
    "Deed_Book": 2025,
    "Deed_Page": 335370,
-   "OBJECTID": 217454970,
+   "Land_Use": "Residential 1 Family",
+   "OBJECTID": 217554763,
    "Owner_Address": "3546 TEST ST",
    "Owner_City": "ANCHORAGE",
    "Owner_Name": "TESTOWNER 5A42BD",
    "Owner_State": "AK",
    "Owner_Zip": "99504-    ",
    "Parcel_Address": "4986 TEST ST",
-   "Parcel_ID": "00621710000"
+   "Parcel_ID": "00621710000",
+   "Zoning_District": "R1"
   },
   {
    "Appraisal_Year": 2026,
@@ -151,14 +169,16 @@
    "Appraised_Total_Value": 541900,
    "Deed_Book": 2014,
    "Deed_Page": 12111,
-   "OBJECTID": 217454971,
+   "Land_Use": "Residential 1 Family",
+   "OBJECTID": 217554764,
    "Owner_Address": "2979 TEST ST",
    "Owner_City": "LONG BEACH",
    "Owner_Name": "TESTOWNER 97A9FC",
    "Owner_State": "CA",
    "Owner_Zip": "90802-4709",
    "Parcel_Address": "8780 TEST ST",
-   "Parcel_ID": "01253321000"
+   "Parcel_ID": "01253321000",
+   "Zoning_District": "PCD"
   },
   {
    "Appraisal_Year": 2026,
@@ -167,14 +187,16 @@
    "Appraised_Total_Value": 465300,
    "Deed_Book": 2026,
    "Deed_Page": 349880,
-   "OBJECTID": 217454972,
+   "Land_Use": "Residential 1 Family",
+   "OBJECTID": 217554765,
    "Owner_Address": "6754 TEST ST",
    "Owner_City": "ANCHORAGE",
    "Owner_Name": "TESTOWNER FAE16E",
    "Owner_State": "AK",
    "Owner_Zip": "99515-    ",
    "Parcel_Address": "8667 TEST ST",
-   "Parcel_ID": "01251454000"
+   "Parcel_ID": "01251454000",
+   "Zoning_District": "R1"
   },
   {
    "Appraisal_Year": 2026,
@@ -183,14 +205,16 @@
    "Appraised_Total_Value": 1013300,
    "Deed_Book": 2022,
    "Deed_Page": 13091,
-   "OBJECTID": 217454973,
+   "Land_Use": "Office / Warehouse",
+   "OBJECTID": 217554766,
    "Owner_Address": "8658 TEST ST",
    "Owner_City": "ANCHORAGE",
    "Owner_Name": "TESTOWNER 8987FA LLC",
    "Owner_State": "AK",
    "Owner_Zip": "99518-    ",
    "Parcel_Address": "8611 TEST ST",
-   "Parcel_ID": "01308229000"
+   "Parcel_ID": "01308229000",
+   "Zoning_District": "I1"
   },
   {
    "Appraisal_Year": 2026,
@@ -199,14 +223,16 @@
    "Appraised_Total_Value": 377000,
    "Deed_Book": 2026,
    "Deed_Page": 95170,
-   "OBJECTID": 217454974,
+   "Land_Use": "Residential 1 Family",
+   "OBJECTID": 217554767,
    "Owner_Address": "1997 TEST ST",
    "Owner_City": "ANCHORAGE",
    "Owner_Name": "TESTOWNER E3ECC3",
    "Owner_State": "AK",
    "Owner_Zip": "99508-    ",
    "Parcel_Address": "1081 TEST ST",
-   "Parcel_ID": "00326442000"
+   "Parcel_ID": "00326442000",
+   "Zoning_District": "R2D"
   },
   {
    "Appraisal_Year": 2026,
@@ -215,14 +241,16 @@
    "Appraised_Total_Value": 2426400,
    "Deed_Book": null,
    "Deed_Page": null,
-   "OBJECTID": 217454975,
+   "Land_Use": "Residential Vacant Land",
+   "OBJECTID": 217554768,
    "Owner_Address": "6406 TEST ST",
    "Owner_City": "ANCHORAGE",
    "Owner_Name": "TESTOWNER FC0B9A",
    "Owner_State": "AK",
    "Owner_Zip": "99501-3579",
    "Parcel_Address": null,
-   "Parcel_ID": "01822102000"
+   "Parcel_ID": "01822102000",
+   "Zoning_District": "PLI"
   },
   {
    "Appraisal_Year": 2026,
@@ -231,14 +259,16 @@
    "Appraised_Total_Value": 360200,
    "Deed_Book": 2026,
    "Deed_Page": 320190,
-   "OBJECTID": 217454976,
+   "Land_Use": "Residential 1 Family",
+   "OBJECTID": 217554769,
    "Owner_Address": "3262 TEST ST",
    "Owner_City": "ANCHORAGE",
    "Owner_Name": "TESTOWNER 22FB11",
    "Owner_State": "AK",
    "Owner_Zip": "99502-2102",
    "Parcel_Address": "2531 TEST ST",
-   "Parcel_ID": "01205310000"
+   "Parcel_ID": "01205310000",
+   "Zoning_District": "R1"
   },
   {
    "Appraisal_Year": 2026,
@@ -247,14 +277,16 @@
    "Appraised_Total_Value": 382000,
    "Deed_Book": 2025,
    "Deed_Page": 20001,
-   "OBJECTID": 217454977,
+   "Land_Use": "Residential 1 Family",
+   "OBJECTID": 217554770,
    "Owner_Address": "7981 TEST ST",
    "Owner_City": "ANCHORAGE",
    "Owner_Name": "TESTOWNER D4C2D5",
    "Owner_State": "AK",
    "Owner_Zip": "99503-6946",
    "Parcel_Address": "1079 TEST ST",
-   "Parcel_ID": "01033724000"
+   "Parcel_ID": "01033724000",
+   "Zoning_District": "R1"
   },
   {
    "Appraisal_Year": 2026,
@@ -263,14 +295,16 @@
    "Appraised_Total_Value": 374000,
    "Deed_Book": 2024,
    "Deed_Page": 12470,
-   "OBJECTID": 217454978,
+   "Land_Use": "Residential 1 Family",
+   "OBJECTID": 217554771,
    "Owner_Address": "1673 TEST ST",
    "Owner_City": "ANCHORAGE",
    "Owner_Name": "TESTOWNER B19BD9",
    "Owner_State": "AK",
    "Owner_Zip": "99508",
    "Parcel_Address": "3650 TEST ST",
-   "Parcel_ID": "00505322000"
+   "Parcel_ID": "00505322000",
+   "Zoning_District": "R2D"
   },
   {
    "Appraisal_Year": 2026,
@@ -279,14 +313,16 @@
    "Appraised_Total_Value": 571700,
    "Deed_Book": 2004,
    "Deed_Page": 75259,
-   "OBJECTID": 217454979,
+   "Land_Use": "Apartments - Garden",
+   "OBJECTID": 217554772,
    "Owner_Address": "8212 TEST ST",
    "Owner_City": "ANCHORAGE",
    "Owner_Name": "TESTOWNER 7D55AB",
    "Owner_State": "AK",
    "Owner_Zip": "99503",
    "Parcel_Address": "4430 TEST ST",
-   "Parcel_ID": "00512285000"
+   "Parcel_ID": "00512285000",
+   "Zoning_District": "R2M"
   },
   {
    "Appraisal_Year": 2026,
@@ -295,14 +331,16 @@
    "Appraised_Total_Value": 583800,
    "Deed_Book": 3621,
    "Deed_Page": 766,
-   "OBJECTID": 217454980,
+   "Land_Use": "Residential 1 Family",
+   "OBJECTID": 217554773,
    "Owner_Address": "121 TEST ST",
    "Owner_City": "GIRDWOOD",
    "Owner_Name": "TESTOWNER D71318",
    "Owner_State": "AK",
    "Owner_Zip": "99587-1218",
    "Parcel_Address": "1138 TEST ST",
-   "Parcel_ID": "07601136000"
+   "Parcel_ID": "07601136000",
+   "Zoning_District": "GR2"
   },
   {
    "Appraisal_Year": 2026,
@@ -311,14 +349,16 @@
    "Appraised_Total_Value": 577100,
    "Deed_Book": 1934,
    "Deed_Page": 114,
-   "OBJECTID": 217454981,
+   "Land_Use": "Residential 1 Family",
+   "OBJECTID": 217554774,
    "Owner_Address": "132 TEST ST",
    "Owner_City": "ANCHORAGE",
    "Owner_Name": "TESTOWNER 466C49",
    "Owner_State": "AK",
    "Owner_Zip": "99516-3556",
    "Parcel_Address": "6690 TEST ST",
-   "Parcel_ID": "01839171000"
+   "Parcel_ID": "01839171000",
+   "Zoning_District": "R1A"
   },
   {
    "Appraisal_Year": 2026,
@@ -327,14 +367,16 @@
    "Appraised_Total_Value": 0,
    "Deed_Book": null,
    "Deed_Page": null,
-   "OBJECTID": 217454982,
+   "Land_Use": "Lease Master",
+   "OBJECTID": 217554775,
    "Owner_Address": "4520 TEST ST",
    "Owner_City": "ANCHORAGE",
    "Owner_Name": "TESTOWNER 777D51",
    "Owner_State": "AK",
    "Owner_Zip": "99519-6650",
    "Parcel_Address": "4211 TEST ST",
-   "Parcel_ID": "00309464000"
+   "Parcel_ID": "00309464000",
+   "Zoning_District": "I1"
   },
   {
    "Appraisal_Year": 2026,
@@ -343,14 +385,16 @@
    "Appraised_Total_Value": 178700,
    "Deed_Book": null,
    "Deed_Page": null,
-   "OBJECTID": 217454983,
+   "Land_Use": "Parking Miscellaneous",
+   "OBJECTID": 217554776,
    "Owner_Address": "6188 TEST ST",
    "Owner_City": "ANCHORAGE",
    "Owner_Name": "TESTOWNER CB4A06",
    "Owner_State": "AK",
    "Owner_Zip": "99513-7587",
    "Parcel_Address": "1699 TEST ST",
-   "Parcel_ID": "00309464001"
+   "Parcel_ID": "00309464001",
+   "Zoning_District": "I1"
   },
   {
    "Appraisal_Year": 2026,
@@ -359,14 +403,16 @@
    "Appraised_Total_Value": 885000,
    "Deed_Book": 2014,
    "Deed_Page": 17095,
-   "OBJECTID": 217454984,
+   "Land_Use": "Residential 1 Family",
+   "OBJECTID": 217554777,
    "Owner_Address": "6662 TEST ST",
    "Owner_City": "ANCHORAGE",
    "Owner_Name": "TESTOWNER AF9088",
    "Owner_State": "AK",
    "Owner_Zip": "99507-4389",
    "Parcel_Address": "6538 TEST ST",
-   "Parcel_ID": "01504441000"
+   "Parcel_ID": "01504441000",
+   "Zoning_District": "R1ASL"
   },
   {
    "Appraisal_Year": 2026,
@@ -375,14 +421,16 @@
    "Appraised_Total_Value": 740600,
    "Deed_Book": 2017,
    "Deed_Page": 39935,
-   "OBJECTID": 217454985,
+   "Land_Use": "Residential 1 Family",
+   "OBJECTID": 217554778,
    "Owner_Address": "4420 TEST ST",
    "Owner_City": "ANCHORAGE",
    "Owner_Name": "TESTOWNER 3DB0D6",
    "Owner_State": "AK",
    "Owner_Zip": "99516",
    "Parcel_Address": "8852 TEST ST",
-   "Parcel_ID": "01553522000"
+   "Parcel_ID": "01553522000",
+   "Zoning_District": "R1SL"
   },
   {
    "Appraisal_Year": 2026,
@@ -391,14 +439,16 @@
    "Appraised_Total_Value": 821400,
    "Deed_Book": 2004,
    "Deed_Page": 8908,
-   "OBJECTID": 217454986,
+   "Land_Use": "Residential 1 Family",
+   "OBJECTID": 217554779,
    "Owner_Address": "445 TEST ST",
    "Owner_City": "EAGLE RIVER",
    "Owner_Name": "TESTOWNER 63B7F7",
    "Owner_State": "AK",
    "Owner_Zip": "99577-9487",
    "Parcel_Address": "5713 TEST ST",
-   "Parcel_ID": "05092140000"
+   "Parcel_ID": "05092140000",
+   "Zoning_District": "CER1SL"
   }
  ],
  "layer": "https://services2.arcgis.com/Ce3DhLRthdwbHlfF/arcgis/rest/services/PropertyInformation_Hosted/FeatureServer/0",

@@ -12,6 +12,7 @@ county:
   format: code_map
   code_map: {"Hawaii": "001", "Honolulu": "003", "Kauai": "007", "Maui": "009"}
 fields:
+  zoning: zone
   parcel_id: tmk_txt
 value_basis: "no value, owner or tax-year fields in this layer (boundaries and TMK ids only); owner and assessed values are in each county's real property assessment data"
 terms:

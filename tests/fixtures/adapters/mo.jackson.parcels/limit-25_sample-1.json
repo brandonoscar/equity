@@ -2,6 +2,8 @@
  "attributes": [
   {
    "ASDVAL": 27804,
+   "LUC": "4120",
+   "LUC_DESC": "AG HOMESITE",
    "MKTVAL": 154724,
    "OBJECTID": 1,
    "OWNER_ADDRESS": "4705 TEST ST",
@@ -12,6 +14,8 @@
   },
   {
    "ASDVAL": 25650,
+   "LUC": "1112",
+   "LUC_DESC": "SF CONDO",
    "MKTVAL": 135000,
    "OBJECTID": 2,
    "OWNER_ADDRESS": "3519 TEST ST",
@@ -22,6 +26,8 @@
   },
   {
    "ASDVAL": 2,
+   "LUC": "1114",
+   "LUC_DESC": "SF CONDO VACANT",
    "MKTVAL": 10,
    "OBJECTID": 3,
    "OWNER_ADDRESS": "3908 TEST ST",
@@ -32,6 +38,8 @@
   },
   {
    "ASDVAL": 2,
+   "LUC": "1115",
+   "LUC_DESC": "SF CONDO IMPR.",
    "MKTVAL": 10,
    "OBJECTID": 4,
    "OWNER_ADDRESS": "4141 TEST ST",
@@ -42,6 +50,8 @@
   },
   {
    "ASDVAL": 22864,
+   "LUC": "1110",
+   "LUC_DESC": "SF RESIDENCE",
    "MKTVAL": 120340,
    "OBJECTID": 5,
    "OWNER_ADDRESS": "1440 TEST ST",
@@ -52,6 +62,8 @@
   },
   {
    "ASDVAL": 33611,
+   "LUC": "1112",
+   "LUC_DESC": "SF CONDO",
    "MKTVAL": 176900,
    "OBJECTID": 6,
    "OWNER_ADDRESS": "1128 TEST ST",
@@ -62,6 +74,8 @@
   },
   {
    "ASDVAL": 34305,
+   "LUC": "1112",
+   "LUC_DESC": "SF CONDO",
    "MKTVAL": 180550,
    "OBJECTID": 7,
    "OWNER_ADDRESS": "3400 TEST ST",
@@ -72,6 +86,8 @@
   },
   {
    "ASDVAL": 2,
+   "LUC": "1114",
+   "LUC_DESC": "SF CONDO VACANT",
    "MKTVAL": 10,
    "OBJECTID": 8,
    "OWNER_ADDRESS": "6474 TEST ST",
@@ -82,6 +98,8 @@
   },
   {
    "ASDVAL": 29380,
+   "LUC": "1112",
+   "LUC_DESC": "SF CONDO",
    "MKTVAL": 154630,
    "OBJECTID": 9,
    "OWNER_ADDRESS": "4622 TEST ST",
@@ -92,6 +110,8 @@
   },
   {
    "ASDVAL": 28405,
+   "LUC": "1112",
+   "LUC_DESC": "SF CONDO",
    "MKTVAL": 149500,
    "OBJECTID": 10,
    "OWNER_ADDRESS": "1267 TEST ST",
@@ -102,6 +122,8 @@
   },
   {
    "ASDVAL": 33611,
+   "LUC": "1112",
+   "LUC_DESC": "SF CONDO",
    "MKTVAL": 176900,
    "OBJECTID": 11,
    "OWNER_ADDRESS": "1128 TEST ST",
@@ -112,6 +134,8 @@
   },
   {
    "ASDVAL": 61750,
+   "LUC": "1110",
+   "LUC_DESC": "SF RESIDENCE",
    "MKTVAL": 325000,
    "OBJECTID": 12,
    "OWNER_ADDRESS": "930 TEST ST",
@@ -122,6 +146,8 @@
   },
   {
    "ASDVAL": 368,
+   "LUC": "2101",
+   "LUC_DESC": "UNIMP. COMM LAN",
    "MKTVAL": 1150,
    "OBJECTID": 13,
    "OWNER_ADDRESS": "225 TEST ST",
@@ -132,6 +158,8 @@
   },
   {
    "ASDVAL": 75918,
+   "LUC": "3215",
+   "LUC_DESC": "WAREHOUSE-STORA",
    "MKTVAL": 237244,
    "OBJECTID": 14,
    "OWNER_ADDRESS": "414 TEST ST",
@@ -142,6 +170,8 @@
   },
   {
    "ASDVAL": 35397,
+   "LUC": "1112",
+   "LUC_DESC": "SF CONDO",
    "MKTVAL": 186300,
    "OBJECTID": 15,
    "OWNER_ADDRESS": "4005 TEST ST",
@@ -152,6 +182,8 @@
   },
   {
    "ASDVAL": 25650,
+   "LUC": "1112",
+   "LUC_DESC": "SF CONDO",
    "MKTVAL": 135000,
    "OBJECTID": 16,
    "OWNER_ADDRESS": "3519 TEST ST",
@@ -162,6 +194,8 @@
   },
   {
    "ASDVAL": 2,
+   "LUC": "1114",
+   "LUC_DESC": "SF CONDO VACANT",
    "MKTVAL": 10,
    "OBJECTID": 17,
    "OWNER_ADDRESS": "3908 TEST ST",
@@ -172,6 +206,8 @@
   },
   {
    "ASDVAL": 179400,
+   "LUC": "2235",
+   "LUC_DESC": "MISC. SERVICE",
    "MKTVAL": 560625,
    "OBJECTID": 18,
    "OWNER_ADDRESS": "4269 TEST ST",
@@ -182,6 +218,8 @@
   },
   {
    "ASDVAL": 42917,
+   "LUC": "1112",
+   "LUC_DESC": "SF CONDO",
    "MKTVAL": 225880,
    "OBJECTID": 19,
    "OWNER_ADDRESS": "3365 TEST ST",
@@ -192,6 +230,8 @@
   },
   {
    "ASDVAL": 2,
+   "LUC": "1114",
+   "LUC_DESC": "SF CONDO VACANT",
    "MKTVAL": 10,
    "OBJECTID": 20,
    "OWNER_ADDRESS": "6474 TEST ST",
@@ -202,6 +242,8 @@
   },
   {
    "ASDVAL": 31911,
+   "LUC": "1112",
+   "LUC_DESC": "SF CONDO",
    "MKTVAL": 167950,
    "OBJECTID": 21,
    "OWNER_ADDRESS": "8053 TEST ST",
@@ -212,6 +254,8 @@
   },
   {
    "ASDVAL": 33611,
+   "LUC": "1112",
+   "LUC_DESC": "SF CONDO",
    "MKTVAL": 176900,
    "OBJECTID": 22,
    "OWNER_ADDRESS": "911 TEST ST",
@@ -222,6 +266,8 @@
   },
   {
    "ASDVAL": 15381,
+   "LUC": "1112",
+   "LUC_DESC": "SF CONDO",
    "MKTVAL": 80950,
    "OBJECTID": 23,
    "OWNER_ADDRESS": "343 TEST ST",
@@ -232,6 +278,8 @@
   },
   {
    "ASDVAL": 15124,
+   "LUC": "1112",
+   "LUC_DESC": "SF CONDO",
    "MKTVAL": 79600,
    "OBJECTID": 24,
    "OWNER_ADDRESS": "343 TEST ST",
@@ -242,6 +290,8 @@
   },
   {
    "ASDVAL": 483200,
+   "LUC": "3215",
+   "LUC_DESC": "WAREHOUSE-STORA",
    "MKTVAL": 1510000,
    "OBJECTID": 25,
    "OWNER_ADDRESS": "5269 TEST ST",

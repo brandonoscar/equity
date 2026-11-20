@@ -7,6 +7,7 @@
    "PARCEL_ADD": null,
    "PARCEL_CITY": "",
    "PARCEL_ID": "0101160001",
+   "PROP_CLASS": "Vacant",
    "TOTAL_MKT_VALUE": 75600
   },
   {
@@ -16,6 +17,7 @@
    "PARCEL_ADD": null,
    "PARCEL_CITY": "",
    "PARCEL_ID": "0101160002",
+   "PROP_CLASS": "Vacant",
    "TOTAL_MKT_VALUE": 34790
   },
   {
@@ -25,6 +27,7 @@
    "PARCEL_ADD": null,
    "PARCEL_CITY": "",
    "PARCEL_ID": "0101160014",
+   "PROP_CLASS": "Vacant",
    "TOTAL_MKT_VALUE": 50
   },
   {
@@ -34,6 +37,7 @@
    "PARCEL_ADD": null,
    "PARCEL_CITY": "",
    "PARCEL_ID": "0101160004",
+   "PROP_CLASS": "Vacant",
    "TOTAL_MKT_VALUE": 26740
   },
   {
@@ -43,6 +47,7 @@
    "PARCEL_ADD": null,
    "PARCEL_CITY": "",
    "PARCEL_ID": "0101160005",
+   "PROP_CLASS": "Vacant",
    "TOTAL_MKT_VALUE": 57820
   },
   {
@@ -52,6 +57,7 @@
    "PARCEL_ADD": null,
    "PARCEL_CITY": "",
    "PARCEL_ID": "0101160006",
+   "PROP_CLASS": "Vacant",
    "TOTAL_MKT_VALUE": 87150
   },
   {
@@ -61,6 +67,7 @@
    "PARCEL_ADD": null,
    "PARCEL_CITY": "",
    "PARCEL_ID": "0101160007",
+   "PROP_CLASS": "Vacant",
    "TOTAL_MKT_VALUE": 144410
   },
   {
@@ -70,6 +77,7 @@
    "PARCEL_ADD": null,
    "PARCEL_CITY": "",
    "PARCEL_ID": "0101160008",
+   "PROP_CLASS": "Vacant",
    "TOTAL_MKT_VALUE": 55650
   },
   {
@@ -79,6 +87,7 @@
    "PARCEL_ADD": null,
    "PARCEL_CITY": "",
    "PARCEL_ID": "0101160009",
+   "PROP_CLASS": "Vacant",
    "TOTAL_MKT_VALUE": 122535
   },
   {
@@ -88,6 +97,7 @@
    "PARCEL_ADD": null,
    "PARCEL_CITY": "",
    "PARCEL_ID": "0101160011",
+   "PROP_CLASS": "Vacant",
    "TOTAL_MKT_VALUE": 33160
   },
   {
@@ -97,6 +107,7 @@
    "PARCEL_ADD": null,
    "PARCEL_CITY": "",
    "PARCEL_ID": "0101160012",
+   "PROP_CLASS": "Unknown",
    "TOTAL_MKT_VALUE": null
   },
   {
@@ -106,6 +117,7 @@
    "PARCEL_ADD": null,
    "PARCEL_CITY": "",
    "PARCEL_ID": "0101160013",
+   "PROP_CLASS": "Vacant",
    "TOTAL_MKT_VALUE": 5500
   },
   {
@@ -115,6 +127,7 @@
    "PARCEL_ADD": null,
    "PARCEL_CITY": "",
    "PARCEL_ID": "0101150001",
+   "PROP_CLASS": "Residential",
    "TOTAL_MKT_VALUE": 223741
   },
   {
@@ -124,6 +137,7 @@
    "PARCEL_ADD": null,
    "PARCEL_CITY": "",
    "PARCEL_ID": "0101150001",
+   "PROP_CLASS": "Residential",
    "TOTAL_MKT_VALUE": 223741
   },
   {
@@ -133,6 +147,7 @@
    "PARCEL_ADD": null,
    "PARCEL_CITY": "",
    "PARCEL_ID": "0101150001",
+   "PROP_CLASS": "Residential",
    "TOTAL_MKT_VALUE": 223741
   },
   {
@@ -142,6 +157,7 @@
    "PARCEL_ADD": null,
    "PARCEL_CITY": "",
    "PARCEL_ID": "0101150002",
+   "PROP_CLASS": "Vacant",
    "TOTAL_MKT_VALUE": 84350
   },
   {
@@ -151,6 +167,7 @@
    "PARCEL_ADD": null,
    "PARCEL_CITY": "",
    "PARCEL_ID": "0101150003",
+   "PROP_CLASS": "Unknown",
    "TOTAL_MKT_VALUE": 489208
   },
   {
@@ -160,6 +177,7 @@
    "PARCEL_ADD": null,
    "PARCEL_CITY": "",
    "PARCEL_ID": "0101150003",
+   "PROP_CLASS": "Unknown",
    "TOTAL_MKT_VALUE": 489208
   },
   {
@@ -169,6 +187,7 @@
    "PARCEL_ADD": null,
    "PARCEL_CITY": "",
    "PARCEL_ID": "0101150003",
+   "PROP_CLASS": "Unknown",
    "TOTAL_MKT_VALUE": 489208
   },
   {
@@ -178,6 +197,7 @@
    "PARCEL_ADD": null,
    "PARCEL_CITY": "",
    "PARCEL_ID": "0101150003",
+   "PROP_CLASS": "Unknown",
    "TOTAL_MKT_VALUE": 489208
   },
   {
@@ -187,6 +207,7 @@
    "PARCEL_ADD": null,
    "PARCEL_CITY": "",
    "PARCEL_ID": "0101150004",
+   "PROP_CLASS": "Vacant",
    "TOTAL_MKT_VALUE": 20650
   },
   {
@@ -196,6 +217,7 @@
    "PARCEL_ADD": null,
    "PARCEL_CITY": "",
    "PARCEL_ID": "0101150005",
+   "PROP_CLASS": "Vacant",
    "TOTAL_MKT_VALUE": 35000
   },
   {
@@ -205,6 +227,7 @@
    "PARCEL_ADD": null,
    "PARCEL_CITY": "",
    "PARCEL_ID": "0101150006",
+   "PROP_CLASS": "Vacant",
    "TOTAL_MKT_VALUE": 34790
   },
   {
@@ -214,6 +237,7 @@
    "PARCEL_ADD": null,
    "PARCEL_CITY": "",
    "PARCEL_ID": "0101150007",
+   "PROP_CLASS": "Vacant",
    "TOTAL_MKT_VALUE": 24300
   },
   {
@@ -223,6 +247,7 @@
    "PARCEL_ADD": null,
    "PARCEL_CITY": "",
    "PARCEL_ID": "0101150008",
+   "PROP_CLASS": "Vacant",
    "TOTAL_MKT_VALUE": 14200
   }
  ],

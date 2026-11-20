@@ -6,6 +6,7 @@ page_size: 1000          # maxRecordCount 2000
 min_interval_s: 1.0
 county: {constant: "125"}
 fields:
+  land_use_code: CLASSCODE
   situs_line1: SITEADDRESS
   situs_city: SITECITY
   situs_zip: SITEZIP5

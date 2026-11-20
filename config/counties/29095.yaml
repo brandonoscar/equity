@@ -12,6 +12,8 @@ county: {constant: "095"}
 # HIDENAME='Y' on 11 rows (name suppression flag); excluded conservatively.
 filter: "HIDENAME IS NULL OR HIDENAME <> 'Y'"
 fields:
+  land_use_code: LUC
+  land_use_desc: LUC_DESC
   situs_line1: PARCEL_ADDRESS
   parcel_id: PARID
   owner1: OWNER_NAMES      # comma-joined owner list with trailing blanks, e.g. 'NAME, , '

@@ -78,6 +78,7 @@ county:
     "76": "131"   # Walton
     "77": "133"   # Washington
 fields:
+  land_use_code: DOR_UC
   situs_line1: PHY_ADDR1
   situs_city: PHY_CITY
   situs_zip: PHY_ZIPCD

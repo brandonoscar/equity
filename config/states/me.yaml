@@ -335,6 +335,8 @@ county:
     "31270": "031"
     "31280": "031"
 fields:
+  land_use_code: LAND_USE
+  land_use_desc: LAND_USE_D
   parcel_id: STATE_ID         # "<GEOCODE>_<MAP_BK_LOT>", statewide
   owner1: OWNER1
   owner2: OWNER2

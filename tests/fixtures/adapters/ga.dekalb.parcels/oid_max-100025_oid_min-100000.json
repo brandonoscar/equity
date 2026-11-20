@@ -14,7 +14,10 @@
    "PSTLZIP5": "90067",
    "SITEADDRESS": "1130 TEST ST",
    "TOTAPR1": 35000.0,
-   "ZIP": "30088"
+   "USECD": null,
+   "USEDSCRP": null,
+   "ZIP": "30088",
+   "ZONING": "RSM"
   },
   {
    "CITY": "Stone Mountain",
@@ -30,7 +33,10 @@
    "PSTLZIP5": "90067",
    "SITEADDRESS": "6702 TEST ST",
    "TOTAPR1": 35000.0,
-   "ZIP": "30088"
+   "USECD": null,
+   "USEDSCRP": null,
+   "ZIP": "30088",
+   "ZONING": "RSM"
   },
   {
    "CITY": "Stone Mountain",
@@ -46,7 +52,10 @@
    "PSTLZIP5": "90067",
    "SITEADDRESS": "5599 TEST ST",
    "TOTAPR1": 35000.0,
-   "ZIP": "30088"
+   "USECD": null,
+   "USEDSCRP": null,
+   "ZIP": "30088",
+   "ZONING": "RSM"
   },
   {
    "CITY": "Stone Mountain",
@@ -62,7 +71,10 @@
    "PSTLZIP5": "90067",
    "SITEADDRESS": "6856 TEST ST",
    "TOTAPR1": 35000.0,
-   "ZIP": "30088"
+   "USECD": null,
+   "USEDSCRP": null,
+   "ZIP": "30088",
+   "ZONING": "RSM"
   },
   {
    "CITY": "Stone Mountain",
@@ -78,7 +90,10 @@
    "PSTLZIP5": "90067",
    "SITEADDRESS": "3071 TEST ST",
    "TOTAPR1": 35000.0,
-   "ZIP": "30088"
+   "USECD": null,
+   "USEDSCRP": null,
+   "ZIP": "30088",
+   "ZONING": "RSM"
   },
   {
    "CITY": "Stone Mountain",
@@ -94,7 +109,10 @@
    "PSTLZIP5": "90067",
    "SITEADDRESS": "1832 TEST ST",
    "TOTAPR1": 35000.0,
-   "ZIP": "30088"
+   "USECD": null,
+   "USEDSCRP": null,
+   "ZIP": "30088",
+   "ZONING": "RSM"
   },
   {
    "CITY": "Stone Mountain",
@@ -110,7 +128,10 @@
    "PSTLZIP5": "90067",
    "SITEADDRESS": "8510 TEST ST",
    "TOTAPR1": 35000.0,
-   "ZIP": "30088"
+   "USECD": null,
+   "USEDSCRP": null,
+   "ZIP": "30088",
+   "ZONING": "RSM"
   },
   {
    "CITY": "Stone Mountain",
@@ -126,7 +147,10 @@
    "PSTLZIP5": "90067",
    "SITEADDRESS": "4763 TEST ST",
    "TOTAPR1": 35000.0,
-   "ZIP": "30088"
+   "USECD": null,
+   "USEDSCRP": null,
+   "ZIP": "30088",
+   "ZONING": "RSM"
   },
   {
    "CITY": "Stone Mountain",
@@ -142,7 +166,10 @@
    "PSTLZIP5": "90067",
    "SITEADDRESS": "8389 TEST ST",
    "TOTAPR1": 35000.0,
-   "ZIP": "30088"
+   "USECD": null,
+   "USEDSCRP": null,
+   "ZIP": "30088",
+   "ZONING": "RSM"
   },
   {
    "CITY": "Stone Mountain",
@@ -158,7 +185,10 @@
    "PSTLZIP5": "90067",
    "SITEADDRESS": "799 TEST ST",
    "TOTAPR1": 35000.0,
-   "ZIP": "30088"
+   "USECD": null,
+   "USEDSCRP": null,
+   "ZIP": "30088",
+   "ZONING": "RSM"
   },
   {
    "CITY": "Stone Mountain",
@@ -174,7 +204,10 @@
    "PSTLZIP5": "90067",
    "SITEADDRESS": "6972 TEST ST",
    "TOTAPR1": 35000.0,
-   "ZIP": "30088"
+   "USECD": null,
+   "USEDSCRP": null,
+   "ZIP": "30088",
+   "ZONING": "RSM"
   },
   {
    "CITY": "Stone Mountain",
@@ -190,7 +223,10 @@
    "PSTLZIP5": "90067",
    "SITEADDRESS": "7337 TEST ST",
    "TOTAPR1": 35000.0,
-   "ZIP": "30088"
+   "USECD": null,
+   "USEDSCRP": null,
+   "ZIP": "30088",
+   "ZONING": "RSM"
   },
   {
    "CITY": "Stone Mountain",
@@ -206,7 +242,10 @@
    "PSTLZIP5": "90067",
    "SITEADDRESS": "3069 TEST ST",
    "TOTAPR1": 35000.0,
-   "ZIP": "30088"
+   "USECD": null,
+   "USEDSCRP": null,
+   "ZIP": "30088",
+   "ZONING": "RSM"
   },
   {
    "CITY": "Stone Mountain",
@@ -222,7 +261,10 @@
    "PSTLZIP5": "90067",
    "SITEADDRESS": "6611 TEST ST",
    "TOTAPR1": 35000.0,
-   "ZIP": "30088"
+   "USECD": null,
+   "USEDSCRP": null,
+   "ZIP": "30088",
+   "ZONING": "RSM"
   },
   {
    "CITY": "Stone Mountain",
@@ -238,7 +280,10 @@
    "PSTLZIP5": "90067",
    "SITEADDRESS": "6829 TEST ST",
    "TOTAPR1": 35000.0,
-   "ZIP": "30088"
+   "USECD": null,
+   "USEDSCRP": null,
+   "ZIP": "30088",
+   "ZONING": "RSM"
   },
   {
    "CITY": "Stone Mountain",
@@ -254,7 +299,10 @@
    "PSTLZIP5": "90067",
    "SITEADDRESS": "7489 TEST ST",
    "TOTAPR1": 35000.0,
-   "ZIP": "30088"
+   "USECD": null,
+   "USEDSCRP": null,
+   "ZIP": "30088",
+   "ZONING": "RSM"
   },
   {
    "CITY": "Stone Mountain",
@@ -270,7 +318,10 @@
    "PSTLZIP5": "90067",
    "SITEADDRESS": "5687 TEST ST",
    "TOTAPR1": 35000.0,
-   "ZIP": "30088"
+   "USECD": null,
+   "USEDSCRP": null,
+   "ZIP": "30088",
+   "ZONING": "RSM"
   },
   {
    "CITY": "Stone Mountain",
@@ -286,7 +337,10 @@
    "PSTLZIP5": "90067",
    "SITEADDRESS": "6615 TEST ST",
    "TOTAPR1": 35000.0,
-   "ZIP": "30088"
+   "USECD": null,
+   "USEDSCRP": null,
+   "ZIP": "30088",
+   "ZONING": "RSM"
   },
   {
    "CITY": "Stone Mountain",
@@ -302,7 +356,10 @@
    "PSTLZIP5": "90067",
    "SITEADDRESS": "6872 TEST ST",
    "TOTAPR1": 35000.0,
-   "ZIP": "30088"
+   "USECD": null,
+   "USEDSCRP": null,
+   "ZIP": "30088",
+   "ZONING": "RSM"
   },
   {
    "CITY": "Stone Mountain",
@@ -318,7 +375,10 @@
    "PSTLZIP5": "90067",
    "SITEADDRESS": "5717 TEST ST",
    "TOTAPR1": 35000.0,
-   "ZIP": "30088"
+   "USECD": null,
+   "USEDSCRP": null,
+   "ZIP": "30088",
+   "ZONING": "RSM"
   },
   {
    "CITY": "Stone Mountain",
@@ -334,7 +394,10 @@
    "PSTLZIP5": "90067",
    "SITEADDRESS": "6548 TEST ST",
    "TOTAPR1": 35000.0,
-   "ZIP": "30088"
+   "USECD": null,
+   "USEDSCRP": null,
+   "ZIP": "30088",
+   "ZONING": "RSM"
   },
   {
    "CITY": "Stone Mountain",
@@ -350,7 +413,10 @@
    "PSTLZIP5": "90067",
    "SITEADDRESS": "6900 TEST ST",
    "TOTAPR1": 35000.0,
-   "ZIP": "30088"
+   "USECD": null,
+   "USEDSCRP": null,
+   "ZIP": "30088",
+   "ZONING": "RSM"
   },
   {
    "CITY": "Stone Mountain",
@@ -366,7 +432,10 @@
    "PSTLZIP5": "90067",
    "SITEADDRESS": "4928 TEST ST",
    "TOTAPR1": 35000.0,
-   "ZIP": "30088"
+   "USECD": null,
+   "USEDSCRP": null,
+   "ZIP": "30088",
+   "ZONING": "RSM"
   },
   {
    "CITY": "Stone Mountain",
@@ -382,7 +451,10 @@
    "PSTLZIP5": "90067",
    "SITEADDRESS": "2712 TEST ST",
    "TOTAPR1": 35000.0,
-   "ZIP": "30088"
+   "USECD": null,
+   "USEDSCRP": null,
+   "ZIP": "30088",
+   "ZONING": "RSM"
   },
   {
    "CITY": "Stone Mountain",
@@ -398,7 +470,10 @@
    "PSTLZIP5": "90067",
    "SITEADDRESS": "9088 TEST ST",
    "TOTAPR1": 35000.0,
-   "ZIP": "30088"
+   "USECD": null,
+   "USEDSCRP": null,
+   "ZIP": "30088",
+   "ZONING": "RSM"
   }
  ],
  "layer": "https://dcgis.dekalbcountyga.gov/hosted/rest/services/PropertyAppraisal/Parcels_IASWorld/FeatureServer/0",

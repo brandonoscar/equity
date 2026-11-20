@@ -6,6 +6,7 @@ page_size: 1000          # maxRecordCount 2000
 min_interval_s: 1.0
 county: {constant: "099"}
 fields:
+  zoning: zoning
   situs_line1: propstreetcombined
   parcel_id: TAX_ID
   owner1: ownername1

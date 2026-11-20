@@ -7,6 +7,7 @@ min_interval_s: 1.0
 county: {constant: "045"}
 use_restrictions: [no_resale]
 fields:
+  land_use_code: LANDUSE
   parcel_id: PIN
   owner1: OWNAM1
   owner2: OWNAM2           # NAMECO (care-of name) is not mapped

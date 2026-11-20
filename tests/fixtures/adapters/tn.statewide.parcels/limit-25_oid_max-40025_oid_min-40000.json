@@ -8,6 +8,7 @@
    "GISLINK": "002028    01400",
    "IMPVALUE": 473700.0,
    "LANDVALUE": 124500.0,
+   "LU_CLASSIFICATION": "11",
    "OBJECTID": 40000,
    "ZIP": "37180"
   },
@@ -19,6 +20,7 @@
    "GISLINK": "002028    01401",
    "IMPVALUE": 13200.0,
    "LANDVALUE": 35500.0,
+   "LU_CLASSIFICATION": "11",
    "OBJECTID": 40001,
    "ZIP": "37180"
   },
@@ -30,6 +32,7 @@
    "GISLINK": "002028    01500",
    "IMPVALUE": 99600.0,
    "LANDVALUE": 47600.0,
+   "LU_CLASSIFICATION": "1",
    "OBJECTID": 40002,
    "ZIP": "37180"
   },
@@ -41,6 +44,7 @@
    "GISLINK": "002028    01501",
    "IMPVALUE": 154000.0,
    "LANDVALUE": 43000.0,
+   "LU_CLASSIFICATION": "1",
    "OBJECTID": 40003,
    "ZIP": "37180"
   },
@@ -52,6 +56,7 @@
    "GISLINK": "002028    01502",
    "IMPVALUE": 1200.0,
    "LANDVALUE": 84200.0,
+   "LU_CLASSIFICATION": "52",
    "OBJECTID": 40004,
    "ZIP": null
   },
@@ -63,6 +68,7 @@
    "GISLINK": "002028    01600",
    "IMPVALUE": 0.0,
    "LANDVALUE": 0.0,
+   "LU_CLASSIFICATION": "31",
    "OBJECTID": 40005,
    "ZIP": "37160"
   },
@@ -74,6 +80,7 @@
    "GISLINK": "002028    01700",
    "IMPVALUE": 425600.0,
    "LANDVALUE": 431300.0,
+   "LU_CLASSIFICATION": "62",
    "OBJECTID": 40006,
    "ZIP": "37160"
   },
@@ -85,6 +92,7 @@
    "GISLINK": "002028    01701",
    "IMPVALUE": 95300.0,
    "LANDVALUE": 46900.0,
+   "LU_CLASSIFICATION": "11",
    "OBJECTID": 40007,
    "ZIP": "37160"
   },
@@ -96,6 +104,7 @@
    "GISLINK": "002028    01702",
    "IMPVALUE": 119600.0,
    "LANDVALUE": 113500.0,
+   "LU_CLASSIFICATION": "2",
    "OBJECTID": 40008,
    "ZIP": "37180"
   },
@@ -107,6 +116,7 @@
    "GISLINK": "002028    01704",
    "IMPVALUE": 283600.0,
    "LANDVALUE": 76700.0,
+   "LU_CLASSIFICATION": "2",
    "OBJECTID": 40009,
    "ZIP": null
   },
@@ -118,6 +128,7 @@
    "GISLINK": "002028    01800",
    "IMPVALUE": 21900.0,
    "LANDVALUE": 49200.0,
+   "LU_CLASSIFICATION": "1",
    "OBJECTID": 40010,
    "ZIP": null
   },
@@ -129,6 +140,7 @@
    "GISLINK": "002028    01801",
    "IMPVALUE": 0.0,
    "LANDVALUE": 193000.0,
+   "LU_CLASSIFICATION": "61",
    "OBJECTID": 40011,
    "ZIP": "37180"
   },
@@ -140,6 +152,7 @@
    "GISLINK": "002028    01900",
    "IMPVALUE": 575000.0,
    "LANDVALUE": 450200.0,
+   "LU_CLASSIFICATION": "62",
    "OBJECTID": 40012,
    "ZIP": "37180"
   },
@@ -151,6 +164,7 @@
    "GISLINK": "002028    02000",
    "IMPVALUE": 98500.0,
    "LANDVALUE": 365500.0,
+   "LU_CLASSIFICATION": "62",
    "OBJECTID": 40013,
    "ZIP": "37180"
   },
@@ -162,6 +176,7 @@
    "GISLINK": "002028    02100",
    "IMPVALUE": 129300.0,
    "LANDVALUE": 108900.0,
+   "LU_CLASSIFICATION": "2",
    "OBJECTID": 40014,
    "ZIP": "37180"
   },
@@ -173,6 +188,7 @@
    "GISLINK": "002028    02101",
    "IMPVALUE": 0.0,
    "LANDVALUE": 85700.0,
+   "LU_CLASSIFICATION": "52",
    "OBJECTID": 40015,
    "ZIP": null
   },
@@ -184,6 +200,7 @@
    "GISLINK": "002028    02102",
    "IMPVALUE": 0.0,
    "LANDVALUE": 74700.0,
+   "LU_CLASSIFICATION": "52",
    "OBJECTID": 40016,
    "ZIP": null
   },
@@ -195,6 +212,7 @@
    "GISLINK": "002028    02103",
    "IMPVALUE": 0.0,
    "LANDVALUE": 74600.0,
+   "LU_CLASSIFICATION": "52",
    "OBJECTID": 40017,
    "ZIP": null
   },
@@ -206,6 +224,7 @@
    "GISLINK": "002028    02104",
    "IMPVALUE": 0.0,
    "LANDVALUE": 74700.0,
+   "LU_CLASSIFICATION": "52",
    "OBJECTID": 40018,
    "ZIP": null
   },
@@ -217,6 +236,7 @@
    "GISLINK": "002028    02200",
    "IMPVALUE": 256700.0,
    "LANDVALUE": 202100.0,
+   "LU_CLASSIFICATION": "62",
    "OBJECTID": 40019,
    "ZIP": "37160"
   },
@@ -228,6 +248,7 @@
    "GISLINK": "002028    02201",
    "IMPVALUE": 0.0,
    "LANDVALUE": 70000.0,
+   "LU_CLASSIFICATION": "31",
    "OBJECTID": 40020,
    "ZIP": null
   },
@@ -239,6 +260,7 @@
    "GISLINK": "002028    02202",
    "IMPVALUE": 0.0,
    "LANDVALUE": 446800.0,
+   "LU_CLASSIFICATION": "31",
    "OBJECTID": 40021,
    "ZIP": "37160"
   },
@@ -250,6 +272,7 @@
    "GISLINK": "002028    02203",
    "IMPVALUE": 0.0,
    "LANDVALUE": 21800.0,
+   "LU_CLASSIFICATION": "51",
    "OBJECTID": 40022,
    "ZIP": null
   },
@@ -261,6 +284,7 @@
    "GISLINK": "002028    02300",
    "IMPVALUE": 0.0,
    "LANDVALUE": 109900.0,
+   "LU_CLASSIFICATION": "52",
    "OBJECTID": 40023,
    "ZIP": "37180"
   },
@@ -272,6 +296,7 @@
    "GISLINK": "002028    02301",
    "IMPVALUE": 55400.0,
    "LANDVALUE": 137800.0,
+   "LU_CLASSIFICATION": "2",
    "OBJECTID": 40024,
    "ZIP": "37180"
   }

@@ -3,6 +3,7 @@
   {
    "OBJECTID": 1,
    "PIN": "871431476003",
+   "class_subc": "R",
    "deedhold_1": "TESTOWNER 4C4364",
    "deedholder": "TESTOWNER D07DBA",
    "landval": 72000,
@@ -13,6 +14,7 @@
   {
    "OBJECTID": 2,
    "PIN": "871434451003",
+   "class_subc": "R",
    "deedhold_1": " ",
    "deedholder": "TESTOWNER 736128",
    "landval": 73500,
@@ -23,6 +25,7 @@
   {
    "OBJECTID": 3,
    "PIN": "871435351003",
+   "class_subc": "R",
    "deedhold_1": "TESTOWNER E86240",
    "deedholder": "TESTOWNER 489A57",
    "landval": 80500,
@@ -33,6 +36,7 @@
   {
    "OBJECTID": 4,
    "PIN": "871433476004",
+   "class_subc": "A",
    "deedhold_1": "TESTOWNER 403FE6",
    "deedholder": "TESTOWNER 0C7385",
    "landval": 85250,
@@ -43,6 +47,7 @@
   {
    "OBJECTID": 5,
    "PIN": "871431351001",
+   "class_subc": "A",
    "deedhold_1": "TESTOWNER 68C079",
    "deedholder": "TESTOWNER 7B37D8",
    "landval": 101270,
@@ -53,6 +58,7 @@
   {
    "OBJECTID": 6,
    "PIN": "871431376001",
+   "class_subc": "A",
    "deedhold_1": "TESTOWNER 68C079",
    "deedholder": "TESTOWNER 7B37D8",
    "landval": 101300,
@@ -63,6 +69,7 @@
   {
    "OBJECTID": 7,
    "PIN": "871431451001",
+   "class_subc": "A",
    "deedhold_1": "TESTOWNER 68C079",
    "deedholder": "TESTOWNER 7B37D8",
    "landval": 91630,
@@ -73,6 +80,7 @@
   {
    "OBJECTID": 8,
    "PIN": "871333351003",
+   "class_subc": "A",
    "deedhold_1": "TESTOWNER 11D36B",
    "deedholder": "TESTOWNER 625BFB",
    "landval": 20270,
@@ -83,6 +91,7 @@
   {
    "OBJECTID": 9,
    "PIN": "871431476002",
+   "class_subc": "A",
    "deedhold_1": " ",
    "deedholder": "TESTOWNER 9ADE82 LLC",
    "landval": 95530,
@@ -93,6 +102,7 @@
   {
    "OBJECTID": 10,
    "PIN": "871432351001",
+   "class_subc": "A",
    "deedhold_1": " ",
    "deedholder": "TESTOWNER 9ADE82 LLC",
    "landval": 105840,
@@ -103,6 +113,7 @@
   {
    "OBJECTID": 11,
    "PIN": "871432376001",
+   "class_subc": "A",
    "deedhold_1": " ",
    "deedholder": "TESTOWNER 9ADE82 LLC",
    "landval": 109980,
@@ -113,6 +124,7 @@
   {
    "OBJECTID": 12,
    "PIN": "871432451001",
+   "class_subc": "A",
    "deedhold_1": " ",
    "deedholder": "TESTOWNER E44711",
    "landval": 111870,
@@ -123,6 +135,7 @@
   {
    "OBJECTID": 13,
    "PIN": "871432476001",
+   "class_subc": "A",
    "deedhold_1": " ",
    "deedholder": "TESTOWNER E44711",
    "landval": 108300,
@@ -133,6 +146,7 @@
   {
    "OBJECTID": 14,
    "PIN": "871433351001",
+   "class_subc": "A",
    "deedhold_1": " ",
    "deedholder": "TESTOWNER 5871AC",
    "landval": 104610,
@@ -143,6 +157,7 @@
   {
    "OBJECTID": 15,
    "PIN": "871433376001",
+   "class_subc": "A",
    "deedhold_1": " ",
    "deedholder": "TESTOWNER 5871AC",
    "landval": 99660,
@@ -153,6 +168,7 @@
   {
    "OBJECTID": 16,
    "PIN": "871433451002",
+   "class_subc": "A",
    "deedhold_1": " ",
    "deedholder": "TESTOWNER 654498 LLC",
    "landval": 51910,
@@ -163,6 +179,7 @@
   {
    "OBJECTID": 17,
    "PIN": "871433476002",
+   "class_subc": "A",
    "deedhold_1": " ",
    "deedholder": "TESTOWNER 654498 LLC",
    "landval": 52150,
@@ -173,6 +190,7 @@
   {
    "OBJECTID": 18,
    "PIN": "871434351001",
+   "class_subc": "A",
    "deedhold_1": " ",
    "deedholder": "TESTOWNER E1020F",
    "landval": 105360,
@@ -183,6 +201,7 @@
   {
    "OBJECTID": 19,
    "PIN": "871434376001",
+   "class_subc": "A",
    "deedhold_1": "TESTOWNER BB6BEE",
    "deedholder": "TESTOWNER E5B8BE",
    "landval": 95190,
@@ -193,6 +212,7 @@
   {
    "OBJECTID": 20,
    "PIN": "871436351003",
+   "class_subc": "R",
    "deedhold_1": " ",
    "deedholder": "TESTOWNER 33A04B",
    "landval": 102600,
@@ -203,6 +223,7 @@
   {
    "OBJECTID": 21,
    "PIN": "871434451001",
+   "class_subc": "A",
    "deedhold_1": "TESTOWNER BB6BEE",
    "deedholder": "TESTOWNER E5B8BE",
    "landval": 50250,
@@ -213,6 +234,7 @@
   {
    "OBJECTID": 22,
    "PIN": "871434451004",
+   "class_subc": "A",
    "deedhold_1": "TESTOWNER DC72EC",
    "deedholder": "TESTOWNER EFE5BF",
    "landval": 8740,
@@ -223,6 +245,7 @@
   {
    "OBJECTID": 23,
    "PIN": "871434451005",
+   "class_subc": "A",
    "deedhold_1": " ",
    "deedholder": "TESTOWNER A9FE71",
    "landval": 141270,
@@ -233,6 +256,7 @@
   {
    "OBJECTID": 24,
    "PIN": "871435351002",
+   "class_subc": "A",
    "deedhold_1": "TESTOWNER FDB510",
    "deedholder": "TESTOWNER 2B3FCB",
    "landval": 91890,
@@ -243,6 +267,7 @@
   {
    "OBJECTID": 25,
    "PIN": "871435376001",
+   "class_subc": "A",
    "deedhold_1": "TESTOWNER FDB510",
    "deedholder": "TESTOWNER 2B3FCB",
    "landval": 53760,

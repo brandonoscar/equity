@@ -10,6 +10,9 @@ page_size: 2000          # maxRecordCount 2000
 min_interval_s: 1.0
 county: {constant: "047"}
 fields:
+  land_use_code: PROPCLASS
+  land_use_desc: PRPCLSDESC
+  zoning: ZONECODE
   situs_line1: SITUS
   parcel_id: TAXLOT
   land_value: RMVLND

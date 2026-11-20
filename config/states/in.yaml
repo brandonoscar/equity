@@ -9,6 +9,7 @@ county:
   field: county_fips
   format: fips5
 fields:
+  land_use_code: dlgf_prop_class_code
   situs_line1: prop_add
   situs_city: prop_city
   situs_zip: prop_zip

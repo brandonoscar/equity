@@ -2,6 +2,7 @@
  "attributes": [
   {
    "Address": "1784 TEST ST",
+   "LUCode": "100",
    "OBJECTID": 1,
    "Owner": "TESTOWNER C6E3D1",
    "OwnerAddr1": "TESTOWNER B4345B",
@@ -10,6 +11,7 @@
   },
   {
    "Address": "1784 TEST ST",
+   "LUCode": "100",
    "OBJECTID": 2,
    "Owner": "TESTOWNER 0C5F3F",
    "OwnerAddr1": "TESTOWNER 2A9F50",
@@ -18,6 +20,7 @@
   },
   {
    "Address": "1784 TEST ST",
+   "LUCode": "100",
    "OBJECTID": 3,
    "Owner": "TESTOWNER 720289",
    "OwnerAddr1": "TESTOWNER B4345B",
@@ -26,6 +29,7 @@
   },
   {
    "Address": "7265 TEST ST",
+   "LUCode": "101",
    "OBJECTID": 4,
    "Owner": "TESTOWNER B219DD",
    "OwnerAddr1": "TESTOWNER 96113E",
@@ -34,6 +38,7 @@
   },
   {
    "Address": "1378 TEST ST",
+   "LUCode": "101",
    "OBJECTID": 5,
    "Owner": "TESTOWNER BC5C69 LLC",
    "OwnerAddr1": "TESTOWNER DBDE9C",
@@ -42,6 +47,7 @@
   },
   {
    "Address": "907 TEST ST",
+   "LUCode": "101",
    "OBJECTID": 6,
    "Owner": "TESTOWNER 5EA7C1",
    "OwnerAddr1": "TESTOWNER CB7F4E",
@@ -50,6 +56,7 @@
   },
   {
    "Address": "1784 TEST ST",
+   "LUCode": "113",
    "OBJECTID": 7,
    "Owner": "TESTOWNER 11D1A7",
    "OwnerAddr1": "TESTOWNER 2238DB",
@@ -58,6 +65,7 @@
   },
   {
    "Address": "6549 TEST ST",
+   "LUCode": "101",
    "OBJECTID": 8,
    "Owner": "TESTOWNER 11D1A7",
    "OwnerAddr1": "TESTOWNER 2238DB",
@@ -66,6 +74,7 @@
   },
   {
    "Address": "6791 TEST ST",
+   "LUCode": "101",
    "OBJECTID": 9,
    "Owner": "TESTOWNER 024305",
    "OwnerAddr1": "TESTOWNER 30920A",
@@ -74,6 +83,7 @@
   },
   {
    "Address": "1784 TEST ST",
+   "LUCode": "100",
    "OBJECTID": 10,
    "Owner": "TESTOWNER ED12FB LLC",
    "OwnerAddr1": "TESTOWNER 32BD77",
@@ -82,6 +92,7 @@
   },
   {
    "Address": "7233 TEST ST",
+   "LUCode": "101",
    "OBJECTID": 11,
    "Owner": "TESTOWNER E1E8A0",
    "OwnerAddr1": "TESTOWNER 7C8116",
@@ -90,6 +101,7 @@
   },
   {
    "Address": "1819 TEST ST",
+   "LUCode": "101",
    "OBJECTID": 12,
    "Owner": "TESTOWNER DFF073 LLC",
    "OwnerAddr1": "TESTOWNER 809720",
@@ -98,6 +110,7 @@
   },
   {
    "Address": "4700 TEST ST",
+   "LUCode": "300",
    "OBJECTID": 13,
    "Owner": "TESTOWNER 8BF2B6",
    "OwnerAddr1": "TESTOWNER 54C781",
@@ -106,6 +119,7 @@
   },
   {
    "Address": "1784 TEST ST",
+   "LUCode": "113",
    "OBJECTID": 14,
    "Owner": "TESTOWNER DFF073 LLC",
    "OwnerAddr1": "TESTOWNER 809720",
@@ -114,6 +128,7 @@
   },
   {
    "Address": "3190 TEST ST",
+   "LUCode": "100",
    "OBJECTID": 15,
    "Owner": "TESTOWNER 153468",
    "OwnerAddr1": "TESTOWNER F5669E",
@@ -122,6 +137,7 @@
   },
   {
    "Address": "4240 TEST ST",
+   "LUCode": "101",
    "OBJECTID": 16,
    "Owner": "TESTOWNER 22E5E1",
    "OwnerAddr1": "TESTOWNER BAE2DC",
@@ -130,6 +146,7 @@
   },
   {
    "Address": "1603 TEST ST",
+   "LUCode": "101",
    "OBJECTID": 17,
    "Owner": "TESTOWNER 992A7C",
    "OwnerAddr1": "TESTOWNER 6866E4",
@@ -138,6 +155,7 @@
   },
   {
    "Address": "2865 TEST ST",
+   "LUCode": "600",
    "OBJECTID": 18,
    "Owner": "TESTOWNER F1F46F",
    "OwnerAddr1": "TESTOWNER 045328",
@@ -146,6 +164,7 @@
   },
   {
    "Address": "3680 TEST ST",
+   "LUCode": "100",
    "OBJECTID": 19,
    "Owner": "TESTOWNER 809665",
    "OwnerAddr1": "TESTOWNER F8C5E2",
@@ -154,6 +173,7 @@
   },
   {
    "Address": "3680 TEST ST",
+   "LUCode": "100",
    "OBJECTID": 20,
    "Owner": "TESTOWNER 809665",
    "OwnerAddr1": "TESTOWNER F8C5E2",
@@ -162,6 +182,7 @@
   },
   {
    "Address": "9011 TEST ST",
+   "LUCode": "101",
    "OBJECTID": 21,
    "Owner": "TESTOWNER B3AB3F",
    "OwnerAddr1": "TESTOWNER F47D00",
@@ -170,6 +191,7 @@
   },
   {
    "Address": "4805 TEST ST",
+   "LUCode": "100",
    "OBJECTID": 22,
    "Owner": "TESTOWNER C26770",
    "OwnerAddr1": "TESTOWNER 09FF07",
@@ -178,6 +200,7 @@
   },
   {
    "Address": "6884 TEST ST",
+   "LUCode": "100",
    "OBJECTID": 23,
    "Owner": "TESTOWNER 1E8729",
    "OwnerAddr1": "TESTOWNER 77103C",
@@ -186,6 +209,7 @@
   },
   {
    "Address": "7020 TEST ST",
+   "LUCode": "101",
    "OBJECTID": 24,
    "Owner": "TESTOWNER F9F1B9",
    "OwnerAddr1": "TESTOWNER 6AF168",
@@ -194,6 +218,7 @@
   },
   {
    "Address": "2471 TEST ST",
+   "LUCode": "101",
    "OBJECTID": 25,
    "Owner": "TESTOWNER 86989F LLC",
    "OwnerAddr1": "TESTOWNER 83D21D",

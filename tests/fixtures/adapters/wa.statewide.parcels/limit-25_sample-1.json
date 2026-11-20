@@ -2,6 +2,7 @@
  "attributes": [
   {
    "COUNTY_NM": "1",
+   "LANDUSE_CD": 83,
    "OBJECTID": 1,
    "ORIG_PARCEL_ID": "2038010000001",
    "SITUS_ADDRESS": null,
@@ -12,6 +13,7 @@
   },
   {
    "COUNTY_NM": "1",
+   "LANDUSE_CD": 83,
    "OBJECTID": 2,
    "ORIG_PARCEL_ID": "2038020000001",
    "SITUS_ADDRESS": null,
@@ -22,6 +24,7 @@
   },
   {
    "COUNTY_NM": "1",
+   "LANDUSE_CD": 83,
    "OBJECTID": 3,
    "ORIG_PARCEL_ID": "2038030000001",
    "SITUS_ADDRESS": null,
@@ -32,6 +35,7 @@
   },
   {
    "COUNTY_NM": "1",
+   "LANDUSE_CD": 83,
    "OBJECTID": 4,
    "ORIG_PARCEL_ID": "2038040000001",
    "SITUS_ADDRESS": null,
@@ -42,6 +46,7 @@
   },
   {
    "COUNTY_NM": "1",
+   "LANDUSE_CD": 83,
    "OBJECTID": 5,
    "ORIG_PARCEL_ID": "2038050000001",
    "SITUS_ADDRESS": "3990 TEST ST",
@@ -52,6 +57,7 @@
   },
   {
    "COUNTY_NM": "1",
+   "LANDUSE_CD": 83,
    "OBJECTID": 6,
    "ORIG_PARCEL_ID": "2037020000001",
    "SITUS_ADDRESS": null,
@@ -62,6 +68,7 @@
   },
   {
    "COUNTY_NM": "1",
+   "LANDUSE_CD": 83,
    "OBJECTID": 7,
    "ORIG_PARCEL_ID": "2037030300001",
    "SITUS_ADDRESS": null,
@@ -72,6 +79,7 @@
   },
   {
    "COUNTY_NM": "1",
+   "LANDUSE_CD": 83,
    "OBJECTID": 8,
    "ORIG_PARCEL_ID": "2037030220001",
    "SITUS_ADDRESS": null,
@@ -82,6 +90,7 @@
   },
   {
    "COUNTY_NM": "1",
+   "LANDUSE_CD": 83,
    "OBJECTID": 9,
    "ORIG_PARCEL_ID": "2037040100001",
    "SITUS_ADDRESS": null,
@@ -92,6 +101,7 @@
   },
   {
    "COUNTY_NM": "1",
+   "LANDUSE_CD": 83,
    "OBJECTID": 10,
    "ORIG_PARCEL_ID": "2037050000001",
    "SITUS_ADDRESS": null,
@@ -102,6 +112,7 @@
   },
   {
    "COUNTY_NM": "1",
+   "LANDUSE_CD": 83,
    "OBJECTID": 11,
    "ORIG_PARCEL_ID": "2037060000001",
    "SITUS_ADDRESS": null,
@@ -112,6 +123,7 @@
   },
   {
    "COUNTY_NM": "1",
+   "LANDUSE_CD": 83,
    "OBJECTID": 12,
    "ORIG_PARCEL_ID": "2036030000001",
    "SITUS_ADDRESS": null,
@@ -122,6 +134,7 @@
   },
   {
    "COUNTY_NM": "1",
+   "LANDUSE_CD": 83,
    "OBJECTID": 13,
    "ORIG_PARCEL_ID": "2036040100001",
    "SITUS_ADDRESS": null,
@@ -132,6 +145,7 @@
   },
   {
    "COUNTY_NM": "1",
+   "LANDUSE_CD": 83,
    "OBJECTID": 14,
    "ORIG_PARCEL_ID": "2036050000001",
    "SITUS_ADDRESS": null,
@@ -142,6 +156,7 @@
   },
   {
    "COUNTY_NM": "1",
+   "LANDUSE_CD": 83,
    "OBJECTID": 15,
    "ORIG_PARCEL_ID": "2037040400001",
    "SITUS_ADDRESS": "3781 TEST ST",
@@ -152,6 +167,7 @@
   },
   {
    "COUNTY_NM": "1",
+   "LANDUSE_CD": 83,
    "OBJECTID": 16,
    "ORIG_PARCEL_ID": "2038110000001",
    "SITUS_ADDRESS": null,
@@ -162,6 +178,7 @@
   },
   {
    "COUNTY_NM": "1",
+   "LANDUSE_CD": 83,
    "OBJECTID": 17,
    "ORIG_PARCEL_ID": "2038100000001",
    "SITUS_ADDRESS": null,
@@ -172,6 +189,7 @@
   },
   {
    "COUNTY_NM": "1",
+   "LANDUSE_CD": 83,
    "OBJECTID": 18,
    "ORIG_PARCEL_ID": "2036040300001",
    "SITUS_ADDRESS": null,
@@ -182,6 +200,7 @@
   },
   {
    "COUNTY_NM": "1",
+   "LANDUSE_CD": 83,
    "OBJECTID": 19,
    "ORIG_PARCEL_ID": "2038090000001",
    "SITUS_ADDRESS": null,
@@ -192,6 +211,7 @@
   },
   {
    "COUNTY_NM": "1",
+   "LANDUSE_CD": 83,
    "OBJECTID": 20,
    "ORIG_PARCEL_ID": "2038080000001",
    "SITUS_ADDRESS": "908 TEST ST",
@@ -202,6 +222,7 @@
   },
   {
    "COUNTY_NM": "1",
+   "LANDUSE_CD": 83,
    "OBJECTID": 21,
    "ORIG_PARCEL_ID": "2037040330001",
    "SITUS_ADDRESS": null,
@@ -212,6 +233,7 @@
   },
   {
    "COUNTY_NM": "1",
+   "LANDUSE_CD": 93,
    "OBJECTID": 22,
    "ORIG_PARCEL_ID": "2038060330001",
    "SITUS_ADDRESS": null,
@@ -222,6 +244,7 @@
   },
   {
    "COUNTY_NM": "1",
+   "LANDUSE_CD": 93,
    "OBJECTID": 23,
    "ORIG_PARCEL_ID": "2038070220001",
    "SITUS_ADDRESS": null,
@@ -232,6 +255,7 @@
   },
   {
    "COUNTY_NM": "1",
+   "LANDUSE_CD": 83,
    "OBJECTID": 24,
    "ORIG_PARCEL_ID": "2037100100001",
    "SITUS_ADDRESS": null,
@@ -242,6 +266,7 @@
   },
   {
    "COUNTY_NM": "1",
+   "LANDUSE_CD": 83,
    "OBJECTID": 25,
    "ORIG_PARCEL_ID": "2037100200001",
    "SITUS_ADDRESS": null,

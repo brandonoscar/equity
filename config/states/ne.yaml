@@ -10,6 +10,8 @@ county:
   field: County_ID
   format: fips3
 fields:
+  land_use_code: Classification_Code
+  zoning: Zoning
   situs_line1: Situs_Address
   situs_city: Ph_City
   situs_zip: Ph_Zip5

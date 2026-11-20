@@ -2,6 +2,7 @@
  "attributes": [
   {
    "DwellingValue": null,
+   "LandUse": "Vacant",
    "LandValue": 3000,
    "MailAddress": "1246 TEST ST",
    "MailCity": "Richmond",
@@ -14,6 +15,7 @@
   },
   {
    "DwellingValue": 51000,
+   "LandUse": "Vacant",
    "LandValue": 728000,
    "MailAddress": "8897 TEST ST",
    "MailCity": "Richmond",
@@ -26,6 +28,7 @@
   },
   {
    "DwellingValue": 318000,
+   "LandUse": "Single Family",
    "LandValue": 328000,
    "MailAddress": "5660 TEST ST",
    "MailCity": "Richmond",
@@ -38,6 +41,7 @@
   },
   {
    "DwellingValue": 331000,
+   "LandUse": "Single Family",
    "LandValue": 164000,
    "MailAddress": "4942 TEST ST",
    "MailCity": "Richmond",
@@ -50,6 +54,7 @@
   },
   {
    "DwellingValue": 297000,
+   "LandUse": "Single Family",
    "LandValue": 154000,
    "MailAddress": "7366 TEST ST",
    "MailCity": "Wellysford",
@@ -62,6 +67,7 @@
   },
   {
    "DwellingValue": 818000,
+   "LandUse": "Single Family",
    "LandValue": 164000,
    "MailAddress": "7191 TEST ST",
    "MailCity": "Richmond",
@@ -74,6 +80,7 @@
   },
   {
    "DwellingValue": 810000,
+   "LandUse": "Single Family",
    "LandValue": 154000,
    "MailAddress": "6866 TEST ST",
    "MailCity": "Richmond",
@@ -86,6 +93,7 @@
   },
   {
    "DwellingValue": 438000,
+   "LandUse": "Single Family",
    "LandValue": 164000,
    "MailAddress": "7349 TEST ST",
    "MailCity": "Richmond",
@@ -98,6 +106,7 @@
   },
   {
    "DwellingValue": 376000,
+   "LandUse": "Single Family",
    "LandValue": 164000,
    "MailAddress": "573 TEST ST",
    "MailCity": "Richmond",
@@ -110,6 +119,7 @@
   },
   {
    "DwellingValue": 402000,
+   "LandUse": "Single Family",
    "LandValue": 164000,
    "MailAddress": "174 TEST ST",
    "MailCity": "Richmond",
@@ -122,6 +132,7 @@
   },
   {
    "DwellingValue": null,
+   "LandUse": "Vacant",
    "LandValue": 123000,
    "MailAddress": "8229 TEST ST",
    "MailCity": "Richmond",
@@ -134,6 +145,7 @@
   },
   {
    "DwellingValue": null,
+   "LandUse": "Vacant",
    "LandValue": 164000,
    "MailAddress": "611 TEST ST",
    "MailCity": "Powhatan",
@@ -146,6 +158,7 @@
   },
   {
    "DwellingValue": 318000,
+   "LandUse": "Single Family",
    "LandValue": 154000,
    "MailAddress": "8910 TEST ST",
    "MailCity": "Richmond",
@@ -158,6 +171,7 @@
   },
   {
    "DwellingValue": 1137000,
+   "LandUse": "Single Family",
    "LandValue": 976000,
    "MailAddress": "4417 TEST ST",
    "MailCity": "Richmond",
@@ -170,6 +184,7 @@
   },
   {
    "DwellingValue": 1311000,
+   "LandUse": "Single Family",
    "LandValue": 1071000,
    "MailAddress": "7288 TEST ST",
    "MailCity": "Richmond",
@@ -182,6 +197,7 @@
   },
   {
    "DwellingValue": 337000,
+   "LandUse": "Single Family",
    "LandValue": 206000,
    "MailAddress": "6283 TEST ST",
    "MailCity": "Richmond",
@@ -194,6 +210,7 @@
   },
   {
    "DwellingValue": 434000,
+   "LandUse": "Single Family",
    "LandValue": 175000,
    "MailAddress": "1640 TEST ST",
    "MailCity": "Richmond",
@@ -206,6 +223,7 @@
   },
   {
    "DwellingValue": 796000,
+   "LandUse": "Single Family",
    "LandValue": 121000,
    "MailAddress": "8879 TEST ST",
    "MailCity": "Richmond",
@@ -218,6 +236,7 @@
   },
   {
    "DwellingValue": 473000,
+   "LandUse": "Single Family",
    "LandValue": 121000,
    "MailAddress": "7188 TEST ST",
    "MailCity": "Richmond",
@@ -230,6 +249,7 @@
   },
   {
    "DwellingValue": 403000,
+   "LandUse": "Single Family",
    "LandValue": 289000,
    "MailAddress": "2565 TEST ST",
    "MailCity": "Richmond",
@@ -242,6 +262,7 @@
   },
   {
    "DwellingValue": 483000,
+   "LandUse": "Single Family",
    "LandValue": 176000,
    "MailAddress": "2229 TEST ST",
    "MailCity": "Richmond",
@@ -254,6 +275,7 @@
   },
   {
    "DwellingValue": null,
+   "LandUse": "Vacant",
    "LandValue": 1000,
    "MailAddress": "4183 TEST ST",
    "MailCity": "Midlothian",
@@ -266,6 +288,7 @@
   },
   {
    "DwellingValue": 356000,
+   "LandUse": "Single Family",
    "LandValue": 113000,
    "MailAddress": "526 TEST ST",
    "MailCity": "Richmond",
@@ -278,6 +301,7 @@
   },
   {
    "DwellingValue": 264000,
+   "LandUse": "Single Family",
    "LandValue": 85000,
    "MailAddress": "3108 TEST ST",
    "MailCity": "Richmond",
@@ -290,6 +314,7 @@
   },
   {
    "DwellingValue": 316000,
+   "LandUse": "Single Family",
    "LandValue": 106000,
    "MailAddress": "7294 TEST ST",
    "MailCity": "Richmond",

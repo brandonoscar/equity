@@ -1,6 +1,7 @@
 {
  "attributes": [
   {
+   "Classification_Code": "020101010806",
    "County_ID": "175",
    "Improvements_Value": 0.0,
    "Land_Value": 33230.0,
@@ -10,9 +11,11 @@
    "Ph_City": "ELYRIA",
    "Ph_Zip5": "68837",
    "Situs_Address": "",
-   "Total_Assessed_Value": 33230.0
+   "Total_Assessed_Value": 33230.0,
+   "Zoning": "01"
   },
   {
+   "Classification_Code": "010300010503",
    "County_ID": "041",
    "Improvements_Value": 877065.0,
    "Land_Value": 39785.0,
@@ -22,9 +25,11 @@
    "Ph_City": "BROKEN BOW",
    "Ph_Zip5": "68822",
    "Situs_Address": "1245 TEST ST",
-   "Total_Assessed_Value": 916850.0
+   "Total_Assessed_Value": 916850.0,
+   "Zoning": "00"
   },
   {
+   "Classification_Code": "010300010501",
    "County_ID": "041",
    "Improvements_Value": 1401052.0,
    "Land_Value": 32480.0,
@@ -34,9 +39,11 @@
    "Ph_City": "",
    "Ph_Zip5": "",
    "Situs_Address": "4539 TEST ST",
-   "Total_Assessed_Value": 1433532.0
+   "Total_Assessed_Value": 1433532.0,
+   "Zoning": "00"
   },
   {
+   "Classification_Code": "010300010505",
    "County_ID": "041",
    "Improvements_Value": 609377.0,
    "Land_Value": 222896.0,
@@ -46,9 +53,11 @@
    "Ph_City": "BROKEN BOW",
    "Ph_Zip5": "68822",
    "Situs_Address": "7984 TEST ST",
-   "Total_Assessed_Value": 832273.0
+   "Total_Assessed_Value": 832273.0,
+   "Zoning": "00"
   },
   {
+   "Classification_Code": "010300010501",
    "County_ID": "041",
    "Improvements_Value": 272329.0,
    "Land_Value": 11528.0,
@@ -58,9 +67,11 @@
    "Ph_City": "BROKEN BOW",
    "Ph_Zip5": "68822",
    "Situs_Address": "6396 TEST ST",
-   "Total_Assessed_Value": 283857.0
+   "Total_Assessed_Value": 283857.0,
+   "Zoning": "00"
   },
   {
+   "Classification_Code": "010300010502",
    "County_ID": "041",
    "Improvements_Value": 910362.0,
    "Land_Value": 90944.0,
@@ -70,9 +81,11 @@
    "Ph_City": "BROKEN BOW",
    "Ph_Zip5": "68822",
    "Situs_Address": "3498 TEST ST",
-   "Total_Assessed_Value": 1001306.0
+   "Total_Assessed_Value": 1001306.0,
+   "Zoning": "00"
   },
   {
+   "Classification_Code": "010300010503",
    "County_ID": "041",
    "Improvements_Value": 523085.0,
    "Land_Value": 58500.0,
@@ -82,9 +95,11 @@
    "Ph_City": "",
    "Ph_Zip5": "",
    "Situs_Address": "",
-   "Total_Assessed_Value": 581585.0
+   "Total_Assessed_Value": 581585.0,
+   "Zoning": "00"
   },
   {
+   "Classification_Code": "010303010501",
    "County_ID": "041",
    "Improvements_Value": 817316.0,
    "Land_Value": 58464.0,
@@ -94,9 +109,11 @@
    "Ph_City": "BROKEN BOW",
    "Ph_Zip5": "68822",
    "Situs_Address": "1653 TEST ST",
-   "Total_Assessed_Value": 875780.0
+   "Total_Assessed_Value": 875780.0,
+   "Zoning": "03"
   },
   {
+   "Classification_Code": "010200010503",
    "County_ID": "041",
    "Improvements_Value": 811764.0,
    "Land_Value": 61435.0,
@@ -106,9 +123,11 @@
    "Ph_City": "",
    "Ph_Zip5": "",
    "Situs_Address": "",
-   "Total_Assessed_Value": 873199.0
+   "Total_Assessed_Value": 873199.0,
+   "Zoning": "00"
   },
   {
+   "Classification_Code": "010303010505",
    "County_ID": "041",
    "Improvements_Value": 2472870.0,
    "Land_Value": 428167.0,
@@ -118,9 +137,11 @@
    "Ph_City": "BROKEN BOW",
    "Ph_Zip5": "68822",
    "Situs_Address": "8676 TEST ST",
-   "Total_Assessed_Value": 2901037.0
+   "Total_Assessed_Value": 2901037.0,
+   "Zoning": "03"
   },
   {
+   "Classification_Code": "010303010503",
    "County_ID": "041",
    "Improvements_Value": 475698.0,
    "Land_Value": 93933.0,
@@ -130,9 +151,11 @@
    "Ph_City": "BROKEN BOW",
    "Ph_Zip5": "68822",
    "Situs_Address": "2975 TEST ST",
-   "Total_Assessed_Value": 569631.0
+   "Total_Assessed_Value": 569631.0,
+   "Zoning": "03"
   },
   {
+   "Classification_Code": "010303010504",
    "County_ID": "041",
    "Improvements_Value": 273396.0,
    "Land_Value": 193013.0,
@@ -142,9 +165,11 @@
    "Ph_City": "BROKEN BOW",
    "Ph_Zip5": "68822",
    "Situs_Address": "2823 TEST ST",
-   "Total_Assessed_Value": 466409.0
+   "Total_Assessed_Value": 466409.0,
+   "Zoning": "03"
   },
   {
+   "Classification_Code": "010300010502",
    "County_ID": "041",
    "Improvements_Value": 127104.0,
    "Land_Value": 17952.0,
@@ -154,9 +179,11 @@
    "Ph_City": "BROKEN BOW",
    "Ph_Zip5": "68822",
    "Situs_Address": "1224 TEST ST",
-   "Total_Assessed_Value": 145056.0
+   "Total_Assessed_Value": 145056.0,
+   "Zoning": "00"
   },
   {
+   "Classification_Code": "010300010910",
    "County_ID": "041",
    "Improvements_Value": 5219478.0,
    "Land_Value": 545052.0,
@@ -166,9 +193,11 @@
    "Ph_City": "ANSELMO",
    "Ph_Zip5": "68813",
    "Situs_Address": "6762 TEST ST",
-   "Total_Assessed_Value": 5764530.0
+   "Total_Assessed_Value": 5764530.0,
+   "Zoning": "00"
   },
   {
+   "Classification_Code": "010101010902",
    "County_ID": "129",
    "Improvements_Value": 79080.0,
    "Land_Value": 35720.0,
@@ -178,9 +207,11 @@
    "Ph_City": "SUPERIOR",
    "Ph_Zip5": "68978",
    "Situs_Address": "1764 TEST ST",
-   "Total_Assessed_Value": 114800.0
+   "Total_Assessed_Value": 114800.0,
+   "Zoning": "01"
   },
   {
+   "Classification_Code": "010101010903",
    "County_ID": "129",
    "Improvements_Value": 316315.0,
    "Land_Value": 29900.0,
@@ -190,9 +221,11 @@
    "Ph_City": "SUPERIOR",
    "Ph_Zip5": "68978",
    "Situs_Address": "2342 TEST ST",
-   "Total_Assessed_Value": 346215.0
+   "Total_Assessed_Value": 346215.0,
+   "Zoning": "01"
   },
   {
+   "Classification_Code": "010101010903",
    "County_ID": "129",
    "Improvements_Value": 316315.0,
    "Land_Value": 29900.0,
@@ -202,9 +235,11 @@
    "Ph_City": "SUPERIOR",
    "Ph_Zip5": "68978",
    "Situs_Address": "6993 TEST ST",
-   "Total_Assessed_Value": 346215.0
+   "Total_Assessed_Value": 346215.0,
+   "Zoning": "01"
   },
   {
+   "Classification_Code": "010101010903",
    "County_ID": "129",
    "Improvements_Value": 316315.0,
    "Land_Value": 29900.0,
@@ -214,9 +249,11 @@
    "Ph_City": "SUPERIOR",
    "Ph_Zip5": "68978",
    "Situs_Address": "7488 TEST ST",
-   "Total_Assessed_Value": 346215.0
+   "Total_Assessed_Value": 346215.0,
+   "Zoning": "01"
   },
   {
+   "Classification_Code": "010101010902",
    "County_ID": "129",
    "Improvements_Value": 305415.0,
    "Land_Value": 44215.0,
@@ -226,9 +263,11 @@
    "Ph_City": "SUPERIOR",
    "Ph_Zip5": "68978",
    "Situs_Address": "4329 TEST ST",
-   "Total_Assessed_Value": 349630.0
+   "Total_Assessed_Value": 349630.0,
+   "Zoning": "01"
   },
   {
+   "Classification_Code": "010303010610",
    "County_ID": "129",
    "Improvements_Value": 12518405.0,
    "Land_Value": 750000.0,
@@ -238,9 +277,11 @@
    "Ph_City": "",
    "Ph_Zip5": "",
    "Situs_Address": "",
-   "Total_Assessed_Value": 13268405.0
+   "Total_Assessed_Value": 13268405.0,
+   "Zoning": "03"
   },
   {
+   "Classification_Code": "020505030909",
    "County_ID": "179",
    "Improvements_Value": 0.0,
    "Land_Value": 1276110.0,
@@ -250,9 +291,11 @@
    "Ph_City": "",
    "Ph_Zip5": "",
    "Situs_Address": "",
-   "Total_Assessed_Value": 1276110.0
+   "Total_Assessed_Value": 1276110.0,
+   "Zoning": "05"
   },
   {
+   "Classification_Code": "020505030909",
    "County_ID": "179",
    "Improvements_Value": 0.0,
    "Land_Value": 649785.0,
@@ -262,9 +305,11 @@
    "Ph_City": "",
    "Ph_Zip5": "",
    "Situs_Address": "",
-   "Total_Assessed_Value": 649785.0
+   "Total_Assessed_Value": 649785.0,
+   "Zoning": "05"
   },
   {
+   "Classification_Code": "020505030909",
    "County_ID": "179",
    "Improvements_Value": 0.0,
    "Land_Value": 663325.0,
@@ -274,9 +319,11 @@
    "Ph_City": "",
    "Ph_Zip5": "",
    "Situs_Address": "",
-   "Total_Assessed_Value": 663325.0
+   "Total_Assessed_Value": 663325.0,
+   "Zoning": "05"
   },
   {
+   "Classification_Code": "020505030909",
    "County_ID": "179",
    "Improvements_Value": 0.0,
    "Land_Value": 1122515.0,
@@ -286,9 +333,11 @@
    "Ph_City": "",
    "Ph_Zip5": "",
    "Situs_Address": "",
-   "Total_Assessed_Value": 1122515.0
+   "Total_Assessed_Value": 1122515.0,
+   "Zoning": "05"
   },
   {
+   "Classification_Code": "020505030909",
    "County_ID": "179",
    "Improvements_Value": 0.0,
    "Land_Value": 585060.0,
@@ -298,7 +347,8 @@
    "Ph_City": "",
    "Ph_Zip5": "",
    "Situs_Address": "",
-   "Total_Assessed_Value": 585060.0
+   "Total_Assessed_Value": 585060.0,
+   "Zoning": "05"
   }
  ],
  "layer": "https://gis.ne.gov/Enterprise/rest/services/StatewideParcelsExternal/FeatureServer/0",

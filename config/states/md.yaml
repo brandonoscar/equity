@@ -44,6 +44,9 @@ county:
     WORC: "047"   # Worcester
     BACI: "510"   # Baltimore City
 fields:
+  land_use_code: LU
+  land_use_desc: DESCLU
+  zoning: ZONING
   situs_line1: ADDRESS
   situs_city: PREMCITY
   situs_zip: PREMZIP

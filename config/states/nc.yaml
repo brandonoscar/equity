@@ -9,6 +9,8 @@ county:
   field: stcntyfips   # cntyfips is not zero-padded for every county ("5", "43"); stcntyfips is
   format: fips5
 fields:
+  land_use_code: parusecode
+  land_use_desc: parusedesc
   situs_line1: siteadd
   situs_city: scity
   situs_zip: szip

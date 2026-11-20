@@ -6,6 +6,7 @@ page_size: 1000          # maxRecordCount 2000
 min_interval_s: 1.0
 county: {constant: "043"}
 fields:
+  land_use_code: PROPCLASS
   situs_line1: PROPADDRL1
   situs_city: PROPCITY
   situs_zip: PROPZIP

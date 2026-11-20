@@ -6,6 +6,7 @@ page_size: 1000          # maxRecordCount 2000
 min_interval_s: 1.0
 county: {constant: "019"}
 fields:
+  land_use_code: CLASS_CODE
   parcel_id: PID
   owner1: OWNER1
   owner2: OWNER2

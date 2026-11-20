@@ -12,6 +12,8 @@ page_size: 2000          # maxRecordCount 2000
 min_interval_s: 1.0
 county: {constant: "189"}
 fields:
+  land_use_code: LUC
+  zoning: ZONING
   situs_line1: PROP_ADD
   situs_zip: PROP_ZIP
   parcel_id: LOCATOR

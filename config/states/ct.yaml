@@ -182,6 +182,8 @@ county:
     "Woodbury": "005"
     "Woodstock": "015"
 fields:
+  land_use_desc: State_Use_Description
+  zoning: Zone
   situs_line1: Location
   situs_city: Property_City
   situs_zip: Property_Zip

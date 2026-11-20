@@ -28,6 +28,7 @@ fields:
   situs_city: SITUS_CITY
   situs_state: SITUS_STAT
   situs_zip: SITUS_ZIP
+  land_use_code: STAT_LAND_   # Comptroller state property category (e.g. A1 single-family)
 extra_pii: [NAME_CARE, MAIL_ADDR]   # care-of name and one-string mailing address: personal data
 value_basis: "LAND_VALUE/IMP_VALUE/MKT_VALUE = appraisal district land, improvement and market value, filled where the district supplied them (TxGIO land parcel schema). TAX_YEAR = roll year supplied by the district. NAME_CARE (care-of) is not mapped as an owner."
 terms:

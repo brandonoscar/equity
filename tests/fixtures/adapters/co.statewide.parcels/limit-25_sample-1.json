@@ -5,6 +5,8 @@
    "apprValTot": "424000",
    "asedValTot": "20250",
    "countyFips": "001",
+   "landUseCde": null,
+   "landUseDsc": "Residential",
    "ownAddCty": "THORNTON",
    "ownAddStt": "CO",
    "ownAddZip": "802331557",
@@ -13,13 +15,16 @@
    "ownerAdd": "TESTOWNER 75F062",
    "parcel_id": "0171901104005",
    "sitAddZip": null,
-   "situsAdd": "TESTOWNER 949309"
+   "situsAdd": "TESTOWNER 949309",
+   "zoningCode": null
   },
   {
    "OBJECTID": 2,
    "apprValTot": "437000",
    "asedValTot": "27310",
    "countyFips": "001",
+   "landUseCde": null,
+   "landUseDsc": "Residential",
    "ownAddCty": "WESTMINSTER",
    "ownAddStt": "CO",
    "ownAddZip": "800316560",
@@ -28,13 +33,16 @@
    "ownerAdd": "TESTOWNER 4EC59A",
    "parcel_id": "0171906305058",
    "sitAddZip": null,
-   "situsAdd": "TESTOWNER E117FC"
+   "situsAdd": "TESTOWNER E117FC",
+   "zoningCode": null
   },
   {
    "OBJECTID": 3,
    "apprValTot": "476000",
    "asedValTot": "29750",
    "countyFips": "001",
+   "landUseCde": null,
+   "landUseDsc": "Residential",
    "ownAddCty": "BROOMFIELD",
    "ownAddStt": "CO",
    "ownAddZip": "800206018",
@@ -43,13 +51,16 @@
    "ownerAdd": "TESTOWNER 39C90E",
    "parcel_id": "0171906305063",
    "sitAddZip": null,
-   "situsAdd": "TESTOWNER 7855EF"
+   "situsAdd": "TESTOWNER 7855EF",
+   "zoningCode": null
   },
   {
    "OBJECTID": 4,
    "apprValTot": "470000",
    "asedValTot": "23120",
    "countyFips": "001",
+   "landUseCde": null,
+   "landUseDsc": "Residential",
    "ownAddCty": "WESTMINSTER",
    "ownAddStt": "CO",
    "ownAddZip": "800316560",
@@ -58,13 +69,16 @@
    "ownerAdd": "TESTOWNER 75D564",
    "parcel_id": "0171906305062",
    "sitAddZip": null,
-   "situsAdd": "TESTOWNER B8C974"
+   "situsAdd": "TESTOWNER B8C974",
+   "zoningCode": null
   },
   {
    "OBJECTID": 5,
    "apprValTot": "478000",
    "asedValTot": "29880",
    "countyFips": "001",
+   "landUseCde": null,
+   "landUseDsc": "Residential",
    "ownAddCty": "SUPERIOR",
    "ownAddStt": "CO",
    "ownAddZip": "800279606",
@@ -73,13 +87,16 @@
    "ownerAdd": "TESTOWNER 3702D8",
    "parcel_id": "0171906305059",
    "sitAddZip": null,
-   "situsAdd": "TESTOWNER 03166C"
+   "situsAdd": "TESTOWNER 03166C",
+   "zoningCode": null
   },
   {
    "OBJECTID": 6,
    "apprValTot": "533000",
    "asedValTot": "33310",
    "countyFips": "001",
+   "landUseCde": null,
+   "landUseDsc": "Residential",
    "ownAddCty": "ARVADA",
    "ownAddStt": "CO",
    "ownAddZip": "800031733",
@@ -88,13 +105,16 @@
    "ownerAdd": "TESTOWNER DDA095",
    "parcel_id": "0171906305057",
    "sitAddZip": null,
-   "situsAdd": "TESTOWNER E45335"
+   "situsAdd": "TESTOWNER E45335",
+   "zoningCode": null
   },
   {
    "OBJECTID": 7,
    "apprValTot": "549000",
    "asedValTot": "34310",
    "countyFips": "001",
+   "landUseCde": null,
+   "landUseDsc": "Residential",
    "ownAddCty": "WESTMINSTER",
    "ownAddStt": "CO",
    "ownAddZip": "800316560",
@@ -103,13 +123,16 @@
    "ownerAdd": "TESTOWNER 6321E1",
    "parcel_id": "0171906305056",
    "sitAddZip": null,
-   "situsAdd": "TESTOWNER 4FDABE"
+   "situsAdd": "TESTOWNER 4FDABE",
+   "zoningCode": null
   },
   {
    "OBJECTID": 8,
    "apprValTot": "475000",
    "asedValTot": "29690",
    "countyFips": "001",
+   "landUseCde": null,
+   "landUseDsc": "Residential",
    "ownAddCty": "STUART",
    "ownAddStt": "FL",
    "ownAddZip": "349977638",
@@ -118,13 +141,16 @@
    "ownerAdd": "TESTOWNER 5EC1E2",
    "parcel_id": "0171906305060",
    "sitAddZip": null,
-   "situsAdd": "TESTOWNER FC0122"
+   "situsAdd": "TESTOWNER FC0122",
+   "zoningCode": null
   },
   {
    "OBJECTID": 9,
    "apprValTot": "474000",
    "asedValTot": "29630",
    "countyFips": "001",
+   "landUseCde": null,
+   "landUseDsc": "Residential",
    "ownAddCty": "WESTMINSTER",
    "ownAddStt": "CO",
    "ownAddZip": "800316560",
@@ -133,13 +159,16 @@
    "ownerAdd": "TESTOWNER D89798",
    "parcel_id": "0171906305061",
    "sitAddZip": null,
-   "situsAdd": "TESTOWNER 1FEDEC"
+   "situsAdd": "TESTOWNER 1FEDEC",
+   "zoningCode": null
   },
   {
    "OBJECTID": 10,
    "apprValTot": "441000",
    "asedValTot": "27560",
    "countyFips": "001",
+   "landUseCde": null,
+   "landUseDsc": "Residential",
    "ownAddCty": "WESTMINSTER",
    "ownAddStt": "CO",
    "ownAddZip": "800316552",
@@ -148,13 +177,16 @@
    "ownerAdd": "TESTOWNER BE2E50",
    "parcel_id": "0171906305050",
    "sitAddZip": null,
-   "situsAdd": "TESTOWNER B3FCC1"
+   "situsAdd": "TESTOWNER B3FCC1",
+   "zoningCode": null
   },
   {
    "OBJECTID": 11,
    "apprValTot": "481000",
    "asedValTot": "30060",
    "countyFips": "001",
+   "landUseCde": null,
+   "landUseDsc": "Residential",
    "ownAddCty": "WESTMINSTER",
    "ownAddStt": "CO",
    "ownAddZip": "800316552",
@@ -163,13 +195,16 @@
    "ownerAdd": "TESTOWNER 2E3C54",
    "parcel_id": "0171906305055",
    "sitAddZip": null,
-   "situsAdd": "TESTOWNER 7DBE1F"
+   "situsAdd": "TESTOWNER 7DBE1F",
+   "zoningCode": null
   },
   {
    "OBJECTID": 12,
    "apprValTot": "474000",
    "asedValTot": "29630",
    "countyFips": "001",
+   "landUseCde": null,
+   "landUseDsc": "Residential",
    "ownAddCty": "WESTMINSTER",
    "ownAddStt": "CO",
    "ownAddZip": "800316552",
@@ -178,13 +213,16 @@
    "ownerAdd": "TESTOWNER 21C4B2",
    "parcel_id": "0171906305054",
    "sitAddZip": null,
-   "situsAdd": "TESTOWNER 9051FC"
+   "situsAdd": "TESTOWNER 9051FC",
+   "zoningCode": null
   },
   {
    "OBJECTID": 13,
    "apprValTot": "482000",
    "asedValTot": "30130",
    "countyFips": "001",
+   "landUseCde": null,
+   "landUseDsc": "Residential",
    "ownAddCty": "WESTMINSTER",
    "ownAddStt": "CO",
    "ownAddZip": "800316552",
@@ -193,13 +231,16 @@
    "ownerAdd": "TESTOWNER 1B30B4",
    "parcel_id": "0171906305051",
    "sitAddZip": null,
-   "situsAdd": "TESTOWNER EEEC3E"
+   "situsAdd": "TESTOWNER EEEC3E",
+   "zoningCode": null
   },
   {
    "OBJECTID": 14,
    "apprValTot": "477000",
    "asedValTot": "29810",
    "countyFips": "001",
+   "landUseCde": null,
+   "landUseDsc": "Residential",
    "ownAddCty": "CUPERTINO",
    "ownAddStt": "CA",
    "ownAddZip": "950142141",
@@ -208,13 +249,16 @@
    "ownerAdd": "TESTOWNER F8A6E5",
    "parcel_id": "0171906305052",
    "sitAddZip": null,
-   "situsAdd": "TESTOWNER 82CF6D"
+   "situsAdd": "TESTOWNER 82CF6D",
+   "zoningCode": null
   },
   {
    "OBJECTID": 15,
    "apprValTot": "479000",
    "asedValTot": "29940",
    "countyFips": "001",
+   "landUseCde": null,
+   "landUseDsc": "Residential",
    "ownAddCty": "WESTMINSTER",
    "ownAddStt": "CO",
    "ownAddZip": "800316552",
@@ -223,13 +267,16 @@
    "ownerAdd": "TESTOWNER AB30F7",
    "parcel_id": "0171906305053",
    "sitAddZip": null,
-   "situsAdd": "TESTOWNER ABD107"
+   "situsAdd": "TESTOWNER ABD107",
+   "zoningCode": null
   },
   {
    "OBJECTID": 16,
    "apprValTot": "455000",
    "asedValTot": "28440",
    "countyFips": "001",
+   "landUseCde": null,
+   "landUseDsc": "Residential",
    "ownAddCty": "WESTMINSTER",
    "ownAddStt": "CO",
    "ownAddZip": "800316552",
@@ -238,13 +285,16 @@
    "ownerAdd": "TESTOWNER 23B530",
    "parcel_id": "0171906305049",
    "sitAddZip": null,
-   "situsAdd": "TESTOWNER BABF77"
+   "situsAdd": "TESTOWNER BABF77",
+   "zoningCode": null
   },
   {
    "OBJECTID": 17,
    "apprValTot": "469000",
    "asedValTot": "23060",
    "countyFips": "001",
+   "landUseCde": null,
+   "landUseDsc": "Residential",
    "ownAddCty": "WESTMINSTER",
    "ownAddStt": "CO",
    "ownAddZip": "800316552",
@@ -253,13 +303,16 @@
    "ownerAdd": "TESTOWNER 98084A",
    "parcel_id": "0171906305048",
    "sitAddZip": null,
-   "situsAdd": "TESTOWNER A9F4CB"
+   "situsAdd": "TESTOWNER A9F4CB",
+   "zoningCode": null
   },
   {
    "OBJECTID": 18,
    "apprValTot": "0",
    "asedValTot": "0",
    "countyFips": "001",
+   "landUseCde": null,
+   "landUseDsc": "Residential",
    "ownAddCty": "LAKEWOOD",
    "ownAddStt": "CO",
    "ownAddZip": "802282827",
@@ -268,13 +321,16 @@
    "ownerAdd": "TESTOWNER FEC231",
    "parcel_id": "0171906141030",
    "sitAddZip": null,
-   "situsAdd": "TESTOWNER 9A4772"
+   "situsAdd": "TESTOWNER 9A4772",
+   "zoningCode": null
   },
   {
    "OBJECTID": 19,
    "apprValTot": "718000",
    "asedValTot": "44880",
    "countyFips": "001",
+   "landUseCde": null,
+   "landUseDsc": "Residential",
    "ownAddCty": "WESTMINSTER",
    "ownAddStt": "CO",
    "ownAddZip": "800315031",
@@ -283,13 +339,16 @@
    "ownerAdd": "TESTOWNER D04DFB",
    "parcel_id": "0171906138020",
    "sitAddZip": null,
-   "situsAdd": "TESTOWNER 5BFF15"
+   "situsAdd": "TESTOWNER 5BFF15",
+   "zoningCode": null
   },
   {
    "OBJECTID": 20,
    "apprValTot": "771000",
    "asedValTot": "48190",
    "countyFips": "001",
+   "landUseCde": null,
+   "landUseDsc": "Residential",
    "ownAddCty": "WESTMINSTER",
    "ownAddStt": "CO",
    "ownAddZip": "800315031",
@@ -298,13 +357,16 @@
    "ownerAdd": "TESTOWNER E61696",
    "parcel_id": "0171906138021",
    "sitAddZip": null,
-   "situsAdd": "TESTOWNER 94B9C9"
+   "situsAdd": "TESTOWNER 94B9C9",
+   "zoningCode": null
   },
   {
    "OBJECTID": 21,
    "apprValTot": "774000",
    "asedValTot": "48380",
    "countyFips": "001",
+   "landUseCde": null,
+   "landUseDsc": "Residential",
    "ownAddCty": "BROOMFIELD",
    "ownAddStt": "CO",
    "ownAddZip": "800234546",
@@ -313,13 +375,16 @@
    "ownerAdd": "TESTOWNER 7260EC",
    "parcel_id": "0171906138022",
    "sitAddZip": null,
-   "situsAdd": "TESTOWNER 4AF7C7"
+   "situsAdd": "TESTOWNER 4AF7C7",
+   "zoningCode": null
   },
   {
    "OBJECTID": 22,
    "apprValTot": "742000",
    "asedValTot": "46380",
    "countyFips": "001",
+   "landUseCde": null,
+   "landUseDsc": "Residential",
    "ownAddCty": "WESTMINSTER",
    "ownAddStt": "CO",
    "ownAddZip": "800315023",
@@ -328,13 +393,16 @@
    "ownerAdd": "TESTOWNER AF79F9",
    "parcel_id": "0171906138023",
    "sitAddZip": null,
-   "situsAdd": "TESTOWNER F688C1"
+   "situsAdd": "TESTOWNER F688C1",
+   "zoningCode": null
   },
   {
    "OBJECTID": 23,
    "apprValTot": "772000",
    "asedValTot": "48260",
    "countyFips": "001",
+   "landUseCde": null,
+   "landUseDsc": "Residential",
    "ownAddCty": "WESTMINSTER",
    "ownAddStt": "CO",
    "ownAddZip": "800315031",
@@ -343,13 +411,16 @@
    "ownerAdd": "TESTOWNER 35663A",
    "parcel_id": "0171906137071",
    "sitAddZip": null,
-   "situsAdd": "TESTOWNER FB21D5"
+   "situsAdd": "TESTOWNER FB21D5",
+   "zoningCode": null
   },
   {
    "OBJECTID": 24,
    "apprValTot": "763000",
    "asedValTot": "47690",
    "countyFips": "001",
+   "landUseCde": null,
+   "landUseDsc": "Residential",
    "ownAddCty": "WESTMINSTER",
    "ownAddStt": "CO",
    "ownAddZip": "800315031",
@@ -358,13 +429,16 @@
    "ownerAdd": "TESTOWNER 647DF0",
    "parcel_id": "0171906137072",
    "sitAddZip": null,
-   "situsAdd": "TESTOWNER F128EC"
+   "situsAdd": "TESTOWNER F128EC",
+   "zoningCode": null
   },
   {
    "OBJECTID": 25,
    "apprValTot": "786000",
    "asedValTot": "49130",
    "countyFips": "001",
+   "landUseCde": null,
+   "landUseDsc": "Residential",
    "ownAddCty": "WESTMINSTER",
    "ownAddStt": "CO",
    "ownAddZip": "800315158",
@@ -373,7 +447,8 @@
    "ownerAdd": "TESTOWNER 0AFB4B",
    "parcel_id": "0171906141022",
    "sitAddZip": null,
-   "situsAdd": "TESTOWNER 10AD51"
+   "situsAdd": "TESTOWNER 10AD51",
+   "zoningCode": null
   }
  ],
  "layer": "https://gis.colorado.gov/Public/rest/services/Address_and_Parcel/Colorado_Public_Parcels/MapServer/0",

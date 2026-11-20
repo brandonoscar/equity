@@ -4,150 +4,175 @@
    "OBJECTID": 1,
    "PAMS_PIN": "2001_1205_6",
    "PCL_MUN": "2001",
+   "PROP_CLASS": "2",
    "PROP_LOC": "TESTOWNER D36F72"
   },
   {
    "OBJECTID": 2,
    "PAMS_PIN": "2001_1303_4",
    "PCL_MUN": "2001",
+   "PROP_CLASS": "1",
    "PROP_LOC": "TESTOWNER BBB4D7"
   },
   {
    "OBJECTID": 3,
    "PAMS_PIN": "2001_4602_35",
    "PCL_MUN": "2001",
+   "PROP_CLASS": "2",
    "PROP_LOC": "TESTOWNER D31E1E"
   },
   {
    "OBJECTID": 4,
    "PAMS_PIN": "2001_3201_47.03",
    "PCL_MUN": "2001",
+   "PROP_CLASS": "2",
    "PROP_LOC": "TESTOWNER E18F4F"
   },
   {
    "OBJECTID": 5,
    "PAMS_PIN": "2001_3205_5",
    "PCL_MUN": "2001",
+   "PROP_CLASS": "2",
    "PROP_LOC": "TESTOWNER 6F6DB6"
   },
   {
    "OBJECTID": 6,
    "PAMS_PIN": "2001_4503_9",
    "PCL_MUN": "2001",
+   "PROP_CLASS": "2",
    "PROP_LOC": "TESTOWNER 597840"
   },
   {
    "OBJECTID": 7,
    "PAMS_PIN": "2001_504_68",
    "PCL_MUN": "2001",
+   "PROP_CLASS": "2",
    "PROP_LOC": "TESTOWNER E83AAA"
   },
   {
    "OBJECTID": 8,
    "PAMS_PIN": "2001_2105_9",
    "PCL_MUN": "2001",
+   "PROP_CLASS": "2",
    "PROP_LOC": "TESTOWNER 7B469D"
   },
   {
    "OBJECTID": 9,
    "PAMS_PIN": "2001_211_4",
    "PCL_MUN": "2001",
+   "PROP_CLASS": "2",
    "PROP_LOC": "TESTOWNER 9380D9"
   },
   {
    "OBJECTID": 10,
    "PAMS_PIN": "2001_3806_5",
    "PCL_MUN": "2001",
+   "PROP_CLASS": "2",
    "PROP_LOC": "TESTOWNER BCBA22"
   },
   {
    "OBJECTID": 11,
    "PAMS_PIN": "2001_504_8",
    "PCL_MUN": "2001",
+   "PROP_CLASS": "2",
    "PROP_LOC": "TESTOWNER BC4973"
   },
   {
    "OBJECTID": 12,
    "PAMS_PIN": "2001_2302_21",
    "PCL_MUN": "2001",
+   "PROP_CLASS": "2",
    "PROP_LOC": "TESTOWNER 93D78E"
   },
   {
    "OBJECTID": 13,
    "PAMS_PIN": "2001_504_43",
    "PCL_MUN": "2001",
+   "PROP_CLASS": "2",
    "PROP_LOC": "TESTOWNER B0BAE2"
   },
   {
    "OBJECTID": 14,
    "PAMS_PIN": "2001_3101_17",
    "PCL_MUN": "2001",
+   "PROP_CLASS": "2",
    "PROP_LOC": "TESTOWNER A25119"
   },
   {
    "OBJECTID": 15,
    "PAMS_PIN": "2001_3601_8",
    "PCL_MUN": "2001",
+   "PROP_CLASS": "2",
    "PROP_LOC": "TESTOWNER 53E5B8"
   },
   {
    "OBJECTID": 16,
    "PAMS_PIN": "2001_2303_59",
    "PCL_MUN": "2001",
+   "PROP_CLASS": "2",
    "PROP_LOC": "TESTOWNER D3DF13"
   },
   {
    "OBJECTID": 17,
    "PAMS_PIN": "2001_3802_8",
    "PCL_MUN": "2001",
+   "PROP_CLASS": "2",
    "PROP_LOC": "TESTOWNER AB0B6F"
   },
   {
    "OBJECTID": 18,
    "PAMS_PIN": "2001_1001_2",
    "PCL_MUN": "2001",
+   "PROP_CLASS": "2",
    "PROP_LOC": "TESTOWNER 333289"
   },
   {
    "OBJECTID": 19,
    "PAMS_PIN": "2001_2801_45",
    "PCL_MUN": "2001",
+   "PROP_CLASS": "2",
    "PROP_LOC": "TESTOWNER A2CFD5"
   },
   {
    "OBJECTID": 20,
    "PAMS_PIN": "2001_2402_5",
    "PCL_MUN": "2001",
+   "PROP_CLASS": "2",
    "PROP_LOC": "TESTOWNER 7E61FF"
   },
   {
    "OBJECTID": 21,
    "PAMS_PIN": "2001_1713_2",
    "PCL_MUN": "2001",
+   "PROP_CLASS": "2",
    "PROP_LOC": "TESTOWNER 408D14"
   },
   {
    "OBJECTID": 22,
    "PAMS_PIN": "2001_3001_21",
    "PCL_MUN": "2001",
+   "PROP_CLASS": "2",
    "PROP_LOC": "TESTOWNER 3BFDFA"
   },
   {
    "OBJECTID": 23,
    "PAMS_PIN": "2001_1401_19",
    "PCL_MUN": "2001",
+   "PROP_CLASS": "2",
    "PROP_LOC": "TESTOWNER C45D96"
   },
   {
    "OBJECTID": 24,
    "PAMS_PIN": "2001_401_23",
    "PCL_MUN": "2001",
+   "PROP_CLASS": "2",
    "PROP_LOC": "TESTOWNER 285DF5"
   },
   {
    "OBJECTID": 25,
    "PAMS_PIN": "2001_3604_1.04",
    "PCL_MUN": "2001",
+   "PROP_CLASS": "2",
    "PROP_LOC": "TESTOWNER A50789"
   }
  ],

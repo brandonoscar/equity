@@ -11,6 +11,7 @@ county:
   field: PARCELFIPS
   format: fips3
 fields:
+  land_use_code: PROPCLASS
   situs_line1: SITEADRESS
   situs_zip: ZIPCODE
   parcel_id: PARCELID

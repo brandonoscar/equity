@@ -45,7 +45,7 @@ CANONICAL = (
     "mail_city_state_zip", "mail_city", "mail_state", "mail_zip", "land_value", "bldg_value",
     "total_value", "assessed_value", "tax_year", "deed_book", "deed_page", "deed_ref",
     "situs_line1", "situs_full", "situs_city", "situs_state", "situs_zip",
-    "owner_type", "homestead",
+    "owner_type", "homestead", "land_use_code", "land_use_desc", "zoning",
 )  # fmt: skip
 # Situs addresses are often the owner's home: pseudonymized in fixtures like mailing addresses.
 PII_CANONICAL = ("owner1", "owner2", "mail_line1", "mail_line2", "mail_full",
@@ -558,7 +558,10 @@ class StateParcelAdapter(ArcGISCountyAdapter):
             if situs is not None:
                 yield NormalizedRow("address", situs)
             situs_id = None if situs is None else situs["address_id"]
-            yield ctx.fact("parcel", parcel_uid=uid, parid_raw=local_id, situs_address_id=situs_id)
+            yield ctx.fact("parcel", parcel_uid=uid, parid_raw=local_id, situs_address_id=situs_id,
+                           land_use_code=_text(self._get(a, "land_use_code")),
+                           land_use_desc=_text(self._get(a, "land_use_desc")),
+                           zoning=_text(self._get(a, "zoning")))  # fmt: skip
             addr = self._address(a)
             if addr is not None:
                 yield NormalizedRow("address", addr)

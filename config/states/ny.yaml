@@ -55,6 +55,8 @@ county:
     Westchester: "119"
     Wyoming: "121"
 fields:
+  land_use_code: PROP_CLASS
+  land_use_desc: USED_AS_DESC
   situs_line1: PARCEL_ADDR
   situs_city: CITYTOWN_NAME
   situs_zip: LOC_ZIP

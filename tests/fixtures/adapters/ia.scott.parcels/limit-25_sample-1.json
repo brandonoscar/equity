@@ -10,6 +10,7 @@
    "LandVal": 25850,
    "OBJECTID": 1,
    "PIN": "C0050-21",
+   "PropClass": "R",
    "PropertyAddress": "7693 TEST ST",
    "TotVal": 147230
   },
@@ -23,6 +24,7 @@
    "LandVal": 8610,
    "OBJECTID": 2,
    "PIN": "H0052-22",
+   "PropClass": "R",
    "PropertyAddress": "5070 TEST ST",
    "TotVal": 63070
   },
@@ -36,6 +38,7 @@
    "LandVal": 93800,
    "OBJECTID": 3,
    "PIN": "952739107",
+   "PropClass": "R",
    "PropertyAddress": "1115 TEST ST",
    "TotVal": 330300
   },
@@ -49,6 +52,7 @@
    "LandVal": 14030,
    "OBJECTID": 4,
    "PIN": "K0015-20",
+   "PropClass": "R",
    "PropertyAddress": "4650 TEST ST",
    "TotVal": 107190
   },
@@ -62,6 +66,7 @@
    "LandVal": 174100,
    "OBJECTID": 5,
    "PIN": "842860009",
+   "PropClass": "C",
    "PropertyAddress": "1262 TEST ST",
    "TotVal": 746300
   },
@@ -75,6 +80,7 @@
    "LandVal": 90000,
    "OBJECTID": 6,
    "PIN": "840939429",
+   "PropClass": "R",
    "PropertyAddress": "6663 TEST ST",
    "TotVal": 385800
   },
@@ -88,6 +94,7 @@
    "LandVal": 74000,
    "OBJECTID": 7,
    "PIN": "823633106",
+   "PropClass": "R",
    "PropertyAddress": "7579 TEST ST",
    "TotVal": 399800
   },
@@ -101,6 +108,7 @@
    "LandVal": 43610,
    "OBJECTID": 8,
    "PIN": "D0004D06",
+   "PropClass": "R",
    "PropertyAddress": "8191 TEST ST",
    "TotVal": 254750
   },
@@ -114,6 +122,7 @@
    "LandVal": 44200,
    "OBJECTID": 9,
    "PIN": "N1815-02D",
+   "PropClass": "R",
    "PropertyAddress": "945 TEST ST",
    "TotVal": 159900
   },
@@ -127,6 +136,7 @@
    "LandVal": 38360,
    "OBJECTID": 10,
    "PIN": "O1655A25",
+   "PropClass": "R",
    "PropertyAddress": "7912 TEST ST",
    "TotVal": 261600
   },
@@ -140,6 +150,7 @@
    "LandVal": 112800,
    "OBJECTID": 11,
    "PIN": "922851006",
+   "PropClass": "A",
    "PropertyAddress": null,
    "TotVal": 112800
   },
@@ -153,6 +164,7 @@
    "LandVal": 29570,
    "OBJECTID": 12,
    "PIN": "O2108A22",
+   "PropClass": "R",
    "PropertyAddress": "3316 TEST ST",
    "TotVal": 179170
   },
@@ -166,6 +178,7 @@
    "LandVal": 172900,
    "OBJECTID": 13,
    "PIN": "841239109",
+   "PropClass": "R",
    "PropertyAddress": "1463 TEST ST",
    "TotVal": 818200
   },
@@ -179,6 +192,7 @@
    "LandVal": 128500,
    "OBJECTID": 14,
    "PIN": "850417543",
+   "PropClass": "R",
    "PropertyAddress": "290 TEST ST",
    "TotVal": 452900
   },
@@ -192,6 +206,7 @@
    "LandVal": 93410,
    "OBJECTID": 15,
    "PIN": "P1111A22",
+   "PropClass": "M",
    "PropertyAddress": "4686 TEST ST",
    "TotVal": 1107780
   },
@@ -205,6 +220,7 @@
    "LandVal": 91350,
    "OBJECTID": 16,
    "PIN": "Y0807-12B",
+   "PropClass": "R",
    "PropertyAddress": "5776 TEST ST",
    "TotVal": 553080
   },
@@ -218,6 +234,7 @@
    "LandVal": 22280,
    "OBJECTID": 17,
    "PIN": "C0022-33",
+   "PropClass": "R",
    "PropertyAddress": "4511 TEST ST",
    "TotVal": 125810
   },
@@ -231,6 +248,7 @@
    "LandVal": 22630,
    "OBJECTID": 18,
    "PIN": "O2109B28",
+   "PropClass": "R",
    "PropertyAddress": "7583 TEST ST",
    "TotVal": 116210
   },
@@ -244,6 +262,7 @@
    "LandVal": 3700,
    "OBJECTID": 19,
    "PIN": "020153001",
+   "PropClass": "A",
    "PropertyAddress": null,
    "TotVal": 3700
   },
@@ -257,6 +276,7 @@
    "LandVal": 31360,
    "OBJECTID": 20,
    "PIN": "A0005D20",
+   "PropClass": "R",
    "PropertyAddress": "7509 TEST ST",
    "TotVal": 245790
   },
@@ -270,6 +290,7 @@
    "LandVal": 0,
    "OBJECTID": 21,
    "PIN": "950703003",
+   "PropClass": "C",
    "PropertyAddress": null,
    "TotVal": 200
   },
@@ -283,6 +304,7 @@
    "LandVal": 225800,
    "OBJECTID": 22,
    "PIN": "841005502",
+   "PropClass": "R",
    "PropertyAddress": null,
    "TotVal": 225800
   },
@@ -296,6 +318,7 @@
    "LandVal": 1502820,
    "OBJECTID": 23,
    "PIN": "Y0919C02",
+   "PropClass": "C",
    "PropertyAddress": "8646 TEST ST",
    "TotVal": 5312910
   },
@@ -309,6 +332,7 @@
    "LandVal": 32570,
    "OBJECTID": 24,
    "PIN": "W0437D16",
+   "PropClass": "R",
    "PropertyAddress": "5031 TEST ST",
    "TotVal": 185500
   },
@@ -322,6 +346,7 @@
    "LandVal": 158300,
    "OBJECTID": 25,
    "PIN": "842233610",
+   "PropClass": "R",
    "PropertyAddress": "5540 TEST ST",
    "TotVal": 789700
   }

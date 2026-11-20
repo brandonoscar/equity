@@ -12,6 +12,8 @@ county: {constant: "037"}
 # again with RollYear null (OBJECTID 2428434-4856866). Keep the 2026 roll; bump each July.
 filter: "RollYear = '2026'"
 fields:
+  land_use_code: UseCode
+  land_use_desc: UseType
   situs_line1: PropertyLocation
   situs_city: SitusCity
   situs_zip: SitusZIP5

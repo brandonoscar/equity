@@ -251,6 +251,7 @@ county:
     "4248": "003"   # HALES LOCATION
     "4300": "007"   # UNINCORPORATED
 fields:
+  land_use_code: SLUC
   situs_line1: StreetAddress
   parcel_id: NH_GIS_ID   # statewide id: county + town id + "-" + local PID
 value_basis: "no value fields in the public layer (parcel ids only); assessed values are held by the 234 municipal assessors"

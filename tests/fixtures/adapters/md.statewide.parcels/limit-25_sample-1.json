@@ -3,277 +3,352 @@
   {
    "ACCTID": "0101088483",
    "ADDRESS": "4924 TEST ST",
+   "DESCLU": "Residential",
    "JURSCODE": "ALLE",
+   "LU": "R",
    "NFMIMPVL": 146800,
    "NFMLNDVL": 52100,
    "NFMTTLVL": 198900,
    "OBJECTID": 1,
    "PREMCITY": "LITTLE ORLEANS",
-   "PREMZIP": "21766"
+   "PREMZIP": "21766",
+   "ZONING": null
   },
   {
    "ACCTID": "0101088491",
    "ADDRESS": "8984 TEST ST",
+   "DESCLU": "Residential",
    "JURSCODE": "ALLE",
+   "LU": "R",
    "NFMIMPVL": null,
    "NFMLNDVL": 1900,
    "NFMTTLVL": 1900,
    "OBJECTID": 2,
    "PREMCITY": "LITTLE ORLEANS",
-   "PREMZIP": "21766"
+   "PREMZIP": "21766",
+   "ZONING": null
   },
   {
    "ACCTID": "0101088521",
    "ADDRESS": null,
+   "DESCLU": "Residential",
    "JURSCODE": "ALLE",
+   "LU": "R",
    "NFMIMPVL": null,
    "NFMLNDVL": 55500,
    "NFMTTLVL": 55500,
    "OBJECTID": 3,
    "PREMCITY": "LITTLE ORLEANS",
-   "PREMZIP": "21766"
+   "PREMZIP": "21766",
+   "ZONING": null
   },
   {
    "ACCTID": "0101088874",
    "ADDRESS": "7886 TEST ST",
+   "DESCLU": "Residential",
    "JURSCODE": "ALLE",
+   "LU": "R",
    "NFMIMPVL": 81800,
    "NFMLNDVL": 55400,
    "NFMTTLVL": 137200,
    "OBJECTID": 4,
    "PREMCITY": "FLINTSTONE",
-   "PREMZIP": "21530"
+   "PREMZIP": "21530",
+   "ZONING": null
   },
   {
    "ACCTID": "0101088920",
    "ADDRESS": "8058 TEST ST",
+   "DESCLU": "Residential",
    "JURSCODE": "ALLE",
+   "LU": "R",
    "NFMIMPVL": 214900,
    "NFMLNDVL": 76300,
    "NFMTTLVL": 291200,
    "OBJECTID": 5,
    "PREMCITY": "FLINTSTONE",
-   "PREMZIP": "21530"
+   "PREMZIP": "21530",
+   "ZONING": null
   },
   {
    "ACCTID": "0101089048",
    "ADDRESS": "3800 TEST ST",
+   "DESCLU": "Residential",
    "JURSCODE": "ALLE",
+   "LU": "R",
    "NFMIMPVL": 61800,
    "NFMLNDVL": 48300,
    "NFMTTLVL": 110100,
    "OBJECTID": 6,
    "PREMCITY": "LITTLE ORLEANS",
-   "PREMZIP": "21766"
+   "PREMZIP": "21766",
+   "ZONING": null
   },
   {
    "ACCTID": "0101089056",
    "ADDRESS": null,
+   "DESCLU": "Exempt",
    "JURSCODE": "ALLE",
+   "LU": "E",
    "NFMIMPVL": null,
    "NFMLNDVL": 52000,
    "NFMTTLVL": 52000,
    "OBJECTID": 7,
    "PREMCITY": "LITTLE ORLEANS",
-   "PREMZIP": "21766"
+   "PREMZIP": "21766",
+   "ZONING": null
   },
   {
    "ACCTID": "0101089064",
    "ADDRESS": "7810 TEST ST",
+   "DESCLU": "Residential",
    "JURSCODE": "ALLE",
+   "LU": "R",
    "NFMIMPVL": 129700,
    "NFMLNDVL": 44900,
    "NFMTTLVL": 174600,
    "OBJECTID": 8,
    "PREMCITY": "FLINTSTONE",
-   "PREMZIP": "21530"
+   "PREMZIP": "21530",
+   "ZONING": null
   },
   {
    "ACCTID": "0101089072",
    "ADDRESS": "2619 TEST ST",
+   "DESCLU": "Residential",
    "JURSCODE": "ALLE",
+   "LU": "R",
    "NFMIMPVL": 116400,
    "NFMLNDVL": 48200,
    "NFMTTLVL": 164600,
    "OBJECTID": 9,
    "PREMCITY": "FLINTSTONE",
-   "PREMZIP": "21530"
+   "PREMZIP": "21530",
+   "ZONING": null
   },
   {
    "ACCTID": "0101089080",
    "ADDRESS": "2343 TEST ST",
+   "DESCLU": "Residential",
    "JURSCODE": "ALLE",
+   "LU": "R",
    "NFMIMPVL": 187300,
    "NFMLNDVL": 52100,
    "NFMTTLVL": 239400,
    "OBJECTID": 10,
    "PREMCITY": "FLINTSTONE",
-   "PREMZIP": "21530"
+   "PREMZIP": "21530",
+   "ZONING": null
   },
   {
    "ACCTID": "0101089099",
    "ADDRESS": null,
+   "DESCLU": "Residential",
    "JURSCODE": "ALLE",
+   "LU": "R",
    "NFMIMPVL": null,
    "NFMLNDVL": 3900,
    "NFMTTLVL": 3900,
    "OBJECTID": 11,
    "PREMCITY": "FLINTSTONE",
-   "PREMZIP": "21530"
+   "PREMZIP": "21530",
+   "ZONING": null
   },
   {
    "ACCTID": "0101089102",
    "ADDRESS": "2343 TEST ST",
+   "DESCLU": "Residential",
    "JURSCODE": "ALLE",
+   "LU": "R",
    "NFMIMPVL": null,
    "NFMLNDVL": 5800,
    "NFMTTLVL": 5800,
    "OBJECTID": 12,
    "PREMCITY": "FLINTSTONE",
-   "PREMZIP": "21530"
+   "PREMZIP": "21530",
+   "ZONING": null
   },
   {
    "ACCTID": "0101089110",
    "ADDRESS": null,
+   "DESCLU": "Residential",
    "JURSCODE": "ALLE",
+   "LU": "R",
    "NFMIMPVL": null,
    "NFMLNDVL": 40500,
    "NFMTTLVL": 40500,
    "OBJECTID": 13,
    "PREMCITY": "FLINTSTONE",
-   "PREMZIP": "21530"
+   "PREMZIP": "21530",
+   "ZONING": null
   },
   {
    "ACCTID": "0101089137",
    "ADDRESS": null,
+   "DESCLU": "Residential",
    "JURSCODE": "ALLE",
+   "LU": "R",
    "NFMIMPVL": null,
    "NFMLNDVL": 38800,
    "NFMTTLVL": 38800,
    "OBJECTID": 14,
    "PREMCITY": "FLINTSTONE",
-   "PREMZIP": "21530"
+   "PREMZIP": "21530",
+   "ZONING": null
   },
   {
    "ACCTID": "0101089307",
    "ADDRESS": "7298 TEST ST",
+   "DESCLU": "Residential",
    "JURSCODE": "ALLE",
+   "LU": "R",
    "NFMIMPVL": 61800,
    "NFMLNDVL": 67000,
    "NFMTTLVL": 128800,
    "OBJECTID": 15,
    "PREMCITY": "FLINTSTONE",
-   "PREMZIP": "21530"
+   "PREMZIP": "21530",
+   "ZONING": null
   },
   {
    "ACCTID": "0101089315",
    "ADDRESS": null,
+   "DESCLU": "Residential",
    "JURSCODE": "ALLE",
+   "LU": "R",
    "NFMIMPVL": 2700,
    "NFMLNDVL": 43700,
    "NFMTTLVL": 46400,
    "OBJECTID": 16,
    "PREMCITY": "LITTLE ORLEANS",
-   "PREMZIP": "21766"
+   "PREMZIP": "21766",
+   "ZONING": null
   },
   {
    "ACCTID": "0101089323",
    "ADDRESS": null,
+   "DESCLU": "Residential",
    "JURSCODE": "ALLE",
+   "LU": "R",
    "NFMIMPVL": null,
    "NFMLNDVL": 55200,
    "NFMTTLVL": 55200,
    "OBJECTID": 17,
    "PREMCITY": "FLINTSTONE",
-   "PREMZIP": "21530"
+   "PREMZIP": "21530",
+   "ZONING": "A"
   },
   {
    "ACCTID": "0101089331",
    "ADDRESS": null,
+   "DESCLU": "Residential",
    "JURSCODE": "ALLE",
+   "LU": "R",
    "NFMIMPVL": null,
    "NFMLNDVL": 47900,
    "NFMTTLVL": 47900,
    "OBJECTID": 18,
    "PREMCITY": "LITTLE ORLEANS",
-   "PREMZIP": "21766"
+   "PREMZIP": "21766",
+   "ZONING": null
   },
   {
    "ACCTID": "0101089358",
    "ADDRESS": null,
+   "DESCLU": "Residential",
    "JURSCODE": "ALLE",
+   "LU": "R",
    "NFMIMPVL": null,
    "NFMLNDVL": 2800,
    "NFMTTLVL": 2800,
    "OBJECTID": 19,
    "PREMCITY": "LITTLE ORLEANS",
-   "PREMZIP": "21766"
+   "PREMZIP": "21766",
+   "ZONING": null
   },
   {
    "ACCTID": "0101089366",
    "ADDRESS": null,
+   "DESCLU": "Residential",
    "JURSCODE": "ALLE",
+   "LU": "R",
    "NFMIMPVL": null,
    "NFMLNDVL": 5600,
    "NFMTTLVL": 5600,
    "OBJECTID": 20,
    "PREMCITY": "LITTLE ORLEANS",
-   "PREMZIP": "21766"
+   "PREMZIP": "21766",
+   "ZONING": null
   },
   {
    "ACCTID": "0101089536",
    "ADDRESS": "2562 TEST ST",
+   "DESCLU": "Residential",
    "JURSCODE": "ALLE",
+   "LU": "R",
    "NFMIMPVL": 86300,
    "NFMLNDVL": 63100,
    "NFMTTLVL": 149400,
    "OBJECTID": 21,
    "PREMCITY": "LITTLE ORLEANS",
-   "PREMZIP": "21766"
+   "PREMZIP": "21766",
+   "ZONING": null
   },
   {
    "ACCTID": "0101089544",
    "ADDRESS": "7596 TEST ST",
+   "DESCLU": "Residential",
    "JURSCODE": "ALLE",
+   "LU": "R",
    "NFMIMPVL": 239700,
    "NFMLNDVL": 52100,
    "NFMTTLVL": 291800,
    "OBJECTID": 22,
    "PREMCITY": "LITTLE ORLEANS",
-   "PREMZIP": "21766"
+   "PREMZIP": "21766",
+   "ZONING": null
   },
   {
    "ACCTID": "0101089625",
    "ADDRESS": "5976 TEST ST",
+   "DESCLU": "Residential",
    "JURSCODE": "ALLE",
+   "LU": "R",
    "NFMIMPVL": 343300,
    "NFMLNDVL": 58000,
    "NFMTTLVL": 401300,
    "OBJECTID": 23,
    "PREMCITY": "LITTLE ORLEANS",
-   "PREMZIP": "21766"
+   "PREMZIP": "21766",
+   "ZONING": null
   },
   {
    "ACCTID": "0101089633",
    "ADDRESS": null,
+   "DESCLU": "Agricultural",
    "JURSCODE": "ALLE",
+   "LU": "A",
    "NFMIMPVL": null,
    "NFMLNDVL": 900,
    "NFMTTLVL": 900,
    "OBJECTID": 24,
    "PREMCITY": "LITTLE ORLEANS",
-   "PREMZIP": "21766"
+   "PREMZIP": "21766",
+   "ZONING": null
   },
   {
    "ACCTID": "0101089641",
    "ADDRESS": "4463 TEST ST",
+   "DESCLU": "Residential",
    "JURSCODE": "ALLE",
+   "LU": "R",
    "NFMIMPVL": 261500,
    "NFMLNDVL": 59900,
    "NFMTTLVL": 321400,
    "OBJECTID": 25,
    "PREMCITY": "LITTLE ORLEANS",
-   "PREMZIP": "21766"
+   "PREMZIP": "21766",
+   "ZONING": null
   }
  ],
  "layer": "https://mdgeodata.md.gov/imap/rest/services/PlanningCadastre/MD_PropertyData/MapServer/0",

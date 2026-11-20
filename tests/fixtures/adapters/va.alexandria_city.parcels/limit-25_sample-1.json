@@ -10,7 +10,8 @@
    "OWN_NAME": "TESTOWNER 04D17A",
    "OWN_STAT": "VA",
    "OWN_ZIP": "22314",
-   "PID_RE": "075.01-04-08"
+   "PID_RE": "075.01-04-08",
+   "ZONING": "CD"
   },
   {
    "ADDRESS_GIS": "8327 TEST ST",
@@ -22,7 +23,8 @@
    "OWN_NAME": "TESTOWNER 789FA4 LLC",
    "OWN_STAT": "VA",
    "OWN_ZIP": "223143218",
-   "PID_RE": "075.01-04-10"
+   "PID_RE": "075.01-04-10",
+   "ZONING": "CD"
   },
   {
    "ADDRESS_GIS": "7171 TEST ST",
@@ -34,7 +36,8 @@
    "OWN_NAME": "TESTOWNER 04D17A",
    "OWN_STAT": "VA",
    "OWN_ZIP": "223131500",
-   "PID_RE": "034.02-01-01"
+   "PID_RE": "034.02-01-01",
+   "ZONING": "R 2-5"
   },
   {
    "ADDRESS_GIS": "4535 TEST ST",
@@ -46,7 +49,8 @@
    "OWN_NAME": "TESTOWNER 062A4F",
    "OWN_STAT": "VA",
    "OWN_ZIP": "22301",
-   "PID_RE": "034.04-0B-00"
+   "PID_RE": "034.04-0B-00",
+   "ZONING": "RB"
   },
   {
    "ADDRESS_GIS": "1793 TEST ST",
@@ -58,7 +62,8 @@
    "OWN_NAME": "TESTOWNER 30A77F",
    "OWN_STAT": "VA",
    "OWN_ZIP": "22151",
-   "PID_RE": "064.02-06-21.0"
+   "PID_RE": "064.02-06-21.0",
+   "ZONING": "RB"
   },
   {
    "ADDRESS_GIS": "1212 TEST ST",
@@ -70,7 +75,8 @@
    "OWN_NAME": "TESTOWNER 8D3953",
    "OWN_STAT": "VA",
    "OWN_ZIP": "223022518",
-   "PID_RE": "023.01-04-34.L1"
+   "PID_RE": "023.01-04-34.L1",
+   "ZONING": "R 8"
   },
   {
    "ADDRESS_GIS": "2504 TEST ST",
@@ -82,7 +88,8 @@
    "OWN_NAME": "TESTOWNER 3E096B",
    "OWN_STAT": "VA",
    "OWN_ZIP": "223130154",
-   "PID_RE": "064.03-04-14.B"
+   "PID_RE": "064.03-04-14.B",
+   "ZONING": "CD"
   },
   {
    "ADDRESS_GIS": "6928 TEST ST",
@@ -94,7 +101,8 @@
    "OWN_NAME": "TESTOWNER 221E1F",
    "OWN_STAT": "VA",
    "OWN_ZIP": "223143211",
-   "PID_RE": "074.01-11-30.0"
+   "PID_RE": "074.01-11-30.0",
+   "ZONING": "CL"
   },
   {
    "ADDRESS_GIS": "2329 TEST ST",
@@ -106,7 +114,8 @@
    "OWN_NAME": "TESTOWNER 775FB4",
    "OWN_STAT": "VA",
    "OWN_ZIP": "222033765",
-   "PID_RE": "074.04-05-13.0"
+   "PID_RE": "074.04-05-13.0",
+   "ZONING": "RM"
   },
   {
    "ADDRESS_GIS": "2585 TEST ST",
@@ -118,7 +127,8 @@
    "OWN_NAME": "TESTOWNER 40E695",
    "OWN_STAT": "VA",
    "OWN_ZIP": "22314",
-   "PID_RE": "055.03-0A-00"
+   "PID_RE": "055.03-0A-00",
+   "ZONING": "CRMU/H"
   },
   {
    "ADDRESS_GIS": "1264 TEST ST",
@@ -130,7 +140,8 @@
    "OWN_NAME": "TESTOWNER 9B8E59",
    "OWN_STAT": "VA",
    "OWN_ZIP": "22302",
-   "PID_RE": "022.04-01-02"
+   "PID_RE": "022.04-01-02",
+   "ZONING": "R 8"
   },
   {
    "ADDRESS_GIS": "2349 TEST ST",
@@ -142,7 +153,8 @@
    "OWN_NAME": "TESTOWNER 64A1F5 CORP",
    "OWN_STAT": "VA",
    "OWN_ZIP": "223141524",
-   "PID_RE": "075.01-02-01.04"
+   "PID_RE": "075.01-02-01.04",
+   "ZONING": "POS"
   },
   {
    "ADDRESS_GIS": "3116 TEST ST",
@@ -154,7 +166,8 @@
    "OWN_NAME": "TESTOWNER 64A1F5 CORP",
    "OWN_STAT": "VA",
    "OWN_ZIP": "223141524",
-   "PID_RE": "075.01-02-01.05"
+   "PID_RE": "075.01-02-01.05",
+   "ZONING": "POS"
   },
   {
    "ADDRESS_GIS": "4863 TEST ST",
@@ -166,7 +179,8 @@
    "OWN_NAME": "TESTOWNER 64A1F5 CORP",
    "OWN_STAT": "VA",
    "OWN_ZIP": "223141524",
-   "PID_RE": "075.01-02-01.03"
+   "PID_RE": "075.01-02-01.03",
+   "ZONING": "POS"
   },
   {
    "ADDRESS_GIS": "6138 TEST ST",
@@ -178,7 +192,8 @@
    "OWN_NAME": "TESTOWNER 3384B1",
    "OWN_STAT": "VA",
    "OWN_ZIP": "22301",
-   "PID_RE": "053.02-03-10"
+   "PID_RE": "053.02-03-10",
+   "ZONING": "R 2-5"
   },
   {
    "ADDRESS_GIS": "5006 TEST ST",
@@ -190,7 +205,8 @@
    "OWN_NAME": "TESTOWNER 8D56C5",
    "OWN_STAT": "VA",
    "OWN_ZIP": "22314",
-   "PID_RE": "073.02-0B-00"
+   "PID_RE": "073.02-0B-00",
+   "ZONING": "OCH"
   },
   {
    "ADDRESS_GIS": "2033 TEST ST",
@@ -202,7 +218,8 @@
    "OWN_NAME": "TESTOWNER 950121 LP",
    "OWN_STAT": "VA",
    "OWN_ZIP": "22314",
-   "PID_RE": "074.02-11-25.0Z"
+   "PID_RE": "074.02-11-25.0Z",
+   "ZONING": "CD"
   },
   {
    "ADDRESS_GIS": "5970 TEST ST",
@@ -214,7 +231,8 @@
    "OWN_NAME": "TESTOWNER 6B2222",
    "OWN_STAT": "VA",
    "OWN_ZIP": "232191926",
-   "PID_RE": "044.02-08-04"
+   "PID_RE": "044.02-08-04",
+   "ZONING": "CDD#10"
   },
   {
    "ADDRESS_GIS": "5498 TEST ST",
@@ -226,7 +244,8 @@
    "OWN_NAME": "TESTOWNER C23091",
    "OWN_STAT": "VA",
    "OWN_ZIP": "22314",
-   "PID_RE": "055.01-0A-00"
+   "PID_RE": "055.01-0A-00",
+   "ZONING": "RM"
   },
   {
    "ADDRESS_GIS": "3326 TEST ST",
@@ -238,7 +257,8 @@
    "OWN_NAME": "TESTOWNER 04D17A",
    "OWN_STAT": "VA",
    "OWN_ZIP": "22313",
-   "PID_RE": "065.03-08-54.0Z"
+   "PID_RE": "065.03-08-54.0Z",
+   "ZONING": "CD"
   },
   {
    "ADDRESS_GIS": "6897 TEST ST",
@@ -250,7 +270,8 @@
    "OWN_NAME": "TESTOWNER 8FCBCC LLC",
    "OWN_STAT": "VA",
    "OWN_ZIP": "223143862",
-   "PID_RE": "075.03-04-03"
+   "PID_RE": "075.03-04-03",
+   "ZONING": "W-1"
   },
   {
    "ADDRESS_GIS": "1225 TEST ST",
@@ -262,7 +283,8 @@
    "OWN_NAME": "TESTOWNER BFEFF7 LLC",
    "OWN_STAT": "VA",
    "OWN_ZIP": "220032632",
-   "PID_RE": "074.01-0E-000"
+   "PID_RE": "074.01-0E-000",
+   "ZONING": "OC"
   },
   {
    "ADDRESS_GIS": "4442 TEST ST",
@@ -274,7 +296,8 @@
    "OWN_NAME": "TESTOWNER 311714",
    "OWN_STAT": "VA",
    "OWN_ZIP": "22301",
-   "PID_RE": "063.01-11-19.C"
+   "PID_RE": "063.01-11-19.C",
+   "ZONING": "R 5"
   },
   {
    "ADDRESS_GIS": "2021 TEST ST",
@@ -286,7 +309,8 @@
    "OWN_NAME": "TESTOWNER 524B24",
    "OWN_STAT": "VA",
    "OWN_ZIP": "223115089",
-   "PID_RE": "034.02-02-02"
+   "PID_RE": "034.02-02-02",
+   "ZONING": "R 2-5"
   },
   {
    "ADDRESS_GIS": "7184 TEST ST",
@@ -298,7 +322,8 @@
    "OWN_NAME": "TESTOWNER 69D1F6",
    "OWN_STAT": "VA",
    "OWN_ZIP": "22304",
-   "PID_RE": "058.01-0A-00"
+   "PID_RE": "058.01-0A-00",
+   "ZONING": "RC"
   }
  ],
  "layer": "https://services2.arcgis.com/ChYV69FhfjwkvRmy/ArcGIS/rest/services/Alexandria_Parcels/FeatureServer/0",

@@ -17,7 +17,10 @@
    "SITE_ADDR": "TESTOWNER 01EE46",
    "TOTAL_VAL": 544900,
    "TOWN_ID": 351,
-   "ZIP": "02664"
+   "USE_CODE": "1010",
+   "USE_DESC": "Single Family Residential",
+   "ZIP": "02664",
+   "ZONING": null
   },
   {
    "BLDG_VAL": 750500,
@@ -36,7 +39,10 @@
    "SITE_ADDR": "TESTOWNER 9A1A90",
    "TOTAL_VAL": 971800,
    "TOWN_ID": 351,
-   "ZIP": "02673"
+   "USE_CODE": "1010",
+   "USE_DESC": "Single Family Residential",
+   "ZIP": "02673",
+   "ZONING": null
   },
   {
    "BLDG_VAL": 235100,
@@ -55,7 +61,10 @@
    "SITE_ADDR": "TESTOWNER 2781AE",
    "TOTAL_VAL": 385700,
    "TOWN_ID": 16,
-   "ZIP": "02703"
+   "USE_CODE": "1010",
+   "USE_DESC": "Single Family Residential",
+   "ZIP": "02703",
+   "ZONING": "R1"
   },
   {
    "BLDG_VAL": 208600,
@@ -74,7 +83,10 @@
    "SITE_ADDR": "TESTOWNER 55FF8B",
    "TOTAL_VAL": 385300,
    "TOWN_ID": 16,
-   "ZIP": "02703"
+   "USE_CODE": "1010",
+   "USE_DESC": "Single Family Residential",
+   "ZIP": "02703",
+   "ZONING": "R1"
   },
   {
    "BLDG_VAL": 827500,
@@ -93,7 +105,10 @@
    "SITE_ADDR": "TESTOWNER 7E94F8",
    "TOTAL_VAL": 827500,
    "TOWN_ID": 198,
-   "ZIP": "01760"
+   "USE_CODE": "102",
+   "USE_DESC": "Residential Condominium",
+   "ZIP": "01760",
+   "ZONING": "RG"
   },
   {
    "BLDG_VAL": 109600,
@@ -112,7 +127,10 @@
    "SITE_ADDR": "TESTOWNER FC3485",
    "TOTAL_VAL": 542500,
    "TOWN_ID": 198,
-   "ZIP": "01760"
+   "USE_CODE": "101",
+   "USE_DESC": "Single Family Residential",
+   "ZIP": "01760",
+   "ZONING": "RSA"
   },
   {
    "BLDG_VAL": 1073500,
@@ -131,7 +149,10 @@
    "SITE_ADDR": "TESTOWNER D321A7",
    "TOTAL_VAL": 1543000,
    "TOWN_ID": 198,
-   "ZIP": "01760"
+   "USE_CODE": "101",
+   "USE_DESC": "Single Family Residential",
+   "ZIP": "01760",
+   "ZONING": "RSA"
   },
   {
    "BLDG_VAL": 217400,
@@ -150,7 +171,10 @@
    "SITE_ADDR": "TESTOWNER 4C2962",
    "TOTAL_VAL": 631200,
    "TOWN_ID": 198,
-   "ZIP": "01760"
+   "USE_CODE": "101",
+   "USE_DESC": "Single Family Residential",
+   "ZIP": "01760",
+   "ZONING": "RSA"
   },
   {
    "BLDG_VAL": 1327800,
@@ -169,7 +193,10 @@
    "SITE_ADDR": "TESTOWNER 1EB2A3",
    "TOTAL_VAL": 1871800,
    "TOWN_ID": 198,
-   "ZIP": "01760"
+   "USE_CODE": "101",
+   "USE_DESC": "Single Family Residential",
+   "ZIP": "01760",
+   "ZONING": "RSB"
   },
   {
    "BLDG_VAL": 153800,
@@ -188,7 +215,10 @@
    "SITE_ADDR": "TESTOWNER 3D986D",
    "TOTAL_VAL": 658300,
    "TOWN_ID": 198,
-   "ZIP": "01760"
+   "USE_CODE": "101",
+   "USE_DESC": "Single Family Residential",
+   "ZIP": "01760",
+   "ZONING": "RSA"
   },
   {
    "BLDG_VAL": 291500,
@@ -207,7 +237,10 @@
    "SITE_ADDR": "TESTOWNER 264A53",
    "TOTAL_VAL": 291500,
    "TOWN_ID": 198,
-   "ZIP": "01760"
+   "USE_CODE": "102",
+   "USE_DESC": "Residential Condominium",
+   "ZIP": "01760",
+   "ZONING": "PCD"
   },
   {
    "BLDG_VAL": 673700,
@@ -226,7 +259,10 @@
    "SITE_ADDR": "TESTOWNER BBE432",
    "TOTAL_VAL": 673700,
    "TOWN_ID": 198,
-   "ZIP": "01760"
+   "USE_CODE": "102",
+   "USE_DESC": "Residential Condominium",
+   "ZIP": "01760",
+   "ZONING": "RSB"
   },
   {
    "BLDG_VAL": 17500,
@@ -245,7 +281,10 @@
    "SITE_ADDR": "TESTOWNER BBE432",
    "TOTAL_VAL": 17500,
    "TOWN_ID": 198,
-   "ZIP": "01760"
+   "USE_CODE": "106",
+   "USE_DESC": "Accessory Land with Improvement",
+   "ZIP": "01760",
+   "ZONING": null
   },
   {
    "BLDG_VAL": 902300,
@@ -264,7 +303,10 @@
    "SITE_ADDR": "TESTOWNER 9F3230",
    "TOTAL_VAL": 1513200,
    "TOWN_ID": 198,
-   "ZIP": "01760"
+   "USE_CODE": "101",
+   "USE_DESC": "Single Family Residential",
+   "ZIP": "01760",
+   "ZONING": "RSB"
   },
   {
    "BLDG_VAL": 1337500,
@@ -283,7 +325,10 @@
    "SITE_ADDR": "TESTOWNER F8300B",
    "TOTAL_VAL": 1337500,
    "TOWN_ID": 198,
-   "ZIP": "01760"
+   "USE_CODE": "102",
+   "USE_DESC": "Residential Condominium",
+   "ZIP": "01760",
+   "ZONING": "RG"
   },
   {
    "BLDG_VAL": 987800,
@@ -302,7 +347,10 @@
    "SITE_ADDR": "TESTOWNER 54DF0F",
    "TOTAL_VAL": 987800,
    "TOWN_ID": 198,
-   "ZIP": "01760"
+   "USE_CODE": "102",
+   "USE_DESC": "Residential Condominium",
+   "ZIP": "01760",
+   "ZONING": "RG"
   },
   {
    "BLDG_VAL": 295200,
@@ -321,7 +369,10 @@
    "SITE_ADDR": "TESTOWNER 8178A3",
    "TOTAL_VAL": 451600,
    "TOWN_ID": 265,
-   "ZIP": null
+   "USE_CODE": "101",
+   "USE_DESC": "Single Family Residential",
+   "ZIP": null,
+   "ZONING": "R1"
   },
   {
    "BLDG_VAL": 300400,
@@ -340,7 +391,10 @@
    "SITE_ADDR": "TESTOWNER B7BDA0",
    "TOTAL_VAL": 460400,
    "TOWN_ID": 265,
-   "ZIP": null
+   "USE_CODE": "101",
+   "USE_DESC": "Single Family Residential",
+   "ZIP": null,
+   "ZONING": "R1"
   },
   {
    "BLDG_VAL": 264400,
@@ -359,7 +413,10 @@
    "SITE_ADDR": "TESTOWNER C80653",
    "TOTAL_VAL": 418900,
    "TOWN_ID": 265,
-   "ZIP": null
+   "USE_CODE": "101",
+   "USE_DESC": "Single Family Residential",
+   "ZIP": null,
+   "ZONING": "R1"
   },
   {
    "BLDG_VAL": 632500,
@@ -378,7 +435,10 @@
    "SITE_ADDR": "TESTOWNER 1ABDE1",
    "TOTAL_VAL": 632500,
    "TOWN_ID": 198,
-   "ZIP": "01760"
+   "USE_CODE": "102",
+   "USE_DESC": "Residential Condominium",
+   "ZIP": "01760",
+   "ZONING": "RSB"
   },
   {
    "BLDG_VAL": 515300,
@@ -397,7 +457,10 @@
    "SITE_ADDR": "TESTOWNER B97E2D",
    "TOTAL_VAL": 991000,
    "TOWN_ID": 198,
-   "ZIP": "01760"
+   "USE_CODE": "101",
+   "USE_DESC": "Single Family Residential",
+   "ZIP": "01760",
+   "ZONING": "RSA"
   },
   {
    "BLDG_VAL": 980800,
@@ -416,7 +479,10 @@
    "SITE_ADDR": "TESTOWNER 6BC54A",
    "TOTAL_VAL": 980800,
    "TOWN_ID": 198,
-   "ZIP": "01760"
+   "USE_CODE": "102",
+   "USE_DESC": "Residential Condominium",
+   "ZIP": "01760",
+   "ZONING": null
   },
   {
    "BLDG_VAL": 45300,
@@ -435,7 +501,10 @@
    "SITE_ADDR": "TESTOWNER 5EDC28",
    "TOTAL_VAL": 489100,
    "TOWN_ID": 198,
-   "ZIP": "01760"
+   "USE_CODE": "104",
+   "USE_DESC": "Two-Family Residential",
+   "ZIP": "01760",
+   "ZONING": "RG"
   },
   {
    "BLDG_VAL": 291500,
@@ -454,7 +523,10 @@
    "SITE_ADDR": "TESTOWNER A4EABE",
    "TOTAL_VAL": 291500,
    "TOWN_ID": 198,
-   "ZIP": "01760"
+   "USE_CODE": "102",
+   "USE_DESC": "Residential Condominium",
+   "ZIP": "01760",
+   "ZONING": "PCD"
   },
   {
    "BLDG_VAL": 218900,
@@ -473,7 +545,10 @@
    "SITE_ADDR": "TESTOWNER DA4B23",
    "TOTAL_VAL": 744000,
    "TOWN_ID": 198,
-   "ZIP": "01760"
+   "USE_CODE": "101",
+   "USE_DESC": "Single Family Residential",
+   "ZIP": "01760",
+   "ZONING": "RSC"
   }
  ],
  "layer": "https://services1.arcgis.com/hGdibHYSPO59RG1h/ArcGIS/rest/services/Massachusetts_Property_Tax_Parcels/FeatureServer/0",

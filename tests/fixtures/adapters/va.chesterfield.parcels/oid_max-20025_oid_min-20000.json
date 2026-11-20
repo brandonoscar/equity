@@ -1,47 +1,13 @@
 {
  "attributes": [
   {
-   "Address": "7563 TEST ST",
-   "AssessmentYear": 2026,
-   "DeedBook": "3908",
-   "FairMarketValue": 232000,
-   "GPIN": "7197180715",
-   "ImprovementValue": 741000,
-   "OBJECTID": 20000,
-   "OwnerAddress": "4760 TEST ST",
-   "OwnerCity": "MIDLOTHIAN",
-   "OwnerName": "TESTOWNER 7DB1D0",
-   "OwnerState": "VA",
-   "OwnerZip": "23113",
-   "Page": "501",
-   "TotalAssessment": 973000,
-   "Zip": "23113"
-  },
-  {
-   "Address": "1665 TEST ST",
-   "AssessmentYear": 2026,
-   "DeedBook": "15361",
-   "FairMarketValue": 225000,
-   "GPIN": "7197181047",
-   "ImprovementValue": 840000,
-   "OBJECTID": 20001,
-   "OwnerAddress": "5000 TEST ST",
-   "OwnerCity": "MIDLOTHIAN",
-   "OwnerName": "TESTOWNER FB95CE",
-   "OwnerState": "VA",
-   "OwnerZip": "23113",
-   "Page": "0683",
-   "TotalAssessment": 1065000,
-   "Zip": "23113"
-  },
-  {
    "Address": "3549 TEST ST",
    "AssessmentYear": 2026,
    "DeedBook": "9287",
    "FairMarketValue": 225000,
    "GPIN": "7197181875",
    "ImprovementValue": 910600,
-   "OBJECTID": 20002,
+   "OBJECTID": 20000,
    "OwnerAddress": "3098 TEST ST",
    "OwnerCity": "MIDLOTHIAN",
    "OwnerName": "TESTOWNER 4F2644",
@@ -49,6 +15,7 @@
    "OwnerZip": "23113",
    "Page": "457",
    "TotalAssessment": 1135600,
+   "UseCode": "SD",
    "Zip": "23113"
   },
   {
@@ -58,7 +25,7 @@
    "FairMarketValue": 225000,
    "GPIN": "7197181924",
    "ImprovementValue": 770000,
-   "OBJECTID": 20003,
+   "OBJECTID": 20001,
    "OwnerAddress": "1787 TEST ST",
    "OwnerCity": "MIDLOTHIAN",
    "OwnerName": "TESTOWNER 5091C7",
@@ -66,6 +33,7 @@
    "OwnerZip": "23113",
    "Page": "0152",
    "TotalAssessment": 995000,
+   "UseCode": "SD",
    "Zip": "23113"
   },
   {
@@ -75,7 +43,7 @@
    "FairMarketValue": 225000,
    "GPIN": "7197182649",
    "ImprovementValue": 963600,
-   "OBJECTID": 20004,
+   "OBJECTID": 20002,
    "OwnerAddress": "1266 TEST ST",
    "OwnerCity": "MIDLOTHIAN",
    "OwnerName": "TESTOWNER E72850",
@@ -83,6 +51,7 @@
    "OwnerZip": "23113",
    "Page": "0915",
    "TotalAssessment": 1188600,
+   "UseCode": "SD",
    "Zip": "23113"
   },
   {
@@ -92,7 +61,7 @@
    "FairMarketValue": 225000,
    "GPIN": "7197183005",
    "ImprovementValue": 1203500,
-   "OBJECTID": 20005,
+   "OBJECTID": 20003,
    "OwnerAddress": "8784 TEST ST",
    "OwnerCity": "MIDLOTHIAN",
    "OwnerName": "TESTOWNER 72D89E",
@@ -100,6 +69,7 @@
    "OwnerZip": "23113",
    "Page": "490",
    "TotalAssessment": 1428500,
+   "UseCode": "SD",
    "Zip": "23113"
   },
   {
@@ -109,7 +79,7 @@
    "FairMarketValue": 225000,
    "GPIN": "7197183274",
    "ImprovementValue": 773800,
-   "OBJECTID": 20006,
+   "OBJECTID": 20004,
    "OwnerAddress": "5607 TEST ST",
    "OwnerCity": "MIDLOTHIAN",
    "OwnerName": "TESTOWNER 5FC15C",
@@ -117,6 +87,7 @@
    "OwnerZip": "23113",
    "Page": "434",
    "TotalAssessment": 998800,
+   "UseCode": "SD",
    "Zip": "23113"
   },
   {
@@ -126,7 +97,7 @@
    "FairMarketValue": 213800,
    "GPIN": "7197183618",
    "ImprovementValue": 946400,
-   "OBJECTID": 20007,
+   "OBJECTID": 20005,
    "OwnerAddress": "792 TEST ST",
    "OwnerCity": "MIDLOTHIAN",
    "OwnerName": "TESTOWNER D6843D",
@@ -134,6 +105,7 @@
    "OwnerZip": "23113",
    "Page": "29",
    "TotalAssessment": 1160200,
+   "UseCode": "SD",
    "Zip": "23113"
   },
   {
@@ -143,7 +115,7 @@
    "FairMarketValue": 225000,
    "GPIN": "7197183841",
    "ImprovementValue": 1010600,
-   "OBJECTID": 20008,
+   "OBJECTID": 20006,
    "OwnerAddress": "6538 TEST ST",
    "OwnerCity": "MIDLOTHIAN",
    "OwnerName": "TESTOWNER 3DB131",
@@ -151,6 +123,7 @@
    "OwnerZip": "23113",
    "Page": "28",
    "TotalAssessment": 1235600,
+   "UseCode": "SD",
    "Zip": "23113"
   },
   {
@@ -160,7 +133,7 @@
    "FairMarketValue": 225000,
    "GPIN": "7197184469",
    "ImprovementValue": 1007300,
-   "OBJECTID": 20009,
+   "OBJECTID": 20007,
    "OwnerAddress": "5771 TEST ST",
    "OwnerCity": "MIDLOTHIAN",
    "OwnerName": "TESTOWNER 5FFAC6",
@@ -168,6 +141,7 @@
    "OwnerZip": "23113",
    "Page": "94",
    "TotalAssessment": 1232300,
+   "UseCode": "SD",
    "Zip": "23113"
   },
   {
@@ -177,7 +151,7 @@
    "FairMarketValue": 225000,
    "GPIN": "7197184934",
    "ImprovementValue": 1070900,
-   "OBJECTID": 20010,
+   "OBJECTID": 20008,
    "OwnerAddress": "3930 TEST ST",
    "OwnerCity": "MIDLOTHIAN",
    "OwnerName": "TESTOWNER 8D9302",
@@ -185,6 +159,7 @@
    "OwnerZip": "23113",
    "Page": "93",
    "TotalAssessment": 1295900,
+   "UseCode": "SD",
    "Zip": "23113"
   },
   {
@@ -194,7 +169,7 @@
    "FairMarketValue": 210000,
    "GPIN": "7197184997",
    "ImprovementValue": 896500,
-   "OBJECTID": 20011,
+   "OBJECTID": 20009,
    "OwnerAddress": "3213 TEST ST",
    "OwnerCity": "MIDLOTHIAN",
    "OwnerName": "TESTOWNER B6E8F4",
@@ -202,6 +177,7 @@
    "OwnerZip": "23113",
    "Page": "505",
    "TotalAssessment": 1106500,
+   "UseCode": "SD",
    "Zip": "23113"
   },
   {
@@ -211,7 +187,7 @@
    "FairMarketValue": 202500,
    "GPIN": "7197185512",
    "ImprovementValue": 760600,
-   "OBJECTID": 20012,
+   "OBJECTID": 20010,
    "OwnerAddress": "450 TEST ST",
    "OwnerCity": "MIDLOTHIAN",
    "OwnerName": "TESTOWNER 79346C",
@@ -219,6 +195,7 @@
    "OwnerZip": "23113",
    "Page": "557",
    "TotalAssessment": 963100,
+   "UseCode": "SD",
    "Zip": "23113"
   },
   {
@@ -228,7 +205,7 @@
    "FairMarketValue": 225000,
    "GPIN": "7197185561",
    "ImprovementValue": 1000300,
-   "OBJECTID": 20013,
+   "OBJECTID": 20011,
    "OwnerAddress": "1864 TEST ST",
    "OwnerCity": "MIDLOTHIAN",
    "OwnerName": "TESTOWNER 3575D5",
@@ -236,6 +213,7 @@
    "OwnerZip": "23113",
    "Page": "378",
    "TotalAssessment": 1225300,
+   "UseCode": "SD",
    "Zip": "23113"
   },
   {
@@ -245,7 +223,7 @@
    "FairMarketValue": 213800,
    "GPIN": "7197186229",
    "ImprovementValue": 891500,
-   "OBJECTID": 20014,
+   "OBJECTID": 20012,
    "OwnerAddress": "2675 TEST ST",
    "OwnerCity": "MIDLOTHIAN",
    "OwnerName": "TESTOWNER C9014E",
@@ -253,6 +231,7 @@
    "OwnerZip": "23113",
    "Page": "765",
    "TotalAssessment": 1105300,
+   "UseCode": "SD",
    "Zip": "23113"
   },
   {
@@ -262,7 +241,7 @@
    "FairMarketValue": 216300,
    "GPIN": "7197186387",
    "ImprovementValue": 893100,
-   "OBJECTID": 20015,
+   "OBJECTID": 20013,
    "OwnerAddress": "4769 TEST ST",
    "OwnerCity": "MIDLOTHIAN",
    "OwnerName": "TESTOWNER 8144E9",
@@ -270,6 +249,7 @@
    "OwnerZip": "23113",
    "Page": "118",
    "TotalAssessment": 1109400,
+   "UseCode": "SD",
    "Zip": "23113"
   },
   {
@@ -279,7 +259,7 @@
    "FairMarketValue": 225000,
    "GPIN": "7197186555",
    "ImprovementValue": 861300,
-   "OBJECTID": 20016,
+   "OBJECTID": 20014,
    "OwnerAddress": "7827 TEST ST",
    "OwnerCity": "MIDLOTHIAN",
    "OwnerName": "TESTOWNER 820695",
@@ -287,6 +267,7 @@
    "OwnerZip": "23113",
    "Page": "186",
    "TotalAssessment": 1086300,
+   "UseCode": "SD",
    "Zip": "23113"
   },
   {
@@ -296,7 +277,7 @@
    "FairMarketValue": 225000,
    "GPIN": "7197187548",
    "ImprovementValue": 876700,
-   "OBJECTID": 20017,
+   "OBJECTID": 20015,
    "OwnerAddress": "1470 TEST ST",
    "OwnerCity": "MIDLOTHIAN",
    "OwnerName": "TESTOWNER A74514",
@@ -304,6 +285,7 @@
    "OwnerZip": "23113",
    "Page": "360",
    "TotalAssessment": 1101700,
+   "UseCode": "SD",
    "Zip": "23113"
   },
   {
@@ -313,7 +295,7 @@
    "FairMarketValue": 225000,
    "GPIN": "7197187606",
    "ImprovementValue": 907600,
-   "OBJECTID": 20018,
+   "OBJECTID": 20016,
    "OwnerAddress": "599 TEST ST",
    "OwnerCity": "MIDLOTHIAN",
    "OwnerName": "TESTOWNER 1F5D0A",
@@ -321,6 +303,7 @@
    "OwnerZip": "23113",
    "Page": "275",
    "TotalAssessment": 1132600,
+   "UseCode": "SD",
    "Zip": "23113"
   },
   {
@@ -330,7 +313,7 @@
    "FairMarketValue": 225000,
    "GPIN": "7197188222",
    "ImprovementValue": 710500,
-   "OBJECTID": 20019,
+   "OBJECTID": 20017,
    "OwnerAddress": "4542 TEST ST",
    "OwnerCity": "MIDLOTHIAN",
    "OwnerName": "TESTOWNER BDB848",
@@ -338,6 +321,7 @@
    "OwnerZip": "23113",
    "Page": "541",
    "TotalAssessment": 935500,
+   "UseCode": "SD",
    "Zip": "23113"
   },
   {
@@ -347,7 +331,7 @@
    "FairMarketValue": 225000,
    "GPIN": "7197189048",
    "ImprovementValue": 761200,
-   "OBJECTID": 20020,
+   "OBJECTID": 20018,
    "OwnerAddress": "8936 TEST ST",
    "OwnerCity": "MIDLOTHIAN",
    "OwnerName": "TESTOWNER D82AC1",
@@ -355,6 +339,7 @@
    "OwnerZip": "23113",
    "Page": "942",
    "TotalAssessment": 986200,
+   "UseCode": "SD",
    "Zip": "23113"
   },
   {
@@ -364,7 +349,7 @@
    "FairMarketValue": 225000,
    "GPIN": "7197189506",
    "ImprovementValue": 848600,
-   "OBJECTID": 20021,
+   "OBJECTID": 20019,
    "OwnerAddress": "1495 TEST ST",
    "OwnerCity": "MIDLOTHIAN",
    "OwnerName": "TESTOWNER 66EA19",
@@ -372,6 +357,7 @@
    "OwnerZip": "23113",
    "Page": "68",
    "TotalAssessment": 1073600,
+   "UseCode": "SD",
    "Zip": "23113"
   },
   {
@@ -381,7 +367,7 @@
    "FairMarketValue": 225000,
    "GPIN": "7197189822",
    "ImprovementValue": 929600,
-   "OBJECTID": 20022,
+   "OBJECTID": 20020,
    "OwnerAddress": "7466 TEST ST",
    "OwnerCity": "MIDLOTHIAN",
    "OwnerName": "TESTOWNER C12467",
@@ -389,6 +375,7 @@
    "OwnerZip": "23113",
    "Page": "0832",
    "TotalAssessment": 1154600,
+   "UseCode": "SD",
    "Zip": "23113"
   },
   {
@@ -398,7 +385,7 @@
    "FairMarketValue": 280000,
    "GPIN": "7197190186",
    "ImprovementValue": 1389300,
-   "OBJECTID": 20023,
+   "OBJECTID": 20021,
    "OwnerAddress": "9057 TEST ST",
    "OwnerCity": "MIDLOTHIAN",
    "OwnerName": "TESTOWNER D93C2A",
@@ -406,6 +393,7 @@
    "OwnerZip": "23113",
    "Page": "280",
    "TotalAssessment": 1669300,
+   "UseCode": "SD",
    "Zip": "23113"
   },
   {
@@ -415,7 +403,7 @@
    "FairMarketValue": 213300,
    "GPIN": "7197190604",
    "ImprovementValue": 766400,
-   "OBJECTID": 20024,
+   "OBJECTID": 20022,
    "OwnerAddress": "4351 TEST ST",
    "OwnerCity": "MIDLOTHIAN",
    "OwnerName": "TESTOWNER 621075",
@@ -423,6 +411,43 @@
    "OwnerZip": "23113",
    "Page": "0326",
    "TotalAssessment": 979700,
+   "UseCode": "SD",
+   "Zip": "23113"
+  },
+  {
+   "Address": "6366 TEST ST",
+   "AssessmentYear": 2026,
+   "DeedBook": "8431",
+   "FairMarketValue": 210000,
+   "GPIN": "7197190725",
+   "ImprovementValue": 929600,
+   "OBJECTID": 20023,
+   "OwnerAddress": "6015 TEST ST",
+   "OwnerCity": "MIDLOTHIAN",
+   "OwnerName": "TESTOWNER D15AD2",
+   "OwnerState": "VA",
+   "OwnerZip": "23113",
+   "Page": "251",
+   "TotalAssessment": 1139600,
+   "UseCode": "SD",
+   "Zip": "23113"
+  },
+  {
+   "Address": "1598 TEST ST",
+   "AssessmentYear": 2026,
+   "DeedBook": "5855",
+   "FairMarketValue": 210000,
+   "GPIN": "7197191155",
+   "ImprovementValue": 1079700,
+   "OBJECTID": 20024,
+   "OwnerAddress": "4532 TEST ST",
+   "OwnerCity": "COLONIAL HEIGHTS",
+   "OwnerName": "TESTOWNER 424E69",
+   "OwnerState": "VA",
+   "OwnerZip": "23834",
+   "Page": "704",
+   "TotalAssessment": 1289700,
+   "UseCode": "SD",
    "Zip": "23113"
   }
  ],

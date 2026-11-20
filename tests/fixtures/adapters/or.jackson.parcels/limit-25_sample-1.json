@@ -10,9 +10,11 @@
    "IMPRMV": 0,
    "LANDRMV": 0,
    "OBJECTID": 1,
+   "PROPCLASS": "970",
    "SITEADD": "TESTOWNER 536905",
    "STATE": null,
-   "ZIPCODE": "0"
+   "ZIPCODE": "0",
+   "ZONECLASS": "FR"
   },
   {
    "ACCOUNT": 10507568,
@@ -24,9 +26,11 @@
    "IMPRMV": 90890,
    "LANDRMV": 0,
    "OBJECTID": 2,
+   "PROPCLASS": "801",
    "SITEADD": "TESTOWNER 0779A0",
    "STATE": "OR",
-   "ZIPCODE": "97502-0066"
+   "ZIPCODE": "97502-0066",
+   "ZONECLASS": "FR"
   },
   {
    "ACCOUNT": 10507543,
@@ -38,9 +42,11 @@
    "IMPRMV": 0,
    "LANDRMV": 0,
    "OBJECTID": 3,
+   "PROPCLASS": "970",
    "SITEADD": "TESTOWNER 2A4CB2",
    "STATE": null,
-   "ZIPCODE": "0"
+   "ZIPCODE": "0",
+   "ZONECLASS": "FR"
   },
   {
    "ACCOUNT": 10507576,
@@ -52,9 +58,11 @@
    "IMPRMV": 88990,
    "LANDRMV": 0,
    "OBJECTID": 4,
+   "PROPCLASS": "801",
    "SITEADD": "TESTOWNER 444822",
    "STATE": "OR",
-   "ZIPCODE": "97501-8155"
+   "ZIPCODE": "97501-8155",
+   "ZONECLASS": "FR"
   },
   {
    "ACCOUNT": 10507550,
@@ -66,9 +74,11 @@
    "IMPRMV": 89150,
    "LANDRMV": 0,
    "OBJECTID": 5,
+   "PROPCLASS": "801",
    "SITEADD": "TESTOWNER 612FB9",
    "STATE": "CA",
-   "ZIPCODE": "94930"
+   "ZIPCODE": "94930",
+   "ZONECLASS": "FR"
   },
   {
    "ACCOUNT": 10507584,
@@ -80,9 +90,11 @@
    "IMPRMV": 78640,
    "LANDRMV": 0,
    "OBJECTID": 6,
+   "PROPCLASS": "801",
    "SITEADD": "TESTOWNER 01743A",
    "STATE": "OR",
-   "ZIPCODE": "97701-9304"
+   "ZIPCODE": "97701-9304",
+   "ZONECLASS": "FR"
   },
   {
    "ACCOUNT": 10507592,
@@ -94,9 +106,11 @@
    "IMPRMV": 106680,
    "LANDRMV": 0,
    "OBJECTID": 7,
+   "PROPCLASS": "801",
    "SITEADD": "TESTOWNER 4F1FDD",
    "STATE": "WA",
-   "ZIPCODE": "98070-8210"
+   "ZIPCODE": "98070-8210",
+   "ZONECLASS": "FR"
   },
   {
    "ACCOUNT": 10507608,
@@ -108,9 +122,11 @@
    "IMPRMV": 110260,
    "LANDRMV": 0,
    "OBJECTID": 8,
+   "PROPCLASS": "801",
    "SITEADD": "TESTOWNER A57033",
    "STATE": "TX",
-   "ZIPCODE": "78676-5557"
+   "ZIPCODE": "78676-5557",
+   "ZONECLASS": "FR"
   },
   {
    "ACCOUNT": 10507616,
@@ -122,9 +138,11 @@
    "IMPRMV": 103700,
    "LANDRMV": 0,
    "OBJECTID": 9,
+   "PROPCLASS": "801",
    "SITEADD": "TESTOWNER 528B1E",
    "STATE": "CA",
-   "ZIPCODE": "95927-0192"
+   "ZIPCODE": "95927-0192",
+   "ZONECLASS": "FR"
   },
   {
    "ACCOUNT": 10507624,
@@ -136,9 +154,11 @@
    "IMPRMV": 101970,
    "LANDRMV": 0,
    "OBJECTID": 10,
+   "PROPCLASS": "801",
    "SITEADD": "TESTOWNER 7B2351",
    "STATE": "OR",
-   "ZIPCODE": "97501-8515"
+   "ZIPCODE": "97501-8515",
+   "ZONECLASS": "FR"
   },
   {
    "ACCOUNT": 10507632,
@@ -150,9 +170,11 @@
    "IMPRMV": 137930,
    "LANDRMV": 0,
    "OBJECTID": 11,
+   "PROPCLASS": "801",
    "SITEADD": "TESTOWNER 2DB032",
    "STATE": "OR",
-   "ZIPCODE": "97504-9025"
+   "ZIPCODE": "97504-9025",
+   "ZONECLASS": "FR"
   },
   {
    "ACCOUNT": 10507641,
@@ -164,9 +186,11 @@
    "IMPRMV": 163830,
    "LANDRMV": 0,
    "OBJECTID": 12,
+   "PROPCLASS": "801",
    "SITEADD": "TESTOWNER 7E194A",
    "STATE": "OR",
-   "ZIPCODE": "97520-1943"
+   "ZIPCODE": "97520-1943",
+   "ZONECLASS": "FR"
   },
   {
    "ACCOUNT": 10507657,
@@ -178,9 +202,11 @@
    "IMPRMV": 158950,
    "LANDRMV": 0,
    "OBJECTID": 13,
+   "PROPCLASS": "801",
    "SITEADD": "TESTOWNER 15D53E",
    "STATE": "OR",
-   "ZIPCODE": "97603-5252"
+   "ZIPCODE": "97603-5252",
+   "ZONECLASS": "FR"
   },
   {
    "ACCOUNT": 10507665,
@@ -192,9 +218,11 @@
    "IMPRMV": 180800,
    "LANDRMV": 0,
    "OBJECTID": 14,
+   "PROPCLASS": "801",
    "SITEADD": "TESTOWNER 11B7BF",
    "STATE": "OR",
-   "ZIPCODE": "97355-2963"
+   "ZIPCODE": "97355-2963",
+   "ZONECLASS": "FR"
   },
   {
    "ACCOUNT": 10507673,
@@ -206,9 +234,11 @@
    "IMPRMV": 208280,
    "LANDRMV": 0,
    "OBJECTID": 15,
+   "PROPCLASS": "801",
    "SITEADD": "TESTOWNER 61D036",
    "STATE": "OR",
-   "ZIPCODE": "97526-2452"
+   "ZIPCODE": "97526-2452",
+   "ZONECLASS": "FR"
   },
   {
    "ACCOUNT": 10507681,
@@ -220,9 +250,11 @@
    "IMPRMV": 147870,
    "LANDRMV": 0,
    "OBJECTID": 16,
+   "PROPCLASS": "801",
    "SITEADD": "TESTOWNER BFE2A4",
    "STATE": "OR",
-   "ZIPCODE": "97526-1513"
+   "ZIPCODE": "97526-1513",
+   "ZONECLASS": "FR"
   },
   {
    "ACCOUNT": 10507690,
@@ -234,9 +266,11 @@
    "IMPRMV": 130280,
    "LANDRMV": 0,
    "OBJECTID": 17,
+   "PROPCLASS": "801",
    "SITEADD": "TESTOWNER A9CD15",
    "STATE": "WY",
-   "ZIPCODE": "83002-0600"
+   "ZIPCODE": "83002-0600",
+   "ZONECLASS": "FR"
   },
   {
    "ACCOUNT": 10507703,
@@ -248,9 +282,11 @@
    "IMPRMV": 106470,
    "LANDRMV": 0,
    "OBJECTID": 18,
+   "PROPCLASS": "801",
    "SITEADD": "TESTOWNER 6C8B25",
    "STATE": "AK",
-   "ZIPCODE": "99615-9430"
+   "ZIPCODE": "99615-9430",
+   "ZONECLASS": "FR"
   },
   {
    "ACCOUNT": 10507711,
@@ -262,9 +298,11 @@
    "IMPRMV": 141580,
    "LANDRMV": 0,
    "OBJECTID": 19,
+   "PROPCLASS": "801",
    "SITEADD": "TESTOWNER 95A5F8",
    "STATE": "OR",
-   "ZIPCODE": "97603"
+   "ZIPCODE": "97603",
+   "ZONECLASS": "FR"
   },
   {
    "ACCOUNT": 10507720,
@@ -276,9 +314,11 @@
    "IMPRMV": 130950,
    "LANDRMV": 0,
    "OBJECTID": 20,
+   "PROPCLASS": "801",
    "SITEADD": "TESTOWNER 0B00B8",
    "STATE": "OR",
-   "ZIPCODE": "97504-9279"
+   "ZIPCODE": "97504-9279",
+   "ZONECLASS": "FR"
   },
   {
    "ACCOUNT": 10507738,
@@ -290,9 +330,11 @@
    "IMPRMV": 108620,
    "LANDRMV": 0,
    "OBJECTID": 21,
+   "PROPCLASS": "801",
    "SITEADD": "TESTOWNER 3C1B8D",
    "STATE": "OR",
-   "ZIPCODE": "97540-0346"
+   "ZIPCODE": "97540-0346",
+   "ZONECLASS": "FR"
   },
   {
    "ACCOUNT": 10507746,
@@ -304,9 +346,11 @@
    "IMPRMV": 123750,
    "LANDRMV": 0,
    "OBJECTID": 22,
+   "PROPCLASS": "801",
    "SITEADD": "TESTOWNER 106F4A",
    "STATE": "OR",
-   "ZIPCODE": "97526-3436"
+   "ZIPCODE": "97526-3436",
+   "ZONECLASS": "FR"
   },
   {
    "ACCOUNT": 10507752,
@@ -318,9 +362,11 @@
    "IMPRMV": 109680,
    "LANDRMV": 0,
    "OBJECTID": 23,
+   "PROPCLASS": "801",
    "SITEADD": "TESTOWNER F87BAD",
    "STATE": "OR",
-   "ZIPCODE": "97633"
+   "ZIPCODE": "97633",
+   "ZONECLASS": "FR"
   },
   {
    "ACCOUNT": 10507761,
@@ -332,9 +378,11 @@
    "IMPRMV": 109020,
    "LANDRMV": 0,
    "OBJECTID": 24,
+   "PROPCLASS": "801",
    "SITEADD": "TESTOWNER 270A5A",
    "STATE": "CA",
-   "ZIPCODE": "90266-3371"
+   "ZIPCODE": "90266-3371",
+   "ZONECLASS": "FR"
   },
   {
    "ACCOUNT": 10507779,
@@ -346,9 +394,11 @@
    "IMPRMV": 118320,
    "LANDRMV": 0,
    "OBJECTID": 25,
+   "PROPCLASS": "801",
    "SITEADD": "TESTOWNER 417489",
    "STATE": "OR",
-   "ZIPCODE": "97471-1863"
+   "ZIPCODE": "97471-1863",
+   "ZONECLASS": "FR"
   }
  ],
  "layer": "https://jcportal.jacksoncountyor.gov/server/rest/services/Property/Taxlots2/FeatureServer/1",

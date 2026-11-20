@@ -33,6 +33,9 @@ county:
     "125": "125"
   }
 fields:
+  land_use_code: landUseCde
+  land_use_desc: landUseDsc
+  zoning: zoningCode
   situs_full: situsAdd
   situs_zip: sitAddZip
   parcel_id: parcel_id

@@ -31,6 +31,7 @@ county:
     "SanJuan": "055", "San Juan": "055", "Walla Walla": "071", "WallaWalla": "071"
   }
 fields:
+  land_use_code: LANDUSE_CD
   situs_line1: SITUS_ADDRESS
   situs_city: SITUS_CITY_NM
   situs_zip: SITUS_ZIP_NR

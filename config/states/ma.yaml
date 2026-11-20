@@ -371,6 +371,9 @@ county:
     "350": "021"   # Wrentham
     "351": "001"   # Yarmouth
 fields:
+  land_use_code: USE_CODE
+  land_use_desc: USE_DESC
+  zoning: ZONING
   situs_line1: SITE_ADDR
   situs_city: CITY
   situs_zip: ZIP

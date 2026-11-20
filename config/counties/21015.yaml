@@ -8,6 +8,7 @@ page_size: 2000          # maxRecordCount 2000
 min_interval_s: 1.0
 county: {constant: "015"}
 fields:
+  zoning: ZONINGTX
   situs_line1: SITEADD1
   situs_city: CITYNAME
   situs_zip: SITEZIP

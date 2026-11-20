@@ -12,6 +12,7 @@ county:
   field: County
   format: name
 fields:
+  land_use_code: StateLUC
   situs_full: SitusAddressAll
   parcel_id: LocalParcelID
   owner1: Name

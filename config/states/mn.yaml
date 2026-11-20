@@ -9,6 +9,7 @@ county:
   field: co_code
   format: fips5
 fields:
+  land_use_desc: useclass1
   homestead: homestead
   parcel_id: county_pin
   owner1: owner_name

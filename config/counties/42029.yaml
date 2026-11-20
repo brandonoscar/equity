@@ -8,6 +8,7 @@ page_size: 1000          # maxRecordCount 1000; supportsPagination true
 min_interval_s: 1.0
 county: {constant: "029"}
 fields:
+  land_use_code: LUC
   situs_line1: LOC_ADDRES
   parcel_id: UPI           # Uniform Parcel Identifier, e.g. 53-3H-90
   owner1: OWN1

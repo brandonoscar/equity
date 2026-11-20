@@ -3,6 +3,8 @@
   {
    "FULL_OWNER": "TESTOWNER A1F074",
    "FULL_SITUS": "TESTOWNER 483A2E",
+   "LAND_USE_C": 101,
+   "LAND_USE_D": " ",
    "Name": "23-0Q20P-009.-000000",
    "OBJECTID": 1,
    "OWNER_ADDR": " ",
@@ -15,6 +17,8 @@
   {
    "FULL_OWNER": "TESTOWNER A1F074",
    "FULL_SITUS": "TESTOWNER 974067",
+   "LAND_USE_C": 100,
+   "LAND_USE_D": " ",
    "Name": "23-0Q20P-007.-000000",
    "OBJECTID": 2,
    "OWNER_ADDR": " ",
@@ -27,6 +31,8 @@
   {
    "FULL_OWNER": "TESTOWNER 405D69",
    "FULL_SITUS": "TESTOWNER 303F91",
+   "LAND_USE_C": 101,
+   "LAND_USE_D": " ",
    "Name": "23-0Q20Q-021.-000000",
    "OBJECTID": 3,
    "OWNER_ADDR": " ",
@@ -39,6 +45,8 @@
   {
    "FULL_OWNER": "TESTOWNER 8BBE95",
    "FULL_SITUS": "TESTOWNER AC5BCC",
+   "LAND_USE_C": 101,
+   "LAND_USE_D": " ",
    "Name": "23-0Q16.-089.-000000",
    "OBJECTID": 4,
    "OWNER_ADDR": " ",
@@ -51,6 +59,8 @@
   {
    "FULL_OWNER": "TESTOWNER 182DE4",
    "FULL_SITUS": "TESTOWNER DA03F4",
+   "LAND_USE_C": 101,
+   "LAND_USE_D": " ",
    "Name": "23-0Q20.-052.-000000",
    "OBJECTID": 5,
    "OWNER_ADDR": " ",
@@ -63,6 +73,8 @@
   {
    "FULL_OWNER": "TESTOWNER 851449",
    "FULL_SITUS": "TESTOWNER 991595",
+   "LAND_USE_C": 101,
+   "LAND_USE_D": " ",
    "Name": "23-0Q20Q-020.-000000",
    "OBJECTID": 6,
    "OWNER_ADDR": " ",
@@ -75,6 +87,8 @@
   {
    "FULL_OWNER": "TESTOWNER 0E6478 LLC",
    "FULL_SITUS": "TESTOWNER 4A4642",
+   "LAND_USE_C": 101,
+   "LAND_USE_D": " ",
    "Name": "23-0Q19.-090.-000000",
    "OBJECTID": 7,
    "OWNER_ADDR": " ",
@@ -87,6 +101,8 @@
   {
    "FULL_OWNER": "TESTOWNER 0FA1EB",
    "FULL_SITUS": "TESTOWNER 7BB4A9",
+   "LAND_USE_C": 101,
+   "LAND_USE_D": " ",
    "Name": "23-0Q20P-013A-000000",
    "OBJECTID": 8,
    "OWNER_ADDR": " ",
@@ -99,6 +115,8 @@
   {
    "FULL_OWNER": "TESTOWNER 988D59",
    "FULL_SITUS": "TESTOWNER 6A120B",
+   "LAND_USE_C": 101,
+   "LAND_USE_D": " ",
    "Name": "23-0Q19.-344.-000000",
    "OBJECTID": 9,
    "OWNER_ADDR": " ",
@@ -111,6 +129,8 @@
   {
    "FULL_OWNER": "TESTOWNER 2BACD8",
    "FULL_SITUS": "TESTOWNER E9EEC5",
+   "LAND_USE_C": 101,
+   "LAND_USE_D": " ",
    "Name": "23-0Q19.-091.-000000",
    "OBJECTID": 10,
    "OWNER_ADDR": " ",
@@ -123,6 +143,8 @@
   {
    "FULL_OWNER": "TESTOWNER 0FA1EB",
    "FULL_SITUS": "TESTOWNER 30469C",
+   "LAND_USE_C": 100,
+   "LAND_USE_D": " ",
    "Name": "23-0Q20P-010.-000000",
    "OBJECTID": 11,
    "OWNER_ADDR": " ",
@@ -135,6 +157,8 @@
   {
    "FULL_OWNER": "TESTOWNER 7FA87F LLC",
    "FULL_SITUS": "TESTOWNER 974067",
+   "LAND_USE_C": 100,
+   "LAND_USE_D": " ",
    "Name": "23-0Q20P-006B-000000",
    "OBJECTID": 12,
    "OWNER_ADDR": " ",
@@ -147,6 +171,8 @@
   {
    "FULL_OWNER": "TESTOWNER 4AE8D4",
    "FULL_SITUS": "TESTOWNER 05F1DD",
+   "LAND_USE_C": 109,
+   "LAND_USE_D": " ",
    "Name": "23-0Q20Q-062A-000000",
    "OBJECTID": 13,
    "OWNER_ADDR": " ",
@@ -159,6 +185,8 @@
   {
    "FULL_OWNER": "TESTOWNER 8F8E96",
    "FULL_SITUS": "TESTOWNER 76A69A",
+   "LAND_USE_C": 100,
+   "LAND_USE_D": " ",
    "Name": "23-0Q20Q-062.-000000",
    "OBJECTID": 14,
    "OWNER_ADDR": " ",
@@ -171,6 +199,8 @@
   {
    "FULL_OWNER": "TESTOWNER 3BB9D9",
    "FULL_SITUS": "TESTOWNER F58C15",
+   "LAND_USE_C": 103,
+   "LAND_USE_D": " ",
    "Name": "23-0Q20Q-013.-000000",
    "OBJECTID": 15,
    "OWNER_ADDR": " ",
@@ -183,6 +213,8 @@
   {
    "FULL_OWNER": "TESTOWNER B1CD52",
    "FULL_SITUS": "TESTOWNER FE2388",
+   "LAND_USE_C": 109,
+   "LAND_USE_D": " ",
    "Name": "23-0Q19.-092.-000000",
    "OBJECTID": 16,
    "OWNER_ADDR": " ",
@@ -195,6 +227,8 @@
   {
    "FULL_OWNER": "TESTOWNER 221A5F",
    "FULL_SITUS": "TESTOWNER 65825F",
+   "LAND_USE_C": 101,
+   "LAND_USE_D": " ",
    "Name": "23-0Q19.-384.-000000",
    "OBJECTID": 17,
    "OWNER_ADDR": " ",
@@ -207,6 +241,8 @@
   {
    "FULL_OWNER": "TESTOWNER 67D2C6",
    "FULL_SITUS": "TESTOWNER 775E33",
+   "LAND_USE_C": 101,
+   "LAND_USE_D": " ",
    "Name": "23-0Q19.-066A-000000",
    "OBJECTID": 18,
    "OWNER_ADDR": " ",
@@ -219,6 +255,8 @@
   {
    "FULL_OWNER": "TESTOWNER C584B7",
    "FULL_SITUS": "TESTOWNER 4C2324",
+   "LAND_USE_C": 100,
+   "LAND_USE_D": " ",
    "Name": "23-0Q20P-034.-000000",
    "OBJECTID": 19,
    "OWNER_ADDR": " ",
@@ -231,6 +269,8 @@
   {
    "FULL_OWNER": "TESTOWNER BEC683",
    "FULL_SITUS": "TESTOWNER D42B4A",
+   "LAND_USE_C": 100,
+   "LAND_USE_D": " ",
    "Name": "23-0Q19.-092A-000000",
    "OBJECTID": 20,
    "OWNER_ADDR": " ",
@@ -243,6 +283,8 @@
   {
    "FULL_OWNER": "TESTOWNER F089AC",
    "FULL_SITUS": "TESTOWNER 68712B",
+   "LAND_USE_C": 101,
+   "LAND_USE_D": " ",
    "Name": "23-0Q19.-383.-000000",
    "OBJECTID": 21,
    "OWNER_ADDR": " ",
@@ -255,6 +297,8 @@
   {
    "FULL_OWNER": "TESTOWNER 270A43",
    "FULL_SITUS": "TESTOWNER CACE2B",
+   "LAND_USE_C": 100,
+   "LAND_USE_D": " ",
    "Name": "23-0Q20.-135.-000000",
    "OBJECTID": 22,
    "OWNER_ADDR": " ",
@@ -267,6 +311,8 @@
   {
    "FULL_OWNER": "TESTOWNER 71153D",
    "FULL_SITUS": "TESTOWNER CADF1B",
+   "LAND_USE_C": 101,
+   "LAND_USE_D": " ",
    "Name": "23-0Q19.-200.-000000",
    "OBJECTID": 23,
    "OWNER_ADDR": " ",
@@ -279,6 +325,8 @@
   {
    "FULL_OWNER": "TESTOWNER DD5092 LLC",
    "FULL_SITUS": "TESTOWNER BBEA8C",
+   "LAND_USE_C": 102,
+   "LAND_USE_D": " ",
    "Name": "23-0Q20P-013.-000000",
    "OBJECTID": 24,
    "OWNER_ADDR": " ",
@@ -291,6 +339,8 @@
   {
    "FULL_OWNER": "TESTOWNER 89E2B0",
    "FULL_SITUS": "TESTOWNER 5CCD4E",
+   "LAND_USE_C": 101,
+   "LAND_USE_D": " ",
    "Name": "23-0Q19.-345.-000000",
    "OBJECTID": 25,
    "OWNER_ADDR": " ",

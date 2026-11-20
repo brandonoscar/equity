@@ -10,6 +10,7 @@ min_interval_s: 1.0
 county: {constant: "143"}
 use_restrictions: [no_resale]
 fields:
+  land_use_code: UseCode
   situs_line1: PropertyAddress
   situs_city: PropertyCity
   situs_zip: PropertyZIP

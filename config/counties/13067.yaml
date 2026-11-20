@@ -7,6 +7,7 @@ min_interval_s: 1.0
 county: {constant: "067"}
 use_restrictions: [no_resale]
 fields:
+  land_use_code: CLASS
   situs_line1: SITUS_ADDR
   parcel_id: PARID         # equals PIN on every sampled row
   owner1: OWNER_NAM1

@@ -9,6 +9,8 @@ min_interval_s: 1.0
 county:
   constant: "001"   # District of Columbia is a single county-equivalent
 fields:
+  land_use_code: USECODE
+  land_use_desc: PROPTYPE
   homestead: HSTDCODE
   parcel_id: SSL                # Square, Suffix, Lot (spaces removed by the adapter)
   owner1: OWNERNAME

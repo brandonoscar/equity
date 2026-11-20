@@ -14,9 +14,12 @@
    "OBJECTID": 304086,
    "OWNER1": "TESTOWNER F89D19",
    "OWNER2": "",
+   "PCDESC": "Residential SFR",
+   "PROPCLAS": "101",
    "TAXPIN": "R2004B001",
    "TAXTOT1": "120640",
-   "TOTVAL1": "301600"
+   "TOTVAL1": "301600",
+   "ZONING": "RA200"
   },
   {
    "DWLGVAL1": "284600",
@@ -32,9 +35,12 @@
    "OBJECTID": 304087,
    "OWNER1": "TESTOWNER 325006",
    "OWNER2": "",
+   "PCDESC": "Residential SFR",
+   "PROPCLAS": "101",
    "TAXPIN": "R6324 031",
    "TAXTOT1": "141720",
-   "TOTVAL1": "354300"
+   "TOTVAL1": "354300",
+   "ZONING": "R75"
   },
   {
    "DWLGVAL1": "251700",
@@ -50,9 +56,12 @@
    "OBJECTID": 304088,
    "OWNER1": "TESTOWNER 11DB98",
    "OWNER2": "",
+   "PCDESC": "Residential SFR",
+   "PROPCLAS": "101",
    "TAXPIN": "R6324 030",
    "TAXTOT1": "128560",
-   "TOTVAL1": "321400"
+   "TOTVAL1": "321400",
+   "ZONING": "R75"
   },
   {
    "DWLGVAL1": "255300",
@@ -68,9 +77,12 @@
    "OBJECTID": 304089,
    "OWNER1": "TESTOWNER DE319B",
    "OWNER2": "",
+   "PCDESC": "Residential SFR",
+   "PROPCLAS": "101",
    "TAXPIN": "R6323 135",
    "TAXTOT1": "130000",
-   "TOTVAL1": "325000"
+   "TOTVAL1": "325000",
+   "ZONING": "R75"
   },
   {
    "DWLGVAL1": "336000",
@@ -86,9 +98,12 @@
    "OBJECTID": 304090,
    "OWNER1": "TESTOWNER 6E488B",
    "OWNER2": "TESTOWNER 88E3B4",
+   "PCDESC": "Residential SFR",
+   "PROPCLAS": "101",
    "TAXPIN": "R7200 084",
    "TAXTOT1": "160680",
-   "TOTVAL1": "401700"
+   "TOTVAL1": "401700",
+   "ZONING": "R100"
   },
   {
    "DWLGVAL1": "239100",
@@ -104,9 +119,12 @@
    "OBJECTID": 304091,
    "OWNER1": "TESTOWNER EFF675",
    "OWNER2": "",
+   "PCDESC": "Residential SFR",
+   "PROPCLAS": "101",
    "TAXPIN": "R7048 104",
    "TAXTOT1": "117760",
-   "TOTVAL1": "294400"
+   "TOTVAL1": "294400",
+   "ZONING": "R100"
   },
   {
    "DWLGVAL1": "0",
@@ -122,9 +140,12 @@
    "OBJECTID": 304092,
    "OWNER1": "TESTOWNER 258F53",
    "OWNER2": "",
+   "PCDESC": "Commercial Vacant Land",
+   "PROPCLAS": "300",
    "TAXPIN": "R5145 093",
    "TAXTOT1": "180600",
-   "TOTVAL1": "451500"
+   "TOTVAL1": "451500",
+   "ZONING": "HM"
   },
   {
    "DWLGVAL1": "0",
@@ -140,9 +161,12 @@
    "OBJECTID": 304093,
    "OWNER1": "TESTOWNER B7C500",
    "OWNER2": "",
+   "PCDESC": "Vacant Exempt Land",
+   "PROPCLAS": "600",
    "TAXPIN": "R5357 007",
    "TAXTOT1": "19800",
-   "TOTVAL1": "49500"
+   "TOTVAL1": "49500",
+   "ZONING": "RA200"
   },
   {
    "DWLGVAL1": "1774100",
@@ -158,9 +182,12 @@
    "OBJECTID": 304094,
    "OWNER1": "TESTOWNER 69907E LLC",
    "OWNER2": "",
+   "PCDESC": "Retail-Single Occupancy",
+   "PROPCLAS": "373",
    "TAXPIN": "R6232 061",
    "TAXTOT1": "1617400",
-   "TOTVAL1": "4043500"
+   "TOTVAL1": "4043500",
+   "ZONING": "C3"
   },
   {
    "DWLGVAL1": "154100",
@@ -176,9 +203,12 @@
    "OBJECTID": 304095,
    "OWNER1": "TESTOWNER E5C2B9",
    "OWNER2": "",
+   "PCDESC": "Townhome",
+   "PROPCLAS": "107",
    "TAXPIN": "R6225B092",
    "TAXTOT1": "89720",
-   "TOTVAL1": "224300"
+   "TOTVAL1": "224300",
+   "ZONING": "RTH"
   },
   {
    "DWLGVAL1": "0",
@@ -194,9 +224,12 @@
    "OBJECTID": 304096,
    "OWNER1": "TESTOWNER A25611 INC",
    "OWNER2": "",
+   "PCDESC": "HOA Vacant Land",
+   "PROPCLAS": "119",
    "TAXPIN": "R6225B106",
    "TAXTOT1": "400",
-   "TOTVAL1": "1000"
+   "TOTVAL1": "1000",
+   "ZONING": "RTH"
   },
   {
    "DWLGVAL1": "352500",
@@ -212,9 +245,12 @@
    "OBJECTID": 304097,
    "OWNER1": "TESTOWNER 771628",
    "OWNER2": "",
+   "PCDESC": "Residential SFR",
+   "PROPCLAS": "101",
    "TAXPIN": "R5083 379",
    "TAXTOT1": "169800",
-   "TOTVAL1": "424500"
+   "TOTVAL1": "424500",
+   "ZONING": "R75"
   },
   {
    "DWLGVAL1": "437900",
@@ -230,9 +266,12 @@
    "OBJECTID": 304098,
    "OWNER1": "TESTOWNER ED5CA8",
    "OWNER2": "TESTOWNER 981E71",
+   "PCDESC": "Residential SFR",
+   "PROPCLAS": "101",
    "TAXPIN": "R5083 057",
    "TAXTOT1": "199160",
-   "TOTVAL1": "497900"
+   "TOTVAL1": "497900",
+   "ZONING": "RS150"
   },
   {
    "DWLGVAL1": "0",
@@ -248,9 +287,12 @@
    "OBJECTID": 304099,
    "OWNER1": "TESTOWNER 837CB9",
    "OWNER2": "",
+   "PCDESC": "City of Lawrenceville",
+   "PROPCLAS": "677",
    "TAXPIN": "R5109 191",
    "TAXTOT1": "400",
-   "TOTVAL1": "1000"
+   "TOTVAL1": "1000",
+   "ZONING": "RS150"
   },
   {
    "DWLGVAL1": "258400",
@@ -266,9 +308,12 @@
    "OBJECTID": 304100,
    "OWNER1": "TESTOWNER 01A902",
    "OWNER2": "",
+   "PCDESC": "Residential SFR",
+   "PROPCLAS": "101",
    "TAXPIN": "R4298 063",
    "TAXTOT1": "123160",
-   "TOTVAL1": "307900"
+   "TOTVAL1": "307900",
+   "ZONING": "R100"
   },
   {
    "DWLGVAL1": "256800",
@@ -284,9 +329,12 @@
    "OBJECTID": 304101,
    "OWNER1": "TESTOWNER B7CC06",
    "OWNER2": "",
+   "PCDESC": "Residential SFR",
+   "PROPCLAS": "101",
    "TAXPIN": "R4298 064",
    "TAXTOT1": "122520",
-   "TOTVAL1": "306300"
+   "TOTVAL1": "306300",
+   "ZONING": "R100"
   },
   {
    "DWLGVAL1": "313200",
@@ -302,9 +350,12 @@
    "OBJECTID": 304102,
    "OWNER1": "TESTOWNER A0345F LLC",
    "OWNER2": "",
+   "PCDESC": "Residential SFR",
+   "PROPCLAS": "101",
    "TAXPIN": "R4298 066",
    "TAXTOT1": "145080",
-   "TOTVAL1": "362700"
+   "TOTVAL1": "362700",
+   "ZONING": "R100"
   },
   {
    "DWLGVAL1": "242000",
@@ -320,9 +371,12 @@
    "OBJECTID": 304103,
    "OWNER1": "TESTOWNER 9A9B33 LLC",
    "OWNER2": "",
+   "PCDESC": "Residential SFR",
+   "PROPCLAS": "101",
    "TAXPIN": "R4298 111",
    "TAXTOT1": "116600",
-   "TOTVAL1": "291500"
+   "TOTVAL1": "291500",
+   "ZONING": "R100"
   },
   {
    "DWLGVAL1": "3526600",
@@ -338,9 +392,12 @@
    "OBJECTID": 304104,
    "OWNER1": "TESTOWNER 76FE1C LLC",
    "OWNER2": "",
+   "PCDESC": "Bank",
+   "PROPCLAS": "351",
    "TAXPIN": "R6231 122",
    "TAXTOT1": "1625160",
-   "TOTVAL1": "4062900"
+   "TOTVAL1": "4062900",
+   "ZONING": "C2"
   },
   {
    "DWLGVAL1": "288400",
@@ -356,9 +413,12 @@
    "OBJECTID": 304105,
    "OWNER1": "TESTOWNER 9B9999",
    "OWNER2": "",
+   "PCDESC": "Residential SFR",
+   "PROPCLAS": "101",
    "TAXPIN": "R6236 182",
    "TAXTOT1": "143240",
-   "TOTVAL1": "358100"
+   "TOTVAL1": "358100",
+   "ZONING": "R75"
   },
   {
    "DWLGVAL1": "381700",
@@ -374,9 +434,12 @@
    "OBJECTID": 304106,
    "OWNER1": "TESTOWNER 2221CA",
    "OWNER2": "",
+   "PCDESC": "Residential SFR",
+   "PROPCLAS": "101",
    "TAXPIN": "R6236 181",
    "TAXTOT1": "180560",
-   "TOTVAL1": "451400"
+   "TOTVAL1": "451400",
+   "ZONING": "R75"
   },
   {
    "DWLGVAL1": "324900",
@@ -392,9 +455,12 @@
    "OBJECTID": 304107,
    "OWNER1": "TESTOWNER 35D453",
    "OWNER2": "",
+   "PCDESC": "Residential SFR",
+   "PROPCLAS": "101",
    "TAXPIN": "R6266A086",
    "TAXTOT1": "159880",
-   "TOTVAL1": "399700"
+   "TOTVAL1": "399700",
+   "ZONING": "PUD"
   },
   {
    "DWLGVAL1": "0",
@@ -410,9 +476,12 @@
    "OBJECTID": 304108,
    "OWNER1": "TESTOWNER D1F9E4",
    "OWNER2": "",
+   "PCDESC": "Vacant Exempt Land",
+   "PROPCLAS": "600",
    "TAXPIN": "R7242 003",
    "TAXTOT1": "1495760",
-   "TOTVAL1": "3739400"
+   "TOTVAL1": "3739400",
+   "ZONING": "R100"
   },
   {
    "DWLGVAL1": "265600",
@@ -428,9 +497,12 @@
    "OBJECTID": 304110,
    "OWNER1": "TESTOWNER DE0898",
    "OWNER2": "TESTOWNER 77BD18",
+   "PCDESC": "Residential SFR",
+   "PROPCLAS": "101",
    "TAXPIN": "R7162 234",
    "TAXTOT1": "134240",
-   "TOTVAL1": "335600"
+   "TOTVAL1": "335600",
+   "ZONING": "R100"
   },
   {
    "DWLGVAL1": "355600",
@@ -446,9 +518,12 @@
    "OBJECTID": 304111,
    "OWNER1": "TESTOWNER 67B962",
    "OWNER2": "",
+   "PCDESC": "Residential SFR",
+   "PROPCLAS": "101",
    "TAXPIN": "R7202 012",
    "TAXTOT1": "172160",
-   "TOTVAL1": "430400"
+   "TOTVAL1": "430400",
+   "ZONING": "R100"
   }
  ],
  "layer": "https://services3.arcgis.com/RfpmnkSAQleRbndX/arcgis/rest/services/FYT_Owner_Data/FeatureServer/1",

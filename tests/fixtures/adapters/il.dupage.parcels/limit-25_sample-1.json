@@ -12,6 +12,7 @@
    "PIN": "0205101003",
    "PROPADDRL1": "TESTOWNER 658F8A",
    "PROPCITY": "HANOVER PARK      ",
+   "PROPCLASS": "I",
    "PROPZIP": "60133"
   },
   {
@@ -26,6 +27,7 @@
    "PIN": "0205407123",
    "PROPADDRL1": "TESTOWNER 337495",
    "PROPCITY": "ROSELLE           ",
+   "PROPCLASS": "R",
    "PROPZIP": "60172"
   },
   {
@@ -40,6 +42,7 @@
    "PIN": "0204103007",
    "PROPADDRL1": "TESTOWNER 5987BE",
    "PROPCITY": "ROSELLE           ",
+   "PROPCLASS": "R",
    "PROPZIP": "60172"
   },
   {
@@ -54,6 +57,7 @@
    "PIN": "0204103014",
    "PROPADDRL1": "TESTOWNER 712493",
    "PROPCITY": "ROSELLE           ",
+   "PROPCLASS": "R",
    "PROPZIP": "60172"
   },
   {
@@ -68,6 +72,7 @@
    "PIN": "0207203015",
    "PROPADDRL1": "TESTOWNER C717BE",
    "PROPCITY": "HANOVER PARK      ",
+   "PROPCLASS": "R",
    "PROPZIP": "60133"
   },
   {
@@ -82,6 +87,7 @@
    "PIN": "0207203022",
    "PROPADDRL1": "TESTOWNER 7257B5",
    "PROPCITY": "HANOVER PARK      ",
+   "PROPCLASS": "R",
    "PROPZIP": "60133"
   },
   {
@@ -96,6 +102,7 @@
    "PIN": "0228206007",
    "PROPADDRL1": "TESTOWNER 31EF7A",
    "PROPCITY": "GLENDALE HTS      ",
+   "PROPCLASS": "R",
    "PROPZIP": "60139"
   },
   {
@@ -110,6 +117,7 @@
    "PIN": "0211405018",
    "PROPADDRL1": "TESTOWNER 109E0F",
    "PROPCITY": "MEDINAH           ",
+   "PROPCLASS": "R",
    "PROPZIP": "60157"
   },
   {
@@ -124,6 +132,7 @@
    "PIN": "0211412006",
    "PROPADDRL1": "TESTOWNER 9EAE6E",
    "PROPCITY": "MEDINAH           ",
+   "PROPCLASS": "R",
    "PROPZIP": "60157"
   },
   {
@@ -138,6 +147,7 @@
    "PIN": "0228217009",
    "PROPADDRL1": "TESTOWNER 23DE68",
    "PROPCITY": "GLENDALE HTS      ",
+   "PROPCLASS": "R",
    "PROPZIP": "60139"
   },
   {
@@ -152,6 +162,7 @@
    "PIN": "0228401051",
    "PROPADDRL1": "TESTOWNER 8C9C5E",
    "PROPCITY": "GLENDALE HTS      ",
+   "PROPCLASS": "R",
    "PROPZIP": "60139"
   },
   {
@@ -166,6 +177,7 @@
    "PIN": "0227315008",
    "PROPADDRL1": "TESTOWNER DD9270",
    "PROPCITY": "GLENDALE HTS      ",
+   "PROPCLASS": "R",
    "PROPZIP": "60139"
   },
   {
@@ -180,6 +192,7 @@
    "PIN": "0223127032",
    "PROPADDRL1": "TESTOWNER B49C36",
    "PROPCITY": "BLOOMINGDALE      ",
+   "PROPCLASS": "R",
    "PROPZIP": "60108"
   },
   {
@@ -194,6 +207,7 @@
    "PIN": "0227405039",
    "PROPADDRL1": "TESTOWNER 765E2A",
    "PROPCITY": "GLENDALE HTS      ",
+   "PROPCLASS": "R",
    "PROPZIP": "60139"
   },
   {
@@ -208,6 +222,7 @@
    "PIN": "0228204028",
    "PROPADDRL1": "TESTOWNER 894796",
    "PROPCITY": "GLENDALE HTS      ",
+   "PROPCLASS": "R",
    "PROPZIP": "60139"
   },
   {
@@ -222,6 +237,7 @@
    "PIN": "0224211060",
    "PROPADDRL1": "TESTOWNER 185AB4",
    "PROPCITY": "ADDISON           ",
+   "PROPCLASS": "R",
    "PROPZIP": "60101"
   },
   {
@@ -236,6 +252,7 @@
    "PIN": "0211302017",
    "PROPADDRL1": "TESTOWNER B1333E",
    "PROPCITY": "MEDINAH           ",
+   "PROPCLASS": "R",
    "PROPZIP": "60157"
   },
   {
@@ -250,6 +267,7 @@
    "PIN": "0211312005",
    "PROPADDRL1": "TESTOWNER BEF64E",
    "PROPCITY": "BLOOMINGDALE      ",
+   "PROPCLASS": "R",
    "PROPZIP": "60108"
   },
   {
@@ -264,6 +282,7 @@
    "PIN": "0214200015",
    "PROPADDRL1": "TESTOWNER 686498",
    "PROPCITY": "MEDINAH           ",
+   "PROPCLASS": "R",
    "PROPZIP": "60157"
   },
   {
@@ -278,6 +297,7 @@
    "PIN": "0214200022",
    "PROPADDRL1": "TESTOWNER 593F32",
    "PROPCITY": "MEDINAH           ",
+   "PROPCLASS": "R",
    "PROPZIP": "60157"
   },
   {
@@ -292,6 +312,7 @@
    "PIN": "0211410002",
    "PROPADDRL1": "TESTOWNER EDFE66",
    "PROPCITY": "MEDINAH           ",
+   "PROPCLASS": "R",
    "PROPZIP": "60157"
   },
   {
@@ -306,6 +327,7 @@
    "PIN": "0211411020",
    "PROPADDRL1": "TESTOWNER 8763D0",
    "PROPCITY": "MEDINAH           ",
+   "PROPCLASS": "R",
    "PROPZIP": "60157"
   },
   {
@@ -320,6 +342,7 @@
    "PIN": "0223220001",
    "PROPADDRL1": "TESTOWNER D5710E",
    "PROPCITY": "BLOOMINGDALE      ",
+   "PROPCLASS": "R",
    "PROPZIP": "60108"
   },
   {
@@ -334,6 +357,7 @@
    "PIN": "0227407013",
    "PROPADDRL1": "TESTOWNER 5BB575",
    "PROPCITY": "GLENDALE HTS      ",
+   "PROPCLASS": "R",
    "PROPZIP": "60139"
   },
   {
@@ -348,6 +372,7 @@
    "PIN": "0205407057",
    "PROPADDRL1": "TESTOWNER 337495",
    "PROPCITY": "ROSELLE           ",
+   "PROPCLASS": "R",
    "PROPZIP": "60172"
   }
  ],
