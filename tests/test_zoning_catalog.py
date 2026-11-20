@@ -191,3 +191,14 @@ def test_local_adapter_plans_fetches_and_normalizes(tmp_path: Path) -> None:
                    json.dumps({"item": "old", "features": feats}).encode(), "")  # fmt: skip
     assert list(a.normalize(gone)) == []
     assert a.health().ok and a.source_row()["kind"] == "zoning"
+
+
+def test_build_reuses_cached_service_reads() -> None:
+    items = [_item("a", "Zoning", "Public Domain")]
+    routes = {"sharing/rest/search": {"results": items, "nextStart": -1}}  # no service routes
+    cached = {"layer_url": "https://services1.arcgis.com/a/FeatureServer/0",
+              "order_by": "OBJECTID", "fields": {"zone_code": "ZONING"}}  # fmt: skip
+    cache = {"https://services1.arcgis.com/a/FeatureServer": cached}
+    states = [StateShape("54", (0, 0, 10, 10), (SQUARE,))]
+    cat = build(_client(routes), states, cache)
+    assert cat["layers"][0]["fields"] == {"zone_code": "ZONING"}

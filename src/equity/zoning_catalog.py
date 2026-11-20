@@ -28,7 +28,7 @@ import re
 import struct
 import urllib.parse
 import zipfile
-from collections.abc import Iterator, Sequence
+from collections.abc import Callable, Iterator, Sequence
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -218,7 +218,16 @@ def pick_layer(client: PoliteClient, service_url: str) -> dict[str, Any] | None:
     return None
 
 
-def build(client: PoliteClient, states: Sequence[StateShape]) -> dict[str, Any]:
+def build(
+    client: PoliteClient,
+    states: Sequence[StateShape],
+    cache: dict[str, Any] | None = None,
+    save: Callable[[dict[str, Any]], None] | None = None,
+) -> dict[str, Any]:
+    """`cache` maps service URL to its layer pick (or None), so a restarted build skips
+    services it already read; `save` is called with the cache every 50 new reads."""
+    cache = {} if cache is None else cache
+    reads = 0
     layers: list[dict[str, Any]] = []
     review: list[dict[str, Any]] = []
     excluded: list[dict[str, Any]] = []
@@ -249,7 +258,14 @@ def build(client: PoliteClient, states: Sequence[StateShape]) -> dict[str, Any]:
             review.append({**entry, "state_fips": state, "reason": "no license text"})
             continue
         try:
-            picked = pick_layer(client, entry["service_url"])
+            url = entry["service_url"]
+            if url in cache:
+                picked = cache[url]
+            else:
+                picked = cache[url] = pick_layer(client, url)
+                reads += 1
+                if save is not None and reads % 50 == 0:
+                    save(cache)
         except Exception as exc:
             review.append({**entry, "reason": f"service unreadable: {str(exc)[:80]}"})
             continue
@@ -276,7 +292,16 @@ def main(argv: list[str] | None = None) -> int:
     client = PoliteClient(min_interval_s=0.5)
     resp = client.get(STATES_ZIP, {})
     states = load_states(resp.content)
-    cat = build(client, states)
+    cache_path = Path("data/work/zoning_catalog_cache.json")
+    cache_path.parent.mkdir(parents=True, exist_ok=True)
+    cache = json.loads(cache_path.read_text()) if cache_path.exists() else {}
+
+    def save(c: dict[str, Any]) -> None:
+        cache_path.write_text(json.dumps(c))
+        print(f"{len(c)} services read", flush=True)
+
+    cat = build(client, states, cache, save)
+    save(cache)
     args.out.write_text(json.dumps(cat, indent=1, sort_keys=True) + "\n")
     print(f"{len(cat['layers'])} loadable, {len(cat['review'])} to review, "
           f"{len(cat['excluded'])} excluded -> {args.out}")  # fmt: skip
