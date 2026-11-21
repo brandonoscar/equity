@@ -157,3 +157,17 @@ def test_main_push_and_pull(tmp_path: Path, monkeypatch: pytest.MonkeyPatch, cap
     assert "uploaded 8" in capsys.readouterr().out
     assert lake_sync.main(["--lake", str(tmp_path / "fresh"), "pull-state"]) == 0
     assert "pulled 4 state files" in capsys.readouterr().out
+
+
+def test_only_limits_push_and_pull_to_the_named_sources(tmp_path: Path) -> None:
+    """Parallel loaders each push and pull only their own sources, so one loader's stale copy
+    of another source's state can never overwrite the other loader's progress."""
+    bucket = FakeBucket()
+    lake = lake_with(tmp_path / "a")
+    r = push(make_store(bucket), lake, only=frozenset({"bb.parcels"}))
+    assert r.uploaded == 3  # bb: parquet, plan, state bundle
+    assert all(k.startswith("bb.parcels/") for k in bucket.objects)
+    push(make_store(bucket), lake)
+    fresh = tmp_path / "b" / "lake"
+    assert pull_state(make_store(bucket), fresh, only=frozenset({"aa.parcels"})) == 3
+    assert not (fresh / "bb.parcels").exists()

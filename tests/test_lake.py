@@ -192,3 +192,17 @@ def test_source_lists_are_complete_in_a_fresh_interpreter() -> None:
     assert int(n) > 50 and has_tx == "True" and has_fl == "True"
     (adapters,) = fresh("from equity.adapters import health\nprint(len(health.REGISTRY))\n")
     assert int(adapters) > int(n)
+
+
+def test_host_groups_list_unfinished_sources_by_host(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    hosts = {"fl.a.parcels": "h1", "fl.b.parcels": "h1", "ny.c.parcels": "h2", "zz.d.zoning": "h3"}
+    monkeypatch.setattr(lake, "parcel_sources", lambda: list(hosts))
+    monkeypatch.setattr(lake, "_host", hosts.__getitem__)
+    (tmp_path / "zz.d.zoning").mkdir()
+    (tmp_path / "zz.d.zoning" / "_counts.json").write_text("{}")  # finished: left out
+    assert lake.host_groups(tmp_path) == [
+        {"host": "h1", "sources": "fl.a.parcels fl.b.parcels"},
+        {"host": "h2", "sources": "ny.c.parcels"},
+    ]
