@@ -17,10 +17,12 @@ Config keys:
   released_on         optional field: satisfaction date -> RELEASE + instrument_ref
   parties             list of {role, name: field|[fields] | const: text,
                                address: {line1: field|[fields], city, state, zip}}
-  parcel              {kind: nyc_bbl, borough, block, lot} | {kind: pin, field, county_fips}
+  parcel              {kind: nyc_bbl, borough, block, lot} | {kind: nyc_bbl10, field}
+                      | {kind: pin, field, county_fips}
   county_fips         jurisdiction when no parcel names a county (5 digits)
   county_name_field   optional field holding the county name (mapped to FIPS in `state`)
   skip_names          name values that are separators, not parties (e.g. AND/OR)
+  extra_pii           more fields pseudonymized in recorded fixtures (e.g. an apartment address)
   terms               {url, summary, checked_on, cost_model}
 """
 
@@ -84,7 +86,7 @@ class LienConfig:
             if p.get("person_names", True):
                 out |= set(_fields(p.get("name")))
             out |= set(_fields((p.get("address") or {}).get("line1")))
-        return tuple(sorted(out))
+        return tuple(sorted(out | set(self.data.get("extra_pii") or ())))
 
 
 def _fields(spec: Any) -> list[str]:
@@ -104,7 +106,7 @@ def load_lien_config(path: Path) -> LienConfig:
     if data.get("partition", "year") not in ("year", "month"):
         raise LienConfigError(f"{path.name}: partition must be year or month")
     kind = (data.get("parcel") or {}).get("kind")
-    if kind not in (None, "nyc_bbl", "pin"):
+    if kind not in (None, "nyc_bbl", "nyc_bbl10", "pin"):
         raise LienConfigError(f"{path.name}: unknown parcel kind {kind!r}")
     if not data.get("parcel") and not data.get("county_fips"):
         raise LienConfigError(f"{path.name}: needs parcel or county_fips")
@@ -264,17 +266,28 @@ class LienAdapter(Adapter):
                 return None, None
             county, swis = BOROUGHS[b[0]]
             return f"{county}-{swis}{b}", county
-        if spec.get("kind") == "pin":
-            raw = _text(row.get(spec["field"]))
-            if raw is None:
+        if spec.get("kind") == "nyc_bbl10":
+            raw = str(row.get(spec["field"]) or "").strip().split(".")[0]
+            b = nyc_bbl(raw[:1], raw[1:6], raw[6:]) if len(raw) == 10 and raw.isdigit() else None
+            if b is None:
                 return None, None
-            return f"{spec['county_fips']}-{norm_parcel_id(raw)}", spec["county_fips"]
+            county, swis = BOROUGHS[b[0]]
+            return f"{county}-{swis}{b}", county
+        if spec.get("kind") == "pin":
+            pin = _text(row.get(spec["field"]))
+            if pin is None:
+                return None, None
+            return f"{spec['county_fips']}-{norm_parcel_id(pin)}", spec["county_fips"]
         return None, None
 
     def _county(self, row: Mapping[str, Any]) -> str:
         spec = self.config.get("parcel") or {}
         if spec.get("kind") == "nyc_bbl":
             hit = BOROUGHS.get(str(row.get(spec["borough"]) or "").strip().upper())
+            if hit:
+                return hit[0]
+        if spec.get("kind") == "nyc_bbl10":
+            hit = BOROUGHS.get(str(row.get(spec["field"]) or "")[:1])
             if hit:
                 return hit[0]
         field = self.config.get("county_name_field")

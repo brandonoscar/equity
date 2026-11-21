@@ -234,3 +234,21 @@ def test_doc_type_can_be_mapped_from_a_field(tmp_path: Path) -> None:
     assert {k: v["doc_type"] for k, v in inst.items()} == {
         "A": "TAX_LIEN_FEDERAL", "B": "OTHER", "C": "OTHER"}  # fmt: skip
     assert inst["C"]["doc_type_raw"] == "OTHER"  # no raw value: falls back to the mapped type
+
+
+def test_ten_digit_bbl_and_extra_pii(tmp_path: Path) -> None:
+    cfg = _cfg(tmp_path, parcel={"kind": "nyc_bbl10", "field": "bbl"}, parties=[],
+               extra_pii=["apt"])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    assert cls.pii_fields == ("apt",)
+    rows = [{"ticket": "E1", "docketed": "2025-03-01T00:00:00", "bbl": "2042840001"},
+            {"ticket": "E2", "docketed": "2025-03-01T00:00:00", "bbl": "204284"}]  # fmt: skip
+    body = json.dumps({"rows": rows}).encode()
+    out = [
+        (r.table, r.row) for r in cls().normalize(Fetched(cls.source_id, "x", AT, 200, body, ""))
+    ]
+    assert [r["parcel_uid"] for t, r in out if t == "instrument_parcel"] == [
+        "36005-6001002042840001"]  # fmt: skip
+    juris = {r["instrument_number"]: r["jurisdiction"] for t, r in out if t == "instrument"}
+    # A short bbl names no lot, but its first digit still names the borough (2 = Bronx).
+    assert juris == {"E1": "36005", "E2": "36005"}
