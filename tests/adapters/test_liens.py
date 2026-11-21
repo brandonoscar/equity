@@ -10,7 +10,7 @@ from typing import Any
 import pytest
 import yaml
 
-from equity.adapters.base import Fetched
+from equity.adapters.base import Fetched, FetchRequest
 from equity.adapters.liens import (
     LienConfigError,
     all_lien_adapters,
@@ -179,3 +179,43 @@ def test_separators_are_skipped_and_county_comes_from_its_name(tmp_path: Path) -
     assert seqs == [1, 1, 2]
     juris = {r["instrument_number"]: r["jurisdiction"] for t, r in out if t == "instrument"}
     assert juris == {"W1": "36079", "W2": "36001"}  # Putnam; unknown name -> fallback
+
+
+def test_ckan_sources_page_by_sql_and_mark_satisfied(tmp_path: Path) -> None:
+    from collections.abc import Mapping as _M
+
+    from equity.adapters.http import PoliteClient
+
+    calls: list[str] = []
+
+    def transport(url: str, headers: _M[str, str], timeout: float) -> tuple[int, bytes, str]:
+        if url.endswith("robots.txt"):
+            return 404, b"", ""
+        calls.append(url)
+        recs = [{"_id": 1, "dtd": "DTD-1", "filing_date": "2020-02-03", "amount": 10.5,
+                 "pin": "0001A00100000000", "satisfied": True, "assignee": "TAX CO"}]  # fmt: skip
+        page = recs if len(calls) == 1 else []
+        return 200, json.dumps({"success": True, "result": {"records": page}}).encode(), ""
+
+    cfg = _cfg(tmp_path, api="ckan", resource_id="res-1", portal="https://c.test",
+               date_field="filing_date", uid="dtd", amount="amount", released_on=None,
+               satisfied_flag="satisfied", parcel={"kind": "pin", "field": "pin",
+                                                   "county_fips": "42003"},
+               parties=[{"role": "creditor", "name": "assignee"}])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    client = PoliteClient(min_interval_s=0, transport=transport, sleep=lambda s: None)
+    a = cls(client)
+    assert a.where({"from": "2020-01-01", "to": "2021-01-01"}) == (
+        "filing_date >= '2020-01-01' AND filing_date < '2021-01-01'")  # fmt: skip
+    f = a.fetch(FetchRequest({"from": "2020-01-01", "to": "2021-01-01"}))
+    assert len(calls) == 1  # a short page ends the paging
+    assert "datastore_search_sql" in calls[0] and "res-1" in calls[0]
+    (inst,) = [r.row for r in a.normalize(f) if r.table == "instrument"]
+    assert inst["doc_type_raw"].endswith("(satisfied)")
+    assert a.source_row()["base_url"] == "https://c.test/datastore/res-1"
+    bad = tmp_path / "ck.yaml"
+    data = yaml.safe_load(cfg.read_text())
+    del data["resource_id"]
+    bad.write_text(yaml.safe_dump(data))
+    with pytest.raises(LienConfigError, match="resource_id"):
+        load_lien_config(bad)

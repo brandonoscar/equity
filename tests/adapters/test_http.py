@@ -176,3 +176,27 @@ def test_cut_off_transfers_are_retried() -> None:
                      monotonic=clock.monotonic)  # fmt: skip
     assert c.get("https://g.test/x").content == b"whole"
     assert len(calls) == 2 and clock.slept == [2.0]
+
+
+WPRDC_ROBOTS = b"""# If you use WPRDC data for your scripts or applications, you are allowed to
+# ignore these rules.
+User-agent: *
+Disallow: /api/
+Disallow: /private/
+"""
+
+
+def test_written_script_permission_opens_only_its_prefix_while_still_published() -> None:
+    net = FakeNet({"https://data.wprdc.org/robots.txt": (200, WPRDC_ROBOTS),
+                   "https://data.wprdc.org/": (200, b"ok")})  # fmt: skip
+    c = client(net, FakeClock())
+    assert c.get("https://data.wprdc.org/api/3/action/datastore_search").content == b"ok"
+    with pytest.raises(AccessDenied):  # not a permitted prefix
+        c.get("https://data.wprdc.org/private/x")
+    withdrawn = FakeNet({"https://data.wprdc.org/robots.txt":
+                         (200, b"User-agent: *\nDisallow: /api/\n")})  # fmt: skip
+    with pytest.raises(AccessDenied):  # sentence gone: back to the plain rules
+        client(withdrawn, FakeClock()).get("https://data.wprdc.org/api/3/action/x")
+    other = FakeNet({"https://b.test/robots.txt": (200, WPRDC_ROBOTS)})
+    with pytest.raises(AccessDenied):  # the same text on another host grants nothing
+        client(other, FakeClock()).get("https://b.test/api/x")

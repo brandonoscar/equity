@@ -94,7 +94,10 @@ def _fields(spec: Any) -> list[str]:
 
 def load_lien_config(path: Path) -> LienConfig:
     data = yaml.safe_load(path.read_text())
-    missing = [k for k in REQUIRED if k not in data]
+    need = [k for k in REQUIRED if not (k == "dataset" and data.get("api") == "ckan")]
+    if data.get("api") == "ckan":
+        need.append("resource_id")
+    missing = [k for k in need if k not in data]
     if missing:
         raise LienConfigError(f"{path.name}: missing {missing}")
     if data.get("partition", "year") not in ("year", "month"):
@@ -169,7 +172,11 @@ class LienAdapter(Adapter):
             "kind": "recorder",
             "jurisdiction": self.config.get("county_fips") or self.config["state"],
             "access_method": "api",
-            "base_url": f"{self.config['portal']}/resource/{self.config['dataset']}.json",
+            "base_url": (
+                f"{self.config['portal']}/datastore/{self.config['resource_id']}"
+                if self.ckan
+                else f"{self.config['portal']}/resource/{self.config['dataset']}.json"
+            ),
             "terms_url": t.get("url"),
             "terms_summary": t["summary"],
             "terms_checked_on": t["checked_on"],
@@ -188,18 +195,46 @@ class LienAdapter(Adapter):
             else:
                 yield {"from": f"{y}-01-01", "to": f"{y + 1}-01-01"}
 
+    @property
+    def ckan(self) -> bool:
+        return bool(self.config.get("api") == "ckan")
+
     def where(self, params: Mapping[str, str]) -> str:
         clauses = [f"({self.config['where']})"] if self.config.get("where") else []
         f = self.config["date_field"]
+        t = "" if self.ckan else "T00:00:00"  # CKAN SQL compares plain dates
         if "from" in params:
-            clauses.append(
-                f"{f} >= '{params['from']}T00:00:00' AND {f} < '{params['to']}T00:00:00'"
-            )
+            clauses.append(f"{f} >= '{params['from']}{t}' AND {f} < '{params['to']}{t}'")
         return " AND ".join(clauses) or "1=1"
+
+    def _ckan_rows(self, where: str, limit: int | None) -> tuple[list[dict[str, Any]], datetime]:
+        """CKAN DataStore SQL, paged in _id order (WPRDC and other CKAN portals)."""
+        url = f"{self.config['portal']}/api/3/action/datastore_search_sql"
+        page = limit or 10_000
+        rows: list[dict[str, Any]] = []
+        res = self.config["resource_id"]
+        while True:
+            # resource_id and the date window come from repo config, never from fetched data.
+            n = len(rows)
+            sql = f'SELECT * FROM "{res}" WHERE {where} ORDER BY _id LIMIT {page} OFFSET {n}'  # noqa: S608
+            resp = self.client.get(url, {"sql": sql})
+            body = json.loads(resp.content)
+            if resp.status != 200 or not body.get("success"):
+                raise LienConfigError(f"{self.source_id}: CKAN query failed: {body.get('error')}")
+            got = body["result"]["records"]
+            rows += got
+            if limit or len(got) < page:
+                return rows, resp.retrieved_at
 
     def fetch(self, request: FetchRequest) -> Fetched:
         limit = request.params.get("limit")
         where = self.where(request.params)
+        if self.ckan:
+            rows_c, at_c = self._ckan_rows(where, int(limit) if limit else None)
+            res = self.config["resource_id"]
+            body_c = canonical_json({"resource": res, "where": where, "rows": rows_c})
+            return Fetched(self.source_id, f"{self.config['portal']}/datastore/{res}?where={where}",
+                           at_c, 200, body_c, "application/json")  # fmt: skip
         q = SocrataQuery(self.config["portal"], self.config["dataset"], where,
                          tuple(self.config.get("order_by", [":id"])),
                          int(limit) if limit else self.page_size,
@@ -256,6 +291,9 @@ class LienAdapter(Adapter):
             raw_type = cfg["doc_type_raw"]
             doc_raw = (_text(row.get(raw_type["field"])) if isinstance(raw_type, dict)
                        else str(raw_type)) or cfg["doc_type"]  # fmt: skip
+            flag = cfg.get("satisfied_flag")
+            if flag and str(row.get(flag)).strip().lower() in ("true", "1", "yes", "y"):
+                doc_raw += " (satisfied)"  # no satisfaction date is published: marked only
             amount = _amount(row.get(cfg["amount"])) if cfg.get("amount") else None
             yield ctx.source_record()
             yield ctx.fact(
@@ -315,6 +353,10 @@ class LienAdapter(Adapter):
                            role=role, seq=seqs[role])  # fmt: skip
 
     def health(self) -> HealthReport:
+        if self.ckan:
+            rows_h, _ = self._ckan_rows("1=1", 1)
+            return HealthReport(self.source_id, bool(rows_h), datetime.now(UTC),
+                                "ok" if rows_h else "no rows")  # fmt: skip
         q = SocrataQuery(self.config["portal"], self.config["dataset"], self.where({}),
                          tuple(self.config.get("order_by", [":id"])), 1)  # fmt: skip
         rows, _ = fetch_all(self.client, q, max_pages=1, sample=True)
