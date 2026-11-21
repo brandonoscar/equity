@@ -14,6 +14,7 @@ from equity.adapters.fl.hillsborough_civil import (
     HillsboroughGarnishment,
 )
 from equity.adapters.fl.hillsborough_or import HillsboroughOfficialRecords
+from equity.adapters.liens import all_lien_adapters
 from equity.adapters.ny.acris import AcrisPersonalProperty, AcrisRealProperty
 from equity.adapters.pa.philadelphia_rtt import PhiladelphiaRTT
 from equity.adapters.state_parcels import all_state_adapters
@@ -31,6 +32,7 @@ _ALL: tuple[type[Adapter], ...] = (
     NDWVBankruptcyRSS,
     *all_state_adapters(),
     *all_zoning_adapters(),
+    *all_lien_adapters(),
     LocalZoningAdapter,
     NJMunicipalCodeLinks,
     TexasStratMapParcels,

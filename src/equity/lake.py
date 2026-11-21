@@ -257,6 +257,7 @@ def parcel_sources() -> list[str]:
     return [
         c.source_id for c in REGISTRY
         if c.source_id.endswith((".parcels", ".zoning")) or c.source_id == "wv.statewide.delinquent"
+        or c.__module__ == "equity.adapters.liens"
     ]  # fmt: skip
 
 
