@@ -6,6 +6,10 @@ page_size: 1000          # maxRecordCount 2000
 min_interval_s: 1.0
 county: {constant: "101"}
 fields:
+  zoning: zoning
+  situs_line1: location
+  situs_zip: zip_code
+  homestead: homestead_exemption
   parcel_id: parcel_number   # OPA account number
   owner1: owner_1
   owner2: owner_2

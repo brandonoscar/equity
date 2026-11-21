@@ -1,0 +1,229 @@
+{
+ "attributes": [
+  {
+   "County_1": "Cape May",
+   "Map": "https://ecode360.com/attachment/CA0524/CA0524-150a%20Zoning%20Map.pdf",
+   "Muni": "0503",
+   "Municipali": "Cape May Point Borough",
+   "OBJECTID_1": 1,
+   "Ordinance": "https://ecode360.com/35938632",
+   "Website": "https://capemaypoint.org/contact.php"
+  },
+  {
+   "County_1": "Cape May",
+   "Map": "https://www.westcapemay.us/document-center/zoning-department/243-zoning-map-adopted-july-2008-readopted-november-2010/file.html",
+   "Muni": "0512",
+   "Municipali": "West Cape May Borough",
+   "OBJECTID_1": 2,
+   "Ordinance": "https://ecode360.com/36278506",
+   "Website": "https://www.westcapemay.us/departments/zoning.html"
+  },
+  {
+   "County_1": "Cape May",
+   "Map": "https://ecode360.com/attachment/CA1942/CA1942-525a%20Zoning%20Map.pdf",
+   "Muni": "0502",
+   "Municipali": "Cape May City",
+   "OBJECTID_1": 3,
+   "Ordinance": "https://ecode360.com/6660620",
+   "Website": "https://www.capemaycity.com/departments/ConstructionZoning"
+  },
+  {
+   "County_1": "Cape May",
+   "Map": "https://wildwoodcrest.org/PDF/Land_Use_Map_8_2005.pdf",
+   "Muni": "0515",
+   "Municipali": "Wildwood Crest Borough",
+   "OBJECTID_1": 4,
+   "Ordinance": "https://ecode360.com/36119694",
+   "Website": "https://wildwoodcrest.org/planningzoning.php"
+  },
+  {
+   "County_1": "Cape May",
+   "Map": "https://westwildwood.org/wp-content/uploads/2017/12/Zoning-Map.pdf",
+   "Muni": "0513",
+   "Municipali": "West Wildwood Borough",
+   "OBJECTID_1": 5,
+   "Ordinance": "https://ecode360.com/38936285#38936285",
+   "Website": "https://westwildwood.org/departments/code-enforcement/"
+  },
+  {
+   "County_1": "Cape May",
+   "Map": "https://northwildwood.com/wp-content/uploads/2020/08/Zoning-Map-April-2020.pdf",
+   "Muni": "0507",
+   "Municipali": "North Wildwood City",
+   "OBJECTID_1": 6,
+   "Ordinance": "https://ecode360.com/8051605",
+   "Website": "https://northwildwood.com/departments/construction-office/"
+  },
+  {
+   "County_1": "Cape May",
+   "Map": "https://townshipoflower.org/planningandzoning/2010_0520_ZoningMap.pdf",
+   "Muni": "0505",
+   "Municipali": "Lower Township",
+   "OBJECTID_1": 7,
+   "Ordinance": "https://ecode360.com/11491894",
+   "Website": "https://townshipoflower.org/planning-zoning.php"
+  },
+  {
+   "County_1": "Cape May",
+   "Map": "https://stoneharbornj.org/wp-content/uploads/2020/08/0510-Zoning_12-6-2011_SIGNED.pdf",
+   "Muni": "0510",
+   "Municipali": "Stone Harbor Borough",
+   "OBJECTID_1": 8,
+   "Ordinance": "https://ecode360.com/10814722",
+   "Website": "https://stoneharbornj.org/departments/construction/"
+  },
+  {
+   "County_1": "Cape May",
+   "Map": "http://www.avalonboro.org/planning-zoning/2007%20AVA%20ZONING%20Map.pdf",
+   "Muni": "0501",
+   "Municipali": "Avalon Borough",
+   "OBJECTID_1": 9,
+   "Ordinance": "https://ecode360.com/34663118",
+   "Website": "https://avalonboro.net/government/department-of-administration/zoning-office/"
+  },
+  {
+   "County_1": "Cape May",
+   "Map": "https://www.middletownship.com/zone/Middle%20Zoning%20%20south%20(revised).pdf",
+   "Muni": "0506",
+   "Municipali": "Middle Township",
+   "OBJECTID_1": 10,
+   "Ordinance": "https://ecode360.com/9071192",
+   "Website": "https://middletownship.com/departments/zoning-office/"
+  },
+  {
+   "County_1": "Cape May",
+   "Map": "https://www.seaislecitynj.us/media/Forms/Construction/SIC%20zoning%20map%20sht%204.PDF",
+   "Muni": "0509",
+   "Municipali": "Sea Isle City",
+   "OBJECTID_1": 11,
+   "Ordinance": "https://ecode360.com/35114237",
+   "Website": "https://www.seaislecitynj.us/departments/ConstructionOffice"
+  },
+  {
+   "County_1": "Cape May",
+   "Map": "https://ecode360.com/attachment/WO4121/WO4121-026a%20Zoning%20Map.pdf",
+   "Muni": "0516",
+   "Municipali": "Woodbine Borough",
+   "OBJECTID_1": 12,
+   "Ordinance": "https://ecode360.com/36352526",
+   "Website": "http://www.boroughofwoodbine.net/"
+  },
+  {
+   "County_1": "Cape May",
+   "Map": "https://dennistwp.org/wp-content/uploads/2019/04/DennisTownshipZoningMapApril2013-min.pdf",
+   "Muni": "0504",
+   "Municipali": "Dennis Township",
+   "OBJECTID_1": 13,
+   "Ordinance": "https://ecode360.com/36535534",
+   "Website": "https://dennistwp.org/township-personnel/"
+  },
+  {
+   "County_1": "Cape May",
+   "Map": "https://services.ocnj.us/government/documents/department-documents/zoning-department/148-zoning-map-8-31-2016/file",
+   "Muni": "0508",
+   "Municipali": "Ocean City",
+   "OBJECTID_1": 14,
+   "Ordinance": "https://ecode360.com/36271383",
+   "Website": "https://services.ocnj.us/departments/zoning"
+  },
+  {
+   "County_1": "Atlantic",
+   "Map": "https://www.longportnj.gov/_Content/pdf/forms/LP-zoning-map.pdf",
+   "Muni": "0115",
+   "Municipali": "Longport Borough",
+   "OBJECTID_1": 15,
+   "Ordinance": "https://ecode360.com/10309001",
+   "Website": "https://www.longportnj.gov/department/building-construction"
+  },
+  {
+   "County_1": "Cape May",
+   "Map": "https://uppertownship.com/wp-content/uploads/2020/05/UT-Zoning-2020-Map.pdf",
+   "Muni": "0511",
+   "Municipali": "Upper Township",
+   "OBJECTID_1": 16,
+   "Ordinance": "https://ecode360.com/35460787",
+   "Website": "https://uppertownship.com/departments/planning-zoning-office/"
+  },
+  {
+   "County_1": "Atlantic",
+   "Map": "https://www.atlantic-county.org/gis/pdfs/SmartGrowth/COR_ZoneBuildout.pdf",
+   "Muni": "0106",
+   "Municipali": "Corbin City",
+   "OBJECTID_1": 17,
+   "Ordinance": "https://ecode360.com/32666819",
+   "Website": "https://sites.google.com/view/corbincitynj/municipal-services/zoningconstruction"
+  },
+  {
+   "County_1": "Atlantic",
+   "Map": "https://www.atlantic-county.org/gis/pdfs/SmartGrowth/SOM_ZoneBuildout.pdf",
+   "Muni": "0121",
+   "Municipali": "Somers Point City",
+   "OBJECTID_1": 18,
+   "Ordinance": "https://ecode360.com/11359131",
+   "Website": "http://www.somerspointgov.org/mainpages/construction.asp"
+  },
+  {
+   "County_1": "Atlantic",
+   "Map": "https://www.margate-nj.com/flood-protection-information/files/margate-city-zoning-map",
+   "Muni": "0116",
+   "Municipali": "Margate City",
+   "OBJECTID_1": 19,
+   "Ordinance": "https://ecode360.com/10323805",
+   "Website": "https://www.margate-nj.com/planning-board-zoning"
+  },
+  {
+   "County_1": "Cumberland",
+   "Map": "https://commercialtwp.com/wp-content/uploads/2022/02/Commercial-Township-Zoning-Maps.pdf",
+   "Muni": "0602",
+   "Municipali": "Commercial Township",
+   "OBJECTID_1": 20,
+   "Ordinance": "https://ecode360.com/12602978#12602978",
+   "Website": "https://www.commercialtwp.com/construction"
+  },
+  {
+   "County_1": "Cumberland",
+   "Map": "https://downetwpnj.org/wp-content/uploads/2020/07/Downe-Township-Zoning-Map.pdf",
+   "Muni": "0604",
+   "Municipali": "Downe Township",
+   "OBJECTID_1": 21,
+   "Ordinance": "https://downetwpnj.org/wp-content/uploads/2016/08/DTZoningOrdinance.pdf",
+   "Website": "https://downetwpnj.org/departments/zoning-office/"
+  },
+  {
+   "County_1": "Atlantic",
+   "Map": "https://www.ventnorcity.org/media/Documents/CodeEnforcement/FillableForms/Zoning%20Map%202019.pdf",
+   "Muni": "0122",
+   "Municipali": "Ventnor City",
+   "OBJECTID_1": 22,
+   "Ordinance": "https://ecode360.com/8287042#8287043",
+   "Website": "https://www.ventnorcity.org/departments/staff_directory/CodeEnforcement/"
+  },
+  {
+   "County_1": "Atlantic",
+   "Map": "http://linwoodcity.org/pdf/zoningMap.pdf",
+   "Muni": "0114",
+   "Municipali": "Linwood City",
+   "OBJECTID_1": 23,
+   "Ordinance": "https://ecode360.com/13240120",
+   "Website": "http://www.linwoodcity.org/services/construction.asp"
+  },
+  {
+   "County_1": "Atlantic",
+   "Map": "http://www.cityofnorthfield.org/pdf/ZoningMap-1-29-15.pdf",
+   "Muni": "0118",
+   "Municipali": "Northfield City",
+   "OBJECTID_1": 24,
+   "Ordinance": "https://ecode360.com/8265869",
+   "Website": "https://www.cityofnorthfield.org/government/zoning.asp"
+  },
+  {
+   "County_1": "Cumberland",
+   "Map": "https://www.lawrencetwpcumberlandnj.com/Minutes_and_Other_Municipal_Documents/zoningmap2003color.pdf",
+   "Muni": "0608",
+   "Municipali": "Lawrence Township",
+   "OBJECTID_1": 25,
+   "Ordinance": "https://www.lawrencetwpcumberlandnj.com/Minutes_and_Other_Municipal_Documents/Lawrence%20Twp%20Cumberland%20NJ%20Development%20Regulations%20Ordinance%20July%2014%202003.pdf",
+   "Website": "https://www.lawrencetwpcumberlandnj.com/OfficialsandAgencies.htm"
+  }
+ ]
+}

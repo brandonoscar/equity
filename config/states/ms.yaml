@@ -11,6 +11,10 @@ county:
   field: STCNTYFIPS
   format: fips5
 fields:
+  zoning: ZONING
+  situs_line1: SITEADD
+  situs_city: SCITY
+  situs_zip: SZIP
   parcel_id: PARNO
   owner1: OWNNAME
   mail_line1: MAILADD1

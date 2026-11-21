@@ -107,7 +107,7 @@ def main(argv: list[str]) -> int:
                     help="key=value request params (repeatable), e.g. county_fips=013")  # fmt: skip
     ap.add_argument("--all", action="store_true", help="every partition the adapter plans")
     args = ap.parse_args(argv)
-    adapter = by_source_id(args.source_id)()  # type: ignore[abstract]
+    adapter = by_source_id(args.source_id)()
     if args.all:
         requests = list(partitions(adapter))
     else:

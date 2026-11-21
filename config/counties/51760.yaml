@@ -9,6 +9,7 @@ page_size: 2000          # maxRecordCount 2000
 min_interval_s: 1.0
 county: {constant: "760"}
 fields:
+  land_use_desc: LandUse
   parcel_id: PIN
   owner1: OwnerName
   mail_line1: MailAddress

@@ -9,6 +9,9 @@ page_size: 1000          # maxRecordCount 1000
 min_interval_s: 1.0
 county: {constant: "153"}
 fields:
+  situs_line1: [ST_NO, ST_NAME]
+  situs_city: CITY
+  situs_zip: ZIP
   parcel_id: GPIN          # equals CAMA_MAPBLOLOT on the sampled row
   owner1: CAMA_OWNER_CUR
   mail_line1: CAMA_ADDRESS2

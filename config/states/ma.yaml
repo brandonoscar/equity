@@ -9,6 +9,7 @@ layer_url: https://services1.arcgis.com/hGdibHYSPO59RG1h/ArcGIS/rest/services/Ma
 order_by: OBJECTID
 page_size: 1000
 min_interval_s: 1.0
+county_window: 20000      # each county in 20k-id windows, so one fetch fits a short session
 # TOWN_ID is the MassGIS town identifier (1-351). Map built from MassGIS Census2020_Towns
 # (TOWN_ID -> COUNTYFP20). TOWN_ID is an integer field and the server rejects the quoted
 # literal the code_map county_fips where clause builds (TOWN_ID='55'), so fetch by
@@ -370,6 +371,12 @@ county:
     "350": "021"   # Wrentham
     "351": "001"   # Yarmouth
 fields:
+  land_use_code: USE_CODE
+  land_use_desc: USE_DESC
+  zoning: ZONING
+  situs_line1: SITE_ADDR
+  situs_city: CITY
+  situs_zip: ZIP
   # LOC_ID is the MassGIS statewide parcel-polygon id. PROP_ID is unique only within a town, so
   # it would collide across towns in a county. Several assessor records can share one LOC_ID
   # (mostly condominium units, about 363k rows with USE_CODE 102*): the adapter keeps the

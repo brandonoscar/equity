@@ -27,7 +27,7 @@ from typing import Any, ClassVar
 
 import yaml
 
-from equity.adapters.arcgis import ArcGISQuery, fetch_all
+from equity.adapters.arcgis import ArcGISQuery, fetch_all, get_json
 from equity.adapters.arcgis_adapter import ArcGISCountyAdapter
 from equity.adapters.base import Fetched, FetchRequest, HealthReport, NormalizedRow
 from equity.adapters.http import PoliteClient
@@ -44,8 +44,33 @@ CANONICAL = (
     "parcel_id", "owner1", "owner2", "mail_line1", "mail_line2", "mail_full",
     "mail_city_state_zip", "mail_city", "mail_state", "mail_zip", "land_value", "bldg_value",
     "total_value", "assessed_value", "tax_year", "deed_book", "deed_page", "deed_ref",
+    "situs_line1", "situs_full", "situs_city", "situs_state", "situs_zip",
+    "owner_type", "homestead", "land_use_code", "land_use_desc", "zoning",
 )  # fmt: skip
-PII_CANONICAL = ("owner1", "owner2", "mail_line1", "mail_line2", "mail_full")
+# Situs addresses are often the owner's home: pseudonymized in fixtures like mailing addresses.
+PII_CANONICAL = ("owner1", "owner2", "mail_line1", "mail_line2", "mail_full",
+                 "situs_line1", "situs_full")  # fmt: skip
+_TRUE = {"Y", "YES", "T", "TRUE", "H", "HX", "HOMESTEAD", "ENROLLED"}
+_FALSE = {"N", "NO", "F", "FALSE", "NOT ENROLLED", "NON-HOMESTEAD", "NON HOMESTEAD", "NONHOMESTEAD"}
+
+
+def parse_homestead(value: Any) -> bool | None:
+    """Homestead flag from a roll field: a positive amount (e.g. Florida's homestead just
+    value) or a yes/no code is True/False; anything else is unknown (None), never guessed."""
+    text = _text(value)
+    if text is None:
+        return None
+    up = text.upper()
+    if up in _TRUE:
+        return True
+    if up in _FALSE:
+        return False
+    try:
+        return float(up.replace(",", "").replace("$", "")) > 0
+    except ValueError:
+        return None
+
+
 # One-string postal address: "LINE , CITY, ST 12345[-6789]". Without the comma layout the
 # whole string stays as the street line: we never guess where a street ends and a city begins.
 _FULL = re.compile(
@@ -128,6 +153,13 @@ class StateConfig:
     base_filter: str | None = None
     # Regex with named groups `book` and `page` for a combined deed reference ("282 - 520").
     deed_ref_pattern: str | None = None
+    # Split the layer into object-id windows of this many ids instead of one request per
+    # county, for layers whose counties are too big to fetch in one go (Florida). The county
+    # still comes from each row's county field.
+    partition_window: int | None = None
+    # Split each county into object-id windows of this many ids (one stats query per county
+    # at plan time), so a big county is many small fetches instead of one long one.
+    county_window: int | None = None
 
     def layer(self, index: int) -> LayerSpec:
         return self.layers[index] if self.layers else LayerSpec(self.layer_url)
@@ -223,6 +255,8 @@ def load_config(path: Path) -> StateConfig:
         paginate=bool(data.get("paginate", True)),
         base_filter=data.get("filter"),
         deed_ref_pattern=data.get("deed_ref_pattern"),
+        partition_window=int(data["partition_window"]) if "partition_window" in data else None,
+        county_window=int(data["county_window"]) if "county_window" in data else None,
     )
 
 
@@ -316,44 +350,78 @@ class StateParcelAdapter(ArcGISCountyAdapter):
         return clause
 
     def _partition_where(self, request: FetchRequest) -> str:
-        """params: county_fips (3 digits) | oid_min + oid_max | sample=1 (fixtures)."""
+        """params: county_fips (3 digits) and/or oid_min + oid_max | sample=1 (fixtures)."""
         p = request.params
-        spec = self.config.county_spec(int(p.get("layer", "0")))
+        clauses = []
         if "county_fips" in p:
-            county = county_by_fips(self.config.state, p["county_fips"])
-            if "constant" in spec:
-                return "1=1"
-            fld, fmt = str(spec["field"]), spec["format"]
-            if fmt == "fips3":
-                return f"{fld}='{county.county_fips}'"
-            if fmt == "fips5":
-                return f"{fld}='{county.fips5}'"
-            if fmt == "int":
-                return f"{fld}={int(county.county_fips)}"
-            if fmt == "name":
-                raise StateConfigError("name-partitioned layers are fetched by oid range")
-            codes = [k for k, v in spec["code_map"].items() if str(v) == county.county_fips]
-            q = "" if spec.get("numeric") else "'"  # integer code fields reject quoted literals
-            return " OR ".join(f"{fld}={q}{c}{q}" for c in codes) or "1=0"
+            clauses.append(self._county_clause(p["county_fips"], int(p.get("layer", "0"))))
         if "oid_min" in p and "oid_max" in p:
             lo, hi = int(p["oid_min"]), int(p["oid_max"])
-            return f"{self.config.order_by}>={lo} AND {self.config.order_by}<{hi}"
+            clauses.append(f"{self.config.order_by}>={lo} AND {self.config.order_by}<{hi}")
+        if len(clauses) == 2 and clauses[0] == "1=1":
+            clauses = clauses[1:]
+        if clauses:
+            return " AND ".join(f"({c})" for c in clauses) if len(clauses) > 1 else clauses[0]
         if p.get("sample"):
             return "1=1"
         raise StateConfigError("need county_fips, oid_min/oid_max, or sample")
+
+    def _county_clause(self, county_fips: str, layer: int) -> str:
+        spec = self.config.county_spec(layer)
+        county = county_by_fips(self.config.state, county_fips)
+        if "constant" in spec:
+            return "1=1"
+        fld, fmt = str(spec["field"]), spec["format"]
+        if fmt == "fips3":
+            return f"{fld}='{county.county_fips}'"
+        if fmt == "fips5":
+            return f"{fld}='{county.fips5}'"
+        if fmt == "int":
+            return f"{fld}={int(county.county_fips)}"
+        if fmt == "name":
+            raise StateConfigError("name-partitioned layers are fetched by oid range")
+        codes = [k for k, v in spec["code_map"].items() if str(v) == county.county_fips]
+        q = "" if spec.get("numeric") else "'"  # integer code fields reject quoted literals
+        return " OR ".join(f"{fld}={q}{c}{q}" for c in codes) or "1=0"
+
+    def split_partition(self, params: Mapping[str, str]) -> list[dict[str, str]]:
+        """A county partition cut into windows of county_window records each, from the
+        county's actual object-id list (one returnIdsOnly query), so no window is empty even
+        when ids are scattered. Anything else, or a config without county_window, comes back
+        unchanged."""
+        size = self.config.county_window
+        if not size or "county_fips" not in params or "oid_min" in params:
+            return [dict(params)]
+        layer = int(params.get("layer", "0"))
+        where = self._county_clause(params["county_fips"], layer)
+        if self.config.base_filter:
+            where = f"({self.config.base_filter}) AND ({where})"
+        q = {"where": where, "returnIdsOnly": "true", "f": "json"}
+        body = get_json(self.client, self.config.layer(layer).url + "/query", q)
+        if "error" in body:
+            raise StateConfigError(f"id list for county {params['county_fips']}: {body['error']}")
+        ids = sorted(int(i) for i in body.get("objectIds") or [])
+        out: list[dict[str, str]] = []
+        for i in range(0, len(ids), size):
+            chunk = ids[i : i + size]
+            out.append({**params, "oid_min": str(chunk[0]), "oid_max": str(chunk[-1] + 1)})
+        return out
 
     def partitions(self, window: int = 50_000) -> Iterator[dict[str, str]]:
         """Fetch plan for the whole state, per layer: one request per county when the layer
         has a county code to filter on, otherwise object-id windows (one stats query each).
         Without server paging, windows are capped at page_size."""
+        if self.config.partition_window:
+            window = self.config.partition_window
         if not self.config.paginate:
             window = min(window, self.config.page_size)
         for i in range(self.config.layer_count):
             spec = self.config.county_spec(i)
             base = {"layer": str(i)} if self.config.layers else {}
-            if spec.get("format") in ("fips3", "fips5", "int", "code_map") and self.config.paginate:
+            by_county = spec.get("format") in ("fips3", "fips5", "int", "code_map")
+            if by_county and self.config.paginate and not self.config.partition_window:
                 for c in counties_in(self.config.state):
-                    yield {**base, "county_fips": c.county_fips}
+                    yield from self.split_partition({**base, "county_fips": c.county_fips})
                 continue
             oid = self.config.order_by
             stats = json.dumps([
@@ -366,8 +434,18 @@ class StateParcelAdapter(ArcGISCountyAdapter):
                 "outStatistics": stats,
                 "f": "json",
             }
-            resp = self.client.get(url + "/query", params)
-            raw_attrs = json.loads(resp.content)["features"][0]["attributes"]
+            body = get_json(self.client, url + "/query", params)
+            if "features" not in body:
+                # Some servers (e.g. MARIS for Mississippi) refuse statistics queries but answer
+                # returnIdsOnly. Cut windows from the id list instead; fail only if both refuse.
+                ids = self._id_list(url)
+                if ids is None:
+                    raise StateConfigError(
+                        f"id range for {url}: {body.get('error', body)}; id list refused too"
+                    )
+                yield from ({**base, **w} for w in _id_windows(ids, window))
+                continue
+            raw_attrs = body["features"][0]["attributes"]
             attrs = {str(k).lower(): v for k, v in raw_attrs.items()}  # some servers upper-case
             lo, hi = int(attrs["lo"]), int(attrs["hi"])
             count = self._count(url)
@@ -384,13 +462,19 @@ class StateParcelAdapter(ArcGISCountyAdapter):
         resp = self.client.get(url + "/query", params)
         return int(json.loads(resp.content).get("count") or 0)
 
-    def _dense_windows(self, url: str, window: int) -> Iterator[dict[str, str]]:
+    def _id_list(self, url: str) -> list[int] | None:
+        """Every object id in the layer (one returnIdsOnly request), or None if refused."""
         params = {"where": self.config.base_filter or "1=1", "returnIdsOnly": "true", "f": "json"}
-        resp = self.client.get(url + "/query", params)
-        ids = sorted(int(i) for i in json.loads(resp.content).get("objectIds") or [])
-        for i in range(0, len(ids), window):
-            chunk = ids[i : i + window]
-            yield {"oid_min": str(chunk[0]), "oid_max": str(chunk[-1] + 1)}
+        body = get_json(self.client, url + "/query", params)
+        if "error" in body:
+            return None
+        return sorted(int(i) for i in body.get("objectIds") or [])
+
+    def _dense_windows(self, url: str, window: int) -> Iterator[dict[str, str]]:
+        ids = self._id_list(url)
+        if ids is None:
+            raise StateConfigError(f"id list for {url} refused")
+        yield from _id_windows(ids, window)
 
     def fetch(self, request: FetchRequest) -> Fetched:
         """Like the base fetch, but on the requested layer and honoring `paginate`."""
@@ -470,12 +554,20 @@ class StateParcelAdapter(ArcGISCountyAdapter):
             uid = f"{county.fips5}-{local_id}"
             ctx = RecordContext(fetched, county.fips5, local_id, "parcel", dict(a))
             yield ctx.source_record()
-            yield ctx.fact("parcel", parcel_uid=uid, parid_raw=local_id)
+            situs = self._situs(a)
+            if situs is not None:
+                yield NormalizedRow("address", situs)
+            situs_id = None if situs is None else situs["address_id"]
+            yield ctx.fact("parcel", parcel_uid=uid, parid_raw=local_id, situs_address_id=situs_id,
+                           land_use_code=_text(self._get(a, "land_use_code")),
+                           land_use_desc=_text(self._get(a, "land_use_desc")),
+                           zoning=_text(self._get(a, "zoning")))  # fmt: skip
             addr = self._address(a)
             if addr is not None:
                 yield NormalizedRow("address", addr)
             owners = [n for n in (_text(self._get(a, "owner1")), _text(self._get(a, "owner2")))
                       if n]  # fmt: skip
+            owner_type = _text(self._get(a, "owner_type"))
             for seq, name in enumerate(owners, start=1):
                 nc = classify(name)
                 party_id = stable_id(self.source_id, local_id, "owner", str(seq), clean(name))
@@ -486,7 +578,7 @@ class StateParcelAdapter(ArcGISCountyAdapter):
                 book, page = self._deed(a)
                 yield ctx.fact("owner_snapshot", parcel_uid=uid, owner_seq=seq,
                                party_id=party_id, deed_book=book, deed_page=page,
-                               observed_on=observed)  # fmt: skip
+                               owner_type=owner_type, observed_on=observed)  # fmt: skip
             year_raw = _text(self._get(a, "tax_year"))
             values = {
                 "appraised_land": _money(self._get(a, "land_value")),
@@ -499,6 +591,7 @@ class StateParcelAdapter(ArcGISCountyAdapter):
                 if 1800 <= year <= 2200:
                     yield ctx.fact("parcel_assessment", parcel_uid=uid, tax_year=year,
                                    valid_from=_valid_from(year, cfg.assessment_valid_from),
+                                   homestead=parse_homestead(self._get(a, "homestead")),
                                    **values)  # fmt: skip
 
     def _deed(self, a: Mapping[str, Any]) -> tuple[str | None, str | None]:
@@ -509,6 +602,24 @@ class StateParcelAdapter(ArcGISCountyAdapter):
             if m:  # no match: leave both empty rather than guess
                 book, page = m.group("book"), m.group("page")
         return book, page
+
+    def _situs(self, a: Mapping[str, Any]) -> dict[str, Any] | None:
+        """The property's own address. A one-string situs is split only when it carries the
+        'LINE, CITY, ST ZIP' layout; otherwise it is kept whole as the street line."""
+        spec = self.config.fields.get("situs_line1")
+        if isinstance(spec, list):  # house number, prefix, street, suffix: joined, gaps skipped
+            line = _text(" ".join(p for p in (_text(a.get(str(f))) for f in spec) if p))
+        else:
+            line = _text(self._get(a, "situs_line1"))
+        city, st = _text(self._get(a, "situs_city")), _text(self._get(a, "situs_state"))
+        m = _ZIP.match(str(self._get(a, "situs_zip") or ""))
+        zip5 = m.group(1) if m else None
+        full = _text(self._get(a, "situs_full"))
+        if full and not (line or city or zip5):
+            line, city, st, zip5 = parse_full_address(full)
+        if not (line or city or zip5):
+            return None
+        return normalized_address(line, city, st or self.config.state, zip5)
 
     def _address(self, a: Mapping[str, Any]) -> dict[str, Any] | None:
         lines = [x for x in (_text(self._get(a, "mail_line1")), _text(self._get(a, "mail_line2")))
@@ -552,3 +663,10 @@ def config_paths(*dirs: Path) -> list[Path]:
 
 def all_state_adapters(*dirs: Path) -> list[type[StateParcelAdapter]]:
     return [adapter_for(load_config(p)) for p in config_paths(*dirs)]
+
+
+def _id_windows(ids: list[int], window: int) -> Iterator[dict[str, str]]:
+    """Half-open oid windows holding at most `window` actual ids each."""
+    for i in range(0, len(ids), window):
+        chunk = ids[i : i + window]
+        yield {"oid_min": str(chunk[0]), "oid_max": str(chunk[-1] + 1)}

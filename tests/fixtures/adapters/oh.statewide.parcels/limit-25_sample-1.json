@@ -4,151 +4,201 @@
    "County": "Champaign",
    "LocalParcelID": "K482500023300700",
    "Name": "TESTOWNER 39E789",
-   "OBJECTID": 1
+   "OBJECTID": 1,
+   "SitusAddressAll": "4550 TEST ST",
+   "StateLUC": "510: Res-Single Family"
   },
   {
    "County": "Champaign",
    "LocalParcelID": "K482500023301100",
    "Name": "TESTOWNER 8A86D0",
-   "OBJECTID": 2
+   "OBJECTID": 2,
+   "SitusAddressAll": "8151 TEST ST",
+   "StateLUC": "510: Res-Single Family"
   },
   {
    "County": "Champaign",
    "LocalParcelID": "K482500023301400",
    "Name": "TESTOWNER 6F772F",
-   "OBJECTID": 3
+   "OBJECTID": 3,
+   "SitusAddressAll": "260 TEST ST",
+   "StateLUC": "640: Exm-Municipality"
   },
   {
    "County": "Champaign",
    "LocalParcelID": "K482500023400400",
    "Name": "TESTOWNER 3E5095",
-   "OBJECTID": 4
+   "OBJECTID": 4,
+   "SitusAddressAll": "5876 TEST ST",
+   "StateLUC": "510: Res-Single Family"
   },
   {
    "County": "Champaign",
    "LocalParcelID": "K482500023400800",
    "Name": "TESTOWNER 47E1CC",
-   "OBJECTID": 5
+   "OBJECTID": 5,
+   "SitusAddressAll": "2898 TEST ST",
+   "StateLUC": "510: Res-Single Family"
   },
   {
    "County": "Champaign",
    "LocalParcelID": "K482500023401100",
    "Name": "TESTOWNER FB4A0B",
-   "OBJECTID": 6
+   "OBJECTID": 6,
+   "SitusAddressAll": "7456 TEST ST",
+   "StateLUC": "510: Res-Single Family"
   },
   {
    "County": "Champaign",
    "LocalParcelID": "K482500023401500",
    "Name": "TESTOWNER 18E658",
-   "OBJECTID": 7
+   "OBJECTID": 7,
+   "SitusAddressAll": "970 TEST ST",
+   "StateLUC": "510: Res-Single Family"
   },
   {
    "County": "Champaign",
    "LocalParcelID": "K482500023401900",
    "Name": "TESTOWNER 302951",
-   "OBJECTID": 8
+   "OBJECTID": 8,
+   "SitusAddressAll": "4964 TEST ST",
+   "StateLUC": "510: Res-Single Family"
   },
   {
    "County": "Champaign",
    "LocalParcelID": "K482500023402200",
    "Name": "TESTOWNER D5995C",
-   "OBJECTID": 9
+   "OBJECTID": 9,
+   "SitusAddressAll": "5175 TEST ST",
+   "StateLUC": "510: Res-Single Family"
   },
   {
    "County": "Champaign",
    "LocalParcelID": "K482500023402600",
    "Name": "TESTOWNER F9BDFD",
-   "OBJECTID": 10
+   "OBJECTID": 10,
+   "SitusAddressAll": "1118 TEST ST",
+   "StateLUC": "510: Res-Single Family"
   },
   {
    "County": "Champaign",
    "LocalParcelID": "B050212050000800",
    "Name": "TESTOWNER 835159",
-   "OBJECTID": 11
+   "OBJECTID": 11,
+   "SitusAddressAll": "1683 TEST ST",
+   "StateLUC": "111: Agr-CAUV-Cash-Grain Farm"
   },
   {
    "County": "Champaign",
    "LocalParcelID": "K482500023403300",
    "Name": "TESTOWNER DFDE24",
-   "OBJECTID": 12
+   "OBJECTID": 12,
+   "SitusAddressAll": "7433 TEST ST",
+   "StateLUC": "510: Res-Single Family"
   },
   {
    "County": "Champaign",
    "LocalParcelID": "K482500023403700",
    "Name": "TESTOWNER 12DA45",
-   "OBJECTID": 13
+   "OBJECTID": 13,
+   "SitusAddressAll": "4928 TEST ST",
+   "StateLUC": "510: Res-Single Family"
   },
   {
    "County": "Champaign",
    "LocalParcelID": "A010112180005600",
    "Name": "TESTOWNER FA089A",
-   "OBJECTID": 14
+   "OBJECTID": 14,
+   "SitusAddressAll": "2345 TEST ST",
+   "StateLUC": "501: Res-Custom Code"
   },
   {
    "County": "Champaign",
    "LocalParcelID": "K482500023500300",
    "Name": "TESTOWNER C67B34",
-   "OBJECTID": 15
+   "OBJECTID": 15,
+   "SitusAddressAll": "483 TEST ST",
+   "StateLUC": "510: Res-Single Family"
   },
   {
    "County": "Champaign",
    "LocalParcelID": "K482500023500700",
    "Name": "TESTOWNER 029A7F",
-   "OBJECTID": 16
+   "OBJECTID": 16,
+   "SitusAddressAll": "7222 TEST ST",
+   "StateLUC": "510: Res-Single Family"
   },
   {
    "County": "Champaign",
    "LocalParcelID": "B050299050000001",
    "Name": "TESTOWNER B449E3",
-   "OBJECTID": 17
+   "OBJECTID": 17,
+   "SitusAddressAll": "9029 TEST ST",
+   "StateLUC": "999"
   },
   {
    "County": "Champaign",
    "LocalParcelID": "K482500023501301",
    "Name": "TESTOWNER 787689",
-   "OBJECTID": 18
+   "OBJECTID": 18,
+   "SitusAddressAll": "6001 TEST ST",
+   "StateLUC": "500: Res-Vacant Land"
   },
   {
    "County": "Champaign",
    "LocalParcelID": "K482500023501700",
    "Name": "TESTOWNER B3474F",
-   "OBJECTID": 19
+   "OBJECTID": 19,
+   "SitusAddressAll": "6090 TEST ST",
+   "StateLUC": "500: Res-Vacant Land"
   },
   {
    "County": "Champaign",
    "LocalParcelID": "K482500023502000",
    "Name": "TESTOWNER 653ABF",
-   "OBJECTID": 20
+   "OBJECTID": 20,
+   "SitusAddressAll": "1136 TEST ST",
+   "StateLUC": "510: Res-Single Family"
   },
   {
    "County": "Champaign",
    "LocalParcelID": "K482500023502400",
    "Name": "TESTOWNER 8D8220",
-   "OBJECTID": 21
+   "OBJECTID": 21,
+   "SitusAddressAll": "5054 TEST ST",
+   "StateLUC": "510: Res-Single Family"
   },
   {
    "County": "Champaign",
    "LocalParcelID": "K482500023502800",
    "Name": "TESTOWNER 8C888A",
-   "OBJECTID": 22
+   "OBJECTID": 22,
+   "SitusAddressAll": "6090 TEST ST",
+   "StateLUC": "640: Exm-Municipality"
   },
   {
    "County": "Champaign",
    "LocalParcelID": "K482500023800300",
    "Name": "TESTOWNER 79BFF8",
-   "OBJECTID": 23
+   "OBJECTID": 23,
+   "SitusAddressAll": "6896 TEST ST",
+   "StateLUC": "510: Res-Single Family"
   },
   {
    "County": "Champaign",
    "LocalParcelID": "K482500023800700",
    "Name": "TESTOWNER 2D69D5",
-   "OBJECTID": 24
+   "OBJECTID": 24,
+   "SitusAddressAll": "3728 TEST ST",
+   "StateLUC": "510: Res-Single Family"
   },
   {
    "County": "Champaign",
    "LocalParcelID": "K482500023801000",
    "Name": "TESTOWNER 142091",
-   "OBJECTID": 25
+   "OBJECTID": 25,
+   "SitusAddressAll": "5749 TEST ST",
+   "StateLUC": "999"
   }
  ],
  "layer": "https://services2.arcgis.com/MlJ0G8iWUyC7jAmu/arcgis/rest/services/OhioStatewidePacels_full_view/FeatureServer/1",

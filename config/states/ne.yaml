@@ -4,11 +4,18 @@ layer_url: https://gis.ne.gov/Enterprise/rest/services/StatewideParcelsExternal/
 order_by: OBJECTID
 page_size: 1000
 min_interval_s: 1.0
+county_window: 20000      # each county in 20k-id windows, so one fetch fits a short session
 # County_ID holds the 3-digit county FIPS code ("001" Adams ... "185" York), all 93 counties.
 county:
   field: County_ID
   format: fips3
 fields:
+  land_use_code: Classification_Code
+  zoning: Zoning
+  situs_line1: Situs_Address
+  situs_city: Ph_City
+  situs_zip: Ph_Zip5
+  owner_type: Ownership_Type
   parcel_id: Parcel_ID
   land_value: Land_Value
   bldg_value: Improvements_Value

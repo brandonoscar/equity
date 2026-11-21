@@ -10,6 +10,9 @@ min_interval_s: 1.0
 county: {constant: "015"}
 use_restrictions: [no_redistribution]
 fields:
+  situs_line1: SITE_ADDRESS
+  situs_city: SITE_CITY
+  situs_zip: SITE_ZIP
   parcel_id: APN
   owner1: OWNER_NAME
 value_basis: "No value fields in this layer (OBJECTID, ID, COUNTY, APN, BOOK, MAP, PARCEL, SUFFIX, SITE_ADDRESS, SITE_CITY, SITE_ZIP, OWNER_NAME, URL, ACRES_US)."

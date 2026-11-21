@@ -1,0 +1,65 @@
+name: lake
+
+# Loads parcel sources on GitHub's runners, so the build keeps going with no session open.
+# State lives in object storage: each run pulls the plans and finished-part markers, builds
+# what is left, pushes new parts back, and drops local copies of finished sources.
+# Needs the repository secret SUPABASE_SECRET_KEY; without it every run is a no-op.
+
+on:
+  schedule:
+    - cron: "23 */6 * * *"   # every 6 hours; each run stops itself before the 6-hour job limit
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lake            # never two loaders at once: they would build the same partitions
+  cancel-in-progress: false
+
+env:
+  UV_VERSION: "0.11.32"
+
+jobs:
+  load:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 350
+    env:
+      SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+    steps:
+      - id: key
+        run: |
+          if [ -z "$SUPABASE_SECRET_KEY" ]; then
+            echo "::warning::SUPABASE_SECRET_KEY is not set; the lake loader has nothing to do."
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          fi
+      - if: steps.key.outputs.ok == 'true'
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - if: steps.key.outputs.ok == 'true'
+        uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6.8.0
+        with: { version: "${{ env.UV_VERSION }}" }
+      - if: steps.key.outputs.ok == 'true'
+        run: make sync
+      - name: resume from stored state
+        if: steps.key.outputs.ok == 'true'
+        run: uv run --locked python -m equity.lake_sync pull-state
+      - name: push parts every 10 minutes; drop raw responses once loaded
+        if: steps.key.outputs.ok == 'true'
+        run: |
+          nohup uv run --locked python -m equity.lake_sync push --prune-finished --watch 600 \
+            > sync.log 2>&1 &
+          nohup sh -c 'while true; do sleep 600; find data/raw -type f -mmin +20 -delete; done' \
+            > /dev/null 2>&1 &
+      - name: build
+        if: steps.key.outputs.ok == 'true'
+        run: timeout 300m uv run --locked python -m equity.lake run --max-parallel 10 --min-free-gb 4 || true
+      - name: stop builds and push what finished
+        if: always() && steps.key.outputs.ok == 'true'
+        run: |
+          pkill -f "equity.lake build" || true
+          pkill -f "equity.lake_sync push" || true
+          sleep 5
+          uv run --locked python -m equity.lake_sync push --prune-finished
+          uv run --locked python -m equity.lake status | tail -3

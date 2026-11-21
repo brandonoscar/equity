@@ -5,6 +5,7 @@ layer_url: https://services3.arcgis.com/3FL1kr7L4LvwA2Kb/ArcGIS/rest/services/Co
 order_by: OBJECTID
 page_size: 1000
 min_interval_s: 1.0
+county_window: 20000      # each county in 20k-id windows, so one fetch fits a short session
 # Town_Name -> 2020 Census legacy county. FIPS (a tract GEOID) leaks across town lines, so the
 # map uses each town's majority tract county; counts per county match the 8 legacy counties.
 county:
@@ -181,6 +182,11 @@ county:
     "Woodbury": "005"
     "Woodstock": "015"
 fields:
+  land_use_desc: State_Use_Description
+  zoning: Zone
+  situs_line1: Location
+  situs_city: Property_City
+  situs_zip: Property_Zip
   parcel_id: CAMA_Link        # "<town cousub FIPS>-<link>", unique statewide; Parcel_ID is town-scoped
   owner1: Owner
   owner2: Co_Owner

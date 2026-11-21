@@ -9,6 +9,8 @@ page_size: 2000          # maxRecordCount 2000
 min_interval_s: 1.0
 county: {constant: "109"}
 fields:
+  situs_line1: location
+  situs_city: locationcity
   parcel_id: accountno
   owner1: name1
   owner2: name2

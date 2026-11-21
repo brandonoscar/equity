@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
-from equity.adapters.base import REGISTRY, Adapter, register
+# REGISTRY is re-exported: importing it from here guarantees every adapter below is registered.
+from equity.adapters.base import REGISTRY as REGISTRY
+from equity.adapters.base import Adapter, register
 from equity.adapters.business_registry import all_registry_adapters
+from equity.adapters.code_links import NJMunicipalCodeLinks
 from equity.adapters.federal.ecf_rss import NDWVBankruptcyRSS, NDWVDistrictRSS, court_adapters
 from equity.adapters.fl.hillsborough_civil import (
     HillsboroughCivilCases,
@@ -18,14 +21,18 @@ from equity.adapters.tx.stratmap import TexasStratMapParcels
 from equity.adapters.wv.delinquent import WVDelinquentProperties
 from equity.adapters.wv.parcelweb import MonongaliaParcelWeb
 from equity.adapters.wv.statewide_parcels import WVStatewideParcels
+from equity.adapters.zoning import LocalZoningAdapter, all_zoning_adapters
 
-for _cls in (
+_ALL: tuple[type[Adapter], ...] = (
     WVStatewideParcels,
     WVDelinquentProperties,
     MonongaliaParcelWeb,
     NDWVDistrictRSS,
     NDWVBankruptcyRSS,
     *all_state_adapters(),
+    *all_zoning_adapters(),
+    LocalZoningAdapter,
+    NJMunicipalCodeLinks,
     TexasStratMapParcels,
     AcrisRealProperty,
     AcrisPersonalProperty,
@@ -37,7 +44,8 @@ for _cls in (
     *all_registry_adapters(),
     # NDWV keeps its original source ids; config/courts.yaml adds every other court.
     *[c for c in court_adapters() if c.court_id not in ("wvnd", "wvnb")],
-):
+)
+for _cls in _ALL:
     if _cls not in REGISTRY:
         register(_cls)
 

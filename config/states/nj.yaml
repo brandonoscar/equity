@@ -6,6 +6,7 @@ layer_url: https://services2.arcgis.com/XVOqAjTOJ5P6ngMu/arcgis/rest/services/Pa
 order_by: OBJECTID
 page_size: 1000
 min_interval_s: 1.0
+county_window: 20000      # each county in 20k-id windows, so one fetch fits a short session
 # PCL_MUN = 4-digit NJ municipality code; first two digits are the NJ county code (01 Atlantic
 # ... 21 Warren, alphabetical), FIPS = 2*code-1. COUNTY (name) is null on ~403k unmatched
 # parcels, PCL_MUN never is. Checked against PCL_MUN/COUNTY pairs: 564 municipalities, no conflicts.
@@ -578,6 +579,8 @@ county:
     "2122": "041"
     "2123": "041"
 fields:
+  land_use_code: PROP_CLASS
+  situs_line1: PROP_LOC
   parcel_id: PAMS_PIN         # "<mun>_<block>_<lot>[_<qual>]", unique statewide
   # Not mapped: OWNER_NAME (blank); ST_ADDRESS/CITY_STATE/ZIP_CODE (MOD-IV owner mailing
   # address of a redacted owner, and Daniel's Law also covers covered persons' addresses);

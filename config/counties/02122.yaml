@@ -9,6 +9,9 @@ min_interval_s: 1.0
 county: {constant: "122"}
 extra_pii: [ATTENTION, PHYSICAL_ADDRESSES]
 fields:
+  land_use_desc: USE_TYPE_1
+  situs_full: PHYSICAL_ADDRESSES
+  owner_type: OWN_TYPE_1
   parcel_id: PARCEL_ID
   owner1: OWNER
   mail_line1: MAILING_ADDRESS

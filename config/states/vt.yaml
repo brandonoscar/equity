@@ -5,6 +5,7 @@ layer_url: https://services1.arcgis.com/BkFxaEFNwHqX3tAw/ArcGIS/rest/services/FS
 order_by: OBJECTID
 page_size: 1000
 min_interval_s: 1.0
+county_window: 20000      # each county in 20k-id windows, so one fetch fits a short session
 # TOWN (upper case) -> county FIPS, from VCGI BNDHASH towns (TOWNGEOID[2:5]); 3 gores/grants are
 # spelled without the apostrophe in the parcel layer.
 county:
@@ -268,6 +269,8 @@ county:
     "WOODSTOCK": "027"
     "WORCESTER": "023"
 fields:
+  land_use_desc: PROPTYPE
+  situs_line1: E911ADDR
   parcel_id: SPAN             # School Property Account Number, statewide; null on ~13.8k unmatched polygons
   owner1: OWNER1
   owner2: OWNER2

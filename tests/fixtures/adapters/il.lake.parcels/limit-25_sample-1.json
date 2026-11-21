@@ -3,6 +3,9 @@
   {
    "OBJECTID": 1,
    "PIN": "0101300001",
+   "situs_addr_city_First": "ANTIOCH",
+   "situs_addr_line_1_First": "TESTOWNER 77B4B8",
+   "situs_addr_zip_legdat_First": "60002",
    "taxpayer_addr_city": "GLENVIEW",
    "taxpayer_addr_line_1": "TESTOWNER 4A888D",
    "taxpayer_addr_line_2": null,
@@ -13,6 +16,9 @@
   {
    "OBJECTID": 2,
    "PIN": "0101300003",
+   "situs_addr_city_First": "ANTIOCH",
+   "situs_addr_line_1_First": "TESTOWNER B64D9B",
+   "situs_addr_zip_legdat_First": "60002",
    "taxpayer_addr_city": "ANTIOCH",
    "taxpayer_addr_line_1": "TESTOWNER 3FF523",
    "taxpayer_addr_line_2": null,
@@ -23,6 +29,9 @@
   {
    "OBJECTID": 3,
    "PIN": "0101300004",
+   "situs_addr_city_First": "ANTIOCH",
+   "situs_addr_line_1_First": "TESTOWNER B5059A",
+   "situs_addr_zip_legdat_First": "60002",
    "taxpayer_addr_city": "ANTIOCH",
    "taxpayer_addr_line_1": "TESTOWNER E6DBE0",
    "taxpayer_addr_line_2": null,
@@ -33,6 +42,9 @@
   {
    "OBJECTID": 4,
    "PIN": "0101300005",
+   "situs_addr_city_First": "ANTIOCH",
+   "situs_addr_line_1_First": "TESTOWNER B64D9B",
+   "situs_addr_zip_legdat_First": "60002",
    "taxpayer_addr_city": "ANTIOCH",
    "taxpayer_addr_line_1": "TESTOWNER 3FF523",
    "taxpayer_addr_line_2": null,
@@ -43,6 +55,9 @@
   {
    "OBJECTID": 5,
    "PIN": "0101300006",
+   "situs_addr_city_First": "ANTIOCH",
+   "situs_addr_line_1_First": "TESTOWNER 4DD72F",
+   "situs_addr_zip_legdat_First": "60002",
    "taxpayer_addr_city": "ANTIOCH",
    "taxpayer_addr_line_1": "TESTOWNER 014D27",
    "taxpayer_addr_line_2": null,
@@ -53,6 +68,9 @@
   {
    "OBJECTID": 6,
    "PIN": "0101300007",
+   "situs_addr_city_First": "ANTIOCH",
+   "situs_addr_line_1_First": "TESTOWNER EA14F6",
+   "situs_addr_zip_legdat_First": "60002",
    "taxpayer_addr_city": "ANTIOCH",
    "taxpayer_addr_line_1": "TESTOWNER 60BE48",
    "taxpayer_addr_line_2": null,
@@ -63,6 +81,9 @@
   {
    "OBJECTID": 7,
    "PIN": "0101300008",
+   "situs_addr_city_First": "ANTIOCH",
+   "situs_addr_line_1_First": "TESTOWNER 7DDE5E",
+   "situs_addr_zip_legdat_First": "60002",
    "taxpayer_addr_city": "ANTIOCH",
    "taxpayer_addr_line_1": "TESTOWNER 959797",
    "taxpayer_addr_line_2": null,
@@ -73,6 +94,9 @@
   {
    "OBJECTID": 8,
    "PIN": "0101300009",
+   "situs_addr_city_First": "ANTIOCH",
+   "situs_addr_line_1_First": "TESTOWNER 6257BB",
+   "situs_addr_zip_legdat_First": "60002",
    "taxpayer_addr_city": "ANTIOCH",
    "taxpayer_addr_line_1": "TESTOWNER 6E06F7",
    "taxpayer_addr_line_2": null,
@@ -83,6 +107,9 @@
   {
    "OBJECTID": 9,
    "PIN": "0101300010",
+   "situs_addr_city_First": "ANTIOCH",
+   "situs_addr_line_1_First": "TESTOWNER 34D376",
+   "situs_addr_zip_legdat_First": "60002",
    "taxpayer_addr_city": "ANTIOCH",
    "taxpayer_addr_line_1": "TESTOWNER DAD6DC",
    "taxpayer_addr_line_2": null,
@@ -93,6 +120,9 @@
   {
    "OBJECTID": 10,
    "PIN": "0101300012",
+   "situs_addr_city_First": "ANTIOCH",
+   "situs_addr_line_1_First": "TESTOWNER 6A56F2",
+   "situs_addr_zip_legdat_First": "60002",
    "taxpayer_addr_city": "ANTIOCH",
    "taxpayer_addr_line_1": "TESTOWNER 80676D",
    "taxpayer_addr_line_2": null,
@@ -103,6 +133,9 @@
   {
    "OBJECTID": 11,
    "PIN": "0101300013",
+   "situs_addr_city_First": "ANTIOCH",
+   "situs_addr_line_1_First": "TESTOWNER 292CA5",
+   "situs_addr_zip_legdat_First": "60002",
    "taxpayer_addr_city": "ANTIOCH",
    "taxpayer_addr_line_1": "TESTOWNER 35C1AD",
    "taxpayer_addr_line_2": null,
@@ -113,6 +146,9 @@
   {
    "OBJECTID": 12,
    "PIN": "0101300014",
+   "situs_addr_city_First": "ANTIOCH",
+   "situs_addr_line_1_First": "TESTOWNER DF5B78",
+   "situs_addr_zip_legdat_First": "60002",
    "taxpayer_addr_city": "ANTIOCH",
    "taxpayer_addr_line_1": "TESTOWNER E85FFB",
    "taxpayer_addr_line_2": null,
@@ -123,6 +159,9 @@
   {
    "OBJECTID": 13,
    "PIN": "0101300015",
+   "situs_addr_city_First": "ANTIOCH",
+   "situs_addr_line_1_First": "TESTOWNER 02F4AF",
+   "situs_addr_zip_legdat_First": "60002",
    "taxpayer_addr_city": "ANTIOCH",
    "taxpayer_addr_line_1": "TESTOWNER 64BFA3",
    "taxpayer_addr_line_2": null,
@@ -133,6 +172,9 @@
   {
    "OBJECTID": 14,
    "PIN": "0101300016",
+   "situs_addr_city_First": "ANTIOCH",
+   "situs_addr_line_1_First": "TESTOWNER DF0104",
+   "situs_addr_zip_legdat_First": "60002",
    "taxpayer_addr_city": "ANTIOCH",
    "taxpayer_addr_line_1": "TESTOWNER D110B9",
    "taxpayer_addr_line_2": null,
@@ -143,6 +185,9 @@
   {
    "OBJECTID": 15,
    "PIN": "0101301001",
+   "situs_addr_city_First": "ANTIOCH",
+   "situs_addr_line_1_First": "TESTOWNER 1C7494",
+   "situs_addr_zip_legdat_First": "60002",
    "taxpayer_addr_city": "ANTIOCH",
    "taxpayer_addr_line_1": "TESTOWNER B9BDEC",
    "taxpayer_addr_line_2": null,
@@ -153,6 +198,9 @@
   {
    "OBJECTID": 16,
    "PIN": "0101301002",
+   "situs_addr_city_First": "ANTIOCH",
+   "situs_addr_line_1_First": "TESTOWNER 0E18C2",
+   "situs_addr_zip_legdat_First": "60002",
    "taxpayer_addr_city": "ANTIOCH",
    "taxpayer_addr_line_1": "TESTOWNER CC1348",
    "taxpayer_addr_line_2": null,
@@ -163,6 +211,9 @@
   {
    "OBJECTID": 17,
    "PIN": "0101301003",
+   "situs_addr_city_First": "ANTIOCH",
+   "situs_addr_line_1_First": "TESTOWNER 12C15F",
+   "situs_addr_zip_legdat_First": "60002",
    "taxpayer_addr_city": "ANTIOCH",
    "taxpayer_addr_line_1": "TESTOWNER CC1348",
    "taxpayer_addr_line_2": null,
@@ -173,6 +224,9 @@
   {
    "OBJECTID": 18,
    "PIN": "0101301004",
+   "situs_addr_city_First": "ANTIOCH",
+   "situs_addr_line_1_First": "TESTOWNER E0BE03",
+   "situs_addr_zip_legdat_First": "60002",
    "taxpayer_addr_city": "HICKORY HILLS",
    "taxpayer_addr_line_1": "TESTOWNER B4217C",
    "taxpayer_addr_line_2": null,
@@ -183,6 +237,9 @@
   {
    "OBJECTID": 19,
    "PIN": "0101301005",
+   "situs_addr_city_First": "ANTIOCH",
+   "situs_addr_line_1_First": "TESTOWNER 2046CD",
+   "situs_addr_zip_legdat_First": "60002",
    "taxpayer_addr_city": "HICKORY HILLS",
    "taxpayer_addr_line_1": "TESTOWNER B4217C",
    "taxpayer_addr_line_2": null,
@@ -193,6 +250,9 @@
   {
    "OBJECTID": 20,
    "PIN": "0101301006",
+   "situs_addr_city_First": "ANTIOCH",
+   "situs_addr_line_1_First": "TESTOWNER F8BBF1",
+   "situs_addr_zip_legdat_First": "60002",
    "taxpayer_addr_city": "ANTIOCH",
    "taxpayer_addr_line_1": "TESTOWNER 3B2676",
    "taxpayer_addr_line_2": null,
@@ -203,6 +263,9 @@
   {
    "OBJECTID": 21,
    "PIN": "0101301010",
+   "situs_addr_city_First": "ANTIOCH",
+   "situs_addr_line_1_First": "TESTOWNER 600CC0",
+   "situs_addr_zip_legdat_First": "60002",
    "taxpayer_addr_city": "ANTIOCH",
    "taxpayer_addr_line_1": "TESTOWNER 683F77",
    "taxpayer_addr_line_2": null,
@@ -213,6 +276,9 @@
   {
    "OBJECTID": 22,
    "PIN": "0101301011",
+   "situs_addr_city_First": "ANTIOCH",
+   "situs_addr_line_1_First": "TESTOWNER 600CC0",
+   "situs_addr_zip_legdat_First": "60002",
    "taxpayer_addr_city": "ANTIOCH",
    "taxpayer_addr_line_1": "TESTOWNER 683F77",
    "taxpayer_addr_line_2": null,
@@ -223,6 +289,9 @@
   {
    "OBJECTID": 23,
    "PIN": "0101301012",
+   "situs_addr_city_First": "ANTIOCH",
+   "situs_addr_line_1_First": "TESTOWNER BE2C97",
+   "situs_addr_zip_legdat_First": "60002",
    "taxpayer_addr_city": "ANTIOCH",
    "taxpayer_addr_line_1": "TESTOWNER 4A0DE7",
    "taxpayer_addr_line_2": null,
@@ -233,6 +302,9 @@
   {
    "OBJECTID": 24,
    "PIN": "0101301013",
+   "situs_addr_city_First": "ANTIOCH",
+   "situs_addr_line_1_First": "TESTOWNER BE2C97",
+   "situs_addr_zip_legdat_First": "60002",
    "taxpayer_addr_city": "ANTIOCH",
    "taxpayer_addr_line_1": "TESTOWNER 4A0DE7",
    "taxpayer_addr_line_2": null,
@@ -243,6 +315,9 @@
   {
    "OBJECTID": 25,
    "PIN": "0101301016",
+   "situs_addr_city_First": "ANTIOCH",
+   "situs_addr_line_1_First": "TESTOWNER 6C4084",
+   "situs_addr_zip_legdat_First": "60002",
    "taxpayer_addr_city": "ANTIOCH",
    "taxpayer_addr_line_1": "TESTOWNER D1E20E",
    "taxpayer_addr_line_2": null,

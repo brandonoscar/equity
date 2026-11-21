@@ -1,0 +1,15 @@
+source_id: wa.statewide.zoning
+state: WA
+layers:
+  - https://services6.arcgis.com/tboeqGwETr5ppr5Q/arcgis/rest/services/WAZA_Prototype_Layers/FeatureServer/0
+page_size: 1000
+fields:
+  jurisdiction: Jurisdiction
+  zone_code: ZoneID
+  zone_desc: ZoneName
+  zone_class: WAZAZoneGeneral
+terms:
+  url: https://www.commerce.wa.gov/
+  summary: "Washington State Zoning Atlas (WAZA), Dept. of Commerce: 320 jurisdictions, ~470k zones with National Zoning Atlas-style use and dimension attributes (kept in the raw response). Terms: as-is, illustrative only, hold Commerce harmless; clause 5 cites RCW 42.56.070(8) (no commercial use of lists of individuals). Zoning polygons contain no individuals."
+  checked_on: 2026-11-20
+  cost_model: free

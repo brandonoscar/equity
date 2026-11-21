@@ -6,6 +6,7 @@ layer_url: https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Ut
 order_by: OBJECTID
 page_size: 1000
 min_interval_s: 1.0
+county_window: 20000      # each county in 20k-id windows, so one fetch fits a short session
 # County holds the county name with spaces removed ("BoxElder", "SaltLake", "SanJuan").
 county:
   field: County
@@ -19,6 +20,10 @@ county:
     "Wasatch": "051", "Washington": "053", "Wayne": "055", "Weber": "057"
   }
 fields:
+  situs_line1: PARCEL_ADD
+  situs_city: PARCEL_CITY
+  situs_zip: PARCEL_ZIP
+  owner_type: OWN_TYPE
   parcel_id: PARCEL_ID
 value_basis: "no value, owner or tax-year fields in the statewide basic layer (HB113 limits it to boundary, parcel id, parcel address, owner type and recorder contact); market values exist only in the 29 per-county Parcels_<County>_LIR layers"
 terms:

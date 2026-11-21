@@ -6,6 +6,11 @@ page_size: 1000          # maxRecordCount 1000
 min_interval_s: 1.0
 county: {constant: "163"}
 fields:
+  land_use_code: property_class
+  land_use_desc: property_class_description
+  zoning: zoning_district
+  situs_line1: address
+  situs_zip: zip_code
   parcel_id: parcel_id
   owner1: taxpayer_1
   owner2: taxpayer_2

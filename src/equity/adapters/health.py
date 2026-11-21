@@ -12,7 +12,7 @@ def main() -> int:
     results = []
     for cls in REGISTRY:
         try:
-            report = cls().health()  # type: ignore[abstract]
+            report = cls().health()
             results.append(
                 {"source_id": report.source_id, "ok": report.ok, "detail": report.detail}
             )

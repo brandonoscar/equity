@@ -11,6 +11,7 @@ page_size: 2000          # maxRecordCount 2000; supportsPagination true
 min_interval_s: 1.0
 county: {constant: "083"}
 fields:
+  land_use_code: Class1
   parcel_id: Parcel_ID
   owner1: Name
   mail_line1: Add2

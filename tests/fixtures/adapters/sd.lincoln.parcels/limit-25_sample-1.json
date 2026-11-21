@@ -2,6 +2,7 @@
  "attributes": [
   {
    "Add2": "TESTOWNER D225DD",
+   "Class1": "AG-A",
    "Name": "TESTOWNER 22939E LLC",
    "OBJECTID": 4918105,
    "Parcel_ID": "096.48.24.2000",
@@ -9,6 +10,7 @@
   },
   {
    "Add2": "TESTOWNER 0A8A3F",
+   "Class1": "AG-A",
    "Name": "TESTOWNER BC9205 INC",
    "OBJECTID": 4918106,
    "Parcel_ID": "096.48.24.3010",
@@ -16,6 +18,7 @@
   },
   {
    "Add2": "TESTOWNER F988E3",
+   "Class1": "AG-C",
    "Name": "TESTOWNER 65115F LLC",
    "OBJECTID": 4918107,
    "Parcel_ID": "098.50.11.2010",
@@ -23,6 +26,7 @@
   },
   {
    "Add2": "TESTOWNER 6DA0E6",
+   "Class1": "NA-C-S",
    "Name": "TESTOWNER 3A7CAE",
    "OBJECTID": 4918108,
    "Parcel_ID": "098.50.11.4031",
@@ -30,6 +34,7 @@
   },
   {
    "Add2": "TESTOWNER E280F0",
+   "Class1": "AG-A",
    "Name": "TESTOWNER 40984C",
    "OBJECTID": 4918109,
    "Parcel_ID": "098.50.12.2030",
@@ -37,6 +42,7 @@
   },
   {
    "Add2": "TESTOWNER E280F0",
+   "Class1": "AG-A",
    "Name": "TESTOWNER 40984C",
    "OBJECTID": 4918110,
    "Parcel_ID": "098.50.12.2040",
@@ -44,6 +50,7 @@
   },
   {
    "Add2": "TESTOWNER 6E2A1C",
+   "Class1": "NA-C-S",
    "Name": "TESTOWNER 7561BA",
    "OBJECTID": 4918111,
    "Parcel_ID": "098.50.12.B100",
@@ -51,6 +58,7 @@
   },
   {
    "Add2": "TESTOWNER 8680BF",
+   "Class1": "STATE",
    "Name": "TESTOWNER 06963D",
    "OBJECTID": 4918112,
    "Parcel_ID": "098.50.13.3H1",
@@ -58,6 +66,7 @@
   },
   {
    "Add2": "TESTOWNER CEFC7C",
+   "Class1": "NA-C-S",
    "Name": "TESTOWNER AB7E18",
    "OBJECTID": 4918113,
    "Parcel_ID": "098.50.13.A201",
@@ -65,6 +74,7 @@
   },
   {
    "Add2": "TESTOWNER BADDC1",
+   "Class1": "AG-A",
    "Name": "TESTOWNER 3DF1C3",
    "OBJECTID": 4918114,
    "Parcel_ID": "098.50.14.3000",
@@ -72,6 +82,7 @@
   },
   {
    "Add2": "TESTOWNER 8680BF",
+   "Class1": "RY",
    "Name": "TESTOWNER 06963D",
    "OBJECTID": 4918115,
    "Parcel_ID": "098.50.14.4H01",
@@ -79,6 +90,7 @@
   },
   {
    "Add2": "TESTOWNER B104D8",
+   "Class1": "AG-A",
    "Name": "TESTOWNER 20FDA7",
    "OBJECTID": 4918116,
    "Parcel_ID": "098.50.15.1010",
@@ -86,6 +98,7 @@
   },
   {
    "Add2": "TESTOWNER E114AC",
+   "Class1": "NA-C-S",
    "Name": "TESTOWNER 4EDC19",
    "OBJECTID": 4918117,
    "Parcel_ID": "096.51.07.1010",
@@ -93,6 +106,7 @@
   },
   {
    "Add2": "                              ",
+   "Class1": "COUNTY",
    "Name": "TESTOWNER 8EC3A3",
    "OBJECTID": 4918118,
    "Parcel_ID": "096.51.08.1040",
@@ -100,6 +114,7 @@
   },
   {
    "Add2": "TESTOWNER 1E8D9F",
+   "Class1": "AG-C",
    "Name": "TESTOWNER F0BB9B",
    "OBJECTID": 4918119,
    "Parcel_ID": "096.51.08.A100",
@@ -107,6 +122,7 @@
   },
   {
    "Add2": "                              ",
+   "Class1": "COUNTY",
    "Name": "TESTOWNER 8EC3A3",
    "OBJECTID": 4918120,
    "Parcel_ID": "096.51.09.3030",
@@ -114,6 +130,7 @@
   },
   {
    "Add2": "TESTOWNER EE7930",
+   "Class1": "AG-A",
    "Name": "TESTOWNER 35F64A LLC",
    "OBJECTID": 4918121,
    "Parcel_ID": "096.51.09.4000",
@@ -121,6 +138,7 @@
   },
   {
    "Add2": "TESTOWNER 69C6AE",
+   "Class1": "AG-A",
    "Name": "TESTOWNER 136BD8",
    "OBJECTID": 4918122,
    "Parcel_ID": "096.51.10.4030",
@@ -128,6 +146,7 @@
   },
   {
    "Add2": "TESTOWNER 5566BB",
+   "Class1": "AG-A",
    "Name": "TESTOWNER 1DE5D0",
    "OBJECTID": 4918123,
    "Parcel_ID": "096.51.12.2010",
@@ -135,6 +154,7 @@
   },
   {
    "Add2": "TESTOWNER 679461",
+   "Class1": "AG-A",
    "Name": "TESTOWNER 321179",
    "OBJECTID": 4918124,
    "Parcel_ID": "096.51.12.3035",
@@ -142,6 +162,7 @@
   },
   {
    "Add2": "TESTOWNER F2166D",
+   "Class1": "NA-C-S",
    "Name": "TESTOWNER F5D9C1",
    "OBJECTID": 4918125,
    "Parcel_ID": "096.51.12.A100",
@@ -149,6 +170,7 @@
   },
   {
    "Add2": "TESTOWNER 17948F",
+   "Class1": "AG-A",
    "Name": "TESTOWNER B1E66F",
    "OBJECTID": 4918126,
    "Parcel_ID": "096.51.13.3020",
@@ -156,6 +178,7 @@
   },
   {
    "Add2": "TESTOWNER 72D71C",
+   "Class1": "NA-C-S",
    "Name": "TESTOWNER 14AEB1",
    "OBJECTID": 4918127,
    "Parcel_ID": "096.51.14.B100",
@@ -163,6 +186,7 @@
   },
   {
    "Add2": "TESTOWNER 7936C5",
+   "Class1": "AG-C",
    "Name": "TESTOWNER 9F1BE3",
    "OBJECTID": 4918128,
    "Parcel_ID": "096.51.15.2010",
@@ -170,6 +194,7 @@
   },
   {
    "Add2": "TESTOWNER EEDEEF",
+   "Class1": "AG-A",
    "Name": "TESTOWNER 50B945",
    "OBJECTID": 4918129,
    "Parcel_ID": "098.49.22.4010",

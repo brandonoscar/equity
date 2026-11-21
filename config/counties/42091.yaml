@@ -6,6 +6,9 @@ page_size: 1000          # maxRecordCount 1000
 min_interval_s: 1.0
 county: {constant: "091"}
 fields:
+  land_use_code: LAND_USE
+  situs_line1: LOCATION1
+  situs_zip: LOC_ZIP1_Z
   parcel_id: PARCEL
   owner1: OWN1
   owner2: OWN2

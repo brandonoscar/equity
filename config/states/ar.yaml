@@ -4,10 +4,14 @@ layer_url: https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Plannin
 order_by: objectid
 page_size: 200
 min_interval_s: 1.0
+county_window: 20000      # each county in 20k-id windows, so one fetch fits a short session
 county:
   field: countyfips
   format: fips3
 fields:
+  situs_line1: adrlabel
+  situs_city: adrcity
+  situs_zip: adrzip5
   parcel_id: parcelid
   owner1: ownername
   land_value: landvalue

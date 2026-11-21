@@ -12,6 +12,8 @@ county:
   field: County
   format: name
 fields:
+  land_use_code: StateLUC
+  situs_full: SitusAddressAll
   parcel_id: LocalParcelID
   owner1: Name
 value_basis: "no value fields in the public view; values are with the 88 county auditors"

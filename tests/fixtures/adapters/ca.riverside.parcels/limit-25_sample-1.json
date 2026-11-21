@@ -1,154 +1,204 @@
 {
  "attributes": [
   {
-   "APN": "101020001",
+   "APN": "101020004",
    "LAND": null,
    "OBJECTID": 1,
+   "SITUS_CITY": "",
+   "SITUS_STREET": "",
    "STRUCTURES": null
   },
   {
-   "APN": "101020003",
-   "LAND": 0.0,
+   "APN": "101040002",
+   "LAND": 81867.0,
    "OBJECTID": 2,
+   "SITUS_CITY": "",
+   "SITUS_STREET": "",
    "STRUCTURES": 0.0
   },
   {
-   "APN": "101030001",
-   "LAND": 0.0,
+   "APN": "101040007",
+   "LAND": 1324767.0,
    "OBJECTID": 3,
+   "SITUS_CITY": "",
+   "SITUS_STREET": "",
    "STRUCTURES": 0.0
   },
   {
-   "APN": "101030005",
-   "LAND": 0.0,
+   "APN": "101040008",
+   "LAND": 1697780.0,
    "OBJECTID": 4,
+   "SITUS_CITY": "",
+   "SITUS_STREET": "",
    "STRUCTURES": 0.0
   },
   {
-   "APN": "101040004",
-   "LAND": null,
+   "APN": "101050005",
+   "LAND": 0.0,
    "OBJECTID": 5,
-   "STRUCTURES": null
+   "SITUS_CITY": "",
+   "SITUS_STREET": "",
+   "STRUCTURES": 0.0
   },
   {
-   "APN": "101040005",
-   "LAND": 1448966.0,
+   "APN": "101050007",
+   "LAND": 0.0,
    "OBJECTID": 6,
+   "SITUS_CITY": "",
+   "SITUS_STREET": "",
    "STRUCTURES": 0.0
   },
   {
-   "APN": "101040011",
-   "LAND": null,
+   "APN": "101050010",
+   "LAND": 0.0,
    "OBJECTID": 7,
+   "SITUS_CITY": "",
+   "SITUS_STREET": "",
+   "STRUCTURES": 0.0
+  },
+  {
+   "APN": "101080001",
+   "LAND": null,
+   "OBJECTID": 8,
+   "SITUS_CITY": "",
+   "SITUS_STREET": "",
    "STRUCTURES": null
   },
   {
-   "APN": "101040012",
-   "LAND": 12225.0,
-   "OBJECTID": 8,
-   "STRUCTURES": 0.0
-  },
-  {
-   "APN": "101050002",
+   "APN": "101090003",
    "LAND": null,
    "OBJECTID": 9,
+   "SITUS_CITY": "",
+   "SITUS_STREET": "",
    "STRUCTURES": null
   },
   {
-   "APN": "101050004",
+   "APN": "101110007",
    "LAND": null,
    "OBJECTID": 10,
+   "SITUS_CITY": "",
+   "SITUS_STREET": "",
    "STRUCTURES": null
   },
   {
-   "APN": "101050009",
-   "LAND": null,
+   "APN": "101110018",
+   "LAND": 13858504.0,
    "OBJECTID": 11,
-   "STRUCTURES": null
+   "SITUS_CITY": "CORONA  CA 92880",
+   "SITUS_STREET": "TESTOWNER 7728BC",
+   "STRUCTURES": 22586322.0
   },
   {
-   "APN": "101060001",
+   "APN": "101020005",
    "LAND": 0.0,
    "OBJECTID": 12,
+   "SITUS_CITY": "",
+   "SITUS_STREET": "",
    "STRUCTURES": 0.0
   },
   {
-   "APN": "101100001",
+   "APN": "101030007",
    "LAND": 0.0,
    "OBJECTID": 13,
+   "SITUS_CITY": "",
+   "SITUS_STREET": "",
    "STRUCTURES": 0.0
   },
   {
-   "APN": "101120006",
-   "LAND": 7322.0,
+   "APN": "101040001",
+   "LAND": 22298.0,
    "OBJECTID": 14,
-   "STRUCTURES": 795.0
-  },
-  {
-   "APN": "101120008",
-   "LAND": null,
-   "OBJECTID": 15,
-   "STRUCTURES": null
-  },
-  {
-   "APN": "101120009",
-   "LAND": null,
-   "OBJECTID": 16,
-   "STRUCTURES": null
-  },
-  {
-   "APN": "101130002",
-   "LAND": 99440.0,
-   "OBJECTID": 17,
+   "SITUS_CITY": "",
+   "SITUS_STREET": "",
    "STRUCTURES": 0.0
   },
   {
-   "APN": "101130013",
+   "APN": "101040006",
+   "LAND": 1714507.0,
+   "OBJECTID": 15,
+   "SITUS_CITY": "",
+   "SITUS_STREET": "",
+   "STRUCTURES": 0.0
+  },
+  {
+   "APN": "101040009",
+   "LAND": 1159864.0,
+   "OBJECTID": 16,
+   "SITUS_CITY": "",
+   "SITUS_STREET": "",
+   "STRUCTURES": 0.0
+  },
+  {
+   "APN": "101050006",
+   "LAND": 0.0,
+   "OBJECTID": 17,
+   "SITUS_CITY": "",
+   "SITUS_STREET": "",
+   "STRUCTURES": 0.0
+  },
+  {
+   "APN": "101050008",
    "LAND": 0.0,
    "OBJECTID": 18,
+   "SITUS_CITY": "",
+   "SITUS_STREET": "",
    "STRUCTURES": 0.0
   },
   {
-   "APN": "101130016",
-   "LAND": 0.0,
+   "APN": "101070002",
+   "LAND": null,
    "OBJECTID": 19,
-   "STRUCTURES": 0.0
+   "SITUS_CITY": "",
+   "SITUS_STREET": "",
+   "STRUCTURES": null
   },
   {
-   "APN": "101130086",
+   "APN": "101090001",
    "LAND": null,
    "OBJECTID": 20,
+   "SITUS_CITY": "",
+   "SITUS_STREET": "",
    "STRUCTURES": null
   },
   {
-   "APN": "101130088",
+   "APN": "101090002",
    "LAND": null,
    "OBJECTID": 21,
+   "SITUS_CITY": "",
+   "SITUS_STREET": "",
    "STRUCTURES": null
   },
   {
-   "APN": "101140007",
-   "LAND": 951.0,
+   "APN": "101110001",
+   "LAND": 0.0,
    "OBJECTID": 22,
+   "SITUS_CITY": "",
+   "SITUS_STREET": "",
    "STRUCTURES": 0.0
   },
   {
-   "APN": "101140010",
-   "LAND": 706.0,
+   "APN": "101110002",
+   "LAND": null,
    "OBJECTID": 23,
-   "STRUCTURES": 700.0
+   "SITUS_CITY": "CORONA  CA 92880",
+   "SITUS_STREET": "TESTOWNER D57F86",
+   "STRUCTURES": null
   },
   {
-   "APN": "101140027",
+   "APN": "101120018",
    "LAND": null,
    "OBJECTID": 24,
+   "SITUS_CITY": "",
+   "SITUS_STREET": "",
    "STRUCTURES": null
   },
   {
-   "APN": "101170001",
-   "LAND": null,
+   "APN": "101130028",
+   "LAND": 0.0,
    "OBJECTID": 25,
-   "STRUCTURES": null
+   "SITUS_CITY": "",
+   "SITUS_STREET": "",
+   "STRUCTURES": 0.0
   }
  ],
  "layer": "https://gis.countyofriverside.us/arcgis/rest/services/parcels/Parcels/MapServer/0",

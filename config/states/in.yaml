@@ -4,10 +4,15 @@ layer_url: https://gisdata.in.gov/server/rest/services/Hosted/Parcel_Boundaries_
 order_by: objectid
 page_size: 1000
 min_interval_s: 1.0
+county_window: 20000      # each county in 20k-id windows, so one fetch fits a short session
 county:
   field: county_fips
   format: fips5
 fields:
+  land_use_code: dlgf_prop_class_code
+  situs_line1: prop_add
+  situs_city: prop_city
+  situs_zip: prop_zip
   parcel_id: parcel_id
 value_basis: "boundaries only: this layer has no owner or value fields; owner and assessed value are in the separate DLGF real-property tables (Indiana Gateway download), joinable on parcel number"
 terms:

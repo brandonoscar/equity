@@ -1,0 +1,45 @@
+{
+ "features": [
+  {
+   "attributes": {
+    "ABBREVIATION": null,
+    "ACRES": 1.19e-05,
+    "GENZONE": "LOW DENSITY RESIDENTIAL",
+    "GENZONE_CAT": "https://planning.maryland.gov/Documents/OurProducts/GeneralizedZoningAttributeData_WEB.pdf",
+    "JURSCODE": "WASH",
+    "MUNICIPALITY_NAME": null,
+    "OBJECTID": 6492,
+    "OVERLAY": "IM",
+    "Shape__Area": 0.04816436767578125,
+    "Shape__Length": 3.6730360836403984,
+    "Source": null,
+    "UPDATEYR": "20250228",
+    "ZONING": "RT"
+   },
+   "geometry": {
+    "rings": [
+     [
+      [
+       -77.6848419746776,
+       39.6651946460843
+      ],
+      [
+       -77.6848315391136,
+       39.665209071173
+      ],
+      [
+       -77.6848358661986,
+       39.6652021209307
+      ],
+      [
+       -77.6848419746776,
+       39.6651946460843
+      ]
+     ]
+    ]
+   }
+  }
+ ],
+ "layer": "https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/Generalized_Zoning_2025_Draft/FeatureServer/0",
+ "where": "OBJECTID>=6492 AND OBJECTID<6493"
+}

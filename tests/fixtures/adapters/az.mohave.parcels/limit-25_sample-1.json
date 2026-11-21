@@ -3,127 +3,202 @@
   {
    "APN": "40264142",
    "OBJECTID": 1,
-   "OWNER_NAME": " "
+   "OWNER_NAME": " ",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "10101002",
    "OBJECTID": 2,
-   "OWNER_NAME": "TESTOWNER BDFAAE"
+   "OWNER_NAME": "TESTOWNER BDFAAE",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "10101004",
    "OBJECTID": 3,
-   "OWNER_NAME": "TESTOWNER BDFAAE"
+   "OWNER_NAME": "TESTOWNER BDFAAE",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "10104006",
    "OBJECTID": 4,
-   "OWNER_NAME": "TESTOWNER BDFAAE"
+   "OWNER_NAME": "TESTOWNER BDFAAE",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "10101003",
    "OBJECTID": 5,
-   "OWNER_NAME": "TESTOWNER BDFAAE"
+   "OWNER_NAME": "TESTOWNER BDFAAE",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "10101005",
    "OBJECTID": 6,
-   "OWNER_NAME": "TESTOWNER BDFAAE"
+   "OWNER_NAME": "TESTOWNER BDFAAE",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "10104001",
    "OBJECTID": 7,
-   "OWNER_NAME": "TESTOWNER BDFAAE"
+   "OWNER_NAME": "TESTOWNER BDFAAE",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "10104005",
    "OBJECTID": 8,
-   "OWNER_NAME": "TESTOWNER D61576"
+   "OWNER_NAME": "TESTOWNER D61576",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "10102002",
    "OBJECTID": 9,
-   "OWNER_NAME": "TESTOWNER BDFAAE"
+   "OWNER_NAME": "TESTOWNER BDFAAE",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "10102003",
    "OBJECTID": 10,
-   "OWNER_NAME": "TESTOWNER BDFAAE"
+   "OWNER_NAME": "TESTOWNER BDFAAE",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "10103002",
    "OBJECTID": 11,
-   "OWNER_NAME": "TESTOWNER 967A1C"
+   "OWNER_NAME": "TESTOWNER 967A1C",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "10103004",
    "OBJECTID": 12,
-   "OWNER_NAME": "TESTOWNER 3F692A"
+   "OWNER_NAME": "TESTOWNER 3F692A",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "10105002",
    "OBJECTID": 13,
-   "OWNER_NAME": "TESTOWNER BDFAAE"
+   "OWNER_NAME": "TESTOWNER BDFAAE",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "10105003",
    "OBJECTID": 14,
-   "OWNER_NAME": "TESTOWNER BDFAAE"
+   "OWNER_NAME": "TESTOWNER BDFAAE",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "10103005",
    "OBJECTID": 15,
-   "OWNER_NAME": "TESTOWNER BDFAAE"
+   "OWNER_NAME": "TESTOWNER BDFAAE",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "10105004",
    "OBJECTID": 16,
-   "OWNER_NAME": "TESTOWNER BDFAAE"
+   "OWNER_NAME": "TESTOWNER BDFAAE",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "10107001",
    "OBJECTID": 17,
-   "OWNER_NAME": "TESTOWNER BDFAAE"
+   "OWNER_NAME": "TESTOWNER BDFAAE",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "10108002",
    "OBJECTID": 18,
-   "OWNER_NAME": "TESTOWNER 69A60D LLC"
+   "OWNER_NAME": "TESTOWNER 69A60D LLC",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "10108003",
    "OBJECTID": 19,
-   "OWNER_NAME": "TESTOWNER 3EA7E8"
+   "OWNER_NAME": "TESTOWNER 3EA7E8",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "10108004",
    "OBJECTID": 20,
-   "OWNER_NAME": "TESTOWNER 8C4632"
+   "OWNER_NAME": "TESTOWNER 8C4632",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "10111009",
    "OBJECTID": 21,
-   "OWNER_NAME": "TESTOWNER B66361"
+   "OWNER_NAME": "TESTOWNER B66361",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "10111010",
    "OBJECTID": 22,
-   "OWNER_NAME": "TESTOWNER B66361"
+   "OWNER_NAME": "TESTOWNER B66361",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "10108006",
    "OBJECTID": 23,
-   "OWNER_NAME": "TESTOWNER BDFAAE"
+   "OWNER_NAME": "TESTOWNER BDFAAE",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "10108007",
    "OBJECTID": 24,
-   "OWNER_NAME": "TESTOWNER BDFAAE"
+   "OWNER_NAME": "TESTOWNER BDFAAE",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   },
   {
    "APN": "10108008",
    "OBJECTID": 25,
-   "OWNER_NAME": "TESTOWNER BDFAAE"
+   "OWNER_NAME": "TESTOWNER BDFAAE",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
   }
  ],
  "layer": "https://azwatermaps.azwater.gov/arcgis/rest/services/General/Parcels/MapServer/8",

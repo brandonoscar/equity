@@ -8,6 +8,7 @@ page_size: 1000          # maxRecordCount 1000; supportsPagination true
 min_interval_s: 1.0
 county: {constant: "049"}
 fields:
+  situs_line1: FullStreet
   parcel_id: TaxPin
 value_basis: "No value fields in this layer (TaxPin, municipality, situs street and a web link only)."
 terms:

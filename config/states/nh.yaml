@@ -6,6 +6,7 @@ layer_url: https://nhgeodata.unh.edu/nhgeodata/rest/services/CAD/ParcelMosaic/Ma
 order_by: OBJECTID
 page_size: 1000
 min_interval_s: 1.0
+county_window: 20000      # each county in 20k-id windows, so one fetch fits a short session
 # TownID -> county FIPS. CountyId (1-10, alphabetical: Belknap=1 ... Sullivan=10) is null on
 # about 15.7k rows but TownID is always set; this map was built from the layer's own
 # TownID/CountyId pairs (one county per town, 236 towns, 2026-11-15), FIPS = 2*CountyId-1.
@@ -250,6 +251,8 @@ county:
     "4248": "003"   # HALES LOCATION
     "4300": "007"   # UNINCORPORATED
 fields:
+  land_use_code: SLUC
+  situs_line1: StreetAddress
   parcel_id: NH_GIS_ID   # statewide id: county + town id + "-" + local PID
 value_basis: "no value fields in the public layer (parcel ids only); assessed values are held by the 234 municipal assessors"
 terms:

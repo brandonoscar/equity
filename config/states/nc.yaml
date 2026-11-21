@@ -4,10 +4,17 @@ layer_url: https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/Fea
 order_by: objectid
 page_size: 1000
 min_interval_s: 1.0
+county_window: 20000      # each county in 20k-id windows, so one fetch fits a short session
 county:
   field: stcntyfips   # cntyfips is not zero-padded for every county ("5", "43"); stcntyfips is
   format: fips5
 fields:
+  land_use_code: parusecode
+  land_use_desc: parusedesc
+  situs_line1: siteadd
+  situs_city: scity
+  situs_zip: szip
+  owner_type: owntype
   parcel_id: parno
   owner1: ownname
   owner2: ownname2

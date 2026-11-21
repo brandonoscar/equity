@@ -6,6 +6,13 @@ page_size: 1000          # maxRecordCount 2000
 min_interval_s: 1.0
 county: {constant: "135"}
 fields:
+  land_use_code: PROPCLAS
+  land_use_desc: PCDESC
+  zoning: ZONING
+  situs_line1: LOCADDR
+  situs_city: LOCCITY
+  situs_state: LOCSTATE
+  situs_zip: LOCZIP
   parcel_id: TAXPIN        # tax-roll PIN with the R (real) prefix, e.g. "R6324 031"
   owner1: OWNER1
   owner2: OWNER2

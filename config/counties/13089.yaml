@@ -6,6 +6,12 @@ page_size: 1000          # maxRecordCount 2000
 min_interval_s: 1.0
 county: {constant: "089"}
 fields:
+  land_use_code: USECD
+  land_use_desc: USEDSCRP
+  zoning: ZONING
+  situs_line1: SITEADDRESS
+  situs_city: CITY
+  situs_zip: ZIP
   parcel_id: PARCELID
   owner1: OWNERNME1
   owner2: OWNERNME2

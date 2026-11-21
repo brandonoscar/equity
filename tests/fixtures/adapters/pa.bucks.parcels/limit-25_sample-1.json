@@ -1,6 +1,8 @@
 {
  "attributes": [
   {
+   "ADDRESS": "5727 TEST ST",
+   "LAND_USE_C": "1013",
    "OBJECTID": 1,
    "OWNER1": "TESTOWNER 1E5056",
    "OWNER2": " ",
@@ -8,6 +10,8 @@
    "TOTAL_VALU": 15200
   },
   {
+   "ADDRESS": "1962 TEST ST",
+   "LAND_USE_C": "1013",
    "OBJECTID": 2,
    "OWNER1": "TESTOWNER 3E45D2",
    "OWNER2": " ",
@@ -15,6 +19,8 @@
    "TOTAL_VALU": 15520
   },
   {
+   "ADDRESS": "7283 TEST ST",
+   "LAND_USE_C": "1013",
    "OBJECTID": 3,
    "OWNER1": "TESTOWNER FE7A50",
    "OWNER2": " ",
@@ -22,6 +28,8 @@
    "TOTAL_VALU": 15520
   },
   {
+   "ADDRESS": "1572 TEST ST",
+   "LAND_USE_C": "1013",
    "OBJECTID": 4,
    "OWNER1": "TESTOWNER F1F975",
    "OWNER2": " ",
@@ -29,6 +37,8 @@
    "TOTAL_VALU": 15200
   },
   {
+   "ADDRESS": "3761 TEST ST",
+   "LAND_USE_C": "1013",
    "OBJECTID": 5,
    "OWNER1": "TESTOWNER 163A80",
    "OWNER2": " ",
@@ -36,6 +46,8 @@
    "TOTAL_VALU": 13400
   },
   {
+   "ADDRESS": "6012 TEST ST",
+   "LAND_USE_C": "1013",
    "OBJECTID": 6,
    "OWNER1": "TESTOWNER F0E1C0",
    "OWNER2": " ",
@@ -43,6 +55,8 @@
    "TOTAL_VALU": 17320
   },
   {
+   "ADDRESS": "4839 TEST ST",
+   "LAND_USE_C": "1013",
    "OBJECTID": 7,
    "OWNER1": "TESTOWNER 87A5B4",
    "OWNER2": " ",
@@ -50,6 +64,8 @@
    "TOTAL_VALU": 17040
   },
   {
+   "ADDRESS": "2451 TEST ST",
+   "LAND_USE_C": "1013",
    "OBJECTID": 8,
    "OWNER1": "TESTOWNER 67E971",
    "OWNER2": " ",
@@ -57,6 +73,8 @@
    "TOTAL_VALU": 17040
   },
   {
+   "ADDRESS": "8696 TEST ST",
+   "LAND_USE_C": "1013",
    "OBJECTID": 9,
    "OWNER1": "TESTOWNER 6F3487",
    "OWNER2": " ",
@@ -64,6 +82,8 @@
    "TOTAL_VALU": 17320
   },
   {
+   "ADDRESS": "5142 TEST ST",
+   "LAND_USE_C": "1013",
    "OBJECTID": 10,
    "OWNER1": "TESTOWNER DF7E2F",
    "OWNER2": "TESTOWNER 86CFCD",
@@ -71,6 +91,8 @@
    "TOTAL_VALU": 13400
   },
   {
+   "ADDRESS": "1946 TEST ST",
+   "LAND_USE_C": "1013",
    "OBJECTID": 11,
    "OWNER1": "TESTOWNER DC5328",
    "OWNER2": " ",
@@ -78,6 +100,8 @@
    "TOTAL_VALU": 13080
   },
   {
+   "ADDRESS": "8127 TEST ST",
+   "LAND_USE_C": "1013",
    "OBJECTID": 12,
    "OWNER1": "TESTOWNER 46A9F5",
    "OWNER2": " ",
@@ -85,6 +109,8 @@
    "TOTAL_VALU": 13400
   },
   {
+   "ADDRESS": "3551 TEST ST",
+   "LAND_USE_C": "1013",
    "OBJECTID": 13,
    "OWNER1": "TESTOWNER 93C924",
    "OWNER2": "TESTOWNER B42BF0",
@@ -92,6 +118,8 @@
    "TOTAL_VALU": 13400
   },
   {
+   "ADDRESS": "4501 TEST ST",
+   "LAND_USE_C": "1013",
    "OBJECTID": 14,
    "OWNER1": "TESTOWNER A2D039",
    "OWNER2": " ",
@@ -99,6 +127,8 @@
    "TOTAL_VALU": 13080
   },
   {
+   "ADDRESS": "5640 TEST ST",
+   "LAND_USE_C": "1013",
    "OBJECTID": 15,
    "OWNER1": "TESTOWNER 3C691E",
    "OWNER2": " ",
@@ -106,6 +136,8 @@
    "TOTAL_VALU": 14920
   },
   {
+   "ADDRESS": "8811 TEST ST",
+   "LAND_USE_C": "1013",
    "OBJECTID": 16,
    "OWNER1": "TESTOWNER FD9226",
    "OWNER2": " ",
@@ -113,6 +145,8 @@
    "TOTAL_VALU": 15200
   },
   {
+   "ADDRESS": "5127 TEST ST",
+   "LAND_USE_C": "1013",
    "OBJECTID": 17,
    "OWNER1": "TESTOWNER 427AA8",
    "OWNER2": " ",
@@ -120,6 +154,8 @@
    "TOTAL_VALU": 13080
   },
   {
+   "ADDRESS": "5045 TEST ST",
+   "LAND_USE_C": "1013",
    "OBJECTID": 18,
    "OWNER1": "TESTOWNER 068E78",
    "OWNER2": "TESTOWNER 03D42D",
@@ -127,6 +163,8 @@
    "TOTAL_VALU": 12760
   },
   {
+   "ADDRESS": "8514 TEST ST",
+   "LAND_USE_C": "1013",
    "OBJECTID": 19,
    "OWNER1": "TESTOWNER 55B067",
    "OWNER2": " ",
@@ -134,6 +172,8 @@
    "TOTAL_VALU": 12760
   },
   {
+   "ADDRESS": "6453 TEST ST",
+   "LAND_USE_C": "1013",
    "OBJECTID": 20,
    "OWNER1": "TESTOWNER C8723D",
    "OWNER2": "TESTOWNER 310071",
@@ -141,6 +181,8 @@
    "TOTAL_VALU": 13080
   },
   {
+   "ADDRESS": "6900 TEST ST",
+   "LAND_USE_C": "1013",
    "OBJECTID": 21,
    "OWNER1": "TESTOWNER BE6D88",
    "OWNER2": "TESTOWNER DF0843",
@@ -148,6 +190,8 @@
    "TOTAL_VALU": 17320
   },
   {
+   "ADDRESS": "3419 TEST ST",
+   "LAND_USE_C": "1013",
    "OBJECTID": 22,
    "OWNER1": "TESTOWNER 628C40",
    "OWNER2": " ",
@@ -155,6 +199,8 @@
    "TOTAL_VALU": 17040
   },
   {
+   "ADDRESS": "750 TEST ST",
+   "LAND_USE_C": "1013",
    "OBJECTID": 23,
    "OWNER1": "TESTOWNER 6C8188",
    "OWNER2": " ",
@@ -162,6 +208,8 @@
    "TOTAL_VALU": 14280
   },
   {
+   "ADDRESS": "7054 TEST ST",
+   "LAND_USE_C": "1013",
    "OBJECTID": 24,
    "OWNER1": "TESTOWNER 519193",
    "OWNER2": "TESTOWNER B05415",
@@ -169,6 +217,8 @@
    "TOTAL_VALU": 14280
   },
   {
+   "ADDRESS": "692 TEST ST",
+   "LAND_USE_C": "1013",
    "OBJECTID": 25,
    "OWNER1": "TESTOWNER 5C7658",
    "OWNER2": " ",

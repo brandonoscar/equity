@@ -6,6 +6,9 @@ page_size: 1000          # maxRecordCount 2000
 min_interval_s: 1.0
 county: {constant: "073"}
 fields:
+  situs_line1: ADDR_APR
+  situs_city: Property_City
+  situs_zip: ZIP
   parcel_id: PARCELID
   owner1: OWNERNAME
   owner2: Name2

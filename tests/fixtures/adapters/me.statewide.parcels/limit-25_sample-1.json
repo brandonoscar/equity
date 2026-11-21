@@ -2,6 +2,8 @@
  "attributes": [
   {
    "GEOCODE": "09030",
+   "LAND_USE": "3000",
+   "LAND_USE_D": "HOTELS  MDL-94",
    "LS_BOOK": "4981",
    "LS_PAGE": null,
    "OBJECTID": 1,
@@ -16,6 +18,8 @@
   },
   {
    "GEOCODE": "09030",
+   "LAND_USE": "1092",
+   "LAND_USE_D": "MULTI HSES OCEAN",
    "LS_BOOK": "6665",
    "LS_PAGE": null,
    "OBJECTID": 2,
@@ -30,6 +34,8 @@
   },
   {
    "GEOCODE": "05240",
+   "LAND_USE": "1010",
+   "LAND_USE_D": "SINGLE FAM",
    "LS_BOOK": "0143",
    "LS_PAGE": "190000",
    "OBJECTID": 3,
@@ -44,6 +50,8 @@
   },
   {
    "GEOCODE": "05240",
+   "LAND_USE": "1010",
+   "LAND_USE_D": "SINGLE FAM",
    "LS_BOOK": "0025",
    "LS_PAGE": "30000",
    "OBJECTID": 4,
@@ -58,6 +66,8 @@
   },
   {
    "GEOCODE": "11060",
+   "LAND_USE": null,
+   "LAND_USE_D": null,
    "LS_BOOK": " ",
    "LS_PAGE": " ",
    "OBJECTID": 5,
@@ -72,6 +82,8 @@
   },
   {
    "GEOCODE": "11060",
+   "LAND_USE": null,
+   "LAND_USE_D": null,
    "LS_BOOK": " ",
    "LS_PAGE": " ",
    "OBJECTID": 6,
@@ -86,6 +98,8 @@
   },
   {
    "GEOCODE": "13010",
+   "LAND_USE": null,
+   "LAND_USE_D": null,
    "LS_BOOK": null,
    "LS_PAGE": null,
    "OBJECTID": 7,
@@ -100,6 +114,8 @@
   },
   {
    "GEOCODE": "13010",
+   "LAND_USE": null,
+   "LAND_USE_D": null,
    "LS_BOOK": null,
    "LS_PAGE": null,
    "OBJECTID": 8,
@@ -114,6 +130,8 @@
   },
   {
    "GEOCODE": "13010",
+   "LAND_USE": null,
+   "LAND_USE_D": null,
    "LS_BOOK": null,
    "LS_PAGE": null,
    "OBJECTID": 9,
@@ -128,6 +146,8 @@
   },
   {
    "GEOCODE": "31230",
+   "LAND_USE": " ",
+   "LAND_USE_D": " ",
    "LS_BOOK": " ",
    "LS_PAGE": " ",
    "OBJECTID": 10,
@@ -142,6 +162,8 @@
   },
   {
    "GEOCODE": "11060",
+   "LAND_USE": null,
+   "LAND_USE_D": null,
    "LS_BOOK": " ",
    "LS_PAGE": " ",
    "OBJECTID": 11,
@@ -156,6 +178,8 @@
   },
   {
    "GEOCODE": "11060",
+   "LAND_USE": null,
+   "LAND_USE_D": null,
    "LS_BOOK": " ",
    "LS_PAGE": " ",
    "OBJECTID": 12,
@@ -170,6 +194,8 @@
   },
   {
    "GEOCODE": "07090",
+   "LAND_USE": "1",
+   "LAND_USE_D": null,
    "LS_BOOK": null,
    "LS_PAGE": null,
    "OBJECTID": 13,
@@ -184,6 +210,8 @@
   },
   {
    "GEOCODE": "07090",
+   "LAND_USE": "1",
+   "LAND_USE_D": null,
    "LS_BOOK": null,
    "LS_PAGE": null,
    "OBJECTID": 14,
@@ -198,6 +226,8 @@
   },
   {
    "GEOCODE": "07090",
+   "LAND_USE": "1",
+   "LAND_USE_D": null,
    "LS_BOOK": null,
    "LS_PAGE": null,
    "OBJECTID": 15,
@@ -212,6 +242,8 @@
   },
   {
    "GEOCODE": "07090",
+   "LAND_USE": "0",
+   "LAND_USE_D": null,
    "LS_BOOK": null,
    "LS_PAGE": null,
    "OBJECTID": 16,
@@ -226,6 +258,8 @@
   },
   {
    "GEOCODE": "07090",
+   "LAND_USE": "1",
+   "LAND_USE_D": null,
    "LS_BOOK": null,
    "LS_PAGE": null,
    "OBJECTID": 17,
@@ -240,6 +274,8 @@
   },
   {
    "GEOCODE": "07090",
+   "LAND_USE": "1",
+   "LAND_USE_D": null,
    "LS_BOOK": null,
    "LS_PAGE": null,
    "OBJECTID": 18,
@@ -254,6 +290,8 @@
   },
   {
    "GEOCODE": "07090",
+   "LAND_USE": "1",
+   "LAND_USE_D": null,
    "LS_BOOK": null,
    "LS_PAGE": null,
    "OBJECTID": 19,
@@ -268,6 +306,8 @@
   },
   {
    "GEOCODE": "07090",
+   "LAND_USE": "1",
+   "LAND_USE_D": null,
    "LS_BOOK": null,
    "LS_PAGE": null,
    "OBJECTID": 20,
@@ -282,6 +322,8 @@
   },
   {
    "GEOCODE": "07090",
+   "LAND_USE": "1",
+   "LAND_USE_D": null,
    "LS_BOOK": null,
    "LS_PAGE": null,
    "OBJECTID": 21,
@@ -296,6 +338,8 @@
   },
   {
    "GEOCODE": "07090",
+   "LAND_USE": "1",
+   "LAND_USE_D": null,
    "LS_BOOK": null,
    "LS_PAGE": null,
    "OBJECTID": 22,
@@ -310,6 +354,8 @@
   },
   {
    "GEOCODE": "07090",
+   "LAND_USE": "0",
+   "LAND_USE_D": null,
    "LS_BOOK": null,
    "LS_PAGE": null,
    "OBJECTID": 23,
@@ -324,6 +370,8 @@
   },
   {
    "GEOCODE": "09110",
+   "LAND_USE": null,
+   "LAND_USE_D": null,
    "LS_BOOK": null,
    "LS_PAGE": null,
    "OBJECTID": 24,
@@ -338,6 +386,8 @@
   },
   {
    "GEOCODE": "09110",
+   "LAND_USE": null,
+   "LAND_USE_D": null,
    "LS_BOOK": null,
    "LS_PAGE": null,
    "OBJECTID": 25,

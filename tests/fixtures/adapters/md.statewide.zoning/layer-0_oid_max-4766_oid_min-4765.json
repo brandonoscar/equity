@@ -1,0 +1,45 @@
+{
+ "features": [
+  {
+   "attributes": {
+    "ABBREVIATION": "EM",
+    "ACRES": 0.0111935,
+    "GENZONE": "OTHER",
+    "GENZONE_CAT": "https://planning.maryland.gov/Documents/OurProducts/GeneralizedZoningAttributeData_WEB.pdf",
+    "JURSCODE": "DORC",
+    "MUNICIPALITY_NAME": "EAST NEW MARKET",
+    "OBJECTID": 4765,
+    "OVERLAY": " ",
+    "Shape__Area": 45.2984733581543,
+    "Shape__Length": 36.2908301088816,
+    "Source": "https://planning.maryland.gov/Documents/Offsite/2021-GenZone-Dataset-info.pdf",
+    "UPDATEYR": "20200000",
+    "ZONING": "EM-UNK"
+   },
+   "geometry": {
+    "rings": [
+     [
+      [
+       -75.918704699589,
+       38.5952976000584
+      ],
+      [
+       -75.918818145191,
+       38.5953412256158
+      ],
+      [
+       -75.9186298394408,
+       38.595351397221
+      ],
+      [
+       -75.918704699589,
+       38.5952976000584
+      ]
+     ]
+    ]
+   }
+  }
+ ],
+ "layer": "https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/Generalized_Zoning_2025_Draft/FeatureServer/0",
+ "where": "OBJECTID>=4765 AND OBJECTID<4766"
+}

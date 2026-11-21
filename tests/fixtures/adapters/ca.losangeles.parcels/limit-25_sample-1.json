@@ -3,202 +3,327 @@
   {
    "AIN": "2004001003",
    "OBJECTID": 1,
+   "PropertyLocation": "TESTOWNER 847673",
    "RollYear": "2026",
    "Roll_ImpValue": 313342,
    "Roll_LandValue": 740440,
-   "Roll_totLandImp": 1053782
+   "Roll_totLandImp": 1053782,
+   "SitusCity": "LOS ANGELES CA",
+   "SitusZIP5": "91304",
+   "UseCode": "0101",
+   "UseType": "SFR"
   },
   {
    "AIN": "2004001004",
    "OBJECTID": 2,
+   "PropertyLocation": "TESTOWNER 6AFB87",
    "RollYear": "2026",
    "Roll_ImpValue": 266215,
    "Roll_LandValue": 385506,
-   "Roll_totLandImp": 651721
+   "Roll_totLandImp": 651721,
+   "SitusCity": "LOS ANGELES CA",
+   "SitusZIP5": "91304",
+   "UseCode": "0101",
+   "UseType": "SFR"
   },
   {
    "AIN": "2004001005",
    "OBJECTID": 3,
+   "PropertyLocation": "TESTOWNER 2C0FF6",
    "RollYear": "2026",
    "Roll_ImpValue": 206583,
    "Roll_LandValue": 547610,
-   "Roll_totLandImp": 754193
+   "Roll_totLandImp": 754193,
+   "SitusCity": "LOS ANGELES CA",
+   "SitusZIP5": "91304",
+   "UseCode": "0100",
+   "UseType": "SFR"
   },
   {
    "AIN": "2004001008",
    "OBJECTID": 4,
+   "PropertyLocation": "TESTOWNER 848C9F",
    "RollYear": "2026",
    "Roll_ImpValue": 230878,
    "Roll_LandValue": 133608,
-   "Roll_totLandImp": 364486
+   "Roll_totLandImp": 364486,
+   "SitusCity": "LOS ANGELES CA",
+   "SitusZIP5": "91304",
+   "UseCode": "0101",
+   "UseType": "SFR"
   },
   {
    "AIN": "2004001009",
    "OBJECTID": 5,
+   "PropertyLocation": "TESTOWNER F526AD",
    "RollYear": "2026",
    "Roll_ImpValue": 218496,
    "Roll_LandValue": 145585,
-   "Roll_totLandImp": 364081
+   "Roll_totLandImp": 364081,
+   "SitusCity": "LOS ANGELES CA",
+   "SitusZIP5": "91304",
+   "UseCode": "0101",
+   "UseType": "SFR"
   },
   {
    "AIN": "2004001010",
    "OBJECTID": 6,
+   "PropertyLocation": "TESTOWNER 27D64C",
    "RollYear": "2026",
    "Roll_ImpValue": 218387,
    "Roll_LandValue": 129079,
-   "Roll_totLandImp": 347466
+   "Roll_totLandImp": 347466,
+   "SitusCity": "LOS ANGELES CA",
+   "SitusZIP5": "91304",
+   "UseCode": "0101",
+   "UseType": "SFR"
   },
   {
    "AIN": "2004001011",
    "OBJECTID": 7,
+   "PropertyLocation": "TESTOWNER 4FD7C3",
    "RollYear": "2026",
    "Roll_ImpValue": 179724,
    "Roll_LandValue": 127507,
-   "Roll_totLandImp": 307231
+   "Roll_totLandImp": 307231,
+   "SitusCity": "LOS ANGELES CA",
+   "SitusZIP5": "91304",
+   "UseCode": "0100",
+   "UseType": "SFR"
   },
   {
    "AIN": "2004001012",
    "OBJECTID": 8,
+   "PropertyLocation": "TESTOWNER 67999E",
    "RollYear": "2026",
    "Roll_ImpValue": 282410,
    "Roll_LandValue": 474640,
-   "Roll_totLandImp": 757050
+   "Roll_totLandImp": 757050,
+   "SitusCity": "LOS ANGELES CA",
+   "SitusZIP5": "91304",
+   "UseCode": "0100",
+   "UseType": "SFR"
   },
   {
    "AIN": "2004001013",
    "OBJECTID": 9,
+   "PropertyLocation": "TESTOWNER E829EC",
    "RollYear": "2026",
    "Roll_ImpValue": 332983,
    "Roll_LandValue": 215240,
-   "Roll_totLandImp": 548223
+   "Roll_totLandImp": 548223,
+   "SitusCity": "LOS ANGELES CA",
+   "SitusZIP5": "91304",
+   "UseCode": "0100",
+   "UseType": "SFR"
   },
   {
    "AIN": "2004001014",
    "OBJECTID": 10,
+   "PropertyLocation": "TESTOWNER 7A745E",
    "RollYear": "2026",
    "Roll_ImpValue": 291200,
    "Roll_LandValue": 332971,
-   "Roll_totLandImp": 624171
+   "Roll_totLandImp": 624171,
+   "SitusCity": "LOS ANGELES CA",
+   "SitusZIP5": "91304",
+   "UseCode": "0107",
+   "UseType": "SFR"
   },
   {
    "AIN": "2004001015",
    "OBJECTID": 11,
+   "PropertyLocation": "TESTOWNER 097C32",
    "RollYear": "2026",
    "Roll_ImpValue": 214230,
    "Roll_LandValue": 120572,
-   "Roll_totLandImp": 334802
+   "Roll_totLandImp": 334802,
+   "SitusCity": "LOS ANGELES CA",
+   "SitusZIP5": "91304",
+   "UseCode": "0101",
+   "UseType": "SFR"
   },
   {
    "AIN": "2004001016",
    "OBJECTID": 12,
+   "PropertyLocation": "TESTOWNER 717963",
    "RollYear": "2026",
    "Roll_ImpValue": 160084,
    "Roll_LandValue": 129079,
-   "Roll_totLandImp": 289163
+   "Roll_totLandImp": 289163,
+   "SitusCity": "LOS ANGELES CA",
+   "SitusZIP5": "91304",
+   "UseCode": "0100",
+   "UseType": "SFR"
   },
   {
    "AIN": "2004001017",
    "OBJECTID": 13,
+   "PropertyLocation": "TESTOWNER 132D17",
    "RollYear": "2026",
    "Roll_ImpValue": 289562,
    "Roll_LandValue": 144323,
-   "Roll_totLandImp": 433885
+   "Roll_totLandImp": 433885,
+   "SitusCity": "LOS ANGELES CA",
+   "SitusZIP5": "91304",
+   "UseCode": "0101",
+   "UseType": "SFR"
   },
   {
    "AIN": "2004020028",
    "OBJECTID": 14,
+   "PropertyLocation": "TESTOWNER B518AF",
    "RollYear": "2026",
    "Roll_ImpValue": 203737,
    "Roll_LandValue": 170835,
-   "Roll_totLandImp": 374572
+   "Roll_totLandImp": 374572,
+   "SitusCity": "LOS ANGELES CA",
+   "SitusZIP5": "91304",
+   "UseCode": "0100",
+   "UseType": "SFR"
   },
   {
    "AIN": "2005009027",
    "OBJECTID": 15,
+   "PropertyLocation": "TESTOWNER 80E2F3",
    "RollYear": "2026",
    "Roll_ImpValue": 53484,
    "Roll_LandValue": 27976,
-   "Roll_totLandImp": 81460
+   "Roll_totLandImp": 81460,
+   "SitusCity": "LOS ANGELES CA",
+   "SitusZIP5": "91304",
+   "UseCode": "010D",
+   "UseType": "SFR"
   },
   {
    "AIN": "2004001018",
    "OBJECTID": 16,
+   "PropertyLocation": "TESTOWNER EBB438",
    "RollYear": "2026",
    "Roll_ImpValue": 281504,
    "Roll_LandValue": 588579,
-   "Roll_totLandImp": 870083
+   "Roll_totLandImp": 870083,
+   "SitusCity": "LOS ANGELES CA",
+   "SitusZIP5": "91304",
+   "UseCode": "0101",
+   "UseType": "SFR"
   },
   {
    "AIN": "2004001019",
    "OBJECTID": 17,
+   "PropertyLocation": "TESTOWNER 2B1CFD",
    "RollYear": "2026",
    "Roll_ImpValue": 244067,
    "Roll_LandValue": 614759,
-   "Roll_totLandImp": 858826
+   "Roll_totLandImp": 858826,
+   "SitusCity": "LOS ANGELES CA",
+   "SitusZIP5": "91304",
+   "UseCode": "0100",
+   "UseType": "SFR"
   },
   {
    "AIN": "2004001022",
    "OBJECTID": 18,
+   "PropertyLocation": "TESTOWNER 08CACF",
    "RollYear": "2026",
    "Roll_ImpValue": 225276,
    "Roll_LandValue": 322889,
-   "Roll_totLandImp": 548165
+   "Roll_totLandImp": 548165,
+   "SitusCity": "LOS ANGELES CA",
+   "SitusZIP5": "91304",
+   "UseCode": "0101",
+   "UseType": "SFR"
   },
   {
    "AIN": "2004001025",
    "OBJECTID": 19,
+   "PropertyLocation": "TESTOWNER 53FE2E",
    "RollYear": "2026",
    "Roll_ImpValue": 223743,
    "Roll_LandValue": 145004,
-   "Roll_totLandImp": 368747
+   "Roll_totLandImp": 368747,
+   "SitusCity": "LOS ANGELES CA",
+   "SitusZIP5": "91304",
+   "UseCode": "0100",
+   "UseType": "SFR"
   },
   {
    "AIN": "2004001026",
    "OBJECTID": 20,
+   "PropertyLocation": "TESTOWNER EBC0AC",
    "RollYear": "2026",
    "Roll_ImpValue": 179718,
    "Roll_LandValue": 125194,
-   "Roll_totLandImp": 304912
+   "Roll_totLandImp": 304912,
+   "SitusCity": "LOS ANGELES CA",
+   "SitusZIP5": "91304",
+   "UseCode": "0100",
+   "UseType": "SFR"
   },
   {
    "AIN": "2004001027",
    "OBJECTID": 21,
+   "PropertyLocation": "TESTOWNER D3EFB8",
    "RollYear": "2026",
    "Roll_ImpValue": 244965,
    "Roll_LandValue": 402722,
-   "Roll_totLandImp": 647687
+   "Roll_totLandImp": 647687,
+   "SitusCity": "LOS ANGELES CA",
+   "SitusZIP5": "91304",
+   "UseCode": "0100",
+   "UseType": "SFR"
   },
   {
    "AIN": "2004001028",
    "OBJECTID": 22,
+   "PropertyLocation": "TESTOWNER 691289",
    "RollYear": "2026",
    "Roll_ImpValue": 401359,
    "Roll_LandValue": 650746,
-   "Roll_totLandImp": 1052105
+   "Roll_totLandImp": 1052105,
+   "SitusCity": "LOS ANGELES CA",
+   "SitusZIP5": "91304",
+   "UseCode": "0101",
+   "UseType": "SFR"
   },
   {
    "AIN": "2004001029",
    "OBJECTID": 23,
+   "PropertyLocation": "TESTOWNER 98BA01",
    "RollYear": "2026",
    "Roll_ImpValue": 290635,
    "Roll_LandValue": 270343,
-   "Roll_totLandImp": 560978
+   "Roll_totLandImp": 560978,
+   "SitusCity": "LOS ANGELES CA",
+   "SitusZIP5": "91304",
+   "UseCode": "0101",
+   "UseType": "SFR"
   },
   {
    "AIN": "2004001030",
    "OBJECTID": 24,
+   "PropertyLocation": "TESTOWNER 686786",
    "RollYear": "2026",
    "Roll_ImpValue": 299546,
    "Roll_LandValue": 284485,
-   "Roll_totLandImp": 584031
+   "Roll_totLandImp": 584031,
+   "SitusCity": "LOS ANGELES CA",
+   "SitusZIP5": "91304",
+   "UseCode": "0101",
+   "UseType": "SFR"
   },
   {
    "AIN": "2004001031",
    "OBJECTID": 25,
+   "PropertyLocation": "TESTOWNER 1E53CC",
    "RollYear": "2026",
    "Roll_ImpValue": 314835,
    "Roll_LandValue": 597698,
-   "Roll_totLandImp": 912533
+   "Roll_totLandImp": 912533,
+   "SitusCity": "LOS ANGELES CA",
+   "SitusZIP5": "91304",
+   "UseCode": "0101",
+   "UseType": "SFR"
   }
  ],
  "layer": "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Assessor%20Parcel%20Data%20Roll%202026/FeatureServer/0",

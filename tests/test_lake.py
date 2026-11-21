@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 import pytest
@@ -132,3 +133,62 @@ def test_single_store_sources_load_every_partition_into_one_part(
     assert counts["parcel"] == 3
     assert sorted(p.name for p in (out / "parcel").glob("*.parquet")) == ["00000.parquet"]
     assert not list((tmp_path / "work").glob("*.duckdb"))
+
+
+def test_replan_keeps_finished_parts_and_splits_the_rest(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setattr(lake, "WORK", tmp_path / "work")
+    (tmp_path / "work").mkdir()
+    (tmp_path / "work" / "s-00001.duckdb").write_text("stale")
+
+    class Splitter:
+        def split_partition(self, params: dict[str, str]) -> list[dict[str, str]]:
+            if params["county_fips"] == "003":
+                return []  # empty county
+            return [{**params, "oid_min": str(i), "oid_max": str(i + 1)} for i in (1, 2)]
+
+    monkeypatch.setattr("equity.adapters.registry.by_source_id", lambda sid: Splitter)
+    out = tmp_path / "lake" / "s"
+    (out / "_parts").mkdir(parents=True)
+    (out / "parcel").mkdir()
+    plan = [{"county_fips": c} for c in ("001", "002", "003", "004")]
+    (out / "_plan.json").write_text(json.dumps(plan))
+    for i in (1, 3):  # counties 002 and 004 are finished
+        (out / "_parts" / f"{i:05d}.json").write_text(json.dumps({"params": plan[i]}))
+        (out / "parcel" / f"{i:05d}.parquet").write_text(f"part{i}")
+    kept, pending = lake.replan("s", tmp_path / "lake")
+    assert (kept, pending) == (2, 2)
+    new = json.loads((out / "_plan.json").read_text())
+    assert new[:2] == [{"county_fips": "002"}, {"county_fips": "004"}]
+    assert new[2:] == [{"county_fips": "001", "oid_min": "1", "oid_max": "2"},
+                       {"county_fips": "001", "oid_min": "2", "oid_max": "3"}]  # fmt: skip
+    assert (out / "parcel" / "00000.parquet").read_text() == "part1"
+    assert (out / "parcel" / "00001.parquet").read_text() == "part3"
+    assert sorted(p.name for p in (out / "_parts").iterdir()) == ["00000.json", "00001.json"]
+    assert not (tmp_path / "work" / "s-00001.duckdb").exists()
+    # Replanning again folds the old windows back into their county and re-cuts it.
+    assert lake.replan("s", tmp_path / "lake") == (2, 2)
+    assert json.loads((out / "_plan.json").read_text()) == new
+
+
+def test_source_lists_are_complete_in_a_fresh_interpreter() -> None:
+    """Regression: an import change once left the runner and the health check with an empty
+    adapter list. Inside pytest other tests have already registered every adapter, so each
+    entry point is checked in its own clean process, importing only what its CLI imports."""
+    import subprocess
+    import sys
+
+    def fresh(code: str) -> list[str]:
+        run = subprocess.run([sys.executable, "-c", code], check=True,  # noqa: S603
+                             capture_output=True, text=True)  # fmt: skip
+        return run.stdout.split()
+
+    n, has_tx, has_fl = fresh(
+        "from equity import lake\n"
+        "s = lake.parcel_sources()\n"
+        "print(len(s), 'tx.statewide.parcels' in s, 'fl.statewide.parcels' in s)\n"
+    )
+    assert int(n) > 50 and has_tx == "True" and has_fl == "True"
+    (adapters,) = fresh("from equity.adapters import health\nprint(len(health.REGISTRY))\n")
+    assert int(adapters) > int(n)

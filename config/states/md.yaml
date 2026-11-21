@@ -13,6 +13,7 @@ layer_url: https://mdgeodata.md.gov/imap/rest/services/PlanningCadastre/MD_Prope
 order_by: OBJECTID
 page_size: 2000          # maxRecordCount 2000; supportsPagination true
 min_interval_s: 1.0
+county_window: 20000      # each county in 20k-id windows, so one fetch fits a short session
 # JURSCODE: MDP 4-letter jurisdiction code, 24 values (23 counties + Baltimore City).
 county:
   field: JURSCODE
@@ -43,6 +44,12 @@ county:
     WORC: "047"   # Worcester
     BACI: "510"   # Baltimore City
 fields:
+  land_use_code: LU
+  land_use_desc: DESCLU
+  zoning: ZONING
+  situs_line1: ADDRESS
+  situs_city: PREMCITY
+  situs_zip: PREMZIP
   parcel_id: ACCTID          # SDAT account id: 2-digit county + 2-digit district + account
   land_value: NFMLNDVL       # "New Appraised Land Value"
   bldg_value: NFMIMPVL       # "New Appraised Improvement Value"

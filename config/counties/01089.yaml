@@ -12,6 +12,7 @@ county: {constant: "089"}
 # 1,173 rows with no TaxYear or ParcelNum. Keep the current roll only. Bump when 2027 is billed.
 filter: "TaxYear = 2026"
 fields:
+  situs_full: PropertyAddress
   parcel_id: ParcelNum     # e.g. 04-07-36-0-001-055.000; PIN is the numeric account key
   owner1: AccountOwner     # tax-account owner ('LAST, FIRST ...'); PropertyOwner (long free text with fractional interests) is not mapped
   mail_full: MailingAddress   # 'STREET, CITY, ST ZIP[-4]'

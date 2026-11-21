@@ -9,6 +9,9 @@ min_interval_s: 1.0
 county: {constant: "020"}
 extra_pii: [Owner_Line_1, Owner_Line_2, Owner_Line_3, Owner_Line_4, Parcel_Address]
 fields:
+  land_use_desc: Land_Use
+  zoning: Zoning_District
+  situs_full: Parcel_Address
   parcel_id: Parcel_ID
   owner1: Owner_Name
   mail_line1: Owner_Address

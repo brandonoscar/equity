@@ -9,6 +9,9 @@ page_size: 2000          # maxRecordCount 2000
 min_interval_s: 1.0
 county: {constant: "041"}
 fields:
+  land_use_code: UseCode
+  situs_line1: Address
+  situs_zip: Zip
   parcel_id: GPIN
   owner1: OwnerName
   mail_line1: OwnerAddress

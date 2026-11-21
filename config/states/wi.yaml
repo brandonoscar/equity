@@ -6,10 +6,14 @@ layer_url: https://services3.arcgis.com/n6uYoouQZW75n5WI/ArcGIS/rest/services/Wi
 order_by: OBJECTID
 page_size: 1000
 min_interval_s: 1.0
+county_window: 20000      # each county in 20k-id windows, so one fetch fits a short session
 county:
   field: PARCELFIPS
   format: fips3
 fields:
+  land_use_code: PROPCLASS
+  situs_line1: SITEADRESS
+  situs_zip: ZIPCODE
   parcel_id: PARCELID
   owner1: OWNERNME1
   owner2: OWNERNME2

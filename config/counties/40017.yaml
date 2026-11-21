@@ -8,6 +8,10 @@ page_size: 2000          # maxRecordCount 2000
 min_interval_s: 1.0
 county: {constant: "017"}
 fields:
+  land_use_code: prop_class
+  situs_line1: situs
+  situs_city: situs_city
+  situs_zip: situs_zip
   parcel_id: parcel_id
   owner1: owners_name
   mail_line1: mail_address

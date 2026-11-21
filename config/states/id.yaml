@@ -7,6 +7,7 @@ layer_url: https://services1.arcgis.com/CNPdEkvnGl65jCX8/arcgis/rest/services/Pu
 order_by: OBJECTID
 page_size: 1000
 min_interval_s: 1.0
+county_window: 20000      # each county in 20k-id windows, so one fetch fits a short session
 # County holds the county name; FIPS (5-digit) is null on 220 Nez Perce rows, so key on the name.
 county:
   field: County
@@ -22,6 +23,10 @@ county:
     "Valley": "085", "Washington": "087"
   }
 fields:
+  situs_line1: SITE_ADD
+  situs_city: SITE_CITY
+  situs_zip: SITE_ZIP
+  homestead: HOME_EXMPT
   parcel_id: PARCEL_ID
   owner1: OWNER1
   owner2: OWNER2

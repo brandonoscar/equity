@@ -46,7 +46,7 @@ def main(argv: list[str]) -> int:
     source_id, *pairs = argv
     params = dict(p.split("=", 1) for p in pairs)
     cls = by_source_id(source_id)
-    adapter = cls()  # type: ignore[abstract]
+    adapter = cls()
     fetched = adapter.fetch(FetchRequest(params))
     custom = getattr(cls, "scrub_fixture", None)
     out = FIXTURES / source_id

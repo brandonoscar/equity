@@ -2,6 +2,7 @@
  "attributes": [
   {
    "BLDG_VAL": 324100,
+   "CITY": "YARMOUTH",
    "FY": 2026,
    "LAND_VAL": 217000,
    "LS_BOOK": "31086",
@@ -13,11 +14,17 @@
    "OWN_STATE": "MA",
    "OWN_ZIP": "02664",
    "PROP_ID": "79_17",
+   "SITE_ADDR": "TESTOWNER 01EE46",
    "TOTAL_VAL": 544900,
-   "TOWN_ID": 351
+   "TOWN_ID": 351,
+   "USE_CODE": "1010",
+   "USE_DESC": "Single Family Residential",
+   "ZIP": "02664",
+   "ZONING": null
   },
   {
    "BLDG_VAL": 750500,
+   "CITY": "YARMOUTH",
    "FY": 2026,
    "LAND_VAL": 215500,
    "LS_BOOK": "D1259773",
@@ -29,11 +36,17 @@
    "OWN_STATE": "MA",
    "OWN_ZIP": "02673",
    "PROP_ID": "66_36",
+   "SITE_ADDR": "TESTOWNER 9A1A90",
    "TOTAL_VAL": 971800,
-   "TOWN_ID": 351
+   "TOWN_ID": 351,
+   "USE_CODE": "1010",
+   "USE_DESC": "Single Family Residential",
+   "ZIP": "02673",
+   "ZONING": null
   },
   {
    "BLDG_VAL": 235100,
+   "CITY": "ATTLEBORO",
    "FY": 2026,
    "LAND_VAL": 148600,
    "LS_BOOK": "1906",
@@ -45,11 +58,17 @@
    "OWN_STATE": "MA",
    "OWN_ZIP": "02703",
    "PROP_ID": "60_215",
+   "SITE_ADDR": "TESTOWNER 2781AE",
    "TOTAL_VAL": 385700,
-   "TOWN_ID": 16
+   "TOWN_ID": 16,
+   "USE_CODE": "1010",
+   "USE_DESC": "Single Family Residential",
+   "ZIP": "02703",
+   "ZONING": "R1"
   },
   {
    "BLDG_VAL": 208600,
+   "CITY": "ATTLEBORO",
    "FY": 2026,
    "LAND_VAL": 161500,
    "LS_BOOK": "23699",
@@ -61,11 +80,17 @@
    "OWN_STATE": "MA",
    "OWN_ZIP": "02703",
    "PROP_ID": "60_216",
+   "SITE_ADDR": "TESTOWNER 55FF8B",
    "TOTAL_VAL": 385300,
-   "TOWN_ID": 16
+   "TOWN_ID": 16,
+   "USE_CODE": "1010",
+   "USE_DESC": "Single Family Residential",
+   "ZIP": "02703",
+   "ZONING": "R1"
   },
   {
    "BLDG_VAL": 827500,
+   "CITY": "NATICK",
    "FY": 2027,
    "LAND_VAL": 0,
    "LS_BOOK": "85862",
@@ -77,11 +102,17 @@
    "OWN_STATE": "MA",
    "OWN_ZIP": "01760",
    "PROP_ID": "26-0000191B",
+   "SITE_ADDR": "TESTOWNER 7E94F8",
    "TOTAL_VAL": 827500,
-   "TOWN_ID": 198
+   "TOWN_ID": 198,
+   "USE_CODE": "102",
+   "USE_DESC": "Residential Condominium",
+   "ZIP": "01760",
+   "ZONING": "RG"
   },
   {
    "BLDG_VAL": 109600,
+   "CITY": "NATICK",
    "FY": 2027,
    "LAND_VAL": 432900,
    "LS_BOOK": "85852",
@@ -93,11 +124,17 @@
    "OWN_STATE": "MA",
    "OWN_ZIP": "01760",
    "PROP_ID": "25-00000045",
+   "SITE_ADDR": "TESTOWNER FC3485",
    "TOTAL_VAL": 542500,
-   "TOWN_ID": 198
+   "TOWN_ID": 198,
+   "USE_CODE": "101",
+   "USE_DESC": "Single Family Residential",
+   "ZIP": "01760",
+   "ZONING": "RSA"
   },
   {
    "BLDG_VAL": 1073500,
+   "CITY": "NATICK",
    "FY": 2027,
    "LAND_VAL": 469500,
    "LS_BOOK": "85658",
@@ -109,11 +146,17 @@
    "OWN_STATE": "MA",
    "OWN_ZIP": "01760",
    "PROP_ID": "39-00000073",
+   "SITE_ADDR": "TESTOWNER D321A7",
    "TOTAL_VAL": 1543000,
-   "TOWN_ID": 198
+   "TOWN_ID": 198,
+   "USE_CODE": "101",
+   "USE_DESC": "Single Family Residential",
+   "ZIP": "01760",
+   "ZONING": "RSA"
   },
   {
    "BLDG_VAL": 217400,
+   "CITY": "NATICK",
    "FY": 2027,
    "LAND_VAL": 413800,
    "LS_BOOK": "85650",
@@ -125,11 +168,17 @@
    "OWN_STATE": "MA",
    "OWN_ZIP": "01760",
    "PROP_ID": "48-00000031",
+   "SITE_ADDR": "TESTOWNER 4C2962",
    "TOTAL_VAL": 631200,
-   "TOWN_ID": 198
+   "TOWN_ID": 198,
+   "USE_CODE": "101",
+   "USE_DESC": "Single Family Residential",
+   "ZIP": "01760",
+   "ZONING": "RSA"
   },
   {
    "BLDG_VAL": 1327800,
+   "CITY": "NATICK",
    "FY": 2027,
    "LAND_VAL": 544000,
    "LS_BOOK": "85647",
@@ -141,11 +190,17 @@
    "OWN_STATE": "MA",
    "OWN_ZIP": "01760",
    "PROP_ID": "63-0000038A",
+   "SITE_ADDR": "TESTOWNER 1EB2A3",
    "TOTAL_VAL": 1871800,
-   "TOWN_ID": 198
+   "TOWN_ID": 198,
+   "USE_CODE": "101",
+   "USE_DESC": "Single Family Residential",
+   "ZIP": "01760",
+   "ZONING": "RSB"
   },
   {
    "BLDG_VAL": 153800,
+   "CITY": "NATICK",
    "FY": 2027,
    "LAND_VAL": 504500,
    "LS_BOOK": "85641",
@@ -157,11 +212,17 @@
    "OWN_STATE": "MA",
    "OWN_ZIP": "01760",
    "PROP_ID": "35-00000170",
+   "SITE_ADDR": "TESTOWNER 3D986D",
    "TOTAL_VAL": 658300,
-   "TOWN_ID": 198
+   "TOWN_ID": 198,
+   "USE_CODE": "101",
+   "USE_DESC": "Single Family Residential",
+   "ZIP": "01760",
+   "ZONING": "RSA"
   },
   {
    "BLDG_VAL": 291500,
+   "CITY": "NATICK",
    "FY": 2027,
    "LAND_VAL": 0,
    "LS_BOOK": "85637",
@@ -173,11 +234,17 @@
    "OWN_STATE": "MA",
    "OWN_ZIP": "01760",
    "PROP_ID": "40-052VBL14",
+   "SITE_ADDR": "TESTOWNER 264A53",
    "TOTAL_VAL": 291500,
-   "TOWN_ID": 198
+   "TOWN_ID": 198,
+   "USE_CODE": "102",
+   "USE_DESC": "Residential Condominium",
+   "ZIP": "01760",
+   "ZONING": "PCD"
   },
   {
    "BLDG_VAL": 673700,
+   "CITY": "NATICK",
    "FY": 2027,
    "LAND_VAL": 0,
    "LS_BOOK": "85610",
@@ -189,11 +256,17 @@
    "OWN_STATE": "MA",
    "OWN_ZIP": "01760",
    "PROP_ID": "66-13000109",
+   "SITE_ADDR": "TESTOWNER BBE432",
    "TOTAL_VAL": 673700,
-   "TOWN_ID": 198
+   "TOWN_ID": 198,
+   "USE_CODE": "102",
+   "USE_DESC": "Residential Condominium",
+   "ZIP": "01760",
+   "ZONING": "RSB"
   },
   {
    "BLDG_VAL": 17500,
+   "CITY": "NATICK",
    "FY": 2027,
    "LAND_VAL": 0,
    "LS_BOOK": "85610",
@@ -205,11 +278,17 @@
    "OWN_STATE": "MA",
    "OWN_ZIP": "01760",
    "PROP_ID": "66-13PS0029",
+   "SITE_ADDR": "TESTOWNER BBE432",
    "TOTAL_VAL": 17500,
-   "TOWN_ID": 198
+   "TOWN_ID": 198,
+   "USE_CODE": "106",
+   "USE_DESC": "Accessory Land with Improvement",
+   "ZIP": "01760",
+   "ZONING": null
   },
   {
    "BLDG_VAL": 902300,
+   "CITY": "NATICK",
    "FY": 2027,
    "LAND_VAL": 610900,
    "LS_BOOK": "85609",
@@ -221,11 +300,17 @@
    "OWN_STATE": "MA",
    "OWN_ZIP": "01760",
    "PROP_ID": "73-0000010B",
+   "SITE_ADDR": "TESTOWNER 9F3230",
    "TOTAL_VAL": 1513200,
-   "TOWN_ID": 198
+   "TOWN_ID": 198,
+   "USE_CODE": "101",
+   "USE_DESC": "Single Family Residential",
+   "ZIP": "01760",
+   "ZONING": "RSB"
   },
   {
    "BLDG_VAL": 1337500,
+   "CITY": "NATICK",
    "FY": 2027,
    "LAND_VAL": 0,
    "LS_BOOK": "85605",
@@ -237,11 +322,17 @@
    "OWN_STATE": "MA",
    "OWN_ZIP": "01760",
    "PROP_ID": "36-000186AA",
+   "SITE_ADDR": "TESTOWNER F8300B",
    "TOTAL_VAL": 1337500,
-   "TOWN_ID": 198
+   "TOWN_ID": 198,
+   "USE_CODE": "102",
+   "USE_DESC": "Residential Condominium",
+   "ZIP": "01760",
+   "ZONING": "RG"
   },
   {
    "BLDG_VAL": 987800,
+   "CITY": "NATICK",
    "FY": 2027,
    "LAND_VAL": 0,
    "LS_BOOK": "85599",
@@ -253,11 +344,17 @@
    "OWN_STATE": "MA",
    "OWN_ZIP": "01760",
    "PROP_ID": "44-0000184B",
+   "SITE_ADDR": "TESTOWNER 54DF0F",
    "TOTAL_VAL": 987800,
-   "TOWN_ID": 198
+   "TOWN_ID": 198,
+   "USE_CODE": "102",
+   "USE_DESC": "Residential Condominium",
+   "ZIP": "01760",
+   "ZONING": "RG"
   },
   {
    "BLDG_VAL": 295200,
+   "CITY": "SEEKONK",
    "FY": 2027,
    "LAND_VAL": 156400,
    "LS_BOOK": "29774",
@@ -269,11 +366,17 @@
    "OWN_STATE": "MA",
    "OWN_ZIP": "02771",
    "PROP_ID": "265/006.0-0000-0114.0",
+   "SITE_ADDR": "TESTOWNER 8178A3",
    "TOTAL_VAL": 451600,
-   "TOWN_ID": 265
+   "TOWN_ID": 265,
+   "USE_CODE": "101",
+   "USE_DESC": "Single Family Residential",
+   "ZIP": null,
+   "ZONING": "R1"
   },
   {
    "BLDG_VAL": 300400,
+   "CITY": "SEEKONK",
    "FY": 2027,
    "LAND_VAL": 160000,
    "LS_BOOK": "28911",
@@ -285,11 +388,17 @@
    "OWN_STATE": "MA",
    "OWN_ZIP": "02769",
    "PROP_ID": "265/006.0-0000-0116.0",
+   "SITE_ADDR": "TESTOWNER B7BDA0",
    "TOTAL_VAL": 460400,
-   "TOWN_ID": 265
+   "TOWN_ID": 265,
+   "USE_CODE": "101",
+   "USE_DESC": "Single Family Residential",
+   "ZIP": null,
+   "ZONING": "R1"
   },
   {
    "BLDG_VAL": 264400,
+   "CITY": "SEEKONK",
    "FY": 2027,
    "LAND_VAL": 154500,
    "LS_BOOK": "28214",
@@ -301,11 +410,17 @@
    "OWN_STATE": "MA",
    "OWN_ZIP": "02771",
    "PROP_ID": "265/006.0-0000-0119.0",
+   "SITE_ADDR": "TESTOWNER C80653",
    "TOTAL_VAL": 418900,
-   "TOWN_ID": 265
+   "TOWN_ID": 265,
+   "USE_CODE": "101",
+   "USE_DESC": "Single Family Residential",
+   "ZIP": null,
+   "ZONING": "R1"
   },
   {
    "BLDG_VAL": 632500,
+   "CITY": "NATICK",
    "FY": 2027,
    "LAND_VAL": 0,
    "LS_BOOK": "85601",
@@ -317,11 +432,17 @@
    "OWN_STATE": "MA",
    "OWN_ZIP": "01760",
    "PROP_ID": "66-17000204",
+   "SITE_ADDR": "TESTOWNER 1ABDE1",
    "TOTAL_VAL": 632500,
-   "TOWN_ID": 198
+   "TOWN_ID": 198,
+   "USE_CODE": "102",
+   "USE_DESC": "Residential Condominium",
+   "ZIP": "01760",
+   "ZONING": "RSB"
   },
   {
    "BLDG_VAL": 515300,
+   "CITY": "NATICK",
    "FY": 2027,
    "LAND_VAL": 475700,
    "LS_BOOK": "85590",
@@ -333,11 +454,17 @@
    "OWN_STATE": "MA",
    "OWN_ZIP": "01760",
    "PROP_ID": "13-00000192",
+   "SITE_ADDR": "TESTOWNER B97E2D",
    "TOTAL_VAL": 991000,
-   "TOWN_ID": 198
+   "TOWN_ID": 198,
+   "USE_CODE": "101",
+   "USE_DESC": "Single Family Residential",
+   "ZIP": "01760",
+   "ZONING": "RSA"
   },
   {
    "BLDG_VAL": 980800,
+   "CITY": "NATICK",
    "FY": 2027,
    "LAND_VAL": 0,
    "LS_BOOK": "85590",
@@ -349,11 +476,17 @@
    "OWN_STATE": "MA",
    "OWN_ZIP": "01760",
    "PROP_ID": "66-00000114",
+   "SITE_ADDR": "TESTOWNER 6BC54A",
    "TOTAL_VAL": 980800,
-   "TOWN_ID": 198
+   "TOWN_ID": 198,
+   "USE_CODE": "102",
+   "USE_DESC": "Residential Condominium",
+   "ZIP": "01760",
+   "ZONING": null
   },
   {
    "BLDG_VAL": 45300,
+   "CITY": "NATICK",
    "FY": 2027,
    "LAND_VAL": 443800,
    "LS_BOOK": "85558",
@@ -365,11 +498,17 @@
    "OWN_STATE": "MA",
    "OWN_ZIP": "02132",
    "PROP_ID": "52-00000063",
+   "SITE_ADDR": "TESTOWNER 5EDC28",
    "TOTAL_VAL": 489100,
-   "TOWN_ID": 198
+   "TOWN_ID": 198,
+   "USE_CODE": "104",
+   "USE_DESC": "Two-Family Residential",
+   "ZIP": "01760",
+   "ZONING": "RG"
   },
   {
    "BLDG_VAL": 291500,
+   "CITY": "NATICK",
    "FY": 2027,
    "LAND_VAL": 0,
    "LS_BOOK": "85540",
@@ -381,11 +520,17 @@
    "OWN_STATE": "MA",
    "OWN_ZIP": "01760",
    "PROP_ID": "40-0008VW11",
+   "SITE_ADDR": "TESTOWNER A4EABE",
    "TOTAL_VAL": 291500,
-   "TOWN_ID": 198
+   "TOWN_ID": 198,
+   "USE_CODE": "102",
+   "USE_DESC": "Residential Condominium",
+   "ZIP": "01760",
+   "ZONING": "PCD"
   },
   {
    "BLDG_VAL": 218900,
+   "CITY": "NATICK",
    "FY": 2027,
    "LAND_VAL": 525100,
    "LS_BOOK": "L1641",
@@ -397,8 +542,13 @@
    "OWN_STATE": "MA",
    "OWN_ZIP": "01760",
    "PROP_ID": "13-00000052",
+   "SITE_ADDR": "TESTOWNER DA4B23",
    "TOTAL_VAL": 744000,
-   "TOWN_ID": 198
+   "TOWN_ID": 198,
+   "USE_CODE": "101",
+   "USE_DESC": "Single Family Residential",
+   "ZIP": "01760",
+   "ZONING": "RSC"
   }
  ],
  "layer": "https://services1.arcgis.com/hGdibHYSPO59RG1h/ArcGIS/rest/services/Massachusetts_Property_Tax_Parcels/FeatureServer/0",

@@ -6,6 +6,10 @@ page_size: 1000          # maxRecordCount 2000
 min_interval_s: 1.0
 county: {constant: "125"}
 fields:
+  land_use_code: CLASSCODE
+  situs_line1: SITEADDRESS
+  situs_city: SITECITY
+  situs_zip: SITEZIP5
   parcel_id: KEYPIN        # 'the unique parcel identification number used to link the tax parcel to the parcel attributes'
   assessed_value: ASSESSEDVALUE
 value_basis: "NO OWNER NAMES: NAME1/NAME2 are empty on all 490,815 rows (2026-11-16), so they are not mapped; POSTALADDRESS is a street line only (no city/ZIP) and is not mapped either. ASSESSEDVALUE = assessed value (Michigan SEV basis, 50% of true cash value); TAXABLEVALUE is not mapped. tax_year is NOT mapped, so no assessment facts are emitted: the layer has no roll-year field."

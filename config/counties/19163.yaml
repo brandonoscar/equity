@@ -8,6 +8,8 @@ page_size: 2000          # maxRecordCount 2000; supportsPagination true
 min_interval_s: 1.0
 county: {constant: "163"}
 fields:
+  land_use_code: PropClass
+  situs_line1: PropertyAddress
   parcel_id: PIN
   owner1: DeedHold
   owner2: DeedHold2

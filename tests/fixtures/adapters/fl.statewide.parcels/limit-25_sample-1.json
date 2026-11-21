@@ -4,7 +4,9 @@
    "ASMNT_YR": 2026,
    "AV_SD": 86274,
    "CO_NO": 11,
+   "DOR_UC": "052",
    "JV": 237549,
+   "JV_HMSTD": 0,
    "LND_VAL": 13725,
    "OBJECTID": 1,
    "OR_BOOK1": " ",
@@ -15,13 +17,18 @@
    "OWN_NAME": "TESTOWNER ECC89E",
    "OWN_STATE": "FL",
    "OWN_ZIPCD": 32641,
-   "PARCEL_ID": "07702-000-000"
+   "PARCEL_ID": "07702-000-000",
+   "PHY_ADDR1": "TESTOWNER 63B1A6",
+   "PHY_CITY": "GAINESVILLE",
+   "PHY_ZIPCD": 32609
   },
   {
    "ASMNT_YR": 2026,
    "AV_SD": 5000,
    "CO_NO": 11,
+   "DOR_UC": "059",
    "JV": 500000,
+   "JV_HMSTD": 0,
    "LND_VAL": 5000,
    "OBJECTID": 2,
    "OR_BOOK1": " ",
@@ -32,13 +39,18 @@
    "OWN_NAME": "TESTOWNER 2588C6 LLC",
    "OWN_STATE": "FL",
    "OWN_ZIPCD": 32653,
-   "PARCEL_ID": "03206-000-000"
+   "PARCEL_ID": "03206-000-000",
+   "PHY_ADDR1": "TESTOWNER A10594",
+   "PHY_CITY": "ALACHUA",
+   "PHY_ZIPCD": 32615
   },
   {
    "ASMNT_YR": 2026,
    "AV_SD": 488863,
    "CO_NO": 11,
+   "DOR_UC": "019",
    "JV": 488863,
+   "JV_HMSTD": 0,
    "LND_VAL": 47916,
    "OBJECTID": 3,
    "OR_BOOK1": " ",
@@ -49,13 +61,18 @@
    "OWN_NAME": "TESTOWNER D29770 LLC",
    "OWN_STATE": "FL",
    "OWN_ZIPCD": 32615,
-   "PARCEL_ID": "03594-000-000"
+   "PARCEL_ID": "03594-000-000",
+   "PHY_ADDR1": "TESTOWNER D86C7E",
+   "PHY_CITY": "ALACHUA",
+   "PHY_ZIPCD": 32615
   },
   {
    "ASMNT_YR": 2026,
    "AV_SD": 3949122,
    "CO_NO": 11,
+   "DOR_UC": "041",
    "JV": 3949122,
+   "JV_HMSTD": 0,
    "LND_VAL": 760558,
    "OBJECTID": 4,
    "OR_BOOK1": " ",
@@ -66,13 +83,18 @@
    "OWN_NAME": "TESTOWNER 9CC6D8 LLC",
    "OWN_STATE": "FL",
    "OWN_ZIPCD": 32605,
-   "PARCEL_ID": "03956-010-001"
+   "PARCEL_ID": "03956-010-001",
+   "PHY_ADDR1": "TESTOWNER 1F3F24",
+   "PHY_CITY": "ALACHUA",
+   "PHY_ZIPCD": 32615
   },
   {
    "ASMNT_YR": 2026,
    "AV_SD": 3686895,
    "CO_NO": 11,
+   "DOR_UC": "041",
    "JV": 3686895,
+   "JV_HMSTD": 0,
    "LND_VAL": 373745,
    "OBJECTID": 5,
    "OR_BOOK1": " ",
@@ -83,13 +105,18 @@
    "OWN_NAME": "TESTOWNER 76B08C",
    "OWN_STATE": "FL",
    "OWN_ZIPCD": 32607,
-   "PARCEL_ID": "03956-010-026"
+   "PARCEL_ID": "03956-010-026",
+   "PHY_ADDR1": "TESTOWNER E3EEF4",
+   "PHY_CITY": "ALACHUA",
+   "PHY_ZIPCD": 32615
   },
   {
    "ASMNT_YR": 2026,
    "AV_SD": 150465,
    "CO_NO": 11,
+   "DOR_UC": "001",
    "JV": 217364,
+   "JV_HMSTD": 217364,
    "LND_VAL": 55000,
    "OBJECTID": 6,
    "OR_BOOK1": " ",
@@ -100,13 +127,18 @@
    "OWN_NAME": "TESTOWNER 4B5294",
    "OWN_STATE": "FL",
    "OWN_ZIPCD": 32615,
-   "PARCEL_ID": "05900-109-014"
+   "PARCEL_ID": "05900-109-014",
+   "PHY_ADDR1": "TESTOWNER 6F1F9C",
+   "PHY_CITY": "ALACHUA",
+   "PHY_ZIPCD": 32615
   },
   {
    "ASMNT_YR": 2026,
    "AV_SD": 158568,
    "CO_NO": 11,
+   "DOR_UC": "001",
    "JV": 250870,
+   "JV_HMSTD": 250870,
    "LND_VAL": 55000,
    "OBJECTID": 7,
    "OR_BOOK1": " ",
@@ -117,13 +149,18 @@
    "OWN_NAME": "TESTOWNER BDCC04",
    "OWN_STATE": "FL",
    "OWN_ZIPCD": 32615,
-   "PARCEL_ID": "05900-109-016"
+   "PARCEL_ID": "05900-109-016",
+   "PHY_ADDR1": "TESTOWNER 1CBB43",
+   "PHY_CITY": "ALACHUA",
+   "PHY_ZIPCD": 32615
   },
   {
    "ASMNT_YR": 2026,
    "AV_SD": 10050,
    "CO_NO": 11,
+   "DOR_UC": "000",
    "JV": 10050,
+   "JV_HMSTD": 0,
    "LND_VAL": 10050,
    "OBJECTID": 8,
    "OR_BOOK1": " ",
@@ -134,13 +171,18 @@
    "OWN_NAME": "TESTOWNER 50B2C5",
    "OWN_STATE": "FL",
    "OWN_ZIPCD": 32615,
-   "PARCEL_ID": "05608-001-000"
+   "PARCEL_ID": "05608-001-000",
+   "PHY_ADDR1": "TESTOWNER D2546E",
+   "PHY_CITY": "ALACHUA",
+   "PHY_ZIPCD": 32615
   },
   {
    "ASMNT_YR": 2026,
    "AV_SD": 100,
    "CO_NO": 11,
+   "DOR_UC": "094",
    "JV": 100,
+   "JV_HMSTD": 0,
    "LND_VAL": 100,
    "OBJECTID": 9,
    "OR_BOOK1": " ",
@@ -151,13 +193,18 @@
    "OWN_NAME": "TESTOWNER DA0E25 INC",
    "OWN_STATE": "FL",
    "OWN_ZIPCD": 32204,
-   "PARCEL_ID": "16979-000-000"
+   "PARCEL_ID": "16979-000-000",
+   "PHY_ADDR1": "TESTOWNER D2546E",
+   "PHY_CITY": "WALDO",
+   "PHY_ZIPCD": 32694
   },
   {
    "ASMNT_YR": 2026,
    "AV_SD": 223367,
    "CO_NO": 11,
+   "DOR_UC": "001",
    "JV": 223367,
+   "JV_HMSTD": 0,
    "LND_VAL": 55000,
    "OBJECTID": 10,
    "OR_BOOK1": " ",
@@ -168,13 +215,18 @@
    "OWN_NAME": "TESTOWNER 97A015 LLC",
    "OWN_STATE": "AZ",
    "OWN_ZIPCD": 85755,
-   "PARCEL_ID": "05900-109-003"
+   "PARCEL_ID": "05900-109-003",
+   "PHY_ADDR1": "TESTOWNER 799975",
+   "PHY_CITY": "ALACHUA",
+   "PHY_ZIPCD": 32615
   },
   {
    "ASMNT_YR": 2026,
    "AV_SD": 111922,
    "CO_NO": 11,
+   "DOR_UC": "061",
    "JV": 279567,
+   "JV_HMSTD": 166653,
    "LND_VAL": 10087,
    "OBJECTID": 11,
    "OR_BOOK1": " ",
@@ -185,13 +237,18 @@
    "OWN_NAME": "TESTOWNER EF63AA",
    "OWN_STATE": "FL",
    "OWN_ZIPCD": 32609,
-   "PARCEL_ID": "07724-000-000"
+   "PARCEL_ID": "07724-000-000",
+   "PHY_ADDR1": "TESTOWNER C9FCA6",
+   "PHY_CITY": "GAINESVILLE",
+   "PHY_ZIPCD": 32609
   },
   {
    "ASMNT_YR": 2026,
    "AV_SD": 130680,
    "CO_NO": 11,
+   "DOR_UC": "010",
    "JV": 130680,
+   "JV_HMSTD": 0,
    "LND_VAL": 130680,
    "OBJECTID": 12,
    "OR_BOOK1": " ",
@@ -202,13 +259,18 @@
    "OWN_NAME": "TESTOWNER 76B08C",
    "OWN_STATE": "FL",
    "OWN_ZIPCD": 32607,
-   "PARCEL_ID": "03956-010-030"
+   "PARCEL_ID": "03956-010-030",
+   "PHY_ADDR1": "TESTOWNER D2546E",
+   "PHY_CITY": "ALACHUA",
+   "PHY_ZIPCD": 32615
   },
   {
    "ASMNT_YR": 2026,
    "AV_SD": 500,
    "CO_NO": 11,
+   "DOR_UC": "000",
    "JV": 500,
+   "JV_HMSTD": 0,
    "LND_VAL": 500,
    "OBJECTID": 13,
    "OR_BOOK1": " ",
@@ -219,13 +281,18 @@
    "OWN_NAME": "TESTOWNER 3B61DF",
    "OWN_STATE": "FL",
    "OWN_ZIPCD": 32669,
-   "PARCEL_ID": "03428-012-000"
+   "PARCEL_ID": "03428-012-000",
+   "PHY_ADDR1": "TESTOWNER D2546E",
+   "PHY_CITY": "ALACHUA",
+   "PHY_ZIPCD": 32615
   },
   {
    "ASMNT_YR": 2026,
    "AV_SD": 144840,
    "CO_NO": 11,
+   "DOR_UC": "002",
    "JV": 144840,
+   "JV_HMSTD": 0,
    "LND_VAL": 6000,
    "OBJECTID": 14,
    "OR_BOOK1": " ",
@@ -236,13 +303,18 @@
    "OWN_NAME": "TESTOWNER E9B5C9",
    "OWN_STATE": "FL",
    "OWN_ZIPCD": 32674,
-   "PARCEL_ID": "17125-000-000"
+   "PARCEL_ID": "17125-000-000",
+   "PHY_ADDR1": "TESTOWNER 1F81E0",
+   "PHY_CITY": "WALDO",
+   "PHY_ZIPCD": 32694
   },
   {
    "ASMNT_YR": 2026,
    "AV_SD": 62222,
    "CO_NO": 11,
+   "DOR_UC": "001",
    "JV": 62222,
+   "JV_HMSTD": 0,
    "LND_VAL": 11400,
    "OBJECTID": 15,
    "OR_BOOK1": " ",
@@ -253,13 +325,18 @@
    "OWN_NAME": "TESTOWNER 56183A",
    "OWN_STATE": "FL",
    "OWN_ZIPCD": 32694,
-   "PARCEL_ID": "17125-001-000"
+   "PARCEL_ID": "17125-001-000",
+   "PHY_ADDR1": "TESTOWNER C53B77",
+   "PHY_CITY": "WALDO",
+   "PHY_ZIPCD": 32694
   },
   {
    "ASMNT_YR": 2026,
    "AV_SD": 200,
    "CO_NO": 11,
+   "DOR_UC": "000",
    "JV": 200,
+   "JV_HMSTD": 0,
    "LND_VAL": 200,
    "OBJECTID": 16,
    "OR_BOOK1": " ",
@@ -270,13 +347,18 @@
    "OWN_NAME": "TESTOWNER 690601 INC",
    "OWN_STATE": "PA",
    "OWN_ZIPCD": 19027,
-   "PARCEL_ID": "03864-121-000"
+   "PARCEL_ID": "03864-121-000",
+   "PHY_ADDR1": "TESTOWNER D2546E",
+   "PHY_CITY": "ALACHUA",
+   "PHY_ZIPCD": 32615
   },
   {
    "ASMNT_YR": 2026,
    "AV_SD": 100,
    "CO_NO": 11,
+   "DOR_UC": "009",
    "JV": 100,
+   "JV_HMSTD": 0,
    "LND_VAL": 100,
    "OBJECTID": 17,
    "OR_BOOK1": " ",
@@ -287,13 +369,18 @@
    "OWN_NAME": "TESTOWNER ADE117 INC",
    "OWN_STATE": "FL",
    "OWN_ZIPCD": 32606,
-   "PARCEL_ID": "05900-214-000"
+   "PARCEL_ID": "05900-214-000",
+   "PHY_ADDR1": "TESTOWNER D2546E",
+   "PHY_CITY": "ALACHUA",
+   "PHY_ZIPCD": 32615
   },
   {
    "ASMNT_YR": 2026,
    "AV_SD": 100,
    "CO_NO": 11,
+   "DOR_UC": "009",
    "JV": 100,
+   "JV_HMSTD": 0,
    "LND_VAL": 100,
    "OBJECTID": 18,
    "OR_BOOK1": " ",
@@ -304,13 +391,18 @@
    "OWN_NAME": "TESTOWNER CFDACD INC",
    "OWN_STATE": "FL",
    "OWN_ZIPCD": 32602,
-   "PARCEL_ID": "05900-213-000"
+   "PARCEL_ID": "05900-213-000",
+   "PHY_ADDR1": "TESTOWNER D2546E",
+   "PHY_CITY": "ALACHUA",
+   "PHY_ZIPCD": 32615
   },
   {
    "ASMNT_YR": 2026,
    "AV_SD": 100,
    "CO_NO": 11,
+   "DOR_UC": "009",
    "JV": 100,
+   "JV_HMSTD": 0,
    "LND_VAL": 100,
    "OBJECTID": 19,
    "OR_BOOK1": " ",
@@ -321,13 +413,18 @@
    "OWN_NAME": "TESTOWNER F83CE0",
    "OWN_STATE": "FL",
    "OWN_ZIPCD": 32615,
-   "PARCEL_ID": "05900-226-000"
+   "PARCEL_ID": "05900-226-000",
+   "PHY_ADDR1": "TESTOWNER D2546E",
+   "PHY_CITY": "ALACHUA",
+   "PHY_ZIPCD": 32615
   },
   {
    "ASMNT_YR": 2026,
    "AV_SD": 100,
    "CO_NO": 11,
+   "DOR_UC": "009",
    "JV": 100,
+   "JV_HMSTD": 0,
    "LND_VAL": 100,
    "OBJECTID": 20,
    "OR_BOOK1": " ",
@@ -338,13 +435,18 @@
    "OWN_NAME": "TESTOWNER 456312",
    "OWN_STATE": "FL",
    "OWN_ZIPCD": 32606,
-   "PARCEL_ID": "05900-218-000"
+   "PARCEL_ID": "05900-218-000",
+   "PHY_ADDR1": "TESTOWNER D2546E",
+   "PHY_CITY": "ALACHUA",
+   "PHY_ZIPCD": 32615
   },
   {
    "ASMNT_YR": 2026,
    "AV_SD": 100,
    "CO_NO": 11,
+   "DOR_UC": "009",
    "JV": 100,
+   "JV_HMSTD": 0,
    "LND_VAL": 100,
    "OBJECTID": 21,
    "OR_BOOK1": " ",
@@ -355,13 +457,18 @@
    "OWN_NAME": "TESTOWNER 7BD56A INC",
    "OWN_STATE": "FL",
    "OWN_ZIPCD": 32615,
-   "PARCEL_ID": "05900-221-000"
+   "PARCEL_ID": "05900-221-000",
+   "PHY_ADDR1": "TESTOWNER D2546E",
+   "PHY_CITY": "ALACHUA",
+   "PHY_ZIPCD": 32615
   },
   {
    "ASMNT_YR": 2026,
    "AV_SD": 100,
    "CO_NO": 11,
+   "DOR_UC": "009",
    "JV": 100,
+   "JV_HMSTD": 0,
    "LND_VAL": 100,
    "OBJECTID": 22,
    "OR_BOOK1": " ",
@@ -372,13 +479,18 @@
    "OWN_NAME": "TESTOWNER D55CED LLC",
    "OWN_STATE": "FL",
    "OWN_ZIPCD": 32615,
-   "PARCEL_ID": "05900-244-000"
+   "PARCEL_ID": "05900-244-000",
+   "PHY_ADDR1": "TESTOWNER D2546E",
+   "PHY_CITY": "ALACHUA",
+   "PHY_ZIPCD": 32615
   },
   {
    "ASMNT_YR": 2026,
    "AV_SD": 100,
    "CO_NO": 11,
+   "DOR_UC": "009",
    "JV": 100,
+   "JV_HMSTD": 0,
    "LND_VAL": 100,
    "OBJECTID": 23,
    "OR_BOOK1": " ",
@@ -389,13 +501,18 @@
    "OWN_NAME": "TESTOWNER C17988 LLC",
    "OWN_STATE": "FL",
    "OWN_ZIPCD": 32616,
-   "PARCEL_ID": "05900-613-111"
+   "PARCEL_ID": "05900-613-111",
+   "PHY_ADDR1": "TESTOWNER D2546E",
+   "PHY_CITY": "ALACHUA",
+   "PHY_ZIPCD": 32615
   },
   {
    "ASMNT_YR": 2026,
    "AV_SD": 56911,
    "CO_NO": 11,
+   "DOR_UC": "002",
    "JV": 56911,
+   "JV_HMSTD": 0,
    "LND_VAL": 20000,
    "OBJECTID": 24,
    "OR_BOOK1": " ",
@@ -406,13 +523,18 @@
    "OWN_NAME": "TESTOWNER BFC571",
    "OWN_STATE": "FL",
    "OWN_ZIPCD": 32694,
-   "PARCEL_ID": "16972-029-000"
+   "PARCEL_ID": "16972-029-000",
+   "PHY_ADDR1": "TESTOWNER 6D8D0E",
+   "PHY_CITY": "WALDO",
+   "PHY_ZIPCD": 32694
   },
   {
    "ASMNT_YR": 2026,
    "AV_SD": 174351,
    "CO_NO": 11,
+   "DOR_UC": "010",
    "JV": 174351,
+   "JV_HMSTD": 0,
    "LND_VAL": 174351,
    "OBJECTID": 25,
    "OR_BOOK1": "5201",
@@ -423,7 +545,10 @@
    "OWN_NAME": "TESTOWNER E02844 LLC",
    "OWN_STATE": "CO",
    "OWN_ZIPCD": 80111,
-   "PARCEL_ID": "05899-001-002"
+   "PARCEL_ID": "05899-001-002",
+   "PHY_ADDR1": "TESTOWNER D2546E",
+   "PHY_CITY": "ALACHUA",
+   "PHY_ZIPCD": 32615
   }
  ],
  "layer": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0",

@@ -8,6 +8,9 @@ page_size: 2000          # maxRecordCount 2000; supportsPagination true
 min_interval_s: 1.0
 county: {constant: "011"}
 fields:
+  land_use_code: LANDUSE
+  situs_line1: SITEADDRES
+  homestead: HOMESTEAD
   parcel_id: PROPID        # 14 digits: 2-digit tax district + 12-digit PIN
   owner1: NAME1
   # FULLMAILAD is "STREET  CITY ST ZIP[-4]" in one string, a double space before the city and

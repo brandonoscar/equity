@@ -10,6 +10,11 @@ min_interval_s: 1.0
 county: {constant: "113"}
 use_restrictions: [no_resale]
 fields:
+  land_use_desc: Class
+  situs_line1: SitusAddress
+  situs_city: SitusCity
+  situs_zip: SitusZip
+  owner_type: OwnerType
   parcel_id: GPN
   owner1: OwnerDeed
   owner2: OwnerContract

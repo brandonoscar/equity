@@ -11,6 +11,9 @@ page_size: 1000          # maxRecordCount 1000; supportsPagination true
 min_interval_s: 1.0
 county: {constant: "055"}
 fields:
+  land_use_code: LAND_USE_C
+  land_use_desc: LAND_USE_D
+  situs_full: FULL_SITUS
   parcel_id: Name          # tax parcel number, e.g. 18-0K08.-035.-000000
   owner1: FULL_OWNER
   owner2: SECOND_OWN

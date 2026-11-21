@@ -4,6 +4,7 @@ layer_url: https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServ
 order_by: objectid
 page_size: 1000
 min_interval_s: 1.0
+county_window: 20000      # each county in 20k-id windows, so one fetch fits a short session
 # county holds the county name. Kalawao County (005) has no separate rows: its parcels are in
 # Maui County's TMK data, so they key to 15009.
 county:
@@ -11,6 +12,7 @@ county:
   format: code_map
   code_map: {"Hawaii": "001", "Honolulu": "003", "Kauai": "007", "Maui": "009"}
 fields:
+  zoning: zone
   parcel_id: tmk_txt
 value_basis: "no value, owner or tax-year fields in this layer (boundaries and TMK ids only); owner and assessed values are in each county's real property assessment data"
 terms:

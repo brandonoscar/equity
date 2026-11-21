@@ -214,6 +214,71 @@ def test_partitions_by_county_and_by_oid_window(tmp_path: Path) -> None:
                        {"oid_min": "100001", "oid_max": "150001"}]  # fmt: skip
 
 
+def test_partition_window_overrides_county_partitions(tmp_path: Path) -> None:
+    """Counties too big for one fetch: id windows of the configured size, county per row."""
+    from collections.abc import Mapping as _M
+
+    from equity.adapters.http import PoliteClient
+
+    def transport(url: str, headers: _M[str, str], timeout: float) -> tuple[int, bytes, str]:
+        if url.endswith("robots.txt"):
+            return 404, b"", ""
+        if "returnCountOnly" in url:
+            return 200, json.dumps({"count": 45000}).encode(), "application/json"
+        body = {"features": [{"attributes": {"lo": 1, "hi": 45000}}]}
+        return 200, json.dumps(body).encode(), "application/json"
+
+    cfg = load_config(_cfg(tmp_path, partition_window=20000))
+    assert cfg.partition_window == 20000
+    client = PoliteClient(min_interval_s=0, transport=transport, sleep=lambda s: None)
+    windows = list(adapter_for(cfg)(client).partitions())
+    assert windows == [{"oid_min": "1", "oid_max": "20001"},
+                       {"oid_min": "20001", "oid_max": "40001"},
+                       {"oid_min": "40001", "oid_max": "60001"}]  # fmt: skip
+    assert load_config(_cfg(tmp_path)).partition_window is None
+
+
+def test_county_window_splits_each_county_by_its_id_list(tmp_path: Path) -> None:
+    from collections.abc import Mapping as _M
+    from urllib.parse import parse_qs, urlsplit
+
+    from equity.adapters.base import FetchRequest
+    from equity.adapters.http import PoliteClient
+
+    wheres: list[str] = []
+
+    def transport(url: str, headers: _M[str, str], timeout: float) -> tuple[int, bytes, str]:
+        if url.endswith("robots.txt"):
+            return 404, b"", ""
+        where = parse_qs(urlsplit(url).query)["where"][0]
+        wheres.append(where)
+        if "'003'" in where:
+            body: dict[str, Any] = {"objectIds": None}  # county with no rows
+        elif "'005'" in where:
+            body = {"error": {"code": 400, "message": "bad"}}
+        else:  # scattered ids: windows follow the ids, not the id range
+            body = {"objectIds": [907, 101, 102, 5000, 5001, 103, 104, 105, 106, 107, 108, 109]}
+        return 200, json.dumps(body).encode(), "application/json"
+
+    cfg = load_config(_cfg(tmp_path, county_window=5, filter="Y=1"))
+    client = PoliteClient(min_interval_s=0, transport=transport, sleep=lambda s: None)
+    a = adapter_for(cfg)(client)
+    assert a.split_partition({"county_fips": "001"}) == [
+        {"county_fips": "001", "oid_min": "101", "oid_max": "106"},
+        {"county_fips": "001", "oid_min": "106", "oid_max": "908"},
+        {"county_fips": "001", "oid_min": "5000", "oid_max": "5002"}]  # fmt: skip
+    assert wheres[-1].startswith("(Y=1) AND (")
+    assert a.split_partition({"county_fips": "003"}) == []
+    with pytest.raises(StateConfigError, match="id list for county 005"):
+        a.split_partition({"county_fips": "005"})
+    already = {"county_fips": "001", "oid_min": "1", "oid_max": "2"}
+    assert a.split_partition(already) == [already]
+    plain = adapter_for(load_config(_cfg(tmp_path)))()
+    assert plain.split_partition({"county_fips": "1"}) == [{"county_fips": "1"}]
+    w = a.where(FetchRequest({"county_fips": "001", "oid_min": "5", "oid_max": "9"}))
+    assert w.startswith("(Y=1) AND ((") and "OID>=5 AND OID<9" in w
+
+
 def test_use_restrictions_are_recorded_in_source_terms(tmp_path: Path) -> None:
     cls = adapter_for(
         load_config(_cfg(tmp_path, use_restrictions=["no_resale", "no_mailing_list"]))
@@ -443,3 +508,100 @@ def test_fixed_filter_and_deed_ref(tmp_path: Path) -> None:
 def test_deed_ref_validation(tmp_path: Path, over: dict[str, Any], message: str) -> None:
     with pytest.raises(StateConfigError, match=message):
         load_config(_cfg(tmp_path, **over))
+
+
+def test_id_range_error_is_reported(tmp_path: Path) -> None:
+    from collections.abc import Mapping as _M
+
+    from equity.adapters.http import PoliteClient
+
+    def transport(url: str, headers: _M[str, str], timeout: float) -> tuple[int, bytes, str]:
+        if url.endswith("robots.txt"):
+            return 404, b"", ""
+        return 200, b'{"error":{"code":400,"message":"Invalid field"}}', "application/json"
+
+    named = adapter_for(load_config(_cfg(tmp_path, county={"field": "C", "format": "name"})))
+    client = PoliteClient(min_interval_s=0, transport=transport, sleep=lambda s: None)
+    with pytest.raises(StateConfigError, match="id range for"):
+        list(named(client).partitions())
+
+
+def test_refused_statistics_fall_back_to_the_id_list(tmp_path: Path) -> None:
+    """MARIS (Mississippi) answers 400 to outStatistics but serves returnIdsOnly."""
+    from collections.abc import Mapping as _M
+
+    from equity.adapters.http import PoliteClient
+
+    def transport(url: str, headers: _M[str, str], timeout: float) -> tuple[int, bytes, str]:
+        if url.endswith("robots.txt"):
+            return 404, b"", ""
+        if "outStatistics" in url:
+            body: dict[str, Any] = {"error": {"code": 400, "message": "Unable to complete"}}
+        else:
+            body = {"objectIdFieldName": "OID", "objectIds": [9, 0, 1, 2, 3, 4, 5, 6, 7, 8]}
+        return 200, json.dumps(body).encode(), "application/json"
+
+    cfg = load_config(_cfg(tmp_path, partition_window=4))
+    client = PoliteClient(min_interval_s=0, transport=transport, sleep=lambda s: None)
+    assert list(adapter_for(cfg)(client).partitions()) == [
+        {"oid_min": "0", "oid_max": "4"},
+        {"oid_min": "4", "oid_max": "8"},
+        {"oid_min": "8", "oid_max": "10"}]  # fmt: skip
+
+
+def test_homestead_values() -> None:
+    from equity.adapters.state_parcels import parse_homestead
+
+    assert [parse_homestead(v) for v in ("Yes", "Y", "Homestead", "1", 7500, "$25,000.00")] == [
+        True
+    ] * 6
+    assert [parse_homestead(v) for v in ("No", "NOT ENROLLED", "Non-Homestead", "0", 0)] == [
+        False
+    ] * 5
+    assert [parse_homestead(v) for v in (None, "", "None", "S1", "SENIOR")] == [None] * 5
+
+
+def test_situs_owner_type_and_homestead_reach_the_rows(tmp_path: Path) -> None:
+    fields = {"parcel_id": "PID", "owner1": "OWN", "situs_line1": ["NUM", "ST"],
+              "situs_city": "SC", "situs_zip": "SZ", "owner_type": "OT", "homestead": "HX",
+              "total_value": "TV", "tax_year": {"const": 2026}}  # fmt: skip
+    a = adapter_for(load_config(_cfg(tmp_path, fields=fields, county={"constant": "001"})))()
+    body = {"attributes": [
+        {"OID": 1, "PID": "1", "OWN": "ANN LEE", "NUM": "12", "ST": "MAIN ST", "SC": "Elkins",
+         "SZ": "26241-1234", "OT": "Individual", "HX": "Y", "TV": 100},
+        {"OID": 2, "PID": "2", "OWN": "B LLC", "NUM": None, "ST": None, "TV": 5}]}  # fmt: skip
+    f = Fetched("zz.test.parcels", "https://x.test/FeatureServer/0/query", AT, 200,
+                json.dumps(body).encode(), "")  # fmt: skip
+    rows = list(a.normalize(f))
+    parcels = {r.row["parid_raw"]: r.row for r in rows if r.table == "parcel"}
+    addrs = {r.row["address_id"]: r.row for r in rows if r.table == "address"}
+    situs = addrs[parcels["1"]["situs_address_id"]]
+    assert (situs["line1"], situs["city"], situs["state"], situs["zip5"]) == (
+        "12 MAIN ST", "ELKINS", "WV", "26241")  # fmt: skip
+    assert parcels["2"]["situs_address_id"] is None
+    owners = {r.row["parcel_uid"]: r.row for r in rows if r.table == "owner_snapshot"}
+    assert owners["54001-1"]["owner_type"] == "Individual"
+    hx = {r.row["parcel_uid"]: r.row["homestead"] for r in rows if r.table == "parcel_assessment"}
+    assert hx == {"54001-1": True, "54001-2": None}
+    full = adapter_for(load_config(_cfg(tmp_path, fields={"parcel_id": "PID",
+                                                          "situs_full": "SF"})))()  # fmt: skip
+    assert full._situs({"SF": "5 OAK RD, ELKINS, WV 26241"})["line1"] == "5 OAK RD"
+    assert full._situs({"SF": None}) is None
+
+
+def test_land_use_and_zoning_reach_the_parcel_rows(tmp_path: Path) -> None:
+    fields = {"parcel_id": "PID", "land_use_code": "LUC", "land_use_desc": "LUD", "zoning": "ZN"}
+    a = adapter_for(load_config(_cfg(tmp_path, fields=fields, county={"constant": "001"})))
+    out = _rows(a, [{"OID": 1, "PID": "1", "LUC": "0100", "LUD": " Single Family ", "ZN": "R-1"},
+                    {"OID": 2, "PID": "2", "LUC": "", "LUD": None}])  # fmt: skip
+    parcels = {r["parid_raw"]: r for t, r in out if t == "parcel"}
+    assert (
+        parcels["1"]["land_use_code"],
+        parcels["1"]["land_use_desc"],
+        parcels["1"]["zoning"],
+    ) == ("0100", "Single Family", "R-1")
+    assert (
+        parcels["2"]["land_use_code"],
+        parcels["2"]["land_use_desc"],
+        parcels["2"]["zoning"],
+    ) == (None, None, None)

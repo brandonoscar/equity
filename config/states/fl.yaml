@@ -4,6 +4,8 @@ layer_url: https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Fl
 order_by: OBJECTID
 page_size: 1000
 min_interval_s: 1.0
+# Counties are too big to fetch in one request before the container sleeps; use id windows.
+partition_window: 20000
 county:
   field: CO_NO        # FDOR county number 11-77 (alphabetical, Miami-Dade = 23)
   format: code_map
@@ -76,6 +78,11 @@ county:
     "76": "131"   # Walton
     "77": "133"   # Washington
 fields:
+  land_use_code: DOR_UC
+  situs_line1: PHY_ADDR1
+  situs_city: PHY_CITY
+  situs_zip: PHY_ZIPCD
+  homestead: JV_HMSTD
   parcel_id: PARCEL_ID
   owner1: OWN_NAME
   mail_line1: OWN_ADDR1

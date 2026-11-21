@@ -3,127 +3,227 @@
   {
    "County": "Daggett",
    "OBJECTID": 141656,
-   "PARCEL_ID": "153"
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": "TESTOWNER EC9800",
+   "PARCEL_CITY": "",
+   "PARCEL_ID": "153",
+   "PARCEL_ZIP": "84046"
   },
   {
    "County": "Daggett",
    "OBJECTID": 141657,
-   "PARCEL_ID": "153-1"
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": null,
+   "PARCEL_CITY": "",
+   "PARCEL_ID": "153-1",
+   "PARCEL_ZIP": "84046"
   },
   {
    "County": "Daggett",
    "OBJECTID": 141658,
-   "PARCEL_ID": "155"
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": null,
+   "PARCEL_CITY": "",
+   "PARCEL_ID": "155",
+   "PARCEL_ZIP": "84046"
   },
   {
    "County": "Daggett",
    "OBJECTID": 141659,
-   "PARCEL_ID": "252"
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": null,
+   "PARCEL_CITY": "",
+   "PARCEL_ID": "252",
+   "PARCEL_ZIP": "84046"
   },
   {
    "County": "Daggett",
    "OBJECTID": 141660,
-   "PARCEL_ID": "251"
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": null,
+   "PARCEL_CITY": "",
+   "PARCEL_ID": "251",
+   "PARCEL_ZIP": "84046"
   },
   {
    "County": "Daggett",
    "OBJECTID": 141661,
-   "PARCEL_ID": "173"
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": null,
+   "PARCEL_CITY": "",
+   "PARCEL_ID": "173",
+   "PARCEL_ZIP": "84046"
   },
   {
    "County": "Daggett",
    "OBJECTID": 141662,
-   "PARCEL_ID": "154-2"
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": "TESTOWNER ECFEC2",
+   "PARCEL_CITY": "",
+   "PARCEL_ID": "154-2",
+   "PARCEL_ZIP": "84046"
   },
   {
    "County": "Daggett",
    "OBJECTID": 141663,
-   "PARCEL_ID": "A256-2"
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": "TESTOWNER 22E1D7",
+   "PARCEL_CITY": "",
+   "PARCEL_ID": "A256-2",
+   "PARCEL_ZIP": "84046"
   },
   {
    "County": "Daggett",
    "OBJECTID": 141664,
-   "PARCEL_ID": "B311"
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": "TESTOWNER 391C29",
+   "PARCEL_CITY": "",
+   "PARCEL_ID": "B311",
+   "PARCEL_ZIP": "84046"
   },
   {
    "County": "Daggett",
    "OBJECTID": 141665,
-   "PARCEL_ID": "154"
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": "TESTOWNER 5BA788",
+   "PARCEL_CITY": "",
+   "PARCEL_ID": "154",
+   "PARCEL_ZIP": "84046"
   },
   {
    "County": "Daggett",
    "OBJECTID": 141666,
-   "PARCEL_ID": "177"
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": null,
+   "PARCEL_CITY": "",
+   "PARCEL_ID": "177",
+   "PARCEL_ZIP": "84046"
   },
   {
    "County": "Daggett",
    "OBJECTID": 141667,
-   "PARCEL_ID": "154-1"
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": null,
+   "PARCEL_CITY": "",
+   "PARCEL_ID": "154-1",
+   "PARCEL_ZIP": "84046"
   },
   {
    "County": "Daggett",
    "OBJECTID": 141668,
-   "PARCEL_ID": "154-3"
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": "TESTOWNER 231FCF",
+   "PARCEL_CITY": "",
+   "PARCEL_ID": "154-3",
+   "PARCEL_ZIP": "84046"
   },
   {
    "County": "Daggett",
    "OBJECTID": 141669,
-   "PARCEL_ID": "A258-2"
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": "TESTOWNER DB6052",
+   "PARCEL_CITY": "",
+   "PARCEL_ID": "A258-2",
+   "PARCEL_ZIP": "84046"
   },
   {
    "County": "Daggett",
    "OBJECTID": 141670,
-   "PARCEL_ID": "B255"
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": null,
+   "PARCEL_CITY": "",
+   "PARCEL_ID": "B255",
+   "PARCEL_ZIP": "84046"
   },
   {
    "County": "Daggett",
    "OBJECTID": 141671,
-   "PARCEL_ID": "A310-1"
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": null,
+   "PARCEL_CITY": "",
+   "PARCEL_ID": "A310-1",
+   "PARCEL_ZIP": "84046"
   },
   {
    "County": "Daggett",
    "OBJECTID": 141672,
-   "PARCEL_ID": "174"
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": null,
+   "PARCEL_CITY": "",
+   "PARCEL_ID": "174",
+   "PARCEL_ZIP": "84046"
   },
   {
    "County": "Daggett",
    "OBJECTID": 141673,
-   "PARCEL_ID": "176"
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": null,
+   "PARCEL_CITY": "",
+   "PARCEL_ID": "176",
+   "PARCEL_ZIP": "84046"
   },
   {
    "County": "Daggett",
    "OBJECTID": 141674,
-   "PARCEL_ID": "178"
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": null,
+   "PARCEL_CITY": "",
+   "PARCEL_ID": "178",
+   "PARCEL_ZIP": "84046"
   },
   {
    "County": "Daggett",
    "OBJECTID": 141675,
-   "PARCEL_ID": "151"
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": null,
+   "PARCEL_CITY": "",
+   "PARCEL_ID": "151",
+   "PARCEL_ZIP": "84046"
   },
   {
    "County": "Daggett",
    "OBJECTID": 141676,
-   "PARCEL_ID": "147-1"
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": null,
+   "PARCEL_CITY": "",
+   "PARCEL_ID": "147-1",
+   "PARCEL_ZIP": "84046"
   },
   {
    "County": "Daggett",
    "OBJECTID": 141677,
-   "PARCEL_ID": "254"
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": null,
+   "PARCEL_CITY": "",
+   "PARCEL_ID": "254",
+   "PARCEL_ZIP": "84046"
   },
   {
    "County": "Daggett",
    "OBJECTID": 141678,
-   "PARCEL_ID": "171"
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": null,
+   "PARCEL_CITY": "",
+   "PARCEL_ID": "171",
+   "PARCEL_ZIP": "84046"
   },
   {
    "County": "Daggett",
    "OBJECTID": 141679,
-   "PARCEL_ID": "A256-3"
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": null,
+   "PARCEL_CITY": "",
+   "PARCEL_ID": "A256-3",
+   "PARCEL_ZIP": "84046"
   },
   {
    "County": "Daggett",
    "OBJECTID": 141680,
-   "PARCEL_ID": "A258-1"
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": null,
+   "PARCEL_CITY": "",
+   "PARCEL_ID": "A258-1",
+   "PARCEL_ZIP": "84046"
   }
  ],
  "layer": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/UtahStatewideParcels/FeatureServer/0",
