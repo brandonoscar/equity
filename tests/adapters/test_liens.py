@@ -252,3 +252,37 @@ def test_ten_digit_bbl_and_extra_pii(tmp_path: Path) -> None:
     juris = {r["instrument_number"]: r["jurisdiction"] for t, r in out if t == "instrument"}
     # A short bbl names no lot, but its first digit still names the borough (2 = Bronx).
     assert juris == {"E1": "36005", "E2": "36005"}
+
+
+def test_rows_sharing_a_uid_are_one_lien(tmp_path: Path) -> None:
+    """NY warrants repeat per status change; CT repeats per debtor; foreclosures per lot."""
+    cfg = _cfg(tmp_path, parcel={"kind": "pin", "field": "pin", "county_fips": "42003"},
+               parties=[{"role": "debtor", "name": "last",
+                         "address": {"line1": "street", "zip": "zip"}}])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    rows = [
+        {"ticket": "W1", "docketed": "2026-01-05T00:00:00", "due": "50", "last": "ANN LEE",
+         "pin": "1", "satisfied": None},
+        {"ticket": "W1", "docketed": "2026-01-05T00:00:00", "due": "50", "last": "ANN LEE",
+         "street": "1 MAIN ST", "zip": "10001", "pin": "2",
+         "satisfied": "2026-04-01T00:00:00"},
+        {"ticket": "W1", "docketed": "2026-01-05T00:00:00", "last": "BOB LEE", "pin": "2"},
+    ]  # fmt: skip
+    body = json.dumps({"rows": rows}).encode()
+    out = [
+        (r.table, r.row) for r in cls().normalize(Fetched(cls.source_id, "x", AT, 200, body, ""))
+    ]
+    inst = [r for t, r in out if t == "instrument"]
+    assert sorted(r["doc_type"] for r in inst) == ["JUDGMENT_LIEN", "RELEASE"]
+    assert len([1 for t, _ in out if t == "source_record"]) == 1
+    assert len([r for t, r in out if t == "instrument_parcel"]) == 2
+    parties = {r["raw_name"]: r["address_id"] for t, r in out if t == "party"}
+    assert set(parties) == {"ANN LEE", "BOB LEE"}
+    assert parties["ANN LEE"] is not None  # the row with an address wins
+    again = [
+        (r.table, r.row)
+        for r in cls().normalize(
+            Fetched(cls.source_id, "x", AT, 200, json.dumps({"rows": rows[::-1]}).encode(), "")
+        )
+    ]
+    assert again == out  # row order does not matter

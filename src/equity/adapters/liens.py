@@ -299,45 +299,64 @@ class LienAdapter(Adapter):
                 return fips
         return str(self.config.get("county_fips") or self.config["state"])
 
+    def _uid(self, row: Mapping[str, Any]) -> str | None:
+        spec = self.config["uid"]
+        if isinstance(spec, list):
+            parts = [_text(row.get(f)) for f in spec]
+            return None if not any(parts) else "-".join(p or "" for p in parts)
+        return _join(row, spec)
+
     def normalize(self, fetched: Fetched) -> Iterator[NormalizedRow]:
+        """Rows sharing a uid are one lien: status versions (NY warrants), one row per debtor
+        (CT), or one per docket entry or lot (foreclosures, evictions). They are merged: all
+        parties and lots, the first amount and doc type in content order, any release date."""
         cfg = self.config
+        groups: dict[str, list[Mapping[str, Any]]] = {}
         for row in json.loads(fetched.content).get("rows") or []:
-            uid_raw = _join(row, cfg["uid"]) if not isinstance(cfg["uid"], list) else "-".join(
-                _text(row.get(f)) or "" for f in cfg["uid"])  # fmt: skip
-            recorded = _date(row.get(cfg["date_field"]))
-            if not uid_raw or recorded is None:
-                continue  # no stable key or no lien date: skip rather than guess
-            parcel_uid, county = self._parcel(row)
-            ctx = RecordContext(fetched, county or self._county(row), uid_raw, "lien", dict(row))
+            uid_raw = self._uid(row)
+            if uid_raw and _date(row.get(cfg["date_field"])) is not None:
+                groups.setdefault(uid_raw, []).append(row)  # no key or no date: skipped
+        for uid_raw in sorted(groups):
+            rows = sorted(groups[uid_raw], key=canonical_json)
+            first = rows[0]
+            recorded = min(d for d in (_date(r.get(cfg["date_field"])) for r in rows) if d)
+            lots = sorted({lot for lot in (self._parcel(r) for r in rows) if lot[0]})
+            county = lots[0][1] if lots else None
+            ctx = RecordContext(fetched, county or self._county(first), uid_raw, "lien",
+                                rows[0] if len(rows) == 1 else {"rows": rows})  # fmt: skip
             uid = stable_id(self.source_id, "lien", uid_raw)
             raw_type = cfg["doc_type_raw"]
-            doc_raw = (_text(row.get(raw_type["field"])) if isinstance(raw_type, dict)
-                       else str(raw_type)) or self._doc_type(row)  # fmt: skip
+            doc_raw = (_text(first.get(raw_type["field"])) if isinstance(raw_type, dict)
+                       else str(raw_type)) or self._doc_type(first)  # fmt: skip
             flag = cfg.get("satisfied_flag")
-            if flag and str(row.get(flag)).strip().lower() in ("true", "1", "yes", "y"):
+            if flag and any(str(r.get(flag)).strip().lower() in ("true", "1", "yes", "y")
+                            for r in rows):  # fmt: skip
                 doc_raw += " (satisfied)"  # no satisfaction date is published: marked only
-            amount = _amount(row.get(cfg["amount"])) if cfg.get("amount") else None
-            doc_type = self._doc_type(row)
+            amounts = [a for a in (_amount(r.get(cfg["amount"])) for r in rows) if a is not None] \
+                if cfg.get("amount") else []  # fmt: skip
+            amount = amounts[0] if amounts else None
             yield ctx.source_record()
             yield ctx.fact(
                 "instrument", instrument_uid=uid, instrument_number=uid_raw, book_type=None,
-                book=None, page=None, doc_type_raw=doc_raw, doc_type=doc_type,
+                book=None, page=None, doc_type_raw=doc_raw, doc_type=self._doc_type(first),
                 recorded_on=recorded, recorded_seq=None, executed_on=None, consideration=None,
                 principal_amount=amount, max_secured_amount=None, maturity_date=None,
                 amount_source="index" if amount is not None else None, legal_desc_raw=None,
             )  # fmt: skip
-            if parcel_uid is not None:
+            for parcel_uid, _county in lots:
                 yield ctx.fact("instrument_parcel", instrument_uid=uid, parcel_uid=parcel_uid,
                                method="index_parcel_id",
                                evidence={"source_fields": cfg["parcel"]})  # fmt: skip
-            yield from self._parties(ctx, uid, row)
-            released = _date(row.get(cfg["released_on"])) if cfg.get("released_on") else None
-            if released is not None and released >= recorded:
+            yield from self._parties(ctx, uid, rows)
+            rel_field = cfg.get("released_on")
+            rel_dates = [d for d in (_date(r.get(rel_field)) for r in rows)
+                         if d is not None and d >= recorded] if rel_field else []  # fmt: skip
+            if rel_dates:
                 rel_uid = stable_id(self.source_id, "release", uid_raw)
                 yield ctx.fact(
                     "instrument", instrument_uid=rel_uid, instrument_number=f"{uid_raw}-SAT",
                     book_type=None, book=None, page=None, doc_type_raw=f"{doc_raw} satisfied",
-                    doc_type="RELEASE", recorded_on=released, recorded_seq=None,
+                    doc_type="RELEASE", recorded_on=min(rel_dates), recorded_seq=None,
                     executed_on=None, consideration=None, principal_amount=None,
                     max_secured_amount=None, maturity_date=None, amount_source=None,
                     legal_desc_raw=None,
@@ -347,33 +366,39 @@ class LienAdapter(Adapter):
                                method="index_xref")  # fmt: skip
 
     def _parties(
-        self, ctx: RecordContext, uid: str, row: Mapping[str, Any]
+        self, ctx: RecordContext, uid: str, rows: list[Mapping[str, Any]]
     ) -> Iterator[NormalizedRow]:
-        seqs: dict[str, int] = {}
         skip = {s.upper() for s in self.config.get("skip_names", [])}
-        for p in self.config["parties"]:
-            name = _text(p["const"]) if "const" in p else _join(row, p.get("name"))
-            if not name or name.upper() in skip:
-                continue
-            role = p["role"]
-            seqs[role] = seqs.get(role, 0) + 1
-            a = p.get("address") or {}
-            zipc = _text(row.get(a["zip"])) if a.get("zip") else None
-            zip5 = zipc[:5] if zipc and re.fullmatch(r"[0-9]{5}", zipc[:5]) else None
-            state = (_text(row.get(a["state"])) if a.get("state") and a["state"] in row
-                     else _text(a.get("state_const")))  # fmt: skip
-            addr = normalized_address(_join(row, a.get("line1")),
-                                      _text(row.get(a["city"])) if a.get("city") else None,
-                                      state, zip5) if a else None  # fmt: skip
-            if addr is not None:
-                yield NormalizedRow("address", addr)
-            nc = classify(name)
-            party_id = stable_id(self.source_id, ctx.record_key, role, str(seqs[role]), clean(name))
-            yield ctx.fact("party", party_id=party_id, raw_name=name, party_kind=nc.party_kind,
-                           org_form=nc.org_form, org_name_norm=nc.org_name_norm,
-                           address_id=None if addr is None else addr["address_id"])  # fmt: skip
-            yield ctx.fact("instrument_party", instrument_uid=uid, party_id=party_id,
-                           role=role, seq=seqs[role])  # fmt: skip
+        found: dict[str, dict[str, dict[str, Any] | None]] = {}
+        for row in rows:
+            for p in self.config["parties"]:
+                name = _text(p["const"]) if "const" in p else _join(row, p.get("name"))
+                if not name or name.upper() in skip:
+                    continue
+                a = p.get("address") or {}
+                zipc = _text(row.get(a["zip"])) if a.get("zip") else None
+                zip5 = zipc[:5] if zipc and re.fullmatch(r"[0-9]{5}", zipc[:5]) else None
+                state = (_text(row.get(a["state"])) if a.get("state") and a["state"] in row
+                         else _text(a.get("state_const")))  # fmt: skip
+                addr = normalized_address(_join(row, a.get("line1")),
+                                          _text(row.get(a["city"])) if a.get("city") else None,
+                                          state, zip5) if a else None  # fmt: skip
+                by_name = found.setdefault(p["role"], {})
+                if name not in by_name or (by_name[name] is None and addr is not None):
+                    by_name[name] = addr
+        for role in sorted(found):
+            for seq, name in enumerate(sorted(found[role]), start=1):
+                addr = found[role][name]
+                if addr is not None:
+                    yield NormalizedRow("address", addr)
+                nc = classify(name)
+                party_id = stable_id(self.source_id, ctx.record_key, role, str(seq), clean(name))
+                yield ctx.fact("party", party_id=party_id, raw_name=name,
+                               party_kind=nc.party_kind, org_form=nc.org_form,
+                               org_name_norm=nc.org_name_norm,
+                               address_id=None if addr is None else addr["address_id"])  # fmt: skip
+                yield ctx.fact("instrument_party", instrument_uid=uid, party_id=party_id,
+                               role=role, seq=seq)  # fmt: skip
 
     def health(self) -> HealthReport:
         if self.ckan:
