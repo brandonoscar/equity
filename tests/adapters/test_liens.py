@@ -219,3 +219,18 @@ def test_ckan_sources_page_by_sql_and_mark_satisfied(tmp_path: Path) -> None:
     bad.write_text(yaml.safe_dump(data))
     with pytest.raises(LienConfigError, match="resource_id"):
         load_lien_config(bad)
+
+
+def test_doc_type_can_be_mapped_from_a_field(tmp_path: Path) -> None:
+    dt = {"field": "kind", "map": {"IRS": "TAX_LIEN_FEDERAL"}, "default": "OTHER"}
+    cls = lien_adapter_for(load_lien_config(_cfg(tmp_path, doc_type=dt,
+                                                  doc_type_raw={"field": "kind"})))  # fmt: skip
+    rows = [{"ticket": "A", "docketed": "2026-01-05T00:00:00", "kind": "irs", "last": "X"},
+            {"ticket": "B", "docketed": "2026-01-05T00:00:00", "kind": "ODD", "last": "Y"},
+            {"ticket": "C", "docketed": "2026-01-05T00:00:00", "last": "Z"}]  # fmt: skip
+    body = json.dumps({"rows": rows}).encode()
+    inst = {r.row["instrument_number"]: r.row for r in cls().normalize(
+        Fetched(cls.source_id, "x", AT, 200, body, "")) if r.table == "instrument"}  # fmt: skip
+    assert {k: v["doc_type"] for k, v in inst.items()} == {
+        "A": "TAX_LIEN_FEDERAL", "B": "OTHER", "C": "OTHER"}  # fmt: skip
+    assert inst["C"]["doc_type_raw"] == "OTHER"  # no raw value: falls back to the mapped type

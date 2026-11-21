@@ -10,7 +10,8 @@ Config keys:
   date_field          the lien date (docketed / filed); rows without it are skipped
   partition           year (default) or month windows on date_field, from first_year
   uid                 field (or list of fields joined with '-') unique within the dataset
-  doc_type            instrument doc_type (JUDGMENT_LIEN, TAX_LIEN_STATE, ...)
+  doc_type            instrument doc_type (JUDGMENT_LIEN, TAX_LIEN_STATE, ...), or
+                      {field, map: {VALUE: DOC_TYPE}, default} to map a row's value
   doc_type_raw        constant label, or {field: name}
   amount              field holding the amount owed (principal_amount)
   released_on         optional field: satisfaction date -> RELEASE + instrument_ref
@@ -246,6 +247,14 @@ class LienAdapter(Adapter):
         return Fetched(self.source_id, f"{q.url}?$where={where}", at, 200, body,
                        "application/json")  # fmt: skip
 
+    def _doc_type(self, row: Mapping[str, Any]) -> str:
+        """A constant, or {field, map, default}: the row's value looked up in map."""
+        spec = self.config["doc_type"]
+        if isinstance(spec, str):
+            return spec
+        value = str(row.get(spec["field"]) or "").strip().upper()
+        return str(spec["map"].get(value, spec["default"]))
+
     def _parcel(self, row: Mapping[str, Any]) -> tuple[str | None, str | None]:
         """(parcel_uid, county fips) for the row's lot, or (None, None)."""
         spec = self.config.get("parcel") or {}
@@ -290,15 +299,16 @@ class LienAdapter(Adapter):
             uid = stable_id(self.source_id, "lien", uid_raw)
             raw_type = cfg["doc_type_raw"]
             doc_raw = (_text(row.get(raw_type["field"])) if isinstance(raw_type, dict)
-                       else str(raw_type)) or cfg["doc_type"]  # fmt: skip
+                       else str(raw_type)) or self._doc_type(row)  # fmt: skip
             flag = cfg.get("satisfied_flag")
             if flag and str(row.get(flag)).strip().lower() in ("true", "1", "yes", "y"):
                 doc_raw += " (satisfied)"  # no satisfaction date is published: marked only
             amount = _amount(row.get(cfg["amount"])) if cfg.get("amount") else None
+            doc_type = self._doc_type(row)
             yield ctx.source_record()
             yield ctx.fact(
                 "instrument", instrument_uid=uid, instrument_number=uid_raw, book_type=None,
-                book=None, page=None, doc_type_raw=doc_raw, doc_type=cfg["doc_type"],
+                book=None, page=None, doc_type_raw=doc_raw, doc_type=doc_type,
                 recorded_on=recorded, recorded_seq=None, executed_on=None, consideration=None,
                 principal_amount=amount, max_secured_amount=None, maturity_date=None,
                 amount_source="index" if amount is not None else None, legal_desc_raw=None,
