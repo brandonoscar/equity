@@ -150,3 +150,32 @@ def test_zip_must_be_five_ascii_digits(tmp_path: Path) -> None:
     out = [r.row for r in cls().normalize(Fetched(cls.source_id, "x", AT, 200, body, ""))
            if r.table == "address"]  # fmt: skip
     assert [a["zip5"] for a in out] == [None]
+
+
+def test_separators_are_skipped_and_county_comes_from_its_name(tmp_path: Path) -> None:
+    cfg = _cfg(tmp_path, parcel=None, county_fips="36001", county_name_field="county",
+               skip_names=["AND/OR"],
+               parties=[{"role": "debtor", "name": "n1"}, {"role": "debtor", "name": "n2"},
+                        {"role": "debtor", "name": "n3"}])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    rows = [
+        {
+            "ticket": "W1",
+            "docketed": "2026-01-05T00:00:00",
+            "n1": "ANN LEE",
+            "n2": "AND/OR",
+            "n3": "BOB LEE",
+            "county": "PUTNAM",
+        },
+        {"ticket": "W2", "docketed": "2026-01-05T00:00:00", "n1": "C", "county": "NOWHERE"},
+    ]
+    body = json.dumps({"rows": rows}).encode()
+    out = [
+        (r.table, r.row) for r in cls().normalize(Fetched(cls.source_id, "x", AT, 200, body, ""))
+    ]
+    names = sorted(r["raw_name"] for t, r in out if t == "party")
+    assert names == ["ANN LEE", "BOB LEE", "C"]
+    seqs = sorted(r["seq"] for t, r in out if t == "instrument_party")
+    assert seqs == [1, 1, 2]
+    juris = {r["instrument_number"]: r["jurisdiction"] for t, r in out if t == "instrument"}
+    assert juris == {"W1": "36079", "W2": "36001"}  # Putnam; unknown name -> fallback

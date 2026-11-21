@@ -1,0 +1,34 @@
+source_id: ny.dtf.tax_warrants
+state: NY
+county_fips: "36001"            # fallback when the county name does not match
+county_name_field: county_code
+# NYS Department of Taxation and Finance tax warrants. A filed warrant has the effect of a
+# docketed judgment against the debtor's real and personal property in the county; since
+# 2025-07-01 warrants are filed with the Department of State and are liens in every county.
+portal: https://data.ny.gov
+dataset: v7ua-z23v
+order_by: [warrant_id, ":id"]
+select: [warrant_id, status_code, debtor_name_1, debtor_name_2, debtor_name_3, debtor_name_4,
+         debtor_address_1, debtor_address_2, city, state, zip_code, county_code,
+         warrant_filed_amount, warrant_filed_date, warrant_satisfaction_date,
+         warrant_vacate_date, warrant_expiration_date]
+date_field: warrant_filed_date
+partition: year
+first_year: 1982
+uid: warrant_id
+doc_type: TAX_LIEN_STATE
+doc_type_raw: NYS tax warrant
+amount: warrant_filed_amount
+released_on: warrant_satisfaction_date
+skip_names: ["AND/OR", "AND", "OR", "&"]
+parties:
+  - {role: debtor, name: debtor_name_1, address: {line1: [debtor_address_1, debtor_address_2], city: city, state: state, zip: zip_code}}
+  - {role: debtor, name: debtor_name_2, address: {line1: [debtor_address_1, debtor_address_2], city: city, state: state, zip: zip_code}}
+  - {role: debtor, name: debtor_name_3, address: {line1: [debtor_address_1, debtor_address_2], city: city, state: state, zip: zip_code}}
+  - {role: debtor, name: debtor_name_4, address: {line1: [debtor_address_1, debtor_address_2], city: city, state: state, zip: zip_code}}
+  - {role: creditor, const: "NEW YORK STATE DEPARTMENT OF TAXATION AND FINANCE", person_names: false}
+terms:
+  url: https://data.ny.gov/Government-Finance/Tax-Warrants-Beginning-1982/v7ua-z23v
+  summary: "data.ny.gov (NYS Open Data): public, no login, NY Open Data terms; updated daily. Names and addresses as filed. robots.txt allows /resource/ (Crawl-delay 1)."
+  checked_on: 2026-11-21
+  cost_model: free

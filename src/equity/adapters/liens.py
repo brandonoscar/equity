@@ -18,6 +18,8 @@ Config keys:
                                address: {line1: field|[fields], city, state, zip}}
   parcel              {kind: nyc_bbl, borough, block, lot} | {kind: pin, field, county_fips}
   county_fips         jurisdiction when no parcel names a county (5 digits)
+  county_name_field   optional field holding the county name (mapped to FIPS in `state`)
+  skip_names          name values that are separators, not parties (e.g. AND/OR)
   terms               {url, summary, checked_on, cost_model}
 """
 
@@ -29,6 +31,7 @@ from collections.abc import Iterator, Mapping
 from dataclasses import dataclass
 from datetime import UTC, date, datetime
 from decimal import Decimal, InvalidOperation
+from functools import cache
 from pathlib import Path
 from typing import Any, ClassVar
 
@@ -40,6 +43,7 @@ from equity.adapters.rows import RecordContext, canonical_json
 from equity.adapters.socrata import SocrataQuery, fetch_all
 from equity.adapters.state_parcels import norm_parcel_id, normalized_address
 from equity.config import CONFIG_DIR
+from equity.geo import counties, norm_county_name
 from equity.matching.orgs import classify, clean
 from equity.schema.ids import stable_id
 
@@ -130,6 +134,11 @@ def _amount(value: Any) -> Decimal | None:
     except (InvalidOperation, ValueError):
         return None
     return d if d >= 0 else None
+
+
+@cache
+def _county_by_name(state: str) -> dict[str, str]:
+    return {norm_county_name(c.name): c.fips5 for c in counties() if c.state == state}
 
 
 def nyc_bbl(borough: Any, block: Any, lot: Any) -> str | None:
@@ -224,6 +233,13 @@ class LienAdapter(Adapter):
             hit = BOROUGHS.get(str(row.get(spec["borough"]) or "").strip().upper())
             if hit:
                 return hit[0]
+        field = self.config.get("county_name_field")
+        if field:
+            fips = _county_by_name(self.config["state"]).get(
+                norm_county_name(str(row.get(field) or ""))
+            )
+            if fips:
+                return fips
         return str(self.config.get("county_fips") or self.config["state"])
 
     def normalize(self, fetched: Fetched) -> Iterator[NormalizedRow]:
@@ -273,9 +289,10 @@ class LienAdapter(Adapter):
         self, ctx: RecordContext, uid: str, row: Mapping[str, Any]
     ) -> Iterator[NormalizedRow]:
         seqs: dict[str, int] = {}
+        skip = {s.upper() for s in self.config.get("skip_names", [])}
         for p in self.config["parties"]:
             name = _text(p["const"]) if "const" in p else _join(row, p.get("name"))
-            if not name:
+            if not name or name.upper() in skip:
                 continue
             role = p["role"]
             seqs[role] = seqs.get(role, 0) + 1

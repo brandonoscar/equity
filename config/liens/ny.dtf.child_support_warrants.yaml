@@ -1,0 +1,28 @@
+source_id: ny.dtf.child_support_warrants
+state: NY
+county_fips: "36001"
+county_name_field: county_code
+# NYS warrants for past-due child support, filed by the Department of Taxation and Finance
+# for the Division of Child Support Services. Like tax warrants, a filed warrant is a lien.
+portal: https://data.ny.gov
+dataset: 8pp4-isha
+order_by: [warrant_id, ":id"]
+select: [warrant_id, status_code_a_c_u, debtor_name, debtor_address, city, state, zip_code,
+         county_code, warrant_filed_amount, warrant_filed_date, warrant_satisfaction_date,
+         warrant_vacate_date, warrant_expiration_date]
+date_field: warrant_filed_date
+partition: year
+first_year: 2004
+uid: warrant_id
+doc_type: STATUTORY_LIEN
+doc_type_raw: NYS child support warrant
+amount: warrant_filed_amount
+released_on: warrant_satisfaction_date
+parties:
+  - {role: debtor, name: debtor_name, address: {line1: debtor_address, city: city, state: state, zip: zip_code}}
+  - {role: creditor, const: "NEW YORK STATE DIVISION OF CHILD SUPPORT SERVICES", person_names: false}
+terms:
+  url: https://data.ny.gov/Government-Finance/Child-Support-Warrants-Beginning-2004/8pp4-isha
+  summary: "data.ny.gov (NYS Open Data): public, no login, NY Open Data terms; updated daily. robots.txt allows /resource/ (Crawl-delay 1)."
+  checked_on: 2026-11-21
+  cost_model: free
