@@ -110,9 +110,11 @@ class PushReport:
     pruned: list[str] = field(default_factory=list)
 
 
-def _local_dirs(lake: Path) -> Iterator[Path]:
+def _local_dirs(lake: Path, only: frozenset[str] | None = None) -> Iterator[Path]:
     seen = sorted({p.parent for p in lake.rglob("*") if p.is_file()})
-    yield from seen
+    for d in seen:
+        if only is None or d.relative_to(lake).parts[0] in only:
+            yield d
 
 
 def write_bundle(src: Path) -> None:
@@ -123,15 +125,19 @@ def write_bundle(src: Path) -> None:
         (src / BUNDLE).write_text(json.dumps(files, sort_keys=True))
 
 
-def push(store: Store, lake: Path, prune_finished: bool = False) -> PushReport:
+def push(
+    store: Store, lake: Path, prune_finished: bool = False, only: frozenset[str] | None = None
+) -> PushReport:
     """Upload every lake file that storage lacks or holds at a different size. With
     prune_finished, a finished source (has _counts.json) whose Parquet parts are all stored
-    loses its local Parquet and gets an _offloaded marker."""
+    loses its local Parquet and gets an _offloaded marker. `only` limits the push to those
+    sources, so parallel loaders never upload another loader's (stale) state."""
     report = PushReport()
-    for src in sorted(d for d in lake.iterdir() if d.is_dir()):
+    sources = [d for d in sorted(lake.iterdir()) if d.is_dir() and (only is None or d.name in only)]
+    for src in sources:
         write_bundle(src)
     remote: dict[Path, dict[str, int]] = {}
-    for folder in _local_dirs(lake):
+    for folder in _local_dirs(lake, only):
         rel = folder.relative_to(lake).as_posix()
         have, _ = store.list_dir(rel + "/")
         remote[folder] = have
@@ -149,7 +155,7 @@ def push(store: Store, lake: Path, prune_finished: bool = False) -> PushReport:
             have[p.name] = size
             report.uploaded += 1
     if prune_finished:
-        for src in sorted(d for d in lake.iterdir() if (d / "_counts.json").exists()):
+        for src in (d for d in sources if (d / "_counts.json").exists()):
             parts = list(src.glob("*/*.parquet"))
             if parts and all(remote.get(p.parent, {}).get(p.name) == p.stat().st_size
                              for p in parts):  # fmt: skip
@@ -161,12 +167,12 @@ def push(store: Store, lake: Path, prune_finished: bool = False) -> PushReport:
     return report
 
 
-def pull_state(store: Store, lake: Path) -> int:
+def pull_state(store: Store, lake: Path, only: frozenset[str] | None = None) -> int:
     """Unpack each stored source's _state.json (plan, counts, finished-part markers) into the
     local lake. Returns the number of files written. Never overwrites a local file."""
     written = 0
     _, sources = store.list_dir("")
-    for src in sorted(sources):
+    for src in sorted(s for s in sources if only is None or s in only):
         files, _ = store.list_dir(f"{src}/")
         if BUNDLE not in files:
             continue
@@ -188,16 +194,19 @@ def main(argv: list[str]) -> int:
     p = sub.add_parser("push")
     p.add_argument("--prune-finished", action="store_true")
     p.add_argument("--watch", type=int, default=0, help="repeat every N seconds")
-    sub.add_parser("pull-state")
+    p.add_argument("--only", nargs="*", help="limit to these source ids")
+    ps = sub.add_parser("pull-state")
+    ps.add_argument("--only", nargs="*", help="limit to these source ids")
     args = ap.parse_args(argv)
+    only = frozenset(args.only) if args.only else None
     store = Store(base_url=os.environ.get("SUPABASE_STORAGE_URL", DEFAULT_URL),
                   key=os.environ.get("SUPABASE_SECRET_KEY") or None)  # fmt: skip
     lake = Path(args.lake)
     if args.cmd == "pull-state":
-        print(f"pulled {pull_state(store, lake)} state files")
+        print(f"pulled {pull_state(store, lake, only)} state files")
         return 0
     while True:
-        r = push(store, lake, args.prune_finished)
+        r = push(store, lake, args.prune_finished, only)
         print(f"uploaded {r.uploaded}, unchanged {r.unchanged}, too big {len(r.too_big)}, "
               f"pruned {r.pruned}", flush=True)  # fmt: skip
         for name in r.too_big:

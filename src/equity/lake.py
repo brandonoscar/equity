@@ -230,6 +230,16 @@ def _host(source_id: str) -> str:
     return urllib.parse.urlsplit(str(url)).netloc or source_id
 
 
+def host_groups(lake: Path = LAKE) -> list[dict[str, str]]:
+    """Unfinished sources grouped by the host they load from, in priority order: one group
+    per parallel loader, so each host still sees one build at a time."""
+    groups: dict[str, list[str]] = defaultdict(list)
+    for sid in plan(parcel_sources()):
+        if not (lake / sid / "_counts.json").exists():
+            groups[_host(sid)].append(sid)
+    return [{"host": h, "sources": " ".join(s)} for h, s in groups.items()]
+
+
 def plan(source_ids: list[str]) -> list[str]:
     def rank(sid: str) -> tuple[int, str]:
         for i, prefix in enumerate(PRIORITY):
@@ -310,6 +320,7 @@ def main(argv: list[str]) -> int:
     rp.add_argument("source_id")
     sub.add_parser("catalog")
     sub.add_parser("status")
+    sub.add_parser("hosts", help="unfinished sources grouped by host, as JSON")
     args = ap.parse_args(argv)
     if args.cmd == "build":
         print(json.dumps(build(args.source_id), indent=2, sort_keys=True))
@@ -323,6 +334,8 @@ def main(argv: list[str]) -> int:
         print(f"{args.source_id}: kept {kept} finished parts, {pending} partitions to go")
     elif args.cmd == "catalog":
         print(build_catalog())
+    elif args.cmd == "hosts":
+        print(json.dumps(host_groups(), separators=(",", ":")))
     else:
         st = status()
         total = sum(v.get("parcel", 0) for v in st.values())

@@ -1,8 +1,10 @@
 name: lake
 
-# Loads parcel sources on GitHub's runners, so the build keeps going with no session open.
-# State lives in object storage: each run pulls the plans and finished-part markers, builds
-# what is left, pushes new parts back, and drops local copies of finished sources.
+# Loads parcel and zoning sources on GitHub's runners, so the build keeps going with no session
+# open. State lives in object storage: a plan job pulls the plans and finished-part markers and
+# groups the unfinished sources by host; one load job per host (in parallel) pulls that
+# group's state, builds for up to 5 hours, and pushes its own sources back. A host never sees
+# more than one build at a time, as before.
 # Needs the repository secret SUPABASE_SECRET_KEY; without it every run is a no-op.
 
 on:
@@ -14,18 +16,20 @@ permissions:
   contents: read
 
 concurrency:
-  group: lake            # never two loaders at once: they would build the same partitions
+  group: lake            # never two loader runs at once: they would build the same partitions
   cancel-in-progress: false
 
 env:
   UV_VERSION: "0.11.32"
 
 jobs:
-  load:
+  plan:
     runs-on: ubuntu-24.04
-    timeout-minutes: 350
+    timeout-minutes: 30
     env:
       SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+    outputs:
+      groups: ${{ steps.groups.outputs.groups }}
     steps:
       - id: key
         run: |
@@ -42,24 +46,60 @@ jobs:
         with: { version: "${{ env.UV_VERSION }}" }
       - if: steps.key.outputs.ok == 'true'
         run: make sync
-      - name: resume from stored state
-        if: steps.key.outputs.ok == 'true'
-        run: uv run --locked python -m equity.lake_sync pull-state
-      - name: push parts every 10 minutes; drop raw responses once loaded
-        if: steps.key.outputs.ok == 'true'
+      - name: unfinished sources by host
+        id: groups
         run: |
+          if [ "${{ steps.key.outputs.ok }}" != "true" ]; then
+            echo "groups=[]" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          uv run --locked python -m equity.lake_sync pull-state
+          groups=$(uv run --locked python -m equity.lake hosts)
+          echo "$groups"
+          echo "groups=$groups" >> "$GITHUB_OUTPUT"
+
+  load:
+    needs: plan
+    if: needs.plan.outputs.groups != '[]' && needs.plan.outputs.groups != ''
+    runs-on: ubuntu-24.04
+    timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      max-parallel: 20
+      matrix:
+        group: ${{ fromJSON(needs.plan.outputs.groups) }}
+    name: load ${{ matrix.group.host }}
+    env:
+      SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+      SOURCES: ${{ matrix.group.sources }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6.8.0
+        with: { version: "${{ env.UV_VERSION }}" }
+      - run: make sync
+      - name: resume this group from stored state
+        # SOURCES is a space-separated list of source ids: word splitting is intended.
+        run: |
+          # shellcheck disable=SC2086
+          uv run --locked python -m equity.lake_sync pull-state --only $SOURCES
+      - name: push this group's parts every 10 minutes; drop raw responses once loaded
+        run: |
+          # shellcheck disable=SC2086
           nohup uv run --locked python -m equity.lake_sync push --prune-finished --watch 600 \
-            > sync.log 2>&1 &
+            --only $SOURCES > sync.log 2>&1 &
           nohup sh -c 'while true; do sleep 600; find data/raw -type f -mmin +20 -delete; done' \
             > /dev/null 2>&1 &
       - name: build
-        if: steps.key.outputs.ok == 'true'
-        run: timeout 300m uv run --locked python -m equity.lake run --max-parallel 10 --min-free-gb 4 || true
+        run: |
+          # shellcheck disable=SC2086
+          timeout 300m uv run --locked python -m equity.lake run --max-parallel 1 \
+            --min-free-gb 4 --only $SOURCES || true
       - name: stop builds and push what finished
-        if: always() && steps.key.outputs.ok == 'true'
+        if: always()
         run: |
           pkill -f "equity.lake build" || true
           pkill -f "equity.lake_sync push" || true
           sleep 5
-          uv run --locked python -m equity.lake_sync push --prune-finished
+          # shellcheck disable=SC2086
+          uv run --locked python -m equity.lake_sync push --prune-finished --only $SOURCES
           uv run --locked python -m equity.lake status | tail -3
