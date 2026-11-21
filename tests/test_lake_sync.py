@@ -171,3 +171,15 @@ def test_only_limits_push_and_pull_to_the_named_sources(tmp_path: Path) -> None:
     fresh = tmp_path / "b" / "lake"
     assert pull_state(make_store(bucket), fresh, only=frozenset({"aa.parcels"})) == 3
     assert not (fresh / "bb.parcels").exists()
+
+
+def test_pull_parts_downloads_missing_parquet_only(tmp_path: Path) -> None:
+    from equity.lake_sync import pull_parts
+
+    bucket = FakeBucket()
+    push(make_store(bucket), lake_with(tmp_path / "a"))
+    fresh = tmp_path / "b" / "lake"
+    assert pull_parts(make_store(bucket), fresh, ["bb.parcels"]) == 1
+    assert (fresh / "bb.parcels" / "parcel" / "00000.parquet").read_bytes() == b"Q0"
+    assert pull_parts(make_store(bucket), fresh, ["bb.parcels"]) == 0  # already there
+    assert pull_parts(make_store(bucket), fresh, ["aa.parcels"], tables=["address"]) == 0
