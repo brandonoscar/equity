@@ -16,6 +16,12 @@ balance, so open debt is an upper bound and equity a lower bound. A mortgage spa
 lots counts once per debtor, at its full amount. Partial releases do not close a mortgage.
 
 Rules chosen by the project owner (2026-11-22): same-lot payoff and sale closes older loans.
+
+Condominium units: recorders index a unit's documents by unit lot, the assessment roll
+carries the condominium as one billing lot. With a parcel_link source (condo_unit_of), a unit
+lot's documents join to the billing lot; the paid rules still run on the unit lot itself. A
+billing lot stands for the whole building, so an open mortgage on a unit counts against a
+debtor only when one of its borrowers has the debtor's name_key.
 """
 
 from __future__ import annotations
@@ -27,9 +33,12 @@ import duckdb
 PAID_RULES = ("paid_ref", "paid_payoff", "paid_sale")
 
 
-def attach(con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str]) -> None:
+def attach(
+    con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str], link_sources: list[str]
+) -> None:
     from equity.matching.resolve import _view
 
+    _view(con, "m_link", lake, link_sources, "parcel_link")
     _view(con, "m_inst", lake, sources, "instrument")
     _view(con, "m_lot", lake, sources, "instrument_parcel")
     _view(con, "m_ip", lake, sources, "instrument_party")
@@ -38,11 +47,19 @@ def attach(con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str]) -> No
 
 
 SQL = """
+CREATE TEMP TABLE unit_of AS
+SELECT from_parcel_uid, any_value(to_parcel_uid) AS to_parcel_uid
+FROM m_link WHERE link_type = 'condo_unit_of' GROUP BY from_parcel_uid;
 CREATE TEMP TABLE m_docs AS
-SELECT DISTINCT l.instrument_uid, l.parcel_uid, i.doc_type, i.recorded_on, i.principal_amount
-FROM m_lot l JOIN m_inst i ON i.instrument_uid = l.instrument_uid
-WHERE l.parcel_uid IN (SELECT parcel_uid FROM matches)
-  AND i.doc_type IN ('MORTGAGE', 'RELEASE', 'DEED');
+SELECT * FROM (
+    SELECT DISTINCT l.instrument_uid, l.parcel_uid AS lot_uid,
+           coalesce(u.to_parcel_uid, l.parcel_uid) AS parcel_uid,
+           u.to_parcel_uid IS NOT NULL AS via_unit,
+           i.doc_type, i.recorded_on, i.principal_amount
+    FROM m_lot l JOIN m_inst i ON i.instrument_uid = l.instrument_uid
+    LEFT JOIN unit_of u ON u.from_parcel_uid = l.parcel_uid
+    WHERE i.doc_type IN ('MORTGAGE', 'RELEASE', 'DEED'))
+WHERE parcel_uid IN (SELECT parcel_uid FROM matches);
 CREATE TEMP TABLE m_names AS
 SELECT DISTINCT ip.instrument_uid, ip.role, name_key(p.raw_name) AS k
 FROM m_ip ip JOIN m_party p ON p.party_id = ip.party_id
@@ -50,7 +67,7 @@ WHERE ip.role IN ('borrower', 'grantee')
   AND ip.instrument_uid IN (SELECT instrument_uid FROM m_docs)
   AND name_words(name_key(p.raw_name)) >= 2;
 CREATE TEMP TABLE mortgage_status AS
-SELECT m.instrument_uid, m.parcel_uid, m.recorded_on, m.principal_amount,
+SELECT m.instrument_uid, m.lot_uid, m.parcel_uid, m.via_unit, m.recorded_on, m.principal_amount,
     CASE
     WHEN EXISTS (SELECT 1 FROM m_ref r
                  WHERE r.to_uid = m.instrument_uid AND r.ref_type = 'releases') THEN 'paid_ref'
@@ -59,11 +76,11 @@ SELECT m.instrument_uid, m.parcel_uid, m.recorded_on, m.principal_amount,
         JOIN m_names sn ON sn.instrument_uid = s.instrument_uid AND sn.role = 'borrower'
         JOIN m_names mn ON mn.instrument_uid = m.instrument_uid AND mn.role = 'borrower'
                         AND mn.k = sn.k
-        WHERE s.parcel_uid = m.parcel_uid AND s.doc_type = 'RELEASE'
+        WHERE s.lot_uid = m.lot_uid AND s.doc_type = 'RELEASE'
           AND s.recorded_on >= m.recorded_on) THEN 'paid_payoff'
     WHEN EXISTS (
         SELECT 1 FROM m_docs d
-        WHERE d.parcel_uid = m.parcel_uid AND d.doc_type = 'DEED'
+        WHERE d.lot_uid = m.lot_uid AND d.doc_type = 'DEED'
           AND d.recorded_on > m.recorded_on
           AND NOT EXISTS (
               SELECT 1 FROM m_names g
@@ -79,7 +96,11 @@ SELECT x.debtor_party_id, count(*) AS open_mortgages,
 FROM (SELECT DISTINCT mp.debtor_party_id, s.instrument_uid, s.principal_amount
       FROM (SELECT DISTINCT debtor_party_id, parcel_uid FROM matches) mp
       JOIN mortgage_status s ON s.parcel_uid = mp.parcel_uid
-      WHERE s.status = 'open') x
+      WHERE s.status = 'open'
+        AND (NOT s.via_unit OR EXISTS (
+            SELECT 1 FROM m_names b JOIN debtors d ON d.name_key = b.k
+            WHERE b.instrument_uid = s.instrument_uid AND b.role = 'borrower'
+              AND d.party_id = mp.debtor_party_id))) x
 GROUP BY x.debtor_party_id;
 CREATE OR REPLACE TEMP TABLE debtor_summary AS
 SELECT d.*, coalesce(m.open_mortgages, 0) AS open_mortgages,
@@ -90,8 +111,10 @@ FROM debtor_summary d LEFT JOIN debtor_mortgages m USING (debtor_party_id);
 """
 
 
-def compute(con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str]) -> None:
-    attach(con, lake, sources)
+def compute(
+    con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str], link_sources: list[str]
+) -> None:
+    attach(con, lake, sources, link_sources)
     con.execute(SQL)
 
 

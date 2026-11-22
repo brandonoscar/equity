@@ -14,8 +14,11 @@ from equity.adapters.fl.hillsborough_civil import (
     HillsboroughGarnishment,
 )
 from equity.adapters.fl.hillsborough_or import HillsboroughOfficialRecords
+from equity.adapters.hi.honolulu_owners import HonoluluOwners
 from equity.adapters.liens import all_lien_adapters
 from equity.adapters.ny.acris import AcrisPersonalProperty, AcrisRealProperty
+from equity.adapters.ny.condo_units import NycCondoUnits
+from equity.adapters.pa.allegheny_assessments import AlleghenyAssessments
 from equity.adapters.pa.philadelphia_rtt import PhiladelphiaRTT
 from equity.adapters.state_parcels import all_state_adapters
 from equity.adapters.tx.stratmap import TexasStratMapParcels
@@ -37,8 +40,11 @@ _ALL: tuple[type[Adapter], ...] = (
     NJMunicipalCodeLinks,
     TexasStratMapParcels,
     AcrisRealProperty,
+    NycCondoUnits,
+    HonoluluOwners,
     AcrisPersonalProperty,
     PhiladelphiaRTT,
+    AlleghenyAssessments,
     HillsboroughOfficialRecords,
     HillsboroughCivilCases,
     HillsboroughCivilFilings,

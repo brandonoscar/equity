@@ -12,7 +12,11 @@ same keys, computed in SQL so every match can be re-derived:
              "Person" rules cover every name not classified as an org at load (most
              loaders leave people as party_kind 'unknown').
   org_name   the organization name as normalized at load (equity.matching.orgs).
-  addr_key   street line + ZIP 5 of a normalized address.
+  addr_key   street line + ZIP 5 of a normalized address. The street line is compared with
+             suffix and direction words spelled one way (USPS: STREET=ST, NORTH=N, ...) and
+             punctuation dropped (review.street_norm; approved by the project owner
+             2026-11-22), so "12 Main Street" and "12 MAIN ST." are one address.
+  town_key   street line + city, for states whose parcel data carries no owner ZIP (CT).
 
 Rules, strongest first (a debtor-owner pair keeps its strongest rule):
   person_name_address   same person name_key, and the debtor's address equals the owner's
@@ -20,12 +24,20 @@ Rules, strongest first (a debtor-owner pair keeps its strongest rule):
   org_name_address      same org_name and address                              -> auto
   org_name_zip          same org_name and ZIP                                  -> auto
   person_name_zip       same person name_key and ZIP                           -> review
+With parcel_on_lien (liens recorded against a parcel id, e.g. Allegheny PINs), first; a lien
+that names a parcel but no debtor gets the stand-in debtor "owner-of:<parcel_uid>":
+  lien_names_parcel         the lien itself names the parcel (instrument_parcel), and that
+                            parcel is in the owner source; no name match needed   -> auto
+With street_town (CT only, approved by the project owner 2026-11-22), also:
+  person_name_street_town   same person name_key, street line and town         -> auto
+  org_name_street_town      same org_name, street line and town                -> auto
 
 Output (Parquet under data/derived/<state>/, which is git-ignored: it names people):
   matches.parquet   debtor party, its instrument, owner party, parcel, rule, decision, keys
   debtor_summary.parquet   per matched debtor: liens, open amount, parcels, total parcel value,
                     and with recorder sources open mortgages and equity_est (see .equity)
   mortgage_status.parquet  each mortgage on a matched lot: open or which rule marked it paid
+  review_queue.parquet     evidence and labels for review-only matches (see .review)
 and a summary with counts only, printed and written to summary.json.
 """
 
@@ -35,6 +47,7 @@ import argparse
 import json
 import sys
 from pathlib import Path
+from typing import Any
 
 import duckdb
 
@@ -44,10 +57,13 @@ DERIVED = Path("data/derived")
 STOP = ("JR", "SR", "II", "III", "IV", "AND", "OR", "ETAL", "ET", "AL", "TR", "TRUSTEE",
         "TTEE", "MR", "MRS", "MS", "DR", "THE", "OF", "C/O", "CO", "ATTN")  # fmt: skip
 RULES = (
+    ("lien_names_parcel", "auto", 0),
     ("person_name_address", "auto", 1),
     ("org_name_address", "auto", 2),
     ("org_name_zip", "auto", 3),
     ("person_name_zip", "review", 4),
+    ("person_name_street_town", "auto", 5),
+    ("org_name_street_town", "auto", 6),
 )
 
 
@@ -60,14 +76,16 @@ def _glob(lake: Path, sources: list[str], table: str) -> str | None:
 
 V = "VARCHAR"
 COLUMNS: dict[str, dict[str, str]] = {
-    "address": {"address_id": V, "line1": V, "zip5": V},
+    "address": {"address_id": V, "line1": V, "city": V, "zip5": V},
     "party": {"party_id": V, "raw_name": V, "party_kind": V, "org_name_norm": V,
               "address_id": V},
     "instrument_party": {"instrument_uid": V, "party_id": V, "role": V},
-    "instrument": {"instrument_uid": V, "source_id": V, "doc_type": V, "recorded_on": "DATE",
+    "instrument": {"instrument_uid": V, "source_id": V, "doc_type": V, "doc_type_raw": V,
+                   "recorded_on": "DATE",
                    "principal_amount": "DOUBLE"},
     "instrument_ref": {"from_uid": V, "to_uid": V, "ref_type": V},
     "instrument_parcel": {"instrument_uid": V, "parcel_uid": V},
+    "parcel_link": {"from_parcel_uid": V, "to_parcel_uid": V, "link_type": V},
     "owner_snapshot": {"parcel_uid": V, "party_id": V},
     "parcel": {"parcel_uid": V, "situs_address_id": V},
     "parcel_assessment": {"parcel_uid": V, "tax_year": "INTEGER", "appraised_total": "DOUBLE",
@@ -94,7 +112,7 @@ def _view(con: duckdb.DuckDBPyConnection, name: str, lake: Path, sources: list[s
 
 
 def connect(
-    lake: Path, debtor_sources: list[str], owner_sources: list[str]
+    lake: Path, debtor_sources: list[str], owner_sources: list[str], parcel_on_lien: bool = False
 ) -> duckdb.DuckDBPyConnection:
     con = duckdb.connect()
     stop = ", ".join(f"'{w}'" for w in STOP)
@@ -110,23 +128,30 @@ def connect(
     _view(con, "d_ip", lake, debtor_sources, "instrument_party")
     _view(con, "d_inst", lake, debtor_sources, "instrument")
     _view(con, "d_ref", lake, debtor_sources, "instrument_ref")
+    _view(con, "d_lot", lake, debtor_sources, "instrument_parcel")
     _view(con, "o_party", lake, owner_sources, "party")
     _view(con, "o_snap", lake, owner_sources, "owner_snapshot")
     _view(con, "o_parcel", lake, owner_sources, "parcel")
     _view(con, "o_assess", lake, owner_sources, "parcel_assessment")
+    from equity.matching.review import street_macro
+
+    street_macro(con)
     con.execute("""
         CREATE TEMP TABLE addr AS
         SELECT DISTINCT address_id,
-               CASE WHEN line1 IS NOT NULL AND zip5 IS NOT NULL
-                    THEN upper(line1) || '|' || zip5 END AS addr_key,
+               CASE WHEN street_norm(line1) <> '' AND zip5 IS NOT NULL
+                    THEN street_norm(line1) || '|' || zip5 END AS addr_key,
+               CASE WHEN street_norm(line1) <> '' AND city IS NOT NULL
+                    THEN street_norm(line1) || '|' || upper(trim(city)) END AS town_key,
                zip5
         FROM addr_all;
         CREATE TEMP TABLE debtors AS
         SELECT DISTINCT p.party_id, p.raw_name, p.party_kind, p.org_name_norm,
                ip.instrument_uid, i.source_id, i.doc_type, i.recorded_on, i.principal_amount,
                EXISTS (SELECT 1 FROM d_ref r WHERE r.to_uid = i.instrument_uid
-                       AND r.ref_type = 'releases') AS released,
-               name_key(p.raw_name) AS name_key, a.addr_key, a.zip5
+                       AND r.ref_type = 'releases')
+                   OR coalesce(i.doc_type_raw, '') LIKE '%(satisfied)' AS released,
+               name_key(p.raw_name) AS name_key, a.addr_key, a.town_key, a.zip5
         FROM d_ip ip
         JOIN d_party p ON p.party_id = ip.party_id
         JOIN d_inst i ON i.instrument_uid = ip.instrument_uid
@@ -135,13 +160,31 @@ def connect(
         CREATE TEMP TABLE owners AS
         SELECT DISTINCT p.party_id, p.raw_name, p.party_kind, p.org_name_norm, s.parcel_uid,
                name_key(p.raw_name) AS name_key, ma.addr_key AS mail_key, ma.zip5 AS mail_zip,
-               sa.addr_key AS situs_key, sa.zip5 AS situs_zip
+               sa.addr_key AS situs_key, sa.zip5 AS situs_zip,
+               ma.town_key AS mail_town, sa.town_key AS situs_town
         FROM o_snap s
         JOIN o_party p ON p.party_id = s.party_id
         LEFT JOIN o_parcel pc ON pc.parcel_uid = s.parcel_uid
         LEFT JOIN addr ma ON ma.address_id = p.address_id
         LEFT JOIN addr sa ON sa.address_id = pc.situs_address_id;
     """)
+    if parcel_on_lien:
+        # A lien that names a parcel but no debtor (Allegheny tax liens, foreclosures) is owed
+        # by whoever owns that parcel: one stand-in debtor per parcel, "owner-of:<parcel_uid>".
+        con.execute("""
+            INSERT INTO debtors
+            SELECT DISTINCT 'owner-of:' || l.parcel_uid, NULL, 'unknown', NULL,
+                   i.instrument_uid, i.source_id, i.doc_type, i.recorded_on,
+                   i.principal_amount,
+                   EXISTS (SELECT 1 FROM d_ref r WHERE r.to_uid = i.instrument_uid
+                           AND r.ref_type = 'releases')
+                       OR coalesce(i.doc_type_raw, '') LIKE '%(satisfied)',
+                   '', NULL, NULL, NULL
+            FROM d_inst i JOIN d_lot l ON l.instrument_uid = i.instrument_uid
+            WHERE i.doc_type <> 'RELEASE' AND NOT EXISTS (
+                SELECT 1 FROM d_ip ip WHERE ip.instrument_uid = i.instrument_uid
+                  AND ip.role = 'debtor');
+        """)
     return con
 
 
@@ -168,10 +211,38 @@ FROM debtors d JOIN owners o ON o.name_key = d.name_key
 WHERE d.party_kind <> 'org' AND o.party_kind <> 'org' AND name_words(d.name_key) >= 2
   AND d.zip5 IS NOT NULL AND d.zip5 IN (o.mail_zip, o.situs_zip);
 """
+PARCEL_ON_LIEN_SQL = """
+INSERT INTO candidates
+SELECT DISTINCT d.party_id, d.instrument_uid, NULL, l.parcel_uid, 'lien_names_parcel',
+       l.parcel_uid
+FROM debtors d JOIN d_lot l ON l.instrument_uid = d.instrument_uid
+WHERE l.parcel_uid IN (SELECT parcel_uid FROM o_parcel)
+  AND (NOT starts_with(d.party_id, 'owner-of:') OR d.party_id = 'owner-of:' || l.parcel_uid);
+"""
+STREET_TOWN_SQL = """
+INSERT INTO candidates
+SELECT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid, 'person_name_street_town',
+       d.name_key
+FROM debtors d JOIN owners o ON o.name_key = d.name_key
+WHERE d.party_kind <> 'org' AND o.party_kind <> 'org' AND name_words(d.name_key) >= 2
+  AND d.town_key IS NOT NULL AND d.town_key IN (o.mail_town, o.situs_town)
+UNION ALL
+SELECT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid, 'org_name_street_town',
+       d.org_name_norm
+FROM debtors d JOIN owners o ON o.org_name_norm = d.org_name_norm
+WHERE d.party_kind = 'org' AND o.party_kind = 'org' AND d.org_name_norm <> ''
+  AND d.town_key IS NOT NULL AND d.town_key IN (o.mail_town, o.situs_town);
+"""
 
 
-def match(con: duckdb.DuckDBPyConnection) -> None:
+def match(
+    con: duckdb.DuckDBPyConnection, street_town: bool = False, parcel_on_lien: bool = False
+) -> None:
     con.execute(MATCH_SQL)
+    if parcel_on_lien:
+        con.execute(PARCEL_ON_LIEN_SQL)
+    if street_town:
+        con.execute(STREET_TOWN_SQL)
     ranks = " ".join(f"WHEN '{r}' THEN {n}" for r, _, n in RULES)
     decisions = " ".join(f"WHEN '{r}' THEN '{d}'" for r, d, _ in RULES)
     con.execute(f"""
@@ -188,9 +259,15 @@ def match(con: duckdb.DuckDBPyConnection) -> None:
         CREATE TEMP TABLE debtor_summary AS
         WITH liens AS (
             SELECT party_id, any_value(raw_name) AS debtor_name,
-                   count(*) AS liens,
-                   sum(CASE WHEN NOT released THEN principal_amount END) AS open_amount
-            FROM (SELECT DISTINCT party_id, raw_name, instrument_uid, released, principal_amount
+                   count(*) FILTER (WHERE doc_type <> 'LIS_PENDENS') AS liens,
+                   -- A foreclosure filing claims mortgage debt, not a lien to buy, and its
+                   -- outcome is not published: counted, never added to open_amount.
+                   sum(CASE WHEN NOT released AND doc_type <> 'LIS_PENDENS'
+                            THEN principal_amount END) AS open_amount,
+                   count(*) FILTER (WHERE doc_type = 'LIS_PENDENS') AS foreclosure_filings,
+                   max(recorded_on) FILTER (WHERE doc_type = 'LIS_PENDENS') AS last_foreclosure_on
+            FROM (SELECT DISTINCT party_id, raw_name, instrument_uid, doc_type, recorded_on,
+                         released, principal_amount
                   FROM debtors) GROUP BY party_id
         ), props AS (
             SELECT mp.debtor_party_id, count(*) AS parcels, sum(v.value) AS parcel_value
@@ -203,7 +280,8 @@ def match(con: duckdb.DuckDBPyConnection) -> None:
             FROM matches GROUP BY debtor_party_id
         )
         SELECT r.debtor_party_id, l.debtor_name, l.liens, l.open_amount, p.parcels,
-               p.parcel_value, r.best_rank, r.has_auto
+               p.parcel_value, r.best_rank, r.has_auto, l.foreclosure_filings,
+               l.last_foreclosure_on
         FROM rules r
         JOIN liens l ON l.party_id = r.debtor_party_id
         JOIN props p ON p.debtor_party_id = r.debtor_party_id;
@@ -239,33 +317,45 @@ def run(
     debtor_sources: list[str],
     owner_sources: list[str],
     mortgage_sources: list[str] | None = None,
+    link_sources: list[str] | None = None,
+    street_town: bool = False,
+    parcel_on_lien: bool = False,
 ) -> dict[str, object]:
-    from equity.matching import equity
+    from equity.matching import equity, review
 
-    con = connect(lake, debtor_sources, owner_sources)
-    match(con)
-    tables = ["matches", "debtor_summary"]
+    con = connect(lake, debtor_sources, owner_sources, parcel_on_lien)
+    match(con, street_town, parcel_on_lien)
+    review.build(con)
+    tables = ["matches", "debtor_summary", "review_queue"]
     if mortgage_sources:
-        equity.compute(con, lake, mortgage_sources)
+        equity.compute(con, lake, mortgage_sources, link_sources or [])
         tables.append("mortgage_status")
     out.mkdir(parents=True, exist_ok=True)
     for table in tables:
         con.execute(f"COPY {table} TO '{(out / (table + '.parquet')).as_posix()}' "
                     "(FORMAT PARQUET, COMPRESSION ZSTD)")  # fmt: skip
     result = summary(con)
+    result["review"] = review.summary(con)
     if mortgage_sources:
         result |= equity.summary(con)
     (out / "summary.json").write_text(json.dumps(result, indent=2, default=str))
     return result
 
 
-STATES = {
+STATES: dict[str, dict[str, Any]] = {
     "NY": {
         "debtors": ["ny.dtf.tax_warrants", "ny.dtf.child_support_warrants",
                     "ny.nyc.oath.judgments", "ny.nyc.hpd_litigation", "ny.nyc.acris.real"],
         "owners": ["ny.statewide.parcels"],
         "mortgages": ["ny.nyc.acris.real"],
+        "links": ["ny.nyc.dof.condo_units"],
     },
+    # CT parcel data has no owner ZIP (Mailing_Zip is empty statewide): street + town instead.
+    # Allegheny's parcel layer has no owner names, but its liens name the parcel (PIN).
+    "PA-ALLEGHENY": {"debtors": ["pa.allegheny.tax_liens", "pa.allegheny.foreclosures"],
+                     "owners": ["pa.allegheny.parcels", "pa.allegheny.assessments"],
+                     "parcel_on_lien": True},
+    "CT": {"debtors": ["ct.sots.liens"], "owners": ["ct.statewide.parcels"], "street_town": True},
 }  # fmt: skip
 
 
@@ -277,7 +367,8 @@ def main(argv: list[str] | None = None) -> int:
     args = ap.parse_args(argv)
     spec = STATES[args.state]
     result = run(args.lake, args.out / args.state.lower(), spec["debtors"], spec["owners"],
-                 spec.get("mortgages"))  # fmt: skip
+                 spec.get("mortgages"), spec.get("links"),
+                 bool(spec.get("street_town")), bool(spec.get("parcel_on_lien")))  # fmt: skip
     json.dump(result, sys.stdout, indent=2, default=str)
     print()
     return 0

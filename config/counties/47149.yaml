@@ -1,0 +1,35 @@
+source_id: tn.rutherford.parcels
+state: TN
+# Rutherford County parcels as republished by the City of Murfreesboro (its ArcGIS Online
+# org), joined to county CAMA: owners, mailing address, values for YearID. Keyed by CAMA
+# PropertyID, since GISLINK and ParcelID repeat across accounts on one map parcel.
+layer_url: https://services5.arcgis.com/A5C0MR9xfkxVRwat/arcgis/rest/services/Parcel_Data/FeatureServer/1
+order_by: OBJECTID
+page_size: 2000
+min_interval_s: 1.0
+county: {constant: "149"}
+fields:
+  parcel_id: PropertyID
+  owner1: Owner1
+  owner2: Owner2
+  mail_line1: MailingAddress
+  mail_line2: MailingAddress2
+  mail_city: MailingCity
+  mail_state: MailingState
+  mail_zip: MailingZipCode
+  situs_line1: FormattedLocation
+  situs_city: LocationCity
+  situs_zip: LocationZip
+  zoning: ZONING
+  land_value: TotalLandValue
+  bldg_value: TotalBuildingValue
+  total_value: TotalValue
+  assessed_value: TotalAssessedValue
+  tax_year: YearID
+value_basis: "TotalLandValue/TotalBuildingValue/TotalValue = appraised values, TotalAssessedValue = assessed value (25% residential in TN), for YearID (2027 on 2026-11-22, the county's working roll). Owner3 is not mapped."
+terms:
+  url: https://services5.arcgis.com/A5C0MR9xfkxVRwat/arcgis/rest/services/Parcel_Data/FeatureServer/1
+  summary: "City of Murfreesboro ArcGIS Online copy of Rutherford County parcels and CAMA, 123,334 rows on 2026-11-22. No licenseInfo or terms on the item; republished by the city, not the county assessor. Used on the project owner's decision (2026-11-22)."
+  checked_on: 2026-11-22
+  robots_checked_on: 2026-11-22
+  cost_model: free

@@ -206,3 +206,251 @@ def test_open_mortgages_and_equity(lake: Path, tmp_path: Path) -> None:
                                                  "paid_sale": 1}  # fmt: skip
     # d1 and d2; d5's parcel has no assessment, so its equity is unknown, not positive.
     assert result["debtors_auto_with_positive_equity"] == 2
+
+
+def test_condo_unit_mortgages_count_only_for_their_borrower(lake: Path, tmp_path: Path) -> None:
+    _recorder(lake)
+    r = lake / "zz.recorder"
+    extra = [("u_mine", "JOHN A SMITH", 40000.0), ("u_other", "JANE DOE", 900000.0)]
+    for name in ("instrument", "instrument_parcel", "instrument_party", "party"):
+        rows: list[dict[str, Any]]
+        if name == "instrument":
+            rows = [
+                {
+                    "instrument_uid": u,
+                    "source_id": "zz.recorder",
+                    "doc_type": "MORTGAGE",
+                    "recorded_on": "2024-01-01",
+                    "principal_amount": a,
+                }
+                for u, _, a in extra
+            ]
+        elif name == "instrument_parcel":
+            rows = [{"instrument_uid": u, "parcel_uid": "unit1"} for u, _, _ in extra]
+        elif name == "instrument_party":
+            rows = [
+                {"instrument_uid": u, "party_id": f"b_{u}", "role": "borrower"} for u, _, _ in extra
+            ]
+        else:
+            rows = [
+                {
+                    "party_id": f"b_{u}",
+                    "raw_name": n,
+                    "party_kind": "unknown",
+                    "org_name_norm": None,
+                    "address_id": None,
+                }
+                for u, n, _ in extra
+            ]
+        _write(r / name / "1.parquet", rows)  # fmt: skip
+    _write(
+        lake / "zz.links" / "parcel_link" / "0.parquet",
+        [{"from_parcel_uid": "unit1", "to_parcel_uid": "p1", "link_type": "condo_unit_of"}],
+    )
+    out = tmp_path / "out"
+    run(lake, out, ["zz.debts"], ["zz.parcels"], ["zz.recorder"], ["zz.links"])
+    con = duckdb.connect()
+    unit = dict(con.execute(
+        f"SELECT instrument_uid, lot_uid FROM '{out.as_posix()}/mortgage_status.parquet' "
+        "WHERE via_unit").fetchall())  # fmt: skip
+    assert unit == {"u_mine": "unit1", "u_other": "unit1"}
+    row = con.execute(
+        "SELECT open_mortgages, open_mortgage_amount, equity_est "
+        f"FROM '{out.as_posix()}/debtor_summary.parquet' WHERE debtor_party_id = 'd1'"
+    ).fetchone()
+    # The three open whole-lot mortgages (270,000) plus d1's own unit mortgage; the other
+    # unit owner's 900,000 mortgage on the same building is not d1's debt.
+    assert row == (4, 310000.0, 190000.0)
+
+
+def test_street_town_rules_only_when_enabled(tmp_path: Path) -> None:
+    lk = tmp_path / "lake"
+    d, o = lk / "ct.debts", lk / "ct.parcels"
+    _write(d / "address" / "0.parquet", [
+        {"address_id": "a1", "line1": "5 ELM ST", "city": "Wilton", "zip5": "06897"},
+        {"address_id": "a2", "line1": "9 MILL RD", "city": "Kent", "zip5": None}])  # fmt: skip
+    _write(d / "party" / "0.parquet", [
+        {"party_id": "d1", "raw_name": "ANN LEE", "party_kind": "unknown", "org_name_norm": None,
+         "address_id": "a1"},
+        {"party_id": "d2", "raw_name": "MILL CORP", "party_kind": "org",
+         "org_name_norm": "MILL", "address_id": "a2"},
+        {"party_id": "d3", "raw_name": "BO RAY", "party_kind": "unknown", "org_name_norm": None,
+         "address_id": "a2"}])  # fmt: skip
+    _write(
+        d / "instrument_party" / "0.parquet",
+        [{"instrument_uid": f"i{n}", "party_id": f"d{n}", "role": "debtor"} for n in (1, 2, 3)],
+    )
+    _write(d / "instrument" / "0.parquet", [
+        {"instrument_uid": f"i{n}", "source_id": "ct.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2025-01-01", "principal_amount": 10.0} for n in (1, 2, 3)])  # fmt: skip
+    _write(o / "address" / "0.parquet", [
+        {"address_id": "m1", "line1": "5 ELM ST", "city": "WILTON ", "zip5": None},
+        {"address_id": "m2", "line1": "9 MILL RD", "city": "KENT", "zip5": None},
+        {"address_id": "m3", "line1": "9 MILL RD", "city": "SHARON", "zip5": None}])  # fmt: skip
+    _write(o / "party" / "0.parquet", [
+        {"party_id": "o1", "raw_name": "LEE ANN", "party_kind": "unknown", "org_name_norm": None,
+         "address_id": "m1"},
+        {"party_id": "o2", "raw_name": "MILL CORPORATION", "party_kind": "org",
+         "org_name_norm": "MILL", "address_id": "m2"},
+        {"party_id": "o3", "raw_name": "RAY BO", "party_kind": "unknown", "org_name_norm": None,
+         "address_id": "m3"}])  # fmt: skip
+    _write(
+        o / "owner_snapshot" / "0.parquet",
+        [{"parcel_uid": f"p{n}", "party_id": f"o{n}"} for n in (1, 2, 3)],
+    )
+    _write(
+        o / "parcel" / "0.parquet",
+        [{"parcel_uid": f"p{n}", "situs_address_id": None} for n in (1, 2, 3)],
+    )
+    off = run(lk, tmp_path / "off", ["ct.debts"], ["ct.parcels"])
+    assert off["matches_by_rule"] == {}  # no owner ZIPs: the ZIP rules cannot fire
+    on = run(lk, tmp_path / "on", ["ct.debts"], ["ct.parcels"], street_town=True)
+    # Same street in another town (BO RAY, Sharon) does not match.
+    assert on["matches_by_rule"] == {"org_name_street_town": 1, "person_name_street_town": 1}
+    assert on["debtors_matched_auto"] == 2
+
+
+def test_a_lien_that_names_its_parcel_matches_it(lake: Path, tmp_path: Path) -> None:
+    _write(lake / "zz.debts" / "instrument_parcel" / "0.parquet", [
+        {"instrument_uid": "i4", "parcel_uid": "p3"},  # d4 (a last name only) names p3
+        {"instrument_uid": "i3", "parcel_uid": "not-in-the-roll"}])  # fmt: skip
+    off = run(lake, tmp_path / "off", ["zz.debts"], ["zz.parcels"])
+    assert "lien_names_parcel" not in off["matches_by_rule"]
+    on = run(lake, tmp_path / "on", ["zz.debts"], ["zz.parcels"], parcel_on_lien=True)
+    assert on["matches_by_rule"]["lien_names_parcel"] == 1
+    con = duckdb.connect()
+    row = con.execute(
+        "SELECT owner_party_id, parcel_uid, decision FROM "
+        f"'{(tmp_path / 'on').as_posix()}/matches.parquet' WHERE rule_id = 'lien_names_parcel'"
+    ).fetchone()
+    assert row == (None, "p3", "auto")
+
+
+def test_liens_without_a_named_debtor_are_owed_by_the_parcel_owner(tmp_path: Path) -> None:
+    lk = tmp_path / "lake"
+    d, o = lk / "pa.liens", lk / "pa.parcels"
+    _write(
+        d / "instrument" / "0.parquet",
+        [
+            {
+                "instrument_uid": "t1",
+                "source_id": "pa.liens",
+                "doc_type": "TAX_LIEN_STATE",
+                "doc_type_raw": "SCHOOL",
+                "recorded_on": "2020-01-01",
+                "principal_amount": 500.0,
+            },
+            {
+                "instrument_uid": "t2",
+                "source_id": "pa.liens",
+                "doc_type": "TAX_LIEN_STATE",
+                "doc_type_raw": "SCHOOL (satisfied)",
+                "recorded_on": "2019-01-01",
+                "principal_amount": 300.0,
+            },
+            {
+                "instrument_uid": "t3",
+                "source_id": "pa.liens",
+                "doc_type": "TAX_LIEN_STATE",
+                "doc_type_raw": "SEWAGE",
+                "recorded_on": "2021-01-01",
+                "principal_amount": 50.0,
+            },
+            {
+                "instrument_uid": "f1",
+                "source_id": "pa.liens",
+                "doc_type": "LIS_PENDENS",
+                "doc_type_raw": "Mortgage foreclosure filing",
+                "recorded_on": "2022-03-01",
+                "principal_amount": 150000.0,
+            },
+        ],
+    )
+    _write(d / "instrument_parcel" / "0.parquet", [
+        {"instrument_uid": "t1", "parcel_uid": "pin1"},
+        {"instrument_uid": "t2", "parcel_uid": "pin1"},
+        {"instrument_uid": "t3", "parcel_uid": "pin-gone"},
+        {"instrument_uid": "f1", "parcel_uid": "pin1"}])  # fmt: skip
+    _write(d / "instrument_party" / "0.parquet", [
+        {"instrument_uid": "t1", "party_id": "c1", "role": "creditor"}])  # fmt: skip
+    _write(o / "parcel" / "0.parquet", [{"parcel_uid": "pin1", "situs_address_id": None}])
+    _write(o / "parcel_assessment" / "0.parquet", [
+        {"parcel_uid": "pin1", "tax_year": 2025, "appraised_total": 80000.0,
+         "assessed_value": None}])  # fmt: skip
+    out = tmp_path / "out"
+    result = run(lk, out, ["pa.liens"], ["pa.parcels"], parcel_on_lien=True)
+    assert result["matches_by_rule"] == {"lien_names_parcel": 3}
+    con = duckdb.connect()
+    s = con.execute(
+        "SELECT debtor_party_id, liens, open_amount, parcels, parcel_value, "
+        "foreclosure_filings, last_foreclosure_on::VARCHAR "
+        f"FROM '{out.as_posix()}/debtor_summary.parquet'").fetchall()  # fmt: skip
+    # The satisfied lien is not open; the lien on a parcel missing from the roll is unmatched;
+    # the foreclosure is counted, not added to the open lien amount.
+    assert s == [("owner-of:pin1", 2, 500.0, 1, 80000.0, 1, "2022-03-01")]
+
+
+def test_review_queue_labels_name_zip_matches(tmp_path: Path) -> None:
+    lk = tmp_path / "lake"
+    d, o = lk / "q.debts", lk / "q.parcels"
+    cases = [  # debtor address, owner mailing address
+        ("12 Main Street", "12 MAIN ST"),  # same address, spelled differently: auto
+        ("40 North Oak Avenue Apt 3", "40 N OAK AVE APT 3"),  # same: auto
+        ("12 OAK AVE", "12 ELM AVE"),  # same_number
+        ("P.O. BOX 55", "9 PINE RD"),  # po_box
+        ("1 FAR RD", "77 BAY ST"),  # different
+    ]
+    names = ["ANN LEE", "BO RAY", "CY DOE", "DI FOX", "ED KAY"]
+    _write(
+        d / "address" / "0.parquet", [_addr(f"a{i}", c[0], "10001") for i, c in enumerate(cases)]
+    )
+    _write(
+        o / "address" / "0.parquet", [_addr(f"m{i}", c[1], "10001") for i, c in enumerate(cases)]
+    )
+    _write(d / "party" / "0.parquet", [
+        {"party_id": f"d{i}", "raw_name": n, "party_kind": "unknown", "org_name_norm": None,
+         "address_id": f"a{i}"} for i, n in enumerate(names)])  # fmt: skip
+    owners = [{"party_id": f"o{i}", "raw_name": " ".join(reversed(n.split())),
+               "party_kind": "unknown", "org_name_norm": None, "address_id": f"m{i}"}
+              for i, n in enumerate(names)]  # fmt: skip
+    owners.append(
+        {
+            "party_id": "o9",
+            "raw_name": "KAY ED",
+            "party_kind": "unknown",
+            "org_name_norm": None,
+            "address_id": "m3",
+        }
+    )  # a second ED KAY in the ZIP
+    _write(o / "party" / "0.parquet", owners)
+    _write(
+        d / "instrument_party" / "0.parquet",
+        [{"instrument_uid": f"i{i}", "party_id": f"d{i}", "role": "debtor"} for i in range(5)],
+    )
+    _write(d / "instrument" / "0.parquet", [
+        {"instrument_uid": f"i{i}", "source_id": "q.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2025-01-01", "principal_amount": 10.0} for i in range(5)])  # fmt: skip
+    _write(
+        o / "owner_snapshot" / "0.parquet",
+        [{"parcel_uid": f"p{p['party_id'][1:]}", "party_id": p["party_id"]} for p in owners],
+    )
+    _write(
+        o / "parcel" / "0.parquet",
+        [{"parcel_uid": f"p{p['party_id'][1:]}", "situs_address_id": None} for p in owners],
+    )
+    out = tmp_path / "out"
+    result = run(lk, out, ["q.debts"], ["q.parcels"])
+    con = duckdb.connect()
+    got = dict(con.execute(
+        f"SELECT debtor_party_id, category FROM '{out.as_posix()}/review_queue.parquet' "
+        "WHERE owner_party_id <> 'o9'").fetchall())  # fmt: skip
+    assert got == {"d2": "same_number", "d3": "po_box", "d4": "different"}
+    assert result["review"] == {
+        "debtors": 3,
+        "debtors_by_category": {"different": 1, "po_box": 1, "same_number": 1},
+        "debtors_name_unique_in_zip": 2,  # two owners named ED KAY in 10001
+    }  # fmt: skip
+    # Street spelling is evened out in the address key, so d0 and d1 are address matches;
+    # the review queue itself never accepts anything.
+    assert result["matches_by_rule"]["person_name_address"] == 2
+    assert result["debtors_matched_auto"] == 2

@@ -1,0 +1,110 @@
+{
+ "condos": [
+  {
+   "condo_billing_bbl": "1000047501",
+   "condo_key": "100835"
+  }
+ ],
+ "units": [
+  {
+   "condo_key": "100835",
+   "unit_bbl": "1000041001",
+   "unit_designation": "SUB-A"
+  },
+  {
+   "condo_key": "100835",
+   "unit_bbl": "1000041002",
+   "unit_designation": "SUB-B"
+  },
+  {
+   "condo_key": "100835",
+   "unit_bbl": "1000041003",
+   "unit_designation": "CELLA"
+  },
+  {
+   "condo_key": "100835",
+   "unit_bbl": "1000041004",
+   "unit_designation": "PLA-A"
+  },
+  {
+   "condo_key": "100835",
+   "unit_bbl": "1000041005",
+   "unit_designation": "PLA-B"
+  },
+  {
+   "condo_key": "100835",
+   "unit_bbl": "1000041006",
+   "unit_designation": "2"
+  },
+  {
+   "condo_key": "100835",
+   "unit_bbl": "1000041007",
+   "unit_designation": "3"
+  },
+  {
+   "condo_key": "100835",
+   "unit_bbl": "1000041008",
+   "unit_designation": "4"
+  },
+  {
+   "condo_key": "100835",
+   "unit_bbl": "1000041009",
+   "unit_designation": "5"
+  },
+  {
+   "condo_key": "100835",
+   "unit_bbl": "1000041010",
+   "unit_designation": "6"
+  },
+  {
+   "condo_key": "100835",
+   "unit_bbl": "1000041011",
+   "unit_designation": "7"
+  },
+  {
+   "condo_key": "100835",
+   "unit_bbl": "1000041012",
+   "unit_designation": "8"
+  },
+  {
+   "condo_key": "100835",
+   "unit_bbl": "1000041013",
+   "unit_designation": "9"
+  },
+  {
+   "condo_key": "100835",
+   "unit_bbl": "1000041014",
+   "unit_designation": "10"
+  },
+  {
+   "condo_key": "100835",
+   "unit_bbl": "1000041015",
+   "unit_designation": "11"
+  },
+  {
+   "condo_key": "100835",
+   "unit_bbl": "1000041016",
+   "unit_designation": "12"
+  },
+  {
+   "condo_key": "100835",
+   "unit_bbl": "1000041017",
+   "unit_designation": "13"
+  },
+  {
+   "condo_key": "100835",
+   "unit_bbl": "1000041018",
+   "unit_designation": "14"
+  },
+  {
+   "condo_key": "100835",
+   "unit_bbl": "1000041019",
+   "unit_designation": "15"
+  },
+  {
+   "condo_key": "100835",
+   "unit_bbl": "1000041020",
+   "unit_designation": "16"
+  }
+ ]
+}

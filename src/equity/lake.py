@@ -40,8 +40,20 @@ PRIORITY = ("wv.", "fl.", "nc.", "oh.", "pa.", "ga.", "al.", "la.", "sc.", "mi."
             "in.", "tx.", "ca.", "nj.")  # fmt: skip
 
 
+# Object storage takes files up to lake_sync.MAX_BYTES (45 MB). A table file bigger than
+# SPLIT_BYTES is rewritten as several files of about CHUNK_BYTES: <part>.parquet,
+# <part>_1.parquet, ... Readers glob */<table>/*.parquet, so the split is invisible to them.
+SPLIT_BYTES = 40_000_000
+CHUNK_BYTES = 30_000_000
+
+
+def _part_files(table_dir: Path, part: str) -> list[Path]:
+    return sorted(table_dir.glob(f"{part}.parquet")) + sorted(table_dir.glob(f"{part}_*.parquet"))
+
+
 def export_part(work_db: Path, out_dir: Path, part: str) -> dict[str, int]:
-    """Copy every non-empty table of a scratch DB to out_dir/<table>/<part>.parquet (zstd)."""
+    """Copy every non-empty table of a scratch DB to out_dir/<table>/<part>.parquet (zstd),
+    split into <part>_<i>.parquet chunks when one file would exceed SPLIT_BYTES."""
     con = duckdb.connect(str(work_db), read_only=True)
     counts: dict[str, int] = {}
     try:
@@ -50,16 +62,37 @@ def export_part(work_db: Path, out_dir: Path, part: str) -> dict[str, int]:
             n = 0 if row is None else int(row[0])
             if n == 0:
                 continue
-            target = out_dir / table / f"{part}.parquet"
-            target.parent.mkdir(parents=True, exist_ok=True)
+            table_dir = out_dir / table
+            table_dir.mkdir(parents=True, exist_ok=True)
+            for old in _part_files(table_dir, part):  # an earlier export of this part
+                old.unlink()
             # Write under a temporary name and rename when complete, so a build stopped
             # mid-write never leaves a truncated part for the catalog or the storage sync.
-            tmp = target.with_suffix(".parquet.tmp")
+            whole = table_dir / f"{part}.parquet.tmp"
             con.execute(
-                f"COPY (SELECT * FROM {table}) TO '{tmp.as_posix()}' "  # noqa: S608
+                f"COPY (SELECT * FROM {table}) TO '{whole.as_posix()}' "  # noqa: S608
                 "(FORMAT PARQUET, COMPRESSION ZSTD)"
             )
-            tmp.replace(target)
+            size = whole.stat().st_size
+            if size <= SPLIT_BYTES:
+                whole.replace(table_dir / f"{part}.parquet")
+            else:
+                chunks = -(-size // CHUNK_BYTES)
+                step = -(-n // chunks)
+                tmps = []
+                for i in range(chunks):
+                    tmp = table_dir / f"{part}_{i}.parquet.tmp"
+                    con.execute(
+                        f"COPY (SELECT * FROM {table} ORDER BY rowid LIMIT {step} "  # noqa: S608
+                        f"OFFSET {i * step}) TO '{tmp.as_posix()}' "
+                        "(FORMAT PARQUET, COMPRESSION ZSTD)"
+                    )
+                    tmps.append(tmp)
+                for i, tmp in enumerate(tmps):
+                    tmp.replace(
+                        table_dir / (f"{part}.parquet" if i == 0 else f"{part}_{i}.parquet")
+                    )
+                whole.unlink()
             counts[table] = n
     finally:
         con.close()
@@ -185,8 +218,8 @@ def replan(source_id: str, lake: Path | None = None) -> tuple[int, int]:
         for old, new in moves.items():
             src_name = f"{old:05d}" if stage == "tmp" else f"tmp{old:05d}"
             dst_name = f"tmp{old:05d}" if stage == "tmp" else f"{new:05d}"
-            for f in out.glob(f"*/{src_name}.parquet"):
-                f.rename(f.with_name(f"{dst_name}.parquet"))
+            for f in [*out.glob(f"*/{src_name}.parquet"), *out.glob(f"*/{src_name}_*.parquet")]:
+                f.rename(f.with_name(dst_name + f.name[len(src_name) :]))
             (done_dir / f"{src_name}.json").rename(done_dir / f"{dst_name}.json")
     new_plan = [plan[i] for i in kept] + pending
     (out / "_plan.json").write_text(json.dumps(new_plan, indent=1))
@@ -253,7 +286,8 @@ def plan(source_ids: list[str]) -> list[str]:
 # Sources `run` builds besides parcels, zoning and lien configs. ny.nyc.acris.real is loaded
 # under a doc-code plan (deeds, mortgages, satisfactions, liens) written by `lake plan --set`;
 # the plan is synced with the lake, so the hosted loader resumes it as planned.
-EXTRA_SOURCES = ("wv.statewide.delinquent", "ny.nyc.acris.real")
+EXTRA_SOURCES = ("wv.statewide.delinquent", "ny.nyc.acris.real", "ny.nyc.dof.condo_units",
+                 "pa.allegheny.assessments", "hi.honolulu.owners")  # fmt: skip
 
 
 def parcel_sources() -> list[str]:
