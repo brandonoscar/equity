@@ -388,3 +388,68 @@ def test_liens_without_a_named_debtor_are_owed_by_the_parcel_owner(tmp_path: Pat
     # The satisfied lien is not open; the lien on a parcel missing from the roll is unmatched;
     # the foreclosure is counted, not added to the open lien amount.
     assert s == [("owner-of:pin1", 2, 500.0, 1, 80000.0, 1, "2022-03-01")]
+
+
+def test_review_queue_labels_name_zip_matches(tmp_path: Path) -> None:
+    lk = tmp_path / "lake"
+    d, o = lk / "q.debts", lk / "q.parcels"
+    cases = [  # debtor address, owner mailing address
+        ("12 Main Street", "12 MAIN ST"),  # spelling_only
+        ("40 North Oak Avenue Apt 3", "40 N OAK AVE APT 3"),  # spelling_only
+        ("12 OAK AVE", "12 ELM AVE"),  # same_number
+        ("P.O. BOX 55", "9 PINE RD"),  # po_box
+        ("1 FAR RD", "77 BAY ST"),  # different
+    ]
+    names = ["ANN LEE", "BO RAY", "CY DOE", "DI FOX", "ED KAY"]
+    _write(
+        d / "address" / "0.parquet", [_addr(f"a{i}", c[0], "10001") for i, c in enumerate(cases)]
+    )
+    _write(
+        o / "address" / "0.parquet", [_addr(f"m{i}", c[1], "10001") for i, c in enumerate(cases)]
+    )
+    _write(d / "party" / "0.parquet", [
+        {"party_id": f"d{i}", "raw_name": n, "party_kind": "unknown", "org_name_norm": None,
+         "address_id": f"a{i}"} for i, n in enumerate(names)])  # fmt: skip
+    owners = [{"party_id": f"o{i}", "raw_name": " ".join(reversed(n.split())),
+               "party_kind": "unknown", "org_name_norm": None, "address_id": f"m{i}"}
+              for i, n in enumerate(names)]  # fmt: skip
+    owners.append(
+        {
+            "party_id": "o9",
+            "raw_name": "KAY ED",
+            "party_kind": "unknown",
+            "org_name_norm": None,
+            "address_id": "m3",
+        }
+    )  # a second ED KAY in the ZIP
+    _write(o / "party" / "0.parquet", owners)
+    _write(
+        d / "instrument_party" / "0.parquet",
+        [{"instrument_uid": f"i{i}", "party_id": f"d{i}", "role": "debtor"} for i in range(5)],
+    )
+    _write(d / "instrument" / "0.parquet", [
+        {"instrument_uid": f"i{i}", "source_id": "q.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2025-01-01", "principal_amount": 10.0} for i in range(5)])  # fmt: skip
+    _write(
+        o / "owner_snapshot" / "0.parquet",
+        [{"parcel_uid": f"p{p['party_id'][1:]}", "party_id": p["party_id"]} for p in owners],
+    )
+    _write(
+        o / "parcel" / "0.parquet",
+        [{"parcel_uid": f"p{p['party_id'][1:]}", "situs_address_id": None} for p in owners],
+    )
+    out = tmp_path / "out"
+    result = run(lk, out, ["q.debts"], ["q.parcels"])
+    con = duckdb.connect()
+    got = dict(con.execute(
+        f"SELECT debtor_party_id, category FROM '{out.as_posix()}/review_queue.parquet' "
+        "WHERE owner_party_id <> 'o9'").fetchall())  # fmt: skip
+    assert got == {"d0": "spelling_only", "d1": "spelling_only", "d2": "same_number",
+                   "d3": "po_box", "d4": "different"}  # fmt: skip
+    assert result["review"] == {
+        "debtors": 5,
+        "debtors_by_category": {"different": 1, "po_box": 1, "same_number": 1,
+                                "spelling_only": 2},
+        "debtors_name_unique_in_zip": 4,  # two owners named ED KAY in 10001
+    }  # fmt: skip
+    assert result["debtors_matched_auto"] == 0  # the queue never accepts anything

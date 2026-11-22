@@ -34,6 +34,7 @@ Output (Parquet under data/derived/<state>/, which is git-ignored: it names peop
   debtor_summary.parquet   per matched debtor: liens, open amount, parcels, total parcel value,
                     and with recorder sources open mortgages and equity_est (see .equity)
   mortgage_status.parquet  each mortgage on a matched lot: open or which rule marked it paid
+  review_queue.parquet     evidence and labels for review-only matches (see .review)
 and a summary with counts only, printed and written to summary.json.
 """
 
@@ -314,11 +315,12 @@ def run(
     street_town: bool = False,
     parcel_on_lien: bool = False,
 ) -> dict[str, object]:
-    from equity.matching import equity
+    from equity.matching import equity, review
 
     con = connect(lake, debtor_sources, owner_sources, parcel_on_lien)
     match(con, street_town, parcel_on_lien)
-    tables = ["matches", "debtor_summary"]
+    review.build(con)
+    tables = ["matches", "debtor_summary", "review_queue"]
     if mortgage_sources:
         equity.compute(con, lake, mortgage_sources, link_sources or [])
         tables.append("mortgage_status")
@@ -327,6 +329,7 @@ def run(
         con.execute(f"COPY {table} TO '{(out / (table + '.parquet')).as_posix()}' "
                     "(FORMAT PARQUET, COMPRESSION ZSTD)")  # fmt: skip
     result = summary(con)
+    result["review"] = review.summary(con)
     if mortgage_sources:
         result |= equity.summary(con)
     (out / "summary.json").write_text(json.dumps(result, indent=2, default=str))
