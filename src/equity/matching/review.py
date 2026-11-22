@@ -4,7 +4,8 @@ Nothing here accepts or rejects a match. Each candidate gets fixed, re-derivable
 person (or a rule the project owner approves later) can work the queue in order:
 
   category   spelling_only   street lines agree once suffix and direction words are
-                             spelled one way (ST/STREET, N/NORTH, ...) and punctuation dropped
+                             spelled one way (ST/STREET, N/NORTH, ...) and punctuation dropped;
+                             none now that address keys use that spelling (kept as a check)
              same_number     same house number, different street
              po_box          the debtor's address is a PO box (says nothing about property)
              different       anything else
@@ -29,7 +30,7 @@ WORDS = {
 }  # fmt: skip
 
 
-def _street_macro(con: duckdb.DuckDBPyConnection) -> None:
+def street_macro(con: duckdb.DuckDBPyConnection) -> None:
     pairs = ", ".join(f"'{k}': '{v}'" for k, v in sorted(WORDS.items()))
     con.execute(f"""
         CREATE OR REPLACE MACRO street_norm(s) AS array_to_string(list_transform(
@@ -84,7 +85,6 @@ LEFT JOIN same_name sn ON sn.name_key = q.key AND sn.zip = d.zip5;
 
 
 def build(con: duckdb.DuckDBPyConnection) -> None:
-    _street_macro(con)
     con.execute(SQL)
 
 

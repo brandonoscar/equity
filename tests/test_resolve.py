@@ -394,8 +394,8 @@ def test_review_queue_labels_name_zip_matches(tmp_path: Path) -> None:
     lk = tmp_path / "lake"
     d, o = lk / "q.debts", lk / "q.parcels"
     cases = [  # debtor address, owner mailing address
-        ("12 Main Street", "12 MAIN ST"),  # spelling_only
-        ("40 North Oak Avenue Apt 3", "40 N OAK AVE APT 3"),  # spelling_only
+        ("12 Main Street", "12 MAIN ST"),  # same address, spelled differently: auto
+        ("40 North Oak Avenue Apt 3", "40 N OAK AVE APT 3"),  # same: auto
         ("12 OAK AVE", "12 ELM AVE"),  # same_number
         ("P.O. BOX 55", "9 PINE RD"),  # po_box
         ("1 FAR RD", "77 BAY ST"),  # different
@@ -444,12 +444,13 @@ def test_review_queue_labels_name_zip_matches(tmp_path: Path) -> None:
     got = dict(con.execute(
         f"SELECT debtor_party_id, category FROM '{out.as_posix()}/review_queue.parquet' "
         "WHERE owner_party_id <> 'o9'").fetchall())  # fmt: skip
-    assert got == {"d0": "spelling_only", "d1": "spelling_only", "d2": "same_number",
-                   "d3": "po_box", "d4": "different"}  # fmt: skip
+    assert got == {"d2": "same_number", "d3": "po_box", "d4": "different"}
     assert result["review"] == {
-        "debtors": 5,
-        "debtors_by_category": {"different": 1, "po_box": 1, "same_number": 1,
-                                "spelling_only": 2},
-        "debtors_name_unique_in_zip": 4,  # two owners named ED KAY in 10001
+        "debtors": 3,
+        "debtors_by_category": {"different": 1, "po_box": 1, "same_number": 1},
+        "debtors_name_unique_in_zip": 2,  # two owners named ED KAY in 10001
     }  # fmt: skip
-    assert result["debtors_matched_auto"] == 0  # the queue never accepts anything
+    # Street spelling is evened out in the address key, so d0 and d1 are address matches;
+    # the review queue itself never accepts anything.
+    assert result["matches_by_rule"]["person_name_address"] == 2
+    assert result["debtors_matched_auto"] == 2

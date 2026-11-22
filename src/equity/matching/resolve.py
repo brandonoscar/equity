@@ -12,7 +12,10 @@ same keys, computed in SQL so every match can be re-derived:
              "Person" rules cover every name not classified as an org at load (most
              loaders leave people as party_kind 'unknown').
   org_name   the organization name as normalized at load (equity.matching.orgs).
-  addr_key   street line + ZIP 5 of a normalized address.
+  addr_key   street line + ZIP 5 of a normalized address. The street line is compared with
+             suffix and direction words spelled one way (USPS: STREET=ST, NORTH=N, ...) and
+             punctuation dropped (review.street_norm; approved by the project owner
+             2026-11-22), so "12 Main Street" and "12 MAIN ST." are one address.
   town_key   street line + city, for states whose parcel data carries no owner ZIP (CT).
 
 Rules, strongest first (a debtor-owner pair keeps its strongest rule):
@@ -130,13 +133,16 @@ def connect(
     _view(con, "o_snap", lake, owner_sources, "owner_snapshot")
     _view(con, "o_parcel", lake, owner_sources, "parcel")
     _view(con, "o_assess", lake, owner_sources, "parcel_assessment")
+    from equity.matching.review import street_macro
+
+    street_macro(con)
     con.execute("""
         CREATE TEMP TABLE addr AS
         SELECT DISTINCT address_id,
-               CASE WHEN line1 IS NOT NULL AND zip5 IS NOT NULL
-                    THEN upper(line1) || '|' || zip5 END AS addr_key,
-               CASE WHEN line1 IS NOT NULL AND city IS NOT NULL
-                    THEN upper(line1) || '|' || upper(trim(city)) END AS town_key,
+               CASE WHEN street_norm(line1) <> '' AND zip5 IS NOT NULL
+                    THEN street_norm(line1) || '|' || zip5 END AS addr_key,
+               CASE WHEN street_norm(line1) <> '' AND city IS NOT NULL
+                    THEN street_norm(line1) || '|' || upper(trim(city)) END AS town_key,
                zip5
         FROM addr_all;
         CREATE TEMP TABLE debtors AS
