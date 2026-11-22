@@ -183,3 +183,17 @@ def test_pull_parts_downloads_missing_parquet_only(tmp_path: Path) -> None:
     assert (fresh / "bb.parcels" / "parcel" / "00000.parquet").read_bytes() == b"Q0"
     assert pull_parts(make_store(bucket), fresh, ["bb.parcels"]) == 0  # already there
     assert pull_parts(make_store(bucket), fresh, ["aa.parcels"], tables=["address"]) == 0
+
+
+def test_a_part_too_big_to_store_is_not_synced_as_finished(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setattr(lake_sync, "MAX_BYTES", 4)
+    bucket = FakeBucket()
+    lake = lake_with(tmp_path)
+    src = lake / "aa.parcels"
+    (src / "_parts" / "00001.json").write_text("{}")
+    (src / "parcel" / "00001_2.parquet").write_bytes(b"far too big")
+    push(make_store(bucket), lake)
+    bundle = json.loads((src / "_state.json").read_text())  # (itself too big to upload here)
+    assert "_parts/00000.json" in bundle and "_parts/00001.json" not in bundle

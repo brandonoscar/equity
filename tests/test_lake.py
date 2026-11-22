@@ -207,3 +207,45 @@ def test_host_groups_list_unfinished_sources_by_host(
         {"host": "h1", "sources": "fl.a.parcels fl.b.parcels"},
         {"host": "h2", "sources": "ny.c.parcels"},
     ]
+
+
+def test_export_splits_tables_too_big_for_storage(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    import duckdb
+
+    work = tmp_path / "work.duckdb"
+    run_manifest(str(work), SYNTHETIC_MANIFEST).close()
+    out = tmp_path / "lake" / "fixture.synthetic"
+    whole = lake.export_part(work, out, "00007")
+    (out / "instrument" / "00007_9.parquet").write_bytes(b"stale chunk from an older export")
+    size = (out / "instrument" / "00007.parquet").stat().st_size
+    monkeypatch.setattr(lake, "SPLIT_BYTES", size - 1)  # instrument is just "too big"
+    monkeypatch.setattr(lake, "CHUNK_BYTES", size // 2 + 1)
+    assert lake.export_part(work, out, "00007") == whole
+    files = sorted(p.name for p in (out / "instrument").iterdir())
+    assert files == ["00007.parquet", "00007_1.parquet"]  # two chunks, stale one removed
+    con = duckdb.connect()
+    src = duckdb.connect(str(work), read_only=True)
+    got = con.execute(
+        f"SELECT count(*), bit_xor(hash(instrument_uid)) "
+        f"FROM '{(out / 'instrument').as_posix()}/*.parquet'"
+    ).fetchone()
+    assert got == src.execute(
+        "SELECT count(*), bit_xor(hash(instrument_uid)) FROM instrument").fetchone()  # fmt: skip
+
+
+def test_replan_renames_split_parts(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(lake, "WORK", tmp_path / "work")
+    monkeypatch.setattr("equity.adapters.registry.by_source_id", lambda sid: object)
+    out = tmp_path / "lake" / "s"
+    (out / "_parts").mkdir(parents=True)
+    (out / "party").mkdir()
+    (out / "_plan.json").write_text(json.dumps([{"a": "0"}, {"a": "1"}]))
+    (out / "_parts" / "00001.json").write_text("{}")
+    (out / "party" / "00001.parquet").write_text("first")
+    (out / "party" / "00001_1.parquet").write_text("second")
+    assert lake.replan("s", tmp_path / "lake") == (1, 1)
+    assert sorted(p.name for p in (out / "party").iterdir()) == ["00000.parquet",
+                                                                 "00000_1.parquet"]  # fmt: skip
+    assert (out / "party" / "00000_1.parquet").read_text() == "second"

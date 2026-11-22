@@ -117,10 +117,20 @@ def _local_dirs(lake: Path, only: frozenset[str] | None = None) -> Iterator[Path
             yield d
 
 
+def oversized_parts(src: Path) -> set[str]:
+    """Part numbers with a Parquet file storage will not take (built before parts were split
+    on export). Their markers stay out of the bundle, so another machine rebuilds them."""
+    return {p.name.split(".")[0].split("_")[0]
+            for p in src.glob("*/*.parquet") if p.stat().st_size > MAX_BYTES}  # fmt: skip
+
+
 def write_bundle(src: Path) -> None:
-    """Write src/_state.json: every state file and _parts marker, by relative path."""
+    """Write src/_state.json: every state file and _parts marker, by relative path. A part
+    with a file too big for storage is left out, as if unfinished."""
     files = {n: (src / n).read_text() for n in STATE_FILES if (src / n).exists()}
-    files |= {f"_parts/{m.name}": m.read_text() for m in sorted((src / "_parts").glob("*.json"))}
+    skip = oversized_parts(src)
+    files |= {f"_parts/{m.name}": m.read_text() for m in sorted((src / "_parts").glob("*.json"))
+              if m.stem not in skip}  # fmt: skip
     if files:
         (src / BUNDLE).write_text(json.dumps(files, sort_keys=True))
 
