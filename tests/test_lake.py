@@ -184,12 +184,13 @@ def test_source_lists_are_complete_in_a_fresh_interpreter() -> None:
                              capture_output=True, text=True)  # fmt: skip
         return run.stdout.split()
 
-    n, has_tx, has_fl = fresh(
+    n, has_tx, has_fl, has_acris = fresh(
         "from equity import lake\n"
         "s = lake.parcel_sources()\n"
-        "print(len(s), 'tx.statewide.parcels' in s, 'fl.statewide.parcels' in s)\n"
+        "print(len(s), 'tx.statewide.parcels' in s, 'fl.statewide.parcels' in s,\n"
+        "      'ny.nyc.acris.real' in s)\n"
     )
-    assert int(n) > 50 and has_tx == "True" and has_fl == "True"
+    assert int(n) > 50 and has_tx == "True" and has_fl == "True" and has_acris == "True"
     (adapters,) = fresh("from equity.adapters import health\nprint(len(health.REGISTRY))\n")
     assert int(adapters) > int(n)
 
