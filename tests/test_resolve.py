@@ -139,3 +139,70 @@ def test_cli_runs_a_state(tmp_path: Path, monkeypatch: pytest.MonkeyPatch,
     assert done.value.code == 0
     assert json.loads(capsys.readouterr().out)["debtor_parties"] == 0
     assert (tmp_path / "out" / "ny" / "summary.json").exists()
+
+
+def _recorder(lake: Path) -> None:
+    """Mortgages on p1 (owned by the matched debtor d1, value 500,000)."""
+    r = lake / "zz.recorder"
+    docs = [  # uid, doc_type, recorded_on, amount
+        ("m_payoff", "MORTGAGE", "2010-01-01", 300000.0),  # satisfied by s_same
+        ("m_open", "MORTGAGE", "2018-01-01", 200000.0),  # nothing closes it
+        ("m_sold", "MORTGAGE", "2005-01-01", 100000.0),  # lot sold to d1 in 2008
+        ("m_ref", "MORTGAGE", "2019-01-01", 50000.0),  # a release cites it
+        ("m_self", "MORTGAGE", "2020-01-01", 70000.0),  # deed to self, other-name SAT
+        ("m_partial", "MORTGAGE", "2021-01-01", None),  # partial release only: open, no amount
+        ("s_same", "RELEASE", "2015-01-01", None),
+        ("s_other", "RELEASE", "2022-01-01", None),
+        ("s_cites", "RELEASE", "2023-01-01", None),
+        ("p_rel", "PARTIAL_RELEASE", "2022-06-01", None),
+        ("d_sale", "DEED", "2008-01-01", None),
+        ("d_self", "DEED", "2021-06-01", None),
+    ]
+    _write(r / "instrument" / "0.parquet", [
+        {"instrument_uid": u, "source_id": "zz.recorder", "doc_type": t, "recorded_on": d,
+         "principal_amount": a} for u, t, d, a in docs])  # fmt: skip
+    _write(r / "instrument_parcel" / "0.parquet",
+           [{"instrument_uid": u, "parcel_uid": "p1"} for u, *_ in docs])  # fmt: skip
+    names = {"smith": "JOHN A SMITH", "smith2": "SMITH JOHN A", "old": "OLD OWNER CORP",
+             "doe": "JANE DOE"}  # fmt: skip
+    _write(r / "party" / "0.parquet", [
+        {"party_id": k, "raw_name": v, "party_kind": "unknown", "org_name_norm": None,
+         "address_id": None} for k, v in names.items()])  # fmt: skip
+    roles = [("m_payoff", "smith", "borrower"), ("m_open", "smith", "borrower"),
+             ("m_sold", "old", "borrower"), ("m_ref", "smith", "borrower"),
+             ("m_self", "smith", "borrower"), ("m_partial", "smith", "borrower"),
+             ("s_same", "smith2", "borrower"), ("s_other", "doe", "borrower"),
+             ("p_rel", "smith", "borrower"), ("d_sale", "smith", "grantee"),
+             ("d_self", "smith2", "grantee")]  # fmt: skip
+    _write(
+        r / "instrument_party" / "0.parquet",
+        [{"instrument_uid": u, "party_id": p, "role": role} for u, p, role in roles],
+    )
+    _write(r / "instrument_ref" / "0.parquet", [
+        {"from_uid": "s_cites", "to_uid": "m_ref", "ref_type": "releases"}])  # fmt: skip
+
+
+def test_open_mortgages_and_equity(lake: Path, tmp_path: Path) -> None:
+    _recorder(lake)
+    out = tmp_path / "out"
+    result = run(lake, out, ["zz.debts"], ["zz.parcels"], ["zz.recorder"])
+    con = duckdb.connect()
+    status = dict(con.execute(
+        f"SELECT instrument_uid, status FROM '{out.as_posix()}/mortgage_status.parquet'"
+    ).fetchall())  # fmt: skip
+    assert status == {"m_payoff": "paid_payoff", "m_open": "open", "m_sold": "paid_sale",
+                      "m_ref": "paid_ref", "m_self": "open", "m_partial": "open"}  # fmt: skip
+    row = con.execute(
+        "SELECT open_mortgages, open_mortgage_amount, open_mortgages_no_amount, equity_est "
+        f"FROM '{out.as_posix()}/debtor_summary.parquet' WHERE debtor_party_id = 'd1'"
+    ).fetchone()
+    assert row == (3, 270000.0, 1, 230000.0)
+    d2 = con.execute(
+        "SELECT open_mortgages, equity_est "
+        f"FROM '{out.as_posix()}/debtor_summary.parquet' WHERE debtor_party_id = 'd2'"
+    ).fetchone()
+    assert d2 == (0, 90000.0)  # no recorded mortgages on p2
+    assert result["mortgage_lots_by_status"] == {"open": 3, "paid_payoff": 1, "paid_ref": 1,
+                                                 "paid_sale": 1}  # fmt: skip
+    # d1 and d2; d5's parcel has no assessment, so its equity is unknown, not positive.
+    assert result["debtors_auto_with_positive_equity"] == 2

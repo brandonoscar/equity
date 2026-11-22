@@ -23,7 +23,9 @@ Rules, strongest first (a debtor-owner pair keeps its strongest rule):
 
 Output (Parquet under data/derived/<state>/, which is git-ignored: it names people):
   matches.parquet   debtor party, its instrument, owner party, parcel, rule, decision, keys
-  debtor_summary.parquet   per matched debtor: liens, open amount, parcels, total parcel value
+  debtor_summary.parquet   per matched debtor: liens, open amount, parcels, total parcel value,
+                    and with recorder sources open mortgages and equity_est (see .equity)
+  mortgage_status.parquet  each mortgage on a matched lot: open or which rule marked it paid
 and a summary with counts only, printed and written to summary.json.
 """
 
@@ -65,6 +67,7 @@ COLUMNS: dict[str, dict[str, str]] = {
     "instrument": {"instrument_uid": V, "source_id": V, "doc_type": V, "recorded_on": "DATE",
                    "principal_amount": "DOUBLE"},
     "instrument_ref": {"from_uid": V, "to_uid": V, "ref_type": V},
+    "instrument_parcel": {"instrument_uid": V, "parcel_uid": V},
     "owner_snapshot": {"parcel_uid": V, "party_id": V},
     "parcel": {"parcel_uid": V, "situs_address_id": V},
     "parcel_assessment": {"parcel_uid": V, "tax_year": "INTEGER", "appraised_total": "DOUBLE",
@@ -231,15 +234,27 @@ def summary(con: duckdb.DuckDBPyConnection) -> dict[str, object]:
 
 
 def run(
-    lake: Path, out: Path, debtor_sources: list[str], owner_sources: list[str]
+    lake: Path,
+    out: Path,
+    debtor_sources: list[str],
+    owner_sources: list[str],
+    mortgage_sources: list[str] | None = None,
 ) -> dict[str, object]:
+    from equity.matching import equity
+
     con = connect(lake, debtor_sources, owner_sources)
     match(con)
+    tables = ["matches", "debtor_summary"]
+    if mortgage_sources:
+        equity.compute(con, lake, mortgage_sources)
+        tables.append("mortgage_status")
     out.mkdir(parents=True, exist_ok=True)
-    for table in ("matches", "debtor_summary"):
+    for table in tables:
         con.execute(f"COPY {table} TO '{(out / (table + '.parquet')).as_posix()}' "
                     "(FORMAT PARQUET, COMPRESSION ZSTD)")  # fmt: skip
     result = summary(con)
+    if mortgage_sources:
+        result |= equity.summary(con)
     (out / "summary.json").write_text(json.dumps(result, indent=2, default=str))
     return result
 
@@ -249,6 +264,7 @@ STATES = {
         "debtors": ["ny.dtf.tax_warrants", "ny.dtf.child_support_warrants",
                     "ny.nyc.oath.judgments", "ny.nyc.hpd_litigation", "ny.nyc.acris.real"],
         "owners": ["ny.statewide.parcels"],
+        "mortgages": ["ny.nyc.acris.real"],
     },
 }  # fmt: skip
 
@@ -260,7 +276,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--out", type=Path, default=DERIVED, help="writes <out>/<state>/")
     args = ap.parse_args(argv)
     spec = STATES[args.state]
-    result = run(args.lake, args.out / args.state.lower(), spec["debtors"], spec["owners"])
+    result = run(args.lake, args.out / args.state.lower(), spec["debtors"], spec["owners"],
+                 spec.get("mortgages"))  # fmt: skip
     json.dump(result, sys.stdout, indent=2, default=str)
     print()
     return 0
