@@ -95,7 +95,8 @@ def test_or_grouped_rows_become_one_business() -> None:
          "associated_name_type": "PRINCIPAL PLACE OF BUSINESS", "address": "1 A ST",
          "city": "SALEM", "state": "OR", "zip": "97301"},
         {"registry_number": "9", "business_name": "ACME LLC", "registry_date": "2001-02-03",
-         "associated_name_type": "REGISTERED AGENT", "first_name": "ANN", "last_name": "LEE",
+         "associated_name_type": "REGISTERED AGENT", "first_name": "ANN", "middle_name": "Q",
+         "last_name": "LEE",
          "address": "2 B ST", "city": "SALEM", "state": "OR", "zip": "97301"},
         {"registry_number": "9", "business_name": "ACME LLC", "registry_date": "2001-02-03",
          "associated_name_type": "AUTHORIZED REPRESENTATIVE",
@@ -112,8 +113,16 @@ def test_or_grouped_rows_become_one_business() -> None:
         ("other", "AUTHORIZED REPRESENTATIVE"),
         ("registered_agent", "REGISTERED AGENT"),
     ]
-    names = {r["raw_name"] for t, r in rows if t == "party"}
-    assert names == {"ANN LEE", "AGENTS INC"}
+    names = {r["raw_name"]: r for t, r in rows if t == "party"}
+    assert set(names) == {"ANN Q LEE", "AGENTS INC"}
+    ann, org = names["ANN Q LEE"], names["AGENTS INC"]
+    assert (ann["first_name"], ann["middle"], ann["last_name"], ann["suffix"]) == (
+        "ANN",
+        "Q",
+        "LEE",
+        None,
+    )  # name parts are kept
+    assert org["last_name"] is None and org["middle"] is None  # an organization has none
     assert all(r["valid_from"].isoformat() == "2001-02-03" for t, r in rows if t == "business_role")
 
 

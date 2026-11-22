@@ -208,6 +208,20 @@ def holder_name(row: Mapping[str, Any], spec: NameSpec) -> str | None:
     return " ".join(p for p in parts if p) or None
 
 
+NAME_PART_COLUMNS = ("first_name", "middle", "last_name", "suffix")
+
+
+def holder_parts(row: Mapping[str, Any], spec: NameSpec) -> dict[str, str | None]:
+    """first/middle/last/suffix when the spec lists exactly those four columns (in that order)
+    and the row has a last name; otherwise all None (an organization, or no parts published)."""
+    if len(spec.name_parts) != 4:
+        return dict.fromkeys(NAME_PART_COLUMNS)
+    vals = [_text(row.get(c)) for c in spec.name_parts]
+    if not vals[2]:
+        return dict.fromkeys(NAME_PART_COLUMNS)
+    return dict(zip(NAME_PART_COLUMNS, vals, strict=True))
+
+
 class BusinessRegistryAdapter(Adapter):
     access_method: ClassVar[str] = "api"
     adapter_version: ClassVar[str] = "1"
@@ -330,11 +344,13 @@ class BusinessRegistryAdapter(Adapter):
         valid_from = formed or observed
         principal = address_of(first, c.principal)
         mailing = address_of(first, c.mailing)
-        holders: list[tuple[str, str | None, str, dict[str, Any] | None]] = []
+        Holder = tuple[str, str | None, str, dict[str, Any] | None, dict[str, str | None]]
+        holders: list[Holder] = []
         for spec in c.roles:
             who = holder_name(first, spec)
             if who:
-                holders.append((spec.role, spec.title, who, address_of(first, spec.address)))
+                holders.append((spec.role, spec.title, who, address_of(first, spec.address),
+                                holder_parts(first, spec)))  # fmt: skip
         for rd in c.role_datasets:
             for r in related.get(rd.dataset, []):
                 who = holder_name(r, rd.holder)
@@ -343,7 +359,8 @@ class BusinessRegistryAdapter(Adapter):
                 raw_role = _text(r.get(rd.role_field)) if rd.role_field else None
                 role = rd.role_map.get(raw_role or "", rd.holder.role)
                 title = raw_role or rd.holder.title
-                holders.append((role, title, who, address_of(r, rd.holder.address)))
+                holders.append((role, title, who, address_of(r, rd.holder.address),
+                                holder_parts(r, rd.holder)))  # fmt: skip
         if c.grouped is not None:
             g = c.grouped
             for r in rows:
@@ -355,8 +372,10 @@ class BusinessRegistryAdapter(Adapter):
                 elif t in g.roles:
                     who = holder_name(r, g.roles[t])
                     if who:
-                        holders.append((g.roles[t].role, g.roles[t].title or t, who,
-                                        address_of(r, g.address)))  # fmt: skip
+                        spec = g.roles[t]
+                        addr_r = address_of(r, g.address)
+                        holders.append((spec.role, spec.title or t, who, addr_r,
+                                        holder_parts(r, spec)))  # fmt: skip
         for addr in (principal, mailing):
             if addr is not None:
                 yield NormalizedRow("address", addr)
@@ -370,7 +389,9 @@ class BusinessRegistryAdapter(Adapter):
             valid_from=valid_from, valid_to=None,
         )  # fmt: skip
         seen: set[tuple[str, str]] = set()
-        for role, title, who, addr in sorted(holders, key=lambda h: (h[0], h[2], h[1] or "")):
+        for role, title, who, addr, parts in sorted(
+            holders, key=lambda h: (h[0], h[2], h[1] or "", canonical_json(h[4]))
+        ):
             party_id = stable_id(c.source_id, key, role, clean(who))
             if (party_id, role) in seen:
                 continue
@@ -381,7 +402,7 @@ class BusinessRegistryAdapter(Adapter):
             yield ctx.fact(
                 "party", party_id=party_id, raw_name=who, party_kind=pc.party_kind,
                 org_form=pc.org_form, org_name_norm=pc.org_name_norm,
-                address_id=None if addr is None else addr["address_id"],
+                address_id=None if addr is None else addr["address_id"], **parts,
             )  # fmt: skip
             yield ctx.fact("business_role", sos_id=key, party_id=party_id, role=role,
                            title=title, valid_from=valid_from, valid_to=None)  # fmt: skip
