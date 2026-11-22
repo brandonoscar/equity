@@ -8,6 +8,7 @@ from equity.adapters.base import Adapter, register
 from equity.adapters.business_registry import all_registry_adapters
 from equity.adapters.code_links import NJMunicipalCodeLinks
 from equity.adapters.federal.ecf_rss import NDWVBankruptcyRSS, NDWVDistrictRSS, court_adapters
+from equity.adapters.federal.fjc_idb import FJCCivilJudgments
 from equity.adapters.fl.hillsborough_civil import (
     HillsboroughCivilCases,
     HillsboroughCivilFilings,
@@ -45,6 +46,7 @@ _ALL: tuple[type[Adapter], ...] = (
     HillsboroughCivilCases,
     HillsboroughCivilFilings,
     HillsboroughGarnishment,
+    FJCCivilJudgments,
     *all_registry_adapters(),
     # NDWV keeps its original source ids; config/courts.yaml adds every other court.
     *[c for c in court_adapters() if c.court_id not in ("wvnd", "wvnb")],
