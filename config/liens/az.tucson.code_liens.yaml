@@ -1,0 +1,35 @@
+source_id: az.tucson.code_liens
+state: AZ
+county_fips: "04019"   # Pima County (City of Tucson)
+# City of Tucson code-enforcement charges recorded as liens with the Pima County Recorder,
+# May 2019 to 2024 (one-off layer, last data edit 2024-10). Owner (customer) names, property
+# address, amount due, recording date and paid status; Lien_URL is the recorded document.
+api: arcgis
+layer_url: https://services3.arcgis.com/9coHY2fvuFjG9HQX/arcgis/rest/services/Recorder_Liens_May_2019_2024/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, Lien_Sequence_Number, Address, Customer_1, Customer_2, Customer_3,
+         Customer_4, Lien_Recording_Date, Amount_Due, Payment_Status, Lien_URL, Invoice_Type,
+         City, Zip_Code]
+date_field: Lien_Recording_Date
+partition: year
+first_year: 2019
+uid: Lien_Sequence_Number
+doc_type: STATUTORY_LIEN
+doc_type_raw: {field: Invoice_Type}
+amount: Amount_Due
+satisfied_flag: Payment_Status
+satisfied_values: [Paid]
+parties:
+  - role: debtor
+    name: Customer_1
+    address: {line1: Address, city: City, state_const: AZ, zip: Zip_Code}   # the liened property
+  - {role: debtor, name: Customer_2}
+  - {role: debtor, name: Customer_3}
+  - {role: debtor, name: Customer_4}
+  - role: creditor
+    const: City of Tucson
+terms:
+  url: https://services3.arcgis.com/9coHY2fvuFjG9HQX/arcgis/rest/services/Recorder_Liens_May_2019_2024/FeatureServer/0
+  summary: "City of Tucson public ArcGIS Online layer, free, no login. No licenseInfo on the layer; recorded liens are public records."
+  checked_on: 2026-11-22
+  cost_model: free

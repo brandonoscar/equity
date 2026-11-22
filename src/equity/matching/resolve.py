@@ -25,10 +25,12 @@ With parcel_on_lien (liens recorded against a parcel id, e.g. Allegheny PINs), f
 that names a parcel but no debtor gets the stand-in debtor "owner-of:<parcel_uid>":
   lien_names_parcel         the lien itself names the parcel (instrument_parcel), and that
                             parcel is in the owner source; no name match needed   -> auto
-With court_sources (court judgments: case_party debtors of a judgment, e.g. the federal IDB,
-whose parties carry a county but no address, and whose people are surnames only), also:
-  org_name_county           same org_name, and the judgment's county is the parcel's county
+Any debtor whose lien or judgment names a county (and every run uses this rule):
+  org_name_county           same org_name, and the debtor's county is the parcel's county
                             -> review (no address to confirm it is the same business)
+With court_sources (court judgments: case_party debtors of a judgment, e.g. the federal IDB,
+whose parties carry a county but no address, and whose people are surnames only), their
+debtor parties join the debtors.
 With street_town (CT only, approved by the project owner 2026-11-22), also:
   person_name_street_town   same person name_key, street line and town         -> auto
   org_name_street_town      same org_name, street line and town                -> auto
@@ -85,7 +87,7 @@ COLUMNS: dict[str, dict[str, str]] = {
     "instrument_party": {"instrument_uid": V, "party_id": V, "role": V},
     "instrument": {"instrument_uid": V, "source_id": V, "doc_type": V, "doc_type_raw": V,
                    "recorded_on": "DATE",
-                   "principal_amount": "DOUBLE"},
+                   "principal_amount": "DOUBLE", "jurisdiction": V},
     "instrument_ref": {"from_uid": V, "to_uid": V, "ref_type": V},
     "instrument_parcel": {"instrument_uid": V, "parcel_uid": V},
     "parcel_link": {"from_parcel_uid": V, "to_parcel_uid": V, "link_type": V},
@@ -166,6 +168,10 @@ def connect(
         LEFT JOIN addr a ON a.address_id = p.address_id
         WHERE ip.role = 'debtor';
         ALTER TABLE debtors ADD COLUMN county VARCHAR;
+        -- A lien's county (its jurisdiction, when that is a 5-digit county FIPS).
+        UPDATE debtors SET county = i.jurisdiction FROM d_inst i
+        WHERE i.instrument_uid = debtors.instrument_uid
+          AND regexp_full_match(coalesce(i.jurisdiction, ''), '[0-9]{5}');
         CREATE TEMP TABLE owners AS
         SELECT DISTINCT p.party_id, p.raw_name, p.party_kind, p.org_name_norm, s.parcel_uid,
                name_key(p.raw_name) AS name_key, ma.addr_key AS mail_key, ma.zip5 AS mail_zip,
@@ -341,8 +347,7 @@ def match(
     courts: bool = False,
 ) -> None:
     con.execute(MATCH_SQL)
-    if courts:
-        con.execute(COURT_COUNTY_SQL)
+    con.execute(COURT_COUNTY_SQL)
     if parcel_on_lien:
         con.execute(PARCEL_ON_LIEN_SQL)
     if street_town:
@@ -493,6 +498,8 @@ STATES: dict[str, dict[str, Any]] = {
                    "parcel_on_lien": True, "courts": ["us.fjc.idb.civil_judgments"]},
     "TX-HARRIS": {"debtors": ["tx.harris.tax_judgments"], "owners": ["tx.statewide.parcels"],
                   "parcel_on_lien": True, "courts": ["us.fjc.idb.civil_judgments"]},
+    "AZ-PIMA": {"debtors": ["az.tucson.code_liens"], "owners": ["az.pima.parcels"],
+                "courts": ["us.fjc.idb.civil_judgments"]},
     "PA-WASHINGTON": {"debtors": ["pa.washington.sheriff_sales"],
                       "owners": ["pa.washington.parcels"], "parcel_on_lien": True},
 }  # fmt: skip
