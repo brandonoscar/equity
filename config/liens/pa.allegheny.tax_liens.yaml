@@ -1,0 +1,25 @@
+source_id: pa.allegheny.tax_liens
+state: PA
+county_fips: "42003"
+# Allegheny County municipal and school tax liens filed with the Department of Court Records
+# (DTD dockets) since 1995, via WPRDC. One row per lien, keyed to the parcel PIN; no owner name
+# (the debtor is the parcel's owner). 'satisfied' has no date, so it is marked, not released.
+api: ckan
+portal: https://data.wprdc.org
+resource_id: 65d0d259-3e58-49d3-bebb-80dc75f61245   # Tax liens with current status
+date_field: filing_date
+partition: year
+first_year: 1995
+uid: dtd
+doc_type: TAX_LIEN_STATE
+doc_type_raw: {field: lien_description}
+amount: amount
+satisfied_flag: satisfied
+parties:
+  - {role: creditor, name: assignee, person_names: false}
+parcel: {kind: pin, field: pin, county_fips: "42003"}
+terms:
+  url: https://data.wprdc.org/dataset/allegheny-county-tax-liens-filed-and-satisfied
+  summary: "WPRDC (University of Pittsburgh), CC0. CKAN DataStore API; WPRDC robots.txt disallows /api/ for crawlers but states scripts and applications may use it (see equity.adapters.http SCRIPT_PERMISSIONS)."
+  checked_on: 2026-11-21
+  cost_model: free

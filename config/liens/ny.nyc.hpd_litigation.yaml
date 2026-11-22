@@ -1,0 +1,29 @@
+source_id: ny.nyc.hpd_litigation
+state: NY
+county_fips: "36061"
+# NYC HPD Housing Litigations: cases the city brings in Housing Court against building owners
+# (heat and hot water, repairs, harassment), with the respondent owners, the lot, any judgment
+# and penalty. Respondents are kept as one name string (the list mixes people and LLCs).
+portal: https://data.cityofnewyork.us
+dataset: 59kj-x8nc
+order_by: [litigationid, ":id"]
+select: [litigationid, boroid, housenumber, streetname, zip, block, lot, casetype, caseopendate,
+         casestatus, casejudgement, findingofharassment, findingdate, penalty, respondent, bbl]
+date_field: caseopendate
+partition: year
+first_year: 1990
+uid: litigationid
+doc_type: COURT_ORDER
+doc_type_raw: {field: casetype}
+amount: penalty
+parties:
+  - role: debtor
+    name: respondent
+    address: {line1: [housenumber, streetname], state_const: NY, zip: zip}
+  - {role: creditor, const: "NYC DEPARTMENT OF HOUSING PRESERVATION AND DEVELOPMENT", person_names: false}
+parcel: {kind: nyc_bbl, borough: boroid, block: block, lot: lot}
+terms:
+  url: https://data.cityofnewyork.us/Housing-Development/Housing-Litigations/59kj-x8nc
+  summary: "NYC Open Data (HPD): public, no login, NYC Open Data terms; updated daily. robots.txt allows /resource/."
+  checked_on: 2026-11-21
+  cost_model: free

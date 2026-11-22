@@ -1,0 +1,44 @@
+source_id: ny.nyc.oath.judgments
+state: NY
+county_fips: "36061"   # fallback when the row names no borough
+# NYC OATH Hearings Division Case Status: civil penalty cases from city agencies (DOB, DSNY,
+# FDNY, Sheriff, ...). A penalty unpaid after the decision is docketed as a judgment, which is
+# a lien enforceable like a court judgment. Only docketed cases are loaded.
+portal: https://data.cityofnewyork.us
+dataset: jz4z-kudi
+where: date_judgment_docketed IS NOT NULL
+order_by: [ticket_number, ":id"]
+select: [ticket_number, date_judgment_docketed, balance_due, respondent_last_name, issuing_agency,
+         violation_date, hearing_result, penalty_imposed, paid_amount, total_violation_amount,
+         compliance_status, charge_1_code_description, violation_location_borough,
+         violation_location_block_no, violation_location_lot_no, violation_location_house,
+         violation_location_street_name, violation_location_city, violation_location_zip_code,
+         respondent_address_borough, respondent_address_house, respondent_address_zip_code]
+date_field: date_judgment_docketed
+partition: month
+first_year: 1987
+uid: ticket_number
+doc_type: JUDGMENT_LIEN
+doc_type_raw: OATH docketed judgment
+amount: balance_due          # amount still owed as of the extract
+parties:
+  - role: debtor
+    name: respondent_last_name   # since May 2026 only the last name of a person; full business names
+    address:                     # the violation location (the respondent's own address is house + zip only)
+      line1: [violation_location_house, violation_location_street_name]
+      city: violation_location_city
+      state_const: NY
+      zip: violation_location_zip_code
+  - role: creditor
+    name: issuing_agency
+    person_names: false
+parcel:                          # the violation location's lot, which is not always the debtor's property
+  kind: nyc_bbl
+  borough: violation_location_borough
+  block: violation_location_block_no
+  lot: violation_location_lot_no
+terms:
+  url: https://data.cityofnewyork.us/City-Government/OATH-Hearings-Division-Case-Status/jz4z-kudi
+  summary: "NYC Open Data (NYC OATH): public, no login, NYC Open Data terms of use; updated daily. Since May 2026 only respondent last names are published. robots.txt allows /resource/ (Crawl-delay 1)."
+  checked_on: 2026-11-21
+  cost_model: free

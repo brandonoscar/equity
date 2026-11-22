@@ -59,6 +59,24 @@ def urllib_transport(
 
 RETRY_STATUSES = frozenset({429, 500, 502, 503, 504})
 
+# Written permissions inside a robots.txt that let scripts use paths the file disallows for
+# crawlers. Honored only while the live robots.txt still contains the quoted sentence
+# (compared with comment marks and whitespace removed), and only for the listed prefixes.
+SCRIPT_PERMISSIONS: dict[str, tuple[str, tuple[str, ...]]] = {
+    # WPRDC (Western Pennsylvania Regional Data Center) robots.txt, read 2026-11-21: "If you
+    # use WPRDC data for your scripts or applications, you are allowed to ignore these rules."
+    # /api/ is listed "only ... to prevent the heavy activity we see from crawlers".
+    "https://data.wprdc.org": (
+        "if you use wprdc data for your scripts or applications, you are allowed to ignore "
+        "these rules.",
+        ("/api/",),
+    ),
+}
+
+
+def _plain(text: str) -> str:
+    return " ".join(text.replace("#", " ").lower().split())
+
 
 @dataclass
 class PoliteClient:
@@ -75,6 +93,7 @@ class PoliteClient:
     now: Callable[[], datetime] = field(default=lambda: datetime.now(UTC))
     _last: dict[str, float] = field(default_factory=dict)
     _robots: dict[str, urllib.robotparser.RobotFileParser] = field(default_factory=dict)
+    _robots_text: dict[str, str] = field(default_factory=dict)
 
     def _wait_turn(self, host: str, interval_s: float | None = None) -> None:
         gap = self.min_interval_s if interval_s is None else interval_s
@@ -99,7 +118,9 @@ class PoliteClient:
             #   2xx: obey the file;  4xx "unavailable" (incl. 401/403): no restrictions;
             #   5xx or network error "unreachable": assume complete disallow.
             if 200 <= status < 300:
-                rp.parse(body.decode("utf-8", errors="replace").splitlines())
+                text = body.decode("utf-8", errors="replace")
+                rp.parse(text.splitlines())
+                self._robots_text[origin] = text
             elif 400 <= status < 500:
                 rp.parse([])
             else:
@@ -107,10 +128,19 @@ class PoliteClient:
             self._robots[origin] = rp
         return self._robots[origin]
 
+    def _script_permitted(self, url: str) -> bool:
+        parts = urllib.parse.urlsplit(url)
+        origin = f"{parts.scheme}://{parts.netloc}"
+        grant = SCRIPT_PERMISSIONS.get(origin)
+        if grant is None or origin not in self._robots_text:
+            return False
+        sentence, prefixes = grant
+        return parts.path.startswith(prefixes) and sentence in _plain(self._robots_text[origin])
+
     def get(self, url: str, params: Mapping[str, str] | None = None) -> Response:
         full = url + ("?" + urllib.parse.urlencode(sorted(params.items())) if params else "")
         robots = self._robots_for(full)
-        if not robots.can_fetch(self.user_agent, full):
+        if not robots.can_fetch(self.user_agent, full) and not self._script_permitted(full):
             raise AccessDenied(f"robots.txt disallows {full}")
         host = urllib.parse.urlsplit(full).netloc
         # A robots.txt Crawl-delay longer than our own spacing wins.

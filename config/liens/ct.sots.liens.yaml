@@ -1,0 +1,41 @@
+source_id: ct.sots.liens
+state: CT
+county_fips: "09"   # statewide filing office; no county or parcel on the record
+# Connecticut Secretary of the State lien and UCC filings: original filings only (amendments,
+# continuations and releases repeat an original). Debtor and secured party with addresses.
+portal: https://data.ct.gov
+dataset: xfev-8smz
+where: "cd_flng_type in ('ORIG FIN STMT', 'JUDGMENT LIEN', 'ATTACHMENT', 'VESSEL LIEN')"
+order_by: [id_lien_flng_nbr, ":id"]
+date_field: dt_accept
+partition: year
+first_year: 1888
+uid: id_lien_flng_nbr
+doc_type:
+  field: tx_lien_descript
+  map:
+    OFS: FIXTURE_FILING            # ordinary UCC financing statement (secured lending)
+    MUNICIPAL: TAX_LIEN_STATE
+    IRS: TAX_LIEN_FEDERAL
+    DEPT REV SERVS: TAX_LIEN_STATE
+    STATE: TAX_LIEN_STATE
+    LABOR: STATUTORY_LIEN
+    TRANS UTILITY: STATUTORY_LIEN
+    PUBLIC-FINANCE: STATUTORY_LIEN
+    VESSEL: STATUTORY_LIEN
+    JUDGMENT - PERS: JUDGMENT_LIEN
+    NOTICE OF ATTAC: COURT_ORDER   # prejudgment attachment
+  default: OTHER
+doc_type_raw: {field: tx_lien_descript}
+parties:
+  - role: debtor
+    name: [debtor_nm_bus, debtor_nm_pref, debtor_nm_first, debtor_nm_mid, debtor_nm_last, debtor_nm_suff]
+    address: {line1: [debtor_ad_str1, debtor_ad_str2], city: debtor_ad_city, state: debtor_ad_state, zip: debtor_ad_zip}
+  - role: creditor
+    name: [sec_party_nm_bus, sec_party_nm_pref, sec_party_nm_first, sec_party_nm_mid, sec_party_nm_last, sec_party_nm_suff]
+    address: {line1: [sec_party_ad_str1, sec_party_ad_str2], city: sec_party_ad_city, state: sec_party_ad_state, zip: sec_party_ad_zip}
+terms:
+  url: https://data.ct.gov/Business/UCC-Lien-Filings/xfev-8smz
+  summary: "data.ct.gov (Connecticut Open Data, Secretary of the State): public, no login; updated nightly per the state. No amounts published. robots.txt allows /resource/."
+  checked_on: 2026-11-21
+  cost_model: free

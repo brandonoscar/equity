@@ -1,0 +1,25 @@
+source_id: ny.nyc.evictions
+state: NY
+county_fips: "36061"
+# NYC evictions executed by city marshals since 2017 (warrants of eviction from Housing Court
+# possession judgments). No tenant names are published; each row ties a court index number to
+# the lot (BBL), so it marks the building and its owner, not the evicted occupant.
+portal: https://data.cityofnewyork.us
+dataset: 6z8x-wfk4
+order_by: [court_index_number, docket_number, ":id"]
+select: [court_index_number, docket_number, eviction_address, eviction_apt_num, executed_date,
+         residential_commercial_ind, borough, eviction_zip, ejectment, eviction_possession, bbl]
+date_field: executed_date
+partition: year
+first_year: 2017
+uid: [court_index_number, docket_number]
+doc_type: COURT_ORDER
+doc_type_raw: {field: residential_commercial_ind}
+parties: []
+extra_pii: [eviction_address, eviction_apt_num]   # a household address: pseudonymized in fixtures
+parcel: {kind: nyc_bbl10, field: bbl}
+terms:
+  url: https://data.cityofnewyork.us/City-Government/Evictions/6z8x-wfk4
+  summary: "NYC Open Data (Department of Investigation, marshals' executed evictions): public, no login, NYC Open Data terms; no tenant names. robots.txt allows /resource/."
+  checked_on: 2026-11-21
+  cost_model: free

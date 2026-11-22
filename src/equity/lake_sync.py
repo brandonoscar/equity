@@ -187,6 +187,30 @@ def pull_state(store: Store, lake: Path, only: frozenset[str] | None = None) -> 
     return written
 
 
+def pull_parts(
+    store: Store, lake: Path, sources: list[str], tables: list[str] | None = None
+) -> int:
+    """Download a source's stored Parquet parts that are missing locally (or differ in size),
+    for analysis on a machine that did not build them. Returns files written."""
+    written = 0
+    for src in sources:
+        _, folders = store.list_dir(f"{src}/")
+        for table in sorted(folders):
+            if table.startswith("_") or (tables and table not in tables):
+                continue
+            remote, _ = store.list_dir(f"{src}/{table}/")
+            for name, size in sorted(remote.items()):
+                dest = lake / src / table / name
+                if not name.endswith(".parquet") or (dest.exists() and dest.stat().st_size == size):
+                    continue
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                tmp = dest.with_suffix(".parquet.tmp")
+                tmp.write_bytes(store.download(f"{src}/{table}/{name}"))
+                tmp.replace(dest)
+                written += 1
+    return written
+
+
 def main(argv: list[str]) -> int:
     ap = argparse.ArgumentParser(prog="equity.lake_sync")
     ap.add_argument("--lake", default="data/lake")
@@ -195,13 +219,19 @@ def main(argv: list[str]) -> int:
     p.add_argument("--prune-finished", action="store_true")
     p.add_argument("--watch", type=int, default=0, help="repeat every N seconds")
     p.add_argument("--only", nargs="*", help="limit to these source ids")
+    pp = sub.add_parser("pull-parts", help="download stored Parquet parts for analysis")
+    pp.add_argument("sources", nargs="+")
+    pp.add_argument("--tables", nargs="*", help="only these tables")
     ps = sub.add_parser("pull-state")
     ps.add_argument("--only", nargs="*", help="limit to these source ids")
     args = ap.parse_args(argv)
-    only = frozenset(args.only) if args.only else None
+    only = frozenset(args.only) if getattr(args, "only", None) else None
     store = Store(base_url=os.environ.get("SUPABASE_STORAGE_URL", DEFAULT_URL),
                   key=os.environ.get("SUPABASE_SECRET_KEY") or None)  # fmt: skip
     lake = Path(args.lake)
+    if args.cmd == "pull-parts":
+        print(f"pulled {pull_parts(store, lake, args.sources, args.tables)} parquet files")
+        return 0
     if args.cmd == "pull-state":
         print(f"pulled {pull_state(store, lake, only)} state files")
         return 0

@@ -250,13 +250,20 @@ def plan(source_ids: list[str]) -> list[str]:
     return sorted(source_ids, key=rank)
 
 
+# Sources `run` builds besides parcels, zoning and lien configs. ny.nyc.acris.real is loaded
+# under a doc-code plan (deeds, mortgages, satisfactions, liens) written by `lake plan --set`;
+# the plan is synced with the lake, so the hosted loader resumes it as planned.
+EXTRA_SOURCES = ("wv.statewide.delinquent", "ny.nyc.acris.real")
+
+
 def parcel_sources() -> list[str]:
     """Every registered parcel source (what `run` builds when not given --only)."""
     from equity.adapters.registry import REGISTRY
 
     return [
         c.source_id for c in REGISTRY
-        if c.source_id.endswith((".parcels", ".zoning")) or c.source_id == "wv.statewide.delinquent"
+        if c.source_id.endswith((".parcels", ".zoning")) or c.source_id in EXTRA_SOURCES
+        or c.__module__ == "equity.adapters.liens"
     ]  # fmt: skip
 
 
