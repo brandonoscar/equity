@@ -35,7 +35,11 @@ def test_transactions_parties_and_links() -> None:
             {"transactionid": "101", "masterdocumentid": "100", "fileid": "2",
              "transactiontype": "Amendment", "terminationflag": True,
              "documenttype": "IRS termination/release", "filingdate": "2022-05-01T00:00:00.000"},
-            {"transactionid": "", "fileid": "3", "filingdate": "2022-05-01"},  # no id: skipped
+            {"transactionid": "100", "masterdocumentid": "100", "fileid": "3",
+             "transactiontype": "Amendment", "continuation": True,
+             "documenttype": "UCC amendment-continuation",
+             "filingdate": "2023-05-01T00:00:00.000"},  # old style: repeats the filing number
+            {"transactionid": "", "fileid": "4", "filingdate": "2022-05-01"},  # no id: skipped
         ],
         "debtors": [
             {"fileid": "1", "firstname": "ANN", "middlename": "B", "lastname": "TEST",
@@ -51,16 +55,16 @@ def test_transactions_parties_and_links() -> None:
                 json.dumps(body).encode(), "application/json")  # fmt: skip
     rows = list(ColoradoUCC().normalize(f))
     by = lambda t: [r.row for r in rows if r.table == t]  # noqa: E731
-    inst = {i["instrument_number"]: i for i in by("instrument")}
+    all_inst = by("instrument")
+    assert len(all_inst) == 3 and len({i["instrument_uid"] for i in all_inst}) == 3
+    inst = {i["instrument_number"]: i for i in all_inst if i["doc_type"] != "EXTENSION"}
     assert set(inst) == {"100", "101"}
     assert (inst["100"]["doc_type"], inst["100"]["maturity_date"]) == (
         "TAX_LIEN_FEDERAL", date(2030, 1, 2))  # fmt: skip
-    (ref,) = by("instrument_ref")
-    assert (ref["ref_type"], ref["to_uid"]) == (
-        "releases",
-        stable_id("co.sos.ucc", "filing", "100"),
-    )
-    assert ref["to_uid"] == inst["100"]["instrument_uid"]
+    refs = sorted((r["ref_type"], r["to_uid"]) for r in by("instrument_ref"))
+    master = stable_id("co.sos.ucc", "filing", "100")
+    assert refs == [("extends", master), ("releases", master)]
+    assert master == inst["100"]["instrument_uid"]
     people = {p["raw_name"]: p for p in by("party")}
     assert set(people) == {"ANN B TEST JR", "INTERNAL REVENUE SERVICE"}  # removed debtors dropped
     ann = people["ANN B TEST JR"]

@@ -56,6 +56,13 @@ def _date(v: Any) -> date | None:
         return None
 
 
+def _fileid(v: Any) -> int:
+    try:
+        return int(float(str(v)))
+    except (TypeError, ValueError):
+        return -1
+
+
 def _flag(v: Any) -> bool:
     return v is True or str(v).strip().lower() in ("true", "1", "y", "yes")
 
@@ -158,17 +165,26 @@ class ColoradoUCC(Adapter):
                 action = str(r.get("actiontype") or "").lower()
                 if status == "inactive" or action.startswith("delete"):
                     continue  # removed from the filing
-                parties[str(r.get("fileid") or "").split(".")[0]].append((role, r))
-        for tx in sorted(data.get("filings") or [], key=lambda r: str(r.get("transactionid"))):
+                parties[str(_fileid(r.get("fileid")))].append((role, r))
+        initials: set[str] = set()
+        for tx in sorted(data.get("filings") or [], key=lambda r: _fileid(r.get("fileid"))):
             tid, master = _text(tx.get("transactionid")), _text(tx.get("masterdocumentid"))
             recorded = _date(tx.get("filingdate"))
-            if tid is None or recorded is None:
+            fileid = str(_fileid(tx.get("fileid")))
+            if tid is None or recorded is None or fileid == "-1":
                 continue
-            fileid = str(tx.get("fileid") or "").split(".")[0]
             doc_type, ref_type = doc_type_of(tx)
-            uid = stable_id(self.source_id, "filing", tid)
+            # fileid is the one id unique per transaction: old records repeat the filing number
+            # as every amendment's transactionid. The initial filing is keyed by its filing
+            # number, which is what every amendment's masterdocumentid names.
+            filing_no = master or tid
+            if ref_type is None and filing_no not in initials:
+                initials.add(filing_no)
+                uid = stable_id(self.source_id, "filing", filing_no)
+            else:
+                uid = stable_id(self.source_id, "transaction", fileid)
             rows = {"filing": tx, "parties": [r for _, r in parties.get(fileid, [])]}
-            ctx = RecordContext(fetched, "08", tid, "ucc_transaction", rows)
+            ctx = RecordContext(fetched, "08", fileid, "ucc_transaction", rows)
             yield ctx.source_record()
             yield ctx.fact(
                 "instrument", instrument_uid=uid, instrument_number=tid, book_type=None,
@@ -178,9 +194,9 @@ class ColoradoUCC(Adapter):
                 maturity_date=_date(tx.get("lapsedate")), amount_source=None,
                 legal_desc_raw=None,
             )  # fmt: skip
-            if ref_type and master and master != tid:
-                yield ctx.fact("instrument_ref", from_uid=uid,
-                               to_uid=stable_id(self.source_id, "filing", master),
+            target = stable_id(self.source_id, "filing", filing_no)
+            if ref_type and target != uid:
+                yield ctx.fact("instrument_ref", from_uid=uid, to_uid=target,
                                ref_type=ref_type, scope_parcel_uid=None,
                                method="index_xref")  # fmt: skip
             seen: set[tuple[str, str]] = set()
@@ -195,7 +211,7 @@ class ColoradoUCC(Adapter):
                 if addr is not None:
                     yield NormalizedRow("address", addr)
                 nc = classify(name)
-                party_id = stable_id(self.source_id, tid, role, clean(name))
+                party_id = stable_id(self.source_id, fileid, role, clean(name))
                 yield ctx.fact("party", party_id=party_id, raw_name=name,
                                party_kind="person" if parts["last_name"] else nc.party_kind,
                                org_form=nc.org_form, org_name_norm=nc.org_name_norm,
