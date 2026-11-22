@@ -9,6 +9,7 @@ Config keys:
   source_id, state, portal, dataset, where (optional base filter), order_by (default :id)
   api                 socrata (default), ckan (+ resource_id), arcgis (+ layer_url, no portal or
                       dataset) or xlsx (+ url: one workbook, read whole; sheet = 0-based index)
+  date_is_text        arcgis: date_field is ISO text, so windows compare strings, not DATEs
   excel_dates         xlsx: fields holding Excel serial day numbers, turned into ISO dates
   address_split       xlsx: {field, prefix}: "line1, city, ST 12345" into <prefix>line1/city/
                       state/zip (the whole text stays line1 when it does not split that way)
@@ -316,7 +317,12 @@ class LienAdapter(Adapter):
         clauses = [f"({self.config['where']})"] if self.config.get("where") else []
         f = self.config["date_field"]
         if "from" in params and self.api == "arcgis":
-            clauses.append(f"{f} >= DATE '{params['from']}' AND {f} < DATE '{params['to']}'")
+            lo, hi = (
+                (f"'{params['from']}'", f"'{params['to']}'")
+                if self.config.get("date_is_text")
+                else (f"DATE '{params['from']}'", f"DATE '{params['to']}'")
+            )
+            clauses.append(f"{f} >= {lo} AND {f} < {hi}")
         elif "from" in params:
             t = "" if self.ckan else "T00:00:00"  # CKAN SQL compares plain dates
             clauses.append(f"{f} >= '{params['from']}{t}' AND {f} < '{params['to']}{t}'")

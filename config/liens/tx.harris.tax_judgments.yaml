@@ -1,0 +1,44 @@
+source_id: tx.harris.tax_judgments
+state: TX
+county_fips: "48201"
+# Harris County delinquent-tax suits with a judgment entered and the property not yet sold
+# ("Unsold PJ Accounts"), published by the taxing units' collection counsel on ArcGIS Online.
+# A district-court judgment for the taxes, penalties and interest of every taxing unit,
+# foreclosing their tax lien on the parcel. One row per account; Cause_Number is the suit.
+api: arcgis
+layer_url: https://services5.arcgis.com/GtNPpPrhcOMhYgh4/arcgis/rest/services/Tax_Delinquent_Parcels/FeatureServer/1
+order_by: [OBJECTID]
+select: [OBJECTID, HCAD_NUM, Account, Cause_Number, Defendant, owner_name_1, owner_name_2,
+         mail_addr_1, mail_addr_2, mail_city, mail_state, mail_zip, Judgment_Amount,
+         Judgment_Date, Current_Amount, Litigation_Status]
+date_field: Judgment_Date
+date_is_text: true            # 'YYYY-MM-DD' text on this layer
+partition: year
+first_year: 2000
+uid: [Cause_Number, Account]
+doc_type: JUDGMENT_LIEN
+doc_type_raw: {field: Litigation_Status}
+amount: Current_Amount        # owed now (judgment plus later years, less payments)
+satisfied_flag: Litigation_Status
+satisfied_values: [JUDGMENT PAID]
+parties:
+  - role: debtor
+    name: owner_name_1        # HCAD owner of record, in roll order (LAST FIRST)
+    address:
+      line1: [mail_addr_1, mail_addr_2]
+      city: mail_city
+      state: mail_state
+      zip: mail_zip
+  - role: debtor
+    name: owner_name_2
+  - role: debtor
+    name: Defendant           # as styled in the suit, often 'X, ET AL'
+  - role: creditor
+    const: Harris County taxing units
+# TODO: confirm tx.statewide.parcels PROP_ID for Harris is the 13-digit HCAD account.
+parcel: {kind: pin, field: HCAD_NUM, county_fips: "48201"}
+terms:
+  url: https://services5.arcgis.com/GtNPpPrhcOMhYgh4/arcgis/rest/services/Tax_Delinquent_Parcels/FeatureServer/1
+  summary: "Public ArcGIS Online feature layer 'Harris Venue Unsold PJ Accounts', free, no login. No licenseInfo on the layer. Court judgments are public records."
+  checked_on: 2026-11-22
+  cost_model: free

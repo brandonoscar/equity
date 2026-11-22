@@ -410,3 +410,11 @@ def test_arcgis_source_windows_by_date(tmp_path: Path) -> None:
 def test_unknown_api_is_rejected(tmp_path: Path) -> None:
     with pytest.raises(LienConfigError, match="unknown api"):
         load_lien_config(_cfg(tmp_path, api="ftp"))
+
+
+def test_arcgis_text_dates_compare_as_strings(tmp_path: Path) -> None:
+    cfg = _cfg(tmp_path, api="arcgis", layer_url="https://g.test/FeatureServer/1", portal=None,
+               dataset=None, date_field="jd", date_is_text=True)  # fmt: skip
+    a = lien_adapter_for(load_lien_config(cfg))()
+    assert a.where({"from": "2025-01-01", "to": "2026-01-01"}) == (
+        "jd >= '2025-01-01' AND jd < '2026-01-01'")  # fmt: skip
