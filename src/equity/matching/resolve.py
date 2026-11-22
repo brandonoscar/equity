@@ -347,7 +347,8 @@ STATES: dict[str, dict[str, Any]] = {
     # CT parcel data has no owner ZIP (Mailing_Zip is empty statewide): street + town instead.
     # Allegheny's parcel layer has no owner names, but its liens name the parcel (PIN).
     "PA-ALLEGHENY": {"debtors": ["pa.allegheny.tax_liens", "pa.allegheny.foreclosures"],
-                     "owners": ["pa.allegheny.parcels"], "parcel_on_lien": True},
+                     "owners": ["pa.allegheny.parcels", "pa.allegheny.assessments"],
+                     "parcel_on_lien": True},
     "CT": {"debtors": ["ct.sots.liens"], "owners": ["ct.statewide.parcels"], "street_town": True},
 }  # fmt: skip
 
