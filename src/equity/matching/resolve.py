@@ -25,6 +25,10 @@ With parcel_on_lien (liens recorded against a parcel id, e.g. Allegheny PINs), f
 that names a parcel but no debtor gets the stand-in debtor "owner-of:<parcel_uid>":
   lien_names_parcel         the lien itself names the parcel (instrument_parcel), and that
                             parcel is in the owner source; no name match needed   -> auto
+With court_sources (court judgments: case_party debtors of a judgment, e.g. the federal IDB,
+whose parties carry a county but no address, and whose people are surnames only), also:
+  org_name_county           same org_name, and the judgment's county is the parcel's county
+                            -> review (no address to confirm it is the same business)
 With street_town (CT only, approved by the project owner 2026-11-22), also:
   person_name_street_town   same person name_key, street line and town         -> auto
   org_name_street_town      same org_name, street line and town                -> auto
@@ -33,6 +37,8 @@ Output (Parquet under data/derived/<state>/, which is git-ignored: it names peop
   matches.parquet   debtor party, its instrument, owner party, parcel, rule, decision, keys
   debtor_summary.parquet   per matched debtor: liens, open amount, parcels, total parcel value,
                     and with recorder sources open mortgages and equity_est (see .equity)
+  people.parquet    one row per debtor person or business (parties merged across liens and
+                    sources, see PEOPLE_SQL): open judgments, open amount, matched parcels
   mortgage_status.parquet  each mortgage on a matched lot: open or which rule marked it paid
 and a summary with counts only, printed and written to summary.json.
 """
@@ -60,6 +66,7 @@ RULES = (
     ("person_name_zip", "review", 4),
     ("person_name_street_town", "auto", 5),
     ("org_name_street_town", "auto", 6),
+    ("org_name_county", "review", 7),
 )
 
 
@@ -84,6 +91,10 @@ COLUMNS: dict[str, dict[str, str]] = {
     "parcel_link": {"from_parcel_uid": V, "to_parcel_uid": V, "link_type": V},
     "owner_snapshot": {"parcel_uid": V, "party_id": V},
     "parcel": {"parcel_uid": V, "situs_address_id": V},
+    "case_party": {"case_uid": V, "party_id": V, "role": V},
+    "judgment": {"judgment_uid": V, "case_uid": V, "source_id": V, "entered_on": "DATE",
+                 "principal": "DOUBLE", "jurisdiction": V},
+    "judgment_event": {"judgment_uid": V, "event": V},
     "parcel_assessment": {"parcel_uid": V, "tax_year": "INTEGER", "appraised_total": "DOUBLE",
                           "assessed_value": "DOUBLE"},
 }  # fmt: skip
@@ -108,7 +119,11 @@ def _view(con: duckdb.DuckDBPyConnection, name: str, lake: Path, sources: list[s
 
 
 def connect(
-    lake: Path, debtor_sources: list[str], owner_sources: list[str], parcel_on_lien: bool = False
+    lake: Path,
+    debtor_sources: list[str],
+    owner_sources: list[str],
+    parcel_on_lien: bool = False,
+    court_sources: list[str] | None = None,
 ) -> duckdb.DuckDBPyConnection:
     con = duckdb.connect()
     stop = ", ".join(f"'{w}'" for w in STOP)
@@ -150,6 +165,7 @@ def connect(
         JOIN d_inst i ON i.instrument_uid = ip.instrument_uid
         LEFT JOIN addr a ON a.address_id = p.address_id
         WHERE ip.role = 'debtor';
+        ALTER TABLE debtors ADD COLUMN county VARCHAR;
         CREATE TEMP TABLE owners AS
         SELECT DISTINCT p.party_id, p.raw_name, p.party_kind, p.org_name_norm, s.parcel_uid,
                name_key(p.raw_name) AS name_key, ma.addr_key AS mail_key, ma.zip5 AS mail_zip,
@@ -161,6 +177,8 @@ def connect(
         LEFT JOIN addr ma ON ma.address_id = p.address_id
         LEFT JOIN addr sa ON sa.address_id = pc.situs_address_id;
     """)
+    if court_sources:
+        _court_debtors(con, lake, court_sources)
     if parcel_on_lien:
         # A lien that names a parcel but no debtor (Allegheny tax liens, foreclosures) is owed
         # by whoever owns that parcel: one stand-in debtor per parcel, "owner-of:<parcel_uid>".
@@ -172,7 +190,7 @@ def connect(
                    EXISTS (SELECT 1 FROM d_ref r WHERE r.to_uid = i.instrument_uid
                            AND r.ref_type = 'releases')
                        OR coalesce(i.doc_type_raw, '') LIKE '%(satisfied)',
-                   '', NULL, NULL, NULL
+                   '', NULL, NULL, NULL, NULL
             FROM d_inst i JOIN d_lot l ON l.instrument_uid = i.instrument_uid
             WHERE i.doc_type <> 'RELEASE' AND NOT EXISTS (
                 SELECT 1 FROM d_ip ip WHERE ip.instrument_uid = i.instrument_uid
@@ -181,6 +199,37 @@ def connect(
     return con
 
 
+def _court_debtors(con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str]) -> None:
+    """Debtor parties of court judgments, in the owners' counties only (the judgment's
+    jurisdiction is a county FIPS when the court record names one). A 'satisfied' judgment
+    event releases it."""
+    _view(con, "c_party", lake, sources, "party")
+    _view(con, "c_cp", lake, sources, "case_party")
+    _view(con, "c_judg", lake, sources, "judgment")
+    _view(con, "c_event", lake, sources, "judgment_event")
+    con.execute("""
+        INSERT INTO debtors
+        SELECT DISTINCT p.party_id, p.raw_name, p.party_kind, p.org_name_norm,
+               j.judgment_uid, j.source_id, 'COURT_JUDGMENT', j.entered_on, j.principal,
+               EXISTS (SELECT 1 FROM c_event e WHERE e.judgment_uid = j.judgment_uid
+                       AND e.event = 'satisfied'),
+               name_key(p.raw_name), a.addr_key, a.town_key, a.zip5, j.jurisdiction
+        FROM c_judg j
+        JOIN c_cp cp ON cp.case_uid = j.case_uid AND cp.role = 'debtor'
+        JOIN c_party p ON p.party_id = cp.party_id
+        LEFT JOIN addr a ON a.address_id = p.address_id
+        WHERE j.jurisdiction IN (SELECT DISTINCT left(parcel_uid, 5) FROM o_parcel);
+    """)
+
+
+COURT_COUNTY_SQL = """
+INSERT INTO candidates
+SELECT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid, 'org_name_county',
+       d.org_name_norm
+FROM debtors d JOIN owners o ON o.org_name_norm = d.org_name_norm
+WHERE d.county IS NOT NULL AND d.party_kind = 'org' AND o.party_kind = 'org'
+  AND d.org_name_norm <> '' AND left(o.parcel_uid, 5) = d.county;
+"""
 MATCH_SQL = """
 CREATE TEMP TABLE candidates AS
 SELECT d.party_id AS debtor_party_id, d.instrument_uid, o.party_id AS owner_party_id,
@@ -204,6 +253,63 @@ FROM debtors d JOIN owners o ON o.name_key = d.name_key
 WHERE d.party_kind <> 'org' AND o.party_kind <> 'org' AND name_words(d.name_key) >= 2
   AND d.zip5 IS NOT NULL AND d.zip5 IN (o.mail_zip, o.situs_zip);
 """
+# One row per person or business behind the debtor parties: every source loads one party per
+# lien, so the same debtor appears once per ticket, warrant or judgment. Parties are the same
+# debtor when they share the identity key (org name, or person name_key, plus address key or
+# ZIP when known) or are matched by an auto rule to the same parcel-owner party. Connected
+# groups are merged with a fixed number of label-propagation passes (min party id wins),
+# which is deterministic. Parcel value is counted once per distinct parcel.
+PEOPLE_SQL = """
+CREATE TEMP TABLE debtor_identity AS
+SELECT DISTINCT party_id,
+       CASE WHEN starts_with(party_id, 'owner-of:') THEN party_id
+            WHEN party_kind = 'org' AND coalesce(org_name_norm, '') <> ''
+            THEN 'org:' || org_name_norm || '|' || coalesce(addr_key, zip5, '')
+            WHEN name_words(name_key) >= 2
+            THEN 'person:' || name_key || '|' || coalesce(addr_key, zip5, '')
+            ELSE 'party:' || party_id END AS identity
+FROM debtors;
+CREATE TEMP TABLE person_edges AS
+SELECT a.party_id AS x, b.party_id AS y
+FROM debtor_identity a JOIN debtor_identity b ON a.identity = b.identity
+UNION
+SELECT a.debtor_party_id, b.debtor_party_id
+FROM matches a JOIN matches b ON a.owner_party_id = b.owner_party_id
+WHERE a.decision = 'auto' AND b.decision = 'auto' AND a.owner_party_id IS NOT NULL;
+CREATE TEMP TABLE person_of AS
+SELECT x AS party_id, min(y) AS person_id FROM person_edges GROUP BY x;
+"""
+PEOPLE_MERGE_STEP_SQL = """
+CREATE OR REPLACE TEMP TABLE person_of AS
+SELECT e.x AS party_id, min(p.person_id) AS person_id
+FROM person_edges e JOIN person_of p ON p.party_id = e.y GROUP BY e.x;
+"""
+PEOPLE_SUMMARY_SQL = """
+CREATE TEMP TABLE people AS
+WITH j AS (
+    SELECT po.person_id, d.instrument_uid, any_value(d.source_id) AS source_id,
+           any_value(d.doc_type) AS doc_type, bool_or(d.released) AS released,
+           any_value(d.principal_amount) AS amount, any_value(d.raw_name) AS raw_name
+    FROM debtors d JOIN person_of po ON po.party_id = d.party_id
+    GROUP BY po.person_id, d.instrument_uid
+), lots AS (
+    SELECT DISTINCT po.person_id, m.parcel_uid
+    FROM matches m JOIN person_of po ON po.party_id = m.debtor_party_id
+    WHERE m.decision = 'auto'
+)
+SELECT j.person_id, mode(j.raw_name) AS name,
+       count(*) FILTER (WHERE j.doc_type <> 'LIS_PENDENS') AS judgments_and_liens,
+       count(*) FILTER (WHERE j.doc_type <> 'LIS_PENDENS' AND NOT j.released) AS open_count,
+       sum(CASE WHEN NOT j.released AND j.doc_type <> 'LIS_PENDENS' THEN j.amount END)
+           AS open_amount,
+       count(*) FILTER (WHERE j.doc_type = 'LIS_PENDENS') AS foreclosure_filings,
+       list_sort(list_distinct(list(j.source_id))) AS sources,
+       (SELECT count(*) FROM lots l WHERE l.person_id = j.person_id) AS parcels,
+       (SELECT sum(v.value) FROM lots l JOIN parcel_value v ON v.parcel_uid = l.parcel_uid
+        WHERE l.person_id = j.person_id) AS parcel_value
+FROM j GROUP BY j.person_id;
+"""
+PEOPLE_PASSES = 6
 PARCEL_ON_LIEN_SQL = """
 INSERT INTO candidates
 SELECT DISTINCT d.party_id, d.instrument_uid, NULL, l.parcel_uid, 'lien_names_parcel',
@@ -229,9 +335,14 @@ WHERE d.party_kind = 'org' AND o.party_kind = 'org' AND d.org_name_norm <> ''
 
 
 def match(
-    con: duckdb.DuckDBPyConnection, street_town: bool = False, parcel_on_lien: bool = False
+    con: duckdb.DuckDBPyConnection,
+    street_town: bool = False,
+    parcel_on_lien: bool = False,
+    courts: bool = False,
 ) -> None:
     con.execute(MATCH_SQL)
+    if courts:
+        con.execute(COURT_COUNTY_SQL)
     if parcel_on_lien:
         con.execute(PARCEL_ON_LIEN_SQL)
     if street_town:
@@ -279,6 +390,10 @@ def match(
         JOIN liens l ON l.party_id = r.debtor_party_id
         JOIN props p ON p.debtor_party_id = r.debtor_party_id;
     """)  # noqa: S608 - rule names are constants
+    con.execute(PEOPLE_SQL)
+    for _ in range(PEOPLE_PASSES):
+        con.execute(PEOPLE_MERGE_STEP_SQL)
+    con.execute(PEOPLE_SUMMARY_SQL)
 
 
 def summary(con: duckdb.DuckDBPyConnection) -> dict[str, object]:
@@ -301,6 +416,27 @@ def summary(con: duckdb.DuckDBPyConnection) -> dict[str, object]:
         ),
         "open_amount_auto": one(f"SELECT round(sum(open_amount), 2) {auto}"),
         "parcel_value_auto": one(f"SELECT round(sum(parcel_value), 2) {auto}"),
+        # Each judgment once, however many debtors it names (people totals count a joint
+        # judgment once per debtor, since each is liable for it).
+        "open_judgments_linked": one(
+            "SELECT count(DISTINCT d.instrument_uid) FROM debtors d JOIN matches m"
+            " ON m.instrument_uid = d.instrument_uid AND m.decision = 'auto'"
+            " WHERE NOT d.released AND d.doc_type <> 'LIS_PENDENS'"
+        ),
+        "open_amount_linked_once": one(
+            "SELECT round(sum(a), 2) FROM (SELECT any_value(d.principal_amount) AS a"
+            " FROM debtors d JOIN matches m ON m.instrument_uid = d.instrument_uid"
+            " AND m.decision = 'auto' WHERE NOT d.released AND d.doc_type <> 'LIS_PENDENS'"
+            " GROUP BY d.instrument_uid)"
+        ),
+        "people": one("SELECT count(*) FROM people"),
+        "people_with_parcels": one("SELECT count(*) FROM people WHERE parcels > 0"),
+        "people_open_amount_with_parcels": one(
+            "SELECT round(sum(open_amount), 2) FROM people WHERE parcels > 0"
+        ),
+        "people_parcel_value": one(
+            "SELECT round(sum(parcel_value), 2) FROM people WHERE parcels > 0"
+        ),
     }
 
 
@@ -313,12 +449,13 @@ def run(
     link_sources: list[str] | None = None,
     street_town: bool = False,
     parcel_on_lien: bool = False,
+    court_sources: list[str] | None = None,
 ) -> dict[str, object]:
     from equity.matching import equity
 
-    con = connect(lake, debtor_sources, owner_sources, parcel_on_lien)
-    match(con, street_town, parcel_on_lien)
-    tables = ["matches", "debtor_summary"]
+    con = connect(lake, debtor_sources, owner_sources, parcel_on_lien, court_sources)
+    match(con, street_town, parcel_on_lien, bool(court_sources))
+    tables = ["matches", "debtor_summary", "people"]
     if mortgage_sources:
         equity.compute(con, lake, mortgage_sources, link_sources or [])
         tables.append("mortgage_status")
@@ -346,6 +483,15 @@ STATES: dict[str, dict[str, Any]] = {
     "PA-ALLEGHENY": {"debtors": ["pa.allegheny.tax_liens", "pa.allegheny.foreclosures"],
                      "owners": ["pa.allegheny.parcels"], "parcel_on_lien": True},
     "CT": {"debtors": ["ct.sots.liens"], "owners": ["ct.statewide.parcels"], "street_town": True},
+    # Detroit blight judgments name both the owner and the ticketed parcel (same parcel_id as
+    # the Detroit assessor layer); Harris tax-suit judgments name the HCAD account; Washington
+    # County sheriff sales list every parcel sold.
+    "MI-DETROIT": {"debtors": ["mi.detroit.blight_judgments"], "owners": ["mi.wayne.parcels"],
+                   "parcel_on_lien": True, "courts": ["us.fjc.idb.civil_judgments"]},
+    "TX-HARRIS": {"debtors": ["tx.harris.tax_judgments"], "owners": ["tx.statewide.parcels"],
+                  "parcel_on_lien": True, "courts": ["us.fjc.idb.civil_judgments"]},
+    "PA-WASHINGTON": {"debtors": ["pa.washington.sheriff_sales"],
+                      "owners": ["pa.washington.parcels"], "parcel_on_lien": True},
 }  # fmt: skip
 
 
@@ -358,7 +504,8 @@ def main(argv: list[str] | None = None) -> int:
     spec = STATES[args.state]
     result = run(args.lake, args.out / args.state.lower(), spec["debtors"], spec["owners"],
                  spec.get("mortgages"), spec.get("links"),
-                 bool(spec.get("street_town")), bool(spec.get("parcel_on_lien")))  # fmt: skip
+                 bool(spec.get("street_town")), bool(spec.get("parcel_on_lien")),
+                 spec.get("courts"))  # fmt: skip
     json.dump(result, sys.stdout, indent=2, default=str)
     print()
     return 0

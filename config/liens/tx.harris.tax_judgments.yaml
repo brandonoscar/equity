@@ -35,7 +35,7 @@ parties:
     name: Defendant           # as styled in the suit, often 'X, ET AL'
   - role: creditor
     const: Harris County taxing units
-# TODO: confirm tx.statewide.parcels PROP_ID for Harris is the 13-digit HCAD account.
+# Checked 2026-11-22: 1,675 of 1,934 HCAD_NUM values join tx.statewide.parcels (PROP_ID).
 parcel: {kind: pin, field: HCAD_NUM, county_fips: "48201"}
 terms:
   url: https://services5.arcgis.com/GtNPpPrhcOMhYgh4/arcgis/rest/services/Tax_Delinquent_Parcels/FeatureServer/1

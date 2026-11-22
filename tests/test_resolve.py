@@ -388,3 +388,60 @@ def test_liens_without_a_named_debtor_are_owed_by_the_parcel_owner(tmp_path: Pat
     # The satisfied lien is not open; the lien on a parcel missing from the roll is unmatched;
     # the foreclosure is counted, not added to the open lien amount.
     assert s == [("owner-of:pin1", 2, 500.0, 1, 80000.0, 1, "2022-03-01")]
+
+
+def test_people_merge_a_debtor_across_liens(lake: Path, tmp_path: Path) -> None:
+    """Two liens naming JOHN A SMITH at one address are one person, counted once per parcel."""
+    d = lake / "zz.debts"
+    _write(d / "party" / "1.parquet", [
+        {"party_id": "d6", "raw_name": "SMITH JOHN A", "party_kind": "person",
+         "org_name_norm": None, "address_id": "a1"}])  # fmt: skip
+    _write(d / "instrument_party" / "1.parquet", [
+        {"instrument_uid": "i6", "party_id": "d6", "role": "debtor"}])  # fmt: skip
+    _write(d / "instrument" / "1.parquet", [
+        {"instrument_uid": "i6", "source_id": "zz.other", "doc_type": "JUDGMENT_LIEN",
+         "recorded_on": "2025-02-01", "principal_amount": 50.0}])  # fmt: skip
+    out = tmp_path / "out"
+    result = run(lake, out, ["zz.debts"], ["zz.parcels"])
+    con = duckdb.connect()
+    rows = con.execute(
+        f"SELECT person_id, judgments_and_liens, open_count, open_amount, parcels, parcel_value,"
+        f" sources FROM '{out.as_posix()}/people.parquet' WHERE person_id IN ('d1', 'd6')"
+    ).fetchall()  # fmt: skip
+    assert rows == [("d1", 2, 2, 150.0, 1, 500000.0, ["zz.debts", "zz.other"])]
+    assert result["open_judgments_linked"] == 3  # i1, i6 (John Smith) and i5 (Pat Kim)
+    assert result["open_amount_linked_once"] == 650.0
+
+
+def test_court_judgments_match_businesses_by_county_for_review(tmp_path: Path) -> None:
+    lk = tmp_path / "lake"
+    c, o = lk / "zz.courts", lk / "zz.parcels"
+    _write(c / "party" / "0.parquet", [
+        {"party_id": "k1", "raw_name": "ACME HOLDINGS LLC", "party_kind": "org",
+         "org_name_norm": "ACME HOLDINGS", "address_id": None},
+        {"party_id": "k2", "raw_name": "STERLING", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": None}])  # fmt: skip
+    _write(c / "case_party" / "0.parquet", [
+        {"case_uid": "c1", "party_id": "k1", "role": "debtor"},
+        {"case_uid": "c1", "party_id": "k2", "role": "debtor"},
+        {"case_uid": "c2", "party_id": "k1", "role": "debtor"}])  # fmt: skip
+    _write(c / "judgment" / "0.parquet", [
+        {"judgment_uid": "j1", "case_uid": "c1", "source_id": "zz.courts",
+         "entered_on": "2020-01-01", "principal": 7000.0, "jurisdiction": "36061"},
+        {"judgment_uid": "j2", "case_uid": "c2", "source_id": "zz.courts",
+         "entered_on": "2020-01-01", "principal": 9.0, "jurisdiction": "06037"}])  # fmt: skip
+    _write(c / "judgment_event" / "0.parquet", [{"judgment_uid": "none", "event": "satisfied"}])
+    _write(o / "party" / "0.parquet", [
+        {"party_id": "o1", "raw_name": "ACME HOLDINGS INC", "party_kind": "org",
+         "org_name_norm": "ACME HOLDINGS", "address_id": None}])  # fmt: skip
+    _write(o / "owner_snapshot" / "0.parquet", [{"parcel_uid": "36061-1", "party_id": "o1"}])
+    _write(o / "parcel" / "0.parquet", [{"parcel_uid": "36061-1", "situs_address_id": None}])
+    out = tmp_path / "out"
+    result = run(lk, out, ["zz.none"], ["zz.parcels"], court_sources=["zz.courts"])
+    m = duckdb.connect().execute(
+        f"SELECT debtor_party_id, instrument_uid, rule_id, decision"
+        f" FROM '{out.as_posix()}/matches.parquet'").fetchall()  # fmt: skip
+    # Same business in the parcel's county: review. The LA judgment (other county) and the
+    # surname-only person are never matched.
+    assert m == [("k1", "j1", "org_name_county", "review")]
+    assert result["debtor_parties"] == 2
