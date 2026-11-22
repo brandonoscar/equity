@@ -122,9 +122,10 @@ class ColoradoUCC(Adapter):
         }
 
     def partitions(self) -> Iterator[dict[str, str]]:
-        q = SocrataQuery(PORTAL, FILINGS, "fileid IS NOT NULL", (":id",), 1,
-                         select=("max(fileid) AS hi",))  # fmt: skip
-        hi = int(float(parse_rows(get_page(self.client, q, 0).content)[0]["hi"]))
+        q = SocrataQuery(PORTAL, FILINGS, "fileid IS NOT NULL", ("fileid DESC",), 1,
+                         select=("fileid",))  # fmt: skip
+        top = parse_rows(get_page(self.client, q, 0).content)
+        hi = int(float(top[0]["fileid"])) if top else 0
         for lo in range(0, hi + 1, WINDOW):
             yield {"lo": str(lo), "hi": str(lo + WINDOW)}
 

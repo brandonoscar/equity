@@ -5,6 +5,8 @@ from __future__ import annotations
 import json
 from datetime import UTC, date, datetime
 
+import pytest
+
 from equity.adapters.base import Fetched
 from equity.adapters.co_ucc import ColoradoUCC, doc_type_of
 from equity.schema.ids import stable_id
@@ -66,3 +68,21 @@ def test_transactions_parties_and_links() -> None:
         == ("ANN", "B", "TEST", "JR", "person")  # fmt: skip
     roles = sorted((ip["role"], ip["seq"]) for ip in by("instrument_party"))
     assert roles == [("creditor", 1), ("debtor", 2)]
+
+
+def test_partitions_cover_every_fileid(monkeypatch: pytest.MonkeyPatch) -> None:
+    from types import SimpleNamespace
+
+    from equity.adapters import co_ucc
+
+    seen = {}
+
+    def fake_page(client: object, query: object, offset: int) -> SimpleNamespace:
+        seen["params"] = query.params(offset)  # type: ignore[attr-defined]
+        return SimpleNamespace(content=b'[{"fileid": "120000"}]')
+
+    monkeypatch.setattr(co_ucc, "get_page", fake_page)
+    parts = list(ColoradoUCC().partitions())
+    assert parts == [{"lo": "0", "hi": "50000"}, {"lo": "50000", "hi": "100000"},
+                     {"lo": "100000", "hi": "150000"}]  # fmt: skip
+    assert seen["params"]["$order"].startswith("fileid DESC")  # no aggregate: Socrata rejects it
