@@ -418,3 +418,28 @@ def test_arcgis_text_dates_compare_as_strings(tmp_path: Path) -> None:
     a = lien_adapter_for(load_lien_config(cfg))()
     assert a.where({"from": "2025-01-01", "to": "2026-01-01"}) == (
         "jd >= '2025-01-01' AND jd < '2026-01-01'")  # fmt: skip
+
+
+def test_captions_split_and_pin_lists_give_every_lot(tmp_path: Path) -> None:
+    cfg = _cfg(tmp_path, caption_field="title", released_on=None,
+               parcel={"kind": "pin", "county_fips": "42125", "field": ["p1", "p2"]},
+               parties=[{"role": "creditor", "name": "caption_plaintiff"},
+                        {"role": "debtor", "name": "caption_defendant"}])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    rows = [
+        {
+            "ticket": "S1",
+            "docketed": "2024-05-01T00:00:00",
+            "title": "BANK NA\r\nvs\r\nANN LEE",
+            "p1": "010-022",
+            "p2": "010-023",
+        },
+        {"ticket": "S2", "docketed": "2024-05-01T00:00:00", "title": "no caption", "p1": ""},
+    ]
+    body = json.dumps({"rows": rows}).encode()
+    out = [(r.table, dict(r.row)) for r in cls().normalize(Fetched(cls.source_id, "x", AT, 200,
+                                                                   body, ""))]  # fmt: skip
+    roles = {(r["raw_name"]) for t, r in out if t == "party"}
+    assert roles == {"BANK NA", "ANN LEE"}
+    assert sorted(r["parcel_uid"] for t, r in out if t == "instrument_parcel") == [
+        "42125-010-022", "42125-010-023"]  # fmt: skip

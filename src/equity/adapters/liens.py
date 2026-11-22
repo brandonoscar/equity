@@ -9,6 +9,8 @@ Config keys:
   source_id, state, portal, dataset, where (optional base filter), order_by (default :id)
   api                 socrata (default), ckan (+ resource_id), arcgis (+ layer_url, no portal or
                       dataset) or xlsx (+ url: one workbook, read whole; sheet = 0-based index)
+  caption_field       a 'Plaintiff vs Defendant' caption, split into the derived fields
+                      caption_plaintiff and caption_defendant for use in parties
   date_is_text        arcgis: date_field is ISO text, so windows compare strings, not DATEs
   excel_dates         xlsx: fields holding Excel serial day numbers, turned into ISO dates
   address_split       xlsx: {field, prefix}: "line1, city, ST 12345" into <prefix>line1/city/
@@ -27,7 +29,7 @@ Config keys:
   parties             list of {role, name: field|[fields] | const: text,
                                address: {line1: field|[fields], city, state, zip}}
   parcel              {kind: nyc_bbl, borough, block, lot} | {kind: nyc_bbl10, field}
-                      | {kind: pin, field, county_fips}
+                      | {kind: pin, field (or a list of fields, one lot each), county_fips}
   county_fips         jurisdiction when no parcel names a county (5 digits)
   county_name_field   optional field holding the county name (mapped to FIPS in `state`)
   skip_names          name values that are separators, not parties (e.g. AND/OR)
@@ -241,6 +243,7 @@ def excel_date(value: Any) -> str | None:
     return (EXCEL_EPOCH + timedelta(days=int(n))).isoformat()
 
 
+CAPTION_VS = re.compile(r"\s+vs?\.?\s+", re.IGNORECASE)
 ADDRESS_TAIL = re.compile(r"^(?P<state>[A-Z]{2})\.?\s+(?P<zip>[0-9]{5})(?:-[0-9]{4})?$")
 
 
@@ -414,9 +417,19 @@ class LienAdapter(Adapter):
         value = str(row.get(spec["field"]) or "").strip().upper()
         return str(spec["map"].get(value, spec["default"]))
 
-    def _parcel(self, row: Mapping[str, Any]) -> tuple[str | None, str | None]:
-        """(parcel_uid, county fips) for the row's lot, or (None, None)."""
+    def _parcels(self, row: Mapping[str, Any]) -> list[tuple[str | None, str | None]]:
+        """Every lot the row names: a pin spec may list several fields (parcels1..parcels15)."""
         spec = self.config.get("parcel") or {}
+        if spec.get("kind") == "pin" and isinstance(spec.get("field"), list):
+            return [self._parcel({**row, "_pin": row.get(f)}, {**spec, "field": "_pin"})
+                    for f in spec["field"]]  # fmt: skip
+        return [self._parcel(row)]
+
+    def _parcel(
+        self, row: Mapping[str, Any], spec_over: Mapping[str, Any] | None = None
+    ) -> tuple[str | None, str | None]:
+        """(parcel_uid, county fips) for the row's lot, or (None, None)."""
+        spec = spec_over or self.config.get("parcel") or {}
         if spec.get("kind") == "nyc_bbl":
             b = nyc_bbl(row.get(spec["borough"]), row.get(spec["block"]), row.get(spec["lot"]))
             if b is None:
@@ -469,7 +482,8 @@ class LienAdapter(Adapter):
         parties and lots, the first amount and doc type in content order, any release date."""
         cfg = self.config
         groups: dict[str, list[Mapping[str, Any]]] = {}
-        for row in json.loads(fetched.content).get("rows") or []:
+        for raw in json.loads(fetched.content).get("rows") or []:
+            row = self._derive(raw)
             uid_raw = self._uid(row)
             if uid_raw and _date(row.get(cfg["date_field"])) is not None:
                 groups.setdefault(uid_raw, []).append(row)  # no key or no date: skipped
@@ -477,7 +491,7 @@ class LienAdapter(Adapter):
             rows = sorted(groups[uid_raw], key=canonical_json)
             first = rows[0]
             recorded = min(d for d in (_date(r.get(cfg["date_field"])) for r in rows) if d)
-            lots = sorted({lot for lot in (self._parcel(r) for r in rows) if lot[0]})
+            lots = sorted({lot for r in rows for lot in self._parcels(r) if lot[0]})
             county = lots[0][1] if lots else None
             ctx = RecordContext(fetched, county or self._county(first), uid_raw, "lien",
                                 rows[0] if len(rows) == 1 else {"rows": rows})  # fmt: skip
@@ -520,6 +534,17 @@ class LienAdapter(Adapter):
                 yield ctx.fact("instrument_ref", from_uid=rel_uid, to_uid=uid,
                                ref_type="releases", scope_parcel_uid=None,
                                method="index_xref")  # fmt: skip
+
+    def _derive(self, row: Mapping[str, Any]) -> Mapping[str, Any]:
+        """Fields computed from the raw row: a case caption 'A vs B' split into
+        caption_plaintiff and caption_defendant (config caption_field)."""
+        field = self.config.get("caption_field")
+        if not field:
+            return row
+        parts = CAPTION_VS.split(str(row.get(field) or ""), maxsplit=1)
+        if len(parts) != 2:
+            return row
+        return {**row, "caption_plaintiff": _text(parts[0]), "caption_defendant": _text(parts[1])}
 
     def _row_amount(self, row: Mapping[str, Any]) -> Decimal | None:
         """The row's amount field, or the sum of a list of fields (None if all are blank)."""
