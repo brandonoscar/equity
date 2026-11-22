@@ -477,12 +477,15 @@ STATES: dict[str, dict[str, Any]] = {
         "owners": ["ny.statewide.parcels"],
         "mortgages": ["ny.nyc.acris.real"],
         "links": ["ny.nyc.dof.condo_units"],
+        "courts": ["us.fjc.idb.civil_judgments"],
     },
     # CT parcel data has no owner ZIP (Mailing_Zip is empty statewide): street + town instead.
     # Allegheny's parcel layer has no owner names, but its liens name the parcel (PIN).
     "PA-ALLEGHENY": {"debtors": ["pa.allegheny.tax_liens", "pa.allegheny.foreclosures"],
-                     "owners": ["pa.allegheny.parcels"], "parcel_on_lien": True},
-    "CT": {"debtors": ["ct.sots.liens"], "owners": ["ct.statewide.parcels"], "street_town": True},
+                     "owners": ["pa.allegheny.parcels"], "parcel_on_lien": True,
+                     "courts": ["us.fjc.idb.civil_judgments"]},
+    "CT": {"debtors": ["ct.sots.liens"], "owners": ["ct.statewide.parcels"], "street_town": True,
+           "courts": ["us.fjc.idb.civil_judgments"]},
     # Detroit blight judgments name both the owner and the ticketed parcel (same parcel_id as
     # the Detroit assessor layer); Harris tax-suit judgments name the HCAD account; Washington
     # County sheriff sales list every parcel sold.
