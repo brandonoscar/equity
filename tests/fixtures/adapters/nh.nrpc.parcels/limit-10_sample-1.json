@@ -1,0 +1,76 @@
+{
+ "attributes": [
+  {
+   "OBJECTID": 1,
+   "accountunique": "303|2220",
+   "ownername": "TESTOWNER 276C9D",
+   "siteaddress": "1620 TEST ST",
+   "sitecity": "MILFORD"
+  },
+  {
+   "OBJECTID": 2,
+   "accountunique": "303|2221",
+   "ownername": "TESTOWNER 9CDD30",
+   "siteaddress": "6130 TEST ST",
+   "sitecity": "MILFORD"
+  },
+  {
+   "OBJECTID": 3,
+   "accountunique": "303|2222",
+   "ownername": "TESTOWNER 3D443F",
+   "siteaddress": "3228 TEST ST",
+   "sitecity": "MILFORD"
+  },
+  {
+   "OBJECTID": 4,
+   "accountunique": "303|2223",
+   "ownername": "TESTOWNER EB2E66",
+   "siteaddress": "490 TEST ST",
+   "sitecity": "MILFORD"
+  },
+  {
+   "OBJECTID": 5,
+   "accountunique": "303|2224",
+   "ownername": "TESTOWNER C40043 LLC",
+   "siteaddress": "6857 TEST ST",
+   "sitecity": "MILFORD"
+  },
+  {
+   "OBJECTID": 6,
+   "accountunique": "13|1",
+   "ownername": "TESTOWNER 008212",
+   "siteaddress": "5257 TEST ST",
+   "sitecity": "AMHERST"
+  },
+  {
+   "OBJECTID": 7,
+   "accountunique": "13|2",
+   "ownername": "TESTOWNER E36260",
+   "siteaddress": "1148 TEST ST",
+   "sitecity": "AMHERST"
+  },
+  {
+   "OBJECTID": 8,
+   "accountunique": "223|2168",
+   "ownername": "TESTOWNER F4EDB6",
+   "siteaddress": "6493 TEST ST",
+   "sitecity": "HOLLIS"
+  },
+  {
+   "OBJECTID": 9,
+   "accountunique": "223|2257",
+   "ownername": "TESTOWNER E829F5",
+   "siteaddress": "3311 TEST ST",
+   "sitecity": "HOLLIS"
+  },
+  {
+   "OBJECTID": 10,
+   "accountunique": "223|2258",
+   "ownername": "TESTOWNER 61D938",
+   "siteaddress": "7739 TEST ST",
+   "sitecity": "HOLLIS"
+  }
+ ],
+ "layer": "https://services6.arcgis.com/2ZriDy2NFXltCIFR/arcgis/rest/services/NRPCOpenData/FeatureServer/8",
+ "where": "1=1"
+}

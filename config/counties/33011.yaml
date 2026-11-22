@@ -1,0 +1,26 @@
+source_id: nh.nrpc.parcels
+state: NH
+# Nashua Regional Planning Commission (NRPC) open data "CAMA Lookup" table: owner of record and
+# property address for the 13 NRPC towns, all in Hillsborough County (Amherst, Brookline,
+# Hollis, Hudson, Litchfield, Lyndeborough, Mason, Merrimack, Milford, Mont Vernon, Nashua,
+# Pelham, Wilton). No values or mailing addresses. One row per tax account: accountunique
+# ("<entity>|<account>") is the key, because composite_pid (the map parcel) repeats for condo
+# units and parks (up to 497 accounts). Neither keys to the NH statewide mosaic, so these are
+# parcels of their own (values stay unknown).
+layer_url: https://services6.arcgis.com/2ZriDy2NFXltCIFR/arcgis/rest/services/NRPCOpenData/FeatureServer/8
+order_by: OBJECTID
+page_size: 2000
+min_interval_s: 1.0
+county: {constant: "011"}
+fields:
+  parcel_id: accountunique
+  owner1: ownername
+  situs_line1: siteaddress
+  situs_city: sitecity
+value_basis: "no value or tax-year fields in this table; owner names and property address only"
+terms:
+  url: https://www.arcgis.com/home/item.html?id=bcb82806d92b4030b6098395ffc7cf63
+  summary: "NRPC GIS Program open data (NRPCOpenData FeatureServer, table 8 'CAMA Lookup', 83,643 rows on 2026-11-22). licenseInfo: 'These GIS data are public records subject to NH RSA 91-A. NRPC kindly requests that users credit NRPC GIS Program'; no-warranty clause. Credit: NRPC GIS Program."
+  checked_on: 2026-11-22
+  robots_checked_on: 2026-11-22
+  cost_model: free
