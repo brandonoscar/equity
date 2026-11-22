@@ -8,6 +8,7 @@ from equity.adapters.base import Adapter, register
 from equity.adapters.business_registry import all_registry_adapters
 from equity.adapters.co_ucc import ColoradoUCC
 from equity.adapters.code_links import NJMunicipalCodeLinks
+from equity.adapters.dc_business import DCBusiness
 from equity.adapters.federal.ecf_rss import NDWVBankruptcyRSS, NDWVDistrictRSS, court_adapters
 from equity.adapters.fl.hillsborough_civil import (
     HillsboroughCivilCases,
@@ -40,6 +41,7 @@ _ALL: tuple[type[Adapter], ...] = (
     LocalZoningAdapter,
     NJMunicipalCodeLinks,
     ColoradoUCC,
+    DCBusiness,
     TexasStratMapParcels,
     AcrisRealProperty,
     NycCondoUnits,
