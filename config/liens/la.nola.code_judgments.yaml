@@ -1,0 +1,33 @@
+source_id: la.nola.code_judgments
+state: LA
+county_fips: "22071"   # Orleans Parish (the City of New Orleans)
+# City of New Orleans code enforcement adjudication cases (Office of Business and External
+# Services), daily. Only cases with unpaid fees and a named owner are loaded: after an
+# administrative hearing finds the property in violation, fines and costs are assessed against
+# the owner and the property (La. R.S. 13:2575), collectable by lien and sheriff's sale.
+# TODO(Brandon): confirm unpaid adjudication fees are a recorded lien / judgment before
+# counting them as one; loaded as JUDGMENT_LIEN like NYC OATH until then.
+portal: https://data.nola.gov
+dataset: wy29-i338
+where: "unpaidfees > 0 AND name IS NOT NULL"
+order_by: [numstring, ":id"]
+select: [numstring, codeincidid, name, address, type, d_filed, d_closed, isclosed,
+         currentstatus, stage, unpaidfees, feecount]
+date_field: d_filed
+partition: year
+first_year: 2012
+uid: numstring
+doc_type: JUDGMENT_LIEN
+doc_type_raw: {field: type}
+amount: unpaidfees
+parties:
+  - role: debtor
+    name: name
+    address: {line1: address, state_const: LA}   # the cited property, not a mailing address
+  - role: creditor
+    const: City of New Orleans
+terms:
+  url: https://data.nola.gov/d/wy29-i338
+  summary: "data.nola.gov (City of New Orleans open data, Socrata): public, no login, updated daily. No license set on the dataset; city open data policy."
+  checked_on: 2026-11-22
+  cost_model: free
