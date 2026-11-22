@@ -286,3 +286,127 @@ def test_rows_sharing_a_uid_are_one_lien(tmp_path: Path) -> None:
         )
     ]
     assert again == out  # row order does not matter
+
+
+def _xlsx(rows: list[list[str]]) -> bytes:
+    """A minimal workbook: shared strings for text, plain numbers for digits."""
+    import io
+    import zipfile
+    from xml.sax.saxutils import escape
+
+    strings: list[str] = []
+    body = []
+    for r, row in enumerate(rows, start=1):
+        cells = []
+        for c, val in enumerate(row):
+            ref = f"{chr(65 + c)}{r}"
+            if val.replace(".", "", 1).isdigit():
+                cells.append(f'<c r="{ref}"><v>{val}</v></c>')
+            elif val:
+                strings.append(val)
+                cells.append(f'<c r="{ref}" t="s"><v>{len(strings) - 1}</v></c>')
+        body.append(f'<row r="{r}">{"".join(cells)}</row>')
+    ns = 'xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"'
+    sst = "".join(f"<si><t>{escape(s)}</t></si>" for s in strings)
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w") as z:
+        z.writestr("xl/sharedStrings.xml", f"<sst {ns}>{sst}</sst>")
+        z.writestr(
+            "xl/worksheets/sheet1.xml",
+            f"<worksheet {ns}><sheetData>{''.join(body)}</sheetData></worksheet>",
+        )
+    return buf.getvalue()
+
+
+def test_xlsx_helpers() -> None:
+    from equity.adapters.liens import excel_date, split_address, xlsx_rows
+
+    book = _xlsx([["Name of Employer/DBA", "Date Posted", "Owed"],
+                  ["Acme LLC", "45478", "12.5"], ["", "", ""], ["Bee Inc", "", "3"]])  # fmt: skip
+    assert xlsx_rows(book) == [
+        {"name_of_employer_dba": "Acme LLC", "date_posted": "45478", "owed": "12.5"},
+        {"name_of_employer_dba": "Bee Inc", "date_posted": "", "owed": "3"}]  # fmt: skip
+    assert excel_date("45478") == "2024-07-05"
+    assert excel_date("") is None and excel_date("0") is None
+    assert split_address("259 Drum Point Road,  Brick, NJ 08723") == {
+        "line1": "259 Drum Point Road",
+        "city": "Brick",
+        "state": "NJ",
+        "zip": "08723",
+    }
+    assert split_address("199 Main St., Suite 202, Woodbridge, NJ 07095-1234")["line1"] == (
+        "199 Main St., Suite 202")  # fmt: skip
+    assert split_address("PO Box 5, Trenton") == {
+        "line1": "PO Box 5, Trenton", "city": None, "state": None, "zip": None}  # fmt: skip
+
+
+def _client(responses: dict[str, bytes]):  # type: ignore[no-untyped-def]
+    from collections.abc import Mapping as _M
+
+    from equity.adapters.http import PoliteClient
+
+    def transport(url: str, headers: _M[str, str], timeout: float) -> tuple[int, bytes, str]:
+        if url.endswith("robots.txt"):
+            return 404, b"", ""
+        for key, body in responses.items():
+            if key in url:
+                return 200, body, ""
+        return 404, b"", ""
+
+    return PoliteClient(min_interval_s=0, transport=transport, sleep=lambda s: None)
+
+
+def test_xlsx_source_reads_one_workbook(tmp_path: Path) -> None:
+    cfg = _cfg(tmp_path, api="xlsx", url="https://x.test/list.xlsx", portal=None, dataset=None,
+               parcel=None, county_fips="34", released_on=None, date_field="posted",
+               excel_dates=["posted"], uid=["employer", "posted"],
+               address_split={"field": "address", "prefix": "a_"},
+               amount=["wages", "penalty"], satisfied_flag="status",
+               satisfied_values=["Wages Paid in Full"],
+               parties=[{"role": "debtor", "name": "employer",
+                         "address": {"line1": "a_line1", "city": "a_city", "state": "a_state",
+                                     "zip": "a_zip"}}])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    book = _xlsx([["Employer", "Address", "Posted", "Wages", "Penalty", "Status"],
+                  ["Acme LLC", "1 Main St, Newark, NJ 07102", "45478", "100.105", "20",
+                   "Wages Paid in Full"],
+                  ["Bee Inc", "", "45479", "7", "", "Wages Still Owed"]])  # fmt: skip
+    a = cls(_client({"list.xlsx": book}))
+    assert list(a.partitions()) == [{"file": "all"}]
+    assert a.source_row()["access_method"] == "bulk"
+    out = [(r.table, dict(r.row)) for r in a.normalize(a.fetch(FetchRequest({"file": "all"})))]
+    inst = {r["instrument_number"]: r for t, r in out if t == "instrument"}
+    acme, bee = inst["Acme LLC-2024-07-05"], inst["Bee Inc-2024-07-06"]
+    assert str(acme["principal_amount"]) == "120.10" and acme["doc_type_raw"].endswith(
+        "(satisfied)"
+    )
+    assert str(bee["principal_amount"]) == "7.00" and "satisfied" not in bee["doc_type_raw"]
+    addr = next(r for t, r in out if t == "address")
+    assert (addr["state"], addr["zip5"]) == ("NJ", "07102")
+
+
+def test_arcgis_source_windows_by_date(tmp_path: Path) -> None:
+    cfg = _cfg(tmp_path, api="arcgis", layer_url="https://g.test/FeatureServer/0", portal=None,
+               dataset=None, where="disposition LIKE 'Responsible%'", released_on=None,
+               date_field="judgment_date", uid="ticket", order_by=["OBJECTID"],
+               parcel={"kind": "pin", "field": "pin", "county_fips": "26163"},
+               satisfied_flag="pay", satisfied_values=["PAID IN FULL"])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    feats = {"features": [{"attributes": {"ticket": "T9", "judgment_date": "2025-09-23",
+                                          "due": 305, "pay": "PAID IN FULL",
+                                          "pin": "13006747.", "last": "X"}}]}  # fmt: skip
+    a = cls(_client({"FeatureServer/0/query": json.dumps(feats).encode()}))
+    where = a.where({"from": "2025-01-01", "to": "2026-01-01"})
+    assert where == ("(disposition LIKE 'Responsible%') AND judgment_date >= DATE '2025-01-01' "
+                     "AND judgment_date < DATE '2026-01-01'")  # fmt: skip
+    f = a.fetch(FetchRequest({"from": "2025-01-01", "to": "2026-01-01"}))
+    out = [(r.table, dict(r.row)) for r in a.normalize(f)]
+    (inst,) = [r for t, r in out if t == "instrument" and r["instrument_number"] == "T9"]
+    assert inst["doc_type_raw"].endswith("(satisfied)")
+    assert [r["parcel_uid"] for t, r in out if t == "instrument_parcel"] == ["26163-13006747."]
+    assert a.source_row()["access_method"] == "arcgis"
+
+
+def test_unknown_api_is_rejected(tmp_path: Path) -> None:
+    with pytest.raises(LienConfigError, match="unknown api"):
+        load_lien_config(_cfg(tmp_path, api="ftp"))

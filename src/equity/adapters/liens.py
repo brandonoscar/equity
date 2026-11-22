@@ -1,11 +1,17 @@
-"""Judgments, warrants and liens published as Socrata datasets, one YAML per source in
-config/liens/. Each row becomes a recorded instrument (the lien), its parties (debtor and
-creditor, with addresses) and, where the row names a lot or parcel, an instrument_parcel
-link, so the matcher treats these exactly like recorder documents. A satisfaction date
+"""Judgments, warrants and liens published as open datasets (Socrata, CKAN, ArcGIS layers or a
+plain .xlsx download), one YAML per source in config/liens/. Each row becomes a recorded
+instrument (the lien), its parties (debtor and creditor, with addresses) and, where the row
+names a lot or parcel, an instrument_parcel link, so the matcher treats these exactly like
+recorder documents. A satisfaction date
 becomes a RELEASE instrument that `releases` the lien.
 
 Config keys:
   source_id, state, portal, dataset, where (optional base filter), order_by (default :id)
+  api                 socrata (default), ckan (+ resource_id), arcgis (+ layer_url, no portal or
+                      dataset) or xlsx (+ url: one workbook, read whole; sheet = 0-based index)
+  excel_dates         xlsx: fields holding Excel serial day numbers, turned into ISO dates
+  address_split       xlsx: {field, prefix}: "line1, city, ST 12345" into <prefix>line1/city/
+                      state/zip (the whole text stays line1 when it does not split that way)
   select              optional field list: fetch only these (keeps free text out)
   date_field          the lien date (docketed / filed); rows without it are skipped
   partition           year (default) or month windows on date_field, from first_year
@@ -13,8 +19,10 @@ Config keys:
   doc_type            instrument doc_type (JUDGMENT_LIEN, TAX_LIEN_STATE, ...), or
                       {field, map: {VALUE: DOC_TYPE}, default} to map a row's value
   doc_type_raw        constant label, or {field: name}
-  amount              field holding the amount owed (principal_amount)
+  amount              field holding the amount owed (principal_amount), or a list summed
   released_on         optional field: satisfaction date -> RELEASE + instrument_ref
+  satisfied_flag      optional field: a value in satisfied_values (default true/1/yes/y) marks
+                      the lien satisfied when no satisfaction date is published
   parties             list of {role, name: field|[fields] | const: text,
                                address: {line1: field|[fields], city, state, zip}}
   parcel              {kind: nyc_bbl, borough, block, lot} | {kind: nyc_bbl10, field}
@@ -28,11 +36,14 @@ Config keys:
 
 from __future__ import annotations
 
+import io
 import json
 import re
+import xml.etree.ElementTree as ET
+import zipfile
 from collections.abc import Iterator, Mapping
 from dataclasses import dataclass
-from datetime import UTC, date, datetime
+from datetime import UTC, date, datetime, timedelta
 from decimal import Decimal, InvalidOperation
 from functools import cache
 from pathlib import Path
@@ -40,6 +51,8 @@ from typing import Any, ClassVar
 
 import yaml
 
+from equity.adapters.arcgis import ArcGISQuery
+from equity.adapters.arcgis import fetch_all as arcgis_fetch_all
 from equity.adapters.base import Adapter, Fetched, FetchRequest, HealthReport, NormalizedRow
 from equity.adapters.http import PoliteClient
 from equity.adapters.rows import RecordContext, canonical_json
@@ -51,8 +64,13 @@ from equity.matching.orgs import classify, clean
 from equity.schema.ids import stable_id
 
 LIENS_DIR = CONFIG_DIR / "liens"
-REQUIRED = ("source_id", "state", "portal", "dataset", "date_field", "uid", "doc_type",
-            "doc_type_raw", "parties", "terms")  # fmt: skip
+REQUIRED = ("source_id", "state", "date_field", "uid", "doc_type", "doc_type_raw", "parties",
+            "terms")  # fmt: skip
+API_KEYS = {"socrata": ("portal", "dataset"), "ckan": ("portal", "resource_id"),
+            "arcgis": ("layer_url",), "xlsx": ("url",)}  # fmt: skip
+SATISFIED = ("true", "1", "yes", "y")
+XLSX_NS = "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}"
+EXCEL_EPOCH = date(1899, 12, 30)
 # NYC borough name or digit -> (county FIPS, NYS SWIS prefix), as in the ACRIS config.
 BOROUGHS = {
     "1": ("36061", "620100"), "MANHATTAN": ("36061", "620100"),
@@ -97,9 +115,10 @@ def _fields(spec: Any) -> list[str]:
 
 def load_lien_config(path: Path) -> LienConfig:
     data = yaml.safe_load(path.read_text())
-    need = [k for k in REQUIRED if not (k == "dataset" and data.get("api") == "ckan")]
-    if data.get("api") == "ckan":
-        need.append("resource_id")
+    api = data.get("api", "socrata")
+    if api not in API_KEYS:
+        raise LienConfigError(f"{path.name}: unknown api {api!r}")
+    need = [*REQUIRED, *API_KEYS[api]]
     missing = [k for k in need if k not in data]
     if missing:
         raise LienConfigError(f"{path.name}: missing {missing}")
@@ -158,6 +177,84 @@ def nyc_bbl(borough: Any, block: Any, lot: Any) -> str | None:
     return f"{b}{blk:05d}{lt:04d}"
 
 
+def _header(text: str) -> str:
+    """A spreadsheet column title as a config field name: 'Date Posted on the WALL' ->
+    'date_posted_on_the_wall'."""
+    return re.sub(r"[^a-z0-9]+", "_", text.lower()).strip("_")
+
+
+def _xml(part: bytes) -> ET.Element:
+    """Parse one workbook part. Workbooks never declare a DTD, so one that does is refused
+    (no entity expansion from a downloaded file)."""
+    if b"<!DOCTYPE" in part or b"<!ENTITY" in part:
+        raise LienConfigError("workbook part declares a DTD; refused")
+    return ET.fromstring(part)  # noqa: S314 - DTDs refused above; repo-configured gov host
+
+
+def xlsx_rows(content: bytes, sheet: int = 0) -> list[dict[str, str]]:
+    """Rows of one worksheet as {column field name: cell text}; the first row is the header.
+    Read with the standard library: the workbook is a zip of XML parts."""
+    with zipfile.ZipFile(io.BytesIO(content)) as z:
+        names = z.namelist()
+        shared = []
+        if "xl/sharedStrings.xml" in names:
+            for si in _xml(z.read("xl/sharedStrings.xml")).iter(f"{XLSX_NS}si"):
+                shared.append("".join(t.text or "" for t in si.iter(f"{XLSX_NS}t")))
+        sheet_xml = _xml(z.read(f"xl/worksheets/sheet{sheet + 1}.xml"))
+    table: list[list[str]] = []
+    for row in sheet_xml.iter(f"{XLSX_NS}row"):
+        cells: dict[int, str] = {}
+        for c in row.iter(f"{XLSX_NS}c"):
+            ref = re.match(r"[A-Z]+", c.get("r", ""))
+            col = 0
+            for ch in ref.group(0) if ref else "":
+                col = col * 26 + ord(ch) - 64
+            v = c.find(f"{XLSX_NS}v")
+            if c.get("t") == "s" and v is not None and v.text:
+                text = shared[int(v.text)]
+            elif c.get("t") == "inlineStr":
+                text = "".join(t.text or "" for t in c.iter(f"{XLSX_NS}t"))
+            else:
+                text = v.text or "" if v is not None else ""
+            cells[col - 1 if col else len(cells)] = text
+        table.append([cells.get(i, "") for i in range(max(cells, default=-1) + 1)])
+    if not table:
+        return []
+    head = [_header(h) for h in table[0]]
+    out = []
+    for r in table[1:]:
+        rec = {h: (r[i].strip() if i < len(r) else "") for i, h in enumerate(head) if h}
+        if any(rec.values()):
+            out.append(rec)
+    return out
+
+
+def excel_date(value: Any) -> str | None:
+    """An Excel serial day number (45478) as an ISO date; other text unchanged or None."""
+    try:
+        n = float(str(value))
+    except ValueError:
+        return _text(value)
+    if not 1 <= n < 2_958_466:  # 1900-01-01 .. 9999-12-31
+        return None
+    return (EXCEL_EPOCH + timedelta(days=int(n))).isoformat()
+
+
+ADDRESS_TAIL = re.compile(r"^(?P<state>[A-Z]{2})\.?\s+(?P<zip>[0-9]{5})(?:-[0-9]{4})?$")
+
+
+def split_address(text: str | None) -> dict[str, str | None]:
+    """'259 Drum Point Road, Brick, NJ 08723' -> line1, city, state, zip. Anything else keeps
+    the whole text as line1 rather than guessing the parts."""
+    full = _text(text)
+    parts = [p.strip() for p in (full or "").split(",") if p.strip()]
+    tail = ADDRESS_TAIL.match(parts[-1].upper()) if len(parts) >= 3 else None
+    if tail is None:
+        return {"line1": full, "city": None, "state": None, "zip": None}
+    return {"line1": ", ".join(parts[:-2]), "city": parts[-2], "state": tail["state"],
+            "zip": tail["zip"]}  # fmt: skip
+
+
 class LienAdapter(Adapter):
     config: ClassVar[LienConfig]
     adapter_version: ClassVar[str] = "1"
@@ -174,12 +271,8 @@ class LienAdapter(Adapter):
             "source_id": self.source_id,
             "kind": "recorder",
             "jurisdiction": self.config.get("county_fips") or self.config["state"],
-            "access_method": "api",
-            "base_url": (
-                f"{self.config['portal']}/datastore/{self.config['resource_id']}"
-                if self.ckan
-                else f"{self.config['portal']}/resource/{self.config['dataset']}.json"
-            ),
+            "access_method": {"arcgis": "arcgis", "xlsx": "bulk"}.get(self.api, "api"),
+            "base_url": self.base_url,
             "terms_url": t.get("url"),
             "terms_summary": t["summary"],
             "terms_checked_on": t["checked_on"],
@@ -187,7 +280,24 @@ class LienAdapter(Adapter):
             "cost_model": t["cost_model"],
         }
 
+    @property
+    def api(self) -> str:
+        return str(self.config.get("api", "socrata"))
+
+    @property
+    def base_url(self) -> str:
+        if self.api == "ckan":
+            return f"{self.config['portal']}/datastore/{self.config['resource_id']}"
+        if self.api == "arcgis":
+            return str(self.config["layer_url"])
+        if self.api == "xlsx":
+            return str(self.config["url"])
+        return f"{self.config['portal']}/resource/{self.config['dataset']}.json"
+
     def partitions(self) -> Iterator[dict[str, str]]:
+        if self.api == "xlsx":
+            yield {"file": "all"}  # one workbook, replaced in full each month
+            return
         first = int(self.config.get("first_year", 1990))
         last = datetime.now(UTC).year
         for y in range(first, last + 1):
@@ -200,13 +310,15 @@ class LienAdapter(Adapter):
 
     @property
     def ckan(self) -> bool:
-        return bool(self.config.get("api") == "ckan")
+        return self.api == "ckan"
 
     def where(self, params: Mapping[str, str]) -> str:
         clauses = [f"({self.config['where']})"] if self.config.get("where") else []
         f = self.config["date_field"]
-        t = "" if self.ckan else "T00:00:00"  # CKAN SQL compares plain dates
-        if "from" in params:
+        if "from" in params and self.api == "arcgis":
+            clauses.append(f"{f} >= DATE '{params['from']}' AND {f} < DATE '{params['to']}'")
+        elif "from" in params:
+            t = "" if self.ckan else "T00:00:00"  # CKAN SQL compares plain dates
             clauses.append(f"{f} >= '{params['from']}{t}' AND {f} < '{params['to']}{t}'")
         return " AND ".join(clauses) or "1=1"
 
@@ -229,9 +341,48 @@ class LienAdapter(Adapter):
             if limit or len(got) < page:
                 return rows, resp.retrieved_at
 
+    def _arcgis_query(self, where: str, page: int) -> ArcGISQuery:
+        return ArcGISQuery(str(self.config["layer_url"]), where,
+                           tuple(self.config.get("select") or ("*",)),
+                           tuple(self.config.get("order_by") or ("OBJECTID",)),
+                           page)  # fmt: skip
+
+    def _xlsx_rows(self, content: bytes) -> list[dict[str, Any]]:
+        """Workbook rows with Excel dates as ISO text and split addresses, so normalize reads
+        them like any other source."""
+        rows: list[dict[str, Any]] = []
+        split = self.config.get("address_split")
+        for row in xlsx_rows(content, int(self.config.get("sheet", 0))):
+            out: dict[str, Any] = dict(row)
+            for f in self.config.get("excel_dates") or ():
+                out[f] = excel_date(row.get(f))
+            if split:
+                for k, v in split_address(row.get(split["field"])).items():
+                    out[f"{split['prefix']}{k}"] = v
+            rows.append(out)
+        return rows
+
     def fetch(self, request: FetchRequest) -> Fetched:
         limit = request.params.get("limit")
         where = self.where(request.params)
+        if self.api == "xlsx":
+            resp = self.client.get(str(self.config["url"]))
+            if resp.status != 200:
+                raise LienConfigError(f"{self.source_id}: HTTP {resp.status} from {resp.url}")
+            rows_x = self._xlsx_rows(resp.content)
+            rows_x = rows_x[: int(limit)] if limit else rows_x
+            body_x = canonical_json({"url": self.config["url"], "rows": rows_x})
+            return Fetched(self.source_id, str(self.config["url"]), resp.retrieved_at, 200,
+                           body_x, "application/json")  # fmt: skip
+        if self.api == "arcgis":
+            q_a = self._arcgis_query(where, int(limit) if limit else 1000)
+            feats, resps = arcgis_fetch_all(self.client, q_a, max_pages=1 if limit else 10_000,
+                                            sample=bool(limit))  # fmt: skip
+            rows_a = [f.get("attributes") or {} for f in feats]
+            body_a = canonical_json({"layer": q_a.layer_url, "where": where, "rows": rows_a})
+            at_a = resps[-1].retrieved_at if resps else datetime.now(UTC)
+            return Fetched(self.source_id, f"{q_a.layer_url}/query?where={where}", at_a, 200,
+                           body_a, "application/json")  # fmt: skip
         if self.ckan:
             rows_c, at_c = self._ckan_rows(where, int(limit) if limit else None)
             res = self.config["resource_id"]
@@ -329,11 +480,10 @@ class LienAdapter(Adapter):
             doc_raw = (_text(first.get(raw_type["field"])) if isinstance(raw_type, dict)
                        else str(raw_type)) or self._doc_type(first)  # fmt: skip
             flag = cfg.get("satisfied_flag")
-            if flag and any(str(r.get(flag)).strip().lower() in ("true", "1", "yes", "y")
-                            for r in rows):  # fmt: skip
+            done = tuple(v.lower() for v in cfg.get("satisfied_values") or SATISFIED)
+            if flag and any(str(r.get(flag)).strip().lower() in done for r in rows):
                 doc_raw += " (satisfied)"  # no satisfaction date is published: marked only
-            amounts = [a for a in (_amount(r.get(cfg["amount"])) for r in rows) if a is not None] \
-                if cfg.get("amount") else []  # fmt: skip
+            amounts = [a for a in (self._row_amount(r) for r in rows) if a is not None]
             amount = amounts[0] if amounts else None
             yield ctx.source_record()
             yield ctx.fact(
@@ -364,6 +514,12 @@ class LienAdapter(Adapter):
                 yield ctx.fact("instrument_ref", from_uid=rel_uid, to_uid=uid,
                                ref_type="releases", scope_parcel_uid=None,
                                method="index_xref")  # fmt: skip
+
+    def _row_amount(self, row: Mapping[str, Any]) -> Decimal | None:
+        """The row's amount field, or the sum of a list of fields (None if all are blank)."""
+        found = [a for a in (_amount(row.get(f)) for f in _fields(self.config.get("amount")))
+                 if a is not None]  # fmt: skip
+        return sum(found, Decimal(0)).quantize(Decimal("0.01")) if found else None
 
     def _parties(
         self, ctx: RecordContext, uid: str, rows: list[Mapping[str, Any]]
@@ -401,6 +557,10 @@ class LienAdapter(Adapter):
                                role=role, seq=seq)  # fmt: skip
 
     def health(self) -> HealthReport:
+        if self.api in ("xlsx", "arcgis"):
+            rows_f = json.loads(self.fetch(FetchRequest({"limit": "1"})).content)["rows"]
+            return HealthReport(self.source_id, bool(rows_f), datetime.now(UTC),
+                                "ok" if rows_f else "no rows")  # fmt: skip
         if self.ckan:
             rows_h, _ = self._ckan_rows("1=1", 1)
             return HealthReport(self.source_id, bool(rows_h), datetime.now(UTC),

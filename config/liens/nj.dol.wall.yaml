@@ -1,0 +1,32 @@
+source_id: nj.dol.wall
+state: NJ
+county_fips: "34"   # statewide; the row's county name is used when present
+# NJ Department of Labor and Workforce Development, Workplace Accountability in Labor List
+# (WALL, N.J.S.A. 34:1A-1.18): employers with liability owed under a final judgment or order
+# for unpaid wages, unemployment/disability contributions, workers' comp penalties or gross
+# income tax. One monthly workbook; employers leave the list once they pay.
+# TODO(Brandon): confirm these are docketed in Superior Court as judgments (a statewide lien
+# on NJ real property) for every violation type; loaded as JUDGMENT_LIEN until then.
+api: xlsx
+url: https://www.nj.gov/labor/ea/assets/PDFs/Wall_Dataset.xlsx
+sheet: 0
+excel_dates: [date_posted_on_the_wall]
+address_split: {field: employer_s_principal_address, prefix: addr_}
+date_field: date_posted_on_the_wall   # the date posted, not the judgment date (not published)
+uid: [name_of_employer_dba, violation_type, date_posted_on_the_wall]
+doc_type: JUDGMENT_LIEN
+doc_type_raw: {field: violation_type}
+amount: total_liability_owed_under_final_judgment_order
+county_name_field: county
+parties:
+  - role: debtor
+    name: name_of_employer_dba
+    address: {line1: addr_line1, city: addr_city, state: addr_state, zip: addr_zip}
+  - role: creditor
+    const: NJ Department of Labor and Workforce Development
+extra_pii: [employer_s_principal_address]
+terms:
+  url: https://www.nj.gov/labor/ea/osec/wall.shtml
+  summary: "NJDOL publishes the WALL as a free .xlsx on nj.gov, updated monthly, no login. Public list required by statute; no license or reuse terms stated."
+  checked_on: 2026-11-22
+  cost_model: free
