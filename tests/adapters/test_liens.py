@@ -443,3 +443,10 @@ def test_captions_split_and_pin_lists_give_every_lot(tmp_path: Path) -> None:
     assert roles == {"BANK NA", "ANN LEE"}
     assert sorted(r["parcel_uid"] for t, r in out if t == "instrument_parcel") == [
         "42125-010-022", "42125-010-023"]  # fmt: skip
+
+
+def test_arcgis_epoch_dates() -> None:
+    from equity.adapters.liens import _date
+
+    assert str(_date(1648771200000)) == "2022-04-01"
+    assert _date(True) is None and _date(1e30) is None

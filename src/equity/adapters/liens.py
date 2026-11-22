@@ -148,6 +148,11 @@ def _join(row: Mapping[str, Any], spec: Any) -> str | None:
 
 
 def _date(value: Any) -> date | None:
+    if isinstance(value, int | float) and not isinstance(value, bool):
+        try:  # ArcGIS esriFieldTypeDate: milliseconds since the epoch, UTC
+            return datetime.fromtimestamp(value / 1000, UTC).date()
+        except (OverflowError, OSError, ValueError):
+            return None
     if not isinstance(value, str) or len(value) < 10:
         return None
     try:
