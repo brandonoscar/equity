@@ -206,3 +206,58 @@ def test_open_mortgages_and_equity(lake: Path, tmp_path: Path) -> None:
                                                  "paid_sale": 1}  # fmt: skip
     # d1 and d2; d5's parcel has no assessment, so its equity is unknown, not positive.
     assert result["debtors_auto_with_positive_equity"] == 2
+
+
+def test_condo_unit_mortgages_count_only_for_their_borrower(lake: Path, tmp_path: Path) -> None:
+    _recorder(lake)
+    r = lake / "zz.recorder"
+    extra = [("u_mine", "JOHN A SMITH", 40000.0), ("u_other", "JANE DOE", 900000.0)]
+    for name in ("instrument", "instrument_parcel", "instrument_party", "party"):
+        rows: list[dict[str, Any]]
+        if name == "instrument":
+            rows = [
+                {
+                    "instrument_uid": u,
+                    "source_id": "zz.recorder",
+                    "doc_type": "MORTGAGE",
+                    "recorded_on": "2024-01-01",
+                    "principal_amount": a,
+                }
+                for u, _, a in extra
+            ]
+        elif name == "instrument_parcel":
+            rows = [{"instrument_uid": u, "parcel_uid": "unit1"} for u, _, _ in extra]
+        elif name == "instrument_party":
+            rows = [
+                {"instrument_uid": u, "party_id": f"b_{u}", "role": "borrower"} for u, _, _ in extra
+            ]
+        else:
+            rows = [
+                {
+                    "party_id": f"b_{u}",
+                    "raw_name": n,
+                    "party_kind": "unknown",
+                    "org_name_norm": None,
+                    "address_id": None,
+                }
+                for u, n, _ in extra
+            ]
+        _write(r / name / "1.parquet", rows)  # fmt: skip
+    _write(
+        lake / "zz.links" / "parcel_link" / "0.parquet",
+        [{"from_parcel_uid": "unit1", "to_parcel_uid": "p1", "link_type": "condo_unit_of"}],
+    )
+    out = tmp_path / "out"
+    run(lake, out, ["zz.debts"], ["zz.parcels"], ["zz.recorder"], ["zz.links"])
+    con = duckdb.connect()
+    unit = dict(con.execute(
+        f"SELECT instrument_uid, lot_uid FROM '{out.as_posix()}/mortgage_status.parquet' "
+        "WHERE via_unit").fetchall())  # fmt: skip
+    assert unit == {"u_mine": "unit1", "u_other": "unit1"}
+    row = con.execute(
+        "SELECT open_mortgages, open_mortgage_amount, equity_est "
+        f"FROM '{out.as_posix()}/debtor_summary.parquet' WHERE debtor_party_id = 'd1'"
+    ).fetchone()
+    # The three open whole-lot mortgages (270,000) plus d1's own unit mortgage; the other
+    # unit owner's 900,000 mortgage on the same building is not d1's debt.
+    assert row == (4, 310000.0, 190000.0)

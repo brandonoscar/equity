@@ -68,6 +68,7 @@ COLUMNS: dict[str, dict[str, str]] = {
                    "principal_amount": "DOUBLE"},
     "instrument_ref": {"from_uid": V, "to_uid": V, "ref_type": V},
     "instrument_parcel": {"instrument_uid": V, "parcel_uid": V},
+    "parcel_link": {"from_parcel_uid": V, "to_parcel_uid": V, "link_type": V},
     "owner_snapshot": {"parcel_uid": V, "party_id": V},
     "parcel": {"parcel_uid": V, "situs_address_id": V},
     "parcel_assessment": {"parcel_uid": V, "tax_year": "INTEGER", "appraised_total": "DOUBLE",
@@ -239,6 +240,7 @@ def run(
     debtor_sources: list[str],
     owner_sources: list[str],
     mortgage_sources: list[str] | None = None,
+    link_sources: list[str] | None = None,
 ) -> dict[str, object]:
     from equity.matching import equity
 
@@ -246,7 +248,7 @@ def run(
     match(con)
     tables = ["matches", "debtor_summary"]
     if mortgage_sources:
-        equity.compute(con, lake, mortgage_sources)
+        equity.compute(con, lake, mortgage_sources, link_sources or [])
         tables.append("mortgage_status")
     out.mkdir(parents=True, exist_ok=True)
     for table in tables:
@@ -265,6 +267,7 @@ STATES = {
                     "ny.nyc.oath.judgments", "ny.nyc.hpd_litigation", "ny.nyc.acris.real"],
         "owners": ["ny.statewide.parcels"],
         "mortgages": ["ny.nyc.acris.real"],
+        "links": ["ny.nyc.dof.condo_units"],
     },
 }  # fmt: skip
 
@@ -277,7 +280,7 @@ def main(argv: list[str] | None = None) -> int:
     args = ap.parse_args(argv)
     spec = STATES[args.state]
     result = run(args.lake, args.out / args.state.lower(), spec["debtors"], spec["owners"],
-                 spec.get("mortgages"))  # fmt: skip
+                 spec.get("mortgages"), spec.get("links"))  # fmt: skip
     json.dump(result, sys.stdout, indent=2, default=str)
     print()
     return 0

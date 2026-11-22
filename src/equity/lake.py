@@ -286,7 +286,7 @@ def plan(source_ids: list[str]) -> list[str]:
 # Sources `run` builds besides parcels, zoning and lien configs. ny.nyc.acris.real is loaded
 # under a doc-code plan (deeds, mortgages, satisfactions, liens) written by `lake plan --set`;
 # the plan is synced with the lake, so the hosted loader resumes it as planned.
-EXTRA_SOURCES = ("wv.statewide.delinquent", "ny.nyc.acris.real")
+EXTRA_SOURCES = ("wv.statewide.delinquent", "ny.nyc.acris.real", "ny.nyc.dof.condo_units")
 
 
 def parcel_sources() -> list[str]:
