@@ -28,6 +28,10 @@ Rules, strongest first (a debtor-owner pair keeps its strongest rule):
   org_name_address      same org_name and address                              -> auto
   org_name_zip          same org_name and ZIP                                  -> auto
   person_name_zip       same person name_key and ZIP                           -> review
+  person_name_initial_address  same address, and the names are the same except that one side
+                        has one extra single-letter middle initial ("JOHN SMITH" / "SMITH JOHN
+                        A"); a parent and child can share both, so -> review (approved by the
+                        project owner 2026-11-22)
 With parcel_on_lien (liens recorded against a parcel id, e.g. Allegheny PINs), first; a lien
 that names a parcel but no debtor gets the stand-in debtor "owner-of:<parcel_uid>":
   lien_names_parcel         the lien itself names the parcel (instrument_parcel), and that
@@ -68,6 +72,7 @@ RULES = (
     ("person_name_zip", "review", 4),
     ("person_name_street_town", "auto", 5),
     ("org_name_street_town", "auto", 6),
+    ("person_name_initial_address", "review", 7),
 )
 
 
@@ -233,6 +238,30 @@ FROM debtors d JOIN d_lot l ON l.instrument_uid = d.instrument_uid
 WHERE l.parcel_uid IN (SELECT parcel_uid FROM o_parcel)
   AND (NOT starts_with(d.party_id, 'owner-of:') OR d.party_id = 'owner-of:' || l.parcel_uid);
 """
+# One name key is the other plus exactly one single-letter word (a middle initial).
+INITIAL_SQL = """
+CREATE TEMP TABLE o_by_addr AS
+SELECT party_id, parcel_uid, name_key, suffix_key, mail_key AS k FROM owners
+WHERE party_kind <> 'org' AND mail_key IS NOT NULL AND name_words(name_key) >= 2
+UNION
+SELECT party_id, parcel_uid, name_key, suffix_key, situs_key FROM owners
+WHERE party_kind <> 'org' AND situs_key IS NOT NULL AND name_words(name_key) >= 2;
+INSERT INTO candidates
+SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
+       'person_name_initial_address', d.name_key
+FROM debtors d JOIN o_by_addr o ON o.k = d.addr_key
+WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2
+  AND NOT suffix_conflict(d.suffix_key, o.suffix_key)
+  AND d.name_key <> o.name_key
+  AND abs(name_words(d.name_key) - name_words(o.name_key)) = 1
+  AND (list_has_all(string_split(o.name_key, ' '), string_split(d.name_key, ' '))
+       OR list_has_all(string_split(d.name_key, ' '), string_split(o.name_key, ' ')))
+  AND length(list_filter(
+        string_split(CASE WHEN name_words(o.name_key) > name_words(d.name_key)
+                          THEN o.name_key ELSE d.name_key END, ' '),
+        lambda w: NOT list_contains(string_split(CASE WHEN name_words(o.name_key) >
+            name_words(d.name_key) THEN d.name_key ELSE o.name_key END, ' '), w))[1]) = 1;
+"""
 STREET_TOWN_SQL = """
 INSERT INTO candidates
 SELECT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid, 'person_name_street_town',
@@ -254,6 +283,7 @@ def match(
     con: duckdb.DuckDBPyConnection, street_town: bool = False, parcel_on_lien: bool = False
 ) -> None:
     con.execute(MATCH_SQL)
+    con.execute(INITIAL_SQL)
     if parcel_on_lien:
         con.execute(PARCEL_ON_LIEN_SQL)
     if street_town:

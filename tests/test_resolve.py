@@ -464,7 +464,8 @@ def test_middle_names_and_suffixes_must_agree(tmp_path: Path) -> None:
         ("JOHN A SMITH JR", "SMITH JOHN A SR"),  # father and son: no match
         ("ANN B LEE JR", "LEE ANN B"),  # suffix on one side only: match
         ("CY D ROE", "ROE CY E"),  # different middle initial: no match
-        ("ED KAY", "KAY ED F"),  # middle initial on one side only: no match (exact rules)
+        ("ED KAY", "KAY ED F"),  # middle initial on one side only: review, never auto
+        ("FAY GEE", "GEE FAY HOPE"),  # a full extra middle name: no match
     ]
     _write(
         d / "address" / "0.parquet",
@@ -511,3 +512,7 @@ def test_middle_names_and_suffixes_must_agree(tmp_path: Path) -> None:
         f"SELECT debtor_party_id, owner_party_id FROM '{out.as_posix()}/matches.parquet' "
         "WHERE rule_id = 'person_name_address'").fetchall())  # fmt: skip
     assert got == [("d0", "o0"), ("d2", "o2")]
+    initial = con.execute(
+        f"SELECT debtor_party_id, owner_party_id, decision FROM '{out.as_posix()}/matches.parquet' "
+        "WHERE rule_id = 'person_name_initial_address'").fetchall()  # fmt: skip
+    assert initial == [("d4", "o4", "review")]
