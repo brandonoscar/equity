@@ -505,6 +505,10 @@ def run(
     return result
 
 
+# Federal court money judgments (FJC IDB, its CourtListener copy, EPA judicial cases): every
+# run matches the ones in its owners' counties.
+FEDERAL_COURTS = ["us.fjc.idb.civil_judgments", "us.fjc.idb.direct.civil_judgments",
+                  "us.epa.echo.judicial_cases"]  # fmt: skip
 STATES: dict[str, dict[str, Any]] = {
     "NY": {
         "debtors": ["ny.dtf.tax_warrants", "ny.dtf.child_support_warrants",
@@ -512,27 +516,27 @@ STATES: dict[str, dict[str, Any]] = {
         "owners": ["ny.statewide.parcels"],
         "mortgages": ["ny.nyc.acris.real"],
         "links": ["ny.nyc.dof.condo_units"],
-        "courts": ["us.fjc.idb.civil_judgments"],
+        "courts": FEDERAL_COURTS,
     },
     # CT parcel data has no owner ZIP (Mailing_Zip is empty statewide): street + town instead.
     # Allegheny's parcel layer has no owner names, but its liens name the parcel (PIN).
     "PA-ALLEGHENY": {"debtors": ["pa.allegheny.tax_liens", "pa.allegheny.foreclosures"],
                      "owners": ["pa.allegheny.parcels"], "parcel_on_lien": True,
-                     "courts": ["us.fjc.idb.civil_judgments"]},
+                     "courts": FEDERAL_COURTS},
     "CT": {"debtors": ["ct.sots.liens"], "owners": ["ct.statewide.parcels"], "street_town": True,
-           "courts": ["us.fjc.idb.civil_judgments"]},
+           "courts": FEDERAL_COURTS},
     # Detroit blight judgments name both the owner and the ticketed parcel (same parcel_id as
     # the Detroit assessor layer); Harris tax-suit judgments name the HCAD account; Washington
     # County sheriff sales list every parcel sold.
     "MI-DETROIT": {"debtors": ["mi.detroit.blight_judgments"], "owners": ["mi.wayne.parcels"],
-                   "parcel_on_lien": True, "courts": ["us.fjc.idb.civil_judgments"]},
+                   "parcel_on_lien": True, "courts": FEDERAL_COURTS},
     "TX-HARRIS": {"debtors": ["tx.harris.tax_judgments"], "owners": ["tx.statewide.parcels"],
-                  "parcel_on_lien": True, "courts": ["us.fjc.idb.civil_judgments"]},
+                  "parcel_on_lien": True, "courts": FEDERAL_COURTS},
     # Hillsborough: recorded judgments and liens (Official Records index), civil judgments,
     # and judgment debtors under a writ of garnishment (with their address).
     "FL": {"debtors": ["fl.hillsborough.or", "fl.dor.tax_warrants"],
            "owners": ["fl.statewide.parcels"],
-                        "courts": ["fl.hillsborough.civil.cases", "us.fjc.idb.civil_judgments"],
+                        "courts": ["fl.hillsborough.civil.cases", *FEDERAL_COURTS],
                         "writs": ["fl.hillsborough.garnishment"]},
     # PA L&I lists name employers statewide; county parcel layers with owner names.
     "PA": {"debtors": ["pa.dli.uc_liens", "pa.dli.bwc_noncompliance", "pa.dli.bllc_noncompliance",
@@ -541,16 +545,16 @@ STATES: dict[str, dict[str, Any]] = {
                       "pa.erie.parcels", "pa.franklin.parcels", "pa.lancaster.parcels",
                       "pa.mercer.parcels", "pa.montgomery.parcels", "pa.philadelphia.parcels",
                       "pa.washington.parcels"],
-           "parcel_on_lien": True, "courts": ["us.fjc.idb.civil_judgments"], "street_town": True},
+           "parcel_on_lien": True, "courts": FEDERAL_COURTS, "street_town": True},
     # The PA and VT lists publish street and town but no ZIP: street + town rules, as in CT.
     "VT": {"debtors": ["vt.tax.top100_individuals", "vt.tax.top100_businesses"],
-           "owners": ["vt.statewide.parcels"], "courts": ["us.fjc.idb.civil_judgments"],
+           "owners": ["vt.statewide.parcels"], "courts": FEDERAL_COURTS,
            "street_town": True},
     # Chicago DOAH cites the property's street address with no ZIP: street + town rules.
     "IL-COOK": {"debtors": ["il.chicago.doah_judgments"], "owners": ["il.cook.parcels"],
-                "courts": ["us.fjc.idb.civil_judgments"], "street_town": True},
+                "courts": FEDERAL_COURTS, "street_town": True},
     "AZ-PIMA": {"debtors": ["az.tucson.code_liens"], "owners": ["az.pima.parcels"],
-                "courts": ["us.fjc.idb.civil_judgments"]},
+                "courts": FEDERAL_COURTS},
     "PA-WASHINGTON": {"debtors": ["pa.washington.sheriff_sales"],
                       "owners": ["pa.washington.parcels"], "parcel_on_lien": True},
 }  # fmt: skip
