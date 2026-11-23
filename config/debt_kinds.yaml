@@ -17,6 +17,7 @@ kinds:
   foreclosure: foreclosure filing or sheriff-sale judgment (counted, not added to open amounts)
   housing_court_case: housing court litigation against an owner
   eviction: eviction executed by a city marshal
+  charged_off_loan: federally guaranteed loan the lender charged off (a default, not a judgment)
 sources:
   # courts
   us.fjc.idb.civil_judgments: court_judgment
@@ -99,3 +100,5 @@ sources:
   ks.wyandotte.tax_sale: tax_delinquency
   ca.sonoma.defaulted_tax: tax_delinquency
   ny.nyc.tax_lien_sale: tax_delinquency
+  # federal loans (gap report rank 9)
+  us.sba.chargeoffs: charged_off_loan

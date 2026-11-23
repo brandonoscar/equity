@@ -691,13 +691,15 @@ def test_list_sources_names_every_source_a_state_reads(
     from equity.matching.resolve import STATES, TABLES_READ, main, state_sources
 
     assert state_sources("NY") == sorted({*STATES["NY"]["debtors"], *STATES["NY"]["owners"],
-                                          "ny.sos.business", "ny.nyc.acris.real",
+                                          "ny.sos.business", "ny.sos.name_history",
+                                          "ny.nyc.acris.real",
                                           "ny.nyc.dof.condo_units",
-                                          "us.nysb.rss"})  # + NY's bankruptcy feed  # fmt: skip
+                                          "us.nysb.rss",  # NY's bankruptcy feed
+                                          "us.sba.chargeoffs"})  # fmt: skip
     assert main(["--state", "TX-TRAVIS", "--list-sources"]) == 0
     got = json.loads(capsys.readouterr().out)
     assert got == {"sources": ["tx.statewide.parcels", "tx.travis.tax_delinquent",
-                               "us.txnb.rss"],
+                               "us.sba.chargeoffs", "us.txnb.rss"],
                    "tables": list(TABLES_READ)}  # fmt: skip
 
 
@@ -767,3 +769,27 @@ def test_bankruptcy_screen_flags_debtors_named_in_state_bankruptcy_cases(
     )
     assert sources_for("oh", cfg) == ["us.ohnb.rss", "us.ohsb.rss"]
     assert sources_for("ZZ", cfg) == []
+
+
+def test_federal_debt_lists_count_whatever_the_state_doc_type_filter(
+    lake: Path, tmp_path: Path
+) -> None:
+    from equity.matching.resolve import FEDERAL_DEBTS
+
+    sba = lake / FEDERAL_DEBTS[0]
+    _write(sba / "address" / "0.parquet", [_addr("sa1", "12 MAIN ST", "10001")])
+    _write(sba / "party" / "0.parquet", [
+        {"party_id": "s1", "raw_name": "JOHN A SMITH", "party_kind": "person",
+         "org_name_norm": None, "address_id": "sa1"}])  # fmt: skip
+    _write(sba / "instrument_party" / "0.parquet", [
+        {"instrument_uid": "sba1", "party_id": "s1", "role": "debtor"}])  # fmt: skip
+    _write(sba / "instrument" / "0.parquet", [
+        {"instrument_uid": "sba1", "source_id": FEDERAL_DEBTS[0], "doc_type": "OTHER",
+         "recorded_on": "2024-05-01", "principal_amount": 50000.0}])  # fmt: skip
+    out = tmp_path / "out"
+    run(
+        lake, out, ["zz.debts", *FEDERAL_DEBTS], ["zz.parcels"], debtor_doc_types=["JUDGMENT_LIEN"]
+    )  # zz.debts are TAX_LIEN_STATE: filtered out
+    matches = f"'{out.as_posix()}/matches.parquet'"
+    m = duckdb.connect().execute(f"SELECT debtor_party_id, rule_id FROM {matches}").fetchall()
+    assert m == [("s1", "person_name_address")]
