@@ -608,7 +608,7 @@ STATES: dict[str, dict[str, Any]] = {
     "MI-DETROIT": {"debtors": ["mi.detroit.blight_judgments"], "owners": ["mi.wayne.parcels"],
                    "parcel_on_lien": True, "courts": FEDERAL_COURTS},
     "TX-HARRIS": {"debtors": ["tx.harris.tax_judgments", "tx.tceq.civil_judgments",
-                              "tx.tceq.administrative_orders"], "owners": ["tx.statewide.parcels"],
+                              "tx.tceq.administrative_orders", "tx.harris.delinquent_taxes"], "owners": ["tx.statewide.parcels"],
                   "parcel_on_lien": True,
                   "courts": ["tx.harris.jp.civil_judgments", "tx.harris.district.civil_judgments",
                              *FEDERAL_COURTS]},
@@ -640,9 +640,9 @@ STATES: dict[str, dict[str, Any]] = {
                 "courts": FEDERAL_COURTS, "parcel_on_lien": True},
     # Cincinnati lot abatement cites the property's address only: its parcel is found by
     # situs address (LOTS_SQL) and the charge is owed by that parcel's owner.
-    "OH-HAMILTON": {"debtors": ["oh.cincinnati.lot_abatement", "oh.hamilton.delinquent_taxes",
-                                "oh.clermont.delinquent_taxes"], "owners": ["oh.statewide.parcels"],
-                    "parcel_on_lien": True, "courts": FEDERAL_COURTS},
+    "OH": {"debtors": ["oh.cincinnati.lot_abatement", "oh.hamilton.delinquent_taxes",
+                       "oh.clermont.delinquent_taxes", "oh.mahoning.delinquent_taxes"],
+           "owners": ["oh.statewide.parcels"], "parcel_on_lien": True, "courts": FEDERAL_COURTS},
     # Milwaukee delinquent taxes name the owner, mailing address and tax key (= WI PARCELID).
     "WI-MILWAUKEE": {"debtors": ["wi.milwaukee.delinquent_taxes"],
                      "owners": ["wi.statewide.parcels"], "parcel_on_lien": True,

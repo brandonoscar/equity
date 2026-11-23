@@ -1,0 +1,40 @@
+source_id: oh.mahoning.delinquent_taxes
+state: OH
+county_fips: "39099"   # Mahoning County (Youngstown)
+# City of Youngstown / Mahoning County: tax-delinquent and land-bank-eligible parcels with
+# deeded owner, owner mailing address and delinquent amount (Auditor data). Delinquent taxes
+# are a lien on the parcel (ORC 5721.10); a senior lien, not a judgment. No delinquency date
+# is published, so the date is the day the list was read. Debt kind: tax_delinquency.
+api: arcgis
+layer_url: https://services7.arcgis.com/BdxVWim3RqQp6zGH/arcgis/rest/services/Tax_Delinquent_and_Land_Bank_Eligible_Properties/FeatureServer/3
+where: "Delinquent > 0"
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, ParcelID, LocationAddress, DeededOwner, OwnStreetNumber, OwnStreetDirection,
+         OwnStreetName, OwnStreetSuffix, OwnSecondaryAddress, OwnCity, OwnState, OwnZipcode,
+         TaxpName, Delinquent, AnnualTax, TaxesPaid, CodeViolation, VacantType]
+listed_on: listed_on
+date_field: listed_on
+uid: ParcelID
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Mahoning County delinquent real estate tax
+amount: Delinquent
+parties:
+  - role: debtor
+    name: DeededOwner
+    address:
+      line1: [OwnStreetNumber, OwnStreetDirection, OwnStreetName, OwnStreetSuffix, OwnSecondaryAddress]
+      city: OwnCity
+      state: OwnState
+      zip: OwnZipcode
+  - role: debtor
+    name: TaxpName
+  - role: creditor
+    const: Mahoning County Treasurer
+parcel: {kind: pin, field: ParcelID, county_fips: "39099"}
+extra_pii: [LocationAddress, OwnStreetNumber, OwnStreetName]
+terms:
+  url: https://services7.arcgis.com/BdxVWim3RqQp6zGH/arcgis/rest/services/Tax_Delinquent_and_Land_Bank_Eligible_Properties/FeatureServer/3
+  summary: "Public ArcGIS Online layer (Youngstown/Mahoning County), free, no login. No licenseInfo on the layer."
+  checked_on: 2026-11-23
+  cost_model: free
