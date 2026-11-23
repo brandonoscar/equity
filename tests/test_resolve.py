@@ -507,3 +507,38 @@ def test_a_lien_citing_a_property_address_is_owed_by_that_parcels_owner(
         f" FROM '{out.as_posix()}/matches.parquet'").fetchall()  # fmt: skip
     # 300 PARK AVE is p1's situs address; 77 BAY ST is only a mailing address, so ch2 names no lot.
     assert m == [("owner-of:p1", "ch1", "p1", "lien_names_parcel")]
+
+
+def test_defendants_owe_default_judgments_when_no_debtor_is_recorded(
+    lake: Path, tmp_path: Path
+) -> None:
+    c = lake / "zz.county_court"
+    _write(c / "address" / "0.parquet", [_addr("ka", "12 MAIN ST", "10001")])
+    _write(c / "party" / "0.parquet", [
+        {"party_id": "df", "raw_name": "SMITH JOHN A", "party_kind": "person",
+         "org_name_norm": None, "address_id": "ka"},
+        {"party_id": "pl", "raw_name": "CARD BANK", "party_kind": "org",
+         "org_name_norm": "CARD BANK", "address_id": None}])  # fmt: skip
+    _write(c / "case_party" / "0.parquet", [
+        {"case_uid": "k1", "party_id": "df", "role": "defendant"},
+        {"case_uid": "k1", "party_id": "pl", "role": "plaintiff"},
+        {"case_uid": "k2", "party_id": "df", "role": "defendant"}])  # fmt: skip
+    _write(c / "judgment" / "0.parquet", [
+        {"judgment_uid": "jd", "case_uid": "k1", "source_id": "zz.county_court",
+         "entered_on": "2026-01-01", "principal": 900.0, "jurisdiction": "99001",
+         "judgment_type": "default"},
+        {"judgment_uid": "jo", "case_uid": "k2", "source_id": "zz.county_court",
+         "entered_on": "2026-01-01", "principal": None, "jurisdiction": "99001",
+         "judgment_type": "other"}])  # fmt: skip
+    _write(c / "judgment_event" / "0.parquet", [{"judgment_uid": "none", "event": "satisfied"}])
+    _write(
+        lake / "zz.parcels" / "parcel" / "1.parquet",
+        [{"parcel_uid": "99001-9", "situs_address_id": None}],
+    )  # puts county 99001 in the owners
+    out = tmp_path / "out"
+    run(lake, out, ["zz.none"], ["zz.parcels"], court_sources=["zz.county_court"])
+    m = duckdb.connect().execute(
+        f"SELECT debtor_party_id, instrument_uid, owner_party_id, rule_id"
+        f" FROM '{out.as_posix()}/matches.parquet'").fetchall()  # fmt: skip
+    # The default judgment's defendant owes it; the plaintiff and the 'other' judgment do not.
+    assert m == [("df", "jd", "o1", "person_name_address")]

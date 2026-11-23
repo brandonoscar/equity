@@ -99,7 +99,7 @@ COLUMNS: dict[str, dict[str, str]] = {
     "parcel": {"parcel_uid": V, "situs_address_id": V},
     "case_party": {"case_uid": V, "party_id": V, "role": V},
     "judgment": {"judgment_uid": V, "case_uid": V, "source_id": V, "entered_on": "DATE",
-                 "principal": "DOUBLE", "jurisdiction": V},
+                 "principal": "DOUBLE", "jurisdiction": V, "judgment_type": V},
     "judgment_event": {"judgment_uid": V, "event": V},
     "docket_entry": {"case_uid": V, "entry_date": "DATE", "source_id": V, "jurisdiction": V},
     "parcel_assessment": {"parcel_uid": V, "tax_year": "INTEGER", "appraised_total": "DOUBLE",
@@ -235,7 +235,14 @@ def _court_debtors(con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str
                        AND e.event = 'satisfied'),
                name_key(p.raw_name), a.addr_key, a.town_key, a.zip5, j.jurisdiction
         FROM c_judg j
-        JOIN c_cp cp ON cp.case_uid = j.case_uid AND cp.role = 'debtor'
+        JOIN c_cp cp ON cp.case_uid = j.case_uid
+         AND (cp.role = 'debtor'
+              -- A court that records only plaintiff/defendant: for a judgment that runs
+              -- against the defendant by its type, the defendants are the debtors.
+              OR (cp.role = 'defendant'
+                  AND j.judgment_type IN ('default', 'money', 'deficiency', 'consent')
+                  AND NOT EXISTS (SELECT 1 FROM c_cp x WHERE x.case_uid = j.case_uid
+                                  AND x.role IN ('debtor', 'creditor'))))
         JOIN c_party p ON p.party_id = cp.party_id
         LEFT JOIN addr a ON a.address_id = p.address_id
         WHERE j.jurisdiction IN (SELECT DISTINCT left(parcel_uid, 5) FROM o_parcel)
