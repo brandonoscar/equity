@@ -57,10 +57,27 @@ from pathlib import Path
 from typing import Any
 
 import duckdb
+import yaml
+
+from equity.config import CONFIG_DIR
 
 LAKE = Path("data/lake")
 DERIVED = Path("data/derived")
 TEMP_LIMIT = "30GB"
+DEBT_KINDS = CONFIG_DIR / "debt_kinds.yaml"
+
+
+def debt_kinds() -> dict[str, str]:
+    """source_id -> kind of debt (court_judgment, tax_lien, ...), from config/debt_kinds.yaml."""
+    data = yaml.safe_load(DEBT_KINDS.read_text())
+    allowed = set(data["kinds"])
+    out = {str(k): str(v) for k, v in data["sources"].items()}
+    bad = sorted(k for k, v in out.items() if v not in allowed)
+    if bad:
+        raise ValueError(f"debt_kinds.yaml: unknown kind for {bad}")
+    return out
+
+
 # Words that never identify a person: suffixes, conjunctions, "et al", trustee markers.
 STOP = ("JR", "SR", "II", "III", "IV", "AND", "OR", "ETAL", "ET", "AL", "TR", "TRUSTEE",
         "TTEE", "MR", "MRS", "MS", "DR", "THE", "OF", "C/O", "CO", "ATTN")  # fmt: skip
@@ -381,10 +398,11 @@ SELECT j.person_id, mode(j.raw_name) AS name,
            AS open_amount,
        count(*) FILTER (WHERE j.doc_type = 'LIS_PENDENS') AS foreclosure_filings,
        list_sort(list_distinct(list(j.source_id))) AS sources,
+       list_sort(list_distinct(list(coalesce(k.kind, 'unlabeled')))) AS debt_kinds,
        (SELECT count(*) FROM lots l WHERE l.person_id = j.person_id) AS parcels,
        (SELECT sum(v.value) FROM lots l JOIN parcel_value v ON v.parcel_uid = l.parcel_uid
         WHERE l.person_id = j.person_id) AS parcel_value
-FROM j GROUP BY j.person_id;
+FROM j LEFT JOIN debt_kind k ON k.source_id = j.source_id GROUP BY j.person_id;
 """
 PEOPLE_PASSES = 12  # star edges: two hops per group
 PARCEL_ON_LIEN_SQL = """
@@ -469,6 +487,10 @@ def match(
     con.execute(PEOPLE_SQL)
     for _ in range(PEOPLE_PASSES):
         con.execute(PEOPLE_MERGE_STEP_SQL)
+    con.execute("CREATE OR REPLACE TEMP TABLE debt_kind (source_id VARCHAR, kind VARCHAR)")
+    kinds = sorted(debt_kinds().items())
+    if kinds:
+        con.executemany("INSERT INTO debt_kind VALUES (?, ?)", kinds)
     con.execute(PEOPLE_SUMMARY_SQL)
 
 
@@ -505,6 +527,18 @@ def summary(con: duckdb.DuckDBPyConnection) -> dict[str, object]:
             " AND m.decision = 'auto' WHERE NOT d.released AND d.doc_type <> 'LIS_PENDENS'"
             " GROUP BY d.instrument_uid)"
         ),
+        # Open judgments and liens linked to an owner, and their amount, by kind of debt.
+        "open_linked_by_kind": {
+            k: {"count": n, "amount": a}
+            for k, n, a in con.execute(
+                "SELECT coalesce(k.kind, 'unlabeled'), count(*), round(sum(amount), 2) FROM ("
+                " SELECT d.instrument_uid, any_value(d.source_id) AS source_id,"
+                " any_value(d.principal_amount) AS amount FROM debtors d JOIN matches m"
+                " ON m.instrument_uid = d.instrument_uid AND m.decision = 'auto'"
+                " WHERE NOT d.released AND d.doc_type <> 'LIS_PENDENS' GROUP BY 1) x"
+                " LEFT JOIN debt_kind k USING (source_id) GROUP BY 1 ORDER BY 1"
+            ).fetchall()
+        },
         "people": one("SELECT count(*) FROM people"),
         "people_with_parcels": one("SELECT count(*) FROM people WHERE parcels > 0"),
         "people_open_amount_with_parcels": one(
