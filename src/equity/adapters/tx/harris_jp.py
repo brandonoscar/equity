@@ -235,7 +235,9 @@ class HarrisJPCivilJudgments(Adapter):
 
     def __init__(self, client: PoliteClient | None = None) -> None:
         self.config = load_config()
-        self.client = client or PoliteClient(min_interval_s=5.0, timeout_s=900.0)
+        self.client = client or PoliteClient(
+            min_interval_s=5.0, timeout_s=900.0, retries=4, backoff_s=15.0
+        )
 
     def source_row(self) -> Mapping[str, Any]:
         t = self.config.terms

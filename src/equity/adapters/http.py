@@ -72,8 +72,8 @@ def _urlopen(
         return int(err.code), body, str(err.headers.get("Content-Type", ""))
 
 
-# 522/524: Cloudflare could not reach, or timed out waiting for, the origin server.
-RETRY_STATUSES = frozenset({429, 500, 502, 503, 504, 522, 524})
+# 520-524: Cloudflare could not reach, or timed out waiting for, the origin server.
+RETRY_STATUSES = frozenset({429, 500, 502, 503, 504, 520, 521, 522, 523, 524})
 
 # Written permissions inside a robots.txt that let scripts use paths the file disallows for
 # crawlers. Honored only while the live robots.txt still contains the quoted sentence
