@@ -532,7 +532,8 @@ STATES: dict[str, dict[str, Any]] = {
     # County sheriff sales list every parcel sold.
     "MI-DETROIT": {"debtors": ["mi.detroit.blight_judgments"], "owners": ["mi.wayne.parcels"],
                    "parcel_on_lien": True, "courts": FEDERAL_COURTS},
-    "TX-HARRIS": {"debtors": ["tx.harris.tax_judgments"], "owners": ["tx.statewide.parcels"],
+    "TX-HARRIS": {"debtors": ["tx.harris.tax_judgments", "tx.tceq.civil_judgments",
+                              "tx.tceq.administrative_orders"], "owners": ["tx.statewide.parcels"],
                   "parcel_on_lien": True, "courts": FEDERAL_COURTS},
     # Hillsborough: recorded judgments and liens (Official Records index), civil judgments,
     # and judgment debtors under a writ of garnishment (with their address).
@@ -553,7 +554,8 @@ STATES: dict[str, dict[str, Any]] = {
            "owners": ["vt.statewide.parcels"], "courts": FEDERAL_COURTS,
            "street_town": True},
     # Chicago DOAH cites the property's street address with no ZIP: street + town rules.
-    "IL-COOK": {"debtors": ["il.chicago.doah_judgments"], "owners": ["il.cook.parcels"],
+    "IL-COOK": {"debtors": ["il.chicago.doah_judgments", "il.chicago.doe_judgments",
+                            "il.chicago.vacant_building_judgments"], "owners": ["il.cook.parcels"],
                 "courts": FEDERAL_COURTS, "street_town": True},
     # New Orleans code judgments cite the property's street with no ZIP: street + town rules.
     "LA-NOLA": {"debtors": ["la.nola.code_judgments"], "owners": ["la.orleans.parcels"],

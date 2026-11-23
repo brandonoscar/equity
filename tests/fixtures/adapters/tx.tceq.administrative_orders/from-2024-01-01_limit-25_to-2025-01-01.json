@@ -1,0 +1,281 @@
+{
+ "dataset": "u66a-qggj",
+ "rows": [
+  {
+   "case_no": "48856",
+   "county": "DENTON",
+   "order_date": "2024-08-20T00:00:00.000",
+   "payable_amount": "12343",
+   "penalty_assessed": "12343",
+   "penalty_deferred": "0",
+   "program": "MULTI-MEDIA",
+   "respondent_name": "TESTOWNER 792768 INC",
+   "tceqdocketno": "2020-0772-MLM-E"
+  },
+  {
+   "case_no": "52591",
+   "county": "DELTA",
+   "order_date": "2024-08-30T00:00:00.000",
+   "payable_amount": "74194",
+   "penalty_assessed": "74194",
+   "penalty_deferred": "0",
+   "program": "PETROLEUM STORAGE TANK",
+   "respondent_name": "TESTOWNER 7ACF98",
+   "tceqdocketno": "2021-0212-PST-E"
+  },
+  {
+   "case_no": "53890",
+   "county": "HOPKINS",
+   "order_date": "2024-11-04T00:00:00.000",
+   "payable_amount": "4150",
+   "penalty_assessed": "4150",
+   "penalty_deferred": "0",
+   "program": "PUBLIC WATER SUPPLY",
+   "respondent_name": "TESTOWNER 210724 CORP",
+   "tceqdocketno": "2023-0333-PWS-E"
+  },
+  {
+   "case_no": "54532",
+   "county": "UVALDE",
+   "order_date": "2024-08-20T00:00:00.000",
+   "payable_amount": "10320",
+   "penalty_assessed": "10320",
+   "penalty_deferred": "0",
+   "program": "PUBLIC WATER SUPPLY",
+   "respondent_name": "TESTOWNER 6FB180",
+   "tceqdocketno": "2022-0339-PWS-E"
+  },
+  {
+   "case_no": "55302",
+   "county": "KIMBLE",
+   "order_date": "2024-12-03T00:00:00.000",
+   "payable_amount": "7500",
+   "penalty_assessed": "7500",
+   "penalty_deferred": "0",
+   "program": "MUNICIPAL SOLID WASTE",
+   "respondent_name": "TESTOWNER A2D4AF",
+   "tceqdocketno": "2020-0635-MSW-E"
+  },
+  {
+   "case_no": "55516",
+   "county": "GRAYSON",
+   "order_date": "2024-08-05T00:00:00.000",
+   "payable_amount": "2600",
+   "penalty_assessed": "2600",
+   "penalty_deferred": "0",
+   "program": "PUBLIC WATER SUPPLY",
+   "respondent_name": "TESTOWNER 37476E",
+   "tceqdocketno": "2019-1329-PWS-E"
+  },
+  {
+   "case_no": "55548",
+   "county": "LAVACA",
+   "order_date": "2024-06-26T00:00:00.000",
+   "payable_amount": "758",
+   "penalty_assessed": "758",
+   "penalty_deferred": "0",
+   "program": "PUBLIC WATER SUPPLY",
+   "respondent_name": "TESTOWNER BA5BB1 LLC",
+   "tceqdocketno": "2020-0945-PWS-E"
+  },
+  {
+   "case_no": "55693",
+   "county": "BURLESON",
+   "order_date": "2024-11-04T00:00:00.000",
+   "payable_amount": "25375",
+   "penalty_assessed": "25375",
+   "penalty_deferred": "0",
+   "program": "MULTI-MEDIA",
+   "respondent_name": "TESTOWNER CD4E29 CORP",
+   "tceqdocketno": "2022-1593-MLM-E"
+  },
+  {
+   "case_no": "55905",
+   "county": "TARRANT",
+   "order_date": "2024-12-03T00:00:00.000",
+   "payable_amount": "14788",
+   "penalty_assessed": "14788",
+   "penalty_deferred": "0",
+   "program": "PUBLIC WATER SUPPLY",
+   "respondent_name": "TESTOWNER 87FA9D",
+   "tceqdocketno": "2021-1377-PWS-E"
+  },
+  {
+   "case_no": "55914",
+   "county": "SMITH",
+   "order_date": "2024-07-16T00:00:00.000",
+   "payable_amount": "30516",
+   "penalty_assessed": "30516",
+   "penalty_deferred": "0",
+   "program": "PETROLEUM STORAGE TANK",
+   "respondent_name": "TESTOWNER DC7D97 LLC",
+   "tceqdocketno": "2019-1716-PST-E"
+  },
+  {
+   "case_no": "56019",
+   "county": "NEWTON",
+   "order_date": "2024-04-09T00:00:00.000",
+   "payable_amount": "3600",
+   "penalty_assessed": "9150",
+   "penalty_deferred": "5550",
+   "program": "PUBLIC WATER SUPPLY",
+   "respondent_name": "TESTOWNER 0B0B51",
+   "tceqdocketno": "2022-0097-PWS-E"
+  },
+  {
+   "case_no": "56514",
+   "county": "JEFFERSON",
+   "order_date": "2024-05-28T00:00:00.000",
+   "payable_amount": "22312",
+   "penalty_assessed": "22312",
+   "penalty_deferred": "0",
+   "program": "INDUSTRIAL AND HAZARDOUS WASTE",
+   "respondent_name": "TESTOWNER 5DAF15 INC",
+   "tceqdocketno": "2018-1100-IHW-E"
+  },
+  {
+   "case_no": "56820",
+   "county": "HIDALGO",
+   "order_date": "2024-12-18T00:00:00.000",
+   "payable_amount": "35437",
+   "penalty_assessed": "35437",
+   "penalty_deferred": "0",
+   "program": "MUNICIPAL SOLID WASTE",
+   "respondent_name": "TESTOWNER C2640B",
+   "tceqdocketno": "2023-1280-MSW-E"
+  },
+  {
+   "case_no": "56872",
+   "county": "HARRIS",
+   "order_date": "2024-02-27T00:00:00.000",
+   "payable_amount": "108619",
+   "penalty_assessed": "108619",
+   "penalty_deferred": "0",
+   "program": "INDUSTRIAL AND HAZARDOUS WASTE",
+   "respondent_name": "TESTOWNER 9156A4 LLC",
+   "tceqdocketno": "2018-1539-IHW-E"
+  },
+  {
+   "case_no": "57925",
+   "county": "PARKER",
+   "order_date": "2024-10-16T00:00:00.000",
+   "payable_amount": "7248",
+   "penalty_assessed": "7248",
+   "penalty_deferred": "0",
+   "program": "PUBLIC WATER SUPPLY",
+   "respondent_name": "TESTOWNER 7BA5E5 LLC",
+   "tceqdocketno": "2022-0307-PWS-E"
+  },
+  {
+   "case_no": "58136",
+   "county": "DENTON",
+   "order_date": "2024-08-20T00:00:00.000",
+   "payable_amount": "1640",
+   "penalty_assessed": "1640",
+   "penalty_deferred": "0",
+   "program": "PUBLIC WATER SUPPLY",
+   "respondent_name": "TESTOWNER 792768 INC",
+   "tceqdocketno": "2019-1148-PWS-E"
+  },
+  {
+   "case_no": "58304",
+   "county": "CHAMBERS",
+   "order_date": "2024-12-18T00:00:00.000",
+   "payable_amount": "105283",
+   "penalty_assessed": "210565",
+   "penalty_deferred": "0",
+   "program": "AIR QUALITY",
+   "respondent_name": "TESTOWNER 16DFEB LLC",
+   "tceqdocketno": "2019-1310-AIR-E"
+  },
+  {
+   "case_no": "58415",
+   "county": "LUBBOCK",
+   "order_date": "2024-02-24T00:00:00.000",
+   "payable_amount": "1250",
+   "penalty_assessed": "1250",
+   "penalty_deferred": "0",
+   "program": "MUNICIPAL SOLID WASTE",
+   "respondent_name": "TESTOWNER F853D6",
+   "tceqdocketno": "2019-1447-MSW-E"
+  },
+  {
+   "case_no": "58522",
+   "county": "CONCHO",
+   "order_date": "2024-02-27T00:00:00.000",
+   "payable_amount": "8800",
+   "penalty_assessed": "8800",
+   "penalty_deferred": "0",
+   "program": "WATER QUALITY",
+   "respondent_name": "TESTOWNER 5DBFA0 LLC",
+   "tceqdocketno": "2022-0090-OSS-E"
+  },
+  {
+   "case_no": "58826",
+   "county": "BELL",
+   "order_date": "2024-08-05T00:00:00.000",
+   "payable_amount": "8819",
+   "penalty_assessed": "8819",
+   "penalty_deferred": "0",
+   "program": "PUBLIC WATER SUPPLY",
+   "respondent_name": "TESTOWNER 95E85B CORP",
+   "tceqdocketno": "2022-1618-PWS-E"
+  },
+  {
+   "case_no": "58973",
+   "county": "YOAKUM",
+   "order_date": "2024-08-28T00:00:00.000",
+   "payable_amount": "132953",
+   "penalty_assessed": "265906",
+   "penalty_deferred": "0",
+   "program": "AIR QUALITY",
+   "respondent_name": "TESTOWNER 68EBF7 LLC",
+   "tceqdocketno": "2020-0294-AIR-E"
+  },
+  {
+   "case_no": "59080",
+   "county": "NUECES",
+   "order_date": "2024-08-20T00:00:00.000",
+   "payable_amount": "2918",
+   "penalty_assessed": "2918",
+   "penalty_deferred": "0",
+   "program": "PETROLEUM STORAGE TANK",
+   "respondent_name": "TESTOWNER 6C4982 INC",
+   "tceqdocketno": "2020-0395-PST-E"
+  },
+  {
+   "case_no": "59286",
+   "county": "HILL",
+   "order_date": "2024-02-12T00:00:00.000",
+   "payable_amount": "42799",
+   "penalty_assessed": "42799",
+   "penalty_deferred": "0",
+   "program": "WATER QUALITY",
+   "respondent_name": "TESTOWNER D7B81F CO",
+   "tceqdocketno": "2020-0651-MWD-E"
+  },
+  {
+   "case_no": "59401",
+   "county": "BEXAR",
+   "order_date": "2024-07-16T00:00:00.000",
+   "payable_amount": "53438",
+   "penalty_assessed": "53438",
+   "penalty_deferred": "0",
+   "program": "PETROLEUM STORAGE TANK",
+   "respondent_name": "TESTOWNER 3EE984 LLC",
+   "tceqdocketno": "2020-0767-PST-E"
+  },
+  {
+   "case_no": "59499",
+   "county": "COLORADO",
+   "order_date": "2024-04-09T00:00:00.000",
+   "payable_amount": "8945",
+   "penalty_assessed": "11181",
+   "penalty_deferred": "2236",
+   "program": "PUBLIC WATER SUPPLY",
+   "respondent_name": "TESTOWNER EFC0CB LLC",
+   "tceqdocketno": "2020-0876-PWS-E"
+  }
+ ],
+ "where": "(payable_amount > 0) AND order_date >= '2024-01-01T00:00:00' AND order_date < '2025-01-01T00:00:00'"
+}

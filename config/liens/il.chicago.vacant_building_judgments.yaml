@@ -1,0 +1,30 @@
+source_id: il.chicago.vacant_building_judgments
+state: IL
+county_fips: "17031"
+# City of Chicago vacant and abandoned building violations (DOAH), with the amount still due.
+# Defendants are mostly mortgagees under the vacant building ordinance. Rows with nothing
+# still owed are loaded too and marked satisfied.
+portal: https://data.cityofchicago.org
+dataset: kc9i-wq85
+where: "original_total_amount_due > 0"
+order_by: [docket_number, violation_number, ":id"]
+date_field: issued_date
+partition: year
+first_year: 2010
+uid: [docket_number, violation_number]
+doc_type: JUDGMENT_LIEN
+doc_type_raw: {field: disposition_description}
+amount: current_amount_due
+satisfied_flag: current_amount_due
+satisfied_values: ["0", "0.0", "0.00"]
+parties:
+  - role: debtor
+    name: entity_or_person_s_
+    address: {line1: property_address, city_const: CHICAGO, state_const: IL}
+  - role: creditor
+    const: City of Chicago
+terms:
+  url: https://data.cityofchicago.org/d/kc9i-wq85
+  summary: "City of Chicago Data Portal (Socrata), public, no login. City of Chicago data terms of use."
+  checked_on: 2026-11-23
+  cost_model: free
