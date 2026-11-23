@@ -41,7 +41,8 @@ def _fixture(source_id: str) -> list[tuple[str, dict[str, Any]]]:
 
 def test_every_config_loads_and_registers() -> None:
     ids = {c.source_id for c in all_registry_adapters()}
-    assert ids == {"ny.sos.business", "co.sos.business", "ct.sos.business", "or.sos.business"}
+    assert ids == {"ny.sos.business", "co.sos.business", "ct.sos.business", "or.sos.business",
+                   "pa.dos.business"}  # fmt: skip
     for path in BUSINESS_DIR.glob("*.yaml"):
         assert load_registry(path).pii_fields
 
@@ -207,3 +208,22 @@ def test_health_and_source_row() -> None:
     assert not cls(FakeSocrata({})).health().ok  # type: ignore[call-arg]
     row = cls().source_row()  # type: ignore[abstract]
     assert row["kind"] == "sos" and row["jurisdiction"] == "08"
+
+
+def test_pa_grouped_roles_are_case_insensitive_with_a_default() -> None:
+    base = {"filing_number": "7", "business_name": "TEST LLC", "creationdate": "2010-05-06"}
+    body = {"entities": [
+        {**base, "address_line1": "1 TEST ST", "city": "ERIE", "state": "PA", "zip": "16501"},
+        {**base, "party_type": "MEMBER", "first_name": "ANN", "middle_name": "Q",
+         "last_name": "LEE"},
+        {**base, "party_type": "Governor", "first_name": "BO", "last_name": "RAY"},
+        {**base, "party_type": "Trustee", "first_name": "CY", "last_name": "DOE"},
+    ]}  # fmt: skip
+    rows = _norm("pa.dos.business", body)
+    (biz,) = [r for t, r in rows if t == "business"]
+    assert biz["principal_address_id"] is not None and biz["status"] == "Active"
+    roles = sorted((r["role"], r["title"]) for t, r in rows if t == "business_role")
+    assert roles == [("director", "Governor"), ("member", "MEMBER"), ("other", "Trustee")]
+    ann = next(r for t, r in rows if t == "party" and r["raw_name"] == "ANN Q LEE")
+    assert (ann["first_name"], ann["middle"], ann["last_name"], ann["suffix"]) == (
+        "ANN", "Q", "LEE", None)  # fmt: skip

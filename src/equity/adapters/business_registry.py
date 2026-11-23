@@ -99,9 +99,15 @@ class RoleDataset:
 @dataclass(frozen=True)
 class Grouped:
     type_field: str
-    roles: Mapping[str, NameSpec]  # type value -> role holder
+    roles: Mapping[str, NameSpec]  # type value -> role holder (matched case-insensitively)
     addresses: Mapping[str, str]  # type value -> "principal" | "mailing"
     address: AddressSpec
+    # Holder for any other non-empty type (its title is the raw type); None ignores them.
+    default: NameSpec | None = None
+
+    def role_for(self, t: str) -> NameSpec | None:
+        upper = {k.upper(): v for k, v in self.roles.items()}
+        return upper.get(t.upper(), self.default if t else None)
 
 
 @dataclass(frozen=True)
@@ -153,6 +159,7 @@ def load_registry(path: Path) -> RegistryConfig:
             roles={k: NameSpec.parse(v) for k, v in (g.get("roles") or {}).items()},
             addresses=dict(g.get("addresses") or {}),
             address=AddressSpec.parse(g["address"]),  # type: ignore[arg-type]
+            default=NameSpec.parse(g["default"]) if g.get("default") else None,
         )
     return RegistryConfig(
         source_id=d["source_id"], state=d["state"], jurisdiction=str(d["jurisdiction"]),
@@ -212,11 +219,11 @@ NAME_PART_COLUMNS = ("first_name", "middle", "last_name", "suffix")
 
 
 def holder_parts(row: Mapping[str, Any], spec: NameSpec) -> dict[str, str | None]:
-    """first/middle/last/suffix when the spec lists exactly those four columns (in that order)
-    and the row has a last name; otherwise all None (an organization, or no parts published)."""
-    if len(spec.name_parts) != 4:
+    """first/middle/last[/suffix] when the spec lists those columns in that order (three or
+    four) and the row has a last name; otherwise all None (an organization, or no parts)."""
+    if len(spec.name_parts) not in (3, 4):
         return dict.fromkeys(NAME_PART_COLUMNS)
-    vals = [_text(row.get(c)) for c in spec.name_parts]
+    vals = [_text(row.get(c)) for c in spec.name_parts] + [None] * (4 - len(spec.name_parts))
     if not vals[2]:
         return dict.fromkeys(NAME_PART_COLUMNS)
     return dict(zip(NAME_PART_COLUMNS, vals, strict=True))
@@ -369,13 +376,12 @@ class BusinessRegistryAdapter(Adapter):
                     principal = address_of(r, g.address)
                 elif g.addresses.get(t) == "mailing" and mailing is None:
                     mailing = address_of(r, g.address)
-                elif t in g.roles:
-                    who = holder_name(r, g.roles[t])
+                elif (gspec := g.role_for(t)) is not None:
+                    who = holder_name(r, gspec)
                     if who:
-                        spec = g.roles[t]
                         addr_r = address_of(r, g.address)
-                        holders.append((spec.role, spec.title or t, who, addr_r,
-                                        holder_parts(r, spec)))  # fmt: skip
+                        holders.append((gspec.role, gspec.title or t, who, addr_r,
+                                        holder_parts(r, gspec)))  # fmt: skip
         for addr in (principal, mailing):
             if addr is not None:
                 yield NormalizedRow("address", addr)
