@@ -59,7 +59,7 @@ import duckdb
 
 LAKE = Path("data/lake")
 DERIVED = Path("data/derived")
-TEMP_LIMIT = "15GB"
+TEMP_LIMIT = "30GB"
 # Words that never identify a person: suffixes, conjunctions, "et al", trustee markers.
 STOP = ("JR", "SR", "II", "III", "IV", "AND", "OR", "ETAL", "ET", "AL", "TR", "TRUSTEE",
         "TTEE", "MR", "MRS", "MS", "DR", "THE", "OF", "C/O", "CO", "ATTN")  # fmt: skip
@@ -561,9 +561,9 @@ STATES: dict[str, dict[str, Any]] = {
     "IL-COOK": {"debtors": ["il.chicago.doah_judgments", "il.chicago.doe_judgments",
                             "il.chicago.vacant_building_judgments"], "owners": ["il.cook.parcels"],
                 "courts": FEDERAL_COURTS, "street_town": True},
-    # New Orleans code judgments cite the property's street with no ZIP: street + town rules.
-    "LA-NOLA": {"debtors": ["la.nola.code_judgments"], "owners": ["la.orleans.parcels"],
-                "courts": FEDERAL_COURTS, "street_town": True},
+    # New Orleans code judgments name the parcel (GeoPIN), not the owner.
+    "LA-NOLA": {"debtors": ["la.nola.code_hearing_judgments"], "owners": ["la.orleans.parcels"],
+                "courts": FEDERAL_COURTS, "parcel_on_lien": True},
     "AZ-PIMA": {"debtors": ["az.tucson.code_liens"], "owners": ["az.pima.parcels"],
                 "courts": FEDERAL_COURTS},
     "PA-WASHINGTON": {"debtors": ["pa.washington.sheriff_sales"],
