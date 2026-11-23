@@ -6,9 +6,14 @@ becomes a RELEASE instrument that `releases` the lien.
 
 Config keys:
   source_id, state, portal, dataset, where (optional base filter), order_by (default :id)
+  api                 socrata (default) | ckan (resource_id) | arcgis (layer_urls: one or
+                      more ArcGIS REST layer URLs, one partition each; order_by OBJECTID)
   select              optional field list: fetch only these (keeps free text out)
   date_field          the lien date (docketed / filed); rows without it are skipped
-  partition           year (default) or month windows on date_field, from first_year
+  partition           year (default) or month windows on date_field, from first_year, or
+                      none (one request; arcgis layers are always one partition per layer)
+                      date_field values may be ISO dates, ArcGIS epoch milliseconds or a
+                      bare year (taken as January 1 of that year)
   uid                 field (or list of fields joined with '-') unique within the dataset
   doc_type            instrument doc_type (JUDGMENT_LIEN, TAX_LIEN_STATE, ...), or
                       {field, map: {VALUE: DOC_TYPE}, default} to map a row's value
@@ -16,9 +21,10 @@ Config keys:
   amount              field holding the amount owed (principal_amount)
   released_on         optional field: satisfaction date -> RELEASE + instrument_ref
   parties             list of {role, name: field|[fields] | const: text,
-                               address: {line1: field|[fields], city, state, zip}}
+                               address: {line1: field|[fields], city, state, zip}
+                                        or csz: one field holding "CITY ST 12345"}
   parcel              {kind: nyc_bbl, borough, block, lot} | {kind: nyc_bbl10, field}
-                      | {kind: pin, field, county_fips}
+                      | {kind: pin, field, county_fips, strip: characters removed}
   county_fips         jurisdiction when no parcel names a county (5 digits)
   county_name_field   optional field holding the county name (mapped to FIPS in `state`)
   skip_names          name values that are separators, not parties (e.g. AND/OR)
@@ -40,6 +46,8 @@ from typing import Any, ClassVar
 
 import yaml
 
+from equity.adapters.arcgis import ArcGISQuery, get_json
+from equity.adapters.arcgis import fetch_all as arcgis_fetch_all
 from equity.adapters.base import Adapter, Fetched, FetchRequest, HealthReport, NormalizedRow
 from equity.adapters.http import PoliteClient
 from equity.adapters.rows import RecordContext, canonical_json
@@ -97,14 +105,20 @@ def _fields(spec: Any) -> list[str]:
 
 def load_lien_config(path: Path) -> LienConfig:
     data = yaml.safe_load(path.read_text())
-    need = [k for k in REQUIRED if not (k == "dataset" and data.get("api") == "ckan")]
-    if data.get("api") == "ckan":
+    api = data.get("api", "socrata")
+    need = [k for k in REQUIRED if not (k == "dataset" and api in ("ckan", "arcgis"))
+            and not (k == "portal" and api == "arcgis")]  # fmt: skip
+    if api == "ckan":
         need.append("resource_id")
+    if api == "arcgis":
+        need.append("layer_urls")
+    if api not in ("socrata", "ckan", "arcgis"):
+        raise LienConfigError(f"{path.name}: unknown api {api!r}")
     missing = [k for k in need if k not in data]
     if missing:
         raise LienConfigError(f"{path.name}: missing {missing}")
-    if data.get("partition", "year") not in ("year", "month"):
-        raise LienConfigError(f"{path.name}: partition must be year or month")
+    if data.get("partition", "year") not in ("year", "month", "none"):
+        raise LienConfigError(f"{path.name}: partition must be year, month or none")
     kind = (data.get("parcel") or {}).get("kind")
     if kind not in (None, "nyc_bbl", "nyc_bbl10", "pin"):
         raise LienConfigError(f"{path.name}: unknown parcel kind {kind!r}")
@@ -120,16 +134,45 @@ def _text(value: Any) -> str | None:
     return s or None
 
 
+def _csz(value: Any) -> tuple[str, str, str] | None:
+    """'BATAVIA OH 45103' or 'BATAVIA, OH 45103-1234' -> (city, state, zip5)."""
+    m = re.fullmatch(r"(.+?),?\s+([A-Z]{2})\s+([0-9]{5})(?:-?[0-9]{4})?", _text(value) or "")
+    return (m.group(1), m.group(2), m.group(3)) if m else None
+
+
 def _join(row: Mapping[str, Any], spec: Any) -> str | None:
     parts = [_text(row.get(f)) for f in _fields(spec)]
     return " ".join(p for p in parts if p) or None
 
 
 def _date(value: Any) -> date | None:
-    if not isinstance(value, str) or len(value) < 10:
+    """ISO date text, ArcGIS epoch milliseconds, or a bare year (-> January 1)."""
+    if isinstance(value, bool):
         return None
+    if isinstance(value, int | float):
+        v = int(value)
+        if 1800 <= v <= 2200:
+            return date(v, 1, 1)
+        if v > 10**11:
+            try:
+                return datetime.fromtimestamp(v / 1000, tz=UTC).date()
+            except (OverflowError, OSError, ValueError):
+                return None
+        return None
+    if not isinstance(value, str):
+        return None
+    s = value.strip()
+    if len(s) == 4 and s.isdigit() and 1800 <= int(s) <= 2200:
+        return date(int(s), 1, 1)
+    if len(s) < 10:
+        return None
+    if re.fullmatch(r"[0-9]{2}[-/][0-9]{2}[-/][0-9]{4}", s[:10]):  # MM-DD-YYYY, MM/DD/YYYY
+        try:
+            return date(int(s[6:10]), int(s[:2]), int(s[3:5]))
+        except ValueError:
+            return None
     try:
-        return date.fromisoformat(value[:10])
+        return date.fromisoformat(s[:10])
     except ValueError:
         return None
 
@@ -176,7 +219,9 @@ class LienAdapter(Adapter):
             "jurisdiction": self.config.get("county_fips") or self.config["state"],
             "access_method": "api",
             "base_url": (
-                f"{self.config['portal']}/datastore/{self.config['resource_id']}"
+                self.config["layer_urls"][0]
+                if self.arcgis
+                else f"{self.config['portal']}/datastore/{self.config['resource_id']}"
                 if self.ckan
                 else f"{self.config['portal']}/resource/{self.config['dataset']}.json"
             ),
@@ -188,6 +233,13 @@ class LienAdapter(Adapter):
         }
 
     def partitions(self) -> Iterator[dict[str, str]]:
+        if self.arcgis:
+            for i in range(len(self.config["layer_urls"])):
+                yield {"layer": str(i)}
+            return
+        if self.config.get("partition") == "none":
+            yield {}
+            return
         first = int(self.config.get("first_year", 1990))
         last = datetime.now(UTC).year
         for y in range(first, last + 1):
@@ -201,6 +253,10 @@ class LienAdapter(Adapter):
     @property
     def ckan(self) -> bool:
         return bool(self.config.get("api") == "ckan")
+
+    @property
+    def arcgis(self) -> bool:
+        return bool(self.config.get("api") == "arcgis")
 
     def where(self, params: Mapping[str, str]) -> str:
         clauses = [f"({self.config['where']})"] if self.config.get("where") else []
@@ -229,7 +285,25 @@ class LienAdapter(Adapter):
             if limit or len(got) < page:
                 return rows, resp.retrieved_at
 
+    def _arcgis_fetch(self, request: FetchRequest) -> Fetched:
+        urls = self.config["layer_urls"]
+        index = int(request.params.get("layer", "0"))
+        if not 0 <= index < len(urls):
+            raise LienConfigError(f"{self.source_id}: no layer {index}")
+        limit = request.params.get("limit")
+        q = ArcGISQuery(urls[index], self.config.get("where") or "1=1",
+                        tuple(self.config.get("select") or ("*",)),
+                        tuple(self.config.get("order_by", ["OBJECTID"])),
+                        int(limit) if limit else 1000)  # fmt: skip
+        feats, resp = arcgis_fetch_all(self.client, q, max_pages=1 if limit else 10_000,
+                                       sample=bool(limit))  # fmt: skip
+        body = canonical_json({"layer": urls[index], "rows": [f["attributes"] for f in feats]})
+        return Fetched(self.source_id, f"{urls[index]}/query", resp[-1].retrieved_at, 200, body,
+                       "application/json")  # fmt: skip
+
     def fetch(self, request: FetchRequest) -> Fetched:
+        if self.arcgis:
+            return self._arcgis_fetch(request)
         limit = request.params.get("limit")
         where = self.where(request.params)
         if self.ckan:
@@ -275,7 +349,9 @@ class LienAdapter(Adapter):
             return f"{county}-{swis}{b}", county
         if spec.get("kind") == "pin":
             pin = _text(row.get(spec["field"]))
-            if pin is None:
+            for ch in spec.get("strip") or "":
+                pin = pin.replace(ch, "") if pin else pin
+            if not pin:
                 return None, None
             return f"{spec['county_fips']}-{norm_parcel_id(pin)}", spec["county_fips"]
         return None, None
@@ -376,12 +452,15 @@ class LienAdapter(Adapter):
                 if not name or name.upper() in skip:
                     continue
                 a = p.get("address") or {}
-                zipc = _text(row.get(a["zip"])) if a.get("zip") else None
+                csz = _csz(row.get(a["csz"])) if a.get("csz") else None
+                if csz is not None:
+                    a = {**a, "state_const": csz[1]}
+                zipc = csz[2] if csz else _text(row.get(a["zip"])) if a.get("zip") else None
                 zip5 = zipc[:5] if zipc and re.fullmatch(r"[0-9]{5}", zipc[:5]) else None
                 state = (_text(row.get(a["state"])) if a.get("state") and a["state"] in row
                          else _text(a.get("state_const")))  # fmt: skip
-                addr = normalized_address(_join(row, a.get("line1")),
-                                          _text(row.get(a["city"])) if a.get("city") else None,
+                city = csz[0] if csz else _text(row.get(a["city"])) if a.get("city") else None
+                addr = normalized_address(_join(row, a.get("line1")), city,
                                           state, zip5) if a else None  # fmt: skip
                 by_name = found.setdefault(p["role"], {})
                 if name not in by_name or (by_name[name] is None and addr is not None):
@@ -401,6 +480,12 @@ class LienAdapter(Adapter):
                                role=role, seq=seq)  # fmt: skip
 
     def health(self) -> HealthReport:
+        if self.arcgis:
+            body = get_json(self.client, self.config["layer_urls"][0] + "/query",
+                            {"where": self.config.get("where") or "1=1",
+                             "returnCountOnly": "true", "f": "json"})  # fmt: skip
+            n = int(body.get("count") or 0)
+            return HealthReport(self.source_id, n > 0, datetime.now(UTC), f"{n} rows")
         if self.ckan:
             rows_h, _ = self._ckan_rows("1=1", 1)
             return HealthReport(self.source_id, bool(rows_h), datetime.now(UTC),
