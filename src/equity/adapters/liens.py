@@ -52,7 +52,8 @@ Config keys:
   parcel              {kind: nyc_bbl, borough, block, lot} | {kind: nyc_bbl10, field}
                       | {kind: pin, field (or a list of fields, one lot each), county_fips
                          (or none: the row's county from county_name_field), strip (optional
-                         characters removed from the id, e.g. '-')}
+                         characters removed from the id, e.g. '-'), zfill (optional width:
+                         left-pad with zeros an id published as a number, e.g. 13)}
   county_fips         jurisdiction when no parcel names a county (5 digits)
   county_name_field   optional field holding the county name (mapped to FIPS in `state`)
   county_aliases      optional {name in the data: county name}, e.g. {DADE: MIAMI-DADE}
@@ -719,6 +720,8 @@ class LienAdapter(Adapter):
             pin = _text(row.get(spec["field"]))
             if pin and spec.get("strip"):  # e.g. '-': '9608-10-8745-00000' -> '960810874500000'
                 pin = "".join(ch for ch in pin if ch not in str(spec["strip"])) or None
+            if pin and spec.get("zfill"):  # a folio read as a number lost its leading zero
+                pin = pin.zfill(int(spec["zfill"]))
             if pin is None:
                 return None, None
             # A statewide list names each row's county instead (county_name_field).

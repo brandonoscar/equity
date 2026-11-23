@@ -746,7 +746,9 @@ STATES: dict[str, dict[str, Any]] = {
     # Hillsborough: recorded judgments and liens (Official Records index), civil judgments,
     # and judgment debtors under a writ of garnishment (with their address).
     "FL": {"debtors": ["fl.hillsborough.or", "fl.dor.tax_warrants", "fl.hernando.or",
-                       "fl.putnam.or", "fl.broward.tax_certificates", "fl.lee.nuisance_liens"],
+                       "fl.putnam.or", "fl.broward.tax_certificates", "fl.lee.nuisance_liens",
+                       "fl.miami_dade.code_liens", "fl.miami_dade.code_collections",
+                       "fl.miami_dade.waste_judgments"],
            "owners": ["fl.statewide.parcels"],
            "courts": ["fl.hillsborough.civil.cases", "fl.citrus.civil", *FEDERAL_COURTS],
            "writs": ["fl.hillsborough.garnishment"], "parcel_on_lien": True,
@@ -812,6 +814,9 @@ STATES: dict[str, dict[str, Any]] = {
     # delinquent-lands list is a snapshot table), so federal court judgments and the national
     # debt lists against WV owners.
     "WV": {"debtors": [], "owners": ["wv.statewide.parcels"], "courts": FEDERAL_COURTS},
+    # DC: prior-year real property tax owed by the lot's owner (OTR extract, keyed by SSL).
+    "DC": {"debtors": ["dc.otr.delinquent_taxes"], "owners": ["dc.statewide.parcels"],
+           "parcel_on_lien": True, "registries": ["dc.dlcp.business"], "courts": FEDERAL_COURTS},
 }  # fmt: skip
 
 

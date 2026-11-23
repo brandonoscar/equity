@@ -755,6 +755,19 @@ def test_pin_strip_removes_punctuation(tmp_path: Path) -> None:
     assert [r["parcel_uid"] for r in out] == ["37021-960810874500000"]
 
 
+def test_pin_zfill_restores_a_leading_zero(tmp_path: Path) -> None:
+    # Miami-Dade publishes some folios as numbers: 0101010501090 arrives as 101010501090.
+    pin = {"kind": "pin", "field": "pin", "county_fips": "12086", "zfill": 13}
+    cfg = _cfg(tmp_path, released_on=None, parcel=pin)
+    cls = lien_adapter_for(load_lien_config(cfg))
+    rows = [{"ticket": t, "docketed": "2025-01-01T00:00:00", "pin": p, "last": "X"}
+            for t, p in (("B1", 101010501090), ("B2", "3031150430704"))]  # fmt: skip
+    body = json.dumps({"rows": rows}).encode()
+    out = [r.row for r in cls().normalize(Fetched(cls.source_id, "x", AT, 200, body, ""))
+           if r.table == "instrument_parcel"]  # fmt: skip
+    assert sorted(r["parcel_uid"] for r in out) == ["12086-0101010501090", "12086-3031150430704"]
+
+
 def test_arcgis_layers_are_partitions_and_dates_may_be_epochs_or_years(tmp_path: Path) -> None:
     from collections.abc import Mapping as _M
 

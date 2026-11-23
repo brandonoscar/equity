@@ -1,0 +1,37 @@
+source_id: dc.otr.delinquent_taxes
+state: DC
+county_fips: "11001"
+# DC Office of Tax and Revenue: unpaid real property tax from prior tax years, read from the
+# Integrated Tax System Public Extract (the same layer as dc.statewide.parcels). Each tax lot
+# carries the billed, collected and balance amounts for the current year and up to ten prior
+# years; lots with a balance in any prior year (4,234 on 2026-11-23) are loaded, the amount
+# being the sum of the prior-year balances. Unpaid DC real property tax is a lien on the lot
+# (D.C. Code 47-1331) and the lot goes to the annual tax sale. Dated by EXTRACTDAT, the day OTR
+# extracted the roll.
+api: arcgis
+layer_url: https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Property_and_Land/MapServer/53
+where: "PY1BAL > 0 OR PY2BAL > 0 OR PY3BAL > 0 OR PY4BAL > 0 OR PY5BAL > 0 OR PY6BAL > 0 OR PY7BAL > 0 OR PY8BAL > 0 OR PY9BAL > 0 OR PY10BAL > 0"
+order_by: [OBJECTID]
+select: [OBJECTID, SSL, OWNERNAME, OWNNAME2, ADDRESS1, CITYSTZIP, EXTRACTDAT, LASTPAYDT,
+         TOTBALAMT, PY1BAL, PY2BAL, PY3BAL, PY4BAL, PY5BAL, PY6BAL, PY7BAL, PY8BAL, PY9BAL, PY10BAL]
+date_field: EXTRACTDAT
+single_partition: true
+uid: SSL
+doc_type: TAX_LIEN_STATE
+doc_type_raw: DC delinquent real property tax (prior years)
+amount: [PY1BAL, PY2BAL, PY3BAL, PY4BAL, PY5BAL, PY6BAL, PY7BAL, PY8BAL, PY9BAL, PY10BAL]
+parties:
+  - role: debtor
+    name: OWNERNAME
+    address: {line1: ADDRESS1, csz: CITYSTZIP}   # the tax-billing address
+  - role: debtor
+    name: OWNNAME2
+    address: {line1: ADDRESS1, csz: CITYSTZIP}
+  - role: creditor
+    const: District of Columbia
+parcel: {kind: pin, field: SSL, county_fips: "11001"}   # dc.statewide.parcels (SSL)
+terms:
+  url: https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Property_and_Land/MapServer/53/metadata
+  summary: "DC OCFO / DC GIS Integrated Tax System Public Extract, free REST, no login; layer metadata useLimit: Creative Commons Attribution 4.0 International (attribution required)."
+  checked_on: 2026-11-23
+  cost_model: free
