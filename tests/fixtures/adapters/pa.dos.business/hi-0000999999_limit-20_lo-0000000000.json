@@ -1,0 +1,450 @@
+{
+ "entities": [
+  {
+   "address_line1": "728 TEST ST",
+   "business_name": "TESTOWNER 10550A INC",
+   "business_name_source_": "TESTOWNER 9FA32A INC",
+   "city": "Philadelphia",
+   "county_code": "51",
+   "creationdate": "1948-03-25T00:00:00.000",
+   "filing_number": "0000000001",
+   "first_name": "TESTOWNER A3BCA6",
+   "georeferenced_latitude__longitude": {
+    "coordinates": [
+     -75.1652,
+     40.04545
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER A8BCD1",
+   "party_type": "President",
+   "shortcountyname": "Philadelphia",
+   "state": "PA",
+   "typeofbusinessregistration": "Domestic Business Corporation",
+   "zip": "0    -0"
+  },
+  {
+   "address_line1": "8721 TEST ST",
+   "business_name": "TESTOWNER F36872 INC",
+   "business_name_source_": "TESTOWNER 5E12A4 INC",
+   "city": "Huntingdon Valley",
+   "county_code": "45",
+   "creationdate": "1971-02-17T00:00:00.000",
+   "filing_number": "0000000003",
+   "first_name": "TESTOWNER 52A3E8",
+   "georeferenced_latitude__longitude": {
+    "coordinates": [
+     -75.06479,
+     40.11902
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER 68C43F",
+   "party_type": "President",
+   "shortcountyname": "Monroe",
+   "state": "PA",
+   "typeofbusinessregistration": "Domestic Business Corporation",
+   "zip": "0    -0"
+  },
+  {
+   "address_line1": "8721 TEST ST",
+   "business_name": "TESTOWNER F36872 INC",
+   "business_name_source_": "TESTOWNER 5E12A4 INC",
+   "city": "Huntingdon Valley",
+   "county_code": "45",
+   "creationdate": "1971-02-17T00:00:00.000",
+   "filing_number": "0000000003",
+   "first_name": "TESTOWNER BA9544",
+   "georeferenced_latitude__longitude": {
+    "coordinates": [
+     -75.06479,
+     40.11902
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER 61D7B6",
+   "party_type": "Vice President",
+   "shortcountyname": "Monroe",
+   "state": "PA",
+   "typeofbusinessregistration": "Domestic Business Corporation",
+   "zip": "0    -0"
+  },
+  {
+   "address_line1": "6561 TEST ST",
+   "business_name": "TESTOWNER 03C925 INC",
+   "business_name_source_": "TESTOWNER 241901 INC",
+   "city": "Pittsburgh",
+   "county_code": "2",
+   "creationdate": "1963-11-13T00:00:00.000",
+   "filing_number": "0000000005",
+   "georeferenced_latitude__longitude": {
+    "coordinates": [
+     -79.91074,
+     40.45365
+    ],
+    "type": "Point"
+   },
+   "shortcountyname": "Allegheny",
+   "state": "PA",
+   "typeofbusinessregistration": "Domestic Business Corporation",
+   "zip": "0    -0"
+  },
+  {
+   "address_line1": "5062 TEST ST",
+   "business_name": "TESTOWNER B18FB6 INC",
+   "business_name_source_": "TESTOWNER D9683A INC",
+   "city": "Phila",
+   "county_code": "51",
+   "creationdate": "1956-11-19T00:00:00.000",
+   "filing_number": "0000000007",
+   "georeferenced_latitude__longitude": {
+    "coordinates": [
+     -75.14962,
+     40.02437
+    ],
+    "type": "Point"
+   },
+   "shortcountyname": "Philadelphia",
+   "state": "PA",
+   "typeofbusinessregistration": "Domestic Business Corporation",
+   "zip": "0    -0"
+  },
+  {
+   "address_line1": "206 TEST ST",
+   "business_name": "TESTOWNER A81205 CO",
+   "business_name_source_": "TESTOWNER 43BCDD CO",
+   "city": "Harrisburg",
+   "county_code": "22",
+   "creationdate": "1956-01-20T00:00:00.000",
+   "filing_number": "0000000008",
+   "georeferenced_latitude__longitude": {
+    "coordinates": [
+     -76.88696,
+     40.27027
+    ],
+    "type": "Point"
+   },
+   "shortcountyname": "Dauphin",
+   "state": "PA",
+   "typeofbusinessregistration": "Domestic Business Corporation",
+   "zip": "0    -0"
+  },
+  {
+   "address_line1": "5837 TEST ST",
+   "business_name": "TESTOWNER D31979 INC",
+   "business_name_source_": "TESTOWNER FA4EF2 INC",
+   "city": "Phila",
+   "county_code": "51",
+   "creationdate": "1965-05-17T00:00:00.000",
+   "filing_number": "0000000009",
+   "georeferenced_latitude__longitude": {
+    "coordinates": [
+     -75.07258,
+     40.0548
+    ],
+    "type": "Point"
+   },
+   "shortcountyname": "Philadelphia",
+   "state": "PA",
+   "typeofbusinessregistration": "Domestic Business Corporation",
+   "zip": "0    -0"
+  },
+  {
+   "address_line1": "5817 TEST ST",
+   "business_name": "TESTOWNER 0101B3 CO",
+   "business_name_source_": "TESTOWNER C4C67B CO",
+   "city": "Jeannette",
+   "county_code": "65",
+   "creationdate": "1913-01-01T00:00:00.000",
+   "filing_number": "0000000010",
+   "georeferenced_latitude__longitude": {
+    "coordinates": [
+     -79.60697,
+     40.33182
+    ],
+    "type": "Point"
+   },
+   "shortcountyname": "Westmoreland",
+   "state": "PA",
+   "typeofbusinessregistration": "Domestic Business Corporation",
+   "zip": "0    -0"
+  },
+  {
+   "address_line1": "1614 TEST ST",
+   "business_name": "TESTOWNER 24BF6E INC",
+   "business_name_source_": "TESTOWNER 387C53 INC",
+   "city": "Collegeville",
+   "county_code": "45",
+   "creationdate": "1974-02-25T00:00:00.000",
+   "filing_number": "0000000011",
+   "first_name": "TESTOWNER DC8AC9",
+   "georeferenced_latitude__longitude": {
+    "coordinates": [
+     -75.40713,
+     40.17344
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER D40C19",
+   "middle_name": "TESTOWNER D4E5D9",
+   "party_type": "President",
+   "shortcountyname": "Monroe",
+   "state": "PA",
+   "typeofbusinessregistration": "Domestic Business Corporation",
+   "zip": "19426-1504"
+  },
+  {
+   "address_line1": "1614 TEST ST",
+   "business_name": "TESTOWNER 24BF6E INC",
+   "business_name_source_": "TESTOWNER 387C53 INC",
+   "city": "Collegeville",
+   "county_code": "45",
+   "creationdate": "1974-02-25T00:00:00.000",
+   "filing_number": "0000000011",
+   "first_name": "TESTOWNER 71E351",
+   "georeferenced_latitude__longitude": {
+    "coordinates": [
+     -75.40713,
+     40.17344
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER 0FD138",
+   "party_type": "Secretary",
+   "shortcountyname": "Monroe",
+   "state": "PA",
+   "typeofbusinessregistration": "Domestic Business Corporation",
+   "zip": "19426-1504"
+  },
+  {
+   "address_line1": "6481 TEST ST",
+   "business_name": "TESTOWNER C74B2E INC",
+   "business_name_source_": "TESTOWNER 53A383 INC",
+   "city": "Feasterville",
+   "county_code": "45",
+   "creationdate": "1974-04-17T00:00:00.000",
+   "filing_number": "0000000012",
+   "first_name": "TESTOWNER C50D3B",
+   "georeferenced_latitude__longitude": {
+    "coordinates": [
+     -75.01555,
+     40.15849
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER 994370",
+   "party_type": "President",
+   "shortcountyname": "Monroe",
+   "state": "PA",
+   "typeofbusinessregistration": "Domestic Business Corporation",
+   "zip": "19047-0"
+  },
+  {
+   "address_line1": "3509 TEST ST",
+   "business_name": "TESTOWNER ADBC46 CORP",
+   "business_name_source_": "TESTOWNER F61AAC CORP",
+   "city": "Phila",
+   "county_code": "51",
+   "creationdate": "1959-02-03T00:00:00.000",
+   "filing_number": "0000000013",
+   "georeferenced_latitude__longitude": {
+    "coordinates": [
+     -75.16435,
+     39.95171
+    ],
+    "type": "Point"
+   },
+   "shortcountyname": "Philadelphia",
+   "state": "PA",
+   "typeofbusinessregistration": "Domestic Business Corporation",
+   "zip": "0    -0"
+  },
+  {
+   "address_line1": "4404 TEST ST",
+   "business_name": "TESTOWNER 7181AA CORP",
+   "business_name_source_": "TESTOWNER 48888B CORP",
+   "city": "Kittanning",
+   "county_code": "3",
+   "creationdate": "1968-04-30T00:00:00.000",
+   "filing_number": "0000000014",
+   "first_name": "TESTOWNER A95B1C",
+   "georeferenced_latitude__longitude": {
+    "coordinates": [
+     -79.53686,
+     40.81873
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER 067DB3",
+   "middle_name": "TESTOWNER 54FE8B",
+   "party_type": "President",
+   "shortcountyname": "Armstrong",
+   "state": "PA",
+   "typeofbusinessregistration": "Domestic Business Corporation",
+   "zip": "16201-0"
+  },
+  {
+   "address_line1": "4404 TEST ST",
+   "business_name": "TESTOWNER 7181AA CORP",
+   "business_name_source_": "TESTOWNER 48888B CORP",
+   "city": "Kittanning",
+   "county_code": "3",
+   "creationdate": "1968-04-30T00:00:00.000",
+   "filing_number": "0000000014",
+   "first_name": "TESTOWNER 389137",
+   "georeferenced_latitude__longitude": {
+    "coordinates": [
+     -79.53686,
+     40.81873
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER 067DB3",
+   "middle_name": "TESTOWNER D4E5D9",
+   "party_type": "Secretary",
+   "shortcountyname": "Armstrong",
+   "state": "PA",
+   "typeofbusinessregistration": "Domestic Business Corporation",
+   "zip": "16201-0"
+  },
+  {
+   "address_line1": "4404 TEST ST",
+   "business_name": "TESTOWNER 7181AA CORP",
+   "business_name_source_": "TESTOWNER 48888B CORP",
+   "city": "Kittanning",
+   "county_code": "3",
+   "creationdate": "1968-04-30T00:00:00.000",
+   "filing_number": "0000000014",
+   "first_name": "TESTOWNER 389137",
+   "georeferenced_latitude__longitude": {
+    "coordinates": [
+     -79.53686,
+     40.81873
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER 067DB3",
+   "middle_name": "TESTOWNER D4E5D9",
+   "party_type": "Treasurer",
+   "shortcountyname": "Armstrong",
+   "state": "PA",
+   "typeofbusinessregistration": "Domestic Business Corporation",
+   "zip": "16201-0"
+  },
+  {
+   "address_line1": "5246 TEST ST",
+   "business_name": "TESTOWNER 819B5B INC",
+   "business_name_source_": "TESTOWNER E35EE0 INC",
+   "city": "Philadelphia",
+   "county_code": "51",
+   "creationdate": "1969-08-25T00:00:00.000",
+   "filing_number": "0000000015",
+   "georeferenced_latitude__longitude": {
+    "coordinates": [
+     -75.02506,
+     40.09511
+    ],
+    "type": "Point"
+   },
+   "shortcountyname": "Philadelphia",
+   "state": "PA",
+   "typeofbusinessregistration": "Foreign Business Corporation",
+   "zip": "0    -0"
+  },
+  {
+   "address_line1": "2404 TEST ST",
+   "business_name": "TESTOWNER 578872 INC",
+   "business_name_source_": "TESTOWNER 24D81B INC",
+   "city": "Dubois",
+   "county_code": "17",
+   "creationdate": "1961-02-03T00:00:00.000",
+   "filing_number": "0000000016",
+   "first_name": "TESTOWNER 1D4476",
+   "georeferenced_latitude__longitude": {
+    "coordinates": [
+     -78.7573,
+     41.12355
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER F5E776",
+   "party_type": "President",
+   "shortcountyname": "Clearfield",
+   "state": "PA",
+   "typeofbusinessregistration": "Domestic Business Corporation",
+   "zip": "0    -0"
+  },
+  {
+   "address_line1": "2404 TEST ST",
+   "business_name": "TESTOWNER 578872 INC",
+   "business_name_source_": "TESTOWNER 24D81B INC",
+   "city": "Dubois",
+   "county_code": "17",
+   "creationdate": "1961-02-03T00:00:00.000",
+   "filing_number": "0000000016",
+   "first_name": "TESTOWNER AFD715",
+   "georeferenced_latitude__longitude": {
+    "coordinates": [
+     -78.7573,
+     41.12355
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER F5E776",
+   "party_type": "Secretary",
+   "shortcountyname": "Clearfield",
+   "state": "PA",
+   "typeofbusinessregistration": "Domestic Business Corporation",
+   "zip": "0    -0"
+  },
+  {
+   "address_line1": "7622 TEST ST",
+   "business_name": "TESTOWNER 5BA4F7 INC",
+   "business_name_source_": "TESTOWNER B22FB7 INC",
+   "city": "Bethlehem",
+   "county_code": "48",
+   "creationdate": "1969-05-27T00:00:00.000",
+   "filing_number": "0000000017",
+   "first_name": "TESTOWNER BA9544",
+   "georeferenced_latitude__longitude": {
+    "coordinates": [
+     -75.34638,
+     40.64091
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER B85862",
+   "middle_name": "TESTOWNER 4CCA4B",
+   "party_type": "President",
+   "shortcountyname": "Northampton",
+   "state": "PA",
+   "typeofbusinessregistration": "Domestic Business Corporation",
+   "zip": "0    -0"
+  },
+  {
+   "address_line1": "7622 TEST ST",
+   "business_name": "TESTOWNER 5BA4F7 INC",
+   "business_name_source_": "TESTOWNER B22FB7 INC",
+   "city": "Bethlehem",
+   "county_code": "48",
+   "creationdate": "1969-05-27T00:00:00.000",
+   "filing_number": "0000000017",
+   "first_name": "TESTOWNER E3FDFB",
+   "georeferenced_latitude__longitude": {
+    "coordinates": [
+     -75.34638,
+     40.64091
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER B85862",
+   "party_type": "Vice President",
+   "shortcountyname": "Northampton",
+   "state": "PA",
+   "typeofbusinessregistration": "Domestic Business Corporation",
+   "zip": "0    -0"
+  }
+ ],
+ "portal": "https://data.pa.gov",
+ "where": "filing_number >= '0000000000' AND filing_number < '0000999999'"
+}

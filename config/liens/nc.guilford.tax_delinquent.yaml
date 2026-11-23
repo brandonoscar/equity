@@ -1,0 +1,26 @@
+source_id: nc.guilford.tax_delinquent
+state: NC
+county_fips: "37081"
+# Guilford County Tax Department 'Tax Delinquent Report' (ArcGIS Online): one row per unpaid
+# real-property bill with the owner, mailing address, tax year and total due. In North Carolina
+# unpaid property taxes are a lien on the real property. PARCEL_NUM is the county REID, not the
+# NC OneMap PIN, so no parcel link is made; owners are matched by name and address.
+api: arcgis
+layer_urls:
+  - https://services5.arcgis.com/RR1v7NWFfwk98pUn/arcgis/rest/services/Tax_Delinquent_Report_/FeatureServer/0
+select: [ObjectId, PARCEL_NUM, TAX_YEAR, OWNER_NAME, MAIL_ADDR1, MAIL_ADDR2, MAIL_CITY, MAIL_STATE, MAIL_ZIP, BILL_STATUS, TOTAL_DUE_AMOUNT, BILL_DUE_DATE]
+order_by: [ObjectId]
+date_field: BILL_DUE_DATE
+uid: [PARCEL_NUM, TAX_YEAR]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: "Delinquent property tax"
+amount: TOTAL_DUE_AMOUNT
+parties:
+  - role: debtor
+    name: OWNER_NAME
+    address: {line1: [MAIL_ADDR1, MAIL_ADDR2], city: MAIL_CITY, state: MAIL_STATE, zip: MAIL_ZIP}
+terms:
+  url: https://services5.arcgis.com/RR1v7NWFfwk98pUn/arcgis/rest/services/Tax_Delinquent_Report_/FeatureServer/0
+  summary: "Guilford County, NC Tax Department delinquent report (public ArcGIS Online layer, no login); no license published. Used on the project owner's decision (2026-11-23)."
+  checked_on: 2026-11-23
+  cost_model: free

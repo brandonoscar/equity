@@ -1,0 +1,30 @@
+source_id: de.newcastle.parcels
+state: DE
+# New Castle County parcels (NCC GIS BaseMaps/Base_Layers layer 0, registered on FirstMap):
+# owner name (CNTCTLAST), owner mailing address, property address and class. PARCELNO is the
+# county parcel number. The server rejects paged queries, so objectid windows are read whole.
+layer_url: https://gis.nccde.org/agsserver/rest/services/BaseMaps/Base_Layers/MapServer/0
+order_by: NEW_OID      # the server fails range queries on ESRI_OID; NEW_OID windows work
+page_size: 1000
+paginate: false
+min_interval_s: 1.0
+county: {constant: "003"}
+fields:
+  parcel_id: PARCELNO
+  owner1: CNTCTLAST
+  mail_line1: OWNADDR
+  mail_line2: OWNADDR2
+  mail_city: OWNCITY
+  mail_state: OWNSTATE
+  mail_zip: OWNZIP
+  situs_line1: ADDRESS
+  situs_city: PROPCITY
+  situs_zip: PROPZIP
+  land_use_code: PROPCLASS
+value_basis: "no value or tax-year fields in this layer; owner name and addresses only"
+terms:
+  url: https://www.arcgis.com/home/item.html?id=9b8d3356b7f04179abca4529a3e1ce95
+  summary: "New Castle County parcels (copyright NCCDE GIS), 203,902 rows on 2026-11-23, on Delaware FirstMap. licenseInfo: 'The State of Delaware makes no warranty or representation ... All such data ... (the FirstMap Data) are provided as is and users are fully and solely responsible for any consequences of use. No use restriction is stated.'"
+  checked_on: 2026-11-23
+  robots_checked_on: 2026-11-23
+  cost_model: free

@@ -1,0 +1,46 @@
+source_id: nc.buncombe.unpaid_bills
+state: NC
+county_fips: "37021"
+# Buncombe County unpaid property tax bills, one ArcGIS Online layer per levy year (2009-2026;
+# 2022 is not published). Owners by name parts with mailing address, PIN, levy year and total
+# due. Unpaid NC property tax is a lien on real property. The PIN, dashes removed, is the
+# NC OneMap parcel number (37021-<pin>). Bills with no PIN are personal property.
+api: arcgis
+layer_urls:
+  - https://services6.arcgis.com/VLA0ImJ33zhtGEaP/arcgis/rest/services/Unpaid%20Property%20Bills%20from%202009/FeatureServer/0
+  - https://services6.arcgis.com/VLA0ImJ33zhtGEaP/arcgis/rest/services/Unpaid%20Property%20Bills%20from%202010/FeatureServer/0
+  - https://services6.arcgis.com/VLA0ImJ33zhtGEaP/arcgis/rest/services/Unpaid%20Property%20Bills%20from%202011/FeatureServer/0
+  - https://services6.arcgis.com/VLA0ImJ33zhtGEaP/arcgis/rest/services/Unpaid%20Property%20Bills%20from%202012/FeatureServer/0
+  - https://services6.arcgis.com/VLA0ImJ33zhtGEaP/arcgis/rest/services/Unpaid%20Property%20Bills%20from%202013/FeatureServer/0
+  - https://services6.arcgis.com/VLA0ImJ33zhtGEaP/arcgis/rest/services/Unpaid%20Property%20Bills%20from%202014/FeatureServer/0
+  - https://services6.arcgis.com/VLA0ImJ33zhtGEaP/arcgis/rest/services/Unpaid%20Property%20Bills%20from%202015/FeatureServer/0
+  - https://services6.arcgis.com/VLA0ImJ33zhtGEaP/arcgis/rest/services/Unpaid%20Property%20Bills%20from%202016/FeatureServer/0
+  - https://services6.arcgis.com/VLA0ImJ33zhtGEaP/arcgis/rest/services/Unpaid%20Property%20Bills%20from%202017/FeatureServer/0
+  - https://services6.arcgis.com/VLA0ImJ33zhtGEaP/arcgis/rest/services/Unpaid%20Property%20Bills%20from%202018/FeatureServer/0
+  - https://services6.arcgis.com/VLA0ImJ33zhtGEaP/arcgis/rest/services/Unpaid%20Property%20Bills%20from%202019/FeatureServer/0
+  - https://services6.arcgis.com/VLA0ImJ33zhtGEaP/arcgis/rest/services/Unpaid%20Property%20Bills%20from%202020/FeatureServer/0
+  - https://services6.arcgis.com/VLA0ImJ33zhtGEaP/arcgis/rest/services/Unpaid%20Property%20Bills%20from%202021/FeatureServer/0
+  - https://services6.arcgis.com/VLA0ImJ33zhtGEaP/arcgis/rest/services/All%20Property%20Unpaid%20Bills%20from%202023/FeatureServer/0
+  - https://services6.arcgis.com/VLA0ImJ33zhtGEaP/arcgis/rest/services/Buncombe_County_All_Property_Bills_Unpaid_from_2024/FeatureServer/0
+  - https://services6.arcgis.com/VLA0ImJ33zhtGEaP/arcgis/rest/services/Unpaid%20Property%20Bills%20from%202025/FeatureServer/0
+  - https://services6.arcgis.com/VLA0ImJ33zhtGEaP/arcgis/rest/services/Unpaid%20Property%20Bills%20from%202026/FeatureServer/0
+select: [OBJECTID, bill, pin, levy_year, total_due, owner1_first_name, owner1_third_name, owner1_last_name, owner1_suffix_name, owner2_first_name, owner2_third_name, owner2_last_name, owner2_suffix_name, address_line1, address_line2, city, state, postal_code]
+order_by: [OBJECTID]
+date_field: levy_year
+uid: bill
+doc_type: TAX_LIEN_STATE
+doc_type_raw: "Unpaid property tax bill"
+amount: total_due
+parties:
+  - role: debtor
+    name: [owner1_first_name, owner1_third_name, owner1_last_name, owner1_suffix_name]
+    address: {line1: [address_line1, address_line2], city: city, state: state, zip: postal_code}
+  - role: debtor
+    name: [owner2_first_name, owner2_third_name, owner2_last_name, owner2_suffix_name]
+    address: {line1: [address_line1, address_line2], city: city, state: state, zip: postal_code}
+parcel: {kind: pin, field: pin, county_fips: "37021", strip: "-"}
+terms:
+  url: https://www.arcgis.com/home/search.html?q=owner%3Abuncombe%20unpaid%20property%20bills
+  summary: "Buncombe County, NC unpaid property bills (public ArcGIS Online layers, no login); no license published. Used on the project owner's decision (2026-11-23)."
+  checked_on: 2026-11-23
+  cost_model: free

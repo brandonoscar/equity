@@ -1,0 +1,51 @@
+# Pennsylvania Department of State, "Registered Businesses in PA Current by County"
+# (data.pa.gov xvd7-5r2c, Public Domain U.S. Government): one row per associated person of an
+# active registration (president, governor, organizer, member...), with first/middle/last
+# names and an address; rows with no party_type carry the business's own address.
+# TODO(Brandon): PA "governors" (LLC/nonprofit governing body) are mapped to director; partner
+# and owner types to other with their raw title. Role valid_from is the creation date.
+source_id: pa.dos.business
+state: PA
+jurisdiction: "42"
+portal: https://data.pa.gov
+dataset: xvd7-5r2c
+key: filing_number
+terms_url: https://data.pa.gov/Licenses-Certificates/Registered-Businesses-in-PA-Current-by-County-Dep/xvd7-5r2c
+terms_summary: "Public Domain U.S. Government (dataset license field)."
+checked_on: 2026-11-23
+business:
+  name: business_name
+  status_value: Active  # the dataset lists current registrations
+  formed_on: creationdate
+grouped:
+  type_field: party_type
+  address: {street: [address_line1, address_line2], city: city, state: state, zip: zip}
+  addresses: {"": principal}
+  roles:
+    President: {role: officer, name_parts: [first_name, middle_name, last_name]}
+    Vice President: {role: officer, name_parts: [first_name, middle_name, last_name]}
+    Senior Vice President: {role: officer, name_parts: [first_name, middle_name, last_name]}
+    Treasurer: {role: officer, name_parts: [first_name, middle_name, last_name]}
+    Assistant Treasurer: {role: officer, name_parts: [first_name, middle_name, last_name]}
+    Secretary: {role: officer, name_parts: [first_name, middle_name, last_name]}
+    Assistant Secretary: {role: officer, name_parts: [first_name, middle_name, last_name]}
+    CEO: {role: officer, name_parts: [first_name, middle_name, last_name]}
+    Chief Executive Officer: {role: officer, name_parts: [first_name, middle_name, last_name]}
+    CFO: {role: officer, name_parts: [first_name, middle_name, last_name]}
+    Chief Financial Officer: {role: officer, name_parts: [first_name, middle_name, last_name]}
+    COO: {role: officer, name_parts: [first_name, middle_name, last_name]}
+    Officer: {role: officer, name_parts: [first_name, middle_name, last_name]}
+    Chairman: {role: officer, name_parts: [first_name, middle_name, last_name]}
+    Executive Director: {role: officer, name_parts: [first_name, middle_name, last_name]}
+    Governor: {role: director, name_parts: [first_name, middle_name, last_name]}
+    Director: {role: director, name_parts: [first_name, middle_name, last_name]}
+    Board Member: {role: director, name_parts: [first_name, middle_name, last_name]}
+    Organizer: {role: organizer, name_parts: [first_name, middle_name, last_name]}
+    Incorporator: {role: incorporator, name_parts: [first_name, middle_name, last_name]}
+    Member: {role: member, name_parts: [first_name, middle_name, last_name]}
+    Managing Member: {role: member, name_parts: [first_name, middle_name, last_name]}
+    Sole Member: {role: member, name_parts: [first_name, middle_name, last_name]}
+    LLC Member: {role: member, name_parts: [first_name, middle_name, last_name]}
+    Manager: {role: manager, name_parts: [first_name, middle_name, last_name]}
+  default: {role: other, name_parts: [first_name, middle_name, last_name]}
+pii_fields: [business_name, business_name_source_, first_name, middle_name, last_name, address_line1, address_line2, georeferenced_latitude__longitude]

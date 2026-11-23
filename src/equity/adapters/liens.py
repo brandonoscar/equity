@@ -85,7 +85,7 @@ from typing import Any, ClassVar
 
 import yaml
 
-from equity.adapters.arcgis import ArcGISQuery
+from equity.adapters.arcgis import ArcGISQuery, get_json
 from equity.adapters.arcgis import fetch_all as arcgis_fetch_all
 from equity.adapters.base import Adapter, Fetched, FetchRequest, HealthReport, NormalizedRow
 from equity.adapters.http import USER_AGENT, PoliteClient
@@ -161,10 +161,14 @@ def load_lien_config(path: Path) -> LienConfig:
     if api not in API_KEYS:
         raise LienConfigError(f"{path.name}: unknown api {api!r}")
     need = [*REQUIRED, *API_KEYS[api]]
+    if api == "arcgis":  # layer_url (date windows) or layer_urls (one partition per layer)
+        need = [k for k in need if k != "layer_url"]
+        if "layer_url" not in data and "layer_urls" not in data:
+            raise LienConfigError(f"{path.name}: missing ['layer_url' or 'layer_urls']")
     missing = [k for k in need if k not in data]
     if missing:
         raise LienConfigError(f"{path.name}: missing {missing}")
-    if data.get("partition", "year") not in ("year", "month"):
+    if data.get("partition", "year") not in ("year", "month", "none"):
         raise LienConfigError(f"{path.name}: partition must be year or month")
     kind = (data.get("parcel") or {}).get("kind")
     if kind not in (None, "nyc_bbl", "nyc_bbl10", "pin"):
@@ -187,15 +191,33 @@ def _join(row: Mapping[str, Any], spec: Any) -> str | None:
 
 
 def _date(value: Any) -> date | None:
-    if isinstance(value, int | float) and not isinstance(value, bool):
-        try:  # ArcGIS esriFieldTypeDate: milliseconds since the epoch, UTC
-            return datetime.fromtimestamp(value / 1000, UTC).date()
-        except (OverflowError, OSError, ValueError):
-            return None
-    if not isinstance(value, str) or len(value) < 10:
+    """ISO date text, ArcGIS epoch milliseconds, or a bare year (-> January 1)."""
+    if isinstance(value, bool):
         return None
+    if isinstance(value, int | float):
+        v = int(value)
+        if 1800 <= v <= 2200:
+            return date(v, 1, 1)
+        if v > 10**11:
+            try:
+                return datetime.fromtimestamp(v / 1000, tz=UTC).date()
+            except (OverflowError, OSError, ValueError):
+                return None
+        return None
+    if not isinstance(value, str):
+        return None
+    s = value.strip()
+    if len(s) == 4 and s.isdigit() and 1800 <= int(s) <= 2200:
+        return date(int(s), 1, 1)
+    if len(s) < 10:
+        return None
+    if re.fullmatch(r"[0-9]{2}[-/][0-9]{2}[-/][0-9]{4}", s[:10]):  # MM-DD-YYYY, MM/DD/YYYY
+        try:
+            return date(int(s[6:10]), int(s[:2]), int(s[3:5]))
+        except ValueError:
+            return None
     try:
-        return date.fromisoformat(value[:10])
+        return date.fromisoformat(s[:10])
     except ValueError:
         return None
 
@@ -459,12 +481,19 @@ class LienAdapter(Adapter):
         if self.api == "ckan":
             return f"{self.config['portal']}/datastore/{self.config['resource_id']}"
         if self.api == "arcgis":
-            return str(self.config["layer_url"])
+            return str(self.config.get("layer_url") or self.config["layer_urls"][0])
         if self.api in FILE_APIS:
             return str(self.config["url"])
         return f"{self.config['portal']}/resource/{self.config['dataset']}.json"
 
     def partitions(self) -> Iterator[dict[str, str]]:
+        if self.api == "arcgis" and self.config.get("layer_urls"):
+            for i in range(len(self.config["layer_urls"])):
+                yield {"layer": str(i)}  # one partition per layer, the whole layer
+            return
+        if self.config.get("partition") == "none":
+            yield {}  # the whole (filtered) dataset in one fetch
+            return
         if self.api in FILE_APIS or self.config.get("single_partition"):
             yield {"file": "all"}  # one file or dataset, replaced in full each update
             return
@@ -516,8 +545,16 @@ class LienAdapter(Adapter):
             if limit or len(got) < page:
                 return rows, resp.retrieved_at
 
-    def _arcgis_query(self, where: str, page: int) -> ArcGISQuery:
-        return ArcGISQuery(str(self.config["layer_url"]), where,
+    def _arcgis_query(self, where: str, page: int, layer: str | None = None) -> ArcGISQuery:
+        urls = self.config.get("layer_urls")
+        if urls:
+            index = int(layer or 0)
+            if not 0 <= index < len(urls):
+                raise LienConfigError(f"{self.source_id}: no layer {index}")
+            url = str(urls[index])
+        else:
+            url = str(self.config["layer_url"])
+        return ArcGISQuery(url, where,
                            tuple(self.config.get("select") or ("*",)),
                            tuple(self.config.get("order_by") or ("OBJECTID",)),
                            page)  # fmt: skip
@@ -614,7 +651,8 @@ class LienAdapter(Adapter):
             return Fetched(self.source_id, url, resp.retrieved_at, 200, body_x,
                            "application/json")  # fmt: skip
         if self.api == "arcgis":
-            q_a = self._arcgis_query(where, int(limit) if limit else 1000)
+            q_a = self._arcgis_query(where, int(limit) if limit else 1000,
+                                     request.params.get("layer"))  # fmt: skip
             feats, resps = arcgis_fetch_all(self.client, q_a, max_pages=1 if limit else 10_000,
                                             sample=bool(limit))  # fmt: skip
             rows_a = self._enrich([f.get("attributes") or {} for f in feats])
@@ -814,6 +852,13 @@ class LienAdapter(Adapter):
                          else _text(a.get("state_const")))  # fmt: skip
                 city = (_text(row.get(a["city"])) if a.get("city")
                         else _text(a.get("city_const")))  # fmt: skip
+                if a.get("csz"):  # one field holding "CITY ST 12345" or "City, ST 12345"
+                    text = row.get(a["csz"])
+                    form = "city_state_zip" if "," in str(text or "") else "city_st_zip"
+                    csz = split_address(text, form)
+                    city = city or csz["city"]
+                    state = state or csz["state"]
+                    zip5 = zip5 or csz["zip"]
                 addr = normalized_address(_join(row, a.get("line1")), city, state,
                                           zip5) if a else None  # fmt: skip
                 by_name = found.setdefault(p["role"], {})
@@ -837,7 +882,14 @@ class LienAdapter(Adapter):
                                role=role, seq=seq)  # fmt: skip
 
     def health(self) -> HealthReport:
-        if self.api in (*FILE_APIS, "arcgis"):
+        if self.api == "arcgis":  # a row count on the (first) layer, filtered like the fetch
+            layer = str(self.config.get("layer_url") or self.config["layer_urls"][0])
+            body = get_json(self.client, layer + "/query",
+                            {"where": self.config.get("where") or "1=1",
+                             "returnCountOnly": "true", "f": "json"})  # fmt: skip
+            n = int(body.get("count") or 0)
+            return HealthReport(self.source_id, n > 0, datetime.now(UTC), f"{n} rows")
+        if self.api in FILE_APIS:
             rows_f = json.loads(self.fetch(FetchRequest({"limit": "1"})).content)["rows"]
             return HealthReport(self.source_id, bool(rows_f), datetime.now(UTC),
                                 "ok" if rows_f else "no rows")  # fmt: skip

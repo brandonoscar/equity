@@ -1,0 +1,126 @@
+{
+ "attributes": [
+  {
+   "BLOCKLOT": "0001 001",
+   "DEEDBOOK": "MB 25915",
+   "DEEDPAGE": "0340",
+   "FULLADDR": "TESTOWNER 265ADE",
+   "MAILTOADD": null,
+   "OBJECTID": 1,
+   "OWNER_1": "TESTOWNER 0EB0E2 LLC",
+   "OWNER_2": "                                 ",
+   "ZIP_CODE": "21217",
+   "ZONECODE": "C-1  "
+  },
+  {
+   "BLOCKLOT": "0001 002",
+   "DEEDBOOK": "MB 25915",
+   "DEEDPAGE": "0340",
+   "FULLADDR": "TESTOWNER 98899A",
+   "MAILTOADD": null,
+   "OBJECTID": 2,
+   "OWNER_1": "TESTOWNER 0EB0E2 LLC",
+   "OWNER_2": "                                 ",
+   "ZIP_CODE": "21217",
+   "ZONECODE": "C-1  "
+  },
+  {
+   "BLOCKLOT": "0001 003",
+   "DEEDBOOK": "RHB03281",
+   "DEEDPAGE": "0600",
+   "FULLADDR": "TESTOWNER 85CDD1",
+   "MAILTOADD": null,
+   "OBJECTID": 3,
+   "OWNER_1": "TESTOWNER 3B29EA INC",
+   "OWNER_2": "                                 ",
+   "ZIP_CODE": "21217",
+   "ZONECODE": "OR-1*"
+  },
+  {
+   "BLOCKLOT": "0001 004",
+   "DEEDBOOK": "FMC16697",
+   "DEEDPAGE": "0295",
+   "FULLADDR": "TESTOWNER 133048",
+   "MAILTOADD": null,
+   "OBJECTID": 4,
+   "OWNER_1": "TESTOWNER C5EF4E",
+   "OWNER_2": "                                 ",
+   "ZIP_CODE": "21217",
+   "ZONECODE": "OR-1*"
+  },
+  {
+   "BLOCKLOT": "0001 005",
+   "DEEDBOOK": "MB 23210",
+   "DEEDPAGE": "0334",
+   "FULLADDR": "TESTOWNER E64271",
+   "MAILTOADD": null,
+   "OBJECTID": 5,
+   "OWNER_1": "TESTOWNER FE82C2",
+   "OWNER_2": "TESTOWNER EAC07F",
+   "ZIP_CODE": "21217",
+   "ZONECODE": "OR-1*"
+  },
+  {
+   "BLOCKLOT": "0001 006",
+   "DEEDBOOK": "MB 23745",
+   "DEEDPAGE": "0389",
+   "FULLADDR": "TESTOWNER FF96F9",
+   "MAILTOADD": null,
+   "OBJECTID": 6,
+   "OWNER_1": "TESTOWNER F2E0C9 LLC",
+   "OWNER_2": "TESTOWNER 520134",
+   "ZIP_CODE": "21217",
+   "ZONECODE": "OR-1*"
+  },
+  {
+   "BLOCKLOT": "0001 007",
+   "DEEDBOOK": "FMC07896",
+   "DEEDPAGE": "0659",
+   "FULLADDR": "TESTOWNER F7085E",
+   "MAILTOADD": null,
+   "OBJECTID": 7,
+   "OWNER_1": "TESTOWNER 6E28B6",
+   "OWNER_2": "TESTOWNER 85EDA5",
+   "ZIP_CODE": "21217",
+   "ZONECODE": "OR-1*"
+  },
+  {
+   "BLOCKLOT": "0001 008",
+   "DEEDBOOK": "XAC26756",
+   "DEEDPAGE": "0338",
+   "FULLADDR": "TESTOWNER 203110",
+   "MAILTOADD": null,
+   "OBJECTID": 8,
+   "OWNER_1": "TESTOWNER A01892 LLC",
+   "OWNER_2": "                                 ",
+   "ZIP_CODE": "21217",
+   "ZONECODE": "OR-1*"
+  },
+  {
+   "BLOCKLOT": "0001 009",
+   "DEEDBOOK": "MB 25682",
+   "DEEDPAGE": "0404",
+   "FULLADDR": "TESTOWNER 53ACFF",
+   "MAILTOADD": null,
+   "OBJECTID": 9,
+   "OWNER_1": "TESTOWNER 824808 LLC",
+   "OWNER_2": "                                 ",
+   "ZIP_CODE": "21217",
+   "ZONECODE": "OR-1*"
+  },
+  {
+   "BLOCKLOT": "0001 010",
+   "DEEDBOOK": "MB 24852",
+   "DEEDPAGE": "0251",
+   "FULLADDR": "TESTOWNER 5C70C5",
+   "MAILTOADD": null,
+   "OBJECTID": 10,
+   "OWNER_1": "TESTOWNER 0B0998",
+   "OWNER_2": "                                 ",
+   "ZIP_CODE": "21217",
+   "ZONECODE": "OR-1*"
+  }
+ ],
+ "layer": "https://baltegis.baltimorecity.gov/mapping/rest/services/CityView/RealProperty_OB/FeatureServer/0",
+ "where": "1=1"
+}

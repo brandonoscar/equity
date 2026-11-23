@@ -64,15 +64,9 @@ sources:
   de.revenue.top_delinquent_personal: tax_delinquency
   wi.milwaukee.delinquent_taxes: tax_delinquency
   oh.hamilton.delinquent_taxes: tax_delinquency
-  oh.clermont.delinquent_taxes: tax_delinquency
-  va.richmond.delinquent_taxes: tax_delinquency
   tx.harris.delinquent_taxes: tax_delinquency
   oh.mahoning.delinquent_taxes: tax_delinquency
   va.virginia_beach.delinquent_taxes: tax_delinquency
-  nc.buncombe.unpaid_taxes_2023: tax_delinquency
-  nc.buncombe.unpaid_taxes_2024: tax_delinquency
-  nc.buncombe.unpaid_taxes_2025: tax_delinquency
-  nc.guilford.delinquent_taxes: tax_delinquency
   ms.harrison.tax_sale_parcels: tax_delinquency
   az.cochise.tax_liens: tax_lien                 # certificate of purchase sold
   fl.broward.tax_certificates: tax_lien           # tax certificate sold: first lien
@@ -86,3 +80,14 @@ sources:
   pa.washington.sheriff_sales: foreclosure
   ny.nyc.hpd_litigation: housing_court_case
   ny.nyc.evictions: eviction
+  # from main (dreamy-ramanujan session)
+  tx.harris.jp.judgments: court_judgment           # duplicate of tx.harris.jp.civil_judgments; in no run
+  tx.travis.tax_delinquent: tax_delinquency
+  ne.douglas.tax_liens: tax_lien
+  co.sos.ucc: statutory_lien                       # federal tax and statutory liens (doc-type filtered)
+  md.baltimore_city.citation_liens: code_enforcement_lien
+  nc.guilford.tax_delinquent: tax_delinquency
+  nc.buncombe.unpaid_bills: tax_delinquency
+  nc.charlotte.municipal_liens: code_enforcement_lien
+  oh.clermont.tax_delinquent: tax_delinquency
+  va.richmond.tax_delinquent: tax_delinquency

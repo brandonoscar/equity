@@ -1,0 +1,102 @@
+{
+ "dataset": "83t5-hbac",
+ "rows": [
+  {
+   "bill_year": "2026",
+   "current_owner_name_1": "TESTOWNER 75C586",
+   "property_code": "C0010126006",
+   "total_due": "$331.69"
+  },
+  {
+   "bill_year": "2026",
+   "current_owner_name_1": "TESTOWNER 7ACED0",
+   "current_owner_name_2": "TESTOWNER 4D4A73",
+   "property_code": "C0010210012",
+   "total_due": "$461.64"
+  },
+  {
+   "bill_year": "2025",
+   "current_owner_name_1": "TESTOWNER F50223",
+   "current_owner_name_2": "TESTOWNER D1F5CB",
+   "property_code": "C0010210028",
+   "total_due": "$12.46"
+  },
+  {
+   "bill_year": "2026",
+   "current_owner_name_1": "TESTOWNER F50223",
+   "current_owner_name_2": "TESTOWNER D1F5CB",
+   "property_code": "C0010210028",
+   "total_due": "$3,343.83"
+  },
+  {
+   "bill_year": "2024",
+   "current_owner_name_1": "TESTOWNER C55C3D",
+   "property_code": "C0010214012",
+   "total_due": "$280.00"
+  },
+  {
+   "bill_year": "2026",
+   "current_owner_name_1": "TESTOWNER C55C3D",
+   "property_code": "C0010214012",
+   "total_due": "$2,952.00"
+  },
+  {
+   "bill_year": "2025",
+   "current_owner_name_1": "TESTOWNER 27155F",
+   "current_owner_name_2": "TESTOWNER FCE129",
+   "property_code": "C0010214014",
+   "total_due": "$4,464.00"
+  },
+  {
+   "bill_year": "2026",
+   "current_owner_name_1": "TESTOWNER 27155F",
+   "current_owner_name_2": "TESTOWNER FCE129",
+   "property_code": "C0010214014",
+   "total_due": "$4,519.20"
+  },
+  {
+   "bill_year": "2026",
+   "current_owner_name_1": "TESTOWNER 161ED4",
+   "current_owner_name_2": "TESTOWNER 5A8E01",
+   "property_code": "C0010253016",
+   "total_due": "$2,472.00"
+  },
+  {
+   "bill_year": "2026",
+   "current_owner_name_1": "TESTOWNER 0AEEB3",
+   "property_code": "C0010285032",
+   "total_due": "$1,207.95"
+  },
+  {
+   "bill_year": "2025",
+   "current_owner_name_1": "TESTOWNER 1F93E8",
+   "property_code": "C0010286010",
+   "total_due": "$190.40"
+  },
+  {
+   "bill_year": "2026",
+   "current_owner_name_1": "TESTOWNER 1F93E8",
+   "property_code": "C0010286010",
+   "total_due": "$408.00"
+  },
+  {
+   "bill_year": "2024",
+   "current_owner_name_1": "TESTOWNER B97AE2",
+   "property_code": "C0010292038",
+   "total_due": "$2,545.37"
+  },
+  {
+   "bill_year": "2025",
+   "current_owner_name_1": "TESTOWNER B97AE2",
+   "property_code": "C0010292038",
+   "total_due": "$912.53"
+  },
+  {
+   "bill_year": "2025",
+   "current_owner_name_1": "TESTOWNER 5DE88B",
+   "property_code": "C0010295020",
+   "total_due": "$2,832.00"
+  }
+ ],
+ "where": "1=1"
+}

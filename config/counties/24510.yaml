@@ -1,0 +1,27 @@
+source_id: md.baltimore_city.parcels
+state: MD
+# Baltimore City 'Real Property Information' (Open Baltimore, official service on
+# baltegis.baltimorecity.gov, updated weekly; CC BY 3.0). Keyed by block and lot (BLOCKLOT); it
+# carries no SDAT account id, so it does not key to md.statewide.parcels.
+layer_url: https://baltegis.baltimorecity.gov/mapping/rest/services/CityView/RealProperty_OB/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000
+min_interval_s: 1.0
+county: {constant: "510"}
+fields:
+  parcel_id: BLOCKLOT
+  owner1: OWNER_1
+  owner2: OWNER_2
+  mail_full: MAILTOADD
+  situs_line1: FULLADDR
+  situs_zip: ZIP_CODE
+  zoning: ZONECODE
+  deed_book: DEEDBOOK
+  deed_page: DEEDPAGE
+value_basis: "CURRLAND/CURRIMPR/TAXBASE are present but the layer has no tax-year field, so no tax_year is mapped and no assessment facts are emitted. OWNER_3 is not mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=23047e9712f04e95abaa983320579e8e
+  summary: "Baltimore City 'Real Property Information' (item licenseInfo: Creative Commons Attribution 3.0 Unported; accessInformation: City of Baltimore; credit Baltimore City). 237,456 rows on 2026-11-23, updated weekly."
+  checked_on: 2026-11-23
+  robots_checked_on: 2026-11-23
+  cost_model: free

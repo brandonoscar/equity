@@ -753,3 +753,80 @@ def test_pin_strip_removes_punctuation(tmp_path: Path) -> None:
     out = [r.row for r in cls().normalize(Fetched(cls.source_id, "x", AT, 200, body, ""))
            if r.table == "instrument_parcel"]  # fmt: skip
     assert [r["parcel_uid"] for r in out] == ["37021-960810874500000"]
+
+
+def test_arcgis_layers_are_partitions_and_dates_may_be_epochs_or_years(tmp_path: Path) -> None:
+    from collections.abc import Mapping as _M
+
+    from equity.adapters.http import PoliteClient
+
+    calls: list[str] = []
+
+    def transport(url: str, headers: _M[str, str], timeout: float) -> tuple[int, bytes, str]:
+        if url.endswith("robots.txt"):
+            return 404, b"", ""
+        calls.append(url)
+        if "returnCountOnly" in url:
+            return 200, b'{"count": 2}', ""
+        feats = [{"attributes": {"OBJECTID": 1, "bill": "B1", "due": 1472601600000,
+                                 "pin": "9608-10-8745-00000", "owner": "ANN LEE",
+                                 "line": "1 MAIN ST", "csz": "ASHEVILLE, NC 28805-1234",
+                                 "total": "12.50"}},
+                 {"attributes": {"OBJECTID": 2, "bill": "B2", "due": 2019, "pin": "",
+                                 "owner": "BOB RAY", "line": "2 OAK AVE", "csz": "nowhere",
+                                 "total": "3"}}]  # fmt: skip
+        return 200, json.dumps({"features": feats if "layer1" in url else []}).encode(), ""
+
+    cfg = _cfg(tmp_path, api="arcgis", portal=None, dataset=None, date_field="due", uid="bill",
+               amount="total", released_on=None,
+               layer_urls=["https://g.test/layer0/FeatureServer/0",
+                           "https://g.test/layer1/FeatureServer/0"],
+               parcel={"kind": "pin", "field": "pin", "county_fips": "37021", "strip": "-"},
+               parties=[{"role": "debtor", "name": "owner",
+                         "address": {"line1": "line", "csz": "csz"}}])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    a = cls(PoliteClient(min_interval_s=0, transport=transport, sleep=lambda s: None))
+    assert list(a.partitions()) == [{"layer": "0"}, {"layer": "1"}]
+    assert a.source_row()["base_url"] == "https://g.test/layer0/FeatureServer/0"
+    assert a.health().ok
+    f = a.fetch(FetchRequest({"layer": "1"}))
+    assert any("layer1" in c and "query" in c for c in calls)
+    out = [(r.table, dict(r.row)) for r in a.normalize(f)]
+    inst = {r["instrument_number"]: r for t, r in out if t == "instrument"}
+    assert str(inst["B1"]["recorded_on"]) == "2016-08-31"  # epoch milliseconds
+    assert str(inst["B2"]["recorded_on"]) == "2019-01-01"  # bare year
+    assert [r["parcel_uid"] for t, r in out if t == "instrument_parcel"] == [
+        "37021-960810874500000"]  # dashes stripped; the empty PIN links nothing  # fmt: skip
+    addrs = [r for t, r in out if t == "address"]
+    assert [(r["line1"], r["city"], r["state"], r["zip5"]) for r in addrs] == [
+        ("1 MAIN ST", "ASHEVILLE", "NC", "28805"),
+        ("2 OAK AVE", None, None, None),  # an unparsable city line keeps only the street
+    ]
+    with pytest.raises(LienConfigError, match="no layer"):
+        a.fetch(FetchRequest({"layer": "5"}))
+    data = yaml.safe_load(cfg.read_text())
+    del data["layer_urls"]
+    (tmp_path / "ag.yaml").write_text(yaml.safe_dump(data))
+    with pytest.raises(LienConfigError, match="layer_urls"):
+        load_lien_config(tmp_path / "ag.yaml")
+    data["api"] = "ftp"
+    (tmp_path / "ag.yaml").write_text(yaml.safe_dump(data))
+    with pytest.raises(LienConfigError, match="unknown api"):
+        load_lien_config(tmp_path / "ag.yaml")
+
+
+def test_single_partition_and_us_dates(tmp_path: Path) -> None:
+    cfg = _cfg(tmp_path, partition="none", released_on=None, county_fips="37119",
+               parcel=None)  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    a = cls()
+    assert list(a.partitions()) == [{}]
+    assert a.where({}) == "1=1"
+    rows_in = [{"ticket": "T1", "docketed": "09-13-2004", "last": "X"},
+               {"ticket": "T2", "docketed": "13/45/2004", "last": "Y"},
+               {"ticket": "T3", "docketed": "1700", "last": "Z"}]  # fmt: skip
+    body = json.dumps({"rows": rows_in}).encode()
+    rows = [r.row for r in a.normalize(Fetched(cls.source_id, "x", AT, 200, body, ""))
+            if r.table == "instrument"]  # fmt: skip
+    assert [(r["instrument_number"], str(r["recorded_on"])) for r in rows] == [
+        ("T1", "2004-09-13")]  # a bad month and an out-of-range year are not dates  # fmt: skip

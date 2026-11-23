@@ -1,0 +1,27 @@
+source_id: nc.charlotte.municipal_liens
+state: NC
+county_fips: "37119"
+# City of Charlotte Financial Management System lien data (Open Data Portal, ArcGIS): municipal
+# liens (code-enforcement and service invoices) with the customer's name, property address,
+# Mecklenburg parcel id and status. Only liens currently filed (LF) are loaded; paid (LP) and
+# written-off (WO) liens are not owed. No amounts are published.
+api: arcgis
+layer_urls:
+  - https://gis.charlottenc.gov/arcgis/rest/services/ODP/FMSLienData/MapServer/0
+where: "Lien_Status LIKE 'LF%'"
+select: [ObjectID, LienNo, Lien_Status, Customer_Name, Property_Address, InvoiceNo, Invoice_Date, ParcelID]
+order_by: [ObjectID]
+date_field: Invoice_Date
+uid: [LienNo, InvoiceNo]
+doc_type: STATUTORY_LIEN
+doc_type_raw: {field: Lien_Status}
+parties:
+  - role: debtor
+    name: Customer_Name
+parcel: {kind: pin, field: ParcelID, county_fips: "37119"}
+extra_pii: [Property_Address]
+terms:
+  url: https://gis.charlottenc.gov/arcgis/rest/services/ODP/FMSLienData/MapServer
+  summary: "City of Charlotte Open Data Portal (ODP) MapServer, public, no login; no license published. Used on the project owner's decision (2026-11-23)."
+  checked_on: 2026-11-23
+  cost_model: free

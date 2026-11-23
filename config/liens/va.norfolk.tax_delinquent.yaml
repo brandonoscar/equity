@@ -1,0 +1,23 @@
+source_id: va.norfolk.tax_delinquent
+state: VA
+county_fips: "51710"
+# City of Norfolk 'Delinquent Property Taxes' (daily): owner, property address, account, tax
+# year and installment, tax, penalty, interest and total due. One instrument per account,
+# year and installment.
+portal: https://data.norfolk.gov
+dataset: 7qie-z5gv
+order_by: [account, bwtaxyear, bwtaxinstallment, ":id"]
+partition: none
+date_field: bwtaxyear
+uid: [account, bwtaxyear, bwtaxinstallment, biitem]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: "Delinquent property tax"
+amount: total
+parties:
+  - {role: debtor, name: owner_name}
+extra_pii: [address]
+terms:
+  url: https://data.norfolk.gov/d/7qie-z5gv
+  summary: "City of Norfolk, VA open data (Socrata), public, no login; no license set. Used on the project owner's decision (2026-11-23)."
+  checked_on: 2026-11-23
+  cost_model: free
