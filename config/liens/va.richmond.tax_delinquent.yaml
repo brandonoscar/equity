@@ -1,0 +1,23 @@
+source_id: va.richmond.tax_delinquent
+state: VA
+county_fips: "51760"
+# City of Richmond 'Delinquent Real Estate Taxes (6+ months)': owner names, property code,
+# bill year and total due. Unpaid Virginia real-estate tax is a lien on the property.
+portal: https://data.richmondgov.com
+dataset: 83t5-hbac
+order_by: [property_code, bill_year, ":id"]
+partition: none
+date_field: bill_year
+uid: [property_code, bill_year]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: "Delinquent real estate tax"
+amount: total_due
+parties:
+  - {role: debtor, name: current_owner_name_1}
+  - {role: debtor, name: current_owner_name_2}
+parcel: {kind: pin, field: property_code, county_fips: "51760"}
+terms:
+  url: https://data.richmondgov.com/d/83t5-hbac
+  summary: "City of Richmond, VA open data (Socrata), public, no login; no license set. Used on the project owner's decision (2026-11-23)."
+  checked_on: 2026-11-23
+  cost_model: free

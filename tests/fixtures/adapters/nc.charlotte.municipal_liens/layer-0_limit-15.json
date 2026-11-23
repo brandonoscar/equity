@@ -1,0 +1,155 @@
+{
+ "layer": "https://gis.charlottenc.gov/arcgis/rest/services/ODP/FMSLienData/MapServer/0",
+ "rows": [
+  {
+   "Customer_Name": "TESTOWNER C3C85D",
+   "InvoiceNo": "HS-10000693                                       ",
+   "Invoice_Date": "06-09-2010",
+   "LienNo": "10M10023    ",
+   "Lien_Status": "LF - LIEN FILED          ",
+   "ObjectID": 28,
+   "ParcelID": "16720965       ",
+   "Property_Address": "7625 TEST ST"
+  },
+  {
+   "Customer_Name": "TESTOWNER 667946 INC",
+   "InvoiceNo": "HS-10001064                                       ",
+   "Invoice_Date": "06-21-2010",
+   "LienNo": "10M11311    ",
+   "Lien_Status": "LF - LIEN FILED          ",
+   "ObjectID": 293,
+   "ParcelID": "22936166       ",
+   "Property_Address": "3388 TEST ST"
+  },
+  {
+   "Customer_Name": "TESTOWNER FAAE97",
+   "InvoiceNo": "HS-11000351                                       ",
+   "Invoice_Date": "08-10-2010",
+   "LienNo": "10M14037    ",
+   "Lien_Status": "LF - LIEN FILED          ",
+   "ObjectID": 829,
+   "ParcelID": "06909324       ",
+   "Property_Address": "5855 TEST ST"
+  },
+  {
+   "Customer_Name": "TESTOWNER 0D5A16",
+   "InvoiceNo": "HS-11001426                                       ",
+   "Invoice_Date": "10-25-2010",
+   "LienNo": "10M18116    ",
+   "Lien_Status": "LF - LIEN FILED          ",
+   "ObjectID": 1754,
+   "ParcelID": "03910351       ",
+   "Property_Address": "4188 TEST ST"
+  },
+  {
+   "Customer_Name": "TESTOWNER 6A16FD LLC",
+   "InvoiceNo": "HS-10000405                                       ",
+   "Invoice_Date": "05-26-2010",
+   "LienNo": "10M9033     ",
+   "Lien_Status": "LF - LIEN FILED          ",
+   "ObjectID": 2358,
+   "ParcelID": "06301205       ",
+   "Property_Address": "3003 TEST ST"
+  },
+  {
+   "Customer_Name": "TESTOWNER 9FE8C5",
+   "InvoiceNo": "HS-10000445                                       ",
+   "Invoice_Date": "06-07-2010",
+   "LienNo": "10M9360     ",
+   "Lien_Status": "LF - LIEN FILED          ",
+   "ObjectID": 2511,
+   "ParcelID": "06301212       ",
+   "Property_Address": "4364 TEST ST"
+  },
+  {
+   "Customer_Name": "TESTOWNER B62EC7",
+   "InvoiceNo": "HS-12002086                                       ",
+   "Invoice_Date": "11-03-2011",
+   "LienNo": "11M15533    ",
+   "Lien_Status": "LF - LIEN FILED          ",
+   "ObjectID": 4547,
+   "ParcelID": "07904147       ",
+   "Property_Address": "8318 TEST ST"
+  },
+  {
+   "Customer_Name": "TESTOWNER 25E626",
+   "InvoiceNo": "DM-11000046                                       ",
+   "Invoice_Date": "03-02-2011",
+   "LienNo": "11M2453     ",
+   "Lien_Status": "LF - LIEN FILED          ",
+   "ObjectID": 4799,
+   "ParcelID": "06504307       ",
+   "Property_Address": "3749 TEST ST"
+  },
+  {
+   "Customer_Name": "TESTOWNER AE9B83",
+   "InvoiceNo": "HS-11002300                                       ",
+   "Invoice_Date": "02-18-2011",
+   "LienNo": "11M5092     ",
+   "Lien_Status": "LF - LIEN FILED          ",
+   "ObjectID": 5023,
+   "ParcelID": "04935186       ",
+   "Property_Address": "6014 TEST ST"
+  },
+  {
+   "Customer_Name": "TESTOWNER 0EE46B",
+   "InvoiceNo": "HS-13000901                                       ",
+   "Invoice_Date": "09-11-2012",
+   "LienNo": "12M11236    ",
+   "Lien_Status": "LF - LIEN FILED          ",
+   "ObjectID": 6738,
+   "ParcelID": "11707205       ",
+   "Property_Address": "4966 TEST ST"
+  },
+  {
+   "Customer_Name": "TESTOWNER D1115F",
+   "InvoiceNo": "HS-13000906                                       ",
+   "Invoice_Date": "09-12-2012",
+   "LienNo": "12M11502    ",
+   "Lien_Status": "LF - LIEN FILED          ",
+   "ObjectID": 6745,
+   "ParcelID": "07909602       ",
+   "Property_Address": "1833 TEST ST"
+  },
+  {
+   "Customer_Name": "TESTOWNER 88762A",
+   "InvoiceNo": "HS-13000920                                       ",
+   "Invoice_Date": "09-12-2012",
+   "LienNo": "12M11514    ",
+   "Lien_Status": "LF - LIEN FILED          ",
+   "ObjectID": 6756,
+   "ParcelID": "14501408       ",
+   "Property_Address": "1168 TEST ST"
+  },
+  {
+   "Customer_Name": "TESTOWNER 9272BC CORP",
+   "InvoiceNo": "HS-13000974                                       ",
+   "Invoice_Date": "09-19-2012",
+   "LienNo": "12M11588    ",
+   "Lien_Status": "LF - LIEN FILED          ",
+   "ObjectID": 6798,
+   "ParcelID": "09502309       ",
+   "Property_Address": "1730 TEST ST"
+  },
+  {
+   "Customer_Name": "TESTOWNER AF973A",
+   "InvoiceNo": "HS-13000978                                       ",
+   "Invoice_Date": "09-19-2012",
+   "LienNo": "12M11591    ",
+   "Lien_Status": "LF - LIEN FILED          ",
+   "ObjectID": 6801,
+   "ParcelID": "15702111       ",
+   "Property_Address": "2849 TEST ST"
+  },
+  {
+   "Customer_Name": "TESTOWNER 431B3C",
+   "InvoiceNo": "HS-13001012                                       ",
+   "Invoice_Date": "09-20-2012",
+   "LienNo": "12M11723    ",
+   "Lien_Status": "LF - LIEN FILED          ",
+   "ObjectID": 6825,
+   "ParcelID": "21132138       ",
+   "Property_Address": "5071 TEST ST"
+  }
+ ]
+}
