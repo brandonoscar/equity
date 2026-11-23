@@ -68,6 +68,10 @@ sources:
   va.richmond.delinquent_taxes: tax_delinquency
   tx.harris.delinquent_taxes: tax_delinquency
   oh.mahoning.delinquent_taxes: tax_delinquency
+  va.virginia_beach.delinquent_taxes: tax_delinquency
+  nc.buncombe.unpaid_taxes_2023: tax_delinquency
+  nc.buncombe.unpaid_taxes_2024: tax_delinquency
+  nc.buncombe.unpaid_taxes_2025: tax_delinquency
   fl.broward.tax_certificates: tax_lien           # tax certificate sold: first lien
   # code enforcement
   pa.philadelphia.li_fines: code_enforcement_charge

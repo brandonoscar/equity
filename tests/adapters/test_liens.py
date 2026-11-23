@@ -729,3 +729,27 @@ def test_city_st_zip_form_and_listed_on(tmp_path: Path) -> None:
     assert str(inst["recorded_on"]) == "2026-11-21"  # the fetch date
     (addr,) = [r for t, r in out if t == "address"]
     assert (addr["city"], addr["zip5"]) == ("BATAVIA", "45103")
+
+
+def test_pin_strip_removes_punctuation(tmp_path: Path) -> None:
+    cfg = _cfg(
+        tmp_path,
+        released_on=None,
+        parcel={"kind": "pin", "field": "pin", "county_fips": "37021", "strip": "-"},
+    )
+    cls = lien_adapter_for(load_lien_config(cfg))
+    body = json.dumps(
+        {
+            "rows": [
+                {
+                    "ticket": "B1",
+                    "docketed": "2025-01-01T00:00:00",
+                    "pin": "9608-10-8745-00000",
+                    "last": "X",
+                }
+            ]
+        }
+    ).encode()
+    out = [r.row for r in cls().normalize(Fetched(cls.source_id, "x", AT, 200, body, ""))
+           if r.table == "instrument_parcel"]  # fmt: skip
+    assert [r["parcel_uid"] for r in out] == ["37021-960810874500000"]

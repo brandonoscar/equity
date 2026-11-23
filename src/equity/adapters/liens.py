@@ -49,7 +49,8 @@ Config keys:
                                address: {line1: field|[fields], city | city_const, state |
                                state_const, zip}}
   parcel              {kind: nyc_bbl, borough, block, lot} | {kind: nyc_bbl10, field}
-                      | {kind: pin, field (or a list of fields, one lot each), county_fips}
+                      | {kind: pin, field (or a list of fields, one lot each), county_fips,
+                         strip (optional characters removed from the id, e.g. '-')}
   county_fips         jurisdiction when no parcel names a county (5 digits)
   county_name_field   optional field holding the county name (mapped to FIPS in `state`)
   county_aliases      optional {name in the data: county name}, e.g. {DADE: MIAMI-DADE}
@@ -674,6 +675,8 @@ class LienAdapter(Adapter):
             return f"{county}-{swis}{b}", county
         if spec.get("kind") == "pin":
             pin = _text(row.get(spec["field"]))
+            if pin and spec.get("strip"):  # e.g. '-': '9608-10-8745-00000' -> '960810874500000'
+                pin = "".join(ch for ch in pin if ch not in str(spec["strip"])) or None
             if pin is None:
                 return None, None
             return f"{spec['county_fips']}-{norm_parcel_id(pin)}", spec["county_fips"]

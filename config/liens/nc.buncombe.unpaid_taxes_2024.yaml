@@ -1,0 +1,35 @@
+source_id: nc.buncombe.unpaid_taxes_2024
+state: NC
+county_fips: "37021"   # Buncombe County (Asheville)
+# Buncombe County Tax Collections: real property tax bills of levy year 2024 still unpaid, with
+# owner, mailing address and PIN (personal-property bills, which carry no PIN, are left out).
+# Unpaid real property taxes are a lien on the parcel (N.C.G.S. 105-355); a senior lien, not
+# a judgment. Debt kind: tax_delinquency. One layer per levy year on the county's ArcGIS org.
+api: arcgis
+layer_url: "https://services6.arcgis.com/VLA0ImJ33zhtGEaP/arcgis/rest/services/Buncombe_County_All_Property_Bills_Unpaid_from_2024/FeatureServer/0"
+where: "pin <> '' AND levy_due <> '0' AND levy_due <> '0.00'"
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, bill, pin, levy_year, owner1_last_name, owner1_first_name, owner1_third_name,
+         owner1_suffix_name, owner2_last_name, owner2_first_name, owner2_third_name, address_line1,
+         address_line2, city, state, postal_code, original_bill_amount, total_due, levy_due]
+year_dates: [levy_year]
+date_field: levy_year
+uid: bill
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Buncombe County unpaid real property tax
+amount: total_due
+parties:
+  - role: debtor
+    name: [owner1_last_name, owner1_first_name, owner1_third_name, owner1_suffix_name]
+    address: {line1: [address_line1, address_line2], city: city, state: state, zip: postal_code}
+  - role: debtor
+    name: [owner2_last_name, owner2_first_name, owner2_third_name]
+  - role: creditor
+    const: Buncombe County Tax Collections
+parcel: {kind: pin, field: pin, county_fips: "37021", strip: "-"}   # = nc.statewide.parcels parno
+terms:
+  url: "https://services6.arcgis.com/VLA0ImJ33zhtGEaP/arcgis/rest/services/Buncombe_County_All_Property_Bills_Unpaid_from_2024/FeatureServer/0"
+  summary: "Buncombe County public ArcGIS Online layer, free, no login. No licenseInfo on the layer."
+  checked_on: 2026-11-23
+  cost_model: free

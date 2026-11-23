@@ -1,0 +1,33 @@
+source_id: va.virginia_beach.delinquent_taxes
+state: VA
+county_fips: "51810"   # Virginia Beach city
+# City of Virginia Beach Treasurer: delinquent real estate tax bills (each installment), with
+# owner, mailing address, GPIN and tax, penalty, interest and fees due. Delinquent real estate
+# taxes are a lien on the parcel (Va. Code 58.1-3340); a senior lien, not a judgment.
+# Debt kind: tax_delinquency. No Virginia Beach parcel source is loaded yet, so these link
+# only by name and address until one is.
+api: arcgis
+layer_url: https://services2.arcgis.com/CyVvlIiUfRBmMQuu/arcgis/rest/services/Delinquent_Real_Estate_Taxes_view/FeatureServer/0
+where: "Total_Delinquent_Amount_Due > 0"
+single_partition: true
+order_by: [OBJECTID]
+year_dates: [Tax_Year]
+date_field: Tax_Year
+uid: [Bill_Number, Installment]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Virginia Beach delinquent real estate tax
+amount: Total_Delinquent_Amount_Due
+address_split: {field: City_State_Zip, prefix: c_, form: city_st_zip}
+parties:
+  - role: debtor
+    name: Owner_Name
+    address: {line1: Mailing_Address, city: c_city, state: c_state, zip: c_zip}
+  - role: creditor
+    const: City of Virginia Beach Treasurer
+parcel: {kind: pin, field: GPIN, county_fips: "51810"}
+extra_pii: [Situs_Address, Property_Description]
+terms:
+  url: https://services2.arcgis.com/CyVvlIiUfRBmMQuu/arcgis/rest/services/Delinquent_Real_Estate_Taxes_view/FeatureServer/0
+  summary: "City of Virginia Beach public ArcGIS Online layer, free, no login. No licenseInfo on the layer."
+  checked_on: 2026-11-23
+  cost_model: free
