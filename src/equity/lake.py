@@ -289,7 +289,8 @@ def plan(source_ids: list[str]) -> list[str]:
 EXTRA_SOURCES = ("wv.statewide.delinquent", "ny.nyc.acris.real", "ny.nyc.dof.condo_units",
                  "pa.allegheny.assessments", "hi.honolulu.owners", "co.sos.ucc",
                  "dc.dlcp.business", "pa.dos.business", "ny.sos.business", "ct.sos.business",
-                 "co.sos.business", "or.sos.business")  # fmt: skip
+                 "co.sos.business", "or.sos.business",
+                 "md.baltimore_city.citation_liens")  # fmt: skip
 
 
 def parcel_sources() -> list[str]:

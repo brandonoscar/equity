@@ -420,6 +420,9 @@ STATES: dict[str, dict[str, Any]] = {
                      "owners": ["pa.allegheny.parcels", "pa.allegheny.assessments"],
                      "registries": ["pa.dos.business"],
                      "parcel_on_lien": True},
+    # Baltimore City: environmental citation liens name the parcel (block/lot), not a person.
+    "MD-BALTIMORE": {"debtors": ["md.baltimore_city.citation_liens"],
+                     "owners": ["md.baltimore_city.parcels"], "parcel_on_lien": True},
     # Colorado: federal tax and statutory (hospital, other) liens from the SOS UCC system;
     # UCC financing statements name debtors too but are not debts owed on a judgment or lien.
     "CO": {"debtors": ["co.sos.ucc"], "debtor_doc_types": ["TAX_LIEN_FEDERAL", "STATUTORY_LIEN"],
