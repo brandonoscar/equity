@@ -1,0 +1,34 @@
+source_id: fl.lee.nuisance_liens
+state: FL
+county_fips: "12071"   # Lee County
+# Lee County Code Enforcement nuisance accumulation violations with a balance still due. A
+# code-board order imposing a fine, once recorded, is a lien on the land (Fla. Stat. 162.09);
+# rows in status 'Lien Recorded' are those liens. Rows closed as satisfied, released or paid
+# are marked satisfied. No owner name: the parcel number names the property, owed by its
+# owner. Debt kind: code_enforcement_lien.
+api: arcgis
+layer_url: https://services2.arcgis.com/LvWGAAhHwbCJ2GMP/arcgis/rest/services/NuisanceAccumulationViolations/FeatureServer/0
+where: "balance_due > 0"
+order_by: [OBJECTID]
+select: [OBJECTID, record_number, record_status, record_type, record_status_date, file_date,
+         parcel_number, daily_fine, total_fees_amount, balance_due, address_number,
+         street_name, city, postal_code]
+date_field: file_date
+partition: year
+first_year: 1995
+uid: record_number
+doc_type: STATUTORY_LIEN
+doc_type_raw: {field: record_status}
+amount: balance_due
+satisfied_flag: record_status
+satisfied_values: [Closed-Satisfied, Closed-Released, Closed-Paid, Closed-Costs Paid]
+parties:
+  - role: creditor
+    const: Lee County Code Enforcement
+parcel: {kind: pin, field: parcel_number, county_fips: "12071"}   # = fl.statewide.parcels PARCEL_ID
+extra_pii: [address_number, street_name]
+terms:
+  url: https://services2.arcgis.com/LvWGAAhHwbCJ2GMP/arcgis/rest/services/NuisanceAccumulationViolations/FeatureServer/0
+  summary: "Lee County FL public ArcGIS Online layer, free, no login. No licenseInfo on the layer."
+  checked_on: 2026-11-23
+  cost_model: free

@@ -615,7 +615,7 @@ STATES: dict[str, dict[str, Any]] = {
     # Hillsborough: recorded judgments and liens (Official Records index), civil judgments,
     # and judgment debtors under a writ of garnishment (with their address).
     "FL": {"debtors": ["fl.hillsborough.or", "fl.dor.tax_warrants", "fl.hernando.or",
-                       "fl.putnam.or", "fl.broward.tax_certificates"],
+                       "fl.putnam.or", "fl.broward.tax_certificates", "fl.lee.nuisance_liens"],
            "owners": ["fl.statewide.parcels"],
            "courts": ["fl.hillsborough.civil.cases", "fl.citrus.civil", *FEDERAL_COURTS],
            "writs": ["fl.hillsborough.garnishment"], "parcel_on_lien": True},

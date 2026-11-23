@@ -80,6 +80,7 @@ sources:
   pa.philadelphia.li_fines: code_enforcement_charge
   oh.cincinnati.lot_abatement: code_enforcement_charge
   az.tucson.code_liens: code_enforcement_lien
+  fl.lee.nuisance_liens: code_enforcement_lien
   # foreclosure and housing
   pa.allegheny.foreclosures: foreclosure
   pa.washington.sheriff_sales: foreclosure
