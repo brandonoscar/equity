@@ -530,9 +530,21 @@ STATES: dict[str, dict[str, Any]] = {
                   "parcel_on_lien": True, "courts": ["us.fjc.idb.civil_judgments"]},
     # Hillsborough: recorded judgments and liens (Official Records index), civil judgments,
     # and judgment debtors under a writ of garnishment (with their address).
-    "FL-HILLSBOROUGH": {"debtors": ["fl.hillsborough.or"], "owners": ["fl.statewide.parcels"],
+    "FL": {"debtors": ["fl.hillsborough.or", "fl.dor.tax_warrants"],
+           "owners": ["fl.statewide.parcels"],
                         "courts": ["fl.hillsborough.civil.cases", "us.fjc.idb.civil_judgments"],
                         "writs": ["fl.hillsborough.garnishment"]},
+    # PA L&I lists name employers statewide; county parcel layers with owner names.
+    "PA": {"debtors": ["pa.dli.uc_liens", "pa.dli.bwc_noncompliance", "pa.dli.bllc_noncompliance",
+                       "pa.washington.sheriff_sales"],
+           "owners": ["pa.berks.parcels", "pa.bucks.parcels", "pa.chester.parcels",
+                      "pa.erie.parcels", "pa.franklin.parcels", "pa.lancaster.parcels",
+                      "pa.mercer.parcels", "pa.montgomery.parcels", "pa.philadelphia.parcels", "pa.washington.parcels"],
+           "parcel_on_lien": True, "courts": ["us.fjc.idb.civil_judgments"], "street_town": True},
+    # The PA and VT lists publish street and town but no ZIP: street + town rules, as in CT.
+    "VT": {"debtors": ["vt.tax.top100_individuals", "vt.tax.top100_businesses"],
+           "owners": ["vt.statewide.parcels"], "courts": ["us.fjc.idb.civil_judgments"],
+           "street_town": True},
     "IL-COOK": {"debtors": ["il.chicago.doah_judgments"], "owners": ["il.cook.parcels"],
                 "courts": ["us.fjc.idb.civil_judgments"]},
     "AZ-PIMA": {"debtors": ["az.tucson.code_liens"], "owners": ["az.pima.parcels"],
