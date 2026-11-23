@@ -82,6 +82,9 @@ class ECFRecentEntries(Adapter):
     jurisdiction: ClassVar[str] = "54"
     adapter_version: ClassVar[str] = "1"
     access_method: ClassVar[str] = "feed"
+    # The feed holds only the last day or so of entries: each poll is a new lake part, and
+    # rows already stored are dropped from it (equity.lake.drop_known, equity.refresh).
+    append_polls: ClassVar[bool] = True
 
     def __init__(self, client: PoliteClient | None = None) -> None:
         self.client = client or PoliteClient(min_interval_s=5.0)

@@ -34,7 +34,7 @@ BUCKET = "lake"
 MAX_BYTES = 45_000_000
 # Small files that describe a source's build state; push also bundles them, with every
 # finished-part marker, into one _state.json per source so a fresh machine needs one download.
-STATE_FILES = ("_plan.json", "_counts.json", "_offloaded")
+STATE_FILES = ("_plan.json", "_counts.json", "_offloaded", "_refreshed.json")
 BUNDLE = "_state.json"
 OFFLOADED_NOTE = "parquet parts are in object storage under this source id\n"
 
@@ -102,11 +102,18 @@ class Store:
     def download(self, key: str) -> bytes:
         return self._call("GET", f"{self.base_url}/object/{self.bucket}/{key}", None, {})
 
+    def delete(self, keys: list[str]) -> None:
+        for i in range(0, len(keys), 1000):
+            body = json.dumps({"prefixes": keys[i : i + 1000]}).encode()
+            self._call("DELETE", f"{self.base_url}/object/{self.bucket}", body,
+                       {"Content-Type": "application/json"})  # fmt: skip
+
 
 @dataclass
 class PushReport:
     uploaded: int = 0
     unchanged: int = 0
+    deleted: list[str] = field(default_factory=list)
     too_big: list[str] = field(default_factory=list)
     pruned: list[str] = field(default_factory=list)
 
@@ -137,12 +144,21 @@ def write_bundle(src: Path) -> None:
 
 
 def push(
-    store: Store, lake: Path, prune_finished: bool = False, only: frozenset[str] | None = None
+    store: Store,
+    lake: Path,
+    prune_finished: bool = False,
+    only: frozenset[str] | None = None,
+    mirror: bool = False,
 ) -> PushReport:
     """Upload every lake file that storage lacks or holds at a different size. With
     prune_finished, a finished source (has _counts.json) whose Parquet parts are all stored
     loses its local Parquet and gets an _offloaded marker. `only` limits the push to those
-    sources, so parallel loaders never upload another loader's (stale) state."""
+    sources, so parallel loaders never upload another loader's (stale) state. With mirror
+    (needs `only`), a finished source's stored table Parquet that is not in the local lake is
+    deleted: for a source rebuilt whole here (equity.refresh), so storage holds no part the
+    new build did not make."""
+    if mirror and only is None:
+        raise ValueError("mirror needs `only`: it deletes stored parts missing locally")
     report = PushReport()
     sources = [d for d in sorted(lake.iterdir()) if d.is_dir() and (only is None or d.name in only)]
     for src in sources:
@@ -165,6 +181,21 @@ def push(
             store.upload(f"{rel}/{p.name}", p.read_bytes())
             have[p.name] = size
             report.uploaded += 1
+    if mirror:
+        # Offloaded or Parquet-less local copies are not a full build: never mirror those.
+        full = [d for d in sources if (d / "_counts.json").exists()
+                and not (d / "_offloaded").exists() and any(d.glob("*/*.parquet"))]  # fmt: skip
+        for src in full:
+            _, folders = store.list_dir(f"{src.name}/")
+            stale = [
+                f"{src.name}/{table}/{name}"
+                for table in sorted(folders) if not table.startswith("_")
+                for name in sorted(store.list_dir(f"{src.name}/{table}/")[0])
+                if name.endswith(".parquet") and not (src / table / name).exists()
+            ]  # fmt: skip
+            if stale:
+                store.delete(stale)
+                report.deleted.extend(stale)
     if prune_finished:
         for src in (d for d in sources if (d / "_counts.json").exists()):
             parts = list(src.glob("*/*.parquet"))
@@ -222,6 +253,30 @@ def pull_parts(
     return written
 
 
+def pull_snapshots(store: Store, lake: Path, sources: list[str]) -> int:
+    """Download a source's stored _snapshots (daily counts, listing copies) missing locally,
+    so a fresh machine can build the listing history (equity.refresh). Returns files written."""
+    written = 0
+
+    def fetch(prefix: str, folder: Path) -> int:
+        n = 0
+        files, dirs = store.list_dir(prefix)
+        for name, size in sorted(files.items()):
+            dest = folder / name
+            if dest.exists() and dest.stat().st_size == size:
+                continue
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            dest.write_bytes(store.download(prefix + name))
+            n += 1
+        for d in sorted(dirs):
+            n += fetch(f"{prefix}{d}/", folder / d)
+        return n
+
+    for src in sources:
+        written += fetch(f"{src}/_snapshots/", lake / src / "_snapshots")
+    return written
+
+
 def push_dir(store: Store, local: Path, prefix: str) -> int:
     """Upload every file under `local` to <prefix>/<relative path> (match results for a state,
     built on a machine that keeps nothing). Returns files uploaded."""
@@ -242,9 +297,16 @@ def main(argv: list[str]) -> int:
     p.add_argument("--prune-finished", action="store_true")
     p.add_argument("--watch", type=int, default=0, help="repeat every N seconds")
     p.add_argument("--only", nargs="*", help="limit to these source ids")
+    p.add_argument(
+        "--mirror",
+        action="store_true",
+        help="delete stored parts of these (rebuilt) sources that are not local",
+    )
     pp = sub.add_parser("pull-parts", help="download stored Parquet parts for analysis")
     pp.add_argument("sources", nargs="+")
     pp.add_argument("--tables", nargs="*", help="only these tables")
+    sn = sub.add_parser("pull-snapshots", help="download stored dated snapshots")
+    sn.add_argument("sources", nargs="+")
     pd = sub.add_parser("push-dir", help="upload a folder (e.g. a state's match results)")
     pd.add_argument("local")
     pd.add_argument("prefix", help="storage prefix, e.g. derived/tx-travis")
@@ -258,6 +320,9 @@ def main(argv: list[str]) -> int:
     if args.cmd == "pull-parts":
         print(f"pulled {pull_parts(store, lake, args.sources, args.tables)} parquet files")
         return 0
+    if args.cmd == "pull-snapshots":
+        print(f"pulled {pull_snapshots(store, lake, args.sources)} snapshot files")
+        return 0
     if args.cmd == "push-dir":
         print(f"uploaded {push_dir(store, Path(args.local), args.prefix)} files")
         return 0
@@ -265,9 +330,9 @@ def main(argv: list[str]) -> int:
         print(f"pulled {pull_state(store, lake, only)} state files")
         return 0
     while True:
-        r = push(store, lake, args.prune_finished, only)
+        r = push(store, lake, args.prune_finished, only, args.mirror)
         print(f"uploaded {r.uploaded}, unchanged {r.unchanged}, too big {len(r.too_big)}, "
-              f"pruned {r.pruned}", flush=True)  # fmt: skip
+              f"pruned {r.pruned}, deleted {len(r.deleted)}", flush=True)  # fmt: skip
         for name in r.too_big:
             print(f"too big for storage: {name}", flush=True)
         if not args.watch:

@@ -1,0 +1,34 @@
+# How often each loaded source is fetched again (equity.refresh). First matching rule wins;
+# `match` and `exclude` are shell patterns on source_id. A source no rule matches is loaded
+# once and never refreshed on a schedule (statewide parcel layers, recorder indexes, business
+# registries: big, slow-changing, refreshed by hand).
+#
+# mode
+#   rebuild  re-plan from the adapter and rebuild every part (date windows pick up new years)
+#   listing  rebuild, then keep a dated copy of the listing table under _snapshots/<date>/,
+#            so sale lists can be compared day to day (equity.refresh listings)
+#   append   polled feed: each poll is a new part; rows already stored are dropped from it
+#
+# Every refresh writes _snapshots/<date>.json (row counts per table): the source's history.
+rules:
+  # Court RSS: the feeds hold about a day of entries, so they are polled every 2 hours.
+  - match: ["us.*.rss"]
+    every_hours: 2
+    mode: append
+  # Government sale lists: daily dated snapshot of what is listed.
+  - match: [pa.washington.sheriff_sales, ms.harrison.tax_sale_parcels]
+    every_hours: 24
+    mode: listing
+    listing_table: instrument
+  - match: [wv.statewide.delinquent]
+    every_hours: 24
+    mode: listing
+    listing_table: tax_delinquency_snapshot
+  # Lists that change weekly or slower: delinquent taxes, warrants, liens, judgments, orders.
+  - match: ["*delinquent*", "*tax_*", "*warrants", "*liens", "*judgments", "*.top*",
+            "*_fines", "*lot_abatement", "*unpaid_bills", "*noncompliance", "*wage_watchlist",
+            "*.wall", "*administrative_orders", "*hpd_litigation", "*evictions",
+            "*foreclosures", "*.civil", "*.civil.cases", "*.garnishment", "*.ucc"]
+    exclude: ["*.parcels", "*.zoning", "*.business", "ny.nyc.acris.*", "us.fjc.*"]
+    every_hours: 168
+    mode: rebuild
