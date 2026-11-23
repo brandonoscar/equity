@@ -1,0 +1,29 @@
+source_id: in.st_joseph.tax_sale
+state: IN
+county_fips: "18141"
+# St. Joseph County IN (South Bend) tax sale list for the 2026-09-01 sale (1,266 rows): parcel,
+# owner and mailing address, minimum bid (the delinquent taxes and costs), land/improvement
+# values and the last sale.
+api: arcgis
+layer_url: https://services.arcgis.com/OjftlhRHkAABcyiF/arcgis/rest/services/Tax_Sale_Properties_09012026/FeatureServer/0
+single_partition: true
+order_by: [FID]
+select: [FID, Parcel_Num, Sale_ID, Year, Sale_Type, Minimum_Bi, NAME_1, MAILINGADD, MAILINGA_1,
+         MAILINGCIT, MAILINGSTA, MAILINGZIP, PROP_ADDR, PROP_CITY, PROP_ZIP]
+listed_on: listed_on
+date_field: listed_on
+uid: Sale_ID
+doc_type: TAX_LIEN_STATE
+doc_type_raw: {field: Sale_Type}
+amount: Minimum_Bi
+parties:
+  - role: debtor
+    name: NAME_1
+    address: {line1: [MAILINGADD, MAILINGA_1], city: MAILINGCIT, state: MAILINGSTA, zip: MAILINGZIP}
+  - {role: creditor, const: St. Joseph County Treasurer}
+parcel: {kind: pin, field: Parcel_Num, county_fips: "18141"}   # state parcel no., as in.statewide
+terms:
+  url: https://www.arcgis.com/home/item.html?id=2f554d01a85d46de8073eb3941d9e347
+  summary: "St. Joseph County GIS (owner SJCGIS) public ArcGIS Online layer, free, no login; no licenseInfo on the item (read 2026-11-23). Indiana IC 5-14-3-3(f) limits commercial name/address lists from agencies."
+  checked_on: 2026-11-23
+  cost_model: free

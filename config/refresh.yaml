@@ -16,7 +16,9 @@ rules:
     every_hours: 2
     mode: append
   # Government sale lists: daily dated snapshot of what is listed.
-  - match: [pa.washington.sheriff_sales, ms.harrison.tax_sale_parcels]
+  - match: [pa.washington.sheriff_sales, ms.harrison.tax_sale_parcels,
+            wi.milwaukee.foreclosure_sales, oh.lucas.forfeited_land_sale, co.lake.tax_lien_sale,
+            in.st_joseph.tax_sale, ks.wyandotte.tax_sale, ca.sonoma.defaulted_tax]
     every_hours: 24
     mode: listing
     listing_table: instrument

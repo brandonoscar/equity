@@ -1,0 +1,29 @@
+source_id: co.lake.tax_lien_sale
+state: CO
+county_fips: "08065"
+# Lake County CO (Leadville) 2026 delinquent tax lien sale list (370 rows, list of 2026-10-08):
+# account, parcel, owner and mailing address, the current and prior-year balances.
+api: arcgis
+layer_url: https://services1.arcgis.com/38PTfoP8IjlBsxZN/arcgis/rest/services/2026_Delinquent_Tax_Lien_Sales/FeatureServer/0
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, ACCOUNTNO, PARCELNB, Owner_Name, CAREOF, ADDRESS1, ADDRESS2, CITY, STATE,
+         ZIPCODE, TAXYEAR, CUR_BAL, LST_BAL, TOTAL_ACTUAL_VALUE]
+listed_on: listed_on
+date_field: listed_on
+uid: ACCOUNTNO
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Lake County 2026 delinquent tax lien sale
+amount: [CUR_BAL, LST_BAL]
+parties:
+  - role: debtor
+    name: Owner_Name
+    address: {line1: [ADDRESS1, ADDRESS2], city: CITY, state: STATE, zip: ZIPCODE}
+  - {role: creditor, const: Lake County Treasurer}
+parcel: {kind: pin, field: PARCELNB, county_fips: "08065"}
+extra_pii: [CAREOF]
+terms:
+  url: https://www.arcgis.com/home/item.html?id=69b567cc62264a9eaa9abca2ef9bbeb0
+  summary: "Lake County CO Assessor (owner Appraiser2018) public ArcGIS Online layer, free, no login; no licenseInfo on the item (read 2026-11-23)."
+  checked_on: 2026-11-23
+  cost_model: free

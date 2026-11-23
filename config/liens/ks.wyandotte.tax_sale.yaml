@@ -1,0 +1,23 @@
+source_id: ks.wyandotte.tax_sale
+state: KS
+county_fips: "20209"
+# Unified Government of Wyandotte County / Kansas City KS 2026 tax sale list (161 rows on
+# 2026-11-23): parcel, address, minimum bid, property type. No owner names.
+api: arcgis
+layer_url: https://services1.arcgis.com/Qo2HHQp8vgPs2wg3/arcgis/rest/services/Property_Tax_Sale/FeatureServer/0
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, PARCEL, ADDRESS, MINIMUM_BID, PROPERTY_TYPE, ORIONID]
+listed_on: listed_on
+date_field: listed_on
+uid: PARCEL
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Wyandotte County 2026 tax sale parcel
+amount: MINIMUM_BID
+parties: []
+parcel: {kind: pin, field: PARCEL, county_fips: "20209"}
+terms:
+  url: https://www.arcgis.com/home/item.html?id=4eb220db8a284e5f9a5b51b0c7e65732
+  summary: "Unified Government of Wyandotte County/KCK public ArcGIS Online layer (owner GSSDataMgr), free, no login; no licenseInfo on the item (read 2026-11-23)."
+  checked_on: 2026-11-23
+  cost_model: free

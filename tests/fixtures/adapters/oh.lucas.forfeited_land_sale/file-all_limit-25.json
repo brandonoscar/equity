@@ -1,0 +1,256 @@
+{
+ "layer": "https://services3.arcgis.com/T8dczfwPixv79EgZ/arcgis/rest/services/Forfeited_Land_Sale_2026/FeatureServer/0",
+ "rows": [
+  {
+   "datetransferred": "4/15/2024",
+   "objectid": 1,
+   "owner": "TESTOWNER 29F004",
+   "parid": "0210474",
+   "property_address": "7821 TEST ST",
+   "taxesowed": "$74,669.54",
+   "taxyr": 2026,
+   "totvalinias": "41,100"
+  },
+  {
+   "datetransferred": "4/15/2024",
+   "objectid": 2,
+   "owner": "TESTOWNER 29F004",
+   "parid": "0210317",
+   "property_address": "1260 TEST ST",
+   "taxesowed": "$61,147.28",
+   "taxyr": 2026,
+   "totvalinias": "47,500"
+  },
+  {
+   "datetransferred": "4/8/2026",
+   "objectid": 3,
+   "owner": "TESTOWNER 29F004",
+   "parid": "1318971",
+   "property_address": "3457 TEST ST",
+   "taxesowed": "$54,212.16",
+   "taxyr": 2026,
+   "totvalinias": "63,600"
+  },
+  {
+   "datetransferred": "12/5/2025",
+   "objectid": 4,
+   "owner": "TESTOWNER 29F004",
+   "parid": "1021854",
+   "property_address": "4425 TEST ST",
+   "taxesowed": "$39,487.54",
+   "taxyr": 2026,
+   "totvalinias": "14,000"
+  },
+  {
+   "datetransferred": "12/5/2025",
+   "objectid": 5,
+   "owner": "TESTOWNER 29F004",
+   "parid": "1021851",
+   "property_address": "695 TEST ST",
+   "taxesowed": "$9,590.44",
+   "taxyr": 2026,
+   "totvalinias": "400"
+  },
+  {
+   "datetransferred": "5/1/2026",
+   "objectid": 6,
+   "owner": "TESTOWNER 29F004",
+   "parid": "1012177",
+   "property_address": "2996 TEST ST",
+   "taxesowed": "$1,690.15",
+   "taxyr": 2026,
+   "totvalinias": "600"
+  },
+  {
+   "datetransferred": "5/1/2026",
+   "objectid": 7,
+   "owner": "TESTOWNER 29F004",
+   "parid": "1012184",
+   "property_address": "4739 TEST ST",
+   "taxesowed": "$1,826.65",
+   "taxyr": 2026,
+   "totvalinias": "400"
+  },
+  {
+   "datetransferred": "12/9/2025",
+   "objectid": 8,
+   "owner": "TESTOWNER 29F004",
+   "parid": "0906244",
+   "property_address": "3256 TEST ST",
+   "taxesowed": "$28,269.40",
+   "taxyr": 2026,
+   "totvalinias": "56,100"
+  },
+  {
+   "datetransferred": "2/3/2022",
+   "objectid": 9,
+   "owner": "TESTOWNER 29F004",
+   "parid": "1838950",
+   "property_address": "8714 TEST ST",
+   "taxesowed": "$271,983.16",
+   "taxyr": 2026,
+   "totvalinias": "173,000"
+  },
+  {
+   "datetransferred": "5/26/2026",
+   "objectid": 10,
+   "owner": "TESTOWNER 29F004",
+   "parid": "1009741",
+   "property_address": "5384 TEST ST",
+   "taxesowed": "$38,931.36",
+   "taxyr": 2026,
+   "totvalinias": "52,400"
+  },
+  {
+   "datetransferred": "10/7/2026",
+   "objectid": 11,
+   "owner": "TESTOWNER 29F004",
+   "parid": "0410567",
+   "property_address": "2387 TEST ST",
+   "taxesowed": "$37,514.79",
+   "taxyr": 2026,
+   "totvalinias": "39,100"
+  },
+  {
+   "datetransferred": "7/10/2026",
+   "objectid": 12,
+   "owner": "TESTOWNER 29F004",
+   "parid": "1210314",
+   "property_address": "782 TEST ST",
+   "taxesowed": "$37,734.56",
+   "taxyr": 2026,
+   "totvalinias": "71,800"
+  },
+  {
+   "datetransferred": "12/5/2025",
+   "objectid": 13,
+   "owner": "TESTOWNER 29F004",
+   "parid": "1166017",
+   "property_address": "2130 TEST ST",
+   "taxesowed": "$48,756.97",
+   "taxyr": 2026,
+   "totvalinias": "42,000"
+  },
+  {
+   "datetransferred": " ",
+   "objectid": 14,
+   "owner": "TESTOWNER 29F004",
+   "parid": "2365704",
+   "property_address": "782 TEST ST",
+   "taxesowed": "$0.00",
+   "taxyr": 2026,
+   "totvalinias": "500"
+  },
+  {
+   "datetransferred": "9/28/2026",
+   "objectid": 15,
+   "owner": "TESTOWNER 29F004",
+   "parid": "0405167",
+   "property_address": "6324 TEST ST",
+   "taxesowed": "$5,396.04",
+   "taxyr": 2026,
+   "totvalinias": "10,500"
+  },
+  {
+   "datetransferred": "12/9/2025",
+   "objectid": 18,
+   "owner": "TESTOWNER 29F004",
+   "parid": "0109474",
+   "property_address": "395 TEST ST",
+   "taxesowed": "$14,745.38",
+   "taxyr": 2026,
+   "totvalinias": "500"
+  },
+  {
+   "datetransferred": "2/9/2026",
+   "objectid": 19,
+   "owner": "TESTOWNER 29F004",
+   "parid": "0109471",
+   "property_address": "8108 TEST ST",
+   "taxesowed": "$4,509.08",
+   "taxyr": 2026,
+   "totvalinias": "300"
+  },
+  {
+   "datetransferred": "11/17/2025",
+   "objectid": 20,
+   "owner": "TESTOWNER 29F004",
+   "parid": "0109457",
+   "property_address": "1321 TEST ST",
+   "taxesowed": "$7,976.28",
+   "taxyr": 2026,
+   "totvalinias": "500"
+  },
+  {
+   "datetransferred": "10/21/2026",
+   "objectid": 21,
+   "owner": "TESTOWNER 29F004",
+   "parid": "0109451",
+   "property_address": "5102 TEST ST",
+   "taxesowed": "$22,855.51",
+   "taxyr": 2026,
+   "totvalinias": "5,100"
+  },
+  {
+   "datetransferred": "11/13/2025",
+   "objectid": 22,
+   "owner": "TESTOWNER 29F004",
+   "parid": "0109444",
+   "property_address": "2804 TEST ST",
+   "taxesowed": "$4,425.38",
+   "taxyr": 2026,
+   "totvalinias": "4,400"
+  },
+  {
+   "datetransferred": "12/4/2025",
+   "objectid": 23,
+   "owner": "TESTOWNER 29F004",
+   "parid": "0109651",
+   "property_address": "6461 TEST ST",
+   "taxesowed": "$13,269.68",
+   "taxyr": 2026,
+   "totvalinias": "500"
+  },
+  {
+   "datetransferred": "12/5/2025",
+   "objectid": 24,
+   "owner": "TESTOWNER 29F004",
+   "parid": "0109647",
+   "property_address": "932 TEST ST",
+   "taxesowed": "$23,170.57",
+   "taxyr": 2026,
+   "totvalinias": "500"
+  },
+  {
+   "datetransferred": "11/13/2025",
+   "objectid": 25,
+   "owner": "TESTOWNER 29F004",
+   "parid": "0109637",
+   "property_address": "1004 TEST ST",
+   "taxesowed": "$14,201.66",
+   "taxyr": 2026,
+   "totvalinias": "7,500"
+  },
+  {
+   "datetransferred": " ",
+   "objectid": 26,
+   "owner": "TESTOWNER 29F004",
+   "parid": "0461077",
+   "property_address": "8198 TEST ST",
+   "taxesowed": "$0.00",
+   "taxyr": 2026,
+   "totvalinias": "500"
+  },
+  {
+   "datetransferred": "9/10/2026",
+   "objectid": 27,
+   "owner": "TESTOWNER 29F004",
+   "parid": "1436281",
+   "property_address": "2531 TEST ST",
+   "taxesowed": "$23,721.71",
+   "taxyr": 2026,
+   "totvalinias": "31,200"
+  }
+ ],
+ "where": "1=1"
+}

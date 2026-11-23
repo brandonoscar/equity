@@ -1,0 +1,28 @@
+source_id: oh.lucas.forfeited_land_sale
+state: OH
+county_fips: "39095"
+# Lucas County (Toledo) Auditor's 2026 forfeited land sale list: parcels forfeited to the state
+# for unpaid taxes and offered at the forfeited land sale (43 rows on 2026-11-23), with the
+# owner of record and the taxes owed.
+api: arcgis
+layer_url: https://services3.arcgis.com/T8dczfwPixv79EgZ/arcgis/rest/services/Forfeited_Land_Sale_2026/FeatureServer/0
+single_partition: true
+order_by: [objectid]
+select: [objectid, parid, taxyr, property_address, owner, datetransferred, taxesowed, totvalinias]
+listed_on: listed_on
+date_field: listed_on
+uid: parid
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Lucas County 2026 forfeited land sale parcel
+amount: taxesowed
+parties:
+  - role: debtor
+    name: owner
+  - {role: creditor, const: Lucas County Treasurer}
+parcel: {kind: pin, field: parid, county_fips: "39095"}
+extra_pii: [property_address]
+terms:
+  url: https://www.arcgis.com/home/item.html?id=cbe31ec000e64924b4cbf5750701d268
+  summary: "Lucas County Auditor public ArcGIS Online layer, free, no login. licenseInfo (read 2026-11-23): not for conveyances, not a legal survey, no warranty; no use restriction."
+  checked_on: 2026-11-23
+  cost_model: free

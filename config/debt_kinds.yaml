@@ -91,3 +91,11 @@ sources:
   nc.charlotte.municipal_liens: code_enforcement_lien
   oh.clermont.tax_delinquent: tax_delinquency
   va.richmond.tax_delinquent: tax_delinquency
+  # government sale lists (gap report rank 6)
+  wi.milwaukee.foreclosure_sales: foreclosure          # sheriff sale; price and purchaser once sold
+  oh.lucas.forfeited_land_sale: tax_delinquency
+  co.lake.tax_lien_sale: tax_delinquency
+  in.st_joseph.tax_sale: tax_delinquency
+  ks.wyandotte.tax_sale: tax_delinquency
+  ca.sonoma.defaulted_tax: tax_delinquency
+  ny.nyc.tax_lien_sale: tax_delinquency

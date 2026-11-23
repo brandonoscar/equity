@@ -1,0 +1,22 @@
+source_id: ny.nyc.tax_lien_sale
+state: NY
+county_fips: "36061"
+# NYC Department of Finance tax lien sale lists (264,142 rows since 2019, last updated
+# 2025-12-01): every property noticed for the annual lien sale, by notice cycle (90/60/30-day,
+# final), keyed by borough-block-lot. No owner names; the BBL joins to ACRIS and the DOF roll.
+portal: https://data.cityofnewyork.us
+dataset: 9rz4-mjek
+order_by: [":id"]
+date_field: month
+partition: year
+first_year: 2019
+uid: [month, cycle, borough, block, lot]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: {field: cycle}
+parties: []
+parcel: {kind: nyc_bbl, borough: borough, block: block, lot: lot}
+terms:
+  url: https://data.cityofnewyork.us/d/9rz4-mjek
+  summary: "NYC Open Data (Socrata), Department of Finance, NYC open data terms of use, free, no login."
+  checked_on: 2026-11-23
+  cost_model: free
