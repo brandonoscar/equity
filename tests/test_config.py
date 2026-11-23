@@ -61,3 +61,12 @@ def test_sol_values_are_only_set_with_a_citation_and_confirmer() -> None:
 def test_rules_config_parses() -> None:
     data = yaml.safe_load((CONFIG_DIR / "rules.yaml").read_text())
     assert data["priority"]["method"] == "recording_date"
+
+
+def test_sol_proposed_covers_every_state_and_is_unverified() -> None:
+    """The research draft lists every state and never claims to be confirmed."""
+    data = yaml.safe_load((CONFIG_DIR / "sol_proposed.yaml").read_text())
+    assert set(data["states"]) == STATES
+    for state, f in data["states"].items():
+        assert f["lien_created_by"] in {"R", "D", "X", "D/R", "R/D"}, state
+        assert f["verified"] is False, state
