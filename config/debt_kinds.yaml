@@ -72,6 +72,9 @@ sources:
   nc.buncombe.unpaid_taxes_2023: tax_delinquency
   nc.buncombe.unpaid_taxes_2024: tax_delinquency
   nc.buncombe.unpaid_taxes_2025: tax_delinquency
+  nc.guilford.delinquent_taxes: tax_delinquency
+  ms.harrison.tax_sale_parcels: tax_delinquency
+  az.cochise.tax_liens: tax_lien                 # certificate of purchase sold
   fl.broward.tax_certificates: tax_lien           # tax certificate sold: first lien
   # code enforcement
   pa.philadelphia.li_fines: code_enforcement_charge

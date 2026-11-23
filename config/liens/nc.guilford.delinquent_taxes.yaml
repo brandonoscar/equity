@@ -1,0 +1,33 @@
+source_id: nc.guilford.delinquent_taxes
+state: NC
+county_fips: "37081"   # Guilford County (Greensboro)
+# Guilford County Tax Department: unpaid property tax bills (tax delinquent report) with owner,
+# mailing address, parcel number, amount due and due date. Unpaid real property taxes are a
+# lien on the parcel (N.C.G.S. 105-355); a senior lien, not a judgment.
+# Debt kind: tax_delinquency.
+api: arcgis
+layer_url: https://services5.arcgis.com/RR1v7NWFfwk98pUn/arcgis/rest/services/Tax_Delinquent_Report_/FeatureServer/0
+where: "TOTAL_DUE_AMOUNT > 0"
+order_by: [ObjectId]
+select: [ObjectId, PARCEL_NUM, TAX_YEAR, OWNER_NAME, IN_CARE_OF, MAIL_ADDR1, MAIL_ADDR2,
+         MAIL_ADDR3, MAIL_CITY, MAIL_STATE, MAIL_ZIP, BILL_STATUS, TOTAL_DUE_AMOUNT, BILL_DUE_DATE]
+date_field: BILL_DUE_DATE
+partition: year
+first_year: 2000
+uid: [PARCEL_NUM, TAX_YEAR]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Guilford County delinquent property tax
+amount: TOTAL_DUE_AMOUNT
+parties:
+  - role: debtor
+    name: OWNER_NAME
+    address: {line1: [MAIL_ADDR1, MAIL_ADDR2, MAIL_ADDR3], city: MAIL_CITY, state: MAIL_STATE, zip: MAIL_ZIP}
+  - {role: creditor, const: Guilford County Tax Department}
+# PARCEL_NUM is the tax account, not the PIN nc.statewide.parcels carries, so no parcel link:
+# debtors match parcel owners by name and mailing address instead.
+extra_pii: [IN_CARE_OF]
+terms:
+  url: https://services5.arcgis.com/RR1v7NWFfwk98pUn/arcgis/rest/services/Tax_Delinquent_Report_/FeatureServer/0
+  summary: "Guilford County public ArcGIS Online layer, free, no login. No licenseInfo on the layer."
+  checked_on: 2026-11-23
+  cost_model: free

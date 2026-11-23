@@ -1,0 +1,29 @@
+source_id: az.cochise.tax_liens
+state: AZ
+county_fips: "04003"   # Cochise County
+# Cochise County Treasurer: parcels with a tax lien certificate sold (purchase total) and the
+# year it becomes eligible for foreclosure, with the owner of record. A certificate of
+# purchase is a lien on the parcel for the delinquent taxes (A.R.S. 42-18101); a senior lien,
+# not a judgment. Debt kind: tax_lien. No sale date is published, so the date is the day
+# the list was read.
+api: arcgis
+layer_url: https://services6.arcgis.com/Yxem0VOcqSy8T6TE/arcgis/rest/services/Cad_TaxLienParcel/FeatureServer/0
+where: "purchasetotal > 0"
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, apn, fullname, purchasetotal, foreclosureyear]
+listed_on: listed_on
+date_field: listed_on
+uid: apn
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Cochise County tax lien certificate
+amount: purchasetotal
+parties:
+  - {role: debtor, name: fullname}
+  - {role: creditor, const: Cochise County tax lien certificate holder}
+parcel: {kind: pin, field: apn, county_fips: "04003"}   # = az.cochise.parcels APN
+terms:
+  url: https://services6.arcgis.com/Yxem0VOcqSy8T6TE/arcgis/rest/services/Cad_TaxLienParcel/FeatureServer/0
+  summary: "Cochise County public ArcGIS Online layer, free, no login. No licenseInfo on the layer."
+  checked_on: 2026-11-23
+  cost_model: free

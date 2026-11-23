@@ -1,0 +1,181 @@
+{
+ "layer": "https://services6.arcgis.com/Yxem0VOcqSy8T6TE/arcgis/rest/services/Cad_TaxLienParcel/FeatureServer/0",
+ "rows": [
+  {
+   "OBJECTID": 1,
+   "apn": "10359138B",
+   "foreclosureyear": 2018,
+   "fullname": "TESTOWNER C89D69",
+   "purchasetotal": 784.19
+  },
+  {
+   "OBJECTID": 2,
+   "apn": "10362349",
+   "foreclosureyear": 2023,
+   "fullname": "TESTOWNER 0C4642",
+   "purchasetotal": 457.78
+  },
+  {
+   "OBJECTID": 3,
+   "apn": "10413002",
+   "foreclosureyear": 2013,
+   "fullname": "TESTOWNER EA7FA8",
+   "purchasetotal": 1112.92
+  },
+  {
+   "OBJECTID": 4,
+   "apn": "10484004G",
+   "foreclosureyear": 2028,
+   "fullname": "TESTOWNER 53E0BA LLC",
+   "purchasetotal": 116.27
+  },
+  {
+   "OBJECTID": 5,
+   "apn": "10540031K",
+   "foreclosureyear": 2016,
+   "fullname": "TESTOWNER 780889",
+   "purchasetotal": 848.42
+  },
+  {
+   "OBJECTID": 6,
+   "apn": "10716035C",
+   "foreclosureyear": 2019,
+   "fullname": "TESTOWNER 491B37 LLC",
+   "purchasetotal": 668.83
+  },
+  {
+   "OBJECTID": 7,
+   "apn": "10777057",
+   "foreclosureyear": 2013,
+   "fullname": "TESTOWNER 44F6FF INC",
+   "purchasetotal": 1014.13
+  },
+  {
+   "OBJECTID": 8,
+   "apn": "10906016C",
+   "foreclosureyear": 2024,
+   "fullname": "TESTOWNER 46C711",
+   "purchasetotal": 342.35
+  },
+  {
+   "OBJECTID": 9,
+   "apn": "10914038",
+   "foreclosureyear": 2021,
+   "fullname": "TESTOWNER A9F25D",
+   "purchasetotal": 604.15
+  },
+  {
+   "OBJECTID": 10,
+   "apn": "11414168B",
+   "foreclosureyear": 2020,
+   "fullname": "TESTOWNER D4E83F",
+   "purchasetotal": 763.86
+  },
+  {
+   "OBJECTID": 11,
+   "apn": "12322196B",
+   "foreclosureyear": 2011,
+   "fullname": "TESTOWNER 63E6C4",
+   "purchasetotal": 1129.78
+  },
+  {
+   "OBJECTID": 12,
+   "apn": "12323012K",
+   "foreclosureyear": 2017,
+   "fullname": "TESTOWNER 4C82B3",
+   "purchasetotal": 788.87
+  },
+  {
+   "OBJECTID": 13,
+   "apn": "12323012M",
+   "foreclosureyear": 2014,
+   "fullname": "TESTOWNER 85F1C7",
+   "purchasetotal": 957.09
+  },
+  {
+   "OBJECTID": 14,
+   "apn": "12323179",
+   "foreclosureyear": 2023,
+   "fullname": "TESTOWNER 676ECF",
+   "purchasetotal": 490.53
+  },
+  {
+   "OBJECTID": 15,
+   "apn": "12414067",
+   "foreclosureyear": 2014,
+   "fullname": "TESTOWNER E4E6E5",
+   "purchasetotal": 884.32
+  },
+  {
+   "OBJECTID": 16,
+   "apn": "20328259",
+   "foreclosureyear": 2028,
+   "fullname": "TESTOWNER 320248",
+   "purchasetotal": 126.46
+  },
+  {
+   "OBJECTID": 17,
+   "apn": "20330259A",
+   "foreclosureyear": 2013,
+   "fullname": "TESTOWNER 6BDE86",
+   "purchasetotal": 861.96
+  },
+  {
+   "OBJECTID": 18,
+   "apn": "30214002",
+   "foreclosureyear": 2026,
+   "fullname": "TESTOWNER 27F616",
+   "purchasetotal": 571.97
+  },
+  {
+   "OBJECTID": 19,
+   "apn": "40334030C",
+   "foreclosureyear": 2027,
+   "fullname": "TESTOWNER E15AD2",
+   "purchasetotal": 192.26
+  },
+  {
+   "OBJECTID": 20,
+   "apn": "40421066",
+   "foreclosureyear": 2024,
+   "fullname": "TESTOWNER FF4BB1",
+   "purchasetotal": 379.95
+  },
+  {
+   "OBJECTID": 21,
+   "apn": "40616035",
+   "foreclosureyear": 2019,
+   "fullname": "TESTOWNER BBBEC8",
+   "purchasetotal": 734.41
+  },
+  {
+   "OBJECTID": 22,
+   "apn": "40774034",
+   "foreclosureyear": 2013,
+   "fullname": "TESTOWNER 1113F4",
+   "purchasetotal": 955.94
+  },
+  {
+   "OBJECTID": 23,
+   "apn": "40774050",
+   "foreclosureyear": 2012,
+   "fullname": "TESTOWNER 0F1537",
+   "purchasetotal": 998.08
+  },
+  {
+   "OBJECTID": 24,
+   "apn": "40774051",
+   "foreclosureyear": 2012,
+   "fullname": "TESTOWNER 10AB02",
+   "purchasetotal": 998.08
+  },
+  {
+   "OBJECTID": 25,
+   "apn": "40774052",
+   "foreclosureyear": 2012,
+   "fullname": "TESTOWNER 1A4806",
+   "purchasetotal": 998.08
+  }
+ ],
+ "where": "(purchasetotal > 0)"
+}
