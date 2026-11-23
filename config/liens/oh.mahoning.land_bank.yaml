@@ -1,0 +1,25 @@
+source_id: oh.mahoning.land_bank
+state: OH
+county_fips: "39099"
+# Mahoning County (Youngstown) Land Bank holdings (2,206 parcels, edited 2026-11-12): parcel,
+# address, deeded owner, vacancy and structure. A sale listing for the aggregator, not a
+# debt: OTHER instruments on the parcel (the oh.mahoning.delinquent_taxes key), kept as a
+# daily listing snapshot.
+api: arcgis
+layer_url: https://services7.arcgis.com/BdxVWim3RqQp6zGH/arcgis/rest/services/Mahoning_Land_Bank_Holdings/FeatureServer/7
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, ParcelID, LocationAddress, VacantType, Structure, Acreage, DeededOwner]
+listed_on: listed_on
+date_field: listed_on
+uid: ParcelID
+doc_type: OTHER
+doc_type_raw: {field: VacantType}
+parties:
+  - {role: other, name: DeededOwner, person_names: false}
+parcel: {kind: pin, field: ParcelID, county_fips: "39099"}
+terms:
+  url: https://www.arcgis.com/home/item.html?id=35f4670205314e8fa8629b79bbdf7ab6
+  summary: "Mahoning County Land Bank public ArcGIS Online layer (owner GIS_Man_Development), free, no login; no licenseInfo on the item (read 2026-11-23)."
+  checked_on: 2026-11-23
+  cost_model: free
