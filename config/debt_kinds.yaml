@@ -80,6 +80,7 @@ sources:
   fl.lee.nuisance_liens: code_enforcement_lien
   fl.miami_dade.code_liens: code_enforcement_lien
   fl.miami_dade.code_collections: code_enforcement_lien
+  fl.miami_dade.building_liens: code_enforcement_lien
   # foreclosure and housing
   pa.allegheny.foreclosures: foreclosure
   pa.washington.sheriff_sales: foreclosure

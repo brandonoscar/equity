@@ -1,0 +1,35 @@
+source_id: fl.miami_dade.building_liens
+state: FL
+county_fips: "12086"
+# Miami-Dade building violation liens recorded in the Official Records (8,439 liens, 2004 to
+# 2026-11, updated daily): case number and the lien's book, page and recording date. The folio,
+# the violator's name and the case type are looked up by case number in the county's building
+# violation layer (open and closed cases, 77,343 rows). No amount, and the layers publish no
+# release: a lien stays open here until the county drops it from the layer.
+api: arcgis
+layer_url: https://services.arcgis.com/8Pc9XBTAsYuxx9Ny/arcgis/rest/services/BuildingViolationLien/FeatureServer/0
+order_by: [ObjectId]
+select: [ObjectId, CASE_NUM, LIEN_BOOK, LIEN_PAGE, LIEN_RECDT]
+enrich:
+  arcgis: https://services.arcgis.com/8Pc9XBTAsYuxx9Ny/arcgis/rest/services/BuildingViolation_gdb/FeatureServer/0
+  key: CASE_NUM
+  field: CASE_NUM
+  columns: [FOLIO, VIOL_NAME, CASE_TYPE, PROP_ADDR]
+date_field: LIEN_RECDT
+partition: year
+first_year: 2004
+uid: [CASE_NUM, LIEN_BOOK, LIEN_PAGE]
+doc_type: STATUTORY_LIEN
+doc_type_raw: {field: CASE_TYPE}
+extra_pii: [PROP_ADDR]
+parties:
+  - role: debtor
+    name: VIOL_NAME
+  - role: creditor
+    const: Miami-Dade County
+parcel: {kind: pin, field: FOLIO, county_fips: "12086", zfill: 13}   # fl.statewide.parcels
+terms:
+  url: https://gis-mdc.opendata.arcgis.com/
+  summary: "Miami-Dade County Open Data Hub (ArcGIS Online, BuildingViolationLien and BuildingViolation_gdb), free, no login. Provided 'as is'; no licence restriction on reuse found."
+  checked_on: 2026-11-23
+  cost_model: free

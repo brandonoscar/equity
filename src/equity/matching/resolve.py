@@ -748,7 +748,7 @@ STATES: dict[str, dict[str, Any]] = {
     "FL": {"debtors": ["fl.hillsborough.or", "fl.dor.tax_warrants", "fl.hernando.or",
                        "fl.putnam.or", "fl.broward.tax_certificates", "fl.lee.nuisance_liens",
                        "fl.miami_dade.code_liens", "fl.miami_dade.code_collections",
-                       "fl.miami_dade.waste_judgments"],
+                       "fl.miami_dade.waste_judgments", "fl.miami_dade.building_liens"],
            "owners": ["fl.statewide.parcels"],
            "courts": ["fl.hillsborough.civil.cases", "fl.citrus.civil", *FEDERAL_COURTS],
            "writs": ["fl.hillsborough.garnishment"], "parcel_on_lien": True,

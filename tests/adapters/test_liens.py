@@ -707,6 +707,60 @@ def test_arcgis_rows_can_be_enriched_from_a_carto_table(tmp_path: Path) -> None:
     assert by["F2"]["opa"] is None  # no match: columns present, empty
 
 
+def test_arcgis_rows_can_be_enriched_from_another_layer(tmp_path: Path) -> None:
+    cfg = _cfg(tmp_path, api="arcgis", layer_url="https://g.test/FeatureServer/0", portal=None,
+               dataset=None, released_on=None, date_field="jd", date_is_text=True,
+               enrich={"arcgis": "https://e.test/MapServer/5", "key": "CASE_NUM",
+                       "field": "case", "columns": ["FOLIO", "VIOL_NAME"]},
+               parcel={"kind": "pin", "field": "FOLIO", "county_fips": "12086"},
+               parties=[{"role": "debtor", "name": "VIOL_NAME"}])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    feats = {
+        "features": [
+            {"attributes": {"ticket": "L1", "jd": "2026-01-02", "case": "7"}},
+            {"attributes": {"ticket": "L2", "jd": "2026-01-03", "case": "8"}},
+        ]
+    }
+    other = {"features": [{"attributes": {"CASE_NUM": "7", "FOLIO": "3050320001021",
+                                          "VIOL_NAME": "ANN LEE"}}]}  # fmt: skip
+    a = cls(_client({"FeatureServer/0/query": json.dumps(feats).encode(),
+                     "MapServer/5/query": json.dumps(other).encode()}))  # fmt: skip
+    rows = json.loads(a.fetch(FetchRequest({"from": "2026-01-01", "to": "2027-01-01"})).content)
+    by = {r["ticket"]: r for r in rows["rows"]}
+    assert (by["L1"]["FOLIO"], by["L1"]["VIOL_NAME"]) == ("3050320001021", "ANN LEE")
+    assert by["L2"]["FOLIO"] is None
+    bad = cls(_client({"FeatureServer/0/query": json.dumps(feats).encode(),
+                       "MapServer/5/query": b'{"error": {"code": 400}}'}))  # fmt: skip
+    with pytest.raises(LienConfigError, match="enrich query failed"):
+        bad.fetch(FetchRequest({"from": "2026-01-01", "to": "2027-01-01"}))
+
+
+def test_carto_tables_page_by_sql_with_date_windows(tmp_path: Path) -> None:
+    cfg = _cfg(tmp_path, api="carto", carto="https://c.test/api/v2/sql", table="permits",
+               portal=None, dataset=None, released_on=None, where="issued IS NOT NULL",
+               select=["ticket", "issued", "owner", "opa"], order_by=["issued"],
+               date_field="issued", parties=[{"role": "other", "name": "owner"}],
+               parcel={"kind": "pin", "field": "opa", "county_fips": "42101"})  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    assert cls().base_url == "https://c.test/api/v2/sql?table=permits"
+    assert cls().where({"from": "2025-01-01", "to": "2026-01-01"}) == (
+        "(issued IS NOT NULL) AND issued >= '2025-01-01' AND issued < '2026-01-01'"
+    )
+    page = {"rows": [{"ticket": "P1", "issued": "2025-03-04T10:00:00Z", "owner": "ANN LEE",
+                      "opa": "521331200"}]}  # fmt: skip
+    client = _client({"api/v2/sql": json.dumps(page).encode()})
+    a = cls(client)
+    got = json.loads(a.fetch(FetchRequest({"from": "2025-01-01", "to": "2026-01-01"})).content)
+    assert [r["ticket"] for r in got["rows"]] == ["P1"]
+    assert a.health().ok
+    busy = cls(_client({"api/v2/sql": b'{"error": ["query_wait_timeout"]}'}))
+    with pytest.raises(LienConfigError, match="query_wait_timeout"):  # retried, then raised
+        busy.fetch(FetchRequest({"from": "2025-01-01", "to": "2026-01-01"}))
+    bad = cls(_client({"api/v2/sql": b'{"error": ["permission denied"]}'}))
+    with pytest.raises(LienConfigError, match="Carto query failed"):
+        bad.fetch(FetchRequest({"from": "2025-01-01", "to": "2026-01-01"}))
+
+
 def test_city_st_zip_form_and_listed_on(tmp_path: Path) -> None:
     from equity.adapters.liens import split_address
 
