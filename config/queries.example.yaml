@@ -1,0 +1,14 @@
+# Example saved query for equity.rules.queries. Real queries (the buyer's criteria) go in
+# config/private/queries/<name>.yaml, which git ignores. Every filter is optional; values
+# here are placeholders, not recommendations.
+name: example
+states: [OH, NY]            # match runs to read (data/derived/<run>/)
+where:
+  min_open_amount: 10000    # dollars of open, auto-linked debt
+  min_parcel_value: 50000   # dollars of linked parcel value
+  debt_kinds_any: [court_judgment, charged_off_loan]
+  exclude_bankruptcy: true  # drop people flagged in an open or discharged bankruptcy case
+  require_parcels: true     # at least one auto-linked parcel
+  max_transfers_after_debt: null   # e.g. 0 to drop debtors who deeded property away
+order_by: open_amount       # any factor column, or score
+limit: 500

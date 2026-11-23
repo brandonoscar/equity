@@ -1,0 +1,231 @@
+{
+ "layer": "https://services7.arcgis.com/BdxVWim3RqQp6zGH/arcgis/rest/services/Mahoning_Land_Bank_Holdings/FeatureServer/7",
+ "rows": [
+  {
+   "Acreage": 0.1722128735440132,
+   "DeededOwner": "MAHONING COUNTY LAND REUTILIZATION CORPORATION",
+   "LocationAddress": "THALIA AVE",
+   "OBJECTID": 161,
+   "ParcelID": "53-195-0-038.00-0",
+   "Structure": "N",
+   "VacantType": "Lot"
+  },
+  {
+   "Acreage": 0.17220794541323037,
+   "DeededOwner": "MAHONING COUNTY LAND REUTILIZATION CORPORATION",
+   "LocationAddress": "1662 CHATTANOOGA AVE",
+   "OBJECTID": 363,
+   "ParcelID": "53-194-0-248.00-0",
+   "Structure": "N",
+   "VacantType": "Lot"
+  },
+  {
+   "Acreage": 0.17220864963885846,
+   "DeededOwner": "MAHONING COUNTY LAND REUTILIZATION CORPORATION",
+   "LocationAddress": "1669 BANCROFT AVE",
+   "OBJECTID": 697,
+   "ParcelID": "53-194-0-335.00-0",
+   "Structure": "N",
+   "VacantType": "Lot"
+  },
+  {
+   "Acreage": 0.020094327979688062,
+   "DeededOwner": "MAHONING COUNTY LAND REUTILIZATION CORPORATION",
+   "LocationAddress": "SOUTHERN BLVD",
+   "OBJECTID": 1144,
+   "ParcelID": "53-191-0-034.00-0",
+   "Structure": "N",
+   "VacantType": "Lot"
+  },
+  {
+   "Acreage": 0.1607099080770578,
+   "DeededOwner": "MAHONING COUNTY LAND REUTILIZATION CORPORATION",
+   "LocationAddress": "SOUTHERN BLVD",
+   "OBJECTID": 1170,
+   "ParcelID": "53-191-0-033.00-0",
+   "Structure": "N",
+   "VacantType": "Lot"
+  },
+  {
+   "Acreage": 0.04018749652211425,
+   "DeededOwner": "MAHONING COUNTY LAND REUTILIZATION CORPORATION",
+   "LocationAddress": "SOUTHERN BLVD",
+   "OBJECTID": 1174,
+   "ParcelID": "53-191-0-032.00-0",
+   "Structure": "N",
+   "VacantType": "Lot"
+  },
+  {
+   "Acreage": 0.20090231555147633,
+   "DeededOwner": "MAHONING COUNTY LAND REUTILIZATION CORPORATION",
+   "LocationAddress": "SOUTHERN BLVD",
+   "OBJECTID": 1189,
+   "ParcelID": "53-191-0-031.00-0",
+   "Structure": "N",
+   "VacantType": "Lot"
+  },
+  {
+   "Acreage": 0.17184957234256268,
+   "DeededOwner": "MAHONING COUNTY LAND REUTILIZATION CORPORATION",
+   "LocationAddress": "LOWELL AVE",
+   "OBJECTID": 1337,
+   "ParcelID": "53-190-0-194.00-0",
+   "Structure": "N",
+   "VacantType": "Lot"
+  },
+  {
+   "Acreage": 0.17220164798913104,
+   "DeededOwner": "MAHONING COUNTY LAND REUTILIZATION CORPORATION",
+   "LocationAddress": "SOUTHERN BLVD",
+   "OBJECTID": 1569,
+   "ParcelID": "53-190-0-214.00-0",
+   "Structure": "N",
+   "VacantType": "Lot"
+  },
+  {
+   "Acreage": 0.17205979555159892,
+   "DeededOwner": "MAHONING COUNTY LAND REUTILIZATION CORPORATION",
+   "LocationAddress": "1979 WESTON AVE",
+   "OBJECTID": 1775,
+   "ParcelID": "53-193-0-109.00-0",
+   "Structure": "N",
+   "VacantType": "Lot"
+  },
+  {
+   "Acreage": 0.25147067766735853,
+   "DeededOwner": "MAHONING COUNTY LAND REUTILIZATION CORPORATION",
+   "LocationAddress": "MISTLETOE AVE",
+   "OBJECTID": 2587,
+   "ParcelID": "53-128-0-026.00-0",
+   "Structure": "N",
+   "VacantType": "Lot"
+  },
+  {
+   "Acreage": 0.10286326980236818,
+   "DeededOwner": "MAHONING COUNTY LAND REUTILIZATION CORPORATION",
+   "LocationAddress": "LA BELLE AVE",
+   "OBJECTID": 2603,
+   "ParcelID": "53-118-0-244.00-0",
+   "Structure": "N",
+   "VacantType": "Lot"
+  },
+  {
+   "Acreage": 0.10285493903580933,
+   "DeededOwner": "MAHONING COUNTY LAND REUTILIZATION CORPORATION",
+   "LocationAddress": "LA BELLE AVE",
+   "OBJECTID": 2631,
+   "ParcelID": "53-118-0-234.00-0",
+   "Structure": "N",
+   "VacantType": "Lot"
+  },
+  {
+   "Acreage": 0.10080788406256318,
+   "DeededOwner": "MAHONING COUNTY LAND REUTILIZATION CORPORATION",
+   "LocationAddress": "129 LA BELLE AVE",
+   "OBJECTID": 2648,
+   "ParcelID": "53-118-0-482.00-0",
+   "Structure": "N",
+   "VacantType": "Lot"
+  },
+  {
+   "Acreage": 0.09578240383538109,
+   "DeededOwner": "MAHONING COUNTY LAND REUTILIZATION CORPORATION",
+   "LocationAddress": "135 LA BELLE AVE",
+   "OBJECTID": 2658,
+   "ParcelID": "53-118-0-479.00-0",
+   "Structure": "N",
+   "VacantType": "Lot"
+  },
+  {
+   "Acreage": 0.10080009720509948,
+   "DeededOwner": "MAHONING COUNTY LAND REUTILIZATION CORPORATION ",
+   "LocationAddress": "139 LA BELLE AVE",
+   "OBJECTID": 2662,
+   "ParcelID": "53-118-0-478.00-0",
+   "Structure": "N",
+   "VacantType": "Lot"
+  },
+  {
+   "Acreage": 0.1722162861898905,
+   "DeededOwner": "MAHONING COUNTY LAND REUTILIZATION CORPORATION",
+   "LocationAddress": "2032 MIDLOTHIAN BLVD 034",
+   "OBJECTID": 2819,
+   "ParcelID": "53-069-0-038.00-0",
+   "Structure": "Y",
+   "VacantType": "V"
+  },
+  {
+   "Acreage": 0.14569176999477318,
+   "DeededOwner": "MAHONING COUNTY LAND REUTILIZATION CORPORATION",
+   "LocationAddress": "E MIDLOTHIAN BLVD",
+   "OBJECTID": 2922,
+   "ParcelID": "53-242-A-024.00-0",
+   "Structure": "N",
+   "VacantType": "Lot"
+  },
+  {
+   "Acreage": 0.1332765294777783,
+   "DeededOwner": "MAHONING COUNTY LAND REUTILIZATION CORPORATION",
+   "LocationAddress": "265 POTOMAC AVE",
+   "OBJECTID": 2924,
+   "ParcelID": "53-117-0-150.00-0",
+   "Structure": "N",
+   "VacantType": "Lot"
+  },
+  {
+   "Acreage": 0.12459240593542532,
+   "DeededOwner": "MAHONING COUNTY LAND REUTILIZATION CORPORATION",
+   "LocationAddress": "POTOMAC AVE",
+   "OBJECTID": 2958,
+   "ParcelID": "53-117-0-140.00-0",
+   "Structure": "N",
+   "VacantType": "Lot"
+  },
+  {
+   "Acreage": 0.10284803448309474,
+   "DeededOwner": "MAHONING COUNTY LAND REUTILIZATION CORPORATION",
+   "LocationAddress": "52 LA BELLE AVE",
+   "OBJECTID": 3009,
+   "ParcelID": "53-118-0-214.00-0",
+   "Structure": "N",
+   "VacantType": "Lot"
+  },
+  {
+   "Acreage": 0.10286976323584911,
+   "DeededOwner": "MAHONING COUNTY LAND REUTILIZATION CORPORATION",
+   "LocationAddress": "LA BELLE AVE",
+   "OBJECTID": 3013,
+   "ParcelID": "53-118-0-216.00-0",
+   "Structure": "N",
+   "VacantType": "Lot"
+  },
+  {
+   "Acreage": 0.10286093398654225,
+   "DeededOwner": "MAHONING COUNTY LAND REUTILIZATION CORPORATION",
+   "LocationAddress": "LA BELLE AVE",
+   "OBJECTID": 3018,
+   "ParcelID": "53-118-0-221.00-0",
+   "Structure": "N",
+   "VacantType": "Lot"
+  },
+  {
+   "Acreage": 0.17910658682498223,
+   "DeededOwner": "MAHONING COUNTY LAND REUTILIZATION CORPORATION",
+   "LocationAddress": "3718 HILLMAN ST",
+   "OBJECTID": 3044,
+   "ParcelID": "53-125-0-129.00-0",
+   "Structure": "N",
+   "VacantType": "Lot"
+  },
+  {
+   "Acreage": 0.1498303822606652,
+   "DeededOwner": "MAHONING COUNTY LAND REUTILIZATION CORPORATION",
+   "LocationAddress": "MISTLETOE AVE",
+   "OBJECTID": 3053,
+   "ParcelID": "53-128-0-036.00-0",
+   "Structure": "N",
+   "VacantType": "Lot"
+  }
+ ],
+ "where": "1=1"
+}

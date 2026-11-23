@@ -1,0 +1,231 @@
+{
+ "dataset": "ed4q-f8tm",
+ "rows": [
+  {
+   "account_id_mdp_field_acctid": "0101090925",
+   "county_name_mdp_field_cntyname": "Allegany",
+   "sales_segment_1_consideration_mdp_field_considr1_sdat_field_90": "1925",
+   "sales_segment_1_grantor_name_mdp_field_grntnam1_sdat_field_80": "TESTOWNER 2A731F",
+   "sales_segment_1_how_conveyed_ind_mdp_field_convey1_sdat_field_87": "Private non-arms-length transfer such as a foreclosure, gift or auction (4)",
+   "sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89": "2015.07.24",
+   "sales_segment_1_transfer_number_mdp_field_transno1_sdat_field_79": "151171"
+  },
+  {
+   "account_id_mdp_field_acctid": "0101091484",
+   "county_name_mdp_field_cntyname": "Allegany",
+   "sales_segment_1_consideration_mdp_field_considr1_sdat_field_90": "0",
+   "sales_segment_1_grantor_name_mdp_field_grntnam1_sdat_field_80": "TESTOWNER 83590A",
+   "sales_segment_1_how_conveyed_ind_mdp_field_convey1_sdat_field_87": "Private non-arms-length transfer such as a foreclosure, gift or auction (4)",
+   "sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89": "2015.12.04",
+   "sales_segment_1_transfer_number_mdp_field_transno1_sdat_field_79": "151935"
+  },
+  {
+   "account_id_mdp_field_acctid": "0101091638",
+   "county_name_mdp_field_cntyname": "Allegany",
+   "sales_segment_1_consideration_mdp_field_considr1_sdat_field_90": "0",
+   "sales_segment_1_grantor_name_mdp_field_grntnam1_sdat_field_80": "TESTOWNER B81C72",
+   "sales_segment_1_how_conveyed_ind_mdp_field_convey1_sdat_field_87": "Private non-arms-length transfer such as a foreclosure, gift or auction (4)",
+   "sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89": "2015.12.30",
+   "sales_segment_1_transfer_number_mdp_field_transno1_sdat_field_79": "152046"
+  },
+  {
+   "account_id_mdp_field_acctid": "0101091905",
+   "county_name_mdp_field_cntyname": "Allegany",
+   "sales_segment_1_consideration_mdp_field_considr1_sdat_field_90": "35000",
+   "sales_segment_1_grantor_name_mdp_field_grntnam1_sdat_field_80": "TESTOWNER AD3AE9",
+   "sales_segment_1_how_conveyed_ind_mdp_field_convey1_sdat_field_87": "Private non-arms-length transfer such as a foreclosure, gift or auction (4)",
+   "sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89": "2015.08.07",
+   "sales_segment_1_transfer_number_mdp_field_transno1_sdat_field_79": "151264"
+  },
+  {
+   "account_id_mdp_field_acctid": "0101092723",
+   "county_name_mdp_field_cntyname": "Allegany",
+   "sales_segment_1_consideration_mdp_field_considr1_sdat_field_90": "0",
+   "sales_segment_1_grantor_name_mdp_field_grntnam1_sdat_field_80": "TESTOWNER DF1B5D",
+   "sales_segment_1_how_conveyed_ind_mdp_field_convey1_sdat_field_87": "Private non-arms-length transfer such as a foreclosure, gift or auction (4)",
+   "sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89": "2015.12.04",
+   "sales_segment_1_transfer_number_mdp_field_transno1_sdat_field_79": "151936"
+  },
+  {
+   "account_id_mdp_field_acctid": "0101093304",
+   "county_name_mdp_field_cntyname": "Allegany",
+   "sales_segment_1_consideration_mdp_field_considr1_sdat_field_90": "0",
+   "sales_segment_1_grantor_name_mdp_field_grntnam1_sdat_field_80": "TESTOWNER F3E332",
+   "sales_segment_1_how_conveyed_ind_mdp_field_convey1_sdat_field_87": "Private non-arms-length transfer such as a foreclosure, gift or auction (4)",
+   "sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89": "2015.05.08",
+   "sales_segment_1_transfer_number_mdp_field_transno1_sdat_field_79": "150717"
+  },
+  {
+   "account_id_mdp_field_acctid": "0101093312",
+   "county_name_mdp_field_cntyname": "Allegany",
+   "sales_segment_1_consideration_mdp_field_considr1_sdat_field_90": "0",
+   "sales_segment_1_grantor_name_mdp_field_grntnam1_sdat_field_80": "TESTOWNER 5FADEE",
+   "sales_segment_1_how_conveyed_ind_mdp_field_convey1_sdat_field_87": "Private non-arms-length transfer such as a foreclosure, gift or auction (4)",
+   "sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89": "2015.05.08",
+   "sales_segment_1_transfer_number_mdp_field_transno1_sdat_field_79": "150719"
+  },
+  {
+   "account_id_mdp_field_acctid": "0101093320",
+   "county_name_mdp_field_cntyname": "Allegany",
+   "sales_segment_1_consideration_mdp_field_considr1_sdat_field_90": "0",
+   "sales_segment_1_grantor_name_mdp_field_grntnam1_sdat_field_80": "TESTOWNER F3E332",
+   "sales_segment_1_how_conveyed_ind_mdp_field_convey1_sdat_field_87": "Private non-arms-length transfer such as a foreclosure, gift or auction (4)",
+   "sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89": "2015.05.08",
+   "sales_segment_1_transfer_number_mdp_field_transno1_sdat_field_79": "150717"
+  },
+  {
+   "account_id_mdp_field_acctid": "0101093428",
+   "county_name_mdp_field_cntyname": "Allegany",
+   "sales_segment_1_consideration_mdp_field_considr1_sdat_field_90": "0",
+   "sales_segment_1_grantor_name_mdp_field_grntnam1_sdat_field_80": "TESTOWNER 0E9B5D",
+   "sales_segment_1_how_conveyed_ind_mdp_field_convey1_sdat_field_87": "Private non-arms-length transfer such as a foreclosure, gift or auction (4)",
+   "sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89": "2015.09.10",
+   "sales_segment_1_transfer_number_mdp_field_transno1_sdat_field_79": "151449"
+  },
+  {
+   "account_id_mdp_field_acctid": "0101093622",
+   "county_name_mdp_field_cntyname": "Allegany",
+   "sales_segment_1_consideration_mdp_field_considr1_sdat_field_90": "0",
+   "sales_segment_1_grantor_name_mdp_field_grntnam1_sdat_field_80": "TESTOWNER D24986",
+   "sales_segment_1_how_conveyed_ind_mdp_field_convey1_sdat_field_87": "Private non-arms-length transfer such as a foreclosure, gift or auction (4)",
+   "sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89": "2015.10.07",
+   "sales_segment_1_transfer_number_mdp_field_transno1_sdat_field_79": "151625"
+  },
+  {
+   "account_id_mdp_field_acctid": "0101093630",
+   "county_name_mdp_field_cntyname": "Allegany",
+   "sales_segment_1_consideration_mdp_field_considr1_sdat_field_90": "0",
+   "sales_segment_1_grantor_name_mdp_field_grntnam1_sdat_field_80": "TESTOWNER D24986",
+   "sales_segment_1_how_conveyed_ind_mdp_field_convey1_sdat_field_87": "Private non-arms-length transfer such as a foreclosure, gift or auction (4)",
+   "sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89": "2015.10.07",
+   "sales_segment_1_transfer_number_mdp_field_transno1_sdat_field_79": "151625"
+  },
+  {
+   "account_id_mdp_field_acctid": "0101094483",
+   "county_name_mdp_field_cntyname": "Allegany",
+   "sales_segment_1_consideration_mdp_field_considr1_sdat_field_90": "0",
+   "sales_segment_1_grantor_name_mdp_field_grntnam1_sdat_field_80": "TESTOWNER 6E1784",
+   "sales_segment_1_how_conveyed_ind_mdp_field_convey1_sdat_field_87": "Private non-arms-length transfer such as a foreclosure, gift or auction (4)",
+   "sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89": "2015.10.06",
+   "sales_segment_1_transfer_number_mdp_field_transno1_sdat_field_79": "151612"
+  },
+  {
+   "account_id_mdp_field_acctid": "0101095226",
+   "county_name_mdp_field_cntyname": "Allegany",
+   "sales_segment_1_consideration_mdp_field_considr1_sdat_field_90": "0",
+   "sales_segment_1_grantor_name_mdp_field_grntnam1_sdat_field_80": "TESTOWNER 87C226",
+   "sales_segment_1_how_conveyed_ind_mdp_field_convey1_sdat_field_87": "Private non-arms-length transfer such as a foreclosure, gift or auction (4)",
+   "sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89": "2015.10.07",
+   "sales_segment_1_transfer_number_mdp_field_transno1_sdat_field_79": "151626"
+  },
+  {
+   "account_id_mdp_field_acctid": "0101095234",
+   "county_name_mdp_field_cntyname": "Allegany",
+   "sales_segment_1_consideration_mdp_field_considr1_sdat_field_90": "0",
+   "sales_segment_1_grantor_name_mdp_field_grntnam1_sdat_field_80": "TESTOWNER D24986",
+   "sales_segment_1_how_conveyed_ind_mdp_field_convey1_sdat_field_87": "Private non-arms-length transfer such as a foreclosure, gift or auction (4)",
+   "sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89": "2015.10.07",
+   "sales_segment_1_transfer_number_mdp_field_transno1_sdat_field_79": "151625"
+  },
+  {
+   "account_id_mdp_field_acctid": "0101096532",
+   "county_name_mdp_field_cntyname": "Allegany",
+   "sales_segment_1_consideration_mdp_field_considr1_sdat_field_90": "0",
+   "sales_segment_1_grantor_name_mdp_field_grntnam1_sdat_field_80": "TESTOWNER 895FF7",
+   "sales_segment_1_how_conveyed_ind_mdp_field_convey1_sdat_field_87": "Private non-arms-length transfer such as a foreclosure, gift or auction (4)",
+   "sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89": "2015.12.23",
+   "sales_segment_1_transfer_number_mdp_field_transno1_sdat_field_79": "152048"
+  },
+  {
+   "account_id_mdp_field_acctid": "0101099582",
+   "county_name_mdp_field_cntyname": "Allegany",
+   "sales_segment_1_consideration_mdp_field_considr1_sdat_field_90": "0",
+   "sales_segment_1_grantor_name_mdp_field_grntnam1_sdat_field_80": "TESTOWNER 21947D",
+   "sales_segment_1_how_conveyed_ind_mdp_field_convey1_sdat_field_87": "Private non-arms-length transfer such as a foreclosure, gift or auction (4)",
+   "sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89": "2015.02.05",
+   "sales_segment_1_transfer_number_mdp_field_transno1_sdat_field_79": "150166"
+  },
+  {
+   "account_id_mdp_field_acctid": "0101099817",
+   "county_name_mdp_field_cntyname": "Allegany",
+   "sales_segment_1_consideration_mdp_field_considr1_sdat_field_90": "30000",
+   "sales_segment_1_grantor_name_mdp_field_grntnam1_sdat_field_80": "TESTOWNER A757A3",
+   "sales_segment_1_how_conveyed_ind_mdp_field_convey1_sdat_field_87": "Private arms-length transfer, Vacant at time of sale (2)",
+   "sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89": "2015.02.05",
+   "sales_segment_1_transfer_number_mdp_field_transno1_sdat_field_79": "150165"
+  },
+  {
+   "account_id_mdp_field_acctid": "0101102915",
+   "county_name_mdp_field_cntyname": "Allegany",
+   "sales_segment_1_consideration_mdp_field_considr1_sdat_field_90": "0",
+   "sales_segment_1_grantor_name_mdp_field_grntnam1_sdat_field_80": "TESTOWNER 46A6D4",
+   "sales_segment_1_how_conveyed_ind_mdp_field_convey1_sdat_field_87": "Private non-arms-length transfer such as a foreclosure, gift or auction (4)",
+   "sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89": "2015.06.29",
+   "sales_segment_1_transfer_number_mdp_field_transno1_sdat_field_79": "151018"
+  },
+  {
+   "account_id_mdp_field_acctid": "0101104484",
+   "county_name_mdp_field_cntyname": "Allegany",
+   "sales_segment_1_consideration_mdp_field_considr1_sdat_field_90": "0",
+   "sales_segment_1_grantor_name_mdp_field_grntnam1_sdat_field_80": "TESTOWNER 654F00",
+   "sales_segment_1_how_conveyed_ind_mdp_field_convey1_sdat_field_87": "Private non-arms-length transfer such as a foreclosure, gift or auction (4)",
+   "sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89": "2015.08.07",
+   "sales_segment_1_transfer_number_mdp_field_transno1_sdat_field_79": "151263"
+  },
+  {
+   "account_id_mdp_field_acctid": "0102005913",
+   "county_name_mdp_field_cntyname": "Allegany",
+   "sales_segment_1_consideration_mdp_field_considr1_sdat_field_90": "5500",
+   "sales_segment_1_grantor_name_mdp_field_grntnam1_sdat_field_80": "TESTOWNER 72C326",
+   "sales_segment_1_how_conveyed_ind_mdp_field_convey1_sdat_field_87": "Private non-arms-length transfer such as a foreclosure, gift or auction (4)",
+   "sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89": "2015.03.25",
+   "sales_segment_1_transfer_number_mdp_field_transno1_sdat_field_79": "150418"
+  },
+  {
+   "account_id_mdp_field_acctid": "0102007088",
+   "county_name_mdp_field_cntyname": "Allegany",
+   "sales_segment_1_consideration_mdp_field_considr1_sdat_field_90": "0",
+   "sales_segment_1_grantor_name_mdp_field_grntnam1_sdat_field_80": "TESTOWNER 177E07",
+   "sales_segment_1_how_conveyed_ind_mdp_field_convey1_sdat_field_87": "Private non-arms-length transfer such as a foreclosure, gift or auction (4)",
+   "sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89": "2015.09.03",
+   "sales_segment_1_transfer_number_mdp_field_transno1_sdat_field_79": "151413"
+  },
+  {
+   "account_id_mdp_field_acctid": "0102009102",
+   "county_name_mdp_field_cntyname": "Allegany",
+   "sales_segment_1_consideration_mdp_field_considr1_sdat_field_90": "123000",
+   "sales_segment_1_grantor_name_mdp_field_grntnam1_sdat_field_80": "TESTOWNER 6920F3",
+   "sales_segment_1_how_conveyed_ind_mdp_field_convey1_sdat_field_87": "Private arms-length transfer, Improved (1)",
+   "sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89": "2015.08.25",
+   "sales_segment_1_transfer_number_mdp_field_transno1_sdat_field_79": "151356"
+  },
+  {
+   "account_id_mdp_field_acctid": "0102012251",
+   "county_name_mdp_field_cntyname": "Allegany",
+   "sales_segment_1_consideration_mdp_field_considr1_sdat_field_90": "0",
+   "sales_segment_1_grantor_name_mdp_field_grntnam1_sdat_field_80": "TESTOWNER F6F6D6",
+   "sales_segment_1_how_conveyed_ind_mdp_field_convey1_sdat_field_87": "Private non-arms-length transfer such as a foreclosure, gift or auction (4)",
+   "sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89": "2015.01.07",
+   "sales_segment_1_transfer_number_mdp_field_transno1_sdat_field_79": "150027"
+  },
+  {
+   "account_id_mdp_field_acctid": "0102013061",
+   "county_name_mdp_field_cntyname": "Allegany",
+   "sales_segment_1_consideration_mdp_field_considr1_sdat_field_90": "700000",
+   "sales_segment_1_grantor_name_mdp_field_grntnam1_sdat_field_80": "TESTOWNER E8D6C1",
+   "sales_segment_1_how_conveyed_ind_mdp_field_convey1_sdat_field_87": "Private arms-length transfer, Vacant at time of sale (2)",
+   "sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89": "2015.01.30",
+   "sales_segment_1_transfer_number_mdp_field_transno1_sdat_field_79": "150142"
+  },
+  {
+   "account_id_mdp_field_acctid": "0102013088",
+   "county_name_mdp_field_cntyname": "Allegany",
+   "sales_segment_1_consideration_mdp_field_considr1_sdat_field_90": "60000",
+   "sales_segment_1_grantor_name_mdp_field_grntnam1_sdat_field_80": "TESTOWNER 6A4CEB",
+   "sales_segment_1_how_conveyed_ind_mdp_field_convey1_sdat_field_87": "Private arms-length transfer, Vacant at time of sale (2)",
+   "sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89": "2015.01.30",
+   "sales_segment_1_transfer_number_mdp_field_transno1_sdat_field_79": "150141"
+  }
+ ],
+ "where": "(sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89 > '1900' AND sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89 <> '0000.00.00') AND sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89 >= '2015-01-01T00:00:00' AND sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89 < '2016-01-01T00:00:00'"
+}

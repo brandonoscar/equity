@@ -19,7 +19,8 @@ rules:
   - match: [pa.washington.sheriff_sales, ms.harrison.tax_sale_parcels,
             wi.milwaukee.foreclosure_sales, oh.lucas.forfeited_land_sale, co.lake.tax_lien_sale,
             in.st_joseph.tax_sale, ks.wyandotte.tax_sale, ca.sonoma.defaulted_tax,
-            us.hud.fha_reo]
+            us.hud.fha_reo, az.cochise.tax_deed_auction, oh.lucas.land_bank,
+            oh.mahoning.land_bank]
     every_hours: 24
     mode: listing
     listing_table: instrument

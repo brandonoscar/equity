@@ -1,0 +1,20 @@
+# Weekly search for new government sale and debt layers (equity.discovery): ArcGIS Online
+# and the Socrata catalog, by title. Results already configured in config/ are dropped; the
+# rest are candidates for a person to check (licence, owner, fields) before any config.
+schema_version: 1
+terms:
+  - tax sale
+  - tax deed
+  - tax lien
+  - sheriff sale
+  - foreclosure sale
+  - forfeited land
+  - delinquent tax
+  - land bank
+  - surplus funds
+  - excess proceeds
+  - code lien
+  - judgment
+max_age_days: 365        # only items modified within this many days
+per_term: 100            # results read per term and catalog
+exclude_title_words: [training, test, demo, sample, copy, scratch]

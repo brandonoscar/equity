@@ -121,7 +121,7 @@ COLUMNS: dict[str, dict[str, str]] = {
     "instrument_party": {"instrument_uid": V, "party_id": V, "role": V},
     "instrument": {"instrument_uid": V, "source_id": V, "doc_type": V, "doc_type_raw": V,
                    "recorded_on": "DATE",
-                   "principal_amount": "DOUBLE", "jurisdiction": V},
+                   "principal_amount": "DOUBLE", "consideration": "DOUBLE", "jurisdiction": V},
     "instrument_ref": {"from_uid": V, "to_uid": V, "ref_type": V},
     "instrument_parcel": {"instrument_uid": V, "parcel_uid": V},
     "parcel_link": {"from_parcel_uid": V, "to_parcel_uid": V, "link_type": V},
@@ -157,6 +157,29 @@ def _view(con: duckdb.DuckDBPyConnection, name: str, lake: Path, sources: list[s
     con.execute(f"CREATE TEMP VIEW {name} AS SELECT {sel} FROM {src}")  # noqa: S608
 
 
+def _q(v: str) -> str:
+    return "'" + v.replace("'", "''") + "'"
+
+
+def doc_type_filter(spec: list[str] | dict[str, list[str]] | None) -> str:
+    """SQL limiting which instruments count as debts. A list applies to every source of the
+    run; a {source: [doc types]} mapping only to the sources it names (e.g. Colorado's UCC
+    system, where financing statements are not debts, beside a county tax lien list). The
+    national debt lists (FEDERAL_DEBTS) always count."""
+    if not spec:
+        return ""
+    fed = ", ".join(_q(s) for s in FEDERAL_DEBTS)
+    if isinstance(spec, dict):
+        named = ", ".join(_q(s) for s in sorted(spec))
+        per = " OR ".join(
+            f"(i.source_id = {_q(src)} AND i.doc_type IN ({', '.join(_q(t) for t in types)}))"
+            for src, types in sorted(spec.items())
+        )
+        return f"AND (i.source_id NOT IN ({named}) OR {per})"
+    types = ", ".join(_q(t) for t in spec)
+    return f"AND (i.doc_type IN ({types}) OR i.source_id IN ({fed}))"
+
+
 def connect(
     lake: Path,
     debtor_sources: list[str],
@@ -164,19 +187,14 @@ def connect(
     parcel_on_lien: bool = False,
     court_sources: list[str] | None = None,
     writ_sources: list[str] | None = None,
-    debtor_doc_types: list[str] | None = None,
+    debtor_doc_types: list[str] | dict[str, list[str]] | None = None,
 ) -> duckdb.DuckDBPyConnection:
     con = duckdb.connect()
     # Large runs (NY: ~5M debtors x ~5M owners) spill to disk; cap it so a run fails cleanly
     # instead of filling the machine's disk.
     con.execute(f"SET max_temp_directory_size = '{TEMP_LIMIT}'")
     # Only these instrument types count as debts (e.g. liens but not UCC financing statements).
-    doc_filter = ""
-    if debtor_doc_types:
-        types = ", ".join("'" + t.replace("'", "''") + "'" for t in debtor_doc_types)
-        # The filter is about the state's own sources; national debt lists always count.
-        fed = ", ".join(f"'{s}'" for s in FEDERAL_DEBTS)
-        doc_filter = f"AND (i.doc_type IN ({types}) OR i.source_id IN ({fed}))"
+    doc_filter = doc_type_filter(debtor_doc_types)
     stop = ", ".join(f"'{w}'" for w in STOP)
     con.execute(f"""
         CREATE MACRO name_key(n) AS array_to_string(list_sort(list_distinct(list_filter(
@@ -626,22 +644,26 @@ def run(
     court_sources: list[str] | None = None,
     writ_sources: list[str] | None = None,
     registry_sources: list[str] | None = None,
-    debtor_doc_types: list[str] | None = None,
+    debtor_doc_types: list[str] | dict[str, list[str]] | None = None,
     bankruptcy_sources: list[str] | None = None,
+    deed_sources: list[str] | None = None,
 ) -> dict[str, object]:
-    from equity.matching import bankruptcy, entities, equity, review
+    from equity.matching import bankruptcy, entities, equity, review, transfers
 
     con = connect(lake, debtor_sources, owner_sources, parcel_on_lien, court_sources,
                   writ_sources, debtor_doc_types)  # fmt: skip
     match(con, street_town, parcel_on_lien, bool(court_sources))
     review.build(con)
-    tables = ["matches", "debtor_summary", "people", "review_queue"]
+    tables = ["matches", "debtor_summary", "people", "person_of", "review_queue"]
     if registry_sources:
         entities.compute(con, lake, registry_sources)
         tables.extend(entities.TABLES)
     if bankruptcy_sources:
         bankruptcy.compute(con, lake, bankruptcy_sources)
         tables.extend(bankruptcy.TABLES)
+    if deed_sources:  # after entities: the nominee check reads company_people
+        transfers.compute(con, lake, deed_sources)
+        tables.extend(transfers.TABLES)
     if mortgage_sources:
         equity.compute(con, lake, mortgage_sources, link_sources or [])
         tables.append("mortgage_status")
@@ -655,6 +677,8 @@ def run(
         result["registries"] = entities.summary(con)
     if bankruptcy_sources:
         result["bankruptcy"] = bankruptcy.summary(con)
+    if deed_sources:
+        result["transfers"] = transfers.summary(con)
     if mortgage_sources:
         result |= equity.summary(con)
     (out / "summary.json").write_text(json.dumps(result, indent=2, default=str))
@@ -677,6 +701,7 @@ STATES: dict[str, dict[str, Any]] = {
         "links": ["ny.nyc.dof.condo_units"],
         "courts": FEDERAL_COURTS,
         "registries": ["ny.sos.business", "ny.sos.name_history"],
+        "deeds": ["ny.nyc.acris.real"],
     },
     # CT parcel data has no owner ZIP (Mailing_Zip is empty statewide): street + town instead.
     # Allegheny's parcel layer has no owner names, but its liens name the parcel (PIN).
@@ -689,18 +714,25 @@ STATES: dict[str, dict[str, Any]] = {
     # Baltimore City: environmental citation liens name the parcel (block/lot), not a person.
     "MD-BALTIMORE": {"debtors": ["md.baltimore_city.citation_liens"],
                      "owners": ["md.baltimore_city.parcels"], "parcel_on_lien": True,
+                     "deeds": ["md.sdat.transfers_1", "md.sdat.transfers_2",
+                               "md.sdat.transfers_3"],
                      "courts": FEDERAL_COURTS},
     # Travis: delinquent property tax accounts and tax-suit judgments, by owner name.
     "TX-TRAVIS": {"debtors": ["tx.travis.tax_delinquent"], "owners": ["tx.statewide.parcels"],
                   "courts": FEDERAL_COURTS},
     # Omaha: tax sale certificates (named taxpayers) and county-held liens (PIN only).
-    "NE-DOUGLAS": {"debtors": ["ne.douglas.tax_liens"], "owners": ["ne.douglas.parcels"],
+    # Plus Nebraska's statewide delinquent-taxpayer list (named, with address) and Sarpy's
+    # owners (the Omaha suburbs).
+    "NE-DOUGLAS": {"debtors": ["ne.douglas.tax_liens", "ne.dor.delinquent_taxpayers"],
+                   "owners": ["ne.douglas.parcels", "ne.sarpy.parcels"],
                    "parcel_on_lien": True, "courts": FEDERAL_COURTS},
     # Colorado: federal tax and statutory (hospital, other) liens from the SOS UCC system;
     # UCC financing statements name debtors too but are not debts owed on a judgment or lien.
-    "CO": {"debtors": ["co.sos.ucc"], "debtor_doc_types": ["TAX_LIEN_FEDERAL", "STATUTORY_LIEN"],
+    # Lake County's tax lien sale list names the owner and the parcel.
+    "CO": {"debtors": ["co.sos.ucc", "co.lake.tax_lien_sale"],
+           "debtor_doc_types": {"co.sos.ucc": ["TAX_LIEN_FEDERAL", "STATUTORY_LIEN"]},
            "owners": ["co.statewide.parcels"], "registries": ["co.sos.business"],
-           "courts": FEDERAL_COURTS},
+           "parcel_on_lien": True, "courts": FEDERAL_COURTS},
     # Detroit blight judgments name both the owner and the ticketed parcel (same parcel_id as
     # the Detroit assessor layer); Harris tax-suit judgments name the HCAD account; Washington
     # County sheriff sales list every parcel sold.
@@ -717,7 +749,8 @@ STATES: dict[str, dict[str, Any]] = {
                        "fl.putnam.or", "fl.broward.tax_certificates", "fl.lee.nuisance_liens"],
            "owners": ["fl.statewide.parcels"],
            "courts": ["fl.hillsborough.civil.cases", "fl.citrus.civil", *FEDERAL_COURTS],
-           "writs": ["fl.hillsborough.garnishment"], "parcel_on_lien": True},
+           "writs": ["fl.hillsborough.garnishment"], "parcel_on_lien": True,
+           "deeds": ["fl.hillsborough.or", "fl.hernando.or", "fl.putnam.or"]},
     # PA L&I lists name employers statewide; county parcel layers with owner names.
     "PA": {"debtors": ["pa.dli.uc_liens", "pa.dli.bwc_noncompliance", "pa.dli.bllc_noncompliance",
                        "pa.washington.sheriff_sales", "pa.philadelphia.li_fines"],
@@ -725,7 +758,8 @@ STATES: dict[str, dict[str, Any]] = {
                       "pa.erie.parcels", "pa.franklin.parcels", "pa.lancaster.parcels",
                       "pa.mercer.parcels", "pa.montgomery.parcels", "pa.philadelphia.parcels",
                       "pa.washington.parcels"],
-           "parcel_on_lien": True, "courts": FEDERAL_COURTS, "street_town": True},
+           "parcel_on_lien": True, "courts": FEDERAL_COURTS, "street_town": True,
+           "deeds": ["pa.philadelphia.rtt"]},
     # The PA and VT lists publish street and town but no ZIP: street + town rules, as in CT.
     "VT": {"debtors": ["vt.tax.top100_individuals", "vt.tax.top100_businesses"],
            "owners": ["vt.statewide.parcels"], "courts": FEDERAL_COURTS,
@@ -733,6 +767,7 @@ STATES: dict[str, dict[str, Any]] = {
     # Chicago DOAH cites the property's street address with no ZIP: street + town rules.
     "IL-COOK": {"debtors": ["il.chicago.doah_judgments", "il.chicago.doe_judgments",
                             "il.chicago.vacant_building_judgments"], "owners": ["il.cook.parcels"],
+                "deeds": ["il.cook.sales", "il.ptax.transfers"],
                 "courts": FEDERAL_COURTS, "street_town": True},
     # New Orleans code judgments name the parcel (GeoPIN), not the owner.
     "LA-NOLA": {"debtors": ["la.nola.code_hearing_judgments"], "owners": ["la.orleans.parcels"],
@@ -740,10 +775,12 @@ STATES: dict[str, dict[str, Any]] = {
     # Cincinnati lot abatement cites the property's address only: its parcel is found by
     # situs address (LOTS_SQL) and the charge is owed by that parcel's owner.
     "OH": {"debtors": ["oh.cincinnati.lot_abatement", "oh.hamilton.delinquent_taxes",
-                       "oh.clermont.tax_delinquent", "oh.mahoning.delinquent_taxes"],
+                       "oh.clermont.tax_delinquent", "oh.mahoning.delinquent_taxes",
+                       "oh.lucas.forfeited_land_sale"],
            "owners": ["oh.statewide.parcels"], "parcel_on_lien": True, "courts": FEDERAL_COURTS},
     # Milwaukee delinquent taxes name the owner, mailing address and tax key (= WI PARCELID).
-    "WI-MILWAUKEE": {"debtors": ["wi.milwaukee.delinquent_taxes"],
+    "WI-MILWAUKEE": {"debtors": ["wi.milwaukee.delinquent_taxes",
+                                 "wi.milwaukee.foreclosure_sales"],
                      "owners": ["wi.statewide.parcels"], "parcel_on_lien": True,
                      "courts": FEDERAL_COURTS},
     "VA-RICHMOND": {"debtors": ["va.richmond.tax_delinquent"],
@@ -754,7 +791,8 @@ STATES: dict[str, dict[str, Any]] = {
                        "nc.charlotte.municipal_liens"],
                     "owners": ["nc.statewide.parcels"], "parcel_on_lien": True,
                     "courts": FEDERAL_COURTS},
-    "AZ-COCHISE": {"debtors": ["az.cochise.tax_liens"], "owners": ["az.cochise.parcels"],
+    "AZ-COCHISE": {"debtors": ["az.cochise.tax_liens", "az.cochise.tax_deed_auction"],
+                   "owners": ["az.cochise.parcels"],
                    "parcel_on_lien": True, "courts": FEDERAL_COURTS},
     "MS-HARRISON": {"debtors": ["ms.harrison.tax_sale_parcels"], "owners": ["ms.statewide.parcels"],
                     "parcel_on_lien": True, "courts": FEDERAL_COURTS},
@@ -762,6 +800,18 @@ STATES: dict[str, dict[str, Any]] = {
                 "courts": FEDERAL_COURTS},
     "PA-WASHINGTON": {"debtors": ["pa.washington.sheriff_sales"],
                       "owners": ["pa.washington.parcels"], "parcel_on_lien": True},
+    # NYC lien sale notices name no one: each is owed by the noticed parcel's owner. A run
+    # of its own, so the NY run's ACRIS instruments do not take on parcel_on_lien.
+    "NY-NYC-LIENSALE": {"debtors": ["ny.nyc.tax_lien_sale"], "owners": ["ny.statewide.parcels"],
+                        "parcel_on_lien": True},
+    # St. Joseph IN tax sale: named owners and state parcel numbers. Indiana's statewide layer
+    # has parcels but no owner names, so debtors link to the parcels their liens name.
+    "IN-STJOSEPH": {"debtors": ["in.st_joseph.tax_sale"], "owners": ["in.statewide.parcels"],
+                    "parcel_on_lien": True, "courts": FEDERAL_COURTS},
+    # West Virginia, the pilot state: no county lien list in instrument form yet (the
+    # delinquent-lands list is a snapshot table), so federal court judgments and the national
+    # debt lists against WV owners.
+    "WV": {"debtors": [], "owners": ["wv.statewide.parcels"], "courts": FEDERAL_COURTS},
 }  # fmt: skip
 
 
@@ -782,7 +832,7 @@ def bankruptcy_sources(state: str) -> list[str]:
 def state_sources(state: str) -> list[str]:
     """Every source a state's match reads: debtors, owners, mortgages, links, registries."""
     spec = STATES[state]
-    keys = ("debtors", "owners", "mortgages", "links", "registries")
+    keys = ("debtors", "owners", "mortgages", "links", "registries", "deeds")
     return sorted({s for k in keys for s in spec.get(k) or []} | set(bankruptcy_sources(state))
                   | set(FEDERAL_DEBTS))  # fmt: skip
 
@@ -804,7 +854,8 @@ def main(argv: list[str] | None = None) -> int:
                  spec.get("mortgages"), spec.get("links"),
                  bool(spec.get("street_town")), bool(spec.get("parcel_on_lien")),
                  spec.get("courts"), spec.get("writs"), spec.get("registries"),
-                 spec.get("debtor_doc_types"), bankruptcy_sources(args.state))  # fmt: skip
+                 spec.get("debtor_doc_types"), bankruptcy_sources(args.state),
+                 spec.get("deeds"))  # fmt: skip
     json.dump(result, sys.stdout, indent=2, default=str)
     print()
     return 0

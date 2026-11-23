@@ -1,0 +1,32 @@
+source_id: ny.nyc.dob_permits
+state: NY
+county_fips: "36061"
+# NYC Department of Buildings "DOB NOW: Build - Approved Permits" (data.cityofnewyork.us
+# rbx6-tga4, 1.03M permits since 2016-06): work permits with the owner's name and address, the
+# BBL, work type and estimated job cost. A signal that an owner is putting money into a
+# property (and who controls it), not a debt: OTHER instruments on the parcel, in no match
+# run. The estimated cost stays in the source record.
+portal: https://data.cityofnewyork.us
+dataset: rbx6-tga4
+where: "issued_date IS NOT NULL"
+order_by: [":id"]
+select: [job_filing_number, work_permit, sequence_number, filing_reason, bbl, work_type,
+         issued_date, estimated_job_costs, permit_status, owner_business_name, owner_name,
+         owner_street_address, owner_city, owner_state, owner_zip_code]
+date_field: issued_date
+partition: year
+first_year: 2016
+uid: [job_filing_number, work_permit, sequence_number]
+doc_type: OTHER
+doc_type_raw: {field: work_type}
+parties:
+  - role: other
+    name: owner_name
+    address: {line1: owner_street_address, city: owner_city, state: owner_state, zip: owner_zip_code}
+  - {role: other, name: owner_business_name, person_names: false}
+parcel: {kind: nyc_bbl10, field: bbl}
+terms:
+  url: https://data.cityofnewyork.us/d/rbx6-tga4
+  summary: "NYC Open Data (Socrata), Department of Buildings, NYC open data terms of use, free, no login."
+  checked_on: 2026-11-23
+  cost_model: free

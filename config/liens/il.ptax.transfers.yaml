@@ -1,0 +1,36 @@
+source_id: il.ptax.transfers
+state: IL
+# Illinois Department of Revenue real estate transfer declarations (PTAX-203, 203-A, 203-B;
+# data.illinois.gov it54-y4c6, Public Domain): every recorded deed statewide since 2014, with
+# seller and buyer, the primary PIN, consideration and the deed type, plus flags for
+# related-party, court-ordered and in-lieu-of-foreclosure transfers. Loaded as DEED instruments
+# (grantor = seller, grantee = buyer) on the parcel, for transfer detection and as an owner
+# proxy. Additional PINs (line_3) are not linked.
+portal: https://data.illinois.gov
+dataset: it54-y4c6
+order_by: [declaration_id]
+select: [declaration_id, status, document_number, date_recorded, line_1_county,
+         line_1_primary_pin, line_1_street, line_1_city, line_1_zip_code, line_4_instrument_date,
+         line_5_instrument_type, line_11_full_consideration, line_15_outstanding_mortgage,
+         line_10b_sale_between_related, line_10d_court_ordered_sale, line_10e_sale_in_lieu_of,
+         step_4_seller_name, step_4_buyer_name]
+date_field: date_recorded
+partition: month
+first_year: 2014
+uid: declaration_id
+doc_type: DEED
+doc_type_raw: Illinois transfer declaration (PTAX-203)
+consideration: line_11_full_consideration
+county_name_field: line_1_county
+parties:
+  - role: grantor
+    name: step_4_seller_name
+  - role: grantee
+    name: step_4_buyer_name
+parcel: {kind: pin, field: line_1_primary_pin, strip: "-"}   # '14-33-422-068-1145' -> 14 digits
+extra_pii: [line_1_street]
+terms:
+  url: https://data.illinois.gov/d/it54-y4c6
+  summary: "Illinois Department of Revenue on data.illinois.gov (Socrata), license field 'Public Domain', free, no login."
+  checked_on: 2026-11-23
+  cost_model: free

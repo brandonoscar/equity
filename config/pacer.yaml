@@ -1,0 +1,14 @@
+# PACER fees and the project's spending ceiling (equity.pacer). The fee schedule values are
+# facts from the judiciary's published schedule, read 2026-11-15 (docs/phase0.md):
+# https://pacer.uscourts.gov/pacer-pricing-how-fees-work
+schema_version: 1
+fees:
+  per_page: 0.10              # dollars per billable page
+  document_cap: 3.00          # a single document (and case-specific reports) costs at most this
+  uncapped_kinds: [search, name_report, transcript]   # search results and reports: no cap
+  quarterly_waiver: 30.00     # a quarter totalling this or less is waived
+# The project's ceiling per calendar quarter, in dollars. Brandon's decision: null refuses
+# every request (no PACER call can be authorized until it is set). The research suggests
+# about 28.00, staying under the $30 waiver.
+quarterly_ceiling: null       # TODO(Brandon)
+alert_fraction: 0.8           # warn once spend reaches this share of the ceiling

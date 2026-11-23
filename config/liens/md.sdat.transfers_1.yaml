@@ -1,0 +1,29 @@
+source_id: md.sdat.transfers_1
+state: MD
+# Maryland SDAT real property file (opendata.maryland.gov ed4q-f8tm, owner names hidden,
+# Public Domain, 2.43M accounts): the most recent of the three transfers SDAT keeps per account,
+# with the grantor, date, consideration and how it was conveyed. One DEED instrument per
+# account and transfer on parcel 24<county>-<account id> (the md.statewide.parcels key).
+# SDAT hides the current owner, so transfer 1 has no grantee.
+portal: https://opendata.maryland.gov
+dataset: ed4q-f8tm
+order_by: [account_id_mdp_field_acctid]
+select: [account_id_mdp_field_acctid, county_name_mdp_field_cntyname, sales_segment_1_grantor_name_mdp_field_grntnam1_sdat_field_80, sales_segment_1_transfer_number_mdp_field_transno1_sdat_field_79, sales_segment_1_how_conveyed_ind_mdp_field_convey1_sdat_field_87, sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89, sales_segment_1_consideration_mdp_field_considr1_sdat_field_90]
+where: "sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89 > '1900' AND sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89 <> '0000.00.00'"
+date_field: sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89
+partition: year
+first_year: 1950
+uid: [account_id_mdp_field_acctid, sales_segment_1_transfer_date_yyyy_mm_dd_mdp_field_tradate_sdat_field_89]
+doc_type: DEED
+doc_type_raw: {field: sales_segment_1_how_conveyed_ind_mdp_field_convey1_sdat_field_87}
+consideration: sales_segment_1_consideration_mdp_field_considr1_sdat_field_90
+county_name_field: county_name_mdp_field_cntyname
+parties:
+  - role: grantor
+    name: sales_segment_1_grantor_name_mdp_field_grntnam1_sdat_field_80
+parcel: {kind: pin, field: account_id_mdp_field_acctid}
+terms:
+  url: https://opendata.maryland.gov/d/ed4q-f8tm
+  summary: "Maryland Department of Assessments and Taxation file on opendata.maryland.gov (Socrata), license field 'Public Domain', free, no login; the State's owner names are withheld in this file."
+  checked_on: 2026-11-23
+  cost_model: free

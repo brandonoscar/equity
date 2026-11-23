@@ -1,0 +1,256 @@
+{
+ "layer": "https://services3.arcgis.com/T8dczfwPixv79EgZ/arcgis/rest/services/Land_Bank/FeatureServer/0",
+ "rows": [
+  {
+   "acreage": 0,
+   "class": "E",
+   "luc": "640",
+   "objectid": 1,
+   "owner": "CITY OF TOLEDO",
+   "parid": "1543874",
+   "property_address": "515 MULBERRY ST, TOLEDO OH 43604",
+   "taxyr": 2026
+  },
+  {
+   "acreage": 0,
+   "class": "E",
+   "luc": "640",
+   "objectid": 2,
+   "owner": "CITY OF TOLEDO",
+   "parid": "0312667",
+   "property_address": "626 MAGNOLIA ST, TOLEDO OH 43604",
+   "taxyr": 2026
+  },
+  {
+   "acreage": 0,
+   "class": "E",
+   "luc": "770",
+   "objectid": 3,
+   "owner": "CITY OF TOLEDO",
+   "parid": "1545257",
+   "property_address": "621 MAGNOLIA ST, TOLEDO OH 43604",
+   "taxyr": 2026
+  },
+  {
+   "acreage": 0,
+   "class": "E",
+   "luc": "640",
+   "objectid": 4,
+   "owner": "CITY OF TOLEDO",
+   "parid": "1544591",
+   "property_address": "1211 N HURON ST, TOLEDO OH 43604",
+   "taxyr": 2026
+  },
+  {
+   "acreage": 0,
+   "class": "E",
+   "luc": "640",
+   "objectid": 5,
+   "owner": "CITY OF TOLEDO",
+   "parid": "1544794",
+   "property_address": "829 N HURON ST, TOLEDO OH 43604",
+   "taxyr": 2026
+  },
+  {
+   "acreage": 0,
+   "class": "E",
+   "luc": "640",
+   "objectid": 6,
+   "owner": "CITY OF TOLEDO",
+   "parid": "1545791",
+   "property_address": "914 N ONTARIO ST, TOLEDO OH 43604",
+   "taxyr": 2026
+  },
+  {
+   "acreage": 0,
+   "class": "E",
+   "luc": "640",
+   "objectid": 7,
+   "owner": "CITY OF TOLEDO",
+   "parid": "1545364",
+   "property_address": "709 CHESTNUT ST, TOLEDO OH 43604",
+   "taxyr": 2026
+  },
+  {
+   "acreage": 0,
+   "class": "E",
+   "luc": "640",
+   "objectid": 8,
+   "owner": "CITY OF TOLEDO",
+   "parid": "1545387",
+   "property_address": "1121 N ERIE ST, TOLEDO OH 43604",
+   "taxyr": 2026
+  },
+  {
+   "acreage": 0,
+   "class": "E",
+   "luc": "640",
+   "objectid": 9,
+   "owner": "CITY OF TOLEDO",
+   "parid": "1545267",
+   "property_address": "711 MAGNOLIA ST, TOLEDO OH 43604",
+   "taxyr": 2026
+  },
+  {
+   "acreage": 0,
+   "class": "E",
+   "luc": "640",
+   "objectid": 10,
+   "owner": "CITY OF TOLEDO",
+   "parid": "1545281",
+   "property_address": "1325 N ERIE ST, TOLEDO OH 43604",
+   "taxyr": 2026
+  },
+  {
+   "acreage": 0,
+   "class": "E",
+   "luc": "640",
+   "objectid": 11,
+   "owner": "CITY OF TOLEDO",
+   "parid": "1545284",
+   "property_address": "1323 N ERIE ST, TOLEDO OH 43604",
+   "taxyr": 2026
+  },
+  {
+   "acreage": 0,
+   "class": "E",
+   "luc": "640",
+   "objectid": 12,
+   "owner": "CITY OF TOLEDO",
+   "parid": "1546027",
+   "property_address": "718 MULBERRY ST, TOLEDO OH 43604",
+   "taxyr": 2026
+  },
+  {
+   "acreage": 0,
+   "class": "E",
+   "luc": "640",
+   "objectid": 13,
+   "owner": "CITY OF TOLEDO",
+   "parid": "1428334",
+   "property_address": "716 MAGNOLIA ST, TOLEDO OH 43604",
+   "taxyr": 2026
+  },
+  {
+   "acreage": 0,
+   "class": "E",
+   "luc": "640",
+   "objectid": 14,
+   "owner": "CITY OF TOLEDO",
+   "parid": "1428347",
+   "property_address": "718 MAGNOLIA ST, TOLEDO OH 43604",
+   "taxyr": 2026
+  },
+  {
+   "acreage": 0,
+   "class": "E",
+   "luc": "640",
+   "objectid": 15,
+   "owner": "CITY OF TOLEDO",
+   "parid": "1430971",
+   "property_address": "805 STICKNEY AVE, TOLEDO OH 43604",
+   "taxyr": 2026
+  },
+  {
+   "acreage": 0,
+   "class": "E",
+   "luc": "640",
+   "objectid": 16,
+   "owner": "CITY OF TOLEDO",
+   "parid": "1546114",
+   "property_address": "1317 N ONTARIO ST, TOLEDO OH 43604",
+   "taxyr": 2026
+  },
+  {
+   "acreage": 0,
+   "class": "E",
+   "luc": "640",
+   "objectid": 17,
+   "owner": "CITY OF TOLEDO",
+   "parid": "1546121",
+   "property_address": "1311 N ONTARIO ST, TOLEDO OH 43604",
+   "taxyr": 2026
+  },
+  {
+   "acreage": 0,
+   "class": "E",
+   "luc": "640",
+   "objectid": 18,
+   "owner": "CITY OF TOLEDO",
+   "parid": "1546124",
+   "property_address": "812 MULBERRY ST, TOLEDO OH 43604",
+   "taxyr": 2026
+  },
+  {
+   "acreage": 0,
+   "class": "E",
+   "luc": "640",
+   "objectid": 19,
+   "owner": "CITY OF TOLEDO",
+   "parid": "1546204",
+   "property_address": "814 CHESTNUT ST, TOLEDO OH 43604",
+   "taxyr": 2026
+  },
+  {
+   "acreage": 0,
+   "class": "E",
+   "luc": "640",
+   "objectid": 20,
+   "owner": "CITY OF TOLEDO",
+   "parid": "1546257",
+   "property_address": "1103 N ONTARIO ST, TOLEDO OH 43604",
+   "taxyr": 2026
+  },
+  {
+   "acreage": 0,
+   "class": "E",
+   "luc": "640",
+   "objectid": 21,
+   "owner": "CITY OF TOLEDO",
+   "parid": "1546244",
+   "property_address": "812 ELM ST, TOLEDO OH 43604",
+   "taxyr": 2026
+  },
+  {
+   "acreage": 0,
+   "class": "R",
+   "luc": "500",
+   "objectid": 22,
+   "owner": "LUCAS COUNTY LAND REUTILIZATION",
+   "parid": "1547076",
+   "property_address": "910 ELM ST, TOLEDO OH 43604",
+   "taxyr": 2026
+  },
+  {
+   "acreage": 0,
+   "class": "E",
+   "luc": "640",
+   "objectid": 23,
+   "owner": "CITY OF TOLEDO",
+   "parid": "1027267",
+   "property_address": "923 MAGNOLIA ST, TOLEDO OH 43604",
+   "taxyr": 2026
+  },
+  {
+   "acreage": 0,
+   "class": "E",
+   "luc": "640",
+   "objectid": 24,
+   "owner": "CITY OF TOLEDO",
+   "parid": "1027281",
+   "property_address": "915 MAGNOLIA ST, TOLEDO OH 43604",
+   "taxyr": 2026
+  },
+  {
+   "acreage": 0,
+   "class": "E",
+   "luc": "640",
+   "objectid": 25,
+   "owner": "CITY OF TOLEDO",
+   "parid": "1027277",
+   "property_address": "917 MAGNOLIA ST, TOLEDO OH 43604",
+   "taxyr": 2026
+  }
+ ],
+ "where": "1=1"
+}

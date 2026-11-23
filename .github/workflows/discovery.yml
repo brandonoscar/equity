@@ -1,0 +1,47 @@
+name: discovery
+
+# Weekly search of ArcGIS Online and the Socrata catalog for new government sale and debt
+# layers (equity.discovery, config/discovery.yaml). Opens one issue listing the candidates
+# that are new since the previous week; each is a lead to check (licence, publisher,
+# fields) before any config is written. History is kept in object storage under discovery/.
+# Without SUPABASE_SECRET_KEY there is no history, so every candidate is listed as new.
+
+on:
+  schedule:
+    - cron: "17 13 * * 1"   # Mondays 13:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+env:
+  UV_VERSION: "0.11.32"
+
+jobs:
+  discover:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6.8.0
+        with: { version: "${{ env.UV_VERSION }}" }
+      - run: make sync
+      - name: search the catalogs
+        run: |
+          if [ -n "$SUPABASE_SECRET_KEY" ]; then
+            uv run --locked python -m equity.lake_sync pull-dir discovery data/derived/discovery
+          fi
+          uv run --locked python -m equity.discovery --out data/derived/discovery > found.md
+          cat found.md
+          if [ -n "$SUPABASE_SECRET_KEY" ]; then
+            uv run --locked python -m equity.lake_sync push-dir data/derived/discovery discovery
+          fi
+      - env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if grep -q '^| 20' found.md; then
+            gh issue create --title "New sale/debt layer candidates $(date -u +%F)" --body-file found.md
+          fi

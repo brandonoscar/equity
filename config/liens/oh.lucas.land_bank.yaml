@@ -1,0 +1,26 @@
+source_id: oh.lucas.land_bank
+state: OH
+county_fips: "39095"
+# Lucas County (Toledo) Land Reutilization Corporation inventory as published by the County
+# Auditor (1,789 parcels, edited 2026-10-19): parcels the land bank holds for resale, with
+# the deeded owner and the property address. A sale listing for the aggregator, not a debt:
+# loaded as OTHER instruments on the parcel and kept as a daily listing snapshot, so the
+# history shows parcels entering and leaving the inventory.
+api: arcgis
+layer_url: https://services3.arcgis.com/T8dczfwPixv79EgZ/arcgis/rest/services/Land_Bank/FeatureServer/0
+single_partition: true
+order_by: [objectid]
+select: [objectid, parid, taxyr, property_address, owner, class, luc, acreage]
+listed_on: listed_on
+date_field: listed_on
+uid: parid
+doc_type: OTHER
+doc_type_raw: Lucas County land bank property
+parties:
+  - {role: other, name: owner, person_names: false}
+parcel: {kind: pin, field: parid, county_fips: "39095"}
+terms:
+  url: https://www.arcgis.com/home/item.html?id=6fe15786b2ac428d8ab19c7624bd6b7c
+  summary: "Lucas County Auditor public ArcGIS Online layer, free, no login. licenseInfo (read 2026-11-23): not for conveyances, not a legal survey, no warranty; no use restriction."
+  checked_on: 2026-11-23
+  cost_model: free
