@@ -681,3 +681,27 @@ def test_one_field_can_hold_several_names_and_a_constant_city(tmp_path: Path) ->
     assert sorted(r["raw_name"] for t, r in out if t == "party") == ["ACME LLC", "ANN LEE"]
     (addr,) = {r["city"] for t, r in out if t == "address"}
     assert addr == "CHICAGO"
+
+
+def test_arcgis_rows_can_be_enriched_from_a_carto_table(tmp_path: Path) -> None:
+    cfg = _cfg(tmp_path, api="arcgis", layer_url="https://g.test/FeatureServer/0", portal=None,
+               dataset=None, released_on=None, date_field="jd", date_is_text=True,
+               enrich={"carto": "https://c.test/api/v2/sql", "table": "violations",
+                       "key": "casenumber", "field": "case", "columns": ["opa", "owner"]},
+               parcel={"kind": "pin", "field": "opa", "county_fips": "42101"},
+               parties=[{"role": "debtor", "name": "owner"}])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    feats = {
+        "features": [
+            {"attributes": {"ticket": "F1", "jd": "2026-01-02", "case": "C-1"}},
+            {"attributes": {"ticket": "F2", "jd": "2026-01-03", "case": "C-9"}},
+        ]
+    }
+    carto = {"rows": [{"casenumber": "C-1", "opa": "123", "owner": "ANN LEE"},
+                      {"casenumber": "C-1", "opa": "999", "owner": "LATER ROW"}]}  # fmt: skip
+    a = cls(_client({"FeatureServer/0/query": json.dumps(feats).encode(),
+                     "api/v2/sql": json.dumps(carto).encode()}))  # fmt: skip
+    rows = json.loads(a.fetch(FetchRequest({"from": "2026-01-01", "to": "2027-01-01"})).content)
+    by = {r["ticket"]: r for r in rows["rows"]}
+    assert (by["F1"]["opa"], by["F1"]["owner"]) == ("123", "ANN LEE")  # first match wins
+    assert by["F2"]["opa"] is None  # no match: columns present, empty

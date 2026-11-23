@@ -555,7 +555,7 @@ STATES: dict[str, dict[str, Any]] = {
                         "writs": ["fl.hillsborough.garnishment"]},
     # PA L&I lists name employers statewide; county parcel layers with owner names.
     "PA": {"debtors": ["pa.dli.uc_liens", "pa.dli.bwc_noncompliance", "pa.dli.bllc_noncompliance",
-                       "pa.washington.sheriff_sales"],
+                       "pa.washington.sheriff_sales", "pa.philadelphia.li_fines"],
            "owners": ["pa.berks.parcels", "pa.bucks.parcels", "pa.chester.parcels",
                       "pa.erie.parcels", "pa.franklin.parcels", "pa.lancaster.parcels",
                       "pa.mercer.parcels", "pa.montgomery.parcels", "pa.philadelphia.parcels",

@@ -16,6 +16,8 @@ Config keys:
                       whose first cell begins with `header`, columns split at its x positions)
   caption_field       a 'Plaintiff vs Defendant' caption, split into the derived fields
                       caption_plaintiff and caption_defendant for use in parties
+  enrich              arcgis: {carto: SQL API url, table, key, field, columns}: add columns
+                      from a Carto table, looked up by the row's field (e.g. owner by case)
   date_is_text        arcgis: date_field is ISO text, so windows compare strings, not DATEs
   excel_dates         xlsx: fields holding Excel serial day numbers, turned into ISO dates
   us_dates            file apis: fields holding M/D/YYYY dates, turned into ISO dates
@@ -519,6 +521,32 @@ class LienAdapter(Adapter):
                 return urllib.parse.urljoin(str(spec["page"]), href)
         raise LienConfigError(f"{self.source_id}: no link matching {spec['pattern']!r}")
 
+    def _enrich(self, rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        """Config enrich: {carto, table, key, field, columns}: look the row's `field` up as
+        `key` in a Carto SQL table and add `columns` (first match in key order wins). Used when
+        a source names a case but its owner and parcel live in another public table."""
+        spec = self.config.get("enrich")
+        if not spec or not rows:
+            return rows
+        field = str(spec["field"])
+        keys = sorted({str(r[field]) for r in rows if r.get(field) not in (None, "")})
+        found: dict[str, dict[str, Any]] = {}
+        cols = [str(c) for c in spec["columns"]]
+        for i in range(0, len(keys), 200):
+            # Table and column names come from repo config; keys are quoted with '' doubled.
+            quoted = ", ".join("'" + k.replace("'", "''") + "'" for k in keys[i : i + 200])
+            sql = (
+                f"SELECT {spec['key']}, {', '.join(cols)} FROM {spec['table']} "  # noqa: S608
+                f"WHERE {spec['key']} IN ({quoted}) ORDER BY {spec['key']}, {cols[0]}"
+            )
+            resp = self.client.get(str(spec["carto"]), {"q": sql})
+            if resp.status != 200:
+                raise LienConfigError(f"{self.source_id}: enrich query HTTP {resp.status}")
+            for r in json.loads(resp.content).get("rows") or []:
+                found.setdefault(str(r[spec["key"]]), {c: r.get(c) for c in cols})
+        empty = dict.fromkeys(cols)
+        return [{**r, **found.get(str(r.get(field)), empty)} for r in rows]
+
     def _file_rows(self, content: bytes) -> list[dict[str, Any]]:
         """Rows of a downloaded workbook, text file or page with Excel and M/D/YYYY dates as
         ISO text, split addresses and the list's as-of date, so normalize reads them like any
@@ -573,7 +601,7 @@ class LienAdapter(Adapter):
             q_a = self._arcgis_query(where, int(limit) if limit else 1000)
             feats, resps = arcgis_fetch_all(self.client, q_a, max_pages=1 if limit else 10_000,
                                             sample=bool(limit))  # fmt: skip
-            rows_a = [f.get("attributes") or {} for f in feats]
+            rows_a = self._enrich([f.get("attributes") or {} for f in feats])
             body_a = canonical_json({"layer": q_a.layer_url, "where": where, "rows": rows_a})
             at_a = resps[-1].retrieved_at if resps else datetime.now(UTC)
             return Fetched(self.source_id, f"{q_a.layer_url}/query?where={where}", at_a, 200,

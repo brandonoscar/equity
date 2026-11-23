@@ -1,0 +1,41 @@
+source_id: pa.philadelphia.li_fines
+state: PA
+county_fips: "42101"   # Philadelphia
+# City of Philadelphia Licenses & Inspections outstanding case fees and fines (code violation
+# fines, reinspection and other case fees), one row per fee still owed, updated daily. The fee
+# table names only the L&I case, so each case's OPA account (parcel) and owner of record are
+# looked up in the city's public L&I violations table on Carto.
+# TODO(Brandon): unpaid L&I fines become liens only once the City files them; confirm which
+# fee types are lienable before counting them as liens.
+api: arcgis
+layer_url: https://services.arcgis.com/fLeGjb7u4uXqeF9q/arcgis/rest/services/outstanding_case_fees/FeatureServer/0
+where: "outstandingfees > 0"
+order_by: [objectid]
+select: [objectid, jobid, casenumber, outstandingfees, feetypes, feeissueddate]
+enrich:
+  carto: https://phl.carto.com/api/v2/sql
+  table: violations
+  key: casenumber
+  field: casenumber
+  columns: [opa_account_num, opa_owner, address]
+date_field: feeissueddate
+partition: year
+first_year: 2000
+uid: [jobid, casenumber]
+doc_type: STATUTORY_LIEN
+doc_type_raw: {field: feetypes}
+amount: outstandingfees
+parties:
+  - role: debtor
+    name: opa_owner            # 'A, B' for joint owners
+    split: ","
+    address: {line1: address, city_const: PHILADELPHIA, state_const: PA}   # the property
+  - role: creditor
+    const: City of Philadelphia (L&I)
+parcel: {kind: pin, field: opa_account_num, county_fips: "42101"}   # same key as pa.philadelphia.parcels
+extra_pii: [address]
+terms:
+  url: https://opendataphilly.org/datasets/licenses-and-inspections-outstanding-fees/
+  summary: "City of Philadelphia open data (ArcGIS Online feature layer, and the L&I violations table on the city's Carto SQL API), free, no login. Philadelphia open data terms."
+  checked_on: 2026-11-23
+  cost_model: free
