@@ -1,0 +1,33 @@
+source_id: il.chicago.doah_judgments
+state: IL
+county_fips: "17031"   # Cook County (City of Chicago)
+# City of Chicago Department of Administrative Hearings, ordinance violations (buildings,
+# streets and sanitation, ...), one row per violation. Only findings of liability (Liable,
+# Default) are loaded. An unpaid DOAH judgment can be enforced like a circuit court judgment
+# (65 ILCS 5/1-2.1-8). No paid status or balance is published, so amounts are the fine plus
+# administrative costs imposed, not what is still owed.
+# TODO(Brandon): confirm whether unpaid DOAH judgments are recorded as liens on the property.
+portal: https://data.cityofchicago.org
+dataset: 6br9-quuz
+where: "case_disposition in ('Liable', 'Default')"
+order_by: [id]
+select: [id, docket_number, nov_number, address, hearing_date, case_disposition, imposed_fine,
+         admin_costs, issuing_department, violation_code, respondents]
+date_field: hearing_date
+partition: year
+first_year: 2008
+uid: id
+doc_type: JUDGMENT_LIEN
+doc_type_raw: {field: case_disposition}
+amount: [imposed_fine, admin_costs]
+parties:
+  - role: debtor
+    name: respondents            # every respondent in one field, separated by ' | '
+    address: {line1: address, state_const: IL}   # the cited property (no ZIP published)
+  - role: creditor
+    const: City of Chicago
+terms:
+  url: https://data.cityofchicago.org/d/6br9-quuz
+  summary: "City of Chicago Data Portal (Socrata), public, no login, updated daily. City of Chicago data terms of use."
+  checked_on: 2026-11-23
+  cost_model: free
