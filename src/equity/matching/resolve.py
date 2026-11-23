@@ -425,6 +425,8 @@ STATES: dict[str, dict[str, Any]] = {
                      "owners": ["md.baltimore_city.parcels"], "parcel_on_lien": True},
     # Harris County, TX: justice-court civil judgments against Texas parcel owners.
     "TX-HARRIS": {"debtors": ["tx.harris.jp.judgments"], "owners": ["tx.statewide.parcels"]},
+    # Travis: delinquent property tax accounts and tax-suit judgments, by owner name.
+    "TX-TRAVIS": {"debtors": ["tx.travis.tax_delinquent"], "owners": ["tx.statewide.parcels"]},
     # Detroit: blight judgments name the owner and the parcel; both are matched.
     "MI-WAYNE": {"debtors": ["mi.detroit.blight_judgments"], "owners": ["mi.wayne.parcels"],
                  "parcel_on_lien": True},

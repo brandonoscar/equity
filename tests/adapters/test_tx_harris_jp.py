@@ -43,6 +43,7 @@ def test_judgments() -> None:
 
 def test_partitions_and_window_guard() -> None:
     parts = list(HarrisJPJudgments().partitions())
-    assert parts[0] == {"from": "2010-01-01", "to": "2010-03-31"}
+    assert parts[:2] == [{"from": "2010-01-01", "to": "2010-01-14"},
+                         {"from": "2010-01-15", "to": "2010-01-28"}]  # fmt: skip
     with pytest.raises(ValueError, match="90 days"):
         HarrisJPJudgments().fetch(FetchRequest({"from": "2026-01-01", "to": "2026-06-01"}))

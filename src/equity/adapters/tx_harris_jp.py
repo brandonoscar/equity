@@ -10,8 +10,8 @@ becomes a lien only once abstracted, which this extract does not show). The part
 "Judgment Against" is the debtor, with the defendant's address when that party is the
 defendant or second defendant; "Judgment In Favor Of" is the creditor.
 
-Partitions are 90-day windows of judgment date (the extract's limit for all courts and case
-types) from 2010.
+Partitions are 14-day windows of judgment date (the extract allows 90 days for all courts and
+case types, but a 30-day window already takes about as long as Cloudflare waits) from 2010.
 """
 
 from __future__ import annotations
@@ -37,7 +37,8 @@ COUNTY = "48201"
 CASE_TYPES = ("64033,56068,8462,56073,64007,56072,8463,56074,56075,8464,56076,56079,56080,"
               "58183,8465,8466,56081,56083,51413,51414,56084,56085")  # fmt: skip
 FIRST = date(2010, 1, 1)
-WINDOW_DAYS = 90
+WINDOW_DAYS = 14  # 30 days took 111 s, at the Cloudflare 100 s origin timeout (HTTP 524)
+EXTRACT_LIMIT_DAYS = 90  # the most the extract serves for all courts and case types
 
 
 def _text(v: Any) -> str | None:
@@ -129,7 +130,7 @@ class HarrisJPJudgments(Adapter):
     def fetch(self, request: FetchRequest) -> Fetched:
         lo = date.fromisoformat(request.params["from"])  # parsed dates only reach the URL
         hi = date.fromisoformat(request.params["to"])
-        if (hi - lo).days >= WINDOW_DAYS or hi < lo:
+        if (hi - lo).days >= EXTRACT_LIMIT_DAYS or hi < lo:
             raise ValueError("window must be 1 to 90 days")
         params = {"extractCaseType": "CV", "extract": "3", "court": "300",
                   "casetype": CASE_TYPES, "format": "csv",
