@@ -174,7 +174,9 @@ def connect(
     doc_filter = ""
     if debtor_doc_types:
         types = ", ".join("'" + t.replace("'", "''") + "'" for t in debtor_doc_types)
-        doc_filter = f"AND i.doc_type IN ({types})"
+        # The filter is about the state's own sources; national debt lists always count.
+        fed = ", ".join(f"'{s}'" for s in FEDERAL_DEBTS)
+        doc_filter = f"AND (i.doc_type IN ({types}) OR i.source_id IN ({fed}))"
     stop = ", ".join(f"'{w}'" for w in STOP)
     con.execute(f"""
         CREATE MACRO name_key(n) AS array_to_string(list_sort(list_distinct(list_filter(
@@ -625,8 +627,9 @@ def run(
     writ_sources: list[str] | None = None,
     registry_sources: list[str] | None = None,
     debtor_doc_types: list[str] | None = None,
+    bankruptcy_sources: list[str] | None = None,
 ) -> dict[str, object]:
-    from equity.matching import entities, equity, review
+    from equity.matching import bankruptcy, entities, equity, review
 
     con = connect(lake, debtor_sources, owner_sources, parcel_on_lien, court_sources,
                   writ_sources, debtor_doc_types)  # fmt: skip
@@ -636,6 +639,9 @@ def run(
     if registry_sources:
         entities.compute(con, lake, registry_sources)
         tables.extend(entities.TABLES)
+    if bankruptcy_sources:
+        bankruptcy.compute(con, lake, bankruptcy_sources)
+        tables.extend(bankruptcy.TABLES)
     if mortgage_sources:
         equity.compute(con, lake, mortgage_sources, link_sources or [])
         tables.append("mortgage_status")
@@ -647,6 +653,8 @@ def run(
     result["review"] = review.summary(con)
     if registry_sources:
         result["registries"] = entities.summary(con)
+    if bankruptcy_sources:
+        result["bankruptcy"] = bankruptcy.summary(con)
     if mortgage_sources:
         result |= equity.summary(con)
     (out / "summary.json").write_text(json.dumps(result, indent=2, default=str))
@@ -657,6 +665,9 @@ def run(
 # run matches the ones in its owners' counties.
 FEDERAL_COURTS = ["us.fjc.idb.civil_judgments", "us.fjc.idb.direct.civil_judgments",
                   "us.epa.echo.judicial_cases"]  # fmt: skip
+# National debt lists every run reads as debtors (they link only where a debtor matches one
+# of the run's owners): SBA 7(a)/504 loans charged off.
+FEDERAL_DEBTS = ["us.sba.chargeoffs"]
 STATES: dict[str, dict[str, Any]] = {
     "NY": {
         "debtors": ["ny.dtf.tax_warrants", "ny.dtf.child_support_warrants",
@@ -665,7 +676,7 @@ STATES: dict[str, dict[str, Any]] = {
         "mortgages": ["ny.nyc.acris.real"],
         "links": ["ny.nyc.dof.condo_units"],
         "courts": FEDERAL_COURTS,
-        "registries": ["ny.sos.business"],
+        "registries": ["ny.sos.business", "ny.sos.name_history"],
     },
     # CT parcel data has no owner ZIP (Mailing_Zip is empty statewide): street + town instead.
     # Allegheny's parcel layer has no owner names, but its liens name the parcel (PIN).
@@ -757,14 +768,23 @@ STATES: dict[str, dict[str, Any]] = {
 # Every lake table a state's match reads (for pulling just these onto a fresh machine).
 TABLES_READ = ("address", "party", "instrument", "instrument_party", "instrument_ref",
                "instrument_parcel", "owner_snapshot", "parcel", "parcel_assessment",
-               "parcel_link", "business", "business_role")  # fmt: skip
+               "parcel_link", "business", "business_role", "judgment", "judgment_event",
+               "case_party", "court_case", "docket_entry")  # fmt: skip
+
+
+def bankruptcy_sources(state: str) -> list[str]:
+    """The enabled bankruptcy-court RSS feeds of a run's state ('OH', 'WI-MILWAUKEE' -> WI)."""
+    from equity.matching.bankruptcy import sources_for
+
+    return sources_for(state.split("-", 1)[0])
 
 
 def state_sources(state: str) -> list[str]:
     """Every source a state's match reads: debtors, owners, mortgages, links, registries."""
     spec = STATES[state]
     keys = ("debtors", "owners", "mortgages", "links", "registries")
-    return sorted({s for k in keys for s in spec.get(k) or []})
+    return sorted({s for k in keys for s in spec.get(k) or []} | set(bankruptcy_sources(state))
+                  | set(FEDERAL_DEBTS))  # fmt: skip
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -779,11 +799,12 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps({"sources": state_sources(args.state), "tables": list(TABLES_READ)}))
         return 0
     spec = STATES[args.state]
-    result = run(args.lake, args.out / args.state.lower(), spec["debtors"], spec["owners"],
+    result = run(args.lake, args.out / args.state.lower(), [*spec["debtors"], *FEDERAL_DEBTS],
+                 spec["owners"],
                  spec.get("mortgages"), spec.get("links"),
                  bool(spec.get("street_town")), bool(spec.get("parcel_on_lien")),
                  spec.get("courts"), spec.get("writs"), spec.get("registries"),
-                 spec.get("debtor_doc_types"))  # fmt: skip
+                 spec.get("debtor_doc_types"), bankruptcy_sources(args.state))  # fmt: skip
     json.dump(result, sys.stdout, indent=2, default=str)
     print()
     return 0

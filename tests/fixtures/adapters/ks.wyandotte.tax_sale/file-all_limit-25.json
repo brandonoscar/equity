@@ -1,0 +1,206 @@
+{
+ "layer": "https://services1.arcgis.com/Qo2HHQp8vgPs2wg3/arcgis/rest/services/Property_Tax_Sale/FeatureServer/0",
+ "rows": [
+  {
+   "ADDRESS": "3046 South 47th Street Kansas City, KS 66106",
+   "MINIMUM_BID": "$16,537.23",
+   "OBJECTID": 1,
+   "ORIONID": "R41670",
+   "PARCEL": "915520",
+   "PROPERTY_TYPE": "I"
+  },
+  {
+   "ADDRESS": "3011 South 28th Street Kansas City, KS 66106",
+   "MINIMUM_BID": "$28,237.95",
+   "OBJECTID": 2,
+   "ORIONID": "R70349",
+   "PARCEL": "149906",
+   "PROPERTY_TYPE": "I"
+  },
+  {
+   "ADDRESS": "1016 Suntree Place Kansas City, KS 66103",
+   "MINIMUM_BID": "$39,725.90",
+   "OBJECTID": 3,
+   "ORIONID": "R65116",
+   "PARCEL": "125501",
+   "PROPERTY_TYPE": "I"
+  },
+  {
+   "ADDRESS": "3104 West 44th Terrace Kansas City, KS 66103",
+   "MINIMUM_BID": "$19,488.28",
+   "OBJECTID": 4,
+   "ORIONID": "R66335",
+   "PARCEL": "135300",
+   "PROPERTY_TYPE": "I"
+  },
+  {
+   "ADDRESS": "5222 Woodend Avenue Kansas City, KS 66106",
+   "MINIMUM_BID": "$18,755.94",
+   "OBJECTID": 5,
+   "ORIONID": "R40810",
+   "PARCEL": "028306",
+   "PROPERTY_TYPE": "I"
+  },
+  {
+   "ADDRESS": "2609 South 27th Street Kansas City, KS 66106",
+   "MINIMUM_BID": "$5,787.74",
+   "OBJECTID": 6,
+   "ORIONID": "R70119",
+   "PARCEL": "150506",
+   "PROPERTY_TYPE": "V"
+  },
+  {
+   "ADDRESS": "4015 South Minnie Street Kansas City, KS 66103",
+   "MINIMUM_BID": "$96,142.51",
+   "OBJECTID": 7,
+   "ORIONID": "R65854",
+   "PARCEL": "133004",
+   "PROPERTY_TYPE": "I"
+  },
+  {
+   "ADDRESS": "2440 South 12th Terrace Kansas City, KS 66103",
+   "MINIMUM_BID": "$16,034.28",
+   "OBJECTID": 8,
+   "ORIONID": "R64851",
+   "PARCEL": "129342",
+   "PROPERTY_TYPE": "I"
+  },
+  {
+   "ADDRESS": "2426 South 13th Street Kansas City, KS 66103",
+   "MINIMUM_BID": "$13,556.29",
+   "OBJECTID": 9,
+   "ORIONID": "R64880",
+   "PARCEL": "129503",
+   "PROPERTY_TYPE": "I"
+  },
+  {
+   "ADDRESS": "1922 Matney Avenue Kansas City, KS 66106",
+   "MINIMUM_BID": "$25,457.99",
+   "OBJECTID": 10,
+   "ORIONID": "R69822",
+   "PARCEL": "908606",
+   "PROPERTY_TYPE": "I"
+  },
+  {
+   "ADDRESS": "2126 South 48th Street Kansas City, KS 66106",
+   "MINIMUM_BID": "$19,578.61",
+   "OBJECTID": 11,
+   "ORIONID": "R39476",
+   "PARCEL": "049226",
+   "PROPERTY_TYPE": "I"
+  },
+  {
+   "ADDRESS": "304 Lake Forest Drive Bonner Springs, KS 66012",
+   "MINIMUM_BID": "$4,362.49",
+   "OBJECTID": 12,
+   "ORIONID": "R27296",
+   "PARCEL": "201330",
+   "PROPERTY_TYPE": "V"
+  },
+  {
+   "ADDRESS": "114 South Cherokee Street Kansas City, KS 66103",
+   "MINIMUM_BID": "$17,835.12",
+   "OBJECTID": 13,
+   "ORIONID": "R63236",
+   "PARCEL": "902322",
+   "PROPERTY_TYPE": "I"
+  },
+  {
+   "ADDRESS": "1919 Steele Road Kansas City, KS 66106",
+   "MINIMUM_BID": "$11,292.14",
+   "OBJECTID": 14,
+   "ORIONID": "R67832",
+   "PARCEL": "908704",
+   "PROPERTY_TYPE": "I"
+  },
+  {
+   "ADDRESS": "1920 South 39th Street Kansas City, KS 66106",
+   "MINIMUM_BID": "$4,079.54",
+   "OBJECTID": 15,
+   "ORIONID": "R68524",
+   "PARCEL": "168320",
+   "PROPERTY_TYPE": "V"
+  },
+  {
+   "ADDRESS": "1908 South 38th Street Kansas City, KS 66106",
+   "MINIMUM_BID": "$58,728.17",
+   "OBJECTID": 16,
+   "ORIONID": "R68520",
+   "PARCEL": "168312",
+   "PROPERTY_TYPE": "I"
+  },
+  {
+   "ADDRESS": "2015 2017 2019 2021 2023 2025 2027 2029 2031 2033 2101 2103 2105 South Mill Kansas City, KS 66103",
+   "MINIMUM_BID": "$514,996.42",
+   "OBJECTID": 17,
+   "ORIONID": "R62919",
+   "PARCEL": "905004",
+   "PROPERTY_TYPE": null
+  },
+  {
+   "ADDRESS": "1907 South 39th Street Kansas City, KS 66106",
+   "MINIMUM_BID": "$4,770.54",
+   "OBJECTID": 18,
+   "ORIONID": "R68510",
+   "PARCEL": "168314",
+   "PROPERTY_TYPE": "V"
+  },
+  {
+   "ADDRESS": "1907 South 38th Street Kansas City, KS 66106",
+   "MINIMUM_BID": "$3,395.06",
+   "OBJECTID": 19,
+   "ORIONID": "R68504",
+   "PARCEL": "168300",
+   "PROPERTY_TYPE": "V"
+  },
+  {
+   "ADDRESS": "5301 Barber Avenue Kansas City, KS 66106",
+   "MINIMUM_BID": "$635.14",
+   "OBJECTID": 20,
+   "ORIONID": "R39160",
+   "PARCEL": "050260",
+   "PROPERTY_TYPE": "V"
+  },
+  {
+   "ADDRESS": "1615 South 13th Street Kansas City, KS 66103",
+   "MINIMUM_BID": "$11,213.56",
+   "OBJECTID": 21,
+   "ORIONID": "R63666",
+   "PARCEL": "143126",
+   "PROPERTY_TYPE": "I"
+  },
+  {
+   "ADDRESS": "1532 Woodland Boulevard Kansas City, KS 66106",
+   "MINIMUM_BID": "$12,017.71",
+   "OBJECTID": 22,
+   "ORIONID": "R67481",
+   "PARCEL": "165342",
+   "PROPERTY_TYPE": "I"
+  },
+  {
+   "ADDRESS": "1428 Ruby Avenue Kansas City, KS 66103",
+   "MINIMUM_BID": "$4,909.13",
+   "OBJECTID": 23,
+   "ORIONID": "R63588",
+   "PARCEL": "127907",
+   "PROPERTY_TYPE": "I"
+  },
+  {
+   "ADDRESS": "3500 Silver Avenue Kansas City, KS 66106",
+   "MINIMUM_BID": "$1,376.67",
+   "OBJECTID": 24,
+   "ORIONID": "R67934",
+   "PARCEL": "169088",
+   "PROPERTY_TYPE": "V"
+  },
+  {
+   "ADDRESS": "1043 Metropolitan Avenue Kansas City, KS 66103",
+   "MINIMUM_BID": "$5,816.14",
+   "OBJECTID": 25,
+   "ORIONID": "R63296",
+   "PARCEL": "127009",
+   "PROPERTY_TYPE": "I"
+  }
+ ],
+ "where": "1=1"
+}

@@ -11,6 +11,9 @@ role, title) and the role holders' `party` and `address` rows.
               registry, so an owner organization joins the registry entity with the same key
               in that state. A key shared by more than one entity id (a dissolved entity and a
               newer one of the same name) is kept for every id and flagged `ambiguous`.
+              Every name an entity has carried keys it (name-history sources such as
+              ny.sos.name_history add former and assumed names), so an old name still
+              reaches the entity; the current name is what the outputs show.
 
 Outputs (Parquet in the state's derived folder, git-ignored: they name people):
   owner_companies   owner organization -> registry entity, per parcel
@@ -61,11 +64,22 @@ def attach(con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str]) -> No
 
 SQL = """
 CREATE TEMP TABLE biz AS
-SELECT sos_id, any_value(name) AS business_name, any_value(status) AS status,
-       org_key(any_value(name)) AS org_key
+SELECT sos_id,
+       -- The registry's current name; a name-history row only when nothing else names it.
+       arg_max(name, CASE WHEN status IN ('former name', 'active name') THEN 0 ELSE 1 END)
+           AS business_name,
+       arg_max(status, CASE WHEN status IN ('former name', 'active name') THEN 0 ELSE 1 END)
+           AS status,
+       org_key(arg_max(name, CASE WHEN status IN ('former name', 'active name') THEN 0
+                                  ELSE 1 END)) AS org_key
 FROM r_business WHERE sos_id IS NOT NULL AND name IS NOT NULL GROUP BY sos_id;
+-- Every name an entity has carried (current, former, assumed) keys it, so a deed or a debt in
+-- an old name reaches the entity under its new one.
 CREATE TEMP TABLE biz_by_key AS
-SELECT org_key, list(sos_id ORDER BY sos_id) AS ids FROM biz WHERE org_key <> '' GROUP BY org_key;
+SELECT org_key, list(DISTINCT sos_id ORDER BY sos_id) AS ids FROM (
+    SELECT sos_id, org_key(name) AS org_key FROM r_business
+    WHERE sos_id IS NOT NULL AND name IS NOT NULL)
+WHERE org_key <> '' GROUP BY org_key;
 CREATE TEMP TABLE company_people AS
 SELECT DISTINCT r.sos_id, b.business_name, r.role, r.title, p.party_id, p.raw_name AS name,
        p.party_kind, name_key(p.raw_name) AS name_key, suffix_key(p.raw_name) AS suffix_key,

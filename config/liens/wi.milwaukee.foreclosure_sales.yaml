@@ -1,0 +1,35 @@
+source_id: wi.milwaukee.foreclosure_sales
+state: WI
+county_fips: "55079"
+# Milwaukee County Land Information Office "Foreclosed Parcels": every sheriff foreclosure sale
+# on the current list (400 rows on 2026-11-23) with the plaintiff (lender), defendant (owner),
+# case number, sale date, and the outcome where the sale is done: sale price and purchaser.
+# Loaded like the other sheriff-sale lists (LIS_PENDENS): foreclosure activity on the parcel,
+# not an open money judgment. Sale_Date is often in the future (scheduled sales), so the row
+# date is the day the list was read; the sale date and price stay in the source record.
+api: arcgis
+layer_url: https://services2.arcgis.com/s1wgJQKbKJihhhaT/arcgis/rest/services/Foreclosed_Parcels/FeatureServer/25
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, SSID, Year_, Sale_No, Sale_Date, Plaintiff, Defendant, Case_No, Zip_Code,
+         Sale_Price, Purchaser, MUNINAME, Address, MCLIO_TAXKEY]
+listed_on: listed_on
+date_field: listed_on
+uid: SSID
+doc_type: LIS_PENDENS
+doc_type_raw: Milwaukee County sheriff foreclosure sale
+parties:
+  - role: creditor
+    name: Plaintiff
+    person_names: false
+  - role: debtor
+    name: Defendant
+    address: {line1: Address, zip: Zip_Code, state_const: WI}   # the property
+  - {role: other, name: Purchaser}
+skip_names: ["NULL"]          # unsold rows carry the text NULL as purchaser
+parcel: {kind: pin, field: MCLIO_TAXKEY, county_fips: "55079"}
+terms:
+  url: https://www.arcgis.com/home/item.html?id=f3986d0a78b74c78941cbc00095ab89b
+  summary: "Milwaukee County public ArcGIS Online layer (owner DataCurator), free, no login. licenseInfo (read 2026-11-23): reference use only, not a legal instrument, no liability; no use restriction."
+  checked_on: 2026-11-23
+  cost_model: free

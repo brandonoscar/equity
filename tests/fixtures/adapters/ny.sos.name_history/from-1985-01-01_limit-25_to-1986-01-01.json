@@ -1,0 +1,205 @@
+{
+ "rows": [
+  {
+   "corp_name": "TESTOWNER 7D8255 LTD",
+   "corpid_num": "1000000",
+   "date_filed": "1985-05-28T00:00:00.000",
+   "film_num": "B230504-3",
+   "name_status": "I",
+   "name_type": "A"
+  },
+  {
+   "corp_name": "TESTOWNER C94209 INC",
+   "corpid_num": "1000001",
+   "date_filed": "1985-05-28T00:00:00.000",
+   "film_num": "B230507-3",
+   "name_status": "I",
+   "name_type": "A"
+  },
+  {
+   "corp_name": "TESTOWNER D15A1E INC",
+   "corpid_num": "1000002",
+   "date_filed": "1985-05-28T00:00:00.000",
+   "film_num": "B230508-4",
+   "name_status": "I",
+   "name_type": "A"
+  },
+  {
+   "corp_name": "TESTOWNER 5DD790 INC",
+   "corpid_num": "1000003",
+   "date_filed": "1985-05-28T00:00:00.000",
+   "film_num": "B230509-4",
+   "name_status": "I",
+   "name_type": "A"
+  },
+  {
+   "corp_name": "TESTOWNER 29F165 CORP",
+   "corpid_num": "1000004",
+   "date_filed": "1985-05-28T00:00:00.000",
+   "film_num": "B230510-4",
+   "name_status": "I",
+   "name_type": "A"
+  },
+  {
+   "corp_name": "TESTOWNER 631FAF CORP",
+   "corpid_num": "1000005",
+   "date_filed": "1985-05-28T00:00:00.000",
+   "film_num": "B230513-4",
+   "name_status": "I",
+   "name_type": "A"
+  },
+  {
+   "corp_name": "TESTOWNER A64756 INC",
+   "corpid_num": "1000006",
+   "date_filed": "1985-05-28T00:00:00.000",
+   "film_num": "B230514-5",
+   "name_status": "A",
+   "name_type": "A"
+  },
+  {
+   "corp_name": "TESTOWNER 2C7E16 CORP",
+   "corpid_num": "1000007",
+   "date_filed": "1985-05-28T00:00:00.000",
+   "film_num": "B230515-4",
+   "name_status": "I",
+   "name_type": "A"
+  },
+  {
+   "corp_name": "TESTOWNER 575A89 CORP",
+   "corpid_num": "1000008",
+   "date_filed": "1985-05-28T00:00:00.000",
+   "film_num": "B230516-3",
+   "name_status": "I",
+   "name_type": "A"
+  },
+  {
+   "corp_name": "TESTOWNER 56E663 INC",
+   "corpid_num": "1000009",
+   "date_filed": "1985-05-28T00:00:00.000",
+   "film_num": "B230517-7",
+   "name_status": "I",
+   "name_type": "A"
+  },
+  {
+   "corp_name": "TESTOWNER 3A231C INC",
+   "corpid_num": "1000010",
+   "date_filed": "1985-05-28T00:00:00.000",
+   "film_num": "B230519-10",
+   "name_status": "A",
+   "name_type": "A"
+  },
+  {
+   "corp_name": "TESTOWNER 0053C9 INC",
+   "corpid_num": "1000011",
+   "date_filed": "1985-05-28T00:00:00.000",
+   "film_num": "B230520-5",
+   "name_status": "I",
+   "name_type": "A"
+  },
+  {
+   "corp_name": "TESTOWNER B04B3F CORP",
+   "corpid_num": "1000012",
+   "date_filed": "1985-05-28T00:00:00.000",
+   "film_num": "B230521-4",
+   "name_status": "I",
+   "name_type": "A"
+  },
+  {
+   "corp_name": "TESTOWNER 67FC1D INC",
+   "corpid_num": "1000013",
+   "date_filed": "1985-05-28T00:00:00.000",
+   "film_num": "B230522-4",
+   "name_status": "A",
+   "name_type": "A"
+  },
+  {
+   "corp_name": "TESTOWNER EA33D4 INC",
+   "corpid_num": "1000014",
+   "date_filed": "1985-05-28T00:00:00.000",
+   "film_num": "B230523-4",
+   "name_status": "I",
+   "name_type": "A"
+  },
+  {
+   "corp_name": "TESTOWNER F8D5B6 INC",
+   "corpid_num": "1000015",
+   "date_filed": "1985-05-28T00:00:00.000",
+   "film_num": "B230524-4",
+   "name_status": "I",
+   "name_type": "A"
+  },
+  {
+   "corp_name": "TESTOWNER DBF667 INC",
+   "corpid_num": "1000016",
+   "date_filed": "1985-05-28T00:00:00.000",
+   "film_num": "B230526-2",
+   "name_status": "I",
+   "name_type": "A"
+  },
+  {
+   "corp_name": "TESTOWNER 3B84D7 CORP",
+   "corpid_num": "1000017",
+   "date_filed": "1985-05-28T00:00:00.000",
+   "film_num": "B230527-4",
+   "name_status": "I",
+   "name_type": "A"
+  },
+  {
+   "corp_name": "TESTOWNER 9930AE INC",
+   "corpid_num": "1000018",
+   "date_filed": "1985-05-28T00:00:00.000",
+   "film_num": "B230528-4",
+   "name_status": "I",
+   "name_type": "A"
+  },
+  {
+   "corp_name": "TESTOWNER C3FE36 LTD",
+   "corpid_num": "1000019",
+   "date_filed": "1985-12-10T00:00:00.000",
+   "film_num": "B298031-6",
+   "name_status": "I",
+   "name_type": "A"
+  },
+  {
+   "corp_name": "TESTOWNER 034E02 INC",
+   "corpid_num": "1000020",
+   "date_filed": "1985-12-10T00:00:00.000",
+   "film_num": "B298032-4",
+   "name_status": "I",
+   "name_type": "A"
+  },
+  {
+   "corp_name": "TESTOWNER 39D20D INC",
+   "corpid_num": "1000021",
+   "date_filed": "1985-12-10T00:00:00.000",
+   "film_num": "B298033-3",
+   "name_status": "I",
+   "name_type": "A"
+  },
+  {
+   "corp_name": "TESTOWNER EA9E54 INC",
+   "corpid_num": "1000022",
+   "date_filed": "1985-12-10T00:00:00.000",
+   "film_num": "B298034-3",
+   "name_status": "I",
+   "name_type": "A"
+  },
+  {
+   "corp_name": "TESTOWNER 0682DE INC",
+   "corpid_num": "1000023",
+   "date_filed": "1985-12-10T00:00:00.000",
+   "film_num": "B298035-5",
+   "name_status": "I",
+   "name_type": "A"
+  },
+  {
+   "corp_name": "TESTOWNER 596967 CORP",
+   "corpid_num": "1000024",
+   "date_filed": "1985-12-10T00:00:00.000",
+   "film_num": "B298036-4",
+   "name_status": "I",
+   "name_type": "A"
+  }
+ ],
+ "where": "date_filed >= '1985-01-01T00:00:00' AND date_filed < '1986-01-01T00:00:00'"
+}

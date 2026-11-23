@@ -30,15 +30,18 @@ def pseudonym(field: str, value: str) -> str:
     return f"TESTOWNER {token}" + (f" {form}" if form else "")
 
 
-def scrub(obj: Any, fields: tuple[str, ...]) -> Any:
+def scrub(obj: Any, fields: tuple[str, ...], keep: frozenset[str] = frozenset()) -> Any:
+    """Pseudonymize every non-empty string in `fields`, except placeholder values in `keep`
+    (a source's skip_names, e.g. a literal 'NULL'), which name nobody and must stay as they
+    are so the fixture still exercises the skip."""
     if isinstance(obj, dict):
         return {
-            k: (pseudonym(k, v) if k in fields and isinstance(v, str) and v.strip() else
-                scrub(v, fields))
+            k: (pseudonym(k, v) if k in fields and isinstance(v, str) and v.strip()
+                and v.strip().upper() not in keep else scrub(v, fields, keep))
             for k, v in obj.items()
         }  # fmt: skip
     if isinstance(obj, list):
-        return [scrub(v, fields) for v in obj]
+        return [scrub(v, fields, keep) for v in obj]
     return obj
 
 
@@ -65,7 +68,11 @@ def main(argv: list[str]) -> int:
         data = json.loads(custom(fetched.content))
     else:
         pii: tuple[str, ...] = getattr(cls, "pii_fields", ())
-        data = scrub(json.loads(fetched.content), pii)
+        config = getattr(adapter, "config", None)
+        get = getattr(config, "get", None)  # a lien config: skip_names lists placeholders
+        skips = get("skip_names", []) if callable(get) else []
+        keep = frozenset(str(s).strip().upper() for s in skips)
+        data = scrub(json.loads(fetched.content), pii, keep)
     name = "_".join(f"{k}-{v.replace('/', '')}" for k, v in sorted(params.items())) or "sample"
     path = out / f"{name}.json"
     path.write_text(json.dumps(data, sort_keys=True, indent=1) + "\n", encoding="utf-8")

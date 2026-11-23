@@ -104,3 +104,36 @@ def test_owner_and_debtor_company_links(tmp_path: Path) -> None:
     reg = result["registries"]
     assert isinstance(reg, dict)
     assert reg["owner_orgs_linked"] == 2 and reg["debtors_with_company_parcels_auto"] == 2
+
+
+def test_a_former_name_still_reaches_the_entity(tmp_path: Path) -> None:
+    lk = tmp_path / "lake"
+    d, o, r, h = lk / "s.debts", lk / "s.parcels", lk / "s.sos", lk / "s.names"
+    _write(d / "party" / "0.parquet", [
+        {"party_id": "d1", "raw_name": "X", "party_kind": "unknown", "org_name_norm": None,
+         "address_id": None}])  # fmt: skip
+    _write(d / "instrument_party" / "0.parquet",
+           [{"instrument_uid": "i1", "party_id": "d1", "role": "debtor"}])  # fmt: skip
+    _write(d / "instrument" / "0.parquet", [
+        {"instrument_uid": "i1", "source_id": "s.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2025-01-01", "principal_amount": 1.0}])  # fmt: skip
+    _write(o / "party" / "0.parquet", [
+        {"party_id": "o1", "raw_name": "REIN TEEN TOURS INC", "party_kind": "org",
+         "org_name_norm": "REIN TEEN TOURS", "address_id": None}])  # fmt: skip
+    _write(o / "owner_snapshot" / "0.parquet", [{"parcel_uid": "p1", "party_id": "o1"}])
+    _write(o / "parcel" / "0.parquet", [{"parcel_uid": "p1", "situs_address_id": None}])
+    _write(
+        r / "business" / "0.parquet",
+        [{"sos_id": "100", "name": "NORMAN'S TEEN TOURS, INC.", "status": "Active"}],
+    )
+    _write(h / "business" / "0.parquet", [
+        {"sos_id": "100", "name": "REIN TEEN TOURS, INC.", "status": "former name"},
+        {"sos_id": "100", "name": "NORMAN'S TEEN TOURS, INC.",
+         "status": "active name"}])  # fmt: skip
+    out = tmp_path / "out"
+    run(lk, out, ["s.debts"], ["s.parcels"], registry_sources=["s.sos", "s.names"])
+    got = duckdb.connect().execute(
+        f"SELECT parcel_uid, sos_id, business_name, ambiguous "
+        f"FROM '{out.as_posix()}/owner_companies.parquet'").fetchall()  # fmt: skip
+    # The deed is in the old name; the entity shows under its current registry name.
+    assert got == [("p1", "100", "NORMAN'S TEEN TOURS, INC.", False)]

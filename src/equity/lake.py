@@ -373,7 +373,8 @@ EXTRA_SOURCES = ("wv.statewide.delinquent", "ny.nyc.acris.real", "ny.nyc.dof.con
                  "co.sos.business", "or.sos.business",
                  "md.baltimore_city.citation_liens", "tx.harris.jp.judgments",
                  "tx.travis.tax_delinquent", "mi.detroit.blight_judgments",
-                 "ne.douglas.tax_liens")  # fmt: skip
+                 "ne.douglas.tax_liens", "us.hud.fha_reo", "us.federalregister.realty_notices",
+                 "us.sba.chargeoffs", "ny.sos.name_history")  # fmt: skip
 
 
 def parcel_sources() -> list[str]:

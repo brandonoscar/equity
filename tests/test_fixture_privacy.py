@@ -11,26 +11,46 @@ from equity.adapters.wv.parcelweb import MonongaliaParcelWeb, results_table
 ROOT = Path(__file__).parent / "fixtures" / "adapters"
 
 
-def _walk(obj: object, fields: tuple[str, ...]) -> list[str]:
+def _walk(obj: object, fields: tuple[str, ...], keep: frozenset[str] = frozenset()) -> list[str]:
     bad: list[str] = []
     if isinstance(obj, dict):
         for k, v in obj.items():
             if k in fields and isinstance(v, str) and v.strip():
-                if not (v.startswith("TESTOWNER") or v.endswith(" TEST ST")):
+                ok = v.startswith("TESTOWNER") or v.endswith(" TEST ST")
+                if not ok and v.strip().upper() not in keep:
                     bad.append(f"{k}={v[:3]}...")
             else:
-                bad += _walk(v, fields)
+                bad += _walk(v, fields, keep)
     elif isinstance(obj, list):
         for v in obj:
-            bad += _walk(v, fields)
+            bad += _walk(v, fields, keep)
     return bad
+
+
+def _placeholders(cls: type) -> frozenset[str]:
+    """A lien source's skip_names (e.g. a literal 'NULL' purchaser): they name nobody."""
+    get = getattr(getattr(cls, "config", None), "get", None)
+    return frozenset(
+        str(s).strip().upper() for s in (get("skip_names", []) if callable(get) else [])
+    )
 
 
 def test_json_fixtures_have_only_pseudonyms_in_pii_fields() -> None:
     for cls in REGISTRY:
         fields: tuple[str, ...] = getattr(cls, "pii_fields", ())
         for path in sorted((ROOT / cls.source_id).glob("*.json")):
-            assert _walk(json.loads(path.read_text()), fields) == [], path.name
+            bad = _walk(json.loads(path.read_text()), fields, _placeholders(cls))
+            assert bad == [], path.name
+
+
+def test_scrub_keeps_placeholders_and_pseudonymizes_names() -> None:
+    from equity.adapters.record import scrub
+
+    rows = [{"Purchaser": "NULL", "Defendant": "ANN LEE"}, {"Purchaser": "BOB RAY", "x": "NULL"}]
+    out = scrub(rows, ("Purchaser", "Defendant"), frozenset({"NULL"}))
+    assert out[0]["Purchaser"] == "NULL" and out[0]["Defendant"].startswith("TESTOWNER")
+    assert out[1]["Purchaser"].startswith("TESTOWNER") and out[1]["x"] == "NULL"
+    assert scrub(rows, ("Purchaser",))[0]["Purchaser"].startswith("TESTOWNER")  # no keep set
 
 
 def test_parcelweb_fixtures_have_only_pseudonyms() -> None:

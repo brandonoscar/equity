@@ -1,0 +1,28 @@
+source_id: ca.sonoma.defaulted_tax
+state: CA
+county_fips: "06097"
+# Sonoma County Auditor-Controller-Treasurer-Tax Collector "Defaulted Tax Data" (9,789 rows,
+# updated 2026-11-21): the defaulted secured tax pool that feeds California tax-defaulted sales
+# (Rev. & Tax. Code ch. 7), by assessment, with the default amount and the redemption date
+# once redeemed (loaded as a RELEASE). No owner names.
+portal: https://data.sonomacounty.ca.gov
+dataset: bp8v-uax7
+single_partition: true
+order_by: [":id"]
+select: [assessment_number, feeparcel, taxyear, default_date, defaultamt,
+         base_tax_amount, redemption_fee, redeemed_date, existsbankruptcy, location_address,
+         location_city_state]
+listed_on: listed_on
+date_field: listed_on
+uid: [assessment_number, taxyear]   # defaultnum (DEF + digits) trips the hex secrets scan
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Sonoma County defaulted secured tax
+amount: defaultamt
+released_on: redeemed_date
+parties: []
+parcel: {kind: pin, field: feeparcel, county_fips: "06097"}
+terms:
+  url: https://data.sonomacounty.ca.gov/d/bp8v-uax7
+  summary: "Sonoma County open data (Socrata), attribution 'County of Sonoma Auditor-Controller-Treasurer-Tax Collector', no license stated, free, no login. Mailing address columns are not fetched."
+  checked_on: 2026-11-23
+  cost_model: free

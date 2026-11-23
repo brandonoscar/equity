@@ -11,8 +11,11 @@ from equity.adapters.code_links import NJMunicipalCodeLinks
 from equity.adapters.dc_business import DCBusiness
 from equity.adapters.federal.ecf_rss import NDWVBankruptcyRSS, NDWVDistrictRSS, court_adapters
 from equity.adapters.federal.epa_echo import EPAJudicialCases
+from equity.adapters.federal.federal_register import FederalRegisterRealty
 from equity.adapters.federal.fjc_idb import FJCCivilJudgments
 from equity.adapters.federal.fjc_idb_direct import FJCDirectCivilJudgments
+from equity.adapters.federal.hud_reo import HudFhaReo
+from equity.adapters.federal.sba_chargeoffs import SBAChargeOffs
 from equity.adapters.fl.citrus_civil import CitrusCivil
 from equity.adapters.fl.hernando_civil import HernandoCivilFilings
 from equity.adapters.fl.hernando_or import HernandoOfficialRecords
@@ -30,6 +33,7 @@ from equity.adapters.md_baltimore_citations import BaltimoreCitationLiens
 from equity.adapters.ne_douglas_tax_liens import DouglasTaxLiens
 from equity.adapters.ny.acris import AcrisPersonalProperty, AcrisRealProperty
 from equity.adapters.ny.condo_units import NycCondoUnits
+from equity.adapters.ny.name_history import NYNameHistory
 from equity.adapters.pa.allegheny_assessments import AlleghenyAssessments
 from equity.adapters.pa.philadelphia_rtt import PhiladelphiaRTT
 from equity.adapters.ri_providence import ProvidenceTaxRoll
@@ -81,6 +85,10 @@ _ALL: tuple[type[Adapter], ...] = (
     FJCCivilJudgments,
     FJCDirectCivilJudgments,
     EPAJudicialCases,
+    HudFhaReo,
+    FederalRegisterRealty,
+    SBAChargeOffs,
+    NYNameHistory,
     HarrisJPCivilJudgments,
     HarrisDistrictCivilJudgments,
     *all_registry_adapters(),
