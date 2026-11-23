@@ -36,6 +36,9 @@ _BK = re.compile(
 )
 _ENTRY = re.compile(r"\[(?P<entry>[^\]]+)\]\s*\(?\s*(?P<doc>\d+)?")
 _TAGS = re.compile(r"<[^>]+>")
+# "Voluntary Petition (Chapter 7)", "Voluntary Petition Ch 13", "Involuntary Petition ...";
+# not a motion or certificate about one.
+_PETITION = re.compile(r"^\s*(Voluntary|Involuntary)\s+Petition", re.I)
 _SKIP_TYPES = {"cr", "mj", "po"}  # criminal, magistrate-criminal, petty offense
 _VS = re.compile(r"\s+v\.?\s+", re.I)
 _CHAPTERS = {"7", "9", "11", "12", "13", "15"}
@@ -80,7 +83,7 @@ class ECFRecentEntries(Adapter):
     court_id: ClassVar[str]
     host: ClassVar[str]
     jurisdiction: ClassVar[str] = "54"
-    adapter_version: ClassVar[str] = "1"
+    adapter_version: ClassVar[str] = "2"  # 2: bankruptcy rows from petition entries
     access_method: ClassVar[str] = "feed"
     # The feed holds only the last day or so of entries: each poll is a new lake part, and
     # rows already stored are dropped from it (equity.lake.drop_known, equity.refresh).
@@ -172,6 +175,13 @@ class ECFRecentEntries(Adapter):
                     yield ctx.fact("party", party_id=pid, raw_name=trustee,
                                    party_kind="unknown")  # fmt: skip
                     yield ctx.fact("case_party", case_uid=case_uid, party_id=pid, role="trustee")
+            if bk and chapter in _CHAPTERS and _PETITION.search(entry_type):
+                # The petition entry dates the case; later entries only show it is open.
+                yield ctx.fact(
+                    "bankruptcy", case_uid=case_uid, chapter=chapter, petition_on=entry_at.date(),
+                    discharge_on=None, dismissed_on=None, converted_on=None,
+                    trustee_party_id=None, asset_case=None,
+                )  # fmt: skip
             yield ctx.fact(
                 "docket_entry",
                 case_uid=case_uid,

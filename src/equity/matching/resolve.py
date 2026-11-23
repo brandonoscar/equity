@@ -625,8 +625,9 @@ def run(
     writ_sources: list[str] | None = None,
     registry_sources: list[str] | None = None,
     debtor_doc_types: list[str] | None = None,
+    bankruptcy_sources: list[str] | None = None,
 ) -> dict[str, object]:
-    from equity.matching import entities, equity, review
+    from equity.matching import bankruptcy, entities, equity, review
 
     con = connect(lake, debtor_sources, owner_sources, parcel_on_lien, court_sources,
                   writ_sources, debtor_doc_types)  # fmt: skip
@@ -636,6 +637,9 @@ def run(
     if registry_sources:
         entities.compute(con, lake, registry_sources)
         tables.extend(entities.TABLES)
+    if bankruptcy_sources:
+        bankruptcy.compute(con, lake, bankruptcy_sources)
+        tables.extend(bankruptcy.TABLES)
     if mortgage_sources:
         equity.compute(con, lake, mortgage_sources, link_sources or [])
         tables.append("mortgage_status")
@@ -647,6 +651,8 @@ def run(
     result["review"] = review.summary(con)
     if registry_sources:
         result["registries"] = entities.summary(con)
+    if bankruptcy_sources:
+        result["bankruptcy"] = bankruptcy.summary(con)
     if mortgage_sources:
         result |= equity.summary(con)
     (out / "summary.json").write_text(json.dumps(result, indent=2, default=str))
@@ -757,14 +763,22 @@ STATES: dict[str, dict[str, Any]] = {
 # Every lake table a state's match reads (for pulling just these onto a fresh machine).
 TABLES_READ = ("address", "party", "instrument", "instrument_party", "instrument_ref",
                "instrument_parcel", "owner_snapshot", "parcel", "parcel_assessment",
-               "parcel_link", "business", "business_role")  # fmt: skip
+               "parcel_link", "business", "business_role", "judgment", "judgment_event",
+               "case_party", "court_case", "docket_entry")  # fmt: skip
+
+
+def bankruptcy_sources(state: str) -> list[str]:
+    """The enabled bankruptcy-court RSS feeds of a run's state ('OH', 'WI-MILWAUKEE' -> WI)."""
+    from equity.matching.bankruptcy import sources_for
+
+    return sources_for(state.split("-", 1)[0])
 
 
 def state_sources(state: str) -> list[str]:
     """Every source a state's match reads: debtors, owners, mortgages, links, registries."""
     spec = STATES[state]
     keys = ("debtors", "owners", "mortgages", "links", "registries")
-    return sorted({s for k in keys for s in spec.get(k) or []})
+    return sorted({s for k in keys for s in spec.get(k) or []} | set(bankruptcy_sources(state)))
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -783,7 +797,7 @@ def main(argv: list[str] | None = None) -> int:
                  spec.get("mortgages"), spec.get("links"),
                  bool(spec.get("street_town")), bool(spec.get("parcel_on_lien")),
                  spec.get("courts"), spec.get("writs"), spec.get("registries"),
-                 spec.get("debtor_doc_types"))  # fmt: skip
+                 spec.get("debtor_doc_types"), bankruptcy_sources(args.state))  # fmt: skip
     json.dump(result, sys.stdout, indent=2, default=str)
     print()
     return 0

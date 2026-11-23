@@ -692,8 +692,78 @@ def test_list_sources_names_every_source_a_state_reads(
 
     assert state_sources("NY") == sorted({*STATES["NY"]["debtors"], *STATES["NY"]["owners"],
                                           "ny.sos.business", "ny.nyc.acris.real",
-                                          "ny.nyc.dof.condo_units"})  # fmt: skip
+                                          "ny.nyc.dof.condo_units",
+                                          "us.nysb.rss"})  # + NY's bankruptcy feed  # fmt: skip
     assert main(["--state", "TX-TRAVIS", "--list-sources"]) == 0
     got = json.loads(capsys.readouterr().out)
-    assert got == {"sources": ["tx.statewide.parcels", "tx.travis.tax_delinquent"],
+    assert got == {"sources": ["tx.statewide.parcels", "tx.travis.tax_delinquent",
+                               "us.txnb.rss"],
                    "tables": list(TABLES_READ)}  # fmt: skip
+
+
+def test_bankruptcy_screen_flags_debtors_named_in_state_bankruptcy_cases(
+    lake: Path, tmp_path: Path
+) -> None:
+    from equity.matching.bankruptcy import sources_for
+
+    bk = lake / "us.zzb.rss"
+    _write(bk / "court_case" / "0.parquet", [
+        {"case_uid": "zzb:1", "court_id": "zzb", "case_type": "bk",
+         "nature_of_suit": "chapter 7"},
+        {"case_uid": "zzb:2", "court_id": "zzb", "case_type": "bk",
+         "nature_of_suit": "chapter 13"},
+        {"case_uid": "zzb:3", "court_id": "zzb", "case_type": "bk", "nature_of_suit": None},
+        {"case_uid": "zzd:9", "court_id": "zzd", "case_type": "cv",
+         "nature_of_suit": None}])  # fmt: skip
+    _write(bk / "party" / "0.parquet", [
+        {"party_id": "b1", "raw_name": "Smith John A", "party_kind": "person",
+         "org_name_norm": None},
+        {"party_id": "b2", "raw_name": "Acme Holdings, LLC", "party_kind": "org",
+         "org_name_norm": "ACME HOLDINGS"},
+        {"party_id": "b3", "raw_name": "Mary Jones", "party_kind": "person", "org_name_norm": None},
+        {"party_id": "b4", "raw_name": "Pat Kim", "party_kind": "person",
+         "org_name_norm": None}])  # fmt: skip
+    _write(
+        bk / "case_party" / "0.parquet",
+        [
+            {"case_uid": "zzb:1", "party_id": "b1", "role": "debtor"},
+            {"case_uid": "zzb:2", "party_id": "b2", "role": "debtor"},
+            {"case_uid": "zzb:3", "party_id": "b3", "role": "debtor"},
+            {"case_uid": "zzd:9", "party_id": "b4", "role": "debtor"},
+        ],
+    )  # civil case: not a bk debtor
+    _write(bk / "docket_entry" / "0.parquet", [
+        {"case_uid": "zzb:1", "entry_date": "2026-11-01",
+         "text": "[Voluntary Petition (Chapter 7)]"},
+        {"case_uid": "zzb:1", "entry_date": "2026-11-20",
+         "text": "[BNC Certificate of Mailing - Order of Discharge]"},
+        {"case_uid": "zzb:2", "entry_date": "2026-11-05",
+         "text": "[BNC Certificate of Mailing - Order Dismissing Case]"},
+        {"case_uid": "zzb:3", "entry_date": "2026-11-06",
+         "text": "[Notice of Order on Trustee's Motion to Dismiss Case]"}])  # fmt: skip
+    out = tmp_path / "out"
+    result = run(lake, out, ["zz.debts"], ["zz.parcels"], bankruptcy_sources=["us.zzb.rss"])
+    flags = {r[0]: r[1:] for r in duckdb.connect().execute(
+        f"SELECT debtor_party_id, case_uid, chapter, status, rule_id, decision "
+        f"FROM '{out.as_posix()}/bankruptcy_flags.parquet'").fetchall()}  # fmt: skip
+    assert flags["d1"] == ("zzb:1", "7", "discharged", "person_name", "review")
+    assert flags["d2"] == ("zzb:2", "13", "dismissed", "org_name", "review")
+    assert flags["d3"] == (
+        "zzb:3",
+        None,
+        "open",
+        "person_name",
+        "review",
+    )  # a motion is not an order
+    assert "d4" not in flags and "d5" not in flags  # SMITH alone; PAT KIM only in a civil case
+    assert result["bankruptcy"]["bankruptcy_cases_seen"] == 3
+    assert result["bankruptcy"]["people_flagged_by_status"] == {
+        "discharged": 1, "dismissed": 1, "open": 1}  # fmt: skip
+    assert result["bankruptcy"]["people_with_parcels_flagged"] == 2  # d1, d2 matched owners
+    cfg = tmp_path / "cfg"
+    cfg.mkdir()
+    (cfg / "courts.yaml").write_text(
+        "enabled: [ohnb, ohsb, ohnd]\ncourts:\n  OH: [ohnd, ohsd, ohnb, ohsb]\n"
+    )
+    assert sources_for("oh", cfg) == ["us.ohnb.rss", "us.ohsb.rss"]
+    assert sources_for("ZZ", cfg) == []

@@ -1,0 +1,492 @@
+{
+ "query": "realty",
+ "rows": [
+  {
+   "agencies": [
+    {
+     "id": 253,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/253",
+     "name": "Interior Department",
+     "parent_id": null,
+     "raw_name": "DEPARTMENT OF THE INTERIOR",
+     "slug": "interior-department",
+     "url": "https://www.federalregister.gov/agencies/interior-department"
+    },
+    {
+     "id": 275,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/275",
+     "name": "Land Management Bureau",
+     "parent_id": 253,
+     "raw_name": "Bureau of Land Management",
+     "slug": "land-management-bureau",
+     "url": "https://www.federalregister.gov/agencies/land-management-bureau"
+    }
+   ],
+   "document_number": "2026-00509",
+   "html_url": "https://www.federalregister.gov/documents/2026/01/14/2026-00509/notice-of-realty-action-noncompetitive-direct-sale-of-public-land-in-moffat-county-co",
+   "publication_date": "2026-01-14",
+   "title": "Notice of Realty Action: Noncompetitive (Direct) Sale of Public Land in Moffat County, CO",
+   "type": "Notice"
+  },
+  {
+   "agencies": [
+    {
+     "id": 253,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/253",
+     "name": "Interior Department",
+     "parent_id": null,
+     "raw_name": "DEPARTMENT OF THE INTERIOR",
+     "slug": "interior-department",
+     "url": "https://www.federalregister.gov/agencies/interior-department"
+    },
+    {
+     "id": 275,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/275",
+     "name": "Land Management Bureau",
+     "parent_id": 253,
+     "raw_name": "Bureau of Land Management",
+     "slug": "land-management-bureau",
+     "url": "https://www.federalregister.gov/agencies/land-management-bureau"
+    }
+   ],
+   "document_number": "2026-03464",
+   "html_url": "https://www.federalregister.gov/documents/2026/02/23/2026-03464/direct-sale-of-public-lands-in-lyon-county-nv",
+   "publication_date": "2026-02-23",
+   "title": "Direct Sale of Public Lands in Lyon County, NV",
+   "type": "Notice"
+  },
+  {
+   "agencies": [
+    {
+     "id": 253,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/253",
+     "name": "Interior Department",
+     "parent_id": null,
+     "raw_name": "DEPARTMENT OF THE INTERIOR",
+     "slug": "interior-department",
+     "url": "https://www.federalregister.gov/agencies/interior-department"
+    },
+    {
+     "id": 275,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/275",
+     "name": "Land Management Bureau",
+     "parent_id": 253,
+     "raw_name": "Bureau of Land Management",
+     "slug": "land-management-bureau",
+     "url": "https://www.federalregister.gov/agencies/land-management-bureau"
+    }
+   ],
+   "document_number": "2026-03516",
+   "html_url": "https://www.federalregister.gov/documents/2026/02/23/2026-03516/realty-action-modified-competitive-sale-of-22-parcels-of-public-land-in-clark-county-nevada",
+   "publication_date": "2026-02-23",
+   "title": "Realty Action: Modified Competitive Sale of 22 Parcels of Public Land in Clark County, Nevada; Termination of Recreation and Public Purposes Act Classification",
+   "type": "Notice"
+  },
+  {
+   "agencies": [
+    {
+     "id": 253,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/253",
+     "name": "Interior Department",
+     "parent_id": null,
+     "raw_name": "DEPARTMENT OF THE INTERIOR",
+     "slug": "interior-department",
+     "url": "https://www.federalregister.gov/agencies/interior-department"
+    },
+    {
+     "id": 275,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/275",
+     "name": "Land Management Bureau",
+     "parent_id": 253,
+     "raw_name": "Bureau of Land Management",
+     "slug": "land-management-bureau",
+     "url": "https://www.federalregister.gov/agencies/land-management-bureau"
+    }
+   ],
+   "document_number": "2026-04022",
+   "html_url": "https://www.federalregister.gov/documents/2026/03/02/2026-04022/notice-of-realty-action-recreation-and-public-purposes-randpp-act-classification-lease-and",
+   "publication_date": "2026-03-02",
+   "title": "Notice of Realty Action: Recreation and Public Purposes (R&PP) Act Classification, Lease, and Subsequent Conveyance of Public Lands; Clark County, NV",
+   "type": "Notice"
+  },
+  {
+   "agencies": [
+    {
+     "id": 253,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/253",
+     "name": "Interior Department",
+     "parent_id": null,
+     "raw_name": "DEPARTMENT OF THE INTERIOR",
+     "slug": "interior-department",
+     "url": "https://www.federalregister.gov/agencies/interior-department"
+    },
+    {
+     "id": 275,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/275",
+     "name": "Land Management Bureau",
+     "parent_id": 253,
+     "raw_name": "Bureau of Land Management",
+     "slug": "land-management-bureau",
+     "url": "https://www.federalregister.gov/agencies/land-management-bureau"
+    }
+   ],
+   "document_number": "2026-04724",
+   "html_url": "https://www.federalregister.gov/documents/2026/03/11/2026-04724/direct-sale-of-the-reversionary-interest-in-a-recreation-and-public-purposes-act-patent-of-public",
+   "publication_date": "2026-03-11",
+   "title": "Direct Sale of the Reversionary Interest in a Recreation and Public Purposes Act Patent of Public Land in Jean, NV (NVNV105861510, Legacy N-101356)",
+   "type": "Notice"
+  },
+  {
+   "agencies": [
+    {
+     "id": 253,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/253",
+     "name": "Interior Department",
+     "parent_id": null,
+     "raw_name": "DEPARTMENT OF THE INTERIOR",
+     "slug": "interior-department",
+     "url": "https://www.federalregister.gov/agencies/interior-department"
+    },
+    {
+     "id": 275,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/275",
+     "name": "Land Management Bureau",
+     "parent_id": 253,
+     "raw_name": "Bureau of Land Management",
+     "slug": "land-management-bureau",
+     "url": "https://www.federalregister.gov/agencies/land-management-bureau"
+    }
+   ],
+   "document_number": "2026-05669",
+   "html_url": "https://www.federalregister.gov/documents/2026/03/24/2026-05669/direct-sale-of-public-land-for-affordable-housing-purposes-in-the-city-of-henderson-nevada",
+   "publication_date": "2026-03-24",
+   "title": "Direct Sale of Public Land for Affordable Housing Purposes in the City of Henderson, Nevada",
+   "type": "Notice"
+  },
+  {
+   "agencies": [
+    {
+     "id": 253,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/253",
+     "name": "Interior Department",
+     "parent_id": null,
+     "raw_name": "DEPARTMENT OF THE INTERIOR",
+     "slug": "interior-department",
+     "url": "https://www.federalregister.gov/agencies/interior-department"
+    },
+    {
+     "id": 275,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/275",
+     "name": "Land Management Bureau",
+     "parent_id": 253,
+     "raw_name": "Bureau of Land Management",
+     "slug": "land-management-bureau",
+     "url": "https://www.federalregister.gov/agencies/land-management-bureau"
+    }
+   ],
+   "document_number": "2026-06225",
+   "html_url": "https://www.federalregister.gov/documents/2026/03/31/2026-06225/notice-of-realty-action-direct-sale-of-public-lands-in-la-paz-county-az",
+   "publication_date": "2026-03-31",
+   "title": "Notice of Realty Action: Direct Sale of Public Lands in La Paz County, AZ",
+   "type": "Notice"
+  },
+  {
+   "agencies": [
+    {
+     "id": 253,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/253",
+     "name": "Interior Department",
+     "parent_id": null,
+     "raw_name": "DEPARTMENT OF THE INTERIOR",
+     "slug": "interior-department",
+     "url": "https://www.federalregister.gov/agencies/interior-department"
+    },
+    {
+     "id": 275,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/275",
+     "name": "Land Management Bureau",
+     "parent_id": 253,
+     "raw_name": "Bureau of Land Management",
+     "slug": "land-management-bureau",
+     "url": "https://www.federalregister.gov/agencies/land-management-bureau"
+    }
+   ],
+   "document_number": "2026-07117",
+   "html_url": "https://www.federalregister.gov/documents/2026/04/13/2026-07117/realty-action-direct-sale-of-public-lands-in-converse-county-wy",
+   "publication_date": "2026-04-13",
+   "title": "Realty Action: Direct Sale of Public Lands in Converse County, WY",
+   "type": "Notice"
+  },
+  {
+   "agencies": [
+    {
+     "id": 253,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/253",
+     "name": "Interior Department",
+     "parent_id": null,
+     "raw_name": "DEPARTMENT OF THE INTERIOR",
+     "slug": "interior-department",
+     "url": "https://www.federalregister.gov/agencies/interior-department"
+    },
+    {
+     "id": 275,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/275",
+     "name": "Land Management Bureau",
+     "parent_id": 253,
+     "raw_name": "Bureau of Land Management",
+     "slug": "land-management-bureau",
+     "url": "https://www.federalregister.gov/agencies/land-management-bureau"
+    }
+   ],
+   "document_number": "2026-07397",
+   "html_url": "https://www.federalregister.gov/documents/2026/04/16/2026-07397/notice-of-realty-action-recreation-and-public-purposes-act-classification-rapides-and-lasalle",
+   "publication_date": "2026-04-16",
+   "title": "Notice of Realty Action: Recreation and Public Purposes Act Classification; Rapides and LaSalle Parishes, Louisiana",
+   "type": "Notice"
+  },
+  {
+   "agencies": [
+    {
+     "id": 253,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/253",
+     "name": "Interior Department",
+     "parent_id": null,
+     "raw_name": "DEPARTMENT OF THE INTERIOR",
+     "slug": "interior-department",
+     "url": "https://www.federalregister.gov/agencies/interior-department"
+    },
+    {
+     "id": 275,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/275",
+     "name": "Land Management Bureau",
+     "parent_id": 253,
+     "raw_name": "Bureau of Land Management",
+     "slug": "land-management-bureau",
+     "url": "https://www.federalregister.gov/agencies/land-management-bureau"
+    }
+   ],
+   "document_number": "2026-08272",
+   "html_url": "https://www.federalregister.gov/documents/2026/04/29/2026-08272/realty-action-classification-for-recreation-and-public-purposes-conveyance-for-a-cemetery-in",
+   "publication_date": "2026-04-29",
+   "title": "Realty Action: Classification for Recreation and Public Purposes Conveyance for a Cemetery in Sublette County, WY",
+   "type": "Notice"
+  },
+  {
+   "agencies": [
+    {
+     "id": 253,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/253",
+     "name": "Interior Department",
+     "parent_id": null,
+     "raw_name": "DEPARTMENT OF THE INTERIOR",
+     "slug": "interior-department",
+     "url": "https://www.federalregister.gov/agencies/interior-department"
+    },
+    {
+     "id": 275,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/275",
+     "name": "Land Management Bureau",
+     "parent_id": 253,
+     "raw_name": "Bureau of Land Management",
+     "slug": "land-management-bureau",
+     "url": "https://www.federalregister.gov/agencies/land-management-bureau"
+    }
+   ],
+   "document_number": "2026-08349",
+   "html_url": "https://www.federalregister.gov/documents/2026/04/30/2026-08349/realty-action-recreation-and-public-purposes-act-classification-in-graham-county-az",
+   "publication_date": "2026-04-30",
+   "title": "Realty Action: Recreation and Public Purposes Act Classification in Graham County, AZ",
+   "type": "Notice"
+  },
+  {
+   "agencies": [
+    {
+     "id": 253,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/253",
+     "name": "Interior Department",
+     "parent_id": null,
+     "raw_name": "DEPARTMENT OF THE INTERIOR",
+     "slug": "interior-department",
+     "url": "https://www.federalregister.gov/agencies/interior-department"
+    },
+    {
+     "id": 275,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/275",
+     "name": "Land Management Bureau",
+     "parent_id": 253,
+     "raw_name": "Bureau of Land Management",
+     "slug": "land-management-bureau",
+     "url": "https://www.federalregister.gov/agencies/land-management-bureau"
+    }
+   ],
+   "document_number": "2026-08548",
+   "html_url": "https://www.federalregister.gov/documents/2026/05/01/2026-08548/notice-of-realty-action-direct-sale-of-public-land-in-emery-county-utah",
+   "publication_date": "2026-05-01",
+   "title": "Notice of Realty Action: Direct Sale of Public Land in Emery County, Utah",
+   "type": "Notice"
+  },
+  {
+   "agencies": [
+    {
+     "id": 253,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/253",
+     "name": "Interior Department",
+     "parent_id": null,
+     "raw_name": "DEPARTMENT OF THE INTERIOR",
+     "slug": "interior-department",
+     "url": "https://www.federalregister.gov/agencies/interior-department"
+    },
+    {
+     "id": 275,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/275",
+     "name": "Land Management Bureau",
+     "parent_id": 253,
+     "raw_name": "Bureau of Land Management",
+     "slug": "land-management-bureau",
+     "url": "https://www.federalregister.gov/agencies/land-management-bureau"
+    }
+   ],
+   "document_number": "2026-10826",
+   "html_url": "https://www.federalregister.gov/documents/2026/06/01/2026-10826/notice-of-realty-action-calcasieu-pass-non-competitive-direct-sale-cameron-parish-la",
+   "publication_date": "2026-06-01",
+   "title": "Notice of Realty Action: Calcasieu Pass Non-Competitive Direct Sale, Cameron Parish, LA",
+   "type": "Notice"
+  },
+  {
+   "agencies": [
+    {
+     "id": 253,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/253",
+     "name": "Interior Department",
+     "parent_id": null,
+     "raw_name": "DEPARTMENT OF THE INTERIOR",
+     "slug": "interior-department",
+     "url": "https://www.federalregister.gov/agencies/interior-department"
+    },
+    {
+     "id": 275,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/275",
+     "name": "Land Management Bureau",
+     "parent_id": 253,
+     "raw_name": "Bureau of Land Management",
+     "slug": "land-management-bureau",
+     "url": "https://www.federalregister.gov/agencies/land-management-bureau"
+    }
+   ],
+   "document_number": "2026-14887",
+   "html_url": "https://www.federalregister.gov/documents/2026/07/23/2026-14887/intent-to-amend-the-resource-management-plan-and-prepare-an-associated-environmental-assessment",
+   "publication_date": "2026-07-23",
+   "title": "Intent To Amend the Resource Management Plan and Prepare an Associated Environmental Assessment; Notice of Realty Action: Proposed Sale of Public Land and Reversionary Interest in Socorro County, NM",
+   "type": "Notice"
+  },
+  {
+   "agencies": [
+    {
+     "id": 253,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/253",
+     "name": "Interior Department",
+     "parent_id": null,
+     "raw_name": "DEPARTMENT OF THE INTERIOR",
+     "slug": "interior-department",
+     "url": "https://www.federalregister.gov/agencies/interior-department"
+    },
+    {
+     "id": 275,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/275",
+     "name": "Land Management Bureau",
+     "parent_id": 253,
+     "raw_name": "Bureau of Land Management",
+     "slug": "land-management-bureau",
+     "url": "https://www.federalregister.gov/agencies/land-management-bureau"
+    }
+   ],
+   "document_number": "2026-23080",
+   "html_url": "https://www.federalregister.gov/documents/2026/11/12/2026-23080/direct-sale-of-public-land-for-affordable-housing-purposes-in-clark-county-nevada",
+   "publication_date": "2026-11-12",
+   "title": "Direct Sale of Public Land for Affordable Housing Purposes in Clark County, Nevada",
+   "type": "Notice"
+  },
+  {
+   "agencies": [
+    {
+     "id": 253,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/253",
+     "name": "Interior Department",
+     "parent_id": null,
+     "raw_name": "DEPARTMENT OF THE INTERIOR",
+     "slug": "interior-department",
+     "url": "https://www.federalregister.gov/agencies/interior-department"
+    },
+    {
+     "id": 275,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/275",
+     "name": "Land Management Bureau",
+     "parent_id": 253,
+     "raw_name": "Bureau of Land Management",
+     "slug": "land-management-bureau",
+     "url": "https://www.federalregister.gov/agencies/land-management-bureau"
+    }
+   ],
+   "document_number": "2026-23558",
+   "html_url": "https://www.federalregister.gov/documents/2026/11/19/2026-23558/realty-action-recreation-and-public-purposes-act-classification-and-segregation-of-public-land-for",
+   "publication_date": "2026-11-19",
+   "title": "Realty Action: Recreation and Public Purposes Act Classification and Segregation of Public Land for Ivins City, Washington County, Utah",
+   "type": "Notice"
+  },
+  {
+   "agencies": [
+    {
+     "id": 253,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/253",
+     "name": "Interior Department",
+     "parent_id": null,
+     "raw_name": "DEPARTMENT OF THE INTERIOR",
+     "slug": "interior-department",
+     "url": "https://www.federalregister.gov/agencies/interior-department"
+    },
+    {
+     "id": 275,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/275",
+     "name": "Land Management Bureau",
+     "parent_id": 253,
+     "raw_name": "Bureau of Land Management",
+     "slug": "land-management-bureau",
+     "url": "https://www.federalregister.gov/agencies/land-management-bureau"
+    }
+   ],
+   "document_number": "2026-23559",
+   "html_url": "https://www.federalregister.gov/documents/2026/11/19/2026-23559/realty-action-recreation-and-public-purposes-act-classification-and-conveyance-of-public-land-in",
+   "publication_date": "2026-11-19",
+   "title": "Realty Action: Recreation and Public Purposes Act Classification and Conveyance of Public Land in Kane County, UT",
+   "type": "Notice"
+  },
+  {
+   "agencies": [
+    {
+     "id": 253,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/253",
+     "name": "Interior Department",
+     "parent_id": null,
+     "raw_name": "DEPARTMENT OF THE INTERIOR",
+     "slug": "interior-department",
+     "url": "https://www.federalregister.gov/agencies/interior-department"
+    },
+    {
+     "id": 275,
+     "json_url": "https://www.federalregister.gov/api/v1/agencies/275",
+     "name": "Land Management Bureau",
+     "parent_id": 253,
+     "raw_name": "Bureau of Land Management",
+     "slug": "land-management-bureau",
+     "url": "https://www.federalregister.gov/agencies/land-management-bureau"
+    }
+   ],
+   "document_number": "2026-23587",
+   "html_url": "https://www.federalregister.gov/documents/2026/11/19/2026-23587/realty-action-modified-competitive-sale-of-20-parcels-of-public-land-in-clark-county-nevada",
+   "publication_date": "2026-11-19",
+   "title": "Realty Action: Modified Competitive Sale of 20 Parcels of Public Land in Clark County, Nevada; Modification of Recreation and Public Purposes Act Classification",
+   "type": "Notice"
+  }
+ ],
+ "year": 2026
+}
