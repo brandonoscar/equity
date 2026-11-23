@@ -539,7 +539,8 @@ STATES: dict[str, dict[str, Any]] = {
                        "pa.washington.sheriff_sales"],
            "owners": ["pa.berks.parcels", "pa.bucks.parcels", "pa.chester.parcels",
                       "pa.erie.parcels", "pa.franklin.parcels", "pa.lancaster.parcels",
-                      "pa.mercer.parcels", "pa.montgomery.parcels", "pa.philadelphia.parcels", "pa.washington.parcels"],
+                      "pa.mercer.parcels", "pa.montgomery.parcels", "pa.philadelphia.parcels",
+                      "pa.washington.parcels"],
            "parcel_on_lien": True, "courts": ["us.fjc.idb.civil_judgments"], "street_town": True},
     # The PA and VT lists publish street and town but no ZIP: street + town rules, as in CT.
     "VT": {"debtors": ["vt.tax.top100_individuals", "vt.tax.top100_businesses"],
