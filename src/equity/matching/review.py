@@ -3,13 +3,16 @@
 Nothing here accepts or rejects a match. Each candidate gets fixed, re-derivable labels so a
 person (or a rule the project owner approves later) can work the queue in order:
 
-  category   spelling_only   street lines agree once suffix and direction words are
+  category   middle_initial  matched by person_name_initial_address: same address, a middle
+                             initial on one side only (a parent and child can share both)
+             spelling_only   street lines agree once suffix and direction words are
                              spelled one way (ST/STREET, N/NORTH, ...) and punctuation dropped;
                              none now that address keys use that spelling (kept as a check)
              same_number     same house number, different street
              po_box          the debtor's address is a PO box (says nothing about property)
              different       anything else
   owners_with_name_in_zip    owner parties in that ZIP with the same name key (1 = unique)
+  rule_id                    the review rule that proposed the pair
 
 Output review_queue.parquet in the state's derived folder (git-ignored: it names people) and
 counts in summary.json under "review".
@@ -45,7 +48,7 @@ def street_macro(con: duckdb.DuckDBPyConnection) -> None:
 SQL = """
 CREATE TEMP TABLE review_queue AS
 WITH q AS (
-    SELECT m.debtor_party_id, m.instrument_uid, m.owner_party_id, m.parcel_uid, m.key
+    SELECT m.debtor_party_id, m.instrument_uid, m.owner_party_id, m.parcel_uid, m.key, m.rule_id
     FROM matches m
     WHERE m.decision = 'review'
       AND m.debtor_party_id NOT IN (SELECT debtor_party_id FROM matches WHERE decision = 'auto')
@@ -68,6 +71,7 @@ SELECT q.debtor_party_id, d.raw_name AS debtor_name, d.line1 AS debtor_line1,
        d.released, q.instrument_uid, q.owner_party_id, o.raw_name AS owner_name,
        o.mail_line1, o.mail_zip, o.situs_line1, o.situs_zip, q.parcel_uid, v.value AS parcel_value,
        CASE
+         WHEN q.rule_id = 'person_name_initial_address' THEN 'middle_initial'
          WHEN regexp_matches(street_norm(d.line1), '^(P ?O ?BOX|POB|BOX) ')
            THEN 'po_box'
          WHEN street_norm(d.line1) <> '' AND street_norm(d.line1)
@@ -75,7 +79,7 @@ SELECT q.debtor_party_id, d.raw_name AS debtor_name, d.line1 AS debtor_line1,
          WHEN house_no(d.line1) <> '' AND house_no(d.line1)
               IN (house_no(o.mail_line1), house_no(o.situs_line1)) THEN 'same_number'
          ELSE 'different' END AS category,
-       coalesce(sn.n, 0) AS owners_with_name_in_zip
+       coalesce(sn.n, 0) AS owners_with_name_in_zip, q.rule_id
 FROM q
 JOIN d ON d.party_id = q.debtor_party_id AND d.instrument_uid = q.instrument_uid
 JOIN o ON o.party_id = q.owner_party_id AND o.parcel_uid = q.parcel_uid

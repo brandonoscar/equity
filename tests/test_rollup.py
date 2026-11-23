@@ -51,7 +51,7 @@ def test_rollup_counts_and_queue(tmp_path: Path, capsys: pytest.CaptureFixture[s
     assert csv[0].startswith("debtor_party_id") and len(csv) == 3
     assert not (tmp_path / "ct" / "review_queue.csv").exists()
     table = markdown(rows)
-    assert "| ny | 10 | 4 | 2 | 0 | 0 | 1 | 1 | $1,500 |  |" in table
+    assert "| ny | 10 | 4 | 2 | 0 | 0 | 0 | 1 | 1 | $1,500 |  |" in table
     assert main(["--derived", str(tmp_path)]) == 0
     assert "| ct | 3 | 1 |" in capsys.readouterr().out
 

@@ -754,12 +754,30 @@ STATES: dict[str, dict[str, Any]] = {
 }  # fmt: skip
 
 
+# Every lake table a state's match reads (for pulling just these onto a fresh machine).
+TABLES_READ = ("address", "party", "instrument", "instrument_party", "instrument_ref",
+               "instrument_parcel", "owner_snapshot", "parcel", "parcel_assessment",
+               "parcel_link", "business", "business_role")  # fmt: skip
+
+
+def state_sources(state: str) -> list[str]:
+    """Every source a state's match reads: debtors, owners, mortgages, links, registries."""
+    spec = STATES[state]
+    keys = ("debtors", "owners", "mortgages", "links", "registries")
+    return sorted({s for k in keys for s in spec.get(k) or []})
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="equity.matching.resolve")
     ap.add_argument("--state", required=True, choices=sorted(STATES))
+    ap.add_argument("--list-sources", action="store_true",
+                    help="print the sources and tables this state reads, then stop")  # fmt: skip
     ap.add_argument("--lake", type=Path, default=LAKE)
     ap.add_argument("--out", type=Path, default=DERIVED, help="writes <out>/<state>/")
     args = ap.parse_args(argv)
+    if args.list_sources:
+        print(json.dumps({"sources": state_sources(args.state), "tables": list(TABLES_READ)}))
+        return 0
     spec = STATES[args.state]
     result = run(args.lake, args.out / args.state.lower(), spec["debtors"], spec["owners"],
                  spec.get("mortgages"), spec.get("links"),
