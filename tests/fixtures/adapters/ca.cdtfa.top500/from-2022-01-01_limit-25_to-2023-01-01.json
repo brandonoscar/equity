@@ -1,0 +1,281 @@
+{
+ "layer": "https://services6.arcgis.com/snwvZ3EmaoXJiugR/arcgis/rest/services/Top500Deliquencies/FeatureServer/0",
+ "rows": [
+  {
+   "Amount": 23526346.53,
+   "BusinessName": "",
+   "CityOrTown": "SAN BERNARDINO",
+   "DueDate": 1660780800000,
+   "OID": 3092,
+   "PersonOrCorp": "TESTOWNER 6FE9A5 LLC",
+   "State": "CA",
+   "StreetAddress": "694 TEST ST",
+   "Zip": "92405"
+  },
+  {
+   "Amount": 8227687.3,
+   "BusinessName": "TESTOWNER A4F998 CORP",
+   "CityOrTown": "EL CENTRO",
+   "DueDate": 1657065600000,
+   "OID": 3098,
+   "PersonOrCorp": "TESTOWNER 051496",
+   "State": "CA",
+   "StreetAddress": "8663 TEST ST",
+   "Zip": "92243"
+  },
+  {
+   "Amount": 7981705.02,
+   "BusinessName": "TESTOWNER 31927F",
+   "CityOrTown": "IRWINDALE",
+   "DueDate": 1645660800000,
+   "OID": 3099,
+   "PersonOrCorp": "TESTOWNER D3ECA1 INC",
+   "State": "CA",
+   "StreetAddress": "7474 TEST ST",
+   "Zip": "91706"
+  },
+  {
+   "Amount": 4408847.77,
+   "BusinessName": "",
+   "CityOrTown": "CHULA VISTA",
+   "DueDate": 1645660800000,
+   "OID": 3114,
+   "PersonOrCorp": "TESTOWNER 38B312",
+   "State": "CA",
+   "StreetAddress": "8595 TEST ST",
+   "Zip": "91911"
+  },
+  {
+   "Amount": 3535011.91,
+   "BusinessName": "",
+   "CityOrTown": "LOS ANGELES",
+   "DueDate": 1668038400000,
+   "OID": 3133,
+   "PersonOrCorp": "TESTOWNER 43CA34 INC",
+   "State": "CA",
+   "StreetAddress": "5071 TEST ST",
+   "Zip": "90013"
+  },
+  {
+   "Amount": 3499747.26,
+   "BusinessName": "TESTOWNER 9C41F4",
+   "CityOrTown": "SAN BERNARDINO",
+   "DueDate": 1669852800000,
+   "OID": 3137,
+   "PersonOrCorp": "TESTOWNER 0E0201",
+   "State": "CA",
+   "StreetAddress": "2170 TEST ST",
+   "Zip": "92408"
+  },
+  {
+   "Amount": 3472533.15,
+   "BusinessName": "",
+   "CityOrTown": "WHITTIER",
+   "DueDate": 1657065600000,
+   "OID": 3140,
+   "PersonOrCorp": "TESTOWNER A26489 INC",
+   "State": "CA",
+   "StreetAddress": "2902 TEST ST",
+   "Zip": "90605"
+  },
+  {
+   "Amount": 6508031.11,
+   "BusinessName": "",
+   "CityOrTown": "OAKLAND",
+   "DueDate": 1645142400000,
+   "OID": 3148,
+   "PersonOrCorp": "TESTOWNER 73E808 INC",
+   "State": "CA",
+   "StreetAddress": "2047 TEST ST",
+   "Zip": "94606"
+  },
+  {
+   "Amount": 2966612.76,
+   "BusinessName": "TESTOWNER 60EC00",
+   "CityOrTown": "MONTEBELLO",
+   "DueDate": 1646179200000,
+   "OID": 3151,
+   "PersonOrCorp": "TESTOWNER 344B83 LLC",
+   "State": "CA",
+   "StreetAddress": "1291 TEST ST",
+   "Zip": "90640"
+  },
+  {
+   "Amount": 2804810.83,
+   "BusinessName": "",
+   "CityOrTown": "FULLERTON",
+   "DueDate": 1646870400000,
+   "OID": 3157,
+   "PersonOrCorp": "TESTOWNER 995DE5",
+   "State": "CA",
+   "StreetAddress": "6049 TEST ST",
+   "Zip": "92831"
+  },
+  {
+   "Amount": 2438943.73,
+   "BusinessName": "",
+   "CityOrTown": "COMPTON",
+   "DueDate": 1668729600000,
+   "OID": 3168,
+   "PersonOrCorp": "TESTOWNER 34687A",
+   "State": "CA",
+   "StreetAddress": "7110 TEST ST",
+   "Zip": "90221"
+  },
+  {
+   "Amount": 2346778.1,
+   "BusinessName": "TESTOWNER 093E07",
+   "CityOrTown": "OCEANSIDE",
+   "DueDate": 1642723200000,
+   "OID": 3175,
+   "PersonOrCorp": "TESTOWNER 02D406 CORP",
+   "State": "CA",
+   "StreetAddress": "8557 TEST ST",
+   "Zip": "92054"
+  },
+  {
+   "Amount": 2323100.58,
+   "BusinessName": "TESTOWNER 50138B",
+   "CityOrTown": "SAN JOSE",
+   "DueDate": 1656460800000,
+   "OID": 3177,
+   "PersonOrCorp": "TESTOWNER 3AA72C LLC",
+   "State": "CA",
+   "StreetAddress": "6704 TEST ST",
+   "Zip": "95128"
+  },
+  {
+   "Amount": 2079650.82,
+   "BusinessName": "TESTOWNER BB75CE",
+   "CityOrTown": "NORTH HOLLYWOOD",
+   "DueDate": 1643241600000,
+   "OID": 3189,
+   "PersonOrCorp": "TESTOWNER 1D53D6 INC",
+   "State": "CA",
+   "StreetAddress": "4151 TEST ST",
+   "Zip": "91605"
+  },
+  {
+   "Amount": 1957674.25,
+   "BusinessName": "TESTOWNER 994A8D",
+   "CityOrTown": "STANTON",
+   "DueDate": 1646265600000,
+   "OID": 3198,
+   "PersonOrCorp": "TESTOWNER 454DF7 INC",
+   "State": "CA",
+   "StreetAddress": "3268 TEST ST",
+   "Zip": "90680"
+  },
+  {
+   "Amount": 1918119.12,
+   "BusinessName": "",
+   "CityOrTown": "STANTON",
+   "DueDate": 1647388800000,
+   "OID": 3207,
+   "PersonOrCorp": "TESTOWNER 1AA982",
+   "State": "CA",
+   "StreetAddress": "3268 TEST ST",
+   "Zip": "90680"
+  },
+  {
+   "Amount": 1877133.35,
+   "BusinessName": "TESTOWNER 1FCFF2",
+   "CityOrTown": "GLENDALE",
+   "DueDate": 1671408000000,
+   "OID": 3222,
+   "PersonOrCorp": "TESTOWNER 85EF0D CORP",
+   "State": "CA",
+   "StreetAddress": "3755 TEST ST",
+   "Zip": "91204"
+  },
+  {
+   "Amount": 1731199.84,
+   "BusinessName": "TESTOWNER FF47EB",
+   "CityOrTown": "CHATSWORTH",
+   "DueDate": 1661990400000,
+   "OID": 3231,
+   "PersonOrCorp": "TESTOWNER 3E4549",
+   "State": "CA",
+   "StreetAddress": "552 TEST ST",
+   "Zip": "91311"
+  },
+  {
+   "Amount": 1683939.05,
+   "BusinessName": "",
+   "CityOrTown": "SYLMAR",
+   "DueDate": 1644278400000,
+   "OID": 3241,
+   "PersonOrCorp": "TESTOWNER 55E713",
+   "State": "CA",
+   "StreetAddress": "8069 TEST ST",
+   "Zip": "91342"
+  },
+  {
+   "Amount": 1650879.62,
+   "BusinessName": "TESTOWNER B80889",
+   "CityOrTown": "LAKESIDE",
+   "DueDate": 1661990400000,
+   "OID": 3249,
+   "PersonOrCorp": "TESTOWNER 4064AC LLC",
+   "State": "CA",
+   "StreetAddress": "1558 TEST ST",
+   "Zip": "92040"
+  },
+  {
+   "Amount": 1591410.31,
+   "BusinessName": "",
+   "CityOrTown": "BAKERSFIELD",
+   "DueDate": 1643673600000,
+   "OID": 3255,
+   "PersonOrCorp": "TESTOWNER 26EBC4 INC",
+   "State": "CA",
+   "StreetAddress": "2674 TEST ST",
+   "Zip": "93305"
+  },
+  {
+   "Amount": 1582508.79,
+   "BusinessName": "",
+   "CityOrTown": "SACRAMENTO",
+   "DueDate": 1643760000000,
+   "OID": 3258,
+   "PersonOrCorp": "TESTOWNER 970DBF",
+   "State": "CA",
+   "StreetAddress": "3862 TEST ST",
+   "Zip": "95828"
+  },
+  {
+   "Amount": 1558335.98,
+   "BusinessName": "TESTOWNER ED5601",
+   "CityOrTown": "CHATSWORTH",
+   "DueDate": 1643760000000,
+   "OID": 3263,
+   "PersonOrCorp": "TESTOWNER 2D21AA INC",
+   "State": "CA",
+   "StreetAddress": "3707 TEST ST",
+   "Zip": "91311"
+  },
+  {
+   "Amount": 1555598.62,
+   "BusinessName": "",
+   "CityOrTown": "OAKLAND",
+   "DueDate": 1646265600000,
+   "OID": 3264,
+   "PersonOrCorp": "TESTOWNER 70E85A INC",
+   "State": "CA",
+   "StreetAddress": "608 TEST ST",
+   "Zip": "94606"
+  },
+  {
+   "Amount": 1526903.35,
+   "BusinessName": "",
+   "CityOrTown": "SAN FRANCISCO",
+   "DueDate": 1643241600000,
+   "OID": 3266,
+   "PersonOrCorp": "TESTOWNER BB1606",
+   "State": "CA",
+   "StreetAddress": "1651 TEST ST",
+   "Zip": "94111"
+  }
+ ],
+ "where": "DueDate >= DATE '2022-01-01' AND DueDate < DATE '2023-01-01'"
+}

@@ -1,0 +1,32 @@
+source_id: pa.dli.bwc_noncompliance
+state: PA
+county_fips: "42"
+# PA Department of Labor & Industry, Bureau of Workers' Compensation non-compliance list
+# (Executive Order 2021-06): employers found to have carried no workers' compensation insurance
+# or that owe the Uninsured Employers Guaranty Fund, AND that are subject to a lien, a stop-work
+# order, an order to show cause or a criminal prosecution. The list does not say which, and
+# publishes no amount or date, so the list's "current as of" date stands in for the date.
+# TODO(Brandon): only some rows carry a lien (others are stop-work orders or prosecutions);
+# decide whether this list should flag debtors only rather than count as a lien. Loaded as
+# STATUTORY_LIEN until then.
+api: xlsx
+url: https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/documents/non-compliance-lists/bwc-non-compliance-list.xlsx
+sheet: 0
+header_row: 1
+as_of: {field: list_as_of, after: "as of"}
+date_field: list_as_of
+uid: [enterprise_name, enterprise_street_address, city]
+doc_type: STATUTORY_LIEN
+doc_type_raw: {field: law_violated}
+county_name_field: county
+parties:
+  - role: debtor
+    name: enterprise_name
+    address: {line1: enterprise_street_address, city: city, state: state}
+  - role: creditor
+    const: Pennsylvania Department of Labor and Industry
+terms:
+  url: https://www.pa.gov/agencies/dli/resources/compliance-laws-and-regulations/labor-management-relations/labor-law/worker-protection-and-labor-law-non-compliance-list
+  summary: "PA L&I posts the BWC non-compliance list as a free .xlsx (and PDF) on pa.gov, no login. Public list required by Executive Order 2021-06; no license or reuse terms stated."
+  checked_on: 2026-11-23
+  cost_model: free

@@ -1,0 +1,255 @@
+{
+ "rows": [
+  {
+   "city": "Philadelphia",
+   "column1": "",
+   "county": "Philadelphia",
+   "enterprise_name": "TESTOWNER ADD197 INC",
+   "enterprise_street_address": "6854 TEST ST",
+   "law_violated": "PA Workers' Compensation Act Violation",
+   "list_as_of": "2026-05-05",
+   "state": "PA"
+  },
+  {
+   "city": "Philadelphia",
+   "column1": "",
+   "county": "Philadelphia",
+   "enterprise_name": "TESTOWNER 354125",
+   "enterprise_street_address": "8425 TEST ST",
+   "law_violated": "PA Workers' Compensation Act Violation",
+   "list_as_of": "2026-05-05",
+   "state": "PA"
+  },
+  {
+   "city": "Philadelphia",
+   "column1": "",
+   "county": "Philadelphia",
+   "enterprise_name": "TESTOWNER A3D04C",
+   "enterprise_street_address": "4510 TEST ST",
+   "law_violated": "PA Workers' Compensation Act Violation",
+   "list_as_of": "2026-05-05",
+   "state": "PA"
+  },
+  {
+   "city": "Bensalem",
+   "column1": "",
+   "county": "Bucks",
+   "enterprise_name": "TESTOWNER FE14CD",
+   "enterprise_street_address": "4820 TEST ST",
+   "law_violated": "PA Workers' Compensation Act Violation",
+   "list_as_of": "2026-05-05",
+   "state": "PA"
+  },
+  {
+   "city": "Warminster",
+   "column1": "",
+   "county": "Bucks",
+   "enterprise_name": "TESTOWNER 7C57FF LLC",
+   "enterprise_street_address": "425 TEST ST",
+   "law_violated": "PA Workers' Compensation Act Violation",
+   "list_as_of": "2026-05-05",
+   "state": "PA"
+  },
+  {
+   "city": "WILLOW GROVE",
+   "column1": "",
+   "county": "Montgomery",
+   "enterprise_name": "TESTOWNER 81D509",
+   "enterprise_street_address": "1918 TEST ST",
+   "law_violated": "PA Workers' Compensation Act Violation",
+   "list_as_of": "2026-05-05",
+   "state": "PA"
+  },
+  {
+   "city": "Philadelphia",
+   "column1": "",
+   "county": "Philadelphia",
+   "enterprise_name": "TESTOWNER 6A1998 INC",
+   "enterprise_street_address": "2934 TEST ST",
+   "law_violated": "PA Workers' Compensation Act Violation",
+   "list_as_of": "2026-05-05",
+   "state": "PA"
+  },
+  {
+   "city": "Philadelphia",
+   "column1": "",
+   "county": "Philadelphia",
+   "enterprise_name": "TESTOWNER DFBD15 INC",
+   "enterprise_street_address": "7836 TEST ST",
+   "law_violated": "PA Workers' Compensation Act Violation",
+   "list_as_of": "2026-05-05",
+   "state": "PA"
+  },
+  {
+   "city": "Sharon Hill",
+   "column1": "",
+   "county": "Delaware",
+   "enterprise_name": "TESTOWNER 04B5F8",
+   "enterprise_street_address": "8977 TEST ST",
+   "law_violated": "PA Workers' Compensation Act Violation",
+   "list_as_of": "2026-05-05",
+   "state": "PA"
+  },
+  {
+   "city": "Center Valley",
+   "column1": "",
+   "county": "Northampton",
+   "enterprise_name": "TESTOWNER FEBE07 INC",
+   "enterprise_street_address": "768 TEST ST",
+   "law_violated": "PA Workers' Compensation Act Violation",
+   "list_as_of": "2026-05-05",
+   "state": "PA"
+  },
+  {
+   "city": "Atglen",
+   "column1": "",
+   "county": "Chester",
+   "enterprise_name": "TESTOWNER 4EC266 LLC",
+   "enterprise_street_address": "7144 TEST ST",
+   "law_violated": "PA Workers' Compensation Act Violation",
+   "list_as_of": "2026-05-05",
+   "state": "PA"
+  },
+  {
+   "city": "Conshohocken",
+   "column1": "",
+   "county": "Montgomery",
+   "enterprise_name": "TESTOWNER 38A1BF",
+   "enterprise_street_address": "7308 TEST ST",
+   "law_violated": "PA Workers' Compensation Act Violation",
+   "list_as_of": "2026-05-05",
+   "state": "PA"
+  },
+  {
+   "city": "Philadelphia",
+   "column1": "",
+   "county": "Philadelphia",
+   "enterprise_name": "TESTOWNER 79EF41 LLC",
+   "enterprise_street_address": "8360 TEST ST",
+   "law_violated": "PA Workers' Compensation Act Violation",
+   "list_as_of": "2026-05-05",
+   "state": "PA"
+  },
+  {
+   "city": "Philadelphia",
+   "column1": "",
+   "county": "Philadelphia",
+   "enterprise_name": "TESTOWNER 082A28",
+   "enterprise_street_address": "1456 TEST ST",
+   "law_violated": "PA Workers' Compensation Act Violation",
+   "list_as_of": "2026-05-05",
+   "state": "PA"
+  },
+  {
+   "city": "Kittanning",
+   "column1": "",
+   "county": "Armstrong",
+   "enterprise_name": "TESTOWNER 5745C3 LLC",
+   "enterprise_street_address": "6465 TEST ST",
+   "law_violated": "PA Workers' Compensation Act Violation",
+   "list_as_of": "2026-05-05",
+   "state": "PA"
+  },
+  {
+   "city": "BENSALEM",
+   "column1": "",
+   "county": "Bucks",
+   "enterprise_name": "TESTOWNER CB184B",
+   "enterprise_street_address": "1856 TEST ST",
+   "law_violated": "PA Workers' Compensation Act Violation",
+   "list_as_of": "2026-05-05",
+   "state": "PA"
+  },
+  {
+   "city": "Philadelphia",
+   "column1": "",
+   "county": "Philadelphia",
+   "enterprise_name": "TESTOWNER 15D7BB",
+   "enterprise_street_address": "8808 TEST ST",
+   "law_violated": "PA Workers' Compensation Act Violation",
+   "list_as_of": "2026-05-05",
+   "state": "PA"
+  },
+  {
+   "city": "Philadelphia",
+   "column1": "",
+   "county": "Philadelphia",
+   "enterprise_name": "TESTOWNER ADE443 INC",
+   "enterprise_street_address": "8156 TEST ST",
+   "law_violated": "PA Workers' Compensation Act Violation",
+   "list_as_of": "2026-05-05",
+   "state": "PA"
+  },
+  {
+   "city": "Milford",
+   "column1": "",
+   "county": "Bucks",
+   "enterprise_name": "TESTOWNER 1D8BA0 INC",
+   "enterprise_street_address": "2155 TEST ST",
+   "law_violated": "PA Workers' Compensation Act Violation",
+   "list_as_of": "2026-05-05",
+   "state": "PA"
+  },
+  {
+   "city": "Adamsville",
+   "column1": "",
+   "county": "Crawford",
+   "enterprise_name": "TESTOWNER 91622A",
+   "enterprise_street_address": "2527 TEST ST",
+   "law_violated": "PA Workers' Compensation Act Violation",
+   "list_as_of": "2026-05-05",
+   "state": "PA"
+  },
+  {
+   "city": "King of Prussia",
+   "column1": "",
+   "county": "Philadelphia",
+   "enterprise_name": "TESTOWNER 184535",
+   "enterprise_street_address": "7562 TEST ST",
+   "law_violated": "PA Workers' Compensation Act Violation",
+   "list_as_of": "2026-05-05",
+   "state": "PA"
+  },
+  {
+   "city": "Bensalem",
+   "column1": "",
+   "county": "Bucks",
+   "enterprise_name": "TESTOWNER 069A6D INC",
+   "enterprise_street_address": "4012 TEST ST",
+   "law_violated": "PA Workers' Compensation Act Violation",
+   "list_as_of": "2026-05-05",
+   "state": "PA"
+  },
+  {
+   "city": "Pittsburgh",
+   "column1": "",
+   "county": "Allegheny",
+   "enterprise_name": "TESTOWNER 855FD9",
+   "enterprise_street_address": "3984 TEST ST",
+   "law_violated": "PA Workers' Compensation Act Violation",
+   "list_as_of": "2026-05-05",
+   "state": "PA"
+  },
+  {
+   "city": "Lafayette",
+   "column1": "",
+   "county": "Montgomery",
+   "enterprise_name": "TESTOWNER 5686FE LLC",
+   "enterprise_street_address": "5059 TEST ST",
+   "law_violated": "PA Workers' Compensation Act Violation",
+   "list_as_of": "2026-05-05",
+   "state": "PA"
+  },
+  {
+   "city": "Kennett Square",
+   "column1": "",
+   "county": "Chester",
+   "enterprise_name": "TESTOWNER C5DD4E",
+   "enterprise_street_address": "7506 TEST ST",
+   "law_violated": "PA Workers' Compensation Act Violation",
+   "list_as_of": "2026-05-05",
+   "state": "PA"
+  }
+ ],
+ "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/documents/non-compliance-lists/bwc-non-compliance-list.xlsx"
+}

@@ -1,20 +1,31 @@
-"""Judgments, warrants and liens published as open datasets (Socrata, CKAN, ArcGIS layers or a
-plain .xlsx download), one YAML per source in config/liens/. Each row becomes a recorded
-instrument (the lien), its parties (debtor and creditor, with addresses) and, where the row
-names a lot or parcel, an instrument_parcel link, so the matcher treats these exactly like
-recorder documents. A satisfaction date
+"""Judgments, warrants and liens published as open datasets (Socrata, CKAN, ArcGIS layers, or
+a plain .xlsx, .csv/.txt or HTML-table download), one YAML per source in config/liens/. Each
+row becomes a recorded instrument (the lien), its parties (debtor and creditor, with
+addresses) and, where the row names a lot or parcel, an instrument_parcel link, so the matcher
+treats these exactly like recorder documents. A satisfaction date
 becomes a RELEASE instrument that `releases` the lien.
 
 Config keys:
   source_id, state, portal, dataset, where (optional base filter), order_by (default :id)
   api                 socrata (default), ckan (+ resource_id), arcgis (+ layer_url, no portal or
-                      dataset) or xlsx (+ url: one workbook, read whole; sheet = 0-based index)
+                      dataset) or xlsx (+ url: one workbook, read whole; sheet = 0-based index;
+                      header_row = 0-based row holding the column titles, default 0),
+                      csv (+ url: one delimited text file; delimiter, default ',') or html
+                      (+ url: one page; table = 0-based index of its <table>, default 0) or
+                      pdf (+ url, header: a text-based PDF list; the table starts at the line
+                      whose first cell begins with `header`, columns split at its x positions)
   caption_field       a 'Plaintiff vs Defendant' caption, split into the derived fields
                       caption_plaintiff and caption_defendant for use in parties
   date_is_text        arcgis: date_field is ISO text, so windows compare strings, not DATEs
   excel_dates         xlsx: fields holding Excel serial day numbers, turned into ISO dates
-  address_split       xlsx: {field, prefix}: "line1, city, ST 12345" into <prefix>line1/city/
-                      state/zip (the whole text stays line1 when it does not split that way)
+  us_dates            file apis: fields holding M/D/YYYY dates, turned into ISO dates
+  address_split       file apis: {field, prefix, form}: form comma (default) splits
+                      "line1, city, ST 12345", slash "line1 / CITY ST 12345", city_state_zip
+                      "City, ST 12345" (no street), into <prefix>line1/city/state/zip (the
+                      whole text stays line1 when it does not split that way)
+  as_of               xlsx/html/pdf: {field, after}: a list with no per-row date. The first
+                      date after the text `after` in the title rows above header_row (xlsx) or
+                      in the page or document text (html, pdf) is put in `field` on every row
   select              optional field list: fetch only these (keeps free text out)
   date_field          the lien date (docketed / filed); rows without it are skipped
   partition           year (default) or month windows on date_field, from first_year
@@ -32,16 +43,25 @@ Config keys:
                       | {kind: pin, field (or a list of fields, one lot each), county_fips}
   county_fips         jurisdiction when no parcel names a county (5 digits)
   county_name_field   optional field holding the county name (mapped to FIPS in `state`)
+  county_aliases      optional {name in the data: county name}, e.g. {DADE: MIAMI-DADE}
   skip_names          name values that are separators, not parties (e.g. AND/OR)
   extra_pii           more fields pseudonymized in recorded fixtures (e.g. an apartment address)
+  link_from           file apis: {page, pattern}: the file's address changes with each issue
+                      (a quarter in its name), so it is the first link on `page` whose href
+                      matches the regex `pattern`; `url` is the fallback and the base_url
+  user_agent          optional identifying User-Agent for a host whose firewall refuses the
+                      default one (it still names this project; robots.txt is still obeyed)
   terms               {url, summary, checked_on, cost_model}
 """
 
 from __future__ import annotations
 
+import csv
+import html
 import io
 import json
 import re
+import urllib.parse
 import xml.etree.ElementTree as ET
 import zipfile
 from collections.abc import Iterator, Mapping
@@ -49,6 +69,7 @@ from dataclasses import dataclass
 from datetime import UTC, date, datetime, timedelta
 from decimal import Decimal, InvalidOperation
 from functools import cache
+from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any, ClassVar
 
@@ -57,7 +78,8 @@ import yaml
 from equity.adapters.arcgis import ArcGISQuery
 from equity.adapters.arcgis import fetch_all as arcgis_fetch_all
 from equity.adapters.base import Adapter, Fetched, FetchRequest, HealthReport, NormalizedRow
-from equity.adapters.http import PoliteClient
+from equity.adapters.http import USER_AGENT, PoliteClient
+from equity.adapters.pdf_table import pdf_table, pdf_text
 from equity.adapters.rows import RecordContext, canonical_json
 from equity.adapters.socrata import SocrataQuery, fetch_all
 from equity.adapters.state_parcels import norm_parcel_id, normalized_address
@@ -70,7 +92,14 @@ LIENS_DIR = CONFIG_DIR / "liens"
 REQUIRED = ("source_id", "state", "date_field", "uid", "doc_type", "doc_type_raw", "parties",
             "terms")  # fmt: skip
 API_KEYS = {"socrata": ("portal", "dataset"), "ckan": ("portal", "resource_id"),
-            "arcgis": ("layer_url",), "xlsx": ("url",)}  # fmt: skip
+            "arcgis": ("layer_url",), "xlsx": ("url",), "csv": ("url",),
+            "html": ("url",), "pdf": ("url", "header")}  # fmt: skip
+FILE_APIS = ("xlsx", "csv", "html", "pdf")
+ACCESS = {"arcgis": "arcgis", "xlsx": "bulk", "csv": "bulk", "html": "html", "pdf": "bulk"}
+MONTHS = {m: i for i, m in enumerate(("january", "february", "march", "april", "may", "june",
+          "july", "august", "september", "october", "november", "december"), start=1)}  # fmt: skip
+US_DATE = re.compile(r"\b(\d{1,2})/(\d{1,2})/(\d{4})\b")
+LONG_DATE = re.compile(r"\b(" + "|".join(MONTHS) + r")\s+(\d{1,2}),?\s+(\d{4})\b", re.IGNORECASE)
 SATISFIED = ("true", "1", "yes", "y")
 XLSX_NS = "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}"
 EXCEL_EPOCH = date(1899, 12, 30)
@@ -199,9 +228,9 @@ def _xml(part: bytes) -> ET.Element:
     return ET.fromstring(part)  # noqa: S314 - DTDs refused above; repo-configured gov host
 
 
-def xlsx_rows(content: bytes, sheet: int = 0) -> list[dict[str, str]]:
-    """Rows of one worksheet as {column field name: cell text}; the first row is the header.
-    Read with the standard library: the workbook is a zip of XML parts."""
+def xlsx_table(content: bytes, sheet: int = 0) -> list[list[str]]:
+    """One worksheet as a list of rows of cell text, read with the standard library: the
+    workbook is a zip of XML parts."""
     with zipfile.ZipFile(io.BytesIO(content)) as z:
         names = z.namelist()
         shared = []
@@ -226,6 +255,17 @@ def xlsx_rows(content: bytes, sheet: int = 0) -> list[dict[str, str]]:
                 text = v.text or "" if v is not None else ""
             cells[col - 1 if col else len(cells)] = text
         table.append([cells.get(i, "") for i in range(max(cells, default=-1) + 1)])
+    return table
+
+
+def xlsx_rows(content: bytes, sheet: int = 0, header_row: int = 0) -> list[dict[str, str]]:
+    """Rows of one worksheet as {column field name: cell text}; row header_row (0-based) is
+    the header and rows above it (a title banner) are dropped."""
+    return table_rows(xlsx_table(content, sheet)[header_row:])
+
+
+def table_rows(table: list[list[str]]) -> list[dict[str, str]]:
+    """A header row and data rows as {column field name: cell text}; blank rows dropped."""
     if not table:
         return []
     head = [_header(h) for h in table[0]]
@@ -235,6 +275,86 @@ def xlsx_rows(content: bytes, sheet: int = 0) -> list[dict[str, str]]:
         if any(rec.values()):
             out.append(rec)
     return out
+
+
+def csv_table(content: bytes, delimiter: str = ",") -> list[list[str]]:
+    """A delimited text file as rows of cell text (a UTF-8 byte-order mark is dropped)."""
+    text = content.decode("utf-8-sig", errors="replace")
+    return [list(r) for r in csv.reader(io.StringIO(text), delimiter=delimiter)]
+
+
+class _TableParser(HTMLParser):
+    """Every <table> on a page as rows of cell text (th and td), plus the page's text."""
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.tables: list[list[list[str]]] = []
+        self.text: list[str] = []
+        self._row: list[str] | None = None
+        self._cell: list[str] | None = None
+        self._skip = 0
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if tag in ("script", "style"):
+            self._skip += 1
+        elif tag == "table":
+            self.tables.append([])
+        elif tag == "tr" and self.tables:
+            self._row = []
+        elif tag in ("td", "th") and self._row is not None:
+            self._cell = []
+        elif tag == "br" and self._cell is not None:
+            self._cell.append(" ")
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag in ("script", "style"):
+            self._skip = max(0, self._skip - 1)
+        elif tag in ("td", "th") and self._cell is not None and self._row is not None:
+            self._row.append(" ".join("".join(self._cell).split()))
+            self._cell = None
+        elif tag == "tr" and self._row is not None:
+            self.tables[-1].append(self._row)
+            self._row = None
+
+    def handle_data(self, data: str) -> None:
+        if self._skip:
+            return
+        self.text.append(data)
+        if self._cell is not None:
+            self._cell.append(data)
+
+
+def html_tables(content: bytes) -> tuple[list[list[list[str]]], str]:
+    """(tables, page text) of an HTML page, read with the standard library parser."""
+    p = _TableParser()
+    p.feed(content.decode("utf-8", errors="replace"))
+    p.close()
+    return p.tables, " ".join(" ".join(p.text).split())
+
+
+def text_date(text: str | None, after: str = "") -> str | None:
+    """The first M/D/YYYY or 'Month D, YYYY' date in text after the marker `after` (case
+    ignored), as an ISO date; None when there is none or it is not a real date."""
+    s = text or ""
+    at = s.lower().find(after.lower()) if after else 0
+    if at < 0:
+        return None
+    s = s[at + len(after) :]
+    us, long = US_DATE.search(s), LONG_DATE.search(s)
+    try:
+        if us and (long is None or us.start() < long.start()):
+            return date(int(us[3]), int(us[1]), int(us[2])).isoformat()
+        if long:
+            return date(int(long[3]), MONTHS[long[1].lower()], int(long[2])).isoformat()
+    except ValueError:
+        return None
+    return None
+
+
+def us_date(value: Any) -> str | None:
+    """'08/20/2025' -> '2025-08-20'; text that is not one such date -> None."""
+    s = _text(value) or ""
+    return text_date(s) if US_DATE.fullmatch(s) else None
 
 
 def excel_date(value: Any) -> str | None:
@@ -250,12 +370,32 @@ def excel_date(value: Any) -> str | None:
 
 CAPTION_VS = re.compile(r"\s+vs?\.?\s+", re.IGNORECASE)
 ADDRESS_TAIL = re.compile(r"^(?P<state>[A-Z]{2})\.?\s+(?P<zip>[0-9]{5})(?:-[0-9]{4})?$")
+CITY_TAIL = re.compile(
+    r"^(?P<city>.*?[^\s,])[\s,]+(?P<state>[A-Z]{2})\.?,?\s*(?P<zip>[0-9]{5})(?:-?[0-9]{1,4})?$"
+)
 
 
-def split_address(text: str | None) -> dict[str, str | None]:
-    """'259 Drum Point Road, Brick, NJ 08723' -> line1, city, state, zip. Anything else keeps
-    the whole text as line1 rather than guessing the parts."""
+def split_address(text: str | None, form: str = "comma") -> dict[str, str | None]:
+    """'259 Drum Point Road, Brick, NJ 08723' -> line1, city, state, zip. form slash reads
+    '2623 NW 74TH PL / GAINESVILLE FL 32653-1251', city_state_zip 'Acton, MA 01720' (no
+    street line). A slash address missing its slash ('974 ALLISON ST JACKSONVILLE FL 32254')
+    keeps street and city together as line1, with state and zip split off. Anything else
+    keeps the whole text as line1 rather than guessing."""
     full = _text(text)
+    if form == "slash" and full:
+        line, _, rest = full.rpartition(" / ")
+        m = CITY_TAIL.match(rest.upper())
+        if m and line.strip():
+            return {"line1": line.strip(), "city": rest[: m.end("city")].strip(),
+                    "state": m["state"], "zip": m["zip"]}  # fmt: skip
+        if m:  # no slash: the city cannot be told from the street
+            return {"line1": rest[: m.end("city")].strip(), "city": None,
+                    "state": m["state"], "zip": m["zip"]}  # fmt: skip
+    if form == "city_state_zip" and full and "," in full:
+        city, rest = full.rsplit(",", 1)
+        m = ADDRESS_TAIL.match(rest.strip().upper())
+        if m and city.strip():
+            return {"line1": None, "city": city.strip(), "state": m["state"], "zip": m["zip"]}
     parts = [p.strip() for p in (full or "").split(",") if p.strip()]
     tail = ADDRESS_TAIL.match(parts[-1].upper()) if len(parts) >= 3 else None
     if tail is None:
@@ -272,7 +412,8 @@ class LienAdapter(Adapter):
     pii_fields: ClassVar[tuple[str, ...]] = ()  # set per source from its config
 
     def __init__(self, client: PoliteClient | None = None) -> None:
-        self.client = client or PoliteClient(min_interval_s=1.0)
+        ua = str(self.config.get("user_agent") or USER_AGENT)
+        self.client = client or PoliteClient(min_interval_s=1.0, user_agent=ua)
 
     def source_row(self) -> Mapping[str, Any]:
         t = self.config["terms"]
@@ -280,7 +421,7 @@ class LienAdapter(Adapter):
             "source_id": self.source_id,
             "kind": "recorder",
             "jurisdiction": self.config.get("county_fips") or self.config["state"],
-            "access_method": {"arcgis": "arcgis", "xlsx": "bulk"}.get(self.api, "api"),
+            "access_method": ACCESS.get(self.api, "api"),
             "base_url": self.base_url,
             "terms_url": t.get("url"),
             "terms_summary": t["summary"],
@@ -299,13 +440,13 @@ class LienAdapter(Adapter):
             return f"{self.config['portal']}/datastore/{self.config['resource_id']}"
         if self.api == "arcgis":
             return str(self.config["layer_url"])
-        if self.api == "xlsx":
+        if self.api in FILE_APIS:
             return str(self.config["url"])
         return f"{self.config['portal']}/resource/{self.config['dataset']}.json"
 
     def partitions(self) -> Iterator[dict[str, str]]:
-        if self.api == "xlsx":
-            yield {"file": "all"}  # one workbook, replaced in full each month
+        if self.api in FILE_APIS:
+            yield {"file": "all"}  # one file, replaced in full each update
             return
         first = int(self.config.get("first_year", 1990))
         last = datetime.now(UTC).year
@@ -361,33 +502,71 @@ class LienAdapter(Adapter):
                            tuple(self.config.get("order_by") or ("OBJECTID",)),
                            page)  # fmt: skip
 
-    def _xlsx_rows(self, content: bytes) -> list[dict[str, Any]]:
-        """Workbook rows with Excel dates as ISO text and split addresses, so normalize reads
-        them like any other source."""
+    def file_url(self) -> str:
+        """The file to download: config url, or the current link found on link_from.page."""
+        spec = self.config.get("link_from")
+        if not spec:
+            return str(self.config["url"])
+        page = self.client.get(str(spec["page"]))
+        if page.status != 200:
+            raise LienConfigError(f"{self.source_id}: HTTP {page.status} from {spec['page']}")
+        text = page.content.decode("utf-8", errors="replace")
+        for href in re.findall(r"""href\s*=\s*["']([^"']+)["']""", text, re.IGNORECASE):
+            href = html.unescape(href)
+            if re.search(str(spec["pattern"]), href):
+                return urllib.parse.urljoin(str(spec["page"]), href)
+        raise LienConfigError(f"{self.source_id}: no link matching {spec['pattern']!r}")
+
+    def _file_rows(self, content: bytes) -> list[dict[str, Any]]:
+        """Rows of a downloaded workbook, text file or page with Excel and M/D/YYYY dates as
+        ISO text, split addresses and the list's as-of date, so normalize reads them like any
+        other source."""
+        cfg = self.config
+        head = int(cfg.get("header_row", 0))
+        if self.api == "html":
+            tables, banner = html_tables(content)
+            idx = int(cfg.get("table", 0))
+            table = tables[idx] if idx < len(tables) else []
+        elif self.api == "pdf":
+            table, banner = pdf_table(content, str(cfg["header"])), pdf_text(content)
+        elif self.api == "csv":
+            table, banner = csv_table(content, str(cfg.get("delimiter", ","))), ""
+        else:
+            table = xlsx_table(content, int(cfg.get("sheet", 0)))
+            banner = " ".join(c for r in table[:head] for c in r if c)
+        table = table[head:]
+        as_of = cfg.get("as_of")
+        listed = text_date(banner, str(as_of.get("after", ""))) if as_of else None
         rows: list[dict[str, Any]] = []
-        split = self.config.get("address_split")
-        for row in xlsx_rows(content, int(self.config.get("sheet", 0))):
+        split = cfg.get("address_split")
+        for row in table_rows(table):
             out: dict[str, Any] = dict(row)
-            for f in self.config.get("excel_dates") or ():
+            for f in cfg.get("excel_dates") or ():
                 out[f] = excel_date(row.get(f))
+            for f in cfg.get("us_dates") or ():
+                out[f] = us_date(row.get(f))
             if split:
-                for k, v in split_address(row.get(split["field"])).items():
+                parts = split_address(row.get(split["field"]), str(split.get("form", "comma")))
+                for k, v in parts.items():
                     out[f"{split['prefix']}{k}"] = v
+            if as_of:
+                out[as_of["field"]] = listed
             rows.append(out)
         return rows
 
     def fetch(self, request: FetchRequest) -> Fetched:
         limit = request.params.get("limit")
         where = self.where(request.params)
-        if self.api == "xlsx":
-            resp = self.client.get(str(self.config["url"]))
+        if self.api in FILE_APIS:
+            url = self.file_url()
+            resp = self.client.get(url)
             if resp.status != 200:
                 raise LienConfigError(f"{self.source_id}: HTTP {resp.status} from {resp.url}")
-            rows_x = self._xlsx_rows(resp.content)
+            rows_x = self._file_rows(resp.content)
             rows_x = rows_x[: int(limit)] if limit else rows_x
-            body_x = canonical_json({"url": self.config["url"], "rows": rows_x})
-            return Fetched(self.source_id, str(self.config["url"]), resp.retrieved_at, 200,
-                           body_x, "application/json")  # fmt: skip
+            body_x = canonical_json({"url": url, "rows": rows_x})
+            return Fetched(self.source_id, url, resp.retrieved_at, 200, body_x,
+                           "application/json")  # fmt: skip
         if self.api == "arcgis":
             q_a = self._arcgis_query(where, int(limit) if limit else 1000)
             feats, resps = arcgis_fetch_all(self.client, q_a, max_pages=1 if limit else 10_000,
@@ -467,9 +646,10 @@ class LienAdapter(Adapter):
                 return hit[0]
         field = self.config.get("county_name_field")
         if field:
-            fips = _county_by_name(self.config["state"]).get(
-                norm_county_name(str(row.get(field) or ""))
-            )
+            name = str(row.get(field) or "").strip()
+            alias = {k.upper(): v for k, v in (self.config.get("county_aliases") or {}).items()}
+            name = alias.get(name.upper(), name)
+            fips = _county_by_name(self.config["state"]).get(norm_county_name(name))
             if fips:
                 return fips
         return str(self.config.get("county_fips") or self.config["state"])
@@ -593,7 +773,7 @@ class LienAdapter(Adapter):
                                role=role, seq=seq)  # fmt: skip
 
     def health(self) -> HealthReport:
-        if self.api in ("xlsx", "arcgis"):
+        if self.api in (*FILE_APIS, "arcgis"):
             rows_f = json.loads(self.fetch(FetchRequest({"limit": "1"})).content)["rows"]
             return HealthReport(self.source_id, bool(rows_f), datetime.now(UTC),
                                 "ok" if rows_f else "no rows")  # fmt: skip

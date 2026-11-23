@@ -1,0 +1,36 @@
+source_id: pa.dli.uc_liens
+state: PA
+county_fips: "42"   # statewide; the county where the lien was filed is used when named
+# PA Department of Labor & Industry, Worker Protection and Labor Law Non-Compliance List,
+# Unemployment Compensation list (Executive Order 2021-06): employers that "have liens placed
+# against them because they have been found to owe unemployment compensation (UC) taxes", one
+# row per county where a lien was filed. Posted every Tuesday; an employer leaves the list when
+# the lien is paid in full, it enters bankruptcy, or it enters an approved payment plan. No lien
+# date, docket number or amount is published, so the list's "current as of" date stands in for
+# the lien date and the instrument has no amount.
+# TODO(Brandon): UC contribution liens are entered in the Common Pleas judgment index of the
+# county named (43 P.S. 788.1); confirm they bind the debtor's real property there like a
+# docketed judgment, and whether to load them as JUDGMENT_LIEN instead of TAX_LIEN_STATE.
+# TODO(Brandon): recorded_on is the list's as-of date, not the lien date; the lien itself must
+# be pulled from the prothonotary docket before relying on priority.
+api: xlsx
+url: https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/documents/non-compliance-lists/uc-non-compliance-list.xlsx
+sheet: 0
+header_row: 1          # row 0 is the banner "List is current as of <date>"
+as_of: {field: list_as_of, after: "as of"}
+date_field: list_as_of
+uid: [organization_s_name, organization_s_street_address, county_where_lien_was_filed]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: {field: law_violated}
+county_name_field: county_where_lien_was_filed
+parties:
+  - role: debtor
+    name: organization_s_name
+    address: {line1: organization_s_street_address, city: city, state: state}
+  - role: creditor
+    const: Pennsylvania Department of Labor and Industry
+terms:
+  url: https://www.pa.gov/agencies/dli/resources/compliance-laws-and-regulations/labor-management-relations/labor-law/worker-protection-and-labor-law-non-compliance-list
+  summary: "PA L&I posts the UC non-compliance list as a free .xlsx (and PDF) on pa.gov, updated weekly, no login. Public list required by Executive Order 2021-06; no license or reuse terms stated; robots.txt allows /content/dam/ for this path."
+  checked_on: 2026-11-23
+  cost_model: free

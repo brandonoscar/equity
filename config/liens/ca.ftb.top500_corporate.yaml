@@ -1,0 +1,33 @@
+source_id: ca.ftb.top500_corporate
+state: CA
+county_fips: "06"
+# California Franchise Tax Board, Top 500 past due balances, corporate income tax list (R&TC
+# 19195): the largest corporate franchise/income tax delinquencies over $100,000 with the date
+# a lien was filed. Officer rows under each company are not loaded as parties: officers are not
+# liable for the corporation's tax by being listed.
+# TODO(Brandon): confirm "Lien Filed" is a recorded Notice of State Tax Lien (Gov. Code 7171).
+api: csv
+url: https://www.ftb.ca.gov/about-ftb/newsroom/top-500-past-due-balances/delinquents-Corp.txt
+delimiter: "\t"
+# ftb.ca.gov's firewall answers 403 to a User-Agent containing "robots"; this one still
+# identifies the project, and robots.txt is still read and obeyed.
+user_agent: "equity-records/0.1 (public records research)"
+us_dates: [lien_filed]
+address_split: {field: address, prefix: addr_, form: city_state_zip}
+date_field: lien_filed
+uid: [name, address, lien_filed]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: California FTB corporate tax lien
+amount: total
+parties:
+  - role: debtor
+    name: name
+    address: {city: addr_city, state: addr_state, zip: addr_zip}
+  - role: creditor
+    const: California Franchise Tax Board
+extra_pii: [address, officers, number]
+terms:
+  url: https://www.ftb.ca.gov/about-ftb/newsroom/top-500-past-due-balances/index.html
+  summary: "FTB publishes the Top 500 list as a free tab-separated text file on ftb.ca.gov (loaded by its web page), no login. Required by R&TC 19195; no license or reuse terms stated."
+  checked_on: 2026-11-23
+  cost_model: free

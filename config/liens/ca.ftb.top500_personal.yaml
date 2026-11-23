@@ -1,0 +1,35 @@
+source_id: ca.ftb.top500_personal
+state: CA
+county_fips: "06"
+# California Franchise Tax Board, Top 500 past due balances, personal income tax list (R&TC
+# 19195): the largest delinquencies over $100,000, with the date a lien was filed. A tab-
+# separated text file behind the web page; the page publishes city, state and ZIP only (no
+# street line). Updated at least twice a year; taxpayers leave the list when they pay or settle.
+# TODO(Brandon): confirm the "Lien" date is a Notice of State Tax Lien recorded with a county
+# recorder (Gov. Code 7171), which would make it a lien on real property in that county; the
+# county is not published.
+api: csv
+url: https://www.ftb.ca.gov/about-ftb/newsroom/top-500-past-due-balances/delinquents-PIT.txt
+delimiter: "\t"
+# ftb.ca.gov's firewall answers 403 to a User-Agent containing "robots"; this one still
+# identifies the project, and robots.txt is still read and obeyed.
+user_agent: "equity-records/0.1 (public records research)"
+us_dates: [lien]
+address_split: {field: address, prefix: addr_, form: city_state_zip}
+date_field: lien
+uid: [name, address, lien]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: California FTB personal income tax lien
+amount: total
+parties:
+  - role: debtor
+    name: name
+    address: {city: addr_city, state: addr_state, zip: addr_zip}
+  - role: creditor
+    const: California Franchise Tax Board
+extra_pii: [address, number]   # number: a professional license number
+terms:
+  url: https://www.ftb.ca.gov/about-ftb/newsroom/top-500-past-due-balances/index.html
+  summary: "FTB publishes the Top 500 list as a free tab-separated text file on ftb.ca.gov (loaded by its web page), no login. Required by R&TC 19195; no license or reuse terms stated."
+  checked_on: 2026-11-23
+  cost_model: free

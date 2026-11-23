@@ -1,0 +1,280 @@
+{
+ "rows": [
+  {
+   "address": "3108 TEST ST",
+   "address_2": "2065 TEST ST",
+   "balance_as_of": "2026-09-30",
+   "city": "WILMINGTON",
+   "country": "US",
+   "st": "DE",
+   "taxpayer_liability": "$304,383.32",
+   "taxpayer_name": "TESTOWNER 3D67B3 LLC",
+   "zip": "19807-4652"
+  },
+  {
+   "address": "3108 TEST ST",
+   "address_2": "2065 TEST ST",
+   "balance_as_of": "2026-09-30",
+   "city": "WILMINGTON",
+   "country": "US",
+   "st": "DE",
+   "taxpayer_liability": "$156,618.82",
+   "taxpayer_name": "TESTOWNER B79A41 LLC",
+   "zip": "19807-4652"
+  },
+  {
+   "address": "6957 TEST ST",
+   "address_2": "2065 TEST ST",
+   "balance_as_of": "2026-09-30",
+   "city": "CERRITOS",
+   "country": "US",
+   "st": "CA",
+   "taxpayer_liability": "$46,000.97",
+   "taxpayer_name": "TESTOWNER AF231E",
+   "zip": "90703-6611"
+  },
+  {
+   "address": "4083 TEST ST",
+   "address_2": "",
+   "balance_as_of": "2026-09-30",
+   "city": "NEW BRUNSWICK",
+   "country": "US",
+   "st": "NJ",
+   "taxpayer_liability": "$42,824.57",
+   "taxpayer_name": "TESTOWNER 415A29 INC",
+   "zip": "08901-1161"
+  },
+  {
+   "address": "4567 TEST ST",
+   "address_2": "2065 TEST ST",
+   "balance_as_of": "2026-09-30",
+   "city": "DOVER",
+   "country": "US",
+   "st": "DE",
+   "taxpayer_liability": "$39,898.68",
+   "taxpayer_name": "TESTOWNER 0EC726",
+   "zip": "19904-5664"
+  },
+  {
+   "address": "5602 TEST ST",
+   "address_2": "2065 TEST ST",
+   "balance_as_of": "2026-09-30",
+   "city": "WILMINGTON",
+   "country": "US",
+   "st": "DE",
+   "taxpayer_liability": "$37,519.49",
+   "taxpayer_name": "TESTOWNER CD790E LLC",
+   "zip": "19809-1768"
+  },
+  {
+   "address": "2121 TEST ST",
+   "address_2": "",
+   "balance_as_of": "2026-09-30",
+   "city": "DOVER",
+   "country": "US",
+   "st": "DE",
+   "taxpayer_liability": "$33,016.67",
+   "taxpayer_name": "TESTOWNER 2BA120",
+   "zip": "19901-6405"
+  },
+  {
+   "address": "4918 TEST ST",
+   "address_2": "",
+   "balance_as_of": "2026-09-30",
+   "city": "BURLINGTON",
+   "country": "US",
+   "st": "NC",
+   "taxpayer_liability": "$31,958.79",
+   "taxpayer_name": "TESTOWNER DE66E0",
+   "zip": "27216-0868"
+  },
+  {
+   "address": "5691 TEST ST",
+   "address_2": "2065 TEST ST",
+   "balance_as_of": "2026-09-30",
+   "city": "Wilmington",
+   "country": "US",
+   "st": "DE",
+   "taxpayer_liability": "$28,096.03",
+   "taxpayer_name": "TESTOWNER 5F3B05 INC",
+   "zip": "19804-3202"
+  },
+  {
+   "address": "4801 TEST ST",
+   "address_2": "2065 TEST ST",
+   "balance_as_of": "2026-09-30",
+   "city": "BEAR",
+   "country": "US",
+   "st": "DE",
+   "taxpayer_liability": "$26,459.72",
+   "taxpayer_name": "TESTOWNER C37295",
+   "zip": "19701-2292"
+  },
+  {
+   "address": "291 TEST ST",
+   "address_2": "2065 TEST ST",
+   "balance_as_of": "2026-09-30",
+   "city": "CLAYMONT",
+   "country": "US",
+   "st": "DE",
+   "taxpayer_liability": "$24,480.18",
+   "taxpayer_name": "TESTOWNER 441DD5",
+   "zip": "19703-3523"
+  },
+  {
+   "address": "7459 TEST ST",
+   "address_2": "2065 TEST ST",
+   "balance_as_of": "2026-09-30",
+   "city": "CARNEGIE",
+   "country": "US",
+   "st": "PA",
+   "taxpayer_liability": "$23,627.31",
+   "taxpayer_name": "TESTOWNER 2D46F7 INC",
+   "zip": "15106-4308"
+  },
+  {
+   "address": "6342 TEST ST",
+   "address_2": "",
+   "balance_as_of": "2026-09-30",
+   "city": "WILMINGTON",
+   "country": "US",
+   "st": "DE",
+   "taxpayer_liability": "$22,280.18",
+   "taxpayer_name": "TESTOWNER BB1D93 INC",
+   "zip": "19808-1645"
+  },
+  {
+   "address": "7022 TEST ST",
+   "address_2": "2065 TEST ST",
+   "balance_as_of": "2026-09-30",
+   "city": "Midland",
+   "country": "US",
+   "st": "MI",
+   "taxpayer_liability": "$21,670.14",
+   "taxpayer_name": "TESTOWNER 0964E8",
+   "zip": "48641-1867"
+  },
+  {
+   "address": "4829 TEST ST",
+   "address_2": "2065 TEST ST",
+   "balance_as_of": "2026-09-30",
+   "city": "NEWARK",
+   "country": "US",
+   "st": "DE",
+   "taxpayer_liability": "$20,739.46",
+   "taxpayer_name": "TESTOWNER 056397 INC",
+   "zip": "19711-2044"
+  },
+  {
+   "address": "2020 TEST ST",
+   "address_2": "2065 TEST ST",
+   "balance_as_of": "2026-09-30",
+   "city": "SEAFORD",
+   "country": "US",
+   "st": "DE",
+   "taxpayer_liability": "$20,581.21",
+   "taxpayer_name": "TESTOWNER 2CF105 INC",
+   "zip": "19973-8162"
+  },
+  {
+   "address": "7664 TEST ST",
+   "address_2": "2065 TEST ST",
+   "balance_as_of": "2026-09-30",
+   "city": "AMBLER",
+   "country": "US",
+   "st": "PA",
+   "taxpayer_liability": "$20,557.53",
+   "taxpayer_name": "TESTOWNER 73CC23 CORP",
+   "zip": "19002-3162"
+  },
+  {
+   "address": "8710 TEST ST",
+   "address_2": "2065 TEST ST",
+   "balance_as_of": "2026-09-30",
+   "city": "Pittsfield",
+   "country": "US",
+   "st": "MA",
+   "taxpayer_liability": "$20,502.40",
+   "taxpayer_name": "TESTOWNER FD8314 INC",
+   "zip": "01202-0590"
+  },
+  {
+   "address": "4635 TEST ST",
+   "address_2": "2065 TEST ST",
+   "balance_as_of": "2026-09-30",
+   "city": "HOCKESSIN",
+   "country": "US",
+   "st": "DE",
+   "taxpayer_liability": "$20,496.20",
+   "taxpayer_name": "TESTOWNER 2591F0 INC",
+   "zip": "19707-9276"
+  },
+  {
+   "address": "8952 TEST ST",
+   "address_2": "2065 TEST ST",
+   "balance_as_of": "2026-09-30",
+   "city": "HENDERSON",
+   "country": "US",
+   "st": "NV",
+   "taxpayer_liability": "$20,323.56",
+   "taxpayer_name": "TESTOWNER 1E87D2 LLC",
+   "zip": "89052-1538"
+  },
+  {
+   "address": "6667 TEST ST",
+   "address_2": "",
+   "balance_as_of": "2026-09-30",
+   "city": "GREENVILLE",
+   "country": "US",
+   "st": "SC",
+   "taxpayer_liability": "$20,297.01",
+   "taxpayer_name": "TESTOWNER 5B36D2 CO",
+   "zip": "29615-5782"
+  },
+  {
+   "address": "6294 TEST ST",
+   "address_2": "2065 TEST ST",
+   "balance_as_of": "2026-09-30",
+   "city": "NEWARK",
+   "country": "US",
+   "st": "DE",
+   "taxpayer_liability": "$19,349.16",
+   "taxpayer_name": "TESTOWNER 2D9F5A",
+   "zip": "19702-4543"
+  },
+  {
+   "address": "721 TEST ST",
+   "address_2": "2065 TEST ST",
+   "balance_as_of": "2026-09-30",
+   "city": "North East",
+   "country": "US",
+   "st": "MD",
+   "taxpayer_liability": "$19,096.76",
+   "taxpayer_name": "TESTOWNER 01E581",
+   "zip": "21901-6242"
+  },
+  {
+   "address": "4659 TEST ST",
+   "address_2": "2065 TEST ST",
+   "balance_as_of": "2026-09-30",
+   "city": "MILFORD",
+   "country": "US",
+   "st": "DE",
+   "taxpayer_liability": "$19,065.76",
+   "taxpayer_name": "TESTOWNER 851E23 INC",
+   "zip": "19963-1002"
+  },
+  {
+   "address": "3318 TEST ST",
+   "address_2": "",
+   "balance_as_of": "2026-09-30",
+   "city": "LEWES",
+   "country": "US",
+   "st": "DE",
+   "taxpayer_liability": "$18,988.32",
+   "taxpayer_name": "TESTOWNER 9AEC33 LLC",
+   "zip": "19958-1340"
+  }
+ ],
+ "url": "https://revenuefiles.delaware.gov/2026/Business_List_Oct_2026.pdf"
+}

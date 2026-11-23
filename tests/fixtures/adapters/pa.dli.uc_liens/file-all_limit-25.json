@@ -1,0 +1,230 @@
+{
+ "rows": [
+  {
+   "city": "MUNHALL",
+   "county_where_lien_was_filed": "ALLEGHENY",
+   "law_violated": "Unemployment Compensation Law - Section 305 (43 P.S. \u00a7 785)",
+   "list_as_of": "2026-11-17",
+   "organization_s_name": "TESTOWNER C08997 INC",
+   "organization_s_street_address": "6134 TEST ST",
+   "state": "PA"
+  },
+  {
+   "city": "MCKEESPORT",
+   "county_where_lien_was_filed": "ALLEGHENY",
+   "law_violated": "Unemployment Compensation Law - Section 305 (43 P.S. \u00a7 785)",
+   "list_as_of": "2026-11-17",
+   "organization_s_name": "TESTOWNER 2269EC LLC",
+   "organization_s_street_address": "1726 TEST ST",
+   "state": "PA"
+  },
+  {
+   "city": "PHILADELPHIA",
+   "county_where_lien_was_filed": "CAMBRIA",
+   "law_violated": "Unemployment Compensation Law - Section 305 (43 P.S. \u00a7 785)",
+   "list_as_of": "2026-11-17",
+   "organization_s_name": "TESTOWNER 781CE0 LLC",
+   "organization_s_street_address": "5975 TEST ST",
+   "state": "PA"
+  },
+  {
+   "city": "PHILADELPHIA",
+   "county_where_lien_was_filed": "DELAWARE",
+   "law_violated": "Unemployment Compensation Law - Section 305 (43 P.S. \u00a7 785)",
+   "list_as_of": "2026-11-17",
+   "organization_s_name": "TESTOWNER 781CE0 LLC",
+   "organization_s_street_address": "5975 TEST ST",
+   "state": "PA"
+  },
+  {
+   "city": "PHILADELPHIA",
+   "county_where_lien_was_filed": "PHILADELPHIA",
+   "law_violated": "Unemployment Compensation Law - Section 305 (43 P.S. \u00a7 785)",
+   "list_as_of": "2026-11-17",
+   "organization_s_name": "TESTOWNER 781CE0 LLC",
+   "organization_s_street_address": "5975 TEST ST",
+   "state": "PA"
+  },
+  {
+   "city": "PITTSBURGH",
+   "county_where_lien_was_filed": "ALLEGHENY",
+   "law_violated": "Unemployment Compensation Law - Section 305 (43 P.S. \u00a7 785)",
+   "list_as_of": "2026-11-17",
+   "organization_s_name": "TESTOWNER C3EDE2 LLC",
+   "organization_s_street_address": "8273 TEST ST",
+   "state": "PA"
+  },
+  {
+   "city": "CHESTER",
+   "county_where_lien_was_filed": "DELAWARE",
+   "law_violated": "Unemployment Compensation Law - Section 305 (43 P.S. \u00a7 785)",
+   "list_as_of": "2026-11-17",
+   "organization_s_name": "TESTOWNER F96687 INC",
+   "organization_s_street_address": "7193 TEST ST",
+   "state": "PA"
+  },
+  {
+   "city": "PHOENIXVILLE",
+   "county_where_lien_was_filed": "MONTGOMERY",
+   "law_violated": "Unemployment Compensation Law - Section 305 (43 P.S. \u00a7 785)",
+   "list_as_of": "2026-11-17",
+   "organization_s_name": "TESTOWNER DA1840 LLC",
+   "organization_s_street_address": "1804 TEST ST",
+   "state": "PA"
+  },
+  {
+   "city": "HAWLEY",
+   "county_where_lien_was_filed": "PIKE",
+   "law_violated": "Unemployment Compensation Law - Section 305 (43 P.S. \u00a7 785)",
+   "list_as_of": "2026-11-17",
+   "organization_s_name": "TESTOWNER CE84B5 INC",
+   "organization_s_street_address": "4612 TEST ST",
+   "state": "PA"
+  },
+  {
+   "city": "LANCASTER",
+   "county_where_lien_was_filed": "LANCASTER",
+   "law_violated": "Unemployment Compensation Law - Section 305 (43 P.S. \u00a7 785)",
+   "list_as_of": "2026-11-17",
+   "organization_s_name": "TESTOWNER 9B7984 LLC",
+   "organization_s_street_address": "940 TEST ST",
+   "state": "PA"
+  },
+  {
+   "city": "BLUE BELL",
+   "county_where_lien_was_filed": "MONTGOMERY",
+   "law_violated": "Unemployment Compensation Law - Section 305 (43 P.S. \u00a7 785)",
+   "list_as_of": "2026-11-17",
+   "organization_s_name": "TESTOWNER 7F75B2 LLC",
+   "organization_s_street_address": "5323 TEST ST",
+   "state": "PA"
+  },
+  {
+   "city": "MIDDLETON",
+   "county_where_lien_was_filed": "CAMBRIA",
+   "law_violated": "Unemployment Compensation Law - Section 305 (43 P.S. \u00a7 785)",
+   "list_as_of": "2026-11-17",
+   "organization_s_name": "TESTOWNER A69E22 INC",
+   "organization_s_street_address": "1999 TEST ST",
+   "state": "WI"
+  },
+  {
+   "city": "PHILADELPHIA",
+   "county_where_lien_was_filed": "PHILADELPHIA",
+   "law_violated": "Unemployment Compensation Law - Section 305 (43 P.S. \u00a7 785)",
+   "list_as_of": "2026-11-17",
+   "organization_s_name": "TESTOWNER 905B6E LLC",
+   "organization_s_street_address": "2170 TEST ST",
+   "state": "PA"
+  },
+  {
+   "city": "DELRAN",
+   "county_where_lien_was_filed": "CAMBRIA",
+   "law_violated": "Unemployment Compensation Law - Section 305 (43 P.S. \u00a7 785)",
+   "list_as_of": "2026-11-17",
+   "organization_s_name": "TESTOWNER F0F396 INC",
+   "organization_s_street_address": "5177 TEST ST",
+   "state": "NJ"
+  },
+  {
+   "city": "MEDIA",
+   "county_where_lien_was_filed": "CHESTER",
+   "law_violated": "Unemployment Compensation Law - Section 305 (43 P.S. \u00a7 785)",
+   "list_as_of": "2026-11-17",
+   "organization_s_name": "TESTOWNER 2E072B INC",
+   "organization_s_street_address": "1298 TEST ST",
+   "state": "PA"
+  },
+  {
+   "city": "DENVER",
+   "county_where_lien_was_filed": "CAMBRIA",
+   "law_violated": "Unemployment Compensation Law - Section 305 (43 P.S. \u00a7 785)",
+   "list_as_of": "2026-11-17",
+   "organization_s_name": "TESTOWNER 5A97BB",
+   "organization_s_street_address": "4046 TEST ST",
+   "state": "CO"
+  },
+  {
+   "city": "PHILADELPHIA",
+   "county_where_lien_was_filed": "PHILADELPHIA",
+   "law_violated": "Unemployment Compensation Law - Section 305 (43 P.S. \u00a7 785)",
+   "list_as_of": "2026-11-17",
+   "organization_s_name": "TESTOWNER 86A983 INC",
+   "organization_s_street_address": "1246 TEST ST",
+   "state": "PA"
+  },
+  {
+   "city": "MALVERN",
+   "county_where_lien_was_filed": "CHESTER",
+   "law_violated": "Unemployment Compensation Law - Section 305 (43 P.S. \u00a7 785)",
+   "list_as_of": "2026-11-17",
+   "organization_s_name": "TESTOWNER BA5A49 INC",
+   "organization_s_street_address": "2903 TEST ST",
+   "state": "PA"
+  },
+  {
+   "city": "PITTSBURGH",
+   "county_where_lien_was_filed": "ALLEGHENY",
+   "law_violated": "Unemployment Compensation Law - Section 305 (43 P.S. \u00a7 785)",
+   "list_as_of": "2026-11-17",
+   "organization_s_name": "TESTOWNER 656430 LLC",
+   "organization_s_street_address": "4748 TEST ST",
+   "state": "PA"
+  },
+  {
+   "city": "BENSALEM",
+   "county_where_lien_was_filed": "BUCKS",
+   "law_violated": "Unemployment Compensation Law - Section 305 (43 P.S. \u00a7 785)",
+   "list_as_of": "2026-11-17",
+   "organization_s_name": "TESTOWNER 6B34E0 LLC",
+   "organization_s_street_address": "1075 TEST ST",
+   "state": "PA"
+  },
+  {
+   "city": "PITTSBURGH",
+   "county_where_lien_was_filed": "ALLEGHENY",
+   "law_violated": "Unemployment Compensation Law - Section 305 (43 P.S. \u00a7 785)",
+   "list_as_of": "2026-11-17",
+   "organization_s_name": "TESTOWNER 859879",
+   "organization_s_street_address": "7753 TEST ST",
+   "state": "PA"
+  },
+  {
+   "city": "PHILADELPHIA",
+   "county_where_lien_was_filed": "PHILADELPHIA",
+   "law_violated": "Unemployment Compensation Law - Section 305 (43 P.S. \u00a7 785)",
+   "list_as_of": "2026-11-17",
+   "organization_s_name": "TESTOWNER DE965D LLC",
+   "organization_s_street_address": "6598 TEST ST",
+   "state": "PA"
+  },
+  {
+   "city": "MONROEVILLE",
+   "county_where_lien_was_filed": "ALLEGHENY",
+   "law_violated": "Unemployment Compensation Law - Section 305 (43 P.S. \u00a7 785)",
+   "list_as_of": "2026-11-17",
+   "organization_s_name": "TESTOWNER 285147 LLC",
+   "organization_s_street_address": "7488 TEST ST",
+   "state": "PA"
+  },
+  {
+   "city": "PHILADELPHIA",
+   "county_where_lien_was_filed": "PHILADELPHIA",
+   "law_violated": "Unemployment Compensation Law - Section 305 (43 P.S. \u00a7 785)",
+   "list_as_of": "2026-11-17",
+   "organization_s_name": "TESTOWNER 973A8B LLC",
+   "organization_s_street_address": "1859 TEST ST",
+   "state": "PA"
+  },
+  {
+   "city": "LITITZ",
+   "county_where_lien_was_filed": "LANCASTER",
+   "law_violated": "Unemployment Compensation Law - Section 305 (43 P.S. \u00a7 785)",
+   "list_as_of": "2026-11-17",
+   "organization_s_name": "TESTOWNER 6FE9AF CORP",
+   "organization_s_street_address": "2945 TEST ST",
+   "state": "PA"
+  }
+ ],
+ "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/documents/non-compliance-lists/uc-non-compliance-list.xlsx"
+}

@@ -1,0 +1,31 @@
+source_id: ne.dor.delinquent_taxpayers
+state: NE
+county_fips: "31"   # statewide; the row's county is used (OUT OF STATE stays statewide)
+# Nebraska Department of Revenue, Delinquent Taxpayer List (Neb. Rev. Stat. 77-378): taxpayers
+# owing more than $20,000 who "have had a lien filed against the taxpayer's property in
+# accordance with state law", have exhausted or waived appeal, and are not in bankruptcy or on
+# a payment agreement. One HTML table (the "By Name" page, every county and out of state); no
+# lien date is published, so the page's "Updated" date stands in for it.
+# TODO(Brandon): confirm the filed lien attaches to real property in the county named (state
+# tax lien filed with the county register of deeds, Neb. Rev. Stat. 77-27,124).
+api: html
+url: https://revenue.nebraska.gov/about/nebraska-delinquent-taxpayer-list/nebraska-delinquent-taxpayers-sorted-name
+table: 0
+as_of: {field: list_as_of, after: "Updated"}
+date_field: list_as_of
+uid: [name, last_known_address, city, county, tax_category, balance]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: {field: tax_category}
+amount: balance
+county_name_field: county
+parties:
+  - role: debtor
+    name: name
+    address: {line1: last_known_address, city: city, state: state, zip: zip}
+  - role: creditor
+    const: Nebraska Department of Revenue
+terms:
+  url: https://revenue.nebraska.gov/about/nebraska-delinquent-taxpayer-list
+  summary: "NE DOR publishes the list as free HTML tables on revenue.nebraska.gov, no login. Published under Neb. Rev. Stat. 77-378; no license or reuse terms stated; robots.txt allows /about/."
+  checked_on: 2026-11-23
+  cost_model: free
