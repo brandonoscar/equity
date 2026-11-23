@@ -471,3 +471,39 @@ def test_garnishment_writs_make_their_defendants_judgment_debtors(
         f"SELECT debtor_party_id, instrument_uid, owner_party_id, rule_id"
         f" FROM '{out.as_posix()}/matches.parquet'").fetchall()  # fmt: skip
     assert m == [("w1", "writ:k1", "o1", "person_name_address")]  # the plaintiff is no debtor
+
+
+def test_a_lien_citing_a_property_address_is_owed_by_that_parcels_owner(
+    lake: Path, tmp_path: Path
+) -> None:
+    c = lake / "zz.charges"
+    _write(c / "address" / "0.parquet", [
+        _addr("ca1", "300 PARK AVE", "10001"), _addr("ca2", "77 BAY ST", "10001")])  # fmt: skip
+    _write(c / "party" / "0.parquet", [
+        {"party_id": "pp1", "raw_name": "CITED PROPERTY", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": "ca1"},
+        {"party_id": "pp2", "raw_name": "CITED PROPERTY", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": "ca2"}])  # fmt: skip
+    _write(c / "instrument_party" / "0.parquet", [
+        {"instrument_uid": "ch1", "party_id": "pp1", "role": "other"},
+        {"instrument_uid": "ch2", "party_id": "pp2", "role": "other"}])  # fmt: skip
+    _write(
+        c / "instrument" / "0.parquet",
+        [
+            {
+                "instrument_uid": u,
+                "source_id": "zz.charges",
+                "doc_type": "STATUTORY_LIEN",
+                "recorded_on": "2026-01-01",
+                "principal_amount": 40.0,
+            }
+            for u in ("ch1", "ch2")
+        ],
+    )
+    out = tmp_path / "out"
+    run(lake, out, ["zz.charges"], ["zz.parcels"], parcel_on_lien=True)
+    m = duckdb.connect().execute(
+        f"SELECT debtor_party_id, instrument_uid, parcel_uid, rule_id"
+        f" FROM '{out.as_posix()}/matches.parquet'").fetchall()  # fmt: skip
+    # 300 PARK AVE is p1's situs address; 77 BAY ST is only a mailing address, so ch2 names no lot.
+    assert m == [("owner-of:p1", "ch1", "p1", "lien_names_parcel")]

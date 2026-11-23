@@ -23,8 +23,9 @@ Rules, strongest first (a debtor-owner pair keeps its strongest rule):
   person_name_zip       same person name_key and ZIP                           -> review
 With parcel_on_lien (liens recorded against a parcel id, e.g. Allegheny PINs), first; a lien
 that names a parcel but no debtor gets the stand-in debtor "owner-of:<parcel_uid>":
-  lien_names_parcel         the lien itself names the parcel (instrument_parcel), and that
-                            parcel is in the owner source; no name match needed   -> auto
+  lien_names_parcel         the lien itself names the parcel (instrument_parcel, or the one
+                            parcel at its CITED PROPERTY address, see LOTS_SQL), and
+                            that parcel is in the owner source; no name match needed -> auto
 Any debtor whose lien or judgment names a county (and every run uses this rule):
   org_name_county           same org_name, and the debtor's county is the parcel's county
                             -> review (no address to confirm it is the same business)
@@ -197,6 +198,7 @@ def connect(
     if writ_sources:
         _writ_debtors(con, lake, writ_sources)
     if parcel_on_lien:
+        con.execute(LOTS_SQL)
         # A lien that names a parcel but no debtor (Allegheny tax liens, foreclosures) is owed
         # by whoever owns that parcel: one stand-in debtor per parcel, "owner-of:<parcel_uid>".
         con.execute("""
@@ -208,7 +210,7 @@ def connect(
                            AND r.ref_type = 'releases')
                        OR coalesce(i.doc_type_raw, '') LIKE '%(satisfied)',
                    '', NULL, NULL, NULL, NULL
-            FROM d_inst i JOIN d_lot l ON l.instrument_uid = i.instrument_uid
+            FROM d_inst i JOIN lots l ON l.instrument_uid = i.instrument_uid
             WHERE i.doc_type <> 'RELEASE' AND NOT EXISTS (
                 SELECT 1 FROM d_ip ip WHERE ip.instrument_uid = i.instrument_uid
                   AND ip.role = 'debtor');
@@ -262,6 +264,26 @@ def _writ_debtors(con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str]
     """)
 
 
+# The parcels a lien names: its instrument_parcel rows, plus, for a lien whose 'CITED
+# PROPERTY' party (role 'other') carries the cited property's address (code charges that
+# give an address but no parcel id), the one owner parcel whose situs address has the same
+# street line and ZIP, or street line and town. An address shared by several parcels
+# (condos, multi-lot sites) is ambiguous and names none.
+LOTS_SQL = """
+CREATE TEMP TABLE lots AS
+SELECT DISTINCT instrument_uid, parcel_uid FROM d_lot
+UNION
+SELECT instrument_uid, any_value(parcel_uid) FROM (
+    SELECT DISTINCT ip.instrument_uid, pc.parcel_uid
+    FROM d_ip ip
+    JOIN d_party p ON p.party_id = ip.party_id
+    JOIN addr a ON a.address_id = p.address_id
+    JOIN addr sa ON (a.addr_key IS NOT NULL AND sa.addr_key = a.addr_key)
+                 OR (a.town_key IS NOT NULL AND sa.town_key = a.town_key)
+    JOIN o_parcel pc ON pc.situs_address_id = sa.address_id
+    WHERE ip.role = 'other' AND p.raw_name = 'CITED PROPERTY')
+GROUP BY instrument_uid HAVING count(*) = 1;
+"""
 COURT_COUNTY_SQL = """
 INSERT INTO candidates
 SELECT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid, 'org_name_county',
@@ -362,7 +384,7 @@ PARCEL_ON_LIEN_SQL = """
 INSERT INTO candidates
 SELECT DISTINCT d.party_id, d.instrument_uid, NULL, l.parcel_uid, 'lien_names_parcel',
        l.parcel_uid
-FROM debtors d JOIN d_lot l ON l.instrument_uid = d.instrument_uid
+FROM debtors d JOIN lots l ON l.instrument_uid = d.instrument_uid
 WHERE l.parcel_uid IN (SELECT parcel_uid FROM o_parcel)
   AND (NOT starts_with(d.party_id, 'owner-of:') OR d.party_id = 'owner-of:' || l.parcel_uid);
 """
@@ -572,6 +594,10 @@ STATES: dict[str, dict[str, Any]] = {
     # New Orleans code judgments name the parcel (GeoPIN), not the owner.
     "LA-NOLA": {"debtors": ["la.nola.code_hearing_judgments"], "owners": ["la.orleans.parcels"],
                 "courts": FEDERAL_COURTS, "parcel_on_lien": True},
+    # Cincinnati lot abatement cites the property's address only: its parcel is found by
+    # situs address (LOTS_SQL) and the charge is owed by that parcel's owner.
+    "OH-HAMILTON": {"debtors": ["oh.cincinnati.lot_abatement"], "owners": ["oh.statewide.parcels"],
+                    "parcel_on_lien": True, "courts": FEDERAL_COURTS},
     "AZ-PIMA": {"debtors": ["az.tucson.code_liens"], "owners": ["az.pima.parcels"],
                 "courts": FEDERAL_COURTS},
     "PA-WASHINGTON": {"debtors": ["pa.washington.sheriff_sales"],

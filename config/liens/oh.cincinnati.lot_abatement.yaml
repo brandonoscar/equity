@@ -1,0 +1,33 @@
+source_id: oh.cincinnati.lot_abatement
+state: OH
+county_fips: "39061"   # Hamilton County (City of Cincinnati)
+# City of Cincinnati Private Lot Abatement Program: the city cleans a neglected private lot
+# and invoices the owner; unpaid costs are certified to the county auditor and assessed
+# against the property (ORC 715.261). One row per cleaning, with the balance still owed.
+# The owner is not named: the cited address names the parcel (a 'CITED PROPERTY' party).
+# TODO(Brandon): confirm unpaid abatement costs are certified as liens on the tax duplicate.
+portal: https://data.cincinnati-oh.gov
+dataset: pk9w-99n6
+where: "clean_balance > 0"
+order_by: [clean_number_key, ":id"]
+select: [clean_number_key, enf_number_key, full_address, clean_status, clean_recd_date,
+         clean_owner_invoiced_date, clean_cleaning_costs, clean_total_payment, clean_balance]
+date_field: clean_recd_date
+partition: year
+first_year: 2005
+uid: clean_number_key
+doc_type: STATUTORY_LIEN
+doc_type_raw: Cincinnati private lot abatement
+amount: clean_balance
+parties:
+  - role: other                 # the cited property; the matcher finds its parcel by address
+    const: CITED PROPERTY
+    address: {line1: full_address, city_const: CINCINNATI, state_const: OH}
+  - role: creditor
+    const: City of Cincinnati
+extra_pii: [full_address]
+terms:
+  url: https://data.cincinnati-oh.gov/d/pk9w-99n6
+  summary: "Cincinnati Open Data (Socrata), public, no login. City of Cincinnati open data terms."
+  checked_on: 2026-11-23
+  cost_model: free

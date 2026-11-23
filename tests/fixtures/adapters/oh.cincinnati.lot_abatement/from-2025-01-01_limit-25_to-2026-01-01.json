@@ -1,0 +1,277 @@
+{
+ "dataset": "pk9w-99n6",
+ "rows": [
+  {
+   "clean_balance": "2516.8",
+   "clean_cleaning_costs": "2516.8",
+   "clean_number_key": "PSA2500001",
+   "clean_owner_invoiced_date": "2025-04-15T00:00:00.000",
+   "clean_recd_date": "2025-01-02T00:00:00.000",
+   "clean_status": "ASSESSED",
+   "clean_total_payment": "0",
+   "enf_number_key": "PSC2409645",
+   "full_address": "2836 TEST ST"
+  },
+  {
+   "clean_balance": "1142.11",
+   "clean_cleaning_costs": "1142.11",
+   "clean_number_key": "PSA2500005",
+   "clean_owner_invoiced_date": "2025-05-09T00:00:00.000",
+   "clean_recd_date": "2025-01-07T00:00:00.000",
+   "clean_status": "LAW",
+   "clean_total_payment": "0",
+   "enf_number_key": "PSC2405403",
+   "full_address": "1972 TEST ST"
+  },
+  {
+   "clean_balance": "5",
+   "clean_cleaning_costs": "0",
+   "clean_number_key": "PSA2500006",
+   "clean_recd_date": "2025-01-07T00:00:00.000",
+   "clean_status": "ABAT-OWN",
+   "clean_total_payment": "0",
+   "enf_number_key": "PSC2504187",
+   "full_address": "8563 TEST ST"
+  },
+  {
+   "clean_balance": "5",
+   "clean_cleaning_costs": "0",
+   "clean_number_key": "PSA2500006",
+   "clean_recd_date": "2025-01-07T00:00:00.000",
+   "clean_status": "ABAT-OWN",
+   "clean_total_payment": "0",
+   "enf_number_key": "PSC2400734",
+   "full_address": "3900 TEST ST"
+  },
+  {
+   "clean_balance": "1928.75",
+   "clean_cleaning_costs": "1928.75",
+   "clean_number_key": "PSA2500008",
+   "clean_owner_invoiced_date": "2025-02-04T00:00:00.000",
+   "clean_recd_date": "2025-01-09T00:00:00.000",
+   "clean_status": "ASSESSED",
+   "clean_total_payment": "0",
+   "enf_number_key": "PSC2409907",
+   "full_address": "4416 TEST ST"
+  },
+  {
+   "clean_balance": "460.85",
+   "clean_cleaning_costs": "460.85",
+   "clean_number_key": "PSA2500010",
+   "clean_recd_date": "2025-01-09T00:00:00.000",
+   "clean_status": "CLOS-FNL",
+   "clean_total_payment": "0",
+   "enf_number_key": "PSC2409600",
+   "full_address": "3623 TEST ST"
+  },
+  {
+   "clean_balance": "460.85",
+   "clean_cleaning_costs": "460.85",
+   "clean_number_key": "PSA2500010",
+   "clean_recd_date": "2025-01-09T00:00:00.000",
+   "clean_status": "CLOS-FNL",
+   "clean_total_payment": "0",
+   "enf_number_key": "PSC1712077",
+   "full_address": "2767 TEST ST"
+  },
+  {
+   "clean_balance": "503.93",
+   "clean_cleaning_costs": "503.93",
+   "clean_number_key": "PSA2500012",
+   "clean_owner_invoiced_date": "2025-06-20T00:00:00.000",
+   "clean_recd_date": "2025-01-15T00:00:00.000",
+   "clean_status": "ASSESSED",
+   "clean_total_payment": "0",
+   "enf_number_key": "PSC2409921",
+   "full_address": "5590 TEST ST"
+  },
+  {
+   "clean_balance": "613.65",
+   "clean_cleaning_costs": "613.65",
+   "clean_number_key": "PSA2500015",
+   "clean_owner_invoiced_date": "2025-04-28T00:00:00.000",
+   "clean_recd_date": "2025-01-15T00:00:00.000",
+   "clean_status": "ASSESSED",
+   "clean_total_payment": "0",
+   "enf_number_key": "PSC1800797",
+   "full_address": "8559 TEST ST"
+  },
+  {
+   "clean_balance": "296",
+   "clean_cleaning_costs": "296",
+   "clean_number_key": "PSA2500018",
+   "clean_owner_invoiced_date": "2025-01-21T00:00:00.000",
+   "clean_recd_date": "2025-01-15T00:00:00.000",
+   "clean_status": "ASSESSED",
+   "clean_total_payment": "0",
+   "enf_number_key": "PSC2311426",
+   "full_address": "6483 TEST ST"
+  },
+  {
+   "clean_balance": "540.6",
+   "clean_cleaning_costs": "540.6",
+   "clean_number_key": "PSA2500020",
+   "clean_owner_invoiced_date": "2025-04-15T00:00:00.000",
+   "clean_recd_date": "2025-01-15T00:00:00.000",
+   "clean_status": "ASSESSED",
+   "clean_total_payment": "0",
+   "enf_number_key": "PSC2301498",
+   "full_address": "1294 TEST ST"
+  },
+  {
+   "clean_balance": "985.64",
+   "clean_cleaning_costs": "985.64",
+   "clean_number_key": "PSA2500025",
+   "clean_owner_invoiced_date": "2025-04-23T00:00:00.000",
+   "clean_recd_date": "2025-01-17T00:00:00.000",
+   "clean_status": "ASSESSED",
+   "clean_total_payment": "0",
+   "enf_number_key": "PSC2410008",
+   "full_address": "3387 TEST ST"
+  },
+  {
+   "clean_balance": "345.76",
+   "clean_cleaning_costs": "345.76",
+   "clean_number_key": "PSA2500026",
+   "clean_owner_invoiced_date": "2025-04-25T00:00:00.000",
+   "clean_recd_date": "2025-01-18T00:00:00.000",
+   "clean_status": "ASSESSED",
+   "clean_total_payment": "0",
+   "enf_number_key": "PSC2409218",
+   "full_address": "6666 TEST ST"
+  },
+  {
+   "clean_balance": "658.78",
+   "clean_cleaning_costs": "658.78",
+   "clean_number_key": "PSA2500029",
+   "clean_owner_invoiced_date": "2025-04-14T00:00:00.000",
+   "clean_recd_date": "2025-01-19T00:00:00.000",
+   "clean_status": "ASSESSED",
+   "clean_total_payment": "0",
+   "enf_number_key": "PSC2409340",
+   "full_address": "2069 TEST ST"
+  },
+  {
+   "clean_balance": "512.89",
+   "clean_cleaning_costs": "512.89",
+   "clean_number_key": "PSA2500032",
+   "clean_owner_invoiced_date": "2025-04-22T00:00:00.000",
+   "clean_recd_date": "2025-01-21T00:00:00.000",
+   "clean_status": "ASSESSED",
+   "clean_total_payment": "0",
+   "enf_number_key": "PSC2110542",
+   "full_address": "8685 TEST ST"
+  },
+  {
+   "clean_balance": "412.3",
+   "clean_cleaning_costs": "412.3",
+   "clean_number_key": "PSA2500033",
+   "clean_owner_invoiced_date": "2025-06-23T00:00:00.000",
+   "clean_recd_date": "2025-01-21T00:00:00.000",
+   "clean_status": "ASSESSED",
+   "clean_total_payment": "0",
+   "enf_number_key": "PSC2304252",
+   "full_address": "3184 TEST ST"
+  },
+  {
+   "clean_balance": "2863.75",
+   "clean_cleaning_costs": "2863.75",
+   "clean_number_key": "PSA2500035",
+   "clean_owner_invoiced_date": "2025-06-27T00:00:00.000",
+   "clean_recd_date": "2025-01-21T00:00:00.000",
+   "clean_status": "ASSESSED",
+   "clean_total_payment": "0",
+   "enf_number_key": "PSC2311038",
+   "full_address": "2860 TEST ST"
+  },
+  {
+   "clean_balance": "1061.66",
+   "clean_cleaning_costs": "1061.66",
+   "clean_number_key": "PSA2500039",
+   "clean_owner_invoiced_date": "2025-05-08T00:00:00.000",
+   "clean_recd_date": "2025-01-21T00:00:00.000",
+   "clean_status": "ASSESSED",
+   "clean_total_payment": "0",
+   "enf_number_key": "PSC2408378",
+   "full_address": "4595 TEST ST"
+  },
+  {
+   "clean_balance": "731.56",
+   "clean_cleaning_costs": "731.56",
+   "clean_number_key": "PSA2500046",
+   "clean_owner_invoiced_date": "2025-05-15T00:00:00.000",
+   "clean_recd_date": "2025-01-22T00:00:00.000",
+   "clean_status": "ASSESSED",
+   "clean_total_payment": "0",
+   "enf_number_key": "PSC2409800",
+   "full_address": "1775 TEST ST"
+  },
+  {
+   "clean_balance": "838.3",
+   "clean_cleaning_costs": "838.3",
+   "clean_number_key": "PSA2500049",
+   "clean_owner_invoiced_date": "2025-04-14T00:00:00.000",
+   "clean_recd_date": "2025-01-24T00:00:00.000",
+   "clean_status": "ASSESSED",
+   "clean_total_payment": "0",
+   "enf_number_key": "PSC2408552",
+   "full_address": "1427 TEST ST"
+  },
+  {
+   "clean_balance": "309",
+   "clean_cleaning_costs": "309",
+   "clean_number_key": "PSA2500051",
+   "clean_owner_invoiced_date": "2025-02-27T00:00:00.000",
+   "clean_recd_date": "2025-01-24T00:00:00.000",
+   "clean_status": "ASSESSED",
+   "clean_total_payment": "0",
+   "enf_number_key": "PSC2409787",
+   "full_address": "5564 TEST ST"
+  },
+  {
+   "clean_balance": "1110.94",
+   "clean_cleaning_costs": "1110.94",
+   "clean_number_key": "PSA2500054",
+   "clean_owner_invoiced_date": "2025-06-27T00:00:00.000",
+   "clean_recd_date": "2025-01-28T00:00:00.000",
+   "clean_status": "ASSESSED",
+   "clean_total_payment": "0",
+   "enf_number_key": "PSC2310757",
+   "full_address": "2286 TEST ST"
+  },
+  {
+   "clean_balance": "885.68",
+   "clean_cleaning_costs": "885.68",
+   "clean_number_key": "PSA2500055",
+   "clean_owner_invoiced_date": "2025-04-29T00:00:00.000",
+   "clean_recd_date": "2025-01-28T00:00:00.000",
+   "clean_status": "ASSESSED",
+   "clean_total_payment": "0",
+   "enf_number_key": "PSC2409853",
+   "full_address": "3818 TEST ST"
+  },
+  {
+   "clean_balance": "7970.66",
+   "clean_cleaning_costs": "7970.66",
+   "clean_number_key": "PSA2500056",
+   "clean_owner_invoiced_date": "2025-02-03T00:00:00.000",
+   "clean_recd_date": "2025-01-28T00:00:00.000",
+   "clean_status": "DISMISSD",
+   "clean_total_payment": "0",
+   "enf_number_key": "PSC2500257",
+   "full_address": "5768 TEST ST"
+  },
+  {
+   "clean_balance": "1806.71",
+   "clean_cleaning_costs": "1806.71",
+   "clean_number_key": "PSA2500057",
+   "clean_owner_invoiced_date": "2025-05-12T00:00:00.000",
+   "clean_recd_date": "2025-01-29T00:00:00.000",
+   "clean_status": "LAW",
+   "clean_total_payment": "0",
+   "enf_number_key": "PSC2407837",
+   "full_address": "5571 TEST ST"
+  }
+ ],
+ "where": "(clean_balance > 0) AND clean_recd_date >= '2025-01-01T00:00:00' AND clean_recd_date < '2026-01-01T00:00:00'"
+}
