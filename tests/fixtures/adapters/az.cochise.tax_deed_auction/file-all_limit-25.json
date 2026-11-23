@@ -1,0 +1,231 @@
+{
+ "layer": "https://services6.arcgis.com/Yxem0VOcqSy8T6TE/arcgis/rest/services/2026_Tax_Deed_Auction_Parcels/FeatureServer/1",
+ "rows": [
+  {
+   "Current_Zoning": "RU-4",
+   "Full_Cash_Value": "2660",
+   "Minimum_Bid": "2660",
+   "OBJECTID": 1,
+   "Previous_Owner_s_Name": "TESTOWNER 41BAAC",
+   "Taxes": "1092.68",
+   "apn": "10134032"
+  },
+  {
+   "Current_Zoning": "RU-4",
+   "Full_Cash_Value": "2660",
+   "Minimum_Bid": "2660",
+   "OBJECTID": 2,
+   "Previous_Owner_s_Name": "TESTOWNER D63C16",
+   "Taxes": "1092.68",
+   "apn": "10134033"
+  },
+  {
+   "Current_Zoning": "RU-4",
+   "Full_Cash_Value": "2660",
+   "Minimum_Bid": "2660",
+   "OBJECTID": 3,
+   "Previous_Owner_s_Name": "TESTOWNER 8CDE04",
+   "Taxes": "1264.14",
+   "apn": "10135025"
+  },
+  {
+   "Current_Zoning": "RU-4",
+   "Full_Cash_Value": "2660",
+   "Minimum_Bid": "2660",
+   "OBJECTID": 4,
+   "Previous_Owner_s_Name": "TESTOWNER D63C16",
+   "Taxes": "1092.68",
+   "apn": "10135026"
+  },
+  {
+   "Current_Zoning": "R-36",
+   "Full_Cash_Value": "2100",
+   "Minimum_Bid": "4060",
+   "OBJECTID": 5,
+   "Previous_Owner_s_Name": "TESTOWNER 022BF0",
+   "Taxes": "848.16",
+   "apn": "10136022"
+  },
+  {
+   "Current_Zoning": "R-36",
+   "Full_Cash_Value": "2100",
+   "Minimum_Bid": "4060",
+   "OBJECTID": 6,
+   "Previous_Owner_s_Name": "TESTOWNER D68406",
+   "Taxes": "774.54",
+   "apn": "10136023"
+  },
+  {
+   "Current_Zoning": "R-36",
+   "Full_Cash_Value": "2100",
+   "Minimum_Bid": "4060",
+   "OBJECTID": 7,
+   "Previous_Owner_s_Name": "TESTOWNER D63C16",
+   "Taxes": "934.21",
+   "apn": "10136028"
+  },
+  {
+   "Current_Zoning": "R-36",
+   "Full_Cash_Value": "2100",
+   "Minimum_Bid": "4060",
+   "OBJECTID": 8,
+   "Previous_Owner_s_Name": "TESTOWNER 5DE47B",
+   "Taxes": "904.17",
+   "apn": "10136029"
+  },
+  {
+   "Current_Zoning": "R-36",
+   "Full_Cash_Value": "1960",
+   "Minimum_Bid": "4060",
+   "OBJECTID": 9,
+   "Previous_Owner_s_Name": "TESTOWNER 5DE47B",
+   "Taxes": "825.09",
+   "apn": "10136030"
+  },
+  {
+   "Current_Zoning": "R-36",
+   "Full_Cash_Value": "1960",
+   "Minimum_Bid": "4060",
+   "OBJECTID": 10,
+   "Previous_Owner_s_Name": "TESTOWNER D63C16",
+   "Taxes": "870.12",
+   "apn": "10136031"
+  },
+  {
+   "Current_Zoning": "R-36",
+   "Full_Cash_Value": "1960",
+   "Minimum_Bid": "4060",
+   "OBJECTID": 11,
+   "Previous_Owner_s_Name": "TESTOWNER D68406",
+   "Taxes": "737.85",
+   "apn": "10136036"
+  },
+  {
+   "Current_Zoning": "R-36",
+   "Full_Cash_Value": "1960",
+   "Minimum_Bid": "4060",
+   "OBJECTID": 12,
+   "Previous_Owner_s_Name": "TESTOWNER 022BF0",
+   "Taxes": "794.09",
+   "apn": "10136037"
+  },
+  {
+   "Current_Zoning": "R-36",
+   "Full_Cash_Value": "2100",
+   "Minimum_Bid": "2030",
+   "OBJECTID": 13,
+   "Previous_Owner_s_Name": "TESTOWNER D68406",
+   "Taxes": "865.35",
+   "apn": "10136074"
+  },
+  {
+   "Current_Zoning": "R-36",
+   "Full_Cash_Value": "1960",
+   "Minimum_Bid": "2030",
+   "OBJECTID": 14,
+   "Previous_Owner_s_Name": "TESTOWNER D68406",
+   "Taxes": "797.92",
+   "apn": "10136088"
+  },
+  {
+   "Current_Zoning": "SR-8",
+   "Full_Cash_Value": "4000",
+   "Minimum_Bid": "2000",
+   "OBJECTID": 15,
+   "Previous_Owner_s_Name": "TESTOWNER 2B2860",
+   "Taxes": "4153.32",
+   "apn": "10446153"
+  },
+  {
+   "Current_Zoning": "MH-72",
+   "Full_Cash_Value": "6000",
+   "Minimum_Bid": "3000",
+   "OBJECTID": 16,
+   "Previous_Owner_s_Name": "TESTOWNER A7F2D1 LLC",
+   "Taxes": "6084.79",
+   "apn": "10446299A"
+  },
+  {
+   "Current_Zoning": "Tombstone",
+   "Full_Cash_Value": "17280",
+   "Minimum_Bid": "8640",
+   "OBJECTID": 17,
+   "Previous_Owner_s_Name": "TESTOWNER 006343",
+   "Taxes": "4984.69",
+   "apn": "10907012"
+  },
+  {
+   "Current_Zoning": "Tombstone",
+   "Full_Cash_Value": "2295",
+   "Minimum_Bid": "1148",
+   "OBJECTID": 18,
+   "Previous_Owner_s_Name": "TESTOWNER F00BA2",
+   "Taxes": "1085.66",
+   "apn": "10912051"
+  },
+  {
+   "Current_Zoning": "RU-4",
+   "Full_Cash_Value": "11572",
+   "Minimum_Bid": "5786",
+   "OBJECTID": 19,
+   "Previous_Owner_s_Name": "TESTOWNER 54F667",
+   "Taxes": "3633.93",
+   "apn": "11145013B"
+  },
+  {
+   "Current_Zoning": "RU-4",
+   "Full_Cash_Value": "3000",
+   "Minimum_Bid": "1500",
+   "OBJECTID": 20,
+   "Previous_Owner_s_Name": "TESTOWNER A75C7E",
+   "Taxes": "1905.25",
+   "apn": "11335037"
+  },
+  {
+   "Current_Zoning": "SR-22",
+   "Full_Cash_Value": "500",
+   "Minimum_Bid": "500",
+   "OBJECTID": 21,
+   "Previous_Owner_s_Name": "TESTOWNER A84C92",
+   "Taxes": "649.46",
+   "apn": "11405155"
+  },
+  {
+   "Current_Zoning": "SR-22",
+   "Full_Cash_Value": "500",
+   "Minimum_Bid": "500",
+   "OBJECTID": 22,
+   "Previous_Owner_s_Name": "TESTOWNER 54DE86",
+   "Taxes": "649.46",
+   "apn": "11405156"
+  },
+  {
+   "Current_Zoning": "SR-22",
+   "Full_Cash_Value": "500",
+   "Minimum_Bid": "1000",
+   "OBJECTID": 23,
+   "Previous_Owner_s_Name": "TESTOWNER BE3E80",
+   "Taxes": "573.36",
+   "apn": "11405200"
+  },
+  {
+   "Current_Zoning": "SR-22",
+   "Full_Cash_Value": "500",
+   "Minimum_Bid": "1000",
+   "OBJECTID": 24,
+   "Previous_Owner_s_Name": "TESTOWNER BE3E80",
+   "Taxes": "573.36",
+   "apn": "11405201"
+  },
+  {
+   "Current_Zoning": "SR-22",
+   "Full_Cash_Value": "500",
+   "Minimum_Bid": "1000",
+   "OBJECTID": 25,
+   "Previous_Owner_s_Name": "TESTOWNER A728E5",
+   "Taxes": "649.46",
+   "apn": "11405202"
+  }
+ ],
+ "where": "1=1"
+}

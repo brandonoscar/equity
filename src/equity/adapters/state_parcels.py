@@ -115,6 +115,44 @@ def parse_full_address(text: str) -> tuple[str, str | None, str | None, str | No
 
 
 _ZIP = re.compile(r"^\s*(\d{5})")
+_TRAILING_ZIP = re.compile(r"^(?P<rest>.*?)\s+(?P<zip>\d{5})(?:-\d{4})?\s*$")
+# USPS Publication 28 street suffixes (abbreviation and full word), and what may follow the
+# suffix and still be part of the street line: a direction or a unit.
+STREET_SUFFIXES = frozenset({
+    "ST", "STREET", "AVE", "AV", "AVENUE", "RD", "ROAD", "DR", "DRIVE", "LN", "LANE", "CT",
+    "COURT", "BLVD", "BOULEVARD", "PL", "PLACE", "WAY", "WY", "CIR", "CIRCLE", "TER", "TERRACE",
+    "PKWY", "PARKWAY", "HWY", "HIGHWAY", "TRL", "TRAIL", "PIKE", "SQ", "SQUARE", "LOOP", "RUN",
+    "XING", "PT", "CV", "PATH", "ALY", "ROW", "TPKE", "PLZ", "HTS", "CRES", "BND", "EXT",
+})  # fmt: skip
+_DIRECTIONS = frozenset({"N", "S", "E", "W", "NE", "NW", "SE", "SW"})
+_UNITS = frozenset({"APT", "UNIT", "STE", "SUITE", "#", "LOT", "BLDG", "FL"})
+
+
+def parse_line_city_zip(text: str) -> tuple[str, str | None, str | None]:
+    """'20 22 JACK ROUSH WY MANCHESTER 45144' -> ('20 22 JACK ROUSH WY', 'MANCHESTER', '45144').
+    The street line ends at the first street suffix after the street name (a suffix right
+    after the house number is the name: '12 COURT ST', '9 ST CLAIR AVE'); a direction and a
+    unit after it stay on the line, the rest is the city. With no trailing ZIP, or no suffix,
+    the text stays whole as the line (with the ZIP split off when there is one)."""
+    words = " ".join(text.split())
+    m = _TRAILING_ZIP.match(words)
+    if m is None:
+        return words, None, None
+    tokens, zip5 = m.group("rest").split(" "), m.group("zip")
+    first = 1 if tokens and tokens[0][:1].isdigit() else 0
+    while first < len(tokens) and tokens[first][:1].isdigit():  # '20 22 ...', '1/2'
+        first += 1
+    end = next((i for i in range(first + 1, len(tokens)) if tokens[i].upper() in STREET_SUFFIXES),
+               None)  # fmt: skip
+    if end is None:
+        return m.group("rest"), None, zip5
+    end += 1
+    if end < len(tokens) and tokens[end].upper() in _DIRECTIONS:
+        end += 1
+    if end + 1 < len(tokens) and tokens[end].upper() in _UNITS:
+        end += 2
+    line, city = " ".join(tokens[:end]), " ".join(tokens[end:]) or None
+    return line, city, zip5
 _NULLS = {"", "NULL", "NONE", "N/A", "<NULL>"}
 
 
@@ -152,6 +190,9 @@ class StateConfig:
     # Fixed where clause ANDed into every query (e.g. "ROLL_YEAR = 2026" for layers that keep
     # one row per parcel per year).
     base_filter: str | None = None
+    # How a one-string situs is laid out when it is not 'LINE, CITY, ST ZIP':
+    # line_city_zip = 'NUMBER STREET SUFFIX CITY ZIP' with no commas (Ohio's statewide view).
+    situs_form: str | None = None
     # Regex with named groups `book` and `page` for a combined deed reference ("282 - 520").
     deed_ref_pattern: str | None = None
     # Split the layer into object-id windows of this many ids instead of one request per
@@ -261,6 +302,7 @@ def load_config(path: Path) -> StateConfig:
         layers=tuple(layers),
         paginate=bool(data.get("paginate", True)),
         base_filter=data.get("filter"),
+        situs_form=data.get("situs_form"),
         deed_ref_pattern=data.get("deed_ref_pattern"),
         partition_window=int(data["partition_window"]) if "partition_window" in data else None,
         county_window=int(data["county_window"]) if "county_window" in data else None,
@@ -629,6 +671,8 @@ class StateParcelAdapter(ArcGISCountyAdapter):
         full = _text(self._get(a, "situs_full"))
         if full and not (line or city or zip5):
             line, city, st, zip5 = parse_full_address(full)
+            if city is None and self.config.situs_form == "line_city_zip":
+                line, city, zip5 = parse_line_city_zip(full)
         if not (line or city or zip5):
             return None
         return normalized_address(line, city, st or self.config.state, zip5)

@@ -22,6 +22,7 @@ import sys
 import time
 import urllib.parse
 from collections import defaultdict
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 
@@ -222,6 +223,64 @@ def build(source_id: str, raw_dir: Path = DATA / "raw") -> dict[str, int]:
         Path(str(work_db) + ".wal").unlink(missing_ok=True)
     total: dict[str, int] = defaultdict(int)
     for m in done_dir.glob("*.json"):
+        for t, n in json.loads(m.read_text())["counts"].items():
+            total[t] += n
+    (out / "_counts.json").write_text(json.dumps(dict(total), indent=2, sort_keys=True))
+    return dict(total)
+
+
+def replay(source_id: str, raw_dir: Path = DATA / "raw") -> dict[str, int]:
+    """Re-normalize a built source from its stored raw responses, part by part, with the
+    current adapter code (after a normalization fix) and without fetching anything. Each
+    part's fetch_log names its raw files; a part whose raw files are missing is refused, so
+    a replay never half-rebuilds a part. Exports go through the quality gates as in build."""
+    import gzip
+
+    from equity.adapters.base import Fetched
+    from equity.adapters.registry import by_source_id
+    from equity.ingest import load_fetched
+
+    out = LAKE / source_id
+    adapter = by_source_id(source_id)()
+    parts = sorted(m.stem for m in (out / "_parts").glob("*.json"))
+    plans: dict[str, list[Path]] = {}
+    for part in parts:
+        logs = _part_files(out / "fetch_log", part)
+        if not logs:
+            raise RuntimeError(f"{source_id} {part}: no fetch_log to replay")
+        paths = ", ".join(f"'{p.as_posix()}'" for p in logs)
+        q = duckdb.connect()
+        sql = f"SELECT raw_path FROM read_parquet([{paths}]) ORDER BY retrieved_at"  # noqa: S608
+        raws = [Path(str(r[0])) for r in q.execute(sql).fetchall()]
+        q.close()
+        missing = [r for r in raws if not r.exists() or not r.with_suffix(".json").exists()]
+        if missing:
+            raise RuntimeError(f"{source_id} {part}: raw responses missing: {missing[:3]}")
+        plans[part] = raws
+    WORK.mkdir(parents=True, exist_ok=True)
+    for part, raws in plans.items():
+        work_db = WORK / f"{source_id}-{part}.duckdb"
+        work_db.unlink(missing_ok=True)
+        con = connect(str(work_db))
+        migrate(con, system_clock)
+        for raw in raws:
+            meta = json.loads(raw.with_suffix(".json").read_text())
+            with gzip.open(raw, "rb") as fh:
+                content = fh.read()
+            when = datetime.fromisoformat(meta["retrieved_at"])
+            fetched = Fetched(source_id, meta["request"], when, int(meta["http_status"]),
+                              content, meta.get("content_type") or "")  # fmt: skip
+            load_fetched(con, adapter, fetched, raw, system_clock)
+        con.close()
+        counts = export_part(work_db, out, part)
+        marker = out / "_parts" / f"{part}.json"
+        params = json.loads(marker.read_text()).get("params", {})
+        marker.write_text(json.dumps({"params": params, "counts": counts}, sort_keys=True))
+        work_db.unlink(missing_ok=True)
+        Path(str(work_db) + ".wal").unlink(missing_ok=True)
+        print(f"replayed {source_id} {part}", flush=True)
+    total: dict[str, int] = defaultdict(int)
+    for m in (out / "_parts").glob("*.json"):
         for t, n in json.loads(m.read_text())["counts"].items():
             total[t] += n
     (out / "_counts.json").write_text(json.dumps(dict(total), indent=2, sort_keys=True))
@@ -444,6 +503,8 @@ def main(argv: list[str]) -> int:
     pl = sub.add_parser("plan")
     pl.add_argument("source_id")
     pl.add_argument("--set", nargs="*", default=[], help="key=value added to every partition")
+    rpl = sub.add_parser("replay", help="re-normalize a built source from its raw responses")
+    rpl.add_argument("source_id")
     rp = sub.add_parser("replan", help="split unfinished partitions, keep finished parts")
     rp.add_argument("source_id")
     sub.add_parser("catalog")
@@ -457,6 +518,8 @@ def main(argv: list[str]) -> int:
     elif args.cmd == "plan":
         extra = dict(kv.split("=", 1) for kv in args.set)
         print(f"{args.source_id}: {write_plan(args.source_id, extra)} partitions planned")
+    elif args.cmd == "replay":
+        print(json.dumps(replay(args.source_id), indent=2, sort_keys=True))
     elif args.cmd == "replan":
         kept, pending = replan(args.source_id)
         print(f"{args.source_id}: kept {kept} finished parts, {pending} partitions to go")

@@ -1,0 +1,29 @@
+source_id: az.cochise.tax_deed_auction
+state: AZ
+county_fips: "04003"
+# Cochise County 2026 tax deed auction parcels (345 rows, layer edited 2026-06-10): parcels
+# deeded to the State for unpaid taxes and offered at the Board of Supervisors' tax deed
+# auction, with the previous owner, the taxes owed and the minimum bid. Separate from the
+# Treasurer's tax lien layer (az.cochise.tax_liens). The previous owner has lost title, so
+# this is foreclosure-like activity on the parcel rather than an open debt to collect.
+api: arcgis
+layer_url: https://services6.arcgis.com/Yxem0VOcqSy8T6TE/arcgis/rest/services/2026_Tax_Deed_Auction_Parcels/FeatureServer/1
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, apn, Previous_Owner_s_Name, Full_Cash_Value, Taxes, Minimum_Bid, Current_Zoning]
+listed_on: listed_on
+date_field: listed_on
+uid: apn
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Cochise County 2026 tax deed auction parcel
+amount: Taxes
+parties:
+  - role: debtor
+    name: Previous_Owner_s_Name
+  - {role: creditor, const: Cochise County Board of Supervisors}
+parcel: {kind: pin, field: apn, county_fips: "04003"}
+terms:
+  url: https://www.arcgis.com/home/item.html?id=b4fa34a4e91b4536b1a5a31ecdef3b92
+  summary: "Cochise County public ArcGIS Online layer (owner Mnarup_cochise), free, no login; no licenseInfo on the item (read 2026-11-23). A.R.S. 39-121.03 (commercial-purpose public-records requests) is the Arizona backdrop."
+  checked_on: 2026-11-23
+  cost_model: free

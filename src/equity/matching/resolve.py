@@ -157,6 +157,29 @@ def _view(con: duckdb.DuckDBPyConnection, name: str, lake: Path, sources: list[s
     con.execute(f"CREATE TEMP VIEW {name} AS SELECT {sel} FROM {src}")  # noqa: S608
 
 
+def _q(v: str) -> str:
+    return "'" + v.replace("'", "''") + "'"
+
+
+def doc_type_filter(spec: list[str] | dict[str, list[str]] | None) -> str:
+    """SQL limiting which instruments count as debts. A list applies to every source of the
+    run; a {source: [doc types]} mapping only to the sources it names (e.g. Colorado's UCC
+    system, where financing statements are not debts, beside a county tax lien list). The
+    national debt lists (FEDERAL_DEBTS) always count."""
+    if not spec:
+        return ""
+    fed = ", ".join(_q(s) for s in FEDERAL_DEBTS)
+    if isinstance(spec, dict):
+        named = ", ".join(_q(s) for s in sorted(spec))
+        per = " OR ".join(
+            f"(i.source_id = {_q(src)} AND i.doc_type IN ({', '.join(_q(t) for t in types)}))"
+            for src, types in sorted(spec.items())
+        )
+        return f"AND (i.source_id NOT IN ({named}) OR {per})"
+    types = ", ".join(_q(t) for t in spec)
+    return f"AND (i.doc_type IN ({types}) OR i.source_id IN ({fed}))"
+
+
 def connect(
     lake: Path,
     debtor_sources: list[str],
@@ -164,19 +187,14 @@ def connect(
     parcel_on_lien: bool = False,
     court_sources: list[str] | None = None,
     writ_sources: list[str] | None = None,
-    debtor_doc_types: list[str] | None = None,
+    debtor_doc_types: list[str] | dict[str, list[str]] | None = None,
 ) -> duckdb.DuckDBPyConnection:
     con = duckdb.connect()
     # Large runs (NY: ~5M debtors x ~5M owners) spill to disk; cap it so a run fails cleanly
     # instead of filling the machine's disk.
     con.execute(f"SET max_temp_directory_size = '{TEMP_LIMIT}'")
     # Only these instrument types count as debts (e.g. liens but not UCC financing statements).
-    doc_filter = ""
-    if debtor_doc_types:
-        types = ", ".join("'" + t.replace("'", "''") + "'" for t in debtor_doc_types)
-        # The filter is about the state's own sources; national debt lists always count.
-        fed = ", ".join(f"'{s}'" for s in FEDERAL_DEBTS)
-        doc_filter = f"AND (i.doc_type IN ({types}) OR i.source_id IN ({fed}))"
+    doc_filter = doc_type_filter(debtor_doc_types)
     stop = ", ".join(f"'{w}'" for w in STOP)
     con.execute(f"""
         CREATE MACRO name_key(n) AS array_to_string(list_sort(list_distinct(list_filter(
@@ -626,7 +644,7 @@ def run(
     court_sources: list[str] | None = None,
     writ_sources: list[str] | None = None,
     registry_sources: list[str] | None = None,
-    debtor_doc_types: list[str] | None = None,
+    debtor_doc_types: list[str] | dict[str, list[str]] | None = None,
     bankruptcy_sources: list[str] | None = None,
 ) -> dict[str, object]:
     from equity.matching import bankruptcy, entities, equity, review
@@ -694,13 +712,18 @@ STATES: dict[str, dict[str, Any]] = {
     "TX-TRAVIS": {"debtors": ["tx.travis.tax_delinquent"], "owners": ["tx.statewide.parcels"],
                   "courts": FEDERAL_COURTS},
     # Omaha: tax sale certificates (named taxpayers) and county-held liens (PIN only).
-    "NE-DOUGLAS": {"debtors": ["ne.douglas.tax_liens"], "owners": ["ne.douglas.parcels"],
+    # Plus Nebraska's statewide delinquent-taxpayer list (named, with address) and Sarpy's
+    # owners (the Omaha suburbs).
+    "NE-DOUGLAS": {"debtors": ["ne.douglas.tax_liens", "ne.dor.delinquent_taxpayers"],
+                   "owners": ["ne.douglas.parcels", "ne.sarpy.parcels"],
                    "parcel_on_lien": True, "courts": FEDERAL_COURTS},
     # Colorado: federal tax and statutory (hospital, other) liens from the SOS UCC system;
     # UCC financing statements name debtors too but are not debts owed on a judgment or lien.
-    "CO": {"debtors": ["co.sos.ucc"], "debtor_doc_types": ["TAX_LIEN_FEDERAL", "STATUTORY_LIEN"],
+    # Lake County's tax lien sale list names the owner and the parcel.
+    "CO": {"debtors": ["co.sos.ucc", "co.lake.tax_lien_sale"],
+           "debtor_doc_types": {"co.sos.ucc": ["TAX_LIEN_FEDERAL", "STATUTORY_LIEN"]},
            "owners": ["co.statewide.parcels"], "registries": ["co.sos.business"],
-           "courts": FEDERAL_COURTS},
+           "parcel_on_lien": True, "courts": FEDERAL_COURTS},
     # Detroit blight judgments name both the owner and the ticketed parcel (same parcel_id as
     # the Detroit assessor layer); Harris tax-suit judgments name the HCAD account; Washington
     # County sheriff sales list every parcel sold.
@@ -740,10 +763,12 @@ STATES: dict[str, dict[str, Any]] = {
     # Cincinnati lot abatement cites the property's address only: its parcel is found by
     # situs address (LOTS_SQL) and the charge is owed by that parcel's owner.
     "OH": {"debtors": ["oh.cincinnati.lot_abatement", "oh.hamilton.delinquent_taxes",
-                       "oh.clermont.tax_delinquent", "oh.mahoning.delinquent_taxes"],
+                       "oh.clermont.tax_delinquent", "oh.mahoning.delinquent_taxes",
+                       "oh.lucas.forfeited_land_sale"],
            "owners": ["oh.statewide.parcels"], "parcel_on_lien": True, "courts": FEDERAL_COURTS},
     # Milwaukee delinquent taxes name the owner, mailing address and tax key (= WI PARCELID).
-    "WI-MILWAUKEE": {"debtors": ["wi.milwaukee.delinquent_taxes"],
+    "WI-MILWAUKEE": {"debtors": ["wi.milwaukee.delinquent_taxes",
+                                 "wi.milwaukee.foreclosure_sales"],
                      "owners": ["wi.statewide.parcels"], "parcel_on_lien": True,
                      "courts": FEDERAL_COURTS},
     "VA-RICHMOND": {"debtors": ["va.richmond.tax_delinquent"],
@@ -754,7 +779,8 @@ STATES: dict[str, dict[str, Any]] = {
                        "nc.charlotte.municipal_liens"],
                     "owners": ["nc.statewide.parcels"], "parcel_on_lien": True,
                     "courts": FEDERAL_COURTS},
-    "AZ-COCHISE": {"debtors": ["az.cochise.tax_liens"], "owners": ["az.cochise.parcels"],
+    "AZ-COCHISE": {"debtors": ["az.cochise.tax_liens", "az.cochise.tax_deed_auction"],
+                   "owners": ["az.cochise.parcels"],
                    "parcel_on_lien": True, "courts": FEDERAL_COURTS},
     "MS-HARRISON": {"debtors": ["ms.harrison.tax_sale_parcels"], "owners": ["ms.statewide.parcels"],
                     "parcel_on_lien": True, "courts": FEDERAL_COURTS},
@@ -762,6 +788,18 @@ STATES: dict[str, dict[str, Any]] = {
                 "courts": FEDERAL_COURTS},
     "PA-WASHINGTON": {"debtors": ["pa.washington.sheriff_sales"],
                       "owners": ["pa.washington.parcels"], "parcel_on_lien": True},
+    # NYC lien sale notices name no one: each is owed by the noticed parcel's owner. A run
+    # of its own, so the NY run's ACRIS instruments do not take on parcel_on_lien.
+    "NY-NYC-LIENSALE": {"debtors": ["ny.nyc.tax_lien_sale"], "owners": ["ny.statewide.parcels"],
+                        "parcel_on_lien": True},
+    # St. Joseph IN tax sale: named owners and state parcel numbers. Indiana's statewide layer
+    # has parcels but no owner names, so debtors link to the parcels their liens name.
+    "IN-STJOSEPH": {"debtors": ["in.st_joseph.tax_sale"], "owners": ["in.statewide.parcels"],
+                    "parcel_on_lien": True, "courts": FEDERAL_COURTS},
+    # West Virginia, the pilot state: no county lien list in instrument form yet (the
+    # delinquent-lands list is a snapshot table), so federal court judgments and the national
+    # debt lists against WV owners.
+    "WV": {"debtors": [], "owners": ["wv.statewide.parcels"], "courts": FEDERAL_COURTS},
 }  # fmt: skip
 
 

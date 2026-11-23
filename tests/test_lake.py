@@ -288,3 +288,44 @@ def test_a_clean_part_exports_without_a_quality_report(tmp_path: Path) -> None:
     counts = export_part(db, out, "00001")
     assert "party" not in counts  # empty tables are not exported
     assert not (out / "_quality").exists()
+
+
+def test_replay_renormalizes_from_raw_responses_without_fetching(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    from collections.abc import Iterator
+
+    from equity.adapters.base import Fetched, FetchRequest, NormalizedRow
+
+    from .test_ingest import Planned
+
+    monkeypatch.setattr(lake, "LAKE", tmp_path / "lake")
+    monkeypatch.setattr(lake, "WORK", tmp_path / "work")
+    monkeypatch.setattr("equity.adapters.registry.by_source_id", lambda sid: Planned)
+    raw = tmp_path / "raw"
+    lake.build("test.tiny", raw_dir=raw)
+    out = tmp_path / "lake" / "test.tiny"
+
+    class Fixed(Planned):  # a normalization change: parcel ids now prefixed
+        def fetch(self, request: FetchRequest) -> Fetched:
+            raise AssertionError("replay must not fetch")
+
+        def normalize(self, fetched: Fetched) -> Iterator[NormalizedRow]:
+            for row in super().normalize(fetched):
+                if row.table == "parcel":
+                    row = NormalizedRow(
+                        "parcel", {**row.row, "parid_raw": "X" + row.row["parid_raw"]}
+                    )
+                yield row
+
+    monkeypatch.setattr("equity.adapters.registry.by_source_id", lambda sid: Fixed)
+    counts = lake.replay("test.tiny", raw_dir=raw)
+    assert counts["parcel"] == 3
+    import duckdb as _d
+
+    got = sorted(r[0] for r in _d.sql(f"SELECT parid_raw FROM '{out}/parcel/*.parquet'").fetchall())
+    assert got == ["X1", "X2", "X3"]
+    for f in raw.rglob("*.gz"):
+        f.unlink()
+    with pytest.raises(RuntimeError, match="raw responses missing"):
+        lake.replay("test.tiny", raw_dir=raw)

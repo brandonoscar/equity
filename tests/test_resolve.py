@@ -793,3 +793,23 @@ def test_federal_debt_lists_count_whatever_the_state_doc_type_filter(
     matches = f"'{out.as_posix()}/matches.parquet'"
     m = duckdb.connect().execute(f"SELECT debtor_party_id, rule_id FROM {matches}").fetchall()
     assert m == [("s1", "person_name_address")]
+
+
+def test_a_per_source_doc_type_filter_leaves_other_sources_alone(
+    lake: Path, tmp_path: Path
+) -> None:
+    from equity.matching.resolve import doc_type_filter
+
+    out = tmp_path / "out"
+    # zz.debts holds only TAX_LIEN_STATE: a filter naming another source keeps all of them.
+    result = run(lake, out, ["zz.debts"], ["zz.parcels"],
+                 debtor_doc_types={"zz.ucc": ["TAX_LIEN_FEDERAL"]})  # fmt: skip
+    assert result["debtors_matched_auto"] == 3  # as with no filter
+    run(lake, out, ["zz.debts"], ["zz.parcels"], debtor_doc_types={"zz.debts": ["JUDGMENT_LIEN"]})
+    assert duckdb.connect().execute(
+        f"SELECT count(*) FROM '{out.as_posix()}/matches.parquet'").fetchone() == (0,)  # fmt: skip
+    sql = doc_type_filter({"b.src": ["X"], "a.src": ["Y", "Z"]})
+    assert sql == ("AND (i.source_id NOT IN ('a.src', 'b.src') OR (i.source_id = 'a.src' AND "
+                   "i.doc_type IN ('Y', 'Z')) OR (i.source_id = 'b.src' AND "
+                   "i.doc_type IN ('X')))")  # fmt: skip
+    assert doc_type_filter(None) == "" and doc_type_filter([]) == ""

@@ -620,3 +620,21 @@ def test_owner_name_parts_in_separate_fields_are_joined(tmp_path: Path) -> None:
     names = {r["party_id"]: r["raw_name"] for t, r in out if t == "party"}
     assert sorted(names.values()) == ["ACME HOLDINGS LLC", "LEE ANN B"]
     assert "54001-3" not in owners
+
+
+def test_line_city_zip_situs_form_splits_after_the_street_suffix(tmp_path: Path) -> None:
+    from equity.adapters.state_parcels import parse_line_city_zip
+
+    assert parse_line_city_zip("70 ANGELA RD PEEBLES 45660") == ("70 ANGELA RD", "PEEBLES", "45660")
+    assert parse_line_city_zip("123 MAIN ST ST MARYS 45885") == ("123 MAIN ST", "ST MARYS", "45885")
+    assert parse_line_city_zip("9 ST CLAIR AVE CLEVELAND 44114")[:2] == ("9 ST CLAIR AVE",
+                                                                        "CLEVELAND")  # fmt: skip
+    assert parse_line_city_zip("55 OAK ST APT 2 DAYTON 45402")[0] == "55 OAK ST APT 2"
+    assert parse_line_city_zip("1314 MAHOGANY RD") == ("1314 MAHOGANY RD", None, None)
+    assert parse_line_city_zip("8 PARK CENTER 43000") == ("8 PARK CENTER", None, "43000")
+    fields = {"parcel_id": "PID", "situs_full": "SF"}
+    with_form = adapter_for(load_config(_cfg(tmp_path, fields=fields, situs_form="line_city_zip",
+                                             county={"constant": "001"})))()  # fmt: skip
+    assert with_form._situs({"SF": "70 ANGELA RD PEEBLES 45660"})["zip5"] == "45660"
+    plain = adapter_for(load_config(_cfg(tmp_path, fields=fields, county={"constant": "001"})))()
+    assert plain._situs({"SF": "70 ANGELA RD PEEBLES 45660"})["zip5"] is None  # opt-in only

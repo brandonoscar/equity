@@ -11,9 +11,10 @@ min_interval_s: 1.0
 county:
   field: County
   format: name
+situs_form: line_city_zip   # SitusAddressAll has no commas or state: split after the street suffix
 fields:
   land_use_code: StateLUC
-  situs_full: SitusAddressAll
+  situs_full: SitusAddressAll   # "70 ANGELA RD PEEBLES 45660": see situs_form
   parcel_id: LocalParcelID
   owner1: Name
 value_basis: "no value fields in the public view; values are with the 88 county auditors"
