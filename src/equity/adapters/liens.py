@@ -22,11 +22,14 @@ Config keys:
   excel_dates         xlsx: fields holding Excel serial day numbers, turned into ISO dates
   us_dates            file apis: fields holding M/D/YYYY dates, turned into ISO dates
   year_dates          fields holding a year (levy / tax year), read as Jan 1 of that year
+  listed_on           a field name: set to the fetch date on every row (a current list with no
+                      per-row date); use it as date_field
   single_partition    true: one fetch of the whole (filtered) dataset, no date windows
-  address_split       file apis: {field, prefix, form}: form comma (default) splits
+  address_split       {field, prefix, form}: form comma (default) splits
                       "line1, city, ST 12345", slash "line1 / CITY ST 12345", city_state_zip
-                      "City, ST 12345" (no street), into <prefix>line1/city/state/zip (the
-                      whole text stays line1 when it does not split that way)
+                      "City, ST 12345", city_st_zip "CITY ST 12345" (no street), into
+                      <prefix>line1/city/state/zip (the whole text stays line1 when it does
+                      not split that way)
   as_of               xlsx/html/pdf: {field, after}: a list with no per-row date. The first
                       date after the text `after` in the title rows above header_row (xlsx) or
                       in the page or document text (html, pdf) is put in `field` on every row
@@ -381,6 +384,11 @@ CITY_TAIL = re.compile(
 )
 
 
+CITY_ST_ZIP = re.compile(
+    r"^(?P<city>[A-Z .'-]+?)\s+(?P<state>[A-Z]{2})\s+(?P<zip>[0-9]{5})(?:-?[0-9]{4})?$"
+)
+
+
 def split_address(text: str | None, form: str = "comma") -> dict[str, str | None]:
     """'259 Drum Point Road, Brick, NJ 08723' -> line1, city, state, zip. form slash reads
     '2623 NW 74TH PL / GAINESVILLE FL 32653-1251', city_state_zip 'Acton, MA 01720' (no
@@ -397,6 +405,11 @@ def split_address(text: str | None, form: str = "comma") -> dict[str, str | None
         if m:  # no slash: the city cannot be told from the street
             return {"line1": rest[: m.end("city")].strip(), "city": None,
                     "state": m["state"], "zip": m["zip"]}  # fmt: skip
+    if form == "city_st_zip" and full:  # 'BATAVIA OH 45103' (no comma, no street)
+        m = CITY_ST_ZIP.match(full.upper())
+        if m:
+            return {"line1": None, "city": m["city"].strip(), "state": m["state"],
+                    "zip": m["zip"]}  # fmt: skip
     if form == "city_state_zip" and full and "," in full:
         city, rest = full.rsplit(",", 1)
         m = ADDRESS_TAIL.match(rest.strip().upper())
@@ -701,6 +714,8 @@ class LienAdapter(Adapter):
         groups: dict[str, list[Mapping[str, Any]]] = {}
         for raw in json.loads(fetched.content).get("rows") or []:
             row = self._derive(raw)
+            if cfg.get("listed_on"):  # a current list with no per-row date: the fetch date
+                row = {**row, cfg["listed_on"]: fetched.retrieved_at.date().isoformat()}
             uid_raw = self._uid(row)
             if uid_raw and _date(row.get(cfg["date_field"])) is not None:
                 groups.setdefault(uid_raw, []).append(row)  # no key or no date: skipped
@@ -755,6 +770,10 @@ class LienAdapter(Adapter):
     def _derive(self, row: Mapping[str, Any]) -> Mapping[str, Any]:
         """Fields computed from the raw row: a case caption 'A vs B' split into
         caption_plaintiff and caption_defendant (config caption_field)."""
+        split = self.config.get("address_split")
+        if split and self.api not in FILE_APIS:  # file apis split at fetch
+            addr = split_address(row.get(split["field"]), str(split.get("form", "comma")))
+            row = {**row, **{f"{split['prefix']}{k}": v for k, v in addr.items()}}
         years = self.config.get("year_dates") or ()
         if years:
             row = dict(row)

@@ -640,7 +640,8 @@ STATES: dict[str, dict[str, Any]] = {
                 "courts": FEDERAL_COURTS, "parcel_on_lien": True},
     # Cincinnati lot abatement cites the property's address only: its parcel is found by
     # situs address (LOTS_SQL) and the charge is owed by that parcel's owner.
-    "OH-HAMILTON": {"debtors": ["oh.cincinnati.lot_abatement"], "owners": ["oh.statewide.parcels"],
+    "OH-HAMILTON": {"debtors": ["oh.cincinnati.lot_abatement", "oh.hamilton.delinquent_taxes",
+                                "oh.clermont.delinquent_taxes"], "owners": ["oh.statewide.parcels"],
                     "parcel_on_lien": True, "courts": FEDERAL_COURTS},
     # Milwaukee delinquent taxes name the owner, mailing address and tax key (= WI PARCELID).
     "WI-MILWAUKEE": {"debtors": ["wi.milwaukee.delinquent_taxes"],

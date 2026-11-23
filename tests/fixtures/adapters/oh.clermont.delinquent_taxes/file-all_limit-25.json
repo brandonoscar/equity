@@ -1,0 +1,255 @@
+{
+ "dataset": "q52y-wzm4",
+ "rows": [
+  {
+   "adrstr": "TESTOWNER 667BFB",
+   "certdlqyr": "2026",
+   "mailaddr1": "TESTOWNER 42C065",
+   "mailaddr3": "TESTOWNER 406023",
+   "netdelq": "87.62",
+   "own1": "TESTOWNER CAF0D5",
+   "parid": "012002E044.",
+   "taxyr": "2026"
+  },
+  {
+   "adrstr": "TESTOWNER 667BFB",
+   "certdlqyr": "2026",
+   "mailaddr1": "TESTOWNER 6A49BE",
+   "mailaddr3": "TESTOWNER B312E0",
+   "netdelq": "138.17",
+   "own1": "TESTOWNER 4A3218",
+   "parid": "012002E088.",
+   "taxyr": "2026"
+  },
+  {
+   "adrstr": "TESTOWNER 3084EB",
+   "certdlqyr": "2026",
+   "mailaddr1": "TESTOWNER 8B73CC",
+   "mailaddr3": "TESTOWNER 406023",
+   "netdelq": "978.96",
+   "own1": "TESTOWNER 146659",
+   "parid": "012002F067.",
+   "taxyr": "2026"
+  },
+  {
+   "adrstr": "TESTOWNER AC4C38",
+   "certdlqyr": "2026",
+   "mailaddr1": "TESTOWNER A44931",
+   "mailaddr3": "TESTOWNER 406023",
+   "netdelq": "4.37",
+   "own1": "TESTOWNER 149842",
+   "parid": "012002F078.",
+   "taxyr": "2026"
+  },
+  {
+   "adrstr": "TESTOWNER 14B586",
+   "certdlqyr": "2026",
+   "mailaddr1": "TESTOWNER 73B48E",
+   "mailaddr3": "TESTOWNER 406023",
+   "netdelq": "3502.1",
+   "own1": "TESTOWNER 5DAC7C",
+   "parid": "012003C061.",
+   "taxyr": "2026"
+  },
+  {
+   "adrstr": "TESTOWNER E4E55C",
+   "certdlqyr": "2026",
+   "mailaddr1": "TESTOWNER 81F096",
+   "mailaddr3": "TESTOWNER 406023",
+   "netdelq": "505.58",
+   "own1": "TESTOWNER 012A99",
+   "parid": "012003H088.",
+   "taxyr": "2026"
+  },
+  {
+   "adrstr": "TESTOWNER 650E69",
+   "certdlqyr": "2026",
+   "mailaddr1": "TESTOWNER 8D972A",
+   "mailaddr3": "TESTOWNER 406023",
+   "netdelq": "16.04",
+   "own1": "TESTOWNER 91BE7B LLC",
+   "parid": "012004A005.",
+   "taxyr": "2026"
+  },
+  {
+   "adrstr": "TESTOWNER 04B252",
+   "certdlqyr": "2026",
+   "mailaddr1": "TESTOWNER E564F7",
+   "mailaddr3": "TESTOWNER 406023",
+   "netdelq": "69.62",
+   "own1": "TESTOWNER F563D1",
+   "parid": "012004B093.",
+   "taxyr": "2026"
+  },
+  {
+   "adrstr": "TESTOWNER F62A9D",
+   "certdlqyr": "2026",
+   "mailaddr1": "TESTOWNER 883F00",
+   "mailaddr3": "TESTOWNER 406023",
+   "netdelq": "3085.72",
+   "own1": "TESTOWNER 29CBEA",
+   "parid": "012005A116.",
+   "taxyr": "2026"
+  },
+  {
+   "adrstr": "TESTOWNER F62A9D",
+   "certdlqyr": "2026",
+   "mailaddr1": "TESTOWNER DAE0EB",
+   "mailaddr3": "TESTOWNER 406023",
+   "netdelq": "170.61",
+   "own1": "TESTOWNER 458C26",
+   "parid": "012005A141.",
+   "taxyr": "2026"
+  },
+  {
+   "adrstr": "TESTOWNER 79B769",
+   "certdlqyr": "2026",
+   "mailaddr1": "TESTOWNER 6C8C97",
+   "mailaddr3": "TESTOWNER 406023",
+   "netdelq": "253.57",
+   "own1": "TESTOWNER D7AD33",
+   "parid": "012005A165.",
+   "taxyr": "2026"
+  },
+  {
+   "adrstr": "TESTOWNER C443BC",
+   "certdlqyr": "2025",
+   "mailaddr1": "TESTOWNER 3A810D",
+   "mailaddr3": "TESTOWNER 406023",
+   "netdelq": "13250.17",
+   "own1": "TESTOWNER 7D136D",
+   "parid": "012005B068.",
+   "taxyr": "2026"
+  },
+  {
+   "adrstr": "TESTOWNER 543263",
+   "certdlqyr": "2026",
+   "mailaddr1": "TESTOWNER 1F46F5",
+   "mailaddr3": "TESTOWNER 406023",
+   "netdelq": "110.26",
+   "own1": "TESTOWNER DE35A1",
+   "parid": "012005B243.",
+   "taxyr": "2026"
+  },
+  {
+   "adrstr": "TESTOWNER E0173C",
+   "certdlqyr": "2022",
+   "mailaddr1": "TESTOWNER 4AE49C",
+   "mailaddr3": "TESTOWNER 406023",
+   "netdelq": "683.98",
+   "own1": "TESTOWNER 55770D",
+   "parid": "012005B302.",
+   "taxyr": "2026"
+  },
+  {
+   "adrstr": "TESTOWNER E0173C",
+   "certdlqyr": "2026",
+   "mailaddr1": "TESTOWNER 8747FF",
+   "mailaddr3": "TESTOWNER 406023",
+   "netdelq": "147.32",
+   "own1": "TESTOWNER 5C58B3",
+   "parid": "012005B304.",
+   "taxyr": "2026"
+  },
+  {
+   "adrstr": "TESTOWNER 486046",
+   "certdlqyr": "2026",
+   "mailaddr1": "TESTOWNER 63931E",
+   "mailaddr3": "TESTOWNER 406023",
+   "netdelq": "217.01",
+   "own1": "TESTOWNER AA1E96",
+   "parid": "012005E040.",
+   "taxyr": "2026"
+  },
+  {
+   "adrstr": "TESTOWNER 486046",
+   "certdlqyr": "2024",
+   "mailaddr1": "TESTOWNER 5258C2",
+   "mailaddr3": "TESTOWNER 406023",
+   "netdelq": "150",
+   "own1": "TESTOWNER 5B14B8",
+   "parid": "012005E043.",
+   "taxyr": "2026"
+  },
+  {
+   "adrstr": "TESTOWNER 486046",
+   "mailaddr1": "TESTOWNER 5258C2",
+   "mailaddr3": "TESTOWNER 406023",
+   "netdelq": "37.5",
+   "own1": "TESTOWNER 5B14B8",
+   "parid": "012005E045.",
+   "taxyr": "2026"
+  },
+  {
+   "adrstr": "TESTOWNER E630C4",
+   "certdlqyr": "2026",
+   "mailaddr1": "TESTOWNER 87C51A",
+   "mailaddr3": "TESTOWNER 3E2AD8",
+   "netdelq": "2382.05",
+   "own1": "TESTOWNER F7D93B",
+   "parid": "012006B007.",
+   "taxyr": "2026"
+  },
+  {
+   "adrstr": "TESTOWNER 44A33F",
+   "certdlqyr": "2026",
+   "mailaddr1": "TESTOWNER 95E3B2",
+   "mailaddr3": "TESTOWNER 406023",
+   "netdelq": "101.54",
+   "own1": "TESTOWNER 5428E5",
+   "parid": "012006C079.",
+   "taxyr": "2026"
+  },
+  {
+   "adrstr": "TESTOWNER 48B8F0",
+   "certdlqyr": "2026",
+   "mailaddr1": "TESTOWNER CA1993",
+   "mailaddr3": "TESTOWNER 406023",
+   "netdelq": "2228.7",
+   "own1": "TESTOWNER D54C4F",
+   "parid": "012006C099.",
+   "taxyr": "2026"
+  },
+  {
+   "adrstr": "TESTOWNER 22E0DA",
+   "certdlqyr": "2026",
+   "mailaddr1": "TESTOWNER CEC405",
+   "mailaddr3": "TESTOWNER 4F04D2",
+   "netdelq": "7947.62",
+   "own1": "TESTOWNER 8EDE8E LLC",
+   "parid": "012007C101.",
+   "taxyr": "2026"
+  },
+  {
+   "adrstr": "TESTOWNER E630C4",
+   "certdlqyr": "2026",
+   "mailaddr1": "TESTOWNER 7E5BDD",
+   "mailaddr3": "TESTOWNER 7B29E0",
+   "netdelq": "2881.56",
+   "own1": "TESTOWNER 024B97",
+   "parid": "012007D107.",
+   "taxyr": "2026"
+  },
+  {
+   "adrstr": "TESTOWNER 3D3F1F",
+   "certdlqyr": "2026",
+   "mailaddr1": "TESTOWNER EA5DF4",
+   "mailaddr3": "TESTOWNER 831C3C",
+   "netdelq": "1315.09",
+   "own1": "TESTOWNER 56D00F LLC",
+   "parid": "012007D122.",
+   "taxyr": "2026"
+  },
+  {
+   "adrstr": "TESTOWNER 3D3F1F",
+   "certdlqyr": "2026",
+   "mailaddr1": "TESTOWNER 00DBB7",
+   "mailaddr3": "TESTOWNER 406023",
+   "netdelq": "0.11",
+   "own1": "TESTOWNER 676BB3",
+   "parid": "012007D147.",
+   "taxyr": "2026"
+  }
+ ],
+ "where": "(netdelq > 0)"
+}

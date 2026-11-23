@@ -63,6 +63,8 @@ sources:
   de.revenue.top_delinquent_business: tax_delinquency
   de.revenue.top_delinquent_personal: tax_delinquency
   wi.milwaukee.delinquent_taxes: tax_delinquency
+  oh.hamilton.delinquent_taxes: tax_delinquency
+  oh.clermont.delinquent_taxes: tax_delinquency
   # code enforcement
   pa.philadelphia.li_fines: code_enforcement_charge
   oh.cincinnati.lot_abatement: code_enforcement_charge

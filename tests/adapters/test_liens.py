@@ -705,3 +705,27 @@ def test_arcgis_rows_can_be_enriched_from_a_carto_table(tmp_path: Path) -> None:
     by = {r["ticket"]: r for r in rows["rows"]}
     assert (by["F1"]["opa"], by["F1"]["owner"]) == ("123", "ANN LEE")  # first match wins
     assert by["F2"]["opa"] is None  # no match: columns present, empty
+
+
+def test_city_st_zip_form_and_listed_on(tmp_path: Path) -> None:
+    from equity.adapters.liens import split_address
+
+    assert split_address("BATAVIA OH 45103", "city_st_zip") == {
+        "line1": None, "city": "BATAVIA", "state": "OH", "zip": "45103"}  # fmt: skip
+    assert split_address("PO BOX 9", "city_st_zip")["line1"] == "PO BOX 9"
+    cfg = _cfg(tmp_path, parcel=None, county_fips="39025", released_on=None,
+               single_partition=True, listed_on="seen", date_field="seen",
+               address_split={"field": "m3", "prefix": "m_", "form": "city_st_zip"},
+               parties=[{"role": "debtor", "name": "own",
+                         "address": {"line1": "m1", "city": "m_city", "state": "m_state",
+                                     "zip": "m_zip"}}])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    assert list(cls().partitions()) == [{"file": "all"}]
+    body = json.dumps({"rows": [{"ticket": "P1", "own": "ANN LEE", "m1": "1 MAIN ST",
+                                 "m3": "BATAVIA OH 45103"}]}).encode()  # fmt: skip
+    out = [(r.table, dict(r.row)) for r in cls().normalize(Fetched(cls.source_id, "x", AT, 200,
+                                                                   body, ""))]  # fmt: skip
+    (inst,) = [r for t, r in out if t == "instrument"]
+    assert str(inst["recorded_on"]) == "2026-11-21"  # the fetch date
+    (addr,) = [r for t, r in out if t == "address"]
+    assert (addr["city"], addr["zip5"]) == ("BATAVIA", "45103")
