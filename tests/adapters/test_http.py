@@ -238,3 +238,12 @@ def test_urllib_post_transport_sends_a_form(monkeypatch: pytest.MonkeyPatch) -> 
     assert seen["data"] == b"a=1"
     assert seen["headers"] == {"User-Agent": "u",
                                "Content-Type": "application/x-www-form-urlencoded"}  # fmt: skip
+
+
+def test_redirects_drop_an_explicit_https_default_port() -> None:
+    from equity.adapters.http import drop_default_port
+
+    assert drop_default_port("https://s3.amazonaws.com:443/b/k?X-Amz=1") == (
+        "https://s3.amazonaws.com/b/k?X-Amz=1")  # fmt: skip
+    assert drop_default_port("https://h.test:8443/x") == "https://h.test:8443/x"
+    assert drop_default_port("http://h.test:443/x") == "http://h.test:443/x"

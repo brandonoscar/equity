@@ -642,6 +642,10 @@ STATES: dict[str, dict[str, Any]] = {
     # situs address (LOTS_SQL) and the charge is owed by that parcel's owner.
     "OH-HAMILTON": {"debtors": ["oh.cincinnati.lot_abatement"], "owners": ["oh.statewide.parcels"],
                     "parcel_on_lien": True, "courts": FEDERAL_COURTS},
+    # Milwaukee delinquent taxes name the owner, mailing address and tax key (= WI PARCELID).
+    "WI-MILWAUKEE": {"debtors": ["wi.milwaukee.delinquent_taxes"],
+                     "owners": ["wi.statewide.parcels"], "parcel_on_lien": True,
+                     "courts": FEDERAL_COURTS},
     "AZ-PIMA": {"debtors": ["az.tucson.code_liens"], "owners": ["az.pima.parcels"],
                 "courts": FEDERAL_COURTS},
     "PA-WASHINGTON": {"debtors": ["pa.washington.sheriff_sales"],

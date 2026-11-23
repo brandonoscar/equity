@@ -1,0 +1,30 @@
+source_id: wi.milwaukee.delinquent_taxes
+state: WI
+county_fips: "55079"   # Milwaukee County (City of Milwaukee)
+# City of Milwaukee Treasurer: delinquent real estate tax accounts, one row per tax key and
+# levy year, with owner of record, mailing address and unpaid principal (monthly). Delinquent
+# real estate taxes are a lien on the parcel (Wis. Stat. 70.01); a senior lien, not a
+# judgment against the owner. Debt kind: tax_delinquency (config/debt_kinds.yaml).
+# The portal's robots.txt disallows /api/, so the published .xlsx download is read instead.
+api: xlsx
+url: https://data.milwaukee.gov/dataset/f376a61a-b279-4ff5-b6da-776a3df14ca0/resource/8f1367e1-6f8f-44cc-8ed6-2eecd8267ec7/download/delqreweb.xlsx
+sheet: 0
+year_dates: [levy_year]
+date_field: levy_year          # the levy year (Jan 1); no per-row delinquency date
+uid: [tax_key, levy_year]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Milwaukee delinquent real estate tax
+amount: total_tax_principal
+parties:
+  - role: debtor
+    name: owner_s_name
+    address: {line1: owner_s_mailing_address, city: city, state: state, zip: zip}
+  - role: creditor
+    const: City of Milwaukee Treasurer
+parcel: {kind: pin, field: tax_key, county_fips: "55079"}
+extra_pii: [property_address]
+terms:
+  url: https://data.milwaukee.gov/dataset/delinquent-real-estate-tax-accounts
+  summary: "City of Milwaukee Open Data Portal (CKAN), CC-BY, free, no login, monthly .xlsx download."
+  checked_on: 2026-11-23
+  cost_model: free

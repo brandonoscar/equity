@@ -21,6 +21,8 @@ Config keys:
   date_is_text        arcgis: date_field is ISO text, so windows compare strings, not DATEs
   excel_dates         xlsx: fields holding Excel serial day numbers, turned into ISO dates
   us_dates            file apis: fields holding M/D/YYYY dates, turned into ISO dates
+  year_dates          fields holding a year (levy / tax year), read as Jan 1 of that year
+  single_partition    true: one fetch of the whole (filtered) dataset, no date windows
   address_split       file apis: {field, prefix, form}: form comma (default) splits
                       "line1, city, ST 12345", slash "line1 / CITY ST 12345", city_state_zip
                       "City, ST 12345" (no street), into <prefix>line1/city/state/zip (the
@@ -449,8 +451,8 @@ class LienAdapter(Adapter):
         return f"{self.config['portal']}/resource/{self.config['dataset']}.json"
 
     def partitions(self) -> Iterator[dict[str, str]]:
-        if self.api in FILE_APIS:
-            yield {"file": "all"}  # one file, replaced in full each update
+        if self.api in FILE_APIS or self.config.get("single_partition"):
+            yield {"file": "all"}  # one file or dataset, replaced in full each update
             return
         first = int(self.config.get("first_year", 1990))
         last = datetime.now(UTC).year
@@ -753,6 +755,12 @@ class LienAdapter(Adapter):
     def _derive(self, row: Mapping[str, Any]) -> Mapping[str, Any]:
         """Fields computed from the raw row: a case caption 'A vs B' split into
         caption_plaintiff and caption_defendant (config caption_field)."""
+        years = self.config.get("year_dates") or ()
+        if years:
+            row = dict(row)
+            for f in years:
+                y = str(row.get(f) or "").strip()[:4]
+                row[f] = f"{y}-01-01" if y.isdigit() and len(y) == 4 else None
         field = self.config.get("caption_field")
         if not field:
             return row

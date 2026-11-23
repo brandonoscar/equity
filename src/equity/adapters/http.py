@@ -57,6 +57,25 @@ def urllib_post_transport(
     return _urlopen(url, hdrs, body, timeout)
 
 
+def drop_default_port(url: str) -> str:
+    """https://host:443/... -> https://host/... A presigned S3 redirect (Milwaukee open data)
+    names :443, but urllib then sends a Host header the signature does not cover."""
+    parts = urllib.parse.urlsplit(url)
+    if parts.scheme == "https" and parts.port == 443 and parts.hostname:
+        return urllib.parse.urlunsplit(parts._replace(netloc=parts.hostname))
+    return url
+
+
+class _Redirects(urllib.request.HTTPRedirectHandler):
+    def redirect_request(  # type: ignore[no-untyped-def]
+        self, req, fp, code, msg, headers, newurl
+    ):
+        return super().redirect_request(req, fp, code, msg, headers, drop_default_port(newurl))
+
+
+_OPENER = urllib.request.build_opener(_Redirects())
+
+
 def _urlopen(
     url: str, headers: Mapping[str, str], data: bytes | None, timeout: float
 ) -> tuple[int, bytes, str]:
@@ -64,7 +83,7 @@ def _urlopen(
     hdrs = {**headers, "Accept-Encoding": "gzip"}
     req = urllib.request.Request(url, data=data, headers=hdrs)  # noqa: S310 - https only
     try:
-        with urllib.request.urlopen(req, timeout=timeout) as resp:  # noqa: S310
+        with _OPENER.open(req, timeout=timeout) as resp:
             body = decode_body(resp.read(), resp.headers.get("Content-Encoding"))
             return int(resp.status), body, str(resp.headers.get("Content-Type", ""))
     except urllib.error.HTTPError as err:
