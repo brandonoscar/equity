@@ -309,13 +309,21 @@ SELECT DISTINCT party_id,
             THEN 'person:' || name_key || '|' || coalesce(addr_key, zip5, '')
             ELSE 'party:' || party_id END AS identity
 FROM debtors;
-CREATE TEMP TABLE person_edges AS
-SELECT a.party_id AS x, b.party_id AS y
-FROM debtor_identity a JOIN debtor_identity b ON a.identity = b.identity
+-- Each group (an identity key, or an auto-matched owner party) is a star around its smallest
+-- party id, both ways, so the edges grow with the parties, not with the square of a group.
+CREATE TEMP TABLE person_groups AS
+SELECT party_id, identity AS grp FROM debtor_identity
 UNION
-SELECT a.debtor_party_id, b.debtor_party_id
-FROM matches a JOIN matches b ON a.owner_party_id = b.owner_party_id
-WHERE a.decision = 'auto' AND b.decision = 'auto' AND a.owner_party_id IS NOT NULL;
+SELECT DISTINCT debtor_party_id, 'owner:' || owner_party_id FROM matches
+WHERE decision = 'auto' AND owner_party_id IS NOT NULL;
+CREATE TEMP TABLE person_edges AS
+WITH hub AS (SELECT grp, min(party_id) AS h FROM person_groups GROUP BY grp)
+SELECT DISTINCT * FROM (
+    SELECT g.party_id AS x, hub.h AS y FROM person_groups g JOIN hub USING (grp)
+    UNION ALL
+    SELECT hub.h, g.party_id FROM person_groups g JOIN hub USING (grp)
+    UNION ALL
+    SELECT party_id, party_id FROM person_groups);
 CREATE TEMP TABLE person_of AS
 SELECT x AS party_id, min(y) AS person_id FROM person_edges GROUP BY x;
 """
@@ -349,7 +357,7 @@ SELECT j.person_id, mode(j.raw_name) AS name,
         WHERE l.person_id = j.person_id) AS parcel_value
 FROM j GROUP BY j.person_id;
 """
-PEOPLE_PASSES = 6
+PEOPLE_PASSES = 12  # star edges: two hops per group
 PARCEL_ON_LIEN_SQL = """
 INSERT INTO candidates
 SELECT DISTINCT d.party_id, d.instrument_uid, NULL, l.parcel_uid, 'lien_names_parcel',
