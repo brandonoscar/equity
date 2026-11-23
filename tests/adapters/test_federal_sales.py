@@ -50,7 +50,7 @@ def test_federal_register_notices_and_partitions() -> None:
     inst = [r for t, r in out if t == "instrument"]
     assert inst and {r["doc_type"] for r in inst} == {"OTHER"}
     assert {r["doc_type_raw"] for r in inst} == {QUERIES["realty"]["label"]}
-    assert all(str(r["recorded_on"]).startswith("2026") for r in inst)
+    assert all(str(r["recorded_on"]).startswith("2024") for r in inst)
     assert any(t == "party" and r["party_kind"] == "org" for t, r in out)
     parts = list(FederalRegisterRealty().partitions())
     assert {"query": "homeless", "year": "2000"} in parts
