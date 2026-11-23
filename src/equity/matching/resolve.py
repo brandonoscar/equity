@@ -59,6 +59,7 @@ import duckdb
 
 LAKE = Path("data/lake")
 DERIVED = Path("data/derived")
+TEMP_LIMIT = "15GB"
 # Words that never identify a person: suffixes, conjunctions, "et al", trustee markers.
 STOP = ("JR", "SR", "II", "III", "IV", "AND", "OR", "ETAL", "ET", "AL", "TR", "TRUSTEE",
         "TTEE", "MR", "MRS", "MS", "DR", "THE", "OF", "C/O", "CO", "ATTN")  # fmt: skip
@@ -132,6 +133,9 @@ def connect(
     writ_sources: list[str] | None = None,
 ) -> duckdb.DuckDBPyConnection:
     con = duckdb.connect()
+    # Large runs (NY: ~5M debtors x ~5M owners) spill to disk; cap it so a run fails cleanly
+    # instead of filling the machine's disk.
+    con.execute(f"SET max_temp_directory_size = '{TEMP_LIMIT}'")
     stop = ", ".join(f"'{w}'" for w in STOP)
     con.execute(f"""
         CREATE MACRO name_key(n) AS array_to_string(list_sort(list_distinct(list_filter(
