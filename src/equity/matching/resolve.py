@@ -31,6 +31,8 @@ Any debtor whose lien or judgment names a county (and every run uses this rule):
 With court_sources (court judgments: case_party debtors of a judgment, e.g. the federal IDB,
 whose parties carry a county but no address, and whose people are surnames only), their
 debtor parties join the debtors.
+With writ_sources (e.g. Hillsborough garnishment), defendants of cases whose docket shows an
+enforcement writ join the debtors as judgment debtors (amount unpublished).
 With street_town (CT only, approved by the project owner 2026-11-22), also:
   person_name_street_town   same person name_key, street line and town         -> auto
   org_name_street_town      same org_name, street line and town                -> auto
@@ -97,6 +99,7 @@ COLUMNS: dict[str, dict[str, str]] = {
     "judgment": {"judgment_uid": V, "case_uid": V, "source_id": V, "entered_on": "DATE",
                  "principal": "DOUBLE", "jurisdiction": V},
     "judgment_event": {"judgment_uid": V, "event": V},
+    "docket_entry": {"case_uid": V, "entry_date": "DATE", "source_id": V, "jurisdiction": V},
     "parcel_assessment": {"parcel_uid": V, "tax_year": "INTEGER", "appraised_total": "DOUBLE",
                           "assessed_value": "DOUBLE"},
 }  # fmt: skip
@@ -126,6 +129,7 @@ def connect(
     owner_sources: list[str],
     parcel_on_lien: bool = False,
     court_sources: list[str] | None = None,
+    writ_sources: list[str] | None = None,
 ) -> duckdb.DuckDBPyConnection:
     con = duckdb.connect()
     stop = ", ".join(f"'{w}'" for w in STOP)
@@ -135,7 +139,8 @@ def connect(
             lambda w: length(w) >= 1 AND w NOT IN ({stop})))), ' ');
         CREATE MACRO name_words(k) AS CASE WHEN k = '' THEN 0 ELSE len(string_split(k, ' ')) END;
     """)
-    both = sorted(set(debtor_sources) | set(owner_sources))
+    both = sorted(set(debtor_sources) | set(owner_sources) | set(court_sources or [])
+                  | set(writ_sources or []))  # fmt: skip
     _view(con, "addr_all", lake, both, "address")
     _view(con, "d_party", lake, debtor_sources, "party")
     _view(con, "d_ip", lake, debtor_sources, "instrument_party")
@@ -185,6 +190,8 @@ def connect(
     """)
     if court_sources:
         _court_debtors(con, lake, court_sources)
+    if writ_sources:
+        _writ_debtors(con, lake, writ_sources)
     if parcel_on_lien:
         # A lien that names a parcel but no debtor (Allegheny tax liens, foreclosures) is owed
         # by whoever owns that parcel: one stand-in debtor per parcel, "owner-of:<parcel_uid>".
@@ -225,6 +232,27 @@ def _court_debtors(con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str
         JOIN c_party p ON p.party_id = cp.party_id
         LEFT JOIN addr a ON a.address_id = p.address_id
         WHERE j.jurisdiction IN (SELECT DISTINCT left(parcel_uid, 5) FROM o_parcel);
+    """)
+
+
+def _writ_debtors(con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str]) -> None:
+    """Defendants in cases with an enforcement writ (garnishment) on the docket: a writ issues
+    only on a judgment, so each such case is one judgment owed by its defendants. Its amount
+    is not published (NULL) and its date is the first writ entry."""
+    _view(con, "w_party", lake, sources, "party")
+    _view(con, "w_cp", lake, sources, "case_party")
+    _view(con, "w_entry", lake, sources, "docket_entry")
+    con.execute("""
+        INSERT INTO debtors
+        SELECT DISTINCT p.party_id, p.raw_name, p.party_kind, p.org_name_norm,
+               'writ:' || e.case_uid, e.source_id, 'COURT_JUDGMENT', e.first_on, NULL, false,
+               name_key(p.raw_name), a.addr_key, a.town_key, a.zip5, e.jurisdiction
+        FROM (SELECT case_uid, any_value(source_id) AS source_id,
+                     any_value(jurisdiction) AS jurisdiction, min(entry_date) AS first_on
+              FROM w_entry GROUP BY case_uid) e
+        JOIN w_cp cp ON cp.case_uid = e.case_uid AND cp.role IN ('defendant', 'debtor')
+        JOIN w_party p ON p.party_id = cp.party_id
+        LEFT JOIN addr a ON a.address_id = p.address_id;
     """)
 
 
@@ -455,10 +483,12 @@ def run(
     street_town: bool = False,
     parcel_on_lien: bool = False,
     court_sources: list[str] | None = None,
+    writ_sources: list[str] | None = None,
 ) -> dict[str, object]:
     from equity.matching import equity
 
-    con = connect(lake, debtor_sources, owner_sources, parcel_on_lien, court_sources)
+    con = connect(lake, debtor_sources, owner_sources, parcel_on_lien, court_sources,
+                  writ_sources)  # fmt: skip
     match(con, street_town, parcel_on_lien, bool(court_sources))
     tables = ["matches", "debtor_summary", "people"]
     if mortgage_sources:
@@ -498,6 +528,13 @@ STATES: dict[str, dict[str, Any]] = {
                    "parcel_on_lien": True, "courts": ["us.fjc.idb.civil_judgments"]},
     "TX-HARRIS": {"debtors": ["tx.harris.tax_judgments"], "owners": ["tx.statewide.parcels"],
                   "parcel_on_lien": True, "courts": ["us.fjc.idb.civil_judgments"]},
+    # Hillsborough: recorded judgments and liens (Official Records index), civil judgments,
+    # and judgment debtors under a writ of garnishment (with their address).
+    "FL-HILLSBOROUGH": {"debtors": ["fl.hillsborough.or"], "owners": ["fl.statewide.parcels"],
+                        "courts": ["fl.hillsborough.civil.cases", "us.fjc.idb.civil_judgments"],
+                        "writs": ["fl.hillsborough.garnishment"]},
+    "IL-COOK": {"debtors": ["il.chicago.doah_judgments"], "owners": ["il.cook.parcels"],
+                "courts": ["us.fjc.idb.civil_judgments"]},
     "AZ-PIMA": {"debtors": ["az.tucson.code_liens"], "owners": ["az.pima.parcels"],
                 "courts": ["us.fjc.idb.civil_judgments"]},
     "PA-WASHINGTON": {"debtors": ["pa.washington.sheriff_sales"],
@@ -515,7 +552,7 @@ def main(argv: list[str] | None = None) -> int:
     result = run(args.lake, args.out / args.state.lower(), spec["debtors"], spec["owners"],
                  spec.get("mortgages"), spec.get("links"),
                  bool(spec.get("street_town")), bool(spec.get("parcel_on_lien")),
-                 spec.get("courts"))  # fmt: skip
+                 spec.get("courts"), spec.get("writs"))  # fmt: skip
     json.dump(result, sys.stdout, indent=2, default=str)
     print()
     return 0

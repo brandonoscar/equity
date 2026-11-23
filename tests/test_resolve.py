@@ -445,3 +445,29 @@ def test_court_judgments_match_businesses_by_county_for_review(tmp_path: Path) -
     # surname-only person are never matched.
     assert m == [("k1", "j1", "org_name_county", "review")]
     assert result["debtor_parties"] == 2
+
+
+def test_garnishment_writs_make_their_defendants_judgment_debtors(
+    lake: Path, tmp_path: Path
+) -> None:
+    w = lake / "zz.writs"
+    _write(w / "address" / "0.parquet", [_addr("wa1", "12 MAIN ST", "10001")])
+    _write(w / "party" / "0.parquet", [
+        {"party_id": "w1", "raw_name": "SMITH, JOHN A", "party_kind": "person",
+         "org_name_norm": None, "address_id": "wa1"},
+        {"party_id": "w2", "raw_name": "BANK NA", "party_kind": "org",
+         "org_name_norm": "BANK", "address_id": None}])  # fmt: skip
+    _write(w / "case_party" / "0.parquet", [
+        {"case_uid": "k1", "party_id": "w1", "role": "defendant"},
+        {"case_uid": "k1", "party_id": "w2", "role": "plaintiff"}])  # fmt: skip
+    _write(w / "docket_entry" / "0.parquet", [
+        {"case_uid": "k1", "entry_date": "2026-03-02", "source_id": "zz.writs",
+         "jurisdiction": "99001"},
+        {"case_uid": "k1", "entry_date": "2026-02-01", "source_id": "zz.writs",
+         "jurisdiction": "99001"}])  # fmt: skip
+    out = tmp_path / "out"
+    run(lake, out, ["zz.none"], ["zz.parcels"], writ_sources=["zz.writs"])
+    m = duckdb.connect().execute(
+        f"SELECT debtor_party_id, instrument_uid, owner_party_id, rule_id"
+        f" FROM '{out.as_posix()}/matches.parquet'").fetchall()  # fmt: skip
+    assert m == [("w1", "writ:k1", "o1", "person_name_address")]  # the plaintiff is no debtor
