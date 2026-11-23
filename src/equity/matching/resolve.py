@@ -568,7 +568,9 @@ STATES: dict[str, dict[str, Any]] = {
                    "parcel_on_lien": True, "courts": FEDERAL_COURTS},
     "TX-HARRIS": {"debtors": ["tx.harris.tax_judgments", "tx.tceq.civil_judgments",
                               "tx.tceq.administrative_orders"], "owners": ["tx.statewide.parcels"],
-                  "parcel_on_lien": True, "courts": FEDERAL_COURTS},
+                  "parcel_on_lien": True,
+                  "courts": ["tx.harris.jp.civil_judgments", "tx.harris.district.civil_judgments",
+                             *FEDERAL_COURTS]},
     # Hillsborough: recorded judgments and liens (Official Records index), civil judgments,
     # and judgment debtors under a writ of garnishment (with their address).
     "FL": {"debtors": ["fl.hillsborough.or", "fl.dor.tax_warrants"],
