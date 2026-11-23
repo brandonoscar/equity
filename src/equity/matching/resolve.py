@@ -9,6 +9,10 @@ same keys, computed in SQL so every match can be re-derived:
   name_key   the set of name words (upper case, letters and digits only, suffixes and
              filler words dropped, sorted): "SMITH JOHN A" and "JOHN A SMITH" -> "A JOHN SMITH".
              A person key needs at least two words; a last name alone never matches.
+             A different middle name or initial gives a different key, so it never matches.
+  suffix_key generational suffixes (JR, SR, II, III, ...). name_key drops them, so a person
+             match is refused when both names carry a suffix and the suffixes differ
+             (father and son at one address).
              "Person" rules cover every name not classified as an org at load (most
              loaders leave people as party_kind 'unknown').
   org_name   the organization name as normalized at load (equity.matching.orgs).
@@ -24,6 +28,10 @@ Rules, strongest first (a debtor-owner pair keeps its strongest rule):
   org_name_address      same org_name and address                              -> auto
   org_name_zip          same org_name and ZIP                                  -> auto
   person_name_zip       same person name_key and ZIP                           -> review
+  person_name_initial_address  same address, and the names are the same except that one side
+                        has one extra single-letter middle initial ("JOHN SMITH" / "SMITH JOHN
+                        A"); a parent and child can share both, so -> review (approved by the
+                        project owner 2026-11-22)
 With parcel_on_lien (liens recorded against a parcel id, e.g. Allegheny PINs), first; a lien
 that names a parcel but no debtor gets the stand-in debtor "owner-of:<parcel_uid>":
   lien_names_parcel         the lien itself names the parcel (instrument_parcel), and that
@@ -64,6 +72,7 @@ RULES = (
     ("person_name_zip", "review", 4),
     ("person_name_street_town", "auto", 5),
     ("org_name_street_town", "auto", 6),
+    ("person_name_initial_address", "review", 7),
 )
 
 
@@ -121,6 +130,12 @@ def connect(
             string_split(trim(regexp_replace(upper(coalesce(n, '')), '[^A-Z0-9]+', ' ', 'g')), ' '),
             lambda w: length(w) >= 1 AND w NOT IN ({stop})))), ' ');
         CREATE MACRO name_words(k) AS CASE WHEN k = '' THEN 0 ELSE len(string_split(k, ' ')) END;
+        -- Generational suffixes in a name (JR, SR, II, III, IV, V), sorted; '' when none.
+        CREATE MACRO suffix_key(n) AS array_to_string(list_sort(list_distinct(list_filter(
+            string_split(trim(regexp_replace(upper(coalesce(n, '')), '[^A-Z0-9]+', ' ', 'g')), ' '),
+            lambda w: w IN ('JR', 'SR', 'II', 'III', 'IV', 'V', '2ND', '3RD')))), ' ');
+        -- Both names carry a suffix and they differ (JOHN SMITH JR vs JOHN SMITH SR).
+        CREATE MACRO suffix_conflict(a, b) AS a <> '' AND b <> '' AND a <> b;
     """)
     both = sorted(set(debtor_sources) | set(owner_sources))
     _view(con, "addr_all", lake, both, "address")
@@ -151,7 +166,8 @@ def connect(
                EXISTS (SELECT 1 FROM d_ref r WHERE r.to_uid = i.instrument_uid
                        AND r.ref_type = 'releases')
                    OR coalesce(i.doc_type_raw, '') LIKE '%(satisfied)' AS released,
-               name_key(p.raw_name) AS name_key, a.addr_key, a.town_key, a.zip5
+               name_key(p.raw_name) AS name_key, suffix_key(p.raw_name) AS suffix_key,
+               a.addr_key, a.town_key, a.zip5
         FROM d_ip ip
         JOIN d_party p ON p.party_id = ip.party_id
         JOIN d_inst i ON i.instrument_uid = ip.instrument_uid
@@ -159,7 +175,8 @@ def connect(
         WHERE ip.role = 'debtor';
         CREATE TEMP TABLE owners AS
         SELECT DISTINCT p.party_id, p.raw_name, p.party_kind, p.org_name_norm, s.parcel_uid,
-               name_key(p.raw_name) AS name_key, ma.addr_key AS mail_key, ma.zip5 AS mail_zip,
+               name_key(p.raw_name) AS name_key, suffix_key(p.raw_name) AS suffix_key,
+               ma.addr_key AS mail_key, ma.zip5 AS mail_zip,
                sa.addr_key AS situs_key, sa.zip5 AS situs_zip,
                ma.town_key AS mail_town, sa.town_key AS situs_town
         FROM o_snap s
@@ -179,7 +196,7 @@ def connect(
                    EXISTS (SELECT 1 FROM d_ref r WHERE r.to_uid = i.instrument_uid
                            AND r.ref_type = 'releases')
                        OR coalesce(i.doc_type_raw, '') LIKE '%(satisfied)',
-                   '', NULL, NULL, NULL
+                   '', '', NULL, NULL, NULL
             FROM d_inst i JOIN d_lot l ON l.instrument_uid = i.instrument_uid
             WHERE i.doc_type <> 'RELEASE' AND NOT EXISTS (
                 SELECT 1 FROM d_ip ip WHERE ip.instrument_uid = i.instrument_uid
@@ -194,6 +211,7 @@ SELECT d.party_id AS debtor_party_id, d.instrument_uid, o.party_id AS owner_part
        o.parcel_uid, 'person_name_address' AS rule_id, d.name_key AS key
 FROM debtors d JOIN owners o ON o.name_key = d.name_key
 WHERE d.party_kind <> 'org' AND o.party_kind <> 'org' AND name_words(d.name_key) >= 2
+  AND NOT suffix_conflict(d.suffix_key, o.suffix_key)
   AND d.addr_key IS NOT NULL AND d.addr_key IN (o.mail_key, o.situs_key)
 UNION ALL
 SELECT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid, 'org_name_address', d.org_name_norm
@@ -209,6 +227,7 @@ UNION ALL
 SELECT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid, 'person_name_zip', d.name_key
 FROM debtors d JOIN owners o ON o.name_key = d.name_key
 WHERE d.party_kind <> 'org' AND o.party_kind <> 'org' AND name_words(d.name_key) >= 2
+  AND NOT suffix_conflict(d.suffix_key, o.suffix_key)
   AND d.zip5 IS NOT NULL AND d.zip5 IN (o.mail_zip, o.situs_zip);
 """
 PARCEL_ON_LIEN_SQL = """
@@ -219,12 +238,37 @@ FROM debtors d JOIN d_lot l ON l.instrument_uid = d.instrument_uid
 WHERE l.parcel_uid IN (SELECT parcel_uid FROM o_parcel)
   AND (NOT starts_with(d.party_id, 'owner-of:') OR d.party_id = 'owner-of:' || l.parcel_uid);
 """
+# One name key is the other plus exactly one single-letter word (a middle initial).
+INITIAL_SQL = """
+CREATE TEMP TABLE o_by_addr AS
+SELECT party_id, parcel_uid, name_key, suffix_key, mail_key AS k FROM owners
+WHERE party_kind <> 'org' AND mail_key IS NOT NULL AND name_words(name_key) >= 2
+UNION
+SELECT party_id, parcel_uid, name_key, suffix_key, situs_key FROM owners
+WHERE party_kind <> 'org' AND situs_key IS NOT NULL AND name_words(name_key) >= 2;
+INSERT INTO candidates
+SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
+       'person_name_initial_address', d.name_key
+FROM debtors d JOIN o_by_addr o ON o.k = d.addr_key
+WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2
+  AND NOT suffix_conflict(d.suffix_key, o.suffix_key)
+  AND d.name_key <> o.name_key
+  AND abs(name_words(d.name_key) - name_words(o.name_key)) = 1
+  AND (list_has_all(string_split(o.name_key, ' '), string_split(d.name_key, ' '))
+       OR list_has_all(string_split(d.name_key, ' '), string_split(o.name_key, ' ')))
+  AND length(list_filter(
+        string_split(CASE WHEN name_words(o.name_key) > name_words(d.name_key)
+                          THEN o.name_key ELSE d.name_key END, ' '),
+        lambda w: NOT list_contains(string_split(CASE WHEN name_words(o.name_key) >
+            name_words(d.name_key) THEN d.name_key ELSE o.name_key END, ' '), w))[1]) = 1;
+"""
 STREET_TOWN_SQL = """
 INSERT INTO candidates
 SELECT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid, 'person_name_street_town',
        d.name_key
 FROM debtors d JOIN owners o ON o.name_key = d.name_key
 WHERE d.party_kind <> 'org' AND o.party_kind <> 'org' AND name_words(d.name_key) >= 2
+  AND NOT suffix_conflict(d.suffix_key, o.suffix_key)
   AND d.town_key IS NOT NULL AND d.town_key IN (o.mail_town, o.situs_town)
 UNION ALL
 SELECT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid, 'org_name_street_town',
@@ -239,6 +283,7 @@ def match(
     con: duckdb.DuckDBPyConnection, street_town: bool = False, parcel_on_lien: bool = False
 ) -> None:
     con.execute(MATCH_SQL)
+    con.execute(INITIAL_SQL)
     if parcel_on_lien:
         con.execute(PARCEL_ON_LIEN_SQL)
     if street_town:

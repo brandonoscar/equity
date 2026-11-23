@@ -1,9 +1,9 @@
 source_id: ne.douglas.parcels
 state: NE
-# Douglas County (Omaha) parcels with owners: DOGIS's 'Parcels_for_BOE' layer, a spatial
-# join of the county 'Parcels Public' layer with board-of-equalization districts. PIN is the
-# county parcel number; placeholder PIN 9999999999 rows are skipped as not a parcel.
-layer_url: https://services.arcgis.com/pDAi2YK0L0QxVJHj/arcgis/rest/services/Parcels_for_BOE/FeatureServer/0
+# Douglas County (Omaha) parcels with owners: DOGIS 'Parcels public', the county's public-facing
+# parcel service (data maintained by the Douglas County Assessor). PIN is the county parcel
+# number; placeholder PIN 9999999999 rows are skipped as not a parcel.
+layer_url: https://dcgis.org/server/rest/services/vector/Parcels_public/FeatureServer/0
 order_by: OBJECTID
 page_size: 2000
 min_interval_s: 1.0
@@ -23,8 +23,8 @@ fields:
   land_use_desc: CLASS
 value_basis: "no value or tax-year fields in this layer; owner names and addresses only"
 terms:
-  url: https://www.arcgis.com/home/item.html?id=7999a3cbd73a446bb576e515df6bad87
-  summary: "Douglas County, NE DOGIS ArcGIS Online 'Parcels_for_BOE', 216,645 rows, updated 2026-05-04. No licenseInfo; accessInformation 'Douglas County Assessor / Register of Deeds Office, Nebraska'. The official 'Parcels Public' layer is on dcgis.org (not reachable here). Used on the project owner's decision (2026-11-22)."
-  checked_on: 2026-11-22
-  robots_checked_on: 2026-11-22
+  url: https://www.arcgis.com/home/item.html?id=0937da9304a0443a84da5106527d8707
+  summary: "Douglas County, NE DOGIS 'Parcels public' (dcgis.org), 217,474 rows on 2026-11-23; 'public-facing map service of Douglas County NE Parcels. Data maintained by DC Assessor.' No licenseInfo; accessInformation 'Douglas County NE'. Used on the project owner's decision (2026-11-22) to use Douglas County owner data without a published license."
+  checked_on: 2026-11-23
+  robots_checked_on: 2026-11-23
   cost_model: free

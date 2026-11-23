@@ -86,23 +86,9 @@
   },
   {
    "ADDRESS1": null,
-   "ADDRESS2": "739 TEST ST",
-   "CLASS": "F",
-   "OBJECTID": 7,
-   "OWNER_CITY": "WATERLOO",
-   "OWNER_NAME": "TESTOWNER E6D92C",
-   "OWNER_STAT": "NE",
-   "OWNER_ZIP": "68069",
-   "PIN": "0100580012",
-   "PROPERTY_A": "TESTOWNER AA2F63",
-   "PROP_CITY": "DOUGLAS COUNTY",
-   "PROP_ZIP": "68069"
-  },
-  {
-   "ADDRESS1": null,
    "ADDRESS2": "2669 TEST ST",
    "CLASS": "F",
-   "OBJECTID": 8,
+   "OBJECTID": 7,
    "OWNER_CITY": "WATERLOO",
    "OWNER_NAME": "TESTOWNER CA8204",
    "OWNER_STAT": "NE",
@@ -114,23 +100,9 @@
   },
   {
    "ADDRESS1": null,
-   "ADDRESS2": "1009 TEST ST",
-   "CLASS": "F",
-   "OBJECTID": 9,
-   "OWNER_CITY": "WATERLOO",
-   "OWNER_NAME": "TESTOWNER D10A2C",
-   "OWNER_STAT": "NE",
-   "OWNER_ZIP": "68069",
-   "PIN": "0100580018",
-   "PROPERTY_A": "TESTOWNER 81F66A",
-   "PROP_CITY": "DOUGLAS COUNTY",
-   "PROP_ZIP": "68069"
-  },
-  {
-   "ADDRESS1": null,
    "ADDRESS2": "717 TEST ST",
    "CLASS": "F",
-   "OBJECTID": 10,
+   "OBJECTID": 8,
    "OWNER_CITY": "WATERLOO",
    "OWNER_NAME": "TESTOWNER 983929",
    "OWNER_STAT": "NE",
@@ -139,8 +111,36 @@
    "PROPERTY_A": "TESTOWNER 6C6B2F",
    "PROP_CITY": "DOUGLAS COUNTY",
    "PROP_ZIP": "68069"
+  },
+  {
+   "ADDRESS1": null,
+   "ADDRESS2": "2401 TEST ST",
+   "CLASS": "F",
+   "OBJECTID": 9,
+   "OWNER_CITY": "WATERLOO",
+   "OWNER_NAME": "TESTOWNER 5AD7BB",
+   "OWNER_STAT": "NE",
+   "OWNER_ZIP": "68069",
+   "PIN": "2400500050",
+   "PROPERTY_A": "TESTOWNER 681EE3",
+   "PROP_CITY": "DOUGLAS COUNTY",
+   "PROP_ZIP": "68069"
+  },
+  {
+   "ADDRESS1": "275 TEST ST",
+   "ADDRESS2": "792 TEST ST",
+   "CLASS": "E",
+   "OBJECTID": 10,
+   "OWNER_CITY": "LINCOLN",
+   "OWNER_NAME": "TESTOWNER 0C5902",
+   "OWNER_STAT": "NE",
+   "OWNER_ZIP": "68509",
+   "PIN": "0100580029",
+   "PROPERTY_A": " ",
+   "PROP_CITY": " ",
+   "PROP_ZIP": " "
   }
  ],
- "layer": "https://services.arcgis.com/pDAi2YK0L0QxVJHj/arcgis/rest/services/Parcels_for_BOE/FeatureServer/0",
+ "layer": "https://dcgis.org/server/rest/services/vector/Parcels_public/FeatureServer/0",
  "where": "(PIN <> '9999999999') AND (1=1)"
 }

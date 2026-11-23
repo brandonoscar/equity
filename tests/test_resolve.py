@@ -454,3 +454,65 @@ def test_review_queue_labels_name_zip_matches(tmp_path: Path) -> None:
     # the review queue itself never accepts anything.
     assert result["matches_by_rule"]["person_name_address"] == 2
     assert result["debtors_matched_auto"] == 2
+
+
+def test_middle_names_and_suffixes_must_agree(tmp_path: Path) -> None:
+    lk = tmp_path / "lake"
+    d, o = lk / "s.debts", lk / "s.parcels"
+    pairs = [  # debtor name, owner name: each pair at its own address
+        ("JOHN A SMITH", "SMITH JOHN A"),  # same person: match
+        ("JOHN A SMITH JR", "SMITH JOHN A SR"),  # father and son: no match
+        ("ANN B LEE JR", "LEE ANN B"),  # suffix on one side only: match
+        ("CY D ROE", "ROE CY E"),  # different middle initial: no match
+        ("ED KAY", "KAY ED F"),  # middle initial on one side only: review, never auto
+        ("FAY GEE", "GEE FAY HOPE"),  # a full extra middle name: no match
+    ]
+    _write(
+        d / "address" / "0.parquet",
+        [_addr(f"a{i}", f"{i + 1} ELM ST", "10001") for i in range(len(pairs))],
+    )
+    _write(
+        o / "address" / "0.parquet",
+        [_addr(f"m{i}", f"{i + 1} ELM ST", "10001") for i in range(len(pairs))],
+    )
+    _write(d / "party" / "0.parquet", [
+        {"party_id": f"d{i}", "raw_name": dn, "party_kind": "unknown", "org_name_norm": None,
+         "address_id": f"a{i}"} for i, (dn, _) in enumerate(pairs)])  # fmt: skip
+    _write(o / "party" / "0.parquet", [
+        {"party_id": f"o{i}", "raw_name": on, "party_kind": "unknown", "org_name_norm": None,
+         "address_id": f"m{i}"} for i, (_, on) in enumerate(pairs)])  # fmt: skip
+    _write(d / "instrument_party" / "0.parquet", [
+        {"instrument_uid": f"i{i}", "party_id": f"d{i}", "role": "debtor"}
+        for i in range(len(pairs))])  # fmt: skip
+    _write(
+        d / "instrument" / "0.parquet",
+        [
+            {
+                "instrument_uid": f"i{i}",
+                "source_id": "s.debts",
+                "doc_type": "TAX_LIEN_STATE",
+                "recorded_on": "2025-01-01",
+                "principal_amount": 1.0,
+            }
+            for i in range(len(pairs))
+        ],
+    )
+    _write(
+        o / "owner_snapshot" / "0.parquet",
+        [{"parcel_uid": f"p{i}", "party_id": f"o{i}"} for i in range(len(pairs))],
+    )
+    _write(
+        o / "parcel" / "0.parquet",
+        [{"parcel_uid": f"p{i}", "situs_address_id": None} for i in range(len(pairs))],
+    )
+    out = tmp_path / "out"
+    run(lk, out, ["s.debts"], ["s.parcels"])
+    con = duckdb.connect()
+    got = sorted(con.execute(
+        f"SELECT debtor_party_id, owner_party_id FROM '{out.as_posix()}/matches.parquet' "
+        "WHERE rule_id = 'person_name_address'").fetchall())  # fmt: skip
+    assert got == [("d0", "o0"), ("d2", "o2")]
+    initial = con.execute(
+        f"SELECT debtor_party_id, owner_party_id, decision FROM '{out.as_posix()}/matches.parquet' "
+        "WHERE rule_id = 'person_name_initial_address'").fetchall()  # fmt: skip
+    assert initial == [("d4", "o4", "review")]

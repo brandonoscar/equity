@@ -6,7 +6,9 @@ from __future__ import annotations
 from equity.adapters.base import REGISTRY as REGISTRY
 from equity.adapters.base import Adapter, register
 from equity.adapters.business_registry import all_registry_adapters
+from equity.adapters.co_ucc import ColoradoUCC
 from equity.adapters.code_links import NJMunicipalCodeLinks
+from equity.adapters.dc_business import DCBusiness
 from equity.adapters.federal.ecf_rss import NDWVBankruptcyRSS, NDWVDistrictRSS, court_adapters
 from equity.adapters.fl.hillsborough_civil import (
     HillsboroughCivilCases,
@@ -20,6 +22,7 @@ from equity.adapters.ny.acris import AcrisPersonalProperty, AcrisRealProperty
 from equity.adapters.ny.condo_units import NycCondoUnits
 from equity.adapters.pa.allegheny_assessments import AlleghenyAssessments
 from equity.adapters.pa.philadelphia_rtt import PhiladelphiaRTT
+from equity.adapters.ri_providence import ProvidenceTaxRoll
 from equity.adapters.state_parcels import all_state_adapters
 from equity.adapters.tx.stratmap import TexasStratMapParcels
 from equity.adapters.wv.delinquent import WVDelinquentProperties
@@ -38,6 +41,8 @@ _ALL: tuple[type[Adapter], ...] = (
     *all_lien_adapters(),
     LocalZoningAdapter,
     NJMunicipalCodeLinks,
+    ColoradoUCC,
+    DCBusiness,
     TexasStratMapParcels,
     AcrisRealProperty,
     NycCondoUnits,
@@ -45,6 +50,7 @@ _ALL: tuple[type[Adapter], ...] = (
     AcrisPersonalProperty,
     PhiladelphiaRTT,
     AlleghenyAssessments,
+    ProvidenceTaxRoll,
     HillsboroughOfficialRecords,
     HillsboroughCivilCases,
     HillsboroughCivilFilings,
