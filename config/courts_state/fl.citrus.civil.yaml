@@ -1,0 +1,66 @@
+# Citrus County (FL) Clerk of the Circuit Court: Court Records Search - Bulk Data
+# (apps.citrusclerk.org/BulkDataExport/). Read by src/equity/adapters/fl/citrus_civil.py.
+#
+# The clerk's page (citrusclerk.org/186/Court-Records-Search-SCORSS) says: "By accessing the
+# link above, you may access bulk data at no charge ... You may request information for
+# filings or dispositions during a selected period of time. The information is then exported
+# to an Excel format." The export form (a Laravel Livewire page) returns export.zip with
+# export_Case.csv, export_Party.csv and export_Docket.csv for the chosen court types and
+# file-date or disposition-date window. No login, no CAPTCHA, no fee. A whole year of civil
+# dispositions (~5,300 cases) comes back in about 20 s (checked 2026-11-23).
+#
+# Party rows carry Race, DOB, Gender and DLNo columns (almost always blank for civil cases):
+# they are dropped at fetch time and never stored. Attorney rows are dropped too.
+source_id: fl.citrus.civil
+base_url: https://apps.citrusclerk.org/BulkDataExport/
+# Court types requested: circuit civil, circuit civil miscellaneous, county civil, small
+# claims. (Probate, family, criminal and traffic types are never requested.)
+court_types: [CA, CAM, CC, SC]
+# Lake partitions: one per calendar month of DISPOSITION date, first_month to yesterday,
+# newest first. Each case appears once, in the month of its (latest) disposition.
+# TODO(Brandon): Florida judgment liens last 10 years, re-recordable for 20 (Fla. Stat.
+# 55.10); 2006 gives the full 20. Dispositions go back to at least 1990.
+first_month: 2006-01
+# Docket rows kept at fetch time (case-insensitive regex). The rest of the docket (answers,
+# notices of hearing, "JUDGE X: ASSIGNED"...) is dropped to keep raw files small.
+docket_keep: "JUDG(?:E?MENT|METN)|SATISF|GARNISH|\\bWRIT\\b|EXECUTION|\\bLEVY\\b|BANKRUPT|VACAT|SET ASIDE"
+# A docket entry is a judgment when its text (upper-cased) carries the clerk's recording
+# marker ("... E - RECORDED (OR.book.page / instrument)", or a bare trailing "E"), contains
+# one of judgment_words and one of judgment_kinds, and none of not_judgment. Its type is the first match of
+# judgment_types (regex -> type), else 'other' (a final or summary judgment: the text does
+# not say whether it awards money).
+judgment_marker: "\\bE\\s*-?\\s*RECORDED\\b|\\sE$"
+judgment_words: "JUDG(?:E?MENT|METN)"
+judgment_kinds: "FINAL|DEFAULT|SUMMARY|CONSENT|AGREED|STIPULATED|DEFICIENCY|MONEY"
+# Filings about a judgment, and judgments that award no money (possession, replevin,
+# dismissal, garnishee judgments, title and declaratory judgments).
+# TODO(Brandon): eviction and replevin judgments are dropped as possession-only (as in
+# Hillsborough, JFP); a "FINAL JUDGMENT" in an eviction case is kept.
+not_judgment: "MOTION|NOTICE|AFFIDAVIT|CERTIFICATE|REQUEST|RESPONSE|MEMORANDUM|OBJECTION|PROPOSED|COPY OF|ORDER TO SHOW|ORDER SETTING|SATISF|DISMISS|DEFERRED|PREJUDGMENT|POST JUDGMENT|AFTER JUDGMENT|COMPLAINT|PETITION|DECLARATORY|VACAT|SET ASIDE|POSSESSION|EVICTION|UNLAWFUL DETAINER|REPLEVIN|GARNISH|INVALIDATING|QUIET|PARTIAL|STIPULATION|RETURNED MAIL|EXHIBIT|ASSIGNMENT|ORDER GRANTING|SURPLUS"
+# TODO(Brandon): foreclosure judgments are 'other' (in rem, with a foreclosure amount the
+# export does not carry).
+judgment_types:
+  DEFICIENCY: deficiency
+  CONSENT|AGREED|STIPULATED: consent
+  DEFAULT: default
+# When a case's docket has no judgment entry, its disposition can still say a judgment was
+# entered (older cases, or dockets the export lacks): disposition -> judgment_type, entered
+# on the disposition date.
+# TODO(Brandon): "DISPOSED BY JUDGE" (and trials) can be a judgment for either side, or a
+# non-money order; only defaults are taken from the disposition.
+disposition_judgments:
+  DISPOSED BY DEFAULT: default
+# Party "Description" -> case_party role. Attorney rows are dropped at fetch; other
+# descriptions become 'other'.
+party_roles:
+  Plaintiff: plaintiff
+  Petitioner: plaintiff
+  Defendant: defendant
+  Respondent: defendant
+  Garnishee: garnishee
+terms:
+  url: https://www.citrusclerk.org/186/Court-Records-Search-SCORSS
+  summary: "Citrus County Clerk 'Court Records Search - Bulk Data': free public export of case, party and docket data for filings or dispositions in a chosen period (per Fla. Sup. Ct. AO 2024-65 and its access matrix). No login, no CAPTCHA, no fee; no other terms posted. apps.citrusclerk.org/robots.txt is 404 (no restrictions)."
+  checked_on: 2026-11-23
+  robots_checked_on: 2026-11-23
+  cost_model: free

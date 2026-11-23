@@ -1,0 +1,32 @@
+source_id: il.chicago.doe_judgments
+state: IL
+county_fips: "17031"   # Cook County (City of Chicago)
+# City of Chicago Department of Public Health / DOE environmental enforcement: administrative
+# hearing (DOAH) and court cases, one row per ticket. Only liability findings with a fine are
+# loaded (LIABLE, liable on plea, default, liable/continued, guilty). No paid status or
+# balance is published, so the amount is the fine imposed.
+# TODO(Brandon): confirm whether unpaid DOAH judgments are recorded as liens on the property.
+portal: https://data.cityofchicago.org
+dataset: yqn4-3th2
+where: "disposition in ('L', 'LIABPLEA', 'DEFAULT', 'LIABLE', 'LIABCONT', 'G') AND fine_amount > 0"
+order_by: [case_number, ticket_no, ":id"]
+select: [case_number, ticket_no, docket_no, respondent, address, violation_date, disposition,
+         case_type, fine_amount, data_source]
+date_field: violation_date      # the hearing/judgment date is not published
+partition: year
+first_year: 1990
+uid: [case_number, ticket_no]
+doc_type: JUDGMENT_LIEN
+doc_type_raw: {field: disposition}
+amount: fine_amount
+parties:
+  - role: debtor
+    name: respondent
+    address: {line1: address, city_const: CHICAGO, state_const: IL}   # the cited site (no ZIP)
+  - role: creditor
+    const: City of Chicago
+terms:
+  url: https://data.cityofchicago.org/d/yqn4-3th2
+  summary: "City of Chicago Data Portal (Socrata), public, no login. City of Chicago data terms of use."
+  checked_on: 2026-11-23
+  cost_model: free

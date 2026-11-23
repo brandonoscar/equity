@@ -1,0 +1,83 @@
+# Hernando County (FL) Clerk, Official Records weekly index files
+# (subscriber.hernandoclerk.com/data_files/official_records/MM-DD-YYYY.csv). Read by
+# src/equity/adapters/fl/hernando_or.py.
+#
+# The clerk's "Clerk Data Subscriptions" page says "Files no longer require an account":
+# the subscriber file site lists every weekly Official Records index (back to 2024-08-02)
+# plus daily civil, case, traffic files. Layout (on the same page): Grantor, Grantee,
+# ClerkFileNumber, Book, PageNumber, DocumentTypeDescription, LegalDescription, DateRecorded.
+# One row per grantor x grantee x legal-description line; names are cut at 25 characters.
+#
+# DocumentTypeDescription carries a suffix: a digit (DEED1, MORTGAGE2: variants of the same
+# kind) or X (JUDGMENTX, ORDERX2, COURT PAPERX: family-law and child-support filings, seen in
+# the 2024-08 .. 2026-11 files). Descriptions are looked up exactly first, then with a
+# trailing digit suffix removed.
+#
+# Grantor/grantee: in the sampled rows the grantor is the side holding the claim (judgment
+# creditor, lienor, satisfying lienholder) and the grantee the side owing it; on deeds and
+# mortgages the grantor is the seller / borrower; on UCC financing statements the grantor
+# is the debtor.
+#
+# TODO(Brandon): confirm every mapping. In particular:
+#  - JUDGMENT and CERT COPY CRT JDGMNT are JUDGMENT_LIEN (Fla. Stat. 55.10 conditions are
+#    not checked, as for Hillsborough).
+#  - COURT PAPER is OTHER with creditor/debtor roles: in the samples it is a creditor (bank,
+#    debt buyer) against a consumer, but the index does not say what the paper is.
+#  - LIEN is STATUTORY_LIEN; Department of Revenue tax warrants are filed under it too.
+#  - GOVERNMENT (county development services against owners: code liens?) is OTHER.
+#  - Every X-suffixed description, marriage, death and probate records are not loaded at
+#    all (data minimization, as Hillsborough's family-law codes).
+consideration_doc_types: []
+# A description that is a known one plus this suffix (JUDGMENTX, ORDERX2, COURT PAPER X2) is a
+# family-law filing: not loaded.
+family_suffix: "\\s*X\\s*\\d*$"
+# A trailing variant number (DEED1, MORTGAGE2) is dropped before the lookup.
+variant_suffix: "\\d+$"
+exclude_patterns:
+  - "^MARRIAGE"
+  - "^DEATH CERTIFICATE"
+  - "^PROBATE DOCUMENTS"
+  - "^MILITARY DISCHARGE"
+# Legal-description placeholder the clerk writes when no lot/block/subdivision was indexed.
+empty_legal: "L Blk Un Sub S T R"
+descriptions:
+  JUDGMENT: {doc_type: JUDGMENT_LIEN, frm: creditor, to: debtor}
+  CERT COPY CRT JDGMNT: {doc_type: JUDGMENT_LIEN, frm: creditor, to: debtor}
+  COURT PAPER: {doc_type: OTHER, frm: creditor, to: debtor}
+  ORDER: {doc_type: COURT_ORDER, frm: other, to: other}
+  LIEN: {doc_type: STATUTORY_LIEN, frm: creditor, to: debtor}
+  NOTICE CONTEST OF LN: {doc_type: OTHER, frm: other, to: other}
+  SATISFACTION: {doc_type: RELEASE, frm: creditor, to: debtor}
+  RELEASE: {doc_type: RELEASE, frm: creditor, to: debtor}
+  PARTIAL RELEASE: {doc_type: PARTIAL_RELEASE, frm: creditor, to: debtor}
+  TERMINATION: {doc_type: RELEASE, frm: other, to: other}
+  LIS PENDENS: {doc_type: LIS_PENDENS, frm: other, to: other}
+  DEED: {doc_type: DEED, frm: grantor, to: grantee}
+  TRANSFER: {doc_type: DEED, frm: grantor, to: grantee}
+  AGREEMENT/CONTR DEED: {doc_type: LAND_CONTRACT, frm: grantor, to: grantee}
+  MORTGAGE: {doc_type: MORTGAGE, frm: borrower, to: lender}
+  MORTGAGE (INTG TAX ON NEW MONEY ONLY): {doc_type: MORTGAGE, frm: borrower, to: lender}
+  ASSIGNMENT: {doc_type: ASSIGNMENT, frm: assignor, to: assignee}
+  MODIFICATION: {doc_type: MODIFICATION, frm: other, to: other}
+  FINANCING STMNT/UCC: {doc_type: FIXTURE_FILING, frm: debtor, to: creditor}
+  AFFIDAVIT: {doc_type: AFFIDAVIT, frm: other, to: other}
+  POWER OF ATTORNEY: {doc_type: POWER_OF_ATTORNEY, frm: other, to: other}
+  EASEMENT: {doc_type: OTHER, frm: grantor, to: grantee}
+  NOTICE OF COMMENCEMENT: {doc_type: OTHER, frm: other, to: other}
+  NOTICE: {doc_type: OTHER, frm: other, to: other}
+  CERTIFICATE: {doc_type: OTHER, frm: other, to: other}
+  AGREEMENT: {doc_type: OTHER, frm: other, to: other}
+  RESTRICTIONS: {doc_type: OTHER, frm: other, to: other}
+  PLAT: {doc_type: OTHER, frm: other, to: other}
+  PLAT RELATED: {doc_type: OTHER, frm: other, to: other}
+  COUNTY RIGHT OF WAY PLAT: {doc_type: OTHER, frm: other, to: other}
+  NOTICE OF HOMESTEAD: {doc_type: OTHER, frm: other, to: other}
+  BOND: {doc_type: OTHER, frm: other, to: other}
+  GOVERNMENT: {doc_type: OTHER, frm: other, to: other}
+  SINKHOLE REPORTS: {doc_type: OTHER, frm: other, to: other}
+terms:
+  url: https://hernandoclerk.com/clerk-data-subscriptions/
+  summary: "Hernando County Clerk 'Clerk Data Subscriptions': weekly Official Records index files on subscriber.hernandoclerk.com; the page says 'Files no longer require an account'. Free, no login, no CAPTCHA. The subscription disclaimer disclaims liability and asks users to comply with state and federal law. subscriber.hernandoclerk.com/robots.txt is 404 (no restrictions)."
+  checked_on: 2026-11-23
+  robots_checked_on: 2026-11-23
+  cost_model: free

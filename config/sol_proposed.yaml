@@ -1,0 +1,376 @@
+# PROPOSED judgment-lien rules per state, from research (2026-11-23) — NOT confirmed.
+# config/sol.yaml stays the confirmed table: it is filled only by Brandon (values need a
+# statute and confirmed_by; tests/test_config.py). Review a state here, then copy the values
+# you accept into sol.yaml with confirmed_by set. Nothing in code reads this file.
+#
+# lien_created_by: R = recording a certified copy / abstract / transcript / notice with the
+#   county recorder or land records creates the lien; D = docketing or entry by the court
+#   clerk creates it in the county of entry (other counties by transcript); X = no general
+#   judgment lien (levy or attachment needed). Creation method and interest are from statute
+#   knowledge, UNVERIFIED. Duration/renewal: White and Williams LLP chart, rev. 2020-01-20
+#   (check post-2020 amendments, at least AZ, ID, GA). Homestead: NCLC 'No Fresh Start' 2025.
+# Sources: research_notes/Data source gap analysis/courts.md section 6.
+
+schema_version: 1
+sources:
+  duration: https://www.whiteandwilliams.com/assets/htmldocuments/Judgment%20Liens%20-%20Rev%201-20-20.PDF
+  homestead: https://www.nclc.org/wp-content/uploads/2025/12/2025.12_Report_No-Fresh-Start_Table-02.pdf
+  homestead_cites: https://www.nclc.org/wp-content/uploads/2026/01/2025_Report_No-Fresh-Start_State-Summaries.pdf
+states:
+  AL:  # TODO(Brandon): review
+    lien_created_by: "R"
+    lien_instrument: "Certificate of judgment recorded in probate office (Ala. Code 6-9-210/211)"
+    duration_and_renewal: "Judgment 10 yrs; revivable, not after 20 yrs (6-9-190/191)"
+    homestead: "$18,800 (6-10-2)"
+    post_judgment_interest: "7.5% fixed (8-8-10)"
+    verified: false
+  AK:  # TODO(Brandon): review
+    lien_created_by: "R"
+    lien_instrument: "Certified copy/abstract in recording district (AS 09.30.010)"
+    duration_and_renewal: "Recorded lien no more than 10 yrs (09.30.010)"
+    homestead: "$72,900 (09.38.010)"
+    post_judgment_interest: "Floating, 3 pts over Fed discount (09.30.070)"
+    verified: false
+  AZ:  # TODO(Brandon): review
+    lien_created_by: "R"
+    lien_instrument: "Certified copy or info statement with county recorder (ARS 33-961)"
+    duration_and_renewal: "Execution within 10 yrs of entry/renewal (12-1551)"
+    homestead: "$425,200 (33-1101)"
+    post_judgment_interest: "Lesser of 10% or prime+1% (44-1201)"
+    verified: false
+  AR:  # TODO(Brandon): review
+    lien_created_by: "D"
+    lien_instrument: "Automatic in county of circuit/federal court; other counties by filing (16-65-117)"
+    duration_and_renewal: "Act within 10 yrs; revive by scire facias (16-65-501)"
+    homestead: "No $ cap, acreage limit (Const. art. 9)"
+    post_judgment_interest: "10% cap or rule rate (16-65-114)"
+    verified: false
+  CA:  # TODO(Brandon): review
+    lien_created_by: "R"
+    lien_instrument: "Abstract of judgment, county recorder (CCP 697.310)"
+    duration_and_renewal: "Expires 10 yrs after entry (683.020); renewable (683.110)"
+    homestead: "County median ≥$361,479, cap $722,507 (CCP 704.730)"
+    post_judgment_interest: "10% (CCP 685.010); reduced rate for some consumer debt (reported)"
+    verified: false
+  CO:  # TODO(Brandon): review
+    lien_created_by: "R"
+    lien_instrument: "Transcript with county clerk & recorder (CRS 13-52-102)"
+    duration_and_renewal: "Lien 6 yrs unless revived; judgment revivable within 20 yrs"
+    homestead: "$250,000 (38-41-201)"
+    post_judgment_interest: "8% or contract rate (5-12-102)"
+    verified: false
+  CT:  # TODO(Brandon): review
+    lien_created_by: "R"
+    lien_instrument: "Judgment lien certificate on town land records (CGS 52-380a)"
+    duration_and_renewal: "Lien 20 yrs (52-380a)"
+    homestead: "$250,000 (52-352b(t))"
+    post_judgment_interest: "Up to 10% discretionary (37-3a)"
+    verified: false
+  DE:  # TODO(Brandon): review
+    lien_created_by: "D"
+    lien_instrument: "Entry on Superior Court docket, county (10 Del. C. 4711)"
+    duration_and_renewal: "Lien 10 yrs, renewable 10 (4711)"
+    homestead: "$500 (NCLC; tit. 10 § 4903)"
+    post_judgment_interest: "Fed discount + 5% (6 Del. C. 2301)"
+    verified: false
+  DC:  # TODO(Brandon): review
+    lien_created_by: "R"
+    lien_instrument: "Filed/recorded with Recorder of Deeds (D.C. Code 15-102)"
+    duration_and_renewal: "Enforceable 12 yrs; revival +12 (15-101, 15-103)"
+    homestead: "No $ cap if head of family"
+    post_judgment_interest: "Contract rate or 70% of 1-yr T-bill (28-3302); see DC PDF above"
+    verified: false
+  FL:  # TODO(Brandon): review
+    lien_created_by: "R"
+    lien_instrument: "Certified copy + address affidavit in Official Records (55.10)"
+    duration_and_renewal: "Lien expires after 20 yrs (55.081); 10 yrs + re-record (55.10, reported)"
+    homestead: "No $ cap, acreage (Const. art. X § 4)"
+    post_judgment_interest: "Quarterly CFO rate (55.03)"
+    verified: false
+  GA:  # TODO(Brandon): review
+    lien_created_by: "D/R"
+    lien_instrument: "Fi.fa. entered on clerk's general execution docket; GSCCCA index (OCGA 9-12-81/86)"
+    duration_and_renewal: "Dormant after 7 yrs; renewable (9-12-60)"
+    homestead: "$21,500 (44-13-1)"
+    post_judgment_interest: "Prime + 3% (7-4-12)"
+    verified: false
+  HI:  # TODO(Brandon): review
+    lien_created_by: "R"
+    lien_instrument: "Bureau of Conveyances / Land Court (HRS 636-3)"
+    duration_and_renewal: "Presumed paid 10 yrs; extend to 20 max (657-5)"
+    homestead: "$30,000 (651-92)"
+    post_judgment_interest: "10% (478-3)"
+    verified: false
+  ID:  # TODO(Brandon): review
+    lien_created_by: "R"
+    lien_instrument: "Transcript/abstract with county recorder (10-1110)"
+    duration_and_renewal: "Lien 10 yrs; renew +10 (10-1110/1111)"
+    homestead: "$175,000 (55-1001 ff.)"
+    post_judgment_interest: "Treasury-based annual rate (28-22-104)"
+    verified: false
+  IL:  # TODO(Brandon): review
+    lien_created_by: "R"
+    lien_instrument: "Memorandum of judgment with county recorder (735 ILCS 5/12-101)"
+    duration_and_renewal: "Lien 7 yrs from entry/revival; revive within 20 (12-101, 13-218)"
+    homestead: "$50,000 (12-901, reported)"
+    post_judgment_interest: "9%; lower for small consumer debt (2-1303)"
+    verified: false
+  IN:  # TODO(Brandon): review
+    lien_created_by: "D"
+    lien_instrument: "Entry in circuit clerk's judgment docket, county (IC 34-55-9-2)"
+    duration_and_renewal: "Lien 10 yrs; judgment presumed paid at 20"
+    homestead: "$22,750 (34-55-10-2)"
+    post_judgment_interest: "Up to 8% (24-4.6-1-101)"
+    verified: false
+  IA:  # TODO(Brandon): review
+    lien_created_by: "D"
+    lien_instrument: "Entry in judgment docket, county; transcript elsewhere (624.23)"
+    duration_and_renewal: "Lien 10 yrs from judgment; judgment 20 yrs (624.23, 614.1)"
+    homestead: "No $ cap, acreage (561.2)"
+    post_judgment_interest: "Treasury-based (535.3)"
+    verified: false
+  KS:  # TODO(Brandon): review
+    lien_created_by: "D"
+    lien_instrument: "Filing in district court, county (60-2202)"
+    duration_and_renewal: "Dormant if no execution/renewal in 5 yrs (60-2403)"
+    homestead: "No $ cap, acreage (60-2301)"
+    post_judgment_interest: "Fed discount + 4% (16-204)"
+    verified: false
+  KY:  # TODO(Brandon): review
+    lien_created_by: "R"
+    lien_instrument: "Certified judgment lien notice in county clerk's office (KRS 426.720)"
+    duration_and_renewal: "Action on judgment within 15 yrs of last execution (413.090)"
+    homestead: "$5,000 (427.060)"
+    post_judgment_interest: "6% or contract (360.040)"
+    verified: false
+  LA:  # TODO(Brandon): review
+    lien_created_by: "R"
+    lien_instrument: "Certified judgment in parish mortgage records (judicial mortgage, CC art. 3300)"
+    duration_and_renewal: "Judgment 10 yrs; revival by motion (CCP 3501, 2031)"
+    homestead: "$35,000 (R.S. 20:1)"
+    post_judgment_interest: "Annual rate set by Commissioner (R.S. 13:4202)"
+    verified: false
+  ME:  # TODO(Brandon): review
+    lien_created_by: "R"
+    lien_instrument: "Writ of execution recorded in registry of deeds (14 MRSA 4651-A)"
+    duration_and_renewal: "Lien 20 yrs from filing of writ; renew once 20"
+    homestead: "$188,550 (tit. 14 § 4422(1))"
+    post_judgment_interest: "1-yr T-bill + 6% (14 MRSA 1602-C)"
+    verified: false
+  MD:  # TODO(Brandon): review
+    lien_created_by: "D"
+    lien_instrument: "Indexed in circuit court; District Court judgments recorded there (Rule 2-621)"
+    duration_and_renewal: "Judgment 12 yrs; renewable by notice (Rule 3-625)"
+    homestead: "$6,000 (CJP 11-504)"
+    post_judgment_interest: "10% (CJP 11-107); 6% for rent"
+    verified: false
+  MA:  # TODO(Brandon): review
+    lien_created_by: "X"
+    lien_instrument: "No general judgment lien; levy of execution / attachment recorded (MGL c.236 § 4)"
+    duration_and_renewal: "Presumed paid after 20 yrs (c.260 § 20)"
+    homestead: "$1,000,000 (declared homestead, c.188)"
+    post_judgment_interest: "12% (c.231 § 6B/6C)"
+    verified: false
+  MI:  # TODO(Brandon): review
+    lien_created_by: "R"
+    lien_instrument: "Notice of judgment lien with register of deeds (MCL 600.2803)"
+    duration_and_renewal: "Lien 5 yrs from recording; re-record once +5 (600.2809)"
+    homestead: "$3,500 (600.6023)"
+    post_judgment_interest: "1% + 5-yr T-note avg (600.6013); 3.959% (2026)"
+    verified: false
+  MN:  # TODO(Brandon): review
+    lien_created_by: "D"
+    lien_instrument: "Docketing in district court, county; transcript elsewhere (548.09)"
+    duration_and_renewal: "Enforce 10 yrs from entry (550.01)"
+    homestead: "$510,000 (510.01-.02)"
+    post_judgment_interest: "Annual rate set by court admin (549.09); 10% over $50k"
+    verified: false
+  MS:  # TODO(Brandon): review
+    lien_created_by: "D"
+    lien_instrument: "Enrollment on circuit clerk's judgment roll (11-7-191)"
+    duration_and_renewal: "Action within 7 yrs of entry/renewal (15-1-43)"
+    homestead: "$75,000 (85-3-21)"
+    post_judgment_interest: "Rate set by judge (75-17-7)"
+    verified: false
+  MO:  # TODO(Brandon): review
+    lien_created_by: "D"
+    lien_instrument: "Entry in circuit court, county; transcript elsewhere (RSMo 511.350)"
+    duration_and_renewal: "Lien 10 yrs (Rule 74.08); revive within 10 (74.09)"
+    homestead: "$15,000 (513.475)"
+    post_judgment_interest: "9% or contract; tort: T-bill + 5% (408.040)"
+    verified: false
+  MT:  # TODO(Brandon): review
+    lien_created_by: "D"
+    lien_instrument: "Docketing in district court, county; abstract elsewhere (25-9-301)"
+    duration_and_renewal: "Action on judgment within 10 yrs (27-2-201)"
+    homestead: "$409,450 (70-32-104)"
+    post_judgment_interest: "Prime + 3% (25-9-205)"
+    verified: false
+  NE:  # TODO(Brandon): review
+    lien_created_by: "D"
+    lien_instrument: "Entry in district court, county; transcript elsewhere (25-1504)"
+    duration_and_renewal: "Dormant if not executed in 5 yrs; revive within 10 (25-1515, 25-1420)"
+    homestead: "$120,000 (40-101)"
+    post_judgment_interest: "T-bill-based (45-103)"
+    verified: false
+  NV:  # TODO(Brandon): review
+    lien_created_by: "R"
+    lien_instrument: "Transcript/abstract with county recorder (NRS 17.150)"
+    duration_and_renewal: "Judgment 6 yrs; renewable within 6 yrs (17.150, 17.214)"
+    homestead: "$605,000 (115.010)"
+    post_judgment_interest: "Prime + 2% (17.130)"
+    verified: false
+  NH:  # TODO(Brandon): review
+    lien_created_by: "X"
+    lien_instrument: "Real estate reached by attachment/levy recorded in registry (RSA 511)"
+    duration_and_renewal: "Action on judgment within 20 yrs (508:5)"
+    homestead: "$120,000 (480:1)"
+    post_judgment_interest: "Treasury-based annual (336:1)"
+    verified: false
+  NJ:  # TODO(Brandon): review
+    lien_created_by: "D"
+    lien_instrument: "Docketing in Superior Court Civil Judgment and Order Docket, statewide (2A:16-1)"
+    duration_and_renewal: "Judgment 20 yrs; renewable (2A:14-5)"
+    homestead: "No protection"
+    post_judgment_interest: "Court-rule rate based on Cash Management Fund (R. 4:42-11)"
+    verified: false
+  NM:  # TODO(Brandon): review
+    lien_created_by: "R"
+    lien_instrument: "Transcript of judgment with county clerk (NMSA 39-1-6)"
+    duration_and_renewal: "Lien expires after 14 yrs (39-1-6)"
+    homestead: "$150,000 (42-10-9)"
+    post_judgment_interest: "8.75% or higher for tort/intentional (56-8-4)"
+    verified: false
+  NY:  # TODO(Brandon): review
+    lien_created_by: "D"
+    lien_instrument: "Docketed by county clerk; lower courts by transcript (CPLR 5018, 5203)"
+    duration_and_renewal: "Lien 10 yrs; renew in last year (5203, 5014); presumed paid at 20 (211)"
+    homestead: "$204,825 NYC-area counties, less elsewhere (CPLR 5206)"
+    post_judgment_interest: "9% (CPLR 5004); 2% consumer debt (2022)"
+    verified: false
+  NC:  # TODO(Brandon): review
+    lien_created_by: "D"
+    lien_instrument: "Docketing/indexing by superior court clerk, county; transcript elsewhere (1-233)"
+    duration_and_renewal: "Lien 10 yrs from entry (1-234)"
+    homestead: "$35,000 (1C-1601)"
+    post_judgment_interest: "8% legal rate (24-1)"
+    verified: false
+  ND:  # TODO(Brandon): review
+    lien_created_by: "D"
+    lien_instrument: "Docketing in county; transcript elsewhere (28-20-13)"
+    duration_and_renewal: "Lien 10 yrs; renew by affidavit within 90 days of 10 yrs (28-20-21)"
+    homestead: "$150,000 (47-18-01)"
+    post_judgment_interest: "Prime-based annual (28-20-34)"
+    verified: false
+  OH:  # TODO(Brandon): review
+    lien_created_by: "R/D"
+    lien_instrument: "Certificate of judgment filed with common pleas clerk, county (ORC 2329.02)"
+    duration_and_renewal: "Dormant after 5 yrs; revive within 10 of dormancy (2329.07, 2325.18)"
+    homestead: "$182,625 (2329.66)"
+    post_judgment_interest: "Statutory annual rate (1343.03, 5703.47)"
+    verified: false
+  OK:  # TODO(Brandon): review
+    lien_created_by: "R"
+    lien_instrument: "Statement/certified copy filed with county clerk (12 O.S. 706)"
+    duration_and_renewal: "Unenforceable if not executed/renewed in 5 yrs (12 O.S. 735)"
+    homestead: "No $ cap, acreage (31 O.S. § 1)"
+    post_judgment_interest: "Prime + 2% (12 O.S. 727.1)"
+    verified: false
+  OR:  # TODO(Brandon): review
+    lien_created_by: "D/R"
+    lien_instrument: "Lien in county of entry if judgment says so; lien record abstract elsewhere (ORS 18.150-.152)"
+    duration_and_renewal: "Remedies 10 yrs; extend 10 by certificate (18.180, 18.182)"
+    homestead: "$150,000 (18.395)"
+    post_judgment_interest: "9% (82.010)"
+    verified: false
+  PA:  # TODO(Brandon): review
+    lien_created_by: "D"
+    lien_instrument: "Entry in prothonotary's judgment index, county (42 Pa.C.S. 4303)"
+    duration_and_renewal: "Lien 5 yrs; revival needed (Pa.R.C.P. 3023, 3031.1)"
+    homestead: "$300 (wildcard only; 42 Pa.C.S. 8123)"
+    post_judgment_interest: "6% legal rate (42 Pa.C.S. 8101)"
+    verified: false
+  RI:  # TODO(Brandon): review
+    lien_created_by: "X"
+    lien_instrument: "Execution levied/recorded in land evidence records"
+    duration_and_renewal: "Lien discharged 20 yrs from judgment (9-26-33)"
+    homestead: "$500,000 (9-26-4.1)"
+    post_judgment_interest: "12% (9-21-10)"
+    verified: false
+  SC:  # TODO(Brandon): review
+    lien_created_by: "D"
+    lien_instrument: "Entry/indexing in county of judgment; transcript elsewhere (15-35-810)"
+    duration_and_renewal: "Lien 10 yrs (15-35-810)"
+    homestead: "$76,125 ($152,250 joint) (15-41-30)"
+    post_judgment_interest: "Prime + 4% (34-31-20)"
+    verified: false
+  SD:  # TODO(Brandon): review
+    lien_created_by: "D"
+    lien_instrument: "Docketing with clerk of courts, county (15-16-7)"
+    duration_and_renewal: "Lien 10 yrs; renew +10 (15-16-7, 15-16-35)"
+    homestead: "No $ cap, acreage (43-31-1)"
+    post_judgment_interest: "Category B rate (54-3-16)"
+    verified: false
+  TN:  # TODO(Brandon): review
+    lien_created_by: "R"
+    lien_instrument: "Certified copy recorded with register of deeds (TCA 25-5-101)"
+    duration_and_renewal: "Enforceable 10 yrs; renew by motion (28-3-110; Rule 69.04)"
+    homestead: "$35,000 (26-2-301)"
+    post_judgment_interest: "2% below TDFI formula rate (47-14-121)"
+    verified: false
+  TX:  # TODO(Brandon): review
+    lien_created_by: "R"
+    lien_instrument: "Abstract of judgment recorded and indexed by county clerk (Prop. Code 52.001)"
+    duration_and_renewal: "Dormant if not executed in 10 yrs; revive within 2 yrs (CPRC 34.001, 31.006)"
+    homestead: "No $ cap, acreage (Prop. Code 41.002); homestead immune"
+    post_judgment_interest: "OCCC monthly rate, floor 5% cap 15% (Fin. Code 304.003); 6.75% Feb 2026"
+    verified: false
+  UT:  # TODO(Brandon): review
+    lien_created_by: "R"
+    lien_instrument: "Judgment/abstract recorded with county recorder (78B-5-202)"
+    duration_and_renewal: "Lien 8 yrs; renew +8 by motion (78B-5-202, 78B-6-1802)"
+    homestead: "$52,400 ($104,700 joint) (78B-5-503)"
+    post_judgment_interest: "1-yr T-bill + 2% (15-1-4); 5.51% in 2026"
+    verified: false
+  VT:  # TODO(Brandon): review
+    lien_created_by: "R"
+    lien_instrument: "Certified copy recorded in town land records (12 VSA 2901)"
+    duration_and_renewal: "Lien 8 yrs from final judgment; renewal within 8 (2903, 506)"
+    homestead: "$125,000 (27 VSA § 101)"
+    post_judgment_interest: "12% (9 VSA 41a)"
+    verified: false
+  VA:  # TODO(Brandon): review
+    lien_created_by: "D"
+    lien_instrument: "Docketing in circuit clerk's judgment lien docket (8.01-446, 8.01-458)"
+    duration_and_renewal: "Enforceable 20 yrs; extend by motion (8.01-251)"
+    homestead: "$56,000 (34-4, reported)"
+    post_judgment_interest: "6% judgment rate (6.2-302)"
+    verified: false
+  WA:  # TODO(Brandon): review
+    lien_created_by: "D/R"
+    lien_instrument: "Automatic in county of superior court entry; abstract elsewhere (RCW 4.56.190/200)"
+    duration_and_renewal: "Expires 10 yrs; extend 10 (4.56.190, 6.17.020(3))"
+    homestead: "≥$125,000 or county median (6.13.030)"
+    post_judgment_interest: "12% or contract; consumer/tort lower (4.56.110)"
+    verified: false
+  WV:  # TODO(Brandon): review
+    lien_created_by: "R"
+    lien_instrument: "Docketing in county commission clerk's judgment lien docket (38-3-5/6)"
+    duration_and_renewal: "Lien 10 yrs from entry; renewable 10 (38-3-7)"
+    homestead: "$5,000 (38-9-1, reported)"
+    post_judgment_interest: "Fed discount + 2% (56-6-31)"
+    verified: false
+  WI:  # TODO(Brandon): review
+    lien_created_by: "D"
+    lien_instrument: "Docketing in circuit court, county; transcript elsewhere (806.15)"
+    duration_and_renewal: "Lien 10 yrs from entry; execution up to 20 (806.15, 815.04)"
+    homestead: "$75,000 (815.20)"
+    post_judgment_interest: "Prime + 1% (815.05(8))"
+    verified: false
+  WY:  # TODO(Brandon): review
+    lien_created_by: "R"
+    lien_instrument: "Transcript/certified copy recorded with county clerk (1-17-302)"
+    duration_and_renewal: "Dormant if no execution in 5 yrs; revive within 10 (1-17-307, 1-16-503)"
+    homestead: "$100,000 (1-20-101)"
+    post_judgment_interest: "10% or contract (1-16-102)"
+    verified: false

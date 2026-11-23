@@ -1,0 +1,51 @@
+# Federal Judicial Center Integrated Database (IDB), civil cases, as republished by
+# CourtListener (Free Law Project) on a public S3 bucket. Read by
+# src/equity/adapters/federal/fjc_idb.py.
+#
+# CourtListener posts a new snapshot as bulk-data/fjc-integrated-database-<YYYY-MM-DD>.csv.bz2;
+# the adapter lists the prefix and takes the latest key, so it follows new snapshots by itself.
+# The 2026-09-30 snapshot (279,626,492 bytes bz2, 2.6 GB CSV, 10,323,280 rows) has filings
+# through 2022-03-31. The CSV escapes quotes with a backslash ("O\"NEILL"), not by doubling.
+#
+# Codes below are the FJC civil codebook values, checked against the 2026-09-30 snapshot
+# (value counts in that file are noted). Only rows that pass all of these become judgments:
+#   judgment in for_plaintiff, nature_of_judgement in money, amount_received > 0, and a
+#   date_terminated that parses as a date. 412,413 rows pass in the 2026-09-30 snapshot.
+#
+# The FJC's own cumulative file (us.fjc.idb.direct.civil_judgments) wins over this copy: a kept
+# row whose district + office + docket + filing date is among that file's kept rows is dropped
+# here (fjc_idb.dedupe_key). Against the June 30, 2026 FJC file, 412,253 of the 412,266 kept
+# keys in the 2026-09-30 snapshot are dropped and 13 remain (10 terminated in 2005).
+source_id: us.fjc.idb.civil_judgments
+bucket: https://com-courtlistener-storage.s3-us-west-2.amazonaws.com/
+prefix: bulk-data/fjc-integrated-database-
+# Lake partitions: one per year of date_terminated, from first_year to the snapshot's year.
+# Earliest termination among kept rows in 2026-09-30: 1984.
+first_year: 1970
+# judgment: 1 plaintiff (745,284 rows), 2 defendant, 3 both, 4 unknown, 0/blank missing.
+for_plaintiff: ["1"]
+# nature_of_judgement: 0 no monetary award, 1 monetary award only (321,697), 2 monetary award
+# and other (121,276), 3 injunction, 4 forfeiture/foreclosure/condemnation, 5 costs only,
+# 6 costs and attorney fees.
+# TODO(Brandon): 5 (costs only) and 6 (costs and attorney fees) are also money owed to the
+# plaintiff but are left out; add them here if they count.
+money: ["1", "2"]
+# amount_received is in thousands of dollars.
+amount_unit: 1000
+# 9999 means "$9,999,000 or more" (25,777 kept rows, far more than any nearby value, so some
+# may be a fill value). It is a floor, not an amount: the judgment's principal is stored NULL
+# and the raw 9999 stays in the stored source row.
+# TODO(Brandon): confirm NULL (unknown amount, at least $9,999,000) is how these should read.
+amount_floor_code: "9999"
+# county_of_residence is a county FIPS code (leading zero dropped: 6037 = 06037). A code is
+# used as the record's jurisdiction only when its first two digits (after zero-padding) are a
+# state FIPS code; 88888, 99999, 0 and the like (unknown, foreign) fall back to the district.
+# Codes of counties that no longer exist (e.g. 12025 Dade, now 12086) are kept as given.
+# TODO(Brandon): the codebook calls this the county of residence of the first-listed
+# plaintiff or defendant depending on the case; it is used only as a jurisdiction hint here.
+terms:
+  url: https://www.courtlistener.com/help/api/bulk-data/
+  summary: "FJC Integrated Database: compiled by the Federal Judicial Center, a US government agency, so a US government work and in the public domain (17 U.S.C. 105). CourtListener (Free Law Project) redistributes it as bulk CSV on its public S3 bucket com-courtlistener-storage, no login, free. Bucket robots.txt answers 404 (no restrictions)."
+  checked_on: 2026-11-22
+  robots_checked_on: 2026-11-22
+  cost_model: free

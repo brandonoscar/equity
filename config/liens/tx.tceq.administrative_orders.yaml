@@ -1,0 +1,31 @@
+source_id: tx.tceq.administrative_orders
+state: TX
+county_fips: "48"   # statewide; the row's county name is used when it names one county
+# Texas Commission on Environmental Quality administrative enforcement orders with an
+# assessed penalty (payable = assessed less deferred). An administrative order, not a court
+# judgment; an unpaid penalty can be referred to the Attorney General for a civil suit.
+# TODO(Brandon): administrative orders are not liens; confirm how to treat them.
+portal: https://data.texas.gov
+dataset: u66a-qggj
+where: "payable_amount > 0"
+order_by: [case_no, ":id"]
+select: [program, case_no, tceqdocketno, respondent_name, county, order_date, penalty_assessed,
+         penalty_deferred, payable_amount]
+date_field: order_date
+partition: year
+first_year: 2015
+uid: [case_no, tceqdocketno, respondent_name]
+doc_type: COURT_ORDER
+doc_type_raw: {field: program}
+amount: payable_amount
+county_name_field: county
+parties:
+  - role: debtor
+    name: respondent_name
+  - role: creditor
+    const: State of Texas (TCEQ)
+terms:
+  url: https://data.texas.gov/d/u66a-qggj
+  summary: "data.texas.gov (Texas Open Data Portal, Socrata), public, no login. No license set on the dataset."
+  checked_on: 2026-11-23
+  cost_model: free

@@ -51,12 +51,47 @@ def _part_files(table_dir: Path, part: str) -> list[Path]:
     return sorted(table_dir.glob(f"{part}.parquet")) + sorted(table_dir.glob(f"{part}_*.parquet"))
 
 
+class QualityError(RuntimeError):
+    """A built part broke a provenance rule; it is not exported or marked finished."""
+
+
+def check_part(con: duckdb.DuckDBPyConnection, out_dir: Path, part: str) -> None:
+    """Run the quality gates on a scratch DB before its part is exported. Provenance
+    violations (a fact row that does not trace to its source record, fetch and source) fail
+    the part. Invariant violations are written to out_dir/_quality/<part>.json and logged,
+    so real data that breaks one is visible without stopping every build."""
+    from equity.config import doc_types
+    from equity.quality.gates import invariant_violations, provenance_violations
+
+    present = [
+        t for t in sorted(FACT_TABLES)
+        if (row := con.execute(
+            "SELECT count(*) FROM information_schema.tables WHERE table_name = ?", [t]
+        ).fetchone()) and row[0]
+        and (n := con.execute(f"SELECT count(*) FROM {t}").fetchone()) and n[0]  # noqa: S608
+    ]  # fmt: skip
+    hard = provenance_violations(con, present)
+    soft = invariant_violations(con, doc_types())
+    if soft or hard:
+        qdir = out_dir / "_quality"
+        qdir.mkdir(parents=True, exist_ok=True)
+        (qdir / f"{part}.json").write_text(json.dumps(
+            {"provenance": [str(v) for v in hard], "invariants": [str(v) for v in soft]},
+            indent=1))  # fmt: skip
+        for v in soft:
+            print(f"quality warning {out_dir.name} {part}: {v}", flush=True)
+    if hard:
+        raise QualityError(f"{out_dir.name} {part}: " + "; ".join(str(v) for v in hard))
+
+
 def export_part(work_db: Path, out_dir: Path, part: str) -> dict[str, int]:
     """Copy every non-empty table of a scratch DB to out_dir/<table>/<part>.parquet (zstd),
-    split into <part>_<i>.parquet chunks when one file would exceed SPLIT_BYTES."""
+    split into <part>_<i>.parquet chunks when one file would exceed SPLIT_BYTES. The quality
+    gates run first (check_part)."""
     con = duckdb.connect(str(work_db), read_only=True)
     counts: dict[str, int] = {}
     try:
+        check_part(con, out_dir, part)
         for table in all_tables():
             row = con.execute(f"SELECT count(*) FROM {table}").fetchone()  # noqa: S608
             n = 0 if row is None else int(row[0])

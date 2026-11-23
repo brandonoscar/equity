@@ -1,0 +1,227 @@
+{
+ "dataset": "ag2q-tdje",
+ "rows": [
+  {
+   ":created_at": "2026-11-16T23:21:26.470Z",
+   "balance": "1510920.6400",
+   "city_town": "AVON",
+   "dba_if_applicable": "TESTOWNER 9A3406 CO",
+   "state": "CT",
+   "street": "TESTOWNER 72B60D",
+   "taxpayer_name": "TESTOWNER 8A0525"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:26.470Z",
+   "balance": "1179007.8000",
+   "city_town": "WEST RUTLAND",
+   "dba_if_applicable": "TESTOWNER CF05B8",
+   "state": "VT",
+   "street": "TESTOWNER 4144D8",
+   "taxpayer_name": "TESTOWNER 813996 CORP"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:26.470Z",
+   "balance": "1179007.8000",
+   "city_town": "WEST RUTLAND",
+   "dba_if_applicable": "TESTOWNER CF05B8",
+   "state": "VT",
+   "street": "TESTOWNER 4144D8",
+   "taxpayer_name": "TESTOWNER B8FEF3"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:26.470Z",
+   "balance": "614109.9500",
+   "city_town": "SAN DIEGO",
+   "state": "CA",
+   "street": "TESTOWNER F994AF",
+   "taxpayer_name": "TESTOWNER 82641F INC"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:26.470Z",
+   "balance": "614109.9500",
+   "city_town": "SAN DIEGO",
+   "dba_if_applicable": "TESTOWNER F2531F INC",
+   "state": "CA",
+   "street": "TESTOWNER F994AF",
+   "taxpayer_name": "TESTOWNER 47AED2"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:26.470Z",
+   "balance": "480152.1300",
+   "city_town": "18 EDSON HILL RD",
+   "dba_if_applicable": "TESTOWNER A7DCD6",
+   "state": "STOWE",
+   "street": "TESTOWNER 7BFD82 INC",
+   "taxpayer_name": "TESTOWNER 90BA3E"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:26.470Z",
+   "balance": "464002.3100",
+   "city_town": "WEST DOVER",
+   "state": "VT",
+   "street": "TESTOWNER E7CB36",
+   "taxpayer_name": "TESTOWNER 735D01"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:26.470Z",
+   "balance": "434143.8700",
+   "city_town": "PUTNEY",
+   "dba_if_applicable": "TESTOWNER 48EAFC LLC",
+   "state": "VT",
+   "street": "TESTOWNER 394BC1",
+   "taxpayer_name": "TESTOWNER EE5E2F"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:26.470Z",
+   "balance": "434143.8700",
+   "city_town": "PUTNEY",
+   "dba_if_applicable": "TESTOWNER 48EAFC LLC",
+   "state": "VT",
+   "street": "TESTOWNER 394BC1",
+   "taxpayer_name": "TESTOWNER 68BAEF LLC"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:26.470Z",
+   "balance": "430637.1200",
+   "city_town": "STOWE",
+   "dba_if_applicable": "TESTOWNER F3F3DE",
+   "state": "VT",
+   "street": "TESTOWNER AC297A",
+   "taxpayer_name": "TESTOWNER 69BF12"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:26.470Z",
+   "balance": "408396.2700",
+   "city_town": "STOWE",
+   "state": "VT",
+   "street": "TESTOWNER D3A174",
+   "taxpayer_name": "TESTOWNER 902079 INC"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:26.470Z",
+   "balance": "389009.5000",
+   "city_town": "SOUTH BURLINGTON",
+   "dba_if_applicable": "TESTOWNER 94B78F LLC",
+   "state": "VT",
+   "street": "TESTOWNER CF304E",
+   "taxpayer_name": "TESTOWNER EEB7AD LLC"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:26.470Z",
+   "balance": "388863.5900",
+   "city_town": "SOUTH BURLINGTON",
+   "dba_if_applicable": "TESTOWNER F7C5DC LLC",
+   "state": "VT",
+   "street": "TESTOWNER A210A9",
+   "taxpayer_name": "TESTOWNER 60114F"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:26.470Z",
+   "balance": "356578.0800",
+   "city_town": "ESSEX JUNCTION",
+   "dba_if_applicable": "TESTOWNER D58B81",
+   "state": "VT",
+   "street": "TESTOWNER 77DBC6",
+   "taxpayer_name": "TESTOWNER DBB083 LLC"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:26.470Z",
+   "balance": "356374.0800",
+   "city_town": "KEENE",
+   "dba_if_applicable": "TESTOWNER EC5514 INC",
+   "state": "NH",
+   "street": "TESTOWNER 3C7FFD",
+   "taxpayer_name": "TESTOWNER 6B3DDD INC"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:26.470Z",
+   "balance": "323411.5800",
+   "city_town": "ISLE LA MOTTE",
+   "state": "VT",
+   "street": "TESTOWNER 8790B9",
+   "taxpayer_name": "TESTOWNER 93D215"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:26.470Z",
+   "balance": "216510.7300",
+   "city_town": "THETFORD CENTER",
+   "dba_if_applicable": "TESTOWNER BD5D6F",
+   "state": "VT",
+   "street": "TESTOWNER 9399E9",
+   "taxpayer_name": "TESTOWNER 29194F"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:26.470Z",
+   "balance": "214476.6200",
+   "city_town": "RUTLAND",
+   "dba_if_applicable": "TESTOWNER 9258F7 CORP",
+   "state": "VT",
+   "street": "TESTOWNER 791FFD",
+   "taxpayer_name": "TESTOWNER 495087 CORP"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:26.470Z",
+   "balance": "211273.6100",
+   "city_town": "CONCORD",
+   "dba_if_applicable": "TESTOWNER BD0A80",
+   "state": "MA",
+   "street": "TESTOWNER FDB38F",
+   "taxpayer_name": "TESTOWNER 34BDC1 LLC"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:26.470Z",
+   "balance": "191228.0600",
+   "city_town": "BURLINGTON",
+   "dba_if_applicable": "TESTOWNER 24D456",
+   "state": "VT",
+   "street": "TESTOWNER 63CE07",
+   "taxpayer_name": "TESTOWNER 5978DD"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:26.470Z",
+   "balance": "178221.0300",
+   "city_town": "PENACOOK",
+   "dba_if_applicable": "TESTOWNER E17261 INC",
+   "state": "NH",
+   "street": "TESTOWNER 2600ED",
+   "taxpayer_name": "TESTOWNER 4F7EE4 INC"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:26.470Z",
+   "balance": "177952.9200",
+   "city_town": "HACKETTSTOWN",
+   "dba_if_applicable": "TESTOWNER 4925EA INC",
+   "state": "NJ",
+   "street": "TESTOWNER 1984D1",
+   "taxpayer_name": "TESTOWNER 9942B1 INC"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:26.470Z",
+   "balance": "158504.7800",
+   "city_town": "WAYNE",
+   "dba_if_applicable": "TESTOWNER B90D52 LLC",
+   "state": "PA",
+   "street": "TESTOWNER C9D15F",
+   "taxpayer_name": "TESTOWNER C592E1 LLC"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:26.470Z",
+   "balance": "146627.4400",
+   "city_town": "2 TIFFANY LN",
+   "dba_if_applicable": "TESTOWNER 2EA110",
+   "state": "ESSEX JUNCTION",
+   "street": "TESTOWNER 9DF49A",
+   "taxpayer_name": "TESTOWNER 74AE8D"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:26.470Z",
+   "balance": "145682.2200",
+   "city_town": "SAINT ALBANS",
+   "dba_if_applicable": "TESTOWNER 8CF52D",
+   "state": "VT",
+   "street": "TESTOWNER 16B4E5",
+   "taxpayer_name": "TESTOWNER 676CEA"
+  }
+ ],
+ "where": ":created_at >= '2026-01-01T00:00:00' AND :created_at < '2027-01-01T00:00:00'"
+}

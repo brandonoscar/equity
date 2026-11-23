@@ -1,0 +1,281 @@
+{
+ "layer": "https://services.arcgis.com/fLeGjb7u4uXqeF9q/arcgis/rest/services/outstanding_case_fees/FeatureServer/0",
+ "rows": [
+  {
+   "address": "9077 TEST ST",
+   "casenumber": "569502",
+   "feeissueddate": 1779952086000,
+   "feetypes": "Re-Investigation Fee",
+   "jobid": "195194666",
+   "objectid": 12,
+   "opa_account_num": "232158200",
+   "opa_owner": "TESTOWNER 8D768C",
+   "outstandingfees": 350
+  },
+  {
+   "address": "4072 TEST ST",
+   "casenumber": "570778",
+   "feeissueddate": 1778224226000,
+   "feetypes": "Re-Investigation Fee",
+   "jobid": "195194692",
+   "objectid": 19,
+   "opa_account_num": "363228500",
+   "opa_owner": "TESTOWNER E0486A",
+   "outstandingfees": 350
+  },
+  {
+   "address": "5282 TEST ST",
+   "casenumber": "570162",
+   "feeissueddate": 1780467414000,
+   "feetypes": "Re-Investigation Fee",
+   "jobid": "195194771",
+   "objectid": 38,
+   "opa_account_num": "421232600",
+   "opa_owner": "TESTOWNER 8A0DE4",
+   "outstandingfees": 100
+  },
+  {
+   "address": "498 TEST ST",
+   "casenumber": "568659",
+   "feeissueddate": 1776337456000,
+   "feetypes": "Re-Investigation Fee",
+   "jobid": "195194809",
+   "objectid": 43,
+   "opa_account_num": "364182800",
+   "opa_owner": "TESTOWNER 77800B",
+   "outstandingfees": 350
+  },
+  {
+   "address": "3545 TEST ST",
+   "casenumber": "568557",
+   "feeissueddate": 1779868069000,
+   "feetypes": "Re-Investigation Fee",
+   "jobid": "195194888",
+   "objectid": 48,
+   "opa_account_num": "871529690",
+   "opa_owner": "TESTOWNER 01A586",
+   "outstandingfees": 200
+  },
+  {
+   "address": "3043 TEST ST",
+   "casenumber": "568636",
+   "feeissueddate": 1789975395000,
+   "feetypes": "Re-Investigation Fee",
+   "jobid": "195194897",
+   "objectid": 50,
+   "opa_account_num": "884343635",
+   "opa_owner": "TESTOWNER E77BCE",
+   "outstandingfees": 350
+  },
+  {
+   "address": "2829 TEST ST",
+   "casenumber": "572762",
+   "feeissueddate": 1781248832000,
+   "feetypes": "Re-Investigation Fee",
+   "jobid": "195195133",
+   "objectid": 90,
+   "opa_account_num": "513260000",
+   "opa_owner": "TESTOWNER A26BC9",
+   "outstandingfees": 350
+  },
+  {
+   "address": "2278 TEST ST",
+   "casenumber": "575374",
+   "feeissueddate": 1781595237000,
+   "feetypes": "Re-Investigation Fee",
+   "jobid": "195195267",
+   "objectid": 115,
+   "opa_account_num": "341223600",
+   "opa_owner": "TESTOWNER 34272E",
+   "outstandingfees": 350
+  },
+  {
+   "address": "2433 TEST ST",
+   "casenumber": "575841",
+   "feeissueddate": 1777879149000,
+   "feetypes": "Re-Investigation Fee",
+   "jobid": "195195323",
+   "objectid": 125,
+   "opa_account_num": "342095900",
+   "opa_owner": "TESTOWNER 299B26",
+   "outstandingfees": 350
+  },
+  {
+   "address": "8782 TEST ST",
+   "casenumber": "574926",
+   "feeissueddate": 1776152043000,
+   "feetypes": "Re-Investigation Fee",
+   "jobid": "195195350",
+   "objectid": 134,
+   "opa_account_num": "252055000",
+   "opa_owner": "TESTOWNER 793CBC",
+   "outstandingfees": 100
+  },
+  {
+   "address": "981 TEST ST",
+   "casenumber": "574488",
+   "feeissueddate": 1784704436000,
+   "feetypes": "Re-Investigation Fee",
+   "jobid": "195195365",
+   "objectid": 137,
+   "opa_account_num": "453262400",
+   "opa_owner": "TESTOWNER 3D5CBD",
+   "outstandingfees": 100
+  },
+  {
+   "address": "6979 TEST ST",
+   "casenumber": "577643",
+   "feeissueddate": 1772454456000,
+   "feetypes": "Re-Investigation Fee",
+   "jobid": "195195581",
+   "objectid": 184,
+   "opa_account_num": "401025500",
+   "opa_owner": "TESTOWNER 9B8852",
+   "outstandingfees": 350
+  },
+  {
+   "address": "6408 TEST ST",
+   "casenumber": "579250",
+   "feeissueddate": 1785314423000,
+   "feetypes": "Re-Investigation Fee",
+   "jobid": "195195620",
+   "objectid": 201,
+   "opa_account_num": "442333800",
+   "opa_owner": "TESTOWNER CD1C7C",
+   "outstandingfees": 350
+  },
+  {
+   "address": "8444 TEST ST",
+   "casenumber": "579614",
+   "feeissueddate": 1791360906000,
+   "feetypes": "Re-Investigation Fee",
+   "jobid": "195195642",
+   "objectid": 210,
+   "opa_account_num": "562130500",
+   "opa_owner": "TESTOWNER 99E2AF",
+   "outstandingfees": 350
+  },
+  {
+   "address": "7008 TEST ST",
+   "casenumber": "579860",
+   "feeissueddate": 1780996165000,
+   "feetypes": "Re-Investigation Fee",
+   "jobid": "195195667",
+   "objectid": 218,
+   "opa_account_num": "491088200",
+   "opa_owner": "TESTOWNER 875896",
+   "outstandingfees": 350
+  },
+  {
+   "address": "6403 TEST ST",
+   "casenumber": "578139",
+   "feeissueddate": 1780996165000,
+   "feetypes": "Re-Investigation Fee",
+   "jobid": "195195714",
+   "objectid": 230,
+   "opa_account_num": "882933835",
+   "opa_owner": "TESTOWNER A34D00 LLC",
+   "outstandingfees": 350
+  },
+  {
+   "address": "4629 TEST ST",
+   "casenumber": "580956",
+   "feeissueddate": 1781595237000,
+   "feetypes": "Re-Investigation Fee",
+   "jobid": "195195879",
+   "objectid": 262,
+   "opa_account_num": "442028800",
+   "opa_owner": "TESTOWNER 3A292F",
+   "outstandingfees": 350
+  },
+  {
+   "address": "4272 TEST ST",
+   "casenumber": "585223",
+   "feeissueddate": 1777621082000,
+   "feetypes": "Re-Investigation Fee",
+   "jobid": "195196017",
+   "objectid": 292,
+   "opa_account_num": "776328000",
+   "opa_owner": "TESTOWNER FAE673 INC",
+   "outstandingfees": 100
+  },
+  {
+   "address": "4134 TEST ST",
+   "casenumber": "583476",
+   "feeissueddate": 1778138910000,
+   "feetypes": "Re-Investigation Fee",
+   "jobid": "195196034",
+   "objectid": 298,
+   "opa_account_num": "111414400",
+   "opa_owner": "TESTOWNER 6E65E0",
+   "outstandingfees": 100
+  },
+  {
+   "address": "3684 TEST ST",
+   "casenumber": "588111",
+   "feeissueddate": 1772544092000,
+   "feetypes": "Re-Investigation Fee",
+   "jobid": "195196107",
+   "objectid": 314,
+   "opa_account_num": "662348200",
+   "opa_owner": "TESTOWNER 8F63D2",
+   "outstandingfees": 350
+  },
+  {
+   "address": "6232 TEST ST",
+   "casenumber": "588412",
+   "feeissueddate": 1781246914000,
+   "feetypes": "Re-Investigation Fee",
+   "jobid": "195196161",
+   "objectid": 330,
+   "opa_account_num": "783531900",
+   "opa_owner": "TESTOWNER 0472B5",
+   "outstandingfees": 350
+  },
+  {
+   "address": "1504 TEST ST",
+   "casenumber": "585571",
+   "feeissueddate": 1779868069000,
+   "feetypes": "Re-Investigation Fee",
+   "jobid": "195196187",
+   "objectid": 335,
+   "opa_account_num": "778148000",
+   "opa_owner": "TESTOWNER CCB579 INC",
+   "outstandingfees": 200
+  },
+  {
+   "address": "1562 TEST ST",
+   "casenumber": "586667",
+   "feeissueddate": 1776064953000,
+   "feetypes": "Re-Investigation Fee",
+   "jobid": "195196199",
+   "objectid": 341,
+   "opa_account_num": "071066600",
+   "opa_owner": "TESTOWNER 4B0E65",
+   "outstandingfees": 100
+  },
+  {
+   "address": "3009 TEST ST",
+   "casenumber": "587792",
+   "feeissueddate": 1780996165000,
+   "feetypes": "Re-Investigation Fee",
+   "jobid": "195196261",
+   "objectid": 357,
+   "opa_account_num": "431090700",
+   "opa_owner": "TESTOWNER B0192A",
+   "outstandingfees": 200
+  },
+  {
+   "address": "3897 TEST ST",
+   "casenumber": "590951",
+   "feeissueddate": 1780467414000,
+   "feetypes": "Re-Investigation Fee",
+   "jobid": "195196327",
+   "objectid": 370,
+   "opa_account_num": "612035800",
+   "opa_owner": "TESTOWNER F5CD57",
+   "outstandingfees": 350
+  }
+ ],
+ "where": "(outstandingfees > 0) AND feeissueddate >= DATE '2026-01-01' AND feeissueddate < DATE '2027-01-01'"
+}

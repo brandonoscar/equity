@@ -1,0 +1,93 @@
+# What kind of debt each judgment / lien source carries, so a debtor's debts can be told
+# apart (a court money judgment is not a tax delinquency). The row's own doc_type still says
+# what each instrument is; this is the source-level label used in match outputs (people
+# .parquet debt_kinds, summary.json by kind). Every debtor, court and writ source of a match
+# run must be listed here (tests/test_debt_kinds.py).
+kinds:
+  court_judgment: money judgment entered by a court (incl. judgments enforced by a writ)
+  recorded_judgment_or_lien: recorder / official-records index entry (judgments, liens, mixed)
+  administrative_judgment: liability finding by an administrative hearing body, docketed or enforceable like a judgment
+  administrative_order: agency order assessing a penalty or debt, not a court judgment
+  tax_warrant: state tax (or child-support) warrant with the effect of a docketed judgment
+  tax_lien: tax lien filed or docketed against the debtor or parcel
+  tax_delinquency: delinquent tax account or list, no lien filing stated
+  code_enforcement_charge: city charge for code-enforcement work, fines or fees on a property
+  code_enforcement_lien: code-enforcement charge recorded as a lien
+  statutory_lien: other lien created by statute (UCC, labor, utility)
+  foreclosure: foreclosure filing or sheriff-sale judgment (counted, not added to open amounts)
+  housing_court_case: housing court litigation against an owner
+  eviction: eviction executed by a city marshal
+sources:
+  # courts
+  us.fjc.idb.civil_judgments: court_judgment
+  us.fjc.idb.direct.civil_judgments: court_judgment
+  us.epa.echo.judicial_cases: court_judgment
+  tx.harris.jp.civil_judgments: court_judgment
+  tx.harris.district.civil_judgments: court_judgment
+  tx.harris.tax_judgments: court_judgment            # district-court tax-suit judgments
+  tx.tceq.civil_judgments: court_judgment
+  fl.hillsborough.civil.cases: court_judgment
+  fl.hillsborough.garnishment: court_judgment        # judgments under a writ of garnishment
+  fl.citrus.civil: court_judgment
+  # recorder indexes
+  ny.nyc.acris.real: recorded_judgment_or_lien
+  ny.nyc.acris.personal: recorded_judgment_or_lien
+  fl.hillsborough.or: recorded_judgment_or_lien
+  fl.hernando.or: recorded_judgment_or_lien
+  fl.putnam.or: recorded_judgment_or_lien
+  ct.sots.liens: recorded_judgment_or_lien
+  # administrative hearings and orders
+  ny.nyc.oath.judgments: administrative_judgment
+  mi.detroit.blight_judgments: administrative_judgment
+  il.chicago.doah_judgments: administrative_judgment
+  il.chicago.doe_judgments: administrative_judgment
+  il.chicago.vacant_building_judgments: administrative_judgment
+  la.nola.code_hearing_judgments: administrative_judgment
+  nj.dol.wall: administrative_judgment              # final judgments / orders, NJ labor
+  nj.dol.wage_watchlist: administrative_judgment
+  tx.tceq.administrative_orders: administrative_order
+  pa.dli.bwc_noncompliance: administrative_order
+  pa.dli.bllc_noncompliance: administrative_order
+  # taxes
+  ny.dtf.tax_warrants: tax_warrant
+  ny.dtf.child_support_warrants: tax_warrant
+  fl.dor.tax_warrants: tax_warrant
+  pa.allegheny.tax_liens: tax_lien
+  pa.dli.uc_liens: tax_lien
+  ne.dor.delinquent_taxpayers: tax_lien
+  ca.ftb.top500_personal: tax_lien
+  ca.ftb.top500_corporate: tax_lien
+  ca.cdtfa.top500: tax_delinquency
+  vt.tax.top100_individuals: tax_delinquency
+  vt.tax.top100_businesses: tax_delinquency
+  de.revenue.top_delinquent_business: tax_delinquency
+  de.revenue.top_delinquent_personal: tax_delinquency
+  wi.milwaukee.delinquent_taxes: tax_delinquency
+  oh.hamilton.delinquent_taxes: tax_delinquency
+  tx.harris.delinquent_taxes: tax_delinquency
+  oh.mahoning.delinquent_taxes: tax_delinquency
+  va.virginia_beach.delinquent_taxes: tax_delinquency
+  ms.harrison.tax_sale_parcels: tax_delinquency
+  az.cochise.tax_liens: tax_lien                 # certificate of purchase sold
+  fl.broward.tax_certificates: tax_lien           # tax certificate sold: first lien
+  # code enforcement
+  pa.philadelphia.li_fines: code_enforcement_charge
+  oh.cincinnati.lot_abatement: code_enforcement_charge
+  az.tucson.code_liens: code_enforcement_lien
+  fl.lee.nuisance_liens: code_enforcement_lien
+  # foreclosure and housing
+  pa.allegheny.foreclosures: foreclosure
+  pa.washington.sheriff_sales: foreclosure
+  ny.nyc.hpd_litigation: housing_court_case
+  ny.nyc.evictions: eviction
+  # from main (dreamy-ramanujan session)
+  tx.harris.jp.judgments: court_judgment           # duplicate of tx.harris.jp.civil_judgments; in no run
+  tx.travis.tax_delinquent: tax_delinquency
+  ne.douglas.tax_liens: tax_lien
+  co.sos.ucc: statutory_lien                       # federal tax and statutory liens (doc-type filtered)
+  md.baltimore_city.citation_liens: code_enforcement_lien
+  nc.guilford.tax_delinquent: tax_delinquency
+  nc.buncombe.unpaid_bills: tax_delinquency
+  nc.charlotte.municipal_liens: code_enforcement_lien
+  oh.clermont.tax_delinquent: tax_delinquency
+  va.richmond.tax_delinquent: tax_delinquency

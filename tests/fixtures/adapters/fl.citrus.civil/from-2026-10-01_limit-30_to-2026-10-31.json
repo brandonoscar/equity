@@ -1,0 +1,1876 @@
+{
+ "cases": [
+  {
+   "CaseNumber": "2022 CA 000321 A",
+   "CaseStatus": "CLOSED",
+   "CaseType": "REAL PROPERTY >50 <249",
+   "CourtType": "CA",
+   "CourtTypeCategory": "CIVIL",
+   "CourtTypeLong": "CIRCUIT CIVIL",
+   "Disposition": "DISMISSED AFTER HRG PURS TO SETTLEMENT (2A)",
+   "DispositionDate": "2026-10-30 00:00:00",
+   "FileDate": "2022-05-13 00:00:00",
+   "Judge": "LAMBERT, ROBERT KYLE",
+   "UniformCaseNumber": "092022CA000321XXXAXX"
+  },
+  {
+   "CaseNumber": "2023 CA 000014 A",
+   "CaseStatus": "CLOSED",
+   "CaseType": "NEGL - COMML PREMISES LIABILITY",
+   "CourtType": "CA",
+   "CourtTypeCategory": "CIVIL",
+   "CourtTypeLong": "CIRCUIT CIVIL",
+   "Disposition": "DISMISSED AFTER HEARING OTHER (2C)",
+   "DispositionDate": "2026-10-20 00:00:00",
+   "FileDate": "2023-01-09 00:00:00",
+   "Judge": "FALVEY, CAROL A",
+   "UniformCaseNumber": "092023CA000014XXXAXX"
+  },
+  {
+   "CaseNumber": "2023 CA 000319 A",
+   "CaseStatus": "CLOSED",
+   "CaseType": "NEGL - COMML PREMISES LIABILITY",
+   "CourtType": "CA",
+   "CourtTypeCategory": "CIVIL",
+   "CourtTypeLong": "CIRCUIT CIVIL",
+   "Disposition": "DISMISSED AFTER HEARING OTHER (2C)",
+   "DispositionDate": "2026-10-20 00:00:00",
+   "FileDate": "2023-03-21 00:00:00",
+   "Judge": "FALVEY, CAROL A",
+   "UniformCaseNumber": "092023CA000319XXXAXX"
+  },
+  {
+   "CaseNumber": "2023 CA 001079 A",
+   "CaseStatus": "CLOSED",
+   "CaseType": "OTHER NEGLIGENCE",
+   "CourtType": "CA",
+   "CourtTypeCategory": "CIVIL",
+   "CourtTypeLong": "CIRCUIT CIVIL",
+   "Disposition": "DISMISSED AFTER HEARING OTHER (2C)",
+   "DispositionDate": "2026-10-27 00:00:00",
+   "FileDate": "2023-08-25 00:00:00",
+   "Judge": "FALVEY, CAROL A",
+   "UniformCaseNumber": "092023CA001079XXXAXX"
+  },
+  {
+   "CaseNumber": "2023 CA 001206 A",
+   "CaseStatus": "CLOSED",
+   "CaseType": "OTHER NEGLIGENCE",
+   "CourtType": "CA",
+   "CourtTypeCategory": "CIVIL",
+   "CourtTypeLong": "CIRCUIT CIVIL",
+   "Disposition": "DISPOSED BY JUDGE",
+   "DispositionDate": "2026-10-01 00:00:00",
+   "FileDate": "2023-11-02 00:00:00",
+   "Judge": "LAMBERT, ROBERT KYLE",
+   "UniformCaseNumber": "092023CA001206XXXAXX"
+  },
+  {
+   "CaseNumber": "2023 CA 001210 A",
+   "CaseStatus": "CLOSED",
+   "CaseType": "AUTO NEGLIGENCE",
+   "CourtType": "CA",
+   "CourtTypeCategory": "CIVIL",
+   "CourtTypeLong": "CIRCUIT CIVIL",
+   "Disposition": "DISMISSED BEFORE HRG PURS TO SETTLEMENT",
+   "DispositionDate": "2026-10-15 00:00:00",
+   "FileDate": "2023-11-06 00:00:00",
+   "Judge": "FALVEY, CAROL A",
+   "UniformCaseNumber": "092023CA001210XXXAXX"
+  },
+  {
+   "CaseNumber": "2023 CA 001296 A",
+   "CaseStatus": "CLOSED",
+   "CaseType": "OTHER-INSURANCE CLAIM",
+   "CourtType": "CA",
+   "CourtTypeCategory": "CIVIL",
+   "CourtTypeLong": "CIRCUIT CIVIL",
+   "Disposition": "DISMISSED BEFORE HRG-OTHER (1C)",
+   "DispositionDate": "2026-10-20 00:00:00",
+   "FileDate": "2023-12-27 00:00:00",
+   "Judge": "FALVEY, CAROL A",
+   "UniformCaseNumber": "092023CA001296XXXAXX"
+  },
+  {
+   "CaseNumber": "2024 CA 000068 A",
+   "CaseStatus": "CLOSED",
+   "CaseType": "AUTO NEGLIGENCE",
+   "CourtType": "CA",
+   "CourtTypeCategory": "CIVIL",
+   "CourtTypeLong": "CIRCUIT CIVIL",
+   "Disposition": "DISMISSED BEFORE HRG PURS TO SETTLEMENT",
+   "DispositionDate": "2026-10-09 00:00:00",
+   "FileDate": "2024-02-01 00:00:00",
+   "Judge": "FALVEY, CAROL A",
+   "UniformCaseNumber": "092024CA000068XXXAIN"
+  },
+  {
+   "CaseNumber": "2024 CA 000111 A",
+   "CaseStatus": "CLOSED",
+   "CaseType": "PRODUCT LIABILITY",
+   "CourtType": "CA",
+   "CourtTypeCategory": "CIVIL",
+   "CourtTypeLong": "CIRCUIT CIVIL",
+   "Disposition": "DISMISSED BEFORE HRG PURS TO SETTLEMENT",
+   "DispositionDate": "2026-10-27 00:00:00",
+   "FileDate": "2024-02-19 00:00:00",
+   "Judge": "FALVEY, CAROL A",
+   "UniformCaseNumber": "092024CA000111XXXAIN"
+  },
+  {
+   "CaseNumber": "2024 CA 000205 A",
+   "CaseStatus": "CLOSED",
+   "CaseType": "CONTRACT AND INDEBTEDNESS",
+   "CourtType": "CA",
+   "CourtTypeCategory": "CIVIL",
+   "CourtTypeLong": "CIRCUIT CIVIL",
+   "Disposition": "DISMISSED BEFORE HRG PURS TO SETTLEMENT",
+   "DispositionDate": "2026-10-26 00:00:00",
+   "FileDate": "2024-03-26 10:08:52",
+   "Judge": "FALVEY, CAROL A",
+   "UniformCaseNumber": "092024CA000205XXXAIN"
+  },
+  {
+   "CaseNumber": "2024 CA 000217 A",
+   "CaseStatus": "CLOSED",
+   "CaseType": "EMINENT DOMAIN MAIN",
+   "CourtType": "CA",
+   "CourtTypeCategory": "CIVIL",
+   "CourtTypeLong": "CIRCUIT CIVIL",
+   "Disposition": "DISPOSED BY JUDGE",
+   "DispositionDate": "2026-10-27 00:00:00",
+   "FileDate": "2024-03-29 00:00:00",
+   "Judge": "FALVEY, CAROL A",
+   "UniformCaseNumber": "092024CA000217XXXAIN"
+  },
+  {
+   "CaseNumber": "2024 CA 000298 A",
+   "CaseStatus": "CLOSED",
+   "CaseType": "OTHER CIRCUIT CIVIL",
+   "CourtType": "CA",
+   "CourtTypeCategory": "CIVIL",
+   "CourtTypeLong": "CIRCUIT CIVIL",
+   "Disposition": "DISMISSED AFTER HEARING OTHER (2C)",
+   "DispositionDate": "2026-10-27 00:00:00",
+   "FileDate": "2024-04-30 00:00:00",
+   "Judge": "FALVEY, CAROL A",
+   "UniformCaseNumber": "092024CA000298XXXAIN"
+  },
+  {
+   "CaseNumber": "2024 CA 000436 A",
+   "CaseStatus": "CLOSED",
+   "CaseType": "OTHER CIRCUIT CIVIL",
+   "CourtType": "CA",
+   "CourtTypeCategory": "CIVIL",
+   "CourtTypeLong": "CIRCUIT CIVIL",
+   "Disposition": "DISMISSED AFTER HEARING OTHER (2C)",
+   "DispositionDate": "2026-10-01 00:00:00",
+   "FileDate": "2024-06-14 00:00:00",
+   "Judge": "FALVEY, CAROL A",
+   "UniformCaseNumber": "092024CA000436XXXAIN"
+  },
+  {
+   "CaseNumber": "2024 CA 000437 A",
+   "CaseStatus": "CLOSED",
+   "CaseType": "OTHER CIRCUIT CIVIL",
+   "CourtType": "CA",
+   "CourtTypeCategory": "CIVIL",
+   "CourtTypeLong": "CIRCUIT CIVIL",
+   "Disposition": "DISMISSED AFTER HEARING OTHER (2C)",
+   "DispositionDate": "2026-10-01 00:00:00",
+   "FileDate": "2024-06-14 00:00:00",
+   "Judge": "FALVEY, CAROL A",
+   "UniformCaseNumber": "092024CA000437XXXAIN"
+  },
+  {
+   "CaseNumber": "2024 CA 000441 A",
+   "CaseStatus": "CLOSED",
+   "CaseType": "OTHER CIRCUIT CIVIL",
+   "CourtType": "CA",
+   "CourtTypeCategory": "CIVIL",
+   "CourtTypeLong": "CIRCUIT CIVIL",
+   "Disposition": "DISMISSED AFTER HEARING OTHER (2C)",
+   "DispositionDate": "2026-10-01 00:00:00",
+   "FileDate": "2024-06-18 00:00:00",
+   "Judge": "FALVEY, CAROL A",
+   "UniformCaseNumber": "092024CA000441XXXAIN"
+  },
+  {
+   "CaseNumber": "2024 CA 000656 A",
+   "CaseStatus": "CLOSED",
+   "CaseType": "AUTO NEGLIGENCE",
+   "CourtType": "CA",
+   "CourtTypeCategory": "CIVIL",
+   "CourtTypeLong": "CIRCUIT CIVIL",
+   "Disposition": "DISMISSED AFTER HEARING OTHER (2C)",
+   "DispositionDate": "2026-10-07 00:00:00",
+   "FileDate": "2024-09-11 00:00:00",
+   "Judge": "FALVEY, CAROL A",
+   "UniformCaseNumber": "092024CA000656XXXAIN"
+  },
+  {
+   "CaseNumber": "2024 CA 000741 A",
+   "CaseStatus": "CLOSED",
+   "CaseType": "OTHER CIRCUIT CIVIL",
+   "CourtType": "CA",
+   "CourtTypeCategory": "CIVIL",
+   "CourtTypeLong": "CIRCUIT CIVIL",
+   "Disposition": "DISMISSED AFTER HEARING OTHER (2C)",
+   "DispositionDate": "2026-10-01 00:00:00",
+   "FileDate": "2024-10-25 00:00:00",
+   "Judge": "FALVEY, CAROL A",
+   "UniformCaseNumber": "092024CA000741XXXAIN"
+  },
+  {
+   "CaseNumber": "2024 CA 000865 A",
+   "CaseStatus": "CLOSED",
+   "CaseType": "EMINENT DOMAIN MAIN",
+   "CourtType": "CA",
+   "CourtTypeCategory": "CIVIL",
+   "CourtTypeLong": "CIRCUIT CIVIL",
+   "Disposition": "DISPOSED BY JUDGE",
+   "DispositionDate": "2026-10-21 00:00:00",
+   "FileDate": "2024-12-18 00:00:00",
+   "Judge": "FALVEY, CAROL A",
+   "UniformCaseNumber": "092024CA000865XXXAIN"
+  },
+  {
+   "CaseNumber": "2025 CA 000047 A",
+   "CaseStatus": "CLOSED",
+   "CaseType": "OTHER CIRCUIT CIVIL",
+   "CourtType": "CA",
+   "CourtTypeCategory": "CIVIL",
+   "CourtTypeLong": "CIRCUIT CIVIL",
+   "Disposition": "DISMISSED AFTER HEARING OTHER (2C)",
+   "DispositionDate": "2026-10-27 00:00:00",
+   "FileDate": "2025-01-28 00:00:00",
+   "Judge": "FALVEY, CAROL A",
+   "UniformCaseNumber": "092025CA000047XXXAIN"
+  },
+  {
+   "CaseNumber": "2025 CA 000083 A",
+   "CaseStatus": "CLOSED",
+   "CaseType": "NEGL - COMML PREMISES LIABILITY",
+   "CourtType": "CA",
+   "CourtTypeCategory": "CIVIL",
+   "CourtTypeLong": "CIRCUIT CIVIL",
+   "Disposition": "DISMISSED AFTER HRG PURS TO SETTLEMENT (2A)",
+   "DispositionDate": "2026-10-30 00:00:00",
+   "FileDate": "2025-02-13 00:00:00",
+   "Judge": "FALVEY, CAROL A",
+   "UniformCaseNumber": "092025CA000083XXXAIN"
+  },
+  {
+   "CaseNumber": "2025 CA 000103 A",
+   "CaseStatus": "CLOSED",
+   "CaseType": "HOMESTEAD FC>50 <249",
+   "CourtType": "CA",
+   "CourtTypeCategory": "CIVIL",
+   "CourtTypeLong": "CIRCUIT CIVIL",
+   "Disposition": "DISPOSED BY JUDGE",
+   "DispositionDate": "2026-10-27 00:00:00",
+   "FileDate": "2025-02-21 00:00:00",
+   "Judge": "LAMBERT, ROBERT KYLE",
+   "UniformCaseNumber": "092025CA000103XXXAIN"
+  },
+  {
+   "CaseNumber": "2025 CA 000116 A",
+   "CaseStatus": "CLOSED",
+   "CaseType": "AUTO NEGLIGENCE",
+   "CourtType": "CA",
+   "CourtTypeCategory": "CIVIL",
+   "CourtTypeLong": "CIRCUIT CIVIL",
+   "Disposition": "DISMISSED BEFORE HRG-OTHER (1C)",
+   "DispositionDate": "2026-10-01 00:00:00",
+   "FileDate": "2025-02-26 00:00:00",
+   "Judge": "FALVEY, CAROL A",
+   "UniformCaseNumber": "092025CA000116XXXAIN"
+  },
+  {
+   "CaseNumber": "2025 CA 000127 A",
+   "CaseStatus": "CLOSED",
+   "CaseType": "TRUST LITIGATION",
+   "CourtType": "CA",
+   "CourtTypeCategory": "CIVIL",
+   "CourtTypeLong": "CIRCUIT CIVIL",
+   "Disposition": "DISPOSED BY JUDGE",
+   "DispositionDate": "2026-10-27 00:00:00",
+   "FileDate": "2025-02-28 00:00:00",
+   "Judge": "FALVEY, CAROL A",
+   "UniformCaseNumber": "092025CA000127XXXAIN"
+  },
+  {
+   "CaseNumber": "2025 CA 000182 A",
+   "CaseStatus": "CLOSED",
+   "CaseType": "OTHER-INSURANCE CLAIM",
+   "CourtType": "CA",
+   "CourtTypeCategory": "CIVIL",
+   "CourtTypeLong": "CIRCUIT CIVIL",
+   "Disposition": "DISMISSED BEFORE HRG PURS TO SETTLEMENT",
+   "DispositionDate": "2026-10-27 00:00:00",
+   "FileDate": "2025-03-17 00:00:00",
+   "Judge": "FALVEY, CAROL A",
+   "UniformCaseNumber": "092025CA000182XXXAIN"
+  },
+  {
+   "CaseNumber": "2025 CA 000198 A",
+   "CaseStatus": "CLOSED",
+   "CaseType": "CONTRACT AND INDEBTEDNESS",
+   "CourtType": "CA",
+   "CourtTypeCategory": "CIVIL",
+   "CourtTypeLong": "CIRCUIT CIVIL",
+   "Disposition": "TRANSFERRED",
+   "DispositionDate": "2026-10-05 00:00:00",
+   "FileDate": "2025-03-24 00:00:00",
+   "Judge": "FALVEY, CAROL A",
+   "UniformCaseNumber": "092025CA000198XXXAIN"
+  },
+  {
+   "CaseNumber": "2025 CA 000218 A",
+   "CaseStatus": "CLOSED",
+   "CaseType": "CONTRACT AND INDEBTEDNESS",
+   "CourtType": "CA",
+   "CourtTypeCategory": "CIVIL",
+   "CourtTypeLong": "CIRCUIT CIVIL",
+   "Disposition": "DISPOSED BY JUDGE",
+   "DispositionDate": "2026-10-14 00:00:00",
+   "FileDate": "2025-03-28 00:00:00",
+   "Judge": "SPAIGHT, EDWARD C",
+   "UniformCaseNumber": "092025CA000218XXXAIN"
+  },
+  {
+   "CaseNumber": "2025 CA 000268 A",
+   "CaseStatus": "CLOSED",
+   "CaseType": "HOMESTEAD FC>50 <249",
+   "CourtType": "CA",
+   "CourtTypeCategory": "CIVIL",
+   "CourtTypeLong": "CIRCUIT CIVIL",
+   "Disposition": "DISPOSED BY JUDGE",
+   "DispositionDate": "2026-10-14 00:00:00",
+   "FileDate": "2025-04-11 00:00:00",
+   "Judge": "LAMBERT, ROBERT KYLE",
+   "UniformCaseNumber": "092025CA000268XXXAIN"
+  },
+  {
+   "CaseNumber": "2025 CA 000274 A",
+   "CaseStatus": "CLOSED",
+   "CaseType": "CONTRACT AND INDEBTEDNESS",
+   "CourtType": "CA",
+   "CourtTypeCategory": "CIVIL",
+   "CourtTypeLong": "CIRCUIT CIVIL",
+   "Disposition": "DISMISSED BEFORE HRG-OTHER (1C)",
+   "DispositionDate": "2026-10-21 00:00:00",
+   "FileDate": "2025-04-15 00:00:00",
+   "Judge": "FALVEY, CAROL A",
+   "UniformCaseNumber": "092025CA000274XXXAIN"
+  },
+  {
+   "CaseNumber": "2025 CA 000341 A",
+   "CaseStatus": "CLOSED",
+   "CaseType": "AUTO NEGLIGENCE",
+   "CourtType": "CA",
+   "CourtTypeCategory": "CIVIL",
+   "CourtTypeLong": "CIRCUIT CIVIL",
+   "Disposition": "DISMISSED AFTER HRG PURS TO SETTLEMENT (2A)",
+   "DispositionDate": "2026-10-27 00:00:00",
+   "FileDate": "2025-05-07 00:00:00",
+   "Judge": "FALVEY, CAROL A",
+   "UniformCaseNumber": "092025CA000341XXXAIN"
+  },
+  {
+   "CaseNumber": "2025 CA 000349 A",
+   "CaseStatus": "CLOSED",
+   "CaseType": "AUTO NEGLIGENCE",
+   "CourtType": "CA",
+   "CourtTypeCategory": "CIVIL",
+   "CourtTypeLong": "CIRCUIT CIVIL",
+   "Disposition": "DISMISSED AFTER HRG PURS TO SETTLEMENT (2A)",
+   "DispositionDate": "2026-10-27 00:00:00",
+   "FileDate": "2025-05-07 00:00:00",
+   "Judge": "FALVEY, CAROL A",
+   "UniformCaseNumber": "092025CA000349XXXAIN"
+  }
+ ],
+ "dockets": [
+  {
+   "DocketDate": "2024-04-19 00:00:00",
+   "UniformCaseNumber": "092024CA000205XXXAIN",
+   "dockettext": "DEFENDANTS TESTOWNER TESTOWNER TESTOWNER TESTOWNER MOTION TO DISMISS PLAINTIFFS TESTOWNER JUDGMENT"
+  },
+  {
+   "DocketDate": "2024-05-22 00:00:00",
+   "UniformCaseNumber": "092023CA000014XXXAXX",
+   "dockettext": "THE DEFENDANTS MOTION TO VACATE DEFAULT"
+  },
+  {
+   "DocketDate": "2025-02-19 00:00:00",
+   "UniformCaseNumber": "092024CA000865XXXAIN",
+   "dockettext": "TESTOWNER MOTION AND STIPULATION FOR ENTRY OF PARTIAL STIPULATED ORDER OF TESTOWNER AND FINAL JUDGMENT AS TO TESTOWNER 1 AND 2 WITH TESTOWNER TO THE CLERK OF COURT FOR DISBURSEMENT OF FUNDS"
+  },
+  {
+   "DocketDate": "2025-02-19 00:00:00",
+   "UniformCaseNumber": "092024CA000865XXXAIN",
+   "dockettext": "PARTIAL STIPULATED ORDER OF TESTOWNER AND FINAL JUDGMENT AS TO TESTOWNER 1 AND 2 WITH TESTOWNER TO THE CLERK OF COURT FOR DISBURSEMENT OF FUNDS -E - RECORDED (OR.3541.702. / 2025009979)"
+  },
+  {
+   "DocketDate": "2025-02-28 00:00:00",
+   "UniformCaseNumber": "092024CA000656XXXAIN",
+   "dockettext": "MOTION FOR JUDGMENT ON THE TESTOWNER"
+  },
+  {
+   "DocketDate": "2025-03-03 00:00:00",
+   "UniformCaseNumber": "092024CA000656XXXAIN",
+   "dockettext": "PLAINTIFFS' RESPONSE TO TESTOWNER FOR JUDGMENT ON THE TESTOWNER"
+  },
+  {
+   "DocketDate": "2025-03-09 00:00:00",
+   "UniformCaseNumber": "092024CA000656XXXAIN",
+   "dockettext": "PLAINTIFFS' RESPONSE TO TESTOWNER MOTION FOR JUDGMENT ON THE TESTOWNER"
+  },
+  {
+   "DocketDate": "2025-03-14 00:00:00",
+   "UniformCaseNumber": "092024CA000205XXXAIN",
+   "dockettext": "TESTOWNER TESTOWNER TESTOWNER TESTOWNER TESTOWNER MOTION FOR SUMMARY JUDGMENT"
+  },
+  {
+   "DocketDate": "2025-03-25 00:00:00",
+   "UniformCaseNumber": "092024CA000205XXXAIN",
+   "dockettext": "DEFENDANTS TESTOWNER TESTOWNER TESTOWNER TESTOWNER MOTION FOR SUMMARY FINAL JUDGMENT (EXHIBITS)"
+  },
+  {
+   "DocketDate": "2025-03-27 00:00:00",
+   "UniformCaseNumber": "092023CA000014XXXAXX",
+   "dockettext": "THE DEFENDANTS TESTOWNER TESTOWNER TESTOWNER TESTOWNER TESTOWNER TESTOWNER MOTION FOR SUMMARY JUDGMENT (EXHIBITS)"
+  },
+  {
+   "DocketDate": "2025-04-30 00:00:00",
+   "UniformCaseNumber": "092023CA001206XXXAXX",
+   "dockettext": "SUGGESTION OF BANKRUPTCY"
+  },
+  {
+   "DocketDate": "2025-04-30 00:00:00",
+   "UniformCaseNumber": "092024CA000298XXXAIN",
+   "dockettext": "DEFENDANT TESTOWNER TESTOWNER MOTION TO SET TESTOWNER DEFAULT/ EXHIBITS"
+  },
+  {
+   "DocketDate": "2025-05-05 00:00:00",
+   "UniformCaseNumber": "092024CA000068XXXAIN",
+   "dockettext": "MOTION FOR SUMMARY JUDGMENT"
+  },
+  {
+   "DocketDate": "2025-05-06 00:00:00",
+   "UniformCaseNumber": "092023CA000014XXXAXX",
+   "dockettext": "TESTOWNER RESPONSE AND TESTOWNER OF TESTOWNER IN TESTOWNER TO TESTOWNER MOTION FOR SUMMARY JUDGMENT"
+  },
+  {
+   "DocketDate": "2025-05-14 00:00:00",
+   "UniformCaseNumber": "092023CA000319XXXAXX",
+   "dockettext": "DEFENDANTS MOTION FOR SUMMARY FINAL JUDGMENT (EXHIBITS)"
+  },
+  {
+   "DocketDate": "2025-06-23 00:00:00",
+   "UniformCaseNumber": "092023CA000319XXXAXX",
+   "dockettext": "PLAINTIFF RESPONSE AND TESTOWNER OF TESTOWNER IN TESTOWNER TO TESTOWNER MOTION FOR SUMMARY JUDGMENT"
+  },
+  {
+   "DocketDate": "2025-06-23 00:00:00",
+   "UniformCaseNumber": "092024CA000656XXXAIN",
+   "dockettext": "ORDER DENYING DEFENDANTS MOTION FOR JUDGMENT ON THE TESTOWNER"
+  },
+  {
+   "DocketDate": "2025-07-10 00:00:00",
+   "UniformCaseNumber": "092025CA000198XXXAIN",
+   "dockettext": "MOTION FOR DEFAULT FINAL JUDGMENT"
+  },
+  {
+   "DocketDate": "2025-07-30 00:00:00",
+   "UniformCaseNumber": "092024CA000865XXXAIN",
+   "dockettext": "TESTOWNER MOTION AND STIPULATION FOR ENTRY OF PARTIAL STIPULATED FINAL JUDGMENT AS TO TESTOWNER TESTOWNER AND TESTOWNER WITH TESTOWNER TO THE CLERK OF COURT TESTOWNER DISBURSEMENT OF FUNDS"
+  },
+  {
+   "DocketDate": "2025-07-31 00:00:00",
+   "UniformCaseNumber": "092024CA000865XXXAIN",
+   "dockettext": "PARTIAL STIPULATED FINAL JUDGMENT AS TO TESTOWNER TESTOWNER AND TESTOWNER WITH TESTOWNER TO THE CLERK OF COURT FOR DISBURSEMENT OF FUNDS E - RECORDED (OR.3590.1921. / 2025047521)"
+  },
+  {
+   "DocketDate": "2025-08-29 00:00:00",
+   "UniformCaseNumber": "092023CA000014XXXAXX",
+   "dockettext": "ORDER DENYING THE DEFENDANTS TESTOWNER TESTOWNER TESTOWNER TESTOWNER TESTOWNER TESTOWNER MOTION FOR SUMMARY JUDGMENT"
+  },
+  {
+   "DocketDate": "2025-10-14 00:00:00",
+   "UniformCaseNumber": "092024CA000205XXXAIN",
+   "dockettext": "TESTOWNER TESTOWNER TESTOWNER TESTOWNER NOTICE OF TESTOWNER OF TESTOWNER TESTOWNER IN MOTION FOR FINAL SUMMARY JUDGMENT AND NOTICE OF FILING AFFIDAVIT IN TESTOWNER OF SUMMARY JUDGMENT"
+  },
+  {
+   "DocketDate": "2025-10-16 00:00:00",
+   "UniformCaseNumber": "092025CA000198XXXAIN",
+   "dockettext": "AFFIDAVIT IN TESTOWNER OF FINAL JUDGMENT"
+  },
+  {
+   "DocketDate": "2025-10-20 00:00:00",
+   "UniformCaseNumber": "092025CA000198XXXAIN",
+   "dockettext": "ORDER DENYING DEFAULT FINAL JUDGMENT"
+  },
+  {
+   "DocketDate": "2025-11-17 00:00:00",
+   "UniformCaseNumber": "092025CA000268XXXAIN",
+   "dockettext": "AFFIDAVIT IN TESTOWNER OF TESTOWNER MOTION FOR SUMMARY JUDGMENT - NOTICE OF FILING"
+  },
+  {
+   "DocketDate": "2025-11-17 00:00:00",
+   "UniformCaseNumber": "092025CA000268XXXAIN",
+   "dockettext": "TESTOWNER MOTION FOR SUMMARY FINAL JUDGMENT"
+  },
+  {
+   "DocketDate": "2025-12-03 00:00:00",
+   "UniformCaseNumber": "092025CA000198XXXAIN",
+   "dockettext": "MOTION FOR SUMMARY JUDGMENT"
+  },
+  {
+   "DocketDate": "2026-01-21 00:00:00",
+   "UniformCaseNumber": "092023CA000319XXXAXX",
+   "dockettext": "ORDER DENYING THE DEFENDANTS TESTOWNER TESTOWNER TESTOWNER TESTOWNER A TESTOWNER TESTOWNER TESTOWNER TESTOWNER MOTION FOR SUMMARY JUDGMENT"
+  },
+  {
+   "DocketDate": "2026-01-30 00:00:00",
+   "UniformCaseNumber": "092025CA000268XXXAIN",
+   "dockettext": "SUGGESTION OF BANKRUPTCY"
+  },
+  {
+   "DocketDate": "2026-02-23 00:00:00",
+   "UniformCaseNumber": "092025CA000268XXXAIN",
+   "dockettext": "ORDER DISMISSING BANKRUPTCY CASE - NOTICE OF FILING"
+  },
+  {
+   "DocketDate": "2026-03-02 00:00:00",
+   "UniformCaseNumber": "092025CA000268XXXAIN",
+   "dockettext": "MOTION - FINAL JUDGMENT SET FOR 03/12/2026 AT 2:15 TESTOWNER IN TESTOWNER , TESTOWNER TESTOWNER TESTOWNER TESTOWNER"
+  },
+  {
+   "DocketDate": "2026-03-18 00:00:00",
+   "UniformCaseNumber": "092025CA000268XXXAIN",
+   "dockettext": "MOTION - FINAL JUDGMENT SET FOR 04/16/2026 AT 1:00 TESTOWNER IN TESTOWNER , TESTOWNER TESTOWNER TESTOWNER TESTOWNER"
+  },
+  {
+   "DocketDate": "2026-03-26 00:00:00",
+   "UniformCaseNumber": "092025CA000198XXXAIN",
+   "dockettext": "ORDER TESTOWNER TESTOWNER ON PLAINTIFFS MOTION FOR SUMMARY JUDGMENT"
+  },
+  {
+   "DocketDate": "2026-05-04 00:00:00",
+   "UniformCaseNumber": "092025CA000268XXXAIN",
+   "dockettext": "ORDER DENYING PLAINTIFFS MOTION FOR SUMMARY JUDGMENT"
+  },
+  {
+   "DocketDate": "2026-06-09 00:00:00",
+   "UniformCaseNumber": "092023CA001079XXXAXX",
+   "dockettext": "DEFENDANTS MOTION FOR FINAL SUMMARY JUDGMENT"
+  },
+  {
+   "DocketDate": "2026-06-22 00:00:00",
+   "UniformCaseNumber": "092023CA001296XXXAXX",
+   "dockettext": "NOTICE OF TESTOWNER OF TESTOWNER OF TESTOWNER FOR TESTOWNER"
+  },
+  {
+   "DocketDate": "2026-06-26 00:00:00",
+   "UniformCaseNumber": "092023CA001079XXXAXX",
+   "dockettext": "TESTOWNER DEFENDANTS, TESTOWNER TESTOWNER AND TESTOWNER TESTOWNER MOTION FOR FINAL SUMMARY JUDGMENT"
+  },
+  {
+   "DocketDate": "2026-07-17 00:00:00",
+   "UniformCaseNumber": "092024CA000111XXXAIN",
+   "dockettext": "PLAINTIFFS TESTOWNER MOTION FOR SUMMARY JUDGMENT AS TESTOWNER DEFENDANT TESTOWNER TESTOWNER TESTOWNER TESTOWNER TESTOWNER TESTOWNER 1, 2, 3, 7, 8, 9, AND 11 TESTOWNER"
+  },
+  {
+   "DocketDate": "2026-07-17 00:00:00",
+   "UniformCaseNumber": "092024CA000111XXXAIN",
+   "dockettext": "PLAINTIFFS MOTION FOR SUMMARY JUDGMENT AS TO DEFENDANT TESTOWNER TESTOWNER TESTOWNER TESTOWNER TESTOWNER 1. 2, 3, 7, 8, 9, AND 11"
+  },
+  {
+   "DocketDate": "2026-08-04 00:00:00",
+   "UniformCaseNumber": "092023CA001079XXXAXX",
+   "dockettext": "TESTOWNER TESTOWNER PLAINTIFFS' RESPONSE TO TESTOWNER TESTOWNER DEFENDANTS MOTION FOR SUMMARY JUDGMENT"
+  },
+  {
+   "DocketDate": "2026-08-06 00:00:00",
+   "UniformCaseNumber": "092025CA000268XXXAIN",
+   "dockettext": "PLAINTIFFS AMENDED MOTION FOR SUMMARY JUDGMENT"
+  },
+  {
+   "DocketDate": "2026-08-19 00:00:00",
+   "UniformCaseNumber": "092025CA000083XXXAIN",
+   "dockettext": "DEFENDANT TESTOWNER TESTOWNER TESTOWNER MOTION FOR SUMMARY JUDGMENT"
+  },
+  {
+   "DocketDate": "2026-08-19 00:00:00",
+   "UniformCaseNumber": "092025CA000083XXXAIN",
+   "dockettext": "DEFENDANTS, TESTOWNER TESTOWNER TESTOWNER TESTOWNER TESTOWNER TESTOWNER TESTOWNER MOTION FOR SUMMARY JUDGMENT"
+  },
+  {
+   "DocketDate": "2026-08-21 00:00:00",
+   "UniformCaseNumber": "092025CA000103XXXAIN",
+   "dockettext": "TESTOWNER MOTION FOR SUMMARY JUDGMENT"
+  },
+  {
+   "DocketDate": "2026-08-25 00:00:00",
+   "UniformCaseNumber": "092024CA000111XXXAIN",
+   "dockettext": "DEFENDANT TESTOWNER TESTOWNER TESTOWNER MOTION FOR TESTOWNER OF TESTOWNER TO TESTOWNER TO PLAINTIFFS MOTION FOR PARTIAL SUMMARY JUDGMENT AND TESTOWNER FOR TESTOWNER"
+  },
+  {
+   "DocketDate": "2026-08-26 00:00:00",
+   "UniformCaseNumber": "092023CA001079XXXAXX",
+   "dockettext": "ORDER GRANTING DEFENDANT TESTOWNER TESTOWNER TESTOWNER TESTOWNER TESTOWNER A TESTOWNER TESTOWNER MOTION FOR SUMMARY JUDGMENT"
+  },
+  {
+   "DocketDate": "2026-08-26 00:00:00",
+   "UniformCaseNumber": "092024CA000111XXXAIN",
+   "dockettext": "AGREED ORDER GRANTING DEFENDANT TESTOWNER TESTOWNER TESTOWNER MOTION FOR TESTOWNER OF TESTOWNER TO TESTOWNER TO PLAINTIFFS MOTION FOR PARTIAL SUMMARY JUDGMENT"
+  },
+  {
+   "DocketDate": "2026-09-08 00:00:00",
+   "UniformCaseNumber": "092024CA000111XXXAIN",
+   "dockettext": "DEFENDANT TESTOWNER TESTOWNER TESTOWNER TESTOWNER TO PLAINTIFFS MOTION FOR PARTIAL SUMMARY JUDGMENT"
+  },
+  {
+   "DocketDate": "2026-09-28 00:00:00",
+   "UniformCaseNumber": "092025CA000083XXXAIN",
+   "dockettext": "TESTOWNER RESPONSE IN TESTOWNER TO TESTOWNER MOTION FOR SUMMARY JUDGMENT"
+  },
+  {
+   "DocketDate": "2026-10-01 00:00:00",
+   "UniformCaseNumber": "092023CA001206XXXAXX",
+   "dockettext": "CONSENT FINAL JUDGMENT E - RECORDED (OR.3715.363. / 2026061295)"
+  },
+  {
+   "DocketDate": "2026-10-02 00:00:00",
+   "UniformCaseNumber": "092024CA000111XXXAIN",
+   "dockettext": "ORDER GRANTING IN TESTOWNER AND DENYING IN TESTOWNER PLAINTIFFS TESTOWNER MOTION FOR SUMMARY JUDGMENT AS TO DEFENDANT TESTOWNER TESTOWNER TESTOWNER TESTOWNER TESTOWNER"
+  },
+  {
+   "DocketDate": "2026-10-06 00:00:00",
+   "UniformCaseNumber": "092025CA000268XXXAIN",
+   "dockettext": "MOTION - FINAL JUDGMENT SET FOR 10/14/2026 AT 1:30 TESTOWNER IN TESTOWNER , TESTOWNER TESTOWNER TESTOWNER TESTOWNER"
+  },
+  {
+   "DocketDate": "2026-10-13 00:00:00",
+   "UniformCaseNumber": "092025CA000103XXXAIN",
+   "dockettext": "MOTION - FINAL JUDGMENT SET FOR 10/27/2026 AT 2:30 TESTOWNER IN TESTOWNER , TESTOWNER TESTOWNER TESTOWNER TESTOWNER"
+  },
+  {
+   "DocketDate": "2026-10-14 00:00:00",
+   "UniformCaseNumber": "092025CA000268XXXAIN",
+   "dockettext": "FINAL SUMMARY JUDGMENT OF FORECLOSURE E - RECORDED (OR.3718.411. / 2026063705)"
+  },
+  {
+   "DocketDate": "2026-10-16 00:00:00",
+   "UniformCaseNumber": "092025CA000083XXXAIN",
+   "dockettext": "DEFENDANTS', TESTOWNER TESTOWNER TESTOWNER TESTOWNER AND TESTOWNER TESTOWNER TESTOWNER TESTOWNER IN TESTOWNER OF MOTION FOR SUMMARY JUDGMENT"
+  },
+  {
+   "DocketDate": "2026-10-23 00:00:00",
+   "UniformCaseNumber": "092025CA000103XXXAIN",
+   "dockettext": "AFFIDAVIT IN TESTOWNER OF PLAINTIFFS MOTION FOR SUMMARY JUDGMENT/ EXHIBITS -NOTICE OF FILING"
+  },
+  {
+   "DocketDate": "2026-10-27 00:00:00",
+   "UniformCaseNumber": "092024CA000217XXXAIN",
+   "dockettext": "TESTOWNER MOTION AND STIPULATION FOR ENTRY OF STIPULATED FINAL JUDGMENT"
+  },
+  {
+   "DocketDate": "2026-10-27 00:00:00",
+   "UniformCaseNumber": "092024CA000217XXXAIN",
+   "dockettext": "STIPULATED FINAL JUDGMENT E - RECORDED (OR.3721.532. / 2026066018)"
+  },
+  {
+   "DocketDate": "2026-10-27 00:00:00",
+   "UniformCaseNumber": "092025CA000103XXXAIN",
+   "dockettext": "CERTIFICATE OF TESTOWNER FINAL JUDGMENT OF FORECLOSURE"
+  },
+  {
+   "DocketDate": "2026-10-27 00:00:00",
+   "UniformCaseNumber": "092025CA000103XXXAIN",
+   "dockettext": "SUMMARY FINAL JUDGMENT OF FORECLOSURE E - RECORDED (OR.3721.539. / 2026066020)"
+  }
+ ],
+ "from": "2026-10-01",
+ "parties": [
+  {
+   "ActiveAddress": "7496 TEST ST",
+   "Description": "Plaintiff",
+   "FirstName": "TESTOWNER 55E101",
+   "LastName": "TESTOWNER 901EB5",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000436XXXAIN"
+  },
+  {
+   "ActiveAddress": "883 TEST ST",
+   "Description": "Plaintiff",
+   "FirstName": "TESTOWNER 451AEF",
+   "LastName": "TESTOWNER 006596",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000437XXXAIN"
+  },
+  {
+   "ActiveAddress": "8520 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER 1AE893 LLC",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000298XXXAIN"
+  },
+  {
+   "ActiveAddress": "330 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER 068C07 INC",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092023CA001210XXXAXX"
+  },
+  {
+   "ActiveAddress": "7671 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 586FD1",
+   "LastName": "TESTOWNER 2EEF87",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092023CA001210XXXAXX"
+  },
+  {
+   "ActiveAddress": "2745 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER B4E1BD",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000268XXXAIN"
+  },
+  {
+   "ActiveAddress": "2745 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER 56453E",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000268XXXAIN"
+  },
+  {
+   "ActiveAddress": "7993 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER A0CFD8",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000103XXXAIN"
+  },
+  {
+   "ActiveAddress": "1412 TEST ST",
+   "Description": "Plaintiff",
+   "LastName": "TESTOWNER 8C215A",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000298XXXAIN"
+  },
+  {
+   "ActiveAddress": "4689 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER 79FC58",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000047XXXAIN"
+  },
+  {
+   "ActiveAddress": "5749 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER BB6313",
+   "LastName": "TESTOWNER 2FEA32",
+   "MiddleName": "TESTOWNER D33223",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000047XXXAIN"
+  },
+  {
+   "ActiveAddress": "4198 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 24EECF",
+   "LastName": "TESTOWNER 7CCA73",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000047XXXAIN"
+  },
+  {
+   "ActiveAddress": "2360 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER AFAA2A INC",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000111XXXAIN"
+  },
+  {
+   "ActiveAddress": "1006 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER CD4BBE CO",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000436XXXAIN"
+  },
+  {
+   "ActiveAddress": "1006 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER CD4BBE CO",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000437XXXAIN"
+  },
+  {
+   "ActiveAddress": "1006 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER CD4BBE CO",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000441XXXAIN"
+  },
+  {
+   "ActiveAddress": "3865 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER 6D7396 INC",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000741XXXAIN"
+  },
+  {
+   "ActiveAddress": "3865 TEST ST",
+   "Description": "Plaintiff",
+   "FirstName": "TESTOWNER 0FFB9F",
+   "LastName": "TESTOWNER A1221F",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000741XXXAIN"
+  },
+  {
+   "ActiveAddress": "4114 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER 822FC3 INC",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000111XXXAIN"
+  },
+  {
+   "ActiveAddress": "9087 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER AB11B8",
+   "LastName": "TESTOWNER C3562C",
+   "MiddleName": "TESTOWNER F5B2FA",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000047XXXAIN"
+  },
+  {
+   "ActiveAddress": "9087 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 3C25BB",
+   "LastName": "TESTOWNER A4180A",
+   "MiddleName": "TESTOWNER CBA295",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000047XXXAIN"
+  },
+  {
+   "ActiveAddress": "9087 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER E6073F",
+   "LastName": "TESTOWNER 244207",
+   "MiddleName": "TESTOWNER 78E083",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000047XXXAIN"
+  },
+  {
+   "ActiveAddress": "1047 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 24BBF5",
+   "LastName": "TESTOWNER E3743E",
+   "MiddleName": "TESTOWNER 9ECFF9",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000068XXXAIN"
+  },
+  {
+   "ActiveAddress": "1047 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 63240C",
+   "LastName": "TESTOWNER E3743E",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000068XXXAIN"
+  },
+  {
+   "ActiveAddress": "3506 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 8BBB52",
+   "LastName": "TESTOWNER FF9E82",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000127XXXAIN"
+  },
+  {
+   "ActiveAddress": "1551 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 915204",
+   "LastName": "TESTOWNER 7EF3E4",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000127XXXAIN"
+  },
+  {
+   "ActiveAddress": "1551 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 8BBB52",
+   "LastName": "TESTOWNER E08E42",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000127XXXAIN"
+  },
+  {
+   "ActiveAddress": "1478 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER D7955D",
+   "LastName": "TESTOWNER B7A245",
+   "MiddleName": "TESTOWNER 916BC0",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000047XXXAIN"
+  },
+  {
+   "ActiveAddress": "7876 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER 524443",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000268XXXAIN"
+  },
+  {
+   "ActiveAddress": "6791 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER BD5D0C",
+   "LastName": "TESTOWNER 2D2E74",
+   "MiddleName": "TESTOWNER F5B2FA",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000298XXXAIN"
+  },
+  {
+   "ActiveAddress": "3299 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER EDC188",
+   "LastName": "TESTOWNER 467A25",
+   "MiddleName": "TESTOWNER B994FC",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000047XXXAIN"
+  },
+  {
+   "ActiveAddress": "3299 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER 6F1B3B",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000047XXXAIN"
+  },
+  {
+   "ActiveAddress": "7529 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER E05975 LLC",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092023CA001206XXXAXX"
+  },
+  {
+   "ActiveAddress": "897 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER C00DD2",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000298XXXAIN"
+  },
+  {
+   "ActiveAddress": "842 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 3AD2F6",
+   "LastName": "TESTOWNER FDB33B",
+   "MiddleName": "TESTOWNER 4E3086",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000298XXXAIN"
+  },
+  {
+   "ActiveAddress": "4472 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER AA7ABF",
+   "LastName": "TESTOWNER FDB33B",
+   "MiddleName": "TESTOWNER 9909B7",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000298XXXAIN"
+  },
+  {
+   "ActiveAddress": "617 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER 43B3F6 LLC",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092023CA000319XXXAXX"
+  },
+  {
+   "ActiveAddress": "270 TEST ST",
+   "Description": "Plaintiff",
+   "LastName": "TESTOWNER B4F413",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000268XXXAIN"
+  },
+  {
+   "ActiveAddress": "617 TEST ST",
+   "Description": "Plaintiff",
+   "FirstName": "TESTOWNER E2B434",
+   "LastName": "TESTOWNER A27D22",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092022CA000321XXXAXX"
+  },
+  {
+   "ActiveAddress": "5328 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER 42DFA0 PA",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000436XXXAIN"
+  },
+  {
+   "ActiveAddress": "5328 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER 42DFA0 PA",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000437XXXAIN"
+  },
+  {
+   "ActiveAddress": "5328 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER 42DFA0 PA",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000441XXXAIN"
+  },
+  {
+   "ActiveAddress": "5328 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER 42DFA0 PA",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000741XXXAIN"
+  },
+  {
+   "ActiveAddress": "2086 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER 1F5B57 CO",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000274XXXAIN"
+  },
+  {
+   "ActiveAddress": "5257 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER 47D1ED CO",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000182XXXAIN"
+  },
+  {
+   "ActiveAddress": "4816 TEST ST",
+   "Description": "Plaintiff",
+   "FirstName": "TESTOWNER 613B55",
+   "LastName": "TESTOWNER 12BF02",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092023CA000014XXXAXX"
+  },
+  {
+   "ActiveAddress": "8118 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 718F65",
+   "LastName": "TESTOWNER C70D18",
+   "MiddleName": "TESTOWNER D33223",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000047XXXAIN"
+  },
+  {
+   "ActiveAddress": "2107 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER 5980D3",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000865XXXAIN"
+  },
+  {
+   "ActiveAddress": "7527 TEST ST",
+   "Description": "Plaintiff",
+   "LastName": "TESTOWNER 7FC1FE LLC",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000218XXXAIN"
+  },
+  {
+   "ActiveAddress": "3539 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 5064E8",
+   "LastName": "TESTOWNER FDB33B",
+   "MiddleName": "TESTOWNER F5B2FA",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000298XXXAIN"
+  },
+  {
+   "ActiveAddress": "2583 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 7135E5",
+   "LastName": "TESTOWNER 684DA1",
+   "MiddleName": "TESTOWNER DFED72",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000103XXXAIN"
+  },
+  {
+   "ActiveAddress": "2583 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 7135E5",
+   "LastName": "TESTOWNER 684DA1",
+   "PartyType": "AKA",
+   "UniformCaseNumber": "092025CA000103XXXAIN"
+  },
+  {
+   "ActiveAddress": "2583 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 7135E5",
+   "LastName": "TESTOWNER 684DA1",
+   "PartyType": "AKA",
+   "UniformCaseNumber": "092025CA000103XXXAIN"
+  },
+  {
+   "ActiveAddress": "2583 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER D13FEC",
+   "LastName": "TESTOWNER 9964D4",
+   "MiddleName": "TESTOWNER 4137E3",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000103XXXAIN"
+  },
+  {
+   "ActiveAddress": "2583 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER D13FEC",
+   "LastName": "TESTOWNER 9964D4",
+   "PartyType": "AKA",
+   "UniformCaseNumber": "092025CA000103XXXAIN"
+  },
+  {
+   "ActiveAddress": "2583 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER D13FEC",
+   "LastName": "TESTOWNER 9964D4",
+   "PartyType": "AKA",
+   "UniformCaseNumber": "092025CA000103XXXAIN"
+  },
+  {
+   "ActiveAddress": "2583 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER 6CFAAE",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000103XXXAIN"
+  },
+  {
+   "ActiveAddress": "2583 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER 2CBFF4",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000103XXXAIN"
+  },
+  {
+   "ActiveAddress": "2583 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER B9ABAC",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000103XXXAIN"
+  },
+  {
+   "ActiveAddress": "2583 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER B0F6E8",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000103XXXAIN"
+  },
+  {
+   "ActiveAddress": "5398 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER 578A35 LLC",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092023CA000014XXXAXX"
+  },
+  {
+   "ActiveAddress": "8195 TEST ST",
+   "Description": "Plaintiff",
+   "FirstName": "TESTOWNER 4BBE9D",
+   "LastName": "TESTOWNER A72F1C",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000341XXXAIN"
+  },
+  {
+   "ActiveAddress": "227 TEST ST",
+   "Description": "Plaintiff",
+   "FirstName": "TESTOWNER 2D75F2",
+   "LastName": "TESTOWNER 77EDD8",
+   "MiddleName": "TESTOWNER B309E2",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000182XXXAIN"
+  },
+  {
+   "ActiveAddress": "227 TEST ST",
+   "Description": "Plaintiff",
+   "FirstName": "TESTOWNER 66F159",
+   "LastName": "TESTOWNER 77EDD8",
+   "MiddleName": "TESTOWNER 78E083",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000182XXXAIN"
+  },
+  {
+   "ActiveAddress": "6759 TEST ST",
+   "Description": "Plaintiff",
+   "FirstName": "TESTOWNER 586FD1",
+   "LastName": "TESTOWNER FD3C3C",
+   "MiddleName": "TESTOWNER A3F5AA",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000274XXXAIN"
+  },
+  {
+   "ActiveAddress": "2640 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 613B55",
+   "LastName": "TESTOWNER C698E8",
+   "MiddleName": "TESTOWNER 916BC0",
+   "PartyType": "PRIMARY",
+   "SuffixName": "JR",
+   "UniformCaseNumber": "092024CA000298XXXAIN"
+  },
+  {
+   "ActiveAddress": "7605 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 4694E2",
+   "LastName": "TESTOWNER 508389",
+   "MiddleName": "TESTOWNER 41B99A",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000656XXXAIN"
+  },
+  {
+   "ActiveAddress": "808 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER D70AB7",
+   "LastName": "TESTOWNER DA8AEE",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000217XXXAIN"
+  },
+  {
+   "ActiveAddress": "1592 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER DC55D8",
+   "LastName": "TESTOWNER 0DDB43",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000217XXXAIN"
+  },
+  {
+   "ActiveAddress": "1592 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 81A30D",
+   "LastName": "TESTOWNER 6014DF",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000217XXXAIN"
+  },
+  {
+   "ActiveAddress": "1592 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 2BBEE9",
+   "LastName": "TESTOWNER 7CA70A",
+   "MiddleName": "TESTOWNER EA01AE",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000217XXXAIN"
+  },
+  {
+   "ActiveAddress": "328 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER 0CD161 LLC",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000436XXXAIN"
+  },
+  {
+   "ActiveAddress": "328 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER 0CD161 LLC",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000437XXXAIN"
+  },
+  {
+   "ActiveAddress": "328 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER 0CD161 LLC",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000441XXXAIN"
+  },
+  {
+   "ActiveAddress": "7666 TEST ST",
+   "Description": "Plaintiff",
+   "FirstName": "TESTOWNER 63E562",
+   "LastName": "TESTOWNER C4DFEA",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000116XXXAIN"
+  },
+  {
+   "ActiveAddress": "7940 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 91EAE8",
+   "LastName": "TESTOWNER DD0E99",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000865XXXAIN"
+  },
+  {
+   "ActiveAddress": "468 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 8BBB52",
+   "LastName": "TESTOWNER FDB33B",
+   "MiddleName": "TESTOWNER 4AFA6D",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000298XXXAIN"
+  },
+  {
+   "ActiveAddress": "2712 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 05F7EA",
+   "LastName": "TESTOWNER 886ED0",
+   "MiddleName": "TESTOWNER F5B2FA",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000047XXXAIN"
+  },
+  {
+   "ActiveAddress": "1032 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER BE711F",
+   "LastName": "TESTOWNER 64F958",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000298XXXAIN"
+  },
+  {
+   "ActiveAddress": "6821 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER F9A434",
+   "LastName": "TESTOWNER AC2DDF",
+   "MiddleName": "TESTOWNER 0BC46B",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092022CA000321XXXAXX"
+  },
+  {
+   "ActiveAddress": "6821 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER F9A434",
+   "LastName": "TESTOWNER AF2601",
+   "MiddleName": "TESTOWNER 0BC46B",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092022CA000321XXXAXX"
+  },
+  {
+   "ActiveAddress": "6821 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 586FD1",
+   "LastName": "TESTOWNER AC2DDF",
+   "MiddleName": "TESTOWNER 4F1946",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092022CA000321XXXAXX"
+  },
+  {
+   "ActiveAddress": "6821 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 586FD1",
+   "LastName": "TESTOWNER AF2601",
+   "MiddleName": "TESTOWNER 4F1946",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092022CA000321XXXAXX"
+  },
+  {
+   "ActiveAddress": "3200 TEST ST",
+   "Description": "Plaintiff",
+   "LastName": "TESTOWNER 0536D9",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092023CA001206XXXAXX"
+  },
+  {
+   "ActiveAddress": "4296 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER C39EFA",
+   "LastName": "TESTOWNER 05E14D",
+   "MiddleName": "TESTOWNER D33223",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000047XXXAIN"
+  },
+  {
+   "ActiveAddress": "6674 TEST ST",
+   "Description": "Plaintiff",
+   "FirstName": "TESTOWNER 60D750",
+   "LastName": "TESTOWNER C94EED",
+   "MiddleName": "TESTOWNER 4F1946",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092023CA001079XXXAXX"
+  },
+  {
+   "ActiveAddress": "7479 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 24BBF5",
+   "LastName": "TESTOWNER 7BCF3B",
+   "MiddleName": "TESTOWNER FF0091",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000198XXXAIN"
+  },
+  {
+   "ActiveAddress": "1070 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER E102A6",
+   "LastName": "TESTOWNER 0B67E6",
+   "MiddleName": "TESTOWNER F5B2FA",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000047XXXAIN"
+  },
+  {
+   "ActiveAddress": "1136 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 69D682",
+   "LastName": "TESTOWNER FDB33B",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000298XXXAIN"
+  },
+  {
+   "ActiveAddress": "6678 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 6ED996",
+   "LastName": "TESTOWNER 1C2CE0",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000298XXXAIN"
+  },
+  {
+   "ActiveAddress": "6750 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER A0892C",
+   "LastName": "TESTOWNER 2DA58A",
+   "MiddleName": "TESTOWNER 78E083",
+   "PartyType": "PRIMARY",
+   "SuffixName": "AS TRUSTEE OF THE GEORGE L SOUTHWORTH REVOCABLE TR",
+   "UniformCaseNumber": "092024CA000865XXXAIN"
+  },
+  {
+   "ActiveAddress": "1249 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 68C8FC",
+   "LastName": "TESTOWNER 0B67E6",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000047XXXAIN"
+  },
+  {
+   "ActiveAddress": "8109 TEST ST",
+   "Description": "Plaintiff",
+   "FirstName": "TESTOWNER 7B5ABC",
+   "LastName": "TESTOWNER 3BFD0F",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000656XXXAIN"
+  },
+  {
+   "ActiveAddress": "8109 TEST ST",
+   "Description": "Plaintiff",
+   "FirstName": "TESTOWNER 69C816",
+   "LastName": "TESTOWNER 5C56ED",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000656XXXAIN"
+  },
+  {
+   "ActiveAddress": "8109 TEST ST",
+   "Description": "Plaintiff",
+   "FirstName": "TESTOWNER 1F979E",
+   "LastName": "TESTOWNER D91673",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000656XXXAIN"
+  },
+  {
+   "ActiveAddress": "8109 TEST ST",
+   "Description": "Plaintiff",
+   "FirstName": "TESTOWNER E74B9C",
+   "LastName": "TESTOWNER 320471",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000656XXXAIN"
+  },
+  {
+   "ActiveAddress": "6116 TEST ST",
+   "Description": "Plaintiff",
+   "FirstName": "TESTOWNER 69D682",
+   "LastName": "TESTOWNER EF6865",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000198XXXAIN"
+  },
+  {
+   "ActiveAddress": "7525 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER C7095B",
+   "LastName": "TESTOWNER 111EB7",
+   "MiddleName": "TESTOWNER CB715E",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000217XXXAIN"
+  },
+  {
+   "ActiveAddress": "7525 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER B9EB59",
+   "LastName": "TESTOWNER 111EB7",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000217XXXAIN"
+  },
+  {
+   "ActiveAddress": "6880 TEST ST",
+   "Description": "Plaintiff",
+   "FirstName": "TESTOWNER 1AEA9F",
+   "LastName": "TESTOWNER 754934",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000127XXXAIN"
+  },
+  {
+   "ActiveAddress": "4039 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER BB6CFF",
+   "LastName": "TESTOWNER E10ADE",
+   "MiddleName": "TESTOWNER 0BC46B",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000268XXXAIN"
+  },
+  {
+   "ActiveAddress": "4039 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER BB6CFF",
+   "LastName": "TESTOWNER E10ADE",
+   "MiddleName": "TESTOWNER 183A6F",
+   "PartyType": "AKA",
+   "UniformCaseNumber": "092025CA000268XXXAIN"
+  },
+  {
+   "ActiveAddress": "4039 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER BB6CFF",
+   "LastName": "TESTOWNER E10ADE",
+   "MiddleName": "TESTOWNER 183A6F",
+   "PartyType": "AKA",
+   "UniformCaseNumber": "092025CA000268XXXAIN"
+  },
+  {
+   "ActiveAddress": "4039 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 674DA0",
+   "LastName": "TESTOWNER AABB8B",
+   "MiddleName": "TESTOWNER FBCD22",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000268XXXAIN"
+  },
+  {
+   "ActiveAddress": "4039 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER D1B597",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000268XXXAIN"
+  },
+  {
+   "ActiveAddress": "4039 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER D0F48D",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000268XXXAIN"
+  },
+  {
+   "ActiveAddress": "4039 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER 1317F6",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000268XXXAIN"
+  },
+  {
+   "ActiveAddress": "4039 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER C76FF0",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000268XXXAIN"
+  },
+  {
+   "ActiveAddress": "3688 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 3A9AB5",
+   "LastName": "TESTOWNER 258F70",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000218XXXAIN"
+  },
+  {
+   "ActiveAddress": "3688 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 3250E5",
+   "LastName": "TESTOWNER 258F70",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000218XXXAIN"
+  },
+  {
+   "ActiveAddress": "1598 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER 6D7396 INC",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000741XXXAIN"
+  },
+  {
+   "ActiveAddress": "1598 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER D4B176 INC",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000436XXXAIN"
+  },
+  {
+   "ActiveAddress": "1598 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER D4B176 INC",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000437XXXAIN"
+  },
+  {
+   "ActiveAddress": "1598 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER D4B176 INC",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000441XXXAIN"
+  },
+  {
+   "ActiveAddress": "8054 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 1F421B",
+   "LastName": "TESTOWNER FDB33B",
+   "MiddleName": "TESTOWNER 4F1946",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000298XXXAIN"
+  },
+  {
+   "ActiveAddress": "1758 TEST ST",
+   "Description": "Plaintiff",
+   "FirstName": "TESTOWNER E102A6",
+   "LastName": "TESTOWNER F3397C",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092023CA000319XXXAXX"
+  },
+  {
+   "ActiveAddress": "1159 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 7421D6",
+   "LastName": "TESTOWNER A5D264",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000341XXXAIN"
+  },
+  {
+   "ActiveAddress": "4115 TEST ST",
+   "Description": "Plaintiff",
+   "FirstName": "TESTOWNER F48790",
+   "LastName": "TESTOWNER 0A26C9",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000441XXXAIN"
+  },
+  {
+   "ActiveAddress": "4115 TEST ST",
+   "Description": "Plaintiff",
+   "FirstName": "TESTOWNER F427B6",
+   "LastName": "TESTOWNER 0A26C9",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000441XXXAIN"
+  },
+  {
+   "ActiveAddress": "3266 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 55512F",
+   "LastName": "TESTOWNER 0F646F",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000298XXXAIN"
+  },
+  {
+   "ActiveAddress": "4503 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 1F70BE",
+   "LastName": "TESTOWNER C698E8",
+   "MiddleName": "TESTOWNER D33223",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000298XXXAIN"
+  },
+  {
+   "ActiveAddress": "7857 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 3A9AB5",
+   "LastName": "TESTOWNER 508389",
+   "MiddleName": "TESTOWNER A017FB",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000116XXXAIN"
+  },
+  {
+   "ActiveAddress": "3059 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER 05F7EA",
+   "LastName": "TESTOWNER 467A25",
+   "MiddleName": "TESTOWNER CB715E",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000047XXXAIN"
+  },
+  {
+   "ActiveAddress": "704 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER 3ADA98 INC",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092023CA001079XXXAXX"
+  },
+  {
+   "ActiveAddress": "1562 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER E9BA00 LLC",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092023CA001206XXXAXX"
+  },
+  {
+   "ActiveAddress": "1205 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER C98384 LLC",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092023CA001206XXXAXX"
+  },
+  {
+   "ActiveAddress": "1205 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER 90168F LLC",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092023CA001206XXXAXX"
+  },
+  {
+   "ActiveAddress": "1205 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER A46DA3 LLC",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092023CA001206XXXAXX"
+  },
+  {
+   "ActiveAddress": "610 TEST ST",
+   "Description": "Plaintiff",
+   "FirstName": "TESTOWNER 4B8B35",
+   "LastName": "TESTOWNER 4C02C2",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092023CA001296XXXAXX"
+  },
+  {
+   "ActiveAddress": "1771 TEST ST",
+   "Description": "Plaintiff",
+   "LastName": "TESTOWNER 523F81 CO",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000111XXXAIN"
+  },
+  {
+   "ActiveAddress": "1771 TEST ST",
+   "Description": "Plaintiff",
+   "LastName": "TESTOWNER FF6964 CO",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000111XXXAIN"
+  },
+  {
+   "ActiveAddress": "1771 TEST ST",
+   "Description": "Plaintiff",
+   "LastName": "TESTOWNER 03F8E5 CO",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000111XXXAIN"
+  },
+  {
+   "ActiveAddress": "1771 TEST ST",
+   "Description": "Plaintiff",
+   "LastName": "TESTOWNER 54EEA0 CO",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000111XXXAIN"
+  },
+  {
+   "ActiveAddress": "6313 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER 231706 LLC",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000205XXXAIN"
+  },
+  {
+   "ActiveAddress": "4533 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER F97C33 LLC",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000083XXXAIN"
+  },
+  {
+   "ActiveAddress": "1248 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER CF9A01 LLC",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000083XXXAIN"
+  },
+  {
+   "ActiveAddress": "792 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER 33B9BA LLC",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000341XXXAIN"
+  },
+  {
+   "ActiveAddress": "727 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER 9A22FA CO",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000349XXXAIN"
+  },
+  {
+   "ActiveAddress": "8310 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER A0D794 CO",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000205XXXAIN"
+  },
+  {
+   "ActiveAddress": "7141 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER A38743 CO",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000349XXXAIN"
+  },
+  {
+   "ActiveAddress": "5534 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER 5980D3",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000217XXXAIN"
+  },
+  {
+   "ActiveAddress": "6938 TEST ST",
+   "Description": "Plaintiff",
+   "LastName": "TESTOWNER B5A164",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000205XXXAIN"
+  },
+  {
+   "ActiveAddress": "4444 TEST ST",
+   "Description": "Plaintiff",
+   "FirstName": "TESTOWNER 586FD1",
+   "LastName": "TESTOWNER 1E6BE4",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000083XXXAIN"
+  },
+  {
+   "ActiveAddress": "5511 TEST ST",
+   "Description": "Plaintiff",
+   "FirstName": "TESTOWNER C2662B",
+   "LastName": "TESTOWNER FB41D5",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092023CA001210XXXAXX"
+  },
+  {
+   "ActiveAddress": "7659 TEST ST",
+   "Description": "Plaintiff",
+   "LastName": "TESTOWNER 608F86 CO",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000068XXXAIN"
+  },
+  {
+   "ActiveAddress": "8356 TEST ST",
+   "Description": "Plaintiff",
+   "LastName": "TESTOWNER EEA342",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000217XXXAIN"
+  },
+  {
+   "ActiveAddress": "8101 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER 297969 CO",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092023CA001296XXXAXX"
+  },
+  {
+   "ActiveAddress": "107 TEST ST",
+   "Description": "Plaintiff",
+   "LastName": "TESTOWNER EEA342",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092024CA000865XXXAIN"
+  },
+  {
+   "ActiveAddress": "2059 TEST ST",
+   "Description": "Defendant",
+   "FirstName": "TESTOWNER C0B20F",
+   "LastName": "TESTOWNER 488943",
+   "MiddleName": "TESTOWNER CB715E",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000047XXXAIN"
+  },
+  {
+   "ActiveAddress": "2059 TEST ST",
+   "Description": "Defendant",
+   "LastName": "TESTOWNER 8D7B30",
+   "PartyType": "PRIMARY",
+   "UniformCaseNumber": "092025CA000047XXXAIN"
+  }
+ ],
+ "to": "2026-10-31"
+}

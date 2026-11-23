@@ -1,0 +1,280 @@
+{
+ "rows": [
+  {
+   "balance": "$20,252.64",
+   "city": "OMAHA",
+   "county": "DOUGLAS",
+   "last_known_address": "2930 TEST ST",
+   "list_as_of": "2026-11-16",
+   "name": "TESTOWNER CE7EE1",
+   "state": "NE",
+   "tax_category": "Ind. Income Tax",
+   "zip": "68164"
+  },
+  {
+   "balance": "$42,264.52",
+   "city": "LINCOLN",
+   "county": "LANCASTER",
+   "last_known_address": "6462 TEST ST",
+   "list_as_of": "2026-11-16",
+   "name": "TESTOWNER B11611",
+   "state": "NE",
+   "tax_category": "Ind. Income Tax",
+   "zip": "68527"
+  },
+  {
+   "balance": "$48,973.81",
+   "city": "OMAHA",
+   "county": "DOUGLAS",
+   "last_known_address": "981 TEST ST",
+   "list_as_of": "2026-11-16",
+   "name": "TESTOWNER F19597",
+   "state": "NE",
+   "tax_category": "Ind. Income Tax",
+   "zip": "68144"
+  },
+  {
+   "balance": "$34,756.58",
+   "city": "OMAHA",
+   "county": "DOUGLAS",
+   "last_known_address": "5837 TEST ST",
+   "list_as_of": "2026-11-16",
+   "name": "TESTOWNER BC078A",
+   "state": "NE",
+   "tax_category": "Ind. Income Tax",
+   "zip": "68131"
+  },
+  {
+   "balance": "$42,301.46",
+   "city": "GRAND ISLAND",
+   "county": "HALL",
+   "last_known_address": "4268 TEST ST",
+   "list_as_of": "2026-11-16",
+   "name": "TESTOWNER 1521CE",
+   "state": "NE",
+   "tax_category": "Ind. Income Tax",
+   "zip": "68801"
+  },
+  {
+   "balance": "$36,514.77",
+   "city": "LINCOLN",
+   "county": "LANCASTER",
+   "last_known_address": "2595 TEST ST",
+   "list_as_of": "2026-11-16",
+   "name": "TESTOWNER 4F7F21",
+   "state": "NE",
+   "tax_category": "Sales Tax",
+   "zip": "68510"
+  },
+  {
+   "balance": "$25,354.79",
+   "city": "LINCOLN",
+   "county": "LANCASTER",
+   "last_known_address": "8094 TEST ST",
+   "list_as_of": "2026-11-16",
+   "name": "TESTOWNER 131A2B",
+   "state": "NE",
+   "tax_category": "Ind. Income Tax",
+   "zip": "68508"
+  },
+  {
+   "balance": "$60,559.52",
+   "city": "OMAHA",
+   "county": "DOUGLAS",
+   "last_known_address": "6465 TEST ST",
+   "list_as_of": "2026-11-16",
+   "name": "TESTOWNER 44C25E",
+   "state": "NE",
+   "tax_category": "Ind. Income Tax",
+   "zip": "68107"
+  },
+  {
+   "balance": "$31,613.21",
+   "city": "OMAHA",
+   "county": "DOUGLAS",
+   "last_known_address": "7018 TEST ST",
+   "list_as_of": "2026-11-16",
+   "name": "TESTOWNER D469CC",
+   "state": "NE",
+   "tax_category": "Ind. Income Tax",
+   "zip": "68127"
+  },
+  {
+   "balance": "$35,106.63",
+   "city": "OMAHA",
+   "county": "DOUGLAS",
+   "last_known_address": "4844 TEST ST",
+   "list_as_of": "2026-11-16",
+   "name": "TESTOWNER 207B2C",
+   "state": "NE",
+   "tax_category": "Ind. Income Tax",
+   "zip": "68111"
+  },
+  {
+   "balance": "$22,225.84",
+   "city": "OMAHA",
+   "county": "DOUGLAS",
+   "last_known_address": "1091 TEST ST",
+   "list_as_of": "2026-11-16",
+   "name": "TESTOWNER 05E6B5",
+   "state": "NE",
+   "tax_category": "Ind. Income Tax",
+   "zip": "68131"
+  },
+  {
+   "balance": "$24,172.04",
+   "city": "MILTON",
+   "county": "OUT OF STATE",
+   "last_known_address": "6435 TEST ST",
+   "list_as_of": "2026-11-16",
+   "name": "TESTOWNER EA1EB5",
+   "state": "FL",
+   "tax_category": "Ind. Income Tax",
+   "zip": "32570"
+  },
+  {
+   "balance": "$21,167.71",
+   "city": "LIVINGSTON",
+   "county": "OUT OF STATE",
+   "last_known_address": "6372 TEST ST",
+   "list_as_of": "2026-11-16",
+   "name": "TESTOWNER EC01AA",
+   "state": "TX",
+   "tax_category": "Ind. Income Tax",
+   "zip": "77399"
+  },
+  {
+   "balance": "$20,300.81",
+   "city": "MINDEN",
+   "county": "KEARNEY",
+   "last_known_address": "7612 TEST ST",
+   "list_as_of": "2026-11-16",
+   "name": "TESTOWNER B1101F",
+   "state": "NE",
+   "tax_category": "Ind. Income Tax",
+   "zip": "68959"
+  },
+  {
+   "balance": "$98,201.69",
+   "city": "OMAHA",
+   "county": "DOUGLAS",
+   "last_known_address": "3982 TEST ST",
+   "list_as_of": "2026-11-16",
+   "name": "TESTOWNER CFA711",
+   "state": "NE",
+   "tax_category": "Ind. Income Tax",
+   "zip": "68117"
+  },
+  {
+   "balance": "$64,627.78",
+   "city": "OMAHA",
+   "county": "DOUGLAS",
+   "last_known_address": "3703 TEST ST",
+   "list_as_of": "2026-11-16",
+   "name": "TESTOWNER 0DF562",
+   "state": "NE",
+   "tax_category": "Ind. Income Tax",
+   "zip": "68116"
+  },
+  {
+   "balance": "$87,384.86",
+   "city": "ORCHARD",
+   "county": "ANTELOPE",
+   "last_known_address": "1899 TEST ST",
+   "list_as_of": "2026-11-16",
+   "name": "TESTOWNER 611C0D",
+   "state": "NE",
+   "tax_category": "Ind. Income Tax",
+   "zip": "68764"
+  },
+  {
+   "balance": "$54,355.11",
+   "city": "RANCHO CORDOVA",
+   "county": "DOUGLAS",
+   "last_known_address": "1667 TEST ST",
+   "list_as_of": "2026-11-16",
+   "name": "TESTOWNER 75B1AA",
+   "state": "CA",
+   "tax_category": "Ind. Income Tax",
+   "zip": "95670"
+  },
+  {
+   "balance": "$68,317.59",
+   "city": "OMAHA",
+   "county": "DOUGLAS",
+   "last_known_address": "8790 TEST ST",
+   "list_as_of": "2026-11-16",
+   "name": "TESTOWNER F0DE54",
+   "state": "NE",
+   "tax_category": "Sales Tax; Withholding Tax",
+   "zip": "68134"
+  },
+  {
+   "balance": "$20,921.89",
+   "city": "ALSIP",
+   "county": "LANCASTER",
+   "last_known_address": "4605 TEST ST",
+   "list_as_of": "2026-11-16",
+   "name": "TESTOWNER 81E01B CORP",
+   "state": "IL",
+   "tax_category": "Sales Tax",
+   "zip": "60803"
+  },
+  {
+   "balance": "$31,694.97",
+   "city": "LINCOLN",
+   "county": "LANCASTER",
+   "last_known_address": "4777 TEST ST",
+   "list_as_of": "2026-11-16",
+   "name": "TESTOWNER 85F751",
+   "state": "NE",
+   "tax_category": "Ind. Income Tax",
+   "zip": "68506"
+  },
+  {
+   "balance": "$45,140.43",
+   "city": "OMAHA",
+   "county": "DOUGLAS",
+   "last_known_address": "5404 TEST ST",
+   "list_as_of": "2026-11-16",
+   "name": "TESTOWNER D1A09A",
+   "state": "NE",
+   "tax_category": "Ind. Income Tax",
+   "zip": "68122"
+  },
+  {
+   "balance": "$22,478.83",
+   "city": "OMAHA",
+   "county": "DOUGLAS",
+   "last_known_address": "5997 TEST ST",
+   "list_as_of": "2026-11-16",
+   "name": "TESTOWNER 75303B",
+   "state": "NE",
+   "tax_category": "Ind. Income Tax",
+   "zip": "68135"
+  },
+  {
+   "balance": "$29,441.02",
+   "city": "OMAHA",
+   "county": "DOUGLAS",
+   "last_known_address": "4148 TEST ST",
+   "list_as_of": "2026-11-16",
+   "name": "TESTOWNER 28EC3F LLC",
+   "state": "NE",
+   "tax_category": "Unemployment Insurance Combined Tax",
+   "zip": "68116"
+  },
+  {
+   "balance": "$48,295.40",
+   "city": "FREMONT",
+   "county": "DODGE",
+   "last_known_address": "7130 TEST ST",
+   "list_as_of": "2026-11-16",
+   "name": "TESTOWNER 7F6C7B",
+   "state": "NE",
+   "tax_category": "Ind. Income Tax",
+   "zip": "68025"
+  }
+ ],
+ "url": "https://revenue.nebraska.gov/about/nebraska-delinquent-taxpayer-list/nebraska-delinquent-taxpayers-sorted-name"
+}

@@ -1,0 +1,33 @@
+source_id: la.nola.code_hearing_judgments
+state: LA
+county_fips: "22071"   # Orleans Parish (the City of New Orleans)
+# City of New Orleans code enforcement "Active Pipeline": cases found Guilty at an
+# administrative hearing (property maintenance, public nuisance, blight) with fines and fees
+# still unpaid. Keyed to the parcel (GeoPIN = the Assessor PARCELID in la.orleans.parcels);
+# no owner name is published, so the lien is owed by the parcel's owner. Fines assessed at
+# an adjudication hearing are collectable by lien and sheriff's sale (La. R.S. 13:2575).
+# Replaces la.nola.code_judgments, whose 'name' field turned out to be the city inspector.
+# TODO(Brandon): confirm unpaid adjudication fines are recorded liens / judgments.
+portal: https://data.nola.gov
+dataset: 8pqz-ftzc
+where: "unpaidfees > 0 AND starts_with(prevhearingresult, 'Guilty')"
+order_by: [caseno, ":id"]
+select: [caseno, caseid, location, geopin, zipcode, stage, casefiled, prevhearingdate,
+         prevhearingresult, unpaidfees]
+date_field: casefiled           # the hearing date is text in this dataset; casefiled is a date
+partition: year
+first_year: 2005
+uid: caseno
+doc_type: JUDGMENT_LIEN
+doc_type_raw: {field: prevhearingresult}
+amount: unpaidfees
+parties:
+  - role: creditor
+    const: City of New Orleans
+parcel: {kind: pin, field: geopin, county_fips: "22071"}
+extra_pii: [location]          # street lines are pseudonymized in fixtures
+terms:
+  url: https://data.nola.gov/d/8pqz-ftzc
+  summary: "data.nola.gov (City of New Orleans open data, Socrata): public, no login, updated daily."
+  checked_on: 2026-11-23
+  cost_model: free

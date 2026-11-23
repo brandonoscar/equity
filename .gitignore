@@ -21,3 +21,6 @@ build/
 # Private business configuration (target states, buy criteria). Never committed.
 config/private/*
 !config/private/README.md
+
+# DuckDB spill files from large match runs
+/.tmp/

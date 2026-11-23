@@ -1,0 +1,35 @@
+source_id: oh.hamilton.delinquent_taxes
+state: OH
+county_fips: "39061"   # Hamilton County
+# Hamilton County Auditor parcel layer (CAGIS open data): parcels with delinquent real estate
+# taxes (DELQ_TAXES > 0), owner, owner and mailing address. Delinquent taxes are a lien on
+# the parcel (ORC 5721.10); a senior lien, not a judgment. No delinquency date is published
+# (DLNQDT is empty), so the date is the day the list was read. Debt kind: tax_delinquency.
+api: arcgis
+layer_url: https://services.arcgis.com/JyZag7oO4NteHGiq/arcgis/rest/services/Open_Data_Feature_Collection/FeatureServer/0
+where: "DELQ_TAXES > 0"
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, PARCELID, AUDPCLID, OWNNM1, OWNNM2, MLNM1, MLADR1, MLADR2, OWNAD1,
+         OWNADCITY, OWNADSTATE, OWNADZIP, ADDRNO, ADDRST, ADDRSF, DELQ_TAXES, FORECL_FLAG]
+listed_on: listed_on
+date_field: listed_on
+uid: PARCELID
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Hamilton County delinquent real estate tax
+amount: DELQ_TAXES
+parties:
+  - role: debtor
+    name: OWNNM1
+    address: {line1: OWNAD1, city: OWNADCITY, state: OWNADSTATE, zip: OWNADZIP}
+  - role: debtor
+    name: OWNNM2
+  - role: creditor
+    const: Hamilton County Treasurer
+parcel: {kind: pin, field: PARCELID, county_fips: "39061"}
+extra_pii: [MLNM1, MLADR1, MLADR2, ADDRNO, ADDRST]
+terms:
+  url: https://services.arcgis.com/JyZag7oO4NteHGiq/arcgis/rest/services/Open_Data_Feature_Collection/FeatureServer/0
+  summary: "Hamilton County / CAGIS public ArcGIS Online parcel layer, free, no login. No licenseInfo on the layer."
+  checked_on: 2026-11-23
+  cost_model: free

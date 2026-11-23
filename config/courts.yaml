@@ -3,7 +3,10 @@
 # Bankruptcy court ids end in "b". Order: the buyer's enforcement states first, then pilot.
 schema_version: 1
 # Courts with a recorded fixture and a reachable host. Others are planned.
-enabled: [flmb, flsb, flnb, nysb, paeb, ohnb, njb, ganb, txnb]  # nyeb, txsb: feed not RSS when checked 2026-11-16
+# Checked 2026-11-23: all enabled feeds answer; flmb and njb are partial feeds (petitions,
+# orders, motions), the rest list all entries. wvnd (us.wvnd.rss, registered separately)
+# returned HTTP 500 that day; nyeb, nyed, nceb, miwb, gand, mdd, pamd serve an empty feed.
+enabled: [flmb, flsb, flnb, nysb, paeb, ohnb, njb, ganb, txnb, ohsb, pawb, lamb, lawb]  # pamb: robots.txt disallows the feed
 courts:
   FL: [flnd, flmd, flsd, flnb, flmb, flsb]
   OH: [ohnd, ohsd, ohnb, ohsb]

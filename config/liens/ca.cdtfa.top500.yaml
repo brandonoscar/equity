@@ -1,0 +1,33 @@
+source_id: ca.cdtfa.top500
+state: CA
+county_fips: "06"
+# California Department of Tax and Fee Administration, Top 500 sales and use tax delinquencies
+# over $100,000 (R&TC 7063), posted quarterly; accounts under a payment arrangement, bankruptcy,
+# litigation or appeal are left out. Read from the ArcGIS layer behind CDTFA's interactive map
+# (name, address, amount, due date). The map's point coordinates are not fetched.
+# TODO(Brandon): the list does not say a lien was recorded; confirm CDTFA records a notice of
+# state tax lien (Gov. Code 7171) for these accounts before treating them as liens on real
+# property. DueDate is the liability's due date, not a lien date.
+api: arcgis
+layer_url: https://services6.arcgis.com/snwvZ3EmaoXJiugR/arcgis/rest/services/Top500Deliquencies/FeatureServer/0
+order_by: [OID]
+select: [OID, PersonOrCorp, BusinessName, StreetAddress, CityOrTown, State, Zip, Amount, DueDate]
+date_field: DueDate
+partition: year
+first_year: 2000
+uid: [PersonOrCorp, StreetAddress, DueDate]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: California CDTFA sales and use tax delinquency
+amount: Amount
+parties:
+  - role: debtor
+    name: PersonOrCorp
+    address: {line1: StreetAddress, city: CityOrTown, state: State, zip: Zip}
+  - role: creditor
+    const: California Department of Tax and Fee Administration
+extra_pii: [BusinessName]
+terms:
+  url: https://cdtfa.ca.gov/taxes-and-fees/top500.htm
+  summary: "CDTFA publishes the Top 500 list on cdtfa.ca.gov with an interactive map whose public ArcGIS feature layer is queried here, free, no login. Required by R&TC 7063; no license or reuse terms stated."
+  checked_on: 2026-11-23
+  cost_model: free

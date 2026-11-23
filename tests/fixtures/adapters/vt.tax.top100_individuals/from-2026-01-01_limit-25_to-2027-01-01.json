@@ -1,0 +1,206 @@
+{
+ "dataset": "b5xi-3qaq",
+ "rows": [
+  {
+   ":created_at": "2026-11-16T23:21:39.624Z",
+   "balance": "510386.0200",
+   "city_town": "VERNON",
+   "state": "VT",
+   "street": "TESTOWNER 3716DE",
+   "taxpayer_name": "TESTOWNER A0899A"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:39.624Z",
+   "balance": "305852.0900",
+   "city_town": "MENDON",
+   "state": "VT",
+   "street": "TESTOWNER 9D78A3",
+   "taxpayer_name": "TESTOWNER B34191"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:39.624Z",
+   "balance": "168664.6000",
+   "city_town": "BRATTLEBORO",
+   "state": "VT",
+   "street": "TESTOWNER 2B61F6",
+   "taxpayer_name": "TESTOWNER 5FF694"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:39.624Z",
+   "balance": "150847.6300",
+   "city_town": "WILKES BARRE",
+   "state": "PA",
+   "street": "TESTOWNER 8D218D",
+   "taxpayer_name": "TESTOWNER 98AA27"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:39.624Z",
+   "balance": "131122.1300",
+   "city_town": "MIDDLEBURY",
+   "state": "VT",
+   "street": "TESTOWNER 823083",
+   "taxpayer_name": "TESTOWNER 814D61"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:39.624Z",
+   "balance": "126853.5900",
+   "city_town": "EAST BURKE",
+   "state": "VT",
+   "street": "TESTOWNER B97591",
+   "taxpayer_name": "TESTOWNER F65539"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:39.624Z",
+   "balance": "123777.4600",
+   "city_town": "RUTLAND",
+   "state": "VT",
+   "street": "TESTOWNER D859CD",
+   "taxpayer_name": "TESTOWNER DD4903"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:39.624Z",
+   "balance": "104596.8900",
+   "city_town": "WEST RUTLAND",
+   "state": "VT",
+   "street": "TESTOWNER 164021",
+   "taxpayer_name": "TESTOWNER 20F0E2"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:39.624Z",
+   "balance": "102786.8700",
+   "city_town": "NORWICH",
+   "state": "VT",
+   "street": "TESTOWNER 8D96D7",
+   "taxpayer_name": "TESTOWNER 44942F"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:39.624Z",
+   "balance": "94668.1700",
+   "city_town": "MANCHESTER CENTER",
+   "state": "VT",
+   "street": "TESTOWNER 3B79B0",
+   "taxpayer_name": "TESTOWNER 8B2371"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:39.624Z",
+   "balance": "93544.3500",
+   "city_town": "FORT PLAIN",
+   "state": "NY",
+   "street": "TESTOWNER B96EE6",
+   "taxpayer_name": "TESTOWNER FE1DE8"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:39.624Z",
+   "balance": "91915.4700",
+   "city_town": "EAST BARRE",
+   "state": "VT",
+   "street": "TESTOWNER A40CEC",
+   "taxpayer_name": "TESTOWNER 829185"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:39.624Z",
+   "balance": "89809.4100",
+   "city_town": "NEW YORK",
+   "state": "NY",
+   "street": "TESTOWNER 1DC076",
+   "taxpayer_name": "TESTOWNER C476D2"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:39.624Z",
+   "balance": "89580.2400",
+   "city_town": "JAMAICA",
+   "state": "VT",
+   "street": "TESTOWNER C5CEF1",
+   "taxpayer_name": "TESTOWNER 7333FE"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:39.624Z",
+   "balance": "88128.3000",
+   "city_town": "JACKSONVILLE",
+   "state": "VT",
+   "street": "TESTOWNER CAB004",
+   "taxpayer_name": "TESTOWNER 33016E"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:39.624Z",
+   "balance": "86983.8300",
+   "city_town": "SOUTH HERO",
+   "state": "VT",
+   "street": "TESTOWNER 378EF1",
+   "taxpayer_name": "TESTOWNER E77DA3"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:39.624Z",
+   "balance": "80767.4300",
+   "city_town": "COLCHESTER",
+   "state": "VT",
+   "street": "TESTOWNER E27DF7",
+   "taxpayer_name": "TESTOWNER C4B259"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:39.624Z",
+   "balance": "80601.5500",
+   "city_town": "BRATTLEBORO",
+   "state": "VT",
+   "street": "TESTOWNER 6058FB",
+   "taxpayer_name": "TESTOWNER 7AF908"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:39.624Z",
+   "balance": "78982.8300",
+   "city_town": "ESSEX",
+   "state": "VT",
+   "street": "TESTOWNER 38BDDD",
+   "taxpayer_name": "TESTOWNER C30577"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:39.624Z",
+   "balance": "77552.4300",
+   "city_town": "BELLOWS FALLS",
+   "state": "VT",
+   "street": "TESTOWNER 286868",
+   "taxpayer_name": "TESTOWNER 837749"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:39.624Z",
+   "balance": "75698.3300",
+   "city_town": "SAINT ALBANS",
+   "state": "VT",
+   "street": "TESTOWNER FF7127",
+   "taxpayer_name": "TESTOWNER 03EE30"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:39.624Z",
+   "balance": "72302.9000",
+   "city_town": "NORWICH",
+   "state": "VT",
+   "street": "TESTOWNER ED6544",
+   "taxpayer_name": "TESTOWNER B5EABD"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:39.624Z",
+   "balance": "66673.0500",
+   "city_town": "MARLBOROUGH",
+   "state": "NH",
+   "street": "TESTOWNER 374098",
+   "taxpayer_name": "TESTOWNER 7FC240"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:39.624Z",
+   "balance": "66060.8200",
+   "city_town": "SOUTH BURLINGTON",
+   "state": "VT",
+   "street": "TESTOWNER 3FC377",
+   "taxpayer_name": "TESTOWNER 1A024E"
+  },
+  {
+   ":created_at": "2026-11-16T23:21:39.624Z",
+   "balance": "65785.0900",
+   "city_town": "JEFFERSONVILLE",
+   "state": "VT",
+   "street": "TESTOWNER B9B93B",
+   "taxpayer_name": "TESTOWNER 1D60BD"
+  }
+ ],
+ "where": ":created_at >= '2026-01-01T00:00:00' AND :created_at < '2027-01-01T00:00:00'"
+}

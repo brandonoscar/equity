@@ -1,0 +1,1525 @@
+{
+ "file": "11-20-2026.csv",
+ "rows": [
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076270",
+   "DateRecorded": "11/06/26 10:44:57 AM",
+   "DocumentTypeDescription": "NOTICE OF COMMENCEMENT",
+   "Grantee": "",
+   "Grantor": "TESTOWNER 6385B2 LLC",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "480"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076270",
+   "DateRecorded": "11/06/26 10:44:57 AM",
+   "DocumentTypeDescription": "NOTICE OF COMMENCEMENT",
+   "Grantee": "",
+   "Grantor": "TESTOWNER 6385B2 LLC",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "480"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076271",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "COURT PAPER",
+   "Grantee": "TESTOWNER 80BDE6",
+   "Grantor": "TESTOWNER 79AD94",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "481"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076271",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "COURT PAPER",
+   "Grantee": "TESTOWNER 80BDE6",
+   "Grantor": "TESTOWNER 7CD2D7 CORP",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "481"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076272",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "COURT PAPER",
+   "Grantee": "TESTOWNER 315567",
+   "Grantor": "TESTOWNER E5070C NA",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "482"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076273",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "COURT PAPER",
+   "Grantee": "TESTOWNER FF7588",
+   "Grantor": "TESTOWNER 85C344 LLC",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "483"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076273",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "COURT PAPER",
+   "Grantee": "TESTOWNER FF7588",
+   "Grantor": "TESTOWNER 0E4745 NA",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "483"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076274",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "COURT PAPER",
+   "Grantee": "TESTOWNER B21A88",
+   "Grantor": "TESTOWNER 2F2235 LLC",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "484"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076274",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "COURT PAPER",
+   "Grantee": "TESTOWNER B21A88",
+   "Grantor": "TESTOWNER 5330BF LTD",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "484"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076275",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "JUDGMENT",
+   "Grantee": "TESTOWNER DACA9B",
+   "Grantor": "TESTOWNER 9443D2",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "485"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076276",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "JUDGMENT",
+   "Grantee": "TESTOWNER E71C98",
+   "Grantor": "TESTOWNER 2DE32F LLC",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "487"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076276",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "JUDGMENT",
+   "Grantee": "TESTOWNER E71C98",
+   "Grantor": "TESTOWNER 08BC9F",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "487"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076276",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "JUDGMENT",
+   "Grantee": "TESTOWNER E71C98",
+   "Grantor": "TESTOWNER 1B5CDF",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "487"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076276",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "JUDGMENT",
+   "Grantee": "TESTOWNER 7C9271",
+   "Grantor": "TESTOWNER 2DE32F LLC",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "487"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076276",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "JUDGMENT",
+   "Grantee": "TESTOWNER 7C9271",
+   "Grantor": "TESTOWNER 08BC9F",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "487"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076276",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "JUDGMENT",
+   "Grantee": "TESTOWNER 7C9271",
+   "Grantor": "TESTOWNER 1B5CDF",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "487"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076277",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "JUDGMENT",
+   "Grantee": "TESTOWNER 349BDE",
+   "Grantor": "TESTOWNER 2DE32F LLC",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "489"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076277",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "JUDGMENT",
+   "Grantee": "TESTOWNER 83ADDB",
+   "Grantor": "TESTOWNER 2DE32F LLC",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "489"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076278",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "ORDER",
+   "Grantee": "TESTOWNER 1828E1",
+   "Grantor": "TESTOWNER D2464D LLC",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "491"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076279",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "ORDER",
+   "Grantee": "TESTOWNER 44C8BA",
+   "Grantor": "TESTOWNER DBBE9F LLC",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "493"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076280",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "JUDGMENT",
+   "Grantee": "TESTOWNER A52FAE",
+   "Grantor": "TESTOWNER 4319D9",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "495"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076281",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "JUDGMENT",
+   "Grantee": "TESTOWNER F22789",
+   "Grantor": "TESTOWNER 2DE32F LLC",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "498"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076281",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "JUDGMENT",
+   "Grantee": "TESTOWNER 552214",
+   "Grantor": "TESTOWNER 2DE32F LLC",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "498"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076282",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "JUDGMENT",
+   "Grantee": "TESTOWNER 3369B3",
+   "Grantor": "TESTOWNER 0EF48A",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "500"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076283",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "ORDER",
+   "Grantee": "TESTOWNER DA73D7",
+   "Grantor": "TESTOWNER 0938B1 LLC",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "502"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076297",
+   "DateRecorded": "11/06/26 10:51:04 AM",
+   "DocumentTypeDescription": "MARRIAGE RECORD W/O COURSE",
+   "Grantee": "TESTOWNER 274F73",
+   "Grantor": "TESTOWNER B2B637",
+   "LegalDescription": "",
+   "PageNumber": "522"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076284",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "COURT PAPER",
+   "Grantee": "TESTOWNER 172213",
+   "Grantor": "TESTOWNER 71CAC5 NA",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "504"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076285",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "COURT PAPER",
+   "Grantee": "TESTOWNER 2AE09E",
+   "Grantor": "TESTOWNER 1761A7",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "505"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076286",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "JUDGMENT",
+   "Grantee": "TESTOWNER F9D467",
+   "Grantor": "TESTOWNER DDA85B",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "506"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076286",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "JUDGMENT",
+   "Grantee": "TESTOWNER F9D467",
+   "Grantor": "TESTOWNER 7155FF",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "506"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076287",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "JUDGMENT",
+   "Grantee": "TESTOWNER 4547DE",
+   "Grantor": "TESTOWNER 14D8ED",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "508"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076287",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "JUDGMENT",
+   "Grantee": "TESTOWNER 4547DE",
+   "Grantor": "TESTOWNER 23AF87",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "508"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076288",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "ORDER",
+   "Grantee": "TESTOWNER 648ED5",
+   "Grantor": "TESTOWNER E5070C NA",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "510"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076289",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "COURT PAPER",
+   "Grantee": "TESTOWNER 4A55C9",
+   "Grantor": "TESTOWNER 2DE32F LLC",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "512"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076289",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "COURT PAPER",
+   "Grantee": "TESTOWNER 4A55C9",
+   "Grantor": "TESTOWNER 08BC9F",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "512"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076289",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "COURT PAPER",
+   "Grantee": "TESTOWNER 62BA75",
+   "Grantor": "TESTOWNER 2DE32F LLC",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "512"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076289",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "COURT PAPER",
+   "Grantee": "TESTOWNER 62BA75",
+   "Grantor": "TESTOWNER 08BC9F",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "512"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076290",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "COURT PAPER",
+   "Grantee": "TESTOWNER 4232F0",
+   "Grantor": "TESTOWNER 607361 INC",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "513"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076290",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "COURT PAPER",
+   "Grantee": "TESTOWNER 4232F0",
+   "Grantor": "TESTOWNER 607361 INC",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "513"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076290",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "COURT PAPER",
+   "Grantee": "TESTOWNER 24A97A",
+   "Grantor": "TESTOWNER 607361 INC",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "513"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076290",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "COURT PAPER",
+   "Grantee": "TESTOWNER 24A97A",
+   "Grantor": "TESTOWNER 607361 INC",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "513"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076290",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "COURT PAPER",
+   "Grantee": "TESTOWNER 3E6E98",
+   "Grantor": "TESTOWNER 607361 INC",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "513"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076290",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "COURT PAPER",
+   "Grantee": "TESTOWNER 3E6E98",
+   "Grantor": "TESTOWNER 607361 INC",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "513"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076291",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "COURT PAPER",
+   "Grantee": "TESTOWNER B8C610",
+   "Grantor": "TESTOWNER 5E62FC",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "515"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076291",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "COURT PAPER",
+   "Grantee": "TESTOWNER B8C610",
+   "Grantor": "TESTOWNER D1EB4E LP",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "515"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076292",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "COURT PAPER",
+   "Grantee": "TESTOWNER B8F178",
+   "Grantor": "TESTOWNER 3097E4 INC",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "516"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076292",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "COURT PAPER",
+   "Grantee": "TESTOWNER B8F178",
+   "Grantor": "TESTOWNER 3097E4 INC",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "516"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076292",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "COURT PAPER",
+   "Grantee": "TESTOWNER 70E1AD",
+   "Grantor": "TESTOWNER 3097E4 INC",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "516"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076292",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "COURT PAPER",
+   "Grantee": "TESTOWNER 70E1AD",
+   "Grantor": "TESTOWNER 3097E4 INC",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "516"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076292",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "COURT PAPER",
+   "Grantee": "TESTOWNER 3E6E98",
+   "Grantor": "TESTOWNER 3097E4 INC",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "516"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076292",
+   "DateRecorded": "11/06/26 10:45:15 AM",
+   "DocumentTypeDescription": "COURT PAPER",
+   "Grantee": "TESTOWNER 3E6E98",
+   "Grantor": "TESTOWNER 3097E4 INC",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "516"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076293",
+   "DateRecorded": "11/06/26 10:45:16 AM",
+   "DocumentTypeDescription": "COURT PAPER",
+   "Grantee": "TESTOWNER DE429F",
+   "Grantor": "TESTOWNER 0938B1 LLC",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "518"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076294",
+   "DateRecorded": "11/06/26 10:45:16 AM",
+   "DocumentTypeDescription": "COURT PAPER",
+   "Grantee": "TESTOWNER 5ACD06",
+   "Grantor": "TESTOWNER EA3E8C LP",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "519"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076294",
+   "DateRecorded": "11/06/26 10:45:16 AM",
+   "DocumentTypeDescription": "COURT PAPER",
+   "Grantee": "TESTOWNER 573015",
+   "Grantor": "TESTOWNER EA3E8C LP",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "519"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076295",
+   "DateRecorded": "11/06/26 10:45:16 AM",
+   "DocumentTypeDescription": "COURT PAPER",
+   "Grantee": "TESTOWNER D5CCC1",
+   "Grantor": "TESTOWNER 7CD2D7 CORP",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "520"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076296",
+   "DateRecorded": "11/06/26 10:48:34 AM",
+   "DocumentTypeDescription": "DEATH CERTIFICATE",
+   "Grantee": "",
+   "Grantor": "TESTOWNER E8D706",
+   "LegalDescription": "",
+   "PageNumber": "521"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076298",
+   "DateRecorded": "11/06/26 10:59:56 AM",
+   "DocumentTypeDescription": "SATISFACTION",
+   "Grantee": "TESTOWNER 3E3175",
+   "Grantor": "TESTOWNER 193C8E",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "523"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076298",
+   "DateRecorded": "11/06/26 10:59:56 AM",
+   "DocumentTypeDescription": "SATISFACTION",
+   "Grantee": "TESTOWNER 3E3175",
+   "Grantor": "TESTOWNER 193C8E",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "523"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076298",
+   "DateRecorded": "11/06/26 10:59:56 AM",
+   "DocumentTypeDescription": "SATISFACTION",
+   "Grantee": "TESTOWNER 028819",
+   "Grantor": "TESTOWNER 193C8E",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "523"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076298",
+   "DateRecorded": "11/06/26 10:59:56 AM",
+   "DocumentTypeDescription": "SATISFACTION",
+   "Grantee": "TESTOWNER 028819",
+   "Grantor": "TESTOWNER 193C8E",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "523"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 6BC544",
+   "Grantor": "TESTOWNER 67CBCB",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 6BC544",
+   "Grantor": "TESTOWNER A2F202",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 6BC544",
+   "Grantor": "TESTOWNER 67CBCB",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 6BC544",
+   "Grantor": "TESTOWNER A2F202",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 2E195B",
+   "Grantor": "TESTOWNER 67CBCB",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 2E195B",
+   "Grantor": "TESTOWNER A2F202",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 2E195B",
+   "Grantor": "TESTOWNER 67CBCB",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 2E195B",
+   "Grantor": "TESTOWNER A2F202",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 6B7B26",
+   "Grantor": "TESTOWNER 67CBCB",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 6B7B26",
+   "Grantor": "TESTOWNER A2F202",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 6B7B26",
+   "Grantor": "TESTOWNER 67CBCB",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 6B7B26",
+   "Grantor": "TESTOWNER A2F202",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 6E4DC8",
+   "Grantor": "TESTOWNER 67CBCB",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 6E4DC8",
+   "Grantor": "TESTOWNER A2F202",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 6E4DC8",
+   "Grantor": "TESTOWNER 67CBCB",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 6E4DC8",
+   "Grantor": "TESTOWNER A2F202",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER C25A69",
+   "Grantor": "TESTOWNER 67CBCB",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER C25A69",
+   "Grantor": "TESTOWNER A2F202",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER C25A69",
+   "Grantor": "TESTOWNER 67CBCB",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER C25A69",
+   "Grantor": "TESTOWNER A2F202",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 81A65A",
+   "Grantor": "TESTOWNER 67CBCB",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 81A65A",
+   "Grantor": "TESTOWNER A2F202",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 81A65A",
+   "Grantor": "TESTOWNER 67CBCB",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 81A65A",
+   "Grantor": "TESTOWNER A2F202",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 4B37AF",
+   "Grantor": "TESTOWNER 67CBCB",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 4B37AF",
+   "Grantor": "TESTOWNER A2F202",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 4B37AF",
+   "Grantor": "TESTOWNER 67CBCB",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 4B37AF",
+   "Grantor": "TESTOWNER A2F202",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 4DCF32",
+   "Grantor": "TESTOWNER 67CBCB",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 4DCF32",
+   "Grantor": "TESTOWNER A2F202",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 4DCF32",
+   "Grantor": "TESTOWNER 67CBCB",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 4DCF32",
+   "Grantor": "TESTOWNER A2F202",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 985742",
+   "Grantor": "TESTOWNER 67CBCB",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 985742",
+   "Grantor": "TESTOWNER A2F202",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 985742",
+   "Grantor": "TESTOWNER 67CBCB",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 985742",
+   "Grantor": "TESTOWNER A2F202",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 883BD6",
+   "Grantor": "TESTOWNER 67CBCB",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 883BD6",
+   "Grantor": "TESTOWNER A2F202",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 883BD6",
+   "Grantor": "TESTOWNER 67CBCB",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 883BD6",
+   "Grantor": "TESTOWNER A2F202",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 3865ED",
+   "Grantor": "TESTOWNER 67CBCB",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 3865ED",
+   "Grantor": "TESTOWNER A2F202",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 3865ED",
+   "Grantor": "TESTOWNER 67CBCB",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 3865ED",
+   "Grantor": "TESTOWNER A2F202",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER C64F9A",
+   "Grantor": "TESTOWNER 67CBCB",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER C64F9A",
+   "Grantor": "TESTOWNER A2F202",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER C64F9A",
+   "Grantor": "TESTOWNER 67CBCB",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER C64F9A",
+   "Grantor": "TESTOWNER A2F202",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 3333E9",
+   "Grantor": "TESTOWNER 67CBCB",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 3333E9",
+   "Grantor": "TESTOWNER A2F202",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 3333E9",
+   "Grantor": "TESTOWNER 67CBCB",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 3333E9",
+   "Grantor": "TESTOWNER A2F202",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 581033",
+   "Grantor": "TESTOWNER 67CBCB",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 581033",
+   "Grantor": "TESTOWNER A2F202",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 581033",
+   "Grantor": "TESTOWNER 67CBCB",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 581033",
+   "Grantor": "TESTOWNER A2F202",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER BA970D",
+   "Grantor": "TESTOWNER 67CBCB",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER BA970D",
+   "Grantor": "TESTOWNER A2F202",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER BA970D",
+   "Grantor": "TESTOWNER 67CBCB",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER BA970D",
+   "Grantor": "TESTOWNER A2F202",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 97DCD1",
+   "Grantor": "TESTOWNER 67CBCB",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 97DCD1",
+   "Grantor": "TESTOWNER A2F202",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 97DCD1",
+   "Grantor": "TESTOWNER 67CBCB",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076299",
+   "DateRecorded": "11/06/26 11:00:28 AM",
+   "DocumentTypeDescription": "LIS PENDENS",
+   "Grantee": "TESTOWNER 97DCD1",
+   "Grantor": "TESTOWNER A2F202",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "524"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076307",
+   "DateRecorded": "11/06/26 11:11:04 AM",
+   "DocumentTypeDescription": "MARRIAGE RECORD W/O COURSE",
+   "Grantee": "TESTOWNER F5D1DC",
+   "Grantor": "TESTOWNER BDA3A3",
+   "LegalDescription": "",
+   "PageNumber": "535"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076330",
+   "DateRecorded": "11/06/26 11:40:01 AM",
+   "DocumentTypeDescription": "MARRIAGE RECORD W/O COURSE",
+   "Grantee": "TESTOWNER ABD6EB",
+   "Grantor": "TESTOWNER CAE36F",
+   "LegalDescription": "",
+   "PageNumber": "603"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076329",
+   "DateRecorded": "11/06/26 11:38:37 AM",
+   "DocumentTypeDescription": "NOTICE OF COMMENCEMENT",
+   "Grantee": "",
+   "Grantor": "TESTOWNER 553434 LLC",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "602"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076329",
+   "DateRecorded": "11/06/26 11:38:37 AM",
+   "DocumentTypeDescription": "NOTICE OF COMMENCEMENT",
+   "Grantee": "",
+   "Grantor": "TESTOWNER 553434 LLC",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "602"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076303",
+   "DateRecorded": "11/06/26 11:06:06 AM",
+   "DocumentTypeDescription": "DEED",
+   "Grantee": "TESTOWNER 540DFA",
+   "Grantor": "TESTOWNER E6DE05",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "529"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076303",
+   "DateRecorded": "11/06/26 11:06:06 AM",
+   "DocumentTypeDescription": "DEED",
+   "Grantee": "TESTOWNER 540DFA",
+   "Grantor": "TESTOWNER E6DE05",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "529"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076303",
+   "DateRecorded": "11/06/26 11:06:06 AM",
+   "DocumentTypeDescription": "DEED",
+   "Grantee": "TESTOWNER 1E846A",
+   "Grantor": "TESTOWNER E6DE05",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "529"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076303",
+   "DateRecorded": "11/06/26 11:06:06 AM",
+   "DocumentTypeDescription": "DEED",
+   "Grantee": "TESTOWNER 1E846A",
+   "Grantor": "TESTOWNER E6DE05",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "529"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076304",
+   "DateRecorded": "11/06/26 11:06:38 AM",
+   "DocumentTypeDescription": "NOTICE OF COMMENCEMENT",
+   "Grantee": "",
+   "Grantor": "TESTOWNER 427489",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "531"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076304",
+   "DateRecorded": "11/06/26 11:06:38 AM",
+   "DocumentTypeDescription": "NOTICE OF COMMENCEMENT",
+   "Grantee": "",
+   "Grantor": "TESTOWNER 0E474E",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "531"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076304",
+   "DateRecorded": "11/06/26 11:06:38 AM",
+   "DocumentTypeDescription": "NOTICE OF COMMENCEMENT",
+   "Grantee": "",
+   "Grantor": "TESTOWNER 427489",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "531"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076304",
+   "DateRecorded": "11/06/26 11:06:38 AM",
+   "DocumentTypeDescription": "NOTICE OF COMMENCEMENT",
+   "Grantee": "",
+   "Grantor": "TESTOWNER 0E474E",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "531"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076305",
+   "DateRecorded": "11/06/26 11:09:22 AM",
+   "DocumentTypeDescription": "NOTICE OF COMMENCEMENT",
+   "Grantee": "",
+   "Grantor": "TESTOWNER CB5909",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "532"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076305",
+   "DateRecorded": "11/06/26 11:09:22 AM",
+   "DocumentTypeDescription": "NOTICE OF COMMENCEMENT",
+   "Grantee": "",
+   "Grantor": "TESTOWNER 7FE1D1",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "532"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076305",
+   "DateRecorded": "11/06/26 11:09:22 AM",
+   "DocumentTypeDescription": "NOTICE OF COMMENCEMENT",
+   "Grantee": "",
+   "Grantor": "TESTOWNER CB5909",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "532"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076305",
+   "DateRecorded": "11/06/26 11:09:22 AM",
+   "DocumentTypeDescription": "NOTICE OF COMMENCEMENT",
+   "Grantee": "",
+   "Grantor": "TESTOWNER 7FE1D1",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "532"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076306",
+   "DateRecorded": "11/06/26 11:10:32 AM",
+   "DocumentTypeDescription": "DEED",
+   "Grantee": "TESTOWNER 60DEDA LLC",
+   "Grantor": "TESTOWNER 40C71D",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "533"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076306",
+   "DateRecorded": "11/06/26 11:10:32 AM",
+   "DocumentTypeDescription": "DEED",
+   "Grantee": "TESTOWNER 60DEDA LLC",
+   "Grantor": "TESTOWNER 38EE80",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "533"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076306",
+   "DateRecorded": "11/06/26 11:10:32 AM",
+   "DocumentTypeDescription": "DEED",
+   "Grantee": "TESTOWNER 60DEDA LLC",
+   "Grantor": "TESTOWNER 40C71D",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "533"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076306",
+   "DateRecorded": "11/06/26 11:10:32 AM",
+   "DocumentTypeDescription": "DEED",
+   "Grantee": "TESTOWNER 60DEDA LLC",
+   "Grantor": "TESTOWNER 38EE80",
+   "LegalDescription": "L1 Blk1 Un1 SubTEST SUBDIVISION S T R",
+   "PageNumber": "533"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076308",
+   "DateRecorded": "11/06/26 11:13:05 AM",
+   "DocumentTypeDescription": "NOTICE OF COMMENCEMENT",
+   "Grantee": "",
+   "Grantor": "TESTOWNER 3EDA87 INC",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "536"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076309",
+   "DateRecorded": "11/06/26 11:14:27 AM",
+   "DocumentTypeDescription": "RELEASE",
+   "Grantee": "TESTOWNER 10B393",
+   "Grantor": "TESTOWNER FF63B4",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "537"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076309",
+   "DateRecorded": "11/06/26 11:14:27 AM",
+   "DocumentTypeDescription": "RELEASE",
+   "Grantee": "TESTOWNER 4657E0",
+   "Grantor": "TESTOWNER FF63B4",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "537"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076309",
+   "DateRecorded": "11/06/26 11:14:27 AM",
+   "DocumentTypeDescription": "RELEASE",
+   "Grantee": "TESTOWNER 1108E7",
+   "Grantor": "TESTOWNER FF63B4",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "537"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076309",
+   "DateRecorded": "11/06/26 11:14:27 AM",
+   "DocumentTypeDescription": "RELEASE",
+   "Grantee": "TESTOWNER C14EBF",
+   "Grantor": "TESTOWNER FF63B4",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "537"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076310",
+   "DateRecorded": "11/06/26 11:15:14 AM",
+   "DocumentTypeDescription": "RELEASE",
+   "Grantee": "TESTOWNER AF8E38",
+   "Grantor": "TESTOWNER FF63B4",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "538"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076310",
+   "DateRecorded": "11/06/26 11:15:14 AM",
+   "DocumentTypeDescription": "RELEASE",
+   "Grantee": "TESTOWNER 5D8D13",
+   "Grantor": "TESTOWNER FF63B4",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "538"
+  },
+  {
+   "Book": "4783",
+   "ClerkFileNumber": "2026076310",
+   "DateRecorded": "11/06/26 11:15:14 AM",
+   "DocumentTypeDescription": "RELEASE",
+   "Grantee": "TESTOWNER F82092",
+   "Grantor": "TESTOWNER FF63B4",
+   "LegalDescription": "L Blk Un Sub S T R",
+   "PageNumber": "538"
+  }
+ ]
+}

@@ -1,0 +1,39 @@
+source_id: pa.washington.sheriff_sales
+state: PA
+county_fips: "42125"
+# Washington County (PA) Sheriff's Office sale list: the judgment being executed by sheriff's
+# sale, mostly mortgage foreclosures (in rem), with the docket, caption, judgment amount and
+# every parcel being sold. Loaded like Allegheny foreclosures (LIS_PENDENS), so the matcher
+# counts them as foreclosure activity, not as open money judgments against the debtor.
+api: arcgis
+layer_url: https://services2.arcgis.com/LgK9DpUhNjdU0HLy/arcgis/rest/services/SheriffsSaleData/FeatureServer/1
+order_by: [OBJECTID]
+select: [OBJECTID, docket, title, judgement, sale_date, stayed_status, activeStatus,
+         location_address, location_postal, parcels1, parcels2, parcels3, parcels4, parcels5,
+         parcels6, parcels7, parcels8, parcels9, parcels10, parcels11, parcels12, parcels13,
+         parcels14, parcels15]
+date_field: sale_date            # the sale date; the judgment date is not published
+partition: year
+first_year: 2015
+uid: docket
+doc_type: LIS_PENDENS
+doc_type_raw: Sheriff sale judgment
+amount: judgement
+caption_field: title
+parties:
+  - role: creditor
+    name: caption_plaintiff
+  - role: debtor
+    name: caption_defendant
+    address: {line1: location_address, city: location_postal, state_const: PA}   # the property
+parcel:
+  kind: pin                      # same PIN format as pa.washington.parcels
+  county_fips: "42125"
+  field: [parcels1, parcels2, parcels3, parcels4, parcels5, parcels6, parcels7, parcels8,
+          parcels9, parcels10, parcels11, parcels12, parcels13, parcels14, parcels15]
+extra_pii: [title]
+terms:
+  url: https://services2.arcgis.com/LgK9DpUhNjdU0HLy/arcgis/rest/services/SheriffsSaleData/FeatureServer/1
+  summary: "Washington County PA public ArcGIS Online layer 'Sheriff Sale Locations', free, no login. No licenseInfo on the layer; sheriff sale notices are public records."
+  checked_on: 2026-11-22
+  cost_model: free

@@ -20,6 +20,8 @@ USER_AGENT = "equity-records/0.1 (public records research; respects robots.txt)"
 
 # (url, headers, timeout) -> (status, body, content_type)
 Transport = Callable[[str, Mapping[str, str], float], tuple[int, bytes, str]]
+# (url, headers, form body, timeout) -> (status, body, content_type)
+PostTransport = Callable[[str, Mapping[str, str], bytes, float], tuple[int, bytes, str]]
 
 
 class AccessDenied(RuntimeError):
@@ -45,11 +47,43 @@ def decode_body(body: bytes, content_encoding: str | None) -> bytes:
 def urllib_transport(
     url: str, headers: Mapping[str, str], timeout: float
 ) -> tuple[int, bytes, str]:
+    return _urlopen(url, headers, None, timeout)
+
+
+def urllib_post_transport(
+    url: str, headers: Mapping[str, str], body: bytes, timeout: float
+) -> tuple[int, bytes, str]:
+    hdrs = {**headers, "Content-Type": "application/x-www-form-urlencoded"}
+    return _urlopen(url, hdrs, body, timeout)
+
+
+def drop_default_port(url: str) -> str:
+    """https://host:443/... -> https://host/... A presigned S3 redirect (Milwaukee open data)
+    names :443, but urllib then sends a Host header the signature does not cover."""
+    parts = urllib.parse.urlsplit(url)
+    if parts.scheme == "https" and parts.port == 443 and parts.hostname:
+        return urllib.parse.urlunsplit(parts._replace(netloc=parts.hostname))
+    return url
+
+
+class _Redirects(urllib.request.HTTPRedirectHandler):
+    def redirect_request(  # type: ignore[no-untyped-def]
+        self, req, fp, code, msg, headers, newurl
+    ):
+        return super().redirect_request(req, fp, code, msg, headers, drop_default_port(newurl))
+
+
+_OPENER = urllib.request.build_opener(_Redirects())
+
+
+def _urlopen(
+    url: str, headers: Mapping[str, str], data: bytes | None, timeout: float
+) -> tuple[int, bytes, str]:
     # gzip cuts transfer ~10-25x on JSON APIs (Socrata, ArcGIS) at no cost to the server.
     hdrs = {**headers, "Accept-Encoding": "gzip"}
-    req = urllib.request.Request(url, headers=hdrs)  # noqa: S310 - https URLs only
+    req = urllib.request.Request(url, data=data, headers=hdrs)  # noqa: S310 - https only
     try:
-        with urllib.request.urlopen(req, timeout=timeout) as resp:  # noqa: S310
+        with _OPENER.open(req, timeout=timeout) as resp:
             body = decode_body(resp.read(), resp.headers.get("Content-Encoding"))
             return int(resp.status), body, str(resp.headers.get("Content-Type", ""))
     except urllib.error.HTTPError as err:
@@ -57,7 +91,8 @@ def urllib_transport(
         return int(err.code), body, str(err.headers.get("Content-Type", ""))
 
 
-RETRY_STATUSES = frozenset({429, 500, 502, 503, 504})
+# 520-524: Cloudflare could not reach, or timed out waiting for, the origin server.
+RETRY_STATUSES = frozenset({429, 500, 502, 503, 504, 520, 521, 522, 523, 524})
 
 # Written permissions inside a robots.txt that let scripts use paths the file disallows for
 # crawlers. Honored only while the live robots.txt still contains the quoted sentence
@@ -88,6 +123,7 @@ class PoliteClient:
     timeout_s: float = 60.0
     user_agent: str = USER_AGENT
     transport: Transport = urllib_transport
+    post_transport: PostTransport = urllib_post_transport
     sleep: Callable[[float], None] = time.sleep
     monotonic: Callable[[], float] = time.monotonic
     now: Callable[[], datetime] = field(default=lambda: datetime.now(UTC))
@@ -139,6 +175,17 @@ class PoliteClient:
 
     def get(self, url: str, params: Mapping[str, str] | None = None) -> Response:
         full = url + ("?" + urllib.parse.urlencode(sorted(params.items())) if params else "")
+        return self._send(full, lambda hdrs: self.transport(full, hdrs, self.timeout_s))
+
+    def post_form(self, url: str, fields: Mapping[str, str]) -> Response:
+        """POST a form (e.g. an ASP.NET download button whose only interface is a postback),
+        under the same robots.txt, spacing and retry rules as get()."""
+        body = urllib.parse.urlencode(list(fields.items())).encode()
+        return self._send(url, lambda hdrs: self.post_transport(url, hdrs, body, self.timeout_s))
+
+    def _send(
+        self, full: str, call: Callable[[Mapping[str, str]], tuple[int, bytes, str]]
+    ) -> Response:
         robots = self._robots_for(full)
         if not robots.can_fetch(self.user_agent, full) and not self._script_permitted(full):
             raise AccessDenied(f"robots.txt disallows {full}")
@@ -150,9 +197,7 @@ class PoliteClient:
         while True:
             self._wait_turn(host, gap)
             try:
-                status, body, ctype = self.transport(
-                    full, {"User-Agent": self.user_agent}, self.timeout_s
-                )
+                status, body, ctype = call({"User-Agent": self.user_agent})
             # OSError covers resets, timeouts and RemoteDisconnected; HTTPException covers a
             # body cut off mid-transfer (IncompleteRead), which is not an OSError.
             except (OSError, http.client.HTTPException):

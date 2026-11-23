@@ -1,0 +1,142 @@
+# Federal Judicial Center Integrated Database (IDB), civil cases, taken straight from the FJC:
+# the "Civil Cases Cumulative File" tab-delimited text file (cases terminated SY 1988 through
+# the latest quarter, and cases pending). Read by src/equity/adapters/federal/fjc_idb_direct.py.
+#
+# The file is cv88on.zip (one member, cv88on.txt): 329,665,474 bytes zipped, 2,009,227,701
+# bytes of text, 10,960,173 records, Last-Modified 2026-08-26, "cases terminated in SY 1988
+# through June 30, 2026". FJC updates it quarterly. Tab-delimited, CRLF, a header line of the
+# codebook's short names (CIRCUIT, DISTRICT, OFFICE, DOCKET, FILEDATE, PLT, DEF, TERMDATE, NOJ,
+# AMTREC, JUDGMENT, ...), dates as MM/DD/YYYY, -8 for missing. 638 lines have 47 or 48 fields
+# instead of 46 (a tab inside a name) and are skipped.
+#
+# MANUAL source. fjc.gov/robots.txt (read 2026-11-23) says "Disallow: /research/idb/" and
+# "Disallow: /sites/default/files/idb", which is where the IDB files live, so the adapter never
+# fetches them. A person downloads the file in a browser from download_page (Civil Data ->
+# "Civil Cases Cumulative File" -> Text) and puts it at manual_path; the adapter reads it.
+# TODO(Brandon): the copy behind the 2026-11-23 lake build was fetched once with curl during
+# development, not by a person in a browser; replace it with a browser download (or ask
+# IDBonline@fjc.gov for permission to script the quarterly file) before the next refresh.
+#
+# The codebook is "Civil Codebook 1988 Forward 10252023.pdf" on download_page. Filters, amount
+# units and the 9999 floor are the same as the CourtListener source and are read from
+# config/courts_federal/us.fjc.idb.civil_judgments.yaml (for_plaintiff, money, amount_unit,
+# amount_floor_code): JUDGMENT 1, NOJ 1 or 2, AMTREC > 0, a TERMDATE that parses.
+# 430,832 records pass in the June 30, 2026 file (29,514 of them AMTREC 9999), terminated
+# 1984-2026; 3,391 to 3,864 a year in 2023-2025, which CourtListener's copy lacks.
+#
+# Dedupe with CourtListener (us.fjc.idb.civil_judgments): both sources are the same IDB, so a
+# record is identified by district + office + docket + filing date (dedupe_key). The FJC file
+# wins: the CourtListener adapter drops every kept row whose key is among this file's kept
+# rows. In the 2026-09-30 CourtListener snapshot that is 412,253 of 412,266 keys; 13 remain.
+source_id: us.fjc.idb.direct.civil_judgments
+download_page: https://www.fjc.gov/research/idb/civil-cases-filed-terminated-and-pending-sy-1988-present
+file_url: https://www.fjc.gov/sites/default/files/idb/textfiles/cv88on.zip
+manual_path: data/manual/us.fjc.idb.direct/cv88on.zip
+member: cv88on.txt
+# Lake partitions: one per year of TERMDATE. Earliest kept termination in the 2026-06-30 file:
+# 1984 (cases pending at the start of SY 1988).
+first_year: 1984
+# DISTRICT code (codebook "DISTRICT", Volume XI Appendix A) -> PACER court id, the same ids
+# CourtListener uses in district_id. Checked against CourtListener: the 412,253 shared keys
+# match under this table for every district.
+districts:
+  "00": med
+  "01": mad
+  "02": nhd
+  "03": rid
+  "04": prd
+  "05": ctd
+  "06": nynd
+  "07": nyed
+  "08": nysd
+  "09": nywd
+  "10": vtd
+  "11": ded
+  "12": njd
+  "13": paed
+  "14": pamd
+  "15": pawd
+  "16": mdd
+  "17": nced
+  "18": ncmd
+  "19": ncwd
+  "20": scd
+  "22": vaed
+  "23": vawd
+  "24": wvnd
+  "25": wvsd
+  "26": alnd
+  "27": almd
+  "28": alsd
+  "29": flnd
+  "3A": flmd
+  "3C": flsd
+  "3E": gand
+  "3G": gamd
+  "3J": gasd
+  "3L": laed
+  "3N": lamd
+  "36": lawd
+  "37": msnd
+  "38": mssd
+  "39": txnd
+  "40": txed
+  "41": txsd
+  "42": txwd
+  "43": kyed
+  "44": kywd
+  "45": mied
+  "46": miwd
+  "47": ohnd
+  "48": ohsd
+  "49": tned
+  "50": tnmd
+  "51": tnwd
+  "52": ilnd
+  "53": ilcd
+  "54": ilsd
+  "55": innd
+  "56": insd
+  "57": wied
+  "58": wiwd
+  "60": ared
+  "61": arwd
+  "62": iand
+  "63": iasd
+  "64": mnd
+  "65": moed
+  "66": mowd
+  "67": ned
+  "68": ndd
+  "69": sdd
+  "7-": akd
+  "70": azd
+  "71": cand
+  "72": caed
+  "73": cacd
+  "74": casd
+  "75": hid
+  "76": idd
+  "77": mtd
+  "78": nvd
+  "79": ord
+  "80": waed
+  "81": wawd
+  "82": cod
+  "83": ksd
+  "84": nmd
+  "85": oknd
+  "86": oked
+  "87": okwd
+  "88": utd
+  "89": wyd
+  "90": dcd
+  "91": vid
+  "93": gud
+  "94": nmid
+terms:
+  url: https://www.fjc.gov/research/idb
+  summary: "FJC Integrated Database, Civil Cases Cumulative File: compiled by the Federal Judicial Center (a US government agency) from case data the district courts report to the AO, published free with no login; a US government work in the public domain (17 U.S.C. 105). fjc.gov/robots.txt disallows /research/idb/ and /sites/default/files/idb (Crawl-delay 30), so the file is downloaded by hand and read locally. FJC notes AMTREC is not a mandatory field and 9999 may mean over $1 million or a filler."
+  checked_on: 2026-11-23
+  robots_checked_on: 2026-11-23
+  cost_model: free

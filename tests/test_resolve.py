@@ -390,6 +390,160 @@ def test_liens_without_a_named_debtor_are_owed_by_the_parcel_owner(tmp_path: Pat
     assert s == [("owner-of:pin1", 2, 500.0, 1, 80000.0, 1, "2022-03-01")]
 
 
+def test_people_merge_a_debtor_across_liens(lake: Path, tmp_path: Path) -> None:
+    """Two liens naming JOHN A SMITH at one address are one person, counted once per parcel."""
+    d = lake / "zz.debts"
+    _write(d / "party" / "1.parquet", [
+        {"party_id": "d6", "raw_name": "SMITH JOHN A", "party_kind": "person",
+         "org_name_norm": None, "address_id": "a1"}])  # fmt: skip
+    _write(d / "instrument_party" / "1.parquet", [
+        {"instrument_uid": "i6", "party_id": "d6", "role": "debtor"}])  # fmt: skip
+    _write(d / "instrument" / "1.parquet", [
+        {"instrument_uid": "i6", "source_id": "zz.other", "doc_type": "JUDGMENT_LIEN",
+         "recorded_on": "2025-02-01", "principal_amount": 50.0}])  # fmt: skip
+    out = tmp_path / "out"
+    result = run(lake, out, ["zz.debts"], ["zz.parcels"])
+    con = duckdb.connect()
+    rows = con.execute(
+        f"SELECT person_id, judgments_and_liens, open_count, open_amount, parcels, parcel_value,"
+        f" sources FROM '{out.as_posix()}/people.parquet' WHERE person_id IN ('d1', 'd6')"
+    ).fetchall()  # fmt: skip
+    assert rows == [("d1", 2, 2, 150.0, 1, 500000.0, ["zz.debts", "zz.other"])]
+    assert result["open_judgments_linked"] == 3  # i1, i6 (John Smith) and i5 (Pat Kim)
+    assert result["open_amount_linked_once"] == 650.0
+
+
+def test_court_judgments_match_businesses_by_county_for_review(tmp_path: Path) -> None:
+    lk = tmp_path / "lake"
+    c, o = lk / "zz.courts", lk / "zz.parcels"
+    _write(c / "party" / "0.parquet", [
+        {"party_id": "k1", "raw_name": "ACME HOLDINGS LLC", "party_kind": "org",
+         "org_name_norm": "ACME HOLDINGS", "address_id": None},
+        {"party_id": "k2", "raw_name": "STERLING", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": None}])  # fmt: skip
+    _write(c / "case_party" / "0.parquet", [
+        {"case_uid": "c1", "party_id": "k1", "role": "debtor"},
+        {"case_uid": "c1", "party_id": "k2", "role": "debtor"},
+        {"case_uid": "c2", "party_id": "k1", "role": "debtor"}])  # fmt: skip
+    _write(c / "judgment" / "0.parquet", [
+        {"judgment_uid": "j1", "case_uid": "c1", "source_id": "zz.courts",
+         "entered_on": "2020-01-01", "principal": 7000.0, "jurisdiction": "36061"},
+        {"judgment_uid": "j2", "case_uid": "c2", "source_id": "zz.courts",
+         "entered_on": "2020-01-01", "principal": 9.0, "jurisdiction": "06037"}])  # fmt: skip
+    _write(c / "judgment_event" / "0.parquet", [{"judgment_uid": "none", "event": "satisfied"}])
+    _write(o / "party" / "0.parquet", [
+        {"party_id": "o1", "raw_name": "ACME HOLDINGS INC", "party_kind": "org",
+         "org_name_norm": "ACME HOLDINGS", "address_id": None}])  # fmt: skip
+    _write(o / "owner_snapshot" / "0.parquet", [{"parcel_uid": "36061-1", "party_id": "o1"}])
+    _write(o / "parcel" / "0.parquet", [{"parcel_uid": "36061-1", "situs_address_id": None}])
+    out = tmp_path / "out"
+    result = run(lk, out, ["zz.none"], ["zz.parcels"], court_sources=["zz.courts"])
+    m = duckdb.connect().execute(
+        f"SELECT debtor_party_id, instrument_uid, rule_id, decision"
+        f" FROM '{out.as_posix()}/matches.parquet'").fetchall()  # fmt: skip
+    # Same business in the parcel's county: review. The LA judgment (other county) and the
+    # surname-only person are never matched.
+    assert m == [("k1", "j1", "org_name_county", "review")]
+    assert result["debtor_parties"] == 2
+
+
+def test_garnishment_writs_make_their_defendants_judgment_debtors(
+    lake: Path, tmp_path: Path
+) -> None:
+    w = lake / "zz.writs"
+    _write(w / "address" / "0.parquet", [_addr("wa1", "12 MAIN ST", "10001")])
+    _write(w / "party" / "0.parquet", [
+        {"party_id": "w1", "raw_name": "SMITH, JOHN A", "party_kind": "person",
+         "org_name_norm": None, "address_id": "wa1"},
+        {"party_id": "w2", "raw_name": "BANK NA", "party_kind": "org",
+         "org_name_norm": "BANK", "address_id": None}])  # fmt: skip
+    _write(w / "case_party" / "0.parquet", [
+        {"case_uid": "k1", "party_id": "w1", "role": "defendant"},
+        {"case_uid": "k1", "party_id": "w2", "role": "plaintiff"}])  # fmt: skip
+    _write(w / "docket_entry" / "0.parquet", [
+        {"case_uid": "k1", "entry_date": "2026-03-02", "source_id": "zz.writs",
+         "jurisdiction": "99001"},
+        {"case_uid": "k1", "entry_date": "2026-02-01", "source_id": "zz.writs",
+         "jurisdiction": "99001"}])  # fmt: skip
+    out = tmp_path / "out"
+    run(lake, out, ["zz.none"], ["zz.parcels"], writ_sources=["zz.writs"])
+    m = duckdb.connect().execute(
+        f"SELECT debtor_party_id, instrument_uid, owner_party_id, rule_id"
+        f" FROM '{out.as_posix()}/matches.parquet'").fetchall()  # fmt: skip
+    assert m == [("w1", "writ:k1", "o1", "person_name_address")]  # the plaintiff is no debtor
+
+
+def test_a_lien_citing_a_property_address_is_owed_by_that_parcels_owner(
+    lake: Path, tmp_path: Path
+) -> None:
+    c = lake / "zz.charges"
+    _write(c / "address" / "0.parquet", [
+        _addr("ca1", "300 PARK AVE", "10001"), _addr("ca2", "77 BAY ST", "10001")])  # fmt: skip
+    _write(c / "party" / "0.parquet", [
+        {"party_id": "pp1", "raw_name": "CITED PROPERTY", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": "ca1"},
+        {"party_id": "pp2", "raw_name": "CITED PROPERTY", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": "ca2"}])  # fmt: skip
+    _write(c / "instrument_party" / "0.parquet", [
+        {"instrument_uid": "ch1", "party_id": "pp1", "role": "other"},
+        {"instrument_uid": "ch2", "party_id": "pp2", "role": "other"}])  # fmt: skip
+    _write(
+        c / "instrument" / "0.parquet",
+        [
+            {
+                "instrument_uid": u,
+                "source_id": "zz.charges",
+                "doc_type": "STATUTORY_LIEN",
+                "recorded_on": "2026-01-01",
+                "principal_amount": 40.0,
+            }
+            for u in ("ch1", "ch2")
+        ],
+    )
+    out = tmp_path / "out"
+    run(lake, out, ["zz.charges"], ["zz.parcels"], parcel_on_lien=True)
+    m = duckdb.connect().execute(
+        f"SELECT debtor_party_id, instrument_uid, parcel_uid, rule_id"
+        f" FROM '{out.as_posix()}/matches.parquet'").fetchall()  # fmt: skip
+    # 300 PARK AVE is p1's situs address; 77 BAY ST is only a mailing address, so ch2 names no lot.
+    assert m == [("owner-of:p1", "ch1", "p1", "lien_names_parcel")]
+
+
+def test_defendants_owe_default_judgments_when_no_debtor_is_recorded(
+    lake: Path, tmp_path: Path
+) -> None:
+    c = lake / "zz.county_court"
+    _write(c / "address" / "0.parquet", [_addr("ka", "12 MAIN ST", "10001")])
+    _write(c / "party" / "0.parquet", [
+        {"party_id": "df", "raw_name": "SMITH JOHN A", "party_kind": "person",
+         "org_name_norm": None, "address_id": "ka"},
+        {"party_id": "pl", "raw_name": "CARD BANK", "party_kind": "org",
+         "org_name_norm": "CARD BANK", "address_id": None}])  # fmt: skip
+    _write(c / "case_party" / "0.parquet", [
+        {"case_uid": "k1", "party_id": "df", "role": "defendant"},
+        {"case_uid": "k1", "party_id": "pl", "role": "plaintiff"},
+        {"case_uid": "k2", "party_id": "df", "role": "defendant"}])  # fmt: skip
+    _write(c / "judgment" / "0.parquet", [
+        {"judgment_uid": "jd", "case_uid": "k1", "source_id": "zz.county_court",
+         "entered_on": "2026-01-01", "principal": 900.0, "jurisdiction": "99001",
+         "judgment_type": "default"},
+        {"judgment_uid": "jo", "case_uid": "k2", "source_id": "zz.county_court",
+         "entered_on": "2026-01-01", "principal": None, "jurisdiction": "99001",
+         "judgment_type": "other"}])  # fmt: skip
+    _write(c / "judgment_event" / "0.parquet", [{"judgment_uid": "none", "event": "satisfied"}])
+    _write(
+        lake / "zz.parcels" / "parcel" / "1.parquet",
+        [{"parcel_uid": "99001-9", "situs_address_id": None}],
+    )  # puts county 99001 in the owners
+    out = tmp_path / "out"
+    run(lake, out, ["zz.none"], ["zz.parcels"], court_sources=["zz.county_court"])
+    m = duckdb.connect().execute(
+        f"SELECT debtor_party_id, instrument_uid, owner_party_id, rule_id"
+        f" FROM '{out.as_posix()}/matches.parquet'").fetchall()  # fmt: skip
+    # The default judgment's defendant owes it; the plaintiff and the 'other' judgment do not.
+    assert m == [("df", "jd", "o1", "person_name_address")]
+
+
 def test_review_queue_labels_name_zip_matches(tmp_path: Path) -> None:
     lk = tmp_path / "lake"
     d, o = lk / "q.debts", lk / "q.parcels"

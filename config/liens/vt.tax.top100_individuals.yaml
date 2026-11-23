@@ -1,0 +1,31 @@
+source_id: vt.tax.top100_individuals
+state: VT
+county_fips: "50"
+# Vermont Department of Taxes, 100 Top Delinquent Taxpayers (individuals) under Act 174 (2014), 32
+# V.S.A. 3102(d)(7): the 100 with the highest unpaid tax debt that accepted the assessment or
+# exhausted appeals, after two warning letters. A Socrata dataset on data.vermont.gov (Public
+# Domain) replaced in full at each update; no lien or assessment date is published, so the
+# row's Socrata :created_at (the list's publication date) stands in for it.
+# TODO(Brandon): the list does not say a lien was filed; confirm a Vermont tax lien (32 V.S.A.
+# 5891, arises at assessment, perfected by filing with the town clerk) binds these debtors'
+# real property before treating them as liens.
+portal: https://data.vermont.gov
+dataset: b5xi-3qaq
+select: [":created_at", taxpayer_name, street, city_town, state, balance]
+date_field: ":created_at"
+first_year: 2024
+uid: [taxpayer_name, street]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Vermont top delinquent taxpayer
+amount: balance
+parties:
+  - role: debtor
+    name: taxpayer_name
+    address: {line1: street, city: city_town, state: state}
+  - role: creditor
+    const: Vermont Department of Taxes
+terms:
+  url: https://tax.vermont.gov/reports/delinquent-taxpayers
+  summary: "Vermont publishes the list as a free Socrata dataset on data.vermont.gov (license: Public Domain), no login; robots.txt Crawl-delay 1."
+  checked_on: 2026-11-23
+  cost_model: free

@@ -1,0 +1,230 @@
+{
+ "rows": [
+  {
+   "city": "Collegeville",
+   "county": "Philadelphia",
+   "enterprise_name": "TESTOWNER 8453A7 LLC",
+   "enterprise_street_address": "6349 TEST ST",
+   "law_violated": "Wage Payment & Collection Law",
+   "list_as_of": "2026-10-07",
+   "state": "PA"
+  },
+  {
+   "city": "Collegeville",
+   "county": "Philadelphia",
+   "enterprise_name": "TESTOWNER 089DC2 LLC",
+   "enterprise_street_address": "6349 TEST ST",
+   "law_violated": "Wage Payment & Collection Law",
+   "list_as_of": "2026-10-07",
+   "state": "PA"
+  },
+  {
+   "city": "Erie",
+   "county": "Erie",
+   "enterprise_name": "TESTOWNER 5ADBD4 LLC",
+   "enterprise_street_address": "4398 TEST ST",
+   "law_violated": "Prevailing Wage Act",
+   "list_as_of": "2026-10-07",
+   "state": "PA"
+  },
+  {
+   "city": "Newmanstown",
+   "county": "Lebanon",
+   "enterprise_name": "TESTOWNER C36F3C",
+   "enterprise_street_address": "2661 TEST ST",
+   "law_violated": "Wage Payment & Collection Law",
+   "list_as_of": "2026-10-07",
+   "state": "PA"
+  },
+  {
+   "city": "Mechanicsburg",
+   "county": "Cumberland",
+   "enterprise_name": "TESTOWNER A168C1 LLC",
+   "enterprise_street_address": "5962 TEST ST",
+   "law_violated": "Wage Payment & Collection",
+   "list_as_of": "2026-10-07",
+   "state": "PA"
+  },
+  {
+   "city": "Selinsgrove",
+   "county": "Snyder",
+   "enterprise_name": "TESTOWNER 8FEF8A INC",
+   "enterprise_street_address": "8446 TEST ST",
+   "law_violated": "Wage Payment & Collection Law",
+   "list_as_of": "2026-10-07",
+   "state": "PA"
+  },
+  {
+   "city": "Sinking Spring",
+   "county": "Berks",
+   "enterprise_name": "TESTOWNER 870E75 INC",
+   "enterprise_street_address": "5209 TEST ST",
+   "law_violated": "Act 72",
+   "list_as_of": "2026-10-07",
+   "state": "PA"
+  },
+  {
+   "city": "Laughlintown",
+   "county": "Westmoreland",
+   "enterprise_name": "TESTOWNER 4B6E0A LLC",
+   "enterprise_street_address": "3659 TEST ST",
+   "law_violated": "Act 72",
+   "list_as_of": "2026-10-07",
+   "state": "PA"
+  },
+  {
+   "city": "York",
+   "county": "York",
+   "enterprise_name": "TESTOWNER 308933",
+   "enterprise_street_address": "7294 TEST ST",
+   "law_violated": "Wage Payment & Collection Law",
+   "list_as_of": "2026-10-07",
+   "state": "PA"
+  },
+  {
+   "city": "Dallas",
+   "county": "Luzerne",
+   "enterprise_name": "TESTOWNER E18116",
+   "enterprise_street_address": "7866 TEST ST",
+   "law_violated": "Prevailing Wage Act",
+   "list_as_of": "2026-10-07",
+   "state": "PA"
+  },
+  {
+   "city": "Chambersburg",
+   "county": "Franklin",
+   "enterprise_name": "TESTOWNER 3CCBE6",
+   "enterprise_street_address": "2147 TEST ST",
+   "law_violated": "Wage Payment & Collection Law",
+   "list_as_of": "2026-10-07",
+   "state": "PA"
+  },
+  {
+   "city": "Dauphin",
+   "county": "Dauphin",
+   "enterprise_name": "TESTOWNER 03A3FB",
+   "enterprise_street_address": "6812 TEST ST",
+   "law_violated": "Act 72",
+   "list_as_of": "2026-10-07",
+   "state": "PA"
+  },
+  {
+   "city": "Greenburg",
+   "county": "Westmoreland",
+   "enterprise_name": "TESTOWNER 4EEE18 INC",
+   "enterprise_street_address": "2776 TEST ST",
+   "law_violated": "Prevailing Wage Act",
+   "list_as_of": "2026-10-07",
+   "state": "PA"
+  },
+  {
+   "city": "Johnstown",
+   "county": "Columbia",
+   "enterprise_name": "TESTOWNER D29E6F",
+   "enterprise_street_address": "309 TEST ST",
+   "law_violated": "Act 72",
+   "list_as_of": "2026-10-07",
+   "state": "PA"
+  },
+  {
+   "city": "Finleyville",
+   "county": "Washington",
+   "enterprise_name": "TESTOWNER 13E7AD",
+   "enterprise_street_address": "7444 TEST ST",
+   "law_violated": "Wage Payment & Collection Law",
+   "list_as_of": "2026-10-07",
+   "state": "PA"
+  },
+  {
+   "city": "Stafford",
+   "county": "Stafford",
+   "enterprise_name": "TESTOWNER EC907A",
+   "enterprise_street_address": "3180 TEST ST",
+   "law_violated": "Wage Payment & Collection Law",
+   "list_as_of": "2026-10-07",
+   "state": "VA"
+  },
+  {
+   "city": "Lancaster",
+   "county": "Lancaster",
+   "enterprise_name": "TESTOWNER 63EB4D",
+   "enterprise_street_address": "8807 TEST ST",
+   "law_violated": "Act 72",
+   "list_as_of": "2026-10-07",
+   "state": "PA"
+  },
+  {
+   "city": "Norristown",
+   "county": "Montgomery",
+   "enterprise_name": "TESTOWNER D9F956",
+   "enterprise_street_address": "5076 TEST ST",
+   "law_violated": "Act 72",
+   "list_as_of": "2026-10-07",
+   "state": "PA"
+  },
+  {
+   "city": "Morrisville",
+   "county": "Bucks",
+   "enterprise_name": "TESTOWNER 7B3811",
+   "enterprise_street_address": "4030 TEST ST",
+   "law_violated": "Act 72",
+   "list_as_of": "2026-10-07",
+   "state": "PA"
+  },
+  {
+   "city": "Philadelphia",
+   "county": "Philadelphia",
+   "enterprise_name": "TESTOWNER 40BC76",
+   "enterprise_street_address": "228 TEST ST",
+   "law_violated": "Wage Payment & Collection Law",
+   "list_as_of": "2026-10-07",
+   "state": "PA"
+  },
+  {
+   "city": "Marshalls Creek",
+   "county": "Monroe",
+   "enterprise_name": "TESTOWNER 801BC1",
+   "enterprise_street_address": "5597 TEST ST",
+   "law_violated": "Act 72",
+   "list_as_of": "2026-10-07",
+   "state": "PA"
+  },
+  {
+   "city": "Philadelphia",
+   "county": "Philadelphia",
+   "enterprise_name": "TESTOWNER 5CE270",
+   "enterprise_street_address": "4106 TEST ST",
+   "law_violated": "Wage Payment & Collection Law",
+   "list_as_of": "2026-10-07",
+   "state": "PA"
+  },
+  {
+   "city": "Albion",
+   "county": "Erie",
+   "enterprise_name": "TESTOWNER 86EC50",
+   "enterprise_street_address": "6381 TEST ST",
+   "law_violated": "Act 72",
+   "list_as_of": "2026-10-07",
+   "state": "PA"
+  },
+  {
+   "city": "Indiana",
+   "county": "Indiana",
+   "enterprise_name": "TESTOWNER A90E13",
+   "enterprise_street_address": "2251 TEST ST",
+   "law_violated": "Wage Payment & Collection Law",
+   "list_as_of": "2026-10-07",
+   "state": "PA"
+  },
+  {
+   "city": "York",
+   "county": "York",
+   "enterprise_name": "TESTOWNER 5F21AC LLC",
+   "enterprise_street_address": "8526 TEST ST",
+   "law_violated": "Wage Payment & Collection Law",
+   "list_as_of": "2026-10-07",
+   "state": "PA"
+  }
+ ],
+ "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/documents/non-compliance-lists/bllc-non-compliance-list.xlsx"
+}

@@ -1,0 +1,58 @@
+# Harris County (TX) District Clerk "Public Datasets" (hcdistrictclerk.com, e-services):
+# daily, monthly and historical tab-delimited extracts of the civil and family case system.
+# Read by src/equity/adapters/tx/harris_district.py.
+#
+# The page lists each file with a "Download" link that posts the page's form back
+# (DownloadDoc('Civil\\<file>') sets hiddenDownloadFile and clicks a hidden button). No login,
+# account or fee: the overview PDF says the datasets "are made available at no cost". The
+# page's e-mail/password box is for other e-services; the download works without it.
+#
+# Used: CaseSummaryMods_Historical-<y1>-<y2>.txt (cases filed in those years) and
+# CaseSummaryMods_HistoricalCurrent-<y>-<yymmdd>.txt (cases changed since then): one row per
+# case and judgment (pj_num blank = the case's own judgment, 1, 2... = post-judgment
+# proceedings), with filing date, court, status, case type, first plaintiff and defendant
+# names, and judgment date and text. No amounts and no party addresses: the extracts that
+# carry addresses (Civil Case Index JWEB, CivilHistoricalDaily) are weekly/daily only, and
+# CivilHistoricalDaily was empty on 2026-11-23.
+# 2020-2024 file (2026-11-22): 442,535 rows, 76.7 MB; current file: 287,562 rows, 51.3 MB.
+source_id: tx.harris.district.civil_judgments
+page_url: https://www.hcdistrictclerk.com/Common/e-services/PublicDatasets.aspx
+download_field: hiddenDownloadFile
+download_button: ctl00$ctl00$ctl00$ContentPlaceHolder1$ContentPlaceHolder2$ContentPlaceHolder2$buttonDownload
+folder: Civil
+# Historical files whose last filing year is before this are not loaded.
+# TODO(Brandon): ten years; the page has files back to 2000-2004.
+first_year: 2015
+# cs_typ (FIELD_CODES.xlsx sheet cs_typ) of debt cases: the 2014 OCA categories and the
+# older local codes still on cases filed before them.
+case_types:
+  "20140005": DEBT/CONTRACT - CONSUMER/DTPA
+  "20140006": DEBT/CONTRACT - DEBT/CONTRACT
+  "20140009": REGISTER FOREIGN JUDGMENT
+  "20140011": FOREIGN JUDGMENT
+  "95010171": ACCOUNTING
+  "95010771": BREACH OF CONTRACT
+  "95010871": CONTRACT
+  "95011471": ENFORCE FOREIGN JUDGMENT
+  "95012471": NOTE
+  "95013371": SWORN ACCOUNT
+  "95014771": DEBT
+# Judgment texts (FIELD_CODES.xlsx sheet judgment) that are judgments for the plaintiff.
+# Only rows with no pj_num (the case's own judgment) count.
+# TODO(Brandon): agreed and final summary judgments are read as for the plaintiff (in a debt
+# case they almost always are); the file does not say who moved or who won.
+judgment_types:
+  DEFAULT JUDGMENT SIGNED: default
+  EXPEDITED DEFAULT JDGMT SGND: default
+  Default Judgment: default
+  AGREED JUDGMENT, ORDER SIGNED: consent
+  FINAL SUMMARY JUDGMENT SIGNED: money
+  FINAL JUDGMENT SIGNED FOR PLAINTIFF (NON-JURY): money
+  JUDGMENT SIGNED FOR PLAINTIFF ON JURY VERDICT: money
+  JUDGMENT FOR PLAINTIFF BY DIRECTED VERDICT/N.O.V.: money
+terms:
+  url: https://www.hcdistrictclerk.com/Common/e-services/PublicDatasets.aspx
+  summary: "Harris County District Clerk Public Datasets: tab-delimited extracts 'made available at no cost' (Civil OVERVIEW.pdf, 2014-03-26). Downloaded anonymously through the page's own Download button (an ASP.NET form post); no login, no account, no CAPTCHA, no fee. No terms of use are posted. robots.txt disallows only /edocs/public/ case search pages and *.axd, not the datasets page."
+  checked_on: 2026-11-23
+  robots_checked_on: 2026-11-23
+  cost_model: free

@@ -1,0 +1,35 @@
+source_id: tx.harris.delinquent_taxes
+state: TX
+county_fips: "48201"   # Harris County
+# Harris County delinquent property tax accounts, tax year 2025 (Tax Office data on the
+# county's ArcGIS Online org): owner of record, mailing address, HCAD account, levy due and
+# due date. Delinquent property taxes are a lien on the property (Tex. Tax Code 32.01); a
+# senior lien, not a judgment. Accounts already in suit carry CAUSENO; those that reached
+# judgment are in tx.harris.tax_judgments. Debt kind: tax_delinquency.
+api: arcgis
+layer_url: https://services.arcgis.com/su8ic9KbA7PYVxPS/arcgis/rest/services/Delinquent_Parcels_2025/FeatureServer/0
+where: "LEVYDUE > 0"
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, HCAD_NUM, ACCOUNT, TAXYEAR, TAXUNIT, owner_name_1, owner_name_2, mail_addr_1,
+         mail_addr_2, mail_city, mail_state, mail_zip, BASELEVY, LEVYPAID, LEVYDUE, DUEDATE,
+         LEGALSTATUS, CAUSENO, BANKRUPTNO]
+date_field: DUEDATE
+uid: [ACCOUNT, TAXYEAR, TAXUNIT]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Harris County delinquent property tax
+amount: LEVYDUE
+parties:
+  - role: debtor
+    name: owner_name_1
+    address: {line1: [mail_addr_1, mail_addr_2], city: mail_city, state: mail_state, zip: mail_zip}
+  - role: debtor
+    name: owner_name_2
+  - role: creditor
+    const: Harris County Tax Assessor-Collector
+parcel: {kind: pin, field: HCAD_NUM, county_fips: "48201"}   # = tx.statewide.parcels PROP_ID
+terms:
+  url: https://services.arcgis.com/su8ic9KbA7PYVxPS/arcgis/rest/services/Delinquent_Parcels_2025/FeatureServer/0
+  summary: "Public ArcGIS Online layer on the Harris County org, free, no login. No licenseInfo on the layer."
+  checked_on: 2026-11-23
+  cost_model: free

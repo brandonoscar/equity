@@ -1,0 +1,32 @@
+source_id: pa.dli.bllc_noncompliance
+state: PA
+county_fips: "42"
+# PA Department of Labor & Industry, Bureau of Labor Law Compliance non-compliance list
+# (Executive Order 2021-06): organizations found to have violated a state labor law (Wage
+# Payment and Collection Law, Prevailing Wage Act, Act 72 ...) that have not paid the back
+# wages, fines or fees owed; they leave the list when they "pay off their lien, fine(s),
+# fee(s), or owed back-wages in full" or join a payment plan. No amount or date is published,
+# so the list's "current as of" date stands in for the date.
+# TODO(Brandon): confirm whether a BLLC debt becomes a lien on real property (docketed
+# judgment) or is only an order; loaded as STATUTORY_LIEN until then.
+api: xlsx
+url: https://www.pa.gov/content/dam/copapwp-pagov/en/dli/documents/documents/non-compliance-lists/bllc-non-compliance-list.xlsx
+sheet: 0
+header_row: 1
+as_of: {field: list_as_of, after: "as of"}
+date_field: list_as_of
+uid: [enterprise_name, enterprise_street_address, law_violated]
+doc_type: STATUTORY_LIEN
+doc_type_raw: {field: law_violated}
+county_name_field: county
+parties:
+  - role: debtor
+    name: enterprise_name
+    address: {line1: enterprise_street_address, city: city, state: state}
+  - role: creditor
+    const: Pennsylvania Department of Labor and Industry
+terms:
+  url: https://www.pa.gov/agencies/dli/resources/compliance-laws-and-regulations/labor-management-relations/labor-law/worker-protection-and-labor-law-non-compliance-list
+  summary: "PA L&I posts the BLLC non-compliance list as a free .xlsx (and PDF) on pa.gov, no login. Public list required by Executive Order 2021-06; no license or reuse terms stated."
+  checked_on: 2026-11-23
+  cost_model: free

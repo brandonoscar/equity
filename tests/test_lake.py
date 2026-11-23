@@ -249,3 +249,42 @@ def test_replan_renames_split_parts(tmp_path: Path, monkeypatch: pytest.MonkeyPa
     assert sorted(p.name for p in (out / "party").iterdir()) == ["00000.parquet",
                                                                  "00000_1.parquet"]  # fmt: skip
     assert (out / "party" / "00000_1.parquet").read_text() == "second"
+
+
+def test_a_part_whose_facts_lack_provenance_is_not_exported(tmp_path: Path) -> None:
+    from equity.lake import QualityError, export_part
+    from equity.schema.migrate import connect, migrate
+    from tests.conftest import T0, fixed_clock
+
+    db = tmp_path / "w.duckdb"
+    con = connect(str(db))
+    migrate(con, fixed_clock(T0))
+    # A party row whose source_record_id points at nothing: provenance broken.
+    con.execute(
+        "INSERT INTO party (row_id, party_id, raw_name, party_kind, source_record_id, source_id,"
+        " jurisdiction, record_key, source_uri, retrieved_at, content_sha256, ingested_at,"
+        " fact_hash) VALUES ('r1', 'p1', 'X', 'unknown', 'missing', 'zz.src', '99001', 'k',"
+        " 'file://x', TIMESTAMPTZ '2026-01-01 00:00:00+00', repeat('a', 64),"
+        " TIMESTAMPTZ '2026-01-01 00:00:00+00', repeat('b', 64))"
+    )
+    con.close()
+    out = tmp_path / "zz.src"
+    with pytest.raises(QualityError, match="provenance"):
+        export_part(db, out, "00001")
+    assert not (out / "party").exists()  # nothing exported for the failed part
+    assert "provenance" in (out / "_quality" / "00001.json").read_text()
+
+
+def test_a_clean_part_exports_without_a_quality_report(tmp_path: Path) -> None:
+    from equity.lake import export_part
+    from equity.schema.migrate import connect, migrate
+    from tests.conftest import T0, fixed_clock
+
+    db = tmp_path / "w.duckdb"
+    con = connect(str(db))
+    migrate(con, fixed_clock(T0))
+    con.close()
+    out = tmp_path / "zz.src"
+    counts = export_part(db, out, "00001")
+    assert "party" not in counts  # empty tables are not exported
+    assert not (out / "_quality").exists()

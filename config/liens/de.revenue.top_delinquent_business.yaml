@@ -1,0 +1,33 @@
+source_id: de.revenue.top_delinquent_business
+state: DE
+county_fips: "10"
+# Delaware Division of Revenue, delinquent taxpayer list (business taxes): the largest unpaid
+# balances, posted quarterly as a text PDF (balance as of the quarter's end). Read with the
+# project's standard-library PDF table reader; the file name carries the quarter, so the
+# current link is taken from the landing page. No lien or assessment date is published, so
+# the "Balance as of" date stands in for it.
+# TODO(Brandon): the page does not say a lien was filed; confirm whether Delaware lists only
+# taxpayers with a docketed judgment or recorded lien (a Superior Court judgment is a lien on
+# real property in the county) before treating these as liens.
+api: pdf
+url: https://revenuefiles.delaware.gov/2026/Business_List_Oct_2026.pdf
+link_from: {page: "https://revenue.delaware.gov/delawares-delinquent-taxpayers/", pattern: 'Business_List_[A-Za-z]+_[0-9]{4}\.pdf$'}
+header: Taxpayer Name
+as_of: {field: balance_as_of, after: "Balance as of"}
+date_field: balance_as_of
+uid: [taxpayer_name, address]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Delaware delinquent business tax balance
+amount: taxpayer_liability
+parties:
+  - role: debtor
+    name: taxpayer_name
+    address: {line1: address, city: city, state: st, zip: zip}   # Address 2 is mostly "NULL"
+  - role: creditor
+    const: Delaware Division of Revenue
+extra_pii: [address_2]
+terms:
+  url: https://revenue.delaware.gov/delawares-delinquent-taxpayers/
+  summary: "Delaware Division of Revenue posts the lists as free PDFs on revenuefiles.delaware.gov, quarterly, no login. No license or reuse terms stated."
+  checked_on: 2026-11-23
+  cost_model: free

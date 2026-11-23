@@ -1,0 +1,43 @@
+source_id: mi.detroit.blight_judgments
+state: MI
+county_fips: "26163"
+# City of Detroit Department of Administrative Hearings (DAH) blight violation tickets, daily.
+# Only tickets found responsible (by default, admission or determination) carry a judgment;
+# the rest are dismissed or pending and are not loaded. Like NYC OATH: an administrative
+# judgment against the property owner, keyed to the ticketed parcel.
+# TODO(Brandon): confirm an unpaid DAH judgment is enforceable as a lien on the parcel
+# (Detroit City Code ch. 8 / MCL 117.4q) before treating it as one; loaded as JUDGMENT_LIEN
+# like OATH until then.
+api: arcgis
+layer_url: https://services2.arcgis.com/qvkbeam7Wirps6zC/arcgis/rest/services/blight_tickets/FeatureServer/0
+where: "disposition LIKE 'Responsible%'"
+order_by: [OBJECTID]
+select: [OBJECTID, ticket_id, ticket_number, disposition, ordinance_description, judgment_date,
+         amt_judgment, amt_payment, amt_balance_due, payment_status, collection_status,
+         property_owner_name, property_owner_street_number, property_owner_street_name,
+         property_owner_city, property_owner_state, property_owner_zip_code, parcel_id]
+date_field: judgment_date
+partition: year
+first_year: 2004
+uid: ticket_number
+doc_type: JUDGMENT_LIEN
+doc_type_raw: Detroit DAH blight judgment
+amount: amt_balance_due          # still owed as of the daily extract (judgment less payments)
+satisfied_flag: payment_status
+satisfied_values: [PAID IN FULL]
+parties:
+  - role: debtor
+    name: property_owner_name
+    address:                     # the owner's mailing address on the ticket
+      line1: [property_owner_street_number, property_owner_street_name]
+      city: property_owner_city
+      state: property_owner_state
+      zip: property_owner_zip_code
+  - role: creditor
+    const: City of Detroit
+parcel: {kind: pin, field: parcel_id, county_fips: "26163"}   # same parcel_id as mi.wayne.parcels
+terms:
+  url: https://data.detroitmi.gov/datasets/blight-tickets
+  summary: "City of Detroit Open Data (ArcGIS Online, same org as mi.wayne.parcels): 'Blight Tickets', updated daily. Free, no login. No licenseInfo on the layer; no commercial-use restriction found."
+  checked_on: 2026-11-22
+  cost_model: free

@@ -1,0 +1,3278 @@
+{
+ "bytes": 81294734,
+ "cases": [
+  {
+   "ACTIVITY_ID": "4",
+   "ACTIVITY_STATUS_DATE": "11/01/1976",
+   "ACTIVITY_STATUS_DESC": "Closed",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER EE76E9 CO",
+   "CASE_NUMBER": "01-1974-0001",
+   "DOJ_DOCKET_NMBR": "",
+   "ENF_OUTCOME_DESC": "Final Order With Penalty",
+   "FISCAL_YEAR": "1974",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "",
+   "TOTAL_PENALTY_ASSESSED_AMT": "18000",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "4",
+     "ENF_CONCLUSION_NAME": "TESTOWNER 9EF9A0",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "18000",
+     "PRIMARY_LAW": "CWA",
+     "SETTLEMENT_ENTERED_DATE": "11/01/1976",
+     "SETTLEMENT_LODGED_DATE": "11/01/1976",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER FBEB24 CO",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "75-809-G"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "AMESBURY",
+     "FACILITY_NAME": "TESTOWNER 483A80",
+     "LOCATION_ADDRESS": "6338 TEST ST",
+     "REGISTRY_ID": "110010761577",
+     "STATE_CODE": "MA",
+     "ZIP": "01913"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "5",
+   "ACTIVITY_STATUS_DATE": "08/01/1974",
+   "ACTIVITY_STATUS_DESC": "Closed",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER D165BF INC",
+   "CASE_NUMBER": "01-1974-0002",
+   "DOJ_DOCKET_NMBR": "",
+   "ENF_OUTCOME_DESC": "Final Order With Penalty",
+   "FISCAL_YEAR": "1974",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "",
+   "TOTAL_PENALTY_ASSESSED_AMT": "5000",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "5",
+     "ENF_CONCLUSION_NAME": "TESTOWNER 531743 INC",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "5000",
+     "PRIMARY_LAW": "CWA",
+     "SETTLEMENT_ENTERED_DATE": "07/01/1974",
+     "SETTLEMENT_LODGED_DATE": "07/01/1974",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER 377CCB INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "CA 74-55"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "NORTH SMITHFIELD",
+     "FACILITY_NAME": "TESTOWNER 3018BC INC",
+     "LOCATION_ADDRESS": "1007 TEST ST",
+     "REGISTRY_ID": "110009310076",
+     "STATE_CODE": "RI",
+     "ZIP": "02824"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "6",
+   "ACTIVITY_STATUS_DATE": "04/21/1976",
+   "ACTIVITY_STATUS_DESC": "Closed",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER 4B0561",
+   "CASE_NUMBER": "01-1974-0003",
+   "DOJ_DOCKET_NMBR": "",
+   "ENF_OUTCOME_DESC": "Final Order With Penalty",
+   "FISCAL_YEAR": "1974",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "",
+   "TOTAL_PENALTY_ASSESSED_AMT": "1500",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "6",
+     "ENF_CONCLUSION_NAME": "TESTOWNER 0971CC INC",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "1500",
+     "PRIMARY_LAW": "CWA",
+     "SETTLEMENT_ENTERED_DATE": "04/21/1975",
+     "SETTLEMENT_LODGED_DATE": "04/21/1975",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER 314B04",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "CA-75-0199"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "PASCOAG",
+     "FACILITY_NAME": "TESTOWNER 644DB1",
+     "LOCATION_ADDRESS": "1007 TEST ST",
+     "REGISTRY_ID": "110010761586",
+     "STATE_CODE": "RI",
+     "ZIP": "02859"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "9",
+   "ACTIVITY_STATUS_DATE": "11/01/1976",
+   "ACTIVITY_STATUS_DESC": "Closed",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER 6BF588 INC",
+   "CASE_NUMBER": "01-1975-0003",
+   "DOJ_DOCKET_NMBR": "",
+   "ENF_OUTCOME_DESC": "Litigated With Penalty",
+   "FISCAL_YEAR": "1975",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "",
+   "TOTAL_PENALTY_ASSESSED_AMT": "750",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "9",
+     "ENF_CONCLUSION_NAME": "TESTOWNER 4768C8 INC",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "750",
+     "PRIMARY_LAW": "CWA",
+     "SETTLEMENT_ENTERED_DATE": "11/01/1976",
+     "SETTLEMENT_LODGED_DATE": "11/01/1976",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER 28091C INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [],
+   "facilities": [
+    {
+     "CITY": "ADAMS",
+     "FACILITY_NAME": "TESTOWNER 573059 INC",
+     "LOCATION_ADDRESS": "1708 TEST ST",
+     "REGISTRY_ID": "110000308499",
+     "STATE_CODE": "MA",
+     "ZIP": "01220"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "10",
+   "ACTIVITY_STATUS_DATE": "01/19/1977",
+   "ACTIVITY_STATUS_DESC": "Closed",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER EA0B1A",
+   "CASE_NUMBER": "01-1975-0004",
+   "DOJ_DOCKET_NMBR": "",
+   "ENF_OUTCOME_DESC": "Litigated With Penalty",
+   "FISCAL_YEAR": "1975",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "",
+   "TOTAL_PENALTY_ASSESSED_AMT": "6000",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "10",
+     "ENF_CONCLUSION_NAME": "TESTOWNER 444426",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "6000",
+     "PRIMARY_LAW": "CWA",
+     "SETTLEMENT_ENTERED_DATE": "01/19/1977",
+     "SETTLEMENT_LODGED_DATE": "01/19/1977",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER 64C74B",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [],
+   "facilities": [
+    {
+     "CITY": "MILTON",
+     "FACILITY_NAME": "TESTOWNER 427E56 CO",
+     "LOCATION_ADDRESS": "1007 TEST ST",
+     "REGISTRY_ID": "110010761611",
+     "STATE_CODE": "NH",
+     "ZIP": "03851"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "12",
+   "ACTIVITY_STATUS_DATE": "11/12/1977",
+   "ACTIVITY_STATUS_DESC": "Closed",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER A0E904 CO",
+   "CASE_NUMBER": "01-1976-0001",
+   "DOJ_DOCKET_NMBR": "",
+   "ENF_OUTCOME_DESC": "Final Order With Penalty",
+   "FISCAL_YEAR": "1976",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "",
+   "TOTAL_PENALTY_ASSESSED_AMT": "50000",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "12",
+     "ENF_CONCLUSION_NAME": "TESTOWNER 9D8873 CO",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "50000",
+     "PRIMARY_LAW": "CWA",
+     "SETTLEMENT_ENTERED_DATE": "11/12/1977",
+     "SETTLEMENT_LODGED_DATE": "11/12/1977",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER 1A43C9 CO",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "77-36"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "CLAREMONT",
+     "FACILITY_NAME": "TESTOWNER D18239 INC",
+     "LOCATION_ADDRESS": "456 TEST ST",
+     "REGISTRY_ID": "110009418415",
+     "STATE_CODE": "NH",
+     "ZIP": "03743"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "14",
+   "ACTIVITY_STATUS_DATE": "06/02/1978",
+   "ACTIVITY_STATUS_DESC": "Closed",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER 0CDAB7",
+   "CASE_NUMBER": "01-1976-0003",
+   "DOJ_DOCKET_NMBR": "",
+   "ENF_OUTCOME_DESC": "Final Order With Penalty",
+   "FISCAL_YEAR": "1976",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "",
+   "TOTAL_PENALTY_ASSESSED_AMT": "10000",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "14",
+     "ENF_CONCLUSION_NAME": "TESTOWNER 60C627 INC",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "10000",
+     "PRIMARY_LAW": "CWA",
+     "SETTLEMENT_ENTERED_DATE": "12/14/1977",
+     "SETTLEMENT_LODGED_DATE": "12/14/1977",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER 37E616 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "77-585-C"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "HOLYOKE",
+     "FACILITY_NAME": "TESTOWNER 8DF427 CO",
+     "LOCATION_ADDRESS": "5689 TEST ST",
+     "REGISTRY_ID": "110008400514",
+     "STATE_CODE": "MA",
+     "ZIP": "01040"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "15",
+   "ACTIVITY_STATUS_DATE": "12/07/1976",
+   "ACTIVITY_STATUS_DESC": "Closed",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER A75537 INC",
+   "CASE_NUMBER": "01-1976-0004",
+   "DOJ_DOCKET_NMBR": "",
+   "ENF_OUTCOME_DESC": "Final Order With Penalty",
+   "FISCAL_YEAR": "1976",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "",
+   "TOTAL_PENALTY_ASSESSED_AMT": "45000",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "15",
+     "ENF_CONCLUSION_NAME": "TESTOWNER 7F7553 INC",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "45000",
+     "PRIMARY_LAW": "CWA",
+     "SETTLEMENT_ENTERED_DATE": "12/07/1976",
+     "SETTLEMENT_LODGED_DATE": "12/07/1976",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER 28CAB1 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [],
+   "facilities": [
+    {
+     "CITY": "PRESQUE ISLE",
+     "FACILITY_NAME": "TESTOWNER 425872 INC",
+     "LOCATION_ADDRESS": "7965 TEST ST",
+     "REGISTRY_ID": "110002477613",
+     "STATE_CODE": "ME",
+     "ZIP": "04769"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "16",
+   "ACTIVITY_STATUS_DATE": "09/22/1981",
+   "ACTIVITY_STATUS_DESC": "Closed",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER 17B29D INC",
+   "CASE_NUMBER": "01-1976-0005",
+   "DOJ_DOCKET_NMBR": "",
+   "ENF_OUTCOME_DESC": "Final Order With Penalty",
+   "FISCAL_YEAR": "1976",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "",
+   "TOTAL_PENALTY_ASSESSED_AMT": "15000",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "16",
+     "ENF_CONCLUSION_NAME": "TESTOWNER F701D1 INC",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "15000",
+     "PRIMARY_LAW": "CWA",
+     "SETTLEMENT_ENTERED_DATE": "09/08/1977",
+     "SETTLEMENT_LODGED_DATE": "09/08/1977",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER 5CF62B INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "77-555"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "N PROVIDENCE",
+     "FACILITY_NAME": "TESTOWNER 3749E6 INC",
+     "LOCATION_ADDRESS": "6392 TEST ST",
+     "REGISTRY_ID": "110009440051",
+     "STATE_CODE": "RI",
+     "ZIP": "02911"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "3400230365",
+   "ACTIVITY_STATUS_DATE": "06/29/2001",
+   "ACTIVITY_STATUS_DESC": "Final Order Entered",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER 0B5E02",
+   "CASE_NUMBER": "01-1976-6666",
+   "DOJ_DOCKET_NMBR": "",
+   "ENF_OUTCOME_DESC": "",
+   "FISCAL_YEAR": "1976",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "",
+   "TOTAL_PENALTY_ASSESSED_AMT": "",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "3400016949",
+     "ENF_CONCLUSION_NAME": "TESTOWNER FCA8BA",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "10000",
+     "PRIMARY_LAW": "CWA",
+     "SETTLEMENT_ENTERED_DATE": "12/24/1978",
+     "SETTLEMENT_LODGED_DATE": "12/24/1978",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    },
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "JOA",
+     "ENF_CONCLUSION_ID": "3400016951",
+     "ENF_CONCLUSION_NAME": "TESTOWNER FCA8BA",
+     "ENF_CONCLUSION_NMBR": "2",
+     "FED_PENALTY_ASSESSED_AMT": "",
+     "PRIMARY_LAW": "CWA",
+     "SETTLEMENT_ENTERED_DATE": "11/02/1987",
+     "SETTLEMENT_LODGED_DATE": "11/02/1987",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    },
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "JOA",
+     "ENF_CONCLUSION_ID": "3400016952",
+     "ENF_CONCLUSION_NAME": "TESTOWNER FCA8BA",
+     "ENF_CONCLUSION_NMBR": "3",
+     "FED_PENALTY_ASSESSED_AMT": "",
+     "PRIMARY_LAW": "CWA",
+     "SETTLEMENT_ENTERED_DATE": "06/29/2001",
+     "SETTLEMENT_LODGED_DATE": "06/29/2001",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER C2A26A",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [],
+   "facilities": [
+    {
+     "CITY": "LYNN",
+     "FACILITY_NAME": "TESTOWNER 7E681E",
+     "LOCATION_ADDRESS": "8109 TEST ST",
+     "REGISTRY_ID": "110000563328",
+     "STATE_CODE": "MA",
+     "ZIP": "01905"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "22",
+   "ACTIVITY_STATUS_DATE": "05/08/1977",
+   "ACTIVITY_STATUS_DESC": "Closed",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER 413054",
+   "CASE_NUMBER": "01-1977-0002",
+   "DOJ_DOCKET_NMBR": "",
+   "ENF_OUTCOME_DESC": "Final Order With Penalty",
+   "FISCAL_YEAR": "1977",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "",
+   "TOTAL_PENALTY_ASSESSED_AMT": "37000",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "19",
+     "ENF_CONCLUSION_NAME": "TESTOWNER D375A7 CORP",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "37000",
+     "PRIMARY_LAW": "CWA",
+     "SETTLEMENT_ENTERED_DATE": "04/28/1977",
+     "SETTLEMENT_LODGED_DATE": "04/28/1977",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER F60319",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "C77-135"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "NEWINGTON",
+     "FACILITY_NAME": "TESTOWNER 198BEF CORP",
+     "LOCATION_ADDRESS": "4270 TEST ST",
+     "REGISTRY_ID": "110041839268",
+     "STATE_CODE": "NH",
+     "ZIP": "038010000"
+    },
+    {
+     "CITY": "NEWINGTON",
+     "FACILITY_NAME": "TESTOWNER 198BEF CORP",
+     "LOCATION_ADDRESS": "4270 TEST ST",
+     "REGISTRY_ID": "110041839268",
+     "STATE_CODE": "NH",
+     "ZIP": "038010000"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "23",
+   "ACTIVITY_STATUS_DATE": "07/21/1978",
+   "ACTIVITY_STATUS_DESC": "Closed",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER A55CA3 INC",
+   "CASE_NUMBER": "01-1977-0003",
+   "DOJ_DOCKET_NMBR": "",
+   "ENF_OUTCOME_DESC": "Final Order With Penalty",
+   "FISCAL_YEAR": "1977",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "",
+   "TOTAL_PENALTY_ASSESSED_AMT": "10000",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "20",
+     "ENF_CONCLUSION_NAME": "TESTOWNER 055922 INC",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "10000",
+     "PRIMARY_LAW": "CWA",
+     "SETTLEMENT_ENTERED_DATE": "07/21/1977",
+     "SETTLEMENT_LODGED_DATE": "07/21/1977",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER 3AFB4F INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "77-112"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "WELLS RIVER",
+     "FACILITY_NAME": "TESTOWNER 8559C6",
+     "LOCATION_ADDRESS": "8720 TEST ST",
+     "REGISTRY_ID": "110010639853",
+     "STATE_CODE": "VT",
+     "ZIP": "05081"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "24",
+   "ACTIVITY_STATUS_DATE": "06/01/1977",
+   "ACTIVITY_STATUS_DESC": "Closed",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER 083CF1 CO",
+   "CASE_NUMBER": "01-1977-0004",
+   "DOJ_DOCKET_NMBR": "",
+   "ENF_OUTCOME_DESC": "Final Order With Penalty",
+   "FISCAL_YEAR": "1977",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "",
+   "TOTAL_PENALTY_ASSESSED_AMT": "10000",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "21",
+     "ENF_CONCLUSION_NAME": "TESTOWNER 0C81BE CO",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "10000",
+     "PRIMARY_LAW": "CWA",
+     "SETTLEMENT_ENTERED_DATE": "06/01/1977",
+     "SETTLEMENT_LODGED_DATE": "06/01/1977",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER 397646 CO",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "77-165"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "PENACOOK",
+     "FACILITY_NAME": "TESTOWNER 343705 CO",
+     "LOCATION_ADDRESS": "3715 TEST ST",
+     "REGISTRY_ID": "110010622460",
+     "STATE_CODE": "NH",
+     "ZIP": "03303"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "25",
+   "ACTIVITY_STATUS_DATE": "05/18/1977",
+   "ACTIVITY_STATUS_DESC": "Closed",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER 792FB9",
+   "CASE_NUMBER": "01-1977-0005",
+   "DOJ_DOCKET_NMBR": "",
+   "ENF_OUTCOME_DESC": "Final Order With Penalty",
+   "FISCAL_YEAR": "1977",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "",
+   "TOTAL_PENALTY_ASSESSED_AMT": "20000",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "22",
+     "ENF_CONCLUSION_NAME": "TESTOWNER A8847A",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "20000",
+     "PRIMARY_LAW": "CWA",
+     "SETTLEMENT_ENTERED_DATE": "05/18/1977",
+     "SETTLEMENT_LODGED_DATE": "05/18/1977",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER E91FB3",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [],
+   "facilities": [
+    {
+     "CITY": "BRADFORD",
+     "FACILITY_NAME": "TESTOWNER AFA08E INC",
+     "LOCATION_ADDRESS": "2095 TEST ST",
+     "REGISTRY_ID": "110000735697",
+     "STATE_CODE": "RI",
+     "ZIP": "02808"
+    },
+    {
+     "CITY": "BRADFORD",
+     "FACILITY_NAME": "TESTOWNER AFA08E INC",
+     "LOCATION_ADDRESS": "2095 TEST ST",
+     "REGISTRY_ID": "110000735697",
+     "STATE_CODE": "RI",
+     "ZIP": "02808"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "26",
+   "ACTIVITY_STATUS_DATE": "07/28/1978",
+   "ACTIVITY_STATUS_DESC": "Closed",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER C98494",
+   "CASE_NUMBER": "01-1977-0006",
+   "DOJ_DOCKET_NMBR": "",
+   "ENF_OUTCOME_DESC": "Final Order With Penalty",
+   "FISCAL_YEAR": "1977",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "",
+   "TOTAL_PENALTY_ASSESSED_AMT": "18000",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "23",
+     "ENF_CONCLUSION_NAME": "TESTOWNER 27B3D5",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "18000",
+     "PRIMARY_LAW": "CWA",
+     "SETTLEMENT_ENTERED_DATE": "07/28/1978",
+     "SETTLEMENT_LODGED_DATE": "07/28/1978",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER 884A12",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [],
+   "facilities": [
+    {
+     "CITY": "ASHUELOT",
+     "FACILITY_NAME": "TESTOWNER 088044 INC",
+     "LOCATION_ADDRESS": "7373 TEST ST",
+     "REGISTRY_ID": "110000734304",
+     "STATE_CODE": "NH",
+     "ZIP": "03441"
+    },
+    {
+     "CITY": "ASHUELOT",
+     "FACILITY_NAME": "TESTOWNER 088044 INC",
+     "LOCATION_ADDRESS": "7373 TEST ST",
+     "REGISTRY_ID": "110000734304",
+     "STATE_CODE": "NH",
+     "ZIP": "03441"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "28",
+   "ACTIVITY_STATUS_DATE": "09/27/1978",
+   "ACTIVITY_STATUS_DESC": "Closed",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER CEB843",
+   "CASE_NUMBER": "01-1977-0008",
+   "DOJ_DOCKET_NMBR": "",
+   "ENF_OUTCOME_DESC": "Final Order With Penalty",
+   "FISCAL_YEAR": "1977",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "",
+   "TOTAL_PENALTY_ASSESSED_AMT": "960",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "25",
+     "ENF_CONCLUSION_NAME": "TESTOWNER B7CEF2",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "960",
+     "PRIMARY_LAW": "CWA",
+     "SETTLEMENT_ENTERED_DATE": "09/27/1977",
+     "SETTLEMENT_LODGED_DATE": "09/27/1977",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER 17E93E",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER B6218B",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 7FBB05",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 7A9908",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "77-2414-S"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "STOCKBRIDGE",
+     "FACILITY_NAME": "TESTOWNER 153911",
+     "LOCATION_ADDRESS": "1089 TEST ST",
+     "REGISTRY_ID": "110009917509",
+     "STATE_CODE": "MA",
+     "ZIP": "01262"
+    },
+    {
+     "CITY": "STOCKBRIDGE",
+     "FACILITY_NAME": "TESTOWNER 153911",
+     "LOCATION_ADDRESS": "1089 TEST ST",
+     "REGISTRY_ID": "110009917509",
+     "STATE_CODE": "MA",
+     "ZIP": "01262"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "30",
+   "ACTIVITY_STATUS_DATE": "09/17/1979",
+   "ACTIVITY_STATUS_DESC": "Closed",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER 35824D",
+   "CASE_NUMBER": "01-1978-0001",
+   "DOJ_DOCKET_NMBR": "",
+   "ENF_OUTCOME_DESC": "Final Order With Penalty",
+   "FISCAL_YEAR": "1978",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "",
+   "TOTAL_PENALTY_ASSESSED_AMT": "3000",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "27",
+     "ENF_CONCLUSION_NAME": "TESTOWNER 15EEB8",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "3000",
+     "PRIMARY_LAW": "CAA",
+     "SETTLEMENT_ENTERED_DATE": "11/09/1978",
+     "SETTLEMENT_LODGED_DATE": "11/09/1978",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER 84568A",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "78-176 SD"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "KITTERY",
+     "FACILITY_NAME": "TESTOWNER CF8E0D",
+     "LOCATION_ADDRESS": "734 TEST ST",
+     "REGISTRY_ID": "110000732967",
+     "STATE_CODE": "ME",
+     "ZIP": "03904"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "31",
+   "ACTIVITY_STATUS_DATE": "03/07/1979",
+   "ACTIVITY_STATUS_DESC": "Concluded",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER AB06C2 INC",
+   "CASE_NUMBER": "01-1978-0002",
+   "DOJ_DOCKET_NMBR": "",
+   "ENF_OUTCOME_DESC": "Final Order With Penalty",
+   "FISCAL_YEAR": "1978",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "0",
+   "TOTAL_PENALTY_ASSESSED_AMT": "75000",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "0",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "28",
+     "ENF_CONCLUSION_NAME": "TESTOWNER E7B7A3",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "75000",
+     "PRIMARY_LAW": "CAA",
+     "SETTLEMENT_ENTERED_DATE": "03/07/1979",
+     "SETTLEMENT_LODGED_DATE": "03/07/1979",
+     "STATE_LOCAL_PENALTY_AMT": "0"
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER A75D58 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "79-95"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "MANCHESTER",
+     "FACILITY_NAME": "TESTOWNER E25D46",
+     "LOCATION_ADDRESS": "3425 TEST ST",
+     "REGISTRY_ID": "110002320809",
+     "STATE_CODE": "NH",
+     "ZIP": "03103"
+    },
+    {
+     "CITY": "MANCHESTER",
+     "FACILITY_NAME": "TESTOWNER FEC419",
+     "LOCATION_ADDRESS": "6968 TEST ST",
+     "REGISTRY_ID": "110023112889",
+     "STATE_CODE": "NH",
+     "ZIP": "03103"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "32",
+   "ACTIVITY_STATUS_DATE": "08/16/1985",
+   "ACTIVITY_STATUS_DESC": "Closed",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER 5584D1 CO",
+   "CASE_NUMBER": "01-1978-0003",
+   "DOJ_DOCKET_NMBR": "",
+   "ENF_OUTCOME_DESC": "Final Order With Penalty",
+   "FISCAL_YEAR": "1978",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "",
+   "TOTAL_PENALTY_ASSESSED_AMT": "16000",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "29",
+     "ENF_CONCLUSION_NAME": "TESTOWNER A54267 CO",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "16000",
+     "PRIMARY_LAW": "CAA",
+     "SETTLEMENT_ENTERED_DATE": "09/24/1979",
+     "SETTLEMENT_LODGED_DATE": "09/24/1979",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER 9653D0 CO",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "78-680"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "STAFFORD SPRINGS",
+     "FACILITY_NAME": "TESTOWNER 8F0788 CO",
+     "LOCATION_ADDRESS": "7255 TEST ST",
+     "REGISTRY_ID": "110002005277",
+     "STATE_CODE": "CT",
+     "ZIP": "06076"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "34",
+   "ACTIVITY_STATUS_DATE": "10/06/1981",
+   "ACTIVITY_STATUS_DESC": "Closed",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER CB7127 CO",
+   "CASE_NUMBER": "01-1979-0001",
+   "DOJ_DOCKET_NMBR": "",
+   "ENF_OUTCOME_DESC": "Final Order With Penalty",
+   "FISCAL_YEAR": "1979",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "",
+   "TOTAL_PENALTY_ASSESSED_AMT": "66600",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "30",
+     "ENF_CONCLUSION_NAME": "TESTOWNER 17F718 CO",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "66600",
+     "PRIMARY_LAW": "CAA",
+     "SETTLEMENT_ENTERED_DATE": "08/09/1979",
+     "SETTLEMENT_LODGED_DATE": "08/09/1979",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER 7E4DF4 CO",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "C79-233D"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "BERLIN",
+     "FACILITY_NAME": "TESTOWNER EFA636 LLC",
+     "LOCATION_ADDRESS": "7738 TEST ST",
+     "REGISTRY_ID": "110022501675",
+     "STATE_CODE": "NH",
+     "ZIP": "03570"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "35",
+   "ACTIVITY_STATUS_DATE": "02/23/1983",
+   "ACTIVITY_STATUS_DESC": "Concluded",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER 18DB9B",
+   "CASE_NUMBER": "01-1979-0002",
+   "DOJ_DOCKET_NMBR": "",
+   "ENF_OUTCOME_DESC": "Final Order With Penalty",
+   "FISCAL_YEAR": "1979",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "0",
+   "TOTAL_PENALTY_ASSESSED_AMT": "69778",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "0",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "31",
+     "ENF_CONCLUSION_NAME": "TESTOWNER 1AA277",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "69778",
+     "PRIMARY_LAW": "RCRA",
+     "SETTLEMENT_ENTERED_DATE": "02/23/1983",
+     "SETTLEMENT_LODGED_DATE": "02/23/1983",
+     "STATE_LOCAL_PENALTY_AMT": "0"
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER 691390 CO",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER A758E5",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "79-704"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "SOUTHINGTON",
+     "FACILITY_NAME": "TESTOWNER 45FBA4",
+     "LOCATION_ADDRESS": "4258 TEST ST",
+     "REGISTRY_ID": "110000611017",
+     "STATE_CODE": "CT",
+     "ZIP": "06489"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "39",
+   "ACTIVITY_STATUS_DATE": "01/02/1982",
+   "ACTIVITY_STATUS_DESC": "Closed",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER DA924C",
+   "CASE_NUMBER": "01-1980-0004",
+   "DOJ_DOCKET_NMBR": "",
+   "ENF_OUTCOME_DESC": "Final Order With Penalty",
+   "FISCAL_YEAR": "1980",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "",
+   "TOTAL_PENALTY_ASSESSED_AMT": "25000",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "34",
+     "ENF_CONCLUSION_NAME": "TESTOWNER BE0FC4 INC",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "25000",
+     "PRIMARY_LAW": "CWA",
+     "SETTLEMENT_ENTERED_DATE": "06/05/1981",
+     "SETTLEMENT_LODGED_DATE": "06/05/1981",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER 4BF22C INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "80-1014-Z"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "ATTLEBORO",
+     "FACILITY_NAME": "TESTOWNER CF99D2 INC",
+     "LOCATION_ADDRESS": "3495 TEST ST",
+     "REGISTRY_ID": "110000311644",
+     "STATE_CODE": "MA",
+     "ZIP": "02703"
+    },
+    {
+     "CITY": "ATTLEBORO",
+     "FACILITY_NAME": "TESTOWNER CF99D2 INC",
+     "LOCATION_ADDRESS": "3495 TEST ST",
+     "REGISTRY_ID": "110000311644",
+     "STATE_CODE": "MA",
+     "ZIP": "02703"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "40",
+   "ACTIVITY_STATUS_DATE": "06/23/1992",
+   "ACTIVITY_STATUS_DESC": "Closed",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER 608108 CORP",
+   "CASE_NUMBER": "01-1980-0005",
+   "DOJ_DOCKET_NMBR": "90-7-1-79",
+   "ENF_OUTCOME_DESC": "Final Order With Specified Cost Recovery",
+   "FISCAL_YEAR": "1980",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "415000",
+   "TOTAL_PENALTY_ASSESSED_AMT": "0",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "36",
+     "ENF_CONCLUSION_NAME": "TESTOWNER 1A8774",
+     "ENF_CONCLUSION_NMBR": "2",
+     "FED_PENALTY_ASSESSED_AMT": "",
+     "PRIMARY_LAW": "CERCLA",
+     "SETTLEMENT_ENTERED_DATE": "11/13/1987",
+     "SETTLEMENT_LODGED_DATE": "11/13/1987",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    },
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "415000",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "35",
+     "ENF_CONCLUSION_NAME": "TESTOWNER 1A8774",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "0",
+     "PRIMARY_LAW": "CERCLA",
+     "SETTLEMENT_ENTERED_DATE": "11/13/1987",
+     "SETTLEMENT_LODGED_DATE": "11/13/1987",
+     "STATE_LOCAL_PENALTY_AMT": "0"
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER 40DE18",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER A9F18C CO",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 0A45BB INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 5D09A5",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 20279E",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 0C8F7F CORP",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 58431B CORP",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER F92B82 CO",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER B9FD8F CORP",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER F6292B",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 84D6D0 CORP",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER C18290 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 29F805",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 20715A CO",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER ABEF0E",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 7D4B3E",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER B55EC8",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "80-225"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "KINGSTON",
+     "FACILITY_NAME": "TESTOWNER E6C4FE",
+     "LOCATION_ADDRESS": "4168 TEST ST",
+     "REGISTRY_ID": "110012148050",
+     "STATE_CODE": "NH",
+     "ZIP": "03848"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "41",
+   "ACTIVITY_STATUS_DATE": "12/06/1991",
+   "ACTIVITY_STATUS_DESC": "Closed",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER 18B12E CO",
+   "CASE_NUMBER": "01-1980-0006",
+   "DOJ_DOCKET_NMBR": "",
+   "ENF_OUTCOME_DESC": "Final Order With Penalty",
+   "FISCAL_YEAR": "1980",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "0",
+   "TOTAL_PENALTY_ASSESSED_AMT": "6500",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "0",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "37",
+     "ENF_CONCLUSION_NAME": "TESTOWNER 8AFB0F CO",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "6500",
+     "PRIMARY_LAW": "CWA",
+     "SETTLEMENT_ENTERED_DATE": "06/21/1983",
+     "SETTLEMENT_LODGED_DATE": "06/21/1983",
+     "STATE_LOCAL_PENALTY_AMT": "0"
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER 3289E6 CO",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "80-479-L"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "HUDSON",
+     "FACILITY_NAME": "TESTOWNER A2CD39 CO",
+     "LOCATION_ADDRESS": "4540 TEST ST",
+     "REGISTRY_ID": "110007683211",
+     "STATE_CODE": "NH",
+     "ZIP": "03051"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "43",
+   "ACTIVITY_STATUS_DATE": "04/04/1988",
+   "ACTIVITY_STATUS_DESC": "Closed",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER DE4F64 INC",
+   "CASE_NUMBER": "01-1981-0001",
+   "DOJ_DOCKET_NMBR": "",
+   "ENF_OUTCOME_DESC": "Final Order With Penalty",
+   "FISCAL_YEAR": "1981",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "",
+   "TOTAL_PENALTY_ASSESSED_AMT": "90000",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "38",
+     "ENF_CONCLUSION_NAME": "TESTOWNER D07D85 INC",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "90000",
+     "PRIMARY_LAW": "CAA",
+     "SETTLEMENT_ENTERED_DATE": "05/09/1985",
+     "SETTLEMENT_LODGED_DATE": "05/09/1985",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER 92F2CA INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "83-1892-MA"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "LEOMINSTER",
+     "FACILITY_NAME": "TESTOWNER BE53AB CO",
+     "LOCATION_ADDRESS": "5052 TEST ST",
+     "REGISTRY_ID": "110000835071",
+     "STATE_CODE": "MA",
+     "ZIP": "014530000"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "44",
+   "ACTIVITY_STATUS_DATE": "03/16/2022",
+   "ACTIVITY_STATUS_DESC": "Final Order Entered",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER 693B83",
+   "CASE_NUMBER": "01-1982-0002",
+   "DOJ_DOCKET_NMBR": "90-11-2-130",
+   "ENF_OUTCOME_DESC": "Final Order With Specified Cost Recovery",
+   "FISCAL_YEAR": "1982",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "400000",
+   "TOTAL_PENALTY_ASSESSED_AMT": "0",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "JOA",
+     "ENF_CONCLUSION_ID": "3600310613",
+     "ENF_CONCLUSION_NAME": "TESTOWNER 51CE0D",
+     "ENF_CONCLUSION_NMBR": "2",
+     "FED_PENALTY_ASSESSED_AMT": "",
+     "PRIMARY_LAW": "CERCLA",
+     "SETTLEMENT_ENTERED_DATE": "03/16/2022",
+     "SETTLEMENT_LODGED_DATE": "01/24/2022",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    },
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "400000",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "39",
+     "ENF_CONCLUSION_NAME": "TESTOWNER C94C94",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "0",
+     "PRIMARY_LAW": "CERCLA",
+     "SETTLEMENT_ENTERED_DATE": "03/24/1986",
+     "SETTLEMENT_LODGED_DATE": "03/24/1986",
+     "STATE_LOCAL_PENALTY_AMT": "0"
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER 8D53F4 CORP",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER DB6944",
+     "NAMED_IN_COMPLAINT_FLAG": "N",
+     "NAMED_IN_SETTLEMENT_FLAG": "N"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 1F4AAC",
+     "NAMED_IN_COMPLAINT_FLAG": "N",
+     "NAMED_IN_SETTLEMENT_FLAG": "N"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER CB736D",
+     "NAMED_IN_COMPLAINT_FLAG": "N",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "86-0029"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "WINTHROP",
+     "FACILITY_NAME": "TESTOWNER D8B9FE",
+     "LOCATION_ADDRESS": "3728 TEST ST",
+     "REGISTRY_ID": "110009261583",
+     "STATE_CODE": "ME",
+     "ZIP": "04364"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "46",
+   "ACTIVITY_STATUS_DATE": "05/02/1989",
+   "ACTIVITY_STATUS_DESC": "Concluded",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER C2FF0F",
+   "CASE_NUMBER": "01-1982-0011",
+   "DOJ_DOCKET_NMBR": "90-11-2-131",
+   "ENF_OUTCOME_DESC": "Final Order With Penalty & Specified Cost Recovery",
+   "FISCAL_YEAR": "1982",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "100000",
+   "TOTAL_PENALTY_ASSESSED_AMT": "75000",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "41",
+     "ENF_CONCLUSION_NAME": "TESTOWNER C65A0F",
+     "ENF_CONCLUSION_NMBR": "2",
+     "FED_PENALTY_ASSESSED_AMT": "",
+     "PRIMARY_LAW": "CERCLA",
+     "SETTLEMENT_ENTERED_DATE": "12/13/1988",
+     "SETTLEMENT_LODGED_DATE": "12/13/1988",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    },
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "42",
+     "ENF_CONCLUSION_NAME": "TESTOWNER 9BCFF0",
+     "ENF_CONCLUSION_NMBR": "3",
+     "FED_PENALTY_ASSESSED_AMT": "",
+     "PRIMARY_LAW": "CERCLA",
+     "SETTLEMENT_ENTERED_DATE": "04/22/1988",
+     "SETTLEMENT_LODGED_DATE": "04/22/1988",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    },
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "43",
+     "ENF_CONCLUSION_NAME": "TESTOWNER BD5AD1",
+     "ENF_CONCLUSION_NMBR": "4",
+     "FED_PENALTY_ASSESSED_AMT": "",
+     "PRIMARY_LAW": "CERCLA",
+     "SETTLEMENT_ENTERED_DATE": "05/02/1989",
+     "SETTLEMENT_LODGED_DATE": "05/02/1989",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    },
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "100000",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "40",
+     "ENF_CONCLUSION_NAME": "TESTOWNER 704E2E",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "75000",
+     "PRIMARY_LAW": "CERCLA",
+     "SETTLEMENT_ENTERED_DATE": "04/14/1988",
+     "SETTLEMENT_LODGED_DATE": "04/14/1988",
+     "STATE_LOCAL_PENALTY_AMT": "0"
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER EAB94E",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 09FC07",
+     "NAMED_IN_COMPLAINT_FLAG": "N",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER A94EEB CORP",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 83430A",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER BD0DE6",
+     "NAMED_IN_COMPLAINT_FLAG": "N",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER C44B76",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 7445E7",
+     "NAMED_IN_COMPLAINT_FLAG": "N",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "83-0787"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "COVENTRY",
+     "FACILITY_NAME": "TESTOWNER F48643",
+     "LOCATION_ADDRESS": "4806 TEST ST",
+     "REGISTRY_ID": "110009310030",
+     "STATE_CODE": "RI",
+     "ZIP": "02816"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "47",
+   "ACTIVITY_STATUS_DATE": "05/31/1989",
+   "ACTIVITY_STATUS_DESC": "Concluded",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER 5FC21E",
+   "CASE_NUMBER": "01-1982-0012",
+   "DOJ_DOCKET_NMBR": "90-11-2-58",
+   "ENF_OUTCOME_DESC": "Final Order With Specified Cost Recovery",
+   "FISCAL_YEAR": "1982",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "8061000",
+   "TOTAL_PENALTY_ASSESSED_AMT": "0",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "8061000",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "44",
+     "ENF_CONCLUSION_NAME": "TESTOWNER E09ED4",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "0",
+     "PRIMARY_LAW": "CERCLA",
+     "SETTLEMENT_ENTERED_DATE": "05/31/1989",
+     "SETTLEMENT_LODGED_DATE": "05/31/1989",
+     "STATE_LOCAL_PENALTY_AMT": "0"
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER 1574D3 CORP",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "89-0306"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "DARTMOUTH",
+     "FACILITY_NAME": "TESTOWNER 2E9304 INC",
+     "LOCATION_ADDRESS": "3703 TEST ST",
+     "REGISTRY_ID": "110024365710",
+     "STATE_CODE": "MA",
+     "ZIP": "02747"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "49",
+   "ACTIVITY_STATUS_DATE": "05/24/1993",
+   "ACTIVITY_STATUS_DESC": "Concluded",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER 6FF8CC",
+   "CASE_NUMBER": "01-1982-0014",
+   "DOJ_DOCKET_NMBR": "90-11-3-91",
+   "ENF_OUTCOME_DESC": "Final Order With Specified Cost Recovery",
+   "FISCAL_YEAR": "1982",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "38600000",
+   "TOTAL_PENALTY_ASSESSED_AMT": "",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "38600000",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "48",
+     "ENF_CONCLUSION_NAME": "TESTOWNER 3137B0 CO",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "",
+     "PRIMARY_LAW": "CERCLA",
+     "SETTLEMENT_ENTERED_DATE": "05/24/1993",
+     "SETTLEMENT_LODGED_DATE": "05/24/1993",
+     "STATE_LOCAL_PENALTY_AMT": "0"
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER 0F56E5 CORP",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 7F0917 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER C6F069",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 772CB2",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 93F34F",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER BE1030",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER DE4B58 CO",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER ED487E",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER CE8ED7",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 91F119 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER E2ED87 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER C35E13",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 83430A",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 4CDAA9",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 46D902",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER BB3FF6",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER A744AF",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 7F0281",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER AEFF92 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 897B7D INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 60FF19",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 2D2A4F",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 8C5E82 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 520251 CORP",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 6DCCAB",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER C46C59 CORP",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 7E7A2C INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 03C625",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER C9A59B",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 05AC3E",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER B1B6E6",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 6A1AB4 CO",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "85-2463-WD"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "TYNGSBORO",
+     "FACILITY_NAME": "TESTOWNER A0DCB2",
+     "LOCATION_ADDRESS": "8454 TEST ST",
+     "REGISTRY_ID": "110010639791",
+     "STATE_CODE": "MA",
+     "ZIP": "01879"
+    },
+    {
+     "CITY": "TYNGSBORO",
+     "FACILITY_NAME": "TESTOWNER 3C72FC INC",
+     "LOCATION_ADDRESS": "2118 TEST ST",
+     "REGISTRY_ID": "110024304028",
+     "STATE_CODE": "MA",
+     "ZIP": "01879"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "50",
+   "ACTIVITY_STATUS_DATE": "11/13/1992",
+   "ACTIVITY_STATUS_DESC": "Final Order Entered",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER 5E41A2",
+   "CASE_NUMBER": "01-1982-0016",
+   "DOJ_DOCKET_NMBR": "90-11-2-32",
+   "ENF_OUTCOME_DESC": "",
+   "FISCAL_YEAR": "1982",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "99600000",
+   "TOTAL_PENALTY_ASSESSED_AMT": "0",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "50",
+     "ENF_CONCLUSION_NAME": "TESTOWNER 823723",
+     "ENF_CONCLUSION_NMBR": "2",
+     "FED_PENALTY_ASSESSED_AMT": "",
+     "PRIMARY_LAW": "CERCLA",
+     "SETTLEMENT_ENTERED_DATE": "02/03/1992",
+     "SETTLEMENT_LODGED_DATE": "02/03/1992",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    },
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "51",
+     "ENF_CONCLUSION_NAME": "TESTOWNER 823723",
+     "ENF_CONCLUSION_NMBR": "3",
+     "FED_PENALTY_ASSESSED_AMT": "",
+     "PRIMARY_LAW": "CERCLA",
+     "SETTLEMENT_ENTERED_DATE": "07/17/1991",
+     "SETTLEMENT_LODGED_DATE": "07/17/1991",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    },
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "99600000",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "49",
+     "ENF_CONCLUSION_NAME": "TESTOWNER 2B0FE0 CORP",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "0",
+     "PRIMARY_LAW": "CERCLA",
+     "SETTLEMENT_ENTERED_DATE": "11/13/1992",
+     "SETTLEMENT_LODGED_DATE": "11/13/1992",
+     "STATE_LOCAL_PENALTY_AMT": "0"
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER F06F40 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 528062 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 9DF4F9",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 4CE1D0 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER B68CAC INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER EEDF73 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "N"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "83-3882-Y"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "NEW BEDFORD",
+     "FACILITY_NAME": "TESTOWNER 45C163",
+     "LOCATION_ADDRESS": "3046 TEST ST",
+     "REGISTRY_ID": "110009290169",
+     "STATE_CODE": "MA",
+     "ZIP": "02740"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "51",
+   "ACTIVITY_STATUS_DATE": "06/27/1991",
+   "ACTIVITY_STATUS_DESC": "Closed",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER 0062E9 CO",
+   "CASE_NUMBER": "01-1982-0020",
+   "DOJ_DOCKET_NMBR": "90-5-2-1-531A",
+   "ENF_OUTCOME_DESC": "Final Order With Penalty",
+   "FISCAL_YEAR": "1982",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "0",
+   "TOTAL_PENALTY_ASSESSED_AMT": "14600",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "0",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "52",
+     "ENF_CONCLUSION_NAME": "TESTOWNER D64378 INC",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "14600",
+     "PRIMARY_LAW": "CAA",
+     "SETTLEMENT_ENTERED_DATE": "12/07/1984",
+     "SETTLEMENT_LODGED_DATE": "12/07/1984",
+     "STATE_LOCAL_PENALTY_AMT": "0"
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER FBA528 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER E54E66 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "N82-342(PCD)"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "WEST HAVEN",
+     "FACILITY_NAME": "TESTOWNER 2F48B9 INC",
+     "LOCATION_ADDRESS": "2076 TEST ST",
+     "REGISTRY_ID": "110000316907",
+     "STATE_CODE": "CT",
+     "ZIP": "06516"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "52",
+   "ACTIVITY_STATUS_DATE": "12/02/1992",
+   "ACTIVITY_STATUS_DESC": "Closed",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER 43B6D9 CORP",
+   "CASE_NUMBER": "01-1982-0021",
+   "DOJ_DOCKET_NMBR": "90-11-2-14",
+   "ENF_OUTCOME_DESC": "Final Order With Specified Cost Recovery",
+   "FISCAL_YEAR": "1982",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "5200000",
+   "TOTAL_PENALTY_ASSESSED_AMT": "0",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "5200000",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "53",
+     "ENF_CONCLUSION_NAME": "TESTOWNER 64EDCF",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "0",
+     "PRIMARY_LAW": "CERCLA",
+     "SETTLEMENT_ENTERED_DATE": "03/16/1989",
+     "SETTLEMENT_LODGED_DATE": "03/16/1989",
+     "STATE_LOCAL_PENALTY_AMT": "0"
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER 8028AF CO",
+     "NAMED_IN_COMPLAINT_FLAG": "N",
+     "NAMED_IN_SETTLEMENT_FLAG": "N"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 8ECD91 CO",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER F20137 CORP",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 51D9B2 CORP",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 319747",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER CF1FDC CO",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 746FC3",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 9F05AC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER D43C05 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 3DC421",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 7868B3",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 41957A CORP",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 6B638F INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 8A3B9D",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 578E22 CO",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 62A5AA",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 8E7CB5",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 5FDEF2",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 43B937 CO",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 189853",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER E10435",
+     "NAMED_IN_COMPLAINT_FLAG": "N",
+     "NAMED_IN_SETTLEMENT_FLAG": "N"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER A46E73",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER E3CCA2 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "N",
+     "NAMED_IN_SETTLEMENT_FLAG": "N"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 94707D INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER D326AA",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER EC1424",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 6F10FE",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER BD9828 CORP",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 83A348 CO",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 6F4774",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 4055B6 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "N",
+     "NAMED_IN_SETTLEMENT_FLAG": "N"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 8BF973 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER DB8A4E CORP",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 11D837",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 0D8898",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 885231 CORP",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 571782",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER A1E5C3 CORP",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER B98EB4 CORP",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 4E3BC7 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER EE7ACF CORP",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 3FB45B",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 26BD4F INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 48970F",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 75A45D",
+     "NAMED_IN_COMPLAINT_FLAG": "N",
+     "NAMED_IN_SETTLEMENT_FLAG": "N"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 154860 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 01A17F",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 48FFA4 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER BAA927 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 0CA483",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 74A892",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER AC4A0A",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 7F6437 CORP",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 6118ED",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 195516 CORP",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 7F02A7",
+     "NAMED_IN_COMPLAINT_FLAG": "N",
+     "NAMED_IN_SETTLEMENT_FLAG": "N"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER DB2B78 CORP",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER FD5FD6",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 3B7D40 CO",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 1AB3B1",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER A82FEC INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 0B90A8 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 18856E CO",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 9E72DC INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 6D246B INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER F7900D CORP",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 993EA0 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 5A41DD INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER EB7050 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER C6E128",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 542F01 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 410AB7",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER DACF6B",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 7978EA",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 103E45 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 348359",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER EC142E",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 59457D",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 66DBE0",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER AF1DD3 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER DE43EB INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 1E11CC INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER EE5E65 CORP",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 9F5E9E",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 091811",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER AC7CD7 CORP",
+     "NAMED_IN_COMPLAINT_FLAG": "N",
+     "NAMED_IN_SETTLEMENT_FLAG": "N"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 9EFDFD",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 176421",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER F4EB96 CO",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 9AE698 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 50CE62",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 59BD09",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 929CEE",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER E6E02E",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 565CC1",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 9629F2 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 6DDA0E",
+     "NAMED_IN_COMPLAINT_FLAG": "N",
+     "NAMED_IN_SETTLEMENT_FLAG": "N"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 3417F2",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER C9EF1A INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 4FC116",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER D6727A CO",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER FB3614",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 23534C",
+     "NAMED_IN_COMPLAINT_FLAG": "N",
+     "NAMED_IN_SETTLEMENT_FLAG": "N"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER D93832",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 53E26E CORP",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 7B5F39 CORP",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER C53299 CO",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 3B80D6 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 5A56B8",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 67E5DA CO",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER CD1B92 CORP",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER A95494 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 1AB515 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 1925B9",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER C42F66",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER C7BB47 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 4CAC22",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 4FCA14 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER B141EA CORP",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 5E3B14",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 9C6A21",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 61ED4D",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER E577FC INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 4BCA92 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 5C56A6",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 69C60B CORP",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 83B10E",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 7F96BA CO",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 463180",
+     "NAMED_IN_COMPLAINT_FLAG": "N",
+     "NAMED_IN_SETTLEMENT_FLAG": "N"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "85-634-L"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "EPPING",
+     "FACILITY_NAME": "TESTOWNER D3D5AD INC",
+     "LOCATION_ADDRESS": "5156 TEST ST",
+     "REGISTRY_ID": "110007684283",
+     "STATE_CODE": "NH",
+     "ZIP": "03042"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "53",
+   "ACTIVITY_STATUS_DATE": "01/15/1991",
+   "ACTIVITY_STATUS_DESC": "Concluded",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER A2069D",
+   "CASE_NUMBER": "01-1982-0022",
+   "DOJ_DOCKET_NMBR": "90-11-2-17",
+   "ENF_OUTCOME_DESC": "Final Order With Specified Cost Recovery",
+   "FISCAL_YEAR": "1982",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "1500000",
+   "TOTAL_PENALTY_ASSESSED_AMT": "0",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "1500000",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "54",
+     "ENF_CONCLUSION_NAME": "TESTOWNER F6F913",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "0",
+     "PRIMARY_LAW": "CERCLA",
+     "SETTLEMENT_ENTERED_DATE": "01/15/1991",
+     "SETTLEMENT_LODGED_DATE": "01/15/1991",
+     "STATE_LOCAL_PENALTY_AMT": "0"
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER 267D9C CO",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 716B2A CO",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 5837A4",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER B44B39 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER 19D2F0",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "83-547-D"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "RAYMOND",
+     "FACILITY_NAME": "TESTOWNER 846F86",
+     "LOCATION_ADDRESS": "4170 TEST ST",
+     "REGISTRY_ID": "110001123169",
+     "STATE_CODE": "NH",
+     "ZIP": "03077"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "54",
+   "ACTIVITY_STATUS_DATE": "02/25/1988",
+   "ACTIVITY_STATUS_DESC": "Closed",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER E6F762",
+   "CASE_NUMBER": "01-1982-0025",
+   "DOJ_DOCKET_NMBR": "",
+   "ENF_OUTCOME_DESC": "Final Order With Penalty",
+   "FISCAL_YEAR": "1982",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "",
+   "TOTAL_PENALTY_ASSESSED_AMT": "500",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "55",
+     "ENF_CONCLUSION_NAME": "TESTOWNER BC7610",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "500",
+     "PRIMARY_LAW": "CWA",
+     "SETTLEMENT_ENTERED_DATE": "08/07/1984",
+     "SETTLEMENT_LODGED_DATE": "08/07/1984",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER 542516",
+     "NAMED_IN_COMPLAINT_FLAG": "N",
+     "NAMED_IN_SETTLEMENT_FLAG": "N"
+    },
+    {
+     "DEFENDANT_NAME": "TESTOWNER D5E0CF",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "82-419"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "MANCHESTER",
+     "FACILITY_NAME": "TESTOWNER 666DC9",
+     "LOCATION_ADDRESS": "6608 TEST ST",
+     "REGISTRY_ID": "110010761719",
+     "STATE_CODE": "NH",
+     "ZIP": "03103"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "55",
+   "ACTIVITY_STATUS_DATE": "08/16/1983",
+   "ACTIVITY_STATUS_DESC": "Closed",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER 5584D1 CO",
+   "CASE_NUMBER": "01-1982-0027",
+   "DOJ_DOCKET_NMBR": "90-5-2-1-169A",
+   "ENF_OUTCOME_DESC": "Final Order With Penalty",
+   "FISCAL_YEAR": "1982",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "",
+   "TOTAL_PENALTY_ASSESSED_AMT": "16000",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "56",
+     "ENF_CONCLUSION_NAME": "TESTOWNER A54267 CO",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "16000",
+     "PRIMARY_LAW": "CAA",
+     "SETTLEMENT_ENTERED_DATE": "08/16/1983",
+     "SETTLEMENT_LODGED_DATE": "08/16/1983",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER B8BBA2 CO",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "H78-680"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "STAFFORD SPRINGS",
+     "FACILITY_NAME": "TESTOWNER 8F0788 CO",
+     "LOCATION_ADDRESS": "7255 TEST ST",
+     "REGISTRY_ID": "110002005277",
+     "STATE_CODE": "CT",
+     "ZIP": "06076"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "56",
+   "ACTIVITY_STATUS_DATE": "09/25/1991",
+   "ACTIVITY_STATUS_DESC": "Closed",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER C9EB9E",
+   "CASE_NUMBER": "01-1982-0028",
+   "DOJ_DOCKET_NMBR": "",
+   "ENF_OUTCOME_DESC": "Final Order With Penalty",
+   "FISCAL_YEAR": "1982",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "0",
+   "TOTAL_PENALTY_ASSESSED_AMT": "35000",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "0",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "57",
+     "ENF_CONCLUSION_NAME": "TESTOWNER 21814A",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "35000",
+     "PRIMARY_LAW": "CWA",
+     "SETTLEMENT_ENTERED_DATE": "04/04/1984",
+     "SETTLEMENT_LODGED_DATE": "04/04/1984",
+     "STATE_LOCAL_PENALTY_AMT": "0"
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER 3BA4CE",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "C-83-0071-P"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "GORHAM",
+     "FACILITY_NAME": "TESTOWNER A77E27",
+     "LOCATION_ADDRESS": "4880 TEST ST",
+     "REGISTRY_ID": "110032749248",
+     "STATE_CODE": "ME",
+     "ZIP": "04038"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "57",
+   "ACTIVITY_STATUS_DATE": "04/30/1985",
+   "ACTIVITY_STATUS_DESC": "Closed",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER EA1FE7 CO",
+   "CASE_NUMBER": "01-1982-0029",
+   "DOJ_DOCKET_NMBR": "",
+   "ENF_OUTCOME_DESC": "Final Order With Penalty",
+   "FISCAL_YEAR": "1982",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "",
+   "TOTAL_PENALTY_ASSESSED_AMT": "78000",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "58",
+     "ENF_CONCLUSION_NAME": "TESTOWNER 22A5E7 CO",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "78000",
+     "PRIMARY_LAW": "CWA",
+     "SETTLEMENT_ENTERED_DATE": "10/19/1983",
+     "SETTLEMENT_LODGED_DATE": "10/19/1983",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER 54FF40 CO",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "83-150-D"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "FRANKLIN",
+     "FACILITY_NAME": "TESTOWNER 179ADD INC",
+     "LOCATION_ADDRESS": "7186 TEST ST",
+     "REGISTRY_ID": "110000313697",
+     "STATE_CODE": "NH",
+     "ZIP": "032356431"
+    },
+    {
+     "CITY": "FRANKLIN",
+     "FACILITY_NAME": "TESTOWNER 179ADD INC",
+     "LOCATION_ADDRESS": "7186 TEST ST",
+     "REGISTRY_ID": "110000313697",
+     "STATE_CODE": "NH",
+     "ZIP": "032356431"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "58",
+   "ACTIVITY_STATUS_DATE": "02/03/1984",
+   "ACTIVITY_STATUS_DESC": "Closed",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER 5A45AE INC",
+   "CASE_NUMBER": "01-1982-0030",
+   "DOJ_DOCKET_NMBR": "",
+   "ENF_OUTCOME_DESC": "Final Order With Penalty",
+   "FISCAL_YEAR": "1982",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "",
+   "TOTAL_PENALTY_ASSESSED_AMT": "25000",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "59",
+     "ENF_CONCLUSION_NAME": "TESTOWNER FD6A6A INC",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "25000",
+     "PRIMARY_LAW": "RCRA",
+     "SETTLEMENT_ENTERED_DATE": "11/14/1983",
+     "SETTLEMENT_LODGED_DATE": "11/14/1983",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER CC4605 INC",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "82-291"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "WATERBURY",
+     "FACILITY_NAME": "TESTOWNER 0B4EC5 INC",
+     "LOCATION_ADDRESS": "6167 TEST ST",
+     "REGISTRY_ID": "110067536722",
+     "STATE_CODE": "CT",
+     "ZIP": "06702"
+    },
+    {
+     "CITY": "WATERBURY",
+     "FACILITY_NAME": "TESTOWNER 0B4EC5 INC",
+     "LOCATION_ADDRESS": "6167 TEST ST",
+     "REGISTRY_ID": "110067536722",
+     "STATE_CODE": "CT",
+     "ZIP": "06702"
+    },
+    {
+     "CITY": "WATERBURY",
+     "FACILITY_NAME": "TESTOWNER 0B4EC5 INC",
+     "LOCATION_ADDRESS": "6167 TEST ST",
+     "REGISTRY_ID": "110067536722",
+     "STATE_CODE": "CT",
+     "ZIP": "06702"
+    },
+    {
+     "CITY": "WATERBURY",
+     "FACILITY_NAME": "TESTOWNER 0B4EC5 INC",
+     "LOCATION_ADDRESS": "6167 TEST ST",
+     "REGISTRY_ID": "110067536722",
+     "STATE_CODE": "CT",
+     "ZIP": "06702"
+    },
+    {
+     "CITY": "WATERBURY",
+     "FACILITY_NAME": "TESTOWNER 0B4EC5 INC",
+     "LOCATION_ADDRESS": "6167 TEST ST",
+     "REGISTRY_ID": "110067536722",
+     "STATE_CODE": "CT",
+     "ZIP": "06702"
+    },
+    {
+     "CITY": "WATERBURY",
+     "FACILITY_NAME": "TESTOWNER 0B4EC5 INC",
+     "LOCATION_ADDRESS": "6167 TEST ST",
+     "REGISTRY_ID": "110067536722",
+     "STATE_CODE": "CT",
+     "ZIP": "06702"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "59",
+   "ACTIVITY_STATUS_DATE": "06/08/1984",
+   "ACTIVITY_STATUS_DESC": "Concluded",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER 44F8FA",
+   "CASE_NUMBER": "01-1983-0001",
+   "DOJ_DOCKET_NMBR": "90-5-1-1-758",
+   "ENF_OUTCOME_DESC": "Final Order With Penalty",
+   "FISCAL_YEAR": "1983",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "0",
+   "TOTAL_PENALTY_ASSESSED_AMT": "250000",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "0",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "60",
+     "ENF_CONCLUSION_NAME": "TESTOWNER 2B1163",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "250000",
+     "PRIMARY_LAW": "CWA",
+     "SETTLEMENT_ENTERED_DATE": "06/08/1984",
+     "SETTLEMENT_LODGED_DATE": "06/08/1984",
+     "STATE_LOCAL_PENALTY_AMT": "0"
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER 6F8F7B",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "77-374 & 375"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "PROVIDENCE",
+     "FACILITY_NAME": "TESTOWNER D50ED4",
+     "LOCATION_ADDRESS": "6485 TEST ST",
+     "REGISTRY_ID": "110000760757",
+     "STATE_CODE": "RI",
+     "ZIP": "02905"
+    }
+   ]
+  },
+  {
+   "ACTIVITY_ID": "61",
+   "ACTIVITY_STATUS_DATE": "10/08/1986",
+   "ACTIVITY_STATUS_DESC": "Closed",
+   "ACTIVITY_TYPE_CODE": "JDC",
+   "CASE_NAME": "TESTOWNER ACD75C",
+   "CASE_NUMBER": "01-1983-0003",
+   "DOJ_DOCKET_NMBR": "",
+   "ENF_OUTCOME_DESC": "Final Order With Penalty",
+   "FISCAL_YEAR": "1983",
+   "LEAD": "EPA",
+   "REGION_CODE": "01",
+   "TOTAL_COST_RECOVERY_AMT": "",
+   "TOTAL_PENALTY_ASSESSED_AMT": "61500",
+   "conclusions": [
+    {
+     "ACTIVITY_TYPE_CODE": "JDC",
+     "COST_RECOVERY_AWARDED_AMT": "",
+     "ENF_CONCLUSION_ACTION_CODE": "CDC",
+     "ENF_CONCLUSION_ID": "61",
+     "ENF_CONCLUSION_NAME": "TESTOWNER 3C612C",
+     "ENF_CONCLUSION_NMBR": "1",
+     "FED_PENALTY_ASSESSED_AMT": "61500",
+     "PRIMARY_LAW": "CWA",
+     "SETTLEMENT_ENTERED_DATE": "02/10/1984",
+     "SETTLEMENT_LODGED_DATE": "02/10/1984",
+     "STATE_LOCAL_PENALTY_AMT": ""
+    }
+   ],
+   "defendants": [
+    {
+     "DEFENDANT_NAME": "TESTOWNER 06C421",
+     "NAMED_IN_COMPLAINT_FLAG": "Y",
+     "NAMED_IN_SETTLEMENT_FLAG": "Y"
+    }
+   ],
+   "dockets": [
+    {
+     "REGIONAL_DOCKET_NMBR": "83-609-L"
+    }
+   ],
+   "facilities": [
+    {
+     "CITY": "HUDSON",
+     "FACILITY_NAME": "TESTOWNER 4E68DE INC",
+     "LOCATION_ADDRESS": "1773 TEST ST",
+     "REGISTRY_ID": "110009418843",
+     "STATE_CODE": "NH",
+     "ZIP": "03051"
+    }
+   ]
+  }
+ ],
+ "file": "https://echo.epa.gov/files/echodownloads/case_downloads.zip"
+}

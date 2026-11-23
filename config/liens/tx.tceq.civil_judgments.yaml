@@ -1,0 +1,27 @@
+source_id: tx.tceq.civil_judgments
+state: TX
+county_fips: "48"   # statewide; the row's county name is used when present
+# Texas Commission on Environmental Quality: civil judgments issued in district court in
+# TCEQ enforcement cases (Attorney General referrals), with the payable penalty, attorney
+# fees and court costs. A district-court money judgment for the State.
+portal: https://data.texas.gov
+dataset: 7ift-kbgd
+order_by: [case_no, ":id"]
+date_field: order_date
+partition: year
+first_year: 2015
+uid: [case_no, district_court_docket_no, respondent_name]
+doc_type: JUDGMENT_LIEN
+doc_type_raw: TCEQ civil judgment
+amount: [payable_amount, attorney_fees, court_costs]
+county_name_field: county
+parties:
+  - role: debtor
+    name: respondent_name
+  - role: creditor
+    const: State of Texas (TCEQ)
+terms:
+  url: https://data.texas.gov/d/7ift-kbgd
+  summary: "data.texas.gov (Texas Open Data Portal, Socrata), public, no login. No license set on the dataset; Texas open data terms."
+  checked_on: 2026-11-23
+  cost_model: free

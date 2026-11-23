@@ -10,16 +10,23 @@ from equity.adapters.co_ucc import ColoradoUCC
 from equity.adapters.code_links import NJMunicipalCodeLinks
 from equity.adapters.dc_business import DCBusiness
 from equity.adapters.federal.ecf_rss import NDWVBankruptcyRSS, NDWVDistrictRSS, court_adapters
+from equity.adapters.federal.epa_echo import EPAJudicialCases
+from equity.adapters.federal.fjc_idb import FJCCivilJudgments
+from equity.adapters.federal.fjc_idb_direct import FJCDirectCivilJudgments
+from equity.adapters.fl.citrus_civil import CitrusCivil
+from equity.adapters.fl.hernando_civil import HernandoCivilFilings
+from equity.adapters.fl.hernando_or import HernandoOfficialRecords
 from equity.adapters.fl.hillsborough_civil import (
     HillsboroughCivilCases,
     HillsboroughCivilFilings,
     HillsboroughGarnishment,
 )
 from equity.adapters.fl.hillsborough_or import HillsboroughOfficialRecords
+from equity.adapters.fl.putnam_or import PutnamOfficialRecords
 from equity.adapters.hi.honolulu_owners import HonoluluOwners
+from equity.adapters.il.cook_parcels import CookCountyParcels
 from equity.adapters.liens import all_lien_adapters
 from equity.adapters.md_baltimore_citations import BaltimoreCitationLiens
-from equity.adapters.mi_detroit_blight import DetroitBlightJudgments
 from equity.adapters.ne_douglas_tax_liens import DouglasTaxLiens
 from equity.adapters.ny.acris import AcrisPersonalProperty, AcrisRealProperty
 from equity.adapters.ny.condo_units import NycCondoUnits
@@ -27,6 +34,8 @@ from equity.adapters.pa.allegheny_assessments import AlleghenyAssessments
 from equity.adapters.pa.philadelphia_rtt import PhiladelphiaRTT
 from equity.adapters.ri_providence import ProvidenceTaxRoll
 from equity.adapters.state_parcels import all_state_adapters
+from equity.adapters.tx.harris_district import HarrisDistrictCivilJudgments
+from equity.adapters.tx.harris_jp import HarrisJPCivilJudgments
 from equity.adapters.tx.stratmap import TexasStratMapParcels
 from equity.adapters.tx_harris_jp import HarrisJPJudgments
 from equity.adapters.tx_travis_delinquent import TravisTaxDelinquent
@@ -49,9 +58,9 @@ _ALL: tuple[type[Adapter], ...] = (
     ColoradoUCC,
     DCBusiness,
     BaltimoreCitationLiens,
-    DetroitBlightJudgments,
     DouglasTaxLiens,
     TexasStratMapParcels,
+    CookCountyParcels,
     AcrisRealProperty,
     NycCondoUnits,
     HonoluluOwners,
@@ -65,6 +74,15 @@ _ALL: tuple[type[Adapter], ...] = (
     HillsboroughCivilCases,
     HillsboroughCivilFilings,
     HillsboroughGarnishment,
+    CitrusCivil,
+    HernandoOfficialRecords,
+    HernandoCivilFilings,
+    PutnamOfficialRecords,
+    FJCCivilJudgments,
+    FJCDirectCivilJudgments,
+    EPAJudicialCases,
+    HarrisJPCivilJudgments,
+    HarrisDistrictCivilJudgments,
     *all_registry_adapters(),
     # NDWV keeps its original source ids; config/courts.yaml adds every other court.
     *[c for c in court_adapters() if c.court_id not in ("wvnd", "wvnb")],

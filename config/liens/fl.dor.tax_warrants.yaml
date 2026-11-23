@@ -1,0 +1,38 @@
+source_id: fl.dor.tax_warrants
+state: FL
+county_fips: "12"   # statewide; the row's county is used
+# Florida Department of Revenue, Florida Delinquent Taxpayers (s. 213.053(19), F.S.; Rule
+# 12-22.008): taxpayers with unsatisfied tax warrants or liens totaling $100,000 or more (the two
+# largest in a county where none reach $100,000), one row per warrant with the amount recorded
+# in the county records. Updated monthly; taxpayers in bankruptcy or on a payment agreement are
+# left out. No warrant date is published, so the list's "as of" date stands in for it.
+# TODO(Brandon): the page warns "Unauthorized use of this information is prohibited by Florida
+# law" (s. 213.053); confirm our use (matching to real property for lien priority) is allowed.
+# TODO(Brandon): confirm each listed warrant is recorded in the county official records and so
+# is a lien on the debtor's real property in that county (s. 213.69 / 213.731).
+api: xlsx
+url: https://floridarevenue.com/taxes/Documents/delinquent_taxes.xlsx
+sheet: 0
+header_row: 1          # row 0 is the banner "Delinquent Taxpayers as of MM/DD/YYYY"
+as_of: {field: list_as_of, after: "as of"}
+address_split: {field: location_address, prefix: addr_, form: slash}
+date_field: list_as_of
+uid: [warrant_number, location_address, warrant_amount_recorded_in_the_county_records]
+# a warrant number can repeat with a second location or amount; each row is kept
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Florida DOR tax warrant
+amount: warrant_amount_recorded_in_the_county_records
+county_name_field: county
+county_aliases: {DADE: MIAMI-DADE}   # the list still uses the pre-1997 name
+parties:
+  - role: debtor
+    name: owner_name
+    address: {line1: addr_line1, city: addr_city, state: addr_state, zip: addr_zip}
+  - role: creditor
+    const: Florida Department of Revenue
+extra_pii: [location_address, dba_business_name]
+terms:
+  url: https://floridarevenue.com/taxes/compliance/Pages/delinquent_taxpayer.aspx
+  summary: "FL DOR publishes the list as a free .xlsx on floridarevenue.com, updated monthly, no login. Published under s. 213.053(19), F.S.; the page says unauthorized use is prohibited by Florida law."
+  checked_on: 2026-11-23
+  cost_model: free
