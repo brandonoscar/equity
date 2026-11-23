@@ -37,8 +37,10 @@ Config keys:
   released_on         optional field: satisfaction date -> RELEASE + instrument_ref
   satisfied_flag      optional field: a value in satisfied_values (default true/1/yes/y) marks
                       the lien satisfied when no satisfaction date is published
-  parties             list of {role, name: field|[fields] | const: text,
-                               address: {line1: field|[fields], city, state, zip}}
+  parties             list of {role, name: field|[fields] | const: text, split (optional
+                               separator: one field holding several names, e.g. ' | '),
+                               address: {line1: field|[fields], city | city_const, state |
+                               state_const, zip}}
   parcel              {kind: nyc_bbl, borough, block, lot} | {kind: nyc_bbl10, field}
                       | {kind: pin, field (or a list of fields, one lot each), county_fips}
   county_fips         jurisdiction when no parcel names a county (5 digits)
@@ -744,20 +746,24 @@ class LienAdapter(Adapter):
         found: dict[str, dict[str, dict[str, Any] | None]] = {}
         for row in rows:
             for p in self.config["parties"]:
-                name = _text(p["const"]) if "const" in p else _join(row, p.get("name"))
-                if not name or name.upper() in skip:
-                    continue
+                raw = _text(p["const"]) if "const" in p else _join(row, p.get("name"))
+                sep = str(p.get("split") or "").strip()
+                names = [n.strip() for n in raw.split(sep)] if raw and sep else [raw]
                 a = p.get("address") or {}
                 zipc = _text(row.get(a["zip"])) if a.get("zip") else None
                 zip5 = zipc[:5] if zipc and re.fullmatch(r"[0-9]{5}", zipc[:5]) else None
                 state = (_text(row.get(a["state"])) if a.get("state") and a["state"] in row
                          else _text(a.get("state_const")))  # fmt: skip
-                addr = normalized_address(_join(row, a.get("line1")),
-                                          _text(row.get(a["city"])) if a.get("city") else None,
-                                          state, zip5) if a else None  # fmt: skip
+                city = (_text(row.get(a["city"])) if a.get("city")
+                        else _text(a.get("city_const")))  # fmt: skip
+                addr = normalized_address(_join(row, a.get("line1")), city, state,
+                                          zip5) if a else None  # fmt: skip
                 by_name = found.setdefault(p["role"], {})
-                if name not in by_name or (by_name[name] is None and addr is not None):
-                    by_name[name] = addr
+                for name in names:
+                    if not name or name.upper() in skip:
+                        continue
+                    if name not in by_name or (by_name[name] is None and addr is not None):
+                        by_name[name] = addr
         for role in sorted(found):
             for seq, name in enumerate(sorted(found[role]), start=1):
                 addr = found[role][name]

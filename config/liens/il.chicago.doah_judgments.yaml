@@ -23,7 +23,8 @@ amount: [imposed_fine, admin_costs]
 parties:
   - role: debtor
     name: respondents            # every respondent in one field, separated by ' | '
-    address: {line1: address, state_const: IL}   # the cited property (no ZIP published)
+    split: " | "
+    address: {line1: address, city_const: CHICAGO, state_const: IL}   # the cited property (no ZIP)
   - role: creditor
     const: City of Chicago
 extra_pii: [id]                  # a 40-hex row hash; replaced in fixtures so the secrets scan passes

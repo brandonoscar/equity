@@ -546,8 +546,9 @@ STATES: dict[str, dict[str, Any]] = {
     "VT": {"debtors": ["vt.tax.top100_individuals", "vt.tax.top100_businesses"],
            "owners": ["vt.statewide.parcels"], "courts": ["us.fjc.idb.civil_judgments"],
            "street_town": True},
+    # Chicago DOAH cites the property's street address with no ZIP: street + town rules.
     "IL-COOK": {"debtors": ["il.chicago.doah_judgments"], "owners": ["il.cook.parcels"],
-                "courts": ["us.fjc.idb.civil_judgments"]},
+                "courts": ["us.fjc.idb.civil_judgments"], "street_town": True},
     "AZ-PIMA": {"debtors": ["az.tucson.code_liens"], "owners": ["az.pima.parcels"],
                 "courts": ["us.fjc.idb.civil_judgments"]},
     "PA-WASHINGTON": {"debtors": ["pa.washington.sheriff_sales"],

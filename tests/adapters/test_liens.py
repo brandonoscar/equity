@@ -659,3 +659,25 @@ def test_pdf_source(tmp_path: Path) -> None:
     assert (str(inst["recorded_on"]), str(inst["principal_amount"])) == ("2026-09-30", "1000.00")
     with pytest.raises(LienConfigError, match="missing"):
         load_lien_config(_cfg(tmp_path, api="pdf", url="https://d.test/x.pdf"))
+
+
+def test_one_field_can_hold_several_names_and_a_constant_city(tmp_path: Path) -> None:
+    cfg = _cfg(tmp_path, parcel=None, county_fips="17031", released_on=None,
+               parties=[{"role": "debtor", "name": "resp", "split": " | ",
+                         "address": {"line1": "addr", "city_const": "CHICAGO",
+                                     "state_const": "IL"}}])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    rows = [
+        {
+            "ticket": "C1",
+            "docketed": "2025-01-01T00:00:00",
+            "resp": "ANN LEE | ACME LLC | ",
+            "addr": "1 MAIN ST",
+        }
+    ]
+    body = json.dumps({"rows": rows}).encode()
+    out = [(r.table, dict(r.row)) for r in cls().normalize(Fetched(cls.source_id, "x", AT, 200,
+                                                                   body, ""))]  # fmt: skip
+    assert sorted(r["raw_name"] for t, r in out if t == "party") == ["ACME LLC", "ANN LEE"]
+    (addr,) = {r["city"] for t, r in out if t == "address"}
+    assert addr == "CHICAGO"
