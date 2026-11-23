@@ -1,0 +1,28 @@
+source_id: az.yavapai.parcels
+state: AZ
+# Yavapai County GIS parcels (186,480 rows on 2026-11-23, data last edited 2025-06-05): owner,
+# mailing address, situs and zoning; no values.
+layer_url: https://services1.arcgis.com/BajuNXbtZNiBKFkx/arcgis/rest/services/Parcels_WGS84/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000
+min_interval_s: 1.0
+county: {constant: "025"}
+fields:
+  parcel_id: PARLABEL    # '116-04-001J', the Assessor's book-map-parcel label
+  owner1: NAME
+  owner2: SECONDARY
+  mail_line1: ADDRESS
+  mail_city: CITY
+  mail_state: STATE
+  mail_zip: ZIP
+  situs_line1: SITUS_ADD_DOR
+  situs_state: {const: AZ}
+  zoning: ZONING
+extra_pii: [CO_ADDRESS]
+value_basis: "No value fields in this layer. ADDRESS/CITY/STATE/ZIP are the owner's mailing address (rows show owners in other counties); SITUS_ADD_DOR is the situs line."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=01ca483c72624a1a9d4009fbfc085402
+  summary: "Public hosted feature service owned by YavapaiCountyGIS, no login, token or fee. licenseInfo (read 2026-11-23): informational purposes only, not for legal/engineering/surveying use, Yavapai County assumes no responsibility for errors; no use restriction. A.R.S. 39-121.03 (commercial-purpose public-records requests) is the Arizona backdrop for commercial use. services1.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-23
+  robots_checked_on: 2026-11-23
+  cost_model: free

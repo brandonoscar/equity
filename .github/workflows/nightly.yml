@@ -26,6 +26,32 @@ jobs:
           set +e
           uv run --locked python -m equity.adapters.health > health.json
           echo "rc=$?" >> "$GITHUB_OUTPUT"
+      - id: history
+        # Row counts and fields per source, day by day (equity.health_history), kept in object
+        # storage under health/. Compared with the previous day and with recent lake refreshes.
+        env:
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+        run: |
+          set +e
+          if [ -n "$SUPABASE_SECRET_KEY" ]; then
+            uv run --locked python -m equity.lake_sync pull-dir health data/health
+            uv run --locked python -m equity.lake_sync pull-state
+          fi
+          uv run --locked python -m equity.health_history --health health.json > alerts.json
+          echo "rc=$?" >> "$GITHUB_OUTPUT"
+          cat alerts.json
+          if [ -n "$SUPABASE_SECRET_KEY" ]; then
+            uv run --locked python -m equity.lake_sync push-dir data/health health
+          fi
+      - if: steps.history.outputs.rc != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          title="Source health alert $(date -u +%F)"
+          if ! gh issue list --state open --search "in:title \"$title\"" --json number --jq '.[0].number' | grep -q .; then
+            { echo "Row counts fell more than 10%, fields changed, or a source went down:"; echo '```json'; cat alerts.json; echo '```'; } > body.md
+            gh issue create --title "$title" --body-file body.md
+          fi
       - if: steps.health.outputs.rc != '0'
         env:
           GH_TOKEN: ${{ github.token }}

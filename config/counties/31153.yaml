@@ -1,0 +1,32 @@
+source_id: ne.sarpy.parcels
+state: NE
+# Sarpy County (Omaha suburbs) land records tax parcels (77,794 rows on 2026-11-23): owners,
+# postal address, situs, land/improvement and assessed values.
+layer_url: https://geodata.sarpy.gov/arcgis/rest/services/Cadastral/LandRecordsSearch/MapServer/5
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000
+min_interval_s: 1.0
+county: {constant: "153"}
+fields:
+  parcel_id: PARCELID    # '010578439'
+  owner1: OWNERNME1
+  owner2: OWNERNME2
+  mail_line1: PSTLADDRESS
+  mail_city: PSTLCITY
+  mail_state: PSTLSTATE
+  mail_zip: PSTLZIP5
+  situs_line1: SITEADDRESS
+  situs_state: {const: NE}
+  land_value: LNDVALUE
+  bldg_value: IMPVALUE
+  assessed_value: CNTASSDVAL
+  land_use_code: CLASSCD
+  land_use_desc: CLASSDSCRP
+extra_pii: [CNVYNAME]
+value_basis: "LNDVALUE / IMPVALUE = County Assessor land and improvement values; CNTASSDVAL = current assessed value and CNTTXBLVAL = taxable value (Nebraska assesses residential and commercial at actual value, agricultural land at 75%, Neb. Rev. Stat. 77-201). No tax-year field."
+terms:
+  url: https://geodata.sarpy.gov/arcgis/rest/services/Cadastral/LandRecordsSearch/MapServer/5
+  summary: "Sarpy County public ArcGIS MapServer (geodata.sarpy.gov), no login, token or fee; the layer carries no copyright or license text (read 2026-11-23). geodata.sarpy.gov/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-23
+  robots_checked_on: 2026-11-23
+  cost_model: free

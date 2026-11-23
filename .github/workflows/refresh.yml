@@ -1,0 +1,92 @@
+name: refresh
+
+# Recurring refreshes (config/refresh.yaml, equity.refresh): every 2 hours, polls the court RSS
+# feeds, takes the daily sale-listing snapshots and rebuilds a few weekly lists that are due,
+# then records a dated snapshot of each and pushes it back to object storage. Rebuilt sources
+# are mirrored (stored parts the new build did not make are deleted). The lake workflow only
+# builds unfinished sources and this one pushes a source only after its build, so the two do
+# not build the same source at once.
+# Needs the repository secret SUPABASE_SECRET_KEY; without it every run is a no-op.
+
+on:
+  schedule:
+    - cron: "47 */2 * * *"   # every 2 hours
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: refresh
+  cancel-in-progress: false
+
+env:
+  UV_VERSION: "0.11.32"
+
+jobs:
+  refresh:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 110
+    env:
+      SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+    steps:
+      - id: key
+        run: |
+          if [ -z "$SUPABASE_SECRET_KEY" ]; then
+            echo "::warning::SUPABASE_SECRET_KEY is not set; nothing to refresh."
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          fi
+      - if: steps.key.outputs.ok == 'true'
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - if: steps.key.outputs.ok == 'true'
+        uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6.8.0
+        with: { version: "${{ env.UV_VERSION }}" }
+      - if: steps.key.outputs.ok == 'true'
+        run: make sync
+      - id: due
+        if: steps.key.outputs.ok == 'true'
+        name: sources due
+        run: |
+          uv run --locked python -m equity.lake_sync pull-state
+          polls=$(uv run --locked python -m equity.refresh due --mode append)
+          lists=$(uv run --locked python -m equity.refresh due --mode listing)
+          weekly=$(uv run --locked python -m equity.refresh due --mode rebuild --limit 6)
+          echo "polls=$polls lists=$lists weekly=$weekly"
+          {
+            echo "polls=$polls"
+            echo "lists=$lists"
+            echo "all=$(echo "$polls $lists $weekly" | xargs)"
+          } >> "$GITHUB_OUTPUT"
+      - if: steps.due.outputs.all != ''
+        name: refresh
+        env:
+          POLLS: ${{ steps.due.outputs.polls }}
+          LISTS: ${{ steps.due.outputs.lists }}
+          ALL: ${{ steps.due.outputs.all }}
+        # The id lists are space-separated: word splitting is intended.
+        run: |
+          # shellcheck disable=SC2086
+          if [ -n "$POLLS" ]; then uv run --locked python -m equity.lake_sync pull-parts $POLLS; fi
+          # shellcheck disable=SC2086
+          if [ -n "$LISTS" ]; then uv run --locked python -m equity.lake_sync pull-snapshots $LISTS; fi
+          # shellcheck disable=SC2086
+          uv run --locked python -m equity.refresh start $ALL
+          # shellcheck disable=SC2086
+          timeout 90m uv run --locked python -m equity.lake run --max-parallel 4 \
+            --min-free-gb 4 --only $ALL || true
+          # shellcheck disable=SC2086
+          uv run --locked python -m equity.refresh finish $ALL
+          if [ -n "$LISTS" ]; then
+            uv run --locked python -m equity.refresh listings
+            uv run --locked python -m equity.lake_sync push-dir data/derived/sale_listings \
+              derived/sale_listings
+          fi
+      - if: always() && steps.due.outputs.all != ''
+        name: push refreshed sources
+        env:
+          ALL: ${{ steps.due.outputs.all }}
+        run: |
+          # shellcheck disable=SC2086
+          uv run --locked python -m equity.lake_sync push --mirror --only $ALL

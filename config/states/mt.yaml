@@ -1,0 +1,36 @@
+source_id: mt.statewide.parcels
+state: MT
+# Montana State Library's ArcGIS Online copy of the Montana Cadastral Framework (921,278 rows
+# in 56 counties on 2026-11-23): owner, mailing address, situs line, land/building/total value
+# copied from the Department of Revenue ORION appraisal database (Ravalli, Silver Bow,
+# Missoula, Flathead and Yellowstone maintained by the counties). gisservice.mt.gov holds the
+# same service but its robots.txt disallows /arcgis/*; this host serves none.
+layer_url: https://services.arcgis.com/qnjIrwR8z5Izc0ij/arcgis/rest/services/Montana_Cadastral_Framework/FeatureServer/1
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {field: CountyName, format: name}
+use_restrictions: [no_mailing_list]
+fields:
+  parcel_id: PARCELID    # the geocode
+  owner1: OwnerName
+  mail_line1: OwnerAddress1
+  mail_line2: OwnerAddress2
+  mail_city: OwnerCity
+  mail_state: OwnerState
+  mail_zip: OwnerZipCode
+  situs_line1: AddressLine1
+  situs_state: {const: MT}
+  land_value: TotalLandValue
+  bldg_value: TotalBuildingValue
+  total_value: TotalValue
+  tax_year: TaxYear
+  land_use_code: PropType
+extra_pii: [OwnerAddress3, CareOfTaxpayer, DbaName, AddressLine2]
+value_basis: "TotalLandValue / TotalBuildingValue / TotalValue = Department of Revenue appraised (market) values for TaxYear (2026); Montana taxes a percentage of market value set by property class (MCA 15-6-134 ff.). PropType is the DOR property type (e.g. 'Exempt'). OwnerAddress3, CityStateZip (situs city line), DbaName and CareOfTaxpayer are not mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=f161a98b347b4cf29d371a6d7697912a
+  summary: "Montana State Library (org 'Montana Geographic Information'), public hosted feature service, no login, token or fee. licenseInfo (read 2026-11-23): MCA 2-6-1017 'prohibits public agencies from distributing or selling a distribution list without first securing the permission of those on the list; and prohibits a list of persons prepared by a public agency from being used as a distribution list ... State law does not prevent an individual from compiling a distribution list by examination of records that are otherwise open to public inspection' (recorded as no_mailing_list: owner names and addresses must not be used for unsolicited mailing or outreach without a legal read); informational only, no warranty. services.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-23
+  robots_checked_on: 2026-11-23
+  cost_model: free

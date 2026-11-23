@@ -1,0 +1,32 @@
+source_id: mi.ingham.parcels
+state: MI
+# Ingham County (Lansing) 2024 parcels from the Ingham County Drain Commissioner's ArcGIS
+# Online org (101,733 rows; data last edited 2024-09-05): owner, mailing address, situs, SEV,
+# homestead (PRE) percent. A 2024 snapshot, not a live roll.
+layer_url: https://services3.arcgis.com/ySzhFSJfYeginRjx/arcgis/rest/services/Ingham_County_Parcels_2024_view/FeatureServer/0
+order_by: OBJECTID_1
+page_size: 2000          # maxRecordCount 2000
+min_interval_s: 1.0
+county: {constant: "065"}
+fields:
+  parcel_id: PARCELNUM   # '33-01-01-08-204-171'
+  owner1: OWNERNAME
+  mail_line1: OWNERSTREE
+  mail_city: OWNERCITY
+  mail_state: OWNERSTATE
+  mail_zip: OWNERZIP
+  situs_line1: [PROPADDRNU, PROPADDRDI, PROPSTREET, UNITORAPT]
+  situs_city: PROPCITY
+  situs_state: PROPSTATE
+  situs_zip: PROPZIP
+  assessed_value: MBORSEV
+  tax_year: {const: 2024}
+  homestead: HOMESTEAD
+  land_use_code: PROPCLASS
+value_basis: "MBORSEV = state equalized value (Michigan: 50% of true cash value, MCL 211.27a) on the 2024 March Board of Review roll; MBORTAX_0 (taxable value, capped by Proposal A) is not mapped. HOMESTEAD = principal residence exemption percent (100 = full), mapped as homestead (> 0)."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=9f147180e41d46bf8d99044193560634
+  summary: "Public hosted view owned by icdc_Admin (Ingham County Drain Commissioner), no login, token or fee; the item has no licenseInfo (read 2026-11-23), no use restriction found. Michigan FOIA (MCL 15.231 ff.) is the backdrop. services3.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-23
+  robots_checked_on: 2026-11-23
+  cost_model: free

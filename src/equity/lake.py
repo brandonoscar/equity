@@ -134,6 +134,50 @@ def export_part(work_db: Path, out_dir: Path, part: str) -> dict[str, int]:
     return counts
 
 
+def drop_known(work_db: Path, out_dir: Path) -> dict[str, int]:
+    """For a polled feed (append_polls: each poll is a new part of the same source): delete
+    from the new poll's scratch DB every fact row already stored, unchanged, in an earlier
+    part (same domain key and fact_hash), then the source records nothing points at any more.
+    The fetch_log row stays, so every poll is on record. Returns rows dropped per table."""
+    con = duckdb.connect(str(work_db))
+    dropped: dict[str, int] = {}
+    try:
+        kept_records: list[str] = []
+        for table, spec in sorted(FACT_TABLES.items()):
+            exists = con.execute(
+                "SELECT count(*) FROM information_schema.tables WHERE table_name = ?", [table]
+            ).fetchone()
+            if not exists or not exists[0]:
+                continue
+            kept_records.append(f"SELECT source_record_id FROM {table}")  # noqa: S608
+            prior = (
+                sorted((out_dir / table).glob("*.parquet")) if (out_dir / table).is_dir() else []
+            )
+            if not prior:
+                continue
+            cols = ["source_id", *spec.domain_key, "fact_hash"]
+            paths = ", ".join(f"'{p.as_posix()}'" for p in prior)
+            same = " AND ".join(f"p.{c} IS NOT DISTINCT FROM t.{c}" for c in cols)
+            # Catalog table/column names and lake paths only.
+            delete = (
+                f"DELETE FROM {table} t WHERE EXISTS (SELECT 1 FROM "  # noqa: S608
+                f"read_parquet([{paths}], union_by_name = true) p WHERE {same})"
+            )
+            row = con.execute(delete).fetchone()
+            if row and row[0]:
+                dropped[table] = int(row[0])
+        if kept_records:
+            row = con.execute(
+                "DELETE FROM source_record WHERE source_record_id NOT IN "  # noqa: S608
+                f"({' UNION '.join(kept_records)})"
+            ).fetchone()
+            if row and row[0]:
+                dropped["source_record"] = int(row[0])
+    finally:
+        con.close()
+    return dropped
+
+
 def export_source(work_db: Path, out_dir: Path) -> dict[str, int]:
     """Export a whole scratch DB as one part and write the source's _counts.json."""
     counts = export_part(work_db, out_dir, "00000")
@@ -170,6 +214,8 @@ def build(source_id: str, raw_dir: Path = DATA / "raw") -> dict[str, int]:
         work_db = WORK / f"{source_id}-{part}.duckdb"
         work_db.unlink(missing_ok=True)
         run(adapter, str(work_db), raw_dir, [params])
+        if getattr(adapter, "append_polls", False):
+            drop_known(work_db, out)
         counts = export_part(work_db, out, part)
         marker.write_text(json.dumps({"params": params, "counts": counts}, sort_keys=True))
         work_db.unlink(missing_ok=True)

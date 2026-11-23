@@ -1,0 +1,31 @@
+source_id: wa.spokane.parcels
+state: WA
+# Spokane County SCOUT parcels (214,835 active rows on 2026-11-23): owner, owner mailing
+# address, taxpayer, situs and land value. WA's statewide layer has no owner names.
+layer_url: https://gismo.spokanecounty.org/arcgis/rest/services/SCOUT/LayersMenu/MapServer/15
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000
+min_interval_s: 1.0
+county: {constant: "063"}
+use_restrictions: [no_commercial_name_address_lists]
+fields:
+  parcel_id: PID_NUM     # '13122.0207'
+  owner1: owner_name
+  mail_line1: owner_address1
+  mail_city: owner_city
+  mail_zip: owner_zip
+  situs_line1: site_address
+  situs_city: site_city
+  situs_state: site_state
+  situs_zip: site_zip
+  land_value: land_value
+  tax_year: tax_year
+  land_use_desc: prop_use_desc
+extra_pii: [taxpayer_name, taxpayer_address1]
+value_basis: "land_value = Assessor land value for asmt_year (2027 on 2026-11-23) / tax_year 2026; the layer has no improvement or total value. Owner mailing state is not published (owner_city/owner_zip only); taxpayer_* (who receives the bill) is kept out as PII."
+terms:
+  url: https://gismo.spokanecounty.org/arcgis/rest/services/SCOUT/LayersMenu/MapServer/15
+  summary: "Spokane County's public SCOUT ArcGIS MapServer, no login, token or fee; the layer carries no copyright or license text (read 2026-11-23). Washington's Public Records Act, RCW 42.56.070(9), bars agencies from providing lists of individuals requested for commercial purposes, and King County's Assessor makes downloaders acknowledge it (recorded as no_commercial_name_address_lists). gismo.spokanecounty.org/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-23
+  robots_checked_on: 2026-11-23
+  cost_model: free

@@ -1,0 +1,32 @@
+source_id: sd.minnehaha.parcels
+state: SD
+# City of Sioux Falls property parcels, Minnehaha County rows only (53,722 of 67,167 on
+# 2026-11-23; the Lincoln County rows are left to sd.lincoln.parcels): owners, mailing
+# address, situs, land use, owner-occupied status. City parcels only, no values.
+layer_url: https://gis.siouxfalls.gov/arcgis/rest/services/Data/Property/MapServer/1
+order_by: OBJECTID
+filter: "COUNTY = 'MINNEHAHA'"
+page_size: 1000          # maxRecordCount 1000
+min_interval_s: 1.0
+county: {constant: "099"}
+fields:
+  parcel_id: TAG         # '012209310009000'
+  owner1: OWNNAME1
+  owner2: OWNNAME2
+  mail_line1: OWNADDRESS
+  mail_city: OWNCITY
+  mail_state: OWNSTATE
+  mail_zip: OWNZIP
+  situs_line1: [PARHOUSE, PARHALF, PARPR, PARSTREET, PARTYPE, PARPD]
+  situs_state: {const: SD}
+  situs_zip: ZIPCODE
+  homestead: OWNEROCCSTATUS
+  land_use_code: LANDUSE
+extra_pii: [FORM_SIGNEDBY, FORM_COMMENTS]
+value_basis: "No value fields in this layer. OWNEROCCSTATUS Y/N = owner-occupied (South Dakota owner-occupied classification, SDCL 10-13-39), mapped as homestead; 'P' (47 rows) is left unknown. Covers parcels inside Sioux Falls only."
+terms:
+  url: https://gis.siouxfalls.gov/arcgis/rest/services/Data/Property/MapServer/1
+  summary: "City of Sioux Falls public ArcGIS MapServer, no login, token or fee; layer copyright 'City of Sioux Falls', no license text (read 2026-11-23). gis.siouxfalls.gov/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-23
+  robots_checked_on: 2026-11-23
+  cost_model: free

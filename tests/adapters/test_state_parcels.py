@@ -605,3 +605,18 @@ def test_land_use_and_zoning_reach_the_parcel_rows(tmp_path: Path) -> None:
         parcels["2"]["land_use_desc"],
         parcels["2"]["zoning"],
     ) == (None, None, None)
+
+
+def test_owner_name_parts_in_separate_fields_are_joined(tmp_path: Path) -> None:
+    fields = {"parcel_id": "PID", "owner1": {"join": ["LAST", "FIRST"]}, "mail_line1": "M1"}
+    cfg = load_config(_cfg(tmp_path, fields=fields, county={"constant": "001"}))
+    assert {"LAST", "FIRST"} <= set(cfg.source_fields)
+    assert {"LAST", "FIRST", "M1"} <= set(cfg.pii_fields)  # pseudonymized in fixtures
+    out = _rows(adapter_for(cfg), [
+        {"OID": 1, "PID": "1", "LAST": "LEE", "FIRST": " ANN  B "},
+        {"OID": 2, "PID": "2", "LAST": "ACME HOLDINGS LLC", "FIRST": ""},
+        {"OID": 3, "PID": "3", "LAST": "", "FIRST": None}])  # fmt: skip
+    owners = {r["parcel_uid"]: r for t, r in out if t == "owner_snapshot"}
+    names = {r["party_id"]: r["raw_name"] for t, r in out if t == "party"}
+    assert sorted(names.values()) == ["ACME HOLDINGS LLC", "LEE ANN B"]
+    assert "54001-3" not in owners

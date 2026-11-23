@@ -830,3 +830,47 @@ def test_single_partition_and_us_dates(tmp_path: Path) -> None:
             if r.table == "instrument"]  # fmt: skip
     assert [(r["instrument_number"], str(r["recorded_on"])) for r in rows] == [
         ("T1", "2004-09-13")]  # a bad month and an out-of-range year are not dates  # fmt: skip
+
+
+def _client(routes: dict[str, bytes]) -> Any:
+    from collections.abc import Mapping as _M
+
+    from equity.adapters.http import PoliteClient
+
+    def transport(url: str, headers: _M[str, str], timeout: float) -> tuple[int, bytes, str]:
+        if url.endswith("robots.txt"):
+            return 404, b"", ""
+        for part, body in routes.items():
+            if part in url:
+                return 200, body, ""
+        return 404, b"{}", ""
+
+    return PoliteClient(min_interval_s=0, transport=transport, sleep=lambda s: None)
+
+
+def test_socrata_health_reports_columns_and_count(tmp_path: Path) -> None:
+    cls = lien_adapter_for(load_lien_config(_cfg(tmp_path)))
+    view = {"columns": [{"fieldName": "ticket"}, {"fieldName": ":id"}, {"fieldName": "due"}]}
+    h = cls(_client({"/api/views/": json.dumps(view).encode(),
+                     "count": b'[{"n": "321"}]',
+                     "/resource/": b'[{"ticket": "T1"}]'})).health()  # fmt: skip
+    assert h.ok and h.shape == ("due", "ticket") and h.rows == 321
+    # The metadata call failing leaves shape and count unknown; the source is still up.
+    h2 = cls(_client({"/api/views/": b"not json", "/resource/": b'[{"ticket": "T1"}]'})).health()
+    assert h2.ok and h2.shape == () and h2.rows is None
+
+
+def test_arcgis_and_ckan_health_report_fields(tmp_path: Path) -> None:
+    cfg = _cfg(tmp_path, api="arcgis", portal=None, dataset=None,
+               layer_url="https://g.test/x/FeatureServer/0")  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    meta = {"fields": [{"name": "bill"}, {"name": "OBJECTID"}]}
+    h = cls(_client({"returnCountOnly": b'{"count": 7}',
+                     "FeatureServer/0?f=json": json.dumps(meta).encode()})).health()  # fmt: skip
+    assert h.ok and h.rows == 7 and h.shape == ("OBJECTID", "bill")
+    ck = _cfg(tmp_path, api="ckan", portal="https://c.test", dataset=None, resource_id="r1")
+    rec = {"success": True, "result": {"records": [{"_id": 1, "case_id": "A", "amt": 2}]}}
+    h = lien_adapter_for(load_lien_config(ck))(
+        _client({"datastore": json.dumps(rec).encode()})
+    ).health()
+    assert h.ok and h.shape == ("amt", "case_id") and h.rows is None

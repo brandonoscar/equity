@@ -1,0 +1,36 @@
+source_id: az.maricopa.parcels
+state: AZ
+# Maricopa County Assessor's own parcel MapServer (1,763,230 rows on 2026-11-23): owner name,
+# mailing address, situs, full cash and limited property values, last deed. The largest
+# parcel gap in AZ (the ADWR county copies stop short of Maricopa owners with values).
+layer_url: https://gis.mcassessor.maricopa.gov/arcgis/rest/services/Parcels/MapServer/0
+order_by: OBJECTID
+page_size: 1000          # maxRecordCount 1000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "013"}
+fields:
+  parcel_id: APN
+  owner1: OWNER_NAME
+  mail_line1: MAIL_ADDR1
+  mail_line2: MAIL_ADDR2
+  mail_city: MAIL_CITY
+  mail_state: MAIL_STATE
+  mail_zip: MAIL_ZIP
+  situs_line1: [PHYSICAL_STREET_NUM, PHYSICAL_STREET_DIR, PHYSICAL_STREET_NAME,
+                PHYSICAL_STREET_TYPE, PHYSICAL_STREET_POSTDIR, PHYSICAL_SUITE]
+  situs_city: PHYSICAL_CITY
+  situs_state: {const: AZ}
+  situs_zip: PHYSICAL_ZIP
+  total_value: FCV_CUR
+  assessed_value: LPV_CUR
+  tax_year: TAX_YR_CUR
+  land_use_code: PUC
+  zoning: CITY_ZONING
+extra_pii: [INCAREOF, MAIL_ADDRESS, PHYSICAL_ADDRESS]
+value_basis: "FCV_CUR = Full Cash Value (Arizona's market-value estimate) and LPV_CUR = Limited Property Value (the capped taxable value, A.R.S. 42-13301) for TAX_YR_CUR (2027 on 2026-11-23); both are blank-padded text. FCV_PREV/LPV_PREV (prior year), LC_CUR (legal class), DEED_NUMBER/DEED_DATE (recorder document number and date of the last deed) and SALE_DATE/SALE_PRICE (last sale, often null) are not mapped: the schema's deed_ref is book/page, and Maricopa records by document number."
+terms:
+  url: https://mcassessor.maricopa.gov/page/data_sales/
+  summary: "County Assessor's public ArcGIS MapServer, no login, token or fee. The Assessor's Data Downloads page (read 2026-11-23) offers its datasets 'for free download ... at no cost' with a no-warranty disclaimer/indemnification. The Data Sharing page's 'NOT ... used or distributed for commercial gain' terms are addressed to government agencies receiving data, and it quotes A.R.S. 39-121.03(D): obtaining public records for a commercial purpose without stating it exposes the requester to treble the fee that would have been charged. That statute is the backdrop for any commercial use of these owner names and addresses. gis.mcassessor.maricopa.gov/robots.txt answers 404 (no rules); mcassessor.maricopa.gov/robots.txt disallows only /mcs/ and query URLs."
+  checked_on: 2026-11-23
+  robots_checked_on: 2026-11-23
+  cost_model: free

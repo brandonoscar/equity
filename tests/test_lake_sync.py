@@ -35,6 +35,10 @@ class FakeBucket:
                     names[head] = None if sep else {"size": len(blob)}
             rows = [{"name": n, "metadata": m} for n, m in sorted(names.items())]
             return json.dumps(rows[off : off + lim]).encode()
+        if method == "DELETE":
+            for k in json.loads(data or b"{}")["prefixes"]:
+                self.objects.pop(k, None)
+            return b"[]"
         key = url.split("/object/lake/", 1)[1]
         if method == "POST":
             assert data is not None
@@ -224,3 +228,50 @@ def test_push_dir_uploads_a_folder_under_a_checked_prefix(
     monkeypatch.setattr(Store, "__init__", init)
     assert lake_sync.main(["push-dir", str(out), "derived/again"]) == 0
     assert "uploaded 2 files" in capsys.readouterr().out
+
+
+def test_mirror_deletes_stored_parts_a_rebuild_did_not_make(tmp_path: Path) -> None:
+    bucket = FakeBucket()
+    lake = lake_with(tmp_path)
+    done = lake / "aa.parcels"
+    (done / "parcel" / "00001.parquet").write_bytes(b"P1")
+    push(make_store(bucket), lake)
+    (done / "parcel" / "00001.parquet").unlink()  # the rebuild made one part, not two
+    with pytest.raises(ValueError, match="needs `only`"):
+        push(make_store(bucket), lake, mirror=True)
+    only = frozenset({"aa.parcels", "bb.parcels"})
+    report = push(make_store(bucket), lake, only=only, mirror=True)
+    assert report.deleted == ["aa.parcels/parcel/00001.parquet"]
+    assert "aa.parcels/parcel/00000.parquet" in bucket.objects
+    assert "bb.parcels/parcel/00000.parquet" in bucket.objects  # unfinished: never mirrored
+    (done / "parcel" / "00000.parquet").unlink()
+    (done / "_offloaded").write_text("x")  # offloaded: the local copy is not the full build
+    assert push(make_store(bucket), lake, only=only, mirror=True).deleted == []
+    assert "aa.parcels/parcel/00000.parquet" in bucket.objects
+
+
+def test_state_bundle_carries_the_last_refresh(tmp_path: Path) -> None:
+    bucket = FakeBucket()
+    lake = lake_with(tmp_path / "a")
+    (lake / "aa.parcels" / "_refreshed.json").write_text('{"at": "2026-11-23T00:00:00+00:00"}')
+    push(make_store(bucket), lake)
+    fresh = tmp_path / "b" / "lake"
+    pull_state(make_store(bucket), fresh)
+    assert (fresh / "aa.parcels" / "_refreshed.json").exists()
+
+
+def test_pull_snapshots_downloads_daily_counts_and_listing_copies(tmp_path: Path) -> None:
+    from equity.lake_sync import pull_snapshots
+
+    bucket = FakeBucket()
+    lake = lake_with(tmp_path / "a")
+    snaps = lake / "aa.parcels" / "_snapshots"
+    (snaps / "2026-11-22").mkdir(parents=True)
+    (snaps / "2026-11-22.json").write_text("{}")
+    (snaps / "2026-11-22" / "instrument.parquet").write_bytes(b"I")
+    push(make_store(bucket), lake)
+    fresh = tmp_path / "b" / "lake"
+    assert pull_snapshots(make_store(bucket), fresh, ["aa.parcels", "bb.parcels"]) == 2
+    got = fresh / "aa.parcels" / "_snapshots" / "2026-11-22" / "instrument.parquet"
+    assert got.read_bytes() == b"I"
+    assert pull_snapshots(make_store(bucket), fresh, ["aa.parcels"]) == 0

@@ -46,8 +46,11 @@ class HealthReport:
     ok: bool
     checked_at: datetime
     detail: str
-    # Shape fingerprint (e.g. sorted field names) compared against the fixture's.
+    # Shape fingerprint (e.g. sorted field names) compared against the fixture's, and from
+    # day to day by equity.health_history.
     shape: tuple[str, ...] = ()
+    # Rows the source holds now, when it can say cheaply (an ArcGIS or Socrata count).
+    rows: int | None = None
 
 
 class Adapter(ABC):
