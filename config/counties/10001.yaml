@@ -1,0 +1,27 @@
+source_id: de.kent.parcels
+state: DE
+# Kent County Parcels 2.0 (county FeatureServer, registered on FirstMap): owner and secondary
+# owner, mailing address, location, land/improvement/total assessment. Name is the parcel id.
+layer_url: https://gis.kentcountyde.gov/server/rest/services/Parcels/Parcels/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000
+min_interval_s: 1.0
+county: {constant: "001"}
+fields:
+  parcel_id: Name
+  owner1: OWNERNAME
+  owner2: SECONDARYOWNER
+  mail_line1: MAILINGADDRESS
+  mail_line2: MAILINGADDRESS2
+  mail_city: OWNERCITY
+  mail_state: OWNERSTATE
+  mail_zip: OWNERZIP
+  situs_line1: LOCATION
+  land_use_desc: PropertyUse
+value_basis: "LANDASSESSMENT/IMPROVE/TOTALASSESSMENT are assessed values, but the layer has no tax-year field, so no tax_year is mapped and no assessment facts are emitted."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=2d499745aefb4f25a2faec1180e3849d
+  summary: "Kent County, DE 'Parcels 2.0', 84,022 rows on 2026-11-23, on Delaware FirstMap. licenseInfo: 'The State of Delaware makes no warranty or representation ... All such data ... (the FirstMap Data) are provided as is and users are fully and solely responsible for any consequences of use. No use restriction is stated.'"
+  checked_on: 2026-11-23
+  robots_checked_on: 2026-11-23
+  cost_model: free
