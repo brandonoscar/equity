@@ -1,0 +1,35 @@
+source_id: fl.broward.tax_certificates
+state: FL
+county_fips: "12011"   # Broward County
+# Broward County unpaid real estate tax accounts for which a tax certificate was sold
+# (Cert_Status 'Issued'), tax year 2023, with owner and billing address. A tax certificate is
+# a first lien on the parcel (Fla. Stat. 197.102). Debt kind: tax_lien.
+# CAUTION: this layer is hosted on a personal ArcGIS Online account, not the county's own
+# org; treat as a lead and confirm against the Tax Collector before relying on it.
+api: arcgis
+layer_url: https://services5.arcgis.com/OesGQ9lCC4iHd7Hh/arcgis/rest/services/Unpaid_Tax_Delinquency/FeatureServer/0
+where: "Balance_Amount > 0"
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, PARCELNO, Tax_Yr, Account_Status, Cert_Status, Deed_Status, Balance_Amount,
+         Owner_Name, Billing_Address, Property_Address, Owner_Address_City]
+year_dates: [Tax_Yr]
+date_field: Tax_Yr
+uid: [PARCELNO, Tax_Yr]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: {field: Cert_Status}
+amount: Balance_Amount
+address_split: {field: Billing_Address, prefix: b_, form: slash}   # keeps street+city in line1
+parties:
+  - role: debtor
+    name: Owner_Name
+    address: {line1: b_line1, state: b_state, zip: b_zip}
+  - role: creditor
+    const: Broward County Tax Collector
+parcel: {kind: pin, field: PARCELNO, county_fips: "12011"}   # = fl.statewide.parcels PARCEL_ID
+extra_pii: [Billing_Address, Property_Address]
+terms:
+  url: https://services5.arcgis.com/OesGQ9lCC4iHd7Hh/arcgis/rest/services/Unpaid_Tax_Delinquency/FeatureServer/0
+  summary: "Public ArcGIS Online layer on a personal (non-county) account; free, no login, no license stated. Low-trust copy."
+  checked_on: 2026-11-23
+  cost_model: free

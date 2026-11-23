@@ -65,6 +65,8 @@ sources:
   wi.milwaukee.delinquent_taxes: tax_delinquency
   oh.hamilton.delinquent_taxes: tax_delinquency
   oh.clermont.delinquent_taxes: tax_delinquency
+  va.richmond.delinquent_taxes: tax_delinquency
+  fl.broward.tax_certificates: tax_lien           # tax certificate sold: first lien
   # code enforcement
   pa.philadelphia.li_fines: code_enforcement_charge
   oh.cincinnati.lot_abatement: code_enforcement_charge

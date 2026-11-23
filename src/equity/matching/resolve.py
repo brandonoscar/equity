@@ -615,10 +615,10 @@ STATES: dict[str, dict[str, Any]] = {
     # Hillsborough: recorded judgments and liens (Official Records index), civil judgments,
     # and judgment debtors under a writ of garnishment (with their address).
     "FL": {"debtors": ["fl.hillsborough.or", "fl.dor.tax_warrants", "fl.hernando.or",
-                       "fl.putnam.or"],
+                       "fl.putnam.or", "fl.broward.tax_certificates"],
            "owners": ["fl.statewide.parcels"],
            "courts": ["fl.hillsborough.civil.cases", "fl.citrus.civil", *FEDERAL_COURTS],
-           "writs": ["fl.hillsborough.garnishment"]},
+           "writs": ["fl.hillsborough.garnishment"], "parcel_on_lien": True},
     # PA L&I lists name employers statewide; county parcel layers with owner names.
     "PA": {"debtors": ["pa.dli.uc_liens", "pa.dli.bwc_noncompliance", "pa.dli.bllc_noncompliance",
                        "pa.washington.sheriff_sales", "pa.philadelphia.li_fines"],
@@ -647,6 +647,9 @@ STATES: dict[str, dict[str, Any]] = {
     "WI-MILWAUKEE": {"debtors": ["wi.milwaukee.delinquent_taxes"],
                      "owners": ["wi.statewide.parcels"], "parcel_on_lien": True,
                      "courts": FEDERAL_COURTS},
+    "VA-RICHMOND": {"debtors": ["va.richmond.delinquent_taxes"],
+                    "owners": ["va.richmond_city.parcels"], "parcel_on_lien": True,
+                    "courts": FEDERAL_COURTS},
     "AZ-PIMA": {"debtors": ["az.tucson.code_liens"], "owners": ["az.pima.parcels"],
                 "courts": FEDERAL_COURTS},
     "PA-WASHINGTON": {"debtors": ["pa.washington.sheriff_sales"],
