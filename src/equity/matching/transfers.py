@@ -12,8 +12,10 @@ two or more words, or same organization name) and it was recorded after the debt
 
   on_matched_parcel  the deed's parcel is one the debtor is auto-matched to           -> auto
   same_county        the parcel is in the debt's county (no parcel match)              -> review
-  nominal            consideration missing or under NOMINAL dollars (gift, quitclaim, or a
-                     price kept off the record)
+  nominal            consideration missing or at most rules.yaml
+                     transfer_flags.nominal_consideration_max (a gift, a quitclaim, or a price
+                     kept off the record); NULL while that threshold is not set (Brandon's
+                     decision: code never substitutes a default)
   grantee_org        a grantee is an organization
   grantee_same_name  a grantee has the debtor's own name (to a trust or a new entity form)
   nominee_llc        a grantee organization's registry lists a role holder with the debtor's
@@ -33,9 +35,17 @@ from pathlib import Path
 
 import duckdb
 
+from equity.config import _load
 from equity.matching.resolve import _view
 
-NOMINAL = 1000
+
+def nominal_max(config_dir: Path | None = None) -> float | None:
+    """rules.yaml transfer_flags.nominal_consideration_max, or None while it is unset."""
+    value = (_load("rules.yaml", config_dir).get("transfer_flags") or {}).get(
+        "nominal_consideration_max"
+    )
+    return None if value is None else float(value)
+
 
 SQL = """
 CREATE TEMP TABLE deed_inst AS
@@ -75,7 +85,7 @@ CREATE TEMP TABLE transfer_flags AS
 SELECT h.party_id AS debtor_party_id, h.debt_uid, h.debt_on, h.deed_uid,
        i.recorded_on AS deed_on, i.source_id AS deed_source, i.consideration, l.parcel_uid,
        coalesce(g.grantees, []) AS grantees,
-       coalesce(i.consideration, 0) < {nominal} AS nominal,
+       {nominal} AS nominal,
        coalesce(g.grantee_org, false) AS grantee_org,
        coalesce(list_contains(g.name_keys, h.name_key), false) AS grantee_same_name,
        false AS nominee_llc, NULL::VARCHAR AS nominee_sos_id,
@@ -123,7 +133,9 @@ def compute(con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str]) -> N
     _view(con, "t_ip", lake, sources, "instrument_party")
     _view(con, "t_party", lake, sources, "party")
     _view(con, "t_lot", lake, sources, "instrument_parcel")
-    con.execute(SQL.format(nominal=int(NOMINAL)))
+    limit = nominal_max()
+    nominal = "NULL::BOOLEAN" if limit is None else f"coalesce(i.consideration, 0) <= {limit!r}"
+    con.execute(SQL.format(nominal=nominal))
     if _has(con, "company_people") and _has(con, "biz_by_key"):
         con.execute(NOMINEE_SQL)
 
@@ -145,6 +157,7 @@ def summary(con: duckdb.DuckDBPyConnection) -> dict[str, object]:
             "SELECT count(DISTINCT debtor_party_id) FROM transfer_flags WHERE decision = 'review'"
         ),
         "nominal_transfers": one("SELECT count(*) FROM transfer_flags WHERE nominal"),
+        "nominal_threshold_set": nominal_max() is not None,
         "to_organizations": one("SELECT count(*) FROM transfer_flags WHERE grantee_org"),
         "nominee_llc": one("SELECT count(*) FROM transfer_flags WHERE nominee_llc"),
     }

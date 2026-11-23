@@ -5,7 +5,9 @@ from __future__ import annotations
 from pathlib import Path
 
 import duckdb
+import pytest
 
+from equity.matching import transfers
 from equity.matching.resolve import run
 
 from .test_resolve import _addr, _write, lake  # noqa: F401 (the lake fixture)
@@ -16,7 +18,12 @@ def _deed(uid: str, on: str, price: float | None, parcel: str) -> dict[str, obje
             "recorded_on": on, "consideration": price, "parcel": parcel}  # fmt: skip
 
 
-def test_deeds_after_a_debt_are_flagged_with_nominee_companies(lake: Path, tmp_path: Path) -> None:  # noqa: F811 (pytest fixture)
+def test_deeds_after_a_debt_are_flagged_with_nominee_companies(
+    lake: Path,  # noqa: F811 (the pytest fixture from test_resolve)
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(transfers, "nominal_max", lambda config_dir=None: 100.0)
     # The fixture lake: d1 JOHN A SMITH owes i1 (2025-01-01) and is auto-matched to p1.
     # d3 MARY JONES owes i3 in county 36001 (jurisdiction) and matches nothing automatically.
     inst = lake / "zz.debts" / "instrument" / "0.parquet"
@@ -80,3 +87,11 @@ def test_deeds_after_a_debt_are_flagged_with_nominee_companies(lake: Path, tmp_p
     t = result["transfers"]
     assert isinstance(t, dict)
     assert (t["deeds"], t["nominee_llc"], t["debtors_with_transfers_auto"]) == (4, 1, 1)
+
+
+def test_the_nominal_flag_stays_unknown_while_the_threshold_is_unset(tmp_path: Path) -> None:
+    (tmp_path / "rules.yaml").write_text("transfer_flags:\n  nominal_consideration_max: null\n")
+    assert transfers.nominal_max(tmp_path) is None
+    (tmp_path / "rules.yaml").write_text("transfer_flags:\n  nominal_consideration_max: 100\n")
+    assert transfers.nominal_max(tmp_path) == 100.0
+    assert transfers.nominal_max() is None  # the repo's rules.yaml: Brandon has not set it
