@@ -516,3 +516,12 @@ def test_middle_names_and_suffixes_must_agree(tmp_path: Path) -> None:
         f"SELECT debtor_party_id, owner_party_id, decision FROM '{out.as_posix()}/matches.parquet' "
         "WHERE rule_id = 'person_name_initial_address'").fetchall()  # fmt: skip
     assert initial == [("d4", "o4", "review")]
+
+
+def test_debtor_doc_types_limit_which_instruments_are_debts(lake: Path, tmp_path: Path) -> None:
+    kept = run(lake, tmp_path / "a", ["zz.debts"], ["zz.parcels"],
+               debtor_doc_types=["TAX_LIEN_STATE"])  # fmt: skip
+    dropped = run(lake, tmp_path / "b", ["zz.debts"], ["zz.parcels"],
+                  debtor_doc_types=["FIXTURE_FILING"])  # fmt: skip
+    assert kept["debtor_parties"] == 5
+    assert dropped["debtor_parties"] == 0 and dropped["matches_by_rule"] == {}

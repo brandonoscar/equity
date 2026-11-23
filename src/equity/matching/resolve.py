@@ -123,9 +123,18 @@ def _view(con: duckdb.DuckDBPyConnection, name: str, lake: Path, sources: list[s
 
 
 def connect(
-    lake: Path, debtor_sources: list[str], owner_sources: list[str], parcel_on_lien: bool = False
+    lake: Path,
+    debtor_sources: list[str],
+    owner_sources: list[str],
+    parcel_on_lien: bool = False,
+    debtor_doc_types: list[str] | None = None,
 ) -> duckdb.DuckDBPyConnection:
     con = duckdb.connect()
+    # Only these instrument types count as debts (e.g. liens but not UCC financing statements).
+    doc_filter = ""
+    if debtor_doc_types:
+        types = ", ".join("'" + t.replace("'", "''") + "'" for t in debtor_doc_types)
+        doc_filter = f"AND i.doc_type IN ({types})"
     stop = ", ".join(f"'{w}'" for w in STOP)
     con.execute(f"""
         CREATE MACRO name_key(n) AS array_to_string(list_sort(list_distinct(list_filter(
@@ -153,7 +162,7 @@ def connect(
     from equity.matching.review import street_macro
 
     street_macro(con)
-    con.execute("""
+    con.execute(f"""
         CREATE TEMP TABLE addr AS
         SELECT DISTINCT address_id,
                CASE WHEN street_norm(line1) <> '' AND zip5 IS NOT NULL
@@ -174,7 +183,7 @@ def connect(
         JOIN d_party p ON p.party_id = ip.party_id
         JOIN d_inst i ON i.instrument_uid = ip.instrument_uid
         LEFT JOIN addr a ON a.address_id = p.address_id
-        WHERE ip.role = 'debtor';
+        WHERE ip.role = 'debtor' {doc_filter};
         CREATE TEMP TABLE owners AS
         SELECT DISTINCT p.party_id, p.raw_name, p.party_kind, p.org_name_norm, s.parcel_uid,
                name_key(p.raw_name) AS name_key, suffix_key(p.raw_name) AS suffix_key,
@@ -186,7 +195,7 @@ def connect(
         LEFT JOIN o_parcel pc ON pc.parcel_uid = s.parcel_uid
         LEFT JOIN addr ma ON ma.address_id = p.address_id
         LEFT JOIN addr sa ON sa.address_id = pc.situs_address_id;
-    """)
+    """)  # noqa: S608 - doc types come from STATES (repo config), quoted
     if parcel_on_lien:
         # A lien that names a parcel but no debtor (Allegheny tax liens, foreclosures) is owed
         # by whoever owns that parcel: one stand-in debtor per parcel, "owner-of:<parcel_uid>".
@@ -368,10 +377,11 @@ def run(
     street_town: bool = False,
     parcel_on_lien: bool = False,
     registry_sources: list[str] | None = None,
+    debtor_doc_types: list[str] | None = None,
 ) -> dict[str, object]:
     from equity.matching import entities, equity, review
 
-    con = connect(lake, debtor_sources, owner_sources, parcel_on_lien)
+    con = connect(lake, debtor_sources, owner_sources, parcel_on_lien, debtor_doc_types)
     match(con, street_town, parcel_on_lien)
     review.build(con)
     tables = ["matches", "debtor_summary", "review_queue"]
@@ -410,6 +420,10 @@ STATES: dict[str, dict[str, Any]] = {
                      "owners": ["pa.allegheny.parcels", "pa.allegheny.assessments"],
                      "registries": ["pa.dos.business"],
                      "parcel_on_lien": True},
+    # Colorado: federal tax and statutory (hospital, other) liens from the SOS UCC system;
+    # UCC financing statements name debtors too but are not debts owed on a judgment or lien.
+    "CO": {"debtors": ["co.sos.ucc"], "debtor_doc_types": ["TAX_LIEN_FEDERAL", "STATUTORY_LIEN"],
+           "owners": ["co.statewide.parcels"], "registries": ["co.sos.business"]},
     "CT": {"debtors": ["ct.sots.liens"], "owners": ["ct.statewide.parcels"], "street_town": True,
            "registries": ["ct.sos.business"]},
 }  # fmt: skip
@@ -425,7 +439,7 @@ def main(argv: list[str] | None = None) -> int:
     result = run(args.lake, args.out / args.state.lower(), spec["debtors"], spec["owners"],
                  spec.get("mortgages"), spec.get("links"),
                  bool(spec.get("street_town")), bool(spec.get("parcel_on_lien")),
-                 spec.get("registries"))  # fmt: skip
+                 spec.get("registries"), spec.get("debtor_doc_types"))  # fmt: skip
     json.dump(result, sys.stdout, indent=2, default=str)
     print()
     return 0
