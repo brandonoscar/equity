@@ -573,10 +573,11 @@ STATES: dict[str, dict[str, Any]] = {
                              *FEDERAL_COURTS]},
     # Hillsborough: recorded judgments and liens (Official Records index), civil judgments,
     # and judgment debtors under a writ of garnishment (with their address).
-    "FL": {"debtors": ["fl.hillsborough.or", "fl.dor.tax_warrants"],
+    "FL": {"debtors": ["fl.hillsborough.or", "fl.dor.tax_warrants", "fl.hernando.or",
+                       "fl.putnam.or"],
            "owners": ["fl.statewide.parcels"],
-                        "courts": ["fl.hillsborough.civil.cases", *FEDERAL_COURTS],
-                        "writs": ["fl.hillsborough.garnishment"]},
+           "courts": ["fl.hillsborough.civil.cases", "fl.citrus.civil", *FEDERAL_COURTS],
+           "writs": ["fl.hillsborough.garnishment"]},
     # PA L&I lists name employers statewide; county parcel layers with owner names.
     "PA": {"debtors": ["pa.dli.uc_liens", "pa.dli.bwc_noncompliance", "pa.dli.bllc_noncompliance",
                        "pa.washington.sheriff_sales", "pa.philadelphia.li_fines"],
