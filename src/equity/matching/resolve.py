@@ -213,9 +213,10 @@ def connect(
 
 
 def _court_debtors(con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str]) -> None:
-    """Debtor parties of court judgments, in the owners' counties only (the judgment's
-    jurisdiction is a county FIPS when the court record names one). A 'satisfied' judgment
-    event releases it."""
+    """Debtor parties of court judgments in the owners' counties or states (the judgment's
+    jurisdiction is a county FIPS when the court record names one, else a state FIPS, as in
+    EPA ICIS; state-level debtors can match only by address, never by org_name_county).
+    A 'satisfied' judgment event releases it."""
     _view(con, "c_party", lake, sources, "party")
     _view(con, "c_cp", lake, sources, "case_party")
     _view(con, "c_judg", lake, sources, "judgment")
@@ -231,7 +232,8 @@ def _court_debtors(con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str
         JOIN c_cp cp ON cp.case_uid = j.case_uid AND cp.role = 'debtor'
         JOIN c_party p ON p.party_id = cp.party_id
         LEFT JOIN addr a ON a.address_id = p.address_id
-        WHERE j.jurisdiction IN (SELECT DISTINCT left(parcel_uid, 5) FROM o_parcel);
+        WHERE j.jurisdiction IN (SELECT DISTINCT left(parcel_uid, 5) FROM o_parcel)
+           OR j.jurisdiction IN (SELECT DISTINCT left(parcel_uid, 2) FROM o_parcel);
     """)
 
 
