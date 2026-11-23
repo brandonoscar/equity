@@ -1,0 +1,31 @@
+source_id: il.cook.sales
+state: IL
+county_fips: "17031"
+# Cook County Assessor "Parcel Sales" (datacatalog.cookcountyil.gov wvhk-k5uv, 2.69M sales
+# since 1971, updated 2026-11): PIN, sale date and price, recorder document number, deed type,
+# seller and buyer. Loaded as DEED instruments (grantor = seller, grantee = buyer) on the
+# parcel (17031-<PIN>, the il.cook.parcels key); the older history the statewide PTAX file
+# (2014 on) lacks.
+portal: https://datacatalog.cookcountyil.gov
+dataset: wvhk-k5uv
+order_by: [row_id]
+select: [row_id, pin, sale_date, sale_price, doc_no, deed_type, mydec_deed_type, seller_name,
+         buyer_name, is_multisale, num_parcels_sale, sale_type]
+date_field: sale_date
+partition: year
+first_year: 1971
+uid: row_id
+doc_type: DEED
+doc_type_raw: Cook County Assessor parcel sale
+consideration: sale_price
+parties:
+  - role: grantor
+    name: seller_name
+  - role: grantee
+    name: buyer_name
+parcel: {kind: pin, field: pin, county_fips: "17031"}
+terms:
+  url: https://datacatalog.cookcountyil.gov/d/wvhk-k5uv
+  summary: "Cook County Assessor on the Cook County open data portal (Socrata), free, no login; no license tag on the dataset (Cook County open data terms)."
+  checked_on: 2026-11-23
+  cost_model: free

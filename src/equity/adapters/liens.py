@@ -41,6 +41,7 @@ Config keys:
                       {field, map: {VALUE: DOC_TYPE}, default} to map a row's value
   doc_type_raw        constant label, or {field: name}
   amount              field holding the amount owed (principal_amount), or a list summed
+  consideration       deeds and sales: field holding the price paid (instrument consideration)
   released_on         optional field: satisfaction date -> RELEASE + instrument_ref
   satisfied_flag      optional field: a value in satisfied_values (default true/1/yes/y) marks
                       the lien satisfied when no satisfaction date is published
@@ -49,8 +50,9 @@ Config keys:
                                address: {line1: field|[fields], city | city_const, state |
                                state_const, zip}}
   parcel              {kind: nyc_bbl, borough, block, lot} | {kind: nyc_bbl10, field}
-                      | {kind: pin, field (or a list of fields, one lot each), county_fips,
-                         strip (optional characters removed from the id, e.g. '-')}
+                      | {kind: pin, field (or a list of fields, one lot each), county_fips
+                         (or none: the row's county from county_name_field), strip (optional
+                         characters removed from the id, e.g. '-')}
   county_fips         jurisdiction when no parcel names a county (5 digits)
   county_name_field   optional field holding the county name (mapped to FIPS in `state`)
   county_aliases      optional {name in the data: county name}, e.g. {DADE: MIAMI-DADE}
@@ -191,7 +193,7 @@ def _join(row: Mapping[str, Any], spec: Any) -> str | None:
 
 
 def _date(value: Any) -> date | None:
-    """ISO date text, ArcGIS epoch milliseconds, or a bare year (-> January 1)."""
+    """ISO date text (also YYYY.MM.DD), ArcGIS epoch milliseconds, or a bare year (-> Jan 1)."""
     if isinstance(value, bool):
         return None
     if isinstance(value, int | float):
@@ -211,6 +213,8 @@ def _date(value: Any) -> date | None:
         return date(int(s), 1, 1)
     if len(s) < 10:
         return None
+    if re.fullmatch(r"[0-9]{4}\.[0-9]{2}\.[0-9]{2}", s[:10]):  # YYYY.MM.DD (MD SDAT)
+        s = s[:10].replace(".", "-")
     if re.fullmatch(r"[0-9]{2}[-/][0-9]{2}[-/][0-9]{4}", s[:10]):  # MM-DD-YYYY, MM/DD/YYYY
         try:
             return date(int(s[6:10]), int(s[:2]), int(s[3:5]))
@@ -717,7 +721,11 @@ class LienAdapter(Adapter):
                 pin = "".join(ch for ch in pin if ch not in str(spec["strip"])) or None
             if pin is None:
                 return None, None
-            return f"{spec['county_fips']}-{norm_parcel_id(pin)}", spec["county_fips"]
+            # A statewide list names each row's county instead (county_name_field).
+            county = spec.get("county_fips") or self._county(row)
+            if not re.fullmatch(r"\d{5}", str(county)):
+                return None, None
+            return f"{county}-{norm_parcel_id(pin)}", str(county)
         return None, None
 
     def _county(self, row: Mapping[str, Any]) -> str:
@@ -778,13 +786,18 @@ class LienAdapter(Adapter):
                 doc_raw += " (satisfied)"  # no satisfaction date is published: marked only
             amounts = [a for a in (self._row_amount(r) for r in rows) if a is not None]
             amount = amounts[0] if amounts else None
+            price_field = cfg.get("consideration")
+            price = _amount(first.get(price_field)) if price_field else None
+            if price is not None and price <= 0:
+                price = None
             yield ctx.source_record()
             yield ctx.fact(
                 "instrument", instrument_uid=uid, instrument_number=uid_raw, book_type=None,
                 book=None, page=None, doc_type_raw=doc_raw, doc_type=self._doc_type(first),
-                recorded_on=recorded, recorded_seq=None, executed_on=None, consideration=None,
+                recorded_on=recorded, recorded_seq=None, executed_on=None, consideration=price,
                 principal_amount=amount, max_secured_amount=None, maturity_date=None,
-                amount_source="index" if amount is not None else None, legal_desc_raw=None,
+                amount_source="index" if amount is not None or price is not None else None,
+                legal_desc_raw=None,
             )  # fmt: skip
             for parcel_uid, _county in lots:
                 yield ctx.fact("instrument_parcel", instrument_uid=uid, parcel_uid=parcel_uid,

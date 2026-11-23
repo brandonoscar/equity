@@ -36,7 +36,8 @@ LOCAL_ZONING = Path(__file__).resolve().parents[2] / "config" / "zoning" / "loca
 # Source-id prefixes for the non-parcel layers. A source counts for its state's two-letter
 # prefix; us.* federal court feeds name their district (us.flmb -> FL).
 INSTRUMENT_SOURCES = ("ny.nyc.acris.", "pa.philadelphia.rtt", "fl.hillsborough.or",
-                      "fl.hernando.or", "fl.putnam.or")  # fmt: skip
+                      "fl.hernando.or", "fl.putnam.or", "il.ptax.", "il.cook.sales",
+                      "md.sdat.")  # fmt: skip
 ENTITY_SUFFIX = ".business"  # *.sos.business, pa.dos.business, dc.dlcp.business
 ORDINANCE_SUFFIX = ".code_links"
 FIELD_FLAGS = (

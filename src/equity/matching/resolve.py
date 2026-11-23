@@ -121,7 +121,7 @@ COLUMNS: dict[str, dict[str, str]] = {
     "instrument_party": {"instrument_uid": V, "party_id": V, "role": V},
     "instrument": {"instrument_uid": V, "source_id": V, "doc_type": V, "doc_type_raw": V,
                    "recorded_on": "DATE",
-                   "principal_amount": "DOUBLE", "jurisdiction": V},
+                   "principal_amount": "DOUBLE", "consideration": "DOUBLE", "jurisdiction": V},
     "instrument_ref": {"from_uid": V, "to_uid": V, "ref_type": V},
     "instrument_parcel": {"instrument_uid": V, "parcel_uid": V},
     "parcel_link": {"from_parcel_uid": V, "to_parcel_uid": V, "link_type": V},
@@ -646,8 +646,9 @@ def run(
     registry_sources: list[str] | None = None,
     debtor_doc_types: list[str] | dict[str, list[str]] | None = None,
     bankruptcy_sources: list[str] | None = None,
+    deed_sources: list[str] | None = None,
 ) -> dict[str, object]:
-    from equity.matching import bankruptcy, entities, equity, review
+    from equity.matching import bankruptcy, entities, equity, review, transfers
 
     con = connect(lake, debtor_sources, owner_sources, parcel_on_lien, court_sources,
                   writ_sources, debtor_doc_types)  # fmt: skip
@@ -660,6 +661,9 @@ def run(
     if bankruptcy_sources:
         bankruptcy.compute(con, lake, bankruptcy_sources)
         tables.extend(bankruptcy.TABLES)
+    if deed_sources:  # after entities: the nominee check reads company_people
+        transfers.compute(con, lake, deed_sources)
+        tables.extend(transfers.TABLES)
     if mortgage_sources:
         equity.compute(con, lake, mortgage_sources, link_sources or [])
         tables.append("mortgage_status")
@@ -673,6 +677,8 @@ def run(
         result["registries"] = entities.summary(con)
     if bankruptcy_sources:
         result["bankruptcy"] = bankruptcy.summary(con)
+    if deed_sources:
+        result["transfers"] = transfers.summary(con)
     if mortgage_sources:
         result |= equity.summary(con)
     (out / "summary.json").write_text(json.dumps(result, indent=2, default=str))
@@ -695,6 +701,7 @@ STATES: dict[str, dict[str, Any]] = {
         "links": ["ny.nyc.dof.condo_units"],
         "courts": FEDERAL_COURTS,
         "registries": ["ny.sos.business", "ny.sos.name_history"],
+        "deeds": ["ny.nyc.acris.real"],
     },
     # CT parcel data has no owner ZIP (Mailing_Zip is empty statewide): street + town instead.
     # Allegheny's parcel layer has no owner names, but its liens name the parcel (PIN).
@@ -707,6 +714,8 @@ STATES: dict[str, dict[str, Any]] = {
     # Baltimore City: environmental citation liens name the parcel (block/lot), not a person.
     "MD-BALTIMORE": {"debtors": ["md.baltimore_city.citation_liens"],
                      "owners": ["md.baltimore_city.parcels"], "parcel_on_lien": True,
+                     "deeds": ["md.sdat.transfers_1", "md.sdat.transfers_2",
+                               "md.sdat.transfers_3"],
                      "courts": FEDERAL_COURTS},
     # Travis: delinquent property tax accounts and tax-suit judgments, by owner name.
     "TX-TRAVIS": {"debtors": ["tx.travis.tax_delinquent"], "owners": ["tx.statewide.parcels"],
@@ -740,7 +749,8 @@ STATES: dict[str, dict[str, Any]] = {
                        "fl.putnam.or", "fl.broward.tax_certificates", "fl.lee.nuisance_liens"],
            "owners": ["fl.statewide.parcels"],
            "courts": ["fl.hillsborough.civil.cases", "fl.citrus.civil", *FEDERAL_COURTS],
-           "writs": ["fl.hillsborough.garnishment"], "parcel_on_lien": True},
+           "writs": ["fl.hillsborough.garnishment"], "parcel_on_lien": True,
+           "deeds": ["fl.hillsborough.or", "fl.hernando.or", "fl.putnam.or"]},
     # PA L&I lists name employers statewide; county parcel layers with owner names.
     "PA": {"debtors": ["pa.dli.uc_liens", "pa.dli.bwc_noncompliance", "pa.dli.bllc_noncompliance",
                        "pa.washington.sheriff_sales", "pa.philadelphia.li_fines"],
@@ -748,7 +758,8 @@ STATES: dict[str, dict[str, Any]] = {
                       "pa.erie.parcels", "pa.franklin.parcels", "pa.lancaster.parcels",
                       "pa.mercer.parcels", "pa.montgomery.parcels", "pa.philadelphia.parcels",
                       "pa.washington.parcels"],
-           "parcel_on_lien": True, "courts": FEDERAL_COURTS, "street_town": True},
+           "parcel_on_lien": True, "courts": FEDERAL_COURTS, "street_town": True,
+           "deeds": ["pa.philadelphia.rtt"]},
     # The PA and VT lists publish street and town but no ZIP: street + town rules, as in CT.
     "VT": {"debtors": ["vt.tax.top100_individuals", "vt.tax.top100_businesses"],
            "owners": ["vt.statewide.parcels"], "courts": FEDERAL_COURTS,
@@ -756,6 +767,7 @@ STATES: dict[str, dict[str, Any]] = {
     # Chicago DOAH cites the property's street address with no ZIP: street + town rules.
     "IL-COOK": {"debtors": ["il.chicago.doah_judgments", "il.chicago.doe_judgments",
                             "il.chicago.vacant_building_judgments"], "owners": ["il.cook.parcels"],
+                "deeds": ["il.cook.sales", "il.ptax.transfers"],
                 "courts": FEDERAL_COURTS, "street_town": True},
     # New Orleans code judgments name the parcel (GeoPIN), not the owner.
     "LA-NOLA": {"debtors": ["la.nola.code_hearing_judgments"], "owners": ["la.orleans.parcels"],
@@ -820,7 +832,7 @@ def bankruptcy_sources(state: str) -> list[str]:
 def state_sources(state: str) -> list[str]:
     """Every source a state's match reads: debtors, owners, mortgages, links, registries."""
     spec = STATES[state]
-    keys = ("debtors", "owners", "mortgages", "links", "registries")
+    keys = ("debtors", "owners", "mortgages", "links", "registries", "deeds")
     return sorted({s for k in keys for s in spec.get(k) or []} | set(bankruptcy_sources(state))
                   | set(FEDERAL_DEBTS))  # fmt: skip
 
@@ -842,7 +854,8 @@ def main(argv: list[str] | None = None) -> int:
                  spec.get("mortgages"), spec.get("links"),
                  bool(spec.get("street_town")), bool(spec.get("parcel_on_lien")),
                  spec.get("courts"), spec.get("writs"), spec.get("registries"),
-                 spec.get("debtor_doc_types"), bankruptcy_sources(args.state))  # fmt: skip
+                 spec.get("debtor_doc_types"), bankruptcy_sources(args.state),
+                 spec.get("deeds"))  # fmt: skip
     json.dump(result, sys.stdout, indent=2, default=str)
     print()
     return 0

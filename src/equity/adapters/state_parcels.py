@@ -153,6 +153,8 @@ def parse_line_city_zip(text: str) -> tuple[str, str | None, str | None]:
         end += 2
     line, city = " ".join(tokens[:end]), " ".join(tokens[end:]) or None
     return line, city, zip5
+
+
 _NULLS = {"", "NULL", "NONE", "N/A", "<NULL>"}
 
 
