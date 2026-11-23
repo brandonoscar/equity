@@ -85,7 +85,7 @@ def _glob(lake: Path, sources: list[str], table: str) -> str | None:
 
 V = "VARCHAR"
 COLUMNS: dict[str, dict[str, str]] = {
-    "address": {"address_id": V, "line1": V, "city": V, "zip5": V},
+    "address": {"address_id": V, "line1": V, "city": V, "state": V, "zip5": V},
     "party": {"party_id": V, "raw_name": V, "party_kind": V, "org_name_norm": V,
               "address_id": V},
     "instrument_party": {"instrument_uid": V, "party_id": V, "role": V},
@@ -95,6 +95,8 @@ COLUMNS: dict[str, dict[str, str]] = {
     "instrument_ref": {"from_uid": V, "to_uid": V, "ref_type": V},
     "instrument_parcel": {"instrument_uid": V, "parcel_uid": V},
     "parcel_link": {"from_parcel_uid": V, "to_parcel_uid": V, "link_type": V},
+    "business": {"sos_id": V, "name": V, "status": V},
+    "business_role": {"sos_id": V, "party_id": V, "role": V, "title": V},
     "owner_snapshot": {"parcel_uid": V, "party_id": V},
     "parcel": {"parcel_uid": V, "situs_address_id": V},
     "parcel_assessment": {"parcel_uid": V, "tax_year": "INTEGER", "appraised_total": "DOUBLE",
@@ -365,13 +367,17 @@ def run(
     link_sources: list[str] | None = None,
     street_town: bool = False,
     parcel_on_lien: bool = False,
+    registry_sources: list[str] | None = None,
 ) -> dict[str, object]:
-    from equity.matching import equity, review
+    from equity.matching import entities, equity, review
 
     con = connect(lake, debtor_sources, owner_sources, parcel_on_lien)
     match(con, street_town, parcel_on_lien)
     review.build(con)
     tables = ["matches", "debtor_summary", "review_queue"]
+    if registry_sources:
+        entities.compute(con, lake, registry_sources)
+        tables.extend(entities.TABLES)
     if mortgage_sources:
         equity.compute(con, lake, mortgage_sources, link_sources or [])
         tables.append("mortgage_status")
@@ -381,6 +387,8 @@ def run(
                     "(FORMAT PARQUET, COMPRESSION ZSTD)")  # fmt: skip
     result = summary(con)
     result["review"] = review.summary(con)
+    if registry_sources:
+        result["registries"] = entities.summary(con)
     if mortgage_sources:
         result |= equity.summary(con)
     (out / "summary.json").write_text(json.dumps(result, indent=2, default=str))
@@ -394,13 +402,16 @@ STATES: dict[str, dict[str, Any]] = {
         "owners": ["ny.statewide.parcels"],
         "mortgages": ["ny.nyc.acris.real"],
         "links": ["ny.nyc.dof.condo_units"],
+        "registries": ["ny.sos.business"],
     },
     # CT parcel data has no owner ZIP (Mailing_Zip is empty statewide): street + town instead.
     # Allegheny's parcel layer has no owner names, but its liens name the parcel (PIN).
     "PA-ALLEGHENY": {"debtors": ["pa.allegheny.tax_liens", "pa.allegheny.foreclosures"],
                      "owners": ["pa.allegheny.parcels", "pa.allegheny.assessments"],
+                     "registries": ["pa.dos.business"],
                      "parcel_on_lien": True},
-    "CT": {"debtors": ["ct.sots.liens"], "owners": ["ct.statewide.parcels"], "street_town": True},
+    "CT": {"debtors": ["ct.sots.liens"], "owners": ["ct.statewide.parcels"], "street_town": True,
+           "registries": ["ct.sos.business"]},
 }  # fmt: skip
 
 
@@ -413,7 +424,8 @@ def main(argv: list[str] | None = None) -> int:
     spec = STATES[args.state]
     result = run(args.lake, args.out / args.state.lower(), spec["debtors"], spec["owners"],
                  spec.get("mortgages"), spec.get("links"),
-                 bool(spec.get("street_town")), bool(spec.get("parcel_on_lien")))  # fmt: skip
+                 bool(spec.get("street_town")), bool(spec.get("parcel_on_lien")),
+                 spec.get("registries"))  # fmt: skip
     json.dump(result, sys.stdout, indent=2, default=str)
     print()
     return 0
