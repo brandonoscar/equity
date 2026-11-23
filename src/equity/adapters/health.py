@@ -14,8 +14,9 @@ def main() -> int:
         try:
             report = cls().health()
             results.append(
-                {"source_id": report.source_id, "ok": report.ok, "detail": report.detail}
-            )
+                {"source_id": report.source_id, "ok": report.ok, "detail": report.detail,
+                 "rows": report.rows, "fields": list(report.shape)}
+            )  # fmt: skip
         except Exception as exc:
             results.append({"source_id": cls.source_id, "ok": False, "detail": repr(exc)})
     json.dump({"adapters": len(REGISTRY), "results": results}, sys.stdout, indent=2)

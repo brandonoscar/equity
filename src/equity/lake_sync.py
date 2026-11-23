@@ -253,28 +253,27 @@ def pull_parts(
     return written
 
 
+def pull_dir(store: Store, prefix: str, local: Path) -> int:
+    """Download every stored file under <prefix>/ missing locally (or differing in size) into
+    `local`, sub-folders included: the inverse of push_dir. Returns files written."""
+    n = 0
+    files, dirs = store.list_dir(prefix.rstrip("/") + "/")
+    for name, size in sorted(files.items()):
+        dest = local / name
+        if dest.exists() and dest.stat().st_size == size:
+            continue
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        dest.write_bytes(store.download(f"{prefix.rstrip('/')}/{name}"))
+        n += 1
+    for d in sorted(dirs):
+        n += pull_dir(store, f"{prefix.rstrip('/')}/{d}", local / d)
+    return n
+
+
 def pull_snapshots(store: Store, lake: Path, sources: list[str]) -> int:
     """Download a source's stored _snapshots (daily counts, listing copies) missing locally,
     so a fresh machine can build the listing history (equity.refresh). Returns files written."""
-    written = 0
-
-    def fetch(prefix: str, folder: Path) -> int:
-        n = 0
-        files, dirs = store.list_dir(prefix)
-        for name, size in sorted(files.items()):
-            dest = folder / name
-            if dest.exists() and dest.stat().st_size == size:
-                continue
-            dest.parent.mkdir(parents=True, exist_ok=True)
-            dest.write_bytes(store.download(prefix + name))
-            n += 1
-        for d in sorted(dirs):
-            n += fetch(f"{prefix}{d}/", folder / d)
-        return n
-
-    for src in sources:
-        written += fetch(f"{src}/_snapshots/", lake / src / "_snapshots")
-    return written
+    return sum(pull_dir(store, f"{src}/_snapshots", lake / src / "_snapshots") for src in sources)
 
 
 def push_dir(store: Store, local: Path, prefix: str) -> int:
@@ -307,6 +306,9 @@ def main(argv: list[str]) -> int:
     pp.add_argument("--tables", nargs="*", help="only these tables")
     sn = sub.add_parser("pull-snapshots", help="download stored dated snapshots")
     sn.add_argument("sources", nargs="+")
+    pq = sub.add_parser("pull-dir", help="download a stored folder (e.g. health history)")
+    pq.add_argument("prefix")
+    pq.add_argument("local")
     pd = sub.add_parser("push-dir", help="upload a folder (e.g. a state's match results)")
     pd.add_argument("local")
     pd.add_argument("prefix", help="storage prefix, e.g. derived/tx-travis")
@@ -319,6 +321,9 @@ def main(argv: list[str]) -> int:
     lake = Path(args.lake)
     if args.cmd == "pull-parts":
         print(f"pulled {pull_parts(store, lake, args.sources, args.tables)} parquet files")
+        return 0
+    if args.cmd == "pull-dir":
+        print(f"pulled {pull_dir(store, args.prefix, Path(args.local))} files")
         return 0
     if args.cmd == "pull-snapshots":
         print(f"pulled {pull_snapshots(store, lake, args.sources)} snapshot files")

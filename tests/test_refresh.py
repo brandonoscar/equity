@@ -251,3 +251,22 @@ def test_main_due_start_finish_listings(
     assert "build not finished" in capsys.readouterr().out
     assert refresh.main([*args, "listings", "--out", str(tmp_path / "d")]) == 0
     assert '"snapshots": 0' in capsys.readouterr().out
+
+
+def test_finish_records_the_counts_it_replaced(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    from .test_ingest import Planned
+
+    monkeypatch.setattr("equity.adapters.registry.by_source_id", lambda sid: Planned)
+    src = tmp_path / "test.tiny"
+    _built(src, NOW - timedelta(days=8))
+    refresh.start("test.tiny", tmp_path, NOW, _rule())
+    (src / "_counts.json").write_text('{"instrument": 3}')  # the rebuild finished
+    rec = refresh.finish("test.tiny", tmp_path, NOW, _rule())
+    assert rec is not None
+    assert rec["previous"] == {"at": (NOW - timedelta(days=8)).isoformat(),
+                               "counts": {"instrument": 1}}  # fmt: skip
+    assert not (src / refresh.BEFORE).exists()
+    again = refresh.finish("test.tiny", tmp_path, NOW + timedelta(days=7), _rule())
+    assert again is not None and again["previous"]["counts"] == {"instrument": 3}

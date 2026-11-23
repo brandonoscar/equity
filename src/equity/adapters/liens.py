@@ -882,26 +882,48 @@ class LienAdapter(Adapter):
                                role=role, seq=seq)  # fmt: skip
 
     def health(self) -> HealthReport:
+        """Up or not, with the field names (shape) and, where the API counts, the row count:
+        equity.health_history compares both with the previous day."""
+        now = datetime.now(UTC)
         if self.api == "arcgis":  # a row count on the (first) layer, filtered like the fetch
             layer = str(self.config.get("layer_url") or self.config["layer_urls"][0])
             body = get_json(self.client, layer + "/query",
                             {"where": self.config.get("where") or "1=1",
                              "returnCountOnly": "true", "f": "json"})  # fmt: skip
             n = int(body.get("count") or 0)
-            return HealthReport(self.source_id, n > 0, datetime.now(UTC), f"{n} rows")
+            meta = get_json(self.client, layer, {"f": "json"})
+            fields = tuple(sorted(str(f["name"]) for f in meta.get("fields") or []))
+            return HealthReport(self.source_id, n > 0, now, f"{n} rows", fields, n)
         if self.api in FILE_APIS:
             rows_f = json.loads(self.fetch(FetchRequest({"limit": "1"})).content)["rows"]
-            return HealthReport(self.source_id, bool(rows_f), datetime.now(UTC),
-                                "ok" if rows_f else "no rows")  # fmt: skip
+            return HealthReport(self.source_id, bool(rows_f), now, "ok" if rows_f else "no rows",
+                                tuple(sorted(rows_f[0])) if rows_f else ())  # fmt: skip
         if self.ckan:
             rows_h, _ = self._ckan_rows("1=1", 1)
-            return HealthReport(self.source_id, bool(rows_h), datetime.now(UTC),
-                                "ok" if rows_h else "no rows")  # fmt: skip
-        q = SocrataQuery(self.config["portal"], self.config["dataset"], self.where({}),
+            shape = tuple(sorted(k for k in rows_h[0] if not k.startswith("_"))) if rows_h else ()
+            return HealthReport(self.source_id, bool(rows_h), now,
+                                "ok" if rows_h else "no rows", shape)  # fmt: skip
+        portal, dataset = self.config["portal"], self.config["dataset"]
+        where = self.where({})
+        q = SocrataQuery(portal, dataset, where,
                          tuple(self.config.get("order_by", [":id"])), 1)  # fmt: skip
         rows, _ = fetch_all(self.client, q, max_pages=1, sample=True)
-        return HealthReport(self.source_id, bool(rows), datetime.now(UTC),
-                            "ok" if rows else "no rows")  # fmt: skip
+        return HealthReport(self.source_id, bool(rows), now, "ok" if rows else "no rows",
+                            *self._socrata_shape_and_count(q))  # fmt: skip
+
+    def _socrata_shape_and_count(self, q: SocrataQuery) -> tuple[tuple[str, ...], int | None]:
+        """Socrata drops null fields from rows, so the shape comes from the dataset's columns.
+        A failed metadata or count call leaves them unknown; it does not mark the source down."""
+        try:
+            view = json.loads(self.client.get(f"{q.portal}/api/views/{q.dataset}.json").content)
+            shape = tuple(sorted(str(c["fieldName"]) for c in view.get("columns") or []
+                                 if not str(c["fieldName"]).startswith(":")))  # fmt: skip
+            params = {"$select": "count(*) AS n", **({"$where": q.where} if q.where else {})}
+            counted = json.loads(self.client.get(q.url, params).content)
+            n = int(counted[0]["n"]) if isinstance(counted, list) and counted else None
+        except (ValueError, KeyError, TypeError, AttributeError):
+            return (), None
+        return shape, n
 
 
 def lien_adapter_for(cfg: LienConfig) -> type[LienAdapter]:

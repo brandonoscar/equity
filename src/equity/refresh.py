@@ -13,7 +13,8 @@ Cadence and mode per source come from config/refresh.yaml. `start` prepares a so
   append             a new poll partition is added to the plan; finished parts stay, and the
                      build drops rows already stored (equity.lake.drop_known).
 `finish` writes, for a source whose build completed:
-  _refreshed.json              when and how it was last refreshed (synced with the state)
+  _refreshed.json              when and how it was last refreshed, with the counts before
+                               ("previous"); synced with the state, read by health_history
   _snapshots/<date>.json       row counts per table that day: the source's history
   _snapshots/<date>/<t>.parquet  listing mode only: the listing table as it stood that day
 """
@@ -38,6 +39,7 @@ LAKE = Path("data") / "lake"
 DERIVED = Path("data") / "derived"
 MODES = ("rebuild", "listing", "append")
 REFRESHED = "_refreshed.json"
+BEFORE = "_before_refresh.json"  # counts as they stood when the refresh started
 SNAPSHOTS = "_snapshots"
 
 
@@ -135,6 +137,11 @@ def start(source_id: str, lake: Path, now: datetime, rule: Rule) -> str:
     src = lake / source_id
     plan_path = src / "_plan.json"
     built = (src / "_counts.json").exists()
+    if built and not (src / BEFORE).exists():  # what finish() compares the new counts with
+        last = last_refresh(src)
+        (src / BEFORE).write_text(json.dumps({
+            "at": last.isoformat() if last else None,
+            "counts": json.loads((src / "_counts.json").read_text())}, sort_keys=True))  # fmt: skip
     if rule.mode == "append":
         if not plan_path.exists():
             return "first poll"  # build writes the adapter's plan
@@ -173,8 +180,14 @@ def finish(source_id: str, lake: Path, now: datetime, rule: Rule) -> dict[str, A
         return None
     counts = json.loads(counts_path.read_text())
     day = now.astimezone(UTC).date().isoformat()
-    record = {"at": now.astimezone(UTC).isoformat(timespec="seconds"), "mode": rule.mode,
-              "parts": len(list((src / "_parts").glob("*.json"))), "counts": counts}  # fmt: skip
+    record: dict[str, Any] = {
+        "at": now.astimezone(UTC).isoformat(timespec="seconds"), "mode": rule.mode,
+        "parts": len(list((src / "_parts").glob("*.json"))), "counts": counts}  # fmt: skip
+    if (src / BEFORE).exists():
+        record["previous"] = json.loads((src / BEFORE).read_text())
+    elif (src / REFRESHED).exists():
+        old = json.loads((src / REFRESHED).read_text())
+        record["previous"] = {"at": old.get("at"), "counts": old.get("counts", {})}
     snaps = src / SNAPSHOTS
     snaps.mkdir(parents=True, exist_ok=True)
     (snaps / f"{day}.json").write_text(json.dumps(record, indent=1, sort_keys=True))
@@ -195,6 +208,7 @@ def finish(source_id: str, lake: Path, now: datetime, rule: Rule) -> dict[str, A
                 f"COPY ({query}) TO '{dest.as_posix()}' (FORMAT PARQUET, COMPRESSION ZSTD)"
             )
     (src / REFRESHED).write_text(json.dumps(record, indent=1, sort_keys=True))
+    (src / BEFORE).unlink(missing_ok=True)
     return record
 
 
