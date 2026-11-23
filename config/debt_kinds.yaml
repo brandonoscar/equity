@@ -40,6 +40,7 @@ sources:
   # administrative hearings and orders
   ny.nyc.oath.judgments: administrative_judgment
   mi.detroit.blight_judgments: administrative_judgment
+  fl.miami_dade.waste_judgments: administrative_judgment
   il.chicago.doah_judgments: administrative_judgment
   il.chicago.doe_judgments: administrative_judgment
   il.chicago.vacant_building_judgments: administrative_judgment
@@ -65,6 +66,7 @@ sources:
   de.revenue.top_delinquent_personal: tax_delinquency
   wi.milwaukee.delinquent_taxes: tax_delinquency
   oh.hamilton.delinquent_taxes: tax_delinquency
+  dc.otr.delinquent_taxes: tax_delinquency
   tx.harris.delinquent_taxes: tax_delinquency
   oh.mahoning.delinquent_taxes: tax_delinquency
   va.virginia_beach.delinquent_taxes: tax_delinquency
@@ -76,6 +78,8 @@ sources:
   oh.cincinnati.lot_abatement: code_enforcement_charge
   az.tucson.code_liens: code_enforcement_lien
   fl.lee.nuisance_liens: code_enforcement_lien
+  fl.miami_dade.code_liens: code_enforcement_lien
+  fl.miami_dade.code_collections: code_enforcement_lien
   # foreclosure and housing
   pa.allegheny.foreclosures: foreclosure
   pa.washington.sheriff_sales: foreclosure

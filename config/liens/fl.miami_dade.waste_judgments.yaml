@@ -1,0 +1,36 @@
+source_id: fl.miami_dade.waste_judgments
+state: FL
+county_fips: "12086"
+# Miami-Dade Public Works and Waste Management: Waste Collection System accounts "in court
+# judgement process" (27,186 accounts). Only accounts with fees assessed (judgment, attorney,
+# filing, special master, interest; 1,393 on 2026-11-23) are loaded; the rest carry no amount.
+# Owner name, the serviced property and its folio. The layer has no judgment date, so each row
+# is dated the day it was fetched (a current list).
+# TODO(Brandon): confirm whether these county waste-fee judgments are recorded as liens on the
+# folio (Miami-Dade Code ch. 15) before treating them as liens; loaded as JUDGMENT_LIEN like the
+# other municipal judgments until then.
+api: arcgis
+layer_url: https://services.arcgis.com/8Pc9XBTAsYuxx9Ny/arcgis/rest/services/data_judgement/FeatureServer/0
+where: "TOTAL_FEES <> '0.0' AND TOTAL_FEES <> '0'"
+order_by: [ObjectId]
+select: [ObjectId, ACCOUNT_NO, PROPERTY_ADDRESS, FOLIO_NUMBER, OWNER, PARCEL_TYPE,
+         ATTORNEY_FEES, FILING_FEES, JUDGEMENT_FEES, MASTER_FEES, INTEREST_FEES, TOTAL_FEES]
+listed_on: listed_on
+date_field: listed_on
+single_partition: true
+uid: ACCOUNT_NO
+doc_type: JUDGMENT_LIEN
+doc_type_raw: Miami-Dade waste collection judgment
+amount: TOTAL_FEES
+extra_pii: [PROPERTY_ADDRESS]
+parties:
+  - role: debtor
+    name: OWNER
+  - role: creditor
+    const: Miami-Dade County
+parcel: {kind: pin, field: FOLIO_NUMBER, county_fips: "12086", zfill: 13}   # fl.statewide.parcels
+terms:
+  url: https://gis-mdc.opendata.arcgis.com/
+  summary: "Miami-Dade County Open Data Hub (ArcGIS Online item 920431a21e464c44bac01a1e90a707e7), free, no login. Provided 'as is'; no licence restriction on reuse found."
+  checked_on: 2026-11-23
+  cost_model: free

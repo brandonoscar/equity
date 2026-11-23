@@ -1,0 +1,29 @@
+source_id: fl.miami_dade.code_liens
+state: FL
+county_fips: "12086"
+# Miami-Dade Regulatory and Economic Resources code compliance cases in lien status (6,913 on
+# 2026-11-23): the folio, the violation, and the Official Records book, page and date of the
+# recorded lien where one is recorded. Satisfied and cancelled liens leave the view. No owner
+# name and no amount: the lien is against the folio, so the match run names its owner of
+# record (parcel_on_lien).
+api: arcgis
+layer_url: https://services.arcgis.com/8Pc9XBTAsYuxx9Ny/arcgis/rest/services/CodeComplianceViolation_Lien_View/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, CASE_NUM, CASE_DATE, STAT_DESC, ADDRESS, FOLIO, PROBLEM_DESC, LAST_ACTV,
+         LN_RECBOOK, LN_RECPAGE, LN_RECDATE]
+date_field: CASE_DATE
+partition: year
+first_year: 1995
+uid: CASE_NUM
+doc_type: STATUTORY_LIEN
+doc_type_raw: {field: PROBLEM_DESC}
+extra_pii: [ADDRESS]
+parties:
+  - role: creditor
+    const: Miami-Dade County
+parcel: {kind: pin, field: FOLIO, county_fips: "12086", zfill: 13}   # fl.statewide.parcels
+terms:
+  url: https://gis-mdc.opendata.arcgis.com/
+  summary: "Miami-Dade County Open Data Hub (ArcGIS Online, CodeComplianceViolation_Lien_View), free, no login. Provided 'as is'; no licence restriction on reuse found."
+  checked_on: 2026-11-23
+  cost_model: free
