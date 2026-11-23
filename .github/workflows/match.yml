@@ -48,7 +48,7 @@ jobs:
       - name: match each state
         run: |
           for state in $STATES; do
-            lower=$(echo "$state" | tr 'A-Z' 'a-z')
+            lower=$(echo "$state" | tr '[:upper:]' '[:lower:]')
             spec=$(uv run --locked python -m equity.matching.resolve --state "$state" --list-sources)
             sources=$(echo "$spec" | jq -r '.sources | join(" ")')
             tables=$(echo "$spec" | jq -r '.tables | join(" ")')
@@ -63,6 +63,6 @@ jobs:
               cat "data/derived/$lower/summary.json"
               echo '```'
             } >> "$GITHUB_STEP_SUMMARY"
-            # shellcheck disable=SC2086
-            rm -rf data/derived/"$lower" $(printf 'data/lake/%s ' $sources)
+            rm -rf "data/derived/$lower"
+            for src in $sources; do rm -rf "data/lake/$src"; done
           done
