@@ -1,0 +1,19 @@
+# Debtor scoring (equity.rules.score). Every weight and cutoff is a decision for Brandon:
+# null means the factor is computed and shown but not scored. While any weight is null the
+# scorer writes the factors only and reports which parameters are missing; it never
+# substitutes a default. Weights multiply the factor in its own unit (dollars, counts, years,
+# 0/1 flags); tiers are minimum scores, highest first.
+schema_version: 1
+factors:
+  open_amount: null           # dollars of open, auto-linked debt (people.open_amount)
+  parcel_value: null          # dollars of parcel value linked to the person
+  parcels: null               # number of linked parcels
+  court_judgment: null        # 1 if any debt is a court money judgment
+  charged_off_loan: null      # 1 if any debt is a charged-off SBA loan
+  tax_debt: null              # 1 if any debt is a tax lien, warrant or delinquency
+  bankruptcy_open: null       # 1 if a bankruptcy case in the person's name is open (penalty)
+  bankruptcy_discharged: null # 1 if discharged (penalty)
+  transfers_after_debt: null  # number of deeds out after a debt (auto decisions)
+  nominee_transfer: null      # 1 if a deed went to a company the debtor runs
+  sol_years_left: null        # years left on the state's enforcement period (config/sol.yaml)
+tiers: []   # e.g. [{name: A, min_score: ...}, {name: B, min_score: ...}]

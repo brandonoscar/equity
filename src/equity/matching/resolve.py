@@ -654,7 +654,7 @@ def run(
                   writ_sources, debtor_doc_types)  # fmt: skip
     match(con, street_town, parcel_on_lien, bool(court_sources))
     review.build(con)
-    tables = ["matches", "debtor_summary", "people", "review_queue"]
+    tables = ["matches", "debtor_summary", "people", "person_of", "review_queue"]
     if registry_sources:
         entities.compute(con, lake, registry_sources)
         tables.extend(entities.TABLES)
