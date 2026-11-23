@@ -21,6 +21,8 @@ from equity.adapters.ny.acris import AcrisPersonalProperty, AcrisRealProperty
 from equity.adapters.ny.condo_units import NycCondoUnits
 from equity.adapters.pa.philadelphia_rtt import PhiladelphiaRTT
 from equity.adapters.state_parcels import all_state_adapters
+from equity.adapters.tx.harris_district import HarrisDistrictCivilJudgments
+from equity.adapters.tx.harris_jp import HarrisJPCivilJudgments
 from equity.adapters.tx.stratmap import TexasStratMapParcels
 from equity.adapters.wv.delinquent import WVDelinquentProperties
 from equity.adapters.wv.parcelweb import MonongaliaParcelWeb
@@ -49,6 +51,8 @@ _ALL: tuple[type[Adapter], ...] = (
     HillsboroughCivilFilings,
     HillsboroughGarnishment,
     FJCCivilJudgments,
+    HarrisJPCivilJudgments,
+    HarrisDistrictCivilJudgments,
     *all_registry_adapters(),
     # NDWV keeps its original source ids; config/courts.yaml adds every other court.
     *[c for c in court_adapters() if c.court_id not in ("wvnd", "wvnb")],

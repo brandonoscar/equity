@@ -1,0 +1,64 @@
+# Harris County (TX) Justice Courts, "Judgments Entered" civil public data extract
+# (jpwebsite.harriscountytx.gov/PublicExtracts). Read by src/equity/adapters/tx/harris_jp.py.
+#
+# The extract service is a published download form: GET /PublicExtracts/GetExtractData with
+# the extract type, court, case types, format and a from/to date returns one file
+# ("JudgmentsEntered-<from>To<to>.txt") for all 16 JP courts. No login, no CAPTCHA, no fee.
+# The file layout (docs/CivilFileSpec.pdf, revised 2025-02-24) has 70 columns: case number,
+# court, case type, file date, style, claim amount, status, the first two plaintiffs and
+# defendants each with address and attorney, disposition, and the judgment: text, date,
+# in favor of, against, amount, attorney fees, court costs, pre- and post-judgment rate.
+#
+# The form allows at most 90 days per request for all courts and all case types; a month is
+# about 7,300 rows and takes about 80 s to produce (October 2026). Judgments go back to at
+# least January 2005 (checked 2026-11-23).
+source_id: tx.harris.jp.civil_judgments
+base_url: https://jpwebsite.harriscountytx.gov/PublicExtracts/
+# Request parameters, from the form's scripts/requestscripts.js: extract 3 = "Judgments
+# Entered" (civil), court 300 = all courts, casetype = every civil case type code.
+extract: "3"
+court: "300"
+case_type_codes: "64033,56068,8462,56073,64007,56072,8463,56074,56075,8464,56076,56079,56080,58183,8465,8466,56081,56083,51413,51414,56084,56085"
+# Lake partitions: one per calendar month of judgment date, from first_month to the current
+# month (which ends the day before the plan is made).
+# TODO(Brandon): ten years back (Texas judgments go dormant after 10 years unless renewed).
+# The extract has judgments from 2005 on; move first_month earlier to load more.
+first_month: 2016-12
+# Case types kept. The rest (occupational driver's licenses, handgun licenses, dangerous
+# dogs, tow hearings, seized property, writs of re-entry/restoration/retrieval) are not
+# money claims between parties and are skipped.
+# TODO(Brandon): Bond Forfeiture (State v. surety) and Tax Suit are kept; drop them here if
+# they should not count.
+case_types:
+  - Debt Claim
+  - Small Claims
+  - Eviction
+  - Action of Debt
+  - Repair and Remedy
+  - Bill of Review
+  - Foreign Judgment
+  - Foreign Judgement
+  - Confirmation of Arbitration Award
+  - Writ of Garnishment
+  - Bond Forfeiture
+  - Tax Suit
+# "Judgment Text" -> judgment_type. Other texts (Dismissed..., Probable Cause Found,
+# Affirmative Finding, Conversion Judgment Event...) are dispositions, not judgments.
+# A listed text becomes a judgment row only when it awards money: judgment amount, attorney
+# fees or court costs above zero.
+# TODO(Brandon): costs-only judgments (an eviction for possession plus ~$139 court costs)
+# are kept as money judgments with principal 0; set costs_only_counts: false to drop them.
+judgment_types:
+  Default Judgment: default
+  Agreed Judgment: consent
+  Final Judgment: money
+  Summary Judgment: money
+  Summary Disposition: money
+  Awarded: money
+costs_only_counts: true
+terms:
+  url: https://jpwebsite.harriscountytx.gov/PublicExtracts/search.jsp
+  summary: "Harris County JP Public Data Extract Service: a public download form for civil and criminal case extracts (TXT/CSV/XML) with a published file layout. No login, no CAPTCHA, free; no terms of use are posted on the service. robots.txt carries only Cloudflare content signals (comments) and no Disallow rules."
+  checked_on: 2026-11-23
+  robots_checked_on: 2026-11-23
+  cost_model: free

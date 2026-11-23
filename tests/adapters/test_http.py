@@ -200,3 +200,41 @@ def test_written_script_permission_opens_only_its_prefix_while_still_published()
     other = FakeNet({"https://b.test/robots.txt": (200, WPRDC_ROBOTS)})
     with pytest.raises(AccessDenied):  # the same text on another host grants nothing
         client(other, FakeClock()).get("https://b.test/api/x")
+
+
+def test_post_form_follows_robots_and_spacing() -> None:
+    net = FakeNet({"https://a.test/robots.txt": (200, b"User-agent: *\nDisallow: /private\n")})
+    posted: list[tuple[str, bytes, str]] = []
+
+    def post(url: str, headers: Mapping[str, str], body: bytes, timeout: float
+             ) -> tuple[int, bytes, str]:  # fmt: skip
+        posted.append((url, body, headers["User-Agent"]))
+        return 200, b"file", "application/octet-stream"
+
+    clock = FakeClock()
+    c = PoliteClient(min_interval_s=2.0, transport=net, post_transport=post, sleep=clock.sleep,
+                     monotonic=clock.monotonic)  # fmt: skip
+    resp = c.post_form("https://a.test/form.aspx", {"b": "2 3", "a": "x\\y"})
+    assert resp.status == 200 and resp.content == b"file"
+    assert posted == [("https://a.test/form.aspx", b"b=2+3&a=x%5Cy", posted[0][2])]
+    assert posted[0][2].startswith("equity-records/")
+    assert clock.slept == [2.0]  # spaced after the robots.txt request
+    with pytest.raises(AccessDenied):
+        c.post_form("https://a.test/private/form.aspx", {})
+
+
+def test_urllib_post_transport_sends_a_form(monkeypatch: pytest.MonkeyPatch) -> None:
+    from equity.adapters import http
+
+    seen: dict[str, object] = {}
+
+    def fake(url: str, headers: Mapping[str, str], data: bytes | None, timeout: float
+             ) -> tuple[int, bytes, str]:  # fmt: skip
+        seen.update(url=url, headers=dict(headers), data=data)
+        return 200, b"", ""
+
+    monkeypatch.setattr(http, "_urlopen", fake)
+    http.urllib_post_transport("https://a.test/f", {"User-Agent": "u"}, b"a=1", 5.0)
+    assert seen["data"] == b"a=1"
+    assert seen["headers"] == {"User-Agent": "u",
+                               "Content-Type": "application/x-www-form-urlencoded"}  # fmt: skip

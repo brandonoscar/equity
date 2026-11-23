@@ -24,6 +24,18 @@ confirm it.
 All Hillsborough court rows use `case_uid = fl.hillsborough:<case number>`, the same case
 number the Official Records index carries in its legal column.
 
+## Court judgments (Harris County, TX)
+
+| Source id | What it holds |
+|---|---|
+| `tx.harris.jp.civil_judgments` | Justice Courts "Judgments Entered" public extract, all 16 JP courts: debt claims, small claims, evictions and other civil judgments with judgment date, amount, attorney fees, court costs, post-judgment rate, who it was for and against, and the first two plaintiffs and defendants with addresses. Back to at least 2005; loaded in monthly parts from 2016-12, newest first. |
+| `tx.harris.district.civil_judgments` | District Clerk CaseSummaryMods datasets: district-court civil debt cases (debt/contract, sworn account, note, foreign judgment) with filing date, court, first plaintiff and defendant names, and judgments for the plaintiff (default, agreed, summary, for plaintiff) with date and text. No amounts, no addresses. Cases filed from 2015, plus every case changed since 2025. |
+
+JP judgments name the creditor and debtor (who won is read from the judgment's "in favor
+of" and "against" names) and the debtor's address, so the matcher can link them to Harris
+parcel owners by name and address. District Clerk files come through the page's own
+Download button (a form post); no account is needed.
+
 ## Federal courts
 
 Bankruptcy-court RSS feeds are enabled for FL (M, S, N), NY-S, PA-E, OH-N, NJ, GA-N and
