@@ -11,6 +11,12 @@ termination date (the filter in `kept`). The plaintiff is the judgment creditor 
 defendant the debtor. Each kept IDB record becomes one court_case, its two parties and one
 money judgment entered on the termination date.
 
+The FJC publishes the same IDB itself (fjc_idb_direct.py, us.fjc.idb.direct.civil_judgments),
+with judgments terminated after CourtListener's copy stops. That source wins: a kept row whose
+district + office + docket + filing date is among the FJC file's kept rows is dropped here, so
+each judgment loads once. The FJC keys come from its manual file (FJCDirectCivilJudgments.
+kept_keys), and the file's name is stored with every partition.
+
 Partitions are years of date_terminated. The snapshot is downloaded once into data/work, and
 one streaming pass writes the kept rows, split by year, into a small local extract; the bz2
 is then deleted. Each partition reads its year from the extract (the stored raw bytes are that
@@ -24,7 +30,7 @@ import csv
 import json
 import re
 import shutil
-from collections.abc import Iterator, Mapping
+from collections.abc import Callable, Iterator, Mapping
 from dataclasses import dataclass
 from datetime import UTC, date, datetime
 from decimal import Decimal
@@ -136,6 +142,11 @@ def principal(amount: int, cfg: IDBConfig) -> Decimal | None:
     return Decimal(amount * cfg.amount_unit)
 
 
+def dedupe_key(row: Mapping[str, str]) -> str:
+    """us.<district>:<office>:<docket>:<filed>: the key shared with the FJC's own file."""
+    return case_uid(row).rsplit("#", 1)[0]
+
+
 def case_uid(row: Mapping[str, str]) -> str:
     """us.<district>:<office>:<docket>:<filed>#<IDB id>.
 
@@ -173,16 +184,30 @@ def snapshot_date(key: str) -> date:
     return date(int(m.group(1)), int(m.group(2)), int(m.group(3)))
 
 
+def _fjc_direct_keys() -> tuple[str, frozenset[str]]:
+    from equity.adapters.federal.fjc_idb_direct import FJCDirectCivilJudgments
+
+    stem, keys = FJCDirectCivilJudgments().kept_keys()
+    return f"us.fjc.idb.direct.civil_judgments:{stem}", keys
+
+
 class FJCCivilJudgments(Adapter):
     source_id: ClassVar[str] = "us.fjc.idb.civil_judgments"
-    adapter_version: ClassVar[str] = "1"
+    adapter_version: ClassVar[str] = "2"
     access_method: ClassVar[str] = "bulk"
     pii_fields: ClassVar[tuple[str, ...]] = ("plaintiff", "defendant")
     cache_dir: ClassVar[Path] = Path("data") / "work" / "us_fjc_idb"
 
-    def __init__(self, client: PoliteClient | None = None) -> None:
+    def __init__(
+        self,
+        client: PoliteClient | None = None,
+        preferred: Callable[[], tuple[str, frozenset[str]]] | None = None,
+    ) -> None:
+        """preferred: (name, keys) of the records another source loads instead (default:
+        the FJC's own file, read from its manual path)."""
         self.config = load_config()
         self.client = client or PoliteClient(min_interval_s=1.0, timeout_s=600.0)
+        self.preferred = preferred or _fjc_direct_keys
 
     def source_row(self) -> Mapping[str, Any]:
         t = self.config.terms
@@ -252,11 +277,12 @@ class FJCCivilJudgments(Adapter):
         if (out / "_manifest.json").exists():
             return out
         src, retrieved_at = self._download(key, size)
+        preferred_name, preferred = self.preferred()
         tmp = out.with_name(out.name + ".part")
         shutil.rmtree(tmp, ignore_errors=True)
         tmp.mkdir(parents=True)
         files: dict[int, IO[str]] = {}
-        counts = {"rows": 0, "bad_rows": 0, "kept": 0}
+        counts = {"rows": 0, "bad_rows": 0, "kept": 0, "in_preferred": 0}
         try:
             with bz2.open(src, "rt", encoding="utf-8", errors="replace", newline="") as fh:
                 for row in read_csv_rows(fh):
@@ -267,6 +293,9 @@ class FJCCivilJudgments(Adapter):
                     k = kept(row, self.config)
                     if k is None:
                         continue
+                    if dedupe_key(row) in preferred:
+                        counts["in_preferred"] += 1
+                        continue
                     year = k[0].year
                     if year not in files:
                         files[year] = (tmp / f"{year}.jsonl").open("w", encoding="utf-8")
@@ -276,7 +305,7 @@ class FJCCivilJudgments(Adapter):
             for f in files.values():
                 f.close()
         manifest = {"key": key, "size": size, "retrieved_at": retrieved_at.isoformat(),
-                    **counts}  # fmt: skip
+                    "deduped_against": preferred_name, **counts}  # fmt: skip
         (tmp / "_manifest.json").write_text(json.dumps(manifest, sort_keys=True))
         shutil.rmtree(out, ignore_errors=True)
         tmp.replace(out)
@@ -298,7 +327,8 @@ class FJCCivilJudgments(Adapter):
         rows = [json.loads(line) for line in lines]
         if year >= snapshot_date(key).year and "limit" not in p:
             shutil.rmtree(out, ignore_errors=True)  # the last partition: free the disk
-        body = canonical_json({"key": key, "year": year, "rows": rows})
+        body = canonical_json({"key": key, "year": year, "rows": rows,
+                               "deduped_against": manifest.get("deduped_against")})  # fmt: skip
         url = f"{self.config.bucket}{key}#date_terminated={year}"
         at = datetime.fromisoformat(manifest["retrieved_at"])
         return Fetched(self.source_id, url, at, 200, body, "application/json")

@@ -1,0 +1,65 @@
+# EPA civil judicial enforcement cases with a penalty or cost recovery owed to the United
+# States, from the ICIS-FE&C federal enforcement and compliance download on ECHO (Enforcement
+# and Compliance History Online). Read by src/equity/adapters/federal/epa_echo.py.
+#
+# case_downloads.zip (81,294,734 bytes, Last-Modified 2026-11-21, refreshed weekly) holds 22
+# CSVs, one row per case (ACTIVITY_ID, CASE_NUMBER) or per child record. Used here:
+#   CASE_ENFORCEMENTS.csv               137,209 cases; ACTIVITY_TYPE_CODE JDC (judicial) 9,118,
+#                                       AFR (administrative - formal) 128,091
+#   CASE_ENFORCEMENT_CONCLUSIONS.csv    settlements: consent decree / court order, entered
+#                                       date, FED_PENALTY_ASSESSED_AMT, COST_RECOVERY_AWARDED_AMT
+#   CASE_DEFENDANTS.csv                 defendant (or PRP) names, NAMED_IN_SETTLEMENT_FLAG
+#   CASE_FACILITIES.csv                 facility name and street address of the case's sites
+#   CASE_REGIONAL_DOCKETS.csv           the court's civil action number ("3:18-cv-00162-SLG")
+# Field definitions: https://echo.epa.gov/tools/data-downloads/icis-fec-download-summary
+#
+# Kept: judicial cases (ACTIVITY_TYPE_CODE in judicial_activity_types) with at least one
+# judicial conclusion that has an entered date (SETTLEMENT_ENTERED_DATE: signed by the judge
+# and entered by the clerk) and a federal penalty or cost recovery above zero. In the
+# 2026-11-21 file: 7,602 such conclusions in 6,895 cases (entered 1972-2026), 35,712
+# defendant rows, 19,092 facility rows. Administrative (AFR) orders are not court judgments
+# and are left out.
+#
+# Model: one court_case per ICIS case (case_uid us.epa.icis:<CASE_NUMBER>); the United States
+# as creditor; each defendant named in a settlement as debtor (others as defendant); one
+# judgment per kept conclusion, principal = FED_PENALTY_ASSESSED_AMT (the federal civil
+# penalty in the entered decree or order), costs = COST_RECOVERY_AWARDED_AMT (Superfund
+# response costs ordered repaid). State and local penalties are owed to the state, not the
+# United States, and are left out. ICIS does not say which district court entered the
+# decree, so every case gets court_id us.district (see court_id below).
+# TODO(Brandon): a consent decree for cost recovery is usually joint and several among the
+# settling defendants named in that conclusion (ENF_CONCLUSION_NAME), but ICIS does not tie a
+# conclusion to particular defendants; every settling defendant of the case is a debtor of
+# every judgment of the case here. Confirm that reading before acting on a multi-PRP case.
+# TODO(Brandon): the federal penalty and cost recovery are the amounts assessed or agreed, not
+# what is still owed (PENALTY_COLLECTED_AMT in CASE_PENALTIES is mostly blank); most decrees
+# are paid within 30 days. Treat these as leads to verify against the docket, not balances.
+#
+# Addresses: ICIS has no defendant mailing address. A case facility's street address is
+# attached to a debtor when the facility name is the debtor's name (after cleaning), or when
+# the case has exactly one facility and one debtor. That is the address of the site where the
+# violation occurred, which is often, but not always, property the debtor owns or operates.
+# TODO(Brandon): confirm facility addresses may be used to match debtors to parcels.
+source_id: us.epa.echo.judicial_cases
+download_page: https://echo.epa.gov/tools/data-downloads
+file_url: https://echo.epa.gov/files/echodownloads/case_downloads.zip
+judicial_activity_types: ["JDC"]
+court_id: us.district
+creditor_name: UNITED STATES
+# ENF_CONCLUSION_ACTION_CODE -> judgment_type. CDC is "Consent Decree or Court Order
+# Resolving a Civil Judicial Action" (8,673 of the 8,842 judicial conclusions); CDO "Consent
+# Decree or Court Order"; JOA "Judicial Order Amending or Enforcing Consent Decree"; SPA
+# "Stipulated Penalty Assessed Against Previous Action". Anything else is 'other'.
+# TODO(Brandon): CDC/CDO cover litigated court orders as well as consent decrees; ICIS does not
+# say which, so 'consent' is the usual case, not a certainty.
+judgment_types:
+  CDC: consent
+  CDO: consent
+  JOA: other
+  SPA: other
+terms:
+  url: https://www.epa.gov/web-policies-and-procedures/epa-disclaimers
+  summary: "ECHO ICIS-FE&C case download: published by the US Environmental Protection Agency, free, no login; US government data in the public domain. EPA disclaims completeness and timeliness (data come from EPA program offices and are refreshed weekly). echo.epa.gov/robots.txt (Crawl-delay 10) does not disallow /files/echodownloads/."
+  checked_on: 2026-11-23
+  robots_checked_on: 2026-11-23
+  cost_model: free

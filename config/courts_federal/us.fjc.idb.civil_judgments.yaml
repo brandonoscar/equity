@@ -11,6 +11,11 @@
 # (value counts in that file are noted). Only rows that pass all of these become judgments:
 #   judgment in for_plaintiff, nature_of_judgement in money, amount_received > 0, and a
 #   date_terminated that parses as a date. 412,413 rows pass in the 2026-09-30 snapshot.
+#
+# The FJC's own cumulative file (us.fjc.idb.direct.civil_judgments) wins over this copy: a kept
+# row whose district + office + docket + filing date is among that file's kept rows is dropped
+# here (fjc_idb.dedupe_key). Against the June 30, 2026 FJC file, 412,253 of the 412,266 kept
+# keys in the 2026-09-30 snapshot are dropped and 13 remain (10 terminated in 2005).
 source_id: us.fjc.idb.civil_judgments
 bucket: https://com-courtlistener-storage.s3-us-west-2.amazonaws.com/
 prefix: bulk-data/fjc-integrated-database-

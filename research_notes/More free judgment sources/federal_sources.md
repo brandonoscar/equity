@@ -134,3 +134,18 @@ A federal civil money judgment becomes a lien on the debtor's real property only
 
 ### Gaps
 - No federal bulk source records abstract filing or lien release. FJC IDB and CourtListener bulk have no satisfaction field.
+
+## Checked live, 2026-11-23 (network open)
+
+**FJC IDB, FJC's own file** — built as `us.fjc.idb.direct.civil_judgments`.
+- [LIVE] fjc.gov "Civil Cases Filed, Terminated, and Pending (SY 1988 - present)" offers the "Civil Cases Cumulative File" as tab-delimited text (`/sites/default/files/idb/textfiles/cv88on.zip`, 329,665,474 bytes, Last-Modified 2026-08-26, terminated through 2026-06-30, 10,960,173 records) plus per-year SAS files (`cv25.sas7bdat`, `cv26.sas7bdat`, `cv21to26.zip`). Codebook: `Civil Codebook 1988 Forward 10252023.pdf`. No login.
+- [LIVE] Codebook confirms JUDGMENT 1 = plaintiff, NOJ 1/2 = monetary award (only / and other), 5 = costs only, 6 = costs and attorney fees, AMTREC in thousands, and warns AMTREC is not mandatory and 9999 may mean "over $1 million" or a filler.
+- [LIVE] **fjc.gov/robots.txt disallows `/research/idb/` and `/sites/default/files/idb`** (Crawl-delay 30). The adapter is therefore `manual`: a person downloads the zip and the adapter reads it from `data/manual/`.
+- [LIVE] DISTRICT is the AO numeric code ("13", "3A", "7-"); the config maps it to PACER ids. 430,832 kept money judgments for the plaintiff, terminated 1984-05-03 to 2026-06-30; 15,018 terminated after 2022-03-31. 412,253 of CourtListener's 412,266 kept keys (district + office + docket + filing date) are in the FJC file.
+
+**EPA ECHO ICIS-FE&C** — built as `us.epa.echo.judicial_cases`.
+- [LIVE] `https://echo.epa.gov/files/echodownloads/case_downloads.zip` (81,294,734 bytes, 22 CSVs, Last-Modified 2026-11-21), no login; robots.txt (Crawl-delay 10) does not disallow `/files/`. 137,209 cases: 9,118 judicial (JDC), 128,091 administrative formal (AFR).
+- [LIVE] Defendants have names only (no address); CASE_FACILITIES has facility street addresses; CASE_REGIONAL_DOCKETS has the court's civil action number for judicial cases; no field names the district court.
+
+**DOL WHD** — not built.
+- [LIVE] enforcedata.dol.gov and its data catalog now redirect to data.dol.gov (a JavaScript app). WHD "Enforcement" (dataset 10362, `WHD_enforcement`, quarterly, concluded actions since FY 2005) is served only by `apiprod.dol.gov/v4/get/WHD/enforcement/...`, which answers 401 "The API key is either incorrect or missing" without an `X-API-KEY`. The dataset list (`/v4/datasets`) is open but has no file download. A key requires portal registration, which counts as a login here, so WHD is skipped.

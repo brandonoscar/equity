@@ -17,8 +17,10 @@ import pytest
 from equity.adapters.base import Fetched, FetchRequest
 from equity.adapters.federal.fjc_idb import (
     FJCCivilJudgments,
+    _fjc_direct_keys,
     case_uid,
     county_fips,
+    dedupe_key,
     iso_date,
     kept,
     list_bucket,
@@ -240,8 +242,13 @@ class FakeS3:
         return Response(url, 200, self.objects[key], "application/x-bzip2", AT)
 
 
-def adapter(objects: dict[str, bytes], tmp_path: Path, page: int = 1000) -> FJCCivilJudgments:
-    a = FJCCivilJudgments(FakeS3(objects, page))  # type: ignore[arg-type]
+def adapter(
+    objects: dict[str, bytes],
+    tmp_path: Path,
+    page: int = 1000,
+    preferred: frozenset[str] = frozenset(),
+) -> FJCCivilJudgments:
+    a = FJCCivilJudgments(FakeS3(objects, page), lambda: ("fjc-test", preferred))  # type: ignore[arg-type]
     a.cache_dir = tmp_path  # type: ignore[misc]
     return a
 
@@ -317,3 +324,27 @@ def test_fixture_normalizes() -> None:
     src = a.source_row()
     assert src["access_method"] == "bulk" and src["cost_model"] == "free"
     assert src["terms_checked_on"] == date(2026, 11, 22)
+
+
+def test_rows_the_fjc_file_has_are_dropped(tmp_path: Path) -> None:
+    a_row, b_row = row(id="1"), row(id="2", docket_number="8900001")
+    assert dedupe_key(a_row) == "us.paed:2:8907217:1989-10-05"
+    objs = snapshot(KEY, [a_row, b_row, row(id="3")])  # id 3: a second record of docket 1
+    a = adapter(objs, tmp_path, preferred=frozenset({dedupe_key(a_row)}))
+    got = a.fetch(FetchRequest({"key": KEY, "year": "1989", "limit": "9"}))
+    body = json.loads(got.content)
+    assert [r["id"] for r in body["rows"]] == ["2"] and body["deduped_against"] == "fjc-test"
+    manifest = json.loads((tmp_path / "fjc-integrated-database-2026-09-30" /
+                           "_manifest.json").read_text())  # fmt: skip
+    assert manifest["in_preferred"] == 2 and manifest["kept"] == 1
+
+
+def test_default_preferred_keys_come_from_the_fjc_file(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    from equity.adapters.federal import fjc_idb_direct
+
+    monkeypatch.setattr(fjc_idb_direct.FJCDirectCivilJudgments, "kept_keys",
+                        lambda self: ("cv88on-x", frozenset({"k"})))  # fmt: skip
+    assert _fjc_direct_keys() == ("us.fjc.idb.direct.civil_judgments:cv88on-x", frozenset({"k"}))
+    assert FJCCivilJudgments().preferred is _fjc_direct_keys
