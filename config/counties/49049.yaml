@@ -1,0 +1,26 @@
+source_id: ut.utah.parcels
+state: UT
+# UGRC's (Utah Geospatial Resource Center, the State's GIS office) Utah County parcel layer
+# (285,970 rows on 2026-11-23, "Dynamic snapshot from county", ParcelYear 2026): owner name on
+# 86,740 rows, situs, owner type. The only UGRC county layer with an OWNERNAME field; the
+# statewide LIR layers (config/states/ut*.yaml) carry no owners. No values or mailing address.
+layer_url: https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/Parcels_Utah/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000
+min_interval_s: 1.0
+county: {constant: "049"}
+fields:
+  parcel_id: PARCEL_ID   # '070130024', the same id as the statewide UGRC layer
+  owner1: OWNERNAME
+  owner_type: OWN_TYPE
+  situs_line1: PARCEL_ADD
+  situs_city: PARCEL_CITY
+  situs_state: {const: UT}
+  situs_zip: PARCEL_ZIP
+value_basis: "No value fields in this layer. OWNERNAME is filled on 86,740 of 285,970 rows (2026-11-23). Utah County's own server (maps.utahcounty.gov) has owners, mailing address and market values but answered 401 / 'Failed to execute query' on 2026-11-23."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=a26808bcf48241e0a71bd862eeefb57a
+  summary: "UGRC (owner UtahAGRC) public hosted feature service, no login, token or fee. licenseInfo (read 2026-11-23): provided 'as is' and 'as available', no warranty, 'a public service for informational purposes only'; no use restriction. services1.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-23
+  robots_checked_on: 2026-11-23
+  cost_model: free

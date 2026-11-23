@@ -1,0 +1,29 @@
+source_id: il.mchenry.parcels
+state: IL
+# McHenry County tax parcels (150,159 rows on 2026-11-23): owner, mail-to address, situs and
+# property class; no values.
+layer_url: https://services1.arcgis.com/6iYC5AXXYapRVNzl/arcgis/rest/services/McHenry_County_TaxParcels/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000
+min_interval_s: 1.0
+county: {constant: "111"}
+fields:
+  parcel_id: ParcelNumber   # '18-14-276-006'
+  owner1: Owner
+  mail_line1: MailToAddress1
+  mail_line2: MailToAddress2
+  mail_city: MailToCity
+  mail_state: MailToState
+  mail_zip: MailToZip
+  situs_line1: SiteAddress
+  situs_city: SiteCity
+  situs_state: SiteState
+  situs_zip: SiteZip
+  land_use_code: PropertyClass
+value_basis: "No value fields in this layer. PropertyClass is the Illinois property class code; TaxStatus T = taxable."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=723960c3086940dd9784f69d897c1c7b
+  summary: "Public hosted feature service owned by the McHenryCounty account, no login, token or fee; the item has no licenseInfo (read 2026-11-23), no use restriction found. services1.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-23
+  robots_checked_on: 2026-11-23
+  cost_model: free

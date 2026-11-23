@@ -1,0 +1,231 @@
+{
+ "attributes": [
+  {
+   "OBJECTID": 1,
+   "OWNERNAME": "",
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": "TESTOWNER 675605",
+   "PARCEL_CITY": "Lehi",
+   "PARCEL_ID": "010220012",
+   "PARCEL_ZIP": "84043"
+  },
+  {
+   "OBJECTID": 2,
+   "OWNERNAME": "",
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": "TESTOWNER 6D9E00",
+   "PARCEL_CITY": "Lehi",
+   "PARCEL_ID": "010830006",
+   "PARCEL_ZIP": "84043"
+  },
+  {
+   "OBJECTID": 3,
+   "OWNERNAME": "",
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": "TESTOWNER 6D9E00",
+   "PARCEL_CITY": "Lehi",
+   "PARCEL_ID": "010830006",
+   "PARCEL_ZIP": "84043"
+  },
+  {
+   "OBJECTID": 4,
+   "OWNERNAME": "",
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": "TESTOWNER 249D67",
+   "PARCEL_CITY": "Lehi",
+   "PARCEL_ID": "010830007",
+   "PARCEL_ZIP": "84043"
+  },
+  {
+   "OBJECTID": 5,
+   "OWNERNAME": "",
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": "TESTOWNER D1AC9A",
+   "PARCEL_CITY": "Lehi",
+   "PARCEL_ID": "010900001",
+   "PARCEL_ZIP": "84043"
+  },
+  {
+   "OBJECTID": 6,
+   "OWNERNAME": "",
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": "TESTOWNER B1E07E",
+   "PARCEL_CITY": "Lehi",
+   "PARCEL_ID": "010900002",
+   "PARCEL_ZIP": "84043"
+  },
+  {
+   "OBJECTID": 7,
+   "OWNERNAME": "",
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": "TESTOWNER F1ECAA",
+   "PARCEL_CITY": "Lehi",
+   "PARCEL_ID": "010900003",
+   "PARCEL_ZIP": "84043"
+  },
+  {
+   "OBJECTID": 8,
+   "OWNERNAME": "",
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": "TESTOWNER DA5A4E",
+   "PARCEL_CITY": "Lehi",
+   "PARCEL_ID": "010860026",
+   "PARCEL_ZIP": "84043"
+  },
+  {
+   "OBJECTID": 9,
+   "OWNERNAME": "TESTOWNER 1265AC LLC",
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": "TESTOWNER 19628B",
+   "PARCEL_CITY": "Lehi",
+   "PARCEL_ID": "010860028",
+   "PARCEL_ZIP": "84043"
+  },
+  {
+   "OBJECTID": 10,
+   "OWNERNAME": "",
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": null,
+   "PARCEL_CITY": "Lehi",
+   "PARCEL_ID": "010860029",
+   "PARCEL_ZIP": "84043"
+  },
+  {
+   "OBJECTID": 11,
+   "OWNERNAME": "TESTOWNER 50F229 LLC",
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": "TESTOWNER CA477F",
+   "PARCEL_CITY": "Lehi",
+   "PARCEL_ID": "010860030",
+   "PARCEL_ZIP": "84043"
+  },
+  {
+   "OBJECTID": 12,
+   "OWNERNAME": "TESTOWNER 7AAA77 INC",
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": "TESTOWNER 925E30",
+   "PARCEL_CITY": "Lehi",
+   "PARCEL_ID": "010910006",
+   "PARCEL_ZIP": "84043"
+  },
+  {
+   "OBJECTID": 13,
+   "OWNERNAME": "",
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": "TESTOWNER CE7BB7",
+   "PARCEL_CITY": "Lehi",
+   "PARCEL_ID": "010910007",
+   "PARCEL_ZIP": "84043"
+  },
+  {
+   "OBJECTID": 14,
+   "OWNERNAME": "TESTOWNER FB0C9A",
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": null,
+   "PARCEL_CITY": "Lehi",
+   "PARCEL_ID": "010690173",
+   "PARCEL_ZIP": "84043"
+  },
+  {
+   "OBJECTID": 15,
+   "OWNERNAME": "TESTOWNER 6BEF22 LLC",
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": "TESTOWNER 70D957",
+   "PARCEL_CITY": "Lehi",
+   "PARCEL_ID": "010690174",
+   "PARCEL_ZIP": "84043"
+  },
+  {
+   "OBJECTID": 16,
+   "OWNERNAME": "TESTOWNER 6BEF22 LLC",
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": null,
+   "PARCEL_CITY": "Lehi",
+   "PARCEL_ID": "010690175",
+   "PARCEL_ZIP": "84043"
+  },
+  {
+   "OBJECTID": 17,
+   "OWNERNAME": "TESTOWNER FB0C9A",
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": null,
+   "PARCEL_CITY": "Lehi",
+   "PARCEL_ID": "010690176",
+   "PARCEL_ZIP": "84043"
+  },
+  {
+   "OBJECTID": 18,
+   "OWNERNAME": "TESTOWNER FB0C9A",
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": null,
+   "PARCEL_CITY": "Lehi",
+   "PARCEL_ID": "010690178",
+   "PARCEL_ZIP": "84043"
+  },
+  {
+   "OBJECTID": 19,
+   "OWNERNAME": "",
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": null,
+   "PARCEL_CITY": "Lehi",
+   "PARCEL_ID": "010690179",
+   "PARCEL_ZIP": "84043"
+  },
+  {
+   "OBJECTID": 20,
+   "OWNERNAME": "",
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": "TESTOWNER D03DFB",
+   "PARCEL_CITY": "Lehi",
+   "PARCEL_ID": "010220013",
+   "PARCEL_ZIP": "84043"
+  },
+  {
+   "OBJECTID": 21,
+   "OWNERNAME": "",
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": "TESTOWNER 9376D3",
+   "PARCEL_CITY": "Lehi",
+   "PARCEL_ID": "010220014",
+   "PARCEL_ZIP": "84043"
+  },
+  {
+   "OBJECTID": 22,
+   "OWNERNAME": "",
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": "TESTOWNER 0742C3",
+   "PARCEL_CITY": "Lehi",
+   "PARCEL_ID": "010230001",
+   "PARCEL_ZIP": "84043"
+  },
+  {
+   "OBJECTID": 23,
+   "OWNERNAME": "",
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": "TESTOWNER EAC210",
+   "PARCEL_CITY": "Lehi",
+   "PARCEL_ID": "010230002",
+   "PARCEL_ZIP": "84043"
+  },
+  {
+   "OBJECTID": 24,
+   "OWNERNAME": "",
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": "TESTOWNER CC2B9F",
+   "PARCEL_CITY": "Lehi",
+   "PARCEL_ID": "010230004",
+   "PARCEL_ZIP": "84043"
+  },
+  {
+   "OBJECTID": 25,
+   "OWNERNAME": "",
+   "OWN_TYPE": "Private",
+   "PARCEL_ADD": null,
+   "PARCEL_CITY": "Lehi",
+   "PARCEL_ID": "010230005",
+   "PARCEL_ZIP": "84043"
+  }
+ ],
+ "layer": "https://services1.arcgis.com/99lidPhWCzftIe9K/arcgis/rest/services/Parcels_Utah/FeatureServer/0",
+ "where": "1=1"
+}

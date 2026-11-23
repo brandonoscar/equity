@@ -1,0 +1,36 @@
+source_id: or.multnomah.parcels
+state: OR
+# Multnomah County (Portland) taxlots in the "Multnomah County Maps" ArcGIS Online org
+# (284,349 rows on 2026-11-23): owner, mailing address, situs, roll land/improvement values,
+# Measure 50 assessed value, last deed and sale.
+layer_url: https://services5.arcgis.com/x7DNZL1YqNQVNykA/arcgis/rest/services/Multnomah_County_Taxlot_Parcels/FeatureServer/0
+order_by: OBJECTID_1
+page_size: 2000          # maxRecordCount 2000
+min_interval_s: 1.0
+county: {constant: "051"}
+fields:
+  parcel_id: PROPID      # 'R194056' account; MAPTAXLOT is the map/taxlot number
+  owner1: NAME
+  owner2: NAME2
+  mail_line1: ADDR1
+  mail_line2: ADDR2
+  mail_city: CITY
+  mail_state: STATE
+  mail_zip: ZIP
+  situs_line1: [SITUSNUM, SITUSDIR, SITUSNAME, SITUSSUFFIX, SITUSSUFFIX2, SITUSUNITTYPE, SITUSUNITNUM]
+  situs_city: SITUSCITY
+  situs_state: SITUSSTATE
+  situs_zip: SITUSZIP
+  land_value: ROLLLAND
+  bldg_value: ROLLIMP
+  assessed_value: ROLLM50
+  tax_year: ROLLYEAR
+  land_use_code: PROPCLASS
+  zoning: ZONING
+value_basis: "ROLLLAND / ROLLIMP = real market value of land and improvements on the ROLLYEAR (2025) roll; ROLLM50 = Measure 50 maximum assessed value (Or. Const. art. XI s. 11: 2005 base grown at most 3% a year), the taxable basis. DEED_TYPE / INST_NUM / DEED_DATE / SALE_PRICE / SALE_DATE (last deed) are not mapped: INST_NUM is an instrument number, not book/page."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=13a535596a1f4fe0887b03d14d943229
+  summary: "Public hosted feature service in the 'Multnomah County Maps' ArcGIS Online organization, no login, token or fee. licenseInfo (read 2026-11-23): 'for reference use only ... Multnomah County GIS disclaims all responsibility for the accuracy or completeness'; no use restriction. services5.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-23
+  robots_checked_on: 2026-11-23
+  cost_model: free

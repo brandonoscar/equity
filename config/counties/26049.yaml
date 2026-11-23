@@ -1,0 +1,34 @@
+source_id: mi.genesee.parcels
+state: MI
+# Genesee County (Flint) 2025 parcels, "GC_Parcels" owned by the Genesee County Drain
+# Commission Water & Waste account (189,790 rows; data last edited 2026-03-04): owner,
+# mailing address, situs, assessed/capped/SEV values, homestead.
+layer_url: https://services2.arcgis.com/PrYwGqAi1wKjoFb1/arcgis/rest/services/Parcels2025County/FeatureServer/0
+order_by: FID
+page_size: 2000          # maxRecordCount 2000
+min_interval_s: 1.0
+county: {constant: "049"}
+use_restrictions: [no_redistribution]
+fields:
+  parcel_id: ParcelID    # '25-53-26-576-057'
+  owner1: OwnName
+  mail_line1: OwnStreet
+  mail_city: OwnCity
+  mail_state: OwnState
+  mail_zip: OwnZip
+  situs_line1: [PropNum, PropDir, PropStreet]
+  situs_city: PropCity
+  situs_state: {const: MI}
+  situs_zip: PropZip
+  assessed_value: SEV
+  tax_year: {const: 2025}
+  homestead: Homestead
+  land_use_desc: PropClass
+extra_pii: [TaxName, TaxStreet]
+value_basis: "SEV = state equalized value (Michigan: 50% of true cash value, MCL 211.27a), Assessment = assessed value, Cap = capped value (Proposal A), on the 2025 roll. Homestead = principal residence exemption percent, mapped as homestead (> 0). TaxName/TaxStreet (taxpayer) kept out as PII."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=696272b4cb35434aac565955af30e9e0
+  summary: "Public hosted feature service owned by a Genesee County Drain Commission Water & Waste account, no login, token or fee. licenseInfo (read 2026-11-23): 'conveyed AS IS without any warranty ... Requester agrees not to sell, loan or otherwise convey said data to third parties in any digital form' (recorded as no_redistribution). services2.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-23
+  robots_checked_on: 2026-11-23
+  cost_model: free
