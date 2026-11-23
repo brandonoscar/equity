@@ -1,0 +1,80 @@
+# Putnam County (FL) Clerk, Official Records Index (ORI) downloads on the county's Open Data
+# page (apps.putnam-fl.com/bocc/putsubs/main.php). Read by src/equity/adapters/fl/putnam_or.py.
+#
+# Three zip files, no login (layout: subscriptions/coc/orihelp.txt):
+#   orimaster.zip  History: October 1983 through the end of last year (one 258 MB text file)
+#   oriyear.zip    Year: from January 1 through last Sunday
+#   oriweekly.zip  Weekly: the last 4 weeks (not used: the Year file covers it)
+# Pipe-delimited: book | page | file date (MM-DD-YYYY) | from party | to party | instrument
+# number | transaction code | document description. One row per party: a row carries either
+# the from party or the to party. The description holds the legal description, a referenced
+# OR book/page, a case number, or for judgments and liens the amount ("$1,622.55 ET AL").
+#
+# Codes are the same as Hillsborough's (same index software). FROM is the side holding the
+# claim (judgment creditor, lienor, satisfying lienholder), TO the side owing it; on deeds
+# and mortgages FROM is the grantor / borrower.
+#
+# TODO(Brandon): confirm every mapping. In particular:
+#  - JUD and CCJ are JUDGMENT_LIEN (Fla. Stat. 55.10 conditions not checked). JUD rows whose
+#    description is a family-court case number (FD/DR) are not loaded; neither are CJD/CS
+#    (criminal judgments and cost liens: State of Florida v. defendant, CF case numbers).
+#  - CCP (certified copy, county civil case numbers in the samples) is OTHER with
+#    creditor/debtor roles.
+#  - The "$amount" in a judgment's or lien's description becomes principal_amount
+#    (amount_source 'index'); DEED and tax deed descriptions hold legal descriptions only.
+first_history_year: 2006
+amount_doc_types: [JUDGMENT_LIEN, STATUTORY_LIEN]
+consideration_doc_types: []
+exclude_codes: [DC, MAR, MIL, CJD, CS, PAS, MFS, BIL, INT, CPY, MSC, DDS, TD1, TDP, FM1, FM2,
+                NSF, HRS, ADS, FCS, FJW, CBD, POS, TDU]
+# Family-court case numbers (e.g. 25-885-FD-54, 2019-FD-1109, 2024-DR-12): such documents
+# are not loaded at all (data minimization).
+exclude_description_patterns:
+  - "\\b\\d{2,4}-?(?:\\d+-?)?(?:FD|DR|DP)\\b"
+  - "\\b\\d{2,4}-?(?:\\d+-?)?(?:FD|DR|DP)-?\\d+"
+codes:
+  JUD: {doc_type: JUDGMENT_LIEN, frm: creditor, to: debtor}
+  CCJ: {doc_type: JUDGMENT_LIEN, frm: creditor, to: debtor}
+  CCP: {doc_type: OTHER, frm: creditor, to: debtor}
+  D: {doc_type: DEED, frm: grantor, to: grantee}
+  DTX: {doc_type: DEED, frm: grantor, to: grantee}
+  TRA: {doc_type: DEED, frm: grantor, to: grantee}
+  AGD: {doc_type: LAND_CONTRACT, frm: grantor, to: grantee}
+  MTG: {doc_type: MORTGAGE, frm: borrower, to: lender}
+  ASG: {doc_type: ASSIGNMENT, frm: assignor, to: assignee}
+  MOD: {doc_type: MODIFICATION, frm: other, to: other}
+  SAT: {doc_type: RELEASE, frm: creditor, to: debtor}
+  REL: {doc_type: RELEASE, frm: creditor, to: debtor}
+  PR: {doc_type: PARTIAL_RELEASE, frm: creditor, to: debtor}
+  LN: {doc_type: STATUTORY_LIEN, frm: creditor, to: debtor}
+  LN2: {doc_type: OTHER, frm: other, to: other}
+  TR1: {doc_type: OTHER, frm: other, to: other}
+  NCL: {doc_type: OTHER, frm: other, to: other}
+  LP: {doc_type: LIS_PENDENS, frm: other, to: other}
+  FIN: {doc_type: FIXTURE_FILING, frm: debtor, to: creditor}
+  TER: {doc_type: RELEASE, frm: other, to: other}
+  ORD: {doc_type: COURT_ORDER, frm: other, to: other}
+  CP: {doc_type: OTHER, frm: other, to: other}
+  AFF: {doc_type: AFFIDAVIT, frm: other, to: other}
+  POA: {doc_type: POWER_OF_ATTORNEY, frm: other, to: other}
+  EAS: {doc_type: OTHER, frm: grantor, to: grantee}
+  NOC: {doc_type: OTHER, frm: other, to: other}
+  AGR: {doc_type: OTHER, frm: other, to: other}
+  PRO: {doc_type: OTHER, frm: other, to: other}
+  NOT: {doc_type: OTHER, frm: other, to: other}
+  GOV: {doc_type: OTHER, frm: other, to: other}
+  CTF: {doc_type: OTHER, frm: other, to: other}
+  COC: {doc_type: OTHER, frm: other, to: other}
+  BND: {doc_type: OTHER, frm: other, to: other}
+  CND: {doc_type: OTHER, frm: other, to: other}
+  RES: {doc_type: OTHER, frm: other, to: other}
+  PL: {doc_type: OTHER, frm: other, to: other}
+  PLR: {doc_type: OTHER, frm: other, to: other}
+  PLM: {doc_type: OTHER, frm: other, to: other}
+  UNK: {doc_type: OTHER, frm: other, to: other}
+terms:
+  url: https://apps.putnam-fl.com/bocc/putsubs/main.php
+  summary: "Putnam County, Florida Open Data: Clerk of Court Official Records Index downloads (history since 1983, current year, last 4 weeks), free, no login, no CAPTCHA; no terms of use posted. apps.putnam-fl.com/robots.txt is 404 (no restrictions)."
+  checked_on: 2026-11-23
+  robots_checked_on: 2026-11-23
+  cost_model: free

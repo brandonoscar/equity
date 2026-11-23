@@ -1,0 +1,30 @@
+# Hernando County (FL) Clerk, daily "Civil Data Index" files
+# (subscriber.hernandoclerk.com/data_files/civil_data/YYYY-MM-DD.csv). Read by
+# src/equity/adapters/fl/hernando_civil.py.
+#
+# Same open subscriber file site as the Official Records index ("Files no longer require an
+# account"). One pipe-delimited row per party of each civil case filed that day, no header:
+# Case Type Code | Case Type Description | Case Number | Filing Type | Case Filed Date |
+# Case Status | Party Type | Party Name | Address 1 | Address 2 | City | State | Zip |
+# Party Attorney. Daily files from 2024-01-01, plus one back-file "Civil Data 2024-04-01 -
+# 2024-07-11.csv".
+#
+# These are new filings (no judgments). They give the parties' street addresses, so a
+# judgment debtor named in the Official Records index can be tied to a mailing address.
+#
+# Only these case type codes are loaded; DR (domestic relations) rows are dropped at fetch
+# time and never stored (data minimization).
+case_type_codes: [CA, CC, SC]
+# Party Type -> case_party role; other types become 'other'.
+# TODO(Brandon): confirm "Third Party" -> other.
+party_roles:
+  Plaintiff: plaintiff
+  Petitioner: plaintiff
+  Defendant: defendant
+  Respondent: defendant
+terms:
+  url: https://hernandoclerk.com/clerk-data-subscriptions/
+  summary: "Hernando County Clerk 'Clerk Data Subscriptions': daily Civil Data Index files on subscriber.hernandoclerk.com; the page says 'Files no longer require an account'. Free, no login, no CAPTCHA. The subscription disclaimer disclaims liability and asks users to comply with state and federal law. subscriber.hernandoclerk.com/robots.txt is 404 (no restrictions)."
+  checked_on: 2026-11-23
+  robots_checked_on: 2026-11-23
+  cost_model: free

@@ -11,12 +11,16 @@ from equity.adapters.federal.ecf_rss import NDWVBankruptcyRSS, NDWVDistrictRSS, 
 from equity.adapters.federal.epa_echo import EPAJudicialCases
 from equity.adapters.federal.fjc_idb import FJCCivilJudgments
 from equity.adapters.federal.fjc_idb_direct import FJCDirectCivilJudgments
+from equity.adapters.fl.citrus_civil import CitrusCivil
+from equity.adapters.fl.hernando_civil import HernandoCivilFilings
+from equity.adapters.fl.hernando_or import HernandoOfficialRecords
 from equity.adapters.fl.hillsborough_civil import (
     HillsboroughCivilCases,
     HillsboroughCivilFilings,
     HillsboroughGarnishment,
 )
 from equity.adapters.fl.hillsborough_or import HillsboroughOfficialRecords
+from equity.adapters.fl.putnam_or import PutnamOfficialRecords
 from equity.adapters.il.cook_parcels import CookCountyParcels
 from equity.adapters.liens import all_lien_adapters
 from equity.adapters.ny.acris import AcrisPersonalProperty, AcrisRealProperty
@@ -52,6 +56,10 @@ _ALL: tuple[type[Adapter], ...] = (
     HillsboroughCivilCases,
     HillsboroughCivilFilings,
     HillsboroughGarnishment,
+    CitrusCivil,
+    HernandoOfficialRecords,
+    HernandoCivilFilings,
+    PutnamOfficialRecords,
     FJCCivilJudgments,
     FJCDirectCivilJudgments,
     EPAJudicialCases,
