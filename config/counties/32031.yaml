@@ -1,0 +1,36 @@
+source_id: nv.washoe.parcels
+state: NV
+# Washoe County (Reno) open-data parcels, overwritten Tuesday to Saturday from the Assessor's
+# file geodatabase (194,398 rows on 2026-11-23): owner, mailing address, situs, appraised and
+# assessed values, last sale. Nevada's first parcel source.
+layer_url: https://services.arcgis.com/iCGWaR7ZHc5saRIl/arcgis/rest/services/Nightly_OpenData_Update/FeatureServer/1
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "031"}
+fields:
+  parcel_id: PIN         # '051-661-03'; APN is the same number as an integer
+  owner1: {join: [LASTNAME, FIRSTNAME]}
+  mail_line1: MAILING1
+  mail_line2: MAILING2
+  mail_city: MAILCITY
+  mail_state: MAILSTATE
+  mail_zip: MAILZIP
+  situs_line1: [STREETNUM, STREETDIR, STREET]
+  situs_city: CITY
+  situs_state: {const: NV}
+  situs_zip: SITUSZIP
+  land_value: LANDAPR
+  bldg_value: BUILDAPR
+  total_value: TOTALAPR
+  assessed_value: TOTALASS
+  tax_year: TAXYEAR
+  land_use_code: LAND_USE
+  zoning: Zoning
+value_basis: "LANDAPR / BUILDAPR / TOTALAPR = Assessor taxable values (Nevada: land at market, improvements at replacement cost less depreciation); TOTALASS = assessed value, 35% of taxable (NRS 361.225). TAXYEAR = 2026. SALEDATE/SALEPRICE (last sale) are not mapped. Owner is LASTNAME then FIRSTNAME; entities carry the whole name in LASTNAME."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=dfbcbe16a5db48e98da40c3532678cf4
+  summary: "Public hosted feature service in the Washoe County ArcGIS Online organization (item owner washoe_creator; 'OpenData source data feature service updated via File Geodatabase overwrite ... Tuesday thru Saturday'), no login, token or fee. The item has no licenseInfo or access text (read 2026-11-23); no use restriction found. services.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-23
+  robots_checked_on: 2026-11-23
+  cost_model: free

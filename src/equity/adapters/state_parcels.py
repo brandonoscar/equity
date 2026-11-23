@@ -10,7 +10,8 @@ Config keys (see config/states/README.md):
   county: {field, format: fips3|fips5|int|name|code_map, code_map: {...}} | {constant: fips3}
   fields: {parcel_id, owner1, owner2, mail_line1, mail_line2, mail_city, mail_state, mail_zip,
            land_value, bldg_value, total_value, assessed_value, tax_year, deed_book, deed_page}
-           each value a source field name, or {const: value}
+           each value a source field name, {const: value}, {year_of: date field},
+           [key parts] (joined with '-') or {join: [fields]} (non-empty parts, space-joined)
   value_basis: what the source's value fields mean (free text, recorded in source terms)
   assessment_valid_from: tax_year_jan1 | prior_july1
 """
@@ -186,6 +187,8 @@ class StateConfig:
         names |= {str(x) for v in self.fields.values() if isinstance(v, list) for x in v}
         names |= {str(v["year_of"]) for v in self.fields.values()
                   if isinstance(v, dict) and "year_of" in v}  # fmt: skip
+        names |= {str(x) for v in self.fields.values()
+                  if isinstance(v, dict) and "join" in v for x in v["join"]}  # fmt: skip
         for i in range(self.layer_count):
             spec = self.county_spec(i)
             if "field" in spec:
@@ -194,8 +197,12 @@ class StateConfig:
 
     @property
     def pii_fields(self) -> tuple[str, ...]:
-        mapped = [self.source_field(c) for c in PII_CANONICAL]
-        return tuple(sorted({m for m in mapped if m} | set(self.extra_pii)))
+        mapped = {m for c in PII_CANONICAL if (m := self.source_field(c))}
+        for c in PII_CANONICAL:
+            spec = self.fields.get(c)
+            if isinstance(spec, dict) and "join" in spec:
+                mapped |= {str(x) for x in spec["join"]}
+        return tuple(sorted(mapped | set(self.extra_pii)))
 
 
 def load_config(path: Path) -> StateConfig:
@@ -524,6 +531,11 @@ class StateParcelAdapter(ArcGISCountyAdapter):
             if ms is None:
                 return None
             return datetime.fromtimestamp(int(ms) / 1000, tz=UTC).year
+        if isinstance(spec, dict) and "join" in spec:
+            # Name parts in separate fields (e.g. [LASTNAME, FIRSTNAME]): the non-empty ones,
+            # space-joined; None when all are empty.
+            words = [t for f in spec["join"] if (t := _text(attrs.get(str(f))))]
+            return " ".join(words) or None
         if isinstance(spec, str):
             return attrs.get(spec)
         if isinstance(spec, list):
