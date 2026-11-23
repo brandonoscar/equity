@@ -423,6 +423,14 @@ STATES: dict[str, dict[str, Any]] = {
     # Baltimore City: environmental citation liens name the parcel (block/lot), not a person.
     "MD-BALTIMORE": {"debtors": ["md.baltimore_city.citation_liens"],
                      "owners": ["md.baltimore_city.parcels"], "parcel_on_lien": True},
+    # Harris County, TX: justice-court civil judgments against Texas parcel owners.
+    "TX-HARRIS": {"debtors": ["tx.harris.jp.judgments"], "owners": ["tx.statewide.parcels"]},
+    # Detroit: blight judgments name the owner and the parcel; both are matched.
+    "MI-WAYNE": {"debtors": ["mi.detroit.blight_judgments"], "owners": ["mi.wayne.parcels"],
+                 "parcel_on_lien": True},
+    # Omaha: tax sale certificates (named taxpayers) and county-held liens (PIN only).
+    "NE-DOUGLAS": {"debtors": ["ne.douglas.tax_liens"], "owners": ["ne.douglas.parcels"],
+                   "parcel_on_lien": True},
     # Colorado: federal tax and statutory (hospital, other) liens from the SOS UCC system;
     # UCC financing statements name debtors too but are not debts owed on a judgment or lien.
     "CO": {"debtors": ["co.sos.ucc"], "debtor_doc_types": ["TAX_LIEN_FEDERAL", "STATUTORY_LIEN"],

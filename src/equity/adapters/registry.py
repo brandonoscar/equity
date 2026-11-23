@@ -19,6 +19,8 @@ from equity.adapters.fl.hillsborough_or import HillsboroughOfficialRecords
 from equity.adapters.hi.honolulu_owners import HonoluluOwners
 from equity.adapters.liens import all_lien_adapters
 from equity.adapters.md_baltimore_citations import BaltimoreCitationLiens
+from equity.adapters.mi_detroit_blight import DetroitBlightJudgments
+from equity.adapters.ne_douglas_tax_liens import DouglasTaxLiens
 from equity.adapters.ny.acris import AcrisPersonalProperty, AcrisRealProperty
 from equity.adapters.ny.condo_units import NycCondoUnits
 from equity.adapters.pa.allegheny_assessments import AlleghenyAssessments
@@ -26,6 +28,7 @@ from equity.adapters.pa.philadelphia_rtt import PhiladelphiaRTT
 from equity.adapters.ri_providence import ProvidenceTaxRoll
 from equity.adapters.state_parcels import all_state_adapters
 from equity.adapters.tx.stratmap import TexasStratMapParcels
+from equity.adapters.tx_harris_jp import HarrisJPJudgments
 from equity.adapters.wv.delinquent import WVDelinquentProperties
 from equity.adapters.wv.parcelweb import MonongaliaParcelWeb
 from equity.adapters.wv.statewide_parcels import WVStatewideParcels
@@ -45,6 +48,8 @@ _ALL: tuple[type[Adapter], ...] = (
     ColoradoUCC,
     DCBusiness,
     BaltimoreCitationLiens,
+    DetroitBlightJudgments,
+    DouglasTaxLiens,
     TexasStratMapParcels,
     AcrisRealProperty,
     NycCondoUnits,
@@ -53,6 +58,7 @@ _ALL: tuple[type[Adapter], ...] = (
     PhiladelphiaRTT,
     AlleghenyAssessments,
     ProvidenceTaxRoll,
+    HarrisJPJudgments,
     HillsboroughOfficialRecords,
     HillsboroughCivilCases,
     HillsboroughCivilFilings,
