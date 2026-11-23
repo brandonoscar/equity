@@ -27,7 +27,7 @@ import duckdb
 
 from equity.matching.resolve import DERIVED
 
-CATEGORIES = ("spelling_only", "same_number", "po_box", "different")
+CATEGORIES = ("middle_initial", "spelling_only", "same_number", "po_box", "different")
 ORDER = "state, category, owners_with_name_in_zip, debtor_name, debtor_party_id, owner_party_id"
 
 
@@ -61,13 +61,14 @@ def _money(v: Any) -> str:
 
 
 def markdown(rows: list[dict[str, Any]]) -> str:
-    head = ("| State | Debtors | Auto matched | Review | Spelling | Same no. | PO box | Other "
-            "| Open liens (auto) | Parcel value (auto) |")  # fmt: skip
-    lines = [head, "|" + "---|" * 10]
+    head = ("| State | Debtors | Auto matched | Review | Middle initial | Spelling | Same no. "
+            "| PO box | Other | Open liens (auto) | Parcel value (auto) |")  # fmt: skip
+    lines = [head, "|" + "---|" * 11]
     for r in rows:
         lines.append(
             f"| {r['state']} | {r['debtor_parties']:,} | {r['debtors_matched_auto']:,} "
-            f"| {r['debtors_review_only']:,} | {r['review_spelling_only']:,} "
+            f"| {r['debtors_review_only']:,} | {r['review_middle_initial']:,} "
+            f"| {r['review_spelling_only']:,} "
             f"| {r['review_same_number']:,} | {r['review_po_box']:,} | {r['review_different']:,} "
             f"| {_money(r['open_amount_auto'])} | {_money(r['parcel_value_auto'])} |"
         )

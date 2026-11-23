@@ -516,6 +516,10 @@ def test_middle_names_and_suffixes_must_agree(tmp_path: Path) -> None:
         f"SELECT debtor_party_id, owner_party_id, decision FROM '{out.as_posix()}/matches.parquet' "
         "WHERE rule_id = 'person_name_initial_address'").fetchall()  # fmt: skip
     assert initial == [("d4", "o4", "review")]
+    queued = con.execute(
+        f"SELECT debtor_party_id, category, rule_id FROM '{out.as_posix()}/review_queue.parquet'"
+    ).fetchall()
+    assert ("d4", "middle_initial", "person_name_initial_address") in queued
 
 
 def test_debtor_doc_types_limit_which_instruments_are_debts(lake: Path, tmp_path: Path) -> None:
@@ -525,3 +529,17 @@ def test_debtor_doc_types_limit_which_instruments_are_debts(lake: Path, tmp_path
                   debtor_doc_types=["FIXTURE_FILING"])  # fmt: skip
     assert kept["debtor_parties"] == 5
     assert dropped["debtor_parties"] == 0 and dropped["matches_by_rule"] == {}
+
+
+def test_list_sources_names_every_source_a_state_reads(
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    from equity.matching.resolve import STATES, TABLES_READ, main, state_sources
+
+    assert state_sources("NY") == sorted({*STATES["NY"]["debtors"], *STATES["NY"]["owners"],
+                                          "ny.sos.business", "ny.nyc.acris.real",
+                                          "ny.nyc.dof.condo_units"})  # fmt: skip
+    assert main(["--state", "TX-TRAVIS", "--list-sources"]) == 0
+    got = json.loads(capsys.readouterr().out)
+    assert got == {"sources": ["tx.statewide.parcels", "tx.travis.tax_delinquent"],
+                   "tables": list(TABLES_READ)}  # fmt: skip

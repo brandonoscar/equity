@@ -197,3 +197,30 @@ def test_a_part_too_big_to_store_is_not_synced_as_finished(
     push(make_store(bucket), lake)
     bundle = json.loads((src / "_state.json").read_text())  # (itself too big to upload here)
     assert "_parts/00000.json" in bundle and "_parts/00001.json" not in bundle
+
+
+def test_push_dir_uploads_a_folder_under_a_checked_prefix(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    from equity.lake_sync import push_dir
+
+    out = tmp_path / "derived" / "tx-travis"
+    (out / "sub").mkdir(parents=True)
+    (out / "summary.json").write_text("{}")
+    (out / "sub" / "matches.parquet").write_bytes(b"M")
+    bucket = FakeBucket()
+    assert push_dir(make_store(bucket), out, "derived/tx-travis") == 2
+    assert bucket.objects == {"derived/tx-travis/summary.json": b"{}",
+                              "derived/tx-travis/sub/matches.parquet": b"M"}  # fmt: skip
+    for bad in ("../x", "derived/../aa", "Derived/x", "/derived", ""):
+        with pytest.raises(ValueError, match="prefix"):
+            push_dir(make_store(bucket), out, bad)
+    real_init = Store.__init__
+
+    def init(self, *a, **kw) -> None:  # type: ignore[no-untyped-def]
+        kw.setdefault("transport", bucket)
+        real_init(self, *a, **kw)
+
+    monkeypatch.setattr(Store, "__init__", init)
+    assert lake_sync.main(["push-dir", str(out), "derived/again"]) == 0
+    assert "uploaded 2 files" in capsys.readouterr().out

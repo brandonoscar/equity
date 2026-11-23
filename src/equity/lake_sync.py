@@ -19,6 +19,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sys
 import time
 import urllib.error
@@ -221,6 +222,18 @@ def pull_parts(
     return written
 
 
+def push_dir(store: Store, local: Path, prefix: str) -> int:
+    """Upload every file under `local` to <prefix>/<relative path> (match results for a state,
+    built on a machine that keeps nothing). Returns files uploaded."""
+    if not re.fullmatch(r"[a-z0-9_]+(/[a-z0-9_-]+)*", prefix):
+        raise ValueError(f"bad storage prefix {prefix!r}")
+    n = 0
+    for path in sorted(p for p in local.rglob("*") if p.is_file()):
+        store.upload(f"{prefix}/{path.relative_to(local).as_posix()}", path.read_bytes())
+        n += 1
+    return n
+
+
 def main(argv: list[str]) -> int:
     ap = argparse.ArgumentParser(prog="equity.lake_sync")
     ap.add_argument("--lake", default="data/lake")
@@ -232,6 +245,9 @@ def main(argv: list[str]) -> int:
     pp = sub.add_parser("pull-parts", help="download stored Parquet parts for analysis")
     pp.add_argument("sources", nargs="+")
     pp.add_argument("--tables", nargs="*", help="only these tables")
+    pd = sub.add_parser("push-dir", help="upload a folder (e.g. a state's match results)")
+    pd.add_argument("local")
+    pd.add_argument("prefix", help="storage prefix, e.g. derived/tx-travis")
     ps = sub.add_parser("pull-state")
     ps.add_argument("--only", nargs="*", help="limit to these source ids")
     args = ap.parse_args(argv)
@@ -241,6 +257,9 @@ def main(argv: list[str]) -> int:
     lake = Path(args.lake)
     if args.cmd == "pull-parts":
         print(f"pulled {pull_parts(store, lake, args.sources, args.tables)} parquet files")
+        return 0
+    if args.cmd == "push-dir":
+        print(f"uploaded {push_dir(store, Path(args.local), args.prefix)} files")
         return 0
     if args.cmd == "pull-state":
         print(f"pulled {pull_state(store, lake, only)} state files")

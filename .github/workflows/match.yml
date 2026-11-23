@@ -1,0 +1,68 @@
+name: match
+
+# Runs the debtor-to-owner matcher for states whose lake tables are too big for a session's
+# disk (Texas: about 6.3 GB of owner tables). For each state it pulls just the tables the
+# matcher reads from object storage, runs equity.matching.resolve, and uploads the results to
+# storage under derived/<state>/ (they name people, so they are never kept as an artifact or
+# printed). Only the counts-only summary.json goes to the job summary.
+# Needs the repository secret SUPABASE_SECRET_KEY. Manual only.
+
+on:
+  workflow_dispatch:
+    inputs:
+      states:
+        description: "STATES keys, space separated (e.g. TX-TRAVIS TX-HARRIS)"
+        required: true
+        default: "TX-TRAVIS TX-HARRIS"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: match
+  cancel-in-progress: false
+
+env:
+  UV_VERSION: "0.11.32"
+
+jobs:
+  match:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 240
+    env:
+      SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
+      STATES: ${{ inputs.states }}
+    steps:
+      - name: check inputs
+        run: |
+          if [ -z "$SUPABASE_SECRET_KEY" ]; then
+            echo "::error::SUPABASE_SECRET_KEY is not set"; exit 1
+          fi
+          case "$STATES" in
+            *[!A-Z0-9\ -]*|"") echo "::error::states must be STATES keys"; exit 1 ;;
+          esac
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6.8.0
+        with: { version: "${{ env.UV_VERSION }}" }
+      - run: make sync
+      - name: match each state
+        run: |
+          for state in $STATES; do
+            lower=$(echo "$state" | tr 'A-Z' 'a-z')
+            spec=$(uv run --locked python -m equity.matching.resolve --state "$state" --list-sources)
+            sources=$(echo "$spec" | jq -r '.sources | join(" ")')
+            tables=$(echo "$spec" | jq -r '.tables | join(" ")')
+            # shellcheck disable=SC2086
+            uv run --locked python -m equity.lake_sync pull-parts $sources --tables $tables
+            uv run --locked python -m equity.matching.resolve --state "$state" > /dev/null
+            uv run --locked python -m equity.lake_sync push-dir "data/derived/$lower" \
+              "derived/$lower"
+            {
+              echo "### $state"
+              echo '```json'
+              cat "data/derived/$lower/summary.json"
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+            # shellcheck disable=SC2086
+            rm -rf data/derived/"$lower" $(printf 'data/lake/%s ' $sources)
+          done
