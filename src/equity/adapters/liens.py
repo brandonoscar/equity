@@ -11,13 +11,16 @@ Config keys:
                       dataset) or xlsx (+ url: one workbook, read whole; sheet = 0-based index;
                       header_row = 0-based row holding the column titles, default 0),
                       csv (+ url: one delimited text file; delimiter, default ',') or html
-                      (+ url: one page; table = 0-based index of its <table>, default 0) or
+                      (+ url: one page; table = 0-based index of its <table>, default 0),
+                      carto (+ carto: a Carto SQL API url, table; select and order_by are
+                      columns, the date window is SQL on date_field) or
                       pdf (+ url, header: a text-based PDF list; the table starts at the line
                       whose first cell begins with `header`, columns split at its x positions)
   caption_field       a 'Plaintiff vs Defendant' caption, split into the derived fields
                       caption_plaintiff and caption_defendant for use in parties
-  enrich              arcgis: {carto: SQL API url, table, key, field, columns}: add columns
-                      from a Carto table, looked up by the row's field (e.g. owner by case)
+  enrich              arcgis: {carto: SQL API url, table, key, field, columns} or {arcgis:
+                      another layer's url, key, field, columns}: add columns from that table
+                      or layer, looked up by the row's field (e.g. owner by case)
   date_is_text        arcgis: date_field is ISO text, so windows compare strings, not DATEs
   excel_dates         xlsx: fields holding Excel serial day numbers, turned into ISO dates
   us_dates            file apis: fields holding M/D/YYYY dates, turned into ISO dates
@@ -106,7 +109,7 @@ REQUIRED = ("source_id", "state", "date_field", "uid", "doc_type", "doc_type_raw
             "terms")  # fmt: skip
 API_KEYS = {"socrata": ("portal", "dataset"), "ckan": ("portal", "resource_id"),
             "arcgis": ("layer_url",), "xlsx": ("url",), "csv": ("url",),
-            "html": ("url",), "pdf": ("url", "header")}  # fmt: skip
+            "html": ("url",), "pdf": ("url", "header"), "carto": ("carto", "table")}  # fmt: skip
 FILE_APIS = ("xlsx", "csv", "html", "pdf")
 ACCESS = {"arcgis": "arcgis", "xlsx": "bulk", "csv": "bulk", "html": "html", "pdf": "bulk"}
 MONTHS = {m: i for i, m in enumerate(("january", "february", "march", "april", "may", "june",
@@ -489,6 +492,8 @@ class LienAdapter(Adapter):
             return str(self.config.get("layer_url") or self.config["layer_urls"][0])
         if self.api in FILE_APIS:
             return str(self.config["url"])
+        if self.api == "carto":
+            return f"{self.config['carto']}?table={self.config['table']}"
         return f"{self.config['portal']}/resource/{self.config['dataset']}.json"
 
     def partitions(self) -> Iterator[dict[str, str]]:
@@ -527,7 +532,7 @@ class LienAdapter(Adapter):
             )
             clauses.append(f"{f} >= {lo} AND {f} < {hi}")
         elif "from" in params:
-            t = "" if self.ckan else "T00:00:00"  # CKAN SQL compares plain dates
+            t = "" if self.api in ("ckan", "carto") else "T00:00:00"  # SQL: plain dates
             clauses.append(f"{f} >= '{params['from']}{t}' AND {f} < '{params['to']}{t}'")
         return " AND ".join(clauses) or "1=1"
 
@@ -549,6 +554,38 @@ class LienAdapter(Adapter):
             rows += got
             if limit or len(got) < page:
                 return rows, resp.retrieved_at
+
+    def _carto_rows(self, where: str, limit: int | None) -> tuple[list[dict[str, Any]], datetime]:
+        """Carto SQL API (Philadelphia and others), paged by LIMIT/OFFSET in order_by order."""
+        url = str(self.config["carto"])
+        page = limit or 10_000
+        cols = ", ".join(self.config.get("select") or ["*"])
+        order = ", ".join(self.config.get("order_by") or ["cartodb_id"])
+        rows: list[dict[str, Any]] = []
+        while True:
+            # Table, columns and the date window come from repo config, never from fetched data.
+            sql = (f"SELECT {cols} FROM {self.config['table']} WHERE {where} "  # noqa: S608
+                   f"ORDER BY {order} LIMIT {page} OFFSET {len(rows)}")  # fmt: skip
+            resp, body = self._carto_get(url, sql)
+            got = body["rows"]
+            rows += got
+            if limit or len(got) < page:
+                return rows, resp.retrieved_at
+
+    def _carto_get(self, url: str, sql: str) -> tuple[Any, dict[str, Any]]:
+        """One Carto query; a query_wait_timeout (the shared server is busy) is retried with
+        the client's backoff, any other error raised."""
+        attempt = 0
+        while True:
+            resp = self.client.get(url, {"q": sql})
+            body = json.loads(resp.content)
+            if resp.status == 200 and "rows" in body:
+                return resp, body
+            busy = "query_wait_timeout" in str(body.get("error"))
+            if not busy or attempt >= self.client.retries:
+                raise LienConfigError(f"{self.source_id}: Carto query failed: {body.get('error')}")
+            self.client.sleep(self.client.backoff_s * 2**attempt)
+            attempt += 1
 
     def _arcgis_query(self, where: str, page: int, layer: str | None = None) -> ArcGISQuery:
         urls = self.config.get("layer_urls")
@@ -580,9 +617,10 @@ class LienAdapter(Adapter):
         raise LienConfigError(f"{self.source_id}: no link matching {spec['pattern']!r}")
 
     def _enrich(self, rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
-        """Config enrich: {carto, table, key, field, columns}: look the row's `field` up as
-        `key` in a Carto SQL table and add `columns` (first match in key order wins). Used when
-        a source names a case but its owner and parcel live in another public table."""
+        """Config enrich: {carto, table, key, field, columns} or {arcgis: layer url, key, field,
+        columns}: look the row's `field` up as `key` in a Carto SQL table or another ArcGIS
+        layer and add `columns` (first match in key order wins). Used when a source names a
+        case but its owner and parcel live in another public table."""
         spec = self.config.get("enrich")
         if not spec or not rows:
             return rows
@@ -590,20 +628,37 @@ class LienAdapter(Adapter):
         keys = sorted({str(r[field]) for r in rows if r.get(field) not in (None, "")})
         found: dict[str, dict[str, Any]] = {}
         cols = [str(c) for c in spec["columns"]]
-        for i in range(0, len(keys), 200):
+        # ArcGIS Online answers 404 to a GET past ~2,000 characters: 50 keys per lookup there.
+        step = 50 if spec.get("arcgis") else 200
+        for i in range(0, len(keys), step):
             # Table and column names come from repo config; keys are quoted with '' doubled.
-            quoted = ", ".join("'" + k.replace("'", "''") + "'" for k in keys[i : i + 200])
-            sql = (
-                f"SELECT {spec['key']}, {', '.join(cols)} FROM {spec['table']} "  # noqa: S608
-                f"WHERE {spec['key']} IN ({quoted}) ORDER BY {spec['key']}, {cols[0]}"
-            )
-            resp = self.client.get(str(spec["carto"]), {"q": sql})
-            if resp.status != 200:
-                raise LienConfigError(f"{self.source_id}: enrich query HTTP {resp.status}")
-            for r in json.loads(resp.content).get("rows") or []:
+            quoted = ", ".join("'" + k.replace("'", "''") + "'" for k in keys[i : i + step])
+            for r in self._enrich_rows(spec, cols, quoted):
                 found.setdefault(str(r[spec["key"]]), {c: r.get(c) for c in cols})
         empty = dict.fromkeys(cols)
         return [{**r, **found.get(str(r.get(field)), empty)} for r in rows]
+
+    def _enrich_rows(
+        self, spec: Mapping[str, Any], cols: list[str], quoted: str
+    ) -> list[dict[str, Any]]:
+        if spec.get("arcgis"):
+            data = get_json(self.client, str(spec["arcgis"]) + "/query", {
+                "where": f"{spec['key']} IN ({quoted})",
+                "outFields": ",".join([str(spec["key"]), *cols]),
+                "orderByFields": f"{spec['key']},{cols[0]}",
+                "returnGeometry": "false", "f": "json"})  # fmt: skip
+            if not isinstance(data, dict) or "error" in data:
+                raise LienConfigError(f"{self.source_id}: enrich query failed: {data!r:.200}")
+            return [f.get("attributes") or {} for f in data.get("features") or []]
+        sql = (
+            f"SELECT {spec['key']}, {', '.join(cols)} FROM {spec['table']} "  # noqa: S608
+            f"WHERE {spec['key']} IN ({quoted}) ORDER BY {spec['key']}, {cols[0]}"
+        )
+        resp = self.client.get(str(spec["carto"]), {"q": sql})
+        if resp.status != 200:
+            raise LienConfigError(f"{self.source_id}: enrich query HTTP {resp.status}")
+        rows: list[dict[str, Any]] = json.loads(resp.content).get("rows") or []
+        return rows
 
     def _file_rows(self, content: bytes) -> list[dict[str, Any]]:
         """Rows of a downloaded workbook, text file or page with Excel and M/D/YYYY dates as
@@ -665,6 +720,12 @@ class LienAdapter(Adapter):
             at_a = resps[-1].retrieved_at if resps else datetime.now(UTC)
             return Fetched(self.source_id, f"{q_a.layer_url}/query?where={where}", at_a, 200,
                            body_a, "application/json")  # fmt: skip
+        if self.api == "carto":
+            rows_k, at_k = self._carto_rows(where, int(limit) if limit else None)
+            body_k = canonical_json({"table": self.config["table"], "where": where,
+                                     "rows": rows_k})  # fmt: skip
+            return Fetched(self.source_id, f"{self.base_url}&where={where}", at_k, 200, body_k,
+                           "application/json")  # fmt: skip
         if self.ckan:
             rows_c, at_c = self._ckan_rows(where, int(limit) if limit else None)
             res = self.config["resource_id"]
@@ -914,8 +975,9 @@ class LienAdapter(Adapter):
             rows_f = json.loads(self.fetch(FetchRequest({"limit": "1"})).content)["rows"]
             return HealthReport(self.source_id, bool(rows_f), now, "ok" if rows_f else "no rows",
                                 tuple(sorted(rows_f[0])) if rows_f else ())  # fmt: skip
-        if self.ckan:
-            rows_h, _ = self._ckan_rows("1=1", 1)
+        if self.ckan or self.api == "carto":
+            rows_h = (self._carto_rows("1=1", 1) if self.api == "carto"
+                      else self._ckan_rows("1=1", 1))[0]  # fmt: skip
             shape = tuple(sorted(k for k in rows_h[0] if not k.startswith("_"))) if rows_h else ()
             return HealthReport(self.source_id, bool(rows_h), now,
                                 "ok" if rows_h else "no rows", shape)  # fmt: skip

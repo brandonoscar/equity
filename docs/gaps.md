@@ -31,7 +31,7 @@ Federal sources (FJC civil judgments, EPA judicial cases, SBA charge-offs, HUD R
 | CT | statewide | owner, address, value, land use, zoning | — | recorded_judgment_or_lien (1) | — | `ct.sos.business` | `CT` | 1 local layers | — |
 | DC | statewide | owner, value, homestead, land use | — | tax_delinquency (1) | — | `dc.dlcp.business` | `DC` | none | — |
 | DE | statewide | owner, address, land use | — | tax_delinquency (2) | — | — | — | 1 local layers | — |
-| FL | statewide | owner, address, value, homestead, land use | `fl.hernando.or`<br>`fl.hillsborough.or`<br>`fl.putnam.or` | administrative_judgment (1)<br>code_enforcement_lien (3)<br>court_judgment (3)<br>recorded_judgment_or_lien (3)<br>tax_lien (1)<br>tax_warrant (1) | `us.flmb.rss`<br>`us.flnb.rss`<br>`us.flsb.rss` | — | `FL` | 44 local layers | — |
+| FL | statewide | owner, address, value, homestead, land use | `fl.hernando.or`<br>`fl.hillsborough.or`<br>`fl.putnam.or` | administrative_judgment (1)<br>code_enforcement_lien (4)<br>court_judgment (3)<br>recorded_judgment_or_lien (3)<br>tax_lien (1)<br>tax_warrant (1) | `us.flmb.rss`<br>`us.flnb.rss`<br>`us.flsb.rss` | — | `FL` | 44 local layers | — |
 | GA | 4 of 159 counties | owner, address, value, land use, zoning | — | — | `us.ganb.rss` | — | — | 4 local layers | — |
 | HI | statewide | zoning | — | — | — | — | — | none | — |
 | IA | 4 of 99 counties | owner, address, value, homestead, land use | — | — | — | — | — | 1 local layers | — |

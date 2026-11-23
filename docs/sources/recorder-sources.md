@@ -180,7 +180,10 @@ Abbreviations: G/G = grantor/grantee names; Mtg$ = mortgage amount; ND = non-dis
   - The same page has the MOD-IV assessment files (`modiv-2021` to `modiv-2026.zip`).
   - Fixed-width text. Updated yearly, plus a running year-to-date file. Public state download with
     no login.
-  - Verdict: free bulk, yes.
+  - Verdict: free bulk, yes, but **no names**. Checked 2026-11-23: every grantor and grantee
+    name field is blank in `Sales2020.zip` (204,689 sales) and `YTDSR1A2027.zip` (46,612), like
+    the MOD-IV owner names (Daniel's Law). Without names the file can neither show a debtor's
+    transfers nor stand in for NJ owners, so no adapter was built.
 
 ### Connecticut
 

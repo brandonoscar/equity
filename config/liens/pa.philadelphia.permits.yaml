@@ -1,0 +1,31 @@
+source_id: pa.philadelphia.permits
+state: PA
+county_fips: "42101"
+# Philadelphia Department of Licenses and Inspections building, zoning, plumbing, electrical
+# and mechanical permits (Carto table `permits`, 940,981 issued permits since 2007, updated
+# daily), with the OPA account (parcel), type of work and the property's owner of record as
+# the city joins it today (opa_owner: the current owner, not always the owner at issue). Like
+# ny.nyc.dob_permits: a signal that an owner is putting money into a property, not a debt:
+# OTHER instruments on the parcel, in no match run.
+api: carto
+carto: https://phl.carto.com/api/v2/sql
+table: permits
+where: "permitissuedate IS NOT NULL"
+order_by: [cartodb_id]   # indexed: ordering by date over 940k rows times out
+select: [permitnumber, permittype, permitdescription, typeofwork, commercialorresidential,
+         status, applicanttype, permitissuedate, opa_account_num, address, zip, opa_owner]
+date_field: permitissuedate
+partition: month   # ~4,000 permits a month keeps each query under Carto's time limit
+first_year: 2007
+uid: permitnumber
+doc_type: OTHER
+doc_type_raw: {field: permittype}
+extra_pii: [address]
+parties:
+  - {role: other, name: opa_owner}
+parcel: {kind: pin, field: opa_account_num, county_fips: "42101"}   # same key as pa.philadelphia.parcels
+terms:
+  url: https://opendataphilly.org/datasets/licenses-and-inspections-building-permits/
+  summary: "OpenDataPhilly, City of Philadelphia L&I, Carto SQL API, free, no login; City of Philadelphia open data terms of use (public domain style, no commercial-use restriction found)."
+  checked_on: 2026-11-23
+  cost_model: free

@@ -1,0 +1,281 @@
+{
+ "layer": "https://services.arcgis.com/8Pc9XBTAsYuxx9Ny/arcgis/rest/services/BuildingViolationLien/FeatureServer/0",
+ "rows": [
+  {
+   "CASE_NUM": "20080122350",
+   "CASE_TYPE": "All Other Code Violations",
+   "FOLIO": "3020110510001",
+   "LIEN_BOOK": 34401,
+   "LIEN_PAGE": 327,
+   "LIEN_RECDT": 1725940800000,
+   "ObjectId": 582,
+   "PROP_ADDR": "TESTOWNER BF6D85",
+   "VIOL_NAME": "TESTOWNER 902178 INC"
+  },
+  {
+   "CASE_NUM": "20090126091",
+   "CASE_TYPE": "Unsafe Structure",
+   "FOLIO": "3021270100940",
+   "LIEN_BOOK": 34044,
+   "LIEN_PAGE": 2698,
+   "LIEN_RECDT": 1704690000000,
+   "ObjectId": 783,
+   "PROP_ADDR": "TESTOWNER 383F38",
+   "VIOL_NAME": "TESTOWNER F11EE0"
+  },
+  {
+   "CASE_NUM": "20130155691",
+   "CASE_TYPE": "All Other Code Violations",
+   "FOLIO": "3021330030210",
+   "LIEN_BOOK": 34087,
+   "LIEN_PAGE": 3224,
+   "LIEN_RECDT": 1707454800000,
+   "ObjectId": 1201,
+   "PROP_ADDR": "TESTOWNER C389C8",
+   "VIOL_NAME": "TESTOWNER FAC1B1"
+  },
+  {
+   "CASE_NUM": "20120152977",
+   "CASE_TYPE": "All Other Code Violations",
+   "FOLIO": "3040100020250",
+   "LIEN_BOOK": 34087,
+   "LIEN_PAGE": 3222,
+   "LIEN_RECDT": 1707454800000,
+   "ObjectId": 1332,
+   "PROP_ADDR": "TESTOWNER 664A66",
+   "VIOL_NAME": "TESTOWNER 0074FE"
+  },
+  {
+   "CASE_NUM": "20110147837",
+   "CASE_TYPE": "All Other Code Violations",
+   "FOLIO": "3022070510110",
+   "LIEN_BOOK": 34193,
+   "LIEN_PAGE": 1938,
+   "LIEN_RECDT": 1713844800000,
+   "ObjectId": 1586,
+   "PROP_ADDR": "TESTOWNER 9EC7EA",
+   "VIOL_NAME": "TESTOWNER 7F1B3D"
+  },
+  {
+   "CASE_NUM": "20150171745",
+   "CASE_TYPE": "All Other Code Violations",
+   "FOLIO": "3049120170510",
+   "LIEN_BOOK": 34198,
+   "LIEN_PAGE": 817,
+   "LIEN_RECDT": 1714104000000,
+   "ObjectId": 1630,
+   "PROP_ADDR": "TESTOWNER B933C3",
+   "VIOL_NAME": "TESTOWNER 84A923"
+  },
+  {
+   "CASE_NUM": "20150171913",
+   "CASE_TYPE": "All Other Code Violations",
+   "FOLIO": "3031020260120",
+   "LIEN_BOOK": 34367,
+   "LIEN_PAGE": 1295,
+   "LIEN_RECDT": 1724040000000,
+   "ObjectId": 1635,
+   "PROP_ADDR": "TESTOWNER 5F6413",
+   "VIOL_NAME": "TESTOWNER 334415"
+  },
+  {
+   "CASE_NUM": "20130162301",
+   "CASE_TYPE": "All Other Code Violations",
+   "FOLIO": "3040250330200",
+   "LIEN_BOOK": 34117,
+   "LIEN_PAGE": 396,
+   "LIEN_RECDT": 1709528400000,
+   "ObjectId": 1685,
+   "PROP_ADDR": "TESTOWNER 5FA524",
+   "VIOL_NAME": "TESTOWNER EFF726"
+  },
+  {
+   "CASE_NUM": "20140167303",
+   "CASE_TYPE": "All Other Code Violations",
+   "FOLIO": "3022050490001",
+   "LIEN_BOOK": 34445,
+   "LIEN_PAGE": 4154,
+   "LIEN_RECDT": 1728964800000,
+   "ObjectId": 1707,
+   "PROP_ADDR": "TESTOWNER 624DE3",
+   "VIOL_NAME": "TESTOWNER 4098CD"
+  },
+  {
+   "CASE_NUM": "20140167872",
+   "CASE_TYPE": "Unsafe Structure",
+   "FOLIO": "3031100000130",
+   "LIEN_BOOK": 34354,
+   "LIEN_PAGE": 1620,
+   "LIEN_RECDT": 1723176000000,
+   "ObjectId": 1728,
+   "PROP_ADDR": "TESTOWNER A4432F",
+   "VIOL_NAME": "TESTOWNER 504055"
+  },
+  {
+   "CASE_NUM": "20140162812",
+   "CASE_TYPE": "All Other Code Violations",
+   "FOLIO": "3020110510001",
+   "LIEN_BOOK": 34401,
+   "LIEN_PAGE": 329,
+   "LIEN_RECDT": 1725940800000,
+   "ObjectId": 1751,
+   "PROP_ADDR": "TESTOWNER 96CEC3",
+   "VIOL_NAME": "TESTOWNER 902178 INC"
+  },
+  {
+   "CASE_NUM": "20140162822",
+   "CASE_TYPE": "All Other Code Violations",
+   "FOLIO": "3020110510001",
+   "LIEN_BOOK": 34401,
+   "LIEN_PAGE": 359,
+   "LIEN_RECDT": 1725940800000,
+   "ObjectId": 1753,
+   "PROP_ADDR": "TESTOWNER E230A2",
+   "VIOL_NAME": "TESTOWNER 465C31 INC"
+  },
+  {
+   "CASE_NUM": "20140163973",
+   "CASE_TYPE": "All Other Code Violations",
+   "FOLIO": "3022050490001",
+   "LIEN_BOOK": 34442,
+   "LIEN_PAGE": 2768,
+   "LIEN_RECDT": 1728446400000,
+   "ObjectId": 1780,
+   "PROP_ADDR": "TESTOWNER B1BBAF",
+   "VIOL_NAME": "TESTOWNER 9ECFAF INC"
+  },
+  {
+   "CASE_NUM": "20140164465",
+   "CASE_TYPE": "All Other Code Violations",
+   "FOLIO": "3031040038010",
+   "LIEN_BOOK": 34087,
+   "LIEN_PAGE": 3190,
+   "LIEN_RECDT": 1707454800000,
+   "ObjectId": 1798,
+   "PROP_ADDR": "TESTOWNER E86CCB",
+   "VIOL_NAME": "TESTOWNER 71E59F"
+  },
+  {
+   "CASE_NUM": "20130159784",
+   "CASE_TYPE": "All Other Code Violations",
+   "FOLIO": "3068240000401",
+   "LIEN_BOOK": 34087,
+   "LIEN_PAGE": 3208,
+   "LIEN_RECDT": 1707454800000,
+   "ObjectId": 1874,
+   "PROP_ADDR": "TESTOWNER 769411",
+   "VIOL_NAME": "TESTOWNER E915B4"
+  },
+  {
+   "CASE_NUM": "20130157517",
+   "CASE_TYPE": "All Other Code Violations",
+   "FOLIO": "3031040053025",
+   "LIEN_BOOK": 34087,
+   "LIEN_PAGE": 3204,
+   "LIEN_RECDT": 1707454800000,
+   "ObjectId": 1910,
+   "PROP_ADDR": "TESTOWNER 0CE70C",
+   "VIOL_NAME": "TESTOWNER 7F8903"
+  },
+  {
+   "CASE_NUM": "20130157800",
+   "CASE_TYPE": "All Other Code Violations",
+   "FOLIO": "3031040054121",
+   "LIEN_BOOK": 34087,
+   "LIEN_PAGE": 3202,
+   "LIEN_RECDT": 1707454800000,
+   "ObjectId": 1922,
+   "PROP_ADDR": "TESTOWNER 7FF76C",
+   "VIOL_NAME": "TESTOWNER C33711"
+  },
+  {
+   "CASE_NUM": "20140164965",
+   "CASE_TYPE": "All Other Code Violations",
+   "FOLIO": "3021330022660",
+   "LIEN_BOOK": 34165,
+   "LIEN_PAGE": 935,
+   "LIEN_RECDT": 1712203200000,
+   "ObjectId": 1966,
+   "PROP_ADDR": "TESTOWNER 18FF5A",
+   "VIOL_NAME": "TESTOWNER 317442"
+  },
+  {
+   "CASE_NUM": "20170188459",
+   "CASE_TYPE": "All Other Code Violations",
+   "FOLIO": "3022200500001",
+   "LIEN_BOOK": 34114,
+   "LIEN_PAGE": 3210,
+   "LIEN_RECDT": 1709182800000,
+   "ObjectId": 2002,
+   "PROP_ADDR": "TESTOWNER D08937",
+   "VIOL_NAME": "TESTOWNER 21268C INC"
+  },
+  {
+   "CASE_NUM": "20180189071",
+   "CASE_TYPE": "All Other Code Violations",
+   "FOLIO": "3020110510001",
+   "LIEN_BOOK": 34401,
+   "LIEN_PAGE": 363,
+   "LIEN_RECDT": 1725940800000,
+   "ObjectId": 2011,
+   "PROP_ADDR": "TESTOWNER F25639",
+   "VIOL_NAME": "TESTOWNER 39076E INC"
+  },
+  {
+   "CASE_NUM": "20160179652",
+   "CASE_TYPE": "All Other Code Violations",
+   "FOLIO": "3060170050001",
+   "LIEN_BOOK": 34494,
+   "LIEN_PAGE": 1183,
+   "LIEN_RECDT": 1731646800000,
+   "ObjectId": 2058,
+   "PROP_ADDR": "TESTOWNER B72713",
+   "VIOL_NAME": "TESTOWNER 1C1551 INC"
+  },
+  {
+   "CASE_NUM": "20170184206",
+   "CASE_TYPE": "All Other Code Violations",
+   "FOLIO": "3040080240080",
+   "LIEN_BOOK": 34104,
+   "LIEN_PAGE": 4019,
+   "LIEN_RECDT": 1708578000000,
+   "ObjectId": 2144,
+   "PROP_ADDR": "TESTOWNER 755034",
+   "VIOL_NAME": "TESTOWNER 523807"
+  },
+  {
+   "CASE_NUM": "20170184209",
+   "CASE_TYPE": "All Other Code Violations",
+   "FOLIO": "3031150053930",
+   "LIEN_BOOK": 34087,
+   "LIEN_PAGE": 3157,
+   "LIEN_RECDT": 1707454800000,
+   "ObjectId": 2145,
+   "PROP_ADDR": "TESTOWNER 9463CF",
+   "VIOL_NAME": "TESTOWNER 298EF1"
+  },
+  {
+   "CASE_NUM": "20150173485",
+   "CASE_TYPE": "All Other Code Violations",
+   "FOLIO": "3031150100200",
+   "LIEN_BOOK": 34247,
+   "LIEN_PAGE": 356,
+   "LIEN_RECDT": 1716955200000,
+   "ObjectId": 2172,
+   "PROP_ADDR": "TESTOWNER 52DAD7",
+   "VIOL_NAME": "TESTOWNER 96831C LLC"
+  },
+  {
+   "CASE_NUM": "20150174446",
+   "CASE_TYPE": "All Other Code Violations",
+   "FOLIO": "3020110510001",
+   "LIEN_BOOK": 34401,
+   "LIEN_PAGE": 369,
+   "LIEN_RECDT": 1725940800000,
+   "ObjectId": 2193,
+   "PROP_ADDR": "TESTOWNER BB32E7",
+   "VIOL_NAME": "TESTOWNER 902178 INC"
+  }
+ ],
+ "where": "LIEN_RECDT >= DATE '2024-01-01' AND LIEN_RECDT < DATE '2025-01-01'"
+}
