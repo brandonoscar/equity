@@ -26,6 +26,7 @@ parties:
     address: {line1: address, state_const: IL}   # the cited property (no ZIP published)
   - role: creditor
     const: City of Chicago
+extra_pii: [id]                  # a 40-hex row hash; replaced in fixtures so the secrets scan passes
 terms:
   url: https://data.cityofchicago.org/d/6br9-quuz
   summary: "City of Chicago Data Portal (Socrata), public, no login, updated daily. City of Chicago data terms of use."
