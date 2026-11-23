@@ -1,0 +1,28 @@
+source_id: la.orleans.parcels
+state: LA
+layer_url: https://gis.nola.gov/arcgis/rest/services/LGIM/TaxParcelQuery/MapServer/0
+order_by: OBJECTID
+page_size: 1000          # maxRecordCount 1000
+min_interval_s: 1.0
+county: {constant: "071"}
+fields:
+  parcel_id: PARCELID
+  owner1: OWNERNME1
+  owner2: OWNERNME2
+  mail_line1: PSTLADDRESS
+  mail_city: PSTLCITY
+  mail_state: PSTLSTATE
+  mail_zip: PSTLZIP5
+  situs_line1: SITEADDR
+  situs_city: {const: NEW ORLEANS}   # SITECITY is empty; every parcel is in the city
+  situs_zip: SITEZIP
+  land_value: LNDVALUE
+  assessed_value: CNTASSDVAL
+  tax_year: {const: 2026}
+value_basis: "Orleans Parish Assessor tax parcels published by the City of New Orleans GIS ('LGIM/TaxParcelQuery', 161,891 parcels, all with an owner). CNTASSDVAL = current assessed value (Louisiana: 10% of fair market value for residential, 15% commercial); LNDVALUE = land value. tax_year is the const 2026 (LASTUPDATE 2026-06). SITECITY is empty in the source, so the situs city is the const NEW ORLEANS."
+terms:
+  url: https://gis.nola.gov/arcgis/rest/services/LGIM/TaxParcelQuery/MapServer
+  summary: "City of New Orleans GIS public ArcGIS map service, free, no login, no token. No license or use-constraint text in the service metadata. robots.txt not present (404)."
+  checked_on: 2026-11-23
+  robots_checked_on: 2026-11-23
+  cost_model: free

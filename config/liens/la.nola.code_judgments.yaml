@@ -23,7 +23,7 @@ amount: unpaidfees
 parties:
   - role: debtor
     name: name
-    address: {line1: address, state_const: LA}   # the cited property, not a mailing address
+    address: {line1: address, city_const: NEW ORLEANS, state_const: LA}   # the cited property
   - role: creditor
     const: City of New Orleans
 terms:
