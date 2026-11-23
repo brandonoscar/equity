@@ -1,0 +1,41 @@
+# Cook County, IL parcels: Cook County Assessor open data on the county's Socrata portal.
+# Read by src/equity/adapters/il/cook_parcels.py (Socrata API, not an ArcGIS layer). It sits in
+# config/bulk/ with the other non-ArcGIS parcel configs, so coverage and gaps read it, while the
+# ArcGIS config loader (config/states/, config/counties/) does not build a second adapter for it.
+#
+# Two datasets, joined on pin for one tax year (the latest year in Parcel Addresses, chosen
+# when the build is planned):
+#   Assessor - Parcel Addresses  3723-97qp  situs, owner and taxpayer (mailing) name + address
+#   Assessor - Assessed Values   uzyt-m557  assessed values by stage, property class
+# Checked 2026-11-23: tax year 2026 has 1,864,469 distinct 14-digit PINs in both datasets.
+source_id: il.cook.parcels
+state: IL
+layer_url: https://datacatalog.cookcountyil.gov/resource/3723-97qp.json
+order_by: pin
+page_size: 50000
+min_interval_s: 1.0        # robots.txt: Crawl-delay: 1
+county: {constant: "031"}
+fields:
+  parcel_id: pin           # 14 digits (zero-padded by the adapter)
+  owner1: owner_address_name
+  mail_line1: owner_address_full
+  mail_city: owner_address_city_name
+  mail_state: owner_address_state
+  mail_zip: owner_address_zipcode_1
+  situs_line1: prop_address_full
+  situs_city: prop_address_city_name
+  situs_state: prop_address_state
+  situs_zip: prop_address_zipcode_1
+  assessed_value: _av_total   # latest published stage, set by the adapter (see value_basis)
+  tax_year: year
+  land_use_code: class        # Assessor property class, e.g. 2-03 one-story residence
+# The taxpayer of record (mail_address_name, with its own mailing address) is added by the
+# adapter as a second owner when it names someone else than the owner.
+extra_pii: [mail_address_name, mail_address_full]
+value_basis: "Assessed values (AV) from uzyt-m557 for the same tax year, the latest stage published per PIN: board_tot (Board of Review) if set, else certified_tot (Assessor certified), else mailed_tot (Assessor mailed notice). AV is a fraction of market value set by property class (10% residential, 25% commercial), so it is stored as assessed_value only, never as appraised value."
+terms:
+  url: https://www.cookcountyil.gov/terms-use
+  summary: "Cook County Open Data (Socrata), Cook County Assessor's Office datasets 3723-97qp and uzyt-m557; public, no login, updated bi-weekly. County terms of use: disclaimers of liability, warranty and endorsement; no license or commercial-use restriction found. Dataset notes: owner name and mailing address only intermittently updated in the source system."
+  checked_on: 2026-11-23
+  robots_checked_on: 2026-11-23
+  cost_model: free
