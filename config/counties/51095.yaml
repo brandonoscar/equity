@@ -1,0 +1,32 @@
+source_id: va.james_city.parcels
+state: VA
+# James City County parcels from the Hampton Roads Planning District Commission's regional parcel layer
+# (HRGEO, assembled from each member locality's own parcel map service to a common standard;
+# FIPS '095': 36,261 rows on 2026-11-24, OWNERNME1 filled on 36,253): owner, owner mailing
+# address, site address, zoning. The regional layer was last rebuilt February-May 2026
+# (LASTUPDATE); the item says it is refreshed from the localities' live services.
+layer_url: https://geo.hrsd.com/hrgeo/rest/services/regionalgis/HRGeo_Parcels_Public/MapServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "095"}
+filter: "FIPS = '095'"   # one regional layer: this locality's rows only
+use_restrictions: [no_resale, planning_research_only]
+fields:
+  parcel_id: PARCELID    # the locality's own parcel number; TAXMAPNO is a secondary map number
+  owner1: OWNERNME1
+  mail_line1: MLADDRESS  # owner mailing address ('PO BOX 11033')
+  mail_city: MLCITY
+  mail_state: MLSTATE
+  mail_zip: MLZIP5
+  situs_line1: PSTLADDRESS   # the property's own address in the HRGEO standard
+  situs_city: PSTLCITY
+  situs_state: {const: VA}
+  zoning: ZONING
+value_basis: "IMPVALUE / LNDVALUE / TOTVALUE are present but the layer has no tax-year field, so no values or tax_year are mapped and no assessment facts are emitted. PSTLZIP5 (site ZIP) is not mapped: on sampled Newport News rows it holds the owner's ZIP (a 43RD ST, Newport News parcel with 23456, a Virginia Beach ZIP). PSTLADDRESS reads '0 <street>' on 4,137 rows of the whole regional layer (the localities' own text, kept as published)."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=5990194b4f0d4eb6bd45160d6825299d
+  summary: "Hampton Roads Planning District Commission (regional planning district acting for its 17 member localities; ArcGIS Online item 'Hampton Roads Regional Parcels', owner hrpdcgis, accessInformation 'HRPDC') public MapServer on HRSD's geo.hrsd.com HRGEO server, no login, token or fee. Item licenseInfo (read 2026-11-24): 'For planning and research purposes only.' (recorded as planning_research_only and no_resale). Description: assembled from each available jurisdiction's live map service; 'not all localities share all fields publicly'. geo.hrsd.com/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

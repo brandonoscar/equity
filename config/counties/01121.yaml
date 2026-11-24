@@ -1,0 +1,28 @@
+source_id: al.talladega.parcels
+state: AL
+# Talladega County (AL) Revenue Commission tax parcels joined to the CAMA roll (KCS-hosted county
+# map service; 58,002 rows on 2026-11-24, Owner filled on 58,002; 1,277 deeds recorded June-November 2026):
+# owner, owner mailing address, deed book/page.
+layer_url: https://al61portal.kcsgis.com/al61server/rest/services/Talladega_Public_ISV/MapServer/51
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000+; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "121"}
+fields:
+  parcel_id: PARCELID   # '2805220000008000'; PIN / PPIN are the account keys
+  owner1: Owner
+  mail_line1: MailAdd1
+  mail_line2: MailAdd2
+  mail_city: MailCity
+  mail_state: MailState
+  mail_zip: MailZip1
+  deed_book: DeedBook
+  deed_page: DeedPage
+extra_pii: [MailAdd3]
+value_basis: "TTV (total appraised value), TAV (assessed value), CLandValue / CImpValue are present, but the only year field is TaxYearDue (2027 on every row), which does not say which roll year the values belong to (Alabama lien date is Oct 1), so no values or tax_year are mapped and no assessment facts are emitted. PreviousOwner, TotalTaxDue and DeedRecorded are not mapped. MailAdd3 (a third mailing line, rarely filled) is not mapped. The site address (SitusAddNumber + SitusAddName) is not mapped: SitusAddNumber is 0 on 1,047 rows that have a street name, which would put a false house number on the line (as in md.washington.parcels)."
+terms:
+  url: https://al61portal.kcsgis.com/al61server/rest/services/Talladega_Public_ISV/MapServer
+  summary: "Layer 51 'Parcels' of the Revenue Commission's public interactive viewer service (Talladega_Public_ISV). Talladega County (AL) Revenue Commission tax-parcel map service on the county's public ArcGIS Server, hosted by its mapping contractor KCS (al61portal.kcsgis.com; copyrightText 'KCS'; keywords 'Talladega,County,Alabama,Revenue,GIS'), public, no login, token or fee. No license, use-constraint or disclaimer text in the service metadata (read 2026-11-24); no resale, redistribution or mailing-list clause found. al61portal.kcsgis.com/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

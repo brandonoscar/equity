@@ -1,0 +1,29 @@
+source_id: oh.lake.parcels
+state: OH
+# Lake County (OH) GIS 'Lake County Parcels (Updated Nightly)': Tax Map parcel boundaries joined
+# nightly to the Auditor's property records (114,621 rows on 2026-11-24; A_OWNER_NAME filled on
+# 112,848; sales dated up to 2026-11-23): owner, owner mailing address, site address.
+# Ohio's statewide layer has no owner names.
+layer_url: https://gis.lakecountyohio.gov/arcgis/rest/services/Sharing/LCGIS_SHARE_2023/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "085"}
+fields:
+  parcel_id: PIN         # '27-B-057-A-00-022-0'; PIN_NODASH is the unpunctuated form
+  owner1: A_OWNER_NAME
+  mail_line1: G_O_FLADDRESS  # owner address street ('4703 ORCHARD RD')
+  mail_city: A_O_CITY
+  mail_state: A_O_STATE
+  mail_zip: A_O_ZIPCODE
+  situs_line1: G_FULLADDRESS # '38579 BEACHVIEW RD'
+  situs_city: A_USPS_CITY
+  situs_state: A_STATE
+  situs_zip: A_ZIPCODE
+value_basis: "A_VAL_LAND / A_VAL_BLDG / A_VAL_TOTAL (appraised) and A_VAL_CAUV are present but the layer has no tax-year field, so no values or tax_year are mapped and no assessment facts are emitted. A_TAXP_NAME and the A_T_* address are the tax-bill addressee, not the owner, so they are not mapped. A_PROP_CLASS is a float ('510.0') and is not mapped. A_SALE_DATE / A_SALE_AMOUNT / A_SELLER are not mapped. G_FULLADDRESS reads '0 <street>' on 3,519 rows (the county's own text, kept as published)."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=845b331d124c403bb769dfc09b8ccfe3
+  summary: "Lake County (OH) GIS Department ArcGIS Online item 'Lake County Parcels (Updated Nightly)' (owner BarshickLakeAGO; accessInformation 'Lake County Tax Map Department, Lake County Auditor Office, Lake County GIS Department'), public FeatureServer on the county's own gis.lakecountyohio.gov, no login, token or fee; the county's GIS page links an Open Data Download hub for the same layers. Item licenseInfo (read 2026-11-24): warranty/liability disclaimer only ('Public information data furnished by the Lake County GIS Department ... no warranties ... boundaries are for reference only'); no resale, redistribution or mailing-list clause. gis.lakecountyohio.gov/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

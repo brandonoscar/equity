@@ -1,0 +1,32 @@
+source_id: mi.lenawee.parcels
+state: MI
+# Lenawee County (MI) Equalization Department / GIS Division 'Lenawee Parcels Public' (55,206
+# rows on 2026-11-24; OWNNM1 filled on 52,102; data last edited 2026-11-20): owner, property
+# address, last recorded liber/page. No owner mailing address and no values in the layer.
+layer_url: https://services6.arcgis.com/mjEvhc9AE3ceAXtG/arcgis/rest/services/Lenawee_Parcels_Public/FeatureServer/2
+order_by: FID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "091"}
+fields:
+  parcel_id: TAXID       # 'WD0-585-0012-00'; PACKPARNUM is the unpunctuated form
+  owner1: OWNNM1         # 'MARTIN, KEVIN & MARY'
+  # OWNNM2 ('the second line of the Owner information') is mixed: usually a second owner
+  # ('SHANE CHARLES BIERMAN'), but also name continuations ('INC', 'TRUST AGREEMENT') and
+  # care-of lines ('C, O SHARON RODRIQUEZ'), so it is not mapped as owner2.
+  # Property address; 'BLK' marks a block address that is only a location reference
+  # ('STEVENS DR BLK').
+  situs_line1: PRADDCOMB
+  situs_city: PRADDRCITY # the county calls this 'the probable mailing city ... a best guess'
+  situs_state: {const: MI}
+  situs_zip: PRADDRZIP
+  deed_ref: LIBERPAGE    # '2572-0437': last recorded Register of Deeds document (not always a deed)
+deed_ref_pattern: '^(?P<book>\d+)-(?P<page>\d+)$'
+extra_pii: [OWNNM2]
+value_basis: "The layer has no value or tax-year fields; no assessment facts are emitted."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=08db5d2e5bc6460b839c9857edcf62d7
+  summary: "Lenawee County ArcGIS Online org (urlKey lenawee) item 'Lenawee Parcels Public' (owner DereckWilt, GIS Technician, Equalization Department/GIS Division; accessInformation 'Lenawee County Michigan'), public hosted feature service, no login, token or fee. Item licenseInfo (read 2026-11-24): 'LENAWEE COUNTY GIS DATA DISCLAIMER The GIS material is made available as a public service. Maps and data are to be used for reference purposes only ...' plus no-warranty/no-liability terms; no resale, redistribution or mailing-list clause. services6.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

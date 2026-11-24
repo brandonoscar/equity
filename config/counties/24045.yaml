@@ -1,0 +1,39 @@
+source_id: md.wicomico.parcels
+state: MD
+# Wicomico County (MD) parcel polygons with SDAT real property data, republished by the City of
+# Salisbury GIS Division from the Maryland iMap parcel service ('Parcels are created and
+# maintained by Wicomico County Planning and Zoning and passed to the State of Maryland';
+# 48,656 rows on 2026-11-24; ownname1 filled on 47,149; layer edited 2026-06-26, SDAT transfer
+# dates up to 2025-10-23): owner names, owner mailing address, premises address, deed
+# liber/folio, land use. md.statewide.parcels has no owner names; the key below is the same
+# SDAT account id. The republish cadence is not stated (the data lagged the edit date by ~8 months).
+layer_url: https://services6.arcgis.com/Hx8jJ6McXQ0jnqLk/arcgis/rest/services/Parcels1/FeatureServer/12
+order_by: objectid
+page_size: 1000          # maxRecordCount 1000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "045"}
+use_restrictions: [attribution_required]
+fields:
+  parcel_id: acctid      # '2301000020' (SDAT ACCTID); null on unmatched polygons, which are skipped
+  owner1: ownname1
+  owner2: ownname2       # second SDAT owner line: usually a co-owner, sometimes a name continuation
+  mail_line1: ownadd1
+  mail_line2: ownadd2
+  mail_city: owncity
+  mail_state: ownstate
+  mail_zip: ownerzip
+  situs_line1: [premsnum, premsdir, premsnam, premstyp]   # 10028 / SNETHEN CHURCH / RD
+  situs_city: premcity
+  situs_state: {const: MD}
+  situs_zip: premzip
+  deed_book: dr1liber
+  deed_page: dr1folio
+  land_use_code: lu      # 'R'
+extra_pii: [grntnam1, namekey]
+value_basis: "nfmlndvl / nfmimpvl / nfmttlvl (SDAT new full market values) are present but the only date is lastassd (reassessment cycle, '202401'), not a tax year, so no values or tax_year are mapped and no assessment facts are emitted. grntnam1 (grantee on the last transfer) and tradate / considr1 are not mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=9be847a1f30e4f8d93a66bbb52c86a4e
+  summary: "City of Salisbury, Department of Information Services: GIS Division ArcGIS Online item 'Wicomico County, MD: Parcels' (owner CitySalisburyGIS; accessInformation 'City of Salisbury ... GIS Division, Maryland iMap'), public hosted feature service, no login, token or fee. Item licenseInfo (read 2026-11-24): data 'as is', no warranty or liability; 'The Data can be freely distributed as long as the metadata entry is not modified or deleted. Any data derived from the Data must acknowledge the City of Salisbury in the metadata.' (recorded as attribution_required). services6.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

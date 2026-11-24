@@ -1,0 +1,33 @@
+source_id: va.lynchburg_city.parcels
+state: VA
+# City of Lynchburg (VA) GIS Office open-data 'Parcels' (OpenData/ODPDynamic layer 41, maintained
+# by the City Assessor's Office; 32,620 rows on 2026-11-24; Owner1 filled on 32,594; DateModify
+# up to 2026-11-19): owner, owner mailing address, property address, property class.
+layer_url: https://mapviewer.lynchburgva.gov/ArcGIS/rest/services/OpenData/ODPDynamic/MapServer/41
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 50000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "680"}
+fields:
+  parcel_id: Parcel_ID   # '26606003'
+  owner1: Owner1         # 'JORDAN, BRENDA B &'
+  # Owner2 is mixed: a second owner ('HAMLETTE-HALL, TERESA') or a care-of line ('C/O PRIORITY
+  # ONE'), so it is not mapped as owner2.
+  mail_line1: MailAddr
+  mail_city: MailCity
+  mail_state: MailStat
+  mail_zip: MailZip
+  situs_line1: LocAddr   # '799 LEESVILLE RD'
+  situs_city: LocCity
+  situs_state: {const: VA}
+  situs_zip: LocZip
+  land_use_code: PropClas    # '400'
+  land_use_desc: PCDesc      # 'VACANT - COMMERCIAL'
+extra_pii: [Owner2]
+value_basis: "Current_Land / Current_Imp / Current_Total and per-year YR24_* / YR25_* / YR26_* columns are present; the per-year column names change every year, so no values or tax_year are mapped and no assessment facts are emitted. Sale1dt / Sale1Amt / Grantor1 are not mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=56b924d2dd8a404a8830fc8b0612febe
+  summary: "City of Lynchburg GIS Office ArcGIS Online item 'Parcels' (owner LynchburgGIS; accessInformation 'City of Lynchburg - GIS Office'), registering the public OpenData/ODPDynamic MapServer on the city's own mapviewer.lynchburgva.gov, no login, token or fee. Item licenseInfo (read 2026-11-24): not a legal record or survey; 'Please read our Data Sharing and Distribution Policy' (lynchburgva.gov/gis-data-sharing-and-distribution-policy), which answered 404 on 2026-11-24, so its terms could not be read; no restriction text found elsewhere. mapviewer.lynchburgva.gov/robots.txt (Cloudflare managed, read 2026-11-24): 'User-agent: * Allow: /' with 'Content-Signal: search=yes,ai-train=no,use=reference'; only named AI crawlers (ClaudeBot, GPTBot, CCBot ...) are disallowed."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free
