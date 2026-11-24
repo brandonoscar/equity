@@ -1,0 +1,34 @@
+source_id: oh.holmes.parcels
+state: OH
+# Holmes County (OH) GIS 'parcels_cama' (parcel layer joined with the Auditor's CAMA data; 28,816
+# rows on 2026-11-24; Owner_Name filled on 28,815; data edited 2026-11-24, sales dated up to
+# 2026-11-20): owner, owner mailing address, site address, class, tax-year 2025 values.
+# Ohio's statewide layer has no owner names.
+layer_url: https://services6.arcgis.com/JuJ3otBHQoYlrmJI/arcgis/rest/services/parcels_cama/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "075"}
+fields:
+  parcel_id: Parcel_Number   # '02-00436-001'; GISPIN is the unpunctuated form
+  owner1: Owner_Name         # 'RABER LEROY M & MARTHA A' (the Auditor's owner line)
+  mail_line1: Owner_Street
+  mail_city: Owner_City
+  mail_state: Owner_State
+  mail_zip: Owner_Postal_Code
+  situs_line1: Property_Address  # '2987  CR 114'; no site city or ZIP in the layer
+  situs_state: {const: OH}
+  land_use_desc: Classification  # '511-SINGLE FAMILY DWELLING - UNPLATTED 0 - 9.99 ACRES'
+  land_value: Appraised_Land_Value
+  bldg_value: Appraised_Improvement_Value
+  total_value: Appraised_Total_Value
+  assessed_value: Assessed_Total_Value
+  tax_year: Tax_Year
+extra_pii: [OWNER_PRIMARY, OWNER_SECONDARY, Deeded_Name]
+value_basis: "Appraised_Land_Value / Appraised_Improvement_Value / Appraised_Total_Value = Auditor appraised (100%) values; Assessed_Total_Value = assessed value (35% in Ohio, after CAUV). tax_year = Tax_Year (2025 on every row on 2026-11-24): Ohio tax year 2025 values as of 2025-01-01, billed in 2026. OWNER_PRIMARY / OWNER_SECONDARY (mixed-case individual names) and Deeded_Name (deed vesting text) restate the owner and are not mapped; the *_35, homestead, CAUV and taxable columns and Sales_* are not mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=77665034e8f8480b9bb34a0367fa3de6
+  summary: "Holmes County GIS ArcGIS Online org (urlKey HolmesGIS) item 'parcels_cama' (owner HCAdmin1; accessInformation 'Holmes County GIS'; 'Parcel layer joined with CAMA data'), public hosted feature service, no login, token or fee. Item licenseInfo (read 2026-11-24): visual display only, no warranty, no liability, 'please check with County staff for updated Information'; no resale, redistribution or mailing-list clause. services6.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

@@ -1,0 +1,30 @@
+source_id: al.blount.parcels
+state: AL
+# Blount County (AL) Revenue Commission tax parcels joined to the CAMA roll (KCS-hosted county
+# map service; 44,510 rows on 2026-11-24, Owner filled on 44,507; TaxYear 2026 on every row (the polygons' own ModifyDate stops in 2017; the owner and value columns come from the 2026 tax roll)):
+# owner, owner mailing address, values.
+layer_url: https://al08portal.kcsgis.com/al08server/rest/services/Blount_Parcels/MapServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000+; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "009"}
+fields:
+  parcel_id: ParcelNum   # '2307350002004000'; ParcelNumber is the same with the '08' county prefix
+  owner1: Owner
+  mail_line1: MailAddr1
+  mail_line2: MailAddr2
+  mail_city: CityName
+  mail_state: StateAbbr
+  mail_zip: ZipCode
+  land_value: LandValue
+  bldg_value: ImprovementsValue
+  total_value: TotalMktValue
+  assessed_value: TotalAssdValue
+  tax_year: TaxYear
+value_basis: "LandValue / ImprovementsValue / TotalMktValue = Revenue Commission appraised (market) land, improvement and total value; TotalAssdValue = assessed value (Alabama classes: 10% residential, 20% other). tax_year = TaxYear (2026 on every row on 2026-11-24). Alabama values property as of October 1 of the prior year; the adapter's tax_year_jan1 rule dates the 2026 assessment 2026-01-01. TotalTaxDue, SalePrice / DeedDate and PrevOwner are not mapped."
+terms:
+  url: https://al08portal.kcsgis.com/al08server/rest/services/Blount_Parcels/MapServer
+  summary: "Blount County (AL) Revenue Commission tax-parcel map service on the county's public ArcGIS Server, hosted by its mapping contractor KCS (al08portal.kcsgis.com; no copyrightText; keywords 'Blount,Alabama,Parcels'), public, no login, token or fee. No license, use-constraint or disclaimer text in the service metadata (read 2026-11-24); no resale, redistribution or mailing-list clause found. al08portal.kcsgis.com/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

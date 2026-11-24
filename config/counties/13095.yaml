@@ -1,0 +1,31 @@
+source_id: ga.dougherty.parcels
+state: GA
+# Albany GIS (City of Albany, GA ArcGIS org 'albgis', the consolidated Albany-Dougherty County GIS)
+# 'Dougherty County Land Parcels Dataset' (38,003 rows on 2026-11-24; Name filled on 37,565;
+# features edited up to 2026-11-23): owner, owner mailing address, site address. Covers Albany
+# and the rest of Dougherty County (Jurisdiction 'COUNTY' / city rows).
+layer_url: https://services6.arcgis.com/VKHi8CC6pMIyYUIs/arcgis/rest/services/Parcels_Public_View/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "095"}
+fields:
+  parcel_id: ParcelNum   # '00372/00020/015'
+  owner1: Name
+  # MailAddress1 is a care-of or second addressee line ('% WILLIAM S BOGGUS', 'UNITED HOMES'),
+  # usually empty; MailAddress2 is the street line.
+  mail_line1: MailAddress2
+  mail_city: MailCity
+  mail_state: MailState
+  mail_zip: MailZip
+  situs_line1: Address   # '3621 JENNY LN'
+  situs_state: SiteState
+  situs_zip: SiteZip
+extra_pii: [MailAddress1]
+value_basis: "The layer has no value or tax-year fields; no assessment facts are emitted. SiteCity is not mapped: it disagrees with the site ZIP on sampled rows (an Albany 31705 parcel with SiteCity 'THOMASVILLE'). Address reads '0 <street>' on 1,478 rows (the source's own text, kept as published)."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=9729f520dfab47fab85484908994ef1f
+  summary: "City of Albany, GA ArcGIS Online org (urlKey albgis; Albany GIS serves Albany and Dougherty County) item 'Dougherty County Land Parcels Dataset' (owner jkendall8), public hosted feature service view, no login, token or fee. Item licenseInfo (read 2026-11-24): 'Albany GIS makes every effort to produce the most accurate information possible. No warranties, expressed or implied ... All data is subject to change.' Description: supports 'property assessment, urban planning, and public information access'. No resale, redistribution or mailing-list clause. services6.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

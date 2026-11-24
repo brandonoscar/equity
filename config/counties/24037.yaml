@@ -1,0 +1,33 @@
+source_id: md.st_marys.parcels
+state: MD
+# St. Mary's County (MD) parcel polygons joined to SDAT real property records on the county's
+# own ArcGIS Server ('Property Parcels and Assessment Records'; 54,039 rows on 2026-11-24;
+# Owners_Name filled on 51,111; SDAT LastActivity up to 10/2026): owner names, owner mailing
+# address, deed liber/folio, land use. md.statewide.parcels has no owner names;
+# the key below is the same SDAT account id.
+layer_url: https://gis.stmaryscountymd.gov/server/rest/services/Public/Primary/MapServer/0
+order_by: SDE.IT_Parcels.OBJECTID_1
+page_size: 2000          # maxRecordCount 10000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "037"}
+fields:
+  parcel_id: SDE.IT_Parcels.ACCTID       # '1904034759' (SDAT ACCTID: county 19 + district + account)
+  owner1: SDE.IT_SDAT.ownersname1
+  owner2: SDE.IT_SDAT.ownersname2
+  mail_line1: SDE.IT_SDAT.Address1       # often a care-of line ('C/O MARK MUDD')
+  mail_line2: SDE.IT_SDAT.Address2       # 'PO BOX 310'
+  mail_city: SDE.IT_SDAT.city
+  mail_state: SDE.IT_SDAT.state
+  mail_zip: SDE.IT_SDAT.zip
+  deed_book: SDE.IT_SDAT.Liber
+  deed_page: SDE.IT_SDAT.Folio
+  land_use_code: SDE.IT_SDAT.LandUseCode # 'A'
+  land_use_desc: SDE.IT_SDAT.LandUse     # 'Agriculture'
+extra_pii: [SDE.IT_SDAT.Owners_Name]
+value_basis: "landvalue / improvevalue (SDAT) are present but the layer has no tax-year or assessment-date field, so no values or tax_year are mapped and no assessment facts are emitted. ownersname2 is the second SDAT owner line: usually a co-owner, sometimes a continuation of an entity name ('OF SOUTHERN MARYLAND INC'), as in md.washington.parcels. Owners_Name (the two lines joined with ' - ') and transferdate are not mapped. The premises address (Address / PACity / PAZipCode) is not mapped: Address reads '0 ...' on 7,634 rows (a false house number, as in md.washington.parcels) and PAZipCode is '00000' on 6,999."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=facbe811a4054e6e8e0b2fa9df2c5ca9
+  summary: "St. Mary's County Government IT/GIS ArcGIS Online item 'Property Parcels and Assessment Records' (owner StMarysIT), registering the public Public/Primary MapServer on the county's own gis.stmaryscountymd.gov, no login, token or fee. Item description: for 'Property and parcel reference for local government and public lookup; Assessment, ownership, and mailing address review'; the item has no licenseInfo or accessInformation (read 2026-11-24); no resale, redistribution or mailing-list clause found. gis.stmaryscountymd.gov/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

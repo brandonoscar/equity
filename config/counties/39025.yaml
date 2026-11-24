@@ -1,0 +1,30 @@
+source_id: oh.clermont.parcels
+state: OH
+# Clermont County (OH) parcel layer on the county's own ArcGIS Server (WMAS/Parcels; parcels
+# joined to the Auditor's real estate records, IMPDATE up to 2026-11-22; 102,176 rows on
+# 2026-11-24; OWN1 filled on 99,353; sales dated up to 2026-11-20): owner, owner mailing address,
+# site street address, land use. Ohio's statewide layer has no owner names.
+layer_url: https://maps.clermontcountyohio.gov/server/rest/services/WMAS/Parcels/MapServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 4000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "025"}
+fields:
+  parcel_id: PIN         # '570230.024.' (trailing dot is part of the Auditor's number)
+  # OWN2 continues OWN1 on all sampled rows ('BOARD OF EDUCATION OF THE' + 'LOVELAND CITY
+  # SCHOOL DISTRICT', 'YELLANKI PURUSHOTHAM REDDY &' + 'VULUPALA SINDHU ET AL'), so they are joined.
+  owner1: {join: [OWN1, OWN2]}
+  mail_line1: MADDR1     # '1768 HAPPY VALLEY DR'
+  mail_line2: MADDR2
+  mail_city_state_zip: MADDR3   # 'FAIRFIELD OH 45014'
+  situs_line1: [ADRNO, ADRADD, ADRDIR, ADRSTR, ADRSUF]   # 1762 / CLOUGH / PI; no site city or ZIP
+  situs_state: {const: OH}
+  land_use_code: LAND_USE        # '199'
+extra_pii: [MAIL1, MAIL2, Name1, AddressLine2]
+value_basis: "APRLAND / APRBLDG / APRTOT (appraised) and ASDLAND / ASDBLDG / ASDTOT (assessed, 35%) are present but the layer has no tax-year field, so no values or tax_year are mapped and no assessment facts are emitted. MAIL1/MAIL2 repeat the owner as mail addressee and are not mapped. SALESDATE / PRICE are not mapped."
+terms:
+  url: https://gis.clermontcountyohio.gov/downloads
+  summary: "Clermont County (OH) public MapServer 'Clermont County Parcels' on the county's own maps.clermontcountyohio.gov ArcGIS Server, no login, token or fee; the county GIS site (gis.clermontcountyohio.gov) offers the parcel data for download. Disclaimer on the download page (read 2026-11-24): 'a public resource for general information ... provided for use only as a graphical representation. Clermont County makes no warranty ... assumes no liability'; no resale, redistribution or mailing-list clause. maps.clermontcountyohio.gov/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

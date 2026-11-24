@@ -1,0 +1,30 @@
+source_id: al.houston.parcels
+state: AL
+# Houston County (AL) Revenue Commission tax parcels joined to the CAMA roll (KCS-hosted county
+# map service; 61,746 rows on 2026-11-24, Owner filled on 61,743; TaxYear 2026 on every row; deeds dated through 2025 and into 2026 (latest 2026-03-02)):
+# owner, owner mailing address, values.
+layer_url: https://al38portal.kcsgis.com/al38server/rest/services/Houston_Parcels/MapServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000+; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "069"}
+fields:
+  parcel_id: ParcelNum   # '0104190000001000'; PPIN / AccountNum are the account keys
+  owner1: Owner
+  mail_line1: MailAddr1
+  mail_line2: MailAddr2
+  mail_city: CityName
+  mail_state: StateAbbr
+  mail_zip: ZipCode
+  land_value: LandValue
+  bldg_value: ImprovementsValue
+  total_value: TotalMktValue
+  assessed_value: TotalAssdValue
+  tax_year: TaxYear
+value_basis: "LandValue / ImprovementsValue / TotalMktValue = Revenue Commission appraised (market) land, improvement and total value; TotalAssdValue = assessed value (Alabama classes: 10% residential, 20% other). tax_year = TaxYear (2026 on every row on 2026-11-24). Alabama values property as of October 1 of the prior year; the adapter's tax_year_jan1 rule dates the 2026 assessment 2026-01-01. TotalTaxDue, SalePrice / DeedDate and PrevOwner are not mapped. The site address (PhysAddr) is not mapped: 14,766 rows read '0 <street>', which would put a false house number on the line (as in md.washington.parcels)."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=f1a7b3d34df049d1b964ab555c517282
+  summary: "The City of Dothan registers the service in ArcGIS Online as 'Houston_County_Parcels' (accessInformation 'KCS', no licenseInfo). Houston County (AL) Revenue Commission tax-parcel map service on the county's public ArcGIS Server, hosted by its mapping contractor KCS (al38portal.kcsgis.com; copyrightText 'KCS'; keywords 'Houston,Alabama,Parcels,GIS'), public, no login, token or fee. No license, use-constraint or disclaimer text in the service metadata (read 2026-11-24); no resale, redistribution or mailing-list clause found. al38portal.kcsgis.com/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

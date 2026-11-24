@@ -1,0 +1,206 @@
+{
+ "attributes": [
+  {
+   "OBJECTID": 1,
+   "PPAddress": "7874 TEST ST",
+   "PPClassCode": 511,
+   "PPOwner": "TESTOWNER F64D65",
+   "PPOwnerAddress": "4762 TEST ST",
+   "Parcel": "22-00999.000"
+  },
+  {
+   "OBJECTID": 2,
+   "PPAddress": "540 TEST ST",
+   "PPClassCode": 111,
+   "PPOwner": "TESTOWNER FD0DEB",
+   "PPOwnerAddress": "3413 TEST ST",
+   "Parcel": "22-00295.002"
+  },
+  {
+   "OBJECTID": 3,
+   "PPAddress": "2845 TEST ST",
+   "PPClassCode": 599,
+   "PPOwner": "TESTOWNER EBCB5F",
+   "PPOwnerAddress": "874 TEST ST",
+   "Parcel": "22-00782.000"
+  },
+  {
+   "OBJECTID": 4,
+   "PPAddress": "1787 TEST ST",
+   "PPClassCode": 545,
+   "PPOwner": "TESTOWNER 686549",
+   "PPOwnerAddress": "7177 TEST ST",
+   "Parcel": "22-01302.000"
+  },
+  {
+   "OBJECTID": 5,
+   "PPAddress": "169 TEST ST",
+   "PPClassCode": 511,
+   "PPOwner": "TESTOWNER 2A32D0",
+   "PPOwnerAddress": "5441 TEST ST",
+   "Parcel": "22-01305.002"
+  },
+  {
+   "OBJECTID": 6,
+   "PPAddress": "1626 TEST ST",
+   "PPClassCode": 511,
+   "PPOwner": "TESTOWNER CD8232",
+   "PPOwnerAddress": "8746 TEST ST",
+   "Parcel": "22-00901.000"
+  },
+  {
+   "OBJECTID": 7,
+   "PPAddress": "7650 TEST ST",
+   "PPClassCode": 511,
+   "PPOwner": "TESTOWNER 654252",
+   "PPOwnerAddress": "4824 TEST ST",
+   "Parcel": "22-00685.000"
+  },
+  {
+   "OBJECTID": 8,
+   "PPAddress": "3740 TEST ST",
+   "PPClassCode": 511,
+   "PPOwner": "TESTOWNER 57B947",
+   "PPOwnerAddress": "3162 TEST ST",
+   "Parcel": "22-00352.000"
+  },
+  {
+   "OBJECTID": 9,
+   "PPAddress": "4456 TEST ST",
+   "PPClassCode": 111,
+   "PPOwner": "TESTOWNER F9D799",
+   "PPOwnerAddress": "1596 TEST ST",
+   "Parcel": "22-00191.000"
+  },
+  {
+   "OBJECTID": 10,
+   "PPAddress": "8608 TEST ST",
+   "PPClassCode": 511,
+   "PPOwner": "TESTOWNER 9AA86E",
+   "PPOwnerAddress": "4272 TEST ST",
+   "Parcel": "22-00279.001"
+  },
+  {
+   "OBJECTID": 11,
+   "PPAddress": "4999 TEST ST",
+   "PPClassCode": 111,
+   "PPOwner": "TESTOWNER 730F81",
+   "PPOwnerAddress": "813 TEST ST",
+   "Parcel": "22-00181.000"
+  },
+  {
+   "OBJECTID": 12,
+   "PPAddress": "8845 TEST ST",
+   "PPClassCode": 511,
+   "PPOwner": "TESTOWNER EB4A65",
+   "PPOwnerAddress": "8925 TEST ST",
+   "Parcel": "22-00231.002"
+  },
+  {
+   "OBJECTID": 13,
+   "PPAddress": "475 TEST ST",
+   "PPClassCode": 511,
+   "PPOwner": "TESTOWNER 087464",
+   "PPOwnerAddress": "4801 TEST ST",
+   "Parcel": "22-00231.003"
+  },
+  {
+   "OBJECTID": 14,
+   "PPAddress": "6581 TEST ST",
+   "PPClassCode": 113,
+   "PPOwner": "TESTOWNER BFBEF6 LTD",
+   "PPOwnerAddress": "5394 TEST ST",
+   "Parcel": "22-00230.002"
+  },
+  {
+   "OBJECTID": 15,
+   "PPAddress": "5190 TEST ST",
+   "PPClassCode": 511,
+   "PPOwner": "TESTOWNER ED7774",
+   "PPOwnerAddress": "8826 TEST ST",
+   "Parcel": "22-00538.000"
+  },
+  {
+   "OBJECTID": 16,
+   "PPAddress": "3875 TEST ST",
+   "PPClassCode": 511,
+   "PPOwner": "TESTOWNER 79E91B",
+   "PPOwnerAddress": "1577 TEST ST",
+   "Parcel": "22-00794.001"
+  },
+  {
+   "OBJECTID": 17,
+   "PPAddress": "1116 TEST ST",
+   "PPClassCode": 540,
+   "PPOwner": "TESTOWNER 3053C3",
+   "PPOwnerAddress": "2481 TEST ST",
+   "Parcel": "22-00602.003"
+  },
+  {
+   "OBJECTID": 18,
+   "PPAddress": "4797 TEST ST",
+   "PPClassCode": 111,
+   "PPOwner": "TESTOWNER CECC44",
+   "PPOwnerAddress": "3529 TEST ST",
+   "Parcel": "22-00089.000"
+  },
+  {
+   "OBJECTID": 19,
+   "PPAddress": "7966 TEST ST",
+   "PPClassCode": 511,
+   "PPOwner": "TESTOWNER 7F7969 CORP",
+   "PPOwnerAddress": "7624 TEST ST",
+   "Parcel": "22-01314.000"
+  },
+  {
+   "OBJECTID": 20,
+   "PPAddress": "857 TEST ST",
+   "PPClassCode": 511,
+   "PPOwner": "TESTOWNER 89411A",
+   "PPOwnerAddress": "3417 TEST ST",
+   "Parcel": "22-00144.002"
+  },
+  {
+   "OBJECTID": 21,
+   "PPAddress": "1176 TEST ST",
+   "PPClassCode": 511,
+   "PPOwner": "TESTOWNER EBCB5F",
+   "PPOwnerAddress": "874 TEST ST",
+   "Parcel": "22-00144.000"
+  },
+  {
+   "OBJECTID": 22,
+   "PPAddress": "7941 TEST ST",
+   "PPClassCode": 511,
+   "PPOwner": "TESTOWNER EB3745",
+   "PPOwnerAddress": "5336 TEST ST",
+   "Parcel": "22-01005.000"
+  },
+  {
+   "OBJECTID": 23,
+   "PPAddress": "5525 TEST ST",
+   "PPClassCode": 511,
+   "PPOwner": "TESTOWNER E0DF8E",
+   "PPOwnerAddress": "3196 TEST ST",
+   "Parcel": "22-00144.001"
+  },
+  {
+   "OBJECTID": 24,
+   "PPAddress": "5442 TEST ST",
+   "PPClassCode": 118,
+   "PPOwner": "TESTOWNER BEFFB9",
+   "PPOwnerAddress": "7062 TEST ST",
+   "Parcel": "22-00123.001"
+  },
+  {
+   "OBJECTID": 25,
+   "PPAddress": "5569 TEST ST",
+   "PPClassCode": 510,
+   "PPOwner": "TESTOWNER 03EA1E",
+   "PPOwnerAddress": "1415 TEST ST",
+   "Parcel": "22-01313.008"
+  }
+ ],
+ "layer": "https://services6.arcgis.com/WiOy9S7NUTWyXUe4/arcgis/rest/services/WayneCo_Parcels/FeatureServer/0",
+ "where": "1=1"
+}

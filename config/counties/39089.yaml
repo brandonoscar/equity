@@ -1,0 +1,32 @@
+source_id: oh.licking.parcels
+state: OH
+# Licking County (OH) Auditor parcel layer on the county's own ArcGIS Server (83,923 rows on
+# 2026-11-24; OwnerName filled on 82,734; transfers dated up to 2026-11-23): owner, owner mailing
+# address, site address, land use, homestead flag. Ohio's statewide layer has no owner names.
+layer_url: https://gis.lickingcounty.gov/server/rest/services/Auditor/Parcels/MapServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "089"}
+fields:
+  parcel_id: Parcel      # '001-000006-00.000'; null on a few unattributed polygons, which are skipped
+  owner1: OwnerName
+  mail_line1: OwnerAddress
+  mail_city: OwnerCity
+  mail_state: OwnerState
+  mail_zip: OwnerZip
+  situs_line1: SiteAddress   # number and street ('APPLETON RD NW' when there is no number)
+  situs_city: SitePostalCity
+  situs_state: {const: OH}
+  situs_zip: SitePostalZip
+  land_use_code: LUC         # 110
+  land_use_desc: Landuse     # '110: CAUV - Vacant Land'
+  homestead: Homestead       # 'Yes' / 'No'
+extra_pii: [OwnerCareOf, OwnerAttention]
+value_basis: "MarketLandValue / MarketImpValue / MarketTotalValue (market), CAUVLandValue and NetTotalValue are present but the layer has no tax-year field, so no values or tax_year are mapped and no assessment facts are emitted. T1-T3 transfer history (grantor, grantee, date, amount) is not mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=4c2dddc6c8de4274bfc4422e2a702354
+  summary: "Licking County (OH) Auditor parcel MapServer (folder 'Auditor', keywords 'LickingCountyOhio,Auditor,Parcels') on the county's own gis.lickingcounty.gov ArcGIS Server, public, no login, token or fee. The ArcGIS Online item that registers it ('Licking County Parcels', 'Licking County parcels from the Auditor's web service') has no licenseInfo or accessInformation, and the service has no copyright text or use constraint (read 2026-11-24); no resale, redistribution or mailing-list clause found. gis.lickingcounty.gov/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free
