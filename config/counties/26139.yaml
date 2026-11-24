@@ -1,0 +1,30 @@
+source_id: mi.ottawa.parcels
+state: MI
+# Ottawa County (MI) 'Parcel Boundaries & Property Information' public layer (115,317 rows on
+# 2026-11-24, 14,887 of them condo units; OwnerName filled on 115,160; FinalPIN null on 148,
+# which are skipped): owner, owner mailing address, property address.
+layer_url: https://gis.miottawa.org/arcgis/rest/services/HostedServices/ParcelsPublic/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "139"}
+fields:
+  parcel_id: FinalPIN    # '70-14-17-409-003' (the condo unit's PIN for condos; ParentPIN is the parent parcel)
+  owner1: OwnerName
+  mail_line1: MailingAddress
+  mail_city: MailingCity
+  mail_state: MailingState
+  mail_zip: MailingZip
+  situs_line1: PropertyAddress
+  situs_city: PropertyCity
+  situs_state: PropertyState
+  situs_zip: PropertyZip
+  land_use_code: PropertyClass
+  land_use_desc: PropertyClassDescription
+value_basis: "AssessedValue / SEVValue (state equalized value, 50% of true cash value), CappedValue and TaxableValue are present but the layer has no tax-year field, so no values or tax_year are mapped and no assessment facts are emitted. PrincipalResidenceExemption (percent) is not mapped for the same reason."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=2821d458e93e4c95a43279ef6a164172
+  summary: "Ottawa County Geospatial Insights & Solutions item 'Parcel Boundaries & Property Information' (accessInformation 'County of Ottawa, Michigan'), public FeatureServer, no login, token or fee; item modified 2026-05-27. licenseInfo (read 2026-11-24): 'For use in public applications'; no resale, redistribution or mailing-list clause. gis.miottawa.org/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

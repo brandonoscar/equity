@@ -1,0 +1,44 @@
+source_id: mn.metro.parcels
+state: MN
+# Metropolitan Council / MetroGIS 'Metropolitan 7-County Parcels' aggregate (1,143,525 rows on
+# 2026-11-24). Same MN parcel standard and county_pin keys as mn.statewide.parcels; adds Scott
+# owner names (61,872; empty in the statewide layer) and owner mailing lines.
+# OWNER_NAME on 2026-11-24: Anoka 139,178/140,343; Carver 0/48,124; Dakota 148,694/154,327;
+# Hennepin 447,049/447,162; Ramsey 167,800/172,243; Scott 61,872/61,872; Washington 119,435/119,454.
+layer_url: https://arcgis.metc.state.mn.us/data1/rest/services/parcels/Parcels_Aggregate/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county_window: 20000     # each county in 20k-id windows (Hennepin is 447k rows)
+county:
+  field: CO_CODE         # '27053'
+  format: fips5
+fields:
+  parcel_id: COUNTY_PIN   # null on 5,900 polygons with no PIN or owner, which are skipped
+  owner1: OWNER_NAME
+  owner2: OWNER_MORE
+  # Mailing lines differ by county: Anoka puts city/state/ZIP in L2/L3/L4; Dakota, Ramsey and
+  # Washington put 'City ST ZIP' in L3 (L2 is an occasional second street line, not mapped);
+  # Hennepin and Scott leave them empty.
+  mail_line1: OWN_ADD_L1
+  mail_zip: OWN_ADD_L4
+  mail_city_state_zip: OWN_ADD_L3
+  situs_line1: [ANUMBERPRE, ANUMBER, ANUMBERSUF, ST_PRE_MOD, ST_PRE_DIR, ST_PRE_TYP, ST_PRE_SEP,
+                ST_NAME, ST_POS_TYP, ST_POS_DIR, ST_POS_MOD, SUB_TYPE1, SUB_ID1]
+  situs_city: POSTCOMM
+  situs_state: STATE_CODE
+  situs_zip: ZIP
+  land_value: EMV_LAND
+  bldg_value: EMV_BLDG
+  total_value: EMV_TOTAL
+  tax_year: TAX_YEAR
+  homestead: HOMESTEAD
+  land_use_desc: USECLASS1
+extra_pii: [OWN_ADD_L2, TAX_NAME, TAX_ADD_L1, TAX_ADD_L2, TAX_ADD_L3, TAX_ADD_L4]
+value_basis: "EMV_LAND / EMV_BLDG / EMV_TOTAL = county estimated market value per the MN Parcel Data Transfer Standard; TAX_YEAR = taxes-payable year (EMV is for MKT_YEAR). On 2026-11-24 TAX_YEAR is 2026 for Anoka and Ramsey, 2027 for Dakota, Scott and Washington, and null for Hennepin and Carver (no assessment facts there). HOMESTEAD is Yes/No. TAX_NAME/TAX_ADD_* (taxpayer) are kept out as PII."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=57f8e22ad3874d2b8e3445ee9e531b1d
+  summary: "Metropolitan Council (State of Minnesota ArcGIS org) 'Metropolitan 7-County Parcel Polygons - Aggregate', MetroGIS regionally endorsed, updated quarterly; public FeatureServer, no login, token or fee. Item licenseInfo (read 2026-11-24): 'None. This dataset is public domain under the Minnesota Government Data Practices Act (Minnesota Statutes Chapter 13).' Description: 'all 7 metro counties that have made their parcel data freely available without a license or fees'. arcgis.metc.state.mn.us/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

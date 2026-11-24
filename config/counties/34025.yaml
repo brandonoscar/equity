@@ -1,0 +1,31 @@
+source_id: nj.monmouth.parcels
+state: NJ
+# Monmouth County GIS normalized parcels linked to the MOD-IV tax list (265,307 rows on
+# 2026-11-24; Owner_Name filled on 264,516): owner, owner mailing address, property location.
+# The statewide NJ layer (config/states/nj.yaml) has owner names redacted (Daniel's Law); this
+# county layer carries them (1 row has 'REDACT' in Owner_Name; 791 rows have no owner).
+layer_url: https://services1.arcgis.com/PsDtSYIjNsyfjwcX/arcgis/rest/services/Monmouth_County_Parcels/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "025"}
+use_restrictions: [no_redistribution]
+fields:
+  parcel_id: PAMSPIN     # '1301_7_9' (<mun>_<block>_<lot>[_<qual>]), same key as nj.statewide.parcels
+  owner1: Owner_Name
+  mail_line1: Owner_Street
+  mail_city_state_zip: Owner_Csz   # 'ABERDEEN, N J   07747' on 9,310 rows does not parse (no city/state/zip kept)
+  situs_line1: Location
+  situs_city: City
+  situs_state: State
+  situs_zip: Zip
+  land_use_code: Class
+  zoning: Zone
+extra_pii: [User_Field1, StreetView, OPRS_Link]
+value_basis: "Land_Value / Impr_Value / Net_Value (MOD-IV assessed land, improvement and net taxable value, text) are present but the layer has no tax-year field, so no values or tax_year are mapped and no assessment facts are emitted. Sale_Book/Sale_Page/Sale_Price/Sale_Date (last MOD-IV sale) are not mapped. Owner_Name is the MOD-IV owner line (may hold '%' care-of text)."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=bdc70e8a479e4f9aacf44c49da57e852
+  summary: "Monmouth County NJ GIS (org 'Monmouth County NJ GIS', item owner MonmouthNJGIS) public hosted feature service, no login, token or fee; data last edited 2026-11-20. Item licenseInfo points to the county Terms of Use PDF (read 2026-11-24): no-accuracy disclaimer plus 'Proprietary Information - The County hereby reserves all rights thereto, and no portion of these maps may be reproduced in any form or by any means without the express written authorization of the County' (recorded as no_redistribution). NJ Daniel's Law lets covered persons have their home address withheld from disclosure; owner names are present in this layer. services1.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

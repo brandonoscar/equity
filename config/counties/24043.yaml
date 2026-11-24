@@ -1,0 +1,32 @@
+source_id: md.washington.parcels
+state: MD
+# Washington County (MD) parcel polygons joined to SDAT real property data (61,420 rows on
+# 2026-11-24; OwnName1 filled on 61,168): owner names, owner mailing address, deed liber/folio.
+# md.statewide.parcels has no owner names; the key below is the same SDAT account id.
+layer_url: https://services2.arcgis.com/uxxyl33jRTSmjre5/arcgis/rest/services/WASHCMD_AA_view/FeatureServer/42
+order_by: ESRI_OID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "043"}
+# 252 polygons have no SDAT match (CountyCode, owner and account fields null): left out.
+filter: "CountyCode = '22'"
+fields:
+  parcel_id: {join: [CountyCode, TaxAccNo]}   # '22' + '01003739' -> '2201003739' (SDAT ACCTID)
+  owner1: OwnName1
+  owner2: OwnName2
+  mail_line1: OwnAdd1
+  mail_line2: OwnAdd2
+  mail_city: OwnCity
+  mail_state: OwnState
+  mail_zip: OwnZip
+  deed_book: DR1Liber
+  deed_page: DR1Folio
+  land_use_code: LandUseCode
+extra_pii: [SS1GrantName, SS2GrantName, SS3GrantName]
+value_basis: "CurLandVal / CurImpVal / CYAssess / PAYTotAssess (SDAT values) are present but there is no tax-year field (CurDateAssess is the reassessment cycle date, 012024/012025/012026), so no values or tax_year are mapped and no assessment facts are emitted. OwnName2 is the second SDAT owner line: usually a co-owner, sometimes a continuation of an entity name ('BOARD OF'). The premises address is not mapped: PremNum is 0 on 5,968 rows, which would put a false house number on the line."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=4f010ec0f2904920b371ab0b6b4da705
+  summary: "Washington County, Maryland ArcGIS org, item 'WASHCOMD_AA view', public hosted feature view, no login, token or fee; layer 42 'Parcels' data last edited 2026-11-20. Item licenseInfo and accessInformation empty (read 2026-11-24); no use restriction found. services2.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

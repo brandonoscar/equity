@@ -1,0 +1,206 @@
+{
+ "attributes": [
+  {
+   "OBJECTID": 1695832,
+   "ownerAddress": "6879 TEST ST",
+   "ownerName": "TESTOWNER 290B8F LLC",
+   "pid": 107739,
+   "situs": "",
+   "stateCd": "C3"
+  },
+  {
+   "OBJECTID": 1695833,
+   "ownerAddress": "6806 TEST ST",
+   "ownerName": "TESTOWNER 43E6B6",
+   "pid": 375542,
+   "situs": "TESTOWNER 926BFB",
+   "stateCd": "A1"
+  },
+  {
+   "OBJECTID": 1695834,
+   "ownerAddress": "7776 TEST ST",
+   "ownerName": "TESTOWNER 6AF08A LLC",
+   "pid": 46523,
+   "situs": "TESTOWNER BC54A4",
+   "stateCd": "A1"
+  },
+  {
+   "OBJECTID": 1695835,
+   "ownerAddress": "5783 TEST ST",
+   "ownerName": "TESTOWNER B1FC47",
+   "pid": 334880,
+   "situs": "TESTOWNER 68C11D",
+   "stateCd": "A1"
+  },
+  {
+   "OBJECTID": 1695836,
+   "ownerAddress": "7776 TEST ST",
+   "ownerName": "TESTOWNER 6AF08A LLC",
+   "pid": 37268,
+   "situs": "TESTOWNER 71BC23",
+   "stateCd": "A1"
+  },
+  {
+   "OBJECTID": 1695837,
+   "ownerAddress": "2326 TEST ST",
+   "ownerName": "TESTOWNER 6B7D5C",
+   "pid": 46550,
+   "situs": "TESTOWNER 28A7A6",
+   "stateCd": "A1"
+  },
+  {
+   "OBJECTID": 1695838,
+   "ownerAddress": "7776 TEST ST",
+   "ownerName": "TESTOWNER 6AF08A LLC",
+   "pid": 46524,
+   "situs": "",
+   "stateCd": "C1"
+  },
+  {
+   "OBJECTID": 1695839,
+   "ownerAddress": "6809 TEST ST",
+   "ownerName": "TESTOWNER 22DC59",
+   "pid": 334855,
+   "situs": "TESTOWNER 33E350",
+   "stateCd": "A1"
+  },
+  {
+   "OBJECTID": 1695840,
+   "ownerAddress": "2326 TEST ST",
+   "ownerName": "TESTOWNER 6B7D5C",
+   "pid": 46528,
+   "situs": "TESTOWNER 4A22C2",
+   "stateCd": "A1"
+  },
+  {
+   "OBJECTID": 1695841,
+   "ownerAddress": "6818 TEST ST",
+   "ownerName": "TESTOWNER 1AB1C4 INC",
+   "pid": 429187,
+   "situs": "TESTOWNER 8F59B0",
+   "stateCd": "F1"
+  },
+  {
+   "OBJECTID": 1695842,
+   "ownerAddress": "3020 TEST ST",
+   "ownerName": "TESTOWNER E51FCC LLC",
+   "pid": 46536,
+   "situs": "",
+   "stateCd": "C1"
+  },
+  {
+   "OBJECTID": 1695843,
+   "ownerAddress": "573 TEST ST",
+   "ownerName": "TESTOWNER 876820",
+   "pid": 334852,
+   "situs": "TESTOWNER 61618F",
+   "stateCd": "A1"
+  },
+  {
+   "OBJECTID": 1695844,
+   "ownerAddress": "987 TEST ST",
+   "ownerName": "TESTOWNER 4872CF LLC",
+   "pid": 107738,
+   "situs": "TESTOWNER 7B601C",
+   "stateCd": "F1"
+  },
+  {
+   "OBJECTID": 1695845,
+   "ownerAddress": "5939 TEST ST",
+   "ownerName": "TESTOWNER 3722FB",
+   "pid": 249233,
+   "situs": "TESTOWNER 4C6C50",
+   "stateCd": "A1"
+  },
+  {
+   "OBJECTID": 1695846,
+   "ownerAddress": "4876 TEST ST",
+   "ownerName": "TESTOWNER A651B8",
+   "pid": 375538,
+   "situs": "TESTOWNER 94FD63",
+   "stateCd": "A1"
+  },
+  {
+   "OBJECTID": 1695847,
+   "ownerAddress": "4096 TEST ST",
+   "ownerName": "TESTOWNER 32C857",
+   "pid": 375533,
+   "situs": "TESTOWNER 978F71",
+   "stateCd": "A1"
+  },
+  {
+   "OBJECTID": 1695848,
+   "ownerAddress": "691 TEST ST",
+   "ownerName": "TESTOWNER F632A1",
+   "pid": 375513,
+   "situs": "TESTOWNER 4BF595",
+   "stateCd": "A1"
+  },
+  {
+   "OBJECTID": 1695849,
+   "ownerAddress": "5011 TEST ST",
+   "ownerName": "TESTOWNER C6394C",
+   "pid": 334842,
+   "situs": "TESTOWNER C44410",
+   "stateCd": "A1"
+  },
+  {
+   "OBJECTID": 1695850,
+   "ownerAddress": "4977 TEST ST",
+   "ownerName": "TESTOWNER 922D3B",
+   "pid": 334949,
+   "situs": "TESTOWNER 2DB26B",
+   "stateCd": "A1"
+  },
+  {
+   "OBJECTID": 1695851,
+   "ownerAddress": "3845 TEST ST",
+   "ownerName": "TESTOWNER D9BA97 LLC",
+   "pid": 334913,
+   "situs": "TESTOWNER 5663FC",
+   "stateCd": "A1"
+  },
+  {
+   "OBJECTID": 1695852,
+   "ownerAddress": "4693 TEST ST",
+   "ownerName": "TESTOWNER CB8491",
+   "pid": 334908,
+   "situs": "TESTOWNER ACB3E4",
+   "stateCd": "A1"
+  },
+  {
+   "OBJECTID": 1695853,
+   "ownerAddress": "1071 TEST ST",
+   "ownerName": "TESTOWNER DC2969",
+   "pid": 334900,
+   "situs": "TESTOWNER 3214B8",
+   "stateCd": "A1"
+  },
+  {
+   "OBJECTID": 1695854,
+   "ownerAddress": "1988 TEST ST",
+   "ownerName": "TESTOWNER EC2D92",
+   "pid": 334930,
+   "situs": "TESTOWNER D8DECD",
+   "stateCd": "A1"
+  },
+  {
+   "OBJECTID": 1695855,
+   "ownerAddress": "7764 TEST ST",
+   "ownerName": "TESTOWNER 4B5DB6",
+   "pid": 334876,
+   "situs": "TESTOWNER 351824",
+   "stateCd": "A1"
+  },
+  {
+   "OBJECTID": 1695856,
+   "ownerAddress": "5697 TEST ST",
+   "ownerName": "TESTOWNER AD070E",
+   "pid": 375541,
+   "situs": "TESTOWNER 29C822",
+   "stateCd": "A1"
+  }
+ ],
+ "layer": "https://services1.arcgis.com/PRoAPGnMSUqvTrzq/arcgis/rest/services/Tax_Parcel_view/FeatureServer/0",
+ "where": "1=1"
+}
