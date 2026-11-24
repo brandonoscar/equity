@@ -31,6 +31,7 @@ from equity.adapters.hi.honolulu_owners import HonoluluOwners
 from equity.adapters.il.cook_parcels import CookCountyParcels
 from equity.adapters.liens import all_lien_adapters
 from equity.adapters.md_baltimore_citations import BaltimoreCitationLiens
+from equity.adapters.md_prince_georges import PrinceGeorgesProperty
 from equity.adapters.ne_douglas_tax_liens import DouglasTaxLiens
 from equity.adapters.ny.acris import AcrisPersonalProperty, AcrisRealProperty
 from equity.adapters.ny.condo_units import NycCondoUnits
@@ -90,6 +91,7 @@ _ALL: tuple[type[Adapter], ...] = (
     FederalRegisterRealty,
     SBAChargeOffs,
     SBAPPPChargeOffs,
+    PrinceGeorgesProperty,
     NYNameHistory,
     HarrisJPCivilJudgments,
     HarrisDistrictCivilJudgments,
