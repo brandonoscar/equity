@@ -64,6 +64,8 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
+import re
 import sys
 from pathlib import Path
 from typing import Any
@@ -76,6 +78,18 @@ from equity.config import CONFIG_DIR
 LAKE = Path("data/lake")
 DERIVED = Path("data/derived")
 TEMP_LIMIT = "30GB"
+
+
+def memory_limit() -> str | None:
+    """EQUITY_MEMORY_LIMIT ('6GB', '512MB'), validated; None leaves DuckDB's default."""
+    raw = os.environ.get("EQUITY_MEMORY_LIMIT", "").strip().upper()
+    if not raw:
+        return None
+    if not re.fullmatch(r"[0-9]+(\.[0-9]+)?\s*(KB|MB|GB|TB)", raw):
+        raise ValueError(f"EQUITY_MEMORY_LIMIT must look like '6GB', not {raw!r}")
+    return raw.replace(" ", "")
+
+
 DEBT_KINDS = CONFIG_DIR / "debt_kinds.yaml"
 
 
@@ -193,6 +207,11 @@ def connect(
     # Large runs (NY: ~5M debtors x ~5M owners) spill to disk; cap it so a run fails cleanly
     # instead of filling the machine's disk.
     con.execute(f"SET max_temp_directory_size = '{TEMP_LIMIT}'")
+    # DuckDB takes 80% of the machine's memory by default; a container shared with other jobs
+    # is killed by the kernel first. EQUITY_MEMORY_LIMIT (e.g. '6GB') caps it so it spills.
+    limit = memory_limit()
+    if limit:
+        con.execute(f"SET memory_limit = '{limit}'")
     # Only these instrument types count as debts (e.g. liens but not UCC financing statements).
     doc_filter = doc_type_filter(debtor_doc_types)
     stop = ", ".join(f"'{w}'" for w in STOP)
