@@ -1,0 +1,231 @@
+{
+ "attributes": [
+  {
+   "HOMESTEAD": "Yes",
+   "LUC": "Residential 1 Family (101)",
+   "OBJECTID": 1,
+   "OWNER": "TESTOWNER 0419FC",
+   "PID": "9001101",
+   "SITUS": "TESTOWNER CA77B8",
+   "SITUS_ZIP": null
+  },
+  {
+   "HOMESTEAD": "No",
+   "LUC": "Residential 1 Family (101)",
+   "OBJECTID": 2,
+   "OWNER": "TESTOWNER 857298",
+   "PID": "9000857",
+   "SITUS": "TESTOWNER D721DD",
+   "SITUS_ZIP": "17025"
+  },
+  {
+   "HOMESTEAD": "Yes",
+   "LUC": "Residential 1 Family (101)",
+   "OBJECTID": 3,
+   "OWNER": "TESTOWNER 587060",
+   "PID": "505956",
+   "SITUS": "TESTOWNER 6CAD37",
+   "SITUS_ZIP": "17025"
+  },
+  {
+   "HOMESTEAD": "Yes",
+   "LUC": "Residential 1 Family (101)",
+   "OBJECTID": 4,
+   "OWNER": "TESTOWNER 2FE978",
+   "PID": "9000962",
+   "SITUS": "TESTOWNER 1E1ED9",
+   "SITUS_ZIP": "17025"
+  },
+  {
+   "HOMESTEAD": "No",
+   "LUC": "Residential 1 Family (101)",
+   "OBJECTID": 5,
+   "OWNER": "TESTOWNER 2E7238",
+   "PID": "516660",
+   "SITUS": "TESTOWNER D6EAD3",
+   "SITUS_ZIP": "17025"
+  },
+  {
+   "HOMESTEAD": "Yes",
+   "LUC": "Residential 1 Family (101)",
+   "OBJECTID": 6,
+   "OWNER": "TESTOWNER E6954D",
+   "PID": "505959",
+   "SITUS": "TESTOWNER 9E9975",
+   "SITUS_ZIP": "17025"
+  },
+  {
+   "HOMESTEAD": "No",
+   "LUC": "Condominium (Fee Simple) (107)",
+   "OBJECTID": 7,
+   "OWNER": "TESTOWNER 5C32EB",
+   "PID": "9001676",
+   "SITUS": "TESTOWNER 9CE275",
+   "SITUS_ZIP": "17025"
+  },
+  {
+   "HOMESTEAD": "No",
+   "LUC": "Residential 3 Family (103)",
+   "OBJECTID": 8,
+   "OWNER": "TESTOWNER 073559",
+   "PID": "502794",
+   "SITUS": "TESTOWNER 3CA2B1",
+   "SITUS_ZIP": null
+  },
+  {
+   "HOMESTEAD": "Yes",
+   "LUC": "Residential 1 Family (101)",
+   "OBJECTID": 9,
+   "OWNER": "TESTOWNER 0D5012",
+   "PID": "9001075",
+   "SITUS": "TESTOWNER DCF795",
+   "SITUS_ZIP": "17025"
+  },
+  {
+   "HOMESTEAD": "No",
+   "LUC": "Railroad (705)",
+   "OBJECTID": 10,
+   "OWNER": "TESTOWNER 412C88 CORP",
+   "PID": "60063550",
+   "SITUS": "TESTOWNER 5D9728",
+   "SITUS_ZIP": "17053"
+  },
+  {
+   "HOMESTEAD": "Yes",
+   "LUC": "Residential 1 Family (101)",
+   "OBJECTID": 11,
+   "OWNER": "TESTOWNER 269DDA",
+   "PID": "9001074",
+   "SITUS": "TESTOWNER B804F8",
+   "SITUS_ZIP": "17093"
+  },
+  {
+   "HOMESTEAD": "Yes",
+   "LUC": "Residential 1 Family (101)",
+   "OBJECTID": 12,
+   "OWNER": "TESTOWNER A0D951",
+   "PID": "9000267",
+   "SITUS": "TESTOWNER D301EA",
+   "SITUS_ZIP": "17025"
+  },
+  {
+   "HOMESTEAD": "Yes",
+   "LUC": "Residential 1 Family (101)",
+   "OBJECTID": 13,
+   "OWNER": "TESTOWNER B403AD",
+   "PID": "9001073",
+   "SITUS": "TESTOWNER BC9428",
+   "SITUS_ZIP": "17093"
+  },
+  {
+   "HOMESTEAD": "Yes",
+   "LUC": "Residential 1 Family (101)",
+   "OBJECTID": 14,
+   "OWNER": "TESTOWNER DAEE06",
+   "PID": "9000946",
+   "SITUS": "TESTOWNER 532915",
+   "SITUS_ZIP": null
+  },
+  {
+   "HOMESTEAD": "Yes",
+   "LUC": "Residential 1 Family (101)",
+   "OBJECTID": 15,
+   "OWNER": "TESTOWNER 227723",
+   "PID": "514648",
+   "SITUS": "TESTOWNER C72027",
+   "SITUS_ZIP": "17025"
+  },
+  {
+   "HOMESTEAD": "No",
+   "LUC": "Residential 1 Family (101)",
+   "OBJECTID": 16,
+   "OWNER": "TESTOWNER 0C3755",
+   "PID": "9001072",
+   "SITUS": "TESTOWNER BE9476",
+   "SITUS_ZIP": "17093"
+  },
+  {
+   "HOMESTEAD": "Yes",
+   "LUC": "Residential 1 Family (101)",
+   "OBJECTID": 17,
+   "OWNER": "TESTOWNER 398AA8",
+   "PID": "9000964",
+   "SITUS": "TESTOWNER 5275C9",
+   "SITUS_ZIP": "17025"
+  },
+  {
+   "HOMESTEAD": "No",
+   "LUC": "Residential 1 Family (101)",
+   "OBJECTID": 18,
+   "OWNER": "TESTOWNER 0F8951",
+   "PID": "9006364",
+   "SITUS": "TESTOWNER A0CEE7",
+   "SITUS_ZIP": "17025"
+  },
+  {
+   "HOMESTEAD": "Yes",
+   "LUC": "Residential 1 Family (101)",
+   "OBJECTID": 19,
+   "OWNER": "TESTOWNER 7E2785",
+   "PID": "9001019",
+   "SITUS": "TESTOWNER CE829C",
+   "SITUS_ZIP": null
+  },
+  {
+   "HOMESTEAD": "No",
+   "LUC": "Residential 2 Family (102)",
+   "OBJECTID": 20,
+   "OWNER": "TESTOWNER 5C61A0",
+   "PID": "9001069",
+   "SITUS": "TESTOWNER 187A14",
+   "SITUS_ZIP": "17025"
+  },
+  {
+   "HOMESTEAD": "Yes",
+   "LUC": "Residential 2 Family (102)",
+   "OBJECTID": 21,
+   "OWNER": "TESTOWNER 28A677",
+   "PID": "9001070",
+   "SITUS": "TESTOWNER F5BC60",
+   "SITUS_ZIP": null
+  },
+  {
+   "HOMESTEAD": "Yes",
+   "LUC": "Residential 1 Family (101)",
+   "OBJECTID": 22,
+   "OWNER": "TESTOWNER 3A8E88",
+   "PID": "9000279",
+   "SITUS": "TESTOWNER 318D90",
+   "SITUS_ZIP": "17025"
+  },
+  {
+   "HOMESTEAD": "No",
+   "LUC": "Residential 1 Family (101)",
+   "OBJECTID": 23,
+   "OWNER": "TESTOWNER 8C291A LLC",
+   "PID": "9001071",
+   "SITUS": "TESTOWNER 44651F",
+   "SITUS_ZIP": "17025"
+  },
+  {
+   "HOMESTEAD": "Yes",
+   "LUC": "Residential 1 Family (101)",
+   "OBJECTID": 24,
+   "OWNER": "TESTOWNER E7645E",
+   "PID": "507350",
+   "SITUS": "TESTOWNER 93C590",
+   "SITUS_ZIP": "17025"
+  },
+  {
+   "HOMESTEAD": "Yes",
+   "LUC": "Residential 1 Family (101)",
+   "OBJECTID": 25,
+   "OWNER": "TESTOWNER 875953",
+   "PID": "505957",
+   "SITUS": "TESTOWNER C9E544",
+   "SITUS_ZIP": "17025"
+  }
+ ],
+ "layer": "https://services1.arcgis.com/1Cfo0re3un0w6a30/arcgis/rest/services/Tax_Parcels/FeatureServer/0",
+ "where": "1=1"
+}

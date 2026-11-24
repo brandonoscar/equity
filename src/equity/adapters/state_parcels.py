@@ -243,7 +243,9 @@ class StateConfig:
         mapped = {m for c in PII_CANONICAL if (m := self.source_field(c))}
         for c in PII_CANONICAL:
             spec = self.fields.get(c)
-            if isinstance(spec, dict) and "join" in spec:
+            if isinstance(spec, list):  # several columns joined, e.g. [PropAddr1, PropAddr2]
+                mapped |= {str(x) for x in spec}
+            elif isinstance(spec, dict) and "join" in spec:
                 mapped |= {str(x) for x in spec["join"]}
         return tuple(sorted(mapped | set(self.extra_pii)))
 

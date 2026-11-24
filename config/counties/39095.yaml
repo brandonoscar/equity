@@ -1,0 +1,25 @@
+source_id: oh.lucas.parcels
+state: OH
+# Lucas County Auditor cadastre (tax map) parcels joined weekly to the Auditor's owner/address/
+# land-use/zoning view (204,349 rows on 2026-11-24; owner filled on 204,332; parid null on 17,
+# which are skipped): owner, owner mailing address, property address, land use, zoning.
+# Ohio's statewide layer (config/states/oh.yaml) is not installed and has no owner names.
+layer_url: https://services3.arcgis.com/T8dczfwPixv79EgZ/arcgis/rest/services/Parcels_General_Land_Use_Classification_view/FeatureServer/0
+order_by: objectid
+page_size: 1000          # maxRecordCount 1000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "095"}
+fields:
+  parcel_id: parid       # '1899335' (Auditor parcel id); assessor_num/alt_id is the area-block-lot '01001002'
+  owner1: owner
+  mail_full: mailing_address     # '650 W PEACHTREE SQ NW, ATLANTA GA 30308-1925': one comma, so the adapter keeps it whole as the street line
+  situs_full: property_address   # '1456 SUMMIT ST, TOLEDO OH 43604': kept whole the same way
+  land_use_code: luc
+  zoning: zoning
+value_basis: "The layer has no value fields; no assessment facts are emitted. taxyr (2026 on the sampled rows) is the CAMA roll year and is not mapped without values. luc is the Ohio land use code (OAC 5703-25-10); zoning is the county's zoning view and may lag the townships."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=4345e65763ee4131836f3ee79f67b65b
+  summary: "Lucas County Auditor ArcGIS org (item owner JasonClay, accessInformation 'Lucas County Auditor's Office, GIS Department') hosted feature view 'Parcels General Land Use Classification view', public, no login, token or fee; description: joined to the Auditor's view table 'each week ... typically updated every Monday'; data last edited 2026-11-16. licenseInfo (read 2026-11-24): disclaimer only (not for conveyances or a legal survey, no warranty, user holds the County harmless); no resale, redistribution or mailing-list clause. services3.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

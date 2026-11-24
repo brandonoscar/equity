@@ -1,0 +1,24 @@
+source_id: az.graham.parcels
+state: AZ
+# ADWR's ArcGIS Online copy of the per-county parcel layers (Graham County Assessor data;
+# 18,821 rows on 2026-11-24, OWNER_NAME filled on 18,821). Owner name and site address only:
+# no mailing address and no value fields.
+# SITE_CITY is not mapped: besides Safford/Thatcher/Pima it holds the placeholder 'County'.
+layer_url: https://services.arcgis.com/C34zQ7veRS0V1t04/arcgis/rest/services/Parcels/FeatureServer/4
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "009"}
+use_restrictions: [no_redistribution]
+fields:
+  parcel_id: APN         # never null or empty on 2026-11-24
+  owner1: OWNER_NAME
+  situs_line1: SITE_ADDRESS
+  situs_zip: SITE_ZIP
+value_basis: "No value fields in this layer (OBJECTID, ID, COUNTY, APN, BOOK, MAP, PARCEL, SUFFIX, SITE_ADDRESS, SITE_CITY, SITE_ZIP, OWNER_NAME, URL, ACRES_US)."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=c33b63281f80430f89db6f3401154674
+  summary: "Arizona Department of Water Resources (state agency) ArcGIS Online item 'Parcels' (owner gis_svc, org azwater), layer 4 'Graham', public hosted feature service, no login, token or fee; data last edited 2026-04-21, item modified 2026-08-20. Same item and terms as az.cochise.parcels: ADWR Data Disclaimer licenseInfo (data 'as is', ADWR and the State retain any intellectual property interest, and 'The Department requests that persons receiving and using this information not make it available to others for their re-use', recorded as no_redistribution). Nothing forbids automated access. services.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

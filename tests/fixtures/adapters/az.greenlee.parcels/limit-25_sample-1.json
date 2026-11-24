@@ -1,0 +1,156 @@
+{
+ "attributes": [
+  {
+   "APN": "30082017",
+   "OBJECTID": 1,
+   "OWNER_NAME": "TESTOWNER C9CB7C",
+   "SITE_ADDRESS": " "
+  },
+  {
+   "APN": "30082034",
+   "OBJECTID": 2,
+   "OWNER_NAME": "TESTOWNER FE5611",
+   "SITE_ADDRESS": "8134 TEST ST"
+  },
+  {
+   "APN": "30082071",
+   "OBJECTID": 3,
+   "OWNER_NAME": "TESTOWNER 9638AB",
+   "SITE_ADDRESS": " "
+  },
+  {
+   "APN": "30082024",
+   "OBJECTID": 4,
+   "OWNER_NAME": "TESTOWNER 4EC774",
+   "SITE_ADDRESS": "3435 TEST ST"
+  },
+  {
+   "APN": "30082073",
+   "OBJECTID": 5,
+   "OWNER_NAME": "TESTOWNER 5352D9",
+   "SITE_ADDRESS": "3537 TEST ST"
+  },
+  {
+   "APN": "30082023",
+   "OBJECTID": 6,
+   "OWNER_NAME": "TESTOWNER 4DDAA7",
+   "SITE_ADDRESS": " "
+  },
+  {
+   "APN": "30092027",
+   "OBJECTID": 7,
+   "OWNER_NAME": "TESTOWNER 0AE662",
+   "SITE_ADDRESS": " "
+  },
+  {
+   "APN": "30082010",
+   "OBJECTID": 8,
+   "OWNER_NAME": "TESTOWNER 653BD7",
+   "SITE_ADDRESS": " "
+  },
+  {
+   "APN": "30082072",
+   "OBJECTID": 9,
+   "OWNER_NAME": "TESTOWNER C96308",
+   "SITE_ADDRESS": " "
+  },
+  {
+   "APN": "30091033",
+   "OBJECTID": 10,
+   "OWNER_NAME": "TESTOWNER FECA30",
+   "SITE_ADDRESS": " "
+  },
+  {
+   "APN": "30082018",
+   "OBJECTID": 11,
+   "OWNER_NAME": "TESTOWNER A624F2",
+   "SITE_ADDRESS": "3411 TEST ST"
+  },
+  {
+   "APN": "30083120",
+   "OBJECTID": 12,
+   "OWNER_NAME": "TESTOWNER 3B208F",
+   "SITE_ADDRESS": "8427 TEST ST"
+  },
+  {
+   "APN": "30083021",
+   "OBJECTID": 13,
+   "OWNER_NAME": "TESTOWNER F3D9BB",
+   "SITE_ADDRESS": " "
+  },
+  {
+   "APN": "30083008",
+   "OBJECTID": 14,
+   "OWNER_NAME": "TESTOWNER 13D83C",
+   "SITE_ADDRESS": "7518 TEST ST"
+  },
+  {
+   "APN": "30083024",
+   "OBJECTID": 15,
+   "OWNER_NAME": "TESTOWNER 5352D9",
+   "SITE_ADDRESS": " "
+  },
+  {
+   "APN": "30083003",
+   "OBJECTID": 16,
+   "OWNER_NAME": "TESTOWNER 32E98D",
+   "SITE_ADDRESS": " "
+  },
+  {
+   "APN": "30083125",
+   "OBJECTID": 17,
+   "OWNER_NAME": "TESTOWNER 166103",
+   "SITE_ADDRESS": " "
+  },
+  {
+   "APN": "30083020",
+   "OBJECTID": 18,
+   "OWNER_NAME": "TESTOWNER F3D9BB",
+   "SITE_ADDRESS": " "
+  },
+  {
+   "APN": "30083023",
+   "OBJECTID": 19,
+   "OWNER_NAME": "TESTOWNER F3D9BB",
+   "SITE_ADDRESS": " "
+  },
+  {
+   "APN": "30083004",
+   "OBJECTID": 20,
+   "OWNER_NAME": "TESTOWNER DB5707",
+   "SITE_ADDRESS": "3825 TEST ST"
+  },
+  {
+   "APN": "30086039",
+   "OBJECTID": 21,
+   "OWNER_NAME": "TESTOWNER 75B4C3",
+   "SITE_ADDRESS": " "
+  },
+  {
+   "APN": "30086040",
+   "OBJECTID": 22,
+   "OWNER_NAME": "TESTOWNER 75B4C3",
+   "SITE_ADDRESS": " "
+  },
+  {
+   "APN": "30086041",
+   "OBJECTID": 23,
+   "OWNER_NAME": "TESTOWNER B824D0",
+   "SITE_ADDRESS": " "
+  },
+  {
+   "APN": "30083126",
+   "OBJECTID": 24,
+   "OWNER_NAME": "TESTOWNER 166103",
+   "SITE_ADDRESS": "3065 TEST ST"
+  },
+  {
+   "APN": "30083022",
+   "OBJECTID": 25,
+   "OWNER_NAME": "TESTOWNER F3D9BB",
+   "SITE_ADDRESS": " "
+  }
+ ],
+ "layer": "https://services.arcgis.com/C34zQ7veRS0V1t04/arcgis/rest/services/Parcels/FeatureServer/5",
+ "where": "1=1"
+}

@@ -1,0 +1,256 @@
+{
+ "attributes": [
+  {
+   "LUC": "NLN",
+   "LUCDescription": null,
+   "OBJECTID": 1,
+   "Owner1": "TESTOWNER BD34FA",
+   "Owner2": " ",
+   "ParcelID": "0019-00-009.13",
+   "StreetName": "TESTOWNER A508E8",
+   "StreetNum": " "
+  },
+  {
+   "LUC": "NMH",
+   "LUCDescription": null,
+   "OBJECTID": 2,
+   "Owner1": "TESTOWNER 3A7755",
+   "Owner2": " ",
+   "ParcelID": "0002-00-007.00",
+   "StreetName": "TESTOWNER 528DDE",
+   "StreetNum": "TESTOWNER 77CF16"
+  },
+  {
+   "LUC": "NMH",
+   "LUCDescription": null,
+   "OBJECTID": 3,
+   "Owner1": "TESTOWNER 1B0F39",
+   "Owner2": "TESTOWNER 193A2E",
+   "ParcelID": "0002-00-016.00",
+   "StreetName": "TESTOWNER ED5427",
+   "StreetNum": "TESTOWNER D33E55"
+  },
+  {
+   "LUC": "QR",
+   "LUCDescription": null,
+   "OBJECTID": 4,
+   "Owner1": "TESTOWNER 6F82D2",
+   "Owner2": " ",
+   "ParcelID": "0002N-0A-024.00",
+   "StreetName": "TESTOWNER 9351AA",
+   "StreetNum": "TESTOWNER B32B56"
+  },
+  {
+   "LUC": "NRN",
+   "LUCDescription": null,
+   "OBJECTID": 5,
+   "Owner1": "TESTOWNER B2B7B2",
+   "Owner2": "TESTOWNER 648893",
+   "ParcelID": "0002N-0A-010.00",
+   "StreetName": "TESTOWNER 9351AA",
+   "StreetNum": "TESTOWNER 4F753C"
+  },
+  {
+   "LUC": "QR",
+   "LUCDescription": null,
+   "OBJECTID": 6,
+   "Owner1": "TESTOWNER D0E643",
+   "Owner2": " ",
+   "ParcelID": "0002-00-022.03",
+   "StreetName": "TESTOWNER 9547C2",
+   "StreetNum": "TESTOWNER E3C6C8"
+  },
+  {
+   "LUC": "NRN",
+   "LUCDescription": null,
+   "OBJECTID": 7,
+   "Owner1": "TESTOWNER 84E0E8",
+   "Owner2": " ",
+   "ParcelID": "0002N-0A-005.00",
+   "StreetName": "TESTOWNER 9351AA",
+   "StreetNum": "TESTOWNER 5C1287"
+  },
+  {
+   "LUC": "NRN",
+   "LUCDescription": null,
+   "OBJECTID": 8,
+   "Owner1": "TESTOWNER AC4B61",
+   "Owner2": " ",
+   "ParcelID": "0002-00-019.01",
+   "StreetName": "TESTOWNER 78B853",
+   "StreetNum": "TESTOWNER 2A4C38"
+  },
+  {
+   "LUC": "QR",
+   "LUCDescription": null,
+   "OBJECTID": 9,
+   "Owner1": "TESTOWNER 6FF3E1",
+   "Owner2": "TESTOWNER 5E3389",
+   "ParcelID": "0003C-0A-019.00",
+   "StreetName": "TESTOWNER DFFCB2",
+   "StreetNum": "TESTOWNER F4B868"
+  },
+  {
+   "LUC": "QR",
+   "LUCDescription": null,
+   "OBJECTID": 10,
+   "Owner1": "TESTOWNER CB196A",
+   "Owner2": " ",
+   "ParcelID": "0003C-0A-017.00",
+   "StreetName": "TESTOWNER DFFCB2",
+   "StreetNum": "TESTOWNER F52429"
+  },
+  {
+   "LUC": "QR",
+   "LUCDescription": null,
+   "OBJECTID": 11,
+   "Owner1": "TESTOWNER 0BC74E",
+   "Owner2": " ",
+   "ParcelID": "0003C-0A-027.00",
+   "StreetName": "TESTOWNER DFFCB2",
+   "StreetNum": "TESTOWNER 4FBD9F"
+  },
+  {
+   "LUC": "QR",
+   "LUCDescription": null,
+   "OBJECTID": 12,
+   "Owner1": "TESTOWNER B87DAE",
+   "Owner2": "TESTOWNER 598E09",
+   "ParcelID": "0003-00-049.10",
+   "StreetName": "TESTOWNER C3CD84",
+   "StreetNum": "TESTOWNER D0C60B"
+  },
+  {
+   "LUC": "NRN",
+   "LUCDescription": null,
+   "OBJECTID": 13,
+   "Owner1": "TESTOWNER 28DD06",
+   "Owner2": " ",
+   "ParcelID": "0006F-0A-011.00",
+   "StreetName": "TESTOWNER 4CB807",
+   "StreetNum": "TESTOWNER A61E94"
+  },
+  {
+   "LUC": "QR",
+   "LUCDescription": null,
+   "OBJECTID": 14,
+   "Owner1": "TESTOWNER 717A48",
+   "Owner2": " ",
+   "ParcelID": "0006-00-051.02",
+   "StreetName": "TESTOWNER 62D969",
+   "StreetNum": "TESTOWNER 9CA079"
+  },
+  {
+   "LUC": "QR",
+   "LUCDescription": null,
+   "OBJECTID": 15,
+   "Owner1": "TESTOWNER EB9DC5",
+   "Owner2": " ",
+   "ParcelID": "0008G-0C-019.00",
+   "StreetName": "TESTOWNER F5AE47",
+   "StreetNum": "TESTOWNER A130CF"
+  },
+  {
+   "LUC": "QR",
+   "LUCDescription": null,
+   "OBJECTID": 16,
+   "Owner1": "TESTOWNER 46BA39",
+   "Owner2": " ",
+   "ParcelID": "0008G-0C-009.00",
+   "StreetName": "TESTOWNER 745090",
+   "StreetNum": "TESTOWNER 7390AE"
+  },
+  {
+   "LUC": "QR",
+   "LUCDescription": null,
+   "OBJECTID": 17,
+   "Owner1": "TESTOWNER 0CD7C3",
+   "Owner2": " ",
+   "ParcelID": "0007N-0A-021.00",
+   "StreetName": "TESTOWNER DF121F",
+   "StreetNum": "TESTOWNER 7DD9EE"
+  },
+  {
+   "LUC": "QMH",
+   "LUCDescription": null,
+   "OBJECTID": 18,
+   "Owner1": "TESTOWNER B1B325",
+   "Owner2": " ",
+   "ParcelID": "0013-00-008.19",
+   "StreetName": "TESTOWNER 98E96D",
+   "StreetNum": "TESTOWNER 272522"
+  },
+  {
+   "LUC": "QMH",
+   "LUCDescription": null,
+   "OBJECTID": 19,
+   "Owner1": "TESTOWNER 71E685",
+   "Owner2": " ",
+   "ParcelID": "0013-00-008.20",
+   "StreetName": "TESTOWNER 526123",
+   "StreetNum": " "
+  },
+  {
+   "LUC": "EX",
+   "LUCDescription": null,
+   "OBJECTID": 20,
+   "Owner1": "TESTOWNER 8D55E1",
+   "Owner2": " ",
+   "ParcelID": "0013-00-043.02",
+   "StreetName": "TESTOWNER DAF968",
+   "StreetNum": "TESTOWNER 17E6DD"
+  },
+  {
+   "LUC": "QR",
+   "LUCDescription": null,
+   "OBJECTID": 21,
+   "Owner1": "TESTOWNER 5928A7",
+   "Owner2": " ",
+   "ParcelID": "0014-00-011.02",
+   "StreetName": "TESTOWNER B54F1C",
+   "StreetNum": "TESTOWNER 0AAFB6"
+  },
+  {
+   "LUC": "QR",
+   "LUCDescription": null,
+   "OBJECTID": 22,
+   "Owner1": "TESTOWNER D6D717",
+   "Owner2": " ",
+   "ParcelID": "0003C-0A-012.00",
+   "StreetName": "TESTOWNER DFFCB2",
+   "StreetNum": "TESTOWNER F707D3"
+  },
+  {
+   "LUC": "QR",
+   "LUCDescription": null,
+   "OBJECTID": 23,
+   "Owner1": "TESTOWNER E2AE58",
+   "Owner2": "TESTOWNER FE36E7",
+   "ParcelID": "0003C-0A-028.00",
+   "StreetName": "TESTOWNER DFFCB2",
+   "StreetNum": "TESTOWNER 38529D"
+  },
+  {
+   "LUC": "QR",
+   "LUCDescription": null,
+   "OBJECTID": 24,
+   "Owner1": "TESTOWNER 0202D9",
+   "Owner2": " ",
+   "ParcelID": "0003C-0A-036.00",
+   "StreetName": "TESTOWNER DFFCB2",
+   "StreetNum": "TESTOWNER 8CB90C"
+  },
+  {
+   "LUC": "QR",
+   "LUCDescription": null,
+   "OBJECTID": 25,
+   "Owner1": "TESTOWNER BD02AE",
+   "Owner2": " ",
+   "ParcelID": "0003-00-049.03",
+   "StreetName": "TESTOWNER C3CD84",
+   "StreetNum": "TESTOWNER C2FB0C"
+  }
+ ],
+ "layer": "https://services3.arcgis.com/rJcpRneDUBgTeCT3/arcgis/rest/services/SDE_County_Parcels_Patriot_View/FeatureServer/0",
+ "where": "1=1"
+}

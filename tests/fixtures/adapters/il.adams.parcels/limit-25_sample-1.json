@@ -1,0 +1,256 @@
+{
+ "attributes": [
+  {
+   "OBJECTID": 156426,
+   "OwnerAddress": "6783 TEST ST",
+   "OwnerAddress2": "",
+   "OwnerCSZ": "CARTHAGE IL 623211548",
+   "OwnerName": "TESTOWNER 74C090",
+   "PIN": "010000100000",
+   "SiteAddress": "",
+   "UseCode": "21"
+  },
+  {
+   "OBJECTID": 156427,
+   "OwnerAddress": "6783 TEST ST",
+   "OwnerAddress2": "",
+   "OwnerCSZ": "CARTHAGE IL 623211548",
+   "OwnerName": "TESTOWNER 74C090",
+   "PIN": "010000200000",
+   "SiteAddress": "",
+   "UseCode": "21"
+  },
+  {
+   "OBJECTID": 156428,
+   "OwnerAddress": "6783 TEST ST",
+   "OwnerAddress2": "",
+   "OwnerCSZ": "CARTHAGE IL 623211548",
+   "OwnerName": "TESTOWNER 74C090",
+   "PIN": "010000300000",
+   "SiteAddress": "",
+   "UseCode": "21"
+  },
+  {
+   "OBJECTID": 156429,
+   "OwnerAddress": "349 TEST ST",
+   "OwnerAddress2": "",
+   "OwnerCSZ": "CLAYTON IL 623242511",
+   "OwnerName": "TESTOWNER CA46C8",
+   "PIN": "010000400000",
+   "SiteAddress": "1088 TEST ST",
+   "UseCode": "11"
+  },
+  {
+   "OBJECTID": 156430,
+   "OwnerAddress": "3892 TEST ST",
+   "OwnerAddress2": "",
+   "OwnerCSZ": "CLAYTON IL 623242511",
+   "OwnerName": "TESTOWNER 4FE5A2",
+   "PIN": "010000400100",
+   "SiteAddress": "4911 TEST ST",
+   "UseCode": "40"
+  },
+  {
+   "OBJECTID": 156431,
+   "OwnerAddress": "2196 TEST ST",
+   "OwnerAddress2": "",
+   "OwnerCSZ": "QUINCY IL 623051070",
+   "OwnerName": "TESTOWNER 83728D",
+   "PIN": "010000500000",
+   "SiteAddress": "4342 TEST ST",
+   "UseCode": "11"
+  },
+  {
+   "OBJECTID": 156432,
+   "OwnerAddress": "323 TEST ST",
+   "OwnerAddress2": "",
+   "OwnerCSZ": "FOWLER IL 623382329",
+   "OwnerName": "TESTOWNER 627A09",
+   "PIN": "010000600000",
+   "SiteAddress": "721 TEST ST",
+   "UseCode": "11"
+  },
+  {
+   "OBJECTID": 156433,
+   "OwnerAddress": "1104 TEST ST",
+   "OwnerAddress2": "7709 TEST ST",
+   "OwnerCSZ": "CLAYTON IL 623242511",
+   "OwnerName": "TESTOWNER 47EC04",
+   "PIN": "010000700000",
+   "SiteAddress": "3667 TEST ST",
+   "UseCode": "11"
+  },
+  {
+   "OBJECTID": 156434,
+   "OwnerAddress": "7761 TEST ST",
+   "OwnerAddress2": "",
+   "OwnerCSZ": "LA PRAIRIE IL 623464121",
+   "OwnerName": "TESTOWNER 44081E",
+   "PIN": "010000700100",
+   "SiteAddress": "",
+   "UseCode": "11"
+  },
+  {
+   "OBJECTID": 156435,
+   "OwnerAddress": "3099 TEST ST",
+   "OwnerAddress2": "",
+   "OwnerCSZ": "MOUNT STERLING IL 623531767",
+   "OwnerName": "TESTOWNER 61D4BB",
+   "PIN": "010000700200",
+   "SiteAddress": "",
+   "UseCode": "21"
+  },
+  {
+   "OBJECTID": 156436,
+   "OwnerAddress": "5146 TEST ST",
+   "OwnerAddress2": "",
+   "OwnerCSZ": "LIBERTY IL 623474910",
+   "OwnerName": "TESTOWNER D50172",
+   "PIN": "010000800000",
+   "SiteAddress": "",
+   "UseCode": "21"
+  },
+  {
+   "OBJECTID": 156437,
+   "OwnerAddress": "7518 TEST ST",
+   "OwnerAddress2": "",
+   "OwnerCSZ": "NEW LONDON MO 634592736",
+   "OwnerName": "TESTOWNER EA1E02",
+   "PIN": "010000900000",
+   "SiteAddress": "3948 TEST ST",
+   "UseCode": "11"
+  },
+  {
+   "OBJECTID": 156438,
+   "OwnerAddress": "7518 TEST ST",
+   "OwnerAddress2": "",
+   "OwnerCSZ": "NEW LONDON MO 634592736",
+   "OwnerName": "TESTOWNER EA1E02",
+   "PIN": "010000900100",
+   "SiteAddress": "",
+   "UseCode": "21"
+  },
+  {
+   "OBJECTID": 156439,
+   "OwnerAddress": "2592 TEST ST",
+   "OwnerAddress2": "",
+   "OwnerCSZ": "CLAYTON IL 623242512",
+   "OwnerName": "TESTOWNER 7B4C08",
+   "PIN": "010001100100",
+   "SiteAddress": "",
+   "UseCode": "21"
+  },
+  {
+   "OBJECTID": 156440,
+   "OwnerAddress": "2592 TEST ST",
+   "OwnerAddress2": "",
+   "OwnerCSZ": "CLAYTON IL 623242512",
+   "OwnerName": "TESTOWNER 7B4C08",
+   "PIN": "010001100200",
+   "SiteAddress": "6431 TEST ST",
+   "UseCode": "11"
+  },
+  {
+   "OBJECTID": 156441,
+   "OwnerAddress": "323 TEST ST",
+   "OwnerAddress2": "",
+   "OwnerCSZ": "FOWLER IL 623382329",
+   "OwnerName": "TESTOWNER 627A09",
+   "PIN": "010001400000",
+   "SiteAddress": "",
+   "UseCode": "21"
+  },
+  {
+   "OBJECTID": 156442,
+   "OwnerAddress": "8375 TEST ST",
+   "OwnerAddress2": "",
+   "OwnerCSZ": "CLAYTON IL 623242204",
+   "OwnerName": "TESTOWNER 1DF824",
+   "PIN": "010001500000",
+   "SiteAddress": "",
+   "UseCode": "21"
+  },
+  {
+   "OBJECTID": 156443,
+   "OwnerAddress": "5666 TEST ST",
+   "OwnerAddress2": "",
+   "OwnerCSZ": "CLAYTON IL 623242409",
+   "OwnerName": "TESTOWNER D7C45B",
+   "PIN": "010001600000",
+   "SiteAddress": "5863 TEST ST",
+   "UseCode": "11"
+  },
+  {
+   "OBJECTID": 156444,
+   "OwnerAddress": "5666 TEST ST",
+   "OwnerAddress2": "",
+   "OwnerCSZ": "CLAYTON IL 623242409",
+   "OwnerName": "TESTOWNER D7C45B",
+   "PIN": "010001600100",
+   "SiteAddress": "",
+   "UseCode": "21"
+  },
+  {
+   "OBJECTID": 156445,
+   "OwnerAddress": "3099 TEST ST",
+   "OwnerAddress2": "",
+   "OwnerCSZ": "MOUNT STERLING IL 623531767",
+   "OwnerName": "TESTOWNER 61D4BB",
+   "PIN": "010001700000",
+   "SiteAddress": "",
+   "UseCode": "21"
+  },
+  {
+   "OBJECTID": 156446,
+   "OwnerAddress": "2107 TEST ST",
+   "OwnerAddress2": "",
+   "OwnerCSZ": "GOLDEN IL 623391101",
+   "OwnerName": "TESTOWNER 1579C0",
+   "PIN": "010001800000",
+   "SiteAddress": "6254 TEST ST",
+   "UseCode": "21"
+  },
+  {
+   "OBJECTID": 156447,
+   "OwnerAddress": "5934 TEST ST",
+   "OwnerAddress2": "",
+   "OwnerCSZ": "MOUNT STERLING IL 623531256",
+   "OwnerName": "TESTOWNER AB6BBA LLC",
+   "PIN": "010001900000",
+   "SiteAddress": "",
+   "UseCode": "21"
+  },
+  {
+   "OBJECTID": 156448,
+   "OwnerAddress": "5934 TEST ST",
+   "OwnerAddress2": "",
+   "OwnerCSZ": "MOUNT STERLING IL 623531256",
+   "OwnerName": "TESTOWNER AB6BBA LLC",
+   "PIN": "010002000000",
+   "SiteAddress": "",
+   "UseCode": "21"
+  },
+  {
+   "OBJECTID": 156449,
+   "OwnerAddress": "5666 TEST ST",
+   "OwnerAddress2": "",
+   "OwnerCSZ": "CLAYTON IL 623242409",
+   "OwnerName": "TESTOWNER D7C45B",
+   "PIN": "010002100000",
+   "SiteAddress": "",
+   "UseCode": "21"
+  },
+  {
+   "OBJECTID": 156450,
+   "OwnerAddress": "5666 TEST ST",
+   "OwnerAddress2": "",
+   "OwnerCSZ": "CLAYTON IL 623242409",
+   "OwnerName": "TESTOWNER D7C45B",
+   "PIN": "010002200000",
+   "SiteAddress": "",
+   "UseCode": "21"
+  }
+ ],
+ "layer": "https://services3.arcgis.com/BXTAaNPMn1VANOeH/arcgis/rest/services/ParcelsOnlineMap/FeatureServer/0",
+ "where": "1=1"
+}

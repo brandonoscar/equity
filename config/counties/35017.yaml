@@ -1,0 +1,22 @@
+source_id: nm.grant.parcels
+state: NM
+# Grant County (NM) interactive parcel map layer, published by a grantcountynm.gov account
+# (44,621 polygon rows on 2026-11-24 for 26,109 distinct parcel codes; OWNER filled on every
+# row): owner name and legal description only. No mailing or property address, no values.
+layer_url: https://services.arcgis.com/33TOOklri9xpic7U/arcgis/rest/services/Grant_County_Interactive_Parcel_Map/FeatureServer/0
+order_by: FID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "017"}
+fields:
+  # Name is the uniform parcel code ('3084104143104'; empty on 1 row, skipped); GISAccount is the
+  # Assessor account ('R073320'). A parcel drawn as several polygons repeats on several rows.
+  parcel_id: Name
+  owner1: OWNER
+value_basis: "The layer has no value fields (FID, GISAccount, Name, OWNER, PLATTEDLEG, PLATTEDL_1/3/4, eagle_view, LEGAL); no assessment facts are emitted."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=edb687f7edcb4ee6a57bd94c0c3a9b9a
+  summary: "Item 'Grant County Interactive Parcel Map' owned by jpaul@grantcountynm.gov (a Grant County, NM government account; rows link to the County Assessor's taxweb), public hosted feature service, no login, token or fee; data last edited 2026-11-20. The item has no licenseInfo, accessInformation or description (read 2026-11-24); no use restriction found. services.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

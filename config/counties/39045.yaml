@@ -1,0 +1,32 @@
+source_id: oh.fairfield.parcels
+state: OH
+# Fairfield County (OH) open-data parcel boundaries with Auditor CAMA attributes (75,131 rows on
+# 2026-11-24, 74,947 distinct PARID; OWN1 filled on 74,946; PARID empty on 185, which are
+# skipped): owner, owner mailing address, property address, land use code. Ohio's statewide
+# layer (config/states/oh.yaml) is not installed and has no owner names.
+layer_url: https://services2.arcgis.com/L7YSCDUQyC7Biss6/ArcGIS/rest/services/ParcelBoundaries/FeatureServer/0
+order_by: FID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "045"}
+fields:
+  parcel_id: PARID       # '0010000100' (= PIN)
+  # OWN2 (filled on 41,117 rows) continues the joint name ('CRUM WILLIAM H' + '& DEBORAH L
+  # SURV'), so the two are joined.
+  owner1: {join: [OWN1, OWN2]}
+  mail_line1: MADDR1
+  mail_line2: MADDR2
+  mail_city: MCITYNAME
+  mail_state: MSTATECODE
+  mail_zip: MZIP1
+  situs_line1: PADDR1    # '980 ROCK MILL RD SW'; no site city or ZIP in the layer
+  situs_state: {const: OH}
+  land_use_code: LUC
+extra_pii: [MADDR3, LASTNAME]
+value_basis: "APRLAND / APRBLDG / APPRVAL (Auditor appraised values) are present but the layer has no tax-year field, so no values or tax_year are mapped and no assessment facts are emitted. BOOK / PAGE / INSTRUNO and the sale fields are not mapped. MADDR3 (a third mailing line, almost always blank) and LASTNAME are kept out as PII."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=a1530640c0c9449494c87be6e79c437a
+  summary: "Item 'ParcelBoundariesAGOL' (owner CurtTruax; description 'Fairfield County Open Data, Parcel Boundaries for use in AGOL') in the ArcGIS org shared by Fairfield County and the City of Lancaster (OH), public hosted feature service, no login, token or fee; data last edited 2026-11-23. licenseInfo (read 2026-11-24): Fairfield County disclaimer ('provided as is and for reference only', 'use of Fairfield County's data is at the user's sole risk', no warranty); no resale, redistribution or mailing-list clause. services2.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free
