@@ -1,0 +1,34 @@
+source_id: tn.washington.parcels
+state: TN
+# Washington County (TN) tax parcels, 'Last Updated: 11-24-26' (61,533 rows on 2026-11-24;
+# OWNER filled on 61,149): owner, owner mailing address, situs, appraised values.
+# tn.statewide.parcels has no owner names; the key below is the same GISLINK.
+layer_url: https://services3.arcgis.com/nLnrKGwI08veJ5uu/arcgis/rest/services/Parcels/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "179"}
+fields:
+  parcel_id: GISLINK     # '090002    00100' (spaces removed by the adapter), as tn.statewide.parcels
+  owner1: {join: [OWNER, OWNER2]}   # OWNER2 continues the name ('& KRISTIN H', 'INVESTMENTS LLC')
+  mail_line1: MAILADDR
+  mail_city: MAILCITY
+  mail_state: STATE
+  mail_zip: ZIP
+  situs_line1: [ST_NUM, STREET]
+  situs_state: {const: TN}
+  land_value: LANDVAL
+  bldg_value: IMPVAL
+  total_value: APPRAISAL
+  tax_year: TAXYR
+  land_use_code: PROPTYPE
+  land_use_desc: PT
+  zoning: ZONING
+extra_pii: [OWNJAN1, OWNJAN1_2, MAILLINE1, MAILLINE2, MAILLINE3, ADDRESS]
+value_basis: "LANDVAL / IMPVAL = appraised (market) land and improvement value from the county CAMA; APPRAISAL = total appraisal used for tax, which takes the use value (LANDUSEVAL) for greenbelt land, so it is below LANDVAL + IMPVAL on 2,619 rows. No assessed-value field (Tennessee assesses residential at 25% of appraisal). TAXYR is 2027 on every row on 2026-11-24 (the CAMA roll year as published, mapped as given). OWNJAN1 (owner as of January 1) is not mapped. Sale fields are not mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=25ef68648dd048a2b1a8ee7ad499eb37
+  summary: "Washington County, TN ArcGIS org (item owner WashCoTNZoning), item 'Parcels', public hosted feature service, no login, token or fee; data last updated 2026-11-24. Item licenseInfo and accessInformation empty (read 2026-11-24); no use restriction found. services3.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

@@ -1,0 +1,24 @@
+source_id: tx.montgomery.parcels
+state: TX
+# Montgomery County (TX) IT-GIS 'MCAD Tax Parcel View', sourced from the Montgomery Central
+# Appraisal District and updated monthly (347,560 rows on 2026-11-24; ownerName filled on
+# 346,460; pid null on 1,100, which are skipped): owner, one-string owner address, situs.
+# tx.statewide.parcels (StratMap, annual) keys the same district property id.
+layer_url: https://services1.arcgis.com/PRoAPGnMSUqvTrzq/arcgis/rest/services/Tax_Parcel_view/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "339"}
+fields:
+  parcel_id: pid         # MCAD property id (same value as PIN), e.g. 375542
+  owner1: ownerName
+  mail_full: ownerAddress   # '7806 WOODED WAY DR SPRING TX 77389-4159': no commas, so kept whole as the line
+  situs_full: situs         # '26082 KINGS MILL LN, KINGWOOD TX 77339': one comma, so kept whole as the line
+  land_use_code: stateCd    # Comptroller state property category (A1, C3 ...)
+value_basis: "The layer carries no value fields; pYear (2027 on every row on 2026-11-24) is not mapped. No assessment facts are emitted. exemptions (e.g. 'HS,OV65') is not mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=44060ff2f5d94a2381f4c8f52ded3c34
+  summary: "Montgomery County, Texas IT-GIS org (item owner GIS.Data_MOCO), public hosted feature view, no login, token or fee; data last edited 2026-11-16. Item licenseInfo (read 2026-11-24): 'Special Restrictions: The data view is focused on special cases and should not be used for general parcel mapping ... Terms and Conditions: Users must comply with Montgomery County's data access policies. The data is provided for GIS and mapping purposes ... The Tax Parcel View is intended for public use'; no resale, redistribution or mailing-list clause found. services1.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

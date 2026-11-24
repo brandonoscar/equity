@@ -1,0 +1,36 @@
+source_id: wa.thurston.parcels
+state: WA
+# Thurston County Assessor parcels on the GeoData Center server (131,385 rows on 2026-11-24;
+# OWNER_NAME filled on 130,774): owner, owner mailing address, situs, land/building/total value.
+# WA's statewide layer has no owner names.
+layer_url: https://tconline.co.thurston.wa.us/server/rest/services/Common_Layers/Parcels/FeatureServer/4
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 9000
+min_interval_s: 1.0
+county: {constant: "067"}
+use_restrictions: [no_commercial_name_address_lists, no_redistribution]
+fields:
+  parcel_id: PARCEL_NO   # '09010001000'
+  owner1: OWNER_NAME
+  mail_line1: ADDRESS1
+  mail_line2: ADDRESS2
+  mail_city: CITY
+  mail_state: STATE
+  mail_zip: ZIP
+  situs_line1: SITUS_STRE
+  situs_city: SITUS_CITY
+  situs_state: {const: WA}
+  situs_zip: SITUS_ZIP
+  land_value: LAND_VALUE
+  bldg_value: BLDG_VALUE
+  total_value: TOTAL_VALUE
+  tax_year: SIGMA_YEAR
+  land_use_code: USE_CODE
+extra_pii: [IN_CARE_OF, SELLER_NAM]
+value_basis: "LAND_VALUE / BLDG_VALUE / TOTAL_VALUE = Assessor values from the ASCEND/SIGMA systems (Washington assesses at 100% of true and fair value, RCW 84.40.030). SIGMA_YEAR (2027 on every row on 2026-11-24) is mapped as tax_year; the layer does not document whether it is the assessment or the taxes-payable year. Sale fields and ANNUAL_TAX are not mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=4ca0091703b345f8a72f68a4d173d9be
+  summary: "Thurston GeoData Center item 'Thurston Parcels' (accessInformation 'Thurston County Assessors Office'), public FeatureServer, no login, token or fee. Item licenseInfo, the county Terms of Use (read 2026-11-24): 'limited, revocable license to use, reproduce and redistribute the Data', but 'Users are not authorized to license, re-license, assign, release publish, transfer, sell or otherwise make available any portion of these Data ... to a third party in any format revealing Thurston County as the source' (recorded as no_redistribution), and 'RCW 42.56.070(9) prohibits the release of lists of individuals for commercial purposes ... the Data may not be used to generate sales lead information ... of property owners which (i) include complete mailing address' (recorded as no_commercial_name_address_lists). tconline.co.thurston.wa.us/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

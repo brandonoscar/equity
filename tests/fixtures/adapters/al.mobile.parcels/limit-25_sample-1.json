@@ -1,0 +1,256 @@
+{
+ "attributes": [
+  {
+   "Name1": "TESTOWNER 358E48",
+   "OBJECTID": 1,
+   "Parcel_Number": "0208280000002.000",
+   "PropAddr1": "20255B SOSHEE RD                                                                                   ",
+   "PropAddr2": "                                                                                                   ",
+   "PropCity": "MOUNT VERNON                                     ",
+   "PropState": "AL                 ",
+   "PropZip": "36560-3131         "
+  },
+  {
+   "Name1": "TESTOWNER CD37B9 LLC",
+   "OBJECTID": 2,
+   "Parcel_Number": "0102260000001.001",
+   "PropAddr1": "20270 HIGHWAY 43                                                                                   ",
+   "PropAddr2": "                                                                                                   ",
+   "PropCity": "MT VERNON                                        ",
+   "PropState": "AL                 ",
+   "PropZip": "36560-2802         "
+  },
+  {
+   "Name1": "TESTOWNER 98A0A1",
+   "OBJECTID": 3,
+   "Parcel_Number": "0102260000001.009",
+   "PropAddr1": "US 43                                                                                              ",
+   "PropAddr2": "                                                                                                   ",
+   "PropCity": "                                                 ",
+   "PropState": "                   ",
+   "PropZip": "                   "
+  },
+  {
+   "Name1": "TESTOWNER 1E6FC8",
+   "OBJECTID": 4,
+   "Parcel_Number": "0102260000001.025",
+   "PropAddr1": "                                                                                                   ",
+   "PropAddr2": "                                                                                                   ",
+   "PropCity": "                                                 ",
+   "PropState": "                   ",
+   "PropZip": "                   "
+  },
+  {
+   "Name1": "TESTOWNER B01120 LLC",
+   "OBJECTID": 5,
+   "Parcel_Number": "0102260000003.000",
+   "PropAddr1": "                                                                                                   ",
+   "PropAddr2": "                                                                                                   ",
+   "PropCity": "CO                                               ",
+   "PropState": "                   ",
+   "PropZip": "                   "
+  },
+  {
+   "Name1": "TESTOWNER 597743 LLC",
+   "OBJECTID": 6,
+   "Parcel_Number": "0102260000004.002",
+   "PropAddr1": "                                                                                                   ",
+   "PropAddr2": "                                                                                                   ",
+   "PropCity": "                                                 ",
+   "PropState": "                   ",
+   "PropZip": "                   "
+  },
+  {
+   "Name1": "TESTOWNER DA221C",
+   "OBJECTID": 7,
+   "Parcel_Number": "0102260000005.000",
+   "PropAddr1": "20825 HIGHWAY 43                                                                                   ",
+   "PropAddr2": "                                                                                                   ",
+   "PropCity": "MOUNT VERNON                                     ",
+   "PropState": "AL                 ",
+   "PropZip": "36560-2803         "
+  },
+  {
+   "Name1": "TESTOWNER 3C41AB",
+   "OBJECTID": 8,
+   "Parcel_Number": "0102260000007.000",
+   "PropAddr1": "20755 HIGHWAY 43                                                                                   ",
+   "PropAddr2": "                                                                                                   ",
+   "PropCity": "MOUNT VERNON                                     ",
+   "PropState": "AL                 ",
+   "PropZip": "36560              "
+  },
+  {
+   "Name1": "TESTOWNER E4B134",
+   "OBJECTID": 9,
+   "Parcel_Number": "0102260000008.000",
+   "PropAddr1": "20735 HIGHWAY 43                                                                                   ",
+   "PropAddr2": "                                                                                                   ",
+   "PropCity": "MOUNT VERNON                                     ",
+   "PropState": "AL                 ",
+   "PropZip": "36560-2707         "
+  },
+  {
+   "Name1": "TESTOWNER 35ECFF",
+   "OBJECTID": 10,
+   "Parcel_Number": "0102260000014.000",
+   "PropAddr1": "20801 WAYNE DAVIS RD W                                                                             ",
+   "PropAddr2": "                                                                                                   ",
+   "PropCity": "MOUNT VERNON                                     ",
+   "PropState": "AL                 ",
+   "PropZip": "36560-2801         "
+  },
+  {
+   "Name1": "TESTOWNER 6C877D",
+   "OBJECTID": 11,
+   "Parcel_Number": "0102260000017.000",
+   "PropAddr1": "20777 WAYNE DAVIS RD W                                                                             ",
+   "PropAddr2": "                                                                                                   ",
+   "PropCity": "MOUNT VERNON                                     ",
+   "PropState": "AL                 ",
+   "PropZip": "36560              "
+  },
+  {
+   "Name1": "TESTOWNER A6E1B1",
+   "OBJECTID": 12,
+   "Parcel_Number": "0102260000018.000",
+   "PropAddr1": "WAYNE DAVIS RD W                                                                                   ",
+   "PropAddr2": "                                                                                                   ",
+   "PropCity": "MOUNT VERNON                                     ",
+   "PropState": "AL                 ",
+   "PropZip": "36560              "
+  },
+  {
+   "Name1": "TESTOWNER A6E1B1",
+   "OBJECTID": 13,
+   "Parcel_Number": "0102260000019.000",
+   "PropAddr1": "20731 WAYNE DAVIS RD                                                                               ",
+   "PropAddr2": "                                                                                                   ",
+   "PropCity": "MOUNT VERNON                                     ",
+   "PropState": "AL                 ",
+   "PropZip": "36560-             "
+  },
+  {
+   "Name1": "TESTOWNER 151ED7",
+   "OBJECTID": 14,
+   "Parcel_Number": "0102260000020.000",
+   "PropAddr1": "20713 WAYNE DAVIS RD W                                                                             ",
+   "PropAddr2": "                                                                                                   ",
+   "PropCity": "MOUNT VERNON                                     ",
+   "PropState": "AL                 ",
+   "PropZip": "36560-2805         "
+  },
+  {
+   "Name1": "TESTOWNER 25A73D",
+   "OBJECTID": 15,
+   "Parcel_Number": "0102260000028.01",
+   "PropAddr1": "                                                                                                   ",
+   "PropAddr2": "                                                                                                   ",
+   "PropCity": "CO                                               ",
+   "PropState": "                   ",
+   "PropZip": "                   "
+  },
+  {
+   "Name1": "TESTOWNER 92C8CE CO",
+   "OBJECTID": 16,
+   "Parcel_Number": "0102260000031.000",
+   "PropAddr1": "                                                                                                   ",
+   "PropAddr2": "                                                                                                   ",
+   "PropCity": "                                                 ",
+   "PropState": "                   ",
+   "PropZip": "                   "
+  },
+  {
+   "Name1": "TESTOWNER 9F9F0E",
+   "OBJECTID": 17,
+   "Parcel_Number": "0102260000032.000",
+   "PropAddr1": "20350 HIGHWAY 43                                                                                   ",
+   "PropAddr2": "                                                                                                   ",
+   "PropCity": "MOUNT VERNON                                     ",
+   "PropState": "AL                 ",
+   "PropZip": "36560-2800         "
+  },
+  {
+   "Name1": "TESTOWNER 9F9F0E",
+   "OBJECTID": 18,
+   "Parcel_Number": "0102260000032.001",
+   "PropAddr1": "20350 HIGHWAY 43                                                                                   ",
+   "PropAddr2": "                                                                                                   ",
+   "PropCity": "MOUNT VERNON                                     ",
+   "PropState": "AL                 ",
+   "PropZip": "36560-2800         "
+  },
+  {
+   "Name1": "TESTOWNER 015A69 LLC",
+   "OBJECTID": 19,
+   "Parcel_Number": "0102270000001.000",
+   "PropAddr1": "                                                                                                   ",
+   "PropAddr2": "                                                                                                   ",
+   "PropCity": "                                                 ",
+   "PropState": "                   ",
+   "PropZip": "                   "
+  },
+  {
+   "Name1": "TESTOWNER BCB84B LLC",
+   "OBJECTID": 20,
+   "Parcel_Number": "0102270000001.001",
+   "PropAddr1": "800 INDUSTRIAL PARK DR                                                                             ",
+   "PropAddr2": "                                                                                                   ",
+   "PropCity": "MOUNT VERNON                                     ",
+   "PropState": "AL                 ",
+   "PropZip": "36560              "
+  },
+  {
+   "Name1": "TESTOWNER 09B14B",
+   "OBJECTID": 21,
+   "Parcel_Number": "0102270000002.000",
+   "PropAddr1": "                                                                                                   ",
+   "PropAddr2": "                                                                                                   ",
+   "PropCity": "                                                 ",
+   "PropState": "                   ",
+   "PropZip": "                   "
+  },
+  {
+   "Name1": "TESTOWNER EDD936 LLC",
+   "OBJECTID": 22,
+   "Parcel_Number": "0103280000001.000",
+   "PropAddr1": "                                                                                                   ",
+   "PropAddr2": "                                                                                                   ",
+   "PropCity": "                                                 ",
+   "PropState": "                   ",
+   "PropZip": "                   "
+  },
+  {
+   "Name1": "TESTOWNER 015A69 LLC",
+   "OBJECTID": 23,
+   "Parcel_Number": "0103280000002.000",
+   "PropAddr1": "                                                                                                   ",
+   "PropAddr2": "                                                                                                   ",
+   "PropCity": "                                                 ",
+   "PropState": "                   ",
+   "PropZip": "                   "
+  },
+  {
+   "Name1": "TESTOWNER BCB84B LLC",
+   "OBJECTID": 24,
+   "Parcel_Number": "0103280000002.001",
+   "PropAddr1": "                                                                                                   ",
+   "PropAddr2": "                                                                                                   ",
+   "PropCity": "                                                 ",
+   "PropState": "                   ",
+   "PropZip": "                   "
+  },
+  {
+   "Name1": "TESTOWNER EDD936 LLC",
+   "OBJECTID": 25,
+   "Parcel_Number": "0103290000001.000",
+   "PropAddr1": "                                                                                                   ",
+   "PropAddr2": "                                                                                                   ",
+   "PropCity": "                                                 ",
+   "PropState": "                   ",
+   "PropZip": "                   "
+  }
+ ],
+ "layer": "https://services8.arcgis.com/HND1NcQt6vgOGn1z/arcgis/rest/services/MCRC_Public_Parcels/FeatureServer/1",
+ "where": "1=1"
+}

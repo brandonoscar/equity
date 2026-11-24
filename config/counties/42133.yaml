@@ -1,0 +1,28 @@
+source_id: pa.york.parcels
+state: PA
+# York County Planning Commission open-data parcels, 'Updated Weekly' (176,514 rows on
+# 2026-11-24; owner filled on all): owner, owner mailing address, property address, deed.
+layer_url: https://arcweb1.ycpc.org/server/rest/services/OPEN_DATA/Parcels/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "133"}
+fields:
+  parcel_id: PIDN        # '0100101000100' (district, block, map, parcel, leasehold packed)
+  owner1: OWNER_FULL     # OWN_NAME1/OWN_NAME2 are the same name split over two lines
+  mail_line1: MAIL_ADDR1
+  mail_line2: MAIL_ADDR2
+  mail_city_state_zip: MAIL_ADDR3   # 'YORK PA 17401-1401'
+  situs_line1: PROPADR
+  situs_state: {const: PA}
+  deed_book: DEED_BK
+  deed_page: DEED_PG
+  land_use_code: LUC
+extra_pii: [OWN_NAME1, OWN_NAME2, MAIL_ADDR_FULL, PREV_OWNER]
+value_basis: "APRLAND / APRBLDG / APRTOTAL (Assessment Office appraised values) are present but the layer has no tax-year field, so no values or tax_year are mapped and no assessment facts are emitted. SALEDT/PRICE/PREV_PRICE are not mapped. DEED_BK/DEED_PG are the current owner's deed book and page."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=803b4da39e7b457ab6e7a5eeb3410abb
+  summary: "York County Planning Commission (YCPC) OPEN_DATA FeatureServer, copyright 'York County Assessment, YCPC', listed in ArcGIS Online as item 'Parcels' (owner jsimora), no login, token or fee. licenseInfo (read 2026-11-24): 'Intended for illustration and demonstration purposes only' plus a no-warranty clause ('developed solely for internal use by York County Planning Commission and York County ... provided as is'); no resale, redistribution or mailing-list clause. arcweb1.ycpc.org/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

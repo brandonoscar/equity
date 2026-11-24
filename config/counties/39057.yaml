@@ -1,0 +1,34 @@
+source_id: oh.greene.parcels
+state: OH
+# Greene County (Ohio) open-data parcels (77,953 rows on 2026-11-24; Owner_Name filled on
+# 77,822): owner, tax mailing address, situs, appraised and assessed values for tax year 2025.
+layer_url: https://gis.greenecountyohio.gov/webgis2/rest/services/OpenData/OpenData/MapServer/1
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "057"}
+fields:
+  parcel_id: Parcel_Id   # 'E13000100160001700'; Parcel_Number is the dashed form 'E13-0001-0016-0-0017-00'
+  owner1: Owner_Name
+  mail_line1: Tax_Mailing_Address
+  mail_city_state_zip: Tax_Mailing_City_St_Zip   # 'SABINA OH 45169'
+  situs_line1: [Address_Number, Address_PreDirection, Address_Street, Address_StreetSuffix,
+                Address_PostDirection, Address_Unit]
+  situs_city: Address_City
+  situs_state: {const: OH}
+  situs_zip: Address_ZipCode
+  land_value: Appraised_Land
+  bldg_value: Appraised_Buildings
+  total_value: Appraised_Total
+  assessed_value: Assessed_Total
+  tax_year: Tax_Year
+  land_use_code: Land_Use_Code
+  land_use_desc: Land_Use
+extra_pii: [Taxpayer_Contact, Property_Address, Property_City_St_Zip]
+value_basis: "Appraised_Land / Appraised_Buildings / Appraised_Total = Auditor appraised (market) value; Assessed_Total = assessed value, 35% of appraised (Ohio R.C. 5715.01). Tax_Year = 2025 on every row on 2026-11-24. The mailing address is the tax-bill mailing address (Taxpayer_Contact is who receives it, kept out as PII). Sale and tax-due fields are not mapped."
+terms:
+  url: https://gis.greenecountyohio.gov/webgis2/rest/services/OpenData/OpenData/MapServer
+  summary: "Greene County (Ohio) GIS 'Open Data' MapServer ('Greene County Open Data Service. Created for exploring and downloading Greene County GIS data.'), copyright 'Greene County GIS', no login, token or fee. No license or use-restriction text on the service or layer (read 2026-11-24). gis.greenecountyohio.gov/robots.txt answers HTTP 200 with an HTML error page that contains no robots rules (parsed: allowed)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free
