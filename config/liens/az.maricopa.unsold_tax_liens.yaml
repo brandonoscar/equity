@@ -1,0 +1,28 @@
+source_id: az.maricopa.unsold_tax_liens
+state: AZ
+county_fips: "04013"
+# Maricopa County Treasurer's "Unsold Lien Parcels" (1,455 on 2026-11-24): parcels whose
+# delinquent property tax lien was offered at the annual tax lien sale and drew no bid, so the
+# State holds the certificate (A.R.S. 42-18113). APN, situs and the last deed's recording
+# number; no owner name and no amount: the match run names the parcel's owner of record. The
+# layer has no date, so each row is dated the day it was fetched (a current list).
+api: arcgis
+layer_url: https://services.arcgis.com/ykpntM6e3tHvzKRJ/arcgis/rest/services/ParcelLienDelinquent/FeatureServer/1
+order_by: [OBJECTID]
+select: [OBJECTID, APN, PropertyFullStreetAddress, DeedNumber]
+listed_on: listed_on
+date_field: listed_on
+single_partition: true
+uid: APN
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Maricopa unsold tax lien (state-held certificate)
+extra_pii: [PropertyFullStreetAddress]
+parties:
+  - role: creditor
+    const: State of Arizona (Maricopa County Treasurer)
+parcel: {kind: pin, field: APN, county_fips: "04013"}   # same APN as az.maricopa.parcels
+terms:
+  url: https://services.arcgis.com/ykpntM6e3tHvzKRJ/arcgis/rest/services/ParcelLienDelinquent/FeatureServer/1
+  summary: "Maricopa County public ArcGIS Online layer, free, no login. No licenseInfo on the layer; delinquent tax liens are public records."
+  checked_on: 2026-11-24
+  cost_model: free

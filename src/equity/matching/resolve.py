@@ -690,8 +690,8 @@ def run(
 FEDERAL_COURTS = ["us.fjc.idb.civil_judgments", "us.fjc.idb.direct.civil_judgments",
                   "us.epa.echo.judicial_cases"]  # fmt: skip
 # National debt lists every run reads as debtors (they link only where a debtor matches one
-# of the run's owners): SBA 7(a)/504 loans charged off.
-FEDERAL_DEBTS = ["us.sba.chargeoffs"]
+# of the run's owners): SBA 7(a)/504 and PPP loans charged off.
+FEDERAL_DEBTS = ["us.sba.chargeoffs", "us.sba.ppp_chargeoffs"]
 STATES: dict[str, dict[str, Any]] = {
     "NY": {
         "debtors": ["ny.dtf.tax_warrants", "ny.dtf.child_support_warrants",
@@ -814,6 +814,25 @@ STATES: dict[str, dict[str, Any]] = {
     # delinquent-lands list is a snapshot table), so federal court judgments and the national
     # debt lists against WV owners.
     "WV": {"debtors": [], "owners": ["wv.statewide.parcels"], "courts": FEDERAL_COURTS},
+    # States and counties whose parcel layers carry owner names and that have no county debt
+    # list yet: federal court judgments and the national debt lists (SBA) against their owners.
+    "MT": {"debtors": [], "owners": ["mt.statewide.parcels"], "courts": FEDERAL_COURTS},
+    "ID": {"debtors": [], "owners": ["id.statewide.parcels"], "courts": FEDERAL_COURTS},
+    "AR": {"debtors": [], "owners": ["ar.statewide.parcels"], "courts": FEDERAL_COURTS},
+    "ND": {"debtors": [], "owners": ["nd.statewide.parcels"], "courts": FEDERAL_COURTS},
+    "WY": {"debtors": [], "owners": ["wy.statewide.parcels"], "courts": FEDERAL_COURTS},
+    "ME": {"debtors": [], "owners": ["me.statewide.parcels"], "courts": FEDERAL_COURTS},
+    "MN": {"debtors": [], "owners": ["mn.statewide.parcels"], "courts": FEDERAL_COURTS},
+    "MA": {"debtors": [], "owners": ["ma.statewide.parcels"], "courts": FEDERAL_COURTS},
+    "NV-WASHOE": {"debtors": [], "owners": ["nv.washoe.parcels"], "courts": FEDERAL_COURTS},
+    # Maricopa: tax liens the annual sale did not sell (State-held), owed by the APN's owner.
+    "AZ-MARICOPA": {"debtors": ["az.maricopa.unsold_tax_liens"],
+                    "owners": ["az.maricopa.parcels"], "parcel_on_lien": True,
+                    "courts": FEDERAL_COURTS},
+    # Indiana statewide owners plus Marion County's (Indianapolis) mailing addresses.
+    "IN": {"debtors": ["in.st_joseph.tax_sale"],
+           "owners": ["in.statewide.parcels", "in.marion.parcels"], "parcel_on_lien": True,
+           "courts": FEDERAL_COURTS},
     # DC: prior-year real property tax owed by the lot's owner (OTR extract, keyed by SSL).
     "DC": {"debtors": ["dc.otr.delinquent_taxes"], "owners": ["dc.statewide.parcels"],
            "parcel_on_lien": True, "registries": ["dc.dlcp.business"], "courts": FEDERAL_COURTS},

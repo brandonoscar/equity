@@ -695,11 +695,12 @@ def test_list_sources_names_every_source_a_state_reads(
                                           "ny.nyc.acris.real",
                                           "ny.nyc.dof.condo_units",
                                           "us.nysb.rss",  # NY's bankruptcy feed
-                                          "us.sba.chargeoffs"})  # fmt: skip
+                                          "us.sba.chargeoffs",
+                                          "us.sba.ppp_chargeoffs"})  # fmt: skip
     assert main(["--state", "TX-TRAVIS", "--list-sources"]) == 0
     got = json.loads(capsys.readouterr().out)
     assert got == {"sources": ["tx.statewide.parcels", "tx.travis.tax_delinquent",
-                               "us.sba.chargeoffs", "us.txnb.rss"],
+                               "us.sba.chargeoffs", "us.sba.ppp_chargeoffs", "us.txnb.rss"],
                    "tables": list(TABLES_READ)}  # fmt: skip
 
 
