@@ -57,10 +57,12 @@ Describe 'PACER budget guard' {
 
 Describe 'unit tests on Windows' {
     It 'passes the matcher, lien adapter and reliability tests' {
-        & uv run --locked pytest -q -p no:cacheprovider `
+        $out = & uv run --locked pytest -q -p no:cacheprovider -rfE `
             tests/test_reliability.py tests/test_resolve.py tests/test_transfers.py `
             tests/test_scoring.py tests/test_pacer.py tests/adapters/test_liens.py `
-            tests/adapters/test_sba_ppp.py
-        $LASTEXITCODE | Should -Be 0
+            tests/adapters/test_sba_ppp.py 2>&1
+        $code = $LASTEXITCODE
+        if ($code -ne 0) { $out | Select-Object -Last 80 | ForEach-Object { Write-Host $_ } }
+        $code | Should -Be 0
     }
 }
