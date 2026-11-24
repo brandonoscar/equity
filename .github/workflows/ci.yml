@@ -92,7 +92,7 @@ jobs:
 
   windows:
     # The CLIs and the core tests on Windows, driven by PowerShell (Pester 5,
-    # tests/powershell/Equity.Tests.ps1). Not yet in all-green: it joins once it has passed.
+    # tests/powershell/Equity.Tests.ps1).
     runs-on: windows-2022
     defaults:
       run:
@@ -112,7 +112,7 @@ jobs:
   all-green:
     # The single required status for branch protection on main.
     if: always()
-    needs: [lint, types, no-ai-guard, secrets, hygiene, workflows, audit, tests]
+    needs: [lint, types, no-ai-guard, secrets, hygiene, workflows, audit, tests, windows]
     runs-on: ubuntu-24.04
     steps:
       - name: every required job passed
