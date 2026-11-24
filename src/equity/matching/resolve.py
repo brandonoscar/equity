@@ -825,6 +825,10 @@ STATES: dict[str, dict[str, Any]] = {
     "MN": {"debtors": [], "owners": ["mn.statewide.parcels"], "courts": FEDERAL_COURTS},
     "MA": {"debtors": [], "owners": ["ma.statewide.parcels"], "courts": FEDERAL_COURTS},
     "NV-WASHOE": {"debtors": [], "owners": ["nv.washoe.parcels"], "courts": FEDERAL_COURTS},
+    # Prince George's County MD owners (the county's property file; MD's statewide layer has no
+    # owner names) against the national lists and the MD bankruptcy feeds.
+    "MD-PRINCE-GEORGES": {"debtors": [], "owners": ["md.prince_georges.parcels"],
+                          "courts": FEDERAL_COURTS},
     # Kent County DE owners against Delaware's top delinquent taxpayer lists.
     "DE-KENT": {"debtors": ["de.revenue.top_delinquent_personal",
                             "de.revenue.top_delinquent_business"],

@@ -42,7 +42,7 @@ Federal sources (FJC civil judgments, EPA judicial cases, SBA charge-offs, HUD R
 | KY | 1 of 120 counties | owner, address, value, zoning | — | — | `us.kywb.rss` | — | — | 3 local layers | — |
 | LA | 2 of 64 counties | owner, address, value, homestead | — | administrative_judgment (1) | `us.laeb.rss`<br>`us.lamb.rss`<br>`us.lawb.rss` | — | `LA-NOLA` | 1 local layers | — |
 | MA | statewide | owner, address, value, land use, zoning | — | — | `us.mab.rss` | — | `MA` | 5 local layers | — |
-| MD | statewide | owner, address, value, land use, zoning | `md.sdat.transfers_1`<br>`md.sdat.transfers_2`<br>`md.sdat.transfers_3` | code_enforcement_lien (1) | — | — | `MD-BALTIMORE` | statewide + 2 local | — |
+| MD | statewide | owner, address, value, land use, zoning | `md.sdat.transfers_1`<br>`md.sdat.transfers_2`<br>`md.sdat.transfers_3` | code_enforcement_lien (1) | — | — | `MD-BALTIMORE`<br>`MD-PRINCE-GEORGES` | statewide + 2 local | — |
 | ME | statewide | owner, land use | — | — | — | — | `ME` | 5 local layers | — |
 | MI | 5 of 83 counties | owner, address, value, homestead, land use, zoning | — | administrative_judgment (1) | `us.mieb.rss` | — | `MI-DETROIT` | 2 local layers | — |
 | MN | statewide | owner, value, homestead, land use | — | — | `us.mnb.rss` | — | `MN` | 7 local layers | — |
