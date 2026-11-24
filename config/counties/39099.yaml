@@ -1,0 +1,33 @@
+source_id: oh.mahoning.parcels
+state: OH
+# Mahoning County (OH) public-website cadastral service, layer 'PROPERTY BOUNDARIES' with Auditor
+# attributes (160,747 rows on 2026-11-24; OWNNAME1 filled on 159,007; 9,736 sales dated 2026):
+# owner names, owner mailing city/state/ZIP, site address, land-use code. Ohio's statewide layer
+# has no owner names.
+layer_url: https://gisapp.mahoningcountyoh.gov/arcgis/rest/services/PUBLIC_WEBSITE_CADASTRAL/MapServer/2
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 10000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "099"}
+fields:
+  parcel_id: PARCEL_ID   # '19-027-0-067.00-0'
+  # OWNNAME3 is OWNNAME1 + OWNNAME2 in one field ('MICKEY WILLIAM & MICKEY LORI',
+  # 'YOUNGSTOWN NEIGHBORHOOD DEVELOPMENT CORPORATION').
+  owner1: OWNNAME3
+  # The mailing street is split into MAILNUM / MAILPREF / MAILSTREET / MAILSUFFIX(D) and the
+  # combined MAIL_ADDRESS is comma-joined with city, state and ZIP ('13907 OYSTER RD,ALLIANCE,OH,
+  # 44601'), which the adapter does not split, so only the city, state and ZIP are mapped.
+  mail_city: MAILCITY
+  mail_state: MAILSTATE
+  mail_zip: MAILZIP
+  situs_line1: [LOCNUM, LOCPREF, LOCSTREET, LOCSUFFIX]   # LOCCITY / LOCZIP are blank on sampled rows
+  situs_state: {const: OH}
+  land_use_code: LANDUSE  # '510'
+extra_pii: [OWNNAME1, OWNNAME2, MAIL_ADDRESS, MAILNUM, MAILSTREET, TAXNAM, TAXNAM2, TAXNAM3, TAX_ADDRESS]
+value_basis: "MARKETLAND / MARKETIMPR / TOTALMARKET and CAUV are present but the layer has no tax-year field, so no values or tax_year are mapped and no assessment facts are emitted. TAXNAM* / TAX* (the tax-bill addressee) and SALEDATE / DEEDNUMBER / SALEAMOUNT are not mapped."
+terms:
+  url: https://gisapp.mahoningcountyoh.gov/arcgis/rest/services/PUBLIC_WEBSITE_CADASTRAL/MapServer
+  summary: "Mahoning County, Ohio public MapServer 'PUBLIC_WEBSITE_CADASTRAL' (service description 'Cadastral Data', the county's public GIS website service) on gisapp.mahoningcountyoh.gov, no login, token or fee. No licence, copyright, resale, redistribution or mailing-list text on the service or layer (read 2026-11-24). gisapp.mahoningcountyoh.gov/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

@@ -1,0 +1,33 @@
+source_id: va.chesapeake_city.parcels
+state: VA
+# City of Chesapeake (VA) GIS 'Common_Layers/Parcels' layer with Real Estate Assessor fields,
+# rebuilt nightly (92,862 rows on 2026-11-24, created 2026-11-24; OWNER filled on 92,859): owner
+# name, owner mailing address, property address, deed book/page, property class. The city's
+# open-data parcel layer (OpenData/OpenData/MapServer/15) is the same parcels without owners.
+layer_url: https://gis.cityofchesapeake.net/mapping/rest/services/Common_Layers/Parcels/MapServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "550"}
+use_restrictions: [attribution_required, no_redistribution, no_resale]
+fields:
+  parcel_id: MAP_PARCEL  # '0618003002660'; CNTRL_NO is the same number as a double
+  owner1: OWNER          # 'ALLEN WILLIAM R & ELIZABETH M TRUSTEES'
+  mail_line1: MADDRESS
+  mail_city: MCITY
+  mail_state: MSTATE
+  mail_zip: MZIP
+  situs_line1: [ADDRESS, UNIT]
+  situs_state: {const: VA}
+  situs_zip: ADDRESSZIP
+  deed_book: DEEDBK
+  deed_page: DEEDPG
+  land_use_code: PROPCLASS   # '1010'; descriptions are in the city's Parcel Class table
+extra_pii: [CAREOF]
+value_basis: "ASMT_LD / ASMT_BL / ASMT_TOTAL (Real Estate Assessor land, building and total assessment) are present but the layer has no tax-year field, so no values or tax_year are mapped and no assessment facts are emitted. CAREOF (care-of line), TRANSFER (date) and CONSIDERATION (price) are not mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=a09b19515cdd4ce4b07e0bc3406ff0b9
+  summary: "City of Chesapeake public MapServer 'Common_Layers/Parcels' on gis.cityofchesapeake.net (the layer behind the city's public Property Quicksearch app, cityofchesapeake.net/pqs), no login, token or fee; the service itself carries no licence text. The city's open-data item for the same parcels without owner fields ('Parcels', owner ptrimble@cityofchesapeake.net, 'Maintained by Real Estate', read 2026-11-24) is licensed Creative Commons Attribution-NonCommercial-NoDerivatives 4.0, applied here conservatively (recorded as attribution_required, no_resale and no_redistribution). gis.cityofchesapeake.net/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

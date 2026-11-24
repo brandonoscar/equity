@@ -1,0 +1,34 @@
+source_id: ut.salt_lake.parcels
+state: UT
+# Salt Lake County (UT) Assessor 'Parcel_Viewer_external' map service, layer 'ParcelsTaxYear'
+# (396,007 rows on 2026-11-24; own_name filled on 393,064; tax_year 2026): owner name(s), owner
+# mailing street and ZIP, situs address, property type, market and taxable values. gis.slco.org
+# redirects to apps.saltlakecounty.gov, which is used directly. The statewide LIR layers
+# (config/states/ut*.yaml) carry no owners.
+layer_url: https://apps.saltlakecounty.gov/arcgis/rest/services/Assessor/Parcel_Viewer_external/MapServer/5
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "035"}
+fields:
+  parcel_id: parcel_id   # '16183820070000', the same 14-digit id as the statewide UGRC layers
+  owner1: own_name       # all owners on one line ('CARLOS A REYNOSO (JT); ANA RUTH REYNOSO (JT)')
+  mail_line1: own_addr
+  mail_line2: own_apt_num
+  mail_zip: own_zip      # own_citystate ('SALT LAKE CITY UT') holds city and state with no ZIP, not mapped
+  situs_line1: [HouseNum, PreDir, StreetName, StreetType, StreetDir]
+  situs_state: {const: UT}
+  land_use_code: property_type   # '111'
+  land_value: full_mkt_total_land
+  bldg_value: full_mkt_total_bldg
+  total_value: total_full_mkt
+  assessed_value: taxable_value
+  tax_year: tax_year
+extra_pii: [care_of, own_citystate]
+value_basis: "full_mkt_total_land / full_mkt_total_bldg / total_full_mkt are the Assessor's full market values for tax_year ('2026' on every row on 2026-11-24). assessed_value is taxable_value: market value less Utah's 45% primary-residential exemption (324,885 = 55% of 590,700 on a sampled home). total_assessed (equal to total_full_mkt on sampled rows) and the 'adjusted' columns are not mapped. care_of and own_citystate are not mapped (city and state in one field without the ZIP, which is mapped from own_zip)."
+terms:
+  url: https://apps.saltlakecounty.gov/arcgis/rest/services/Assessor/Parcel_Viewer_external/MapServer
+  summary: "Salt Lake County Assessor public MapServer 'Assessor/Parcel_Viewer_external' (the external parcel viewer service) on apps.saltlakecounty.gov (gis.slco.org redirects there), no login, token or fee. No licence, copyright, resale, redistribution or mailing-list text on the service or layer (read 2026-11-24). apps.saltlakecounty.gov/robots.txt (gis.slco.org/robots.txt redirects there; read 2026-11-24) has an empty 'User-agent: *' group and disallows paths only for ReadableBot, so /arcgis/ is allowed."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free
