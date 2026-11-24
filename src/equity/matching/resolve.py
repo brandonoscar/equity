@@ -825,6 +825,10 @@ STATES: dict[str, dict[str, Any]] = {
     "MN": {"debtors": [], "owners": ["mn.statewide.parcels"], "courts": FEDERAL_COURTS},
     "MA": {"debtors": [], "owners": ["ma.statewide.parcels"], "courts": FEDERAL_COURTS},
     "NV-WASHOE": {"debtors": [], "owners": ["nv.washoe.parcels"], "courts": FEDERAL_COURTS},
+    # Kent County DE owners against Delaware's top delinquent taxpayer lists.
+    "DE-KENT": {"debtors": ["de.revenue.top_delinquent_personal",
+                            "de.revenue.top_delinquent_business"],
+                "owners": ["de.kent.parcels"], "courts": FEDERAL_COURTS},
     # Maricopa: tax liens the annual sale did not sell (State-held), owed by the APN's owner.
     "AZ-MARICOPA": {"debtors": ["az.maricopa.unsold_tax_liens"],
                     "owners": ["az.maricopa.parcels"], "parcel_on_lien": True,
