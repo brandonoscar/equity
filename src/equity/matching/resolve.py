@@ -970,12 +970,14 @@ def state_sources(state: str) -> list[str]:
 
 
 def missing_sources(state: str, lake: Path = LAKE) -> list[str]:
-    """The sources a state's run reads that have no Parquet in the lake. A run reads a missing
-    source as empty, so its counts drop without an error; the summary names them instead."""
+    """The sources a state's run reads that have no Parquet in the lake, or whose build has not
+    finished (Parquet but no _counts.json, as a killed build leaves it). A run reads a missing
+    source as empty or partial, so its counts drop without an error; the summary names them."""
     spec = STATES[state]
     wanted = sorted(set(state_sources(state)) | set(spec.get("courts") or [])
                     | set(spec.get("writs") or []))  # fmt: skip
-    return [s for s in wanted if not any((lake / s).glob("*/*.parquet"))]
+    return [s for s in wanted if not any((lake / s).glob("*/*.parquet"))
+            or not (lake / s / "_counts.json").exists()]  # fmt: skip
 
 
 def main(argv: list[str] | None = None) -> int:

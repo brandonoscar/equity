@@ -236,7 +236,15 @@ def pull_parts(
     for analysis on a machine that did not build them. Returns files written."""
     written = 0
     for src in sources:
-        _, folders = store.list_dir(f"{src}/")
+        top, folders = store.list_dir(f"{src}/")
+        counts = lake / src / "_counts.json"
+        if BUNDLE in top and not counts.exists():
+            # The finished-build marker, from the state bundle: a match run counts a source
+            # without it as missing (a build that did not finish).
+            bundle: dict[str, str] = json.loads(store.download(f"{src}/{BUNDLE}"))
+            if "_counts.json" in bundle:
+                counts.parent.mkdir(parents=True, exist_ok=True)
+                counts.write_text(bundle["_counts.json"])
         for table in sorted(folders):
             if table.startswith("_") or (tables and table not in tables):
                 continue
