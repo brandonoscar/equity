@@ -1,0 +1,32 @@
+source_id: md.anne_arundel.parcels
+state: MD
+# Anne Arundel County (MD) Office of Planning and Zoning open-data 'Parcels' layer, SDAT fields,
+# updated monthly (267,598 rows on 2026-11-24, one per SDAT account incl. condo units;
+# ASST_FIRST_OWNER filled on all): owner names, owner mailing address, premises address.
+# md.statewide.parcels has no owner names. ASST_ACCOUNT_NO is the statewide ACCTID without its
+# '020' prefix ('100000002453' = ACCTID '020100000002453').
+layer_url: https://gis.aacounty.org/arcgis/rest/services/OpenData/Planning_OpenData/MapServer/34
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "003"}
+fields:
+  parcel_id: ASST_ACCOUNT_NO
+  owner1: ASST_FIRST_OWNER
+  owner2: ASST_SECND_OWNER   # second SDAT owner line (a co-owner on the sampled rows)
+  mail_line1: MADR_LINE_1    # first line is sometimes a care-of ('C/O REAL EST MGMNT')
+  mail_line2: MADR_LINE_2
+  mail_city_state_zip: MADR_LINE_3   # 'CROFTON               MD 21114'
+  # House number is 0 on 22,087 rows without a premises number; it is kept as given.
+  situs_line1: [ASST_HOUSE_NO, ASST_HOUSE_NO_SUF, ASST_STREET_DIR, ASST_STREET_NAME, ASST_STREET_TYPE]
+  situs_city: ASST_POST_OFFICE
+  situs_state: {const: MD}
+  situs_zip: ASST_ZIP_CODE
+  land_use_code: ASST_USE_CODE   # SDAT use code ('CC' commercial condominium)
+value_basis: "The layer has no value or tax-year fields; no assessment facts are emitted. ASST_DEED_REF_1..4 hold liber and folio run together (24377039) with no separator, so deed book/page are not mapped. ASST_TRANSFER_DATE is not mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=3c01d2c5b1e24eb7972bfa8c706a3676
+  summary: "Anne Arundel County Office of Planning and Zoning ArcGIS Online item 'Parcels' (owner GIS_AnneArundel, accessInformation 'Anne Arundel County GIS'), public OpenData MapServer on gis.aacounty.org, no login, token or fee; 'Layer is updated monthly', item modified 2026-10-20. licenseInfo (read 2026-11-24): disclaimer only (no liability for errors; 'for illustration purposes only and should not be used for surveying, engineering, or site-specific analysis'; links the county GIS Disclaimer); no resale, redistribution or mailing-list clause. gis.aacounty.org/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

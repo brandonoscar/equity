@@ -1,0 +1,32 @@
+source_id: oh.franklin.parcels
+state: OH
+# Franklin County (OH) Auditor 'Tax Parcel' layer (Local Government Information Model parcel
+# publishing feature class; 495,443 rows on 2026-11-24; OWNERNME1 filled on 493,971; sales dated
+# up to 2026-11-18): up to three owner names, owner address, site address, land-use class.
+# Ohio's statewide layer has no owner names.
+layer_url: https://gis.franklincountyohio.gov/hosting/rest/services/ParcelFeatures/Parcel_Features/MapServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 3000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "049"}
+fields:
+  parcel_id: PARCELID    # '010-280536'; LOWPARCELID is the unpunctuated form
+  # OWNERNME3 (a third owner line) is joined to the second: the schema has only two owner slots.
+  owner1: OWNERNME1
+  owner2: {join: [OWNERNME2, OWNERNME3]}
+  # MAILNME1/MAILNME2 hold the owner's address (street; 'COLUMBUS, OH 43215-5661'), not names.
+  mail_line1: MAILNME1
+  mail_city_state_zip: MAILNME2
+  situs_line1: SITEADDRESS   # street only ('1658 MARINA DR'); no site city in the layer
+  situs_state: {const: OH}
+  situs_zip: ZIPCD
+  land_use_code: CLASSCD         # '510'
+  land_use_desc: CLASSDSCRP      # 'SINGLE FAMILY DWELLING, PLATTED LOT'
+extra_pii: [OWNERNME2, OWNERNME3]
+value_basis: "LNDVALUEBASE / BLDVALUEBASE / TOTVALUEBASE (current), PR_* (prior) and CNTTXBLVAL (taxable) are present but the layer has no tax-year field, so no values or tax_year are mapped and no assessment facts are emitted. PSTLNME1/PSTLNME2/PSTLADDRES are the tax-bill addressee (often a mortgage servicer such as 'CORELOGIC'), not the owner, so they are not mapped. SALEDATE / SALEPRICE are not mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=10a612219343474e9a316fb29fbe8cad
+  summary: "Franklin County Auditor (copyrightText 'Franklin County Auditor'; service description 'Local Government Information Model - Parcel Publishing Feature Class') public MapServer on gis.franklincountyohio.gov, no login, token or fee. The Auditor's ArcGIS Online web map built on it, 'Franklin County Current Parcels Map' (owner FranklinCountyAuditor, accessInformation 'Franklin County Auditor'), has licenseInfo 'Public Domain' (read 2026-11-24). No resale, redistribution or mailing-list clause found. gis.franklincountyohio.gov/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

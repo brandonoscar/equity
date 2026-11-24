@@ -1,0 +1,29 @@
+source_id: mo.st_charles.parcels
+state: MO
+# St. Charles County (MO) open-data 'Parcels' layer with Assessor attributes, refreshed daily
+# (172,604 rows on 2026-11-24, Owner filled on all; Date 2026-11-23; Parcel_ID null on 141, which
+# are skipped): owner name(s), mailing address, site address, property type, last-sale deed.
+layer_url: https://services1.arcgis.com/YuFpgTDhSxjvnQtm/arcgis/rest/services/Parcels/FeatureServer/2
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "183"}
+fields:
+  parcel_id: Parcel_ID   # '6-009A-4276-03-0012.0000000'; Account '023990A000' is the assessor account
+  owner1: Owner          # several owners are '*'-separated ('DICKINSON JOHN BLAKE*JONES HANNA'), kept as given
+  # '200 N 2ND ST, ST CHARLES MO, 63301' has the comma before the ZIP, not after the city, so it
+  # does not split and is kept whole as the street line.
+  mail_full: MailingAddress
+  situs_line1: SiteAddress   # street only ('800 ADAMS ST')
+  situs_state: {const: MO}
+  situs_zip: SitusZip
+  land_use_desc: PropType    # 'SINGLE FAMILY RESIDENCE (R)'
+  deed_ref: BookPage1        # book-page of the most recent sale ('02025-003850')
+deed_ref_pattern: '^(?P<book>\d+)-(?P<page>\d+)$'
+value_basis: "TotalMarketValue and the residential/commercial/agricultural assessed, land and improvement values are present but the layer has no tax-year field, so no values or tax_year are mapped and no assessment facts are emitted. PrevOwner1-4 / SalePrice1-4 / SaleDate1-4 (sale history) are not mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=716850dadd9643b591794011fcdbccdd
+  summary: "St. Charles County Government ArcGIS Online item 'Parcels' (owner stcharlescounty), public hosted feature service, no login, token or fee; item modified 2026-11-23. licenseInfo (read 2026-11-24): disclaimer only (prepared by the county's Department of Information Systems for county business, no warranty, 'Data from the county assessor's office may not be current. User accepts the data \"as is\"'); no resale, redistribution or mailing-list clause. services1.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

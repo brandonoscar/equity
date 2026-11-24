@@ -1,0 +1,36 @@
+source_id: md.montgomery.parcels
+state: MD
+# Montgomery County (MD) Planning Department (M-NCPPC Montgomery Planning) parcel polygons with
+# SDAT attributes joined monthly (282,537 rows on 2026-11-24; OWNERS_NAME filled on 280,949;
+# LOAD_DATE 2026-11-23): owner names, owner mailing address, premises address, deed liber/folio.
+# md.statewide.parcels has no owner names. DISTRICT + ACCT is the SDAT account id without the
+# county prefix '16' (statewide ACCTID '16' + '11' + '00919577').
+layer_url: https://mcmaps.org/server11/rest/services/Cached_overlays/property_poly_with_data/MapServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "031"}
+fields:
+  parcel_id: {join: [DISTRICT, ACCT]}   # '11' + '00919577' -> '1100919577'
+  owner1: OWNERS_NAME
+  owner2: OWNERS_NAME2   # second SDAT owner line: a co-owner, or the trustee of a trust owner
+  mail_line1: OWNERS_ADDR1
+  mail_line2: OWNERS_ADDR2   # OWNERS_ADDR3 is the literal placeholder 'line3' on every row, not mapped
+  mail_city: OWNERS_CITY
+  mail_state: OWNERS_STATE
+  mail_zip: OWNERS_ZIP
+  situs_line1: [PREMISE_ADDR_HOUSENO, PREMISE_ADDR_DIRECTION, PREMISE_ADDR_STREET, PREMISE_ADDR_STREET_TYPE]
+  situs_city: PREMISE_ADDR_CITY
+  situs_state: {const: MD}
+  situs_zip: PREMISE_ADDR_ZIP
+  deed_book: LIBER
+  deed_page: FOLIO
+  land_use_code: NEW_LANDUSECODE   # Montgomery Planning land use code ('910')
+  land_use_desc: LU_CATEGORY       # its category ('Vacant', 'Research and Development')
+value_basis: "LAND_ASSMT / IMPROV_ASSMT / PREF_ASSMT (SDAT assessments) and ASSMT_DATE (a year, 2026) are present, but whether ASSMT_DATE is the tax year or the triennial reassessment base year is not documented on the layer, so no values or tax_year are mapped and no assessment facts are emitted. SALES_PRICE / TRANSFER_DATE are not mapped. ZONE_ is the placeholder 'See Layer'."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=a905b6f7b18a4fe4b232db378babd86e
+  summary: "Montgomery County Planning Department (M-NCPPC) ArcGIS Online item 'Parcels (uncached)' (owner cgmcgove, montgomeryplanning.org contact), public MapServer on mcmaps.org, no login, token or fee; 'Attribute data is fed from monthly updates from the State Department of Taxation (SDAT)'. The item has no licenseInfo or accessInformation (read 2026-11-24); no resale, redistribution or mailing-list clause found. mcmaps.org/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

@@ -1,0 +1,32 @@
+source_id: in.lake.parcels
+state: IN
+# Lake County (IN) 'Lake County Parcels' open-data layer, maintained in the County Auditor's
+# parcel fabric (245,171 rows on 2026-11-24, republished that day; mdeededOwner filled on
+# 243,228): deeded owner, owner mailing address, property address, property class.
+# config/states/in.yaml has no owner names.
+layer_url: https://services5.arcgis.com/8CXRnvSfSpwdf0R6/arcgis/rest/services/Lake_County_Parcels/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "089"}
+use_restrictions: [attribution_required, no_commercial_name_address_lists, no_resale]
+fields:
+  parcel_id: PARCELID    # '45-11-11-131-025.000-032' (state parcel number; empty on 9 rows, skipped)
+  owner1: mdeededOwner   # 'Guthrie, John V & Johnnie Sue'
+  mail_line1: Mail_Add   # number + direction + street + suffix in one field
+  mail_city: mailcity
+  mail_state: mailstate
+  mail_zip: mailzipCode
+  situs_line1: Situs_Add
+  situs_city: Loccity
+  situs_state: Locstate
+  situs_zip: LoczipCode
+  land_use_code: mpropertyclasscode   # '500'
+  land_use_desc: mpropertyclass       # 'Res - Vacant Platted lot'
+value_basis: "The layer has no value or tax-year fields; no assessment facts are emitted. Deductions, TIF and special-assessment columns are not mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=18b6b08c8c7e403cbd9451360c8f5a61
+  summary: "Lake County, Indiana open-data item 'Lake County Parcels' (owner lakecountyod; accessInformation 'Lake County Surveyor's Office'; 'maintained within the Lake County Auditor's Office using the parcel fabric'), public hosted feature service, no login, token or fee; item modified 2026-11-24. licenseInfo (read 2026-11-24): data 'as is', no warranty or liability, and 'Any redistribution of this data, either in it's original form or any transformed or built upon state, must give contribution to the Lake County Surveyor's Office and may not be used for commercial purposes' (recorded as attribution_required and no_resale). Indiana APRA IC 5-14-3-3(f) also limits commercial use of name/address lists (recorded as no_commercial_name_address_lists, as for config/states/in.yaml). services5.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

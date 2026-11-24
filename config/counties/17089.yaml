@@ -1,0 +1,32 @@
+source_id: il.kane.parcels
+state: IL
+# Kane County (IL) GIS-Technologies 'Kane County PIN List' layer (Kane.DBO.Parcels_v2025):
+# parcel geometry from the active parcel layer joined to assessment records (187,438 rows on
+# 2026-11-24; TaxName filled on 187,437; EditDate 2026-10-03; recorded documents dated 2026):
+# taxpayer name, mailing address, site address, use code.
+layer_url: https://gistech.countyofkane.org/arcgis/rest/services/KanePINList/MapServer/0
+order_by: OBJECTID
+page_size: 1000          # maxRecordCount 1000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "089"}
+fields:
+  parcel_id: PIN         # '0121221007'
+  owner1: TaxName        # tax-bill name ('BARBA, RONALD & ROSALINA S'), as il.dupage / il.lake map it
+  mail_line1: MailingAddress
+  mail_line2: MailingAddress2
+  mail_city: MailingCity
+  mail_state: MailingState
+  mail_zip: MailingZip   # 9 digits without a hyphen ('601406722'); the first five are the ZIP
+  situs_line1: SiteAddress
+  situs_city: SiteCity
+  situs_state: SiteState
+  situs_zip: SiteZip
+  land_use_code: UseCode             # '0040'
+  land_use_desc: UseCodeDescription  # 'Residential Improved Lot'
+value_basis: "The layer has no value or tax-year fields; no assessment facts are emitted. DocNumber / DocDate (recorder document of the last conveyance, e.g. '2026K024887') are not mapped: the schema's deed fields are book/page."
+terms:
+  url: https://gistech.countyofkane.org/arcgis/rest/services/KanePINList/MapServer/0
+  summary: "Kane County, Illinois public MapServer 'Kane County PIN List' on gistech.countyofkane.org (service description 'Kane County PIN List | GIS-Technologies'; layer copyright 'Kane County; GIS, Supervisor of Assessments, County Clerk'), no login, token or fee. Layer description: a snapshot of the active parcel layer and assessment records, 'not the certified parcels used for taxing purposes'. No licence, resale, redistribution or mailing-list clause on the service or layer (read 2026-11-24). gistech.countyofkane.org/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

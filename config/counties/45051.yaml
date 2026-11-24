@@ -1,0 +1,27 @@
+source_id: sc.horry.parcels
+state: SC
+# Horry County (SC) GIS parcel-app 'Parcels' layer with land-records attributes (302,732 rows on
+# 2026-11-24; OwnerName filled on 294,897; sales dated up to 2026-11-23): owner name, owner
+# mailing address, deed book/page, land-use code. No situs address in this layer.
+layer_url: https://www.horrycounty.org/parcelapp/rest/services/HorryCountyGISApp/MapServer/24
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "051"}
+fields:
+  parcel_id: PINtext     # '39308040324' (PIN as text); TMS '1668037030' is the tax map number
+  owner1: OwnerName
+  mail_line1: OwnerStreet
+  mail_city: OwnerCity
+  mail_state: OwnerState
+  mail_zip: OwnerZipCode # '27546-6924'
+  deed_book: DeedBook    # 'CG2302' (book of the last sale deed)
+  deed_page: DeedPage
+  land_use_code: LandUseCode
+value_basis: "MarketLand / MarketImprv / MarketProp, AssessedLand / AssessedImprv / AssessedProp and Taxable* are present but the layer has no tax-year field, so no values or tax_year are mapped and no assessment facts are emitted. SaleDate is not mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=4222c7cffe1b49eab5328f118f7da0bf
+  summary: "Horry County Government GIS ArcGIS Online item 'Parcels' (owner MapManager; 'Parcel Land Records within Horry County. SC.'), public MapServer on www.horrycounty.org/parcelapp, no login, token or fee; item modified 2025-07-18, data current (sales to 2026-11-23). The item has no licenseInfo, accessInformation or description (read 2026-11-24); no resale, redistribution or mailing-list clause found. The county's OpenData parcel layer (gisportal.horrycounty.org) has no owner fields. www.horrycounty.org/robots.txt redirects to www.horrycountysc.gov/robots.txt, which answers 404 (no rules)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free
