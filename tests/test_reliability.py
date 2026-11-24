@@ -9,6 +9,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 import duckdb
+import pytest
 
 from equity.adapters.base import Fetched
 from equity.adapters.registry import REGISTRY
@@ -66,3 +67,18 @@ def test_a_match_run_is_repeatable_and_rerunning_changes_nothing(
     assert _digest(a) == _digest(b) and _digest(a)  # same rows in every output table
     again = run(lake, a, ["zz.debts"], ["zz.parcels"])  # over the same folder
     assert again == first and _digest(a) == _digest(b)
+
+
+def test_a_run_names_the_sources_missing_from_the_lake_and_can_refuse(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str]
+) -> None:
+    from equity.matching.resolve import main, missing_sources, state_sources
+
+    empty = tmp_path / "lake"
+    empty.mkdir()
+    assert set(state_sources("DC")) <= set(missing_sources("DC", empty))
+    assert main(["--state", "DC", "--lake", str(empty), "--require-all"]) == 2
+    assert "dc.otr.delinquent_taxes" in capsys.readouterr().err
+    (empty / "dc.otr.delinquent_taxes" / "instrument").mkdir(parents=True)
+    (empty / "dc.otr.delinquent_taxes" / "instrument" / "0.parquet").write_bytes(b"")
+    assert "dc.otr.delinquent_taxes" not in missing_sources("DC", empty)
