@@ -865,6 +865,15 @@ def state_sources(state: str) -> list[str]:
                   | set(FEDERAL_DEBTS))  # fmt: skip
 
 
+def missing_sources(state: str, lake: Path = LAKE) -> list[str]:
+    """The sources a state's run reads that have no Parquet in the lake. A run reads a missing
+    source as empty, so its counts drop without an error; the summary names them instead."""
+    spec = STATES[state]
+    wanted = sorted(set(state_sources(state)) | set(spec.get("courts") or [])
+                    | set(spec.get("writs") or []))  # fmt: skip
+    return [s for s in wanted if not any((lake / s).glob("*/*.parquet"))]
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="equity.matching.resolve")
     ap.add_argument("--state", required=True, choices=sorted(STATES))
@@ -872,10 +881,21 @@ def main(argv: list[str] | None = None) -> int:
                     help="print the sources and tables this state reads, then stop")  # fmt: skip
     ap.add_argument("--lake", type=Path, default=LAKE)
     ap.add_argument("--out", type=Path, default=DERIVED, help="writes <out>/<state>/")
+    ap.add_argument(
+        "--require-all",
+        action="store_true",
+        help="refuse to run if a source the state reads is not in the lake",
+    )
     args = ap.parse_args(argv)
     if args.list_sources:
         print(json.dumps({"sources": state_sources(args.state), "tables": list(TABLES_READ)}))
         return 0
+    missing = missing_sources(args.state, args.lake)
+    if missing:
+        print(f"{args.state}: not in the lake, read as empty: {', '.join(missing)}",
+              file=sys.stderr)  # fmt: skip
+        if args.require_all:
+            return 2
     spec = STATES[args.state]
     result = run(args.lake, args.out / args.state.lower(), [*spec["debtors"], *FEDERAL_DEBTS],
                  spec["owners"],
@@ -884,6 +904,9 @@ def main(argv: list[str] | None = None) -> int:
                  spec.get("courts"), spec.get("writs"), spec.get("registries"),
                  spec.get("debtor_doc_types"), bankruptcy_sources(args.state),
                  spec.get("deeds"))  # fmt: skip
+    result["missing_sources"] = missing
+    summary = args.out / args.state.lower() / "summary.json"
+    summary.write_text(json.dumps(result, indent=2, default=str))
     json.dump(result, sys.stdout, indent=2, default=str)
     print()
     return 0
