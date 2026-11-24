@@ -187,6 +187,10 @@ def test_pull_parts_downloads_missing_parquet_only(tmp_path: Path) -> None:
     assert (fresh / "bb.parcels" / "parcel" / "00000.parquet").read_bytes() == b"Q0"
     assert pull_parts(make_store(bucket), fresh, ["bb.parcels"]) == 0  # already there
     assert pull_parts(make_store(bucket), fresh, ["aa.parcels"], tables=["address"]) == 0
+    # A finished source brings its _counts.json, so a match run sees it as complete; an
+    # unfinished one (bb) does not.
+    assert (fresh / "aa.parcels" / "_counts.json").read_text() == '{"parcel": 1}'
+    assert not (fresh / "bb.parcels" / "_counts.json").exists()
 
 
 def test_a_part_too_big_to_store_is_not_synced_as_finished(

@@ -79,8 +79,12 @@ def test_a_run_names_the_sources_missing_from_the_lake_and_can_refuse(
     assert set(state_sources("DC")) <= set(missing_sources("DC", empty))
     assert main(["--state", "DC", "--lake", str(empty), "--require-all"]) == 2
     assert "dc.otr.delinquent_taxes" in capsys.readouterr().err
-    (empty / "dc.otr.delinquent_taxes" / "instrument").mkdir(parents=True)
-    (empty / "dc.otr.delinquent_taxes" / "instrument" / "0.parquet").write_bytes(b"")
+    src = empty / "dc.otr.delinquent_taxes"
+    (src / "instrument").mkdir(parents=True)
+    (src / "instrument" / "0.parquet").write_bytes(b"")
+    # Parquet without _counts.json is a build that did not finish (e.g. killed): still missing.
+    assert "dc.otr.delinquent_taxes" in missing_sources("DC", empty)
+    (src / "_counts.json").write_text("{}")
     assert "dc.otr.delinquent_taxes" not in missing_sources("DC", empty)
 
 
