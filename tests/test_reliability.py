@@ -82,3 +82,21 @@ def test_a_run_names_the_sources_missing_from_the_lake_and_can_refuse(
     (empty / "dc.otr.delinquent_taxes" / "instrument").mkdir(parents=True)
     (empty / "dc.otr.delinquent_taxes" / "instrument" / "0.parquet").write_bytes(b"")
     assert "dc.otr.delinquent_taxes" not in missing_sources("DC", empty)
+
+
+def test_the_memory_limit_comes_from_the_environment(
+    lake: Path,  # noqa: F811
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    from equity.matching.resolve import memory_limit
+
+    monkeypatch.delenv("EQUITY_MEMORY_LIMIT", raising=False)
+    assert memory_limit() is None
+    monkeypatch.setenv("EQUITY_MEMORY_LIMIT", "512mb")
+    assert memory_limit() == "512MB"
+    capped = run(lake, tmp_path / "capped", ["zz.debts"], ["zz.parcels"])
+    assert capped == run(lake, tmp_path / "free", ["zz.debts"], ["zz.parcels"])
+    monkeypatch.setenv("EQUITY_MEMORY_LIMIT", "lots; DROP")
+    with pytest.raises(ValueError, match="EQUITY_MEMORY_LIMIT"):
+        memory_limit()
