@@ -1,0 +1,33 @@
+source_id: mi.kalamazoo.parcels
+state: MI
+# Kalamazoo County (MI) GIS 'Parcels 2026' hosted layer on the county's own ArcGIS Enterprise
+# (100,582 rows on 2026-11-24; onername1 filled on 100,508; layer last edited 2026-09-28): owner
+# name and owner address, property address, property class. The county republishes the layer
+# once a year (Parcels__2023, 2024_Parcels, Parcels__2025_ ...); point layer_url at the next
+# year's view when it appears.
+layer_url: https://gis.kalcounty.com/server/rest/services/Hosted/Parcels_2026_view/FeatureServer/0
+order_by: objectid
+page_size: 1000          # maxRecordCount 1000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "077"}
+fields:
+  parcel_id: pelnumber   # '01-01-101-011'
+  owner1: onername1      # onername2 is blank on the sampled rows and is not mapped
+  mail_line1: otaddress
+  mail_city: ownercity
+  mail_state: onerstate
+  mail_zip: orzipcode
+  situs_line1: pcombined # '5981 W BASELINE RD'
+  situs_city: presscity
+  situs_state: pessstate
+  situs_zip: pdresszip
+  land_use_code: prtyclass
+  land_use_desc: prtyclstxt   # '401 - Residential - Improved'
+extra_pii: [onername2, oercareof]
+value_basis: "sar1_mbor (assessed/state equalized value after the March Board of Review) and tax (taxable value), with prv_mbor / prv_tax for the prior year, are present but the layer has no tax-year field and its value columns are undocumented, so no values or tax_year are mapped and no assessment facts are emitted. oercareof (care-of line) is not mapped."
+terms:
+  url: https://gis.kalcounty.com/portal/home/item.html?id=82bbc93eae1449cfa96cdc48b14ab1fa
+  summary: "Kalamazoo County Government GIS ArcGIS Enterprise portal item 'Parcels 2026 view' (owner tjjenn_kalcounty), public hosted feature service on gis.kalcounty.com, no login, token or fee. The item has no licenseInfo, accessInformation or description (read 2026-11-24); no resale, redistribution or mailing-list clause found. gis.kalcounty.com/robots.txt (read 2026-11-24) allows all paths for User-agent * with 'Content-Signal: search=yes,ai-train=no,use=reference' and disallows only named AI/SEO crawlers; this source does not train models."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

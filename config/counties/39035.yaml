@@ -1,0 +1,39 @@
+source_id: oh.cuyahoga.parcels
+state: OH
+# Cuyahoga County (OH) Fiscal Office 'Parcel Fabric Parcels' with CAMA and real property data,
+# updated daily (521,030 rows on 2026-11-24; parcel_owner filled on 519,547; parcel_id null on
+# 653, which are skipped): owner and second owner, tax mailing address, site address, land use,
+# zoning, certified values with their tax year. Ohio's statewide layer has no owner names.
+layer_url: https://gis.cuyahogacounty.gov/server/rest/services/CCFO/Parcel_Fabric_Taxparcels/FeatureServer/0
+order_by: ObjectID
+page_size: 2000          # maxRecordCount 5000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "035"}
+fields:
+  parcel_id: parcel_id   # '00101004' (parcelpin is the same number)
+  owner1: parcel_owner   # 'MONAGO, FREDERICK C'
+  owner2: second_owner   # filled on 50,452 rows: a co-owner or the owning trust
+  mail_line1: mail_addr_street
+  mail_line2: mail_unit_no
+  mail_city: mail_city
+  mail_state: mail_state
+  mail_zip: mail_zip
+  situs_line1: [parcel_addr, parcel_predir, parcel_street, parcel_suffix, parcel_unit]
+  situs_city: parcel_city
+  situs_state: {const: OH}
+  situs_zip: parcel_zip
+  land_use_code: tax_luc            # '5100'
+  land_use_desc: tax_luc_description  # '1-FAMILY PLATTED LOT'
+  zoning: zoning_code
+  land_value: certified_tax_land
+  bldg_value: certified_tax_building
+  total_value: certified_tax_total
+  assessed_value: tax_assessed_total
+  tax_year: cur_tax_year
+value_basis: "certified_tax_land / certified_tax_building / certified_tax_total are the Fiscal Officer's certified market (appraised) values for cur_tax_year (2026 on 2026-11-24; certified_tax_total equals tax_market_total); tax_assessed_total is the 35% assessed value for the same year. Exempt, abated, TIF and prior-year columns are not mapped. mail_name (the tax-bill addressee) is not mapped: parcel_owner is the owner of record. book_page, grantor/grantee and sale fields are not mapped."
+terms:
+  url: https://cuyahoga.maps.arcgis.com/home/item.html?id=ffaaa1651d5540419469375d680f3245
+  summary: "Cuyahoga County ArcGIS org item 'Parcel Fabric Parcels' (owner dgiersz_cuyahoga6; 'Parcel Fabric parcels with associated CAMA and Real Property Information. Data is updated daily'), public FeatureServer on gis.cuyahogacounty.gov, no login, token or fee. licenseInfo (read 2026-11-24): disclaimer only ('free public service on an \"as is\" basis', no warranty, not an official public record; users agree to the disclaimer); no resale, redistribution or mailing-list clause. gis.cuyahogacounty.gov/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

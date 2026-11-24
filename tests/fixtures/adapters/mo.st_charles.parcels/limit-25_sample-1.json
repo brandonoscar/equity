@@ -1,0 +1,256 @@
+{
+ "attributes": [
+  {
+   "BookPage1": "00694-001259",
+   "MailingAddress": "4607 TEST ST",
+   "OBJECTID": 1,
+   "Owner": "TESTOWNER 41CDFE",
+   "Parcel_ID": "6-009D-3280-00-0001.0000000",
+   "PropType": "GOVERMENT (EX)",
+   "SiteAddress": "973 TEST ST",
+   "SitusZip": "63301"
+  },
+  {
+   "BookPage1": "00644-000721",
+   "MailingAddress": "4607 TEST ST",
+   "OBJECTID": 2,
+   "Owner": "TESTOWNER 41CDFE",
+   "Parcel_ID": "6-014A-3280-00-0001.2000000",
+   "PropType": "GOVERMENT (EX)",
+   "SiteAddress": "973 TEST ST",
+   "SitusZip": "63301"
+  },
+  {
+   "BookPage1": "02021-067094",
+   "MailingAddress": "3364 TEST ST",
+   "OBJECTID": 3,
+   "Owner": "TESTOWNER AF42C9",
+   "Parcel_ID": "6-009D-B011-00-0005.0000000",
+   "PropType": "IMPROVED COMMERCIAL (C)",
+   "SiteAddress": "904 TEST ST",
+   "SitusZip": "63301"
+  },
+  {
+   "BookPage1": null,
+   "MailingAddress": "4607 TEST ST",
+   "OBJECTID": 4,
+   "Owner": "TESTOWNER 24FE4D",
+   "Parcel_ID": "6-009D-B012-00-0010.0000000",
+   "PropType": "GOVERMENT (EX)",
+   "SiteAddress": "973 TEST ST",
+   "SitusZip": "63301"
+  },
+  {
+   "BookPage1": "00656-001534",
+   "MailingAddress": "4607 TEST ST",
+   "OBJECTID": 5,
+   "Owner": "TESTOWNER E83890",
+   "Parcel_ID": "6-014A-B015-00-0001.0000000",
+   "PropType": "GOVERMENT (EX)",
+   "SiteAddress": "973 TEST ST",
+   "SitusZip": "63301"
+  },
+  {
+   "BookPage1": "00936-001791",
+   "MailingAddress": "7751 TEST ST",
+   "OBJECTID": 6,
+   "Owner": "TESTOWNER B8825E",
+   "Parcel_ID": "6-014A-B016-00-0003.0000000",
+   "PropType": "MULTI-USAGE (XCAR)",
+   "SiteAddress": "6822 TEST ST",
+   "SitusZip": "63301"
+  },
+  {
+   "BookPage1": "02023-002453",
+   "MailingAddress": "3491 TEST ST",
+   "OBJECTID": 7,
+   "Owner": "TESTOWNER 12A1FB LLC",
+   "Parcel_ID": "6-014A-B016-00-0001.0000000",
+   "PropType": "IMPROVED COMMERCIAL (C)",
+   "SiteAddress": "1860 TEST ST",
+   "SitusZip": "63301"
+  },
+  {
+   "BookPage1": "00691-000219",
+   "MailingAddress": "4607 TEST ST",
+   "OBJECTID": 8,
+   "Owner": "TESTOWNER 24FE4D",
+   "Parcel_ID": "6-014A-B016-00-0002.0000000",
+   "PropType": "GOVERMENT (EX)",
+   "SiteAddress": "973 TEST ST",
+   "SitusZip": "63301"
+  },
+  {
+   "BookPage1": "00784-001793",
+   "MailingAddress": "4607 TEST ST",
+   "OBJECTID": 9,
+   "Owner": "TESTOWNER 41CDFE",
+   "Parcel_ID": "6-014A-B017-00-0007.1000000",
+   "PropType": "GOVERMENT (EX)",
+   "SiteAddress": "973 TEST ST",
+   "SitusZip": "63301"
+  },
+  {
+   "BookPage1": "00689-000968",
+   "MailingAddress": "4607 TEST ST",
+   "OBJECTID": 10,
+   "Owner": "TESTOWNER E83890",
+   "Parcel_ID": "6-014A-B017-00-0004.1000000",
+   "PropType": "GOVERMENT (EX)",
+   "SiteAddress": "973 TEST ST",
+   "SitusZip": "63301"
+  },
+  {
+   "BookPage1": null,
+   "MailingAddress": "3231 TEST ST",
+   "OBJECTID": 11,
+   "Owner": "TESTOWNER 57FEE4",
+   "Parcel_ID": "6-014A-B017-00-0002.0000000",
+   "PropType": "MULTI-USAGE (XCAR)",
+   "SiteAddress": "5207 TEST ST",
+   "SitusZip": "63301"
+  },
+  {
+   "BookPage1": "02022-062133",
+   "MailingAddress": "5647 TEST ST",
+   "OBJECTID": 12,
+   "Owner": "TESTOWNER B18F0A",
+   "Parcel_ID": "6-014A-B018-00-0001.2000000",
+   "PropType": "MULTI-USAGE (XCAR)",
+   "SiteAddress": "1780 TEST ST",
+   "SitusZip": "63301"
+  },
+  {
+   "BookPage1": "04644-000033",
+   "MailingAddress": "1606 TEST ST",
+   "OBJECTID": 13,
+   "Owner": "TESTOWNER 5864D7 LLC",
+   "Parcel_ID": "6-014A-B019-00-0001.0000000",
+   "PropType": "IMPROVED COMMERCIAL (C)",
+   "SiteAddress": "4520 TEST ST",
+   "SitusZip": "63301"
+  },
+  {
+   "BookPage1": "00839-001154",
+   "MailingAddress": "4607 TEST ST",
+   "OBJECTID": 14,
+   "Owner": "TESTOWNER 41CDFE",
+   "Parcel_ID": "6-014A-B021-00-0003.0000000",
+   "PropType": "GOVERMENT (EX)",
+   "SiteAddress": "8578 TEST ST",
+   "SitusZip": "63301"
+  },
+  {
+   "BookPage1": "00816-000039",
+   "MailingAddress": "4607 TEST ST",
+   "OBJECTID": 15,
+   "Owner": "TESTOWNER E83890",
+   "Parcel_ID": "6-014A-B024-00-0003.1000000",
+   "PropType": "GOVERMENT (EX)",
+   "SiteAddress": "5429 TEST ST",
+   "SitusZip": "63301"
+  },
+  {
+   "BookPage1": "02021-036474",
+   "MailingAddress": "8429 TEST ST",
+   "OBJECTID": 16,
+   "Owner": "TESTOWNER 9C59AB",
+   "Parcel_ID": "6-014A-B026-00-0011.0000000",
+   "PropType": "SINGLE FAMILY RESIDENCE (R)",
+   "SiteAddress": "1143 TEST ST",
+   "SitusZip": "63301"
+  },
+  {
+   "BookPage1": "01864-001321",
+   "MailingAddress": "4657 TEST ST",
+   "OBJECTID": 17,
+   "Owner": "TESTOWNER 82C409",
+   "Parcel_ID": "6-014A-B026-00-0001.0000000",
+   "PropType": "MULTI-USAGE (XCAR)",
+   "SiteAddress": "8124 TEST ST",
+   "SitusZip": "63301"
+  },
+  {
+   "BookPage1": "00653-000474",
+   "MailingAddress": "4607 TEST ST",
+   "OBJECTID": 18,
+   "Owner": "TESTOWNER 24FE4D",
+   "Parcel_ID": "6-014A-B026-00-0002.0000000",
+   "PropType": "GOVERMENT (EX)",
+   "SiteAddress": "573 TEST ST",
+   "SitusZip": "63301"
+  },
+  {
+   "BookPage1": "02837-001539",
+   "MailingAddress": "7885 TEST ST",
+   "OBJECTID": 19,
+   "Owner": "TESTOWNER D76DB4",
+   "Parcel_ID": "6-014A-B026-00-0007.0000000",
+   "PropType": "SINGLE FAMILY RESIDENCE (R)",
+   "SiteAddress": "2560 TEST ST",
+   "SitusZip": "63301"
+  },
+  {
+   "BookPage1": "02022-056834",
+   "MailingAddress": "1999 TEST ST",
+   "OBJECTID": 20,
+   "Owner": "TESTOWNER EE6427",
+   "Parcel_ID": "6-014A-B026-00-0005.0000000",
+   "PropType": "SINGLE FAMILY RESIDENCE (R)",
+   "SiteAddress": "5974 TEST ST",
+   "SitusZip": "63301"
+  },
+  {
+   "BookPage1": "06941-000287",
+   "MailingAddress": "7919 TEST ST",
+   "OBJECTID": 21,
+   "Owner": "TESTOWNER 61C012 LLC",
+   "Parcel_ID": "6-014A-B027-00-0001.0000000",
+   "PropType": "IMPROVED COMMERCIAL (C)",
+   "SiteAddress": "2415 TEST ST",
+   "SitusZip": "63301"
+  },
+  {
+   "BookPage1": "03462-001119",
+   "MailingAddress": "7016 TEST ST",
+   "OBJECTID": 22,
+   "Owner": "TESTOWNER 6A6972 LLC",
+   "Parcel_ID": "6-014A-B028-00-0003.0000000",
+   "PropType": "SINGLE FAMILY RESIDENCE (R)",
+   "SiteAddress": "2350 TEST ST",
+   "SitusZip": "63301"
+  },
+  {
+   "BookPage1": "04538-000870",
+   "MailingAddress": "5181 TEST ST",
+   "OBJECTID": 23,
+   "Owner": "TESTOWNER 6BE54A",
+   "Parcel_ID": "6-009D-B029-00-0011.0000000",
+   "PropType": "IMPROVED COMMERCIAL (C)",
+   "SiteAddress": "789 TEST ST",
+   "SitusZip": "63301"
+  },
+  {
+   "BookPage1": "06838-002285",
+   "MailingAddress": "2281 TEST ST",
+   "OBJECTID": 24,
+   "Owner": "TESTOWNER 1BDE79",
+   "Parcel_ID": "6-009D-B029-00-0001.0000000",
+   "PropType": "MULTI-USAGE (XCAR)",
+   "SiteAddress": "689 TEST ST",
+   "SitusZip": "63301"
+  },
+  {
+   "BookPage1": "06114-001258",
+   "MailingAddress": "7010 TEST ST",
+   "OBJECTID": 25,
+   "Owner": "TESTOWNER C5DF22 LLC",
+   "Parcel_ID": "6-009D-B031-00-0005.0000000",
+   "PropType": "IMPROVED COMMERCIAL (C)",
+   "SiteAddress": "1964 TEST ST",
+   "SitusZip": "63301"
+  }
+ ],
+ "layer": "https://services1.arcgis.com/YuFpgTDhSxjvnQtm/arcgis/rest/services/Parcels/FeatureServer/2",
+ "where": "1=1"
+}

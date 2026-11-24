@@ -1,0 +1,34 @@
+source_id: tn.hamilton.parcels
+state: TN
+# Hamilton County (TN) GIS 'Parcels' map service with Assessor of Property fields (170,259 rows
+# on 2026-11-24; real owners on 170,255; sales dated up to 2026-11-18): owner names, owner
+# mailing address, property address, land-use code, last-sale deed book/page. Four parcels
+# carry the placeholder owner 'Update in Progress' / 'Contact the Assessor of Property ...' and
+# no ids; they are filtered out. tn.statewide.parcels has no owner names.
+layer_url: https://gis.hamiltontn.gov/server/rest/services/Parcels/MapServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+filter: "OWNERNAME1 <> 'Update in Progress'"
+county: {constant: "065"}
+fields:
+  parcel_id: GISLINK     # '033159P A 00600' (spaces removed by the adapter), as tn.statewide.parcels
+  owner1: OWNERNAME1
+  owner2: OWNERNAME2     # filled on 26,032 rows: a co-owner, sometimes an 'ATTN' line or name continuation
+  mail_line1: MASTNAME   # the whole mailing street ('989 CHARLOTTE AVE'); MASTNUM/MADIRPFX/MATYPESFX are empty
+  mail_line2: MALINE2
+  mail_city: MACITY
+  mail_state: MASTATE
+  mail_zip: MAZIP
+  situs_line1: ADDRESS
+  situs_state: {const: TN}
+  land_use_code: LUCODE  # 111.0 (a number)
+  deed_book: SALE1BOOK   # book/page of the most recent of four sales
+  deed_page: SALE1PAGE
+value_basis: "LANDVALUE / BUILDVALUE / APPVALUE (appraised) and ASSVALUE (assessed) are present but the layer has no tax-year field, so no values or tax_year are mapped and no assessment facts are emitted. SALE1-4 date/consideration and SALE2-4 book/page are not mapped."
+terms:
+  url: https://gis.hamiltontn.gov/server/rest/services/Parcels/MapServer
+  summary: "Hamilton County, Tennessee GIS public MapServer 'Parcels' on gis.hamiltontn.gov (records link to assessor.hamiltontn.gov), no login, token or fee. No licence, copyright, resale, redistribution or mailing-list text on the service or layer (read 2026-11-24). gis.hamiltontn.gov/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

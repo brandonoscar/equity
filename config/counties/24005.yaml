@@ -1,0 +1,37 @@
+source_id: md.baltimore_county.parcels
+state: MD
+# Baltimore County (MD) GIS 'Tax parcel' layer (375,143 rows on 2026-11-24; OWNER_NA1 filled on
+# 350,812; YEAR_BUILT up to 2026): owner names, owner mailing address, premises address, deed
+# liber/folio. md.statewide.parcels has no owner names. Rows without an owner are road, 'NOT
+# LOCATED' and non-county polygons (TAXPIN 'NOT LOCATED', '019466HAR'), so they are filtered out.
+# TAXPIN is the 10-digit SDAT account number (statewide ACCTID = '04' + district + TAXPIN).
+layer_url: https://bcgisdata.baltimorecountymd.gov/arcgis/rest/services/Property/Property/MapServer/1
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+filter: "OWNER_NA1 IS NOT NULL"
+county: {constant: "005"}
+fields:
+  parcel_id: TAXPIN      # '0602000510'
+  owner1: OWNER_NA1
+  owner2: OWNER_NA2      # second SDAT owner line (a co-owner on the sampled rows)
+  mail_line1: ADDRESS_1
+  mail_line2: ADDRESS_2
+  mail_city: OWNER_CITY
+  mail_state: OWNERSTATE
+  mail_zip: OWNER_ZIP
+  situs_line1: [ST_NUM, ST_DIR, STREETNAME, STREETTYPE]
+  situs_city: CITY
+  situs_state: {const: MD}
+  situs_zip: ZIP_CODE    # '00000' on parcels without a premises number (see value_basis)
+  deed_book: DEED_LIBER
+  deed_page: DEED_FOLIO
+  land_use_code: LU_CODE         # 'RESIDENTIAL', 'AGRICULTURAL'
+  land_use_desc: GIS_LU_CODE     # 'RURAL RESIDENTIAL SFD'
+value_basis: "TOTAL_VALUE is present but the layer has no tax-year field, so no values or tax_year are mapped and no assessment facts are emitted. FULL_OWNER_NAME is OWNER_NA1 + OWNER_NA2 concatenated, not mapped. ZIP_CODE holds '00000' on parcels without a premises number; that placeholder passes through as the situs ZIP."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=578ad61ce8804da09039ca19651bdd71
+  summary: "Baltimore County Government GIS ArcGIS Online item 'Parcels' (owner BaltimoreCountyGIS), public MapServer on bcgisdata.baltimorecountymd.gov, no login, token or fee; item modified 2025-11-12, data current (parcels built in 2026 present on 2026-11-24). Item licenseInfo and accessInformation are empty (read 2026-11-24); no resale, redistribution or mailing-list clause found. bcgisdata.baltimorecountymd.gov/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

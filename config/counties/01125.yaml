@@ -1,0 +1,34 @@
+source_id: al.tuscaloosa.parcels
+state: AL
+# Tuscaloosa County (AL) 'Parcels hosted on AGOL', data from the County Tax Assessor's Office
+# ('as of 11/17/2026'; 111,787 rows on 2026-11-24, pcloNAME filled on all): owner name, owner
+# mailing address, property location (street only), deed book/page, appraised value.
+layer_url: https://services.arcgis.com/AWzSDaKZ41uuVges/arcgis/rest/services/Parcels/FeatureServer/0
+order_by: FID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "125"}
+use_restrictions: [no_redistribution]
+fields:
+  parcel_id: pclnum      # '0101110000001000'; PCNUM_FMT is the punctuated form
+  # AddlNames (filled on 28,791 rows) continues the owner line: the co-owner after a trailing
+  # '&' / 'ETUX' ('HUBBARD JOHN D &' + 'BEVERLY HUBBARD') or the rest of a company name
+  # ('SERIES ONE OF TWIN CREEKS' + 'TIMBER LLC'), so the two are joined.
+  owner1: {join: [pcloNAME, AddlNames]}
+  mail_line1: addSTRT1
+  mail_line2: addSTRT2
+  mail_city: addCITY
+  mail_state: stABBR
+  mail_zip: addZIP
+  situs_line1: pcliLocati   # property location, street only ('WALLACE CREEK RD'); no site city/ZIP
+  situs_state: {const: AL}
+  deed_book: deedBOOK
+  deed_page: deedPAGE
+  land_use_code: TaxClass   # Alabama assessment class ('3')
+value_basis: "appraised (total appraised value) is present but tyYEAR is 2028 on every row, which is not a plausible current roll year, so no values or tax_year are mapped and no assessment facts are emitted. Improvemen and deedDATE are not mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=fd22fb624a9f488db9a60eafe1e51b7e
+  summary: "Tuscaloosa County ArcGIS Online item 'Parcels hosted on AGOL' (owner Tuscco; accessInformation 'Orignal data from the Tuscaloosa County Tax Assessor's Office'), public hosted feature service, no login, token or fee; item modified 2026-11-20. licenseInfo (read 2026-11-24): data 'provided AS IS', reference use only, no warranty, and 'Any further distribution of this data requires the permission of the Tuscaloosa Co. Tax Assessor' / 'of Tuscaloosa County' (recorded as no_redistribution). No mailing-list clause; nothing forbids automated access. services.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

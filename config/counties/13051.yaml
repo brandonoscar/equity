@@ -1,0 +1,41 @@
+source_id: ga.chatham.parcels
+state: GA
+# Chatham County (GA) 'Parcel Digest 2025' from SAGIS (Savannah Area GIS, the City of Savannah /
+# Chatham County / MPC consortium) with Board of Assessors attributes (125,326 rows on 2026-11-24;
+# Owner filled on 124,952; Date_Updated 2025-05-06): owner name, mailing address, property
+# address, fair market and assessed values, sale deed book/page. SAGIS publishes one digest per
+# tax year in the same service (layers 18-27 = 2016-2025); point layer_url at the next layer when
+# the 2026 digest appears.
+layer_url: https://pub.sagis.org/arcgis/rest/services/OpenData/Parcels/MapServer/27
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "051"}
+fields:
+  parcel_id: PIN         # '20743 03046' (the space is removed in the normalized id)
+  # Owner2 continues Owner (the name field is cut at 40 characters, sometimes mid-word:
+  # 'LARKIN AND TERESA WALKER 2022 REVOCABLE' + 'TRUST'), so the two are joined.
+  owner1: {join: [Owner, Owner2]}
+  mail_line1: Mailing_Address
+  mail_city: Mailing_City
+  mail_state: Mailing_State
+  mail_zip: Mailing_Zip
+  situs_line1: [PropAddress_Num, PropAddress_PreDir, PropAddress_StreetName, PropAddress_StreetType, PropAddress_PostDir, PropAddress_UnitType, PropAddress_UnitNum]
+  situs_city: PropAddress_City
+  situs_state: PropAddress_State
+  situs_zip: PropAddress_Zip
+  land_use_code: Property_Use   # 'C4'
+  land_value: FMV_Land
+  bldg_value: FMV_Building
+  total_value: FairMarketValue
+  assessed_value: Total_Assessment
+  tax_year: {const: 2025}
+  deed_book: Sale_Book
+  deed_page: Sale_Page
+value_basis: "FairMarketValue / FMV_Land / FMV_Building = Board of Assessors fair market value; Total_Assessment = assessed value (40% of FMV in Georgia). The layer is the 2025 tax-year digest (layer title 'Parcel Digest 2025'), so tax_year is the const 2025. Sale_Book / Sale_Page are the deed of the last sale. Sale price/date and the Stephens-Day base-year values are not mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=4468534af02640768b2038f0c2d080d8
+  summary: "SAGIS (Savannah Area Geographic Information System; service description 'Historical Parcel Digests for Chatham County SAGIS, BOA') ArcGIS Online item 'Parcel Digest 2025' (owner SAGISADMIN), public MapServer on pub.sagis.org, no login, token or fee; item modified 2026-02-25. licenseInfo (read 2026-11-24): 'Available for public use and download via the SAGIS Open Data website', no warranty; no resale, redistribution or mailing-list clause. pub.sagis.org/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free
