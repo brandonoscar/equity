@@ -67,6 +67,7 @@ sources:
   wi.milwaukee.delinquent_taxes: tax_delinquency
   oh.hamilton.delinquent_taxes: tax_delinquency
   dc.otr.delinquent_taxes: tax_delinquency
+  az.maricopa.unsold_tax_liens: tax_lien
   tx.harris.delinquent_taxes: tax_delinquency
   oh.mahoning.delinquent_taxes: tax_delinquency
   va.virginia_beach.delinquent_taxes: tax_delinquency
@@ -108,3 +109,4 @@ sources:
   az.cochise.tax_deed_auction: tax_delinquency    # deeded to the State; previous owner named
   # federal loans (gap report rank 9)
   us.sba.chargeoffs: charged_off_loan
+  us.sba.ppp_chargeoffs: charged_off_loan

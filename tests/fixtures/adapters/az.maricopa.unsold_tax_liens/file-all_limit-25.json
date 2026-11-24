@@ -1,0 +1,156 @@
+{
+ "layer": "https://services.arcgis.com/ykpntM6e3tHvzKRJ/arcgis/rest/services/ParcelLienDelinquent/FeatureServer/1",
+ "rows": [
+  {
+   "APN": "10107005D",
+   "DeedNumber": "19990753264",
+   "OBJECTID": 1,
+   "PropertyFullStreetAddress": "3411 TEST ST"
+  },
+  {
+   "APN": "10140011U",
+   "DeedNumber": "20180948329",
+   "OBJECTID": 2,
+   "PropertyFullStreetAddress": "3243 TEST ST"
+  },
+  {
+   "APN": "10201011C",
+   "DeedNumber": "20021072799",
+   "OBJECTID": 3,
+   "PropertyFullStreetAddress": null
+  },
+  {
+   "APN": "10207413",
+   "DeedNumber": "19980171314",
+   "OBJECTID": 4,
+   "PropertyFullStreetAddress": null
+  },
+  {
+   "APN": "10207353",
+   "DeedNumber": "NOD-01984",
+   "OBJECTID": 5,
+   "PropertyFullStreetAddress": null
+  },
+  {
+   "APN": "30335017B",
+   "DeedNumber": "20160557289",
+   "OBJECTID": 6,
+   "PropertyFullStreetAddress": null
+  },
+  {
+   "APN": "10209026",
+   "DeedNumber": "20061004986",
+   "OBJECTID": 7,
+   "PropertyFullStreetAddress": null
+  },
+  {
+   "APN": "30339979A",
+   "DeedNumber": "20100633132",
+   "OBJECTID": 8,
+   "PropertyFullStreetAddress": null
+  },
+  {
+   "APN": "10217874",
+   "DeedNumber": "19920225133",
+   "OBJECTID": 9,
+   "PropertyFullStreetAddress": null
+  },
+  {
+   "APN": "30340010D",
+   "DeedNumber": "06941-0183",
+   "OBJECTID": 10,
+   "PropertyFullStreetAddress": null
+  },
+  {
+   "APN": "10223158C",
+   "DeedNumber": "12053-0160",
+   "OBJECTID": 11,
+   "PropertyFullStreetAddress": "8915 TEST ST"
+  },
+  {
+   "APN": "30348939",
+   "DeedNumber": "20070618794",
+   "OBJECTID": 12,
+   "PropertyFullStreetAddress": null
+  },
+  {
+   "APN": "10241504",
+   "DeedNumber": "20051424906",
+   "OBJECTID": 13,
+   "PropertyFullStreetAddress": "6938 TEST ST"
+  },
+  {
+   "APN": "10247055N",
+   "DeedNumber": "19930538308",
+   "OBJECTID": 14,
+   "PropertyFullStreetAddress": null
+  },
+  {
+   "APN": "10258029B",
+   "DeedNumber": "20180429462",
+   "OBJECTID": 15,
+   "PropertyFullStreetAddress": null
+  },
+  {
+   "APN": "10407024F",
+   "DeedNumber": "20180058537",
+   "OBJECTID": 16,
+   "PropertyFullStreetAddress": null
+  },
+  {
+   "APN": "10407024H",
+   "DeedNumber": "NOD-03035",
+   "OBJECTID": 17,
+   "PropertyFullStreetAddress": null
+  },
+  {
+   "APN": "10453002Q",
+   "DeedNumber": "20120473476",
+   "OBJECTID": 18,
+   "PropertyFullStreetAddress": "576 TEST ST"
+  },
+  {
+   "APN": "10501070",
+   "DeedNumber": "20000992222",
+   "OBJECTID": 19,
+   "PropertyFullStreetAddress": null
+  },
+  {
+   "APN": "10566031D",
+   "DeedNumber": "20070454010",
+   "OBJECTID": 20,
+   "PropertyFullStreetAddress": "4349 TEST ST"
+  },
+  {
+   "APN": "10581131",
+   "DeedNumber": "20020031953",
+   "OBJECTID": 21,
+   "PropertyFullStreetAddress": "6919 TEST ST"
+  },
+  {
+   "APN": "10589007P",
+   "DeedNumber": "00595-0099",
+   "OBJECTID": 22,
+   "PropertyFullStreetAddress": null
+  },
+  {
+   "APN": "10590094",
+   "DeedNumber": "08402-0383",
+   "OBJECTID": 23,
+   "PropertyFullStreetAddress": null
+  },
+  {
+   "APN": "10623079H",
+   "DeedNumber": "09747-0043",
+   "OBJECTID": 24,
+   "PropertyFullStreetAddress": null
+  },
+  {
+   "APN": "10623092",
+   "DeedNumber": "20200551276",
+   "OBJECTID": 25,
+   "PropertyFullStreetAddress": null
+  }
+ ],
+ "where": "1=1"
+}

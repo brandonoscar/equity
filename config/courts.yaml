@@ -4,9 +4,12 @@
 schema_version: 1
 # Courts with a recorded fixture and a reachable host. Others are planned.
 # Checked 2026-11-23: all enabled feeds answer; flmb and njb are partial feeds (petitions,
-# orders, motions), the rest list all entries. wvnd (us.wvnd.rss, registered separately)
+# orders, motions), the rest list all entries. 2026-11-24: 57 more bankruptcy feeds enabled
+# (robots.txt allows the feed and it lists entries); arwb, areb, mdb, kyeb, utb, wawb, nmb,
+# wiwb and canb disallow it in robots.txt; meb, nceb, nyeb, miwb serve an empty feed; mob, txsb
+# do not answer; nywb titles use a case-number form the parser does not read. wvnd (us.wvnd.rss, registered separately)
 # returned HTTP 500 that day; nyeb, nyed, nceb, miwb, gand, mdd, pamd serve an empty feed.
-enabled: [flmb, flsb, flnb, nysb, paeb, ohnb, njb, ganb, txnb, ohsb, pawb, lamb, lawb]  # pamb: robots.txt disallows the feed
+enabled: [akb, almb, alnb, alsb, azb, cacb, caeb, casb, cob, ctb, dcb, deb, flmb, flnb, flsb, gamb, ganb, gasb, hib, ianb, iasb, idb, innb, insb, ksb, kywb, laeb, lamb, lawb, mab, mieb, mnb, moeb, mowb, msnb, mssb, mtb, ncmb, ncwb, ndb, neb, nhb, njb, nvb, nynb, nysb, ohnb, ohsb, okeb, oknb, okwb, orb, paeb, pawb, rib, scb, sdb, tneb, tnmb, tnwb, txeb, txnb, txwb, vaeb, vawb, vtb, waeb, wieb, wyb]  # pamb: robots.txt disallows the feed
 courts:
   FL: [flnd, flmd, flsd, flnb, flmb, flsb]
   OH: [ohnd, ohsd, ohnb, ohsb]
@@ -23,3 +26,38 @@ courts:
   SC: [scd, scb]
   PA: [paed, pamd, pawd, paeb, pamb, pawb]
   WV: [wvnd, wvsd, wvnb, wvsb]
+  MT: [mtb]
+  ID: [idb]
+  ND: [ndb]
+  WY: [wyb]
+  MN: [mnb]
+  MA: [mab]
+  NV: [nvb]
+  AZ: [azb]
+  DC: [dcb]
+  CT: [ctb]
+  DE: [deb]
+  VT: [vtb]
+  NH: [nhb]
+  RI: [rib]
+  WA: [waeb, wawb]
+  TN: [tneb, tnmb, tnwb]
+  KY: [kyeb, kywb]
+  MO: [moeb, mowb]
+  IA: [ianb, iasb]
+  KS: [ksb]
+  OK: [okeb, oknb, okwb]
+  CO: [cob]
+  OR: [orb]
+  WI: [wieb, wiwb]
+  MS: [msnb, mssb]
+  VA: [vaeb, vawb]
+  HI: [hib]
+  AK: [akb]
+  NE: [neb]
+  SD: [sdb]
+  MD: [mdb]
+  AR: [areb, arwb]
+  UT: [utb]
+  ME: [meb]
+  NM: [nmb]

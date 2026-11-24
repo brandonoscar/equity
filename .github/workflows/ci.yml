@@ -90,10 +90,29 @@ jobs:
         with: { version: "${{ env.UV_VERSION }}" }
       - run: make sync test coverage
 
+  windows:
+    # The CLIs and the core tests on Windows, driven by PowerShell (Pester 5,
+    # tests/powershell/Equity.Tests.ps1).
+    runs-on: windows-2022
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6.8.0
+        with: { version: "${{ env.UV_VERSION }}" }
+      - run: uv sync --locked
+      - name: Pester
+        run: |
+          Install-Module Pester -MinimumVersion 5.5.0 -Force -Scope CurrentUser -SkipPublisherCheck
+          Import-Module Pester -MinimumVersion 5.5.0
+          $result = Invoke-Pester -Path tests/powershell -Output Detailed -PassThru
+          if ($result.FailedCount -gt 0 -or $result.PassedCount -eq 0) { exit 1 }
+
   all-green:
     # The single required status for branch protection on main.
     if: always()
-    needs: [lint, types, no-ai-guard, secrets, hygiene, workflows, audit, tests]
+    needs: [lint, types, no-ai-guard, secrets, hygiene, workflows, audit, tests, windows]
     runs-on: ubuntu-24.04
     steps:
       - name: every required job passed
