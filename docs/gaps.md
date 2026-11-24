@@ -25,7 +25,7 @@ Federal sources (FJC civil judgments, EPA judicial cases, SBA charge-offs, HUD R
 | AK | 3 of 30 counties | owner, address, value, land use, zoning | — | — | `us.akb.rss` | — | `AK` | none | — |
 | AL | 3 of 67 counties | owner, address, value | — | — | `us.almb.rss`<br>`us.alnb.rss`<br>`us.alsb.rss` | — | `AL` | 2 local layers | — |
 | AR | statewide | owner, address, value | — | — | — | — | `AR` | none | — |
-| AZ | 8 of 15 counties | owner, address, value, land use, zoning | — | code_enforcement_lien (1)<br>tax_delinquency (1)<br>tax_lien (2) | `us.azb.rss` | — | `AZ-COCHISE`<br>`AZ-COUNTIES`<br>`AZ-MARICOPA`<br>`AZ-PIMA` | 14 local layers | — |
+| AZ | 15 of 15 counties | owner, address, value, land use, zoning | — | code_enforcement_lien (1)<br>tax_delinquency (1)<br>tax_lien (2) | `us.azb.rss` | — | `AZ-COCHISE`<br>`AZ-COUNTIES`<br>`AZ-MARICOPA`<br>`AZ-PIMA` | 14 local layers | — |
 | CA | 4 of 58 counties | address, value, homestead, land use, zoning | — | tax_delinquency (2)<br>tax_lien (2) | `us.cacb.rss`<br>`us.caeb.rss`<br>`us.casb.rss` | — | — | statewide + 33 local | — |
 | CO | statewide | owner, address, value, land use, zoning | — | statutory_lien (1)<br>tax_delinquency (1) | `us.cob.rss` | `co.sos.business` | `CO` | 8 local layers | — |
 | CT | statewide | owner, address, value, land use, zoning | — | recorded_judgment_or_lien (1) | `us.ctb.rss` | `ct.sos.business` | `CT` | 1 local layers | — |
@@ -34,19 +34,19 @@ Federal sources (FJC civil judgments, EPA judicial cases, SBA charge-offs, HUD R
 | FL | statewide | owner, address, value, homestead, land use | `fl.hernando.or`<br>`fl.hillsborough.or`<br>`fl.putnam.or` | administrative_judgment (1)<br>code_enforcement_lien (4)<br>court_judgment (3)<br>recorded_judgment_or_lien (3)<br>tax_lien (1)<br>tax_warrant (1) | `us.flmb.rss`<br>`us.flnb.rss`<br>`us.flsb.rss` | — | `FL` | 44 local layers | — |
 | GA | 4 of 159 counties | owner, address, value, land use, zoning | — | — | `us.gamb.rss`<br>`us.ganb.rss`<br>`us.gasb.rss` | — | `GA` | 4 local layers | — |
 | HI | statewide | zoning | — | — | `us.hib.rss` | — | — | none | — |
-| IA | 4 of 99 counties | owner, address, value, homestead, land use | — | — | `us.ianb.rss`<br>`us.iasb.rss` | — | `IA` | 1 local layers | — |
+| IA | 5 of 99 counties | owner, address, value, homestead, land use | — | — | `us.ianb.rss`<br>`us.iasb.rss` | — | `IA` | 1 local layers | — |
 | ID | statewide | owner, address, value, homestead | — | — | `us.idb.rss` | — | `ID` | 1 local layers | — |
-| IL | 4 of 102 counties | owner, address, value, land use | `il.cook.sales`<br>`il.ptax.transfers` | administrative_judgment (3) | — | — | `IL-COLLAR`<br>`IL-COOK` | 3 local layers | — |
+| IL | 6 of 102 counties | owner, address, value, land use | `il.cook.sales`<br>`il.ptax.transfers` | administrative_judgment (3) | — | — | `IL-COLLAR`<br>`IL-COOK`<br>`IL-COUNTIES` | 3 local layers | — |
 | IN | statewide | owner, address, value, land use | — | tax_delinquency (1) | `us.innb.rss`<br>`us.insb.rss` | — | `IN`<br>`IN-STJOSEPH` | none | — |
 | KS | 1 of 105 counties | owner, address | — | tax_delinquency (1) | `us.ksb.rss` | — | `KS` | none | — |
 | KY | 1 of 120 counties | owner, address, value, zoning | — | — | `us.kywb.rss` | — | `KY` | 3 local layers | — |
 | LA | 2 of 64 counties | owner, address, value, homestead | — | administrative_judgment (1) | `us.laeb.rss`<br>`us.lamb.rss`<br>`us.lawb.rss` | — | `LA-EBR`<br>`LA-NOLA` | 1 local layers | — |
 | MA | statewide | owner, address, value, land use, zoning | — | — | `us.mab.rss` | — | `MA` | 5 local layers | — |
-| MD | statewide | owner, address, value, land use, zoning | `md.sdat.transfers_1`<br>`md.sdat.transfers_2`<br>`md.sdat.transfers_3` | code_enforcement_lien (1) | — | — | `MD-BALTIMORE`<br>`MD-PRINCE-GEORGES`<br>`MD-WASHINGTON` | statewide + 2 local | — |
+| MD | statewide | owner, address, value, land use, zoning | `md.sdat.transfers_1`<br>`md.sdat.transfers_2`<br>`md.sdat.transfers_3` | code_enforcement_lien (1) | — | — | `MD-BALTIMORE`<br>`MD-COUNTIES`<br>`MD-PRINCE-GEORGES` | statewide + 2 local | — |
 | ME | statewide | owner, land use | — | — | — | — | `ME` | 5 local layers | — |
-| MI | 6 of 83 counties | owner, address, value, homestead, land use, zoning | — | administrative_judgment (1) | `us.mieb.rss` | — | `MI-COUNTIES`<br>`MI-DETROIT` | 2 local layers | — |
+| MI | 8 of 83 counties | owner, address, value, homestead, land use, zoning | — | administrative_judgment (1) | `us.mieb.rss` | — | `MI-COUNTIES`<br>`MI-DETROIT` | 2 local layers | — |
 | MN | statewide | owner, address, value, homestead, land use | — | — | `us.mnb.rss` | — | `MN` | 7 local layers | — |
-| MO | 2 of 115 counties | owner, address, value, land use, zoning | — | — | `us.moeb.rss`<br>`us.mowb.rss` | — | `MO` | 1 local layers | — |
+| MO | 3 of 115 counties | owner, address, value, land use, zoning | — | — | `us.moeb.rss`<br>`us.mowb.rss` | — | `MO` | 1 local layers | — |
 | MS | statewide | owner, address, value, zoning | — | tax_delinquency (1) | `us.msnb.rss`<br>`us.mssb.rss` | — | `MS-HARRISON` | none | — |
 | MT | statewide | owner, address, value, land use | — | — | `us.mtb.rss` | — | `MT` | 1 local layers | — |
 | NC | statewide | owner, address, value, land use | — | code_enforcement_lien (1)<br>tax_delinquency (2) | `us.ncmb.rss`<br>`us.ncwb.rss` | — | `NC` | 5 local layers | — |
@@ -54,20 +54,20 @@ Federal sources (FJC civil judgments, EPA judicial cases, SBA charge-offs, HUD R
 | NE | statewide | owner, address, value, land use, zoning | — | tax_lien (2) | `us.neb.rss` | — | `NE-DOUGLAS` | 2 local layers | — |
 | NH | statewide | owner, address, land use | — | — | `us.nhb.rss` | — | `NH` | statewide | — |
 | NJ | statewide | owner, address, land use, zoning | — | administrative_judgment (2) | `us.njb.rss` | — | `NJ-MONMOUTH` | 2 local layers | `nj.dca.code_links` |
-| NM | 2 of 33 counties | owner, address, value | — | — | — | — | `NM` | 2 local layers | — |
+| NM | 3 of 33 counties | owner, address, value | — | — | — | — | `NM` | 2 local layers | — |
 | NV | 1 of 17 counties | owner, address, value, land use, zoning | — | — | `us.nvb.rss` | — | `NV-WASHOE` | 8 local layers | — |
 | NY | statewide | owner, address, value, land use | `ny.nyc.acris.personal`<br>`ny.nyc.acris.real` | administrative_judgment (1)<br>eviction (1)<br>housing_court_case (1)<br>recorded_judgment_or_lien (2)<br>tax_delinquency (1)<br>tax_warrant (2) | `us.nynb.rss`<br>`us.nysb.rss` | `ny.sos.business` | `NY`<br>`NY-NYC-LIENSALE` | 7 local layers | — |
-| OH | statewide | owner, address, value, homestead, land use | — | code_enforcement_charge (1)<br>tax_delinquency (4) | `us.ohnb.rss`<br>`us.ohsb.rss` | — | `OH`<br>`OH-COUNTIES` | 10 local layers | — |
+| OH | statewide | owner, address, value, homestead, land use, zoning | — | code_enforcement_charge (1)<br>tax_delinquency (4) | `us.ohnb.rss`<br>`us.ohsb.rss` | — | `OH`<br>`OH-COUNTIES` | 10 local layers | — |
 | OK | 3 of 77 counties | owner, address, value, homestead, land use | — | — | `us.okeb.rss`<br>`us.oknb.rss`<br>`us.okwb.rss` | — | `OK` | 8 local layers | — |
 | OR | 5 of 36 counties | owner, address, value, land use, zoning | — | — | `us.orb.rss` | `or.sos.business` | `OR` | 14 local layers | — |
-| PA | 12 of 67 counties | owner, address, value, homestead, land use, zoning | `pa.philadelphia.rtt` | administrative_order (2)<br>code_enforcement_charge (1)<br>foreclosure (2)<br>tax_lien (2) | `us.paeb.rss`<br>`us.pawb.rss` | `pa.dos.business` | `PA`<br>`PA-ALLEGHENY`<br>`PA-WASHINGTON` | 16 local layers | — |
+| PA | 13 of 67 counties | owner, address, value, homestead, land use, zoning | `pa.philadelphia.rtt` | administrative_order (2)<br>code_enforcement_charge (1)<br>foreclosure (2)<br>tax_lien (2) | `us.paeb.rss`<br>`us.pawb.rss` | `pa.dos.business` | `PA`<br>`PA-ALLEGHENY`<br>`PA-WASHINGTON` | 16 local layers | — |
 | RI | statewide | owner, value | — | — | `us.rib.rss` | — | — | statewide | — |
-| SC | 3 of 46 counties | owner, address, value, homestead, land use | — | — | `us.scb.rss` | — | `SC` | 3 local layers | — |
+| SC | 4 of 46 counties | owner, address, value, homestead, land use | — | — | `us.scb.rss` | — | `SC` | 3 local layers | — |
 | SD | 2 of 66 counties | owner, address, homestead, land use | — | — | `us.sdb.rss` | — | `SD` | none | — |
 | TN | statewide | owner, address, value, land use, zoning | — | — | `us.tneb.rss`<br>`us.tnmb.rss`<br>`us.tnwb.rss` | — | `TN` | 4 local layers | — |
 | TX | statewide | owner, address, value, land use | — | administrative_order (1)<br>court_judgment (5)<br>tax_delinquency (2) | `us.txeb.rss`<br>`us.txnb.rss`<br>`us.txwb.rss` | — | `TX-COUNTIES`<br>`TX-HARRIS`<br>`TX-TRAVIS` | 11 local layers | — |
 | UT | statewide | owner, address, value, land use | — | — | — | — | `UT` | 2 local layers | — |
-| VA | 5 of 133 counties | owner, address, value, land use, zoning | — | tax_delinquency (2) | `us.vaeb.rss`<br>`us.vawb.rss` | — | `VA-COUNTIES`<br>`VA-RICHMOND` | 16 local layers | — |
+| VA | 7 of 133 counties | owner, address, value, land use, zoning | — | tax_delinquency (2) | `us.vaeb.rss`<br>`us.vawb.rss` | — | `VA-COUNTIES`<br>`VA-RICHMOND` | 16 local layers | — |
 | VT | statewide | owner, address, value, land use | — | tax_delinquency (2) | `us.vtb.rss` | — | `VT` | statewide + 8 local | — |
 | WA | statewide | owner, address, value, land use | — | — | `us.waeb.rss` | — | `WA` | statewide + 10 local | — |
 | WI | statewide | owner, address, value, land use | — | foreclosure (1)<br>tax_delinquency (1) | `us.wieb.rss` | — | `WI-MILWAUKEE` | 11 local layers | — |

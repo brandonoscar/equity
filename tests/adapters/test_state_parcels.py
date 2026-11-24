@@ -638,3 +638,11 @@ def test_line_city_zip_situs_form_splits_after_the_street_suffix(tmp_path: Path)
     assert with_form._situs({"SF": "70 ANGELA RD PEEBLES 45660"})["zip5"] == "45660"
     plain = adapter_for(load_config(_cfg(tmp_path, fields=fields, county={"constant": "001"})))()
     assert plain._situs({"SF": "70 ANGELA RD PEEBLES 45660"})["zip5"] is None  # opt-in only
+
+
+def test_columns_listed_for_a_pii_field_are_all_pii(tmp_path: Path) -> None:
+    """situs_line1: [A1, A2] joins two columns; both must be scrubbed from fixtures."""
+    fields = {"parcel_id": "PID", "owner1": "OWN", "situs_line1": ["A1", "A2"],
+              "total_value": "TV", "tax_year": {"const": 2025}}  # fmt: skip
+    cls = adapter_for(load_config(_cfg(tmp_path, fields=fields)))
+    assert {"OWN", "A1", "A2"} <= set(cls.pii_fields)

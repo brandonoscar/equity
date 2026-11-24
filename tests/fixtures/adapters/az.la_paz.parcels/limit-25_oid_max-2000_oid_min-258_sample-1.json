@@ -1,0 +1,206 @@
+{
+ "attributes": [
+  {
+   "APN": "30254039",
+   "OBJECTID": 258,
+   "OWNER_NAME": "TESTOWNER EB99E8 LLC",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "30254038B",
+   "OBJECTID": 259,
+   "OWNER_NAME": "TESTOWNER 9312DD CO",
+   "SITE_ADDRESS": "6134 TEST ST",
+   "SITE_CITY": "EHRENBERG",
+   "SITE_ZIP": "85334"
+  },
+  {
+   "APN": "30259006",
+   "OBJECTID": 260,
+   "OWNER_NAME": "TESTOWNER D428E6",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "30259007",
+   "OBJECTID": 261,
+   "OWNER_NAME": "TESTOWNER D428E6",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "30259008",
+   "OBJECTID": 262,
+   "OWNER_NAME": "TESTOWNER D428E6",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "30259009",
+   "OBJECTID": 263,
+   "OWNER_NAME": "TESTOWNER D428E6",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "30259010",
+   "OBJECTID": 264,
+   "OWNER_NAME": "TESTOWNER 7E39D7",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "30259001",
+   "OBJECTID": 265,
+   "OWNER_NAME": "TESTOWNER D428E6",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "30259002",
+   "OBJECTID": 266,
+   "OWNER_NAME": "TESTOWNER D428E6",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "30259003",
+   "OBJECTID": 267,
+   "OWNER_NAME": "TESTOWNER D428E6",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "30259004",
+   "OBJECTID": 268,
+   "OWNER_NAME": "TESTOWNER D428E6",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "30259005",
+   "OBJECTID": 269,
+   "OWNER_NAME": "TESTOWNER 7E39D7",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "30260001",
+   "OBJECTID": 270,
+   "OWNER_NAME": "TESTOWNER 7E39D7",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "30224002",
+   "OBJECTID": 271,
+   "OWNER_NAME": "TESTOWNER 8F8DDB",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "30225001C",
+   "OBJECTID": 272,
+   "OWNER_NAME": "TESTOWNER E91EAF",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "30224001C",
+   "OBJECTID": 273,
+   "OWNER_NAME": "TESTOWNER BDEB5F",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "30221001",
+   "OBJECTID": 274,
+   "OWNER_NAME": "TESTOWNER FA80A2 LLC",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "30261003",
+   "OBJECTID": 275,
+   "OWNER_NAME": "TESTOWNER D428E6",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "30261004",
+   "OBJECTID": 276,
+   "OWNER_NAME": "TESTOWNER D428E6",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "30261005",
+   "OBJECTID": 277,
+   "OWNER_NAME": "TESTOWNER D428E6",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "30228001",
+   "OBJECTID": 278,
+   "OWNER_NAME": "TESTOWNER 7E39D7",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "30214003",
+   "OBJECTID": 279,
+   "OWNER_NAME": "TESTOWNER 7E39D7",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "30258002",
+   "OBJECTID": 280,
+   "OWNER_NAME": "TESTOWNER D428E6",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "30258005",
+   "OBJECTID": 281,
+   "OWNER_NAME": "TESTOWNER D428E6",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "30258004",
+   "OBJECTID": 282,
+   "OWNER_NAME": "TESTOWNER D428E6",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " ",
+   "SITE_ZIP": " "
+  }
+ ],
+ "layer": "https://services.arcgis.com/C34zQ7veRS0V1t04/arcgis/rest/services/Parcels/FeatureServer/6",
+ "where": "OBJECTID>=258 AND OBJECTID<2000"
+}
