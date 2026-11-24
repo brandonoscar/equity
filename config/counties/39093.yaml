@@ -1,0 +1,28 @@
+source_id: oh.lorain.parcels
+state: OH
+# Lorain County Auditor ownership parcels, 2025 public view (202,027 rows on 2026-11-24 for
+# 170,440 distinct PARCELID; the layer joins tax-abatement records, so a parcel can repeat;
+# OWNERNME1 filled on 201,911): owner, owner address, land use. Data last edited 2026-01-21.
+# Ohio's statewide layer (config/states/oh.yaml) is not installed and has no owner names.
+layer_url: https://services1.arcgis.com/vGBb7WYV10mOJRNM/arcgis/rest/services/OwnershipParcels_2025_Public_View/FeatureServer/1
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "093"}
+fields:
+  parcel_id: PARCELID    # '0100001102004'
+  owner1: OWNERNME1      # OWNERNME2 is empty on every row
+  mail_line1: OWNER_ADDRESS
+  mail_city: OWNER_CITY
+  mail_state: OWNER_STATE
+  mail_zip: OWNER_ZIP
+  land_use_code: USECD
+  land_use_desc: USEDSCRP
+extra_pii: [MAILNAME, PSTLADDRESS, OWNERADDRESS, SITEADDRESS]
+value_basis: "MARKETLAND / MARKETBUILDING / MARKETTOTAL (appraised) and LNDVALUE / ASSESSBUILDING / CNTASSDVAL (assessed, 35%) are present but the layer has no tax-year field, so no values or tax_year are mapped and no assessment facts are emitted. The owner's address (OWNER_ADDRESS/CITY/STATE/ZIP) is mapped; the tax mailing name and address (MAILNAME, PSTLADDRESS) are not. SITEADDRESS ('8073   CLAUS RD  AMHERST, OH 44001') has no comma after the street and is not mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=2903fecced364960b281792397294ab6
+  summary: "Lorain County Auditor GIS ArcGIS org (urlKey LorainGIS, item owner dadelsberg) item 'OwnershipParcels 2025 Public View' (snippet: 'Abated parcels within Lorain County Ohio for 2025 for public view'), public hosted feature view, no login, token or fee; data last edited 2026-01-21. The item has no licenseInfo or description (read 2026-11-24); no use restriction found. The view is named for 2025 and may be replaced by a later year's view. services1.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

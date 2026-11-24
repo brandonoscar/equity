@@ -1,0 +1,181 @@
+{
+ "attributes": [
+  {
+   "APN": "11510271",
+   "OBJECTID": 1,
+   "OWNER_NAME": "TESTOWNER 9FF970",
+   "SITE_ADDRESS": "8882 TEST ST",
+   "SITE_CITY": "RIO RICO"
+  },
+  {
+   "APN": "10629042B",
+   "OBJECTID": 2,
+   "OWNER_NAME": "TESTOWNER ECF7F9 CORP",
+   "SITE_ADDRESS": "4099 TEST ST",
+   "SITE_CITY": "PATAGONIA"
+  },
+  {
+   "APN": "11100040",
+   "OBJECTID": 3,
+   "OWNER_NAME": " ",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " "
+  },
+  {
+   "APN": "11450062",
+   "OBJECTID": 4,
+   "OWNER_NAME": " ",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " "
+  },
+  {
+   "APN": "11612132",
+   "OBJECTID": 5,
+   "OWNER_NAME": "TESTOWNER 0E49D1",
+   "SITE_ADDRESS": "3438 TEST ST",
+   "SITE_CITY": "RIO RICO"
+  },
+  {
+   "APN": "11339015",
+   "OBJECTID": 6,
+   "OWNER_NAME": "TESTOWNER D369F2",
+   "SITE_ADDRESS": "2451 TEST ST",
+   "SITE_CITY": " "
+  },
+  {
+   "APN": "11218001",
+   "OBJECTID": 7,
+   "OWNER_NAME": "TESTOWNER 5BDEF2",
+   "SITE_ADDRESS": "3823 TEST ST",
+   "SITE_CITY": "TUBAC"
+  },
+  {
+   "APN": "11209003",
+   "OBJECTID": 8,
+   "OWNER_NAME": "TESTOWNER C593E2",
+   "SITE_ADDRESS": "2139 TEST ST",
+   "SITE_CITY": "TUBAC"
+  },
+  {
+   "APN": "10635045",
+   "OBJECTID": 9,
+   "OWNER_NAME": "TESTOWNER EC74D4 CORP",
+   "SITE_ADDRESS": "4049 TEST ST",
+   "SITE_CITY": "PATAGONIA"
+  },
+  {
+   "APN": "11058012B",
+   "OBJECTID": 10,
+   "OWNER_NAME": "TESTOWNER F99175",
+   "SITE_ADDRESS": "5101 TEST ST",
+   "SITE_CITY": "PATAGONIA"
+  },
+  {
+   "APN": "11100029",
+   "OBJECTID": 11,
+   "OWNER_NAME": " ",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " "
+  },
+  {
+   "APN": "11042076C",
+   "OBJECTID": 12,
+   "OWNER_NAME": "TESTOWNER 6037D2",
+   "SITE_ADDRESS": "7906 TEST ST",
+   "SITE_CITY": "PATAGONIA"
+  },
+  {
+   "APN": "11308040",
+   "OBJECTID": 13,
+   "OWNER_NAME": "TESTOWNER FCF57E LLC",
+   "SITE_ADDRESS": " ",
+   "SITE_CITY": " "
+  },
+  {
+   "APN": "13201114",
+   "OBJECTID": 14,
+   "OWNER_NAME": "TESTOWNER 5F72B4",
+   "SITE_ADDRESS": "5501 TEST ST",
+   "SITE_CITY": "RIO RICO"
+  },
+  {
+   "APN": "11305042B",
+   "OBJECTID": 15,
+   "OWNER_NAME": "TESTOWNER 2825B1",
+   "SITE_ADDRESS": "7626 TEST ST",
+   "SITE_CITY": "TUBAC"
+  },
+  {
+   "APN": "13202374",
+   "OBJECTID": 16,
+   "OWNER_NAME": "TESTOWNER 9AC738",
+   "SITE_ADDRESS": "7512 TEST ST",
+   "SITE_CITY": "RIO RICO"
+  },
+  {
+   "APN": "11238140F",
+   "OBJECTID": 17,
+   "OWNER_NAME": "TESTOWNER C574B7",
+   "SITE_ADDRESS": "2128 TEST ST",
+   "SITE_CITY": "RIO RICO"
+  },
+  {
+   "APN": "13201224",
+   "OBJECTID": 18,
+   "OWNER_NAME": "TESTOWNER C06C00",
+   "SITE_ADDRESS": "1372 TEST ST",
+   "SITE_CITY": "RIO RICO"
+  },
+  {
+   "APN": "10125255",
+   "OBJECTID": 19,
+   "OWNER_NAME": "TESTOWNER 1C11FE",
+   "SITE_ADDRESS": "7814 TEST ST",
+   "SITE_CITY": "NOGALES"
+  },
+  {
+   "APN": "10134050A",
+   "OBJECTID": 20,
+   "OWNER_NAME": "TESTOWNER 0582C7",
+   "SITE_ADDRESS": "2348 TEST ST",
+   "SITE_CITY": "NOGALES"
+  },
+  {
+   "APN": "12403053",
+   "OBJECTID": 21,
+   "OWNER_NAME": "TESTOWNER 460B1A",
+   "SITE_ADDRESS": "7167 TEST ST",
+   "SITE_CITY": "RIO RICO"
+  },
+  {
+   "APN": "11513129",
+   "OBJECTID": 22,
+   "OWNER_NAME": "TESTOWNER 6F8223",
+   "SITE_ADDRESS": "1735 TEST ST",
+   "SITE_CITY": "RIO RICO"
+  },
+  {
+   "APN": "12904135",
+   "OBJECTID": 23,
+   "OWNER_NAME": "TESTOWNER E63533",
+   "SITE_ADDRESS": "7142 TEST ST",
+   "SITE_CITY": "RIO RICO"
+  },
+  {
+   "APN": "13701165",
+   "OBJECTID": 24,
+   "OWNER_NAME": "TESTOWNER BFC1BB",
+   "SITE_ADDRESS": "7134 TEST ST",
+   "SITE_CITY": "RIO RICO"
+  },
+  {
+   "APN": "11522077B",
+   "OBJECTID": 25,
+   "OWNER_NAME": "TESTOWNER 1DFDCE",
+   "SITE_ADDRESS": "4050 TEST ST",
+   "SITE_CITY": "RIO RICO"
+  }
+ ],
+ "layer": "https://services.arcgis.com/C34zQ7veRS0V1t04/arcgis/rest/services/Parcels/FeatureServer/12",
+ "where": "1=1"
+}

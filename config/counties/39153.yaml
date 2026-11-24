@@ -1,0 +1,31 @@
+source_id: oh.summit.parcels
+state: OH
+# County of Summit (OH) Fiscal Office parcel layer (260,934 rows on 2026-11-24; ownernme1 filled
+# on 260,028; parcelid null on 906, which are skipped): owner, owner mailing address, site street
+# address, land use code. Ohio's statewide layer (config/states/oh.yaml) is not installed and has
+# no owner names.
+layer_url: https://services3.arcgis.com/3Ukh5HzAdI6WZ3KP/arcgis/rest/services/Parcels_SCFO/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "153"}
+fields:
+  parcel_id: parcelid    # '2400024'; altid is the old map-based number 'FR0000903001000'
+  # ownernme2 is a continuation of the name on all sampled rows ('SUMMIT COUNTY LAND
+  # REUTILIZATION' + 'CORPORATION', 'BISHOP OF THE ROMAN CATHOLIC DIOCESE' + 'OF CLEVELAND'),
+  # not a second owner, so the two are joined.
+  owner1: {join: [ownernme1, ownernme2]}
+  mail_line1: pstladdress
+  mail_city: pstlcity
+  mail_state: pstlstate
+  mail_zip: pstlzip5
+  situs_line1: siteaddress   # street only ('2170  VANDERHOOF RD'); no site city or ZIP in the layer
+  situs_state: {const: OH}
+  land_use_code: usecd
+value_basis: "lndvalue / bldgvalue / cntmarval (market) and cntassdval / cnttxblval (assessed, 35% in Ohio) are present but the layer has no tax-year field, so no values or tax_year are mapped and no assessment facts are emitted. Previous_Val / Current_Val and SaleDate / Sale_Price are not mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=a22e02f87a114045ab8ea40423fe30d9
+  summary: "County of Summit GIS ArcGIS org (urlKey summitgis; item owner dmullen_summit) item 'Parcels_SCFO' (Summit County Fiscal Office), public hosted feature service, no login, token or fee; data last edited 2026-07-22. The item has no licenseInfo, accessInformation or description (read 2026-11-24); no use restriction found. The older org layers (TaxParcels_public etc., data 2024-12) are not used. services3.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

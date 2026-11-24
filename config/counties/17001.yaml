@@ -1,0 +1,25 @@
+source_id: il.adams.parcels
+state: IL
+# Adams County (IL) GIS parcels with tax-roll attributes (38,785 rows on 2026-11-24, 38,341
+# distinct PIN; OwnerName filled on 38,640): owner, owner mailing address, site street address.
+layer_url: https://services3.arcgis.com/BXTAaNPMn1VANOeH/arcgis/rest/services/ParcelsOnlineMap/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "001"}
+fields:
+  parcel_id: PIN         # '010000100000'
+  owner1: OwnerName      # 'BUNGER, LENA M, TR'
+  mail_line1: OwnerAddress
+  mail_line2: OwnerAddress2
+  mail_city_state_zip: OwnerCSZ   # 'CARTHAGE IL 623211548'
+  situs_line1: SiteAddress        # street only; no site city or ZIP in the layer
+  situs_state: {const: IL}
+  land_use_code: UseCode
+value_basis: "TotalValue and TaxDue are present but the layer has no tax-year field (the Weblink URL names a year, not a field), so no values or tax_year are mapped and no assessment facts are emitted."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=d2ad725fdbdc4536a2921bfb80ae9bfa
+  summary: "Adams County, Illinois ArcGIS org (urlKey AdamsCountyILGIS, item owner KevinD_ACHD) item 'Adams County, IL Parcels' ('a feature layer of Adams County, Illinois' GIS parcels'), public hosted feature service, no login, token or fee; data last edited 2026-05-28. The item has no licenseInfo (read 2026-11-24); no use restriction found. services3.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

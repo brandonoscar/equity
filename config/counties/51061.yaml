@@ -1,0 +1,31 @@
+source_id: va.fauquier.parcels
+state: VA
+# Fauquier County (VA) tax parcels combined with CAMA and tax data (36,327 rows on 2026-11-24,
+# 36,036 distinct PARCELID; OWNERNME1 filled on 36,086; PARCELID null on 241, which are
+# skipped): owner and co-owner, owner mailing address, property address, primary use.
+layer_url: https://services.arcgis.com/oAoeYJ1kqmAwcEC2/arcgis/rest/services/Tax_Parcels_DL/FeatureServer/0
+order_by: FID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "061"}
+fields:
+  parcel_id: PARCELID    # '7907-61-9970-000' (GPIN); VisionPID is the CAMA id. Condo units repeat the parcel geometry.
+  owner1: OWNERNME1
+  owner2: Co_Owner2      # filled on 20,382 rows
+  mail_line1: PSTLADDRES
+  mail_line2: PSTLADDR_1   # PSTLADDR_2 (a third line, filled on 9 rows) is not mapped
+  mail_city: PSTLCITY
+  mail_state: PSTLSTATE
+  mail_zip: PSTLZIP5
+  situs_line1: SITEADDRES  # street only; no site city or ZIP in the layer
+  situs_state: {const: VA}
+  land_use_code: Primary_Us    # '200R'
+  land_use_desc: Primary__1    # 'SFD - Suburban - Res'
+extra_pii: [PSTLADDR_2]
+value_basis: "Land_Value / Building_V / Final_Valu (assessed values) and the land-use deferral values are present but the layer has no tax-year field, so no values or tax_year are mapped and no assessment facts are emitted. CURRENTOWN is the deed book/page of the current owner ('1085/268') and is not mapped (some rows hold instrument numbers)."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=2bffa1330bcb4593929c7d65abbbd26b
+  summary: "Fauquier County (VA) ArcGIS org (urlKey FauquierGIS, item owner fauquierGIS, accessInformation 'Fauquier County GIS') item 'Tax_Parcels_DL', public hosted feature service, no login, token or fee; data last edited 2026-11-20. licenseInfo (read 2026-11-24): 'provided for informational purposes only. Fauquier County makes no warranties ... regarding the accuracy or completeness of this data'; no resale, redistribution or mailing-list clause. services.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

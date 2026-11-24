@@ -1,0 +1,28 @@
+source_id: pa.cumberland.parcels
+state: PA
+# Cumberland County (PA) tax parcels with CAMA attributes, Property Assessment office (104,598
+# rows on 2026-11-24; OWNER filled on 103,299; PID null on 1,299, which are skipped): owner name,
+# property address, land use, homestead flag. No owner mailing address in the layer.
+layer_url: https://services1.arcgis.com/1Cfo0re3un0w6a30/arcgis/rest/services/Tax_Parcels/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "041"}
+fields:
+  # PID is the assessment control number ('9001101', = CTRL_NO). PIN is the map number
+  # ('09-12-2995-078'), shared by every unit of a condominium (519 rows on one PIN), so it is
+  # not the key.
+  parcel_id: PID
+  owner1: OWNER          # 'MOYER, RICHARD G'
+  situs_line1: SITUS
+  situs_state: {const: PA}
+  situs_zip: SITUS_ZIP
+  homestead: HOMESTEAD   # Yes / No
+  land_use_code: LUC     # 'Residential 1 Family (101)'
+value_basis: "LAND_VAL / BLDG_VAL / TOTAL_VAL (assessed values) and the COUNTYTAX / MUNICIPALTAX / SCHOOLTAX estimates are present but the layer has no tax-year field, so no values or tax_year are mapped and no assessment facts are emitted. DB_PG mixes book-page ('00260-00959') and instrument numbers ('201816349'), so no deed reference is mapped. SITUS2 (a second street, '& WAYNE STREET') is not mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=6ce565f2f9c04cfaab1e63dc6663ff15
+  summary: "Cumberland County (PA) ArcGIS org (urlKey CCPA, item owner gis_ccpa) item 'Tax Parcels', public hosted feature service, no login, token or fee; data last edited 2026-11-21. licenseInfo (read 2026-11-24): 'Cumberland County provides these GIS maps and data on its web site as a public information service ... intended for informational purposes only', no warranty, no liability; no resale, redistribution or mailing-list clause. services1.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

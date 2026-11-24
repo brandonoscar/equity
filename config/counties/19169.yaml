@@ -1,0 +1,38 @@
+source_id: ia.story.parcels
+state: IA
+# Story County (IA) GIS parcels layer with the Auditor/Assessor tax roll (42,111 rows on
+# 2026-11-24; OwnerName filled on 41,782; PARCELID null on 1, skipped): deed owner, tax
+# mailing address, property address, full and assessed values with tax year, deed book/page.
+layer_url: https://apps.storycounty.com/arcgis/rest/services/parcels/MapServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 100000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "169"}
+fields:
+  parcel_id: PARCELID    # '1606100205' (= GEOCODE)
+  owner1: OwnerName
+  mail_line1: MailLine1
+  mail_line2: MailLine2
+  mail_city: MailCity
+  mail_state: MailState
+  mail_zip: MailPostalCode
+  situs_line1: FullSitus
+  situs_city: SitusCityName
+  situs_state: SitusStateName
+  situs_zip: SitusPostalCode
+  land_value: FullLandValue
+  total_value: FullTotalValue
+  assessed_value: AssessedTotalValue
+  tax_year: TaxYear
+  deed_book: DeededBook
+  deed_page: DeededPage
+  land_use_code: PropertyClass
+  land_use_desc: SubClass
+extra_pii: [MailOwnerName]
+value_basis: "FullLandValue / FullTotalValue = Assessor full value before exemptions (Iowa assesses at 100% of market value); AssessedTotalValue = full value less exemptions (ExemptLand/Building/Dwelling); TaxableTotalValue (after the state rollback) and Gross/NetTaxes are not mapped. TaxYear is 2026 on every row on 2026-11-24 (mapped as published). bldg_value is not mapped: buildings are split into FullBuildingValue and FullDwellingValue. Homestead is 0 or null on every row, so it is not mapped. MailOwnerName (the tax-statement addressee) is kept out as PII."
+terms:
+  url: https://apps.storycounty.com/arcgis/rest/services/parcels/MapServer
+  summary: "Story County (Iowa) ArcGIS Enterprise server apps.storycounty.com, public MapServer 'parcels' (portal item 'parcels', description 'Story County Parcels layer', access public), no login, token or fee. The service, layer and portal item carry no license, copyright or use-restriction text (read 2026-11-24). apps.storycounty.com/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

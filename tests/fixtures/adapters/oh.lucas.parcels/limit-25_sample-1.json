@@ -1,0 +1,231 @@
+{
+ "attributes": [
+  {
+   "luc": "840",
+   "mailing_address": "6018 TEST ST",
+   "objectid": 1,
+   "owner": "TESTOWNER 7D16C6 LLC",
+   "parid": "1899335",
+   "property_address": "5135 TEST ST",
+   "zoning": "10-CM"
+  },
+  {
+   "luc": "840",
+   "mailing_address": "6018 TEST ST",
+   "objectid": 2,
+   "owner": "TESTOWNER 7D16C6 LLC",
+   "parid": "1899340",
+   "property_address": "8561 TEST ST",
+   "zoning": null
+  },
+  {
+   "luc": "660",
+   "mailing_address": "1392 TEST ST",
+   "objectid": 3,
+   "owner": "TESTOWNER 326B34",
+   "parid": "1864048",
+   "property_address": "9087 TEST ST",
+   "zoning": "10-CM"
+  },
+  {
+   "luc": "400",
+   "mailing_address": "4349 TEST ST",
+   "objectid": 4,
+   "owner": "TESTOWNER 4C3F73 LLC",
+   "parid": "1542987",
+   "property_address": "1200 TEST ST",
+   "zoning": "10-CM"
+  },
+  {
+   "luc": "840",
+   "mailing_address": "6018 TEST ST",
+   "objectid": 5,
+   "owner": "TESTOWNER 7D16C6 LLC",
+   "parid": "1899329",
+   "property_address": "5135 TEST ST",
+   "zoning": "10-POS"
+  },
+  {
+   "luc": "399",
+   "mailing_address": "840 TEST ST",
+   "objectid": 6,
+   "owner": "TESTOWNER 7D16C6 LLC",
+   "parid": "1863968",
+   "property_address": "8683 TEST ST",
+   "zoning": "10-POS"
+  },
+  {
+   "luc": "840",
+   "mailing_address": "6018 TEST ST",
+   "objectid": 7,
+   "owner": "TESTOWNER 7D16C6 LLC",
+   "parid": "1899334",
+   "property_address": "5135 TEST ST",
+   "zoning": "10-POS"
+  },
+  {
+   "luc": "840",
+   "mailing_address": "3467 TEST ST",
+   "objectid": 8,
+   "owner": "TESTOWNER 7D16C6 LLC",
+   "parid": "1899023",
+   "property_address": "5135 TEST ST",
+   "zoning": "10-CM"
+  },
+  {
+   "luc": "399",
+   "mailing_address": "840 TEST ST",
+   "objectid": 9,
+   "owner": "TESTOWNER 7D16C6 LLC",
+   "parid": "1863947",
+   "property_address": "233 TEST ST",
+   "zoning": "10-POS"
+  },
+  {
+   "luc": "840",
+   "mailing_address": "3467 TEST ST",
+   "objectid": 10,
+   "owner": "TESTOWNER 7D16C6 LLC",
+   "parid": "1899332",
+   "property_address": "5135 TEST ST",
+   "zoning": "10-POS"
+  },
+  {
+   "luc": "499",
+   "mailing_address": "1392 TEST ST",
+   "objectid": 11,
+   "owner": "TESTOWNER 40297D",
+   "parid": "1542891",
+   "property_address": "6896 TEST ST",
+   "zoning": "10-IG"
+  },
+  {
+   "luc": "830",
+   "mailing_address": "8976 TEST ST",
+   "objectid": 12,
+   "owner": "TESTOWNER CA087C CO",
+   "parid": "1542727",
+   "property_address": "3791 TEST ST",
+   "zoning": "10-IG"
+  },
+  {
+   "luc": "390",
+   "mailing_address": "3364 TEST ST",
+   "objectid": 13,
+   "owner": "TESTOWNER AA0883 INC",
+   "parid": "1542691",
+   "property_address": "6413 TEST ST",
+   "zoning": "10-IL"
+  },
+  {
+   "luc": "390",
+   "mailing_address": "3364 TEST ST",
+   "objectid": 14,
+   "owner": "TESTOWNER AA0883 INC",
+   "parid": "1547303",
+   "property_address": "6203 TEST ST",
+   "zoning": "10-IL"
+  },
+  {
+   "luc": "449",
+   "mailing_address": "4949 TEST ST",
+   "objectid": 15,
+   "owner": "TESTOWNER D45558",
+   "parid": "1547328",
+   "property_address": "1569 TEST ST",
+   "zoning": "10-CD"
+  },
+  {
+   "luc": "449",
+   "mailing_address": "4949 TEST ST",
+   "objectid": 16,
+   "owner": "TESTOWNER D45558",
+   "parid": "1547347",
+   "property_address": "6477 TEST ST",
+   "zoning": "10-CD"
+  },
+  {
+   "luc": "640",
+   "mailing_address": "1912 TEST ST",
+   "objectid": 17,
+   "owner": "TESTOWNER CD9F6B",
+   "parid": "1547357",
+   "property_address": "532 TEST ST",
+   "zoning": "10-POS"
+  },
+  {
+   "luc": "640",
+   "mailing_address": "1912 TEST ST",
+   "objectid": 18,
+   "owner": "TESTOWNER CD9F6B",
+   "parid": "1547354",
+   "property_address": "2768 TEST ST",
+   "zoning": "10-POS"
+  },
+  {
+   "luc": "640",
+   "mailing_address": "1912 TEST ST",
+   "objectid": 19,
+   "owner": "TESTOWNER CD9F6B",
+   "parid": "1225304",
+   "property_address": "5449 TEST ST",
+   "zoning": "10-POS"
+  },
+  {
+   "luc": "640",
+   "mailing_address": "1912 TEST ST",
+   "objectid": 20,
+   "owner": "TESTOWNER CD9F6B",
+   "parid": "1542814",
+   "property_address": "3614 TEST ST",
+   "zoning": "10-IL"
+  },
+  {
+   "luc": "390",
+   "mailing_address": "3364 TEST ST",
+   "objectid": 21,
+   "owner": "TESTOWNER AA0883 INC",
+   "parid": "1542687",
+   "property_address": "7900 TEST ST",
+   "zoning": "10-IL"
+  },
+  {
+   "luc": "640",
+   "mailing_address": "1912 TEST ST",
+   "objectid": 22,
+   "owner": "TESTOWNER CD9F6B",
+   "parid": "1225307",
+   "property_address": "6601 TEST ST",
+   "zoning": "10-MX"
+  },
+  {
+   "luc": "710",
+   "mailing_address": "2388 TEST ST",
+   "objectid": 23,
+   "owner": "TESTOWNER 6E0D93",
+   "parid": "1200019",
+   "property_address": "1945 TEST ST",
+   "zoning": "10-CD"
+  },
+  {
+   "luc": "680",
+   "mailing_address": "2388 TEST ST",
+   "objectid": 24,
+   "owner": "TESTOWNER 5D582D INC",
+   "parid": "1225241",
+   "property_address": "1945 TEST ST",
+   "zoning": "10-CD"
+  },
+  {
+   "luc": "640",
+   "mailing_address": "1912 TEST ST",
+   "objectid": 25,
+   "owner": "TESTOWNER CD9F6B",
+   "parid": "1225243",
+   "property_address": "1945 TEST ST",
+   "zoning": "10-POS"
+  }
+ ],
+ "layer": "https://services3.arcgis.com/T8dczfwPixv79EgZ/arcgis/rest/services/Parcels_General_Land_Use_Classification_view/FeatureServer/0",
+ "where": "1=1"
+}

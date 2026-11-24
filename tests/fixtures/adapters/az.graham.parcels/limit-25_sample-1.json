@@ -1,0 +1,181 @@
+{
+ "attributes": [
+  {
+   "APN": "11101001",
+   "OBJECTID": 1,
+   "OWNER_NAME": "TESTOWNER 31151B LLC",
+   "SITE_ADDRESS": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "11101002",
+   "OBJECTID": 2,
+   "OWNER_NAME": "TESTOWNER 133E51",
+   "SITE_ADDRESS": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "11101003",
+   "OBJECTID": 3,
+   "OWNER_NAME": "TESTOWNER 31151B LLC",
+   "SITE_ADDRESS": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "11104003",
+   "OBJECTID": 4,
+   "OWNER_NAME": "TESTOWNER 1E4CE9",
+   "SITE_ADDRESS": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "11104004",
+   "OBJECTID": 5,
+   "OWNER_NAME": "TESTOWNER D72EFB",
+   "SITE_ADDRESS": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "11104008",
+   "OBJECTID": 6,
+   "OWNER_NAME": "TESTOWNER 6C616B",
+   "SITE_ADDRESS": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "11104009",
+   "OBJECTID": 7,
+   "OWNER_NAME": "TESTOWNER D72EFB",
+   "SITE_ADDRESS": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "11105001",
+   "OBJECTID": 8,
+   "OWNER_NAME": "TESTOWNER E1CC44 LLC",
+   "SITE_ADDRESS": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "11105004A",
+   "OBJECTID": 9,
+   "OWNER_NAME": "TESTOWNER 5FDD5D",
+   "SITE_ADDRESS": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "11105005",
+   "OBJECTID": 10,
+   "OWNER_NAME": "TESTOWNER D72EFB",
+   "SITE_ADDRESS": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "11105006",
+   "OBJECTID": 11,
+   "OWNER_NAME": "TESTOWNER 879CA7",
+   "SITE_ADDRESS": "5123 TEST ST",
+   "SITE_ZIP": "85643"
+  },
+  {
+   "APN": "11108001D",
+   "OBJECTID": 12,
+   "OWNER_NAME": "TESTOWNER 7AF66F",
+   "SITE_ADDRESS": "3334 TEST ST",
+   "SITE_ZIP": "85643"
+  },
+  {
+   "APN": "11108003",
+   "OBJECTID": 13,
+   "OWNER_NAME": "TESTOWNER D72EFB",
+   "SITE_ADDRESS": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "11108004",
+   "OBJECTID": 14,
+   "OWNER_NAME": "TESTOWNER D72EFB",
+   "SITE_ADDRESS": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "11401010",
+   "OBJECTID": 15,
+   "OWNER_NAME": "TESTOWNER 5BB762",
+   "SITE_ADDRESS": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "11401007",
+   "OBJECTID": 16,
+   "OWNER_NAME": "TESTOWNER A6E273",
+   "SITE_ADDRESS": "7968 TEST ST",
+   "SITE_ZIP": "85643"
+  },
+  {
+   "APN": "11401012",
+   "OBJECTID": 17,
+   "OWNER_NAME": "TESTOWNER 548A85",
+   "SITE_ADDRESS": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "11401011",
+   "OBJECTID": 18,
+   "OWNER_NAME": "TESTOWNER 5BB762",
+   "SITE_ADDRESS": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "11401006",
+   "OBJECTID": 19,
+   "OWNER_NAME": "TESTOWNER A6E273",
+   "SITE_ADDRESS": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "11401001",
+   "OBJECTID": 20,
+   "OWNER_NAME": "TESTOWNER 548A85",
+   "SITE_ADDRESS": "4293 TEST ST",
+   "SITE_ZIP": "85643"
+  },
+  {
+   "APN": "11401005",
+   "OBJECTID": 21,
+   "OWNER_NAME": "TESTOWNER 001612",
+   "SITE_ADDRESS": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "11401002",
+   "OBJECTID": 22,
+   "OWNER_NAME": "TESTOWNER 1D43F1 LLC",
+   "SITE_ADDRESS": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "11401003",
+   "OBJECTID": 23,
+   "OWNER_NAME": "TESTOWNER 548A85",
+   "SITE_ADDRESS": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "11014002",
+   "OBJECTID": 24,
+   "OWNER_NAME": "TESTOWNER 15C20A",
+   "SITE_ADDRESS": " ",
+   "SITE_ZIP": " "
+  },
+  {
+   "APN": "11116004B",
+   "OBJECTID": 25,
+   "OWNER_NAME": "TESTOWNER C6452B LLC",
+   "SITE_ADDRESS": " ",
+   "SITE_ZIP": " "
+  }
+ ],
+ "layer": "https://services.arcgis.com/C34zQ7veRS0V1t04/arcgis/rest/services/Parcels/FeatureServer/4",
+ "where": "1=1"
+}

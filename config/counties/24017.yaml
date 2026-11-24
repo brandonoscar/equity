@@ -1,0 +1,29 @@
+source_id: md.charles.parcels
+state: MD
+# Charles County (MD) Planning and Growth Management tax parcel polygons carrying SDAT owner
+# fields (74,417 rows on 2026-11-24, 73,547 distinct ACCTID; OWNNAME1 filled on 73,286): owner
+# names, premises address, deed liber/folio. No owner mailing address in the layer.
+# md.statewide.parcels has no owner names; ACCTID below is the same SDAT account id.
+layer_url: https://services7.arcgis.com/3BMWkdyrt45RNCrq/arcgis/rest/services/Tax_Parcels_(View)/FeatureServer/0
+order_by: FID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "017"}
+fields:
+  parcel_id: ACCTID      # '0901015303': SDAT county 09 + district 01 + account (null on 4 rows, skipped)
+  owner1: OWNNAME1
+  owner2: OWNNAME2
+  situs_line1: ADDRESS   # the premises address (same as PREMSNUM/PREMSNAM/PREMSTYP), not a mailing address
+  situs_city: CITY
+  situs_state: {const: MD}
+  situs_zip: ZIPCODE
+  deed_book: DR1LIBER
+  deed_page: DR1FOLIO
+  land_use_desc: DESCLU  # 'Residential (R)'
+value_basis: "The layer has no value fields; no assessment facts are emitted. OWNNAME2 is the second SDAT owner line (a co-owner on the sampled rows)."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=dbc063a2619c4bba89bfa6103a2e34bf
+  summary: "Charles County, Maryland ArcGIS org (item owner gormanglenn; accessInformation 'Maryland State Department of Assessments and Taxation, Maryland Department of Planning, and Charles County Maryland Department of Planning and Growth Management Planning Division') item 'Tax Parcels (View)', public hosted feature view, no login, token or fee; data last edited 2026-11-24. licenseInfo (read 2026-11-24): disclaimer only ('Charles County accepts no liability ... This data is for illustration purposes and should only be used as such'); no resale, redistribution or mailing-list clause. services7.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

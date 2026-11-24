@@ -1,0 +1,26 @@
+source_id: mo.jefferson.parcels
+state: MO
+# Jefferson County (MO) Assessor tax parcels (106,559 rows on 2026-11-24, 106,496 distinct
+# ParcelID; owner_name filled on 106,197; DateOfData 2026-11-17): owner, owner mailing address,
+# property class.
+layer_url: https://services1.arcgis.com/Ur3TPhgM56qvxaar/arcgis/rest/services/Tax_Parcels/FeatureServer/2
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "099"}
+fields:
+  parcel_id: ParcelID    # '0370260300100121' (= parcel); formatted_parcel is '03-7.0-26.0-3-001-001.21'
+  owner1: owner_name
+  mail_line1: owner_address1   # often a 'C/O ...' line when owner_address2 holds the street
+  mail_line2: owner_address2
+  mail_city: owner_city
+  mail_state: owner_state
+  mail_zip: owner_zip
+  land_use_desc: prop_class    # 'Residential'
+value_basis: "The layer has no value fields; no assessment facts are emitted. Situs ('2 DORCHESTER CIR 63051') has no city and is not mapped. deed_book / deed_page are null on the sampled rows (deeds are recorded by document number, deed_document '2017R-020700'), so no deed reference is mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=2f1e026d57844865bab8f968529f4247
+  summary: "Jefferson County, Missouri ArcGIS org (urlKey jeffersoncomo, item owner SKjeffcomo) item 'Tax Parcels' (snippet: 'Assessor's Property Information'; layer copyright 'Department of County Assessor; GIS Division / Mapping Dept'), public hosted feature service, no login, token or fee; data last edited 2026-11-18. The item has no licenseInfo or description (read 2026-11-24); no use restriction found. services1.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

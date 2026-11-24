@@ -1,0 +1,131 @@
+{
+ "attributes": [
+  {
+   "FID": 1,
+   "Name": "3084104143104",
+   "OWNER": "TESTOWNER EA79E1"
+  },
+  {
+   "FID": 2,
+   "Name": "3085102203025",
+   "OWNER": "TESTOWNER 732341"
+  },
+  {
+   "FID": 3,
+   "Name": "3072085452300",
+   "OWNER": "TESTOWNER 4A8B7E"
+  },
+  {
+   "FID": 4,
+   "Name": "3072085327294",
+   "OWNER": "TESTOWNER 2C4704"
+  },
+  {
+   "FID": 5,
+   "Name": "3088118098468",
+   "OWNER": "TESTOWNER 232B65"
+  },
+  {
+   "FID": 6,
+   "Name": "3105085180222",
+   "OWNER": "TESTOWNER C0ADAB"
+  },
+  {
+   "FID": 7,
+   "Name": "3084104404001",
+   "OWNER": "TESTOWNER 0A886B"
+  },
+  {
+   "FID": 8,
+   "Name": "3080097003508",
+   "OWNER": "TESTOWNER 9CF166 LLC"
+  },
+  {
+   "FID": 9,
+   "Name": "3085104008035",
+   "OWNER": "TESTOWNER 02F5FE"
+  },
+  {
+   "FID": 10,
+   "Name": "3084104338160",
+   "OWNER": "TESTOWNER EB6806"
+  },
+  {
+   "FID": 11,
+   "Name": "3080098331389",
+   "OWNER": "TESTOWNER 8AA49A"
+  },
+  {
+   "FID": 12,
+   "Name": "3085103140385",
+   "OWNER": "TESTOWNER A7C260"
+  },
+  {
+   "FID": 13,
+   "Name": "3103088163380",
+   "OWNER": "TESTOWNER BD27F7"
+  },
+  {
+   "FID": 14,
+   "Name": "3092108350495",
+   "OWNER": "TESTOWNER 5DF428"
+  },
+  {
+   "FID": 15,
+   "Name": "3065095030280",
+   "OWNER": "TESTOWNER CCC3BA CO"
+  },
+  {
+   "FID": 16,
+   "Name": "3080097235330",
+   "OWNER": "TESTOWNER 9CF166 LLC"
+  },
+  {
+   "FID": 17,
+   "Name": "3085103267320",
+   "OWNER": "TESTOWNER 8F16F8"
+  },
+  {
+   "FID": 18,
+   "Name": "3081104059439",
+   "OWNER": "TESTOWNER 64773A"
+  },
+  {
+   "FID": 19,
+   "Name": "3085104411148",
+   "OWNER": "TESTOWNER 10BCF9"
+  },
+  {
+   "FID": 20,
+   "Name": "3086103230428",
+   "OWNER": "TESTOWNER C94D71"
+  },
+  {
+   "FID": 21,
+   "Name": "3085104300247",
+   "OWNER": "TESTOWNER 2A18CD"
+  },
+  {
+   "FID": 22,
+   "Name": "3079097515360",
+   "OWNER": "TESTOWNER 9CF166 LLC"
+  },
+  {
+   "FID": 23,
+   "Name": "3088118235135",
+   "OWNER": "TESTOWNER 83064B"
+  },
+  {
+   "FID": 24,
+   "Name": "3085103110312",
+   "OWNER": "TESTOWNER 8694B5"
+  },
+  {
+   "FID": 25,
+   "Name": "3087118440110",
+   "OWNER": "TESTOWNER A23F06"
+  }
+ ],
+ "layer": "https://services.arcgis.com/33TOOklri9xpic7U/arcgis/rest/services/Grant_County_Interactive_Parcel_Map/FeatureServer/0",
+ "where": "1=1"
+}

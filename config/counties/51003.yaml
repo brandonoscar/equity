@@ -1,0 +1,30 @@
+source_id: va.albemarle.parcels
+state: VA
+# Albemarle County (VA) public tax parcels, County Real Estate data, updated weekly (51,034
+# rows on 2026-11-24; owner filled on 51,024): owner, owner mailing address, property address.
+# The county redacts selected attributes or records in this public copy ('redacted_parcels').
+layer_url: https://services2.arcgis.com/khVz7mitcPJHUnlM/arcgis/rest/services/redacted_parcels/FeatureServer/0
+order_by: u_id
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "003"}
+fields:
+  parcel_id: parcelid    # '020000000006T0'; pin_display is '02000-00-00-006T0', gpin the state grid PIN
+  owner1: owner
+  mail_line1: owneraddress
+  mail_city: ownercity
+  mail_state: ownerstate     # empty on 14,803 rows whose ownercitystate still reads 'FREE UNION VA' (state then left unknown)
+  mail_zip: ownerzipcode
+  situs_line1: propstreet
+  situs_city: city
+  situs_state: {const: VA}
+  situs_zip: zip
+  zoning: zoningprimary
+extra_pii: [owner2, ownermailingaddress]
+value_basis: "totalvalue / landvalue / improvementsvalue / landusevalue (County Real Estate assessed values) are present but the layer has no tax-year field, so no values or tax_year are mapped and no assessment facts are emitted. owner2 (filled on 6,513 rows) mixes a second owner, a continuation of the first ('... TRS OF' + 'THE SHIFLETT FAMILY TRUST') and care-of lines ('C/O ...'), so it is not mapped as a second owner."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=aa56c3e06a344f1c8a40b109dfbb4076
+  summary: "Albemarle County, VA ArcGIS org (urlKey albemarle, item owner AGOL_Data_Publisher) item 'Parcels', public hosted feature service, no login, token or fee; description: 'updated on a weekly basis', data last edited 2026-11-22. licenseInfo (read 2026-11-24): 'provided by Albemarle County for informational and general reference purposes. Users may view, download, and use the data for lawful purposes, subject to applicable laws, regulations, and County policies', no warranty; no resale, redistribution or mailing-list clause. services2.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free

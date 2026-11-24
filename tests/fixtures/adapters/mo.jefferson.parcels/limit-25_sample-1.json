@@ -1,0 +1,281 @@
+{
+ "attributes": [
+  {
+   "OBJECTID": 1,
+   "ParcelID": "0370260300100121",
+   "owner_address1": "1651 TEST ST",
+   "owner_address2": null,
+   "owner_city": "HOUSE SPRINGS",
+   "owner_name": "TESTOWNER 6C1A75",
+   "owner_state": "MO",
+   "owner_zip": "63051",
+   "prop_class": "Residential"
+  },
+  {
+   "OBJECTID": 2,
+   "ParcelID": "0370260300100122",
+   "owner_address1": "7931 TEST ST",
+   "owner_address2": null,
+   "owner_city": "HOUSE SPRINGS",
+   "owner_name": "TESTOWNER FF1AE7",
+   "owner_state": "MO",
+   "owner_zip": "63051",
+   "prop_class": "Residential"
+  },
+  {
+   "OBJECTID": 3,
+   "ParcelID": "0370260300100123",
+   "owner_address1": "6942 TEST ST",
+   "owner_address2": null,
+   "owner_city": "HOUSE SPRINGS",
+   "owner_name": "TESTOWNER 054403",
+   "owner_state": "MO",
+   "owner_zip": "63051",
+   "prop_class": "Residential"
+  },
+  {
+   "OBJECTID": 4,
+   "ParcelID": "0370350100102105",
+   "owner_address1": "4447 TEST ST",
+   "owner_address2": null,
+   "owner_city": "HOUSE SPRINGS",
+   "owner_name": "TESTOWNER 7C9664",
+   "owner_state": "MO",
+   "owner_zip": "63051",
+   "prop_class": "Residential"
+  },
+  {
+   "OBJECTID": 5,
+   "ParcelID": "0370360300200701",
+   "owner_address1": "856 TEST ST",
+   "owner_address2": null,
+   "owner_city": "HOUSE SPRINGS",
+   "owner_name": "TESTOWNER 4E3E1A",
+   "owner_state": "MO",
+   "owner_zip": "63051-1807",
+   "prop_class": "Residential"
+  },
+  {
+   "OBJECTID": 6,
+   "ParcelID": "03703603002008",
+   "owner_address1": "8240 TEST ST",
+   "owner_address2": null,
+   "owner_city": "HOUSE SPRINGS",
+   "owner_name": "TESTOWNER 987C5A",
+   "owner_state": "MO",
+   "owner_zip": "63051",
+   "prop_class": "Residential"
+  },
+  {
+   "OBJECTID": 7,
+   "ParcelID": "03703603002009",
+   "owner_address1": "3747 TEST ST",
+   "owner_address2": null,
+   "owner_city": "HOUSE SPRINGS",
+   "owner_name": "TESTOWNER 90E859",
+   "owner_state": "MO",
+   "owner_zip": "63051",
+   "prop_class": null
+  },
+  {
+   "OBJECTID": 8,
+   "ParcelID": "03703603002011",
+   "owner_address1": "5293 TEST ST",
+   "owner_address2": null,
+   "owner_city": "HOUSE SPRINGS",
+   "owner_name": "TESTOWNER FF3976",
+   "owner_state": "MO",
+   "owner_zip": "63051",
+   "prop_class": "Agricultural Vacant"
+  },
+  {
+   "OBJECTID": 9,
+   "ParcelID": "0370360300201102",
+   "owner_address1": "4504 TEST ST",
+   "owner_address2": null,
+   "owner_city": "HOUSE SPRINGS",
+   "owner_name": "TESTOWNER B8E646",
+   "owner_state": "MO",
+   "owner_zip": "63051",
+   "prop_class": "Residential, Agricultural"
+  },
+  {
+   "OBJECTID": 10,
+   "ParcelID": "03802704001214",
+   "owner_address1": "2040 TEST ST",
+   "owner_address2": null,
+   "owner_city": "HOUSE SPRINGS",
+   "owner_name": "TESTOWNER 71A96C",
+   "owner_state": "MO",
+   "owner_zip": "63051",
+   "prop_class": "Non - Assessed"
+  },
+  {
+   "OBJECTID": 11,
+   "ParcelID": "03802704001216",
+   "owner_address1": "6662 TEST ST",
+   "owner_address2": null,
+   "owner_city": "HOUSE SPRINGS",
+   "owner_name": "TESTOWNER E85EB5",
+   "owner_state": "MO",
+   "owner_zip": "63051",
+   "prop_class": "Residential"
+  },
+  {
+   "OBJECTID": 12,
+   "ParcelID": "03802704001222",
+   "owner_address1": "8121 TEST ST",
+   "owner_address2": null,
+   "owner_city": "HOUSE SPRINGS",
+   "owner_name": "TESTOWNER E312E0",
+   "owner_state": "MO",
+   "owner_zip": "63051",
+   "prop_class": "Residential"
+  },
+  {
+   "OBJECTID": 13,
+   "ParcelID": "03803300000009",
+   "owner_address1": "2222 TEST ST",
+   "owner_address2": null,
+   "owner_city": "HOUSE SPRINGS",
+   "owner_name": "TESTOWNER 7FD09C",
+   "owner_state": "MO",
+   "owner_zip": "63051",
+   "prop_class": "Residential Vacant"
+  },
+  {
+   "OBJECTID": 14,
+   "ParcelID": "03803300000010",
+   "owner_address1": "2222 TEST ST",
+   "owner_address2": null,
+   "owner_city": "HOUSE SPRINGS",
+   "owner_name": "TESTOWNER 7FD09C",
+   "owner_state": "MO",
+   "owner_zip": "63051",
+   "prop_class": "Residential Vacant"
+  },
+  {
+   "OBJECTID": 15,
+   "ParcelID": "03803300000012",
+   "owner_address1": "6363 TEST ST",
+   "owner_address2": null,
+   "owner_city": "HOUSE SPRINGS",
+   "owner_name": "TESTOWNER BF1A62",
+   "owner_state": "MO",
+   "owner_zip": "63051",
+   "prop_class": "Residential"
+  },
+  {
+   "OBJECTID": 16,
+   "ParcelID": "0390290000000350",
+   "owner_address1": "3961 TEST ST",
+   "owner_address2": null,
+   "owner_city": "EUREKA",
+   "owner_name": "TESTOWNER 04249D",
+   "owner_state": "MO",
+   "owner_zip": "63025",
+   "prop_class": "Residential"
+  },
+  {
+   "OBJECTID": 17,
+   "ParcelID": "0390290000000352",
+   "owner_address1": "1753 TEST ST",
+   "owner_address2": null,
+   "owner_city": "EUREKA",
+   "owner_name": "TESTOWNER ABD981",
+   "owner_state": "MO",
+   "owner_zip": "63025",
+   "prop_class": "Residential"
+  },
+  {
+   "OBJECTID": 18,
+   "ParcelID": "04101200000016",
+   "owner_address1": "5275 TEST ST",
+   "owner_address2": null,
+   "owner_city": "UNION",
+   "owner_name": "TESTOWNER 4BE3E7",
+   "owner_state": "MO",
+   "owner_zip": "63084",
+   "prop_class": "Residential Vacant"
+  },
+  {
+   "OBJECTID": 19,
+   "ParcelID": "04101200000018",
+   "owner_address1": "7870 TEST ST",
+   "owner_address2": null,
+   "owner_city": "EUREKA",
+   "owner_name": "TESTOWNER F4D4AE",
+   "owner_state": "MO",
+   "owner_zip": "63025",
+   "prop_class": "Residential Vacant"
+  },
+  {
+   "OBJECTID": 20,
+   "ParcelID": "04101200000020",
+   "owner_address1": "4027 TEST ST",
+   "owner_address2": null,
+   "owner_city": "EUREKA",
+   "owner_name": "TESTOWNER 2A40E8",
+   "owner_state": "MO",
+   "owner_zip": "63025",
+   "prop_class": "Residential"
+  },
+  {
+   "OBJECTID": 21,
+   "ParcelID": "04101200000021",
+   "owner_address1": "4690 TEST ST",
+   "owner_address2": null,
+   "owner_city": "CEDAR HILL",
+   "owner_name": "TESTOWNER D61963",
+   "owner_state": "MO",
+   "owner_zip": "63016",
+   "prop_class": "Residential"
+  },
+  {
+   "OBJECTID": 22,
+   "ParcelID": "04101200000022",
+   "owner_address1": "4498 TEST ST",
+   "owner_address2": null,
+   "owner_city": "EUREKA",
+   "owner_name": "TESTOWNER 0F25F1",
+   "owner_state": "MO",
+   "owner_zip": "63025",
+   "prop_class": "Residential Vacant"
+  },
+  {
+   "OBJECTID": 23,
+   "ParcelID": "0440180000000248",
+   "owner_address1": "5397 TEST ST",
+   "owner_address2": null,
+   "owner_city": "PACIFIC",
+   "owner_name": "TESTOWNER CC091D",
+   "owner_state": "MO",
+   "owner_zip": "63069",
+   "prop_class": "Residential"
+  },
+  {
+   "OBJECTID": 24,
+   "ParcelID": "0440180000000249",
+   "owner_address1": "1493 TEST ST",
+   "owner_address2": null,
+   "owner_city": "PACIFIC",
+   "owner_name": "TESTOWNER A116D7",
+   "owner_state": "MO",
+   "owner_zip": "63069",
+   "prop_class": "Residential"
+  },
+  {
+   "OBJECTID": 25,
+   "ParcelID": "0440180000000253",
+   "owner_address1": "1890 TEST ST",
+   "owner_address2": null,
+   "owner_city": "PACIFIC",
+   "owner_name": "TESTOWNER 7E27ED",
+   "owner_state": "MO",
+   "owner_zip": "63069",
+   "prop_class": "Residential"
+  }
+ ],
+ "layer": "https://services1.arcgis.com/Ur3TPhgM56qvxaar/arcgis/rest/services/Tax_Parcels/FeatureServer/2",
+ "where": "1=1"
+}

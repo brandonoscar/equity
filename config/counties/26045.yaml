@@ -1,0 +1,25 @@
+source_id: mi.eaton.parcels
+state: MI
+# Eaton County (MI) tax parcels, attributes updated daily (46,450 rows on 2026-11-24, one per
+# PARCELID; OWNERNME1 filled on every row): owner names, property address, property class,
+# zoning. No owner mailing address in the layer.
+layer_url: https://services2.arcgis.com/c9l1e4fKpsCnqD7H/arcgis/rest/services/Parcels_AGO/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "045"}
+fields:
+  parcel_id: PARCELID    # '01001920003000'; LPARCEL is the dashed form '010-019-200-030-00'
+  owner1: OWNERNME1      # 'PATRICK, DOUGLAS R / SUSAN E'
+  owner2: OWNERNME2      # filled on 1,278 rows: a co-owner or trust on the sampled rows
+  situs_full: SITEADDRESS   # 'W ST JOE HWY, VERMONTVILLE, MI 49096'
+  land_use_code: CLASSCD
+  land_use_desc: CLASSDSCRP
+  zoning: ZONING_CODE
+value_basis: "CNTASSDVAL (assessed value) and CNTTXBLVAL (taxable value) are present but the layer has no tax-year field, so no values or tax_year are mapped and no assessment facts are emitted."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=2f1ac92c01b348d8b62c426e59f6558b
+  summary: "Eaton County Michigan ArcGIS org (urlKey ecGIS, item owner serviceaccount_ecgis, accessInformation '(c) ECGIS, 2024') item 'Parcels AGO', public hosted feature service, no login, token or fee; description: 'tax parcel attributes are updated daily', data last edited 2026-09-14. The item has no licenseInfo (read 2026-11-24); no use restriction found. services2.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-24
+  robots_checked_on: 2026-11-24
+  cost_model: free
