@@ -1,0 +1,26 @@
+# City of Framingham Treasurer/Collector, "Unclaimed Residents/Vendor/AP Checks"
+# (data.framinghamma.gov acuy-64k3): the statutory notice of owners of uncashed city checks
+# deemed abandoned, with last-known address. ~400 rows, checks 2010-2019 (not updated since
+# 2019), so addresses are 5-15 years old. Names print FIRST LAST.
+source_id: ma.framingham.unclaimed_checks
+state: MA
+jurisdiction: "25017"
+kind: tax  # nearest source kind: a municipal treasury list (no unclaimed-property kind)
+record_type: unclaimed_check
+api: socrata
+portal: https://data.framinghamma.gov
+dataset: acuy-64k3
+key: check
+key_prefix: "FRAM-CHK:"
+parties:
+  - role: payee
+    name: name
+    format: first_last
+    address: {street: last_known_address, city_state_zip: town_state}
+terms:
+  url: https://data.framinghamma.gov/Finance/Unclaimed-Residents-Vendor-AP-Checks/acuy-64k3
+  summary: >-
+    Public notice under M.G.L. c. 200A s. 9A (abandoned municipal checks), posted on the
+    city's open data portal; no license stated. No use restriction found.
+  checked_on: 2026-11-25
+  cost_model: free

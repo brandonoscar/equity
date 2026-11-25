@@ -1,0 +1,231 @@
+{
+ "layer": "https://al38portal.kcsgis.com/al38server/rest/services/Houston_Parcels/MapServer/0",
+ "rows": [
+  {
+   "DeedDate": 1742446800000,
+   "OBJECTID": 10,
+   "Owner": "TESTOWNER 21E10A LLC",
+   "PPIN": 73037,
+   "ParcelNum": "0104200000007009",
+   "PrevOwner": "TESTOWNER 7F274E LLC",
+   "SalePrice": 0.0
+  },
+  {
+   "DeedDate": 1755838800000,
+   "OBJECTID": 29,
+   "Owner": "TESTOWNER D5B887",
+   "PPIN": 73008,
+   "ParcelNum": "0104200000007006",
+   "PrevOwner": "TESTOWNER 7F274E LLC",
+   "SalePrice": 24000.0
+  },
+  {
+   "DeedDate": 1758258000000,
+   "OBJECTID": 33,
+   "Owner": "TESTOWNER 271CC1",
+   "PPIN": 73036,
+   "ParcelNum": "0104200000007008",
+   "PrevOwner": "TESTOWNER 7F274E LLC",
+   "SalePrice": 20500.0
+  },
+  {
+   "DeedDate": 1752123600000,
+   "OBJECTID": 37,
+   "Owner": "TESTOWNER B67921",
+   "PPIN": 33,
+   "ParcelNum": "0104200000005002",
+   "PrevOwner": "TESTOWNER D5509D",
+   "SalePrice": 0.0
+  },
+  {
+   "DeedDate": 1742446800000,
+   "OBJECTID": 38,
+   "Owner": "TESTOWNER 21E10A LLC",
+   "PPIN": 72797,
+   "ParcelNum": "0104200000007005",
+   "PrevOwner": "TESTOWNER B9DCBB",
+   "SalePrice": 2000.0
+  },
+  {
+   "DeedDate": 1740549600000,
+   "OBJECTID": 66,
+   "Owner": "TESTOWNER 887CA2",
+   "PPIN": 18,
+   "ParcelNum": "0104190000003000",
+   "PrevOwner": "TESTOWNER AF3A45",
+   "SalePrice": 55000.0
+  },
+  {
+   "DeedDate": 1738735200000,
+   "OBJECTID": 70,
+   "Owner": "TESTOWNER 02CDD6",
+   "PPIN": 68,
+   "ParcelNum": "0105221000001012",
+   "PrevOwner": "TESTOWNER 281A6C",
+   "SalePrice": 297000.0
+  },
+  {
+   "DeedDate": 1756875600000,
+   "OBJECTID": 86,
+   "Owner": "TESTOWNER 0456DC",
+   "PPIN": 73035,
+   "ParcelNum": "0104200000007007",
+   "PrevOwner": "TESTOWNER 7F274E LLC",
+   "SalePrice": 44000.0
+  },
+  {
+   "DeedDate": 1757653200000,
+   "OBJECTID": 97,
+   "Owner": "TESTOWNER CD6402",
+   "PPIN": 91,
+   "ParcelNum": "0105221000012000",
+   "PrevOwner": "TESTOWNER 79C7D5",
+   "SalePrice": 152600.0
+  },
+  {
+   "DeedDate": 1740376800000,
+   "OBJECTID": 109,
+   "Owner": "TESTOWNER 714DBF",
+   "PPIN": 114,
+   "ParcelNum": "0105223000006000",
+   "PrevOwner": "TESTOWNER 3486E7",
+   "SalePrice": 50000.0
+  },
+  {
+   "DeedDate": 1757653200000,
+   "OBJECTID": 147,
+   "Owner": "TESTOWNER 01D3BE",
+   "PPIN": 90,
+   "ParcelNum": "0105221000011000",
+   "PrevOwner": "TESTOWNER 79C7D5",
+   "SalePrice": 152600.0
+  },
+  {
+   "DeedDate": 1735884000000,
+   "OBJECTID": 161,
+   "Owner": "TESTOWNER D8472A",
+   "PPIN": 95,
+   "ParcelNum": "0105221000016000",
+   "PrevOwner": "TESTOWNER 300F6C",
+   "SalePrice": 185000.0
+  },
+  {
+   "DeedDate": 1737093600000,
+   "OBJECTID": 175,
+   "Owner": "TESTOWNER B215E8",
+   "PPIN": 182,
+   "ParcelNum": "0106232000001002",
+   "PrevOwner": "TESTOWNER E19F90",
+   "SalePrice": 383000.0
+  },
+  {
+   "DeedDate": 1756270800000,
+   "OBJECTID": 198,
+   "Owner": "TESTOWNER 704A33",
+   "PPIN": 195,
+   "ParcelNum": "0106233001002001",
+   "PrevOwner": "TESTOWNER 61834A",
+   "SalePrice": 3800.0
+  },
+  {
+   "DeedDate": 1755061200000,
+   "OBJECTID": 200,
+   "Owner": "TESTOWNER BD8F44 LLC",
+   "PPIN": 203,
+   "ParcelNum": "0106233001007000",
+   "PrevOwner": "TESTOWNER A8ADB0",
+   "SalePrice": 137000.0
+  },
+  {
+   "DeedDate": 1737093600000,
+   "OBJECTID": 205,
+   "Owner": "TESTOWNER B215E8",
+   "PPIN": 188,
+   "ParcelNum": "0106232000005000",
+   "PrevOwner": "TESTOWNER E19F90",
+   "SalePrice": 383000.0
+  },
+  {
+   "DeedDate": 1758085200000,
+   "OBJECTID": 223,
+   "Owner": "TESTOWNER 2C95AF",
+   "PPIN": 224,
+   "ParcelNum": "0106233002009000",
+   "PrevOwner": "TESTOWNER CF72A5",
+   "SalePrice": 50000.0
+  },
+  {
+   "DeedDate": 1755147600000,
+   "OBJECTID": 247,
+   "Owner": "TESTOWNER F0845A",
+   "PPIN": 252,
+   "ParcelNum": "0106233005001000",
+   "PrevOwner": "TESTOWNER 46F98A",
+   "SalePrice": 36000.0
+  },
+  {
+   "DeedDate": 1737093600000,
+   "OBJECTID": 255,
+   "Owner": "TESTOWNER 718020",
+   "PPIN": 242,
+   "ParcelNum": "0106233004004000",
+   "PrevOwner": "TESTOWNER A25A23",
+   "SalePrice": 0.0
+  },
+  {
+   "DeedDate": 1743138000000,
+   "OBJECTID": 277,
+   "Owner": "TESTOWNER 3CD7F6",
+   "PPIN": 257,
+   "ParcelNum": "0106233005005000",
+   "PrevOwner": "TESTOWNER 8ED709",
+   "SalePrice": 11708.0
+  },
+  {
+   "DeedDate": 1747371600000,
+   "OBJECTID": 293,
+   "Owner": "TESTOWNER 573D4E",
+   "PPIN": 292,
+   "ParcelNum": "0106233008006000",
+   "PrevOwner": "TESTOWNER 53E43C",
+   "SalePrice": 120000.0
+  },
+  {
+   "DeedDate": 1756357200000,
+   "OBJECTID": 316,
+   "Owner": "TESTOWNER D5555D",
+   "PPIN": 312,
+   "ParcelNum": "0106233009006000",
+   "PrevOwner": "TESTOWNER 53698F",
+   "SalePrice": 315000.0
+  },
+  {
+   "DeedDate": 1758085200000,
+   "OBJECTID": 330,
+   "Owner": "TESTOWNER 2C95AF",
+   "PPIN": 225,
+   "ParcelNum": "0106233002010000",
+   "PrevOwner": "TESTOWNER CF72A5",
+   "SalePrice": 50000.0
+  },
+  {
+   "DeedDate": 1736488800000,
+   "OBJECTID": 342,
+   "Owner": "TESTOWNER DD4606",
+   "PPIN": 335,
+   "ParcelNum": "0107262001001001",
+   "PrevOwner": "TESTOWNER DF2923",
+   "SalePrice": 5000.0
+  },
+  {
+   "DeedDate": 1742533200000,
+   "OBJECTID": 368,
+   "Owner": "TESTOWNER 195C81",
+   "PPIN": 265,
+   "ParcelNum": "0106233006002000",
+   "PrevOwner": "TESTOWNER B21CF9",
+   "SalePrice": 60000.0
+  }
+ ],
+ "where": "DeedDate >= DATE '2025-01-01' AND DeedDate < DATE '2026-01-01'"
+}

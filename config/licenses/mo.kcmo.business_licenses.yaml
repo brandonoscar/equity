@@ -1,0 +1,23 @@
+# Kansas City, Missouri, Finance Department Revenue Division, "Business License Holders"
+# (data.kcmo.org pnm4-68wg, Public Domain): about 28K businesses holding a current license,
+# with business name, DBA and address.
+# TODO(Brandon): only the license year is published, so licenses are dated from retrieval.
+source_id: mo.kcmo.business_licenses
+state: MO
+jurisdiction: "29095"
+portal: https://data.kcmo.org
+dataset: pnm4-68wg
+key: id
+key_is_number: true
+id_prefix: "KCMO-BL:"
+terms_url: https://data.kcmo.org/Finance/Business-License-Holders/pnm4-68wg
+terms_summary: "Public Domain (dataset license field)."
+checked_on: 2026-11-25
+license:
+  name: [dba_name, business_name]
+  type: business_type
+  status_value: Active  # current license holders only
+  address: {street: address, city: city, state: state, zip: zipcode}
+holders:
+  - {role: other, title: LICENSEE, with_type: false, name: [business_name, dba_name], address: {street: address, city: city, state: state, zip: zipcode}}
+pii_fields: [business_name, dba_name, address, location]

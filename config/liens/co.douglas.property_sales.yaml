@@ -1,0 +1,50 @@
+source_id: co.douglas.property_sales
+state: CO
+county_fips: "08035"
+# Douglas County CO Assessor "Property Sales Data" (OpenData FeatureServer table 7, 686,995
+# rows on 2026-11-25, daily ETL): one row per account per recorded conveyance, with the
+# Clerk and Recorder reception number (book/page for old deeds), deed type, sale date and
+# price, grantor (seller) and grantee (buyer). Loaded as DEED instruments (grantor = seller,
+# grantee = buyer). The table names only the assessor account (R0448200), so the state parcel
+# number is looked up in the same service's Property_Location_Data table (layer 5,
+# ACCOUNT_NO -> STATE_PARCEL_NO) and the deed is linked to 08035-<STATE_PARCEL_NO>, the
+# co.statewide.parcels parcel_id (as co.douglas.tax_lien_sale).
+# TODO(Brandon): confirm the non-deed types: Certificate of Merger, Power of Attorney, Court
+# Order / Decree, Judgement, Contract, Manufactured Home, Bill of Sale and the certificates
+# are mapped below; every other DEED_TYPE is a DEED.
+api: arcgis
+layer_url: https://services.arcgis.com/seTexOicoRXDvRsJ/arcgis/rest/services/OpenData/FeatureServer/7
+order_by: [OBJECTID]
+select: [OBJECTID, SalesKey, ACCOUNT_NO, SALE_DATE, SALE_PRICE, DEED_TYPE, GRANTOR, GRANTEE, BOOK,
+         PAGE, RECORDING_NO]
+enrich:
+  arcgis: https://services.arcgis.com/seTexOicoRXDvRsJ/arcgis/rest/services/OpenData/FeatureServer/5
+  key: ACCOUNT_NO
+  field: ACCOUNT_NO
+  columns: [STATE_PARCEL_NO]
+date_field: SALE_DATE
+partition: year
+first_year: 1880                 # earliest deeds; pre-1970 epoch-ms dates are negative
+uid: SalesKey                    # account + reception number
+doc_type:
+  field: DEED_TYPE
+  map: {"CERTIFICATE OF MERGER": OTHER, "POWER OF ATTORNERY": POWER_OF_ATTORNEY,
+        "COURT ORDER": COURT_ORDER, "COURT DECREE/ORDER": COURT_ORDER, "JUDGEMENT": COURT_ORDER,
+        "CONTRACT": LAND_CONTRACT, "MANUFACTURED HOME": OTHER, "BILL OF SALE": OTHER,
+        "PLAT CORRECTION APPROVAL CERTIFICATE": OTHER, "MH VERIFICATION OF APPLICATION": OTHER,
+        "LETTER": OTHER, "AFFIDAVIT": AFFIDAVIT, "SUPLEMENTAL AFFIDAVIT": AFFIDAVIT,
+        "LOT LINE ADJUSTMENT CERTIFICATE": OTHER, "VACATION APPROVAL": OTHER}
+  default: DEED
+doc_type_raw: {field: DEED_TYPE}
+consideration: SALE_PRICE
+parties:
+  - role: grantor
+    name: GRANTOR
+  - role: grantee
+    name: GRANTEE
+parcel: {kind: pin, field: STATE_PARCEL_NO, county_fips: "08035"}   # = co.statewide parcel_id
+terms:
+  url: https://www.arcgis.com/home/item.html?id=7ca5a1199ee94728bb3324bf4d646c9e
+  summary: "Douglas County CO GIS Services public ArcGIS Online 'OpenData' service (Property_Sales_Data, Property_Location_Data), free, no login. No licenseInfo on the item; the county's other open layers (co.douglas.tax_lien_sale) are CC BY-SA 4.0 with a no-warranty disclaimer."
+  checked_on: 2026-11-25
+  cost_model: free

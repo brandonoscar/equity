@@ -1,0 +1,23 @@
+# New York Department of State, "Active Real Estate Salespersons and Brokers" (data.ny.gov
+# yg7h-zjbf): about 146K licensees ("LAST FIRST M", no comma) with the brokerage they work
+# for and its address.
+# TODO(Brandon): only an expiration date is published, so licenses are dated from retrieval.
+source_id: ny.dos.real_estate
+state: NY
+jurisdiction: "36"
+portal: https://data.ny.gov
+dataset: yg7h-zjbf
+key: license_number
+id_prefix: "NY-RE:"
+terms_url: https://data.ny.gov/download/77gx-ii52/application%2Fpdf
+terms_summary: "NY Open Data terms: free to use; no warranty. No restriction on commercial use found."
+checked_on: 2026-11-25
+license:
+  name: license_holder_name
+  type: license_type
+  status_value: Active  # active licensees only
+  address: {street: [business_address_1, business_address_2], city: business_city, state: business_state, zip: business_zip}
+holders:
+  - {role: other, title: LICENSEE, name: license_holder_name, address: {street: [business_address_1, business_address_2], city: business_city, state: business_state, zip: business_zip}}
+  - {role: other, title: BROKERAGE, name: business_name, address: {street: [business_address_1, business_address_2], city: business_city, state: business_state, zip: business_zip}}
+pii_fields: [license_holder_name, business_name, business_address_1, business_address_2]

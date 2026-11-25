@@ -1,0 +1,31 @@
+source_id: tn.rutherford.last_sale
+state: TN
+county_fips: "47149"
+# Rutherford County TN parcels and CAMA (City of Murfreesboro ArcGIS Online copy, the
+# tn.rutherford.parcels layer; 123,418 rows on 2026-11-25): each parcel's latest recorded sale,
+# with sale date, price, the deed's legal reference (book/page), grantor (seller) and grantee
+# (buyer). Only those columns and the parcel are read (owners and mailing addresses are
+# tn.rutherford.parcels). One DEED instrument per parcel and sale (grantor = seller, grantee =
+# buyer) on 47149-<PropertyID>, the tn.rutherford.parcels parcel_id.
+api: arcgis
+layer_url: https://services5.arcgis.com/A5C0MR9xfkxVRwat/arcgis/rest/services/Parcel_Data/FeatureServer/1
+order_by: [OBJECTID]
+select: [OBJECTID, PropertyID, ParcelID, LegalReference, Grantor, Grantee, SalePrice, SaleDate]
+date_field: SaleDate
+partition: year
+first_year: 1880                 # earliest deeds; pre-1970 epoch-ms dates are negative
+uid: [PropertyID, SaleDate]
+doc_type: DEED
+doc_type_raw: Rutherford County TN last sale
+consideration: SalePrice
+parties:
+  - role: grantor
+    name: Grantor
+  - role: grantee
+    name: Grantee
+parcel: {kind: pin, field: PropertyID, county_fips: "47149"}   # = tn.rutherford.parcels parcel_id
+terms:
+  url: https://services5.arcgis.com/A5C0MR9xfkxVRwat/arcgis/rest/services/Parcel_Data/FeatureServer/1
+  summary: "City of Murfreesboro ArcGIS Online copy of Rutherford County parcels and CAMA (same layer as tn.rutherford.parcels), free, no login. No licenseInfo or terms on the item; republished by the city, not the county assessor. tn.rutherford.parcels was used on the project owner's decision (2026-11-22)."
+  checked_on: 2026-11-25
+  cost_model: free

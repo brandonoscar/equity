@@ -1,0 +1,23 @@
+# New York Department of State, "Active Appearance Enhancement and Barber Business and Area
+# Renter Licensees" (data.ny.gov y3u4-jbgh): about 33K salons, barber shops and area renters
+# with the license holder ("LAST FIRST M" or a company) and the shop address. Dates are
+# MM/DD/YYYY text.
+source_id: ny.dos.appearance_businesses
+state: NY
+jurisdiction: "36"
+portal: https://data.ny.gov
+dataset: y3u4-jbgh
+key: license_number
+id_prefix: "NY-AEB:"
+terms_url: https://data.ny.gov/download/77gx-ii52/application%2Fpdf
+terms_summary: "NY Open Data terms: free to use; no warranty. No restriction on commercial use found."
+checked_on: 2026-11-25
+license:
+  name: [business_name, license_holder_name]
+  type: license_type
+  status_value: Active  # active licensees only
+  issued_on: license_issue_date
+  address: {street: [business_address_1, business_address_2], city: business_city, state: business_state, zip: business_zip}
+holders:
+  - {role: other, title: LICENSEE, name: license_holder_name, address: {street: [business_address_1, business_address_2], city: business_city, state: business_state, zip: business_zip}}
+pii_fields: [license_holder_name, business_name, business_address_1, business_address_2, georeference]

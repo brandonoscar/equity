@@ -1,0 +1,41 @@
+source_id: sc.lexington.parcels
+state: SC
+# Lexington County (SC) parcels joined to the Assessor CAMA roll (Property MapServer layer 4
+# on the county's own ArcGIS Server; 147,169 rows on 2026-11-25, Owner filled on 146,886;
+# TaxYearValues 2026 on 145,298 rows, TaxYearOwnerAttr 2027): owner, owner mailing address,
+# property address, market/assessed/taxable values, homestead flag, deed book/page, last sale.
+# The county also posts the same table as a dated AGOL snapshot (Parcels_20260625); the live
+# server layer is used here.
+layer_url: https://maps.lex-co.com/agstserver/rest/services/Property/MapServer/4
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 10000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "063"}
+fields:
+  parcel_id: TMS         # tax map number, e.g. '005200-04-076' (TMS_No_Dash is the same without dashes)
+  owner1: Owner
+  mail_line1: MailAddr
+  mail_line2: {join: [MailAddr2, MailAddr3]}
+  mail_city: MailAddr_City
+  mail_state: MailAddr_State
+  mail_zip: MailAddr_Zip
+  situs_line1: [PropAddr_Num, PropAddr_Str, PropAddr_Suf]
+  situs_city: PropAddr_City
+  situs_state: PropAddr_State
+  situs_zip: PropAddr_Zip
+  total_value: MktTotal
+  assessed_value: AsmtTotal
+  tax_year: TaxYearValues
+  homestead: Homestead   # 'YES' / 'NO'
+  deed_book: CAMA_DeedBook
+  deed_page: CAMA_DeedPage
+  land_use_code: PropTypeCode
+  land_use_desc: PropTypeDesc
+  zoning: Zoning
+value_basis: "MktTotal = Assessor total market value; AsmtTotal = assessed value (South Carolina assessment ratios: 4% legal residence, 6% other real property). TaxableLand / TaxableBldg / TaxableTotal (market or agricultural use value after the reassessment cap) and AsmtLand / AsmtBldg are not mapped, to keep bases separate. tax_year = TaxYearValues (2026); South Carolina values property as of December 31 of the prior year, and the adapter's tax_year_jan1 rule dates it 2026-01-01."
+terms:
+  url: https://maps.lex-co.com/agstserver/rest/services/Property/MapServer
+  summary: "Lexington County (SC) public ArcGIS Server (maps.lex-co.com/agstserver), service Property, layer Parcels; anonymous REST queries, no login, token or fee. No copyrightText, description, licence or use-constraint text in the service or layer metadata (read 2026-11-25); no resale, redistribution or mailing-list clause found. maps.lex-co.com/robots.txt answers HTTP 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

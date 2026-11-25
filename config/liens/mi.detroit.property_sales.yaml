@@ -1,0 +1,35 @@
+source_id: mi.detroit.property_sales
+state: MI
+county_fips: "26163"
+# City of Detroit Office of the Assessor "Property Sales" (Detroit Open Data, ArcGIS Online,
+# same org as mi.wayne.parcels; 545,455 rows since 2011 on 2026-11-25): one row per parcel per
+# recorded sale, with grantor (seller), grantee (buyer), sale date and price, liber/page, the
+# instrument (WD, QC, PTA, ...) and the assessor's term of sale (arm's length, foreclosure,
+# multi-parcel...). Loaded as DEED instruments (grantor = seller, grantee = buyer) on the
+# parcel (26163-<parcel_id>, the mi.wayne.parcels key), for ownership history.
+# TODO(Brandon): confirm every instrument is a DEED: PTA rows are property transfer
+# affidavits (the transfer itself), LC land contracts are not split out.
+api: arcgis
+layer_url: https://services2.arcgis.com/qvkbeam7Wirps6zC/arcgis/rest/services/assessor_property_sales_view/FeatureServer/0
+order_by: [ObjectId]
+select: [ObjectId, sale_id, parcel_id, sale_date, amt_sale_price, grantor, grantee, liber_page,
+         term_of_sale, sale_verification, sale_instrument, sale_number, pct_property_transferred,
+         is_multi_parcel_sale]
+date_field: sale_date            # esriFieldTypeDateOnly: DATE windows work
+partition: year
+first_year: 2011
+uid: sale_id
+doc_type: {field: sale_instrument, map: {LC: LAND_CONTRACT, LCA: LAND_CONTRACT}, default: DEED}
+doc_type_raw: {field: sale_instrument}
+consideration: amt_sale_price
+parties:
+  - role: grantor
+    name: grantor
+  - role: grantee
+    name: grantee
+parcel: {kind: pin, field: parcel_id, county_fips: "26163"}   # same parcel_id as mi.wayne.parcels
+terms:
+  url: https://www.arcgis.com/home/item.html?id=d26fda1e80b04630a6e56627e6fbceb8
+  summary: "City of Detroit Office of the Assessor 'Property Sales' on the Detroit Open Data Portal (ArcGIS Online, org of mi.wayne.parcels). Free, no login. No licenseInfo on the item; no commercial-use or mailing-list restriction found."
+  checked_on: 2026-11-25
+  cost_model: free

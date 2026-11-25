@@ -1,0 +1,29 @@
+# City of Seattle SDCI, "Rental Property Registration" (data.seattle.gov j2xh-c7vt): every
+# rental property registered under the Rental Registration and Inspection Ordinance, with the
+# property contact's name. ~30k rows; refreshed daily. The address is the rental property's,
+# not the contact's own: it links a named owner/manager to a property they answer for.
+source_id: wa.seattle.rental_registration
+state: WA
+jurisdiction: "53033"
+kind: sos  # nearest source kind: a city registry of names
+record_type: rental_registration
+api: socrata
+portal: https://cos-data.seattle.gov
+dataset: j2xh-c7vt
+key: permitnum
+key_prefix: "SEA-RRIO:"
+parties:
+  - role: property_contact
+    name: propertycontactname
+    format: first_last
+    address: {street: originaladdress1, city: originalcity, state: originalstate, zip: originalzip}
+extra_pii: [propertyname]
+terms:
+  url: https://data.seattle.gov/stories/s/Data-Policy/6ukr-wvbm
+  summary: >-
+    Public Domain (dataset license field), published by the city. Washington's Public Records
+    Act bars agencies from giving out lists of individuals for commercial purposes (RCW
+    42.56.070(8)); this list is posted openly, but do not use it for commercial solicitation
+    or resell it. Internal locate/link use only.
+  checked_on: 2026-11-25
+  cost_model: free

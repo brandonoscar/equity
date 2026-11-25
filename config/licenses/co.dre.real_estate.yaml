@@ -1,0 +1,25 @@
+# Colorado Division of Real Estate (DORA), "Licensed Real Estate Professionals in Colorado"
+# (data.colorado.gov 4zse-6bnw, Public Domain): about 111K brokers, appraisers, mortgage loan
+# originators and HOA managers, people by name and companies by entity name, with city,
+# state and ZIP. A record is (licenseprefix, licensenumber); dates are MM/DD/YYYY text.
+source_id: co.dre.real_estate
+state: CO
+jurisdiction: "08"
+portal: https://data.colorado.gov
+dataset: 4zse-6bnw
+key: licensenumber
+key_is_number: true
+record_key: [licenseprefix, licensenumber]
+id_prefix: "CO-DRE:"
+terms_url: https://data.colorado.gov/Regulations/Licensed-Real-Estate-Professionals-in-Colorado/4zse-6bnw
+terms_summary: "Public Domain (dataset license field)."
+checked_on: 2026-11-25
+license:
+  name: entityname
+  type: licensetype
+  status: licensestatus
+  issued_on: licensefirstissuedate
+  address: {city: city, state: state, zip: zipcode}
+holders:
+  - {role: other, title: LICENSEE, parts: {first: firstname, middle: middlename, last: lastname, suffix: suffix}, address: {city: city, state: state, zip: zipcode}}
+pii_fields: [lastname, firstname, middlename, entityname]

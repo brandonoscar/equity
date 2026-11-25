@@ -1,0 +1,32 @@
+# Oklahoma State Treasurer, Unclaimed Property Division: the "Insurance Holder File" (records
+# reported by insurers: uncashed claim checks, policy proceeds), same layout as the regular
+# file plus AccountNumber. One CSV (~100 MB), refreshed annually; byte-window partitions.
+source_id: ok.treasurer.unclaimed_insurance
+state: OK
+jurisdiction: "40"
+kind: tax  # nearest source kind: a state treasury program (no unclaimed-property kind)
+record_type: unclaimed_property
+api: csv_ranges
+csv:
+  page: https://yourmoney.ok.gov/app/Oklahoma-Unclaimed-Property-Data-Portal
+  script: 'main\.[0-9a-f]+\.js'
+  file: '/upd-property-records/InsuranceFinderFile_\d{8}\.csv'
+  url: https://yourmoney.ok.gov/upd-property-records/InsuranceFinderFile_20261029.csv
+  chunk_bytes: 8000000
+key: PropertyID
+key_prefix: "OK-UPI:"
+parties:
+  - role: owner
+    name: OwnerName
+    format: last_first
+    address: {street: [OwnerAddress1, OwnerAddress2, OwnerAddress3], city: OwnerCity, state: OwnerState, zip: OwnerZipCode}
+extra_pii: [AccountNumber]
+terms:
+  url: https://yourmoney.ok.gov/app/Oklahoma-Unclaimed-Property-Data-Portal
+  summary: >-
+    Public download under SB 999; no license or click-through. Finders who contact owners for
+    a fee must register with the Treasurer, use its finder agreement and stay within the
+    statutory fee cap: do not use for paid owner-recovery solicitation. Internal locate/link
+    use only. AccountNumber (policy number) is kept in the raw record only.
+  checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,22 @@
+# Texas Department of Insurance, "Insurance agents, adjusters, and people approved to manage
+# insurance-related products or claims" (data.texas.gov kxv3-diwf): about 981K rows, one per
+# license qualification (921K licenses), with the person's name and city, state and ZIP.
+source_id: tx.tdi.agents
+state: TX
+jurisdiction: "48"
+portal: https://data.texas.gov
+dataset: kxv3-diwf
+key: license_number
+key_is_number: true
+id_prefix: "TX-TDI:"
+terms_url: https://data.texas.gov/dataset/Insurance-agents-adjusters-and-people-approved-to-/kxv3-diwf
+terms_summary: "Texas Open Data Portal; no license text on the dataset (public information published by TDI)."
+checked_on: 2026-11-25
+license:
+  type: license_type
+  status_value: Active  # current licenses only
+  issued_on: license_issue_date
+  address: {city: city, state: state, zip: pstl_cd}
+holders:
+  - {role: other, title: LICENSEE, name: name, address: {city: city, state: state, zip: pstl_cd}}
+pii_fields: [name]

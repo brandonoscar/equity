@@ -1,0 +1,256 @@
+{
+ "layer": "https://services5.arcgis.com/A5C0MR9xfkxVRwat/arcgis/rest/services/Parcel_Data/FeatureServer/1",
+ "rows": [
+  {
+   "Grantee": "TESTOWNER BE7997",
+   "Grantor": "TESTOWNER 4CE21D",
+   "LegalReference": "2570 3576",
+   "OBJECTID": 61,
+   "ParcelID": "102D-L-025.00-000",
+   "PropertyID": 64956,
+   "SaleDate": 1756875600000,
+   "SalePrice": 0
+  },
+  {
+   "Grantee": "TESTOWNER 56BD61 LLC",
+   "Grantor": "TESTOWNER BD6EAA",
+   "LegalReference": "2595 3985",
+   "OBJECTID": 71,
+   "ParcelID": "102C-F-011.01-000",
+   "PropertyID": 64485,
+   "SaleDate": 1763618400000,
+   "SalePrice": 1932000
+  },
+  {
+   "Grantee": "TESTOWNER D15F27",
+   "Grantor": "TESTOWNER 84D9FC",
+   "LegalReference": "2547 3533",
+   "OBJECTID": 81,
+   "ParcelID": "103-026.00-000",
+   "PropertyID": 65852,
+   "SaleDate": 1750050000000,
+   "SalePrice": 650000
+  },
+  {
+   "Grantee": "TESTOWNER C9A6FD LLC",
+   "Grantor": "TESTOWNER 522A0E",
+   "LegalReference": "2600-2507",
+   "OBJECTID": 90,
+   "ParcelID": "021-028.00-000",
+   "PropertyID": 10665,
+   "SaleDate": 1765346400000,
+   "SalePrice": 1850000
+  },
+  {
+   "Grantee": "TESTOWNER BB9881",
+   "Grantor": "TESTOWNER 579F12",
+   "LegalReference": "2545 1337",
+   "OBJECTID": 93,
+   "ParcelID": "021O-A-008.00-000",
+   "PropertyID": 88228,
+   "SaleDate": 1739512800000,
+   "SalePrice": 0
+  },
+  {
+   "Grantee": "TESTOWNER 19DE9A",
+   "Grantor": "",
+   "LegalReference": "2577-2896",
+   "OBJECTID": 120,
+   "ParcelID": "101L-D-047.00-000",
+   "PropertyID": 63030,
+   "SaleDate": 1757653200000,
+   "SalePrice": null
+  },
+  {
+   "Grantee": "TESTOWNER 9999DA",
+   "Grantor": "TESTOWNER 5EFDDB",
+   "LegalReference": "2525 1373",
+   "OBJECTID": 170,
+   "ParcelID": "114J-A-020.00-000",
+   "PropertyID": 86509,
+   "SaleDate": 1743742800000,
+   "SalePrice": 540000
+  },
+  {
+   "Grantee": "TESTOWNER 70A839",
+   "Grantor": "TESTOWNER 13D23C",
+   "LegalReference": "2598 2161",
+   "OBJECTID": 173,
+   "ParcelID": "114J-A-016.00-000",
+   "PropertyID": 86505,
+   "SaleDate": 1765173600000,
+   "SalePrice": 540000
+  },
+  {
+   "Grantee": "TESTOWNER A86F95",
+   "Grantor": "TESTOWNER F101F4",
+   "LegalReference": "2542 1751",
+   "OBJECTID": 179,
+   "ParcelID": "093L-D-012.00-000",
+   "PropertyID": 87988,
+   "SaleDate": 1748408400000,
+   "SalePrice": 0
+  },
+  {
+   "Grantee": "TESTOWNER 8DD7B6",
+   "Grantor": "TESTOWNER 5322E1",
+   "LegalReference": "2527 1841",
+   "OBJECTID": 196,
+   "ParcelID": "181L-B-020.00-000",
+   "PropertyID": 86025,
+   "SaleDate": 1744174800000,
+   "SalePrice": 0
+  },
+  {
+   "Grantee": "TESTOWNER 24D185",
+   "Grantor": "TESTOWNER DB9811",
+   "LegalReference": "2597 2013",
+   "OBJECTID": 205,
+   "ParcelID": "181L-B-038.00-000",
+   "PropertyID": 86043,
+   "SaleDate": 1764741600000,
+   "SalePrice": 310000
+  },
+  {
+   "Grantee": "TESTOWNER BC58DD",
+   "Grantor": "TESTOWNER BA73D4",
+   "LegalReference": "2599 1165",
+   "OBJECTID": 219,
+   "ParcelID": "101C-C-081.00-000",
+   "PropertyID": 60557,
+   "SaleDate": 1765346400000,
+   "SalePrice": 310000
+  },
+  {
+   "Grantee": "TESTOWNER 91288E",
+   "Grantor": "TESTOWNER 38A9F2",
+   "LegalReference": "2587 3754",
+   "OBJECTID": 239,
+   "ParcelID": "071L-F-026.00-000",
+   "PropertyID": 89709,
+   "SaleDate": 1761886800000,
+   "SalePrice": 400000
+  },
+  {
+   "Grantee": "TESTOWNER ED0935",
+   "Grantor": "TESTOWNER 00EE51 LLC",
+   "LegalReference": "2506 2676",
+   "OBJECTID": 262,
+   "ParcelID": "014B-F-011.00-000",
+   "PropertyID": 86461,
+   "SaleDate": 1737093600000,
+   "SalePrice": 350000
+  },
+  {
+   "Grantee": "TESTOWNER 4CD968",
+   "Grantor": "TESTOWNER 7634CE",
+   "LegalReference": "2553 1584",
+   "OBJECTID": 280,
+   "ParcelID": "176-021.01-000",
+   "PropertyID": 85456,
+   "SaleDate": 1750914000000,
+   "SalePrice": 0
+  },
+  {
+   "Grantee": "TESTOWNER 3C9BA0",
+   "Grantor": "TESTOWNER 1350E1",
+   "LegalReference": "2567 1188",
+   "OBJECTID": 289,
+   "ParcelID": "029I-A-061.00-000",
+   "PropertyID": 88360,
+   "SaleDate": 1756184400000,
+   "SalePrice": 426000
+  },
+  {
+   "Grantee": "TESTOWNER 1AEEB3",
+   "Grantor": "TESTOWNER 69E308",
+   "LegalReference": "2508 2713",
+   "OBJECTID": 303,
+   "ParcelID": "090C-E-018.00-000",
+   "PropertyID": 87872,
+   "SaleDate": 1738216800000,
+   "SalePrice": 0
+  },
+  {
+   "Grantee": "TESTOWNER 4AD91E",
+   "Grantor": "TESTOWNER A8E20D",
+   "LegalReference": "2537 1670",
+   "OBJECTID": 321,
+   "ParcelID": "088-052.01-000",
+   "PropertyID": 51007,
+   "SaleDate": 1747198800000,
+   "SalePrice": 0
+  },
+  {
+   "Grantee": "TESTOWNER 9B5AE1 LLC",
+   "Grantor": "TESTOWNER 0BB5E5 LLC",
+   "LegalReference": "2601 1971",
+   "OBJECTID": 322,
+   "ParcelID": "088-065.00-000",
+   "PropertyID": 51033,
+   "SaleDate": 1765519200000,
+   "SalePrice": 3300000
+  },
+  {
+   "Grantee": "TESTOWNER B86B57",
+   "Grantor": "TESTOWNER 11993C",
+   "LegalReference": "2504 1953",
+   "OBJECTID": 328,
+   "ParcelID": "057P-A-056.00-000",
+   "PropertyID": 33659,
+   "SaleDate": 1736834400000,
+   "SalePrice": 0
+  },
+  {
+   "Grantee": "TESTOWNER 64D3A3",
+   "Grantor": "TESTOWNER CFA466",
+   "LegalReference": "2550 2021",
+   "OBJECTID": 333,
+   "ParcelID": "180H-A-021.00-000",
+   "PropertyID": 85801,
+   "SaleDate": 1751259600000,
+   "SalePrice": 0
+  },
+  {
+   "Grantee": "TESTOWNER 1C59B5 INC",
+   "Grantor": "TESTOWNER 521A89 LLC",
+   "LegalReference": "2595 3303",
+   "OBJECTID": 355,
+   "ParcelID": "014-051.03-000",
+   "PropertyID": 3619,
+   "SaleDate": 1764136800000,
+   "SalePrice": 1500000
+  },
+  {
+   "Grantee": "TESTOWNER 623EBD",
+   "Grantor": "TESTOWNER 29C177",
+   "LegalReference": "2569 2853",
+   "OBJECTID": 397,
+   "ParcelID": "014C-B-030.00-000",
+   "PropertyID": 4040,
+   "SaleDate": 1756789200000,
+   "SalePrice": 380000
+  },
+  {
+   "Grantee": "TESTOWNER 52DB74 LLC",
+   "Grantor": "TESTOWNER DEA7C0 LLC",
+   "LegalReference": "2542-2655",
+   "OBJECTID": 413,
+   "ParcelID": "029A-D-034.00-000",
+   "PropertyID": 17791,
+   "SaleDate": 1748408400000,
+   "SalePrice": 0
+  },
+  {
+   "Grantee": "TESTOWNER 7C3A78",
+   "Grantor": "TESTOWNER 184F85",
+   "LegalReference": "2555 3227",
+   "OBJECTID": 439,
+   "ParcelID": "080E-D-014.00-000",
+   "PropertyID": 45904,
+   "SaleDate": 1752642000000,
+   "SalePrice": 410000
+  }
+ ],
+ "where": "SaleDate >= DATE '2025-01-01' AND SaleDate < DATE '2026-01-01'"
+}

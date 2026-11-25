@@ -1,0 +1,28 @@
+# NYS Department of Environmental Conservation, "List of Current Party and Charter Boat
+# License Holders" (data.ny.gov mxx4-xx35): every person or company holding this year's P/C
+# license to carry recreational fishing passengers for hire, with city/state and the
+# vessel's name and registration number. ~40 rows; refreshed with each license year. No
+# street address is published (city and state only).
+source_id: ny.dec.charter_boat_licenses
+state: NY
+jurisdiction: "36"
+kind: vessel  # a licensed vessel and its holder
+record_type: vessel_license
+api: socrata
+portal: https://data.ny.gov
+dataset: mxx4-xx35
+key: [vessel_registration_number, name]
+key_prefix: "NY-PC:"
+parties:
+  - role: license_holder
+    name: name
+    format: first_last
+    address: {city: city, state: state}
+extra_pii: [vessel_name]
+terms:
+  url: https://data.ny.gov/d/mxx4-xx35
+  summary: >-
+    Open NY terms of use (data.ny.gov): free to use with attribution to the publishing
+    agency; no warranty. No use restriction found.
+  checked_on: 2026-11-25
+  cost_model: free

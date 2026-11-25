@@ -1,0 +1,36 @@
+# Oklahoma State Treasurer, Unclaimed Property Division: the "Regular Holder File", every
+# unclaimed-property record in the Treasurer's database (owner name and last-known address as
+# the holder reported it, holder, amount, report year). Published under SB 999 as one CSV
+# (~470 MB, ~2.5M rows), refreshed annually; the file name carries its release date, so the
+# current name is read from the data portal's script bundle. Partitioned into byte windows.
+# Addresses are last-known: report years run from the 1960s to the latest annual release.
+source_id: ok.treasurer.unclaimed_property
+state: OK
+jurisdiction: "40"
+kind: tax  # nearest source kind: a state treasury program (no unclaimed-property kind)
+record_type: unclaimed_property
+api: csv_ranges
+csv:
+  page: https://yourmoney.ok.gov/app/Oklahoma-Unclaimed-Property-Data-Portal
+  script: 'main\.[0-9a-f]+\.js'
+  file: '/upd-property-records/RegularFinderFile_\d{8}\.csv'
+  url: https://yourmoney.ok.gov/upd-property-records/RegularFinderFile_20261029.csv
+  chunk_bytes: 8000000
+key: PropertyID
+key_prefix: "OK-UP:"
+parties:
+  - role: owner
+    name: OwnerName
+    format: last_first
+    address: {street: [OwnerAddress1, OwnerAddress2, OwnerAddress3], city: OwnerCity, state: OwnerState, zip: OwnerZipCode}
+terms:
+  url: https://yourmoney.ok.gov/app/Oklahoma-Unclaimed-Property-Data-Portal
+  summary: >-
+    Public download under SB 999; no license or click-through. The Division gives no support
+    for the file. Finders who contact owners to recover property for a fee must register with
+    the Treasurer and use its finder agreement, and finder fees are capped by statute (see the
+    portal's Fee Finders page): do not use this list for paid owner-recovery solicitation.
+    Internal locate/link use only. robots.txt allows /upd-property-records/ (disallows /mor,
+    /docs/).
+  checked_on: 2026-11-25
+  cost_model: free

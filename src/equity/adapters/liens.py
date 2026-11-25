@@ -204,9 +204,9 @@ def _date(value: Any) -> date | None:
         v = int(value)
         if 1800 <= v <= 2200:
             return date(v, 1, 1)
-        if v > 10**11:
+        if abs(v) > 10**11:  # epoch milliseconds; negative before 1970 (deeds back to 1880)
             try:
-                return datetime.fromtimestamp(v / 1000, tz=UTC).date()
+                return (datetime(1970, 1, 1, tzinfo=UTC) + timedelta(milliseconds=v)).date()
             except (OverflowError, OSError, ValueError):
                 return None
         return None

@@ -9,6 +9,7 @@ from equity.adapters.business_registry import all_registry_adapters
 from equity.adapters.co_ucc import ColoradoUCC
 from equity.adapters.code_links import NJMunicipalCodeLinks
 from equity.adapters.dc_business import DCBusiness
+from equity.adapters.deeds import all_deed_adapters
 from equity.adapters.federal.ecf_rss import NDWVBankruptcyRSS, NDWVDistrictRSS, court_adapters
 from equity.adapters.federal.epa_echo import EPAJudicialCases
 from equity.adapters.federal.federal_register import FederalRegisterRealty
@@ -29,6 +30,7 @@ from equity.adapters.fl.hillsborough_or import HillsboroughOfficialRecords
 from equity.adapters.fl.putnam_or import PutnamOfficialRecords
 from equity.adapters.hi.honolulu_owners import HonoluluOwners
 from equity.adapters.il.cook_parcels import CookCountyParcels
+from equity.adapters.licenses import all_license_adapters
 from equity.adapters.liens import all_lien_adapters
 from equity.adapters.md_baltimore_citations import BaltimoreCitationLiens
 from equity.adapters.md_prince_georges import PrinceGeorgesProperty
@@ -38,27 +40,33 @@ from equity.adapters.ny.condo_units import NycCondoUnits
 from equity.adapters.ny.name_history import NYNameHistory
 from equity.adapters.pa.allegheny_assessments import AlleghenyAssessments
 from equity.adapters.pa.philadelphia_rtt import PhiladelphiaRTT
+from equity.adapters.person_lists import all_person_list_adapters
 from equity.adapters.ri_providence import ProvidenceTaxRoll
+from equity.adapters.socrata_parcels import all_api_parcel_adapters
 from equity.adapters.state_parcels import all_state_adapters
 from equity.adapters.tx.harris_district import HarrisDistrictCivilJudgments
 from equity.adapters.tx.harris_jp import HarrisJPCivilJudgments
 from equity.adapters.tx.stratmap import TexasStratMapParcels
 from equity.adapters.tx_harris_jp import HarrisJPJudgments
 from equity.adapters.tx_travis_delinquent import TravisTaxDelinquent
+from equity.adapters.voter_files import NorthCarolinaVoterFile
 from equity.adapters.wv.delinquent import WVDelinquentProperties
 from equity.adapters.wv.parcelweb import MonongaliaParcelWeb
 from equity.adapters.wv.statewide_parcels import WVStatewideParcels
 from equity.adapters.zoning import LocalZoningAdapter, all_zoning_adapters
 
 _ALL: tuple[type[Adapter], ...] = (
+    NorthCarolinaVoterFile,  # OhioVoterFile joins once a hand-saved county fixture exists
     WVStatewideParcels,
     WVDelinquentProperties,
     MonongaliaParcelWeb,
     NDWVDistrictRSS,
     NDWVBankruptcyRSS,
     *all_state_adapters(),
+    *all_api_parcel_adapters(),
     *all_zoning_adapters(),
     *all_lien_adapters(),
+    *all_deed_adapters(),
     LocalZoningAdapter,
     NJMunicipalCodeLinks,
     ColoradoUCC,
@@ -96,6 +104,8 @@ _ALL: tuple[type[Adapter], ...] = (
     HarrisJPCivilJudgments,
     HarrisDistrictCivilJudgments,
     *all_registry_adapters(),
+    *all_license_adapters(),
+    *all_person_list_adapters(),
     # NDWV keeps its original source ids; config/courts.yaml adds every other court.
     *[c for c in court_adapters() if c.court_id not in ("wvnd", "wvnb")],
 )

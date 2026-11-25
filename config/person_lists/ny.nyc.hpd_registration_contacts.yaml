@@ -1,0 +1,31 @@
+# NYC Department of Housing Preservation and Development, "Registration Contacts"
+# (data.cityofnewyork.us feu5-w2e2): every person or company named on a multiple-dwelling
+# (3+ unit rental) registration, renewed yearly: individual and joint owners, head officers,
+# officers, shareholders, managing agents, site managers, with their business address.
+# ~745k rows; updated monthly. One row per contact (registrationcontactid). Join to a building
+# through registrationid (Multiple Dwelling Registrations, tesw-yqqr).
+source_id: ny.nyc.hpd_registration_contacts
+state: NY
+jurisdiction: "36"
+kind: sos  # nearest source kind: a city registry of names
+record_type: rental_registration_contact
+api: socrata
+portal: https://data.cityofnewyork.us
+dataset: feu5-w2e2
+key: registrationcontactid
+key_prefix: "HPD-RC:"
+parties:
+  - role: corporation
+    name: corporationname
+    address: &addr {street: [businesshousenumber, businessstreetname, businessapartment], city: businesscity, state: businessstate, zip: businesszip}
+  - role: contact
+    parts: {first: firstname, middle: middleinitial, last: lastname}
+    address: *addr
+terms:
+  url: https://www.nyc.gov/home/terms-of-use.page
+  summary: >-
+    NYC Open Data terms of use: free to use, no warranty; HPD publishes registration contacts
+    under the Housing Maintenance Code. Addresses are business (mailing) addresses given on the
+    registration, which for small owners are often their home. No use restriction found.
+  checked_on: 2026-11-25
+  cost_model: free

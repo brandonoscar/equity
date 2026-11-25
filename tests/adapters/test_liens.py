@@ -941,3 +941,15 @@ def test_arcgis_and_ckan_health_report_fields(tmp_path: Path) -> None:
         _client({"datastore": json.dumps(rec).encode()})
     ).health()
     assert h.ok and h.shape == ("amt", "case_id") and h.rows is None
+
+
+def test_epoch_milliseconds_before_1970_are_read() -> None:
+    """ArcGIS dates before 1970 are negative epoch milliseconds (deed histories go back to 1880)."""
+    from datetime import date
+
+    from equity.adapters.liens import _date
+
+    assert _date(-2208988800000) == date(1900, 1, 1)
+    assert _date(-631152000000) == date(1950, 1, 1)
+    assert _date(1700000000000) == date(2023, 11, 14)
+    assert _date(-5) is None  # a small number is neither a year nor epoch milliseconds

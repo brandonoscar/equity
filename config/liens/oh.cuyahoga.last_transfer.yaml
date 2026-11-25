@@ -1,0 +1,34 @@
+source_id: oh.cuyahoga.last_transfer
+state: OH
+county_fips: "39035"
+# Cuyahoga County Fiscal Officer "Real Property and CAMA data" table (gis.cuyahogacounty.gov
+# CCGIS/Parcel_RP_CAMA_Table/MapServer/1, 560,993 rows for tax year 2027 on 2026-11-25): one row
+# per parcel with its latest recorded transfer: transfer date, sales amount, grantor (seller)
+# and grantee (buyer). Only those columns and the parcel are read (the current owner and
+# mailing address, already in oh.cuyahoga.parcels, are not). One DEED instrument per parcel
+# and transfer (grantor = seller, grantee = buyer) on 39035-<PARCEL_ID>, the oh.cuyahoga.parcels
+# parcel_id ('00101029'). BOOK_PAGE is the placeholder 'B 001 P 01' on sampled recent rows
+# (Cuyahoga records by AFN), so it is not read.
+api: arcgis
+layer_url: https://gis.cuyahogacounty.gov/server/rest/services/CCGIS/Parcel_RP_CAMA_Table/MapServer/1
+order_by: [OBJECTID]
+select: [OBJECTID, PARCEL_ID, PARCEL_YEAR, GRANTOR, GRANTEE, TRANSFER_DATE, SALES_AMOUNT]
+date_field: TRANSFER_DATE
+partition: year
+first_year: 1880                 # earliest deeds; pre-1970 epoch-ms dates are negative
+uid: [PARCEL_ID, TRANSFER_DATE]
+doc_type: DEED
+doc_type_raw: Cuyahoga County Fiscal Officer last transfer
+consideration: SALES_AMOUNT
+parties:
+  - role: grantor
+    name: GRANTOR
+  - role: grantee
+    name: GRANTEE
+parcel: {kind: pin, field: PARCEL_ID, county_fips: "39035"}   # = oh.cuyahoga.parcels parcel_id
+terms:
+  url: https://gis.cuyahogacounty.gov/server/rest/services/CCGIS/Parcel_RP_CAMA_Table/MapServer
+  summary: "Cuyahoga County (Fiscal Officer CAMA / real property data) public ArcGIS Server table on gis.cuyahogacounty.gov, no login, token or fee; the county's parcel item (oh.cuyahoga.parcels) carries a disclaimer only ('free public service on an \"as is\" basis', no warranty, not an official public record); no resale, redistribution or mailing-list clause. gis.cuyahogacounty.gov/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

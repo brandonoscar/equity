@@ -1,0 +1,32 @@
+source_id: mn.grant.parcel_sales
+state: MN
+county_fips: "27051"
+# Grant County MN Assessor "Tax Parcel Sales" (county ArcGIS Server, Assessor/TaxParcels_public
+# layer 3, hosted by Pro-West; 7,260 rows on 2026-11-25): sales with the parcel, document name
+# (WARRANTY DEED, CONTRACT FOR DEED...), recording and transfer dates, grantor (seller),
+# grantee (buyer), sale amount, eCRV number and the sale code. Loaded as DEED instruments
+# (grantor = seller, grantee = buyer) on 27051-<PARCELID>, the mn.statewide.parcels county_pin.
+api: arcgis
+layer_url: https://gis.co.grant.mn.us/arcgis/rest/services/Assessor/TaxParcels_public/FeatureServer/3
+order_by: [OBJECTID]
+select: [OBJECTID, PARCELID, DOCNAME, RECORDDT, TRANSDT, GRANTOR, GRANTEE, SALEAMNT, ECRV,
+         SALE_CODE_DESC]
+date_field: RECORDDT
+partition: year
+first_year: 1880                 # earliest deeds; pre-1970 epoch-ms dates are negative
+uid: [ECRV, PARCELID, RECORDDT]
+doc_type: {field: DOCNAME, map: {CONTRACT FOR DEED: LAND_CONTRACT}, default: DEED}
+doc_type_raw: {field: DOCNAME}
+consideration: SALEAMNT
+parties:
+  - role: grantor
+    name: GRANTOR
+  - role: grantee
+    name: GRANTEE
+parcel: {kind: pin, field: PARCELID, county_fips: "27051"}   # = mn.statewide.parcels county_pin
+terms:
+  url: https://gis.co.grant.mn.us/arcgis/rest/services/Assessor/TaxParcels_public/FeatureServer/3
+  summary: "Grant County MN public ArcGIS Server (Assessor/TaxParcels_public, Pro-West and Associates for the county), free, no login; no license or use restriction stated on the service. gis.co.grant.mn.us/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,25 @@
+# Connecticut Department of Consumer Protection and eLicense agencies, "State Licenses and
+# Credentials" (data.ct.gov ngch-56tr, Public Domain): about 2.7M current and past credentials
+# (health professions, trades, real estate, liquor, home improvement...) for individuals and
+# businesses, with name, business name, DBA and street address.
+source_id: ct.dcp.licenses
+state: CT
+jurisdiction: "09"
+portal: https://data.ct.gov
+dataset: ngch-56tr
+key: credentialid
+key_is_number: true
+id_prefix: "CT-LIC:"
+terms_url: https://data.ct.gov/Business/State-Licenses-and-Credentials/ngch-56tr
+terms_summary: "Public Domain (dataset license field)."
+checked_on: 2026-11-25
+license:
+  name: [dba, businessname, name]
+  type: credential
+  status: status
+  issued_on: issuedate
+  address: {street: address, city: city, state: state, zip: zip}
+holders:
+  - {role: other, title: LICENSEE, name: name, address: {street: address, city: city, state: state, zip: zip}}
+  - {role: other, title: BUSINESS, name: businessname, address: {street: address, city: city, state: state, zip: zip}}
+pii_fields: [name, businessname, dba, address]

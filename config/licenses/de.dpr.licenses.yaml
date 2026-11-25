@@ -1,0 +1,22 @@
+# Delaware Department of State, Division of Professional Regulation, "Professional and
+# Occupational Licensing" (data.delaware.gov pjnv-eaih, Public Domain): about 356K licenses
+# (physicians, nurses, cosmetologists, real estate, contractors...) with the holder's first
+# and last name and city, state and ZIP.
+source_id: de.dpr.licenses
+state: DE
+jurisdiction: "10"
+portal: https://data.delaware.gov
+dataset: pjnv-eaih
+key: license_no
+id_prefix: "DE-DPR:"
+terms_url: https://data.delaware.gov/Licenses-and-Certifications/Professional-and-Occupational-Licensing/pjnv-eaih
+terms_summary: "Public Domain (dataset license field)."
+checked_on: 2026-11-25
+license:
+  type: license_type
+  status: license_status
+  issued_on: issue_date
+  address: {city: city, state: state, zip: zip_code}
+holders:
+  - {role: other, title: LICENSEE, parts: {first: first_name, last: last_name}, address: {city: city, state: state, zip: zip_code}}
+pii_fields: [last_name, first_name, combined_name]

@@ -1,0 +1,25 @@
+# Oregon Construction Contractors Board, "CCB Active Licenses" (data.oregon.gov g77e-6bhs,
+# Public Domain U.S. Government): about 57K rows for 46K active contractor and home
+# inspector licenses, with the licensee (company or person), responsible managing individual
+# (RMI), address, bond and insurance. Dates are MM/DD/YYYY text.
+source_id: or.ccb.licenses
+state: OR
+jurisdiction: "41"
+portal: https://data.oregon.gov
+dataset: g77e-6bhs
+key: license_number
+record_key: [license_number, license_type]
+id_prefix: "OR-CCB:"
+terms_url: https://data.oregon.gov/Business/CCB-Active-Licenses/g77e-6bhs
+terms_summary: "Public Domain U.S. Government (dataset license field)."
+checked_on: 2026-11-25
+license:
+  name: full_name
+  type: endorsement_text
+  status_value: Active  # active licenses only
+  issued_on: orig_regis_date
+  address: {street: address, city: city, state: state, zip: zip_code}
+holders:
+  - {role: other, title: LICENSEE, name: full_name, address: {street: address, city: city, state: state, zip: zip_code}}
+  - {role: other, title: RESPONSIBLE MANAGING INDIVIDUAL, with_type: false, name: rmi_name}
+pii_fields: [full_name, rmi_name, address, phone_number, fax_number]

@@ -1,0 +1,22 @@
+# New York State Liquor Authority, "Current Liquor Authority Active Licenses" (data.ny.gov
+# 9s3h-dpkz): about 59K active licenses and permits with the licensee's legal name, trade
+# name and premises address.
+source_id: ny.sla.liquor
+state: NY
+jurisdiction: "36"
+portal: https://data.ny.gov
+dataset: 9s3h-dpkz
+key: licensepermitid
+id_prefix: "NY-SLA:"
+terms_url: https://data.ny.gov/download/77gx-ii52/application%2Fpdf
+terms_summary: "NY Open Data terms: free to use; no warranty. No restriction on commercial use found."
+checked_on: 2026-11-25
+license:
+  name: [dba, legalname]
+  type: description
+  status_value: Active  # active licenses only
+  issued_on: originalissuedate
+  address: {street: [actualaddressofpremises, additionaladdressinformation], city: city, zip: zipcode}
+holders:
+  - {role: other, title: LICENSEE, name: legalname, address: {street: [actualaddressofpremises, additionaladdressinformation], city: city, zip: zipcode}}
+pii_fields: [legalname, dba, actualaddressofpremises, additionaladdressinformation, akaaddress, georeference]

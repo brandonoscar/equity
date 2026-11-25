@@ -1,0 +1,23 @@
+# City of Seattle Department of Finance and Administrative Services, "Active Business
+# License Tax Certificate" (cos-data.seattle.gov wnbq-64tb, Public Domain): about 86K active
+# business licenses with legal name (a person for sole proprietors), trade name, ownership
+# type, UBI and address. Start dates are YYYYMMDD text.
+source_id: wa.seattle.business_licenses
+state: WA
+jurisdiction: "53033"
+portal: https://cos-data.seattle.gov
+dataset: wnbq-64tb
+key: city_account_number
+id_prefix: "SEA-BL:"
+terms_url: https://cos-data.seattle.gov/City-Business/Active-Business-License-Tax-Certificate/wnbq-64tb
+terms_summary: "Public Domain (dataset license field)."
+checked_on: 2026-11-25
+license:
+  name: [trade_name, business_legal_name]
+  type: ownership_type
+  status_value: Active  # active certificates only
+  issued_on: license_start_date
+  address: {street: street_address, city: city, state: state, zip: zip}
+holders:
+  - {role: other, title: LICENSEE, with_type: false, name: business_legal_name, address: {street: street_address, city: city, state: state, zip: zip}}
+pii_fields: [business_legal_name, trade_name, street_address, business_phone]

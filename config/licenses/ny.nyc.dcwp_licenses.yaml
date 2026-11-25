@@ -1,0 +1,23 @@
+# New York City Department of Consumer and Worker Protection, "Issued Licenses"
+# (data.cityofnewyork.us w7w3-xahh): about 75K current and past DCWP licenses (home
+# improvement contractors, tow trucks, sidewalk cafes, secondhand dealers, laundries...) with
+# business name, DBA and address.
+source_id: ny.nyc.dcwp_licenses
+state: NY
+jurisdiction: "36"
+portal: https://data.cityofnewyork.us
+dataset: w7w3-xahh
+key: license_nbr
+id_prefix: "NYC-DCWP:"
+terms_url: https://www.nyc.gov/home/terms-of-use.page
+terms_summary: "NYC Open Data terms of use: free to use, no warranty; credit not required."
+checked_on: 2026-11-25
+license:
+  name: [dba_trade_name, business_name]
+  type: business_category
+  status: license_status
+  issued_on: license_creation_date
+  address: {street: [address_building, address_street_name, address_street_name_2, street3, unit_type, apt_suite], city: address_city, state: address_state, zip: address_zip}
+holders:
+  - {role: other, title: LICENSEE, name: business_name, address: {street: [address_building, address_street_name, address_street_name_2, street3, unit_type, apt_suite], city: address_city, state: address_state, zip: address_zip}}
+pii_fields: [business_name, dba_trade_name, address_building, address_street_name, address_street_name_2, street3, apt_suite, contact_phone, latitude, longitude]

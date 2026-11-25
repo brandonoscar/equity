@@ -1,0 +1,34 @@
+# City of Chicago, Department of Business Affairs and Consumer Protection: "Business Licenses"
+# (data.cityofchicago.org r5kz-chrr, about 1.2M license rows for about 198K accounts since
+# 2002) and "Business Owners" (ezma-pppn, about 332K owners, officers and members by
+# account). A record is one licensee account: its latest license gives the name, address,
+# type and status; the owners are its role holders.
+# TODO(Brandon): owner titles map to officer/director/member/manager; sole proprietors,
+# partners, shareholders and the like are "other" with the raw title. Roles are dated from
+# the retrieval day (no start dates are published).
+source_id: il.chicago.business_licenses
+state: IL
+jurisdiction: "17031"
+portal: https://data.cityofchicago.org
+dataset: r5kz-chrr
+key: account_number
+key_is_number: true
+id_prefix: "CHI-BACP:"
+terms_url: https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html
+terms_summary: "City of Chicago data portal terms of use: data provided as is, free to use; the City disclaims warranties and may change or remove data."
+checked_on: 2026-11-25
+license:
+  name: [legal_name, doing_business_as_name]
+  type: license_description
+  status: license_status
+  latest_by: date_issued
+  address: {street: address, city: city, state: state, zip: zip_code}
+holders:
+  - {role: other, title: LICENSEE, with_type: false, name: legal_name, address: {street: address, city: city, state: state, zip: zip_code}}
+related:
+  - dataset: ezma-pppn
+    key: account_number
+    holder: {role: other, title: OWNER, with_type: false, name: owner_name, parts: {first: owner_first_name, middle: owner_middle_initial, last: owner_last_name, suffix: owner_name_suffix}}
+    role_field: owner_title
+    role_map: {PRESIDENT: officer, VICE PRESIDENT: officer, SECRETARY: officer, ASST. SECRETARY: officer, TREASURER: officer, CEO: officer, PRINCIPAL OFFICER: officer, EXECUTIVE DIRECTOR: officer, DIRECTOR: director, MEMBER: member, MANAGING MEMBER: member, MANAGER: manager}  # pragma: allowlist secret
+pii_fields: [legal_name, doing_business_as_name, address, owner_first_name, owner_middle_initial, owner_last_name, owner_name, latitude, longitude, location]

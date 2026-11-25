@@ -1,0 +1,42 @@
+source_id: nv.clark.property_sales
+state: NV
+county_fips: "32003"
+# Clark County NV Assessor sales as published by the City of Las Vegas Office of GIS
+# ("AOSales_New", ArcGIS Online; accessInformation: Clark County Assessor's Office, Clark
+# County GISMO and City of Las Vegas; 1,971,674 rows on 2026-11-25, countywide): one row per
+# parcel and recorded conveyance with the APN, grantor and grantee (two names each), price
+# and the Recorder's instrument reference. In Clark County the recording "book" is the
+# recording date (OR_BK '20201123') and the "page" the instrument number of that day, so
+# OR_BK is the instrument date (yyyymmdd text: windows compare as text) and OR_BK + OR_PG
+# the document. Loaded as DEED instruments (grantor = seller, grantee = buyer) on
+# 32003-<APN>. No Clark County owner layer is configured yet (config/counties/32003.yaml).
+# OR_BK '00000000' / '99999999' placeholders are not dates and those rows are skipped.
+# TODO(Brandon): QSRC_CD (sale qualification source code) is not decoded.
+api: arcgis
+layer_url: https://services1.arcgis.com/F1v0ufATbBQScMtY/arcgis/rest/services/AOSales_New/FeatureServer/0
+order_by: [ObjectId2]
+select: [ObjectId2, PARCEL, OR_BK, OR_PG, GRANTOR, GRANTOR_2, GRANTEE, GRANTEE_2, PRICE, QSRC_CD]
+date_field: OR_BK
+date_format: {OR_BK: ymd}
+date_is_text: true
+partition: year
+first_year: 1950
+uid: [OR_BK, OR_PG, PARCEL]
+doc_type: DEED
+doc_type_raw: Clark County assessor sale
+consideration: PRICE
+parties:
+  - role: grantor
+    name: GRANTOR
+  - role: grantor
+    name: GRANTOR_2
+  - role: grantee
+    name: GRANTEE
+  - role: grantee
+    name: GRANTEE_2
+parcel: {kind: pin, field: PARCEL, county_fips: "32003"}
+terms:
+  url: https://www.arcgis.com/home/item.html?id=a73760fe42724753b305c95757ac6c49
+  summary: "City of Las Vegas Office of GIS (OfficeOfGIS_LasVegas) public ArcGIS Online table of Clark County Assessor sales; free, no login. licenseInfo (read 2026-11-25): no warranty, representation or guarantee; no license grant and no commercial-use restriction stated."
+  checked_on: 2026-11-25
+  cost_model: free

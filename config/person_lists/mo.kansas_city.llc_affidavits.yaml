@@ -1,0 +1,25 @@
+# City of Kansas City, Mo. City Clerk, "LLC Affidavits" (data.kcmo.org 6hy4-5b3m): the
+# affidavit an LLC owning rental property in the city must file naming the natural person
+# behind it (applicant_name), with the LLC's address. ~1,700 rows; last refreshed 2024.
+source_id: mo.kansas_city.llc_affidavits
+state: MO
+jurisdiction: "29095"
+kind: sos  # nearest source kind: a city registry of names
+record_type: llc_affidavit
+api: socrata
+portal: https://data.kcmo.org
+dataset: 6hy4-5b3m
+key_prefix: "KCMO-LLC:"  # no row id published: the key is a hash of the row
+parties:
+  - role: applicant
+    name: applicant_name
+    format: first_last
+    address: &addr {street: address, city: city, state: state, zip: zipcode}
+  - role: llc
+    name: [llc_name, does_business_as]
+    address: *addr
+terms:
+  url: https://data.kcmo.org/Housing/LLC-Affidavits/6hy4-5b3m
+  summary: "Public Domain (dataset license field). No use restriction found."
+  checked_on: 2026-11-25
+  cost_model: free

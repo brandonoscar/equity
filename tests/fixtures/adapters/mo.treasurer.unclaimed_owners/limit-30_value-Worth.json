@@ -1,0 +1,186 @@
+{
+ "county": "Worth",
+ "rows": [
+  {
+   "address": "7423 TEST ST",
+   "city": "WORTH",
+   "county": "Worth",
+   "name": "TESTOWNER 7D0071"
+  },
+  {
+   "address": "7423 TEST ST",
+   "city": "WORTH",
+   "county": "Worth",
+   "name": "TESTOWNER EEEF68"
+  },
+  {
+   "address": "5199 TEST ST",
+   "city": "GRANT CITY",
+   "county": "Worth",
+   "name": "TESTOWNER 8E7CC0"
+  },
+  {
+   "address": "4128 TEST ST",
+   "city": "GRANT CITY",
+   "county": "Worth",
+   "name": "TESTOWNER 9C2B8E"
+  },
+  {
+   "address": "5276 TEST ST",
+   "city": "GRANT CITY",
+   "county": "Worth",
+   "name": "TESTOWNER A9D31B"
+  },
+  {
+   "address": "3034 TEST ST",
+   "city": "GRANT CITY",
+   "county": "Worth",
+   "name": "TESTOWNER 5A8FF8"
+  },
+  {
+   "address": "4232 TEST ST",
+   "city": "GRANT CITY",
+   "county": "Worth",
+   "name": "TESTOWNER CB70D7"
+  },
+  {
+   "address": "4448 TEST ST",
+   "city": "SHERIDAN",
+   "county": "Worth",
+   "name": "TESTOWNER 3DAC77"
+  },
+  {
+   "address": "1538 TEST ST",
+   "city": "GRANT CITY",
+   "county": "Worth",
+   "name": "TESTOWNER 12B2AE"
+  },
+  {
+   "address": "1676 TEST ST",
+   "city": "GRANT CITY",
+   "county": "Worth",
+   "name": "TESTOWNER 277B09"
+  },
+  {
+   "address": "5294 TEST ST",
+   "city": "GRANT CITY",
+   "county": "Worth",
+   "name": "TESTOWNER CC30C2"
+  },
+  {
+   "address": "7830 TEST ST",
+   "city": "GRANT CITY",
+   "county": "Worth",
+   "name": "TESTOWNER 0E22A2"
+  },
+  {
+   "address": "3865 TEST ST",
+   "city": "GRANT CITY",
+   "county": "Worth",
+   "name": "TESTOWNER 7B33C8"
+  },
+  {
+   "address": "218 TEST ST",
+   "city": "WORTH",
+   "county": "Worth",
+   "name": "TESTOWNER 0DB634"
+  },
+  {
+   "address": "3378 TEST ST",
+   "city": "GRANT CITY",
+   "county": "Worth",
+   "name": "TESTOWNER E14821"
+  },
+  {
+   "address": "8348 TEST ST",
+   "city": "GRANT CITY",
+   "county": "Worth",
+   "name": "TESTOWNER 998D06"
+  },
+  {
+   "address": "649 TEST ST",
+   "city": "GRANT CITY",
+   "county": "Worth",
+   "name": "TESTOWNER 1B646E"
+  },
+  {
+   "address": "462 TEST ST",
+   "city": "WORTH",
+   "county": "Worth",
+   "name": "TESTOWNER A4CF3A"
+  },
+  {
+   "address": "1184 TEST ST",
+   "city": "WORTH",
+   "county": "Worth",
+   "name": "TESTOWNER 065463"
+  },
+  {
+   "address": "6680 TEST ST",
+   "city": "GRANT CITY",
+   "county": "Worth",
+   "name": "TESTOWNER EAE7D4"
+  },
+  {
+   "address": "5116 TEST ST",
+   "city": "GRANT CITY",
+   "county": "Worth",
+   "name": "TESTOWNER 914246"
+  },
+  {
+   "address": "5116 TEST ST",
+   "city": "GRANT CITY",
+   "county": "Worth",
+   "name": "TESTOWNER 6D81DE"
+  },
+  {
+   "address": "5524 TEST ST",
+   "city": "SHERIDAN",
+   "county": "Worth",
+   "name": "TESTOWNER FFEFE6"
+  },
+  {
+   "address": "963 TEST ST",
+   "city": "SHERIDAN",
+   "county": "Worth",
+   "name": "TESTOWNER 48109A"
+  },
+  {
+   "address": "1877 TEST ST",
+   "city": "DENVER",
+   "county": "Worth",
+   "name": "TESTOWNER 7924E9"
+  },
+  {
+   "address": "6571 TEST ST",
+   "city": "GRANT CITY",
+   "county": "Worth",
+   "name": "TESTOWNER 088031"
+  },
+  {
+   "address": "6091 TEST ST",
+   "city": "GRANT CITY",
+   "county": "Worth",
+   "name": "TESTOWNER F5FCD5"
+  },
+  {
+   "address": "6586 TEST ST",
+   "city": "GRANT CITY",
+   "county": "Worth",
+   "name": "TESTOWNER 9ED5F2"
+  },
+  {
+   "address": "3966 TEST ST",
+   "city": "GRANT CITY",
+   "county": "Worth",
+   "name": "TESTOWNER 9D2B4D"
+  },
+  {
+   "address": "7670 TEST ST",
+   "city": "GRANT CITY",
+   "county": "Worth",
+   "name": "TESTOWNER CC6F60 INC"
+  }
+ ],
+ "url": "https://treasurer.mo.gov/UCP/Account-Owner-List-Results.aspx?Name=Worth"
+}

@@ -1,0 +1,24 @@
+# City of Providence Treasurer, "Unclaimed Property" (data.providenceri.gov 4hhd-fzq6): city
+# checks not cashed one year after issue, with the payee's name and mailing address. ~1,900
+# rows, checks dated 2010 to the present, updated weekly. People print LAST FIRST; vendors too.
+source_id: ri.providence.unclaimed_property
+state: RI
+jurisdiction: "44007"
+kind: tax  # nearest source kind: a municipal treasury list (no unclaimed-property kind)
+record_type: unclaimed_check
+api: socrata
+portal: https://data.providenceri.gov
+dataset: 4hhd-fzq6
+key_prefix: "PVD-UP:"  # no row id published: the key is a hash of the row
+parties:
+  - role: payee
+    name: payee_name
+    format: last_first
+    address: {street: [payee_address1, address2, address3, address4], city: city, state: state, zip: zip_code}
+terms:
+  url: https://data.providenceri.gov/Finance/Unclaimed-Property/4hhd-fzq6
+  summary: >-
+    Open Data Commons Attribution License (dataset license field): attribute the City of
+    Providence. Published so payees can claim; no use restriction beyond attribution.
+  checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,23 @@
+# New York State Unified Court System, "NYS Attorney Registrations" (data.ny.gov eqw2-r5nb):
+# about 436K attorneys admitted in New York (current, retired, deceased...) with first,
+# middle and last name, firm and business address.
+# TODO(Brandon): formed_on is not set: only the year admitted is published.
+source_id: ny.ucs.attorneys
+state: NY
+jurisdiction: "36"
+portal: https://data.ny.gov
+dataset: eqw2-r5nb
+key: registration_number
+key_is_number: true
+id_prefix: "NY-ATTY:"
+terms_url: https://data.ny.gov/download/77gx-ii52/application%2Fpdf
+terms_summary: "NY Open Data terms: free to use; no warranty. No restriction on commercial use found."
+checked_on: 2026-11-25
+license:
+  type_value: ATTORNEY
+  status: status
+  address: {street: [street_1, street_2], city: city, state: state, zip: zip}
+holders:
+  - {role: other, title: ATTORNEY, with_type: false, parts: {first: first_name, middle: middle_name, last: last_name, suffix: suffix}, address: {street: [street_1, street_2], city: city, state: state, zip: zip}}
+  - {role: other, title: FIRM, with_type: false, name: company_name, address: {street: [street_1, street_2], city: city, state: state, zip: zip}}
+pii_fields: [first_name, middle_name, last_name, company_name, street_1, street_2, phone_number]

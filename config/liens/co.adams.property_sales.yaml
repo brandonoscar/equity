@@ -1,0 +1,43 @@
+source_id: co.adams.property_sales
+state: CO
+county_fips: "08001"
+# Adams County CO Assessor "Property Sales" (ArcGIS Online, AdamsCO_GIS; 770,885 rows on
+# 2026-11-25, sale dates from 1901): one row per account per recorded conveyance, with the
+# Clerk and Recorder reception number (and book/page for older deeds), deed type, sale date,
+# grantor (seller), grantee (buyer), documentary fee and price. Loaded as DEED instruments
+# (grantor = seller, grantee = buyer) on the parcel (08001-<parcelnb>, the 13-digit state
+# parcel number = co.statewide.parcels parcel_id).
+# deedtype codes (most frequent first): WD warranty, SWD special warranty, QC quitclaim, BLK,
+# PTD public trustee's deed, DTH, PRD personal representative's deed, OTH, AFF affidavit,
+# BS bargain and sale, D deed, MRG, TTD treasurer's tax deed, ORD order, SHD sheriff's deed...
+# TODO(Brandon): confirm the codes. DTH (death certificate / affidavit of death?), MRG, BLK
+# (blanket?), DEC, AGR, STA and BOS are loaded as OTHER or DEED as mapped below: nothing
+# in the layer defines them.
+api: arcgis
+layer_url: https://services3.arcgis.com/4PNQOtAivErR7nbT/arcgis/rest/services/Property_Sales/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, accountno, parcelnb, recptno, book, page, deedtype, saledt, grantor, grantee,
+         docfee, docdt, salep]
+date_field: saledt
+partition: year
+first_year: 1880                 # earliest deeds; pre-1970 epoch-ms dates are negative
+uid: [accountno, recptno, book, page, deedtype]
+doc_type:
+  field: deedtype
+  map: {AFF: AFFIDAVIT, DAF: AFFIDAVIT, ORD: COURT_ORDER, ASN: ASSIGNMENT, DTH: OTHER,
+        MRG: OTHER, DEC: OTHER, AGR: OTHER, STA: OTHER, BOS: OTHER, DISC: OTHER, CON: OTHER,
+        TTL: OTHER, UNW: OTHER, RIT: OTHER}
+  default: DEED
+doc_type_raw: {field: deedtype}
+consideration: salep
+parties:
+  - role: grantor
+    name: grantor
+  - role: grantee
+    name: grantee
+parcel: {kind: pin, field: parcelnb, county_fips: "08001"}   # = co.statewide.parcels parcel_id
+terms:
+  url: https://www.arcgis.com/home/item.html?id=c518fafaabf8476fb83d5a7b7b1aa7be
+  summary: "Adams County CO Government 'Property Sales' (ArcGIS Online, AdamsCO_GIS), public, free, no login. Item licenseInfo (read 2026-11-25): Creative Commons Attribution 4.0 International; disclaimer: no warranty of completeness, accuracy or timeliness."
+  checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,35 @@
+source_id: mn.isanti.parcel_sales
+state: MN
+county_fips: "27059"
+# Isanti County MN "Tax Parcel Sales" (county ArcGIS Server, LandRecords/TaxParcelSales_Public,
+# 38,323 rows on 2026-11-25): sales from the county's eCRV / sales file, with the parcel,
+# transfer date, sale amount, sale type (WD, CD...), eCRV id, qualified flag, buyer and seller.
+# Loaded as DEED instruments (grantor = seller, grantee = buyer) on the parcel. PARCELID is
+# published with dots ('01.007.1909'); mn.statewide.parcels county_pin has dashes
+# ('01-007-1909'), so the id is rewritten (config/deeds, equity.adapters.deeds).
+api: arcgis
+layer_url: https://gis.co.isanti.mn.us/arcgis/rest/services/LandRecords/TaxParcelSales_Public/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, PARCELID, TRNSDT, SALEAMNT, ECRVID, SALETYPE, MULTI_PARCEL, SALE_QUALIFIED,
+         BUYER, SELLER]
+date_field: TRNSDT
+rewrite:
+  PARCELID: {pattern: "^(\\d+)\\.(\\d+)\\.(\\d+)$", replace: "\\1-\\2-\\3"}
+partition: year
+first_year: 1880                 # earliest deeds; pre-1970 epoch-ms dates are negative
+uid: [ECRVID, PARCELID]
+doc_type: {field: SALETYPE, map: {CD: LAND_CONTRACT}, default: DEED}   # CD = contract for deed
+doc_type_raw: {field: SALETYPE}
+consideration: SALEAMNT
+parties:
+  - role: grantor
+    name: SELLER
+  - role: grantee
+    name: BUYER
+parcel: {kind: pin, field: PARCELID, county_fips: "27059"}   # = mn.statewide.parcels county_pin
+terms:
+  url: https://gis.co.isanti.mn.us/arcgis/rest/services/LandRecords/TaxParcelSales_Public/FeatureServer
+  summary: "Isanti County MN GIS public ArcGIS Server (copyright 'Isanti County GIS'), free, no login; no license or use restriction stated on the service. gis.co.isanti.mn.us/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

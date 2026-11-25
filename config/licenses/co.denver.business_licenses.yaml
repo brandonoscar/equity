@@ -1,0 +1,24 @@
+# City and County of Denver, "Active Business Licenses Denver" (data.colorado.gov s9wt-dsfz,
+# Public Domain): about 56K active licenses (residential rental properties, liquor, short-term
+# rentals, contractors...) with the entity name (often a person: rental owners), trade name
+# and licensed address. A record is the business file number (bfn) plus license type.
+source_id: co.denver.business_licenses
+state: CO
+jurisdiction: "08031"
+portal: https://data.colorado.gov
+dataset: s9wt-dsfz
+key: bfn
+record_key: [bfn, license_type]
+id_prefix: "DEN-BL:"
+terms_url: https://data.colorado.gov/Business/Active-Business-Licenses-Denver/s9wt-dsfz
+terms_summary: "Public Domain (dataset license field)."
+checked_on: 2026-11-25
+license:
+  name: [trade_name, entity_name]
+  type: license_type
+  status: license_status
+  issued_on: application_date
+  address: {street: address, zip: zip}
+holders:
+  - {role: other, title: LICENSEE, name: entity_name, address: {street: address, zip: zip}}
+pii_fields: [entity_name, trade_name, address, addressnounit, x_coord, y_coord]
