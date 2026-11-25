@@ -1,0 +1,281 @@
+{
+ "layer": "https://services1.arcgis.com/2AGLxyiJoNiVHKwq/arcgis/rest/services/Parcels/FeatureServer/0",
+ "rows": [
+  {
+   "DateSold": 1760572800000,
+   "OBJECTID": 17,
+   "Owner1": "TESTOWNER A53EF0",
+   "Owner2": "TESTOWNER 7F27EE",
+   "ParcelID": "0202106240",
+   "PreviousOwner": "TESTOWNER F46851",
+   "SalePrice": null,
+   "TransferBook": "22197",
+   "TransferPage": "235"
+  },
+  {
+   "DateSold": 1758844800000,
+   "OBJECTID": 43,
+   "Owner1": "TESTOWNER 2B5F0C",
+   "Owner2": "",
+   "ParcelID": "0700914001",
+   "PreviousOwner": "TESTOWNER CDCFC0 INC",
+   "SalePrice": 285000,
+   "TransferBook": "22160",
+   "TransferPage": "240"
+  },
+  {
+   "DateSold": 1761868800000,
+   "OBJECTID": 48,
+   "Owner1": "TESTOWNER 6C94E1",
+   "Owner2": "TESTOWNER 281653",
+   "ParcelID": "5000000077",
+   "PreviousOwner": "TESTOWNER 935DEA",
+   "SalePrice": 440000,
+   "TransferBook": "22230",
+   "TransferPage": "325"
+  },
+  {
+   "DateSold": 1741651200000,
+   "OBJECTID": 55,
+   "Owner1": "TESTOWNER 3EED62",
+   "Owner2": "TESTOWNER 400C5C",
+   "ParcelID": "1780000020",
+   "PreviousOwner": "TESTOWNER 1F62B8",
+   "SalePrice": 1,
+   "TransferBook": "21788",
+   "TransferPage": "423"
+  },
+  {
+   "DateSold": 1741737600000,
+   "OBJECTID": 66,
+   "Owner1": "TESTOWNER 49E14B",
+   "Owner2": "",
+   "ParcelID": "6292403025",
+   "PreviousOwner": "TESTOWNER 7B9FA4",
+   "SalePrice": 1,
+   "TransferBook": "21792",
+   "TransferPage": "188"
+  },
+  {
+   "DateSold": 1757548800000,
+   "OBJECTID": 109,
+   "Owner1": "TESTOWNER EB2460",
+   "Owner2": "",
+   "ParcelID": "0701005026",
+   "PreviousOwner": "TESTOWNER 0D705F LLC",
+   "SalePrice": 220000,
+   "TransferBook": "22131",
+   "TransferPage": "443"
+  },
+  {
+   "DateSold": 1742515200000,
+   "OBJECTID": 117,
+   "Owner1": "TESTOWNER C83529 LLC",
+   "Owner2": "",
+   "ParcelID": "6240201079",
+   "PreviousOwner": "TESTOWNER 3D4A24 LLC",
+   "SalePrice": 10,
+   "TransferBook": "21811",
+   "TransferPage": "483"
+  },
+  {
+   "DateSold": 1751328000000,
+   "OBJECTID": 120,
+   "Owner1": "TESTOWNER 3DF538",
+   "Owner2": "",
+   "ParcelID": "6290109001",
+   "PreviousOwner": "TESTOWNER 25BF0C",
+   "SalePrice": null,
+   "TransferBook": "22001",
+   "TransferPage": "156"
+  },
+  {
+   "DateSold": 1748995200000,
+   "OBJECTID": 131,
+   "Owner1": "TESTOWNER F77C12",
+   "Owner2": "TESTOWNER AE70DF",
+   "ParcelID": "6490801056",
+   "PreviousOwner": "TESTOWNER 2E90AF",
+   "SalePrice": 641000,
+   "TransferBook": "21950",
+   "TransferPage": "271"
+  },
+  {
+   "DateSold": 1750636800000,
+   "OBJECTID": 135,
+   "Owner1": "TESTOWNER 9E8D14",
+   "Owner2": "",
+   "ParcelID": "6910102015",
+   "PreviousOwner": "TESTOWNER 2959AF",
+   "SalePrice": null,
+   "TransferBook": "21980",
+   "TransferPage": "419"
+  },
+  {
+   "DateSold": 1743379200000,
+   "OBJECTID": 152,
+   "Owner1": "TESTOWNER 0AD3DA",
+   "Owner2": "TESTOWNER 0A16A7",
+   "ParcelID": "0200505065",
+   "PreviousOwner": "TESTOWNER A10E91",
+   "SalePrice": null,
+   "TransferBook": "21825",
+   "TransferPage": "240"
+  },
+  {
+   "DateSold": 1762214400000,
+   "OBJECTID": 156,
+   "Owner1": "TESTOWNER B349EE",
+   "Owner2": "",
+   "ParcelID": "0701601571",
+   "PreviousOwner": "TESTOWNER 827458 INC",
+   "SalePrice": 399990,
+   "TransferBook": "22233",
+   "TransferPage": "493"
+  },
+  {
+   "DateSold": 1739232000000,
+   "OBJECTID": 183,
+   "Owner1": "TESTOWNER F2C466",
+   "Owner2": "",
+   "ParcelID": "6360102042",
+   "PreviousOwner": "TESTOWNER 23B737",
+   "SalePrice": 135000,
+   "TransferBook": "21745",
+   "TransferPage": "406"
+  },
+  {
+   "DateSold": 1751414400000,
+   "OBJECTID": 189,
+   "Owner1": "TESTOWNER 207C18",
+   "Owner2": "TESTOWNER 516511",
+   "ParcelID": "6291001013",
+   "PreviousOwner": "TESTOWNER B16706",
+   "SalePrice": 490000,
+   "TransferBook": "22004",
+   "TransferPage": "21"
+  },
+  {
+   "DateSold": 1745280000000,
+   "OBJECTID": 211,
+   "Owner1": "TESTOWNER 6BDE64 LLC",
+   "Owner2": "",
+   "ParcelID": "7000101119",
+   "PreviousOwner": "TESTOWNER AB4129 LLC",
+   "SalePrice": 9630725,
+   "TransferBook": "21864",
+   "TransferPage": "253"
+  },
+  {
+   "DateSold": 1750636800000,
+   "OBJECTID": 214,
+   "Owner1": "TESTOWNER AD02DA",
+   "Owner2": "TESTOWNER BCFE69",
+   "ParcelID": "0202401216",
+   "PreviousOwner": "TESTOWNER 8CADF0",
+   "SalePrice": 829000,
+   "TransferBook": "21982",
+   "TransferPage": "118"
+  },
+  {
+   "DateSold": 1742342400000,
+   "OBJECTID": 228,
+   "Owner1": "TESTOWNER 160393",
+   "Owner2": "",
+   "ParcelID": "0700102009",
+   "PreviousOwner": "TESTOWNER 3E8968",
+   "SalePrice": null,
+   "TransferBook": "21805",
+   "TransferPage": "164"
+  },
+  {
+   "DateSold": 1759276800000,
+   "OBJECTID": 239,
+   "Owner1": "TESTOWNER 42F714 LLC",
+   "Owner2": "",
+   "ParcelID": "5420701210",
+   "PreviousOwner": "TESTOWNER C3C2D3 LLC",
+   "SalePrice": 3012859,
+   "TransferBook": "22170",
+   "TransferPage": "17"
+  },
+  {
+   "DateSold": 1738886400000,
+   "OBJECTID": 247,
+   "Owner1": "TESTOWNER C4CB48",
+   "Owner2": "",
+   "ParcelID": "7260000005",
+   "PreviousOwner": "TESTOWNER AB4674",
+   "SalePrice": null,
+   "TransferBook": "21741",
+   "TransferPage": "485"
+  },
+  {
+   "DateSold": 1755820800000,
+   "OBJECTID": 284,
+   "Owner1": "TESTOWNER 3F6E3E",
+   "Owner2": "",
+   "ParcelID": "0200603003",
+   "PreviousOwner": "TESTOWNER 02C05D",
+   "SalePrice": 360000,
+   "TransferBook": "22095",
+   "TransferPage": "45"
+  },
+  {
+   "DateSold": 1752537600000,
+   "OBJECTID": 290,
+   "Owner1": "TESTOWNER 8FF857",
+   "Owner2": "TESTOWNER 87E6AD",
+   "ParcelID": "2620000021",
+   "PreviousOwner": "TESTOWNER F430A7",
+   "SalePrice": null,
+   "TransferBook": "22022",
+   "TransferPage": "94"
+  },
+  {
+   "DateSold": 1750982400000,
+   "OBJECTID": 299,
+   "Owner1": "TESTOWNER A300FD",
+   "Owner2": "TESTOWNER 0DCB66",
+   "ParcelID": "0202901067",
+   "PreviousOwner": "TESTOWNER B60034",
+   "SalePrice": 690000,
+   "TransferBook": "21991",
+   "TransferPage": "434"
+  },
+  {
+   "DateSold": 1763337600000,
+   "OBJECTID": 300,
+   "Owner1": "TESTOWNER 6CB3DA",
+   "Owner2": "TESTOWNER E6C767",
+   "ParcelID": "0200901184",
+   "PreviousOwner": "TESTOWNER 0ADD78 INC",
+   "SalePrice": 375000,
+   "TransferBook": "22256",
+   "TransferPage": "367"
+  },
+  {
+   "DateSold": 1762905600000,
+   "OBJECTID": 302,
+   "Owner1": "TESTOWNER 1A896B",
+   "Owner2": "",
+   "ParcelID": "3070000015",
+   "PreviousOwner": "TESTOWNER 5037EB",
+   "SalePrice": 340000,
+   "TransferBook": "22250",
+   "TransferPage": "342"
+  },
+  {
+   "DateSold": 1749168000000,
+   "OBJECTID": 319,
+   "Owner1": "TESTOWNER 5C6D58",
+   "Owner2": "TESTOWNER 92C958",
+   "ParcelID": "6560000160",
+   "PreviousOwner": "TESTOWNER 30E037",
+   "SalePrice": 825000,
+   "TransferBook": "21955",
+   "TransferPage": "231"
+  }
+ ],
+ "where": "DateSold >= DATE '2025-01-01' AND DateSold < DATE '2026-01-01'"
+}

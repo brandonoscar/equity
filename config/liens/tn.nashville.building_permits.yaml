@@ -1,0 +1,32 @@
+source_id: tn.nashville.building_permits
+state: TN
+county_fips: "47037"   # Davidson County (Metro Nashville)
+# Metro Nashville Codes "Building Permits Issued" (ArcGIS Online Building_Permits_Issued_2,
+# 29,632 permits issued 2023-11 .. 2026-11 on 2026-11-25: a rolling three years, daily):
+# permit number, type and subtype, construction cost, purpose, the contact (usually the
+# contractor or applicant) and the parcel (Davidson map-parcel id). Year windows keep the
+# permits as the layer drops them. A signal that an owner is putting money into a property,
+# not a debt: OTHER instruments on the parcel, in no match run.
+api: arcgis
+layer_url: https://services2.arcgis.com/HdTo6HJqh92wn4D8/arcgis/rest/services/Building_Permits_Issued_2/FeatureServer/0
+order_by: [ObjectId]
+select: [ObjectId, Permit__, Permit_Type_Description, Permit_Subtype_Description, Per_Ty,
+         Per_SubTy, Parcel, Date_Entered, Date_Issued, Const_Cost, Address, City, State, ZIP,
+         Subdivision_Lot, Contact, Purpose]
+date_field: Date_Issued
+partition: year
+first_year: 2023
+uid: [Permit__, Parcel]   # 48 permit numbers repeat across parcels
+doc_type: OTHER
+doc_type_raw: {field: Permit_Type_Description}
+skip_names: ["None"]
+extra_pii: [Address, Purpose]
+parties:
+  - {role: other, name: Contact}
+parcel: {kind: pin, field: Parcel, county_fips: "47037"}
+terms:
+  url: https://www.arcgis.com/home/item.html?id=2576bfb2d74f418b8ba8c4538e4f729f
+  summary: "Metro Nashville Open Data (ArcGIS Online, NashvilleOpenData), free, no login. Item licenseInfo: Metro's Open Data Executive Order governs the portal; no commercial-use or redistribution restriction found. services2.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

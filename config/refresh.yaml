@@ -46,7 +46,7 @@ rules:
             pa.lehigh.sheriff_sales, pa.montgomery.sheriff_sales, pa.philadelphia.sheriff_sales,
             dc.otr.vacant_blighted, pa.pittsburgh.condemned_properties,
             md.baltimore_city.vacant_building_notices, ny.syracuse.rental_registry,
-            ny.syracuse.vacant_properties]
+            ny.syracuse.vacant_properties, fl.orange.tax_deed_sales]
     every_hours: 24
     mode: listing
     listing_table: instrument

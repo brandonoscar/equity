@@ -1,0 +1,106 @@
+{
+ "layer": "https://services8.arcgis.com/euhkr1dAJeQBIjV0/arcgis/rest/services/Annual_Deeds/FeatureServer/8",
+ "rows": [
+  {
+   "accountno": "R010012032",
+   "accttype": "Commercial",
+   "legal": "TESTOWNER F7ED52",
+   "location": "TESTOWNER 19A399",
+   "name1": "TESTOWNER 8FA626 LLC",
+   "name2": " ",
+   "saledate": "2017",
+   "subname": "OKLA CITY ORIGINAL"
+  },
+  {
+   "accountno": "R010012735",
+   "accttype": "Commercial",
+   "legal": "TESTOWNER C9FAFD",
+   "location": "TESTOWNER F4EE86",
+   "name1": "TESTOWNER 1BCEDF LLC",
+   "name2": " ",
+   "saledate": "2017",
+   "subname": "OKLA CITY ORIGINAL"
+  },
+  {
+   "accountno": "R010012740",
+   "accttype": "Public Servi",
+   "legal": "TESTOWNER 6545B5",
+   "location": "TESTOWNER F4EE86",
+   "name1": "TESTOWNER 1273E4",
+   "name2": "TESTOWNER EE8CDC",
+   "saledate": "2017",
+   "subname": "OKLA CITY ORIGINAL"
+  },
+  {
+   "accountno": "R010012740",
+   "accttype": "Public Servi",
+   "legal": "TESTOWNER 6545B5",
+   "location": "TESTOWNER F4EE86",
+   "name1": "TESTOWNER 1273E4",
+   "name2": "TESTOWNER EE8CDC",
+   "saledate": "2017",
+   "subname": "OKLA CITY ORIGINAL"
+  },
+  {
+   "accountno": "R010013400",
+   "accttype": "Commercial",
+   "legal": "TESTOWNER C7150B",
+   "location": "TESTOWNER DB47B9",
+   "name1": "TESTOWNER 4A1A1A LLC",
+   "name2": "TESTOWNER 4EA34E LLC",
+   "saledate": "2017",
+   "subname": "OKLA CITY ORIGINAL"
+  },
+  {
+   "accountno": "R010013436",
+   "accttype": "Commercial",
+   "legal": "TESTOWNER AC78A1",
+   "location": "TESTOWNER 4898D5",
+   "name1": "TESTOWNER 68B443 LLC",
+   "name2": " ",
+   "saledate": "2017",
+   "subname": "OKLA CITY ORIGINAL"
+  },
+  {
+   "accountno": "R010013448",
+   "accttype": "Commercial",
+   "legal": "TESTOWNER 5B658B",
+   "location": "TESTOWNER 545135",
+   "name1": "TESTOWNER C0634D LP",
+   "name2": " ",
+   "saledate": "2017",
+   "subname": "OKLA CITY ORIGINAL"
+  },
+  {
+   "accountno": "R010017924",
+   "accttype": "Commercial",
+   "legal": "TESTOWNER 38ADC6",
+   "location": "TESTOWNER 13205C",
+   "name1": "TESTOWNER 8965BE LLC",
+   "name2": " ",
+   "saledate": "2017",
+   "subname": "OKLA CITY ORIGINAL"
+  },
+  {
+   "accountno": "R010963900",
+   "accttype": "Industrial",
+   "legal": "TESTOWNER BFFB7D",
+   "location": "TESTOWNER 81C837",
+   "name1": "TESTOWNER 35774C LLC",
+   "name2": " ",
+   "saledate": "2017",
+   "subname": "GAULTS 2ND ADDITION"
+  },
+  {
+   "accountno": "R010963900",
+   "accttype": "Industrial",
+   "legal": "TESTOWNER BFFB7D",
+   "location": "TESTOWNER 81C837",
+   "name1": "TESTOWNER 35774C LLC",
+   "name2": " ",
+   "saledate": "2017",
+   "subname": "GAULTS 2ND ADDITION"
+  }
+ ],
+ "where": "(accountno IS NOT NULL AND accountno <> '')"
+}

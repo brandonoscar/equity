@@ -1,0 +1,597 @@
+{
+ "portal": "https://data.norfolk.gov",
+ "rows": [
+  {
+   "address": "5889 TEST ST",
+   "civic_league": "Willoughby",
+   "contact_name": "TESTOWNER 8B28A2",
+   "contact_number": "TESTOWNER DA0624",
+   "latitude": "TESTOWNER 996EC6",
+   "location_point": {
+    "coordinates": [
+     -76.28715404,
+     36.96591887
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER C8E7FA",
+   "maximum_number_of_guests": "10",
+   "norfolk_air_link": {
+    "url": "https://air.norfolk.gov/#/property/24078101"
+   },
+   "number_of_bedrooms": "5",
+   "ordinance": "49177",
+   "permit_issue_date": "2023-05-09T00:00:00.000",
+   "permit_number": "ZP23-00513",
+   "registration_renewal_date": "2028-05-09T00:00:00.000",
+   "superward": "6",
+   "type_of_registration": "CUP",
+   "unit_type": "single-family",
+   "vacation_rental_or_homestay": "Vacation Rental",
+   "ward": "1"
+  },
+  {
+   "address": "8135 TEST ST",
+   "civic_league": "Cottage Line",
+   "latitude": "TESTOWNER B85FA8",
+   "location_point": {
+    "coordinates": [
+     -76.21848221,
+     36.93751545
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 68861F",
+   "maximum_number_of_guests": "8",
+   "norfolk_air_link": {
+    "url": "https://air.norfolk.gov/#/property/32566100"
+   },
+   "number_of_bedrooms": "4",
+   "ordinance": "49233",
+   "permit_issue_date": "2023-06-27T00:00:00.000",
+   "permit_number": "ZP23-00640",
+   "registration_renewal_date": "2028-06-27T00:00:00.000",
+   "superward": "6",
+   "type_of_registration": "CUP",
+   "unit_type": "single-family",
+   "vacation_rental_or_homestay": "Vacation Rental",
+   "ward": "5"
+  },
+  {
+   "address": "2937 TEST ST",
+   "civic_league": "East Ocean View",
+   "contact_name": "TESTOWNER 8B28A2",
+   "contact_number": "TESTOWNER 6639E6",
+   "latitude": "TESTOWNER 35BC67",
+   "location_point": {
+    "coordinates": [
+     -76.19282456,
+     36.93077788
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 51AB82",
+   "maximum_number_of_guests": "8",
+   "norfolk_air_link": {
+    "url": "https://air.norfolk.gov/#/property/20616252"
+   },
+   "number_of_bedrooms": "4",
+   "ordinance": "49292",
+   "permit_issue_date": "2023-09-29T00:00:00.000",
+   "permit_number": "ZP23-00890",
+   "registration_renewal_date": "2028-09-29T00:00:00.000",
+   "superward": "6",
+   "type_of_registration": "CUP",
+   "unit_type": "single-family",
+   "vacation_rental_or_homestay": "Vacation Rental",
+   "ward": "5"
+  },
+  {
+   "address": "3450 TEST ST",
+   "civic_league": "Cottage Line",
+   "contact_name": "TESTOWNER 004458",
+   "contact_number": "TESTOWNER 1DBEA5",
+   "latitude": "TESTOWNER 397D27",
+   "location_point": {
+    "coordinates": [
+     -76.22272953,
+     36.93896371
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 4BAFC7",
+   "maximum_number_of_guests": "4",
+   "norfolk_air_link": {
+    "url": "https://air.norfolk.gov/#/property/08598000"
+   },
+   "number_of_bedrooms": "2",
+   "ordinance": "48968",
+   "permit_issue_date": "2022-10-25T00:00:00.000",
+   "permit_number": "ZP23-00891",
+   "registration_renewal_date": "2032-10-25T00:00:00.000",
+   "superward": "6",
+   "type_of_registration": "CUP",
+   "unit": "1",
+   "unit_type": "multifamily",
+   "vacation_rental_or_homestay": "Vacation Rental",
+   "ward": "5"
+  },
+  {
+   "address": "3450 TEST ST",
+   "civic_league": "Cottage Line",
+   "contact_name": "TESTOWNER 004458",
+   "contact_number": "TESTOWNER 1DBEA5",
+   "latitude": "TESTOWNER 397D27",
+   "location_point": {
+    "coordinates": [
+     -76.22272953,
+     36.93896371
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 4BAFC7",
+   "maximum_number_of_guests": "4",
+   "norfolk_air_link": {
+    "url": "https://air.norfolk.gov/#/property/08598000"
+   },
+   "number_of_bedrooms": "2",
+   "ordinance": "48968",
+   "permit_issue_date": "2022-10-25T00:00:00.000",
+   "permit_number": "ZP23-00891",
+   "registration_renewal_date": "2032-10-25T00:00:00.000",
+   "superward": "6",
+   "type_of_registration": "CUP",
+   "unit": "2",
+   "unit_type": "multifamily",
+   "vacation_rental_or_homestay": "Vacation Rental",
+   "ward": "5"
+  },
+  {
+   "address": "3450 TEST ST",
+   "civic_league": "Cottage Line",
+   "contact_name": "TESTOWNER 004458",
+   "contact_number": "TESTOWNER 1DBEA5",
+   "latitude": "TESTOWNER 397D27",
+   "location_point": {
+    "coordinates": [
+     -76.22272953,
+     36.93896371
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 4BAFC7",
+   "maximum_number_of_guests": "4",
+   "norfolk_air_link": {
+    "url": "https://air.norfolk.gov/#/property/08598000"
+   },
+   "number_of_bedrooms": "2",
+   "ordinance": "48968",
+   "permit_issue_date": "2022-10-25T00:00:00.000",
+   "permit_number": "ZP23-00891",
+   "registration_renewal_date": "2032-10-25T00:00:00.000",
+   "superward": "6",
+   "type_of_registration": "CUP",
+   "unit": "3",
+   "unit_type": "multifamily",
+   "vacation_rental_or_homestay": "Vacation Rental",
+   "ward": "5"
+  },
+  {
+   "address": "3450 TEST ST",
+   "civic_league": "Cottage Line",
+   "contact_name": "TESTOWNER 004458",
+   "contact_number": "TESTOWNER 1DBEA5",
+   "latitude": "TESTOWNER 397D27",
+   "location_point": {
+    "coordinates": [
+     -76.22272953,
+     36.93896371
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 4BAFC7",
+   "maximum_number_of_guests": "4",
+   "norfolk_air_link": {
+    "url": "https://air.norfolk.gov/#/property/08598000"
+   },
+   "number_of_bedrooms": "2",
+   "ordinance": "48968",
+   "permit_issue_date": "2022-10-25T00:00:00.000",
+   "permit_number": "ZP23-00891",
+   "registration_renewal_date": "2032-10-25T00:00:00.000",
+   "superward": "6",
+   "type_of_registration": "CUP",
+   "unit": "4",
+   "unit_type": "multifamily",
+   "vacation_rental_or_homestay": "Vacation Rental",
+   "ward": "5"
+  },
+  {
+   "address": "3450 TEST ST",
+   "civic_league": "Cottage Line",
+   "contact_name": "TESTOWNER 004458",
+   "contact_number": "TESTOWNER 1DBEA5",
+   "latitude": "TESTOWNER 397D27",
+   "location_point": {
+    "coordinates": [
+     -76.22272953,
+     36.93896371
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 4BAFC7",
+   "maximum_number_of_guests": "4",
+   "norfolk_air_link": {
+    "url": "https://air.norfolk.gov/#/property/08598000"
+   },
+   "number_of_bedrooms": "2",
+   "ordinance": "48968",
+   "permit_issue_date": "2022-10-25T00:00:00.000",
+   "permit_number": "ZP23-00891",
+   "registration_renewal_date": "2032-10-25T00:00:00.000",
+   "superward": "6",
+   "type_of_registration": "CUP",
+   "unit": "5",
+   "unit_type": "multifamily",
+   "vacation_rental_or_homestay": "Vacation Rental",
+   "ward": "5"
+  },
+  {
+   "address": "3450 TEST ST",
+   "civic_league": "Cottage Line",
+   "contact_name": "TESTOWNER 004458",
+   "contact_number": "TESTOWNER 1DBEA5",
+   "latitude": "TESTOWNER 397D27",
+   "location_point": {
+    "coordinates": [
+     -76.22272953,
+     36.93896371
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 4BAFC7",
+   "maximum_number_of_guests": "4",
+   "norfolk_air_link": {
+    "url": "https://air.norfolk.gov/#/property/08598000"
+   },
+   "number_of_bedrooms": "2",
+   "ordinance": "48968",
+   "permit_issue_date": "2022-10-25T00:00:00.000",
+   "permit_number": "ZP23-00891",
+   "registration_renewal_date": "2032-10-25T00:00:00.000",
+   "superward": "6",
+   "type_of_registration": "CUP",
+   "unit": "6",
+   "unit_type": "multifamily",
+   "vacation_rental_or_homestay": "Vacation Rental",
+   "ward": "5"
+  },
+  {
+   "address": "3450 TEST ST",
+   "civic_league": "Cottage Line",
+   "contact_name": "TESTOWNER 004458",
+   "contact_number": "TESTOWNER 1DBEA5",
+   "latitude": "TESTOWNER 397D27",
+   "location_point": {
+    "coordinates": [
+     -76.22272953,
+     36.93896371
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 4BAFC7",
+   "maximum_number_of_guests": "2",
+   "norfolk_air_link": {
+    "url": "https://air.norfolk.gov/#/property/08598000"
+   },
+   "number_of_bedrooms": "1",
+   "ordinance": "48968",
+   "permit_issue_date": "2022-10-25T00:00:00.000",
+   "permit_number": "ZP23-00891",
+   "registration_renewal_date": "2032-10-25T00:00:00.000",
+   "superward": "6",
+   "type_of_registration": "CUP",
+   "unit": "7",
+   "unit_type": "multifamily",
+   "vacation_rental_or_homestay": "Vacation Rental",
+   "ward": "5"
+  },
+  {
+   "address": "2840 TEST ST",
+   "civic_league": "East Ocean View",
+   "latitude": "TESTOWNER 8D2142",
+   "location_point": {
+    "coordinates": [
+     -76.19558068,
+     36.92950174
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER B8252C",
+   "maximum_number_of_guests": "8",
+   "norfolk_air_link": {
+    "url": "https://air.norfolk.gov/#/property/00011132"
+   },
+   "number_of_bedrooms": "4",
+   "ordinance": "49316",
+   "permit_issue_date": "2023-09-12T00:00:00.000",
+   "permit_number": "ZP23-00937",
+   "registration_renewal_date": "2028-09-12T00:00:00.000",
+   "superward": "6",
+   "type_of_registration": "CUP",
+   "unit_type": "single-family",
+   "vacation_rental_or_homestay": "Vacation Rental",
+   "ward": "5"
+  },
+  {
+   "address": "4656 TEST ST",
+   "civic_league": "Willoughby",
+   "contact_name": "TESTOWNER FA037D",
+   "contact_number": "TESTOWNER 1D2463",
+   "latitude": "TESTOWNER F3D857",
+   "location_point": {
+    "coordinates": [
+     -76.2688863,
+     36.96463914
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 2AB8AC",
+   "maximum_number_of_guests": "2",
+   "norfolk_air_link": {
+    "url": "https://air.norfolk.gov/#/property/37006205"
+   },
+   "number_of_bedrooms": "1",
+   "ordinance": "49511",
+   "permit_issue_date": "2024-03-12T00:00:00.000",
+   "permit_number": "ZP24-00291",
+   "registration_renewal_date": "2029-03-12T00:00:00.000",
+   "superward": "6",
+   "type_of_registration": "CUP",
+   "unit": "A",
+   "unit_type": "triplex",
+   "vacation_rental_or_homestay": "Vacation Rental",
+   "ward": "1"
+  },
+  {
+   "address": "4656 TEST ST",
+   "civic_league": "Willoughby",
+   "contact_name": "TESTOWNER FA037D",
+   "contact_number": "TESTOWNER 1D2463",
+   "latitude": "TESTOWNER F3D857",
+   "location_point": {
+    "coordinates": [
+     -76.2688863,
+     36.96463914
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 2AB8AC",
+   "maximum_number_of_guests": "6",
+   "norfolk_air_link": {
+    "url": "https://air.norfolk.gov/#/property/37006205"
+   },
+   "number_of_bedrooms": "3",
+   "ordinance": "49511",
+   "permit_issue_date": "2024-03-12T00:00:00.000",
+   "permit_number": "ZP24-00291",
+   "registration_renewal_date": "2029-03-12T00:00:00.000",
+   "superward": "6",
+   "type_of_registration": "CUP",
+   "unit": "B",
+   "unit_type": "triplex",
+   "vacation_rental_or_homestay": "Vacation Rental",
+   "ward": "1"
+  },
+  {
+   "address": "4656 TEST ST",
+   "civic_league": "Willoughby",
+   "contact_name": "TESTOWNER FA037D",
+   "contact_number": "TESTOWNER 1D2463",
+   "latitude": "TESTOWNER F3D857",
+   "location_point": {
+    "coordinates": [
+     -76.2688863,
+     36.96463914
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 2AB8AC",
+   "maximum_number_of_guests": "6",
+   "norfolk_air_link": {
+    "url": "https://air.norfolk.gov/#/property/37006205"
+   },
+   "number_of_bedrooms": "3",
+   "ordinance": "49511",
+   "permit_issue_date": "2024-03-12T00:00:00.000",
+   "permit_number": "ZP24-00291",
+   "registration_renewal_date": "2029-03-12T00:00:00.000",
+   "superward": "6",
+   "type_of_registration": "CUP",
+   "unit": "C",
+   "unit_type": "triplex",
+   "vacation_rental_or_homestay": "Vacation Rental",
+   "ward": "1"
+  },
+  {
+   "address": "4630 TEST ST",
+   "civic_league": "East Ocean View",
+   "contact_name": "TESTOWNER 004458",
+   "contact_number": "TESTOWNER 1DBEA5",
+   "latitude": "TESTOWNER 71D687",
+   "location_point": {
+    "coordinates": [
+     -76.19808314,
+     36.93003201
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 126CCC",
+   "maximum_number_of_guests": "8",
+   "norfolk_air_link": {
+    "url": "https://air.norfolk.gov/#/property/46426200"
+   },
+   "number_of_bedrooms": "4",
+   "ordinance": "49565",
+   "permit_issue_date": "2024-04-23T00:00:00.000",
+   "permit_number": "ZP24-00399",
+   "registration_renewal_date": "2029-04-23T00:00:00.000",
+   "superward": "6",
+   "type_of_registration": "CUP",
+   "unit_type": "single-family",
+   "vacation_rental_or_homestay": "Vacation Rental",
+   "ward": "5"
+  },
+  {
+   "address": "2144 TEST ST",
+   "civic_league": "Willoughby",
+   "contact_name": "TESTOWNER A345EA",
+   "contact_number": "TESTOWNER FECE3C",
+   "latitude": "TESTOWNER 527671",
+   "location_point": {
+    "coordinates": [
+     -76.27520173,
+     36.96649539
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 61FF63",
+   "maximum_number_of_guests": "4",
+   "norfolk_air_link": {
+    "url": "https://air.norfolk.gov/#/property/31864005"
+   },
+   "number_of_bedrooms": "2",
+   "ordinance": "49568",
+   "permit_issue_date": "2024-04-23T00:00:00.000",
+   "permit_number": "ZP24-00450",
+   "registration_renewal_date": "2034-04-23T00:00:00.000",
+   "superward": "6",
+   "type_of_registration": "CUP",
+   "unit": "A",
+   "unit_type": "duplex",
+   "vacation_rental_or_homestay": "Vacation Rental",
+   "ward": "1"
+  },
+  {
+   "address": "2144 TEST ST",
+   "civic_league": "Willoughby",
+   "contact_name": "TESTOWNER A345EA",
+   "contact_number": "TESTOWNER FECE3C",
+   "latitude": "TESTOWNER 527671",
+   "location_point": {
+    "coordinates": [
+     -76.27520173,
+     36.96649539
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 61FF63",
+   "maximum_number_of_guests": "4",
+   "norfolk_air_link": {
+    "url": "https://air.norfolk.gov/#/property/31864005"
+   },
+   "number_of_bedrooms": "2",
+   "ordinance": "49568",
+   "permit_issue_date": "2024-04-23T00:00:00.000",
+   "permit_number": "ZP24-00450",
+   "registration_renewal_date": "2034-04-23T00:00:00.000",
+   "superward": "6",
+   "type_of_registration": "CUP",
+   "unit": "B",
+   "unit_type": "duplex",
+   "vacation_rental_or_homestay": "Vacation Rental",
+   "ward": "1"
+  },
+  {
+   "address": "2610 TEST ST",
+   "civic_league": "Willoughby",
+   "contact_name": "TESTOWNER A345EA",
+   "contact_number": "TESTOWNER FECE3C",
+   "latitude": "TESTOWNER D7C94A",
+   "location_point": {
+    "coordinates": [
+     -76.27503916,
+     36.9668728
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 7AFE58",
+   "maximum_number_of_guests": "4",
+   "norfolk_air_link": {
+    "url": "https://air.norfolk.gov/#/property/36308750"
+   },
+   "number_of_bedrooms": "2",
+   "ordinance": "49562",
+   "permit_issue_date": "2024-04-23T00:00:00.000",
+   "permit_number": "ZP24-00451",
+   "registration_renewal_date": "2034-04-23T00:00:00.000",
+   "superward": "6",
+   "type_of_registration": "CUP",
+   "unit": "A",
+   "unit_type": "triplex",
+   "vacation_rental_or_homestay": "Vacation Rental",
+   "ward": "1"
+  },
+  {
+   "address": "2610 TEST ST",
+   "civic_league": "Willoughby",
+   "contact_name": "TESTOWNER A345EA",
+   "contact_number": "TESTOWNER FECE3C",
+   "latitude": "TESTOWNER D7C94A",
+   "location_point": {
+    "coordinates": [
+     -76.27503916,
+     36.9668728
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 7AFE58",
+   "maximum_number_of_guests": "4",
+   "norfolk_air_link": {
+    "url": "https://air.norfolk.gov/#/property/36308750"
+   },
+   "number_of_bedrooms": "2",
+   "ordinance": "49562",
+   "permit_issue_date": "2024-04-23T00:00:00.000",
+   "permit_number": "ZP24-00451",
+   "registration_renewal_date": "2034-04-23T00:00:00.000",
+   "superward": "6",
+   "type_of_registration": "CUP",
+   "unit": "B",
+   "unit_type": "triplex",
+   "vacation_rental_or_homestay": "Vacation Rental",
+   "ward": "1"
+  },
+  {
+   "address": "2610 TEST ST",
+   "civic_league": "Willoughby",
+   "contact_name": "TESTOWNER A345EA",
+   "contact_number": "TESTOWNER FECE3C",
+   "latitude": "TESTOWNER D7C94A",
+   "location_point": {
+    "coordinates": [
+     -76.27503916,
+     36.9668728
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 7AFE58",
+   "maximum_number_of_guests": "4",
+   "norfolk_air_link": {
+    "url": "https://air.norfolk.gov/#/property/36308750"
+   },
+   "number_of_bedrooms": "2",
+   "ordinance": "49562",
+   "permit_issue_date": "2024-04-23T00:00:00.000",
+   "permit_number": "ZP24-00451",
+   "registration_renewal_date": "2034-04-23T00:00:00.000",
+   "superward": "6",
+   "type_of_registration": "CUP",
+   "unit": "C",
+   "unit_type": "triplex",
+   "vacation_rental_or_homestay": "Vacation Rental",
+   "ward": "1"
+  }
+ ],
+ "where": "permit_number >= 'ZP2'"
+}

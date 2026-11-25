@@ -1,0 +1,36 @@
+source_id: va.lynchburg.building_permits
+state: VA
+county_fips: "51680"   # Lynchburg city
+# City of Lynchburg "Building Permits - Locations" (GIS Office open data, OpenData/ODPDynamic
+# MapServer/18, 49,458 permits on 2026-11-25, from the TRAKiT permit system): record number,
+# type and subtype (building, electrical, plumbing, mechanical, demolition, asbestos ...),
+# status, start / end dates, job value, the permit contact, the owner named on the permit and
+# the parcel's owner of record with the owner's mailing address, on the parcel (Parcel_ID, =
+# va.lynchburg_city.parcels parcel_id). A signal that an owner is putting money into a
+# property, not a debt: OTHER instruments on the parcel, in no match run.
+api: arcgis
+layer_url: https://mapviewer.lynchburgva.gov/arcgis/rest/services/OpenData/ODPDynamic/MapServer/18
+order_by: [OBJECTID]
+select: [OBJECTID, Parcel_ID, Address, RecordNo, Name, Type, SubType, Contact, StartDate,
+         EndDate, Status, JobValue, Owner_TRAKiT, Owner1, MailingAddress, MailingCity,
+         MailingState, MailingZipCode]
+date_field: StartDate
+partition: year
+first_year: 1990
+uid: RecordNo
+doc_type: OTHER
+doc_type_raw: {field: Type}
+extra_pii: [Address, Name]
+parties:
+  - role: other
+    name: Owner1
+    address: {line1: MailingAddress, city: MailingCity, state: MailingState, zip: MailingZipCode}
+  - {role: other, name: Owner_TRAKiT}
+  - {role: other, name: Contact}
+parcel: {kind: pin, field: Parcel_ID, county_fips: "51680"}   # = va.lynchburg_city.parcels parcel_id
+terms:
+  url: https://mapviewer.lynchburgva.gov/arcgis/rest/services/OpenData/ODPDynamic/MapServer/18
+  summary: "City of Lynchburg GIS Office public OpenData/ODPDynamic MapServer (as va.lynchburg_city.parcels), no login, token or fee; the City's open-data items point to its GIS Data Sharing and Distribution Policy, which answered 404 (see va.lynchburg_city.parcels), so no restriction text could be read. mapviewer.lynchburgva.gov/robots.txt: 'User-agent: * Allow: /' with Content-Signal search=yes, ai-train=no, use=reference (no AI training; this is record linking)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,35 @@
+source_id: nc.mecklenburg.building_permits
+state: NC
+county_fips: "37119"   # Mecklenburg County
+# Mecklenburg County Code Enforcement "Building Permits" (meckgis BuildingPermits
+# FeatureServer/0, 482,358 permits issued 1990-01 .. 2026-11 on 2026-11-25): permit number,
+# type, status, project name and number, building cost, construction type and occupancy,
+# square footage and units, the owner's name, city, state and ZIP, on the parcel (8-digit
+# Mecklenburg parcel number, = nc.statewide.parcels parno). A signal that an owner is
+# putting money into a property, not a debt: OTHER instruments on the parcel, in no match
+# run.
+api: arcgis
+layer_url: https://meckgis.mecklenburgcountync.gov/server/rest/services/BuildingPermits/FeatureServer/0
+order_by: [objectid]
+select: [objectid, permitnum, permitdesc, permitstat, permittype, projname, projnum, projadd,
+         zipcode, parcelnum, taxjuris, subdiv, typeofbldg, numunits, usdcdesc, issuedate,
+         compldate, bldgcost, constrtype, occupancy, worktype, totalsqft, ownname, owncity,
+         ownstate, ownzipcode]
+date_field: issuedate
+partition: year
+first_year: 1990
+uid: permitnum
+doc_type: OTHER
+doc_type_raw: {field: permittype}
+extra_pii: [permitdesc, projname, projadd]
+parties:
+  - role: other
+    name: ownname
+    address: {city: owncity, state: ownstate, zip: ownzipcode}
+parcel: {kind: pin, field: parcelnum, county_fips: "37119"}   # = nc.statewide.parcels parno
+terms:
+  url: https://www.arcgis.com/home/item.html?id=fc9d171ecd4d44a58c7dad840cd58aa2
+  summary: "Mecklenburg County GIS (meckgis.mecklenburgcountync.gov, item owner MecklenburgCoNC), free, no login. Item licenseInfo: accuracy disclaimer only (users bear responsibility for appropriate use); no commercial-use or redistribution restriction. robots.txt: 'User-agent: * Allow: /' with Content-Signal search=yes, ai-train=no, use=reference (no AI training; this is record linking). Internal use."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

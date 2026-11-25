@@ -1,0 +1,34 @@
+source_id: va.norfolk.permits
+state: VA
+county_fips: "51710"   # Norfolk city
+# City of Norfolk Department of City Planning, Development Services Center "Permits"
+# (data.norfolk.gov fahm-yuh4, 129,393 building, electrical, mechanical, plumbing, zoning and
+# other permits applied for 2015-12 .. 2026-11 on 2026-11-25, daily): permit number, type, use
+# class, work type, status, application / issue / final dates, fees, balance and project
+# cost, on the parcel (GPIN, = va.norfolk_city.parcels PARCELID; tax_account is the
+# assessor account). No owner or contractor name in the table. A signal that money is going
+# into a property, not a debt: OTHER instruments on the parcel, in no match run. A permit
+# number covering several sites repeats (283 rows), so the uid adds the GPIN and address.
+portal: https://data.norfolk.gov
+dataset: fahm-yuh4
+where: "application_date IS NOT NULL"
+order_by: [permit_number, gpin, address]
+select: [permit_number, parent_permit_number, address, gpin, tax_account, type, use_class,
+         work_type, use_type, structure, use_group, status, application_connection,
+         application_date, issue_date, expiration_date, finaled_date, total_fee,
+         total_balance, project_cost, square_footage, tax_abatement]
+date_field: application_date
+partition: year
+first_year: 2015
+uid: [permit_number, gpin, address]
+doc_type: OTHER
+doc_type_raw: {field: type}
+extra_pii: [address]
+parties: []   # no names in the table
+parcel: {kind: pin, field: gpin, county_fips: "51710"}   # = va.norfolk_city.parcels PARCELID
+terms:
+  url: https://data.norfolk.gov/d/fahm-yuh4
+  summary: "City of Norfolk, VA open data (data.norfolk.gov, Socrata), Department of City Planning; public, free, no login; no license set on the dataset. robots.txt allows /resource/."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

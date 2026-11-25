@@ -1,0 +1,36 @@
+source_id: la.ebr.adjudicated_parcels
+state: LA
+county_fips: "22033"   # East Baton Rouge Parish
+# East Baton Rouge Parish Assessor "Adjudicated Parcel" (data.brla.gov shrr-fsqq, 4,527 rows
+# on 2026-11-25, updated 2026-05): parcels adjudicated to the Parish at tax sale because no
+# one bid (La. R.S. 47:2196), status AJ, with the owner of record, the owner's mailing
+# address, the tax sale year and the assessed values. Loaded like
+# la.shreveport.adjudicated_property: a tax sale record (TAX_LIEN_STATE) against the owner,
+# dated Jan 1 of the sale year, on the assessment number (la.eastbatonrouge.parcels
+# ASSESSMENT_NUM).
+portal: https://data.brla.gov
+dataset: shrr-fsqq
+order_by: [assessment_num]
+select: [assessment_num, prono, owner, owner_address, owner_city_state_zip, physical_address,
+         subdivision, ward_section, lot, block, sale_year, status, sum_land_value,
+         sum_improvement_value, sum_fair_market_value, sum_assessed_value]
+single_partition: true
+date_field: sale_year
+year_dates: [sale_year]
+uid: assessment_num
+doc_type: TAX_LIEN_STATE
+doc_type_raw: East Baton Rouge Parish adjudicated parcel
+address_split: {field: owner_city_state_zip, prefix: own_, form: city_state_zip}
+parties:
+  - role: debtor
+    name: owner
+    address: {line1: owner_address, city: own_city, state: own_state, zip: own_zip}
+  - {role: creditor, const: Parish of East Baton Rouge}
+parcel: {kind: pin, field: assessment_num, county_fips: "22033"}   # = la.eastbatonrouge.parcels ASSESSMENT_NUM
+extra_pii: [physical_address]
+terms:
+  url: https://data.brla.gov/d/shrr-fsqq
+  summary: "Open Data BR (data.brla.gov, Socrata), East Baton Rouge Parish Assessor, free, no login. Dataset license: Public Domain. robots.txt allows /resource/ (Crawl-delay: 1)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

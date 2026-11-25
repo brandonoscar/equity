@@ -1,0 +1,32 @@
+source_id: tx.williamson.cad_last_transfer
+state: TX
+county_fips: "48491"   # Williamson County
+# Williamson Central Appraisal District "Property Characteristics" (data.wcad.org cvyp-ab5t,
+# 242,833 rows for 235,920 properties on 2026-11-25, refreshed weekly): one row per
+# residential improvement with the property's latest deed date and the CAD's transfer
+# validity code, plus the CAMA characteristics (living area, year built and effective year,
+# bedrooms, plumbing, garage, porches, pool, state property type, neighborhood and the
+# total market value). Loaded as one DEED instrument per property and deed date, with no
+# parties and no price (Texas is a non-disclosure state); the characteristics stay in the
+# source record (the schema has no characteristics table). Linked by the WCAD property id
+# (= tx.williamson.parcels parcel_id).
+portal: https://data.wcad.org
+dataset: cvyp-ab5t
+order_by: [propertyid, quickrefid, segclass]
+select: [quickrefid, propertyid, neighborhoodcode, sqftcur, segclass, actyrbuilt, totalmktcur,
+         deeddate, transfervaliditycode, fbedrooms, fplumbing, fnumhalfbath, feffyear, fsptb,
+         matotalarea, garage, garagearea, pool, poolarea]
+date_field: deeddate
+partition: year
+first_year: 1930
+uid: [propertyid, deeddate]
+doc_type: DEED
+doc_type_raw: {field: transfervaliditycode}
+parties: []   # no names in the table
+parcel: {kind: pin, field: propertyid, county_fips: "48491"}   # = tx.williamson.parcels parcel_id
+terms:
+  url: https://data.wcad.org/d/cvyp-ab5t
+  summary: "Williamson Central Appraisal District open data (data.wcad.org, Socrata), free, no login; no license set on the dataset. robots.txt allows /resource/ (Crawl-delay: 1)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free
