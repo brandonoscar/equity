@@ -10,6 +10,11 @@ most rows rest on web-search results that quote official pages. Those rows are m
 2026-11-21 (column lists, row counts, license field). Prices are as stated on official pages
 found in search, or by vendors where noted. Prices change, so treat them as indicative.
 
+**Re-checked 2026-11-25.** Rows marked "checked 2026-11-25" were fetched from here that day
+(official page or file, robots.txt). Two sources were added: `ia.sos.business` (Iowa Data Hub
+554) and `ri.sos.business` (Rhode Island weekly export), both through `api: file` in
+`config/business/`. Several hosts block this environment outright; those rows say so.
+
 Legend: RA = registered or statutory agent. "Officers" = officers, managers, members, partners,
 governors or beneficial owners.
 
@@ -17,8 +22,8 @@ governors or beneficial owners.
 
 | St | Source | Free bulk? | Officers | RA | Format / frequency | Cost / terms | Status |
 |---|---|---|---|---|---|---|---|
-| AK | Division of Corporations (CBPL) | No | (search only) | (search only) | none found | No bulk product found | unverified |
-| AL | SOS Business Entities | No | – | – | none found | None found | unverified |
+| AK | Division of Corporations (CBPL) | No | (search only) | (search only) | none reachable | commerce.alaska.gov answers with a DataDome CAPTCHA page (HTTP 403), robots.txt included | blocked (checked 2026-11-25) |
+| AL | SOS Business Entities | No | – | – | none | "Business Downloads" page holds forms and a registered-agent PDF only | checked 2026-11-25 |
 | AR | SOS via portal.arkansas.gov (Tyler) | No | ? | ? | FTP full download | Paid; list builder $0.10/record; Tyler account | unverified |
 | AZ | Corporation Commission | No | – | – | none found | Public-records requests only | unverified |
 | CA | SOS bizfile "BE & UCC Bulk Orders" | No | ? | ? | bulk files | Paid (price not found) | unverified |
@@ -28,21 +33,21 @@ governors or beneficial owners.
 | **CT UCC** | data.ct.gov `xfev-8smz` | **Yes** | – | – | Socrata, daily | Public Domain | verified |
 | **DC** | DLCP via DC GIS ArcGIS MapServer (Corporate Registration, Beneficial Owners, Trade Name) | **Yes** | **Yes (beneficial owners)** | Yes | ArcGIS REST, about daily | CC BY 4.0 per data.gov (confirm on opendata.dc.gov) | verified (fields, counts) |
 | DE | Division of Corporations | No | – | – | none | No bulk entity product; site prohibits data mining | unverified |
-| **FL** | Sunbiz quarterly and daily data files | **Yes** | **Yes (up to 6)** | Yes | Fixed-width text, quarterly and daily, SFTP | Free, "informational purposes, as is"; no explicit commercial-use clause found | unverified (official pages via search) |
+| FL | Sunbiz quarterly and daily data files | Login | **Yes (up to 6)** | Yes | Fixed-width text, quarterly and daily | Free, but only through sftp.floridados.gov (SFTP or browser portal) with a published username/password: counts as a login, so excluded | checked 2026-11-25 |
 | GA | GTA / SOS bulk corporations data | No | Yes | Yes | SFTP | $1,000 one-time plus monthly fee; signed agreement | unverified |
-| HI | data.honolulu.gov `9k54-ztb8` | Stale | ? | ? | Socrata | Dataset says it is out of date; no license tag | unverified |
-| **IA** | Iowa Data Hub dataset 554 (was Socrata `ez5t-3qay`) | **Yes** | No | Likely (sources conflict) | CSV, about monthly | CC BY 4.0 | partly verified (Socrata API is gone; new host blocked here) |
+| HI | data.honolulu.gov `9k54-ztb8` | Stale | No (managed_by only) | Yes | Socrata | 442k rows (210k entities, 139k trade names); publisher says out of date, newest registrations about 2016; dates as text (`21-Oct-93`), addresses as multi-line text. Not loaded: it would state 2016 status as current | checked 2026-11-25 |
+| **IA** | Iowa Data Hub dataset 554 (`ia.sos.business`, loaded) | **Yes** | No | **Yes** | zipped CSV (105 MB), monthly | CC BY 4.0; 351,617 active entities | verified 2026-11-25 |
 | ID | SOS master list / UCC files | No | ? | ? | CSV | $30 registration plus per-file fees; UCC $125 per file | unverified |
 | IL | SOS Dept. of Business Services | No | ? | ? | FTP by contract | Contract pricing; site bans bulk copying | unverified |
 | IN | INBiz Bulk Data Services | No | ? | ? | monthly file | $8,000 one-time or $9,500/yr; INBiz account | unverified |
 | KS | SOS / Information Network of Kansas | No | No | Yes | database request | $150 request fee; full database via INK | unverified |
-| KY | SOS Bulk Data Service (Kentucky.gov) | No | Yes | Yes | monthly, weekly, daily | Subscriber agreement; vendor cites $2,000/mo | unverified |
-| LA | SOS Commercial API | No | ? | ? | API | $500/yr subscription | unverified |
+| KY | SOS Bulk Data Service (Kentucky.gov) | No | Yes | Yes | monthly, weekly, daily | Commercial: business records $2,000/mo; non-commercial (research) users pay nothing but still need a subscriber agreement and login | checked 2026-11-25 |
+| LA | SOS Commercial API | No | ? | ? | API | Token from subscriptions.sos.la.gov (paid yearly "Live" token; account required) | checked 2026-11-25 |
 | MA | Corporations Division | No | – | – | none found | None found | unverified |
 | MD | SDAT master file via SpecPrint | No | ? | Yes | master file | Paid through a contractor | unverified |
 | ME | SOS via InforME | No | ? | ? | monthly or weekly | $600/mo full; $300/wk updates | unverified |
 | MI | LARA (MiBusiness Registry) | No | – | – | none found | Counts only | unverified |
-| MN | SOS business bulk order | No | Yes (filing parties) | Yes | bulk files | $710 full; $30 active-business CSV; account and license required | unverified |
+| MN | SOS business bulk order | No | Yes (filing parties) | Yes | CSV | Non-commercial users (researchers) get it free, but an order form and a Registered User Account are required | checked 2026-11-25 |
 | MO | SOS Corporations | No | – | – | none found | None found | unverified |
 | MS | SOS "Business Reports" export tool | Partial | ? | ? | Excel export from a search UI | Free, but a search tool, not a bulk feed | unverified |
 | MT | SOS corporate bulk download | No | ? | ? | data file plus spec | Sold under MCA 2-15-403 | unverified |
@@ -52,15 +57,15 @@ governors or beneficial owners.
 | NH | QuickStart | No | – | – | none found | None found | unverified |
 | NJ | DORES bulk access | No | No | ? | by request | Priced per request (500+ records) | unverified |
 | NM | SOS Enterprise | No | – | Yes (search only) | none found | IPRA requests only | unverified |
-| NV | SOS bulk data download service | No | ? | ? | download | Paid (vendor cites $125); account required | unverified |
+| NV | SOS bulk data download service | No | ? | ? | download | nvsos.gov returns an Incapsula bot-protection page; vendor cites $125 and an account | blocked (checked 2026-11-25) |
 | **NY** | data.ny.gov `n9v6-gdp6` (loaded) | **Yes** | Partial (chair/CEO) | Yes | Socrata, monthly | NY Open Data terms | verified |
 | **NY all filings** | data.ny.gov `63wc-4exh`, `2tms-hftb`, `k4vb-judh`, and others | **Yes** | Filer/organizer names | Process address | Socrata, daily or weekly | No license tag; NY Open Data terms | verified (fields, counts) |
-| OH | SOS monthly "business reports" | **Probably** | Incorporator/filer names | Yes | download, monthly (2nd Saturday) | Free; format and scope unverified; host blocks bots | unverified |
+| OH | SOS monthly "business reports" | **Probably** | Incorporator/filer names | Yes | download, monthly | Every ohiosos.gov host (www, publicfiles, businesssearch) returns HTTP 403 "Website Maintenance" via Cloudflare; retry later | blocked (checked 2026-11-25) |
 | OK | SOS bulk orders | No | ? | Yes | master plus weekly | Paid (vendor cites $500 master) | unverified |
 | **OR** | data.oregon.gov `tckn-sxa6` (loaded) | **Yes** | Authorized reps only | Yes | Socrata | Public record; no license text | verified |
 | **OR UCC** | data.oregon.gov `snfi-f79b`, `2kf7-i54h` | **Yes** | – | – | Socrata, monthly | Public Domain | verified |
 | **PA** | data.pa.gov `xvd7-5r2c` | **Yes (likely)** | Yes per 3rd parties (party_type) | No (per 3rd parties) | Socrata, weekly | Public Domain per 3rd party | unverified (host blocked here) |
-| RI | SOS weekly corporate export (new entities) | **Partial** | **Yes** | Yes | tab-delimited, weekly | Free; new filings only. Full database $250 one-time or $3,000/yr | unverified |
+| **RI** | SOS weekly export of new entities (`ri.sos.business`, loaded) | **Partial** | **Yes** | Yes | tab-delimited, weekly; index keeps 31 weeks | Free; no license text. About 8,100 entities and 11,500 officer rows on the page. Full database is a paid SFTP subscription | verified 2026-11-25 |
 | SC | SOS bulk data | No | ? | Yes | subscription | $12,000/yr (2015–19 figure) | unverified |
 | SD | SOS database downloads | No | ? | ? | monthly or weekly | $750/mo; $250/wk | unverified |
 | TN | TNCaB database download wizard | No | ? | ? | download | Paid (vendor cites $1,000) | unverified |
@@ -68,12 +73,12 @@ governors or beneficial owners.
 | TX (Comptroller) | data.texas.gov `9cir-efmm` (franchise taxpayers) | Yes (entity only) | No | No | Socrata | Texas open data | unverified |
 | TX (Comptroller) | FTOFFDIR.zip (officers and directors) | Login | **Yes** | – | zip, monthly | Free(?) but needs a data-secure.comptroller.texas.gov account, so it is excluded | unverified |
 | UT | Division of Corporations list builder | No | ? | ? | custom list | Paid | unverified |
-| VA | SCC Clerk's Information System | No | Yes | Yes | weekly FTP | $1,000/mo license (page may be stale) | unverified |
-| VT | SOS bizfilings "Bulk Database Download" | **Possibly** | ? | ? | CSV(?), weekly | Described as public; terms and price not confirmed | unverified |
-| WA | SOS Corporations Data Extract | No (retired) | – | – | – | Extract discontinued (about 2024); CCFS search only | unverified |
+| VA | SCC Clerk's Information System | No | Yes | Yes | weekly | robots.txt on both cis.scc.virginia.gov and www.scc.virginia.gov disallows `*` from `/` | robots disallows (checked 2026-11-25) |
+| VT | SOS bizfilings "Bulk Database Download" | No | ? | ? | download | The API behind it (api.bizfilings.vermont.gov DataSales/GetBulkDownloadList) answers 401 "Authentication Failed": login required | checked 2026-11-25 |
+| WA | SOS Corporations Data Extract | No (retired) | – | – | – | apps.sos.wa.gov/corps/AllData.aspx is 404; no SOS registry on data.wa.gov; CCFS search only | checked 2026-11-25 |
 | WI | DFI Commercial Bulk Data (CORP51) | No | No (master file excludes officers) | ? | txt | Paid; UCC $250/week | unverified |
 | WV | SOS Bulk Data | No | Yes | Yes | monthly or daily | Paid monthly account; lists $25 + $0.05/record | unverified |
-| WY | SOS business database download | No | Yes (parties) | Yes | monthly zip | Paid subscription | unverified |
+| WY | SOS business database download | No | Yes (parties) | Yes | monthly zip | Signed agreement; $10,200/yr, $5,100 for 6 months, or $850 for one month | checked 2026-11-25 |
 
 **Count.** Free, complete bulk entity data from the state: CO, CT, DC, FL, IA, NY, OR, and very
 likely PA. Partial or unconfirmed: OH (monthly reports), RI (weekly new entities only), VT

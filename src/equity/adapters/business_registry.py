@@ -1,16 +1,29 @@
-"""State business-entity registries published on Socrata, one YAML per state in
-config/business/. One adapter class per file, generated at import.
+"""State business-entity registries, one YAML per state in config/business/. One adapter class
+per file, generated at import.
 
 A registry gives the entity (name, status, formation date, principal and mailing address) and
 the people or companies tied to it (registered agent, officers, directors, representatives).
 Three layouts are supported, all keyed by the registry's entity id (`key`):
 
-- roles inline on the entity row (NY, CO): `roles` lists the name/address column groups;
+- roles inline on the entity row (NY, CO, IA): `roles` lists the name/address column groups;
 - roles in separate datasets keyed by the entity id (CT): `role_datasets`;
-- one row per associated name (OR): `grouped` names the type column and what each type means.
+- one row per associated name (OR, PA, RI): `grouped` names the type column and what each
+  type means.
 
-Partitions are ranges of the entity key, planned by keyset paging over the sorted distinct
-keys (no deep offsets): each partition holds PLAN_KEYS consecutive keys.
+Two ways in (`api`):
+
+- socrata (default; `portal` + `dataset`): partitions are ranges of the entity key, planned by
+  keyset paging over the sorted distinct keys (no deep offsets): each partition holds
+  PLAN_KEYS consecutive keys.
+- file (`file`): a delimited text file (or a .zip holding one) at `file.url`. With `{name}` in
+  the url, one partition per file named on `file.index` (links matching `file.name`, e.g. a
+  state's weekly exports); else one partition, the whole file. fetch() parses the file and
+  stores its rows as JSON (empty cells and `file.drop` columns left out), the same body the
+  Socrata layouts read, so normalize() is shared.
+
+Terms: `terms_url`, `terms_summary`, `checked_on` (terms), `robots_checked_on` (default
+`checked_on`), `cost_model` (default free) and `use_restrictions` (written into the source
+row's terms summary as RESTRICTED[...], as parcel configs do).
 
 Valid time (a convention, see config TODOs): a registry is a snapshot, so business rows run
 from the formation date, and a role is dated from the same day because its true start is not
@@ -19,7 +32,11 @@ published.
 
 from __future__ import annotations
 
+import csv
+import io
 import json
+import re
+import zipfile
 from collections import defaultdict
 from collections.abc import Iterator, Mapping
 from dataclasses import dataclass, field
@@ -43,6 +60,7 @@ BUSINESS_DIR = CONFIG_DIR / "business"
 PLAN_KEYS = 50_000
 ROLES = frozenset({"member", "manager", "officer", "director", "organizer", "incorporator",
                    "registered_agent", "other"})  # fmt: skip
+APIS = ("socrata", "file")
 
 
 @dataclass(frozen=True)
@@ -111,12 +129,46 @@ class Grouped:
 
 
 @dataclass(frozen=True)
+class FileSpec:
+    """A delimited file (`api: file`): `url`, or `url` with {name} plus the `index` page that
+    links each file and the `name` pattern a file name must match."""
+
+    url: str
+    index: str | None = None
+    name: str | None = None
+    delimiter: str = ","
+    encoding: str = "utf-8-sig"
+    drop: tuple[str, ...] = ()
+    health_url: str | None = None
+
+    @property
+    def per_file(self) -> bool:
+        return "{name}" in self.url
+
+    def link_pattern(self) -> re.Pattern[str]:
+        head = self.url.split("{name}", 1)[0]
+        return re.compile(re.escape(head) + f"({self.name})")
+
+    @staticmethod
+    def parse(data: Mapping[str, Any], where: str) -> FileSpec:
+        spec = FileSpec(
+            url=data["url"], index=data.get("index"), name=data.get("name"),
+            delimiter=str(data.get("delimiter", ",")),
+            encoding=str(data.get("encoding", "utf-8-sig")),
+            drop=tuple(data.get("drop") or ()), health_url=data.get("health_url"),
+        )  # fmt: skip
+        if spec.per_file and not (spec.index and spec.name):
+            raise ValueError(f"{where}: a file url with {{name}} needs index and name")
+        return spec
+
+
+@dataclass(frozen=True)
 class RegistryConfig:
     source_id: str
     state: str
     jurisdiction: str
-    portal: str
-    dataset: str
+    portal: str  # '' for a file registry
+    dataset: str  # '' for a file registry
     key: str
     key_is_number: bool
     terms_url: str
@@ -133,10 +185,21 @@ class RegistryConfig:
     grouped: Grouped | None
     pii_fields: tuple[str, ...]
     extra: Mapping[str, Any] = field(default_factory=dict)
+    api: str = "socrata"
+    file: FileSpec | None = None
+    robots_checked_on: date | None = None
+    cost_model: str = "free"
+    use_restrictions: tuple[str, ...] = ()
 
     @property
     def key_expr(self) -> str:
         return f"{self.key}::text" if self.key_is_number else self.key
+
+    @property
+    def base_url(self) -> str:
+        if self.file is not None:
+            return self.file.index or self.file.url
+        return f"{self.portal}/resource/{self.dataset}.json"
 
 
 def load_registry(path: Path) -> RegistryConfig:
@@ -161,9 +224,18 @@ def load_registry(path: Path) -> RegistryConfig:
             address=AddressSpec.parse(g["address"]),  # type: ignore[arg-type]
             default=NameSpec.parse(g["default"]) if g.get("default") else None,
         )
+    api = str(d.get("api", "socrata"))
+    if api not in APIS:
+        raise ValueError(f"{path.name}: unknown api {api!r}")
+    if api == "socrata" and not (d.get("portal") and d.get("dataset")):
+        raise ValueError(f"{path.name}: a socrata registry needs portal and dataset")
+    if api == "file" and not d.get("file"):
+        raise ValueError(f"{path.name}: a file registry needs file")
+    if api == "file" and d.get("role_datasets"):
+        raise ValueError(f"{path.name}: role_datasets need a socrata registry")
     return RegistryConfig(
         source_id=d["source_id"], state=d["state"], jurisdiction=str(d["jurisdiction"]),
-        portal=d["portal"], dataset=d["dataset"], key=d["key"],
+        portal=d.get("portal", ""), dataset=d.get("dataset", ""), key=d["key"],
         key_is_number=bool(d.get("key_is_number", False)), terms_url=d["terms_url"],
         terms_summary=d["terms_summary"], checked_on=d["checked_on"], name=b["name"],
         status=b.get("status"), status_value=b.get("status_value"),
@@ -172,7 +244,11 @@ def load_registry(path: Path) -> RegistryConfig:
         mailing=AddressSpec.parse(b.get("mailing")),
         roles=tuple(NameSpec.parse(r) for r in d.get("roles") or ()),
         role_datasets=tuple(role_sets), grouped=grouped,
-        pii_fields=tuple(d.get("pii_fields") or ()),
+        pii_fields=tuple(d.get("pii_fields") or ()), api=api,
+        file=FileSpec.parse(d["file"], path.name) if api == "file" else None,
+        robots_checked_on=d.get("robots_checked_on"),
+        cost_model=str(d.get("cost_model", "free")),
+        use_restrictions=tuple(sorted(d.get("use_restrictions") or ())),
     )  # fmt: skip
 
 
@@ -240,17 +316,18 @@ class BusinessRegistryAdapter(Adapter):
 
     def source_row(self) -> Mapping[str, Any]:
         c = self.config
+        restricted = f"RESTRICTED[{','.join(c.use_restrictions)}] " if c.use_restrictions else ""
         return {
             "source_id": c.source_id,
             "kind": "sos",
             "jurisdiction": c.jurisdiction,
-            "access_method": "api",
-            "base_url": f"{c.portal}/resource/{c.dataset}.json",
+            "access_method": self.access_method,
+            "base_url": c.base_url,
             "terms_url": c.terms_url,
-            "terms_summary": c.terms_summary,
+            "terms_summary": restricted + c.terms_summary,
             "terms_checked_on": c.checked_on,
-            "robots_checked_on": c.checked_on,
-            "cost_model": "free",
+            "robots_checked_on": c.robots_checked_on or c.checked_on,
+            "cost_model": c.cost_model,
         }
 
     def partitions(self) -> Iterator[dict[str, str]]:
@@ -427,14 +504,118 @@ class BusinessRegistryAdapter(Adapter):
         return HealthReport(c.source_id, ok, datetime.now(UTC), detail, shape)
 
 
+def unzip_text(content: bytes) -> bytes:
+    """The largest member of a .zip (a download that wraps one CSV), else the bytes as they
+    are."""
+    if not content.startswith(b"PK"):
+        return content
+    with zipfile.ZipFile(io.BytesIO(content)) as z:
+        members = [i for i in z.infolist() if not i.is_dir()]
+        if not members:
+            raise ValueError("empty zip")
+        return z.read(max(members, key=lambda i: (i.file_size, i.filename)))
+
+
+def file_rows(content: bytes, spec: FileSpec, limit: int | None = None) -> list[dict[str, str]]:
+    """Rows of a delimited file as {header: value}, headers and values stripped, empty values
+    and `spec.drop` columns left out."""
+    text = unzip_text(content).decode(spec.encoding, errors="replace")
+    reader = csv.reader(io.StringIO(text, newline=""), delimiter=spec.delimiter)
+    header = [h.strip() for h in next(reader, [])]  # utf-8-sig drops a byte-order mark
+    drop = set(spec.drop)
+    out: list[dict[str, str]] = []
+    for cells in reader:
+        if limit is not None and len(out) >= limit:
+            break
+        row = {h: v.strip() for h, v in zip(header, cells, strict=False)
+               if h and h not in drop and v.strip()}  # fmt: skip
+        if row:
+            out.append(row)
+    return out
+
+
+class FileRegistryAdapter(BusinessRegistryAdapter):
+    """A registry published as a delimited file (`api: file`)."""
+
+    access_method: ClassVar[str] = "bulk"
+
+    @property
+    def spec(self) -> FileSpec:
+        assert self.config.file is not None
+        return self.config.file
+
+    def file_names(self) -> list[str]:
+        """The file names linked from the index page, oldest name first (sorted)."""
+        index = self.spec.index
+        assert index is not None
+        resp = self.client.get(index)
+        if resp.status != 200:
+            raise RuntimeError(f"{self.source_id}: index HTTP {resp.status}")
+        page = resp.content.decode("utf-8", errors="replace")
+        return sorted(set(self.spec.link_pattern().findall(page)))
+
+    def partitions(self) -> Iterator[dict[str, str]]:
+        if not self.spec.per_file:
+            yield {}
+            return
+        for name in self.file_names():
+            yield {"name": name}
+
+    def url_for(self, params: Mapping[str, str]) -> str:
+        spec = self.spec
+        if not spec.per_file:
+            return spec.url
+        name = params.get("name", "")
+        if not re.fullmatch(spec.name or "", name):
+            raise ValueError(f"{self.source_id}: bad file name {name!r}")
+        return spec.url.replace("{name}", name)
+
+    def fetch(self, request: FetchRequest) -> Fetched:
+        """params: name (a file from the index, when the url has {name}); limit (fixtures)."""
+        p = request.params
+        url = self.url_for(p)
+        limit = int(p["limit"]) if "limit" in p else None
+        resp = self.client.get(url)
+        if resp.status != 200:
+            raise RuntimeError(f"{self.source_id}: HTTP {resp.status} for {url}")
+        rows = file_rows(resp.content, self.spec, limit)
+        return Fetched(
+            source_id=self.source_id,
+            request=url,
+            retrieved_at=resp.retrieved_at,
+            http_status=resp.status,
+            content=canonical_json({"url": url, "entities": rows}),
+            content_type="application/json",
+        )
+
+    def health(self) -> HealthReport:
+        """The index page still links files, or the health url (else the file) names the key
+        and name columns."""
+        c, spec = self.config, self.spec
+        url = spec.index if spec.per_file else (spec.health_url or spec.url)
+        assert url is not None
+        resp = self.client.get(url)
+        text = unzip_text(resp.content).decode(spec.encoding, errors="replace")
+        shape: tuple[str, ...]
+        if spec.per_file:
+            found = sorted(set(spec.link_pattern().findall(text)))
+            ok, shape = resp.status == 200 and bool(found), (f"files={len(found)}",)
+        else:
+            ok = resp.status == 200 and c.key in text and c.name in text
+            shape = (c.key, c.name) if ok else ()
+        detail = "ok" if ok else f"status={resp.status} shape={list(shape)}"
+        return HealthReport(c.source_id, ok, datetime.now(UTC), detail, shape)
+
+
 @cache
 def all_registry_adapters() -> tuple[type[BusinessRegistryAdapter], ...]:
     out = []
     for path in sorted(BUSINESS_DIR.glob("*.yaml")):
         cfg = load_registry(path)
+        base = FileRegistryAdapter if cfg.api == "file" else BusinessRegistryAdapter
         cls = type(
             f"Registry_{cfg.source_id.replace('.', '_')}",
-            (BusinessRegistryAdapter,),
+            (base,),
             {"source_id": cfg.source_id, "config": cfg, "pii_fields": cfg.pii_fields},
         )
         out.append(cls)

@@ -1,0 +1,32 @@
+# Iowa Secretary of State, "Active Iowa Business Entities" (Iowa Data Hub dataset 554, CC BY 4.0;
+# the legacy Socrata ez5t-3qay endpoints now serve the Data Hub site): one row per active
+# domestic or foreign entity with its registered agent and home (principal) office. About
+# 351,600 rows, refreshed monthly; the whole file is one zipped CSV (about 105 MB).
+# The Data Hub publishes no officers, members or managers.
+# Robots (2026-11-25): idh-be.iowa.gov has no robots.txt (404); data.iowa.gov allows `*` and
+# disallows named AI training crawlers (not this client), with content signal ai-train=no.
+# TODO(Brandon): agent valid_from is the effective date (true start not published); every row
+# is active at the snapshot, so status is the constant Active.
+source_id: ia.sos.business
+state: IA
+jurisdiction: "19"
+api: file
+file:
+  url: https://idh-be.iowa.gov/api/v1/datasets/554/rows.csv
+  health_url: https://idh-be.iowa.gov/api/v1/datasets/554/columns.json
+  drop: [ra_latitude, ra_longitude, ra_location, ho_latitude, ho_longitude, ho_location]
+key: corp_number
+terms_url: https://data.iowa.gov/catalog/dataset/554
+terms_summary: "CC BY 4.0 (Iowa Data Hub dataset metadata, license field): free; credit the Iowa Secretary of State. No other terms of use attached (termsOfUseId null)."
+checked_on: 2026-11-25
+robots_checked_on: 2026-11-25
+cost_model: free
+use_restrictions: [attribution_required]
+business:
+  name: legal_name
+  status_value: Active  # the dataset lists entities active at the time of update
+  formed_on: effective_date
+  principal: {street: [ho_address_1, ho_address_2], city: ho_city, state: ho_state, zip: ho_zip}
+roles:
+  - {role: registered_agent, name: registered_agent, address: {street: [ra_address_1, ra_address_2], city: ra_city, state: ra_state, zip: ra_zip}}
+pii_fields: [legal_name, registered_agent, ra_address_1, ra_address_2, home_office, ho_address_1, ho_address_2]

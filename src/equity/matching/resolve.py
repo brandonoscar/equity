@@ -928,7 +928,7 @@ STATES: dict[str, dict[str, Any]] = {
            "owners": ["ga.chatham.parcels", "ga.clayton.parcels", "ga.cobb.parcels",
                       "ga.dekalb.parcels", "ga.dougherty.parcels", "ga.fulton.parcels",
                       "ga.gwinnett.parcels"]},
-    "IA": {"debtors": [], "courts": FEDERAL_COURTS,
+    "IA": {"debtors": [], "courts": FEDERAL_COURTS, "registries": ["ia.sos.business"],
            "owners": ["ia.blackhawk.parcels", "ia.johnson.parcels", "ia.linn.parcels",
                       "ia.scott.parcels", "ia.story.parcels", "ia.woodbury.parcels"]},
     "IL-COLLAR": {"debtors": [], "courts": FEDERAL_COURTS,
