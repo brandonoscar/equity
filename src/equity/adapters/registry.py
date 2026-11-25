@@ -39,6 +39,7 @@ from equity.adapters.ny.name_history import NYNameHistory
 from equity.adapters.pa.allegheny_assessments import AlleghenyAssessments
 from equity.adapters.pa.philadelphia_rtt import PhiladelphiaRTT
 from equity.adapters.ri_providence import ProvidenceTaxRoll
+from equity.adapters.socrata_parcels import all_api_parcel_adapters
 from equity.adapters.state_parcels import all_state_adapters
 from equity.adapters.tx.harris_district import HarrisDistrictCivilJudgments
 from equity.adapters.tx.harris_jp import HarrisJPCivilJudgments
@@ -57,6 +58,7 @@ _ALL: tuple[type[Adapter], ...] = (
     NDWVDistrictRSS,
     NDWVBankruptcyRSS,
     *all_state_adapters(),
+    *all_api_parcel_adapters(),
     *all_zoning_adapters(),
     *all_lien_adapters(),
     LocalZoningAdapter,

@@ -1,0 +1,28 @@
+source_id: nm.bernalillo.parcels
+state: NM
+# Bernalillo County (NM) Assessor parcels as republished by the City of Albuquerque GIS
+# (AGOL org agis_CABQ, public item faccc9a1fe1643399e9f5959869ed78a 'Bernco Parcels for IDO
+# Maps'; 257,283 rows on 2026-11-25, TAXYR 2026 on 257,281, OWNER filled on every row; layer
+# edited 2026-11-03): owner name, owner mailing address, situs address, legal description,
+# value and property class. No values in this copy. The Assessor's own map server
+# (assessormap.bernco.gov) disallows /server/* in its robots.txt and is not used.
+layer_url: https://services.arcgis.com/CWv1abTnC3urn4bV/arcgis/rest/services/berncoparcels_forIDO/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "001"}
+fields:
+  parcel_id: UPC         # 18-digit Uniform Property Code, e.g. '102206440439310509'
+  owner1: OWNER
+  mail_line1: OWNADD
+  mail_city_state_zip: OWNADD2   # 'ALBUQUERQUE NM 87111-1710'
+  situs_line1: SITUSADD
+  land_use_code: PROPCLASS
+  land_use_desc: VALCLASS
+value_basis: "No value fields in this copy; TAXYR (2026) is the Assessor's tax year, so no assessment rows are produced."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=faccc9a1fe1643399e9f5959869ed78a
+  summary: "City of Albuquerque GIS (agis_CABQ) public ArcGIS Online feature service berncoparcels_forIDO, a copy of the Bernalillo County Assessor parcel database; no login, token or fee. No licence or use-constraint text on the item (licenseInfo empty, read 2026-11-25). services.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

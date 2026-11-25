@@ -1,0 +1,105 @@
+source_id: ny.local_rolls.parcels
+state: NY
+api: socrata
+# NYS Department of Taxation and Finance (Office of Real Property Tax Services) "Property
+# Assessment Data from Local Assessment Rolls" on data.ny.gov: the final assessment rolls of
+# 996 cities and towns, every county except the five NYC boroughs (villages not included).
+# 4,740,915 rows for roll_year 2025 on 2026-11-25 across 57 counties, with primary and
+# additional owner names, the owner mailing address, full market and assessed values, deed
+# book/page. Rolls 2021-2025 are kept side by side, so the fixed filter takes one roll year:
+# bump it when the next roll is posted (annually). This adds the 24 counties the NYS ITS
+# parcel layer (ny.statewide.parcels) leaves out (e.g. Monroe, Nassau, Suffolk, Westchester);
+# for the other 33 both sources carry the parcel under different keys (SWIS+print key here,
+# SWIS+SBL there).
+layer_url: https://data.ny.gov/resource/7vem-aaz7.json
+filter: "roll_year = 2025"
+order_by: swis_code            # then Socrata's :id (added by the adapter) for a total order
+page_size: 10000
+row_window: 100000
+min_interval_s: 1.0           # robots.txt Crawl-delay: 1
+county:
+  field: county_name
+  format: code_map
+  code_map:
+    "Albany": "001"
+    "Allegany": "003"
+    "Broome": "007"
+    "Cattaraugus": "009"
+    "Cayuga": "011"
+    "Chautauqua": "013"
+    "Chemung": "015"
+    "Chenango": "017"
+    "Clinton": "019"
+    "Columbia": "021"
+    "Cortland": "023"
+    "Delaware": "025"
+    "Dutchess": "027"
+    "Erie": "029"
+    "Essex": "031"
+    "Franklin": "033"
+    "Fulton": "035"
+    "Genesee": "037"
+    "Greene": "039"
+    "Hamilton": "041"
+    "Herkimer": "043"
+    "Jefferson": "045"
+    "Lewis": "049"
+    "Livingston": "051"
+    "Madison": "053"
+    "Monroe": "055"
+    "Montgomery": "057"
+    "Nassau": "059"
+    "Niagara": "063"
+    "Oneida": "065"
+    "Onondaga": "067"
+    "Ontario": "069"
+    "Orange": "071"
+    "Orleans": "073"
+    "Oswego": "075"
+    "Otsego": "077"
+    "Putnam": "079"
+    "Rensselaer": "083"
+    "Rockland": "087"
+    "Saratoga": "091"
+    "Schenectady": "093"
+    "Schoharie": "095"
+    "Schuyler": "097"
+    "Seneca": "099"
+    "Steuben": "101"
+    "St Lawrence": "089"
+    "Suffolk": "103"
+    "Sullivan": "105"
+    "Tioga": "107"
+    "Tompkins": "109"
+    "Ulster": "111"
+    "Warren": "113"
+    "Washington": "115"
+    "Wayne": "117"
+    "Westchester": "119"
+    "Wyoming": "121"
+    "Yates": "123"
+fields:
+  parcel_id: [swis_code, print_key_code]   # '010100-40.00-3-1': SWIS municipality + print key, unique statewide
+  owner1: {join: [primary_owner_first_name, primary_owner_mi, primary_owner_last_name, primary_owner_suffix]}
+  owner2: {join: [additional_owner_1_first, additional_owner_1_mi, additional_owner_1_last_name, additional_owner_1_suffix]}
+  mail_line1: {join: [mailing_address_number, mailing_address_prefix, mailing_address_street, mailing_address_suff]}
+  mail_line2: mailing_address_po_box
+  mail_city: mailing_address_city
+  mail_state: mailing_address_state
+  mail_zip: mailing_address_zip
+  situs_line1: [parcel_address_number, parcel_address_street, parcel_address_suff]
+  situs_city: municipality_name   # the city or town of the roll, not always the postal city
+  total_value: full_market_value
+  assessed_value: assessment_total
+  tax_year: roll_year
+  deed_book: deed_book
+  deed_page: page
+  land_use_code: property_class
+  land_use_desc: property_class_description
+value_basis: "full_market_value = full market value on the final assessment roll (ORPTS: the price the parcel would bring in an arm's-length sale); assessment_total = total assessed value (the municipality's level of assessment varies, so assessed values are not comparable across towns). assessment_land, the taxable values and exemptions are not mapped. tax_year = roll_year (the calendar year the roll was filed); the adapter dates it Jan 1 of that year."
+terms:
+  url: https://data.ny.gov/dataset/OPEN-NY-Terms-Of-Use/77gx-ii52
+  summary: "NYS Department of Taxation and Finance (ORPTS) dataset 7vem-aaz7 on the state's Open NY Socrata portal, posted annually; free, no login, no app token. OPEN-NY Terms of Use (read 2026-11-25): data may be used however you wish, no attribution or pre-approval required; the only bar is unlawful use. Dataset disclaimer: village and NYC rolls not included. data.ny.gov robots.txt allows /resource/ with Crawl-delay: 1."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

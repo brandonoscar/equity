@@ -1,0 +1,36 @@
+source_id: tx.dallas_city.parcels
+state: TX
+api: socrata
+# City of Dallas Open Data "Tax Account Points": certified 2026 tax-roll accounts from each
+# county appraisal district for the city and a one-mile buffer, as published by the City
+# (www.dallasopendata.com, updated 2026-11-05). 547,753 rows on 2026-11-25; the Dallas County
+# part (464,219 rows, 462,997 distinct accounts, owner1 filled on 463,255) is taken here. Rows
+# in Collin, Denton, Kaufman and Rockwall counties are left to those counties' own sources.
+# Owner name(s), owner mailing address and situs; no values in this table.
+layer_url: https://www.dallasopendata.com/resource/jk5c-7csb.json
+filter: "countyjuris = 'DALLAS COUNTY'"
+order_by: objectid             # duplicate accounts (one point per building): lowest objectid wins
+page_size: 10000
+row_window: 100000
+min_interval_s: 1.0           # robots.txt Crawl-delay: 1
+county: {constant: "113"}
+fields:
+  parcel_id: accountid        # Dallas CAD 17-character account number, e.g. '00000455263000000'
+  owner1: owner1
+  owner2: owner2
+  mail_line1: ownaddr1
+  mail_line2: {join: [ownaddr2, ownaddr3, ownaddr4]}
+  mail_city: ownercity
+  mail_state: ownerstate      # spelled out ('TEXAS') in this table
+  mail_zip: ownerzip          # 9 digits without a dash; the adapter keeps the first 5
+  situs_line1: [siteaddrnum, sitestreetname]
+  situs_city: cityjuris       # the taxing city, not always the postal city
+  land_use_desc: propclass
+  tax_year: appraisalyr
+value_basis: "No value fields in this table (owners and addresses only); appraisalyr is the certified roll year (2026), so no assessment rows are produced."
+terms:
+  url: https://www.dallasopendata.com/d/jk5c-7csb
+  summary: "City of Dallas Open Data portal (Socrata), free, no login or app token. Dataset description: based on certified appraisal data from each county's appraisal district, 'currently in the advanced testing and integration stage', taken directly from the certified tax rolls under Texas Tax Code 25.025 (confidential owners withheld). No license or use restriction stated (read 2026-11-25). www.dallasopendata.com robots.txt allows /resource/ with Crawl-delay: 1."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

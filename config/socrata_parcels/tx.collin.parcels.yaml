@@ -1,0 +1,45 @@
+source_id: tx.collin.parcels
+state: TX
+api: socrata
+# Collin Central Appraisal District "Collin CAD Appraisal Data - 2026" on the Texas Open Data
+# Portal (data.texas.gov, dataset attribution: Collin Central Appraisal District): the 2026
+# certified roll with supplemental updates, refreshed monthly. 502,669 rows on 2026-11-25;
+# 461,216 Real + 2,593 Mobile Home accounts (one row per propid), owner name on every one,
+# with owner mailing address, situs, market/appraised/assessed values, last deed and the
+# homestead flag. Business personal property and minerals are filtered out. The yearly table
+# changes id each roll year (2025 is vffy-snc6): point layer_url at the new year's table.
+layer_url: https://data.texas.gov/resource/5tkr-3759.json
+filter: "proptype in ('Real', 'Mobile Home')"
+order_by: propid
+page_size: 10000
+row_window: 100000
+min_interval_s: 1.0           # robots.txt Crawl-delay: 1
+county: {constant: "085"}
+fields:
+  parcel_id: propid           # CAD property id, e.g. '2832997'; geoid ('R-6995-R00-0001-1') is the map id
+  owner1: ownername
+  owner2: ownernameaddtl
+  mail_line1: owneraddrline1
+  mail_line2: owneraddrline2
+  mail_city: owneraddrcity
+  mail_state: owneraddrstate
+  mail_zip: owneraddrzip
+  situs_line1: [situsbldgnum, situsstreetprefix, situsstreetname, situsstreetsuffix, situsunit]
+  situs_city: situscity
+  situs_zip: situszip
+  land_value: currvalland
+  bldg_value: currvalimprv
+  total_value: currvalmarket
+  assessed_value: currvalassessed
+  tax_year: currvalyear
+  deed_book: deedbook
+  deed_page: deedpage
+  homestead: exempthmstdflag
+  land_use_code: propcategorycode
+value_basis: "currvalland / currvalimprv / currvalmarket = Collin CAD 2026 land, improvement and total market value; currvalassessed = assessed value after the homestead and non-homestead appraisal caps (currvalhscaploss / currvalnhscaploss), before exemptions. tax_year = currvalyear (2026); Texas appraises as of January 1, which the adapter's tax_year_jan1 rule matches. Prior-year and notice values, deednum (instrument number) and deed dates stay in the source record only when selected (they are not mapped)."
+terms:
+  url: https://data.texas.gov/d/5tkr-3759
+  summary: "Collin Central Appraisal District dataset on the Texas Open Data Portal (Socrata), free, no login or app token. No license or use restriction stated on the dataset (read 2026-11-25); Texas Tax Code 25.025 confidential owners are withheld by the CAD before publication. data.texas.gov robots.txt allows /resource/ with Crawl-delay: 1."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free
