@@ -40,6 +40,7 @@ from equity.adapters.ny.condo_units import NycCondoUnits
 from equity.adapters.ny.name_history import NYNameHistory
 from equity.adapters.pa.allegheny_assessments import AlleghenyAssessments
 from equity.adapters.pa.philadelphia_rtt import PhiladelphiaRTT
+from equity.adapters.person_lists import all_person_list_adapters
 from equity.adapters.ri_providence import ProvidenceTaxRoll
 from equity.adapters.socrata_parcels import all_api_parcel_adapters
 from equity.adapters.state_parcels import all_state_adapters
@@ -104,6 +105,7 @@ _ALL: tuple[type[Adapter], ...] = (
     HarrisDistrictCivilJudgments,
     *all_registry_adapters(),
     *all_license_adapters(),
+    *all_person_list_adapters(),
     # NDWV keeps its original source ids; config/courts.yaml adds every other court.
     *[c for c in court_adapters() if c.court_id not in ("wvnd", "wvnb")],
 )

@@ -1,0 +1,126 @@
+{
+ "county": "St Louis City",
+ "rows": [
+  {
+   "address": "2994 TEST ST",
+   "city": "ST LOUIS",
+   "county": "St Louis City",
+   "name": "TESTOWNER 49E042"
+  },
+  {
+   "address": "3084 TEST ST",
+   "city": "ST LOUIS",
+   "county": "St Louis City",
+   "name": "TESTOWNER F76210"
+  },
+  {
+   "address": "8157 TEST ST",
+   "city": "ST LOUIS",
+   "county": "St Louis City",
+   "name": "TESTOWNER 81D7D4 LLC"
+  },
+  {
+   "address": "5839 TEST ST",
+   "city": "ST LOUIS",
+   "county": "St Louis City",
+   "name": "TESTOWNER 7B5062"
+  },
+  {
+   "address": "5962 TEST ST",
+   "city": "ST LOUIS",
+   "county": "St Louis City",
+   "name": "TESTOWNER 2A40D0 CORP"
+  },
+  {
+   "address": "1296 TEST ST",
+   "city": "ST LOUIS",
+   "county": "St Louis City",
+   "name": "TESTOWNER A35B07 LLC"
+  },
+  {
+   "address": "4811 TEST ST",
+   "city": "ST LOUIS",
+   "county": "St Louis City",
+   "name": "TESTOWNER 8EBCAF"
+  },
+  {
+   "address": "3383 TEST ST",
+   "city": "ST LOUIS",
+   "county": "St Louis City",
+   "name": "TESTOWNER BEF3A5 LLC"
+  },
+  {
+   "address": "7320 TEST ST",
+   "city": "ST LOUIS",
+   "county": "St Louis City",
+   "name": "TESTOWNER AEDB8C"
+  },
+  {
+   "address": "8726 TEST ST",
+   "city": "ST LOUIS",
+   "county": "St Louis City",
+   "name": "TESTOWNER 52930B LLC"
+  },
+  {
+   "address": "5240 TEST ST",
+   "city": "ST LOUIS",
+   "county": "St Louis City",
+   "name": "TESTOWNER 4B345F"
+  },
+  {
+   "address": "2910 TEST ST",
+   "city": "ST LOUIS",
+   "county": "St Louis City",
+   "name": "TESTOWNER 79FB09 LLC"
+  },
+  {
+   "address": "6670 TEST ST",
+   "city": "ST LOUIS",
+   "county": "St Louis City",
+   "name": "TESTOWNER 2D048A LLC"
+  },
+  {
+   "address": "2281 TEST ST",
+   "city": "ST LOUIS",
+   "county": "St Louis City",
+   "name": "TESTOWNER 76C433 CORP"
+  },
+  {
+   "address": "4556 TEST ST",
+   "city": "ST LOUIS",
+   "county": "St Louis City",
+   "name": "TESTOWNER 7AE392 LLC"
+  },
+  {
+   "address": "5225 TEST ST",
+   "city": "ST LOUIS",
+   "county": "St Louis City",
+   "name": "TESTOWNER 46B86C LLC"
+  },
+  {
+   "address": "2950 TEST ST",
+   "city": "ST LOUIS",
+   "county": "St Louis City",
+   "name": "TESTOWNER 3548C2"
+  },
+  {
+   "address": "8757 TEST ST",
+   "city": "ST LOUIS",
+   "county": "St Louis City",
+   "name": "TESTOWNER 1EB623 LLC"
+  },
+  {
+   "address": "2371 TEST ST",
+   "city": "ST LOUIS",
+   "county": "St Louis City",
+   "name": "TESTOWNER 62F5AA"
+  },
+  {
+   "address": "5314 TEST ST",
+   "city": "ST LOUIS",
+   "county": "St Louis City",
+   "name": "TESTOWNER DF5BDD CO"
+  }
+ ],
+ "url": "https://treasurer.mo.gov/UCP/Account-Owner-List-Results.aspx?Name=St+Louis+City"
+}

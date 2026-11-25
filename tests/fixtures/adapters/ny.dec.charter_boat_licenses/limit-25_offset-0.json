@@ -1,0 +1,405 @@
+{
+ "offset": 0,
+ "rows": [
+  {
+   "city": "HILLSBOROUGH",
+   "county": "OTHER",
+   "georeference": {
+    "coordinates": [
+     -74.6531,
+     40.48254
+    ],
+    "type": "Point"
+   },
+   "name": "TESTOWNER 28910E",
+   "new_york_county_fips": "NA",
+   "state": "NJ",
+   "vessel_name": "TESTOWNER B4BAE3",
+   "vessel_registration_number": "NJ8518HC"
+  },
+  {
+   "city": "COMMACK",
+   "county": "SUFFOLK",
+   "georeference": {
+    "coordinates": [
+     -73.29144,
+     40.84713
+    ],
+    "type": "Point"
+   },
+   "name": "TESTOWNER 02768D LLC",
+   "new_york_county_fips": "36103",
+   "state": "NY",
+   "vessel_name": "TESTOWNER A681B2",
+   "vessel_registration_number": "957897"
+  },
+  {
+   "city": "HOWARD BEACH",
+   "county": "QUEENS",
+   "georeference": {
+    "coordinates": [
+     -73.84602,
+     40.65483
+    ],
+    "type": "Point"
+   },
+   "name": "TESTOWNER 162A6A LLC",
+   "new_york_county_fips": "36081",
+   "state": "NY",
+   "vessel_name": "TESTOWNER BB14F9",
+   "vessel_registration_number": "NY4200HG"
+  },
+  {
+   "city": "RIVERHEAD",
+   "county": "SUFFOLK",
+   "georeference": {
+    "coordinates": [
+     -72.66016,
+     40.95036
+    ],
+    "type": "Point"
+   },
+   "name": "TESTOWNER 496098",
+   "new_york_county_fips": "36103",
+   "state": "NY",
+   "vessel_name": "TESTOWNER 9A5837",
+   "vessel_registration_number": "NY5269GJ"
+  },
+  {
+   "city": "FREEPORT",
+   "county": "NASSAU",
+   "georeference": {
+    "coordinates": [
+     -73.58749,
+     40.65931
+    ],
+    "type": "Point"
+   },
+   "name": "TESTOWNER 1A111E CORP",
+   "new_york_county_fips": "36059",
+   "state": "NY",
+   "vessel_name": "TESTOWNER DDF06C",
+   "vessel_registration_number": "1020347"
+  },
+  {
+   "city": "NIANTIC",
+   "county": "OTHER",
+   "georeference": {
+    "coordinates": [
+     -72.19792,
+     41.33266
+    ],
+    "type": "Point"
+   },
+   "name": "TESTOWNER BD62D8",
+   "new_york_county_fips": "NA",
+   "state": "CT",
+   "vessel_name": "TESTOWNER ED4D86",
+   "vessel_registration_number": "CT6675BB"
+  },
+  {
+   "city": "NORTHFORD",
+   "county": "OTHER",
+   "georeference": {
+    "coordinates": [
+     -72.78476,
+     41.40164
+    ],
+    "type": "Point"
+   },
+   "name": "TESTOWNER C0180D LLC",
+   "new_york_county_fips": "NA",
+   "state": "CT",
+   "vessel_name": "TESTOWNER 0EB30E",
+   "vessel_registration_number": "CT0924BJ"
+  },
+  {
+   "city": "MONTAUK",
+   "county": "SUFFOLK",
+   "georeference": {
+    "coordinates": [
+     -71.95373,
+     41.03121
+    ],
+    "type": "Point"
+   },
+   "name": "TESTOWNER B32E99 LLC",
+   "new_york_county_fips": "36103",
+   "state": "NY",
+   "vessel_name": "TESTOWNER E9B1CF",
+   "vessel_registration_number": "547929"
+  },
+  {
+   "city": "SO AMBOY",
+   "county": "OTHER",
+   "georeference": {
+    "coordinates": [
+     -74.28166,
+     40.48519
+    ],
+    "type": "Point"
+   },
+   "name": "TESTOWNER 8753BC",
+   "new_york_county_fips": "NA",
+   "state": "NJ",
+   "vessel_name": "TESTOWNER 1B93FF",
+   "vessel_registration_number": "965891"
+  },
+  {
+   "city": "LONG BEACH",
+   "county": "NASSAU",
+   "georeference": {
+    "coordinates": [
+     -73.66608,
+     40.58939
+    ],
+    "type": "Point"
+   },
+   "name": "TESTOWNER 3FB923",
+   "new_york_county_fips": "36059",
+   "state": "NY",
+   "vessel_name": "TESTOWNER C69822",
+   "vessel_registration_number": "NY5463GP"
+  },
+  {
+   "city": "GREENLAWN",
+   "county": "SUFFOLK",
+   "georeference": {
+    "coordinates": [
+     -73.36452,
+     40.86142
+    ],
+    "type": "Point"
+   },
+   "name": "TESTOWNER F3B636 CORP",
+   "new_york_county_fips": "36103",
+   "state": "NY",
+   "vessel_name": "TESTOWNER 8742CB",
+   "vessel_registration_number": "1180899"
+  },
+  {
+   "city": "MINEOLA",
+   "county": "NASSAU",
+   "georeference": {
+    "coordinates": [
+     -73.64122,
+     40.74915
+    ],
+    "type": "Point"
+   },
+   "name": "TESTOWNER 913375 LLC",
+   "new_york_county_fips": "36059",
+   "state": "NY",
+   "vessel_name": "TESTOWNER D12127",
+   "vessel_registration_number": "NY6974HN"
+  },
+  {
+   "city": "SOUTHAMPTON",
+   "county": "SUFFOLK",
+   "georeference": {
+    "coordinates": [
+     -72.38495,
+     40.88804
+    ],
+    "type": "Point"
+   },
+   "name": "TESTOWNER EBA939",
+   "new_york_county_fips": "36103",
+   "state": "NY",
+   "vessel_name": "TESTOWNER B96745",
+   "vessel_registration_number": "NY2949HG"
+  },
+  {
+   "city": "BELFORD",
+   "county": "OTHER",
+   "georeference": {
+    "coordinates": [
+     -74.08716,
+     40.41904
+    ],
+    "type": "Point"
+   },
+   "name": "TESTOWNER 9A0160",
+   "new_york_county_fips": "NA",
+   "state": "NJ",
+   "vessel_name": "TESTOWNER DF62DA",
+   "vessel_registration_number": "929787"
+  },
+  {
+   "city": "MERRICK",
+   "county": "NASSAU",
+   "georeference": {
+    "coordinates": [
+     -73.55445,
+     40.66923
+    ],
+    "type": "Point"
+   },
+   "name": "TESTOWNER F3D6FA CORP",
+   "new_york_county_fips": "36059",
+   "state": "NY",
+   "vessel_name": "TESTOWNER 51FB81",
+   "vessel_registration_number": "921032"
+  },
+  {
+   "city": "LEVITTOWN",
+   "county": "NASSAU",
+   "georeference": {
+    "coordinates": [
+     -73.51411,
+     40.72602
+    ],
+    "type": "Point"
+   },
+   "name": "TESTOWNER A2C0F2 LLC",
+   "new_york_county_fips": "36059",
+   "state": "NY",
+   "vessel_name": "TESTOWNER 2C8800",
+   "vessel_registration_number": "NY8504GE"
+  },
+  {
+   "city": "OCEANSIDE",
+   "county": "NASSAU",
+   "georeference": {
+    "coordinates": [
+     -73.64036,
+     40.64212
+    ],
+    "type": "Point"
+   },
+   "name": "TESTOWNER 9AE069 INC",
+   "new_york_county_fips": "36059",
+   "state": "NY",
+   "vessel_name": "TESTOWNER 5BE90B",
+   "vessel_registration_number": "1278061"
+  },
+  {
+   "city": "MERRICK",
+   "county": "NASSAU",
+   "georeference": {
+    "coordinates": [
+     -73.55445,
+     40.66923
+    ],
+    "type": "Point"
+   },
+   "name": "TESTOWNER A41B6D",
+   "new_york_county_fips": "36059",
+   "state": "NY",
+   "vessel_name": "TESTOWNER 42BB88",
+   "vessel_registration_number": "NY2682HR"
+  },
+  {
+   "city": "MT SINAI",
+   "county": "SUFFOLK",
+   "georeference": {
+    "coordinates": [
+     -73.0212,
+     40.94713
+    ],
+    "type": "Point"
+   },
+   "name": "TESTOWNER FC8E6D",
+   "new_york_county_fips": "36103",
+   "state": "NY",
+   "vessel_name": "TESTOWNER F165BC",
+   "vessel_registration_number": "NY5697MT"
+  },
+  {
+   "city": "EAST ISLIP",
+   "county": "SUFFOLK",
+   "georeference": {
+    "coordinates": [
+     -73.19132,
+     40.73384
+    ],
+    "type": "Point"
+   },
+   "name": "TESTOWNER 457BB2 LLC",
+   "new_york_county_fips": "36103",
+   "state": "NY",
+   "vessel_name": "TESTOWNER 360D9C",
+   "vessel_registration_number": "1229108"
+  },
+  {
+   "city": "GREENPORT",
+   "county": "SUFFOLK",
+   "georeference": {
+    "coordinates": [
+     -72.36323,
+     41.10256
+    ],
+    "type": "Point"
+   },
+   "name": "TESTOWNER 82ADAB",
+   "new_york_county_fips": "36103",
+   "state": "NY",
+   "vessel_name": "TESTOWNER 0B5B5C",
+   "vessel_registration_number": "NY8870EX"
+  },
+  {
+   "city": "MANHASSET",
+   "county": "NASSAU",
+   "georeference": {
+    "coordinates": [
+     -73.69817,
+     40.79822
+    ],
+    "type": "Point"
+   },
+   "name": "TESTOWNER 61911D INC",
+   "new_york_county_fips": "36059",
+   "state": "NY",
+   "vessel_name": "TESTOWNER 419BED",
+   "vessel_registration_number": "NY9846MK"
+  },
+  {
+   "city": "MONTAUK",
+   "county": "SUFFOLK",
+   "georeference": {
+    "coordinates": [
+     -71.95373,
+     41.03121
+    ],
+    "type": "Point"
+   },
+   "name": "TESTOWNER 620804 LLC",
+   "new_york_county_fips": "36103",
+   "state": "NY",
+   "vessel_name": "TESTOWNER 0BCE62",
+   "vessel_registration_number": "NY8874GJ"
+  },
+  {
+   "city": "BRADLEY BEACH",
+   "county": "OTHER",
+   "georeference": {
+    "coordinates": [
+     -74.01727,
+     40.20497
+    ],
+    "type": "Point"
+   },
+   "name": "TESTOWNER A130DB LLC",
+   "new_york_county_fips": "NA",
+   "state": "NJ",
+   "vessel_name": "TESTOWNER 0FCEFB",
+   "vessel_registration_number": "NJ7568HR"
+  },
+  {
+   "city": "DANBURY",
+   "county": "OTHER",
+   "georeference": {
+    "coordinates": [
+     -73.45359,
+     41.39268
+    ],
+    "type": "Point"
+   },
+   "name": "TESTOWNER 5B31B1 LLC",
+   "new_york_county_fips": "NA",
+   "state": "CT",
+   "vessel_name": "TESTOWNER 17222E",
+   "vessel_registration_number": "930399"
+  }
+ ]
+}

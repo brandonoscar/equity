@@ -1,0 +1,267 @@
+{
+ "offset": 0,
+ "rows": [
+  {
+   "address2": "1450 TEST ST",
+   "check_date": "2022-01-04T00:00:00.000",
+   "city": "PHILADELPHIA",
+   "fund_cash_code": "10",
+   "payee_address1": "2986 TEST ST",
+   "payee_name": "TESTOWNER E71DA0",
+   "payment_amount": "50.00",
+   "state": "PA",
+   "zip_code": "19122-9985"
+  },
+  {
+   "address2": "3966 TEST ST",
+   "check_date": "2015-01-07T00:00:00.000",
+   "city": "CENTRAL FALLS",
+   "fund_cash_code": "10",
+   "payee_address1": "6271 TEST ST",
+   "payee_name": "TESTOWNER EC7BFD",
+   "payment_amount": "110.00",
+   "state": "RI",
+   "zip_code": "02863"
+  },
+  {
+   "check_date": "2016-01-08T00:00:00.000",
+   "city": "PROVIDENCE",
+   "fund_cash_code": "10",
+   "payee_address1": "7872 TEST ST",
+   "payee_name": "TESTOWNER D5F299 INC",
+   "payment_amount": "247.20",
+   "state": "RI",
+   "zip_code": "02903"
+  },
+  {
+   "check_date": "2016-01-08T00:00:00.000",
+   "city": "PROVIDENCE",
+   "fund_cash_code": "10",
+   "payee_address1": "4754 TEST ST",
+   "payee_name": "TESTOWNER E95EDE",
+   "payment_amount": "35.00",
+   "state": "RI",
+   "zip_code": "02903"
+  },
+  {
+   "address2": "5797 TEST ST",
+   "address3": "2329 TEST ST",
+   "check_date": "2024-01-09T00:00:00.000",
+   "city": "LOWELL",
+   "fund_cash_code": "10",
+   "payee_address1": "4599 TEST ST",
+   "payee_name": "TESTOWNER C5C655",
+   "payment_amount": "500.00",
+   "state": "MA",
+   "zip_code": "01852"
+  },
+  {
+   "check_date": "2024-01-09T00:00:00.000",
+   "city": "PROVIDENCE",
+   "fund_cash_code": "10",
+   "payee_address1": "701 TEST ST",
+   "payee_name": "TESTOWNER 69D423",
+   "payment_amount": "100.00",
+   "state": "RI",
+   "zip_code": "02906"
+  },
+  {
+   "address2": "7296 TEST ST",
+   "check_date": "2018-01-10T00:00:00.000",
+   "city": "PROVIDENCE",
+   "fund_cash_code": "10",
+   "payee_address1": "6794 TEST ST",
+   "payee_name": "TESTOWNER 2169DA",
+   "payment_amount": "275.15",
+   "state": "RI",
+   "zip_code": "02907"
+  },
+  {
+   "address2": "1983 TEST ST",
+   "check_date": "2019-01-11T00:00:00.000",
+   "city": "WARWICK",
+   "fund_cash_code": "10",
+   "payee_address1": "7831 TEST ST",
+   "payee_name": "TESTOWNER A9067B",
+   "payment_amount": "295.00",
+   "state": "RI",
+   "zip_code": "02886"
+  },
+  {
+   "address2": "5038 TEST ST",
+   "address3": "600 TEST ST",
+   "check_date": "2018-01-12T00:00:00.000",
+   "city": "ALEXANDRIA",
+   "fund_cash_code": "10",
+   "payee_address1": "877 TEST ST",
+   "payee_name": "TESTOWNER 58F68E",
+   "payment_amount": "24.50",
+   "state": "VA",
+   "zip_code": "22314-1452"
+  },
+  {
+   "check_date": "2016-01-13T00:00:00.000",
+   "city": "LANGHORNE",
+   "fund_cash_code": "10",
+   "payee_address1": "7165 TEST ST",
+   "payee_name": "TESTOWNER 270B49",
+   "payment_amount": "395.00",
+   "state": "PA",
+   "zip_code": "19047-9604"
+  },
+  {
+   "check_date": "2016-01-13T00:00:00.000",
+   "city": "SOUTH BURLINGTON",
+   "fund_cash_code": "10",
+   "payee_address1": "5405 TEST ST",
+   "payee_name": "TESTOWNER 56270C",
+   "payment_amount": "250.00",
+   "state": "VT",
+   "zip_code": "05403"
+  },
+  {
+   "check_date": "2016-01-13T00:00:00.000",
+   "city": "WARWICK",
+   "fund_cash_code": "10",
+   "payee_address1": "5271 TEST ST",
+   "payee_name": "TESTOWNER 8B1411",
+   "payment_amount": "6112.83",
+   "state": "RI",
+   "zip_code": "02886"
+  },
+  {
+   "check_date": "2020-01-13T00:00:00.000",
+   "city": "PROVIDENCE",
+   "fund_cash_code": "10",
+   "payee_address1": "1177 TEST ST",
+   "payee_name": "TESTOWNER FD7103",
+   "payment_amount": "500.00",
+   "state": "RI",
+   "zip_code": "02907"
+  },
+  {
+   "address2": "8007 TEST ST",
+   "check_date": "2025-01-14T00:00:00.000",
+   "city": "PROVIDENCE",
+   "fund_cash_code": "10",
+   "payee_address1": "8379 TEST ST",
+   "payee_name": "TESTOWNER 2FEFEA",
+   "payment_amount": "772.67",
+   "state": "RI",
+   "zip_code": "02903"
+  },
+  {
+   "check_date": "2015-01-16T00:00:00.000",
+   "city": "NORTH PROVIDENCE",
+   "fund_cash_code": "10",
+   "payee_address1": "1513 TEST ST",
+   "payee_name": "TESTOWNER 589A7A",
+   "payment_amount": "14.12",
+   "state": "RI",
+   "zip_code": "02904"
+  },
+  {
+   "check_date": "2015-01-16T00:00:00.000",
+   "city": "NORTH SMITHFIELD",
+   "fund_cash_code": "10",
+   "payee_address1": "5157 TEST ST",
+   "payee_name": "TESTOWNER 629551",
+   "payment_amount": "50.00",
+   "state": "RI",
+   "zip_code": "02896"
+  },
+  {
+   "check_date": "2020-01-17T00:00:00.000",
+   "city": "ST. LOUIS",
+   "fund_cash_code": "10",
+   "payee_address1": "334 TEST ST",
+   "payee_name": "TESTOWNER 84D5B9",
+   "payment_amount": "64.59",
+   "state": "MO",
+   "zip_code": "63179-0356"
+  },
+  {
+   "check_date": "2022-01-20T00:00:00.000",
+   "city": "Providence",
+   "fund_cash_code": "10",
+   "payee_address1": "8141 TEST ST",
+   "payee_name": "TESTOWNER FBBFBA",
+   "payment_amount": "1.00",
+   "state": "RI",
+   "zip_code": "02908"
+  },
+  {
+   "check_date": "2013-01-22T00:00:00.000",
+   "city": "PROVIDENCE",
+   "fund_cash_code": "10",
+   "payee_address1": "5744 TEST ST",
+   "payee_name": "TESTOWNER F9EA49",
+   "payment_amount": "24.46",
+   "state": "RI",
+   "zip_code": "02904"
+  },
+  {
+   "check_date": "2024-01-23T00:00:00.000",
+   "city": "CRANSTON",
+   "fund_cash_code": "10",
+   "payee_address1": "2177 TEST ST",
+   "payee_name": "TESTOWNER 7FA6B2",
+   "payment_amount": "4.59",
+   "state": "RI",
+   "zip_code": "02910"
+  },
+  {
+   "check_date": "2023-01-24T00:00:00.000",
+   "city": "PAWTUCKET",
+   "fund_cash_code": "10",
+   "payee_address1": "5502 TEST ST",
+   "payee_name": "TESTOWNER C704D3 LLC",
+   "payment_amount": "900.00",
+   "state": "RI",
+   "zip_code": "02860"
+  },
+  {
+   "check_date": "2022-01-25T00:00:00.000",
+   "city": "JOHNSTON",
+   "fund_cash_code": "10",
+   "payee_address1": "8836 TEST ST",
+   "payee_name": "TESTOWNER 23AEC6",
+   "payment_amount": "569.28",
+   "state": "RI",
+   "zip_code": "02919"
+  },
+  {
+   "address2": "2465 TEST ST",
+   "check_date": "2022-01-25T00:00:00.000",
+   "city": "Philadelphia",
+   "fund_cash_code": "10",
+   "payee_address1": "8494 TEST ST",
+   "payee_name": "TESTOWNER 1364C8",
+   "payment_amount": "94.43",
+   "state": "PA",
+   "zip_code": "19182-0522"
+  },
+  {
+   "address2": "4577 TEST ST",
+   "check_date": "2021-01-26T00:00:00.000",
+   "city": "PROVIDENCE",
+   "fund_cash_code": "10",
+   "payee_address1": "8284 TEST ST",
+   "payee_name": "TESTOWNER ED75D9",
+   "payment_amount": "50.40",
+   "state": "RI",
+   "zip_code": "02904"
+  },
+  {
+   "address2": "1715 TEST ST",
+   "check_date": "2021-01-26T00:00:00.000",
+   "city": "Providence",
+   "fund_cash_code": "10",
+   "payee_address1": "5711 TEST ST",
+   "payee_name": "TESTOWNER AD7EBA",
+   "payment_amount": "15.00",
+   "state": "RI",
+   "zip_code": "02905"
+  }
+ ]
+}

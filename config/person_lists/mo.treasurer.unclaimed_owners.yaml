@@ -1,0 +1,34 @@
+# Missouri State Treasurer, "Unclaimed Property Account Owners Lists by County": the names and
+# last-known addresses of NEW unclaimed-property owners that state law requires the Treasurer
+# to publish each year in a newspaper in every county, also posted as one HTML page per county
+# (115 pages incl. St. Louis City; ~45k rows for St. Louis County). Name is printed LAST FIRST.
+# The county list holds only that year's newly reported owners, so addresses are recent.
+source_id: mo.treasurer.unclaimed_owners
+state: MO
+jurisdiction: "29"
+kind: tax  # nearest source kind: a state treasury program (no unclaimed-property kind)
+record_type: unclaimed_property
+api: html_table
+html:
+  index: https://treasurer.mo.gov/UCP/Unclaimed-Property-Account-Owner-Lists-by-County.aspx
+  link_id_prefix: ctl00_MainContent_lb
+  url: https://treasurer.mo.gov/UCP/Account-Owner-List-Results.aspx?Name={value}
+  row_id: _trItem
+  columns: [name, address, city]
+  value_field: county
+key_prefix: "MO-UP:"
+parties:
+  - role: owner
+    name: name
+    format: last_first
+    address: {street: address, city: city, state_const: MO}
+terms:
+  url: https://treasurer.mo.gov/UCP/Unclaimed-Property-Account-Owner-Lists-by-County.aspx
+  summary: >-
+    Statutory public notice (newspaper publication of new owners, RSMo 447.541), posted for
+    the public to search; no license or click-through. robots.txt allows the whole site.
+    Missouri limits paid owner-recovery ("finder") agreements (15 CSR 50-3.090, under RSMo
+    447.500-447.595): do not use for fee-based owner-recovery solicitation. Internal
+    locate/link use only.
+  checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,198 @@
+{
+ "offset": 0,
+ "rows": [
+  {
+   "address": "5254 TEST ST",
+   "applicant_name": "TESTOWNER 269021",
+   "city": "Waukomis",
+   "llc_name": "TESTOWNER CC7052 LLC",
+   "state": "MO",
+   "zipcode": "64151"
+  },
+  {
+   "address": "7909 TEST ST",
+   "applicant_name": "TESTOWNER 07149E",
+   "city": "Grain Valley",
+   "llc_name": "TESTOWNER 2B9E31 LLC",
+   "state": "MO",
+   "zipcode": "64029"
+  },
+  {
+   "address": "1951 TEST ST",
+   "applicant_name": "TESTOWNER 732168",
+   "city": "Alpine",
+   "llc_name": "TESTOWNER FE449C LLC",
+   "state": "UT",
+   "zipcode": "84004"
+  },
+  {
+   "address": "6773 TEST ST",
+   "applicant_name": "TESTOWNER 518F4E",
+   "city": "Leawood",
+   "llc_name": "TESTOWNER E8EF73 LLC",
+   "state": "KS",
+   "zipcode": "66206"
+  },
+  {
+   "address": "2790 TEST ST",
+   "city": "Kansas City",
+   "state": "MO",
+   "zipcode": "64130"
+  },
+  {
+   "address": "3504 TEST ST",
+   "applicant_name": "TESTOWNER AA5F8C",
+   "city": "Belton",
+   "llc_name": "TESTOWNER 713486",
+   "state": "MO",
+   "zipcode": "64012"
+  },
+  {
+   "address": "5450 TEST ST",
+   "applicant_name": "TESTOWNER 22EB6E",
+   "city": "Overland Park",
+   "llc_name": "TESTOWNER C32D73 LLC",
+   "state": "KS",
+   "zipcode": "66212"
+  },
+  {
+   "address": "6012 TEST ST",
+   "applicant_name": "TESTOWNER 35EA43",
+   "city": "Kansas City",
+   "llc_name": "TESTOWNER 2FD1BF LLC",
+   "state": "MO",
+   "zipcode": "64151"
+  },
+  {
+   "address": "5013 TEST ST",
+   "applicant_name": "TESTOWNER 753EB9",
+   "city": "Wichita",
+   "llc_name": "TESTOWNER 3BB2D5 LLC",
+   "state": "KS",
+   "zipcode": "67206"
+  },
+  {
+   "address": "2828 TEST ST",
+   "applicant_name": "TESTOWNER A9504F",
+   "city": "Blue Springs",
+   "llc_name": "TESTOWNER EAE75C",
+   "state": "MO",
+   "zipcode": "64013"
+  },
+  {
+   "address": "8406 TEST ST",
+   "applicant_name": "TESTOWNER 091DF8",
+   "city": "Overland Park",
+   "llc_name": "TESTOWNER 74ADE2 LLC",
+   "state": "KS",
+   "zipcode": "66209"
+  },
+  {
+   "address": "7762 TEST ST",
+   "applicant_name": "TESTOWNER 50C186",
+   "city": "Gladstone",
+   "llc_name": "TESTOWNER 5822A1 LLC",
+   "state": "MO",
+   "zipcode": "64118"
+  },
+  {
+   "llc_name": "TESTOWNER B9B7EE LLC"
+  },
+  {
+   "address": "8654 TEST ST",
+   "applicant_name": "TESTOWNER 2E7F4F",
+   "city": "Raytown",
+   "llc_name": "TESTOWNER 2BE72B LLC",
+   "state": "MO",
+   "zipcode": "64133"
+  },
+  {
+   "address": "3254 TEST ST",
+   "applicant_name": "TESTOWNER B7E802",
+   "city": "Overland Park",
+   "llc_name": "TESTOWNER 902536 LLC",
+   "state": "KS",
+   "zipcode": "66202"
+  },
+  {
+   "address": "3887 TEST ST",
+   "applicant_name": "TESTOWNER FC3279",
+   "city": "Kansas City",
+   "llc_name": "TESTOWNER A15DB2",
+   "state": "MO",
+   "zipcode": "64112"
+  },
+  {
+   "address": "8095 TEST ST",
+   "applicant_name": "TESTOWNER 3CDBEE",
+   "city": "Kansas City",
+   "llc_name": "TESTOWNER 8A34CE",
+   "state": "MO",
+   "zipcode": "64130"
+  },
+  {
+   "address": "946 TEST ST",
+   "applicant_name": "TESTOWNER D53FCD",
+   "city": "Lee's Summit",
+   "llc_name": "TESTOWNER E68199 LLC",
+   "state": "MO",
+   "zipcode": "64082"
+  },
+  {
+   "address": "2802 TEST ST",
+   "applicant_name": "TESTOWNER 773F3A",
+   "city": "Kansas City",
+   "llc_name": "TESTOWNER 733214 LLC",
+   "state": "MO",
+   "zipcode": "64154"
+  },
+  {
+   "address": "9010 TEST ST",
+   "applicant_name": "TESTOWNER C619C5",
+   "city": "Kansas City",
+   "llc_name": "TESTOWNER F2DCE2 LLC",
+   "state": "MO",
+   "zipcode": "64124"
+  },
+  {
+   "address": "8359 TEST ST",
+   "applicant_name": "TESTOWNER BBCE18",
+   "city": "Lee's Summit",
+   "llc_name": "TESTOWNER E1A025 LLC",
+   "state": "MO",
+   "zipcode": "64064"
+  },
+  {
+   "address": "8425 TEST ST",
+   "applicant_name": "TESTOWNER 49E84D",
+   "city": "Kansas City",
+   "llc_name": "TESTOWNER 4FE6C9 LLC",
+   "state": "MO",
+   "zipcode": "64112"
+  },
+  {
+   "address": "3248 TEST ST",
+   "applicant_name": "TESTOWNER E7EF4C",
+   "city": "Morristown",
+   "llc_name": "TESTOWNER E06FE3 LLC",
+   "state": "NJ",
+   "zipcode": "7960"
+  },
+  {
+   "address": "466 TEST ST",
+   "applicant_name": "TESTOWNER 397FF6",
+   "city": "Kansas City",
+   "llc_name": "TESTOWNER 1F7364 LLC",
+   "state": "MO",
+   "zipcode": "64111"
+  },
+  {
+   "address": "1350 TEST ST",
+   "applicant_name": "TESTOWNER F7B11A",
+   "city": "Lee's Summit",
+   "llc_name": "TESTOWNER 893DF9 LLC",
+   "state": "MO",
+   "zipcode": "64086"
+  }
+ ]
+}

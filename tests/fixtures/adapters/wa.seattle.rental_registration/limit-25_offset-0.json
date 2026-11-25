@@ -1,0 +1,603 @@
+{
+ "offset": 0,
+ "rows": [
+  {
+   "expiresdate": "2027-04-21",
+   "latitude": "47.61506676",
+   "link": {
+    "url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001-0100004"
+   },
+   "location1": {
+    "latitude": "47.61506676",
+    "longitude": "-122.32485293"
+   },
+   "longitude": "-122.32485293",
+   "originaladdress1": "2929 TEST ST",
+   "originalcity": "SEATTLE",
+   "originalstate": "WA",
+   "originalzip": "98122",
+   "permitnum": "001-0100004",
+   "permittypedesc": "Registration",
+   "permittypemapped": "Rental Property",
+   "propertycontactname": "TESTOWNER D247B4",
+   "propertyname": "TESTOWNER C96A0D",
+   "registereddate": "2025-04-08",
+   "rentalhousingunits": "23",
+   "statuscurrent": "Active Registration"
+  },
+  {
+   "expiresdate": "2027-10-19",
+   "latitude": "47.68191074",
+   "link": {
+    "url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001-0100005"
+   },
+   "location1": {
+    "latitude": "47.68191074",
+    "longitude": "-122.28921011"
+   },
+   "longitude": "-122.28921011",
+   "originaladdress1": "6597 TEST ST",
+   "originalcity": "SEATTLE",
+   "originalstate": "WA",
+   "originalzip": "98115",
+   "permitnum": "001-0100005",
+   "permittypedesc": "Registration",
+   "permittypemapped": "Rental Property",
+   "propertycontactname": "TESTOWNER 00384B",
+   "propertyname": "TESTOWNER 13E393",
+   "registereddate": "2025-09-29",
+   "rentalhousingunits": "12",
+   "statuscurrent": "Active Registration"
+  },
+  {
+   "expiresdate": "2028-03-29",
+   "latitude": "47.57098331",
+   "link": {
+    "url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001-0100010"
+   },
+   "location1": {
+    "latitude": "47.57098331",
+    "longitude": "-122.38726139"
+   },
+   "longitude": "-122.38726139",
+   "originaladdress1": "6345 TEST ST",
+   "originalcity": "SEATTLE",
+   "originalstate": "WA",
+   "originalzip": "98116",
+   "permitnum": "001-0100010",
+   "permittypedesc": "Registration",
+   "permittypemapped": "Rental Property",
+   "propertycontactname": "TESTOWNER 9E9DA5 LLC",
+   "propertyname": "TESTOWNER D193AF",
+   "registereddate": "2026-02-25",
+   "rentalhousingunits": "28",
+   "statuscurrent": "Active Registration"
+  },
+  {
+   "expiresdate": "2027-07-17",
+   "latitude": "47.55857638",
+   "link": {
+    "url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001-0100017"
+   },
+   "location1": {
+    "latitude": "47.55857638",
+    "longitude": "-122.38187414"
+   },
+   "longitude": "-122.38187414",
+   "originaladdress1": "3783 TEST ST",
+   "originalcity": "SEATTLE",
+   "originalstate": "WA",
+   "originalzip": "98116",
+   "permitnum": "001-0100017",
+   "permittypedesc": "Registration",
+   "permittypemapped": "Rental Property",
+   "propertycontactname": "TESTOWNER 7C1A4C",
+   "propertyname": "TESTOWNER 3F44AD",
+   "registereddate": "2025-06-23",
+   "rentalhousingunits": "28",
+   "statuscurrent": "Active Registration"
+  },
+  {
+   "expiresdate": "2027-05-18",
+   "latitude": "47.66091076",
+   "link": {
+    "url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001-0100018"
+   },
+   "location1": {
+    "latitude": "47.66091076",
+    "longitude": "-122.35291007"
+   },
+   "longitude": "-122.35291007",
+   "originaladdress1": "4338 TEST ST",
+   "originalcity": "SEATTLE",
+   "originalstate": "WA",
+   "originalzip": "98103",
+   "permitnum": "001-0100018",
+   "permittypedesc": "Registration",
+   "permittypemapped": "Rental Property",
+   "propertycontactname": "TESTOWNER D324D3",
+   "propertyname": "TESTOWNER CFD44C",
+   "registereddate": "2025-04-01",
+   "rentalhousingunits": "25",
+   "statuscurrent": "Active Registration"
+  },
+  {
+   "expiresdate": "2027-05-14",
+   "latitude": "47.68148452",
+   "link": {
+    "url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001-0100026"
+   },
+   "location1": {
+    "latitude": "47.68148452",
+    "longitude": "-122.28839774"
+   },
+   "longitude": "-122.28839774",
+   "originaladdress1": "8912 TEST ST",
+   "originalcity": "SEATTLE",
+   "originalstate": "WA",
+   "originalzip": "98115",
+   "permitnum": "001-0100026",
+   "permittypedesc": "Registration",
+   "permittypemapped": "Rental Property",
+   "propertycontactname": "TESTOWNER 4E636A",
+   "propertyname": "TESTOWNER 388149",
+   "registereddate": "2025-05-05",
+   "rentalhousingunits": "6",
+   "statuscurrent": "Active Registration"
+  },
+  {
+   "expiresdate": "2027-01-11",
+   "latitude": "47.57212779",
+   "link": {
+    "url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001-0100027"
+   },
+   "location1": {
+    "latitude": "47.57212779",
+    "longitude": "-122.30800789"
+   },
+   "longitude": "-122.30800789",
+   "originaladdress1": "3884 TEST ST",
+   "originalcity": "SEATTLE",
+   "originalstate": "WA",
+   "originalzip": "98144",
+   "permitnum": "001-0100027",
+   "permittypedesc": "Registration",
+   "permittypemapped": "Rental Property",
+   "propertycontactname": "TESTOWNER 059320",
+   "propertyname": "TESTOWNER 9A1A41",
+   "registereddate": "2024-11-13",
+   "rentalhousingunits": "14",
+   "statuscurrent": "Active Registration"
+  },
+  {
+   "expiresdate": "2028-01-29",
+   "latitude": "47.67077447",
+   "link": {
+    "url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001-0100029"
+   },
+   "location1": {
+    "latitude": "47.67077447",
+    "longitude": "-122.38629583"
+   },
+   "longitude": "-122.38629583",
+   "originaladdress1": "2739 TEST ST",
+   "originalcity": "SEATTLE",
+   "originalstate": "WA",
+   "originalzip": "98107",
+   "permitnum": "001-0100029",
+   "permittypedesc": "Registration",
+   "permittypemapped": "Rental Property",
+   "propertycontactname": "TESTOWNER 185799",
+   "propertyname": "TESTOWNER DE3D21",
+   "registereddate": "2026-01-29",
+   "rentalhousingunits": "268",
+   "statuscurrent": "Active Registration"
+  },
+  {
+   "expiresdate": "2027-07-31",
+   "latitude": "47.70722260",
+   "link": {
+    "url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001-0100036"
+   },
+   "location1": {
+    "latitude": "47.7072226",
+    "longitude": "-122.31921954"
+   },
+   "longitude": "-122.31921954",
+   "originaladdress1": "4028 TEST ST",
+   "originalcity": "SEATTLE",
+   "originalstate": "WA",
+   "originalzip": "98125",
+   "permitnum": "001-0100036",
+   "permittypedesc": "Registration",
+   "permittypemapped": "Rental Property",
+   "propertycontactname": "TESTOWNER 5C0D80",
+   "propertyname": "TESTOWNER CF5990",
+   "registereddate": "2025-07-29",
+   "rentalhousingunits": "146",
+   "statuscurrent": "Active Registration"
+  },
+  {
+   "expiresdate": "2027-09-22",
+   "latitude": "47.66237933",
+   "link": {
+    "url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001-0100038"
+   },
+   "location1": {
+    "latitude": "47.66237933",
+    "longitude": "-122.33726309"
+   },
+   "longitude": "-122.33726309",
+   "originaladdress1": "8167 TEST ST",
+   "originalcity": "SEATTLE",
+   "originalstate": "WA",
+   "originalzip": "98103",
+   "permitnum": "001-0100038",
+   "permittypedesc": "Registration",
+   "permittypemapped": "Rental Property",
+   "propertycontactname": "TESTOWNER 1978E8",
+   "propertyname": "TESTOWNER 6C8197",
+   "registereddate": "2025-08-28",
+   "rentalhousingunits": "5",
+   "statuscurrent": "Active Registration"
+  },
+  {
+   "expiresdate": "2028-10-09",
+   "latitude": "47.61245984",
+   "link": {
+    "url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001-0100039"
+   },
+   "location1": {
+    "latitude": "47.61245984",
+    "longitude": "-122.34837308"
+   },
+   "longitude": "-122.34837308",
+   "originaladdress1": "5342 TEST ST",
+   "originalcity": "SEATTLE",
+   "originalstate": "WA",
+   "originalzip": "98121",
+   "permitnum": "001-0100039",
+   "permittypedesc": "Registration",
+   "permittypemapped": "Rental Property",
+   "propertycontactname": "TESTOWNER FEE803",
+   "propertyname": "TESTOWNER B31B9D",
+   "registereddate": "2026-10-09",
+   "rentalhousingunits": "92",
+   "statuscurrent": "Active Registration"
+  },
+  {
+   "expiresdate": "2027-07-01",
+   "latitude": "47.61419579",
+   "link": {
+    "url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001-0100040"
+   },
+   "location1": {
+    "latitude": "47.61419579",
+    "longitude": "-122.34355459"
+   },
+   "longitude": "-122.34355459",
+   "originaladdress1": "4079 TEST ST",
+   "originalcity": "SEATTLE",
+   "originalstate": "WA",
+   "originalzip": "98121",
+   "permitnum": "001-0100040",
+   "permittypedesc": "Registration",
+   "permittypemapped": "Rental Property",
+   "propertycontactname": "TESTOWNER 1838D8",
+   "propertyname": "TESTOWNER 670AE2",
+   "registereddate": "2025-06-05",
+   "rentalhousingunits": "137",
+   "statuscurrent": "Active Registration"
+  },
+  {
+   "expiresdate": "2027-07-10",
+   "latitude": "47.62071502",
+   "link": {
+    "url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001-0100043"
+   },
+   "location1": {
+    "latitude": "47.62071502",
+    "longitude": "-122.3444463"
+   },
+   "longitude": "-122.34444630",
+   "originaladdress1": "7995 TEST ST",
+   "originalcity": "SEATTLE",
+   "originalstate": "WA",
+   "originalzip": "98109",
+   "permitnum": "001-0100043",
+   "permittypedesc": "Registration",
+   "permittypemapped": "Rental Property",
+   "propertycontactname": "TESTOWNER 0D1D59",
+   "propertyname": "TESTOWNER CFB90E",
+   "registereddate": "2025-06-11",
+   "rentalhousingunits": "10",
+   "statuscurrent": "Active Registration"
+  },
+  {
+   "expiresdate": "2027-07-10",
+   "latitude": "47.68227509",
+   "link": {
+    "url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001-0100044"
+   },
+   "location1": {
+    "latitude": "47.68227509",
+    "longitude": "-122.32460842"
+   },
+   "longitude": "-122.32460842",
+   "originaladdress1": "1048 TEST ST",
+   "originalcity": "SEATTLE",
+   "originalstate": "WA",
+   "originalzip": "98115",
+   "permitnum": "001-0100044",
+   "permittypedesc": "Registration",
+   "permittypemapped": "Rental Property",
+   "propertycontactname": "TESTOWNER 0D1D59",
+   "propertyname": "TESTOWNER C3B678",
+   "registereddate": "2025-06-11",
+   "rentalhousingunits": "9",
+   "statuscurrent": "Active Registration"
+  },
+  {
+   "expiresdate": "2027-07-10",
+   "latitude": "47.66600525",
+   "link": {
+    "url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001-0100045"
+   },
+   "location1": {
+    "latitude": "47.66600525",
+    "longitude": "-122.30914891"
+   },
+   "longitude": "-122.30914891",
+   "originaladdress1": "1763 TEST ST",
+   "originalcity": "SEATTLE",
+   "originalstate": "WA",
+   "originalzip": "98105",
+   "permitnum": "001-0100045",
+   "permittypedesc": "Registration",
+   "permittypemapped": "Rental Property",
+   "propertycontactname": "TESTOWNER 0D1D59",
+   "propertyname": "TESTOWNER CE2833",
+   "registereddate": "2025-06-11",
+   "rentalhousingunits": "13",
+   "statuscurrent": "Active Registration"
+  },
+  {
+   "expiresdate": "2027-08-05",
+   "latitude": "47.60502235",
+   "link": {
+    "url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001-0100046"
+   },
+   "location1": {
+    "latitude": "47.60502235",
+    "longitude": "-122.32706483"
+   },
+   "longitude": "-122.32706483",
+   "originaladdress1": "5946 TEST ST",
+   "originalcity": "SEATTLE",
+   "originalstate": "WA",
+   "originalzip": "98104",
+   "permitnum": "001-0100046",
+   "permittypedesc": "Registration",
+   "permittypemapped": "Rental Property",
+   "propertycontactname": "TESTOWNER B1817D",
+   "propertyname": "TESTOWNER D3A753",
+   "registereddate": "2025-08-05",
+   "rentalhousingunits": "96",
+   "statuscurrent": "Active Registration"
+  },
+  {
+   "expiresdate": "2027-06-09",
+   "latitude": "47.69200995",
+   "link": {
+    "url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001-0100048"
+   },
+   "location1": {
+    "latitude": "47.69200995",
+    "longitude": "-122.35562587"
+   },
+   "longitude": "-122.35562587",
+   "originaladdress1": "8653 TEST ST",
+   "originalcity": "SEATTLE",
+   "originalstate": "WA",
+   "originalzip": "98103",
+   "permitnum": "001-0100048",
+   "permittypedesc": "Registration",
+   "permittypemapped": "Rental Property",
+   "propertycontactname": "TESTOWNER 5D16DC",
+   "propertyname": "TESTOWNER A95361",
+   "registereddate": "2025-04-11",
+   "rentalhousingunits": "70",
+   "statuscurrent": "Active Registration"
+  },
+  {
+   "expiresdate": "2027-08-29",
+   "latitude": "47.62381484",
+   "link": {
+    "url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001-0100052"
+   },
+   "location1": {
+    "latitude": "47.62381484",
+    "longitude": "-122.33209486"
+   },
+   "longitude": "-122.33209486",
+   "originaladdress1": "8647 TEST ST",
+   "originalcity": "SEATTLE",
+   "originalstate": "WA",
+   "originalzip": "98109",
+   "permitnum": "001-0100052",
+   "permittypedesc": "Registration",
+   "permittypemapped": "Rental Property",
+   "propertyname": "TESTOWNER A93F72",
+   "registereddate": "2025-07-02",
+   "rentalhousingunits": "199",
+   "statuscurrent": "Active Registration"
+  },
+  {
+   "expiresdate": "2027-06-22",
+   "latitude": "47.73074207",
+   "link": {
+    "url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001-0100063"
+   },
+   "location1": {
+    "latitude": "47.73074207",
+    "longitude": "-122.34724807"
+   },
+   "longitude": "-122.34724807",
+   "originaladdress1": "6074 TEST ST",
+   "originalcity": "SEATTLE",
+   "originalstate": "WA",
+   "originalzip": "98133",
+   "permitnum": "001-0100063",
+   "permittypedesc": "Registration",
+   "permittypemapped": "Rental Property",
+   "propertycontactname": "TESTOWNER 78F7E6",
+   "propertyname": "TESTOWNER 74366C",
+   "registereddate": "2025-05-20",
+   "rentalhousingunits": "178",
+   "statuscurrent": "Active Registration"
+  },
+  {
+   "expiresdate": "2028-03-03",
+   "latitude": "47.52119281",
+   "link": {
+    "url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001-0100064"
+   },
+   "location1": {
+    "latitude": "47.52119281",
+    "longitude": "-122.33549478"
+   },
+   "longitude": "-122.33549478",
+   "originaladdress1": "1804 TEST ST",
+   "originalcity": "SEATTLE",
+   "originalstate": "WA",
+   "originalzip": "98106",
+   "permitnum": "001-0100064",
+   "permittypedesc": "Registration",
+   "permittypemapped": "Rental Property",
+   "propertycontactname": "TESTOWNER 4979FC",
+   "propertyname": "TESTOWNER 71B33F",
+   "registereddate": "2026-03-03",
+   "rentalhousingunits": "163",
+   "statuscurrent": "Active Registration"
+  },
+  {
+   "expiresdate": "2027-08-22",
+   "latitude": "47.52052261",
+   "link": {
+    "url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001-0100065"
+   },
+   "location1": {
+    "latitude": "47.52052261",
+    "longitude": "-122.33506001"
+   },
+   "longitude": "-122.33506001",
+   "originaladdress1": "5468 TEST ST",
+   "originalcity": "SEATTLE",
+   "originalstate": "WA",
+   "originalzip": "98106",
+   "permitnum": "001-0100065",
+   "permittypedesc": "Registration",
+   "permittypemapped": "Rental Property",
+   "propertycontactname": "TESTOWNER 6F8067",
+   "propertyname": "TESTOWNER 2ED48F",
+   "registereddate": "2025-07-22",
+   "rentalhousingunits": "286",
+   "statuscurrent": "Active Registration"
+  },
+  {
+   "expiresdate": "2027-09-14",
+   "latitude": "47.52086746",
+   "link": {
+    "url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001-0100066"
+   },
+   "location1": {
+    "latitude": "47.52086746",
+    "longitude": "-122.35375737"
+   },
+   "longitude": "-122.35375737",
+   "originaladdress1": "1957 TEST ST",
+   "originalcity": "SEATTLE",
+   "originalstate": "WA",
+   "originalzip": "98106",
+   "permitnum": "001-0100066",
+   "permittypedesc": "Registration",
+   "permittypemapped": "Rental Property",
+   "propertycontactname": "TESTOWNER D464AB",
+   "registereddate": "2025-09-11",
+   "rentalhousingunits": "10",
+   "statuscurrent": "Active Registration"
+  },
+  {
+   "expiresdate": "2027-06-27",
+   "latitude": "47.62477814",
+   "link": {
+    "url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001-0100070"
+   },
+   "location1": {
+    "latitude": "47.62477814",
+    "longitude": "-122.36155332"
+   },
+   "longitude": "-122.36155332",
+   "originaladdress1": "8574 TEST ST",
+   "originalcity": "SEATTLE",
+   "originalstate": "WA",
+   "originalzip": "98119",
+   "permitnum": "001-0100070",
+   "permittypedesc": "Registration",
+   "permittypemapped": "Rental Property",
+   "propertycontactname": "TESTOWNER FABE4C LLC",
+   "propertyname": "TESTOWNER 967646",
+   "registereddate": "2025-06-12",
+   "rentalhousingunits": "42",
+   "statuscurrent": "Active Registration"
+  },
+  {
+   "expiresdate": "2027-07-25",
+   "latitude": "47.61529176",
+   "link": {
+    "url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001-0100073"
+   },
+   "location1": {
+    "latitude": "47.61529176",
+    "longitude": "-122.35330557"
+   },
+   "longitude": "-122.35330557",
+   "originaladdress1": "6983 TEST ST",
+   "originalcity": "SEATTLE",
+   "originalstate": "WA",
+   "originalzip": "98121",
+   "permitnum": "001-0100073",
+   "permittypedesc": "Registration",
+   "permittypemapped": "Rental Property",
+   "propertycontactname": "TESTOWNER 85E988",
+   "propertyname": "TESTOWNER BA6BFE",
+   "registereddate": "2025-06-25",
+   "rentalhousingunits": "134",
+   "statuscurrent": "Active Registration"
+  },
+  {
+   "expiresdate": "2027-06-19",
+   "latitude": "47.61566331",
+   "link": {
+    "url": "https://services.seattle.gov/portal/customize/LinkToRecord.aspx?altId=001-0100074"
+   },
+   "location1": {
+    "latitude": "47.61566331",
+    "longitude": "-122.35336543"
+   },
+   "longitude": "-122.35336543",
+   "originaladdress1": "7429 TEST ST",
+   "originalcity": "SEATTLE",
+   "originalstate": "WA",
+   "originalzip": "98121",
+   "permitnum": "001-0100074",
+   "permittypedesc": "Registration",
+   "permittypemapped": "Rental Property",
+   "propertycontactname": "TESTOWNER E6B37E",
+   "propertyname": "TESTOWNER BA6BFE",
+   "registereddate": "2025-05-14",
+   "rentalhousingunits": "194",
+   "statuscurrent": "Active Registration"
+  }
+ ]
+}
