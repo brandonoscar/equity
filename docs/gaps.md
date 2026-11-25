@@ -40,7 +40,7 @@ Federal sources (FJC civil judgments, EPA judicial cases, SBA charge-offs, HUD R
 | IN | statewide | owner, address, value, land use | — | tax_delinquency (3) | `us.innb.rss`<br>`us.insb.rss` | — | `IN`<br>`IN-STJOSEPH` | none | — |
 | KS | 4 of 105 counties | owner, address, land use | — | tax_delinquency (1) | `us.ksb.rss` | — | `KS` | none | — |
 | KY | 4 of 120 counties | owner, address, value, land use, zoning | — | — | `us.kywb.rss` | — | `KY` | 3 local layers | — |
-| LA | 7 of 64 counties | owner, address, value, homestead, land use | — | administrative_judgment (1) | `us.laeb.rss`<br>`us.lamb.rss`<br>`us.lawb.rss` | — | `LA-EBR`<br>`LA-LAFAYETTE`<br>`LA-NOLA` | 1 local layers | — |
+| LA | 7 of 64 counties | owner, address, value, homestead, land use | — | administrative_judgment (1) | `us.laeb.rss`<br>`us.lamb.rss`<br>`us.lawb.rss` | — | `LA-COUNTIES`<br>`LA-EBR`<br>`LA-LAFAYETTE`<br>`LA-NOLA` | 1 local layers | — |
 | MA | statewide | owner, address, value, land use, zoning | — | — | `us.mab.rss` | — | `MA` | 5 local layers | — |
 | MD | statewide | owner, address, value, land use, zoning | `md.sdat.transfers_1`<br>`md.sdat.transfers_2`<br>`md.sdat.transfers_3` | code_enforcement_lien (1)<br>foreclosure (1)<br>tax_lien (3) | — | — | `MD-BALTIMORE`<br>`MD-COUNTIES`<br>`MD-PRINCE-GEORGES` | statewide + 2 local | — |
 | ME | statewide | owner, land use | — | — | — | — | `ME` | 5 local layers | — |
@@ -55,7 +55,7 @@ Federal sources (FJC civil judgments, EPA judicial cases, SBA charge-offs, HUD R
 | NH | statewide | owner, address, land use | — | — | `us.nhb.rss` | — | `NH` | statewide | — |
 | NJ | statewide | owner, address, land use, zoning | — | administrative_judgment (2) | `us.njb.rss` | — | `NJ-MONMOUTH` | 2 local layers | `nj.dca.code_links` |
 | NM | 5 of 33 counties | owner, address, value, land use, zoning | — | — | — | — | `NM` | 2 local layers | — |
-| NV | 3 of 17 counties | owner, address, value, land use, zoning | — | — | `us.nvb.rss` | — | `NV-WASHOE` | 8 local layers | — |
+| NV | 3 of 17 counties | owner, address, value, land use, zoning | — | — | `us.nvb.rss` | — | `NV-COUNTIES`<br>`NV-WASHOE` | 8 local layers | — |
 | NY | statewide | owner, address, value, land use | `ny.nyc.acris.personal`<br>`ny.nyc.acris.real` | administrative_judgment (1)<br>eviction (1)<br>housing_court_case (1)<br>recorded_judgment_or_lien (2)<br>tax_delinquency (2)<br>tax_warrant (2) | `us.nynb.rss`<br>`us.nysb.rss` | `ny.sos.business` | `NY`<br>`NY-NYC-LIENSALE` | 7 local layers | — |
 | OH | statewide | owner, address, value, homestead, land use, zoning | — | code_enforcement_charge (1)<br>foreclosure (1)<br>tax_delinquency (11)<br>tax_lien (1) | `us.ohnb.rss`<br>`us.ohsb.rss` | — | `OH`<br>`OH-COUNTIES` | 10 local layers | — |
 | OK | 3 of 77 counties | owner, address, value, homestead, land use | — | — | `us.okeb.rss`<br>`us.oknb.rss`<br>`us.okwb.rss` | — | `OK` | 8 local layers | — |
