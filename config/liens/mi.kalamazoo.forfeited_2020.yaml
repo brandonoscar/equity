@@ -1,0 +1,35 @@
+source_id: mi.kalamazoo.forfeited_2020
+state: MI
+county_fips: "26077"   # Kalamazoo County
+# Kalamazoo County Treasurer '2020_Forfeiture_Parcels' (published 2020-08-07): 1,067 parcels forfeited to the
+# County Treasurer on March 1, 2020 for unpaid 2018-and-earlier property taxes (MCL 211.78g) and
+# still unredeemed when the layer was made, with the owner and owner mailing address. The
+# layer's fields lost their names in a join (Parcels2_1 = PELNUMBER, Parcels2_3 = owner name,
+# Parcels2_6..2_9 = owner street, city, state, ZIP; Parcels2_4/2_5, the second owner line or
+# care-of, are not read).
+# A historical list (the layer is not updated): the date is fixed in the select as a SQL
+# literal ('2020-03-01' AS listed_on), not the day it is read. TAX and SAR1_MBOR (taxable /
+# assessed value) are not amounts owed. Parcels2_1 ('06-01-149-103') is pelnumber in
+# mi.kalamazoo.parcels, like mi.kalamazoo.forfeited_parcels. Debt kind: tax_delinquency.
+api: arcgis
+layer_url: https://services3.arcgis.com/RGltUbqpl4h9E3Qh/arcgis/rest/services/2020_Forfeiture_Parcels/FeatureServer/0
+single_partition: true
+order_by: [FID]
+select: [FID, Parcels2_1, Parcels2_3, Parcels2_6, Parcels2_7, Parcels2_8, Parcels2_9, Parcels_13, "'2020-03-01' AS listed_on"]
+date_field: listed_on
+uid: Parcels2_1
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Kalamazoo County forfeited parcel, March 2020 (unpaid property tax)
+parties:
+  - role: debtor
+    name: Parcels2_3
+    address: {line1: Parcels2_6, city: Parcels2_7, state: Parcels2_8, zip: Parcels2_9}
+  - {role: creditor, const: Kalamazoo County Treasurer, person_names: false}
+parcel: {kind: pin, field: Parcels2_1, county_fips: "26077"}
+extra_pii: [Parcels_13]
+terms:
+  url: https://services3.arcgis.com/RGltUbqpl4h9E3Qh/arcgis/rest/services/2020_Forfeiture_Parcels/FeatureServer
+  summary: "Kalamazoo County Treasurer ArcGIS Online layer (owner trwhit_kalcounty, public), no login, token or fee. No licenseInfo; no use restriction found (read 2026-11-25). services3.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

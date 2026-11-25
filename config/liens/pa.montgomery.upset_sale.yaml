@@ -1,0 +1,34 @@
+source_id: pa.montgomery.upset_sale
+state: PA
+county_fips: "42091"   # Montgomery County PA
+# Montgomery County PA Tax Claim Bureau '2026 Upset Sale List' (as of 2026-08-07): every
+# parcel exposed at the 2026-09-24 upset sale for unpaid 2024-and-prior real estate taxes,
+# municipal claims and costs (72 P.S. 5860.601), ~900 rows with the owner of record (BOA
+# owner name), the property location and the approximate upset price (loaded as the amount).
+# A text PDF read with the project's PDF table reader (header 'Municipality'); a location
+# wrapped onto a second line is dropped (that line has no sale number). The list carries no
+# per-row date: the date is the day it was read. The file is the full pre-sale list, kept on
+# the county's assets host after the sale (the sale page now links the final results).
+# Parcel '01-00-01606-02-2' with dashes and spaces removed is pa.montgomery.parcels PARCEL
+# ('010001606022'). Debt kind: tax_delinquency.
+api: pdf
+url: https://assets.montgomerycountypa.gov/files/2026-08/2026%20Upset%20Sale%20List%208.07.26.pdf
+header: Municipality
+listed_on: listed_on
+date_field: listed_on
+uid: sale_number
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Montgomery County PA upset tax sale parcel (2026)
+amount: approx_sale_price
+parties:
+  - role: debtor
+    name: boa_owner_name
+    address: {line1: boa_location, state_const: PA}   # the property
+  - {role: creditor, const: Montgomery County Tax Claim Bureau, person_names: false}
+parcel: {kind: pin, field: parcel, strip: "- ", county_fips: "42091"}
+terms:
+  url: https://www.montgomerycountypa.gov/departments/tax-claim-bureau/tax-sales/upset-sale
+  summary: "Montgomery County PA Tax Claim Bureau public sale notice, a free text PDF on assets.montgomerycountypa.gov, no login. No license or reuse terms stated (tax sale notices are statutory public advertisements). assets.montgomerycountypa.gov/robots.txt answers 403 AccessDenied (RFC 9309: 4xx = no rules, allowed); note www.montgomerycountypa.gov/robots.txt disallows *.pdf on that host only -- the file is not on it."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

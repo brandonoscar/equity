@@ -1,0 +1,35 @@
+source_id: mi.kalamazoo.delinquent_2024
+state: MI
+county_fips: "26077"   # Kalamazoo County
+# Kalamazoo County Treasurer '9/10/24 Treasurer's Report', layer 'Delinquent Parcels': 3,277 parcels with
+# delinquent property taxes on 2024-09-01, with the owners, care-of, owner mailing address and the
+# delinquent base, interest and total (DELQ_TOTAL, loaded).
+# A historical list (the layer is not updated): the date is fixed in the select as a SQL
+# literal ('2024-09-01' AS listed_on), not the day it is read. TAX and SAR1_MBOR (taxable /
+# assessed value) are not amounts owed. PELNUMBER ('06-01-149-103') is pelnumber in
+# mi.kalamazoo.parcels, like mi.kalamazoo.forfeited_parcels. Debt kind: tax_delinquency.
+api: arcgis
+layer_url: https://services3.arcgis.com/RGltUbqpl4h9E3Qh/arcgis/rest/services/9_10_24_Treasurer_s_Report_WFL1/FeatureServer/18
+single_partition: true
+order_by: [FID]
+select: [FID, PELNUMBER, ONERNAME1, ONERNAME2, OERCAREOF, OTADDRESS, OWNERCITY, ONERSTATE, ORZIPCODE, PCOMBINED, DELQ_TOTAL, "'2024-09-01' AS listed_on"]
+date_field: listed_on
+uid: PELNUMBER
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Kalamazoo County delinquent property tax, 2024-09-01 report
+amount: DELQ_TOTAL
+parties:
+  - role: debtor
+    name: ONERNAME1
+    address: {line1: OTADDRESS, city: OWNERCITY, state: ONERSTATE, zip: ORZIPCODE}
+  - role: debtor
+    name: ONERNAME2
+  - {role: creditor, const: Kalamazoo County Treasurer, person_names: false}
+parcel: {kind: pin, field: PELNUMBER, county_fips: "26077"}
+extra_pii: [OERCAREOF, PCOMBINED]
+terms:
+  url: https://services3.arcgis.com/RGltUbqpl4h9E3Qh/arcgis/rest/services/9_10_24_Treasurer_s_Report_WFL1/FeatureServer
+  summary: "Kalamazoo County Treasurer ArcGIS Online layer (owner trwhit_kalcounty, public), no login, token or fee. No licenseInfo; no use restriction found (read 2026-11-25). services3.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

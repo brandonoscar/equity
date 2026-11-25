@@ -1,0 +1,281 @@
+{
+ "layer": "https://services3.arcgis.com/RGltUbqpl4h9E3Qh/arcgis/rest/services/2020_Forfeiture_Parcels/FeatureServer/0",
+ "rows": [
+  {
+   "FID": 1,
+   "Parcels2_1": "07-12-330-060",
+   "Parcels2_3": "TESTOWNER F2A6AB",
+   "Parcels2_6": "TESTOWNER F9CEAB",
+   "Parcels2_7": "GALESBURG",
+   "Parcels2_8": "MI",
+   "Parcels2_9": "49053",
+   "Parcels_13": "TESTOWNER BACA16",
+   "listed_on": "2020-03-01"
+  },
+  {
+   "FID": 2,
+   "Parcels2_1": "07-12-480-016",
+   "Parcels2_3": "TESTOWNER 50D9FA",
+   "Parcels2_6": "TESTOWNER 74A190",
+   "Parcels2_7": "GALESBURG",
+   "Parcels2_8": "MI",
+   "Parcels2_9": "49053",
+   "Parcels_13": "TESTOWNER 3BD1B3",
+   "listed_on": "2020-03-01"
+  },
+  {
+   "FID": 3,
+   "Parcels2_1": "07-05-195-010",
+   "Parcels2_3": "TESTOWNER 6C3E52",
+   "Parcels2_6": "TESTOWNER 02C564",
+   "Parcels2_7": "KALAMAZOO",
+   "Parcels2_8": "MI",
+   "Parcels2_9": "49048",
+   "Parcels_13": "TESTOWNER 43FA2E",
+   "listed_on": "2020-03-01"
+  },
+  {
+   "FID": 4,
+   "Parcels2_1": "07-06-302-640",
+   "Parcels2_3": "TESTOWNER 7650E1",
+   "Parcels2_6": "TESTOWNER 4E000C",
+   "Parcels2_7": "KALAMAZOO",
+   "Parcels2_8": "MI",
+   "Parcels2_9": "49048",
+   "Parcels_13": "TESTOWNER 3D8DE7",
+   "listed_on": "2020-03-01"
+  },
+  {
+   "FID": 5,
+   "Parcels2_1": "07-05-170-040",
+   "Parcels2_3": "TESTOWNER 1F956E",
+   "Parcels2_6": "TESTOWNER C15B94",
+   "Parcels2_7": "KALAMAZOO",
+   "Parcels2_8": "MI",
+   "Parcels2_9": "49048",
+   "Parcels_13": "TESTOWNER 7FFC81",
+   "listed_on": "2020-03-01"
+  },
+  {
+   "FID": 6,
+   "Parcels2_1": "07-05-302-180",
+   "Parcels2_3": "TESTOWNER 188D29",
+   "Parcels2_6": "TESTOWNER 45C1B0",
+   "Parcels2_7": "KALAMAZOO",
+   "Parcels2_8": "MI",
+   "Parcels2_9": "49006",
+   "Parcels_13": "TESTOWNER B581F7",
+   "listed_on": "2020-03-01"
+  },
+  {
+   "FID": 7,
+   "Parcels2_1": "07-05-326-040",
+   "Parcels2_3": "TESTOWNER 0EFECC",
+   "Parcels2_6": "TESTOWNER B89E04",
+   "Parcels2_7": "KALAMAZOO",
+   "Parcels2_8": "MI",
+   "Parcels2_9": "49048",
+   "Parcels_13": "TESTOWNER 9CC2A7",
+   "listed_on": "2020-03-01"
+  },
+  {
+   "FID": 8,
+   "Parcels2_1": "07-07-105-320",
+   "Parcels2_3": "TESTOWNER 3A542E",
+   "Parcels2_6": "TESTOWNER 181EE2",
+   "Parcels2_7": "KALAMAZOO",
+   "Parcels2_8": "MI",
+   "Parcels2_9": "49048",
+   "Parcels_13": "TESTOWNER 68F556",
+   "listed_on": "2020-03-01"
+  },
+  {
+   "FID": 9,
+   "Parcels2_1": "07-18-376-550",
+   "Parcels2_3": "TESTOWNER C3FE2B",
+   "Parcels2_6": "TESTOWNER B2570A",
+   "Parcels2_7": "RICHLAND",
+   "Parcels2_8": "MI",
+   "Parcels2_9": "49083",
+   "Parcels_13": "TESTOWNER F04430",
+   "listed_on": "2020-03-01"
+  },
+  {
+   "FID": 10,
+   "Parcels2_1": "07-18-388-580",
+   "Parcels2_3": "TESTOWNER B0ED10",
+   "Parcels2_6": "TESTOWNER 8F6C01",
+   "Parcels2_7": "KALAMAZOO",
+   "Parcels2_8": "MI",
+   "Parcels2_9": "49048",
+   "Parcels_13": "TESTOWNER 01AD4C",
+   "listed_on": "2020-03-01"
+  },
+  {
+   "FID": 11,
+   "Parcels2_1": "07-05-326-580",
+   "Parcels2_3": "TESTOWNER F71453",
+   "Parcels2_6": "TESTOWNER A20538",
+   "Parcels2_7": "KALAMAZOO",
+   "Parcels2_8": "MI",
+   "Parcels2_9": "49048",
+   "Parcels_13": "TESTOWNER 1E8999",
+   "listed_on": "2020-03-01"
+  },
+  {
+   "FID": 12,
+   "Parcels2_1": "07-07-130-010",
+   "Parcels2_3": "TESTOWNER 5C4DEE",
+   "Parcels2_6": "TESTOWNER B3A2DA",
+   "Parcels2_7": "KALAMAZOO",
+   "Parcels2_8": "MI",
+   "Parcels2_9": "49048",
+   "Parcels_13": "TESTOWNER ECD736",
+   "listed_on": "2020-03-01"
+  },
+  {
+   "FID": 13,
+   "Parcels2_1": "07-10-230-011",
+   "Parcels2_3": "TESTOWNER FFBC65",
+   "Parcels2_6": "TESTOWNER 19DA68",
+   "Parcels2_7": "KALAMAZOO",
+   "Parcels2_8": "MI",
+   "Parcels2_9": "49048",
+   "Parcels_13": "TESTOWNER BCF3CB",
+   "listed_on": "2020-03-01"
+  },
+  {
+   "FID": 14,
+   "Parcels2_1": "07-07-105-220",
+   "Parcels2_3": "TESTOWNER 842ED2",
+   "Parcels2_6": "TESTOWNER 8557E2",
+   "Parcels2_7": "KALAMAZOO",
+   "Parcels2_8": "MI",
+   "Parcels2_9": "49048",
+   "Parcels_13": "TESTOWNER D531B8",
+   "listed_on": "2020-03-01"
+  },
+  {
+   "FID": 15,
+   "Parcels2_1": "07-07-205-160",
+   "Parcels2_3": "TESTOWNER BFAB7D",
+   "Parcels2_6": "TESTOWNER DE2185",
+   "Parcels2_7": "KALAMAZOO",
+   "Parcels2_8": "MI",
+   "Parcels2_9": "49048",
+   "Parcels_13": "TESTOWNER 7186BE",
+   "listed_on": "2020-03-01"
+  },
+  {
+   "FID": 16,
+   "Parcels2_1": "07-08-101-150",
+   "Parcels2_3": "TESTOWNER 3646E8",
+   "Parcels2_6": "TESTOWNER ED3545",
+   "Parcels2_7": "KALAMAZOO",
+   "Parcels2_8": "MI",
+   "Parcels2_9": "49048",
+   "Parcels_13": "TESTOWNER D89DA5",
+   "listed_on": "2020-03-01"
+  },
+  {
+   "FID": 17,
+   "Parcels2_1": "07-07-351-140",
+   "Parcels2_3": "TESTOWNER E43A67",
+   "Parcels2_6": "TESTOWNER 1DD71B",
+   "Parcels2_7": "KALAMAZOO",
+   "Parcels2_8": "MI",
+   "Parcels2_9": "49048",
+   "Parcels_13": "TESTOWNER 56D803",
+   "listed_on": "2020-03-01"
+  },
+  {
+   "FID": 18,
+   "Parcels2_1": "07-07-476-010",
+   "Parcels2_3": "TESTOWNER 199444",
+   "Parcels2_6": "TESTOWNER 050F34",
+   "Parcels2_7": "KALAMAZOO",
+   "Parcels2_8": "MI",
+   "Parcels2_9": "49048",
+   "Parcels_13": "TESTOWNER C3FC55",
+   "listed_on": "2020-03-01"
+  },
+  {
+   "FID": 19,
+   "Parcels2_1": "07-11-380-075",
+   "Parcels2_3": "TESTOWNER 68B460 LLC",
+   "Parcels2_6": "TESTOWNER 30CBA8",
+   "Parcels2_7": "GALESBURG",
+   "Parcels2_8": "MI",
+   "Parcels2_9": "49053",
+   "Parcels_13": "TESTOWNER B46C21",
+   "listed_on": "2020-03-01"
+  },
+  {
+   "FID": 20,
+   "Parcels2_1": "07-11-380-040",
+   "Parcels2_3": "TESTOWNER 68B460 LLC",
+   "Parcels2_6": "TESTOWNER 30CBA8",
+   "Parcels2_7": "GALESBURG",
+   "Parcels2_8": "MI",
+   "Parcels2_9": "49053",
+   "Parcels_13": "TESTOWNER F53867",
+   "listed_on": "2020-03-01"
+  },
+  {
+   "FID": 21,
+   "Parcels2_1": "07-18-230-010",
+   "Parcels2_3": "TESTOWNER E1EF4E",
+   "Parcels2_6": "TESTOWNER 6D6F62",
+   "Parcels2_7": "KALAMAZOO",
+   "Parcels2_8": "MI",
+   "Parcels2_9": "49048",
+   "Parcels_13": "TESTOWNER CCD4DA",
+   "listed_on": "2020-03-01"
+  },
+  {
+   "FID": 22,
+   "Parcels2_1": "07-14-130-012",
+   "Parcels2_3": "TESTOWNER 1E98C2",
+   "Parcels2_6": "TESTOWNER 255348",
+   "Parcels2_7": "GALESBURG",
+   "Parcels2_8": "MI",
+   "Parcels2_9": "49053",
+   "Parcels_13": "TESTOWNER 6F3305",
+   "listed_on": "2020-03-01"
+  },
+  {
+   "FID": 23,
+   "Parcels2_1": "07-18-230-050",
+   "Parcels2_3": "TESTOWNER BB2DE1",
+   "Parcels2_6": "TESTOWNER 334F7E",
+   "Parcels2_7": "KALAMAZOO",
+   "Parcels2_8": "MI",
+   "Parcels2_9": "49048",
+   "Parcels_13": "TESTOWNER 7808CE",
+   "listed_on": "2020-03-01"
+  },
+  {
+   "FID": 24,
+   "Parcels2_1": "07-18-230-060",
+   "Parcels2_3": "TESTOWNER 1C7EAC",
+   "Parcels2_6": "TESTOWNER 337BD6",
+   "Parcels2_7": "KALAMAZOO",
+   "Parcels2_8": "MI",
+   "Parcels2_9": "49048",
+   "Parcels_13": "TESTOWNER BE8F04",
+   "listed_on": "2020-03-01"
+  },
+  {
+   "FID": 25,
+   "Parcels2_1": "07-18-262-090",
+   "Parcels2_3": "TESTOWNER 5A19AA",
+   "Parcels2_6": "TESTOWNER 0E3A0E",
+   "Parcels2_7": "KALAMAZOO",
+   "Parcels2_8": "MI",
+   "Parcels2_9": "49048",
+   "Parcels_13": "TESTOWNER 1C7636",
+   "listed_on": "2020-03-01"
+  }
+ ],
+ "where": "1=1"
+}

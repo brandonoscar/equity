@@ -1,0 +1,26 @@
+source_id: pa.washington.judicial_sales
+state: PA
+county_fips: "42125"   # Washington County PA
+# Washington County PA Tax Claim Bureau judicial tax sale list: parcels unsold at the upset
+# sale for delinquent property taxes, sold free of liens by court order (72 P.S. 5860.610)
+# at the 2026-06-24 judicial sale; 83 rows on 2026-11-25. No owner is named and no amount:
+# each is owed by the parcel's owner of record (parcel_on_lien). Dated by saleDate. PIN is
+# pa.washington.parcels PIN. Debt kind: tax_delinquency.
+api: arcgis
+layer_url: https://services2.arcgis.com/LgK9DpUhNjdU0HLy/arcgis/rest/services/Judicial_Sales_of_Washington_County_PA/FeatureServer/0
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, PIN, MCN, saleDate]
+date_field: saleDate
+uid: PIN
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Washington County PA judicial tax sale parcel
+parties:
+  - {role: creditor, const: Washington County Tax Claim Bureau, person_names: false}
+parcel: {kind: pin, field: PIN, county_fips: "42125"}
+terms:
+  url: https://www.arcgis.com/home/item.html?id=6cf46b8b8f7a4f6aaf19f18e99dd3ea5
+  summary: "Washington County PA ArcGIS Online item 'Judicial Sales of Washington County PA' (owner jursachr_washco), public, no login, token or fee. No licenseInfo or description (read 2026-11-25); tax sale lists are public notices. services2.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

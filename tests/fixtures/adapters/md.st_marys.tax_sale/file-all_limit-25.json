@@ -1,0 +1,280 @@
+{
+ "rows": [
+  {
+   "folio": "182",
+   "legal_description_1": "TESTOWNER 672D95",
+   "liber": "6057",
+   "no_of_accts": "1",
+   "owners_name_s": "TESTOWNER 758DD6",
+   "property_address": "639 TEST ST",
+   "state_assessment": "537300",
+   "state_tax_id": "02-002795",
+   "total_due": "2539.81"
+  },
+  {
+   "folio": "145",
+   "legal_description_1": "TESTOWNER C9C6F4",
+   "liber": "1701",
+   "no_of_accts": "1",
+   "owners_name_s": "TESTOWNER 5A5CB6",
+   "property_address": "4551 TEST ST",
+   "state_assessment": "495900",
+   "state_tax_id": "01-000446",
+   "total_due": "11418.1"
+  },
+  {
+   "folio": "205",
+   "legal_description_1": "TESTOWNER 6D2516",
+   "liber": "260",
+   "no_of_accts": "1",
+   "owners_name_s": "TESTOWNER 6B3338",
+   "property_address": "6049 TEST ST",
+   "state_assessment": "6800",
+   "state_tax_id": "07-014406",
+   "total_due": "194.87"
+  },
+  {
+   "folio": "389",
+   "legal_description_1": "TESTOWNER DB2444",
+   "liber": "5247",
+   "no_of_accts": "1",
+   "owners_name_s": "TESTOWNER D41E2F",
+   "property_address": "7499 TEST ST",
+   "state_assessment": "154200",
+   "state_tax_id": "07-020570",
+   "total_due": "3996.73"
+  },
+  {
+   "folio": "273",
+   "legal_description_1": "TESTOWNER 37E313",
+   "liber": "6072",
+   "no_of_accts": "1",
+   "owners_name_s": "TESTOWNER 447579",
+   "property_address": "1788 TEST ST",
+   "state_assessment": "23767",
+   "state_tax_id": "07-003269",
+   "total_due": "590.97"
+  },
+  {
+   "folio": "408",
+   "legal_description_1": "TESTOWNER 04BDE3",
+   "liber": "5672",
+   "no_of_accts": "1",
+   "owners_name_s": "TESTOWNER 9B3605",
+   "property_address": "3568 TEST ST",
+   "state_assessment": "71100",
+   "state_tax_id": "07-020481",
+   "total_due": "2130.59"
+  },
+  {
+   "folio": "408",
+   "legal_description_1": "TESTOWNER 408067",
+   "liber": "5672",
+   "no_of_accts": "1",
+   "owners_name_s": "TESTOWNER 9B3605",
+   "property_address": "3948 TEST ST",
+   "state_assessment": "40867",
+   "state_tax_id": "07-033532",
+   "total_due": "1019.61"
+  },
+  {
+   "folio": "275",
+   "legal_description_1": "TESTOWNER A51CD4",
+   "liber": "214",
+   "no_of_accts": "1",
+   "owners_name_s": "TESTOWNER 9D8E4A",
+   "property_address": "5681 TEST ST",
+   "state_assessment": "8000",
+   "state_tax_id": "04-001109",
+   "total_due": "595.74"
+  },
+  {
+   "folio": "723",
+   "legal_description_1": "TESTOWNER 071454",
+   "liber": "3603",
+   "no_of_accts": "1",
+   "owners_name_s": "TESTOWNER 8CAF84",
+   "property_address": "402 TEST ST",
+   "state_assessment": "8400",
+   "state_tax_id": "04-001168",
+   "total_due": "624.24"
+  },
+  {
+   "folio": "114",
+   "legal_description_1": "TESTOWNER BC2910",
+   "liber": "2545",
+   "no_of_accts": "1",
+   "owners_name_s": "TESTOWNER 06CCAE",
+   "property_address": "242 TEST ST",
+   "state_assessment": "12000",
+   "state_tax_id": "05-020638",
+   "total_due": "222.34"
+  },
+  {
+   "folio": "262",
+   "legal_description_1": "TESTOWNER B44DDA",
+   "liber": "4606",
+   "no_of_accts": "1",
+   "owners_name_s": "TESTOWNER 3A648B",
+   "property_address": "8331 TEST ST",
+   "state_assessment": "147567",
+   "state_tax_id": "08-027536",
+   "total_due": "3589.64"
+  },
+  {
+   "folio": "629",
+   "legal_description_1": "TESTOWNER F2741D",
+   "liber": "3085",
+   "no_of_accts": "1",
+   "owners_name_s": "TESTOWNER 052628",
+   "property_address": "4184 TEST ST",
+   "state_assessment": "4500",
+   "state_tax_id": "07-009127",
+   "total_due": "202.28"
+  },
+  {
+   "folio": "363",
+   "legal_description_1": "TESTOWNER FA49F3",
+   "liber": "4969",
+   "no_of_accts": "1",
+   "owners_name_s": "TESTOWNER 90C004",
+   "property_address": "2890 TEST ST",
+   "state_assessment": "203633",
+   "state_tax_id": "07-021526",
+   "total_due": "5561.53"
+  },
+  {
+   "folio": "150",
+   "legal_description_1": "TESTOWNER AC4A88",
+   "liber": "301",
+   "no_of_accts": "1",
+   "owners_name_s": "TESTOWNER AC92D8",
+   "property_address": "8533 TEST ST",
+   "state_assessment": "4800",
+   "state_tax_id": "04-040074",
+   "total_due": "322.14"
+  },
+  {
+   "folio": "492",
+   "legal_description_1": "TESTOWNER BFBBE6",
+   "liber": "4599",
+   "no_of_accts": "1",
+   "owners_name_s": "TESTOWNER C678B4",
+   "property_address": "3212 TEST ST",
+   "state_assessment": "190567",
+   "state_tax_id": "08-093326",
+   "total_due": "4988.18"
+  },
+  {
+   "folio": "18",
+   "legal_description_1": "TESTOWNER 90ED66",
+   "liber": "14",
+   "no_of_accts": "1",
+   "owners_name_s": "TESTOWNER 8FFF76",
+   "property_address": "7984 TEST ST",
+   "state_assessment": "88333",
+   "state_tax_id": "01-002139",
+   "total_due": "10329.69"
+  },
+  {
+   "folio": "502",
+   "legal_description_1": "TESTOWNER 2DEF0B",
+   "liber": "72",
+   "no_of_accts": "1",
+   "owners_name_s": "TESTOWNER C6AF6E",
+   "property_address": "7010 TEST ST",
+   "state_assessment": "31100",
+   "state_tax_id": "07-002998",
+   "total_due": "1232.5999999999999"
+  },
+  {
+   "folio": "538",
+   "legal_description_1": "TESTOWNER 77532B",
+   "liber": "2230",
+   "no_of_accts": "1",
+   "owners_name_s": "TESTOWNER 8BD195",
+   "property_address": "5005 TEST ST",
+   "state_assessment": "151533",
+   "state_tax_id": "04-052595",
+   "total_due": "4070.53"
+  },
+  {
+   "folio": "64",
+   "legal_description_1": "TESTOWNER 511E65",
+   "liber": "193",
+   "no_of_accts": "1",
+   "owners_name_s": "TESTOWNER FCF86A",
+   "property_address": "2576 TEST ST",
+   "state_assessment": "78200",
+   "state_tax_id": "05-038219",
+   "total_due": "4163.95"
+  },
+  {
+   "folio": "77",
+   "legal_description_1": "TESTOWNER 057A31",
+   "liber": "1964",
+   "no_of_accts": "1",
+   "owners_name_s": "TESTOWNER D9CB2A",
+   "property_address": "8871 TEST ST",
+   "state_assessment": "1200",
+   "state_tax_id": "05-063493",
+   "total_due": "73.88"
+  },
+  {
+   "folio": "16",
+   "legal_description_1": "TESTOWNER 00CC88",
+   "liber": "193",
+   "no_of_accts": "1",
+   "owners_name_s": "TESTOWNER E3F79E",
+   "property_address": "1075 TEST ST",
+   "state_assessment": "500",
+   "state_tax_id": "07-003323",
+   "total_due": "47.36"
+  },
+  {
+   "folio": "16",
+   "legal_description_1": "TESTOWNER 2F2293",
+   "liber": "193",
+   "no_of_accts": "1",
+   "owners_name_s": "TESTOWNER E3F79E",
+   "property_address": "1653 TEST ST",
+   "state_assessment": "5400",
+   "state_tax_id": "07-003331",
+   "total_due": "237.16"
+  },
+  {
+   "folio": "224",
+   "legal_description_1": "TESTOWNER 6664F6",
+   "liber": "5929",
+   "no_of_accts": "1",
+   "owners_name_s": "TESTOWNER F4D76E",
+   "property_address": "1406 TEST ST",
+   "state_assessment": "196467",
+   "state_tax_id": "08-101116",
+   "total_due": "4756.0600000000004"
+  },
+  {
+   "folio": "409",
+   "legal_description_1": "TESTOWNER 8754C1",
+   "liber": "5713",
+   "no_of_accts": "1",
+   "owners_name_s": "TESTOWNER 4AD51F",
+   "property_address": "454 TEST ST",
+   "state_assessment": "140000",
+   "state_tax_id": "06-019897",
+   "total_due": "3794.2"
+  },
+  {
+   "folio": "718",
+   "legal_description_1": "TESTOWNER 6C5BF8",
+   "liber": "2305",
+   "no_of_accts": "1",
+   "owners_name_s": "TESTOWNER D5E0AB",
+   "property_address": "4024 TEST ST",
+   "state_assessment": "5700",
+   "state_tax_id": "01-046764",
+   "total_due": "165.37"
+  }
+ ],
+ "url": "https://www.stmaryscountymd.gov/docs/FINAL_2026_LIST.xlsx"
+}

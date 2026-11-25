@@ -1,0 +1,156 @@
+{
+ "layer": "https://services2.arcgis.com/LgK9DpUhNjdU0HLy/arcgis/rest/services/Judicial_Sales_of_Washington_County_PA/FeatureServer/0",
+ "rows": [
+  {
+   "MCN": "AMWELL",
+   "OBJECTID": 191,
+   "PIN": "020-004-09-99-0030-00",
+   "saleDate": "2026-06-24"
+  },
+  {
+   "MCN": "BENTLEYVILLE",
+   "OBJECTID": 192,
+   "PIN": "040-016-00-02-0001-00",
+   "saleDate": "2026-06-24"
+  },
+  {
+   "MCN": "BENTLEYVILLE",
+   "OBJECTID": 193,
+   "PIN": "040-022-00-00-0005-00",
+   "saleDate": "2026-06-24"
+  },
+  {
+   "MCN": "BENTLEYVILLE",
+   "OBJECTID": 194,
+   "PIN": "040-039-00-01-0014-00",
+   "saleDate": "2026-06-24"
+  },
+  {
+   "MCN": "CALIFORNIA",
+   "OBJECTID": 195,
+   "PIN": "080-025-00-00-0016-00",
+   "saleDate": "2026-06-24"
+  },
+  {
+   "MCN": "CALIFORNIA",
+   "OBJECTID": 196,
+   "PIN": "080-036-01-01-0006-00",
+   "saleDate": "2026-06-24"
+  },
+  {
+   "MCN": "CALIFORNIA",
+   "OBJECTID": 197,
+   "PIN": "080-036-01-01-0007-00",
+   "saleDate": "2026-06-24"
+  },
+  {
+   "MCN": "CALIFORNIA",
+   "OBJECTID": 198,
+   "PIN": "080-036-01-01-0008-00",
+   "saleDate": "2026-06-24"
+  },
+  {
+   "MCN": "CALIFORNIA",
+   "OBJECTID": 199,
+   "PIN": "080-037-00-01-0003-00",
+   "saleDate": "2026-06-24"
+  },
+  {
+   "MCN": "CALIFORNIA",
+   "OBJECTID": 200,
+   "PIN": "080-037-00-02-0037-00",
+   "saleDate": "2026-06-24"
+  },
+  {
+   "MCN": "CALIFORNIA",
+   "OBJECTID": 201,
+   "PIN": "080-038-00-00-0010-00",
+   "saleDate": "2026-06-24"
+  },
+  {
+   "MCN": "CANONSBURG",
+   "OBJECTID": 202,
+   "PIN": "100-028-00-00-0006-01",
+   "saleDate": "2026-06-24"
+  },
+  {
+   "MCN": "CANTON",
+   "OBJECTID": 203,
+   "PIN": "120-011-07-02-0013-00",
+   "saleDate": "2026-06-24"
+  },
+  {
+   "MCN": "CANTON",
+   "OBJECTID": 204,
+   "PIN": "120-011-11-05-0009-00",
+   "saleDate": "2026-06-24"
+  },
+  {
+   "MCN": "CANTON",
+   "OBJECTID": 205,
+   "PIN": "120-012-05-04-0061-00",
+   "saleDate": "2026-06-24"
+  },
+  {
+   "MCN": "CARROLL",
+   "OBJECTID": 206,
+   "PIN": "130-006-08-00-0020-00",
+   "saleDate": "2026-06-24"
+  },
+  {
+   "MCN": "CARROLL",
+   "OBJECTID": 207,
+   "PIN": "130-007-00-00-0057-00",
+   "saleDate": "2026-06-24"
+  },
+  {
+   "MCN": "CARROLL",
+   "OBJECTID": 208,
+   "PIN": "130-012-02-05-0010-00",
+   "saleDate": "2026-06-24"
+  },
+  {
+   "MCN": "CECIL",
+   "OBJECTID": 209,
+   "PIN": "140-002-01-04-0011-01",
+   "saleDate": "2026-06-24"
+  },
+  {
+   "MCN": "CECIL",
+   "OBJECTID": 210,
+   "PIN": "140-005-00-00-0005-00",
+   "saleDate": "2026-06-24"
+  },
+  {
+   "MCN": "CECIL",
+   "OBJECTID": 211,
+   "PIN": "140-009-02-01-0025-00",
+   "saleDate": "2026-06-24"
+  },
+  {
+   "MCN": "CENTERVILLE",
+   "OBJECTID": 212,
+   "PIN": "152-025-00-02-0015-00",
+   "saleDate": "2026-06-24"
+  },
+  {
+   "MCN": "CENTERVILLE",
+   "OBJECTID": 213,
+   "PIN": "152-025-00-02-0016-00",
+   "saleDate": "2026-06-24"
+  },
+  {
+   "MCN": "CENTERVILLE",
+   "OBJECTID": 214,
+   "PIN": "154-002-00-01-0004-00",
+   "saleDate": "2026-06-24"
+  },
+  {
+   "MCN": "CENTERVILLE",
+   "OBJECTID": 215,
+   "PIN": "154-006-00-00-0057-03",
+   "saleDate": "2026-06-24"
+  }
+ ],
+ "where": "1=1"
+}

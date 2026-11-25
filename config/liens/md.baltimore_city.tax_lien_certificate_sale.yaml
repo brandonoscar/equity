@@ -1,0 +1,37 @@
+source_id: md.baltimore_city.tax_lien_certificate_sale
+state: MD
+county_fips: "24510"   # Baltimore City
+# Baltimore City 'Tax Lien Certificate Sale Properties': every property offered at the
+# city's annual tax lien certificate sale, 2019-2023 (43,736 rows: 12,166 / 7,028 / 11,327 /
+# 7,491 / 5,724), with the owner of record, the lien, interest, legal-fee and total amounts
+# and the redemption date when the lien was paid off. The liens are delinquent real
+# property taxes and other unpaid city charges, liens on the property (MD Tax-Property
+# 14-804). Dated Jan 1 of the sale year (the sale was in May-July). A redemption date
+# becomes a RELEASE. REDEMPTION_NAME (who paid: title companies and people) is not read.
+# BLOCK || LOT ('0001 ' + '026 ') is md.baltimore_city.parcels BLOCKLOT ('0001 026') once
+# whitespace is removed. Debt kind: tax_lien.
+api: arcgis
+layer_url: https://services1.arcgis.com/UWYHeuuJISiGmgXx/arcgis/rest/services/Tax_Lien_Certificate_Sale_Properties1/FeatureServer/0
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, TAX_SALE_YEAR, BIDDING_NUMBER, "BLOCK || LOT AS BLOCKLOT", PROPERTY_ADDRESS,
+         OCCUPANCY_FLAG, LIENS, INTEREST, LEGAL_FEES, MISCELLANEOUS, TOTAL_AMOUNT,
+         REDEMPTION_DATE, OWNER_NAME, LAND_USE_CODE]
+date_field: TAX_SALE_YEAR
+uid: [TAX_SALE_YEAR, BLOCKLOT]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Baltimore City tax lien certificate sale property
+amount: TOTAL_AMOUNT
+released_on: REDEMPTION_DATE
+parties:
+  - role: debtor
+    name: OWNER_NAME
+    address: {line1: PROPERTY_ADDRESS, city_const: BALTIMORE, state_const: MD}   # the property
+  - {role: creditor, const: Mayor and City Council of Baltimore, person_names: false}
+parcel: {kind: pin, field: BLOCKLOT, county_fips: "24510"}
+terms:
+  url: https://www.arcgis.com/home/item.html?id=efaf11a277fd417bbc15887fc3d627ca
+  summary: "City of Baltimore ArcGIS Online item 'Tax Lien Certificate Sale Properties' (owner baltimore_city, Open Baltimore), public, no login, token or fee; last edited 2023-06-30 (the 2024+ sales are not in it). No licenseInfo (read 2026-11-25); no use restriction found. services1.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,45 @@
+source_id: md.baltimore_city.in_rem_candidates
+state: MD
+county_fips: "24510"   # Baltimore City
+# Baltimore City CitiStat 'In Rem VBNs and Lots Citywide' (snapshot 'VBNs Lots and Liens
+# Citywide 9.2.25 analyzed 9.29.2025'): privately owned vacant buildings under a vacant
+# building notice (layer 0, 8,403 rows) and privately owned vacant lots (layer 2, 7,241) with
+# their open city liens -- unpaid real property taxes (USER_OPEN_TAXES) and all open city
+# receivables (USER_OPEN_RECEIVABLE, the amount loaded) -- and whether each qualifies for the
+# city's In Rem tax foreclosure (MD Tax-Property 14-873; 'In Rem 1.0' and '2.0' flags). The
+# government-owned layers (1, 3) are not loaded. The data are as of 2025-09-02 but carry no
+# date: the date is the day the list was read.
+# USER_OWNER holds two 33-character owner lines with a flag in column 34 ('C' = the first
+# name continues, blank = a second owner); the select splits it with ArcGIS SQL expressions
+# into OWNER_1 and OWNER_2 and joins USER_BLOCK || USER_LOT into BLOCKLOT, which is
+# md.baltimore_city.parcels BLOCKLOT once whitespace is removed. Debt kind: tax_lien.
+api: arcgis
+layer_urls:
+  - https://services1.arcgis.com/UWYHeuuJISiGmgXx/arcgis/rest/services/In_Rem_VBNs_and_Lots_Citywide_WFL1/FeatureServer/0
+  - https://services1.arcgis.com/UWYHeuuJISiGmgXx/arcgis/rest/services/In_Rem_VBNs_and_Lots_Citywide_WFL1/FeatureServer/2
+order_by: [ObjectID]
+select: [ObjectID, "USER_BLOCK || USER_LOT AS BLOCKLOT",
+         "CASE WHEN SUBSTRING(USER_OWNER, 34, 1) = 'C' THEN SUBSTRING(USER_OWNER, 1, 33) || SUBSTRING(USER_OWNER, 35, 60) ELSE SUBSTRING(USER_OWNER, 1, 33) END AS OWNER_1",
+         "CASE WHEN SUBSTRING(USER_OWNER, 34, 1) = 'C' THEN '' ELSE SUBSTRING(USER_OWNER, 35, 60) END AS OWNER_2",
+         USER_PROPERTY_ADDRESS, USER_OPEN_TAXES, USER_OPEN_RECEIVABLE, USER_TAX_BASE, USER_LUC,
+         USER_HOME_OWNER, USER_In_Rem_2_0]
+listed_on: listed_on
+date_field: listed_on
+uid: BLOCKLOT
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Baltimore City open liens on a vacant property (In Rem candidate list)
+amount: USER_OPEN_RECEIVABLE
+parties:
+  - role: debtor
+    name: OWNER_1
+    address: {line1: USER_PROPERTY_ADDRESS, city_const: BALTIMORE, state_const: MD}   # the property
+  - role: debtor
+    name: OWNER_2
+  - {role: creditor, const: Mayor and City Council of Baltimore, person_names: false}
+parcel: {kind: pin, field: BLOCKLOT, county_fips: "24510"}
+terms:
+  url: https://www.arcgis.com/home/item.html?id=9a71cf05825f4c43b593c834267910cb
+  summary: "City of Baltimore ArcGIS Online item 'In Rem VBNs and Lots Citywide_WFL1' (owner baltimore_citistat, Mayor's Office of Performance and Innovation / CitiStat), public, no login, token or fee. No licenseInfo or description (read 2026-11-25); no use restriction found. A one-time analysis snapshot (2025-09), not a list the city refreshes. services1.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

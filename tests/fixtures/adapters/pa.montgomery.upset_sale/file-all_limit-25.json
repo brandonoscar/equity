@@ -1,0 +1,205 @@
+{
+ "rows": [
+  {
+   "approx_sale_price": "$2,708.65",
+   "boa_location": "TESTOWNER 1B61AD",
+   "boa_owner_name": "TESTOWNER 2ABECE LLC",
+   "municipality": "Ambler",
+   "parcel": "01 - 00 - 01606 - 02 - 2",
+   "sale_number": "U26 - 0002"
+  },
+  {
+   "approx_sale_price": "$14,518.92",
+   "boa_location": "TESTOWNER 2D51E7",
+   "boa_owner_name": "TESTOWNER 5E1395",
+   "municipality": "Ambler",
+   "parcel": "01 - 00 - 05929 - 00 - 1",
+   "sale_number": "U26 - 0005"
+  },
+  {
+   "approx_sale_price": "$21,853.24",
+   "boa_location": "TESTOWNER 49B362",
+   "boa_owner_name": "TESTOWNER 43C948",
+   "municipality": "Bridgeport",
+   "parcel": "02 - 00 - 01012 - 00 - 3",
+   "sale_number": "U26 - 0006"
+  },
+  {
+   "approx_sale_price": "$7,453.10",
+   "boa_location": "TESTOWNER BE5274",
+   "boa_owner_name": "TESTOWNER 43C948",
+   "municipality": "Bridgeport",
+   "parcel": "02 - 00 - 01016 - 00 - 8",
+   "sale_number": "U26 - 0007"
+  },
+  {
+   "approx_sale_price": "$52,847.36",
+   "boa_location": "TESTOWNER 72059C",
+   "boa_owner_name": "TESTOWNER 7FA9B7 LLC",
+   "municipality": "Bridgeport",
+   "parcel": "02 - 00 - 01056 - 00 - 4",
+   "sale_number": "U26 - 0008"
+  },
+  {
+   "approx_sale_price": "$18,907.90",
+   "boa_location": "TESTOWNER 1A1D1C",
+   "boa_owner_name": "TESTOWNER 7FA9B7 LLC",
+   "municipality": "Bridgeport",
+   "parcel": "02 - 00 - 01060 - 00 - 9",
+   "sale_number": "U26 - 0009"
+  },
+  {
+   "approx_sale_price": "$5,954.13",
+   "boa_location": "TESTOWNER 8B1391",
+   "boa_owner_name": "TESTOWNER 4C35B9",
+   "municipality": "Bridgeport",
+   "parcel": "02 - 00 - 01144 - 00 - 6",
+   "sale_number": "U26 - 0010"
+  },
+  {
+   "approx_sale_price": "$14,929.81",
+   "boa_location": "TESTOWNER 39CFFB",
+   "boa_owner_name": "TESTOWNER 829D94",
+   "municipality": "Bridgeport",
+   "parcel": "02 - 00 - 02904 - 00 - 1",
+   "sale_number": "U26 - 0012"
+  },
+  {
+   "approx_sale_price": "$20,062.36",
+   "boa_location": "TESTOWNER FB80A5",
+   "boa_owner_name": "TESTOWNER 2090BD",
+   "municipality": "Bridgeport",
+   "parcel": "02 - 00 - 04712 - 00 - 2",
+   "sale_number": "U26 - 0013"
+  },
+  {
+   "approx_sale_price": "$2,841.02",
+   "boa_location": "TESTOWNER CBDB17",
+   "boa_owner_name": "TESTOWNER 213C40",
+   "municipality": "Collegeville",
+   "parcel": "04 - 00 - 00304 - 00 - 7",
+   "sale_number": "U26 - 0015"
+  },
+  {
+   "approx_sale_price": "$4,301.70",
+   "boa_location": "TESTOWNER A59F15",
+   "boa_owner_name": "TESTOWNER A5D205",
+   "municipality": "Conshohocken",
+   "parcel": "05 - 00 - 00152 - 00 - 5",
+   "sale_number": "U26 - 0017"
+  },
+  {
+   "approx_sale_price": "$652.00",
+   "boa_location": "TESTOWNER 03F1C7",
+   "boa_owner_name": "TESTOWNER CB50A0",
+   "municipality": "Conshohocken",
+   "parcel": "05 - 00 - 00612 - 00 - 4",
+   "sale_number": "U26 - 0018"
+  },
+  {
+   "approx_sale_price": "$2,166.16",
+   "boa_location": "TESTOWNER B61908",
+   "boa_owner_name": "TESTOWNER 9CFD04",
+   "municipality": "Conshohocken",
+   "parcel": "05 - 00 - 02184 - 00 - 7",
+   "sale_number": "U26 - 0020"
+  },
+  {
+   "approx_sale_price": "$5,325.52",
+   "boa_location": "TESTOWNER 7C708F",
+   "boa_owner_name": "TESTOWNER F95D68",
+   "municipality": "Conshohocken",
+   "parcel": "05 - 00 - 02208 - 00 - 1",
+   "sale_number": "U26 - 0021"
+  },
+  {
+   "approx_sale_price": "$14,003.58",
+   "boa_location": "TESTOWNER 7AB8BF",
+   "boa_owner_name": "TESTOWNER 92527E",
+   "municipality": "Conshohocken",
+   "parcel": "05 - 00 - 04920 - 00 - 7",
+   "sale_number": "U26 - 0023"
+  },
+  {
+   "approx_sale_price": "$6,628.86",
+   "boa_location": "TESTOWNER B515AD",
+   "boa_owner_name": "TESTOWNER 8E5087",
+   "municipality": "Conshohocken",
+   "parcel": "05 - 00 - 05852 - 00 - 2",
+   "sale_number": "U26 - 0024"
+  },
+  {
+   "approx_sale_price": "$6,237.03",
+   "boa_location": "TESTOWNER 82E917",
+   "boa_owner_name": "TESTOWNER D1947E LLC",
+   "municipality": "Conshohocken",
+   "parcel": "05 - 00 - 07558 - 00 - 6",
+   "sale_number": "U26 - 0026"
+  },
+  {
+   "approx_sale_price": "$14,003.02",
+   "boa_location": "TESTOWNER 292D5F",
+   "boa_owner_name": "TESTOWNER 5D50ED",
+   "municipality": "Conshohocken",
+   "parcel": "05 - 00 - 08743 - 00 - 9",
+   "sale_number": "U26 - 0028"
+  },
+  {
+   "approx_sale_price": "$9,552.21",
+   "boa_location": "TESTOWNER A10841",
+   "boa_owner_name": "TESTOWNER 8E5087",
+   "municipality": "Conshohocken",
+   "parcel": "05 - 00 - 11044 - 00 - 3",
+   "sale_number": "U26 - 0030"
+  },
+  {
+   "approx_sale_price": "$6,162.51",
+   "boa_location": "TESTOWNER 4D053A",
+   "boa_owner_name": "TESTOWNER D5186E",
+   "municipality": "Conshohocken",
+   "parcel": "05 - 00 - 11856 - 13 - 6",
+   "sale_number": "U26 - 0031"
+  },
+  {
+   "approx_sale_price": "",
+   "boa_location": "",
+   "boa_owner_name": "TESTOWNER F0E2E8",
+   "municipality": "",
+   "parcel": "",
+   "sale_number": ""
+  },
+  {
+   "approx_sale_price": "$4,811.03",
+   "boa_location": "TESTOWNER FD0919",
+   "boa_owner_name": "TESTOWNER 8C2365",
+   "municipality": "East Greenville",
+   "parcel": "06 - 00 - 03532 - 00 - 8",
+   "sale_number": "U26 - 0033"
+  },
+  {
+   "approx_sale_price": "$2,516.98",
+   "boa_location": "TESTOWNER F91B3E",
+   "boa_owner_name": "TESTOWNER 170274",
+   "municipality": "Green Lane",
+   "parcel": "07 - 00 - 00265 - 00 - 7",
+   "sale_number": "U26 - 0034"
+  },
+  {
+   "approx_sale_price": "$7,617.82",
+   "boa_location": "TESTOWNER 45D10F",
+   "boa_owner_name": "TESTOWNER E83B7F",
+   "municipality": "Hatboro",
+   "parcel": "08 - 00 - 00472 - 00 - 6",
+   "sale_number": "U26 - 0035"
+  },
+  {
+   "approx_sale_price": "$57,826.09",
+   "boa_location": "TESTOWNER 3BCBE3",
+   "boa_owner_name": "TESTOWNER 804C86 LLC",
+   "municipality": "Hatboro",
+   "parcel": "08 - 00 - 04321 - 00 - 9",
+   "sale_number": "U26 - 0037"
+  }
+ ],
+ "url": "https://assets.montgomerycountypa.gov/files/2026-08/2026%20Upset%20Sale%20List%208.07.26.pdf"
+}

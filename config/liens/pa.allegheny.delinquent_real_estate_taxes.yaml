@@ -1,0 +1,30 @@
+source_id: pa.allegheny.delinquent_real_estate_taxes
+state: PA
+county_fips: "42003"   # Allegheny County
+# Allegheny County Treasurer delinquent county real estate taxes, via WPRDC 'Delinquent County
+# Real Estate Taxes by Year' (cumulative resource): one row per parcel per unpaid tax year,
+# 2009-2025 (541,929 rows on 2026-11-25; refreshed with asof_date 2026-11-21), with the
+# original bill, penalties, interest, payments, last payment date and municipality. No
+# owner is named: each is owed by the parcel's owner of record (parcel_on_lien). The
+# amount loaded is the original bill (penalties and interest accrue; partial payments,
+# total_payments, are not subtracted). Dated Jan 1 of the tax year. parcel_id (16
+# characters) is pa.allegheny.parcels PIN. Debt kind: tax_delinquency.
+api: ckan
+portal: https://data.wprdc.org
+resource_id: 96e9d6b2-3e1a-4a0c-8ef6-23a049c263d8   # Cumulative Delinquent Real Estate Taxes
+single_partition: true
+year_dates: [year]
+date_field: year
+uid: [parcel_id, year]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Allegheny County delinquent county real estate tax (by tax year)
+amount: orig_bill
+parties:
+  - {role: creditor, const: Allegheny County Treasurer, person_names: false}
+parcel: {kind: pin, field: parcel_id, county_fips: "42003"}
+terms:
+  url: https://data.wprdc.org/dataset/delinquent-real-estate-taxes
+  summary: "WPRDC (Western Pennsylvania Regional Data Center, University of Pittsburgh) dataset 'Delinquent County Real Estate Taxes by Year' from the Allegheny County Treasurer, Creative Commons CCZero (read 2026-11-25). CKAN DataStore API; WPRDC robots.txt disallows /api/ for crawlers but states scripts and applications may use it (see equity.adapters.http SCRIPT_PERMISSIONS)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -737,8 +737,9 @@ FEDERAL_COURTS = ["us.fjc.idb.civil_judgments", "us.fjc.idb.direct.civil_judgmen
 FEDERAL_DEBTS = ["us.sba.chargeoffs", "us.sba.ppp_chargeoffs"]
 STATES: dict[str, dict[str, Any]] = {
     "NY": {
-        "debtors": ["ny.dtf.tax_warrants", "ny.dtf.child_support_warrants",
-                    "ny.nyc.oath.judgments", "ny.nyc.hpd_litigation", "ny.nyc.acris.real"],
+        "debtors": ["ny.dtf.child_support_warrants", "ny.dtf.tax_warrants", "ny.nyc.acris.real",
+                    "ny.nyc.hpd_litigation", "ny.nyc.oath.judgments",
+                    "ny.tompkins.foreclosure_parcels"],
         "owners": ["ny.local_rolls.parcels", "ny.statewide.parcels"],
         "mortgages": ["ny.nyc.acris.real"],
         "links": ["ny.nyc.dof.condo_units"],
@@ -748,7 +749,9 @@ STATES: dict[str, dict[str, Any]] = {
     },
     # CT parcel data has no owner ZIP (Mailing_Zip is empty statewide): street + town instead.
     # Allegheny's parcel layer has no owner names, but its liens name the parcel (PIN).
-    "PA-ALLEGHENY": {"debtors": ["pa.allegheny.tax_liens", "pa.allegheny.foreclosures"],
+    "PA-ALLEGHENY": {"debtors": ["pa.allegheny.delinquent_real_estate_taxes",
+                                 "pa.allegheny.foreclosures", "pa.allegheny.tax_liens",
+                                 "pa.pittsburgh.tax_delinquency", "pa.pittsburgh.treasury_sales"],
                      "owners": ["pa.allegheny.parcels", "pa.allegheny.assessments"],
                      "registries": ["pa.dos.business"], "parcel_on_lien": True,
                      "courts": FEDERAL_COURTS},
@@ -756,7 +759,9 @@ STATES: dict[str, dict[str, Any]] = {
            "registries": ["ct.sos.business"], "courts": FEDERAL_COURTS,
            "deeds": ["ct.cama.sales"]},
     # Baltimore City: environmental citation liens name the parcel (block/lot), not a person.
-    "MD-BALTIMORE": {"debtors": ["md.baltimore_city.citation_liens"],
+    "MD-BALTIMORE": {"debtors": ["md.baltimore_city.citation_liens",
+                                 "md.baltimore_city.in_rem_candidates",
+                                 "md.baltimore_city.tax_lien_certificate_sale"],
                      "owners": ["md.baltimore_city.parcels"], "parcel_on_lien": True,
                      "deeds": ["md.sdat.transfers_1", "md.sdat.transfers_2",
                                "md.sdat.transfers_3"],
@@ -809,9 +814,13 @@ STATES: dict[str, dict[str, Any]] = {
            "writs": ["fl.hillsborough.garnishment"], "parcel_on_lien": True,
            "deeds": ["fl.hillsborough.or", "fl.hernando.or", "fl.putnam.or"]},
     # PA L&I lists name employers statewide; county parcel layers with owner names.
-    "PA": {"debtors": ["pa.cumberland.tax_sales", "pa.dli.bllc_noncompliance",
-                       "pa.dli.bwc_noncompliance", "pa.dli.uc_liens", "pa.philadelphia.li_fines",
-                       "pa.washington.sheriff_sales"],
+    "PA": {"debtors": ["pa.berks.upset_sale_unsold", "pa.cumberland.tax_sales",
+                       "pa.dli.bllc_noncompliance", "pa.dli.bwc_noncompliance",
+                       "pa.dli.uc_liens", "pa.montgomery.judicial_sale",
+                       "pa.montgomery.upset_sale", "pa.philadelphia.li_fines",
+                       "pa.philadelphia.tax_delinquencies", "pa.washington.judicial_sales",
+                       "pa.washington.repository_sales", "pa.washington.sheriff_sales",
+                       "pa.washington.upset_sales", "pa.west_chester.upset_sale"],
            "owners": ["pa.berks.parcels", "pa.bucks.parcels", "pa.chester.parcels",
                       "pa.erie.parcels", "pa.franklin.parcels", "pa.lancaster.parcels",
                       "pa.mercer.parcels", "pa.montgomery.parcels", "pa.philadelphia.parcels",
@@ -936,7 +945,10 @@ STATES: dict[str, dict[str, Any]] = {
     # CDTFA) against the San Jose owner table, the only California owner source so far.
     "CA": {"debtors": ["ca.cdtfa.top500", "ca.ftb.top500_corporate", "ca.ftb.top500_personal"],
            "owners": ["ca.san_jose.parcels"], "courts": FEDERAL_COURTS},
-    "MI-COUNTIES": {"debtors": ["mi.eaton.tax_foreclosure_sale", "mi.kalamazoo.delinquent_taxes",
+    "MI-COUNTIES": {"debtors": ["mi.eaton.tax_foreclosure_sale", "mi.kalamazoo.delinquent_2024",
+                                "mi.kalamazoo.delinquent_taxes", "mi.kalamazoo.foreclosed_2022",
+                                "mi.kalamazoo.forfeited_2018", "mi.kalamazoo.forfeited_2020",
+                                "mi.kalamazoo.forfeited_2023", "mi.kalamazoo.forfeited_2024",
                                 "mi.kalamazoo.forfeited_parcels", "mi.lenawee.tax_sale"],
                     "courts": FEDERAL_COURTS,
                     "parcel_on_lien": True,
@@ -1003,17 +1015,20 @@ STATES: dict[str, dict[str, Any]] = {
     "TX-COUNTIES": {"debtors": ["tx.tabc.credit_law_delinquent"], "courts": FEDERAL_COURTS,
                     "owners": ["tx.collin.parcels", "tx.dallas_city.parcels",
                                "tx.montgomery.parcels", "tx.williamson.parcels"]},
-    "MD-COUNTIES": {"debtors": [], "courts": FEDERAL_COURTS,
+    "MD-COUNTIES": {"debtors": ["md.st_marys.tax_sale"], "courts": FEDERAL_COURTS,
                     "owners": ["md.anne_arundel.parcels", "md.baltimore_county.parcels",
                                "md.charles.parcels", "md.montgomery.parcels", "md.st_marys.parcels",
-                               "md.washington.parcels", "md.wicomico.parcels"]},
+                               "md.washington.parcels", "md.wicomico.parcels"],
+                   "parcel_on_lien": True},
     # NJ wage-theft lists name employers; Monmouth's parcel layer names owners (SR-1A is blank).
     "NJ-MONMOUTH": {"debtors": ["nj.dol.wage_watchlist", "nj.dol.wall"], "courts": FEDERAL_COURTS,
                     "owners": ["nj.monmouth.parcels"]},
     # Prince George's County MD owners (the county's property file; MD's statewide layer has no
     # owner names) against the national lists and the MD bankruptcy feeds.
-    "MD-PRINCE-GEORGES": {"debtors": [], "owners": ["md.prince_georges.parcels"],
-                          "courts": FEDERAL_COURTS},
+    # Its Foreclosed Property Registry names no one: each filing links to the parcel's owner.
+    "MD-PRINCE-GEORGES": {"debtors": ["md.prince_georges.foreclosures"],
+                          "owners": ["md.prince_georges.parcels"],
+                          "courts": FEDERAL_COURTS, "parcel_on_lien": True},
     # Kent County DE owners against Delaware's top delinquent taxpayer lists.
     "DE": {"debtors": ["de.revenue.top_delinquent_personal",
                        "de.revenue.top_delinquent_business"],

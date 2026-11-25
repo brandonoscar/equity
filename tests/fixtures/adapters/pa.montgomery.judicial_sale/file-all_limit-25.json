@@ -1,0 +1,205 @@
+{
+ "rows": [
+  {
+   "boa_location": "TESTOWNER 75C56A",
+   "min_bid": "",
+   "municipality": "Norristown",
+   "owner": "TESTOWNER 24C6D8",
+   "parcel": "13 - 00 - 01112 - 00 - 9",
+   "sale_no": "J26 - 0001"
+  },
+  {
+   "boa_location": "",
+   "min_bid": "$6,479.84",
+   "municipality": "",
+   "owner": "",
+   "parcel": "",
+   "sale_no": ""
+  },
+  {
+   "boa_location": "TESTOWNER B0C4AC",
+   "min_bid": "",
+   "municipality": "Pottstown",
+   "owner": "TESTOWNER 4AACDE",
+   "parcel": "16 - 00 - 16252 - 00 - 4",
+   "sale_no": "J26 - 0003"
+  },
+  {
+   "boa_location": "",
+   "min_bid": "$2,058.06",
+   "municipality": "",
+   "owner": "",
+   "parcel": "",
+   "sale_no": ""
+  },
+  {
+   "boa_location": "TESTOWNER CB74E4",
+   "min_bid": "",
+   "municipality": "Abington",
+   "owner": "TESTOWNER D1D159",
+   "parcel": "30 - 00 - 60743 - 50 - 8",
+   "sale_no": "J26 - 0004"
+  },
+  {
+   "boa_location": "",
+   "min_bid": "$2,308.06",
+   "municipality": "",
+   "owner": "",
+   "parcel": "",
+   "sale_no": ""
+  },
+  {
+   "boa_location": "TESTOWNER 6A30F3",
+   "min_bid": "",
+   "municipality": "Cheltenham",
+   "owner": "TESTOWNER 1687C8",
+   "parcel": "31 - 00 - 23356 - 00 - 4",
+   "sale_no": "J26 - 0005"
+  },
+  {
+   "boa_location": "",
+   "min_bid": "$2,082.28",
+   "municipality": "",
+   "owner": "",
+   "parcel": "",
+   "sale_no": ""
+  },
+  {
+   "boa_location": "TESTOWNER DA7530",
+   "min_bid": "",
+   "municipality": "Hatfield Township",
+   "owner": "TESTOWNER A466A6",
+   "parcel": "35 - 00 - 01192 - 00 - 6",
+   "sale_no": "J26 - 0007"
+  },
+  {
+   "boa_location": "",
+   "min_bid": "$2,106.45",
+   "municipality": "",
+   "owner": "",
+   "parcel": "",
+   "sale_no": ""
+  },
+  {
+   "boa_location": "TESTOWNER 5383B9",
+   "min_bid": "",
+   "municipality": "Upper Pottsgrove",
+   "owner": "TESTOWNER A2E287",
+   "parcel": "60 - 00 - 01648 - 00 - 2",
+   "sale_no": "J26 - 0015"
+  },
+  {
+   "boa_location": "",
+   "min_bid": "$2,077.31",
+   "municipality": "",
+   "owner": "",
+   "parcel": "",
+   "sale_no": ""
+  },
+  {
+   "boa_location": "TESTOWNER E447F0",
+   "min_bid": "",
+   "municipality": "Upper Pottsgrove",
+   "owner": "TESTOWNER A2E287",
+   "parcel": "60 - 00 - 01651 - 00 - 8",
+   "sale_no": "J26 - 0016"
+  },
+  {
+   "boa_location": "",
+   "min_bid": "$2,226.34",
+   "municipality": "",
+   "owner": "",
+   "parcel": "",
+   "sale_no": ""
+  },
+  {
+   "boa_location": "TESTOWNER 0CD4AC",
+   "min_bid": "$2,050.41",
+   "municipality": "West Pottsgrove",
+   "owner": "TESTOWNER 05260D",
+   "parcel": "64 - 00 - 01192 - 00 - 4",
+   "sale_no": "J26 - 0019"
+  },
+  {
+   "boa_location": "",
+   "min_bid": "",
+   "municipality": "",
+   "owner": "TESTOWNER FFE8F1",
+   "parcel": "",
+   "sale_no": ""
+  },
+  {
+   "boa_location": "",
+   "min_bid": "",
+   "municipality": "Continued to December",
+   "owner": "TESTOWNER 93F863",
+   "parcel": "10",
+   "sale_no": ""
+  },
+  {
+   "boa_location": "TESTOWNER 91E28F",
+   "min_bid": "Sale Activity",
+   "municipality": "Municipality",
+   "owner": "TESTOWNER 32F954",
+   "parcel": "Parcel",
+   "sale_no": "Sale No."
+  },
+  {
+   "boa_location": "TESTOWNER 6D73CF",
+   "min_bid": "",
+   "municipality": "Pottstown",
+   "owner": "TESTOWNER 84CD59",
+   "parcel": "16 - 00 - 00020 - 00 - 9",
+   "sale_no": "J26 - 0002"
+  },
+  {
+   "boa_location": "",
+   "min_bid": "Continued",
+   "municipality": "",
+   "owner": "",
+   "parcel": "",
+   "sale_no": ""
+  },
+  {
+   "boa_location": "TESTOWNER 2B0D7E",
+   "min_bid": "Continued",
+   "municipality": "Douglass",
+   "owner": "TESTOWNER 94BADB",
+   "parcel": "32 - 00 - 03125 - 05 - 6",
+   "sale_no": "J26 - 0006"
+  },
+  {
+   "boa_location": "TESTOWNER 685198",
+   "min_bid": "Continued",
+   "municipality": "Hatfield Township",
+   "owner": "TESTOWNER 7BDEF2 CO",
+   "parcel": "35 - 00 - 05553 - 02 - 7",
+   "sale_no": "J26 - 0009"
+  },
+  {
+   "boa_location": "TESTOWNER 685198",
+   "min_bid": "Continued",
+   "municipality": "Hatfield Township",
+   "owner": "TESTOWNER 7BDEF2 CO",
+   "parcel": "35 - 00 - 05553 - 03 - 6",
+   "sale_no": "J26 - 0010"
+  },
+  {
+   "boa_location": "TESTOWNER 685198",
+   "min_bid": "Continued",
+   "municipality": "Hatfield Township",
+   "owner": "TESTOWNER 7BDEF2 CO",
+   "parcel": "35 - 00 - 05553 - 04 - 5",
+   "sale_no": "J26 - 0011"
+  },
+  {
+   "boa_location": "TESTOWNER 7264AA",
+   "min_bid": "Continued",
+   "municipality": "Lower Providence",
+   "owner": "TESTOWNER A69B7C LLC",
+   "parcel": "43 - 00 - 00847 - 10 - 9",
+   "sale_no": "J26 - 0012"
+  }
+ ],
+ "url": "https://assets.montgomerycountypa.gov/files/2026-08/2026%20Judicial%20Sale%20List%208.7.26.pdf"
+}

@@ -1,0 +1,35 @@
+source_id: ny.tompkins.foreclosure_parcels
+state: NY
+county_fips: "36109"   # Tompkins County
+# Tompkins County 'FORECLOSURE_PARCELS': the parcels in the county's current in rem tax
+# foreclosure (RPTL Art. 11) for unpaid property taxes, 27 rows on 2026-11-25 (layer last
+# edited 2026-06-08), with the owner of record and the owner's mailing name. No amount is
+# published and no per-row date: the date is the day the list was read. (The county's
+# companion layer ForeclosureParcels_Paid holds the parcels redeemed since; not loaded.)
+# SWISPRINTK '502000-22.-1-14' is ny.local_rolls.parcels parcel_id; PARCELKEY (6-digit SWIS +
+# 20-char SBL) is ny.statewide.parcels SWIS_SBL_ID. Debt kind: tax_delinquency.
+api: arcgis
+layer_url: https://services.arcgis.com/oJbAAWNInLrxvF0A/arcgis/rest/services/FORECLOSURE_PARCELS/FeatureServer/0
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, SWISPRINTK, PARCELKEY, Owner_Name, MAIL_NAME, Street_Address, PROPCLASS_CODE,
+         FULL_MARKET_VAL]
+listed_on: listed_on
+date_field: listed_on
+uid: SWISPRINTK
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Tompkins County in rem tax foreclosure parcel
+parties:
+  - role: debtor
+    name: Owner_Name
+    address: {line1: Street_Address, state_const: NY}   # the property
+  - role: debtor
+    name: MAIL_NAME
+  - {role: creditor, const: Tompkins County, person_names: false}
+parcel: {kind: pin, field: [SWISPRINTK, PARCELKEY], county_fips: "36109"}
+terms:
+  url: https://www.arcgis.com/home/item.html?id=d8ad5bc00d96496cb2843832181310d2
+  summary: "Tompkins County NY ArcGIS Online org (owner azholmes_tompkinscounty), public hosted layer 'FORECLOSURE_PARCELS', no login, token or fee. No licenseInfo or description (read 2026-11-25); no use restriction found. services.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free
