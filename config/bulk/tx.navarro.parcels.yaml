@@ -1,0 +1,53 @@
+# Navarro County, TX parcels: Navarro Central Appraisal District's 2026 certified appraisal roll
+# (real and personal property), published as one CSV on the district's 'Data and Records' page
+# (https://www.navarrocad.com/home/DataRecords, link '2026 Certified Real and Personal Appraisal
+# Roll (Excel)'). Read by src/equity/adapters/csv_parcels.py. The file name carries an upload
+# stamp, so each new roll is a new URL: point layer_url at the next year's link.
+#
+# Why a separate source: tx.statewide.parcels (StratMap 2026) has Navarro's 46,146 polygons with
+# owner names but PROP_ID empty on every one, so it yields no parcels there. StratMap carries
+# the district's Parcel_ID in GEO_ID instead (45,288 of its 45,341 distinct GEO_IDs are a
+# Parcel_ID below). Keyed on Parcel_ID, this source's parcel_uid (48349-<Parcel_ID>) is the one
+# StratMap's PROP_ID would give if it were filled with the district's property id.
+#
+# Checked 2026-11-25: 50,033 rows, Year = 2026 on all; 49,511 distinct Parcel_ID. 2,852 rows
+# are business personal property / special inventory accounts (Account BP..., SI..., BR...;
+# category L*, S*): not parcels, dropped. 201 parcels have several rows, one per undivided-
+# interest owner (Ownership_Sequence 1, 2, ...): only the lowest sequence is kept as owner.
+# 141 rows are Tax Code 25.025 confidential owners: name '*** CONFIDENTIAL OWNER ***', no
+# address; read as no owner.
+source_id: tx.navarro.parcels
+state: TX
+layer_url: "https://www.navarrocad.com/Forms/ExcelDownload?subPath=Data%20Records&fileName=1784751390_2026+Navarro+CAD+Certified+Appraisal+Roll+-+Real-Personal++-+Excel+-+20260721_130536.csv"
+order_by: Ownership_Sequence   # a parcel's lowest-sequence owner row wins
+min_interval_s: 1.0
+county: {constant: "349"}      # FIPS 48349
+csv:
+  encoding: utf-8-sig
+  exclude_prefix:
+    Primary_Category_Code: [L, S]    # Comptroller categories L (business personal), S (special inventory)
+    Account: [BP, SI, BR]            # personal property account numbers
+  null_values: ["*** CONFIDENTIAL OWNER ***"]
+fields:
+  parcel_id: Parcel_ID       # district property id, e.g. '11132'; Account ('10474-00-00310-001-00-0') is the geographic id
+  owner1: Name
+  mail_line1: Street
+  mail_line2: Street_Overflow
+  mail_city: City
+  mail_state: State
+  mail_zip: Zip5
+  situs_line1: [Prop_Street_Number, Prop_Street, Prop_Street_Dir]
+  situs_city: Prop_City
+  situs_state: Prop_State
+  situs_zip: Prop_Zip5
+  total_value: Market_Value
+  tax_year: Year
+  homestead: Homestead_Code  # 'H' = homestead; blank = unknown, not 'no'
+  land_use_code: Primary_Category_Code   # Comptroller state property category (e.g. A1 single-family)
+value_basis: "Market_Value = Navarro CAD 2026 certified market value (total), stored as appraised total. Land and improvement values are split across homestead / non-homestead / productivity columns (Land_Hs, Land_Nhs, Land_Productivity_Market, Improvement_Hs, Improvement_Nhs...), so no single land or building value is mapped. Net_Taxable_Value (after exemptions) and Cap_Value are not mapped. tax_year = Year (2026); Texas appraises as of January 1. Careof (care-of name, sometimes a street line) is not fetched."
+terms:
+  url: https://www.navarrocad.com/home/DataRecords
+  summary: "Navarro Central Appraisal District 'Data and Records' page: 2026 Certified Real and Personal Appraisal Roll (Excel) as a CSV download, free, no login (the site offers an optional account). No license or use terms stated on the page (read 2026-11-25). Texas Tax Code 25.025 confidential owners are masked by the district. www.navarrocad.com/robots.txt answers 404 (no rules); the host ignores byte ranges (whole 21.6 MB file per read)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

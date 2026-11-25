@@ -1,0 +1,73 @@
+# Indiana real-property parcels with owners and values: the DLGF PARCEL file, one county zip
+# per partition, from the Indiana Gateway download page. Read by
+# src/equity/adapters/in_dlgf_parcels.py (bulk fixed-width files, not an ArcGIS layer).
+#
+# Access (checked 2026-11-25): https://gateway.ifionline.org/public/download.aspx is a plain
+# ASP.NET form, no login and no CAPTCHA. Property Files > Data Set "Real Property" (5), Year
+# (e.g. 2025 = "2025 pay 2026"), Geography (DLGF county number 01-92) > Download posts the
+# page back with its own __VIEWSTATE/__EVENTVALIDATION and answers a zip holding one file,
+# RealParcel_<County>_<NN>_<year>P<year+1>.txt: 50 IAC 26-20-4(b) PARCEL records (file format
+# 2021A, 1,286 characters each) between a HEADER and a TRAILER record. robots.txt answers 404
+# (RFC 9309: no restrictions). Field layout: 50 IAC 26-20-4, read from
+# https://www.in.gov/dlgf/files/50-IAC-26-File-Formats.pdf (the Gateway's own copy,
+# guides/50_IAC_26.pdf, has no extractable text; property-file-documentation.xlsx describes
+# only the header record).
+#
+# Parcel key: "Parcel Number" (columns 1-25) is the 18-digit state parcel number (50 IAC
+# 26-8-1). The adapter writes it dashed, CC-TT-SS-SSS-PPP.PPP-DDD, which is how
+# in.statewide.parcels (IGIO), in.marion/lake/vanderburgh.parcels and the IN tax-sale lists
+# carry it, so parcel_uid is the same in all of them. Ohio County (58) 2025 pay 2026 on
+# 2026-11-25: 3,470 of 3,520 DLGF parcels have the identical parcel_uid in IGIO.
+source_id: in.dlgf.parcels
+state: IN
+layer_url: https://gateway.ifionline.org/public/download.aspx
+order_by: _row            # record index in the county's PARCEL file, added by the adapter
+min_interval_s: 5.0
+county: {field: county_fips, format: fips5}   # from the file's HEADER county number
+fields:
+  parcel_id: parcel_id               # dashed state parcel number (see above)
+  owner1: owner_name                 # "Owner Name", full name of owner of record
+  mail_line1: owner_address           # "Owner Street Address or P.O. Box"
+  mail_city: owner_city
+  mail_state: owner_state
+  mail_zip: owner_zip
+  situs_line1: property_address       # "Property Street Address"
+  situs_city: property_city
+  situs_zip: property_zip
+  land_use_code: property_class      # DLGF property class code (code list 1), e.g. 510
+  zoning: zoning
+  land_value: av_land                # "AV - Total Land", certified
+  bldg_value: av_improvements        # "AV - Total Improvements", certified
+  total_value: av_total              # "AV - Total Land and Improvements", certified
+  assessed_value: av_total
+  tax_year: assessment_year          # from the HEADER record
+assessment_valid_from: tax_year_jan1   # Indiana assessment date: January 1 (IC 6-1.1-1-1.5)
+# Counties with more than ~50k parcels (IGIO counts, 2026-11-25) are read in row slices of
+# the one cached county zip, so no partition holds more than ~50k parcels. County numbers
+# are DLGF's (alphabetical, 01-92); a county not listed is one slice.
+county_slices:
+  "49": 7   # Marion
+  "45": 5   # Lake
+  "02": 4   # Allen
+  "29": 4   # Hamilton
+  "71": 3   # St. Joseph
+  "10": 2   # Clark
+  "18": 2   # Delaware
+  "20": 2   # Elkhart
+  "32": 2   # Hendricks
+  "41": 2   # Johnson
+  "46": 2   # LaPorte
+  "48": 2   # Madison
+  "53": 2   # Monroe
+  "64": 2   # Porter
+  "79": 2   # Tippecanoe
+  "82": 2   # Vanderburgh
+  "84": 2   # Vigo
+value_basis: "av_land / av_improvements / av_total = 'AV - Total Land', 'AV - Total Improvements' and 'AV - Total Land and Improvements' (50 IAC 26-20-4(b) columns 469-504): the gross assessed value certified to the county auditor for the assessment year, before deductions. Indiana assesses at 100% of market value-in-use (true tax value), so av_total is mapped as both the appraised total and the assessed value. tax_year = the HEADER Assessment Year (2025 for '2025 pay 2026'); taxes on it are payable the next year. 'Current AV' (columns 1251-1286, the CAMA value that may differ from the certified one), the AV adjustments, circuit-breaker splits, legal description and acreage are not mapped. No homestead flag in this file (deductions are in the ADJMENTS file). Rows flagged 'Anonymity from public records request' = Y (IC 36-1-8.5, column 1250) are kept without owner name or mailing address."
+terms:
+  url: https://gateway.ifionline.org/public/download.aspx
+  summary: "Indiana Gateway (DLGF / IU Indiana Business Research Center) property file download: the most recent compliant real-property PARCEL file each county assessor submits to DLGF under IC 6-1.1-4-25, free, no login, no license or terms-of-use text found on the download, about or help pages. Indiana APRA IC 5-14-3-3(f) bars disclosing a list of names and addresses to a commercial entity for commercial purposes: the owner names and mailing addresses are not to be exported or used as a commercial or mailing list, only to match parcels to debtors already in hand. 2026 HEA 1360 APRA amendments (data scraping) not reviewed."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free
+use_restrictions: [no_commercial_name_address_lists, no_mailing_list]

@@ -965,7 +965,8 @@ STATES: dict[str, dict[str, Any]] = {
     "MO": {"debtors": ["mo.st_louis_county.post_third_sale"], "courts": FEDERAL_COURTS,
            "parcel_on_lien": True,
            "owners": ["mo.jackson.parcels", "mo.st_louis_county.parcels",
-                      "mo.jefferson.parcels", "mo.st_charles.parcels", "mo.greene.parcels"]},
+                      "mo.jefferson.parcels", "mo.st_charles.parcels", "mo.greene.parcels",
+                      "mo.st_louis_city.parcels"]},
     "NH": {"debtors": [], "courts": FEDERAL_COURTS, "owners": ["nh.nrpc.parcels"]},
     # Rhode Island: Providence and Cranston owner tables (the statewide layer has ids only).
     "RI": {"debtors": [], "courts": FEDERAL_COURTS, "registries": ["ri.sos.business"],
@@ -1025,7 +1026,8 @@ STATES: dict[str, dict[str, Any]] = {
                     "deeds": ["oh.cuyahoga.last_transfer"]},
     "TX-COUNTIES": {"debtors": ["tx.tabc.credit_law_delinquent"], "courts": FEDERAL_COURTS,
                     "owners": ["tx.collin.parcels", "tx.dallas_city.parcels",
-                               "tx.montgomery.parcels", "tx.williamson.parcels"]},
+                               "tx.montgomery.parcels", "tx.navarro.parcels",
+                               "tx.williamson.parcels"]},
     "MD-COUNTIES": {"debtors": ["md.st_marys.tax_sale"], "courts": FEDERAL_COURTS,
                     "owners": ["md.anne_arundel.parcels", "md.baltimore_county.parcels",
                                "md.charles.parcels", "md.montgomery.parcels", "md.st_marys.parcels",
@@ -1049,11 +1051,13 @@ STATES: dict[str, dict[str, Any]] = {
     "AZ-MARICOPA": {"debtors": ["az.maricopa.unsold_tax_liens"],
                     "owners": ["az.maricopa.parcels"], "parcel_on_lien": True,
                     "courts": FEDERAL_COURTS},
-    # Indiana statewide owners plus Marion County's (Indianapolis) mailing addresses.
+    # Indiana statewide owners (DLGF PARCEL files: owner, mailing address, AV for all 92
+    # counties, on the same dashed state parcel number as the IGIO boundaries) plus Marion
+    # County's (Indianapolis) mailing addresses.
     "IN": {"debtors": ["in.delaware.tax_sale", "in.delaware.tax_sale_results",
                        "in.st_joseph.tax_sale"],
-           "owners": ["in.statewide.parcels", "in.marion.parcels", "in.vanderburgh.parcels",
-                      "in.lake.parcels"],
+           "owners": ["in.statewide.parcels", "in.dlgf.parcels", "in.marion.parcels",
+                      "in.vanderburgh.parcels", "in.lake.parcels"],
            "parcel_on_lien": True,
            "courts": FEDERAL_COURTS,
            "deeds": ["in.st_joseph.transfer_history"]},

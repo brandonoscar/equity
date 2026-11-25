@@ -1,0 +1,47 @@
+# St. Louis City, MO parcels: City Assessor's Office yearly parcel CSVs on the City's open-data
+# site (dataset 'Parcel Data', distribution 'Parcels': "Parcel data by year for the years
+# 1997 - Current year. The current year is only available on/after December 29th each year").
+# Read by src/equity/adapters/csv_parcels.py: the zip holds one CSV per year
+# (parcels_csv_1997-2025/1997.csv ... 2025.csv, 300 MB in all); only the latest year's member is
+# read, over HTTP byte ranges (about 10.6 MB compressed). Point csv.member and tax_year at the
+# next year's file once it is published (2026.csv after 2026-12-29).
+#
+# Checked 2026-11-25: zip Last-Modified 2026-10-26; 2025.csv has 127,025 rows, one per HANDLE
+# (no duplicates), UPDATED = 2026-01-01 on every row; OWNERNAME on 127,023 (2 are 'NULL').
+# The current PARCELS.zip shapefile on the same page has only an owner code, no name.
+source_id: mo.st_louis_city.parcels
+state: MO
+layer_url: https://static.stlouis-mo.gov/open-data/assessor/Parcels-CSV-1997-Current.zip
+order_by: _row               # record index in the CSV, added by the adapter
+min_interval_s: 1.0
+county: {constant: "510"}    # St. Louis City (independent city), FIPS 29510
+csv:
+  member: 2025.csv
+  encoding: utf-8-sig
+  slice_rows: 50000          # one row per HANDLE, so slices never split a parcel
+fields:
+  parcel_id: HANDLE          # 11-digit City parcel handle, the key field of the City's parcel shapefile
+  owner1: OWNERNAME
+  owner2: OWNERNAME2
+  mail_line1: OWNERADDR
+  mail_city: OWNERCITY
+  mail_state: OWNERSTATE
+  mail_zip: OWNERZIP
+  situs_line1: SITEADDR
+  situs_city: {const: ST LOUIS}
+  situs_zip: ZIP
+  assessed_value: ASMTTOTAL
+  tax_year: {const: 2025}    # the file is the 2025 roll (2025.csv)
+  deed_ref: [BOOKNUM, BOOKPAGE]
+  land_use_code: LANDUSE1
+  zoning: ZONING1
+# BOOKNUM/BOOKPAGE are the recorded book and page as the Assessor carries them; 'NULL', '0000',
+# 'CVN' books and page 0 mean none and do not match the pattern (left empty, not guessed).
+deed_ref_pattern: '^(?P<book>\d*[1-9]\d*)-(?P<page>\d*[1-9]\d*)$'
+value_basis: "ASMTTOTAL = Assessor's 2025 assessed value (Missouri assesses at 19% of market value for residential, 32% commercial, 12% agricultural), stored as assessed_value only; ASMTLAND / ASMTIMPROV (assessed land and improvements) are not mapped, since the land/building fields mean appraised value. tax_year = 2025 from the file name (2025.csv); Missouri's assessment date is January 1. Owner names and mailing addresses as of the file's UPDATED date (2026-01-01), not the fetch date."
+terms:
+  url: https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=82
+  summary: "City of St. Louis open data, dataset 'Parcel Data' (City Assessor's Office), distribution 'Parcels' (CSV by year, 1997 to the latest complete year). Free public download from static.stlouis-mo.gov, no login or key. No license or use restriction stated on the dataset page (read 2026-11-25). static.stlouis-mo.gov/robots.txt answers 404 (no rules); www.stlouis-mo.gov robots.txt only blocks JSON downloads (/data/*&dataType=json)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free
