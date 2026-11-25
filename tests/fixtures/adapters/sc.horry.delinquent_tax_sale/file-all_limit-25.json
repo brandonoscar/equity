@@ -1,0 +1,256 @@
+{
+ "layer": "https://services1.arcgis.com/If0JkGr8ABreBTuS/arcgis/rest/services/DelinquentTaxParcels2025/FeatureServer/0",
+ "rows": [
+  {
+   "Description": "SEAVIEW PLACE                 LT 4 BL 1",
+   "FLC_Bid_Amount": "$146,916.11",
+   "Item_Number": "8248",
+   "New_Owner_Name": null,
+   "OBJECTID": 2519,
+   "OwnerName": "TESTOWNER A076D9 LLC",
+   "Owner_Name": "TESTOWNER A16F41 LLC",
+   "PIN_1": "44314040003"
+  },
+  {
+   "Description": "SAND CASTLE SOUTH HPR         UNIT 320 PH I",
+   "FLC_Bid_Amount": "$5,613.68",
+   "Item_Number": "8250",
+   "New_Owner_Name": null,
+   "OBJECTID": 2520,
+   "OwnerName": "TESTOWNER B1F8F1 LLC",
+   "Owner_Name": "TESTOWNER C41290 LLC",
+   "PIN_1": "44502010200"
+  },
+  {
+   "Description": "SAND CASTLE SOUTH HPR         UNIT 321 PH I",
+   "FLC_Bid_Amount": "$5,613.68",
+   "Item_Number": "8251",
+   "New_Owner_Name": null,
+   "OBJECTID": 2521,
+   "OwnerName": "TESTOWNER B1F8F1 LLC",
+   "Owner_Name": "TESTOWNER C41290 LLC",
+   "PIN_1": "44502010201"
+  },
+  {
+   "Description": "SAND CASTLE SOUTH HPR         UNIT 415 PH I",
+   "FLC_Bid_Amount": "$5,613.68",
+   "Item_Number": "8252",
+   "New_Owner_Name": null,
+   "OBJECTID": 2522,
+   "OwnerName": "TESTOWNER B1F8F1 LLC",
+   "Owner_Name": "TESTOWNER C41290 LLC",
+   "PIN_1": "44502010202"
+  },
+  {
+   "Description": "SAND CASTLE SOUTH HPR         UNIT 418 PH I",
+   "FLC_Bid_Amount": "$5,613.68",
+   "Item_Number": "8253",
+   "New_Owner_Name": null,
+   "OBJECTID": 2523,
+   "OwnerName": "TESTOWNER B1F8F1 LLC",
+   "Owner_Name": "TESTOWNER C41290 LLC",
+   "PIN_1": "44502010203"
+  },
+  {
+   "Description": "SAND CASTLE SOUTH HPR         UNIT 511 PH I",
+   "FLC_Bid_Amount": "$4,245.37",
+   "Item_Number": "8254",
+   "New_Owner_Name": null,
+   "OBJECTID": 2524,
+   "OwnerName": "TESTOWNER B1F8F1 LLC",
+   "Owner_Name": "TESTOWNER C41290 LLC",
+   "PIN_1": "44502010204"
+  },
+  {
+   "Description": "SAND CASTLE SOUTH HPR         UNIT 512 PH I",
+   "FLC_Bid_Amount": "$4,245.37",
+   "Item_Number": "8255",
+   "New_Owner_Name": null,
+   "OBJECTID": 2525,
+   "OwnerName": "TESTOWNER B1F8F1 LLC",
+   "Owner_Name": "TESTOWNER C41290 LLC",
+   "PIN_1": "44502010205"
+  },
+  {
+   "Description": "SAND CASTLE SOUTH HPR         UNIT 610 PH I",
+   "FLC_Bid_Amount": "$4,245.37",
+   "Item_Number": "8256",
+   "New_Owner_Name": null,
+   "OBJECTID": 2526,
+   "OwnerName": "TESTOWNER B1F8F1 LLC",
+   "Owner_Name": "TESTOWNER C41290 LLC",
+   "PIN_1": "44502010207"
+  },
+  {
+   "Description": "SAND CASTLE SOUTH HPR         UNIT 704 PH I",
+   "FLC_Bid_Amount": "$4,245.37",
+   "Item_Number": "8257",
+   "New_Owner_Name": null,
+   "OBJECTID": 2527,
+   "OwnerName": "TESTOWNER B1F8F1 LLC",
+   "Owner_Name": "TESTOWNER C41290 LLC",
+   "PIN_1": "44502010208"
+  },
+  {
+   "Description": "SAND CASTLE SOUTH HPR         UNIT 708 PH I",
+   "FLC_Bid_Amount": "$4,245.37",
+   "Item_Number": "8258",
+   "New_Owner_Name": null,
+   "OBJECTID": 2528,
+   "OwnerName": "TESTOWNER B1F8F1 LLC",
+   "Owner_Name": "TESTOWNER C41290 LLC",
+   "PIN_1": "44502010210"
+  },
+  {
+   "Description": "SAND CASTLE SOUTH HPR         UNIT 801 PH I",
+   "FLC_Bid_Amount": "$5,613.68",
+   "Item_Number": "8259",
+   "New_Owner_Name": null,
+   "OBJECTID": 2529,
+   "OwnerName": "TESTOWNER B1F8F1 LLC",
+   "Owner_Name": "TESTOWNER C41290 LLC",
+   "PIN_1": "44502010211"
+  },
+  {
+   "Description": "SAND CASTLE SOUTH HPR         UNIT 821 PH I",
+   "FLC_Bid_Amount": "$5,613.68",
+   "Item_Number": "8260",
+   "New_Owner_Name": null,
+   "OBJECTID": 2530,
+   "OwnerName": "TESTOWNER B1F8F1 LLC",
+   "Owner_Name": "TESTOWNER C41290 LLC",
+   "PIN_1": "44502010214"
+  },
+  {
+   "Description": "SAND CASTLE SOUTH HPR         UNIT 915 PH I",
+   "FLC_Bid_Amount": "$5,613.68",
+   "Item_Number": "8261",
+   "New_Owner_Name": null,
+   "OBJECTID": 2531,
+   "OwnerName": "TESTOWNER B1F8F1 LLC",
+   "Owner_Name": "TESTOWNER C41290 LLC",
+   "PIN_1": "44502010215"
+  },
+  {
+   "Description": "SAND CASTLE SOUTH HPR         UNIT 918 PH I",
+   "FLC_Bid_Amount": "$5,613.68",
+   "Item_Number": "8262",
+   "New_Owner_Name": null,
+   "OBJECTID": 2532,
+   "OwnerName": "TESTOWNER B1F8F1 LLC",
+   "Owner_Name": "TESTOWNER C41290 LLC",
+   "PIN_1": "44502010216"
+  },
+  {
+   "Description": "SAND CASTLE SOUTH HPR         UNIT 919 PH I",
+   "FLC_Bid_Amount": "$5,330.29",
+   "Item_Number": "8263",
+   "New_Owner_Name": null,
+   "OBJECTID": 2533,
+   "OwnerName": "TESTOWNER B1F8F1 LLC",
+   "Owner_Name": "TESTOWNER C41290 LLC",
+   "PIN_1": "44502010217"
+  },
+  {
+   "Description": "SAND CASTLE SOUTH HPR         UNIT 1107 PH I",
+   "FLC_Bid_Amount": "$4,245.37",
+   "Item_Number": "8264",
+   "New_Owner_Name": null,
+   "OBJECTID": 2534,
+   "OwnerName": "TESTOWNER B1F8F1 LLC",
+   "Owner_Name": "TESTOWNER C41290 LLC",
+   "PIN_1": "44502010220"
+  },
+  {
+   "Description": "SAND CASTLE SOUTH HPR         UNIT 1108 PH I",
+   "FLC_Bid_Amount": "$4,245.37",
+   "Item_Number": "8265",
+   "New_Owner_Name": null,
+   "OBJECTID": 2535,
+   "OwnerName": "TESTOWNER B1F8F1 LLC",
+   "Owner_Name": "TESTOWNER C41290 LLC",
+   "PIN_1": "44502010221"
+  },
+  {
+   "Description": "SAND CASTLE SOUTH HPR         UNIT 1205 PH I",
+   "FLC_Bid_Amount": "$4,245.37",
+   "Item_Number": "8266",
+   "New_Owner_Name": null,
+   "OBJECTID": 2536,
+   "OwnerName": "TESTOWNER B1F8F1 LLC",
+   "Owner_Name": "TESTOWNER C41290 LLC",
+   "PIN_1": "44502010222"
+  },
+  {
+   "Description": "SAND CASTLE SOUTH HPR         UNIT 1206 PH I",
+   "FLC_Bid_Amount": "$4,245.37",
+   "Item_Number": "8267",
+   "New_Owner_Name": null,
+   "OBJECTID": 2537,
+   "OwnerName": "TESTOWNER B1F8F1 LLC",
+   "Owner_Name": "TESTOWNER C41290 LLC",
+   "PIN_1": "44502010223"
+  },
+  {
+   "Description": "SAND CASTLE SOUTH HPR         UNIT 1221 PH I",
+   "FLC_Bid_Amount": "$5,613.68",
+   "Item_Number": "8268",
+   "New_Owner_Name": null,
+   "OBJECTID": 2538,
+   "OwnerName": "TESTOWNER B1F8F1 LLC",
+   "Owner_Name": "TESTOWNER C41290 LLC",
+   "PIN_1": "44502010225"
+  },
+  {
+   "Description": "SAND CASTLE SOUTH HPR         UNIT 317 PH I",
+   "FLC_Bid_Amount": "$5,613.68",
+   "Item_Number": "8269",
+   "New_Owner_Name": null,
+   "OBJECTID": 2539,
+   "OwnerName": "TESTOWNER B1F8F1 LLC",
+   "Owner_Name": "TESTOWNER C41290 LLC",
+   "PIN_1": "44502010227"
+  },
+  {
+   "Description": "SAND CASTLE SOUTH HPR         UNIT 403 PH I",
+   "FLC_Bid_Amount": "$4,630.54",
+   "Item_Number": "8270",
+   "New_Owner_Name": null,
+   "OBJECTID": 2540,
+   "OwnerName": "TESTOWNER B1F8F1 LLC",
+   "Owner_Name": "TESTOWNER C41290 LLC",
+   "PIN_1": "44502010228"
+  },
+  {
+   "Description": "SAND CASTLE SOUTH HPR         UNIT 410 PH I",
+   "FLC_Bid_Amount": "$4,245.37",
+   "Item_Number": "8271",
+   "New_Owner_Name": null,
+   "OBJECTID": 2541,
+   "OwnerName": "TESTOWNER B1F8F1 LLC",
+   "Owner_Name": "TESTOWNER C41290 LLC",
+   "PIN_1": "44502010229"
+  },
+  {
+   "Description": "SAND CASTLE SOUTH HPR         UNIT 501 PH I",
+   "FLC_Bid_Amount": "$5,613.68",
+   "Item_Number": "8272",
+   "New_Owner_Name": null,
+   "OBJECTID": 2542,
+   "OwnerName": "TESTOWNER B1F8F1 LLC",
+   "Owner_Name": "TESTOWNER C41290 LLC",
+   "PIN_1": "44502010230"
+  },
+  {
+   "Description": "SAND CASTLE SOUTH HPR         UNIT 508 PH I",
+   "FLC_Bid_Amount": "$4,245.37",
+   "Item_Number": "8273",
+   "New_Owner_Name": null,
+   "OBJECTID": 2543,
+   "OwnerName": "TESTOWNER B1F8F1 LLC",
+   "Owner_Name": "TESTOWNER C41290 LLC",
+   "PIN_1": "44502010231"
+  }
+ ],
+ "where": "1=1"
+}

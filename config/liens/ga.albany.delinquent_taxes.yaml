@@ -1,0 +1,34 @@
+source_id: ga.albany.delinquent_taxes
+state: GA
+county_fips: "13095"   # Dougherty County (City of Albany)
+# City of Albany, GA 'Delinquent Tax Records 9-16-25': layer delinquenttaxassets, 3,593 rows,
+# one per delinquent property tax account, with the owner, property id, situs and amount due
+# (layer delinquenttaxrecords, 907 rows, is the geocoded subset). Unpaid Georgia property tax
+# is a lien on the property (O.C.G.A. 48-2-56); a senior lien, not a judgment. No per-row
+# date and no date field: the date is the day the list was read, though the list itself is
+# as of 2025-09-16 (layer title; the config has no constant-date option).
+# Prop_ID ('00001/00002/004') is the Dougherty County parcel number (ParcelNum in
+# ga.dougherty.parcels). Debt kind: tax_delinquency.
+api: arcgis
+layer_url: https://services6.arcgis.com/VKHi8CC6pMIyYUIs/arcgis/rest/services/Delinquent_Tax_Records_9_16_25/FeatureServer/3
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, Prop_ID, Situs, Dist, OWNER_NAME, Amt_Due]
+listed_on: listed_on
+date_field: listed_on
+uid: [Prop_ID, OWNER_NAME, Amt_Due]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: City of Albany delinquent property tax (list of 2025-09-16)
+amount: Amt_Due
+parties:
+  - role: debtor
+    name: OWNER_NAME
+  - {role: creditor, const: City of Albany GA}
+parcel: {kind: pin, field: Prop_ID, county_fips: "13095"}
+extra_pii: [Situs]
+terms:
+  url: https://www.arcgis.com/home/item.html?id=c6753d558577478da656348f2125a68b
+  summary: "City of Albany, GA ArcGIS org item 'Delinquent Tax Records 9_16_25' ('Delinquent tax records as of 9-16-25'), public hosted layer, no login, token or fee. No licenseInfo (read 2026-11-25); no use restriction found. A one-time snapshot (2025-09-16), not refreshed. services6.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

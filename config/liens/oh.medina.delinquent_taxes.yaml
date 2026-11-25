@@ -1,0 +1,36 @@
+source_id: oh.medina.delinquent_taxes
+state: OH
+county_fips: "39103"   # Medina County
+# Medina County 'Medina Delinquent Parcels' ("Layers for Delinquent Parcels in Medina County";
+# edited 2026-11-24): 454 parcels certified delinquent (CertDelqYear) with the owner, situs
+# address, city and ZIP, the delinquent amount, current half charges, current owed taxes and
+# a contract (payment plan) flag. Certified delinquent taxes are a lien on the parcel (ORC
+# 5721.10); a senior lien, not a judgment. The date is Jan 1 of the certification year. No
+# Medina County owner layer is installed; IdentificationNumber ('001-02A-01-015') is the
+# LocalParcelID of the Ohio statewide layer (oh.statewide.parcels). Debt kind:
+# tax_delinquency.
+api: arcgis
+layer_url: https://services5.arcgis.com/m37BbrYBtVXq1nb8/arcgis/rest/services/Medina_Delinquent_Parcels/FeatureServer/0
+where: "Delinquent > 0"
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, ParcelPIN, IdentificationNumber, Owner, Address, City, ZIP, CertDelqYear,
+         Contract, Delinquent, CurrentOwedTaxes]
+year_dates: [CertDelqYear]
+date_field: CertDelqYear
+uid: IdentificationNumber
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Medina County certified delinquent real estate tax
+amount: Delinquent
+parties:
+  - role: debtor
+    name: Owner
+  - {role: creditor, const: Medina County Treasurer}
+parcel: {kind: pin, field: IdentificationNumber, county_fips: "39103"}
+extra_pii: [Address]
+terms:
+  url: https://www.arcgis.com/home/item.html?id=9b69b4cc9dfc41b1a42da7b8c32bd37e
+  summary: "Medina County ArcGIS org item 'Medina Delinquent Parcels', public hosted layer, no login, token or fee. No licenseInfo (read 2026-11-25); no use restriction found. services5.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

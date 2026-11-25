@@ -1,0 +1,33 @@
+source_id: tx.tabc.credit_law_delinquent
+state: TX
+county_fips: "48"   # statewide; the row's county is used
+# Texas Alcoholic Beverage Commission 'Credit Law Delinquent List' (Tex. Alco. Bev. Code
+# 102.32, 16 TAC 45.121): retailers reported by wholesalers or distributors as not having paid
+# for beer, wine or liquor delivered on credit, published twice a month (315 rows on
+# 2026-11-25, list 1953), with the corporate and trade name, permit (clp), premises address,
+# county, the delivery period and the effective date. A retailer on the list may buy only for
+# cash until it pays. A debt owed to a private seller, published by the state; not a lien or a
+# judgment. Debt kind: administrative_order (closest kind; the list is a statutory
+# delinquency notice).
+portal: https://data.texas.gov
+dataset: ix8u-msb9
+order_by: [listnumber, id]
+partition: none
+date_field: effectivedate
+uid: [clp, deliverydatebegin, deliverydateend]
+doc_type: OTHER
+doc_type_raw: TABC credit law delinquent retailer
+county_name_field: county
+parties:
+  - role: debtor
+    name: corporatename
+    address: {line1: streetaddress, city: city, state: state, zip: zip}
+  - role: debtor
+    name: tradename
+    address: {line1: streetaddress, city: city, state: state, zip: zip}
+terms:
+  url: https://data.texas.gov/d/ix8u-msb9
+  summary: "Texas Open Data Portal (Socrata), attribution Texas Alcoholic Beverage Commission, public, no login; no license set. data.texas.gov/robots.txt disallows only /api/odata/ and /api/collocate (the SODA /resource API is allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

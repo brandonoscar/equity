@@ -1,0 +1,206 @@
+{
+ "layer": "https://services.arcgis.com/GaVfJCelmMSe6faF/arcgis/rest/services/2026_Land_Sales_(view)/FeatureServer/22",
+ "rows": [
+  {
+   "EMV": 2700,
+   "FID": 1,
+   "MIN_BID": "277.82",
+   "PARCELID": "15-350-2060",
+   "PLDESC": "CITY OF CARLTON WOODLAND PARK",
+   "archived": "Yes"
+  },
+  {
+   "EMV": 2700,
+   "FID": 2,
+   "MIN_BID": "277.82",
+   "PARCELID": "15-350-2080",
+   "PLDESC": "CITY OF CARLTON WOODLAND PARK",
+   "archived": "Yes"
+  },
+  {
+   "EMV": 2300,
+   "FID": 3,
+   "MIN_BID": "241.85",
+   "PARCELID": "15-350-2100",
+   "PLDESC": "CITY OF CARLTON WOODLAND PARK",
+   "archived": "Yes"
+  },
+  {
+   "EMV": 16800,
+   "FID": 4,
+   "MIN_BID": "1,852.24",
+   "PARCELID": "06-375-0045",
+   "PLDESC": "CITY OF CLOQUET VIBERTS ADDITION",
+   "archived": "Yes"
+  },
+  {
+   "EMV": 24700,
+   "FID": 5,
+   "MIN_BID": "663.33",
+   "PARCELID": "90-010-6230",
+   "PLDESC": "TOWN OF EAGLE",
+   "archived": "No"
+  },
+  {
+   "EMV": 1600,
+   "FID": 6,
+   "MIN_BID": "160.92",
+   "PARCELID": "48-230-1000",
+   "PLDESC": "TOWNSITE OF HOLYOKE",
+   "archived": "No"
+  },
+  {
+   "EMV": 43200,
+   "FID": 7,
+   "MIN_BID": "3,031.36",
+   "PARCELID": "48-230-1020",
+   "PLDESC": "TOWNSITE OF HOLYOKE",
+   "archived": "No"
+  },
+  {
+   "EMV": 15600,
+   "FID": 9,
+   "MIN_BID": "15600.00",
+   "PARCELID": "23-460-0080",
+   "PLDESC": "CITY OF SCANLON WHITES THIRD ADDITION",
+   "archived": "No"
+  },
+  {
+   "EMV": 9400,
+   "FID": 10,
+   "MIN_BID": "9400",
+   "PARCELID": "23-040-0980",
+   "PLDESC": "CITY OF SCANLON BROOKS SCANLON ADDITION",
+   "archived": "No"
+  },
+  {
+   "EMV": 144600,
+   "FID": 11,
+   "MIN_BID": "144600.00",
+   "PARCELID": "23-010-1500",
+   "PLDESC": "CITY OF SCANLON ORIGINAL PLAT",
+   "archived": "No"
+  },
+  {
+   "EMV": 7500,
+   "FID": 12,
+   "MIN_BID": "7500.00",
+   "PARCELID": "06-415-0280",
+   "PLDESC": "WILSONS ADDITION TO PROSPECT PARK",
+   "archived": "No"
+  },
+  {
+   "EMV": 12400,
+   "FID": 13,
+   "MIN_BID": "12400.00",
+   "PARCELID": "06-045-8100",
+   "PLDESC": "CITY OF CLOQUET ORIGINAL PLAT",
+   "archived": "No"
+  },
+  {
+   "EMV": 12400,
+   "FID": 14,
+   "MIN_BID": "12400.00",
+   "PARCELID": "06-045-8120",
+   "PLDESC": "CITY OF CLOQUET ORIGINAL PLAT",
+   "archived": "No"
+  },
+  {
+   "EMV": 48500,
+   "FID": 18,
+   "MIN_BID": null,
+   "PARCELID": "06-520-8430",
+   "PLDESC": "CITY OF CLOQUET",
+   "archived": "No"
+  },
+  {
+   "EMV": 33500,
+   "FID": 19,
+   "MIN_BID": null,
+   "PARCELID": "06-510-2710",
+   "PLDESC": "CITY OF CLOQUET",
+   "archived": "No"
+  },
+  {
+   "EMV": 124800,
+   "FID": 20,
+   "MIN_BID": null,
+   "PARCELID": "06-510-2380",
+   "PLDESC": "CITY OF CLOQUET",
+   "archived": "No"
+  },
+  {
+   "EMV": 2100,
+   "FID": 21,
+   "MIN_BID": null,
+   "PARCELID": "06-510-8014",
+   "PLDESC": "CITY OF CLOQUET",
+   "archived": "No"
+  },
+  {
+   "EMV": 300,
+   "FID": 22,
+   "MIN_BID": null,
+   "PARCELID": "06-743-0385",
+   "PLDESC": "VALLEY VIEW ESTATES",
+   "archived": "No"
+  },
+  {
+   "EMV": 4300,
+   "FID": 23,
+   "MIN_BID": null,
+   "PARCELID": "15-750-0260",
+   "PLDESC": "CITY OF THOMSON SMITHS REARR BLK 21",
+   "archived": "No"
+  },
+  {
+   "EMV": 4300,
+   "FID": 24,
+   "MIN_BID": null,
+   "PARCELID": "15-750-0280",
+   "PLDESC": "CITY OF THOMSON SMITHS REARR BLK 21",
+   "archived": "No"
+  },
+  {
+   "EMV": 8200,
+   "FID": 25,
+   "MIN_BID": null,
+   "PARCELID": "19-010-1320",
+   "PLDESC": "CITY OF KETTLE RIVER ORIGINAL PLAT",
+   "archived": "No"
+  },
+  {
+   "EMV": 68400,
+   "FID": 26,
+   "MIN_BID": null,
+   "PARCELID": "21-245-0220",
+   "PLDESC": "PARK PLACE",
+   "archived": "No"
+  },
+  {
+   "EMV": 1800,
+   "FID": 27,
+   "MIN_BID": null,
+   "PARCELID": "21-010-0320",
+   "PLDESC": "CITY OF MOOSE LAKE ORIGINAL PLAT",
+   "archived": "No"
+  },
+  {
+   "EMV": 39300,
+   "FID": 28,
+   "MIN_BID": null,
+   "PARCELID": "48-230-0200",
+   "PLDESC": "TOWNSITE OF HOLYOKE",
+   "archived": "No"
+  },
+  {
+   "EMV": 109700,
+   "FID": 29,
+   "MIN_BID": null,
+   "PARCELID": "57-010-1576",
+   "PLDESC": "TOWN OF LAKEVIEW",
+   "archived": "No"
+  }
+ ],
+ "where": "1=1"
+}

@@ -1,0 +1,231 @@
+{
+ "layer": "https://services.arcgis.com/seTexOicoRXDvRsJ/arcgis/rest/services/Tax_Sale_List_Locations/FeatureServer/0",
+ "rows": [
+  {
+   "Account_No": "R0624205",
+   "OBJECTID": 1329,
+   "Prior_Year_Lien": "N",
+   "State_Parcel_No": 277129200001,
+   "Tax_Year": 2024,
+   "Total_Due": 185.04,
+   "ZipCode": 801180000
+  },
+  {
+   "Account_No": "R0623623",
+   "OBJECTID": 1330,
+   "Prior_Year_Lien": "N",
+   "State_Parcel_No": 223305320003,
+   "Tax_Year": 2024,
+   "Total_Due": 679.83,
+   "ZipCode": 80112
+  },
+  {
+   "Account_No": "R0623627",
+   "OBJECTID": 1331,
+   "Prior_Year_Lien": "N",
+   "State_Parcel_No": 234903104021,
+   "Tax_Year": 2024,
+   "Total_Due": 2450.58,
+   "ZipCode": 80134
+  },
+  {
+   "Account_No": "R0623626",
+   "OBJECTID": 1332,
+   "Prior_Year_Lien": "N",
+   "State_Parcel_No": 234903104020,
+   "Tax_Year": 2024,
+   "Total_Due": 6070.62,
+   "ZipCode": 80134
+  },
+  {
+   "Account_No": "R0622705",
+   "OBJECTID": 1333,
+   "Prior_Year_Lien": "N",
+   "State_Parcel_No": 234733402001,
+   "Tax_Year": 2024,
+   "Total_Due": 7673.55,
+   "ZipCode": 80116
+  },
+  {
+   "Account_No": "R0623182",
+   "OBJECTID": 1334,
+   "Prior_Year_Lien": "N",
+   "State_Parcel_No": 223321322132,
+   "Tax_Year": 2024,
+   "Total_Due": 48.03,
+   "ZipCode": 80134
+  },
+  {
+   "Account_No": "R0623183",
+   "OBJECTID": 1335,
+   "Prior_Year_Lien": "N",
+   "State_Parcel_No": 223321322133,
+   "Tax_Year": 2024,
+   "Total_Due": 54.95,
+   "ZipCode": 80134
+  },
+  {
+   "Account_No": "R0623176",
+   "OBJECTID": 1336,
+   "Prior_Year_Lien": "N",
+   "State_Parcel_No": 223321322126,
+   "Tax_Year": 2024,
+   "Total_Due": 41.35,
+   "ZipCode": 80134
+  },
+  {
+   "Account_No": "R0623180",
+   "OBJECTID": 1337,
+   "Prior_Year_Lien": "N",
+   "State_Parcel_No": 223321322130,
+   "Tax_Year": 2024,
+   "Total_Due": 66.08,
+   "ZipCode": 80134
+  },
+  {
+   "Account_No": "R0623179",
+   "OBJECTID": 1338,
+   "Prior_Year_Lien": "N",
+   "State_Parcel_No": 223321322129,
+   "Tax_Year": 2024,
+   "Total_Due": 52.03,
+   "ZipCode": 80134
+  },
+  {
+   "Account_No": "R0623185",
+   "OBJECTID": 1339,
+   "Prior_Year_Lien": "N",
+   "State_Parcel_No": 223321322135,
+   "Tax_Year": 2024,
+   "Total_Due": 82.13,
+   "ZipCode": 80134
+  },
+  {
+   "Account_No": "R0623181",
+   "OBJECTID": 1340,
+   "Prior_Year_Lien": "N",
+   "State_Parcel_No": 223321322131,
+   "Tax_Year": 2024,
+   "Total_Due": 55.82,
+   "ZipCode": 80134
+  },
+  {
+   "Account_No": "R0623175",
+   "OBJECTID": 1341,
+   "Prior_Year_Lien": "N",
+   "State_Parcel_No": 223321322125,
+   "Tax_Year": 2024,
+   "Total_Due": 62.55,
+   "ZipCode": 80134
+  },
+  {
+   "Account_No": "R0623173",
+   "OBJECTID": 1342,
+   "Prior_Year_Lien": "N",
+   "State_Parcel_No": 223321322123,
+   "Tax_Year": 2024,
+   "Total_Due": 65558.11,
+   "ZipCode": 80134
+  },
+  {
+   "Account_No": "R0623174",
+   "OBJECTID": 1343,
+   "Prior_Year_Lien": "N",
+   "State_Parcel_No": 223321322124,
+   "Tax_Year": 2024,
+   "Total_Due": 63465.25,
+   "ZipCode": 80134
+  },
+  {
+   "Account_No": "R0623184",
+   "OBJECTID": 1344,
+   "Prior_Year_Lien": "N",
+   "State_Parcel_No": 223321322134,
+   "Tax_Year": 2024,
+   "Total_Due": 92.81,
+   "ZipCode": 80134
+  },
+  {
+   "Account_No": "R0623177",
+   "OBJECTID": 1345,
+   "Prior_Year_Lien": "N",
+   "State_Parcel_No": 223321322127,
+   "Tax_Year": 2024,
+   "Total_Due": 87.46,
+   "ZipCode": 80134
+  },
+  {
+   "Account_No": "R0622586",
+   "OBJECTID": 1346,
+   "Prior_Year_Lien": "N",
+   "State_Parcel_No": 277326200006,
+   "Tax_Year": 2024,
+   "Total_Due": 64.73,
+   "ZipCode": 0
+  },
+  {
+   "Account_No": "R0620978",
+   "OBJECTID": 1347,
+   "Prior_Year_Lien": "N",
+   "State_Parcel_No": 223123122003,
+   "Tax_Year": 2024,
+   "Total_Due": 102.91,
+   "ZipCode": 80124
+  },
+  {
+   "Account_No": "R0620977",
+   "OBJECTID": 1348,
+   "Prior_Year_Lien": "N",
+   "State_Parcel_No": 223123122002,
+   "Tax_Year": 2024,
+   "Total_Due": 56.5,
+   "ZipCode": 80124
+  },
+  {
+   "Account_No": "R0620981",
+   "OBJECTID": 1349,
+   "Prior_Year_Lien": "N",
+   "State_Parcel_No": 223123122006,
+   "Tax_Year": 2024,
+   "Total_Due": 49.67,
+   "ZipCode": 80124
+  },
+  {
+   "Account_No": "R0620980",
+   "OBJECTID": 1350,
+   "Prior_Year_Lien": "N",
+   "State_Parcel_No": 223123122005,
+   "Tax_Year": 2024,
+   "Total_Due": 59.93,
+   "ZipCode": 80124
+  },
+  {
+   "Account_No": "R0620979",
+   "OBJECTID": 1351,
+   "Prior_Year_Lien": "N",
+   "State_Parcel_No": 223123122004,
+   "Tax_Year": 2024,
+   "Total_Due": 41.14,
+   "ZipCode": 80124
+  },
+  {
+   "Account_No": "R0620975",
+   "OBJECTID": 1352,
+   "Prior_Year_Lien": "N",
+   "State_Parcel_No": 223123121083,
+   "Tax_Year": 2024,
+   "Total_Due": 49.67,
+   "ZipCode": 80124
+  },
+  {
+   "Account_No": "R0620984",
+   "OBJECTID": 1353,
+   "Prior_Year_Lien": "N",
+   "State_Parcel_No": 223124202005,
+   "Tax_Year": 2024,
+   "Total_Due": 44.56,
+   "ZipCode": 80124
+  }
+ ],
+ "where": "1=1"
+}

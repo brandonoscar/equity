@@ -1,0 +1,116 @@
+{
+ "layer": "https://services1.arcgis.com/1Cfo0re3un0w6a30/arcgis/rest/services/Tax_Sales/FeatureServer/3",
+ "rows": [
+  {
+   "CARE_OF": null,
+   "FullAddress": "2264 TEST ST",
+   "MUNI_NAME": "NORTH MIDDLETON TWP",
+   "OBJECTID_1": 1,
+   "OWNER": "TESTOWNER 362E66 LLC",
+   "PID": "29001549",
+   "PIN": "29-15-1251-056",
+   "TAX_STAT": "T"
+  },
+  {
+   "CARE_OF": "TESTOWNER EA508C",
+   "FullAddress": "2717 TEST ST",
+   "MUNI_NAME": "UPPER FRANKFORD TWP",
+   "OBJECTID_1": 2,
+   "OWNER": "TESTOWNER 4F4B97",
+   "PID": "43000412",
+   "PIN": "43-05-0417-024C",
+   "TAX_STAT": "T"
+  },
+  {
+   "CARE_OF": null,
+   "FullAddress": "227 TEST ST",
+   "MUNI_NAME": "LOWER MIFFLIN TWP",
+   "OBJECTID_1": 3,
+   "OWNER": "TESTOWNER BCDCD6 LLC",
+   "PID": "15000674",
+   "PIN": "15-07-0483-018",
+   "TAX_STAT": "T"
+  },
+  {
+   "CARE_OF": null,
+   "FullAddress": "6184 TEST ST",
+   "MUNI_NAME": "WEST PENNSBORO TWP",
+   "OBJECTID_1": 4,
+   "OWNER": "TESTOWNER 7527A0",
+   "PID": "46000396",
+   "PIN": "46-08-0581-014",
+   "TAX_STAT": "T"
+  },
+  {
+   "CARE_OF": null,
+   "FullAddress": "5977 TEST ST",
+   "MUNI_NAME": "MIDDLESEX TOWNSHIP",
+   "OBJECTID_1": 5,
+   "OWNER": "TESTOWNER 5D3E46",
+   "PID": "21000797",
+   "PIN": "21-06-0015-002",
+   "TAX_STAT": "T"
+  },
+  {
+   "CARE_OF": null,
+   "FullAddress": "1440 TEST ST",
+   "MUNI_NAME": "MIDDLESEX TOWNSHIP",
+   "OBJECTID_1": 6,
+   "OWNER": "TESTOWNER 5D3E46",
+   "PID": "21000797",
+   "PIN": "21-06-0015-002",
+   "TAX_STAT": "T"
+  },
+  {
+   "CARE_OF": "TESTOWNER E1F10A",
+   "FullAddress": "1750 TEST ST",
+   "MUNI_NAME": "SOUTH MIDDLETON TWP",
+   "OBJECTID_1": 7,
+   "OWNER": "TESTOWNER 843794",
+   "PID": "40000352",
+   "PIN": "40-09-0531-009D",
+   "TAX_STAT": "T"
+  },
+  {
+   "CARE_OF": null,
+   "FullAddress": "8930 TEST ST",
+   "MUNI_NAME": "UPPER ALLEN TOWNSHIP",
+   "OBJECTID_1": 8,
+   "OWNER": "TESTOWNER 9F193E",
+   "PID": "42000315",
+   "PIN": "42-11-0274-027",
+   "TAX_STAT": "T"
+  },
+  {
+   "CARE_OF": null,
+   "FullAddress": "2401 TEST ST",
+   "MUNI_NAME": "HAMPDEN TOWNSHIP",
+   "OBJECTID_1": 9,
+   "OWNER": "TESTOWNER A2A257 LLC",
+   "PID": "10005377",
+   "PIN": "10-19-1606-018",
+   "TAX_STAT": "T"
+  },
+  {
+   "CARE_OF": null,
+   "FullAddress": "3227 TEST ST",
+   "MUNI_NAME": "SOUTH MIDDLETON TWP",
+   "OBJECTID_1": 10,
+   "OWNER": "TESTOWNER 5CBD78 LLC",
+   "PID": "40000285",
+   "PIN": "40-09-0531-002",
+   "TAX_STAT": "T"
+  },
+  {
+   "CARE_OF": null,
+   "FullAddress": "5014 TEST ST",
+   "MUNI_NAME": "WEST PENNSBORO TWP",
+   "OBJECTID_1": 11,
+   "OWNER": "TESTOWNER 53F417 LLC",
+   "PID": "46000901",
+   "PIN": "46-09-0515-005",
+   "TAX_STAT": "T"
+  }
+ ],
+ "where": "1=1"
+}

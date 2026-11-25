@@ -1,0 +1,256 @@
+{
+ "layer": "https://services7.arcgis.com/GXM8JipKyc0m6HBi/arcgis/rest/services/2024_Forfeited_Land_Sale_Update/FeatureServer/1",
+ "rows": [
+  {
+   "OBJECTID": 1,
+   "grand_total_balance": 699877.77,
+   "grantor": "TESTOWNER 1DB884",
+   "last_transfer_date": 1781538900000,
+   "par_addr_all": "TESTOWNER D11E5F",
+   "parcel_id": "00312013",
+   "parcel_owner": "STATE OF OHIO FORF CV# 965553",
+   "total_net_delq_balance": 687035.6
+  },
+  {
+   "OBJECTID": 2,
+   "grand_total_balance": 29385.81,
+   "grantor": "TESTOWNER 034095",
+   "last_transfer_date": 1762431780000,
+   "par_addr_all": "TESTOWNER B820EF",
+   "parcel_id": "00529069",
+   "parcel_owner": "STATE OF OHIO FORF CV# 108824",
+   "total_net_delq_balance": 28847.63
+  },
+  {
+   "OBJECTID": 3,
+   "grand_total_balance": 843.15,
+   "grantor": "TESTOWNER 0F5136",
+   "last_transfer_date": 1762421280000,
+   "par_addr_all": "TESTOWNER A111A8",
+   "parcel_id": "01110029",
+   "parcel_owner": "STATE OF OHIO FORF CV# 100510",
+   "total_net_delq_balance": 789.07
+  },
+  {
+   "OBJECTID": 4,
+   "grand_total_balance": 2331.28,
+   "grantor": "TESTOWNER 071E4C",
+   "last_transfer_date": 1767773040000,
+   "par_addr_all": "TESTOWNER F5A85F",
+   "parcel_id": "01612172",
+   "parcel_owner": "STATE OF OHIO FORF CV# 106239",
+   "total_net_delq_balance": 2016.62
+  },
+  {
+   "OBJECTID": 5,
+   "grand_total_balance": 45176.82,
+   "grantor": "TESTOWNER DC4304",
+   "last_transfer_date": 1762431840000,
+   "par_addr_all": "TESTOWNER 1DE592",
+   "parcel_id": "01614125",
+   "parcel_owner": "STATE OF OHIO FORF CV# 971718",
+   "total_net_delq_balance": 27884.12
+  },
+  {
+   "OBJECTID": 6,
+   "grand_total_balance": 4568.6,
+   "grantor": "TESTOWNER 1AF50F",
+   "last_transfer_date": 1762429920000,
+   "par_addr_all": "TESTOWNER 13B8FC",
+   "parcel_id": "01618093",
+   "parcel_owner": "STATE OF OHIO FORF CV# 102642",
+   "total_net_delq_balance": 4519.44
+  },
+  {
+   "OBJECTID": 7,
+   "grand_total_balance": 21562.93,
+   "grantor": "TESTOWNER F367A7",
+   "last_transfer_date": 1767773160000,
+   "par_addr_all": "TESTOWNER E082AD",
+   "parcel_id": "01730129",
+   "parcel_owner": "STATE OF OHIO FORF CV# 111598",
+   "total_net_delq_balance": 21307.28
+  },
+  {
+   "OBJECTID": 8,
+   "grand_total_balance": 436.83,
+   "grantor": "TESTOWNER 5BDC11",
+   "last_transfer_date": 1773229800000,
+   "par_addr_all": "TESTOWNER B9B18F",
+   "parcel_id": "01908024",
+   "parcel_owner": "STATE OF OHIO FORF CV# 105275",
+   "total_net_delq_balance": 389.79
+  },
+  {
+   "OBJECTID": 9,
+   "grand_total_balance": 45981.77,
+   "grantor": "TESTOWNER 526737",
+   "last_transfer_date": 1746530280000,
+   "par_addr_all": "TESTOWNER B97E16",
+   "parcel_id": "01921089",
+   "parcel_owner": "STATE OF OHIO FORF CV # 980637",
+   "total_net_delq_balance": 45467.65
+  },
+  {
+   "OBJECTID": 10,
+   "grand_total_balance": 18745.46,
+   "grantor": "TESTOWNER 600917",
+   "last_transfer_date": 1768557000000,
+   "par_addr_all": "TESTOWNER D7FEBD",
+   "parcel_id": "02307031",
+   "parcel_owner": "STATE OF OHIO FORF CV# 113546",
+   "total_net_delq_balance": 17875.2
+  },
+  {
+   "OBJECTID": 11,
+   "grand_total_balance": 4365.55,
+   "grantor": "TESTOWNER 2D81EB",
+   "last_transfer_date": 1730374260000,
+   "par_addr_all": "TESTOWNER 75636E",
+   "parcel_id": "02803080",
+   "parcel_owner": "STATE OF OHIO FORF CV# 982529",
+   "total_net_delq_balance": 4057.92
+  },
+  {
+   "OBJECTID": 12,
+   "grand_total_balance": 1228.68,
+   "grantor": "TESTOWNER CE6F0B",
+   "last_transfer_date": 1763110140000,
+   "par_addr_all": "TESTOWNER 75636E",
+   "parcel_id": "02803081",
+   "parcel_owner": "STATE OF OHIO FORF CV# 104804",
+   "total_net_delq_balance": 1120.51
+  },
+  {
+   "OBJECTID": 13,
+   "grand_total_balance": 2351.94,
+   "grantor": "TESTOWNER 6C6C17",
+   "last_transfer_date": 1767773280000,
+   "par_addr_all": "TESTOWNER 4741D4",
+   "parcel_id": "10329028",
+   "parcel_owner": "STATE OF OHIO FORF CV# 106357",
+   "total_net_delq_balance": 2324.53
+  },
+  {
+   "OBJECTID": 14,
+   "grand_total_balance": 9475.51,
+   "grantor": "TESTOWNER 85F87C",
+   "last_transfer_date": 1762432020000,
+   "par_addr_all": "TESTOWNER 3FF1E6",
+   "parcel_id": "10414102",
+   "parcel_owner": "STATE OF OHIO FORF CV# 980196",
+   "total_net_delq_balance": 8807.54
+  },
+  {
+   "OBJECTID": 15,
+   "grand_total_balance": 25609.55,
+   "grantor": "TESTOWNER 836B56",
+   "last_transfer_date": 1738142460000,
+   "par_addr_all": "TESTOWNER 3C994C",
+   "parcel_id": "10421170",
+   "parcel_owner": "STATE OF OHIO FORF CV # 905209",
+   "total_net_delq_balance": 24518.05
+  },
+  {
+   "OBJECTID": 16,
+   "grand_total_balance": 74193.43,
+   "grantor": "TESTOWNER 4C6A87",
+   "last_transfer_date": 1770369600000,
+   "par_addr_all": "TESTOWNER 7BDDC9",
+   "parcel_id": "10512012",
+   "parcel_owner": "STATE OF OHIO FORF CV# 111475",
+   "total_net_delq_balance": 72672.88
+  },
+  {
+   "OBJECTID": 17,
+   "grand_total_balance": 215282.42,
+   "grantor": "TESTOWNER D7918D INC",
+   "last_transfer_date": 1607007840000,
+   "par_addr_all": "TESTOWNER D15A64",
+   "parcel_id": "10513008",
+   "parcel_owner": "STATE OF OHIO FORF CV #865932",
+   "total_net_delq_balance": 211419.11
+  },
+  {
+   "OBJECTID": 18,
+   "grand_total_balance": 157689.99,
+   "grantor": "TESTOWNER 4830E6",
+   "last_transfer_date": 1768548840000,
+   "par_addr_all": "TESTOWNER BF015B",
+   "parcel_id": "10527060",
+   "parcel_owner": "STATE OF OHIO FORF CV# 995524",
+   "total_net_delq_balance": 156252.59
+  },
+  {
+   "OBJECTID": 19,
+   "grand_total_balance": 27835.56,
+   "grantor": "TESTOWNER AE3491 LLC",
+   "last_transfer_date": 1753693500000,
+   "par_addr_all": "TESTOWNER F0D51F",
+   "parcel_id": "10527080",
+   "parcel_owner": "STATE OF OHIO FORF CV# 105244",
+   "total_net_delq_balance": 27525.83
+  },
+  {
+   "OBJECTID": 20,
+   "grand_total_balance": 7638.28,
+   "grantor": "TESTOWNER 5F80A5",
+   "last_transfer_date": 1752132480000,
+   "par_addr_all": "TESTOWNER 803A20",
+   "parcel_id": "10528043",
+   "parcel_owner": "STATE OF OHIO FORF CV# 998566",
+   "total_net_delq_balance": 7448.21
+  },
+  {
+   "OBJECTID": 21,
+   "grand_total_balance": 81134.2,
+   "grantor": "TESTOWNER 87F334",
+   "last_transfer_date": 1607008140000,
+   "par_addr_all": "TESTOWNER 2A28E9",
+   "parcel_id": "10529060",
+   "parcel_owner": "STATE OF OHIO FORF CV #870362",
+   "total_net_delq_balance": 79429.21
+  },
+  {
+   "OBJECTID": 22,
+   "grand_total_balance": 80158.22,
+   "grantor": "TESTOWNER 3BCD29",
+   "last_transfer_date": 1758622560000,
+   "par_addr_all": "TESTOWNER F316AA",
+   "parcel_id": "10530105",
+   "parcel_owner": "STATE OF OHIO FORF CV# 994469",
+   "total_net_delq_balance": 79154.04
+  },
+  {
+   "OBJECTID": 23,
+   "grand_total_balance": 16565.24,
+   "grantor": "TESTOWNER 019A82",
+   "last_transfer_date": 1763110380000,
+   "par_addr_all": "TESTOWNER 141DF4",
+   "parcel_id": "10532127",
+   "parcel_owner": "STATE OF OHIO FORF CV# 111099",
+   "total_net_delq_balance": 15657.75
+  },
+  {
+   "OBJECTID": 24,
+   "grand_total_balance": 5825.63,
+   "grantor": "TESTOWNER D63726",
+   "last_transfer_date": 1763970240000,
+   "par_addr_all": "TESTOWNER ECE1EB",
+   "parcel_id": "10532141",
+   "parcel_owner": "STATE OF OHIO FORF CV# 105265",
+   "total_net_delq_balance": 5181.79
+  },
+  {
+   "OBJECTID": 25,
+   "grand_total_balance": 3193.66,
+   "grantor": "TESTOWNER 70C171",
+   "last_transfer_date": 1767855000000,
+   "par_addr_all": "TESTOWNER 772DF2",
+   "parcel_id": "10533147",
+   "parcel_owner": "STATE OF OHIO FORF CV# 983551",
+   "total_net_delq_balance": 2805.29
+  }
+ ],
+ "where": "1=1"
+}

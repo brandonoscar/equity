@@ -1,0 +1,34 @@
+source_id: oh.greene.delinquent_taxes
+state: OH
+county_fips: "39057"   # Greene County (Xenia, Beavercreek)
+# Greene County GIS 'Open Data' parcel layer: parcels with delinquent taxes due
+# (Delinquent_Taxes_Due > 0; 887 rows on 2026-11-25), with the owner, tax mailing address,
+# the delinquent amount and total taxes due. Delinquent taxes are a lien on the parcel (ORC
+# 5721.10); a senior lien, not a judgment. No delinquency date is published, so the date is
+# the day the list was read. Same layer as oh.greene.parcels (Parcel_Id).
+# Debt kind: tax_delinquency.
+api: arcgis
+layer_url: https://gis.greenecountyohio.gov/webgis2/rest/services/OpenData/OpenData/MapServer/1
+where: "Delinquent_Taxes_Due > 0"
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, Parcel_Id, Tax_Year, Owner_Name, Tax_Mailing_Address,
+         Tax_Mailing_City_St_Zip, Delinquent_Taxes_Due, Total_Taxes_Due]
+listed_on: listed_on
+date_field: listed_on
+uid: Parcel_Id
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Greene County delinquent real estate tax
+amount: Delinquent_Taxes_Due
+parties:
+  - role: debtor
+    name: Owner_Name
+    address: {line1: Tax_Mailing_Address, csz: Tax_Mailing_City_St_Zip}
+  - {role: creditor, const: Greene County Treasurer}
+parcel: {kind: pin, field: Parcel_Id, county_fips: "39057"}
+terms:
+  url: https://gis.greenecountyohio.gov/webgis2/rest/services/OpenData/OpenData/MapServer
+  summary: "Greene County (Ohio) GIS 'Open Data' MapServer ('Created for exploring and downloading Greene County GIS data'), copyright 'Greene County GIS', no login, token or fee. No license or use-restriction text (read 2026-11-24). gis.greenecountyohio.gov/robots.txt answers 200 with an HTML error page, no robots rules."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

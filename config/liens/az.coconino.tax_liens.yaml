@@ -1,0 +1,30 @@
+source_id: az.coconino.tax_liens
+state: AZ
+county_fips: "04005"   # Coconino County (Flagstaff)
+# Coconino County Treasurer 'Delinquent Tax Parcels' (the layer behind the county's Tax Lien
+# Sale Viewer: "properties that have a Tax Lien available for purchase"): 34 rows on
+# 2026-11-25, with the owner, APN, Tyler account, the purchase amount (taxes, interest and
+# fees owed) and the date the amount is valid through. State-held tax liens on the parcel
+# (A.R.S. 42-18122); a senior lien, not a judgment. The date is LAST_UPDATE. APN is the
+# Assessor parcel number, as in az.coconino.parcels. Debt kind: tax_lien.
+api: arcgis
+layer_url: https://services1.arcgis.com/Rlvx5g8pKeK13apH/arcgis/rest/services/Delinquent_Tax_Parcels/FeatureServer/0
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, ACCOUNTNUMBER, OWNERNAME, APN, PURCHASE_AMOUNT, VALID_THRU, LAST_UPDATE, VACANT]
+date_field: LAST_UPDATE
+uid: [APN, ACCOUNTNUMBER]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Coconino County tax lien available for purchase
+amount: PURCHASE_AMOUNT
+parties:
+  - role: debtor
+    name: OWNERNAME
+  - {role: creditor, const: Coconino County Treasurer}
+parcel: {kind: pin, field: APN, county_fips: "04005"}
+terms:
+  url: https://www.arcgis.com/home/item.html?id=d2cc2f00b19b4ce5af03aac0dd2f030d
+  summary: "Coconino County GIS public hosted layer used by the county's Tax Lien Sale Viewer, no login, token or fee. licenseInfo (read 2026-11-25): no warranty as to accuracy, reliability or completeness; no use restriction. services1.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,281 @@
+{
+ "layer": "https://services9.arcgis.com/1W1HM6U4efbQ7mKR/arcgis/rest/services/Valencia_County_Delinquent_Property_Tax_Auction_2026_WFL1/FeatureServer/1",
+ "rows": [
+  {
+   "AccountNum": "R027396",
+   "ActualValu": 70238,
+   "CAREOF": "TESTOWNER 065558",
+   "NETASD": 23412,
+   "OBJECTID": 1,
+   "Owner": "TESTOWNER 179C0A LLC",
+   "OwnerAddre": "TESTOWNER A5F7F7",
+   "Situs": "TESTOWNER 5A875D",
+   "UPC": "1019038397110000000"
+  },
+  {
+   "AccountNum": "R027398",
+   "ActualValu": 63211,
+   "CAREOF": " ",
+   "NETASD": 21070,
+   "OBJECTID": 2,
+   "Owner": "TESTOWNER D4C1DE",
+   "OwnerAddre": "TESTOWNER D6D4DA",
+   "Situs": "TESTOWNER F5B59B",
+   "UPC": "1019038400035000000"
+  },
+  {
+   "AccountNum": "R027399",
+   "ActualValu": 21855,
+   "CAREOF": " ",
+   "NETASD": 7285,
+   "OBJECTID": 3,
+   "Owner": "TESTOWNER 71DFB7",
+   "OwnerAddre": "TESTOWNER 6CCFFA",
+   "Situs": "TESTOWNER C86087",
+   "UPC": "1019038400045000000"
+  },
+  {
+   "AccountNum": "R027400",
+   "ActualValu": 21855,
+   "CAREOF": " ",
+   "NETASD": 7285,
+   "OBJECTID": 4,
+   "Owner": "TESTOWNER 0F1CBB",
+   "OwnerAddre": "TESTOWNER 5D21C5",
+   "Situs": "TESTOWNER 682598",
+   "UPC": "1019038400057000000"
+  },
+  {
+   "AccountNum": "R053970",
+   "ActualValu": 21855,
+   "CAREOF": " ",
+   "NETASD": 7285,
+   "OBJECTID": 5,
+   "Owner": "TESTOWNER 8F8C92",
+   "OwnerAddre": "TESTOWNER BC1725",
+   "Situs": "TESTOWNER 38452E",
+   "UPC": "1020038370170000000"
+  },
+  {
+   "AccountNum": "R027373",
+   "ActualValu": 20000,
+   "CAREOF": " ",
+   "NETASD": 6667,
+   "OBJECTID": 6,
+   "Owner": "TESTOWNER D3F617",
+   "OwnerAddre": "TESTOWNER ECB256",
+   "Situs": "TESTOWNER 11A78A",
+   "UPC": "1019038370093000000"
+  },
+  {
+   "AccountNum": "R050950",
+   "ActualValu": 127868,
+   "CAREOF": " ",
+   "NETASD": 42623,
+   "OBJECTID": 7,
+   "Owner": "TESTOWNER 4F6CCD",
+   "OwnerAddre": "TESTOWNER 13C6CE",
+   "Situs": "TESTOWNER E5A47D",
+   "UPC": "1020038250235000000"
+  },
+  {
+   "AccountNum": "R026624",
+   "ActualValu": 18501,
+   "CAREOF": " ",
+   "NETASD": 6167,
+   "OBJECTID": 8,
+   "Owner": "TESTOWNER D33543",
+   "OwnerAddre": "TESTOWNER 6111ED",
+   "Situs": " ",
+   "UPC": "1019038145455000000"
+  },
+  {
+   "AccountNum": "R177764",
+   "ActualValu": 21855,
+   "CAREOF": " ",
+   "NETASD": 7285,
+   "OBJECTID": 9,
+   "Owner": "TESTOWNER 58FA5D",
+   "OwnerAddre": "TESTOWNER BE8228",
+   "Situs": "TESTOWNER D79FA8",
+   "UPC": "1020038005438000000"
+  },
+  {
+   "AccountNum": "R084088",
+   "ActualValu": 257336,
+   "CAREOF": " ",
+   "NETASD": 85779,
+   "OBJECTID": 10,
+   "Owner": "TESTOWNER CBE159",
+   "OwnerAddre": "TESTOWNER 937AB3",
+   "Situs": "TESTOWNER CEAB11",
+   "UPC": "1010038075210000000"
+  },
+  {
+   "AccountNum": "R064042",
+   "ActualValu": 270963,
+   "CAREOF": " ",
+   "NETASD": 90321,
+   "OBJECTID": 11,
+   "Owner": "TESTOWNER 994D7D",
+   "OwnerAddre": "TESTOWNER 1D0CA2",
+   "Situs": "TESTOWNER 40262A",
+   "UPC": "1009038260289000000"
+  },
+  {
+   "AccountNum": "R176429",
+   "ActualValu": 73447,
+   "CAREOF": " ",
+   "NETASD": 24483,
+   "OBJECTID": 12,
+   "Owner": "TESTOWNER 2686A6",
+   "OwnerAddre": "TESTOWNER 0C3589",
+   "Situs": "TESTOWNER A6F1C3",
+   "UPC": "1011038502185000000"
+  },
+  {
+   "AccountNum": "R085001",
+   "ActualValu": 158979,
+   "CAREOF": " ",
+   "NETASD": 52993,
+   "OBJECTID": 13,
+   "Owner": "TESTOWNER 2DD316",
+   "OwnerAddre": "TESTOWNER B23844",
+   "Situs": "TESTOWNER BD7EC6",
+   "UPC": "1010035110175000000"
+  },
+  {
+   "AccountNum": "R212000",
+   "ActualValu": 141270,
+   "CAREOF": " ",
+   "NETASD": 47090,
+   "OBJECTID": 16,
+   "Owner": "TESTOWNER F5729D",
+   "OwnerAddre": "TESTOWNER 1D0CA2",
+   "Situs": "TESTOWNER CE7D48",
+   "UPC": "1008035300155000000"
+  },
+  {
+   "AccountNum": "R080693",
+   "ActualValu": 160285,
+   "CAREOF": " ",
+   "NETASD": 53428,
+   "OBJECTID": 18,
+   "Owner": "TESTOWNER 42AB41",
+   "OwnerAddre": "TESTOWNER 176E62",
+   "Situs": "TESTOWNER EB269B",
+   "UPC": "1006033445279000000"
+  },
+  {
+   "AccountNum": "R083375",
+   "ActualValu": 64933,
+   "CAREOF": " ",
+   "NETASD": 21644,
+   "OBJECTID": 19,
+   "Owner": "TESTOWNER CA10E1",
+   "OwnerAddre": "TESTOWNER 5FDD18",
+   "Situs": "TESTOWNER 980BDC",
+   "UPC": "1008034307480000000"
+  },
+  {
+   "AccountNum": "R072476",
+   "ActualValu": 101711,
+   "CAREOF": "TESTOWNER E351DC LLC",
+   "NETASD": 33904,
+   "OBJECTID": 21,
+   "Owner": "TESTOWNER 20B193 LLC",
+   "OwnerAddre": "TESTOWNER 5F3F24",
+   "Situs": "TESTOWNER AE5A85",
+   "UPC": "1007025120404000000"
+  },
+  {
+   "AccountNum": "R192014",
+   "ActualValu": 74857,
+   "CAREOF": " ",
+   "NETASD": 24952,
+   "OBJECTID": 22,
+   "Owner": "TESTOWNER 8DAD01",
+   "OwnerAddre": "TESTOWNER 22890F",
+   "Situs": "TESTOWNER 3131AA",
+   "UPC": "1008027498176000000"
+  },
+  {
+   "AccountNum": "R070053",
+   "ActualValu": 343336,
+   "CAREOF": " ",
+   "NETASD": 114446,
+   "OBJECTID": 23,
+   "Owner": "TESTOWNER CAF977",
+   "OwnerAddre": "TESTOWNER B3E096",
+   "Situs": "TESTOWNER 7C9F78",
+   "UPC": "1007028493334000000"
+  },
+  {
+   "AccountNum": "R215133",
+   "ActualValu": 245057,
+   "CAREOF": " ",
+   "NETASD": 81686,
+   "OBJECTID": 26,
+   "Owner": "TESTOWNER 0D3D79",
+   "OwnerAddre": "TESTOWNER 774E48",
+   "Situs": "TESTOWNER 6E93AF",
+   "UPC": "1007039124245000000"
+  },
+  {
+   "AccountNum": "R004396",
+   "ActualValu": 44615,
+   "CAREOF": " ",
+   "NETASD": 12872,
+   "OBJECTID": 27,
+   "Owner": "TESTOWNER 83178F",
+   "OwnerAddre": "TESTOWNER B99EED",
+   "Situs": "TESTOWNER 08CBFC",
+   "UPC": "1006022382418000000"
+  },
+  {
+   "AccountNum": "R215585",
+   "ActualValu": 191205,
+   "CAREOF": " ",
+   "NETASD": 61735,
+   "OBJECTID": 28,
+   "Owner": "TESTOWNER C5835C",
+   "OwnerAddre": "TESTOWNER 0BA963",
+   "Situs": "TESTOWNER 3A3633",
+   "UPC": "1007039275154000000"
+  },
+  {
+   "AccountNum": "R140770",
+   "ActualValu": 167130,
+   "CAREOF": " ",
+   "NETASD": 53710,
+   "OBJECTID": 29,
+   "Owner": "TESTOWNER 690405",
+   "OwnerAddre": "TESTOWNER 83499C",
+   "Situs": "TESTOWNER D2F4B9",
+   "UPC": "1011039395410000000"
+  },
+  {
+   "AccountNum": "R159938",
+   "ActualValu": 182639,
+   "CAREOF": " ",
+   "NETASD": 60880,
+   "OBJECTID": 31,
+   "Owner": "TESTOWNER 6BF720",
+   "OwnerAddre": "TESTOWNER 4CEF11",
+   "Situs": "TESTOWNER 2AEC70",
+   "UPC": "1016038046440000000"
+  },
+  {
+   "AccountNum": "R131996",
+   "ActualValu": 24039,
+   "CAREOF": " ",
+   "NETASD": 8013,
+   "OBJECTID": 32,
+   "Owner": "TESTOWNER 0CF777",
+   "OwnerAddre": "TESTOWNER F0CF74",
+   "Situs": "TESTOWNER F7DB5D",
+   "UPC": "1016038216318000000"
+  }
+ ],
+ "where": "1=1"
+}

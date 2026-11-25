@@ -1,0 +1,36 @@
+source_id: in.delaware.tax_sale
+state: IN
+county_fips: "18035"   # Delaware County (Muncie)
+# Delaware County, Indiana 'Fall Tax Sale 2026' (snippet: "Parcels slated for the Fall 2026
+# Delaware County Tax Sale, located within Muncie, IN city limits"; data extracted from the
+# county's tax sale vendor and Indiana Gateway on 2026-09-01): 632 parcels with delinquent
+# taxes (USER_Status DELINQUENT), with the owner, property address, sale id, the amount to
+# remove the parcel from the sale and the minimum bid. Delinquent Indiana property taxes are a
+# lien on the parcel (IC 6-1.1-22-13); a senior lien, not a judgment. No list date per row:
+# the date is the day the list was read. USER_Property_ID is the state parcel number, as
+# in.statewide.parcels and in.st_joseph.tax_sale. Debt kind: tax_delinquency.
+api: arcgis
+layer_url: https://services.arcgis.com/VyRjdyMziYNF5Bwe/arcgis/rest/services/Fall_Tax_Sale_2026/FeatureServer/0
+single_partition: true
+order_by: [ObjectID]
+select: [ObjectID, USER_Property_ID, USER_Sale_ID, USER_Year, USER_Sale_Type, USER_Status,
+         USER_Property_Address, USER_Owner_Name, USER_Amount_To_Remove_From_Sale,
+         USER_Minimum_Bid]
+listed_on: listed_on
+date_field: listed_on
+uid: USER_Sale_ID
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Delaware County fall 2026 tax sale parcel
+amount: USER_Amount_To_Remove_From_Sale
+parties:
+  - role: debtor
+    name: USER_Owner_Name
+  - {role: creditor, const: Delaware County Treasurer}
+parcel: {kind: pin, field: USER_Property_ID, county_fips: "18035"}
+extra_pii: [USER_Property_Address]
+terms:
+  url: https://www.arcgis.com/home/item.html?id=57dc076f5fb845978b9a7df9971fbd29
+  summary: "Delaware County, Indiana ArcGIS org, public hosted layer 'Fall Tax Sale 2026', no login, token or fee. No licenseInfo (read 2026-11-25); no use restriction found. services.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

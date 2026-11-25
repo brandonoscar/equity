@@ -1,0 +1,39 @@
+source_id: in.delaware.tax_sale_results
+state: IN
+county_fips: "18035"
+# Muncie Land Bank's compilation of the Delaware County IN fall 2026 tax sale results for
+# Muncie parcels (414 rows on 2026-11-25): owner at the time of sale and mailing address,
+# minimum bid, winning bid, buyer, status (SOLD 133, COUNTY 275 = struck to the county,
+# REDEEMED 6) and the tax sale SURPLUS (Surplus_DBL, the bid above the minimum, held for the
+# owner under IC 6-1.1-24-7; 82 rows > 0). No doc type holds surplus funds, so each row is
+# the tax sale (TAX_LIEN_STATE, amount = minimum bid, consideration = winning bid) and the
+# surplus stays in the source record; a REDEEMED row is marked satisfied.
+api: arcgis
+layer_url: https://services6.arcgis.com/eVA2BCtRxhBWjuqd/arcgis/rest/services/Munci_IN_TaxSaleResults_Fall2026/FeatureServer/35
+single_partition: true
+order_by: [OBJECTID1]
+select: [OBJECTID1, State_PIN, SALE_ID, StreetAddr, City, Zip, Owner_Name_Time_of_Sale,
+         OwnerName, OwnerAddre, OwnerCity, OwnerState, OwnerZip, Min_Bid_DBL, Surplus_DBL,
+         Amt_of_Sale_DBL, Buyer_Name, Tax_Sale_Status]
+listed_on: listed_on
+date_field: listed_on
+uid: SALE_ID
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Delaware County IN fall 2026 tax sale result
+amount: Min_Bid_DBL
+consideration: Amt_of_Sale_DBL
+satisfied_flag: Tax_Sale_Status
+satisfied_values: [REDEEMED]
+parties:
+  - role: debtor
+    name: Owner_Name_Time_of_Sale
+    address: {line1: OwnerAddre, city: OwnerCity, state: OwnerState, zip: OwnerZip}
+  - {role: other, name: Buyer_Name}
+  - {role: creditor, const: Delaware County Treasurer}
+parcel: {kind: pin, field: State_PIN, county_fips: "18035"}   # state parcel no., as in.statewide
+extra_pii: [OwnerName, StreetAddr]
+terms:
+  url: https://www.arcgis.com/home/item.html?id=0b4a16a6d5a34f7499abfefbe99cd656
+  summary: "Muncie Land Bank, Inc. (owner z_gullion) public ArcGIS Online layer, free, no login. licenseInfo (read 2026-11-25): compiled by MLB from the public 2026 Delaware County tax sale records, informational only; the compilation 'may not be reproduced or distributed, in whole or in part, without MLB's written permission' (internal use only, no redistribution); underlying records are public at the County Auditor; no accuracy warranty, outcomes can change after the sale (redemption)."
+  checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,256 @@
+{
+ "layer": "https://services2.arcgis.com/CiQCvRGImIxsaFnM/arcgis/rest/services/Tax_Forfeited_Parcels/FeatureServer/0",
+ "rows": [
+  {
+   "Auction_Starting_Price": 414.64,
+   "EMV__Assessment_2025_": 2000,
+   "OBJECTID": 1,
+   "PID": "101050000020",
+   "Status": "Closed",
+   "Statute_Designation": "https://www.revisor.mn.gov/statutes/cite/282.005",
+   "TDTDNM": "CITY OF ALBERTVILLE",
+   "Year_of_Forfeiture__Pay_Year_": 2025
+  },
+  {
+   "Auction_Starting_Price": 1600,
+   "EMV__Assessment_2025_": 1600,
+   "OBJECTID": 2,
+   "PID": "101079000020",
+   "Status": "Closed",
+   "Statute_Designation": "https://www.revisor.mn.gov/statutes/cite/282.005",
+   "TDTDNM": "CITY OF ALBERTVILLE",
+   "Year_of_Forfeiture__Pay_Year_": 2022
+  },
+  {
+   "Auction_Starting_Price": 247200,
+   "EMV__Assessment_2025_": 247200,
+   "OBJECTID": 3,
+   "PID": "101111001020",
+   "Status": "Open",
+   "Statute_Designation": "https://www.revisor.mn.gov/statutes/cite/282.005",
+   "TDTDNM": "CITY OF ALBERTVILLE",
+   "Year_of_Forfeiture__Pay_Year_": 2021
+  },
+  {
+   "Auction_Starting_Price": 3300,
+   "EMV__Assessment_2025_": 3300,
+   "OBJECTID": 4,
+   "PID": "102500302303",
+   "Status": "Closed",
+   "Statute_Designation": "https://www.revisor.mn.gov/statutes/cite/282.005",
+   "TDTDNM": "CITY OF ANNANDALE",
+   "Year_of_Forfeiture__Pay_Year_": 2020
+  },
+  {
+   "Auction_Starting_Price": 100,
+   "EMV__Assessment_2025_": 100,
+   "OBJECTID": 5,
+   "PID": "103059002010",
+   "Status": "Closed",
+   "Statute_Designation": "https://www.revisor.mn.gov/statutes/cite/282.005",
+   "TDTDNM": "CITY OF BUFFALO",
+   "Year_of_Forfeiture__Pay_Year_": 2023
+  },
+  {
+   "Auction_Starting_Price": 100,
+   "EMV__Assessment_2025_": 100,
+   "OBJECTID": 6,
+   "PID": "103122006030",
+   "Status": "Closed",
+   "Statute_Designation": "https://www.revisor.mn.gov/statutes/cite/282.005",
+   "TDTDNM": "CITY OF BUFFALO",
+   "Year_of_Forfeiture__Pay_Year_": 2015
+  },
+  {
+   "Auction_Starting_Price": 100,
+   "EMV__Assessment_2025_": 100,
+   "OBJECTID": 7,
+   "PID": "103122006040",
+   "Status": "Closed",
+   "Statute_Designation": "https://www.revisor.mn.gov/statutes/cite/282.005",
+   "TDTDNM": "CITY OF BUFFALO",
+   "Year_of_Forfeiture__Pay_Year_": 2015
+  },
+  {
+   "Auction_Starting_Price": 100,
+   "EMV__Assessment_2025_": 200,
+   "OBJECTID": 8,
+   "PID": "103122006090",
+   "Status": "Closed",
+   "Statute_Designation": "https://www.revisor.mn.gov/statutes/cite/282.005",
+   "TDTDNM": "CITY OF BUFFALO",
+   "Year_of_Forfeiture__Pay_Year_": 2015
+  },
+  {
+   "Auction_Starting_Price": 5400,
+   "EMV__Assessment_2025_": 5400,
+   "OBJECTID": 9,
+   "PID": "103123001010",
+   "Status": "Closed",
+   "Statute_Designation": "https://www.revisor.mn.gov/statutes/cite/282.005",
+   "TDTDNM": "CITY OF BUFFALO",
+   "Year_of_Forfeiture__Pay_Year_": 2022
+  },
+  {
+   "Auction_Starting_Price": 10800,
+   "EMV__Assessment_2025_": 10800,
+   "OBJECTID": 10,
+   "PID": "103123008010",
+   "Status": "Closed",
+   "Statute_Designation": "https://www.revisor.mn.gov/statutes/cite/282.005",
+   "TDTDNM": "CITY OF BUFFALO",
+   "Year_of_Forfeiture__Pay_Year_": 2022
+  },
+  {
+   "Auction_Starting_Price": 10800,
+   "EMV__Assessment_2025_": 10800,
+   "OBJECTID": 11,
+   "PID": "103124002180",
+   "Status": "Open",
+   "Statute_Designation": "https://www.revisor.mn.gov/statutes/cite/282.005",
+   "TDTDNM": "CITY OF BUFFALO",
+   "Year_of_Forfeiture__Pay_Year_": 2019
+  },
+  {
+   "Auction_Starting_Price": 4900,
+   "EMV__Assessment_2025_": 4900,
+   "OBJECTID": 12,
+   "PID": "103124004320",
+   "Status": "Open",
+   "Statute_Designation": "https://www.revisor.mn.gov/statutes/cite/282.005",
+   "TDTDNM": "CITY OF BUFFALO",
+   "Year_of_Forfeiture__Pay_Year_": 2020
+  },
+  {
+   "Auction_Starting_Price": 16700,
+   "EMV__Assessment_2025_": 16700,
+   "OBJECTID": 13,
+   "PID": "103249000020",
+   "Status": "Open",
+   "Statute_Designation": "https://www.revisor.mn.gov/statutes/cite/282.005",
+   "TDTDNM": "CITY OF BUFFALO",
+   "Year_of_Forfeiture__Pay_Year_": 2022
+  },
+  {
+   "Auction_Starting_Price": 4500,
+   "EMV__Assessment_2025_": 9000,
+   "OBJECTID": 14,
+   "PID": "103500214302",
+   "Status": "Open",
+   "Statute_Designation": "https://www.revisor.mn.gov/statutes/cite/282.005",
+   "TDTDNM": "CITY OF BUFFALO",
+   "Year_of_Forfeiture__Pay_Year_": 2015
+  },
+  {
+   "Auction_Starting_Price": 9900,
+   "EMV__Assessment_2025_": 9900,
+   "OBJECTID": 15,
+   "PID": "105058000020",
+   "Status": "Open",
+   "Statute_Designation": "https://www.revisor.mn.gov/statutes/cite/282.005",
+   "TDTDNM": "CITY OF COKATO",
+   "Year_of_Forfeiture__Pay_Year_": 2019
+  },
+  {
+   "Auction_Starting_Price": 3000,
+   "EMV__Assessment_2025_": 3000,
+   "OBJECTID": 16,
+   "PID": "107035000140",
+   "Status": "Closed",
+   "Statute_Designation": "https://www.revisor.mn.gov/statutes/cite/282.005",
+   "TDTDNM": "CITY OF DELANO",
+   "Year_of_Forfeiture__Pay_Year_": 2025
+  },
+  {
+   "Auction_Starting_Price": 2200,
+   "EMV__Assessment_2025_": 2200,
+   "OBJECTID": 17,
+   "PID": "107063000010",
+   "Status": "Closed",
+   "Statute_Designation": "https://www.revisor.mn.gov/statutes/cite/282.005",
+   "TDTDNM": "CITY OF DELANO",
+   "Year_of_Forfeiture__Pay_Year_": 2025
+  },
+  {
+   "Auction_Starting_Price": 3100,
+   "EMV__Assessment_2025_": 3100,
+   "OBJECTID": 18,
+   "PID": "107063000020",
+   "Status": "Closed",
+   "Statute_Designation": "https://www.revisor.mn.gov/statutes/cite/282.005",
+   "TDTDNM": "CITY OF DELANO",
+   "Year_of_Forfeiture__Pay_Year_": 2025
+  },
+  {
+   "Auction_Starting_Price": 213000,
+   "EMV__Assessment_2025_": 213000,
+   "OBJECTID": 19,
+   "PID": "107500131101",
+   "Status": "Closed",
+   "Statute_Designation": "https://www.revisor.mn.gov/statutes/cite/282.005",
+   "TDTDNM": "CITY OF DELANO",
+   "Year_of_Forfeiture__Pay_Year_": 2023
+  },
+  {
+   "Auction_Starting_Price": 7100,
+   "EMV__Assessment_2025_": 7100,
+   "OBJECTID": 20,
+   "PID": "109043000010",
+   "Status": "Open",
+   "Statute_Designation": "https://www.revisor.mn.gov/statutes/cite/282.005",
+   "TDTDNM": "CITY OF HOWARD LAKE",
+   "Year_of_Forfeiture__Pay_Year_": 2023
+  },
+  {
+   "Auction_Starting_Price": 7800,
+   "EMV__Assessment_2025_": 7800,
+   "OBJECTID": 21,
+   "PID": "109043000030",
+   "Status": "Open",
+   "Statute_Designation": "https://www.revisor.mn.gov/statutes/cite/282.005",
+   "TDTDNM": "CITY OF HOWARD LAKE",
+   "Year_of_Forfeiture__Pay_Year_": 2023
+  },
+  {
+   "Auction_Starting_Price": 12000,
+   "EMV__Assessment_2025_": 12000,
+   "OBJECTID": 22,
+   "PID": "109043000040",
+   "Status": "Open",
+   "Statute_Designation": "https://www.revisor.mn.gov/statutes/cite/282.005",
+   "TDTDNM": "CITY OF HOWARD LAKE",
+   "Year_of_Forfeiture__Pay_Year_": 2023
+  },
+  {
+   "Auction_Starting_Price": 2200,
+   "EMV__Assessment_2025_": 2200,
+   "OBJECTID": 23,
+   "PID": "109043000050",
+   "Status": "Closed",
+   "Statute_Designation": "https://www.revisor.mn.gov/statutes/cite/282.005",
+   "TDTDNM": "CITY OF HOWARD LAKE",
+   "Year_of_Forfeiture__Pay_Year_": 2023
+  },
+  {
+   "Auction_Starting_Price": 4500,
+   "EMV__Assessment_2025_": 4500,
+   "OBJECTID": 24,
+   "PID": "109049000040",
+   "Status": "Open",
+   "Statute_Designation": "https://www.revisor.mn.gov/statutes/cite/282.005",
+   "TDTDNM": "CITY OF HOWARD LAKE",
+   "Year_of_Forfeiture__Pay_Year_": 2015
+  },
+  {
+   "Auction_Starting_Price": 23200,
+   "EMV__Assessment_2025_": 23200,
+   "OBJECTID": 25,
+   "PID": "109052000030",
+   "Status": "Closed",
+   "Statute_Designation": "https://www.revisor.mn.gov/statutes/cite/282.005",
+   "TDTDNM": "CITY OF HOWARD LAKE",
+   "Year_of_Forfeiture__Pay_Year_": 2023
+  }
+ ],
+ "where": "1=1"
+}

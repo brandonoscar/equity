@@ -1,0 +1,29 @@
+source_id: ga.dekalb.excess_funds
+state: GA
+county_fips: "13089"
+# DeKalb County Tax Commissioner excess funds list (PDF, 'EXCESS FUNDS As of 11/10/2026', 152
+# rows): money left over from tax sales (O.C.G.A. 48-4-5) and held for the former owner or
+# other claimants, by parcel, amount and sale date. SURPLUS FUNDS: no doc type holds money
+# owed back to an owner, so each row is OTHER (amount = the excess). The PDF's name, date and
+# address columns run into each other on about half the rows, so names are not mapped (no
+# reliable split; that needs adapter code); rows link by parcel id only. Those garbled columns
+# stay in the source record and are pseudonymized in fixtures. The former owner is often no
+# longer the parcel's owner of record after the sale.
+api: pdf
+url: https://dekalbtaxga.gov/wp-content/uploads/Excess-Funds-List.pdf
+header: PARCEL ID
+as_of: {field: as_of, after: "As of"}
+date_field: as_of
+uid: parcel_id
+doc_type: OTHER
+doc_type_raw: DeKalb County tax sale excess funds
+amount: excess_amount
+parties:
+  - {role: other, const: DeKalb County Tax Commissioner}
+parcel: {kind: pin, field: parcel_id, county_fips: "13089"}   # '06 307 01 032' = ga.dekalb PARCELID
+extra_pii: [saledate, first_name, middle, last_name, situs_address, city]
+terms:
+  url: https://dekalbtax.org/excess-funds
+  summary: "DeKalb County GA Tax Commissioner public PDF, free, no login. No license or use terms on the page (read 2026-11-25); dekalbtaxga.gov/robots.txt disallows only form-export and wp-admin paths."
+  checked_on: 2026-11-25
+  cost_model: free

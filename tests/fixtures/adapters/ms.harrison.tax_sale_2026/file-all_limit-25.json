@@ -1,0 +1,256 @@
+{
+ "layer": "https://services3.arcgis.com/giRjiTL1UH17pAvy/arcgis/rest/services/MSGCHrsnCntyDelinquentParcelAuctions2026/FeatureServer/0",
+ "rows": [
+  {
+   "DR_Info": "1495/0163 05/05/2000-WD",
+   "OBJECTID": 210189,
+   "Owner_Name": "TESTOWNER 425851",
+   "PARCEL_ID": "0107I-01-031.000",
+   "PPIN_NUM_y": "78182",
+   "Sale_Sequence": 4713,
+   "Total_Tax___Cost": 226.23,
+   "addCalc": "TESTOWNER D36C99"
+  },
+  {
+   "DR_Info": "2011-0004928-D-J1",
+   "OBJECTID": 210207,
+   "Owner_Name": "TESTOWNER 8C52BB LLC",
+   "PARCEL_ID": "0107J-01-006.000",
+   "PPIN_NUM_y": "78303",
+   "Sale_Sequence": 5792,
+   "Total_Tax___Cost": 596.39,
+   "addCalc": "TESTOWNER DAE220"
+  },
+  {
+   "DR_Info": "2011-0004928-D-J1",
+   "OBJECTID": 210208,
+   "Owner_Name": "TESTOWNER 8C52BB LLC",
+   "PARCEL_ID": "0107J-01-007.000",
+   "PPIN_NUM_y": "78130",
+   "Sale_Sequence": 5791,
+   "Total_Tax___Cost": 2108.86,
+   "addCalc": "TESTOWNER DAE220"
+  },
+  {
+   "DR_Info": "1572/0141 02/15/2002-QC",
+   "OBJECTID": 210235,
+   "Owner_Name": "TESTOWNER CE6F70",
+   "PARCEL_ID": "0107J-02-001.002",
+   "PPIN_NUM_y": "117461",
+   "Sale_Sequence": 2384,
+   "Total_Tax___Cost": 195.87,
+   "addCalc": "TESTOWNER 47272B"
+  },
+  {
+   "DR_Info": "2008-0002050-D-J1",
+   "OBJECTID": 210241,
+   "Owner_Name": "TESTOWNER 171840",
+   "PARCEL_ID": "0107J-02-008.000",
+   "PPIN_NUM_y": "78291",
+   "Sale_Sequence": 2519,
+   "Total_Tax___Cost": 394.47,
+   "addCalc": "TESTOWNER 4FF848"
+  },
+  {
+   "DR_Info": "2023-0009415-D-J1",
+   "OBJECTID": 210267,
+   "Owner_Name": "TESTOWNER 56FD70 LLC",
+   "PARCEL_ID": "0107O-01-016.000",
+   "PPIN_NUM_y": "78249",
+   "Sale_Sequence": 473,
+   "Total_Tax___Cost": 1497.31,
+   "addCalc": "TESTOWNER 07AE7F"
+  },
+  {
+   "DR_Info": "2017-0004825-D-J1",
+   "OBJECTID": 210274,
+   "Owner_Name": "TESTOWNER A8542E",
+   "PARCEL_ID": "0107O-01-023.000",
+   "PPIN_NUM_y": "78267",
+   "Sale_Sequence": 3299,
+   "Total_Tax___Cost": 1505.91,
+   "addCalc": "TESTOWNER 0AB74F"
+  },
+  {
+   "DR_Info": "2012-0007154-D-J1",
+   "OBJECTID": 210317,
+   "Owner_Name": "TESTOWNER 616EA4",
+   "PARCEL_ID": "0107P-01-028.000",
+   "PPIN_NUM_y": "120036",
+   "Sale_Sequence": 1399,
+   "Total_Tax___Cost": 279.82,
+   "addCalc": "TESTOWNER F1BEAD"
+  },
+  {
+   "DR_Info": "2005-0015398-D-J1",
+   "OBJECTID": 212157,
+   "Owner_Name": "TESTOWNER A043F5",
+   "PARCEL_ID": "0208E-01-003.015",
+   "PPIN_NUM_y": "112195",
+   "Sale_Sequence": 4765,
+   "Total_Tax___Cost": 1139.73,
+   "addCalc": "TESTOWNER 9CA5CA"
+  },
+  {
+   "DR_Info": "2010-0008599-D-J1",
+   "OBJECTID": 212163,
+   "Owner_Name": "TESTOWNER 9CF637",
+   "PARCEL_ID": "0208E-01-003.021",
+   "PPIN_NUM_y": "138025",
+   "Sale_Sequence": 3675,
+   "Total_Tax___Cost": 203.25,
+   "addCalc": "TESTOWNER 74D28A"
+  },
+  {
+   "DR_Info": "0937/0028 05/19/2004-WD",
+   "OBJECTID": 212166,
+   "Owner_Name": "TESTOWNER B22A6E",
+   "PARCEL_ID": "0208E-01-005.001",
+   "PPIN_NUM_y": "138445",
+   "Sale_Sequence": 4070,
+   "Total_Tax___Cost": 196.1,
+   "addCalc": "TESTOWNER 404597"
+  },
+  {
+   "DR_Info": "2009-0000471-D-J1",
+   "OBJECTID": 212168,
+   "Owner_Name": "TESTOWNER 40A251",
+   "PARCEL_ID": "0208E-01-007.000",
+   "PPIN_NUM_y": "81805",
+   "Sale_Sequence": 5786,
+   "Total_Tax___Cost": 657.66,
+   "addCalc": "TESTOWNER 8B9544"
+  },
+  {
+   "DR_Info": "2019-0004481-D-J1",
+   "OBJECTID": 212169,
+   "Owner_Name": "TESTOWNER 43CB31",
+   "PARCEL_ID": "0208E-01-007.002",
+   "PPIN_NUM_y": "124747",
+   "Sale_Sequence": 2342,
+   "Total_Tax___Cost": 538.04,
+   "addCalc": "TESTOWNER 1D6532"
+  },
+  {
+   "DR_Info": "1599/0183 09/17/2002-WD",
+   "OBJECTID": 212171,
+   "Owner_Name": "TESTOWNER D466EA",
+   "PARCEL_ID": "0208E-01-008.001",
+   "PPIN_NUM_y": "122982",
+   "Sale_Sequence": 3265,
+   "Total_Tax___Cost": 139.19,
+   "addCalc": "TESTOWNER 94D426"
+  },
+  {
+   "DR_Info": "2008-0010404-D-J1",
+   "OBJECTID": 212172,
+   "Owner_Name": "TESTOWNER A1BED5",
+   "PARCEL_ID": "0208E-01-008.003",
+   "PPIN_NUM_y": "126104",
+   "Sale_Sequence": 2158,
+   "Total_Tax___Cost": 10.31,
+   "addCalc": "TESTOWNER E374BF"
+  },
+  {
+   "DR_Info": "2008-0010405-D-J1",
+   "OBJECTID": 212173,
+   "Owner_Name": "TESTOWNER A1BED5",
+   "PARCEL_ID": "0208E-01-008.004",
+   "PPIN_NUM_y": "133456",
+   "Sale_Sequence": 2159,
+   "Total_Tax___Cost": 169.91,
+   "addCalc": "TESTOWNER E374BF"
+  },
+  {
+   "DR_Info": "2013-0001511-D-J1",
+   "OBJECTID": 212178,
+   "Owner_Name": "TESTOWNER 2EAC51",
+   "PARCEL_ID": "0208E-01-012.000",
+   "PPIN_NUM_y": "88962",
+   "Sale_Sequence": 4076,
+   "Total_Tax___Cost": 239.12,
+   "addCalc": "TESTOWNER A222FB"
+  },
+  {
+   "DR_Info": "2009-0008785-D-J1",
+   "OBJECTID": 212182,
+   "Owner_Name": "TESTOWNER F47E3E",
+   "PARCEL_ID": "0208E-01-012.005",
+   "PPIN_NUM_y": "136431",
+   "Sale_Sequence": 4099,
+   "Total_Tax___Cost": 963.24,
+   "addCalc": "TESTOWNER D139F0"
+  },
+  {
+   "DR_Info": "1321/0343 12/05/1995-",
+   "OBJECTID": 212783,
+   "Owner_Name": "TESTOWNER CE26C4",
+   "PARCEL_ID": "0211B-01-034.000",
+   "PPIN_NUM_y": "65630",
+   "Sale_Sequence": 1433,
+   "Total_Tax___Cost": 896.97,
+   "addCalc": "TESTOWNER 1E15DA"
+  },
+  {
+   "DR_Info": "1412/0160 06/05/1998-",
+   "OBJECTID": 212803,
+   "Owner_Name": "TESTOWNER B68C2C",
+   "PARCEL_ID": "0211B-01-047.001",
+   "PPIN_NUM_y": "88990",
+   "Sale_Sequence": 1820,
+   "Total_Tax___Cost": 429.27,
+   "addCalc": "TESTOWNER D7A416"
+  },
+  {
+   "DR_Info": "2019-0000458-D-J1",
+   "OBJECTID": 212805,
+   "Owner_Name": "TESTOWNER 46F1D7 LLC",
+   "PARCEL_ID": "0211B-01-047.003",
+   "PPIN_NUM_y": "110385",
+   "Sale_Sequence": 5730,
+   "Total_Tax___Cost": 49.8,
+   "addCalc": "TESTOWNER F88F0C"
+  },
+  {
+   "DR_Info": "2011-0002233-D-J1",
+   "OBJECTID": 212857,
+   "Owner_Name": "TESTOWNER C4AEC0 LLC",
+   "PARCEL_ID": "0212N-01-027.000",
+   "PPIN_NUM_y": "70908",
+   "Sale_Sequence": 6216,
+   "Total_Tax___Cost": 9229.97,
+   "addCalc": "TESTOWNER 00E396"
+  },
+  {
+   "DR_Info": "2024-0023567-D-J1",
+   "OBJECTID": 212879,
+   "Owner_Name": "TESTOWNER 91A732",
+   "PARCEL_ID": "0212O-01-003.000",
+   "PPIN_NUM_y": "85890",
+   "Sale_Sequence": 929,
+   "Total_Tax___Cost": 15.83,
+   "addCalc": "TESTOWNER 87C354"
+  },
+  {
+   "DR_Info": "2022-0007085-D-J1",
+   "OBJECTID": 212921,
+   "Owner_Name": "TESTOWNER D6A878",
+   "PARCEL_ID": "0212O-01-036.000",
+   "PPIN_NUM_y": "73239",
+   "Sale_Sequence": 3338,
+   "Total_Tax___Cost": 20095.05,
+   "addCalc": "TESTOWNER 102EF5"
+  },
+  {
+   "DR_Info": "2016-0001724-D-J1",
+   "OBJECTID": 212985,
+   "Owner_Name": "TESTOWNER B3DA5C",
+   "PARCEL_ID": "0212O-01-087.000",
+   "PPIN_NUM_y": "73205",
+   "Sale_Sequence": 1930,
+   "Total_Tax___Cost": 6937.01,
+   "addCalc": "TESTOWNER C30724"
+  }
+ ],
+ "where": "1=1"
+}

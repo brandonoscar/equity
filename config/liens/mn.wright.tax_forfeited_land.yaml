@@ -1,0 +1,27 @@
+source_id: mn.wright.tax_forfeited_land
+state: MN
+county_fips: "27171"
+# Wright County MN tax-forfeited parcels (80 rows on 2026-11-25): land forfeited to the State
+# in trust for unpaid taxes (Minn. Stat. ch. 281-282) that the county offers at its tax-forfeited
+# land auctions (on publicsurplus.com), with the forfeiture (pay) year, the estimated market
+# value, the auction starting price and the sale status. No former owner or amount owed is
+# published: the parcel is linked by PID. TAX_LIEN_STATE, as the other forfeited-land lists.
+api: arcgis
+layer_url: https://services2.arcgis.com/CiQCvRGImIxsaFnM/arcgis/rest/services/Tax_Forfeited_Parcels/FeatureServer/0
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, PID, TDTDNM, Year_of_Forfeiture__Pay_Year_, EMV__Assessment_2025_,
+         Auction_Starting_Price, Statute_Designation, Status]
+listed_on: listed_on
+date_field: listed_on
+uid: PID
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Wright County tax-forfeited land for sale
+parties:
+  - {role: creditor, const: State of Minnesota (Wright County tax-forfeited land)}
+parcel: {kind: pin, field: PID, county_fips: "27171"}   # = mn.statewide.parcels county_pin
+terms:
+  url: https://www.arcgis.com/home/item.html?id=5c703448af8b40b5b100fe4af3780f4d
+  summary: "Wright County MN (owner wrightcountygis) public ArcGIS Online layer, free, no login; no licenseInfo or use restriction on the item (read 2026-11-25). services2.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  cost_model: free

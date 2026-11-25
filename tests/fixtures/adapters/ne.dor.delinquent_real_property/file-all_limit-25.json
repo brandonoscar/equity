@@ -1,0 +1,230 @@
+{
+ "rows": [
+  {
+   "county": "ADAMS",
+   "county_number": "1",
+   "legal": "1585.00-W10' LTS 3 & 6 & ALL LTS 7-11 BLK 4 TAGGART'S ADD",
+   "owner_name": "TESTOWNER 11A885",
+   "parcel_id": "10012543",
+   "situs_if_available": "TESTOWNER 90D6DC",
+   "tax_due": "15317.18"
+  },
+  {
+   "county": "ADAMS",
+   "county_number": "1",
+   "legal": "16-07-12--NE1/4 - WANDA TWP",
+   "owner_name": "TESTOWNER 9338CC",
+   "parcel_id": "10002044",
+   "situs_if_available": "",
+   "tax_due": "8723.2800000000007"
+  },
+  {
+   "county": "ADAMS",
+   "county_number": "1",
+   "legal": "19-05-12--SE1/4 - -  LOGAN TWP",
+   "owner_name": "TESTOWNER 1E9D49",
+   "parcel_id": "10005281",
+   "situs_if_available": "",
+   "tax_due": "8611.3799999999992"
+  },
+  {
+   "county": "ADAMS",
+   "county_number": "1",
+   "legal": "16-07-12--NW1/4 - WANDA TWP  16-7-12",
+   "owner_name": "TESTOWNER 9338CC",
+   "parcel_id": "10002045",
+   "situs_if_available": "",
+   "tax_due": "8387.58"
+  },
+  {
+   "county": "ADAMS",
+   "county_number": "1",
+   "legal": "25-08-09--SW1/4",
+   "owner_name": "TESTOWNER B41ACE",
+   "parcel_id": "10000230",
+   "situs_if_available": "TESTOWNER 79BF60",
+   "tax_due": "8297.1200000000008"
+  },
+  {
+   "county": "ADAMS",
+   "county_number": "1",
+   "legal": "1462.11 LOT 1 BIENKOWSKI SUB-DIV (RE LOTS 16 THRU 24 BLK 15 PROSPECT PARK ADD )",
+   "owner_name": "TESTOWNER ED1071",
+   "parcel_id": "10019232",
+   "situs_if_available": "TESTOWNER C357E9",
+   "tax_due": "8267"
+  },
+  {
+   "county": "ADAMS",
+   "county_number": "1",
+   "legal": "26-07-09--S1/2 SW1/4 & S1/2 SE1/4 S OF   RR & N1/2 SW1/4 S OF RR -  BLAINE TWP",
+   "owner_name": "TESTOWNER 28ADF0",
+   "parcel_id": "10003683",
+   "situs_if_available": "TESTOWNER 3B683D",
+   "tax_due": "8250.7000000000007"
+  },
+  {
+   "county": "ADAMS",
+   "county_number": "1",
+   "legal": "24-07-10-1621.00-PT NW1/4 NE1/4 TAX LOT 11 CITY EXTENSIONS SEC 24-7-10 EX TR FOR STREET",
+   "owner_name": "TESTOWNER 1D790A INC",
+   "parcel_id": "10015230",
+   "situs_if_available": "TESTOWNER DF558C",
+   "tax_due": "8166.46"
+  },
+  {
+   "county": "ADAMS",
+   "county_number": "1",
+   "legal": "1345.00-LOTS 19 THRU 21 PAULS ADD BLK 4 (2212) .51 AC",
+   "owner_name": "TESTOWNER 373C9A LLC",
+   "parcel_id": "10007422",
+   "situs_if_available": "TESTOWNER B5EEA1",
+   "tax_due": "7959.12"
+  },
+  {
+   "county": "ADAMS",
+   "county_number": "1",
+   "legal": "11-06-10--NE1/4 EX TAX LOT 1 & EX TR FOR ST HWY & EX MEYER SUB- DIVISION",
+   "owner_name": "TESTOWNER 11B4B7",
+   "parcel_id": "10004321",
+   "situs_if_available": "",
+   "tax_due": "7711.72"
+  },
+  {
+   "county": "ADAMS",
+   "county_number": "1",
+   "legal": "1700.13-LOT 4 BLOCK 2 CIMARRON MEADOWS 4TH ADD (PT NE1/4 SEC 36-08-10 )",
+   "owner_name": "TESTOWNER 0CFCCC",
+   "parcel_id": "10017677",
+   "situs_if_available": "TESTOWNER 71895D",
+   "tax_due": "7111.64"
+  },
+  {
+   "county": "ADAMS",
+   "county_number": "1",
+   "legal": "1376.00-LOTS 18-22 BLK 15 VEITH'S PARK ADD  0.92 AC",
+   "owner_name": "TESTOWNER A74924 LLC",
+   "parcel_id": "10008090",
+   "situs_if_available": "TESTOWNER AAB90C",
+   "tax_due": "6751.2"
+  },
+  {
+   "county": "ADAMS",
+   "county_number": "1",
+   "legal": "1607.10-LOT 9 BLK 4 COLONIAL ESTATES 3RD ADD",
+   "owner_name": "TESTOWNER E1692A",
+   "parcel_id": "10013509",
+   "situs_if_available": "TESTOWNER 4A1D68",
+   "tax_due": "6566.88"
+  },
+  {
+   "county": "ADAMS",
+   "county_number": "1",
+   "legal": "20-07-12--SW1/4 - -",
+   "owner_name": "TESTOWNER 9A8B3C",
+   "parcel_id": "10002062",
+   "situs_if_available": "TESTOWNER 26CDFA",
+   "tax_due": "6300.6"
+  },
+  {
+   "county": "ADAMS",
+   "county_number": "1",
+   "legal": "04-07-10-1706.00-PT SW1/4 SE1/4 TAX LOT 9 SEC 4-7-10 (ANNEXED ORD #3843 3-15-02)",
+   "owner_name": "TESTOWNER 813C09",
+   "parcel_id": "10015543",
+   "situs_if_available": "TESTOWNER FA9FEE",
+   "tax_due": "6218.1"
+  },
+  {
+   "county": "ADAMS",
+   "county_number": "1",
+   "legal": "1367.30-LOT 1  BUNDE SUB REPLAT LTS 18-20 & S8' LT 21   KENTS ADD",
+   "owner_name": "TESTOWNER A79E47",
+   "parcel_id": "10007641",
+   "situs_if_available": "TESTOWNER 14F624",
+   "tax_due": "6187.24"
+  },
+  {
+   "county": "ADAMS",
+   "county_number": "1",
+   "legal": "05-05-12--NW1/4 SD 11-123, 1992 AFFILIATED - LOGAN TWP  5-5-12",
+   "owner_name": "TESTOWNER 9338CC",
+   "parcel_id": "10005228",
+   "situs_if_available": "",
+   "tax_due": "5905.5"
+  },
+  {
+   "county": "ADAMS",
+   "county_number": "1",
+   "legal": "05-05-12--SW1/4 LOGAN TWP SD 11-123, 1992 AFFILIATED",
+   "owner_name": "TESTOWNER 9A8B3C",
+   "parcel_id": "10005229",
+   "situs_if_available": "",
+   "tax_due": "5739.12"
+  },
+  {
+   "county": "ADAMS",
+   "county_number": "1",
+   "legal": "23-05-11--NW1/4 - -",
+   "owner_name": "TESTOWNER 2F1C9C",
+   "parcel_id": "10005357",
+   "situs_if_available": "",
+   "tax_due": "5716.5"
+  },
+  {
+   "county": "ADAMS",
+   "county_number": "1",
+   "legal": "13-06-11--IOLL  NE1/4 - - HOUSE & OB'S",
+   "owner_name": "TESTOWNER 6E843F",
+   "parcel_id": "10018818",
+   "situs_if_available": "TESTOWNER 67F1C4",
+   "tax_due": "5615.16"
+  },
+  {
+   "county": "ADAMS",
+   "county_number": "1",
+   "legal": "1462.00-LOTS 3 THRU 6 BLK 15 PROSPECT PARK ADD HASTINGS  (THE SLAMMER)",
+   "owner_name": "TESTOWNER 4CA1F3",
+   "parcel_id": "10009667",
+   "situs_if_available": "TESTOWNER F74EFA",
+   "tax_due": "5475.96"
+  },
+  {
+   "county": "ADAMS",
+   "county_number": "1",
+   "legal": "1618.00-LOT 14 BLK 5 IMPERIAL VILLAGE 4TH ADD",
+   "owner_name": "TESTOWNER 4F6A77",
+   "parcel_id": "10013786",
+   "situs_if_available": "TESTOWNER C3BDE5",
+   "tax_due": "4846.42"
+  },
+  {
+   "county": "ADAMS",
+   "county_number": "1",
+   "legal": "-612.00-LOT 7  BLOCK 1 HASTINGS IND PARK-WEST  ANNEX ORD #4752",
+   "owner_name": "TESTOWNER 21952B LLC",
+   "parcel_id": "10003155",
+   "situs_if_available": "TESTOWNER 77C091",
+   "tax_due": "4605.46"
+  },
+  {
+   "county": "ADAMS",
+   "county_number": "1",
+   "legal": "1301.00-LOTS 10 THRU 12 BLK 22 CITY OF HASTINGS ORIGINAL TOWN",
+   "owner_name": "TESTOWNER 0CFCCC",
+   "parcel_id": "10006047",
+   "situs_if_available": "TESTOWNER 8809CF",
+   "tax_due": "4475.0600000000004"
+  },
+  {
+   "county": "ADAMS",
+   "county_number": "1",
+   "legal": "1681.30-LOT 4 RANCHO VILLA SUB-DIV REPLAT OF LT 1 BLK 1 WERNER SUB DENVER TWP",
+   "owner_name": "TESTOWNER F0D72E",
+   "parcel_id": "10014450",
+   "situs_if_available": "TESTOWNER 04A597",
+   "tax_due": "4385.54"
+  }
+ ],
+ "url": "https://revenue.nebraska.gov/sites/default/files/doc/pad/delinquent_real_prop/2026/Master_Tax_Delinq_List_2026.xlsx"
+}

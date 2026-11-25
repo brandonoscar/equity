@@ -1,0 +1,25 @@
+source_id: az.navajo.back_tax_auction
+state: AZ
+county_fips: "04017"
+# Navajo County Back Tax Auction Properties (191 rows on 2026-11-25): parcels deeded to the
+# State for unpaid taxes and offered by the Board of Supervisors at the back tax land auction
+# (A.R.S. 42-18301 ff.), each with its Public Surplus auction page. APN only: no owner, no
+# amount. Loaded like Cochise's tax deed auction (TAX_LIEN_STATE), linked by APN.
+api: arcgis
+layer_url: https://services.arcgis.com/cghC2lEIpJ2TRrs5/arcgis/rest/services/BackTaxAuctionProperties/FeatureServer/1
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, APN, AuctionURL]
+listed_on: listed_on
+date_field: listed_on
+uid: APN
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Navajo County back tax auction parcel
+parties:
+  - {role: creditor, const: Navajo County Board of Supervisors}
+parcel: {kind: pin, field: APN, county_fips: "04017", strip: "-"}   # az.navajo.parcels APN: 10402059A
+terms:
+  url: https://www.arcgis.com/home/item.html?id=8f0033d756eb4b7b8d3ed0573ab0b2ca
+  summary: "Navajo County (owner NavajoCounty) public ArcGIS Online layer, free, no login. licenseInfo (read 2026-11-25): CC BY 4.0; general reference only, not for legal, engineering or surveying use. The auctions themselves run on publicsurplus.com (not fetched)."
+  checked_on: 2026-11-25
+  cost_model: free

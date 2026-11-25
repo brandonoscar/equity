@@ -110,3 +110,43 @@ sources:
   # federal loans (gap report rank 9)
   us.sba.chargeoffs: charged_off_loan
   us.sba.ppp_chargeoffs: charged_off_loan
+
+  # county and state delinquent-tax, tax-sale and forfeiture lists (2026-11-25)
+  ak.fairbanks_north_star.tax_foreclosures: tax_delinquency
+  az.coconino.tax_liens: tax_lien
+  az.yavapai.tax_sale: tax_delinquency
+  ga.albany.delinquent_taxes: tax_delinquency
+  ga.gwinnett.delinquent_taxes: tax_delinquency
+  in.delaware.tax_sale: tax_delinquency
+  mi.eaton.tax_foreclosure_sale: tax_delinquency
+  mi.kalamazoo.delinquent_taxes: tax_delinquency
+  mi.kalamazoo.forfeited_parcels: tax_delinquency
+  mi.lenawee.tax_sale: tax_delinquency
+  mo.st_louis_county.post_third_sale: tax_delinquency
+  ms.harrison.tax_sale_2026: tax_delinquency
+  ne.dor.delinquent_real_property: tax_delinquency
+  oh.cuyahoga.delinquent_taxes: tax_delinquency
+  oh.cuyahoga.forfeited_land_sale: tax_delinquency
+  oh.franklin.tax_lien_sale: tax_lien
+  oh.greene.delinquent_taxes: tax_delinquency
+  oh.lorain.delinquent_taxes: tax_delinquency
+  oh.lorain.forfeited_land_sale: tax_delinquency
+  oh.medina.delinquent_taxes: tax_delinquency
+  oh.stark.delinquent_taxes: tax_delinquency
+  oh.stark.foreclosures: foreclosure
+  sc.horry.delinquent_tax_sale: tax_delinquency
+  sc.york.tax_sale: tax_delinquency
+  tx.tabc.credit_law_delinquent: administrative_order
+  va.fauquier.delinquent_taxes: tax_delinquency
+  wv.bluefield.tax_delinquent: tax_delinquency
+  # government sale lists: tax-sale, forfeiture and sheriff-sale parcels (2026-11-25)
+  az.navajo.back_tax_auction: tax_delinquency
+  co.douglas.tax_lien_sale: tax_lien
+  co.saguache.tax_lien_sale: tax_lien
+  in.delaware.tax_sale_results: tax_delinquency
+  mn.carlton.tax_forfeited_land_sale: tax_delinquency
+  mn.dakota.sheriff_sales: foreclosure
+  mn.mille_lacs.tax_forfeited_land: tax_delinquency
+  mn.wright.tax_forfeited_land: tax_delinquency
+  pa.cumberland.tax_sales: tax_delinquency
+  ut.box_elder.tax_sale: tax_delinquency

@@ -1,0 +1,29 @@
+source_id: ks.linn.tax_sale
+state: KS
+county_fips: "20107"
+# Linn County KS 2025 tax sale (85 rows on 2026-11-25; layer of 2025-06): parcels in the
+# county's 2025 tax foreclosure sale (K.S.A. 79-2801 ff.), with the party (owner) name and
+# mailing address and the situs address.
+api: arcgis
+layer_url: https://services3.arcgis.com/TKhOZbXZBgxGSTZN/arcgis/rest/services/TAX_SALE_2025/FeatureServer/0
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, QuickRefID, PropertyNu, PartyName, Address1, Address2, Address3, City, State,
+         ZIP, SitusAddre, Tax_ID]
+listed_on: listed_on
+date_field: listed_on
+uid: QuickRefID
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Linn County KS 2025 tax sale parcel
+parties:
+  - role: debtor
+    name: PartyName
+    address: {line1: [Address1, Address2, Address3], city: City, state: State, zip: ZIP}
+  - {role: creditor, const: Linn County Treasurer}
+parcel: {kind: pin, field: PropertyNu, county_fips: "20107"}
+extra_pii: [SitusAddre]
+terms:
+  url: https://www.arcgis.com/home/item.html?id=e5ee9ee87f5c400399725626eda8fde2
+  summary: "Linn County KS GIS Mapping (org LNCOKS, owner jbrown054) public ArcGIS Online layer, free, no login; no licenseInfo or use restriction on the item (read 2026-11-25). services3.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  cost_model: free

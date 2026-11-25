@@ -1,0 +1,36 @@
+source_id: oh.lorain.delinquent_taxes
+state: OH
+county_fips: "39093"   # Lorain County
+# Lorain County Auditor ownership parcels, 2025 public view: parcels with delinquent real
+# estate taxes (DelinquentRealEstate > 0; 9,879 rows on 2026-11-25), with the owner, owner
+# address, the delinquent amount, delinquent special assessments and the unpaid current tax.
+# The view joins tax-abatement records, so a parcel can repeat: rows are merged on PARCELID.
+# Data last edited 2026-01-21 (the view is named for 2025). Delinquent taxes are a lien on
+# the parcel (ORC 5721.10); a senior lien, not a judgment. No delinquency date is published,
+# so the date is the day the list was read. Same layer as oh.lorain.parcels (PARCELID).
+# Debt kind: tax_delinquency.
+api: arcgis
+layer_url: https://services1.arcgis.com/vGBb7WYV10mOJRNM/arcgis/rest/services/OwnershipParcels_2025_Public_View/FeatureServer/1
+where: "DelinquentRealEstate > 0"
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, PARCELID, OWNERNME1, OWNER_ADDRESS, OWNER_CITY, OWNER_STATE, OWNER_ZIP,
+         DelinquentRealEstate, DelinquentRealEstate_YN, TAXDELINQSPECASSESS, TAXUNPAID]
+listed_on: listed_on
+date_field: listed_on
+uid: PARCELID
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Lorain County delinquent real estate tax
+amount: DelinquentRealEstate
+parties:
+  - role: debtor
+    name: OWNERNME1
+    address: {line1: OWNER_ADDRESS, city: OWNER_CITY, state: OWNER_STATE, zip: OWNER_ZIP}
+  - {role: creditor, const: Lorain County Treasurer}
+parcel: {kind: pin, field: PARCELID, county_fips: "39093"}
+terms:
+  url: https://www.arcgis.com/home/item.html?id=2903fecced364960b281792397294ab6
+  summary: "Lorain County Auditor GIS ArcGIS org item 'OwnershipParcels 2025 Public View', public hosted feature view, no login, token or fee. No licenseInfo or description (read 2026-11-24); no use restriction found. services1.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

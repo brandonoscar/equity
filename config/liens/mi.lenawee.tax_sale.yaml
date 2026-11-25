@@ -1,0 +1,29 @@
+source_id: mi.lenawee.tax_sale
+state: MI
+county_fips: "26091"   # Lenawee County (Adrian)
+# Lenawee County Treasurer 'Tax Sale 2026' view: 35 parcels foreclosed for unpaid property
+# taxes (MCL 211.78k) and offered at the 2026 tax foreclosure auction, with the minimum bid
+# (taxes, interest and fees owed) and the property address. No owner is named: each is owed
+# by the parcel's owner of record before foreclosure (parcel_on_lien). No list date is
+# published: the date is the day the list was read. TAXID ('WD4-010-1271-00') is the
+# parcel number, as in mi.lenawee.parcels. Debt kind: tax_delinquency.
+api: arcgis
+layer_url: https://services6.arcgis.com/mjEvhc9AE3ceAXtG/arcgis/rest/services/Tax_Sale_2026_view/FeatureServer/0
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, TAXID, PRADDCOMB, PRADDRCITY, PRADDRZIP, MinBid, TaxDesc]
+listed_on: listed_on
+date_field: listed_on
+uid: TAXID
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Lenawee County 2026 tax foreclosure auction parcel
+amount: MinBid
+parties: []
+parcel: {kind: pin, field: TAXID, county_fips: "26091"}
+extra_pii: [PRADDCOMB]
+terms:
+  url: https://services6.arcgis.com/mjEvhc9AE3ceAXtG/arcgis/rest/services/Tax_Sale_2026_view/FeatureServer/0
+  summary: "Lenawee County ArcGIS org, public hosted feature view 'Tax Sale 2026 view', no login, token or fee. No licenseInfo (read 2026-11-25); no use restriction found. services6.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,36 @@
+source_id: pa.cumberland.tax_sales
+state: PA
+county_fips: "42041"
+# Cumberland County PA Tax Claim Bureau sale lists (16 rows on 2026-11-25): the properties on
+# the upset tax sale list (layer 1, 5 rows) and the judicial tax sale list (layer 3, 11 rows)
+# with the owner of record. The layers carry the dashed map PIN but not the county's PID
+# (null), so PID is looked up by PIN in the county's own Tax_Parcels layer (the one
+# pa.cumberland.parcels reads) and the sale links to that parcel. The two layers name their
+# price columns differently, so the approximate upset/judicial price stays out of the select.
+api: arcgis
+layer_urls:
+  - https://services1.arcgis.com/1Cfo0re3un0w6a30/arcgis/rest/services/Tax_Sales/FeatureServer/1
+  - https://services1.arcgis.com/1Cfo0re3un0w6a30/arcgis/rest/services/Tax_Sales/FeatureServer/3
+order_by: [OBJECTID_1]
+select: [OBJECTID_1, PIN, OWNER, CARE_OF, FullAddress, MUNI_NAME, TAX_STAT]
+enrich:
+  arcgis: https://services1.arcgis.com/1Cfo0re3un0w6a30/arcgis/rest/services/Tax_Parcels/FeatureServer/0
+  key: PIN
+  field: PIN
+  columns: [PID]
+listed_on: listed_on
+date_field: listed_on
+uid: PIN
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Cumberland County PA tax claim sale (upset or judicial)
+parties:
+  - role: debtor
+    name: OWNER
+  - {role: creditor, const: Cumberland County Tax Claim Bureau}
+parcel: {kind: pin, field: PID, county_fips: "42041"}   # = pa.cumberland.parcels PID
+extra_pii: [CARE_OF, FullAddress]
+terms:
+  url: https://services1.arcgis.com/1Cfo0re3un0w6a30/arcgis/rest/services/Tax_Sales/FeatureServer
+  summary: "Cumberland County PA GIS (owner gis_ccpa) public ArcGIS Online layers 'Upset and Judicial Tax sales for Cumberland County', free, no login; no licenseInfo or use restriction on the item (read 2026-11-25). services1.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,27 @@
+source_id: mi.detroit.dlba_auction_sales
+state: MI
+county_fips: "26163"
+# Detroit Land Bank Authority (DLBA) auction sales, June 2014 to date (5,533 rows on
+# 2026-11-25): every house the land bank sold through its Auction program, with the closing
+# date, final sale price and parcel id. The buyer is not published, so each sale is a DEED
+# granted by the DLBA with its price, linked to the parcel (same parcel_id form, '16029682.',
+# as mi.wayne.parcels). Government property disposal, not a debt.
+api: arcgis
+layer_url: https://services2.arcgis.com/qvkbeam7Wirps6zC/arcgis/rest/services/dlba_auction_sales/FeatureServer/0
+single_partition: true
+order_by: [ObjectId]
+select: [ObjectId, dlba_sale_id, address, sale_closed_date, amt_final_sale_price, sale_program,
+         zip_code, neighborhood, parcel_id]
+date_field: sale_closed_date      # ISO text, e.g. '2019-04-16'
+uid: dlba_sale_id
+doc_type: DEED
+doc_type_raw: Detroit Land Bank Authority auction sale
+consideration: amt_final_sale_price
+parties:
+  - {role: grantor, const: Detroit Land Bank Authority}
+parcel: {kind: pin, field: parcel_id, county_fips: "26163"}
+terms:
+  url: https://www.arcgis.com/home/item.html?id=88d078e0b6fc404bb685cbd4be4b0fb1
+  summary: "City of Detroit open data (owner topsoil.integration_detroitmi; source credited to the Detroit Land Bank Authority) public ArcGIS Online layer, free, no login; no licenseInfo on the item (read 2026-11-25). services2.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  cost_model: free

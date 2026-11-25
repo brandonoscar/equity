@@ -1,0 +1,29 @@
+source_id: mi.eaton.tax_foreclosure_sale
+state: MI
+county_fips: "26045"   # Eaton County (Charlotte)
+# Eaton County Treasurer 'For Sale 2026': 8 parcels foreclosed for unpaid property taxes (MCL
+# 211.78k) and offered for sale in 2026, with the minimum bid, property type and the
+# treasurer's inspection notes and Sold flag. No owner is named: each is owed by the parcel's
+# owner of record before foreclosure (parcel_on_lien). The date is created_date (when the
+# row was added to the 2026 list).
+# lparcel is the dashed parcel number ('010-041-602-080-00'); with the dashes removed it is
+# PARCELID in mi.eaton.parcels. Debt kind: tax_delinquency.
+api: arcgis
+layer_url: https://services2.arcgis.com/c9l1e4fKpsCnqD7H/arcgis/rest/services/For_Sale_2026_view/FeatureServer/0
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, lparcel, minbid, type, SITEADDRESS, Date, created_date, Sold]
+date_field: created_date
+uid: lparcel
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Eaton County 2026 tax foreclosed parcel for sale
+amount: minbid
+parties: []
+parcel: {kind: pin, field: lparcel, county_fips: "26045", strip: "-"}
+extra_pii: [SITEADDRESS]
+terms:
+  url: https://services2.arcgis.com/c9l1e4fKpsCnqD7H/arcgis/rest/services/For_Sale_2026_view/FeatureServer/0
+  summary: "Eaton County Michigan ArcGIS org, public hosted feature view 'For Sale 2026 view', no login, token or fee. No licenseInfo (read 2026-11-25); no use restriction found. services2.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

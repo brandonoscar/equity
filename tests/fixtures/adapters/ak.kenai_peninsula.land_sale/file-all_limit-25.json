@@ -1,0 +1,186 @@
+{
+ "layer": "https://services.arcgis.com/ba4DH9pIcqkXJVfl/arcgis/rest/services/General_Land_Sale_2026/FeatureServer/2",
+ "rows": [
+  {
+   "Label": null,
+   "Removed": "No",
+   "acres": "3.87",
+   "generalarea": "Salamatof ",
+   "lap": "Not eligible.",
+   "minimumbid": "100,000",
+   "objectid": 1,
+   "parcel_id": "01713003"
+  },
+  {
+   "Label": null,
+   "Removed": "No",
+   "acres": "5.24",
+   "generalarea": "Gray Cliff",
+   "lap": "Not eligible.",
+   "minimumbid": "20,000",
+   "objectid": 2,
+   "parcel_id": "02533008"
+  },
+  {
+   "Label": null,
+   "Removed": "No",
+   "acres": "7.4",
+   "generalarea": "Moose Point",
+   "lap": "Not eligible.",
+   "minimumbid": "37,000",
+   "objectid": 3,
+   "parcel_id": "02544718"
+  },
+  {
+   "Label": null,
+   "Removed": "No",
+   "acres": "0.24",
+   "generalarea": "City of Kenai",
+   "lap": "This parcel is eligible for participation in the KPB Land Affordability Program (LAP) pursuant to Ordinance 2025-09.",
+   "minimumbid": "25,000",
+   "objectid": 4,
+   "parcel_id": "04938045"
+  },
+  {
+   "Label": null,
+   "Removed": "No",
+   "acres": "1.35",
+   "generalarea": "Kalifornsky",
+   "lap": "This parcel is eligible for participation in the KPB Land Affordability Program (LAP) pursuant to Ordinance 2025-09.",
+   "minimumbid": "52,000",
+   "objectid": 5,
+   "parcel_id": "05503503"
+  },
+  {
+   "Label": null,
+   "Removed": "No",
+   "acres": "9.12",
+   "generalarea": "Sterling ",
+   "lap": "This parcel is eligible for participation in the KPB Land Affordability Program (LAP) pursuant to Ordinance 2025-09.",
+   "minimumbid": "119,000",
+   "objectid": 6,
+   "parcel_id": "06301164"
+  },
+  {
+   "Label": "Removed From Sale",
+   "Removed": "Yes",
+   "acres": "2.02",
+   "generalarea": "Cooper Landing ",
+   "lap": "Not eligible.",
+   "minimumbid": "180,000",
+   "objectid": 7,
+   "parcel_id": "11907106"
+  },
+  {
+   "Label": null,
+   "Removed": "No",
+   "acres": "2.44",
+   "generalarea": "Cooper Landing ",
+   "lap": "Not eligible.",
+   "minimumbid": "185,000",
+   "objectid": 8,
+   "parcel_id": "11907155"
+  },
+  {
+   "Label": null,
+   "Removed": "No",
+   "acres": "0.81",
+   "generalarea": "Crown Point",
+   "lap": "This parcel is eligible for participation in the KPB Land Affordability Program (LAP) pursuant to Ordinance 2025-09.",
+   "minimumbid": "70,000",
+   "objectid": 9,
+   "parcel_id": "12516010"
+  },
+  {
+   "Label": null,
+   "Removed": "No",
+   "acres": "2.41",
+   "generalarea": "Kasilof",
+   "lap": "Not eligible.",
+   "minimumbid": "145,000",
+   "objectid": 10,
+   "parcel_id": "13301049"
+  },
+  {
+   "Label": null,
+   "Removed": "No",
+   "acres": "2.81",
+   "generalarea": "Kasilof",
+   "lap": "Not eligible.",
+   "minimumbid": "145,000",
+   "objectid": 11,
+   "parcel_id": "13301050"
+  },
+  {
+   "Label": null,
+   "Removed": "No",
+   "acres": "0.51",
+   "generalarea": "Anchor Point",
+   "lap": "This parcel is eligible for participation in the KPB Land Affordability Program (LAP) pursuant to Ordinance 2025-09.",
+   "minimumbid": "30,000",
+   "objectid": 12,
+   "parcel_id": "16905102"
+  },
+  {
+   "Label": null,
+   "Removed": "No",
+   "acres": "13.64",
+   "generalarea": "Anchor Point",
+   "lap": "This parcel is eligible for participation in the KPB Land Affordability Program (LAP) pursuant to Ordinance 2025-09.",
+   "minimumbid": "44,000",
+   "objectid": 13,
+   "parcel_id": "16913228"
+  },
+  {
+   "Label": null,
+   "Removed": "No",
+   "acres": "2.5",
+   "generalarea": "City of Homer",
+   "lap": "Not eligible.",
+   "minimumbid": "125,000",
+   "objectid": 14,
+   "parcel_id": "17908012"
+  },
+  {
+   "Label": null,
+   "Removed": "No",
+   "acres": "0.28",
+   "generalarea": "City of Seldovia",
+   "lap": "Not eligible.",
+   "minimumbid": "75,000",
+   "objectid": 15,
+   "parcel_id": "19209106"
+  },
+  {
+   "Label": null,
+   "Removed": "No",
+   "acres": "see 19209106",
+   "generalarea": "see 19209106",
+   "lap": "see 19209106",
+   "minimumbid": "see 19209106",
+   "objectid": 16,
+   "parcel_id": "19209108"
+  },
+  {
+   "Label": null,
+   "Removed": "No",
+   "acres": "8.77",
+   "generalarea": "Bear Cove (Kachemak Bay)",
+   "lap": "Not eligible.",
+   "minimumbid": "35,000",
+   "objectid": 17,
+   "parcel_id": "19326114"
+  },
+  {
+   "Label": null,
+   "Removed": "No",
+   "acres": "0.28",
+   "generalarea": "City of Kenai",
+   "lap": "This parcel is eligible for participation in the KPB Land Affordability Program (LAP) pursuant to Ordinance 2025-09.",
+   "minimumbid": "26,000",
+   "objectid": 18,
+   "parcel_id": "04938046"
+  }
+ ],
+ "where": "1=1"
+}

@@ -1,0 +1,48 @@
+source_id: mn.dakota.sheriff_sales
+state: MN
+county_fips: "27037"
+# Dakota County MN sheriff foreclosure sales, 2010-2026 (one MapServer layer per year, 9,565
+# rows on 2026-11-25): mortgage foreclosure sales by the Sheriff (by advertisement or action),
+# with the sale date, sale (bid) amount and the property address; no parcel id or names, so
+# the sold property is found by address, as the Cincinnati lot abatement list's (CITED
+# PROPERTY). The 2022 layer has no CRN (case number), so the key is address + sale date.
+# Loaded like the other sheriff-sale lists (LIS_PENDENS). The 2026 layer lists Mortgagor and
+# Attorney fields but the server refuses any query that asks for them, so no names. Pre-2010
+# layers use other field names: not loaded.
+api: arcgis
+layer_urls:
+  - https://gis2.co.dakota.mn.us/arcgis/rest/services/DCGIS_OL_PropertyInformation/MapServer/40
+  - https://gis2.co.dakota.mn.us/arcgis/rest/services/DCGIS_OL_PropertyInformation/MapServer/39
+  - https://gis2.co.dakota.mn.us/arcgis/rest/services/DCGIS_OL_PropertyInformation/MapServer/38
+  - https://gis2.co.dakota.mn.us/arcgis/rest/services/DCGIS_OL_PropertyInformation/MapServer/37
+  - https://gis2.co.dakota.mn.us/arcgis/rest/services/DCGIS_OL_PropertyInformation/MapServer/36
+  - https://gis2.co.dakota.mn.us/arcgis/rest/services/DCGIS_OL_PropertyInformation/MapServer/35
+  - https://gis2.co.dakota.mn.us/arcgis/rest/services/DCGIS_OL_PropertyInformation/MapServer/34
+  - https://gis2.co.dakota.mn.us/arcgis/rest/services/DCGIS_OL_PropertyInformation/MapServer/33
+  - https://gis2.co.dakota.mn.us/arcgis/rest/services/DCGIS_OL_PropertyInformation/MapServer/32
+  - https://gis2.co.dakota.mn.us/arcgis/rest/services/DCGIS_OL_PropertyInformation/MapServer/31
+  - https://gis2.co.dakota.mn.us/arcgis/rest/services/DCGIS_OL_PropertyInformation/MapServer/30
+  - https://gis2.co.dakota.mn.us/arcgis/rest/services/DCGIS_OL_PropertyInformation/MapServer/29
+  - https://gis2.co.dakota.mn.us/arcgis/rest/services/DCGIS_OL_PropertyInformation/MapServer/28
+  - https://gis2.co.dakota.mn.us/arcgis/rest/services/DCGIS_OL_PropertyInformation/MapServer/27
+  - https://gis2.co.dakota.mn.us/arcgis/rest/services/DCGIS_OL_PropertyInformation/MapServer/77
+  - https://gis2.co.dakota.mn.us/arcgis/rest/services/DCGIS_OL_PropertyInformation/MapServer/80
+  - https://gis2.co.dakota.mn.us/arcgis/rest/services/DCGIS_OL_PropertyInformation/MapServer/82
+order_by: [OBJECTID]
+select: [OBJECTID, SaleDate, SaleAmount, GeoAddress, GeoCity]
+date_field: SaleDate               # epoch milliseconds
+uid: [GeoAddress, SaleDate]
+doc_type: LIS_PENDENS
+doc_type_raw: Dakota County sheriff foreclosure sale
+consideration: SaleAmount
+parties:
+  - role: other                 # the sold property; the matcher finds its parcel by address
+    const: CITED PROPERTY
+    address: {line1: GeoAddress, city: GeoCity, state_const: MN}
+  - {role: other, const: Dakota County Sheriff}
+extra_pii: [GeoAddress]
+terms:
+  url: https://gis2.co.dakota.mn.us/arcgis/rest/services/DCGIS_OL_PropertyInformation/MapServer
+  summary: "Dakota County MN public ArcGIS Server (DCGIS_OL_PropertyInformation, layers 'Foreclosure Sales (YYYY)'), free, no login; copyrightText 'Dakota County, MN', no license or use restriction (read 2026-11-25). gis2.co.dakota.mn.us/robots.txt answers 404 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  cost_model: free

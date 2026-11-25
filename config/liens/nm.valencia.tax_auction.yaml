@@ -1,0 +1,30 @@
+source_id: nm.valencia.tax_auction
+state: NM
+county_fips: "35061"
+# Valencia County NM 2026 delinquent property tax auction (69 rows on 2026-11-25): parcels the
+# NM Taxation and Revenue Department Property Tax Division offers at public auction for
+# delinquent taxes (NMSA 7-38-65), mapped by the county's GIS account with the UPC, account,
+# owner, care-of and owner mailing address. No amount is published per parcel.
+api: arcgis
+layer_url: https://services9.arcgis.com/1W1HM6U4efbQ7mKR/arcgis/rest/services/Valencia_County_Delinquent_Property_Tax_Auction_2026_WFL1/FeatureServer/1
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, UPC, AccountNum, Situs, Owner, CAREOF, OwnerAddre, ActualValu, NETASD]
+listed_on: listed_on
+date_field: listed_on
+uid: UPC
+doc_type: TAX_LIEN_STATE
+doc_type_raw: NM TRD delinquent property tax auction parcel (Valencia County 2026)
+address_split: {field: OwnerAddre, prefix: o_, form: slash}   # '6 HOLIDAY DR  LOS LUNAS, NM 87031'
+parties:
+  - role: debtor
+    name: Owner
+    address: {line1: o_line1, state: o_state, zip: o_zip}
+  - {role: creditor, const: New Mexico Taxation and Revenue Department}
+parcel: {kind: pin, field: UPC, county_fips: "35061"}
+extra_pii: [CAREOF, OwnerAddre, Situs]
+terms:
+  url: https://www.arcgis.com/home/item.html?id=cd7a1943de13419cb4e5b55a7bcc40ae
+  summary: "Valencia County NM GIS (owner caragon140; the same org publishes the Valencia County Parcel Map) public ArcGIS Online layer, free, no login; no licenseInfo on the item (read 2026-11-25); the description is the TRD Property Tax Division's auction notice. services9.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  cost_model: free

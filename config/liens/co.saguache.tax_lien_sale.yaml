@@ -1,0 +1,33 @@
+source_id: co.saguache.tax_lien_sale
+state: CO
+county_fips: "08109"
+# Saguache County CO 2026 tax lien sale list (900 rows on 2026-11-25), published by the San
+# Luis Valley GIS account (slvgis) that maps the valley's counties: sale number, parcel,
+# account, owner, owner mailing address and total due for each advertised account.
+# CAUTION: the account's organisation is not public; the parcels and the account prefix
+# (R00...) are Saguache County's. Treat as the county's list but confirm with the Treasurer.
+api: arcgis
+layer_url: https://services1.arcgis.com/zH7gQ37AKcpvTX6d/arcgis/rest/services/2026_Tax_Sale/FeatureServer/204
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, TaxSale_Number, TaxSale_Parcel, TaxSale_Account, TaxSale_Owner, Total_Due,
+         AddressParcels, Address2Parcels, City, State, Zip_Code, Situs_Num, Situs_Dir,
+         Situs_Street]
+listed_on: listed_on
+date_field: listed_on
+uid: TaxSale_Account
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Saguache County 2026 tax lien sale (advertised)
+amount: Total_Due
+parties:
+  - role: debtor
+    name: TaxSale_Owner
+    address: {line1: [AddressParcels, Address2Parcels], city: City, state: State, zip: Zip_Code}
+  - {role: creditor, const: Saguache County Treasurer}
+parcel: {kind: pin, field: TaxSale_Parcel, county_fips: "08109"}   # = co.statewide parcel_id
+extra_pii: [Situs_Num, Situs_Street]
+terms:
+  url: https://services1.arcgis.com/zH7gQ37AKcpvTX6d/arcgis/rest/services/2026_Tax_Sale/FeatureServer/204
+  summary: "San Luis Valley GIS (owner slvgis) public ArcGIS Online layer, free, no login; no licenseInfo or description on the item and the owning organisation is not public (read 2026-11-25). Lower trust: confirm against the Saguache County Treasurer. services1.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  cost_model: free

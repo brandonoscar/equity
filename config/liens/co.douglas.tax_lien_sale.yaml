@@ -1,0 +1,26 @@
+source_id: co.douglas.tax_lien_sale
+state: CO
+county_fips: "08035"
+# Douglas County CO Treasurer tax lien sale list (864 rows on 2026-11-25): the accounts in the
+# required newspaper advertisement for the annual tax lien sale (tax year 2024, sold in 2025),
+# with the account, state parcel number, total due and a prior-year-lien flag. The owner and
+# mailing columns are empty in this public layer, so rows link by parcel only.
+api: arcgis
+layer_url: https://services.arcgis.com/seTexOicoRXDvRsJ/arcgis/rest/services/Tax_Sale_List_Locations/FeatureServer/0
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, Account_No, State_Parcel_No, Tax_Year, Total_Due, Prior_Year_Lien, ZipCode]
+year_dates: [Tax_Year]
+date_field: Tax_Year
+uid: Account_No
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Douglas County tax lien sale (advertised)
+amount: Total_Due
+parties:
+  - {role: creditor, const: Douglas County Treasurer}
+parcel: {kind: pin, field: State_Parcel_No, county_fips: "08035"}   # = co.statewide parcel_id
+terms:
+  url: https://www.arcgis.com/home/item.html?id=87f9905d9faf4ae3a7a385c0707717b5
+  summary: "Douglas County CO GIS Services public ArcGIS Online layer, free, no login. licenseInfo (read 2026-11-25): informational only, no warranty, county not liable; licensed CC BY-SA 4.0 (attribution, share-alike)."
+  checked_on: 2026-11-25
+  cost_model: free

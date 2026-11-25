@@ -1,0 +1,39 @@
+source_id: oh.cuyahoga.delinquent_taxes
+state: OH
+county_fips: "39035"   # Cuyahoga County (Cleveland)
+# Cuyahoga County Fiscal Officer parcel fabric (CAMA and real property tax data, "updated
+# daily"): parcels with a delinquent balance (total_net_delq_balance > 0; 21,995 on
+# 2026-11-25), with the owner, co-owner, owner mailing address, delinquent amount owed, paid
+# and balance, and the treasurer's flags (foreclosure filed, tax certificate sold or pending,
+# payment plan). Delinquent taxes are a lien on the parcel (ORC 5721.10); a senior lien, not
+# a judgment. No delinquency date is published, so the date is the day the list was read.
+# Same layer as the owner source oh.cuyahoga.parcels (parcel_id). Debt kind: tax_delinquency.
+api: arcgis
+layer_url: https://gis.cuyahogacounty.gov/server/rest/services/CCFO/Parcel_Fabric_Taxparcels/FeatureServer/0
+where: "total_net_delq_balance > 0 AND parcel_id IS NOT NULL"
+single_partition: true
+order_by: [ObjectID]
+select: [ObjectID, parcel_id, parcel_owner, second_owner, mail_addr_street, mail_unit_no,
+         mail_city, mail_state, mail_zip, total_net_delq_owed, total_net_delq_paid,
+         total_net_delq_balance, grand_total_balance, foreclosure_flag, cert_sold_flag,
+         cert_pend_flag, payment_plan_flag, taxbill_update_date]
+listed_on: listed_on
+date_field: listed_on
+uid: parcel_id
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Cuyahoga County delinquent real estate tax
+amount: total_net_delq_balance
+parties:
+  - role: debtor
+    name: parcel_owner
+    address: {line1: [mail_addr_street, mail_unit_no], city: mail_city, state: mail_state, zip: mail_zip}
+  - role: debtor
+    name: second_owner
+  - {role: creditor, const: Cuyahoga County Treasurer}
+parcel: {kind: pin, field: parcel_id, county_fips: "39035"}
+terms:
+  url: https://cuyahoga.maps.arcgis.com/home/item.html?id=ffaaa1651d5540419469375d680f3245
+  summary: "Cuyahoga County ArcGIS org item 'Parcel Fabric Parcels' ('Parcel Fabric parcels with associated CAMA and Real Property Information. Data is updated daily'), public FeatureServer on gis.cuyahogacounty.gov, no login, token or fee. licenseInfo: disclaimer only ('free public service on an \"as is\" basis', no warranty, not an official public record); no resale, redistribution or mailing-list clause. gis.cuyahogacounty.gov/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

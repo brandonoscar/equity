@@ -1,0 +1,35 @@
+source_id: mi.kalamazoo.forfeited_parcels
+state: MI
+county_fips: "26077"   # Kalamazoo County
+# Kalamazoo County Treasurer '2026 Forfeited Parcels' (layer '9-21-26 Forfeitures'): 956
+# parcels forfeited to the County Treasurer on March 1, 2026 for unpaid 2024-and-earlier taxes
+# (MCL 211.78g), still unredeemed on 2026-09-21 and headed for the 2027 foreclosure, with the
+# owners, care-of, owner mailing address and property address. No amount is published (TAX is
+# the taxable value, not mapped). No per-row date: the date is the day the list was read.
+# PELNUMBER is pelnumber in mi.kalamazoo.parcels. Debt kind: tax_delinquency.
+api: arcgis
+layer_url: https://services3.arcgis.com/RGltUbqpl4h9E3Qh/arcgis/rest/services/2026_Forfeited_Parcels___7_27_26_WFL1/FeatureServer/0
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, PELNUMBER, ONERNAME1, ONERNAME2, OERCAREOF, OTADDRESS, OWNERCITY, ONERSTATE,
+         ORZIPCODE, PCOMBINED, PRESSCITY]
+listed_on: listed_on
+date_field: listed_on
+uid: PELNUMBER
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Kalamazoo County 2026 forfeited parcel (unpaid property tax)
+parties:
+  - role: debtor
+    name: ONERNAME1
+    address: {line1: OTADDRESS, city: OWNERCITY, state: ONERSTATE, zip: ORZIPCODE}
+  - role: debtor
+    name: ONERNAME2
+  - {role: creditor, const: Kalamazoo County Treasurer}
+parcel: {kind: pin, field: PELNUMBER, county_fips: "26077"}
+extra_pii: [OERCAREOF, PCOMBINED]
+terms:
+  url: https://www.arcgis.com/home/item.html?id=71606af08b264317a9dcb091949abbd0
+  summary: "Kalamazoo County Treasurer's ArcGIS Online item '2026 Forfeited Parcels _ 7_27_26_WFL1' (owner trwhit_kalcounty, public), no login, token or fee. No licenseInfo (read 2026-11-25); no use restriction found. services3.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

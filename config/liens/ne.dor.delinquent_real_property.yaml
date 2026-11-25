@@ -1,0 +1,39 @@
+source_id: ne.dor.delinquent_real_property
+state: NE
+county_fips: "31"   # statewide; the row's county is used
+# Nebraska Department of Revenue 'Complete List of Delinquent Real Property Statewide'
+# (Neb. Rev. Stat. 77-1804; "based on the information as submitted by each county treasurer
+# the first week of February", updated each February): 18,416 rows in the 02/2026 workbook,
+# one per delinquent parcel, with the county, parcel id, owner, situs (where given), legal
+# description and tax due (Douglas 4,569, Lancaster 823, Sarpy 792, Cass ...). Delinquent
+# Nebraska real property tax is a first lien on the parcel (Neb. Rev. Stat. 77-203); a senior
+# lien, not a judgment. No per-row date: the date is the day the list was read. Parcel ids are
+# the county treasurers' own: dashes are removed so Lancaster's '01-09-113-001-000' is
+# PARCELID '0109113001000' in ne.lancaster.parcels; Douglas and Cass ids are as in their
+# layers; Sarpy publishes ids without the leading zero of ne.sarpy.parcels and links by name.
+# The file's address carries the year, so it is found on the list page. Debt kind:
+# tax_delinquency.
+api: xlsx
+url: https://revenue.nebraska.gov/sites/default/files/doc/pad/delinquent_real_prop/2026/Master_Tax_Delinq_List_2026.xlsx
+link_from:
+  page: https://revenue.nebraska.gov/PAD/real-property/nebraska-delinquent-real-property-list
+  pattern: "Master_Tax_Delinq_List_[0-9]{4}\\.xlsx"
+sheet: 0
+listed_on: listed_on
+date_field: listed_on
+uid: [county_number, parcel_id]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Nebraska delinquent real property tax (county treasurer list)
+amount: tax_due
+county_name_field: county
+parties:
+  - role: debtor
+    name: owner_name
+parcel: {kind: pin, field: parcel_id, strip: "-"}
+extra_pii: [situs_if_available]
+terms:
+  url: https://revenue.nebraska.gov/PAD/real-property/nebraska-delinquent-real-property-list
+  summary: "Nebraska Department of Revenue, Property Assessment Division, publishes the statewide list as a free .xlsx download (as required by Neb. Rev. Stat. 77-1804), no login. No license or reuse terms stated (read 2026-11-25); robots.txt allows the /sites/default/files/ path."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

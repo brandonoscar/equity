@@ -1,0 +1,111 @@
+{
+ "layer": "https://gis2.co.dakota.mn.us/arcgis/rest/services/DCGIS_OL_PropertyInformation/MapServer/40",
+ "rows": [
+  {
+   "GeoAddress": "1563 TEST ST",
+   "GeoCity": "WEST ST PAUL",
+   "OBJECTID": 1,
+   "SaleAmount": 106762.13,
+   "SaleDate": 1263276000000
+  },
+  {
+   "GeoAddress": "8212 TEST ST",
+   "GeoCity": "WEST ST PAUL",
+   "OBJECTID": 2,
+   "SaleAmount": 0,
+   "SaleDate": 1264053600000
+  },
+  {
+   "GeoAddress": "1802 TEST ST",
+   "GeoCity": "WEST ST PAUL",
+   "OBJECTID": 3,
+   "SaleAmount": 111416.99,
+   "SaleDate": 1264658400000
+  },
+  {
+   "GeoAddress": "1845 TEST ST",
+   "GeoCity": "WEST ST PAUL",
+   "OBJECTID": 4,
+   "SaleAmount": 58017.34,
+   "SaleDate": 1264658400000
+  },
+  {
+   "GeoAddress": "2155 TEST ST",
+   "GeoCity": "WEST ST PAUL",
+   "OBJECTID": 5,
+   "SaleAmount": 115700,
+   "SaleDate": 1262844000000
+  },
+  {
+   "GeoAddress": "4828 TEST ST",
+   "GeoCity": "WEST ST PAUL",
+   "OBJECTID": 6,
+   "SaleAmount": 82674.84,
+   "SaleDate": 1262844000000
+  },
+  {
+   "GeoAddress": "2588 TEST ST",
+   "GeoCity": "WEST ST PAUL",
+   "OBJECTID": 7,
+   "SaleAmount": 698543.4,
+   "SaleDate": 1262844000000
+  },
+  {
+   "GeoAddress": "4852 TEST ST",
+   "GeoCity": "WEST ST PAUL",
+   "OBJECTID": 8,
+   "SaleAmount": 228467.26,
+   "SaleDate": 1263189600000
+  },
+  {
+   "GeoAddress": "3997 TEST ST",
+   "GeoCity": "WEST ST PAUL",
+   "OBJECTID": 9,
+   "SaleAmount": 7394.11,
+   "SaleDate": 1263880800000
+  },
+  {
+   "GeoAddress": "3997 TEST ST",
+   "GeoCity": "WEST ST PAUL",
+   "OBJECTID": 10,
+   "SaleAmount": 6446.27,
+   "SaleDate": 1263880800000
+  },
+  {
+   "GeoAddress": "6013 TEST ST",
+   "GeoCity": "WEST ST PAUL",
+   "OBJECTID": 11,
+   "SaleAmount": 70110,
+   "SaleDate": 1264053600000
+  },
+  {
+   "GeoAddress": "8834 TEST ST",
+   "GeoCity": "WEST ST PAUL",
+   "OBJECTID": 12,
+   "SaleAmount": 95490.02,
+   "SaleDate": 1264658400000
+  },
+  {
+   "GeoAddress": "3208 TEST ST",
+   "GeoCity": "WEST ST PAUL",
+   "OBJECTID": 13,
+   "SaleAmount": 60000,
+   "SaleDate": 1264658400000
+  },
+  {
+   "GeoAddress": "2692 TEST ST",
+   "GeoCity": "MENDOTA HEIGHTS",
+   "OBJECTID": 14,
+   "SaleAmount": 364139.48,
+   "SaleDate": 1263276000000
+  },
+  {
+   "GeoAddress": "4226 TEST ST",
+   "GeoCity": "MENDOTA HEIGHTS",
+   "OBJECTID": 15,
+   "SaleAmount": 335378.67,
+   "SaleDate": 1263880800000
+  }
+ ],
+ "where": "1=1"
+}

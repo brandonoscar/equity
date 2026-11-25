@@ -1,0 +1,86 @@
+{
+ "layer": "https://services2.arcgis.com/c9l1e4fKpsCnqD7H/arcgis/rest/services/For_Sale_2026_view/FeatureServer/0",
+ "rows": [
+  {
+   "Date": 1775838001000,
+   "OBJECTID": 1,
+   "SITEADDRESS": "8742 TEST ST",
+   "Sold": "Yes",
+   "created_date": 1780415686556,
+   "lparcel": "010-041-602-080-00",
+   "minbid": 8725,
+   "type": "RESIDENTIAL-IMPROVED"
+  },
+  {
+   "Date": 1775848605000,
+   "OBJECTID": 2,
+   "SITEADDRESS": "271 TEST ST",
+   "Sold": "No",
+   "created_date": 1780415686556,
+   "lparcel": "130-026-100-055-02",
+   "minbid": 1791,
+   "type": "RESIDENTIAL-IMPROVED"
+  },
+  {
+   "Date": 1775826905000,
+   "OBJECTID": 5,
+   "SITEADDRESS": "1163 TEST ST",
+   "Sold": "Yes",
+   "created_date": 1780415686556,
+   "lparcel": "160-001-100-025-00",
+   "minbid": 8716,
+   "type": "RESIDENTIAL-IMPROVED"
+  },
+  {
+   "Date": 1775823303000,
+   "OBJECTID": 6,
+   "SITEADDRESS": "963 TEST ST",
+   "Sold": "Yes",
+   "created_date": 1780415686556,
+   "lparcel": "200-018-400-061-02",
+   "minbid": 4115,
+   "type": "RESIDENTIAL-VACANT"
+  },
+  {
+   "Date": 1775844914000,
+   "OBJECTID": 7,
+   "SITEADDRESS": "4535 TEST ST",
+   "Sold": "Yes",
+   "created_date": 1780415686556,
+   "lparcel": "600-040-600-555-00",
+   "minbid": 14104,
+   "type": "COMMERCIAL-IMPROVED"
+  },
+  {
+   "Date": 1775832781000,
+   "OBJECTID": 8,
+   "SITEADDRESS": "7769 TEST ST",
+   "Sold": "Yes",
+   "created_date": 1780415686556,
+   "lparcel": "040-010-100-085-00",
+   "minbid": 1586,
+   "type": null
+  },
+  {
+   "Date": 1775832127000,
+   "OBJECTID": 9,
+   "SITEADDRESS": "4342 TEST ST",
+   "Sold": "No",
+   "created_date": 1780415686556,
+   "lparcel": "040-066-200-182-00",
+   "minbid": 1050,
+   "type": "RESIDENTIAL-VACANT"
+  },
+  {
+   "Date": 1775829083000,
+   "OBJECTID": 10,
+   "SITEADDRESS": "1119 TEST ST",
+   "Sold": "Yes",
+   "created_date": 1780415686556,
+   "lparcel": "23-50-40-36-257-201",
+   "minbid": 10863,
+   "type": "RESIDENTIAL-IMPROVED"
+  }
+ ],
+ "where": "1=1"
+}

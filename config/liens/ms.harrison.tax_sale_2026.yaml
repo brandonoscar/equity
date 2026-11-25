@@ -1,0 +1,34 @@
+source_id: ms.harrison.tax_sale_2026
+state: MS
+county_fips: "28047"   # Harrison County (Gulfport, Biloxi)
+# Harrison County, MS 2026 delinquent parcel auction list (layer
+# MSGCHrsnCntyDelinquentParcelAuctions2026, edited 2026-08-28; the 2025 list is
+# ms.harrison.tax_sale_parcels): 6,654 parcels offered at the 2026 tax sale (Miss. Code
+# 27-41-59), with the owner, sale sequence, deed reference and total tax and cost owed. Unpaid
+# Mississippi property tax is a lien on the land; a senior lien, not a judgment. No list date
+# is published: the date is the day the list was read. PARCEL_ID ('0107I-01-031.000') as in
+# the 2025 list and ms.statewide.parcels. Debt kind: tax_delinquency.
+api: arcgis
+layer_url: https://services3.arcgis.com/giRjiTL1UH17pAvy/arcgis/rest/services/MSGCHrsnCntyDelinquentParcelAuctions2026/FeatureServer/0
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, PARCEL_ID, PPIN_NUM_y, Owner_Name, addCalc, Sale_Sequence, DR_Info,
+         Total_Tax___Cost]
+listed_on: listed_on
+date_field: listed_on
+uid: [PARCEL_ID, Sale_Sequence]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Harrison County 2026 tax sale parcel
+amount: Total_Tax___Cost
+parties:
+  - role: debtor
+    name: Owner_Name
+  - {role: creditor, const: Harrison County Tax Collector}
+parcel: {kind: pin, field: PARCEL_ID, county_fips: "28047"}
+extra_pii: [addCalc]
+terms:
+  url: https://services3.arcgis.com/giRjiTL1UH17pAvy/arcgis/rest/services/MSGCHrsnCntyDelinquentParcelAuctions2026/FeatureServer/0
+  summary: "Harrison County MS public ArcGIS Online layer (same org as the 2025 list), free, no login. No licenseInfo on the layer (read 2026-11-25). services3.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free
