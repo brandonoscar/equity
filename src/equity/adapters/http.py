@@ -16,6 +16,7 @@ from collections.abc import Callable, Mapping
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
 
+ROBOTS_RETRY_S = (5.0, 20.0)  # waits before the 2nd and 3rd robots.txt attempts
 USER_AGENT = "equity-records/0.1 (public records research; respects robots.txt)"
 
 # (url, headers, timeout) -> (status, body, content_type)
@@ -144,14 +145,21 @@ class PoliteClient:
         origin = f"{parts.scheme}://{parts.netloc}"
         if origin not in self._robots:
             rp = urllib.robotparser.RobotFileParser(origin + "/robots.txt")
-            self._wait_turn(parts.netloc)
-            try:
-                status, body, _ = self.transport(
-                    origin + "/robots.txt", {"User-Agent": self.user_agent}, self.timeout_s
-                )
-            except OSError:
-                status, body = 599, b""
-            self._last[parts.netloc] = self.monotonic()
+            # A 5xx or network error is retried before the host is treated as unreachable:
+            # one dropped connection would otherwise block the host for the whole build
+            # (seen 2026-11-25 on PASDA and HRSD, whose robots.txt is a plain 404).
+            for backoff in (*ROBOTS_RETRY_S, None):
+                self._wait_turn(parts.netloc)
+                try:
+                    status, body, _ = self.transport(
+                        origin + "/robots.txt", {"User-Agent": self.user_agent}, self.timeout_s
+                    )
+                except OSError:
+                    status, body = 599, b""
+                self._last[parts.netloc] = self.monotonic()
+                if status < 500 or backoff is None:
+                    break
+                self.sleep(backoff)
             # RFC 9309 (Robots Exclusion Protocol), section 2.3.1:
             #   2xx: obey the file;  4xx "unavailable" (incl. 401/403): no restrictions;
             #   5xx or network error "unreachable": assume complete disallow.
