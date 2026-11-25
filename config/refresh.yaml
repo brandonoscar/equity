@@ -20,7 +20,19 @@ rules:
             wi.milwaukee.foreclosure_sales, oh.lucas.forfeited_land_sale, co.lake.tax_lien_sale,
             in.st_joseph.tax_sale, ks.wyandotte.tax_sale, ca.sonoma.defaulted_tax,
             us.hud.fha_reo, az.cochise.tax_deed_auction, oh.lucas.land_bank,
-            oh.mahoning.land_bank]
+            oh.mahoning.land_bank, oh.cuyahoga.forfeited_land_sale, oh.lorain.forfeited_land_sale,
+            oh.cleveland.land_bank, mi.kalamazoo.forfeited_parcels, mi.lenawee.tax_sale,
+            mi.eaton.tax_foreclosure_sale, mi.detroit.dlba_auction_sales,
+            az.navajo.back_tax_auction, az.yavapai.tax_sale, az.coconino.tax_liens,
+            in.delaware.tax_sale, in.delaware.tax_sale_results, mn.dakota.sheriff_sales,
+            mn.wright.tax_forfeited_land, mn.mille_lacs.tax_forfeited_land,
+            mn.carlton.tax_forfeited_land_sale, co.douglas.tax_lien_sale,
+            co.saguache.tax_lien_sale, ut.box_elder.tax_sale, ak.kenai_peninsula.land_sale,
+            ak.fairbanks_north_star.tax_foreclosures, ga.dekalb.surplus_property,
+            ga.dekalb.excess_funds, nv.washoe.excess_proceeds, la.shreveport.adjudicated_property,
+            nm.valencia.tax_auction, ks.linn.tax_sale, pa.cumberland.tax_sales, sc.york.tax_sale,
+            sc.horry.delinquent_tax_sale, ms.harrison.tax_sale_2026,
+            mo.st_louis_county.post_third_sale]
     every_hours: 24
     mode: listing
     listing_table: instrument

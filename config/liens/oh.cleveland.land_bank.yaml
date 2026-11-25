@@ -1,0 +1,26 @@
+source_id: oh.cleveland.land_bank
+state: OH
+county_fips: "39035"
+# City of Cleveland Land Reutilization Program (land bank) owned parcels (16,468 rows on
+# 2026-11-25): vacant lots the city acquired, mostly through tax foreclosure, and markets for
+# sale to individuals, developers and non-profits. A holdings/for-sale list with no former owner
+# or amount: loaded like oh.lucas.land_bank (OTHER), linking each lot by its parcel number.
+api: arcgis
+layer_url: https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/City_Landbank/FeatureServer/0
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, parcelpin, par_addr_all, total_square_ft, cityLandBankType]
+listed_on: listed_on
+date_field: listed_on
+uid: parcelpin
+doc_type: OTHER
+doc_type_raw: City of Cleveland land bank parcel
+parties:
+  - {role: other, const: City of Cleveland Land Reutilization Program}
+parcel: {kind: pin, field: parcelpin, county_fips: "39035"}   # = oh.cuyahoga.parcels parcel_id
+extra_pii: [par_addr_all]
+terms:
+  url: https://www.arcgis.com/home/item.html?id=7fd4dbca53bb450cbe90880f479ae561
+  summary: "City of Cleveland open data (owner opendataCLE) public ArcGIS Online layer, free, no login. licenseInfo (read 2026-11-25): Open Data Commons Open Database License (ODbL): attribution and share-alike on redistribution of the database."
+  checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,181 @@
+{
+ "layer": "https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/City_Landbank/FeatureServer/0",
+ "rows": [
+  {
+   "OBJECTID": 4,
+   "cityLandBankType": "Residential",
+   "par_addr_all": "TESTOWNER 19AC41",
+   "parcelpin": "10323081",
+   "total_square_ft": 608.8663463501817
+  },
+  {
+   "OBJECTID": 8,
+   "cityLandBankType": "Residential",
+   "par_addr_all": "TESTOWNER 8F1731",
+   "parcelpin": "10323073",
+   "total_square_ft": 446.3673078918546
+  },
+  {
+   "OBJECTID": 9,
+   "cityLandBankType": "Residential",
+   "par_addr_all": "TESTOWNER 19AC41",
+   "parcelpin": "10323072",
+   "total_square_ft": 262.00426840565683
+  },
+  {
+   "OBJECTID": 10,
+   "cityLandBankType": "Residential",
+   "par_addr_all": "TESTOWNER 19AC41",
+   "parcelpin": "10323071",
+   "total_square_ft": 286.00449622594164
+  },
+  {
+   "OBJECTID": 15,
+   "cityLandBankType": "Residential",
+   "par_addr_all": "TESTOWNER F5EAEC",
+   "parcelpin": "10323066",
+   "total_square_ft": 508.02963183795725
+  },
+  {
+   "OBJECTID": 16,
+   "cityLandBankType": "Residential",
+   "par_addr_all": "TESTOWNER 97DF35",
+   "parcelpin": "10323065",
+   "total_square_ft": 514.5498387193801
+  },
+  {
+   "OBJECTID": 18,
+   "cityLandBankType": "Residential",
+   "par_addr_all": "TESTOWNER BA93C4",
+   "parcelpin": "10323063",
+   "total_square_ft": 641.8478102859378
+  },
+  {
+   "OBJECTID": 19,
+   "cityLandBankType": "Residential",
+   "par_addr_all": "TESTOWNER 19AC41",
+   "parcelpin": "10323062",
+   "total_square_ft": 471.14507594122205
+  },
+  {
+   "OBJECTID": 24,
+   "cityLandBankType": "Residential",
+   "par_addr_all": "TESTOWNER 5DCDA9",
+   "parcelpin": "10323054",
+   "total_square_ft": 392.8441886678386
+  },
+  {
+   "OBJECTID": 25,
+   "cityLandBankType": "Residential",
+   "par_addr_all": "TESTOWNER 36B719",
+   "parcelpin": "10323053",
+   "total_square_ft": 388.44703742953476
+  },
+  {
+   "OBJECTID": 42,
+   "cityLandBankType": "Residential",
+   "par_addr_all": "TESTOWNER CF5E93",
+   "parcelpin": "10323029",
+   "total_square_ft": 587.8117747025844
+  },
+  {
+   "OBJECTID": 45,
+   "cityLandBankType": "Residential",
+   "par_addr_all": "TESTOWNER 78D4EA",
+   "parcelpin": "10323025",
+   "total_square_ft": 193.3505910401623
+  },
+  {
+   "OBJECTID": 46,
+   "cityLandBankType": "Residential",
+   "par_addr_all": "TESTOWNER 6851B4",
+   "parcelpin": "10323024",
+   "total_square_ft": 177.12972470088545
+  },
+  {
+   "OBJECTID": 55,
+   "cityLandBankType": "Residential",
+   "par_addr_all": "TESTOWNER 78D4EA",
+   "parcelpin": "10323015",
+   "total_square_ft": 200.08577460701548
+  },
+  {
+   "OBJECTID": 61,
+   "cityLandBankType": "Residential",
+   "par_addr_all": "TESTOWNER 86B7DB",
+   "parcelpin": "10323009",
+   "total_square_ft": 339.82563023753147
+  },
+  {
+   "OBJECTID": 63,
+   "cityLandBankType": "Residential",
+   "par_addr_all": "TESTOWNER 4775A9",
+   "parcelpin": "10323007",
+   "total_square_ft": 419.92406015270836
+  },
+  {
+   "OBJECTID": 64,
+   "cityLandBankType": "Residential",
+   "par_addr_all": "TESTOWNER 804D15",
+   "parcelpin": "10323006",
+   "total_square_ft": 416.1655838882326
+  },
+  {
+   "OBJECTID": 73,
+   "cityLandBankType": "Residential",
+   "par_addr_all": "TESTOWNER 1CCEEF",
+   "parcelpin": "10322160",
+   "total_square_ft": 199.00366082611765
+  },
+  {
+   "OBJECTID": 74,
+   "cityLandBankType": "Residential",
+   "par_addr_all": "TESTOWNER 66FDC5",
+   "parcelpin": "10322159",
+   "total_square_ft": 226.00121067517142
+  },
+  {
+   "OBJECTID": 78,
+   "cityLandBankType": "Residential",
+   "par_addr_all": "TESTOWNER 5DC367",
+   "parcelpin": "10322153",
+   "total_square_ft": 164.0022331371801
+  },
+  {
+   "OBJECTID": 79,
+   "cityLandBankType": "Residential",
+   "par_addr_all": "TESTOWNER CD70EB",
+   "parcelpin": "10322152",
+   "total_square_ft": 157.2024144414647
+  },
+  {
+   "OBJECTID": 89,
+   "cityLandBankType": "Residential",
+   "par_addr_all": "TESTOWNER 0783D2",
+   "parcelpin": "10322137",
+   "total_square_ft": 362.42864728247235
+  },
+  {
+   "OBJECTID": 90,
+   "cityLandBankType": "Residential",
+   "par_addr_all": "TESTOWNER F0D716",
+   "parcelpin": "10322136",
+   "total_square_ft": 402.3916814781966
+  },
+  {
+   "OBJECTID": 92,
+   "cityLandBankType": "Residential",
+   "par_addr_all": "TESTOWNER 66FDC5",
+   "parcelpin": "10322134",
+   "total_square_ft": 878.5286369507012
+  },
+  {
+   "OBJECTID": 98,
+   "cityLandBankType": "Residential",
+   "par_addr_all": "TESTOWNER 747DE0",
+   "parcelpin": "10322125",
+   "total_square_ft": 311.6305749911454
+  }
+ ],
+ "where": "1=1"
+}

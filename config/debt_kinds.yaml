@@ -139,3 +139,14 @@ sources:
   tx.tabc.credit_law_delinquent: administrative_order
   va.fauquier.delinquent_taxes: tax_delinquency
   wv.bluefield.tax_delinquent: tax_delinquency
+  # government sale lists: tax-sale, forfeiture and sheriff-sale parcels (2026-11-25)
+  az.navajo.back_tax_auction: tax_delinquency
+  co.douglas.tax_lien_sale: tax_lien
+  co.saguache.tax_lien_sale: tax_lien
+  in.delaware.tax_sale_results: tax_delinquency
+  mn.carlton.tax_forfeited_land_sale: tax_delinquency
+  mn.dakota.sheriff_sales: foreclosure
+  mn.mille_lacs.tax_forfeited_land: tax_delinquency
+  mn.wright.tax_forfeited_land: tax_delinquency
+  pa.cumberland.tax_sales: tax_delinquency
+  ut.box_elder.tax_sale: tax_delinquency

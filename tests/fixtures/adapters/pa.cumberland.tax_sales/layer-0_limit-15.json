@@ -1,0 +1,56 @@
+{
+ "layer": "https://services1.arcgis.com/1Cfo0re3un0w6a30/arcgis/rest/services/Tax_Sales/FeatureServer/1",
+ "rows": [
+  {
+   "CARE_OF": null,
+   "FullAddress": "1158 TEST ST",
+   "MUNI_NAME": "MIDDLESEX TOWNSHIP",
+   "OBJECTID_1": 1,
+   "OWNER": "TESTOWNER 6F9497 LLC",
+   "PID": "21001420",
+   "PIN": "21-07-0465-016",
+   "TAX_STAT": "T"
+  },
+  {
+   "CARE_OF": null,
+   "FullAddress": "8204 TEST ST",
+   "MUNI_NAME": "SHIPPENSBURG WEST WRD",
+   "OBJECTID_1": 2,
+   "OWNER": "TESTOWNER 7C4126 LLC",
+   "PID": "34000302",
+   "PIN": "34-34-2417-088",
+   "TAX_STAT": "T"
+  },
+  {
+   "CARE_OF": null,
+   "FullAddress": "370 TEST ST",
+   "MUNI_NAME": "SHIPPENSBURG WEST WRD",
+   "OBJECTID_1": 3,
+   "OWNER": "TESTOWNER 7C4126 LLC",
+   "PID": "34000294",
+   "PIN": "34-34-2417-079",
+   "TAX_STAT": "T"
+  },
+  {
+   "CARE_OF": null,
+   "FullAddress": "1202 TEST ST",
+   "MUNI_NAME": "SHIPPENSBURG WEST WRD",
+   "OBJECTID_1": 4,
+   "OWNER": "TESTOWNER 6E63BD",
+   "PID": "34000124",
+   "PIN": "34-34-2415-053",
+   "TAX_STAT": "T"
+  },
+  {
+   "CARE_OF": null,
+   "FullAddress": "4337 TEST ST",
+   "MUNI_NAME": "NEW CUMBERLAND 2ND WD",
+   "OBJECTID_1": 5,
+   "OWNER": "TESTOWNER 39D627",
+   "PID": "26001455",
+   "PIN": "26-24-0809-382",
+   "TAX_STAT": "T"
+  }
+ ],
+ "where": "1=1"
+}

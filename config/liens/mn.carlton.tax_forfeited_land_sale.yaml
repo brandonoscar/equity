@@ -1,0 +1,25 @@
+source_id: mn.carlton.tax_forfeited_land_sale
+state: MN
+county_fips: "27017"
+# Carlton County MN 2026 land sale (26 rows on 2026-11-25): tax-forfeited parcels offered at
+# the county's 2026 tax-forfeited land sale, with the estimated market value and minimum bid
+# ('archived' marks parcels already off the sale). No former owner or amount owed: linked by
+# PARCELID. TAX_LIEN_STATE, as the other forfeited-land lists.
+api: arcgis
+layer_url: https://services.arcgis.com/GaVfJCelmMSe6faF/arcgis/rest/services/2026_Land_Sales_(view)/FeatureServer/22
+single_partition: true
+order_by: [FID]
+select: [FID, PARCELID, PLDESC, EMV, MIN_BID, archived]
+listed_on: listed_on
+date_field: listed_on
+uid: PARCELID
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Carlton County 2026 tax-forfeited land sale parcel
+parties:
+  - {role: creditor, const: State of Minnesota (Carlton County tax-forfeited land)}
+parcel: {kind: pin, field: PARCELID, county_fips: "27017"}   # = mn.statewide.parcels county_pin
+terms:
+  url: https://www.arcgis.com/home/item.html?id=1da0b3ab3d1247acafa3040330269446
+  summary: "Carlton County MN (owner CarltonCountyGIS) public ArcGIS Online view layer, free, no login; no licenseInfo or use restriction on the item (read 2026-11-25). services.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  cost_model: free

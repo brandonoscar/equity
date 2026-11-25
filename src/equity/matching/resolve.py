@@ -755,7 +755,8 @@ STATES: dict[str, dict[str, Any]] = {
     # Colorado: federal tax and statutory (hospital, other) liens from the SOS UCC system;
     # UCC financing statements name debtors too but are not debts owed on a judgment or lien.
     # Lake County's tax lien sale list names the owner and the parcel.
-    "CO": {"debtors": ["co.sos.ucc", "co.lake.tax_lien_sale"],
+    "CO": {"debtors": ["co.douglas.tax_lien_sale", "co.lake.tax_lien_sale",
+                       "co.saguache.tax_lien_sale", "co.sos.ucc"],
            "debtor_doc_types": {"co.sos.ucc": ["TAX_LIEN_FEDERAL", "STATUTORY_LIEN"]},
            "owners": ["co.statewide.parcels"], "registries": ["co.sos.business"],
            "parcel_on_lien": True, "courts": FEDERAL_COURTS},
@@ -780,8 +781,9 @@ STATES: dict[str, dict[str, Any]] = {
            "writs": ["fl.hillsborough.garnishment"], "parcel_on_lien": True,
            "deeds": ["fl.hillsborough.or", "fl.hernando.or", "fl.putnam.or"]},
     # PA L&I lists name employers statewide; county parcel layers with owner names.
-    "PA": {"debtors": ["pa.dli.uc_liens", "pa.dli.bwc_noncompliance", "pa.dli.bllc_noncompliance",
-                       "pa.washington.sheriff_sales", "pa.philadelphia.li_fines"],
+    "PA": {"debtors": ["pa.cumberland.tax_sales", "pa.dli.bllc_noncompliance",
+                       "pa.dli.bwc_noncompliance", "pa.dli.uc_liens", "pa.philadelphia.li_fines",
+                       "pa.washington.sheriff_sales"],
            "owners": ["pa.berks.parcels", "pa.bucks.parcels", "pa.chester.parcels",
                       "pa.erie.parcels", "pa.franklin.parcels", "pa.lancaster.parcels",
                       "pa.mercer.parcels", "pa.montgomery.parcels", "pa.philadelphia.parcels",
@@ -851,8 +853,10 @@ STATES: dict[str, dict[str, Any]] = {
     "ND": {"debtors": [], "owners": ["nd.statewide.parcels"], "courts": FEDERAL_COURTS},
     "WY": {"debtors": [], "owners": ["wy.statewide.parcels"], "courts": FEDERAL_COURTS},
     "ME": {"debtors": [], "owners": ["me.statewide.parcels"], "courts": FEDERAL_COURTS},
-    "MN": {"debtors": [], "owners": ["mn.statewide.parcels", "mn.metro.parcels"],
-           "courts": FEDERAL_COURTS},
+    "MN": {"debtors": ["mn.carlton.tax_forfeited_land_sale", "mn.dakota.sheriff_sales",
+                       "mn.mille_lacs.tax_forfeited_land", "mn.wright.tax_forfeited_land"],
+           "owners": ["mn.statewide.parcels", "mn.metro.parcels"],
+           "courts": FEDERAL_COURTS, "parcel_on_lien": True},
     "MA": {"debtors": [], "owners": ["ma.statewide.parcels"], "courts": FEDERAL_COURTS},
     "NV-WASHOE": {"debtors": [], "owners": ["nv.washoe.parcels"], "courts": FEDERAL_COURTS},
     # County parcel layers with owner names in states (or counties) with no county debt list
@@ -868,7 +872,8 @@ STATES: dict[str, dict[str, Any]] = {
                       "al.madison.parcels", "al.marshall.parcels", "al.mobile.parcels",
                       "al.montgomery.parcels", "al.morgan.parcels", "al.talladega.parcels",
                       "al.tuscaloosa.parcels"]},
-    "AZ-COUNTIES": {"debtors": ["az.coconino.tax_liens", "az.yavapai.tax_sale"],
+    "AZ-COUNTIES": {"debtors": ["az.coconino.tax_liens", "az.navajo.back_tax_auction",
+                                "az.yavapai.tax_sale"],
                     "courts": FEDERAL_COURTS,
                     "parcel_on_lien": True,
                     "owners": ["az.coconino.parcels", "az.mohave.parcels", "az.pinal.parcels",
@@ -923,7 +928,7 @@ STATES: dict[str, dict[str, Any]] = {
     "TN": {"debtors": [], "courts": FEDERAL_COURTS,
            "owners": ["tn.davidson.parcels", "tn.hamilton.parcels", "tn.rutherford.parcels",
                       "tn.washington.parcels"]},
-    "UT": {"debtors": [], "courts": FEDERAL_COURTS,
+    "UT": {"debtors": ["ut.box_elder.tax_sale"], "courts": FEDERAL_COURTS, "parcel_on_lien": True,
            "owners": ["ut.salt_lake.parcels", "ut.utah.parcels"]},
     "WA": {"debtors": [], "courts": FEDERAL_COURTS,
            "owners": ["wa.snohomish.parcels", "wa.spokane.parcels", "wa.thurston.parcels",
@@ -976,7 +981,8 @@ STATES: dict[str, dict[str, Any]] = {
                     "owners": ["az.maricopa.parcels"], "parcel_on_lien": True,
                     "courts": FEDERAL_COURTS},
     # Indiana statewide owners plus Marion County's (Indianapolis) mailing addresses.
-    "IN": {"debtors": ["in.delaware.tax_sale", "in.st_joseph.tax_sale"],
+    "IN": {"debtors": ["in.delaware.tax_sale", "in.delaware.tax_sale_results",
+                       "in.st_joseph.tax_sale"],
            "owners": ["in.statewide.parcels", "in.marion.parcels", "in.vanderburgh.parcels",
                       "in.lake.parcels"],
            "parcel_on_lien": True,

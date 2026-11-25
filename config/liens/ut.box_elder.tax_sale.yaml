@@ -1,0 +1,29 @@
+source_id: ut.box_elder.tax_sale
+state: UT
+county_fips: "49003"
+# Box Elder County UT 2026 tax sale (106 rows on 2026-11-25): parcels on the county's May 2026
+# delinquent tax sale (Utah Code 59-2-1351), with the account, owner of record and amount due.
+# The owner mailing address is one multi-line text field that does not split reliably, so it
+# stays in the source record. SCHNO is the dashed parcel number the statewide layer uses.
+api: arcgis
+layer_url: https://services2.arcgis.com/QcxW3q3Hq3nqNMhd/arcgis/rest/services/2026_Tax_Sale_Web_Map_WFL1/FeatureServer/1
+single_partition: true
+order_by: [FID]
+select: [FID, SCHNO, Parcel_Num, Account_Nu, OWNERNAME, OWNERADDRE, Situs_Addr, Amount_Due]
+listed_on: listed_on
+date_field: listed_on
+uid: Parcel_Num
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Box Elder County 2026 tax sale parcel
+amount: Amount_Due
+parties:
+  - role: debtor
+    name: OWNERNAME
+  - {role: creditor, const: Box Elder County Auditor}
+parcel: {kind: pin, field: SCHNO, county_fips: "49003"}   # = ut.statewide.parcels PARCEL_ID '01-051-0060'
+extra_pii: [OWNERADDRE, Situs_Addr]
+terms:
+  url: https://www.arcgis.com/home/item.html?id=a82936f5dc4a4e28ad9829b730b017f2
+  summary: "Box Elder County UT GIS (owner becogis) public ArcGIS Online layer, free, no login; no licenseInfo or use restriction on the item (read 2026-11-25). services2.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  cost_model: free

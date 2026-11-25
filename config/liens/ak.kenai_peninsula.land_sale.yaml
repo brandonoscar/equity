@@ -1,0 +1,25 @@
+source_id: ak.kenai_peninsula.land_sale
+state: AK
+county_fips: "02122"
+# Kenai Peninsula Borough 2026 general land sale (18 rows on 2026-11-25): surplus Borough land
+# offered at the 2026 sealed-bid/outcry sale, with the minimum bid, acreage and area. Government
+# real property disposal, no debt or former owner: OTHER, linked by the Borough parcel id
+# (same 8-digit form as ak.kenai_peninsula.parcels PARCEL_ID). 'Removed' marks withdrawn lots.
+api: arcgis
+layer_url: https://services.arcgis.com/ba4DH9pIcqkXJVfl/arcgis/rest/services/General_Land_Sale_2026/FeatureServer/2
+single_partition: true
+order_by: [objectid]
+select: [objectid, parcel_id, acres, minimumbid, generalarea, lap, Removed, Label]
+listed_on: listed_on
+date_field: listed_on
+uid: parcel_id
+doc_type: OTHER
+doc_type_raw: Kenai Peninsula Borough 2026 general land sale parcel
+parties:
+  - {role: grantor, const: Kenai Peninsula Borough}
+parcel: {kind: pin, field: parcel_id, county_fips: "02122"}
+terms:
+  url: https://www.arcgis.com/home/item.html?id=9940a2cc7ae543ea939babe010b38265
+  summary: "Kenai Peninsula Borough (org KPB, owner celinarobinson) public ArcGIS Online layer, free, no login; no licenseInfo or use restriction on the item (read 2026-11-25). services.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  cost_model: free

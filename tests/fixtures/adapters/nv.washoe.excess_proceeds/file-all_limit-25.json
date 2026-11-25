@@ -1,0 +1,152 @@
+{
+ "rows": [
+  {
+   "owner_prior_to_trustee": "TESTOWNER 0D744F",
+   "parcel_no": "004 - 382 - 35",
+   "proceeds": "91,420.22",
+   "property_address": "744 TEST ST",
+   "sale_price": "99,000.00"
+  },
+  {
+   "owner_prior_to_trustee": "TESTOWNER B9D87F",
+   "parcel_no": "008 - 522 - 06",
+   "proceeds": "137,276.44",
+   "property_address": "1613 TEST ST",
+   "sale_price": "153,500.00"
+  },
+  {
+   "owner_prior_to_trustee": "NO SALE - WILL BE OFFERED AT NEXT YEARS SALE",
+   "parcel_no": "015 - 281 - 34",
+   "proceeds": "-",
+   "property_address": "3521 TEST ST",
+   "sale_price": "-"
+  },
+  {
+   "owner_prior_to_trustee": "TESTOWNER 17D78C",
+   "parcel_no": "061 - 230 - 21",
+   "proceeds": "36,643.73",
+   "property_address": "8924 TEST ST",
+   "sale_price": "39,500.00"
+  },
+  {
+   "owner_prior_to_trustee": "TESTOWNER B4C17F",
+   "parcel_no": "",
+   "proceeds": "",
+   "property_address": "",
+   "sale_price": ""
+  },
+  {
+   "owner_prior_to_trustee": "",
+   "parcel_no": "066 - 070 - 04",
+   "proceeds": "",
+   "property_address": "8924 TEST ST",
+   "sale_price": ""
+  },
+  {
+   "owner_prior_to_trustee": "TESTOWNER 02CA2B",
+   "parcel_no": "",
+   "proceeds": "4,798.37",
+   "property_address": "",
+   "sale_price": "6,300.00"
+  },
+  {
+   "owner_prior_to_trustee": "TESTOWNER 5FF8C3",
+   "parcel_no": "066 - 210 - 13",
+   "proceeds": "8,269.72",
+   "property_address": "8924 TEST ST",
+   "sale_price": "10,000.00"
+  },
+  {
+   "owner_prior_to_trustee": "TESTOWNER 6A864F",
+   "parcel_no": "066 - 250 - 22",
+   "proceeds": "7,242.72",
+   "property_address": "8924 TEST ST",
+   "sale_price": "9,200.00"
+  },
+  {
+   "owner_prior_to_trustee": "TESTOWNER 7AB2D4",
+   "parcel_no": "074 - 202 - 33",
+   "proceeds": "2,127.94",
+   "property_address": "8924 TEST ST",
+   "sale_price": "3,100.00"
+  },
+  {
+   "owner_prior_to_trustee": "TESTOWNER D1D097",
+   "parcel_no": "",
+   "proceeds": "",
+   "property_address": "",
+   "sale_price": ""
+  },
+  {
+   "owner_prior_to_trustee": "",
+   "parcel_no": "074 - 222 - 19",
+   "proceeds": "",
+   "property_address": "8924 TEST ST",
+   "sale_price": ""
+  },
+  {
+   "owner_prior_to_trustee": "TESTOWNER 14BB81",
+   "parcel_no": "",
+   "proceeds": "4,429.99",
+   "property_address": "",
+   "sale_price": "5,800.00"
+  },
+  {
+   "owner_prior_to_trustee": "TESTOWNER 7E0617",
+   "parcel_no": "074 - 411 - 11",
+   "proceeds": "8,563.61",
+   "property_address": "8924 TEST ST",
+   "sale_price": "10,500.00"
+  },
+  {
+   "owner_prior_to_trustee": "TESTOWNER D12BD5",
+   "parcel_no": "",
+   "proceeds": "",
+   "property_address": "",
+   "sale_price": ""
+  },
+  {
+   "owner_prior_to_trustee": "TESTOWNER 747E76",
+   "parcel_no": "",
+   "proceeds": "",
+   "property_address": "",
+   "sale_price": ""
+  },
+  {
+   "owner_prior_to_trustee": "TESTOWNER 4278E6",
+   "parcel_no": "",
+   "proceeds": "",
+   "property_address": "",
+   "sale_price": ""
+  },
+  {
+   "owner_prior_to_trustee": "",
+   "parcel_no": "074 - 412 - 38",
+   "proceeds": "",
+   "property_address": "8924 TEST ST",
+   "sale_price": ""
+  },
+  {
+   "owner_prior_to_trustee": "TESTOWNER 52E935",
+   "parcel_no": "",
+   "proceeds": "",
+   "property_address": "",
+   "sale_price": ""
+  },
+  {
+   "owner_prior_to_trustee": "TESTOWNER 253566",
+   "parcel_no": "",
+   "proceeds": "",
+   "property_address": "",
+   "sale_price": ""
+  },
+  {
+   "owner_prior_to_trustee": "TESTOWNER C7A5B6",
+   "parcel_no": "",
+   "proceeds": "9,056.40",
+   "property_address": "",
+   "sale_price": "11,100.00"
+  }
+ ],
+ "url": "https://www.washoecounty.gov/treas/files/2026%20Real%20Property%20Excees%20Proceeds%20List.pdf"
+}

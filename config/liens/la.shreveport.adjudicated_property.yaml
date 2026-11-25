@@ -1,0 +1,30 @@
+source_id: la.shreveport.adjudicated_property
+state: LA
+county_fips: "22017"   # Caddo Parish
+# City of Shreveport adjudicated property (5,838 rows on 2026-11-25; layer edited 2025-06):
+# parcels adjudicated to the City at tax sale because no one bid (La. R.S. 47:2196), which the
+# City sells through its adjudicated property program, with the owner at adjudication and that
+# owner's mailing address (one unpunctuated text, kept in the source record). Loaded as a tax
+# sale record (TAX_LIEN_STATE) against the owner, linked by the Caddo geographic number.
+api: arcgis
+layer_url: https://services3.arcgis.com/cEsSI6IR59h5UGE4/arcgis/rest/services/AdjudicatedProperty/FeatureServer/0
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, GEOG_NUMBER, OWNER, PROP_ADDRESS, MAIL_ADDRESS, TOWN_TAX, IMPROVED_VALUE,
+         LAND_VALUE, ADJUDICATED]
+listed_on: listed_on
+date_field: listed_on
+uid: GEOG_NUMBER
+doc_type: TAX_LIEN_STATE
+doc_type_raw: City of Shreveport adjudicated property
+parties:
+  - role: debtor
+    name: OWNER
+  - {role: creditor, const: City of Shreveport}
+parcel: {kind: pin, field: GEOG_NUMBER, county_fips: "22017"}
+extra_pii: [PROP_ADDRESS, MAIL_ADDRESS]
+terms:
+  url: https://www.arcgis.com/home/item.html?id=0a2eff234c4c44998c5f7608f95bf06d
+  summary: "City of Shreveport (owner Nikolas.Holt@shreveportla.gov, the City's ArcGIS Online org) public layer, free, no login; no licenseInfo or use restriction on the item (read 2026-11-25). services3.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  cost_model: free

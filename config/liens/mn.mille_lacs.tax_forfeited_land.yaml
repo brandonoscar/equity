@@ -1,0 +1,26 @@
+source_id: mn.mille_lacs.tax_forfeited_land
+state: MN
+county_fips: "27095"
+# Mille Lacs County MN tax-forfeited land (75 rows on 2026-11-25): parcels forfeited to the
+# State for unpaid taxes that the county has for sale now or at a future land sale auction,
+# with the forfeiture date, price, sale type and auction date. No former owner or amount owed:
+# linked by PID. TAX_LIEN_STATE, as the other forfeited-land lists.
+api: arcgis
+layer_url: https://services6.arcgis.com/msGTRvdwc9dcDoMX/arcgis/rest/services/Tax_Forfeit_Web_Map_WFL1/FeatureServer/3
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, PID, SALEABLE, POLITICAL_SUBDIVISION, PRICE, ACRES, SALE_TYPE, AUCTION_DATE,
+         FORFEIT_DATE, STRUCTURES]
+listed_on: listed_on
+date_field: listed_on
+uid: PID
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Mille Lacs County tax-forfeited land for sale
+parties:
+  - {role: creditor, const: State of Minnesota (Mille Lacs County tax-forfeited land)}
+parcel: {kind: pin, field: PID, county_fips: "27095"}   # = mn.statewide.parcels county_pin
+terms:
+  url: https://www.arcgis.com/home/item.html?id=7051d7e5dfe74804be53ac2ea91de60e
+  summary: "Mille Lacs County MN Environmental Services (owner EnvSvcs_MILLELACS) public ArcGIS Online layer, free, no login; no licenseInfo or use restriction on the item (read 2026-11-25). services6.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  cost_model: free

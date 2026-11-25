@@ -1,0 +1,33 @@
+source_id: nv.washoe.excess_proceeds
+state: NV
+county_fips: "32031"
+# Washoe County Treasurer 2026 real property excess proceeds list (PDF): parcels sold at the
+# April 22, 2026 trustee (tax) sale, recorded May 1, 2026, with the owner prior to the trustee,
+# property address, sale price and the excess proceeds held for claimants (NRS 361.610; claims
+# within one year of recording). SURPLUS FUNDS: no doc type holds money owed back to an owner,
+# so each row is OTHER (amount = excess proceeds, consideration = sale price) and the prior
+# owner is the creditor. Names wrapped onto a second line in the PDF land in a row without a
+# parcel number and are dropped; the 'NO SALE' line is skipped. A new file each year: update
+# url (the year is in the file name).
+api: pdf
+url: https://www.washoecounty.gov/treas/files/2026%20Real%20Property%20Excees%20Proceeds%20List.pdf
+header: Parcel No.
+listed_on: listed_on
+date_field: listed_on
+uid: parcel_no
+doc_type: OTHER
+doc_type_raw: Washoe County 2026 tax sale excess proceeds
+amount: proceeds
+consideration: sale_price
+parties:
+  - role: creditor
+    name: owner_prior_to_trustee
+  - {role: other, const: Washoe County Treasurer}
+skip_names: ["NO SALE - WILL BE OFFERED AT NEXT YEARS SALE"]
+parcel: {kind: pin, field: parcel_no, county_fips: "32031"}   # '004 - 382 - 35' -> 004-382-35 = nv.washoe PIN
+extra_pii: [property_address]
+terms:
+  url: https://www.washoecounty.gov/treas/
+  summary: "Washoe County NV Treasurer public PDF, free, no login. No license or use terms on the file (read 2026-11-25); washoecounty.gov/robots.txt disallows only /cgi-bin/, /repository/, /large_files/."
+  checked_on: 2026-11-25
+  cost_model: free

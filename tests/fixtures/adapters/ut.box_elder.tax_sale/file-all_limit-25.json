@@ -1,0 +1,256 @@
+{
+ "layer": "https://services2.arcgis.com/QcxW3q3Hq3nqNMhd/arcgis/rest/services/2026_Tax_Sale_Web_Map_WFL1/FeatureServer/1",
+ "rows": [
+  {
+   "Account_Nu": "R0004197",
+   "Amount_Due": 92.45,
+   "FID": 1,
+   "OWNERADDRE": "TESTOWNER BB533D",
+   "OWNERNAME": "TESTOWNER E81E63",
+   "Parcel_Num": "010510060",
+   "SCHNO": "01-051-0060",
+   "Situs_Addr": " "
+  },
+  {
+   "Account_Nu": "R0004213",
+   "Amount_Due": 92.45,
+   "FID": 2,
+   "OWNERADDRE": "TESTOWNER D10404",
+   "OWNERNAME": "TESTOWNER 6035AE",
+   "Parcel_Num": "010510076",
+   "SCHNO": "01-051-0076",
+   "Situs_Addr": " "
+  },
+  {
+   "Account_Nu": "R0004325",
+   "Amount_Due": 92.45,
+   "FID": 3,
+   "OWNERADDRE": "TESTOWNER 1FEC22",
+   "OWNERNAME": "TESTOWNER 7F6031",
+   "Parcel_Num": "010520060",
+   "SCHNO": "01-052-0060",
+   "Situs_Addr": " "
+  },
+  {
+   "Account_Nu": "R0036105",
+   "Amount_Due": 110.34,
+   "FID": 4,
+   "OWNERADDRE": "TESTOWNER 5A7391",
+   "OWNERNAME": "TESTOWNER E6B96D",
+   "Parcel_Num": "010570006",
+   "SCHNO": "01-057-0006",
+   "Situs_Addr": " "
+  },
+  {
+   "Account_Nu": "R0037761",
+   "Amount_Due": 110.34,
+   "FID": 5,
+   "OWNERADDRE": "TESTOWNER 69F5FD",
+   "OWNERNAME": "TESTOWNER CDCC4F",
+   "Parcel_Num": "010570029",
+   "SCHNO": "01-057-0029",
+   "Situs_Addr": " "
+  },
+  {
+   "Account_Nu": "R0037764",
+   "Amount_Due": 152.18,
+   "FID": 6,
+   "OWNERADDRE": "TESTOWNER C6F4A3",
+   "OWNERNAME": "TESTOWNER 4B8E94",
+   "Parcel_Num": "010570032",
+   "SCHNO": "01-057-0032",
+   "Situs_Addr": " "
+  },
+  {
+   "Account_Nu": "R0037782",
+   "Amount_Due": 110.34,
+   "FID": 7,
+   "OWNERADDRE": "TESTOWNER ACB41D",
+   "OWNERNAME": "TESTOWNER 1BBAA7",
+   "Parcel_Num": "010570051",
+   "SCHNO": "01-057-0051",
+   "Situs_Addr": " "
+  },
+  {
+   "Account_Nu": "R0072658",
+   "Amount_Due": 260.97,
+   "FID": 8,
+   "OWNERADDRE": "TESTOWNER 46D731",
+   "OWNERNAME": "TESTOWNER F0F3C7 LLC",
+   "Parcel_Num": "010590056",
+   "SCHNO": "01-059-0056",
+   "Situs_Addr": " "
+  },
+  {
+   "Account_Nu": "R0072764",
+   "Amount_Due": 260.97,
+   "FID": 9,
+   "OWNERADDRE": "TESTOWNER E59405",
+   "OWNERNAME": "TESTOWNER 5B6A63",
+   "Parcel_Num": "010590064",
+   "SCHNO": "01-059-0064",
+   "Situs_Addr": " "
+  },
+  {
+   "Account_Nu": "R0070104",
+   "Amount_Due": 87.3,
+   "FID": 10,
+   "OWNERADDRE": "TESTOWNER BB4C50",
+   "OWNERNAME": "TESTOWNER BF15D7",
+   "Parcel_Num": "010600118",
+   "SCHNO": "01-060-0118",
+   "Situs_Addr": " "
+  },
+  {
+   "Account_Nu": "R0074427",
+   "Amount_Due": 284.22,
+   "FID": 11,
+   "OWNERADDRE": "TESTOWNER 278FD0",
+   "OWNERNAME": "TESTOWNER 8E2196",
+   "Parcel_Num": "010600167",
+   "SCHNO": "01-060-0167",
+   "Situs_Addr": " "
+  },
+  {
+   "Account_Nu": "R0004593",
+   "Amount_Due": 110.67,
+   "FID": 12,
+   "OWNERADDRE": "TESTOWNER 5E862F",
+   "OWNERNAME": "TESTOWNER AE95A6",
+   "Parcel_Num": "010630013",
+   "SCHNO": "01-063-0013",
+   "Situs_Addr": " "
+  },
+  {
+   "Account_Nu": "R0004600",
+   "Amount_Due": 219.46,
+   "FID": 13,
+   "OWNERADDRE": "TESTOWNER 6105FD",
+   "OWNERNAME": "TESTOWNER 0B87F3",
+   "Parcel_Num": "010630020",
+   "SCHNO": "01-063-0020",
+   "Situs_Addr": " "
+  },
+  {
+   "Account_Nu": "R0004822",
+   "Amount_Due": 92.45,
+   "FID": 14,
+   "OWNERADDRE": "TESTOWNER C9584C",
+   "OWNERNAME": "TESTOWNER A635D1",
+   "Parcel_Num": "010680057",
+   "SCHNO": "01-068-0057",
+   "Situs_Addr": " "
+  },
+  {
+   "Account_Nu": "R0005127",
+   "Amount_Due": 92.45,
+   "FID": 15,
+   "OWNERADDRE": "TESTOWNER 8228C0",
+   "OWNERNAME": "TESTOWNER 99DA7D",
+   "Parcel_Num": "010700106",
+   "SCHNO": "01-070-0106",
+   "Situs_Addr": " "
+  },
+  {
+   "Account_Nu": "R0005167",
+   "Amount_Due": 92.45,
+   "FID": 16,
+   "OWNERADDRE": "TESTOWNER 46D731",
+   "OWNERNAME": "TESTOWNER F0F3C7 LLC",
+   "Parcel_Num": "010710018",
+   "SCHNO": "01-071-0018",
+   "Situs_Addr": " "
+  },
+  {
+   "Account_Nu": "R0005341",
+   "Amount_Due": 116.66,
+   "FID": 17,
+   "OWNERADDRE": "TESTOWNER 545A00",
+   "OWNERNAME": "TESTOWNER 64CCCD",
+   "Parcel_Num": "010780006",
+   "SCHNO": "01-078-0006",
+   "Situs_Addr": " "
+  },
+  {
+   "Account_Nu": "R0005416",
+   "Amount_Due": 419.44,
+   "FID": 18,
+   "OWNERADDRE": "TESTOWNER 976086",
+   "OWNERNAME": "TESTOWNER F08DBF",
+   "Parcel_Num": "010860002",
+   "SCHNO": "01-086-0002",
+   "Situs_Addr": " "
+  },
+  {
+   "Account_Nu": "R0005435",
+   "Amount_Due": 419.44,
+   "FID": 19,
+   "OWNERADDRE": "TESTOWNER C6F4A3",
+   "OWNERNAME": "TESTOWNER 4B8E94",
+   "Parcel_Num": "010880004",
+   "SCHNO": "01-088-0004",
+   "Situs_Addr": " "
+  },
+  {
+   "Account_Nu": "R0005437",
+   "Amount_Due": 683.83,
+   "FID": 20,
+   "OWNERADDRE": "TESTOWNER C6F4A3",
+   "OWNERNAME": "TESTOWNER 4B8E94",
+   "Parcel_Num": "010880006",
+   "SCHNO": "01-088-0006",
+   "Situs_Addr": " "
+  },
+  {
+   "Account_Nu": "R0005494",
+   "Amount_Due": 110.52,
+   "FID": 21,
+   "OWNERADDRE": "TESTOWNER 0BB4F0",
+   "OWNERNAME": "TESTOWNER CD9295",
+   "Parcel_Num": "011090004",
+   "SCHNO": "01-109-0004",
+   "Situs_Addr": " "
+  },
+  {
+   "Account_Nu": "R0005499",
+   "Amount_Due": 110.67,
+   "FID": 22,
+   "OWNERADDRE": "TESTOWNER 4FDCB3",
+   "OWNERNAME": "TESTOWNER C92C8E",
+   "Parcel_Num": "011090009",
+   "SCHNO": "01-109-0009",
+   "Situs_Addr": " "
+  },
+  {
+   "Account_Nu": "R0005569",
+   "Amount_Due": 216.51,
+   "FID": 23,
+   "OWNERADDRE": "TESTOWNER 224E0C",
+   "OWNERNAME": "TESTOWNER E7D8B0",
+   "Parcel_Num": "011150006",
+   "SCHNO": "01-115-0006",
+   "Situs_Addr": " "
+  },
+  {
+   "Account_Nu": "R0005615",
+   "Amount_Due": 209.4,
+   "FID": 24,
+   "OWNERADDRE": "TESTOWNER DD4367",
+   "OWNERNAME": "TESTOWNER 43F053",
+   "Parcel_Num": "011200005",
+   "SCHNO": "01-120-0005",
+   "Situs_Addr": " "
+  },
+  {
+   "Account_Nu": "R0005625",
+   "Amount_Due": 209.4,
+   "FID": 25,
+   "OWNERADDRE": "TESTOWNER BF6B06",
+   "OWNERNAME": "TESTOWNER 8DE45B",
+   "Parcel_Num": "011200015",
+   "SCHNO": "01-120-0015",
+   "Situs_Addr": " "
+  }
+ ],
+ "where": "1=1"
+}

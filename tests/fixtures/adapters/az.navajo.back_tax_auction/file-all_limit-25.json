@@ -1,0 +1,131 @@
+{
+ "layer": "https://services.arcgis.com/cghC2lEIpJ2TRrs5/arcgis/rest/services/BackTaxAuctionProperties/FeatureServer/1",
+ "rows": [
+  {
+   "APN": "104-02-059A",
+   "AuctionURL": "https://publicsurplus.com/sms/navajocounty,az/auction/view?auc=3926102",
+   "OBJECTID": 1
+  },
+  {
+   "APN": "104-02-059C",
+   "AuctionURL": "https://publicsurplus.com/sms/navajocounty,az/auction/view?auc=3926103",
+   "OBJECTID": 2
+  },
+  {
+   "APN": "104-02-059D",
+   "AuctionURL": "https://publicsurplus.com/sms/navajocounty,az/auction/view?auc=3926104",
+   "OBJECTID": 3
+  },
+  {
+   "APN": "104-24-005U",
+   "AuctionURL": "https://publicsurplus.com/sms/navajocounty,az/auction/view?auc=3926105",
+   "OBJECTID": 4
+  },
+  {
+   "APN": "104-27-001S",
+   "AuctionURL": "https://publicsurplus.com/sms/navajocounty,az/auction/view?auc=3926106",
+   "OBJECTID": 5
+  },
+  {
+   "APN": "104-59-011F",
+   "AuctionURL": "https://publicsurplus.com/sms/navajocounty,az/auction/view?auc=3926108",
+   "OBJECTID": 7
+  },
+  {
+   "APN": "104-59-011G",
+   "AuctionURL": "https://publicsurplus.com/sms/navajocounty,az/auction/view?auc=3926109",
+   "OBJECTID": 8
+  },
+  {
+   "APN": "104-59-013J",
+   "AuctionURL": "https://publicsurplus.com/sms/navajocounty,az/auction/view?auc=3926110",
+   "OBJECTID": 9
+  },
+  {
+   "APN": "104-63-008Q",
+   "AuctionURL": "https://publicsurplus.com/sms/navajocounty,az/auction/view?auc=3926111",
+   "OBJECTID": 10
+  },
+  {
+   "APN": "104-67-002T",
+   "AuctionURL": "https://publicsurplus.com/sms/navajocounty,az/auction/view?auc=3926112",
+   "OBJECTID": 11
+  },
+  {
+   "APN": "104-73-015J",
+   "AuctionURL": "https://publicsurplus.com/sms/navajocounty,az/auction/view?auc=3926113",
+   "OBJECTID": 12
+  },
+  {
+   "APN": "104-95-085",
+   "AuctionURL": "https://publicsurplus.com/sms/navajocounty,az/auction/view?auc=3926114",
+   "OBJECTID": 13
+  },
+  {
+   "APN": "105-05-014",
+   "AuctionURL": "https://publicsurplus.com/sms/navajocounty,az/auction/view?auc=3926115",
+   "OBJECTID": 14
+  },
+  {
+   "APN": "105-05-019",
+   "AuctionURL": "https://publicsurplus.com/sms/navajocounty,az/auction/view?auc=3926116",
+   "OBJECTID": 15
+  },
+  {
+   "APN": "105-05-029",
+   "AuctionURL": "https://publicsurplus.com/sms/navajocounty,az/auction/view?auc=3926117",
+   "OBJECTID": 16
+  },
+  {
+   "APN": "105-06-001",
+   "AuctionURL": "https://publicsurplus.com/sms/navajocounty,az/auction/view?auc=3926118",
+   "OBJECTID": 17
+  },
+  {
+   "APN": "105-06-011B",
+   "AuctionURL": "https://publicsurplus.com/sms/navajocounty,az/auction/view?auc=3926119",
+   "OBJECTID": 18
+  },
+  {
+   "APN": "105-08-077",
+   "AuctionURL": "https://publicsurplus.com/sms/navajocounty,az/auction/view?auc=3926120",
+   "OBJECTID": 19
+  },
+  {
+   "APN": "105-08-078",
+   "AuctionURL": "https://publicsurplus.com/sms/navajocounty,az/auction/view?auc=3926121",
+   "OBJECTID": 20
+  },
+  {
+   "APN": "105-09-041D",
+   "AuctionURL": "https://publicsurplus.com/sms/navajocounty,az/auction/view?auc=3926122",
+   "OBJECTID": 21
+  },
+  {
+   "APN": "105-09-077",
+   "AuctionURL": "https://publicsurplus.com/sms/navajocounty,az/auction/view?auc=3926123",
+   "OBJECTID": 22
+  },
+  {
+   "APN": "105-09-197",
+   "AuctionURL": "https://publicsurplus.com/sms/navajocounty,az/auction/view?auc=3926124",
+   "OBJECTID": 23
+  },
+  {
+   "APN": "105-09-210",
+   "AuctionURL": "https://publicsurplus.com/sms/navajocounty,az/auction/view?auc=3926125",
+   "OBJECTID": 24
+  },
+  {
+   "APN": "105-13-001B",
+   "AuctionURL": "https://publicsurplus.com/sms/navajocounty,az/auction/view?auc=3926126",
+   "OBJECTID": 25
+  },
+  {
+   "APN": "105-13-030",
+   "AuctionURL": "https://publicsurplus.com/sms/navajocounty,az/auction/view?auc=3926127",
+   "OBJECTID": 26
+  }
+ ],
+ "where": "1=1"
+}

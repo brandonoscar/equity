@@ -1,0 +1,28 @@
+source_id: ga.dekalb.surplus_property
+state: GA
+county_fips: "13089"
+# DeKalb County GA surplus real property (472 rows on 2026-11-25): county-owned parcels on the
+# county's surplus property list, with status (Available ...), deed and acquisition details and
+# parcel id. Government real property disposal, no debt: OTHER, linked by parcel id (same
+# '15 206 04 082' form as ga.dekalb.parcels PARCELID). OLDOWN is who sold the lot to the county
+# (often decades ago), not a debtor, so it stays in the source record.
+api: arcgis
+layer_url: https://services2.arcgis.com/IxVN2oUE9EYLSnPE/arcgis/rest/services/Surplus_Properties_Public_View/FeatureServer/0
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, ParcelId, appaddr, status, DeedType, Zoning, FairMArketValue, Acreage,
+         Department, OWN1, OLDOWN, OLDOWN2, PRICE, SALEDT]
+listed_on: listed_on
+date_field: listed_on
+uid: ParcelId
+doc_type: OTHER
+doc_type_raw: DeKalb County surplus real property
+parties:
+  - {role: grantor, const: DeKalb County}
+parcel: {kind: pin, field: ParcelId, county_fips: "13089"}
+extra_pii: [appaddr, OLDOWN, OLDOWN2]
+terms:
+  url: https://www.arcgis.com/home/item.html?id=7da7ef9835af4ede86443cbedd2300c5
+  summary: "DeKalb County GA GIS (org DeKalbGIS, owner DeKalbGISAdmin) public ArcGIS Online view layer, free, no login; no licenseInfo or use restriction on the item (read 2026-11-25). services2.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  cost_model: free

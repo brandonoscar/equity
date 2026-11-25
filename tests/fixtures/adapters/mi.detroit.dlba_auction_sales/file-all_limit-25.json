@@ -1,0 +1,281 @@
+{
+ "layer": "https://services2.arcgis.com/qvkbeam7Wirps6zC/arcgis/rest/services/dlba_auction_sales/FeatureServer/0",
+ "rows": [
+  {
+   "ObjectId": 1,
+   "address": "20475 Greenlawn",
+   "amt_final_sale_price": 4600,
+   "dlba_sale_id": "A-234002",
+   "neighborhood": "Garden Homes",
+   "parcel_id": "16029682.",
+   "sale_closed_date": "2019-04-16",
+   "sale_program": "Auction",
+   "zip_code": "48221"
+  },
+  {
+   "ObjectId": 2,
+   "address": "6726 Minock",
+   "amt_final_sale_price": 16000,
+   "dlba_sale_id": "A-273851",
+   "neighborhood": "Warrendale",
+   "parcel_id": "22090460-1",
+   "sale_closed_date": "2020-11-16",
+   "sale_program": "Auction",
+   "zip_code": "48228"
+  },
+  {
+   "ObjectId": 3,
+   "address": "4331 Waverly",
+   "amt_final_sale_price": 2560,
+   "dlba_sale_id": "A-188225",
+   "neighborhood": "Russell Woods",
+   "parcel_id": "14005391.",
+   "sale_closed_date": "2018-11-28",
+   "sale_program": "Auction",
+   "zip_code": "48238"
+  },
+  {
+   "ObjectId": 4,
+   "address": "8851 Charlevoix",
+   "amt_final_sale_price": 5300,
+   "dlba_sale_id": "A-280953",
+   "neighborhood": "East Village",
+   "parcel_id": "19000498.",
+   "sale_closed_date": "2021-02-05",
+   "sale_program": "Auction",
+   "zip_code": "48214"
+  },
+  {
+   "ObjectId": 5,
+   "address": "13571 Stahelin",
+   "amt_final_sale_price": 1000,
+   "dlba_sale_id": "A-140991",
+   "neighborhood": "Schoolcraft Southfield",
+   "parcel_id": "22083744.",
+   "sale_closed_date": "2017-06-19",
+   "sale_program": "Auction",
+   "zip_code": "48223"
+  },
+  {
+   "ObjectId": 6,
+   "address": "7830 Rutherford",
+   "amt_final_sale_price": 6000,
+   "dlba_sale_id": "A-230011",
+   "neighborhood": "Warren Ave Community",
+   "parcel_id": "22055736.001",
+   "sale_closed_date": "2019-07-16",
+   "sale_program": "Auction",
+   "zip_code": "48228"
+  },
+  {
+   "ObjectId": 7,
+   "address": "5944 Marseilles",
+   "amt_final_sale_price": 21050,
+   "dlba_sale_id": "A-247666",
+   "neighborhood": "Cornerstone Village",
+   "parcel_id": "21077615.",
+   "sale_closed_date": "2019-11-06",
+   "sale_program": "Auction",
+   "zip_code": "48224"
+  },
+  {
+   "ObjectId": 8,
+   "address": "16114 Pierson",
+   "amt_final_sale_price": 20000,
+   "dlba_sale_id": "A-218958",
+   "neighborhood": "Miller Grove",
+   "parcel_id": "22106547.",
+   "sale_closed_date": "2019-01-29",
+   "sale_program": "Auction",
+   "zip_code": "48219"
+  },
+  {
+   "ObjectId": 9,
+   "address": "15757 Wabash",
+   "amt_final_sale_price": 2400,
+   "dlba_sale_id": "A-432004",
+   "neighborhood": "Pilgrim Village",
+   "parcel_id": "08009043.",
+   "sale_closed_date": "2025-04-28",
+   "sale_program": "Auction",
+   "zip_code": "48238"
+  },
+  {
+   "ObjectId": 10,
+   "address": "3799 Pingree",
+   "amt_final_sale_price": 11500,
+   "dlba_sale_id": "A-424471",
+   "neighborhood": "Petoskey-Otsego",
+   "parcel_id": "14002994.",
+   "sale_closed_date": "2025-04-17",
+   "sale_program": "Auction",
+   "zip_code": "48206"
+  },
+  {
+   "ObjectId": 11,
+   "address": "16129 Ohio",
+   "amt_final_sale_price": 6100,
+   "dlba_sale_id": "A-145126",
+   "neighborhood": "Fitzgerald/Marygrove",
+   "parcel_id": "16034260.",
+   "sale_closed_date": "2017-10-27",
+   "sale_program": "Auction",
+   "zip_code": "48221"
+  },
+  {
+   "ObjectId": 12,
+   "address": "19130 Chester",
+   "amt_final_sale_price": 38150,
+   "dlba_sale_id": "A-272834",
+   "neighborhood": "Cornerstone Village",
+   "parcel_id": "21003410-11",
+   "sale_closed_date": "2020-10-13",
+   "sale_program": "Auction",
+   "zip_code": "48236"
+  },
+  {
+   "ObjectId": 13,
+   "address": "6245 Stahelin",
+   "amt_final_sale_price": 7700,
+   "dlba_sale_id": "A-136907",
+   "neighborhood": "Warrendale",
+   "parcel_id": "22084069.",
+   "sale_closed_date": "2017-04-28",
+   "sale_program": "Auction",
+   "zip_code": "48228"
+  },
+  {
+   "ObjectId": 14,
+   "address": "808 Marlborough",
+   "amt_final_sale_price": 3400,
+   "dlba_sale_id": "A-056160",
+   "neighborhood": "Jefferson Chalmers",
+   "parcel_id": "21059152.",
+   "sale_closed_date": "2016-05-09",
+   "sale_program": "Auction",
+   "zip_code": "48215"
+  },
+  {
+   "ObjectId": 15,
+   "address": "16161 Roselawn",
+   "amt_final_sale_price": 6400,
+   "dlba_sale_id": "A-000646",
+   "neighborhood": "Fitzgerald/Marygrove",
+   "parcel_id": "16030787.",
+   "sale_closed_date": "2015-02-26",
+   "sale_program": "Auction",
+   "zip_code": "48221"
+  },
+  {
+   "ObjectId": 16,
+   "address": "14963 Novara",
+   "amt_final_sale_price": 6200,
+   "dlba_sale_id": "A-428474",
+   "neighborhood": "Regent Park",
+   "parcel_id": "21022522.",
+   "sale_closed_date": "2025-03-19",
+   "sale_program": "Auction",
+   "zip_code": "48205"
+  },
+  {
+   "ObjectId": 17,
+   "address": "16260 Ohio",
+   "amt_final_sale_price": 12880,
+   "dlba_sale_id": "A-229959",
+   "neighborhood": "Fitzgerald/Marygrove",
+   "parcel_id": "16033835.",
+   "sale_closed_date": "2019-03-21",
+   "sale_program": "Auction",
+   "zip_code": "48221"
+  },
+  {
+   "ObjectId": 18,
+   "address": "7756 St Marys",
+   "amt_final_sale_price": 8800,
+   "dlba_sale_id": "A-367027",
+   "neighborhood": "Warren Ave Community",
+   "parcel_id": "22058294.",
+   "sale_closed_date": "2023-07-27",
+   "sale_program": "Auction",
+   "zip_code": "48228"
+  },
+  {
+   "ObjectId": 19,
+   "address": "6845 Auburn",
+   "amt_final_sale_price": 1000,
+   "dlba_sale_id": "A-139863",
+   "neighborhood": "Warrendale",
+   "parcel_id": "22092987.",
+   "sale_closed_date": "2017-06-14",
+   "sale_program": "Auction",
+   "zip_code": "48228"
+  },
+  {
+   "ObjectId": 20,
+   "address": "14901 E State Fair",
+   "amt_final_sale_price": 6300,
+   "dlba_sale_id": "A-000702",
+   "neighborhood": "Regent Park",
+   "parcel_id": "21024485.",
+   "sale_closed_date": "2015-03-03",
+   "sale_program": "Auction",
+   "zip_code": "48205"
+  },
+  {
+   "ObjectId": 21,
+   "address": "15402 Fairmount Dr",
+   "amt_final_sale_price": 6500,
+   "dlba_sale_id": "A-176800",
+   "neighborhood": "Regent Park",
+   "parcel_id": "21025191.",
+   "sale_closed_date": "2018-09-18",
+   "sale_program": "Auction",
+   "zip_code": "48205"
+  },
+  {
+   "ObjectId": 22,
+   "address": "18075 Roselawn",
+   "amt_final_sale_price": 67200,
+   "dlba_sale_id": "A-236726",
+   "neighborhood": "Bagley",
+   "parcel_id": "16030707.",
+   "sale_closed_date": "2019-09-25",
+   "sale_program": "Auction",
+   "zip_code": "48221"
+  },
+  {
+   "ObjectId": 23,
+   "address": "2696 Wreford",
+   "amt_final_sale_price": 2400,
+   "dlba_sale_id": "A-327857",
+   "neighborhood": "NW Goldberg",
+   "parcel_id": "10000887.",
+   "sale_closed_date": "2022-02-22",
+   "sale_program": "Auction",
+   "zip_code": "48208"
+  },
+  {
+   "ObjectId": 24,
+   "address": "6810 Plainview",
+   "amt_final_sale_price": 1100,
+   "dlba_sale_id": "A-190222",
+   "neighborhood": "Warrendale",
+   "parcel_id": "22093576.",
+   "sale_closed_date": "2019-05-14",
+   "sale_program": "Auction",
+   "zip_code": "48228"
+  },
+  {
+   "ObjectId": 25,
+   "address": "21463 Margareta",
+   "amt_final_sale_price": 3200,
+   "dlba_sale_id": "A-254245",
+   "neighborhood": "Holcomb Community",
+   "parcel_id": "22015687.",
+   "sale_closed_date": "2020-02-21",
+   "sale_program": "Auction",
+   "zip_code": "48219"
+  }
+ ],
+ "where": "1=1"
+}
