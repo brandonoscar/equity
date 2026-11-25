@@ -71,7 +71,7 @@ from equity.adapters.tx.harris_jp import HarrisJPCivilJudgments
 from equity.adapters.tx.stratmap import TexasStratMapParcels
 from equity.adapters.tx_harris_jp import HarrisJPJudgments
 from equity.adapters.tx_travis_delinquent import TravisTaxDelinquent
-from equity.adapters.voter_files import NorthCarolinaVoterFile
+from equity.adapters.voter_files import BoulderCountyVoterFile, NorthCarolinaVoterFile
 from equity.adapters.wv.delinquent import WVDelinquentProperties
 from equity.adapters.wv.parcelweb import MonongaliaParcelWeb
 from equity.adapters.wv.statewide_parcels import WVStatewideParcels
@@ -79,6 +79,7 @@ from equity.adapters.zoning import LocalZoningAdapter, all_zoning_adapters
 
 _ALL: tuple[type[Adapter], ...] = (
     NorthCarolinaVoterFile,  # OhioVoterFile joins once a hand-saved county fixture exists
+    BoulderCountyVoterFile,  # one county's free VR-011B file, read by ColoradoVoterFile's layout
     WVStatewideParcels,
     WVDelinquentProperties,
     MonongaliaParcelWeb,

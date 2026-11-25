@@ -175,3 +175,10 @@ sources:
   pa.washington.repository_sales: tax_delinquency
   pa.washington.upset_sales: tax_delinquency
   pa.west_chester.upset_sale: tax_delinquency
+  # free open-data additions (2026-11-25)
+  ky.louisville.code_final_orders: code_enforcement_charge   # final order; lien if unpaid
+  ky.louisville.metro_foreclosures: foreclosure
+  ca.los_angeles.registered_foreclosures: foreclosure
+  ca.los_angeles.defaulted_tax: tax_delinquency
+  az.maricopa.delinquent_tax_parcels: tax_delinquency
+  or.sos.ucc: statutory_lien                       # UCC filings and federal tax liens

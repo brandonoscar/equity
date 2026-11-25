@@ -1,0 +1,47 @@
+source_id: ny.dot.surplus_sold
+state: NY
+county_fips: "36"   # statewide; the row's county is used
+county_name_field: county
+# NYS Department of Transportation "Surplus Properties Sold: Beginning 2009" (data.ny.gov
+# 869e-5zik, 447 rows on 2026-11-25, updated 2026-11-13): surplus state land NYSDOT disposed
+# of, with closing date, DOT region, county, method of disposal (PRIVATE SALE, PUBLIC
+# AUCTION, LEGISLATED DISPOSAL, GRANT OF EASEMENT ...), acreage and sale price. No buyer, address or parcel is
+# published, so a row is a dated, priced DEED from the State in its county: sale results for
+# the government-sale history, not linkable to a parcel. No id either: a sale is its closing
+# date, county, acreage and price.
+portal: https://data.ny.gov
+dataset: 869e-5zik
+order_by: [closing_date, ":id"]
+select: [closing_date, dot_region, county, method_of_disposal, area_acres, sale_price]
+date_field: closing_date
+single_partition: true
+uid: [closing_date, county, area_acres, sale_price, method_of_disposal]
+# Sales, auctions, exchanges and abandonments convey the land (DEED); easements, access
+# breaks and jurisdiction transfers do not (OTHER).
+doc_type:
+  field: method_of_disposal
+  map:
+    GRANT OF EASEMENT: OTHER
+    RELEASE OF PERMANENT EASEMENT: OTHER
+    PRIVATE SALE - RELEASE OF EASEMENT: OTHER
+    OTHER - RELEASE OF EASEMENT: OTHER
+    BREAK IN ACCESS: OTHER
+    BREAK IN ACCESS $1PW: OTHER
+    TRANSFER OF JURISDICTION: OTHER
+    TRANSFER OF JURISDICTION $1PW: OTHER
+    TRANSFER OF JURISDICTION & BREAK IN ACCESS: OTHER
+    RELEASE OF MAINTENANCE JURISDICTION: OTHER
+    TRANSFER TO DEC: OTHER
+    OTHER: OTHER
+    "": OTHER
+  default: DEED
+doc_type_raw: {field: method_of_disposal}
+consideration: sale_price
+parties:
+  - {role: grantor, const: New York State Department of Transportation}
+terms:
+  url: https://data.ny.gov/d/869e-5zik
+  summary: "data.ny.gov (Socrata), attribution NYS Department of Transportation, no license set on the dataset (read 2026-11-25); NY Open Data terms of use. Free, no login or app token. Internal use, not redistributed. data.ny.gov robots.txt allows /resource/."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

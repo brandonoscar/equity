@@ -41,6 +41,16 @@ def test_config_rules_cover_the_intended_sources() -> None:
                     "us.fjc.idb.civil_judgments": None}  # fmt: skip
 
 
+def test_append_rules_name_polled_feeds_only() -> None:
+    """An append rule keeps every poll, so its adapter must drop rows already stored
+    (append_polls): the court RSS feeds and Oregon's rolling month of UCC filings."""
+    rules = refresh.rules()
+    appended = [c for c in REGISTRY
+                if (r := refresh.rule_for(c.source_id, rules)) and r.mode == "append"]  # fmt: skip
+    assert [c.source_id for c in appended if not getattr(c, "append_polls", False)] == []
+    assert "or.sos.ucc" in {c.source_id for c in appended}
+
+
 def test_every_source_named_in_refresh_yaml_is_registered() -> None:
     ids = {c.source_id for c in REGISTRY}
     named = {p for r in refresh.rules() for p in r.match if not any(ch in p for ch in "*?[")}

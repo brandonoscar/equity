@@ -1041,3 +1041,30 @@ def test_amount_in_text_and_use_restrictions(tmp_path: Path) -> None:
     assert inst["T2"]["principal_amount"] is None
     plain = lien_adapter_for(load_lien_config(_cfg(tmp_path)))
     assert plain().source_row()["terms_summary"] == "s"
+
+
+def test_party_when_reads_a_party_only_from_its_rows_and_append_polls(tmp_path: Path) -> None:
+    """A list with one row per party (Oregon UCC: party_type DB or SP): `when` reads each
+    party spec only from its own rows. append_polls marks a rolling list for append polls."""
+    parties = [
+        {"role": "debtor", "name": "entity", "when": {"party_type": "DB"},
+         "address": {"line1": "addr", "city": "city", "state": "st", "zip": "zip"}},
+        {"role": "creditor", "name": "entity", "when": {"party_type": "sp"}},
+    ]  # fmt: skip
+    cfg = _cfg(tmp_path, parties=parties, parcel=None, county_fips="41", released_on=None,
+               amount=None, append_polls=True)  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    assert cls.append_polls is True
+    rows_in = [
+        {"ticket": "F1", "docketed": "2026-10-08", "party_type": "DB", "entity": "ACME LLC",
+         "addr": "1 MAIN ST", "city": "SALEM", "st": "OR", "zip": "97301"},
+        {"ticket": "F1", "docketed": "2026-10-08", "party_type": " SP", "entity": "BANK NA"},
+    ]  # fmt: skip
+    body = json.dumps({"rows": rows_in}).encode()
+    out = list(cls().normalize(Fetched(cls.source_id, "x", AT, 200, body, "")))
+    names = {r.row["party_id"]: r.row["raw_name"] for r in out if r.table == "party"}
+    roles = sorted((names[r.row["party_id"]], r.row["role"]) for r in out
+                   if r.table == "instrument_party")  # fmt: skip
+    assert roles == [("ACME LLC", "debtor"), ("BANK NA", "creditor")]
+    assert [r.row["line1"] for r in out if r.table == "address"] == ["1 MAIN ST"]
+    assert lien_adapter_for(load_lien_config(_cfg(tmp_path))).append_polls is False

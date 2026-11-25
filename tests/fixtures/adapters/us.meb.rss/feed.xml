@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<rss version="2.0"
+ xmlns:blogChannel="http://backend.userland.com/blogChannelModule"
+>
+
+<channel>
+<title>District of Maine - Recent Entries</title>
+<link>https://ecf.meb.uscourts.gov</link>
+<description>Docket entries of type: answer</description>
+<lastBuildDate>Wed, 25 Nov 2026 18:00:01 GMT</lastBuildDate>
+
+<item>
+<title>26-10133 TESTOWNER DC3543</title>
+<link>https://ecf.meb.uscourts.gov/cgi-bin/DktRpt.pl?101585</link>
+<description>Type: bk Office: 1 Chapter: 11 Trustee: TESTOWNER E5655C  [Response] (&#x3C;a href=&#x27;https://ecf.meb.uscourts.gov/doc1/09005636885?caseid=101585&#x26;de_seq_num=316&#x26;pdf_header=&#x27;&#x3E;79&#x3C;/a&#x3E;)</description>
+<guid isPermaLink="true">https://ecf.meb.uscourts.gov/cgi-bin/DktRpt.pl?101585-316</guid>
+<pubDate>Wed, 25 Nov 2026 15:51:38 GMT</pubDate>
+</item>
+<item>
+<title>26-10133 TESTOWNER DC3543</title>
+<link>https://ecf.meb.uscourts.gov/cgi-bin/DktRpt.pl?101585</link>
+<description>Type: bk Office: 1 Chapter: 11 Trustee: TESTOWNER E5655C  [Response] (&#x3C;a href=&#x27;https://ecf.meb.uscourts.gov/doc1/09005636665?de_seq_num=308&#x26;caseid=101585&#x26;pdf_header=&#x27;&#x3E;76&#x3C;/a&#x3E;)</description>
+<guid isPermaLink="true">https://ecf.meb.uscourts.gov/cgi-bin/DktRpt.pl?101585-308</guid>
+<pubDate>Tue, 24 Nov 2026 23:48:42 GMT</pubDate>
+</item>
+<item>
+<title>25-20202 TESTOWNER CA51C5</title>
+<link>https://ecf.meb.uscourts.gov/cgi-bin/DktRpt.pl?100978</link>
+<description>Type: bk Office: 2 Chapter: 13 Trustee: TESTOWNER 7CBA03 [Response] (&#x3C;a href=&#x27;https://ecf.meb.uscourts.gov/doc1/09005636662?de_seq_num=280&#x26;caseid=100978&#x26;pdf_header=&#x27;&#x3E;63&#x3C;/a&#x3E;)</description>
+<guid isPermaLink="true">https://ecf.meb.uscourts.gov/cgi-bin/DktRpt.pl?100978-280</guid>
+<pubDate>Tue, 24 Nov 2026 23:25:54 GMT</pubDate>
+</item>
+</channel>
+</rss>

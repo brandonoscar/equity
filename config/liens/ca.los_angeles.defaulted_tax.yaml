@@ -1,0 +1,36 @@
+source_id: ca.los_angeles.defaulted_tax
+state: CA
+county_fips: "06037"
+# Los Angeles County Treasurer and Tax Collector "Secured Defaulted Tax Roll" (1,746,769 rows
+# on 2026-11-25, updated weekly per the item): four record types; only type 01 "Secured
+# Defaulted Tax Period" is read (107,981 rows, one per defaulted tax period of a parcel),
+# with the year it defaulted, the amount needed to redeem (Redemption_Amount, as of
+# Compute_MonthYear) and the redemption date once redeemed (41,411 rows; loaded as a RELEASE).
+# Types 02 (tax events), 03 (direct assessments) and 04 (subject to power to sell) are detail
+# lines of the same periods. Group_Number is the 10-digit AIN of the defaulted parcel (=
+# ca.losangeles.parcels AIN). No owner name: the parcel's owner of record owes it. Loaded like
+# ca.sonoma.defaulted_tax (TAX_LIEN_STATE, debt kind tax_delinquency).
+api: arcgis
+layer_url: https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Secured%20Defaulted%20Tax%20Roll/FeatureServer/0
+where: "Record_Type = '01'"
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, Record_Type, Group_Number, Group_ID_Year, Default_Count, Tax_Status,
+         Defaulted_Year, Last_Payment_Date, Compute_MonthYear, Redemption_Amount,
+         Redemption_Monthly_Penalty, Redemption_Fee_Balance, Status, Application_Date,
+         Redemption_Date]
+year_dates: [Defaulted_Year]
+date_field: Defaulted_Year
+uid: [Group_Number, Group_ID_Year, Default_Count]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Los Angeles County secured defaulted tax
+amount: Redemption_Amount
+released_on: Redemption_Date        # MM/DD/YYYY text
+parties: []
+parcel: {kind: pin, field: Group_Number, county_fips: "06037"}   # = ca.losangeles.parcels AIN
+terms:
+  url: https://www.arcgis.com/home/item.html?id=aeb753fe8c894e93836463b61c6d80e5
+  summary: "Los Angeles County Treasurer and Tax Collector 'TTC Secured Defaulted Property Taxes' (County of Los Angeles ArcGIS Online org), free, no login. No licenseInfo on the item (read 2026-11-25); the county's eGIS Hub terms of use apply to its open data. Internal use, not redistributed. services.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

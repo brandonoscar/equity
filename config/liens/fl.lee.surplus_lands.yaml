@@ -1,0 +1,29 @@
+source_id: fl.lee.surplus_lands
+state: FL
+county_fips: "12071"
+# Lee County FL "County Lands Surplus" (10 parcels on 2026-11-25, last edited 2026-11-16):
+# county-owned parcels offered for sale as surplus, with STRAP, folio, site address, the
+# county's surplus number and a link to each bid package. Government real property disposal,
+# no debt: OTHER, linked by STRAP (the 17-character id fl.statewide.parcels PARCEL_ID holds
+# for Lee). The assigned agent's name, e-mail and phone are not fetched.
+api: arcgis
+layer_url: https://services2.arcgis.com/LvWGAAhHwbCJ2GMP/arcgis/rest/services/County_Lands_Surplus_/FeatureServer/0
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, STRAP, FOLIOID, GISACRES, SITEADDR, SITECITY, SITEZIP, O_NAME,
+         SurplusNumber, LeePALink, BidPackage]
+listed_on: listed_on
+date_field: listed_on
+uid: STRAP
+doc_type: OTHER
+doc_type_raw: Lee County surplus land
+parties:
+  - {role: grantor, const: Lee County}
+parcel: {kind: pin, field: STRAP, county_fips: "12071"}   # = fl.statewide.parcels PARCEL_ID
+extra_pii: [SITEADDR]
+terms:
+  url: https://services2.arcgis.com/LvWGAAhHwbCJ2GMP/arcgis/rest/services/County_Lands_Surplus_/FeatureServer/0
+  summary: "Lee County FL GIS public ArcGIS Online layer (copyright 'Lee County GIS, Lee County Property Appraiser'), free, no login; no licenseInfo or use restriction on the layer (read 2026-11-25). Florida public records (ch. 119 F.S.). Internal use, not redistributed. services2.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

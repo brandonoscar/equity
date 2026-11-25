@@ -60,7 +60,9 @@ Config keys:
   parties             list of {role, name: field|[fields] | const: text, split (optional
                                separator: one field holding several names, e.g. ' | '),
                                address: {line1: field|[fields], city | city_const, state |
-                               state_const, zip}}
+                               state_const, zip}, when (optional {field: value}: the party
+                               is read only from rows whose field has that value, e.g. a
+                               list with one row per party and a party-type column)}
   parcel              {kind: nyc_bbl, borough, block, lot} | {kind: nyc_bbl10, field}
                       | {kind: pin, field (or a list of fields, one lot each), county_fips
                          (or none: the row's county from county_name_field), strip (optional
@@ -77,6 +79,9 @@ Config keys:
                       With `all: true` every matching link is a partition {file: key}, the
                       key being the pattern's first group (e.g. the month or fiscal year in
                       the file name): a source published as one file per period
+  append_polls        true: a rolling list (e.g. last month's filings) that drops old rows:
+                      refresh.yaml polls it in append mode, each poll a new part, rows already
+                      stored dropped (equity.lake.drop_known), so no month is lost
   user_agent          optional identifying User-Agent for a host whose firewall refuses the
                       default one (it still names this project; robots.txt is still obeyed)
   terms               {url, summary, checked_on, cost_model}
@@ -203,6 +208,15 @@ def _text(value: Any) -> str | None:
         return None
     s = " ".join(str(value).split())
     return s or None
+
+
+def _party_applies(party: Mapping[str, Any], row: Mapping[str, Any]) -> bool:
+    """A party spec's `when` {field: value}: every field must hold that value (case and
+    surrounding blanks ignored); a spec with no `when` reads every row."""
+    when = party.get("when") or {}
+    return all(
+        str(row.get(f) or "").strip().upper() == str(v).strip().upper() for f, v in when.items()
+    )
 
 
 def _join(row: Mapping[str, Any], spec: Any) -> str | None:
@@ -486,6 +500,7 @@ class LienAdapter(Adapter):
     access_method: ClassVar[str] = "api"
     page_size: ClassVar[int] = 50_000
     pii_fields: ClassVar[tuple[str, ...]] = ()  # set per source from its config
+    append_polls: ClassVar[bool] = False  # config append_polls (equity.lake.drop_known)
 
     def __init__(self, client: PoliteClient | None = None) -> None:
         ua = str(self.config.get("user_agent") or USER_AGENT)
@@ -1026,6 +1041,8 @@ class LienAdapter(Adapter):
         found: dict[str, dict[str, dict[str, Any] | None]] = {}
         for row in rows:
             for p in self.config["parties"]:
+                if not _party_applies(p, row):
+                    continue
                 raw = _text(p["const"]) if "const" in p else _join(row, p.get("name"))
                 sep = str(p.get("split") or "").strip()
                 names = [n.strip() for n in raw.split(sep)] if raw and sep else [raw]
@@ -1115,6 +1132,7 @@ def lien_adapter_for(cfg: LienConfig) -> type[LienAdapter]:
     sid = cfg["source_id"]
     return type("Liens_" + sid.replace(".", "_"), (LienAdapter,),
                 {"config": cfg, "source_id": sid, "pii_fields": cfg.pii_fields,
+                 "append_polls": bool(cfg.get("append_polls")),
                  "__module__": __name__})  # fmt: skip
 
 

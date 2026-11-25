@@ -15,6 +15,12 @@ rules:
   - match: ["us.*.rss"]
     every_hours: 2
     mode: append
+  # Oregon UCC: the dataset holds only last month's filings and is replaced monthly, so it is
+  # polled daily in append mode (each poll a new part, rows already stored dropped): no month
+  # is lost when the next one replaces it. Listed before the weekly "*.ucc" rebuild rule.
+  - match: [or.sos.ucc]
+    every_hours: 24
+    mode: append
   # Government sale lists: daily dated snapshot of what is listed.
   - match: [pa.washington.sheriff_sales, ms.harrison.tax_sale_parcels,
             wi.milwaukee.foreclosure_sales, oh.lucas.forfeited_land_sale, co.lake.tax_lien_sale,
@@ -32,7 +38,15 @@ rules:
             ga.dekalb.excess_funds, nv.washoe.excess_proceeds, la.shreveport.adjudicated_property,
             nm.valencia.tax_auction, ks.linn.tax_sale, pa.cumberland.tax_sales, sc.york.tax_sale,
             sc.horry.delinquent_tax_sale, ms.harrison.tax_sale_2026,
-            mo.st_louis_county.post_third_sale]
+            mo.st_louis_county.post_third_sale, mi.genesee.land_bank, mo.kansas_city.land_bank,
+            il.chicago.city_owned_land, wa.seattle.city_properties, fl.lee.surplus_lands,
+            ca.los_angeles.defaulted_tax]
+    every_hours: 24
+    mode: listing
+    listing_table: instrument
+  # Fulton Superior Court pending civil cases: a case drops out when it closes, so the list is
+  # snapshotted daily and the day it drops out is kept (equity.refresh listings).
+  - match: [ga.fulton.superior_pending_civil]
     every_hours: 24
     mode: listing
     listing_table: instrument
@@ -48,7 +62,8 @@ rules:
   - match: ["*delinquent*", "*tax_*", "*warrants", "*liens", "*judgments", "*.top*",
             "*_fines", "*lot_abatement", "*unpaid_bills", "*noncompliance", "*wage_watchlist",
             "*.wall", "*administrative_orders", "*hpd_litigation", "*evictions",
-            "*foreclosures", "*.civil", "*.civil.cases", "*.garnishment", "*.ucc"]
+            "*foreclosures", "*.civil", "*.civil.cases", "*.garnishment", "*.ucc",
+            "*final_orders"]
     exclude: ["*.parcels", "*.zoning", "*.business", "ny.nyc.acris.*", "us.fjc.*"]
     every_hours: 168
     mode: rebuild

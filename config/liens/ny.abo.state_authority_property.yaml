@@ -1,0 +1,56 @@
+source_id: ny.abo.state_authority_property
+state: NY
+county_fips: "36"   # statewide; no county or parcel id is published
+# NYS Authorities Budget Office "Real Property Transactions of State Authorities" (data.ny.gov
+# t7uh-5ac8, 2,025 rows on 2026-11-25, rows updated 2025-12-02; transactions 2015-10 to
+# 2024-12): each state public authority's yearly report of real property it acquired, sold,
+# leased or otherwise disposed of, with the property address and description, estimated
+# fair market value, transaction type and date, price, and the other party (an organization,
+# or a person's first and last name) with its address. The 279 rows with no transaction
+# (authorities that reported none) are left out. The direction depends on the transaction
+# type (an acquisition buys from the other party, a disposition sells or leases to it), so
+# both sides are role other and doc_type_raw keeps the type. Sales and acquisitions are
+# DEEDs with the price as consideration; leases are LEASE; other dispositions (demolitions,
+# transfers ...) are OTHER. No parcel id: the other party's name and address are what match.
+portal: https://data.ny.gov
+dataset: t7uh-5ac8
+where: "transaction_date IS NOT NULL"
+order_by: [authority_name, transaction_date, ":id"]
+select: [authority_name, fiscal_year_end_date, property_address1, property_address2,
+         property_city, property_state, property_postal_code, property_description,
+         estimated_fair_market_value, transaction_type, transaction_type_other,
+         transaction_date, purchase_sale_price, seller_purchaser_tenant_organization,
+         seller_purchaser_tenant_first_name, seller_purchaser_tenant_last_name,
+         relation_with_authority, seller_purchaser_tenant_address1,
+         seller_purchaser_tenant_address2, seller_purchaser_tenant_city,
+         seller_purchaser_tenant_state, seller_purchaser_tenant_postal_code,
+         transaction_competitively_bid]
+date_field: transaction_date
+single_partition: true
+uid: [authority_name, transaction_date, property_address1, transaction_type,
+      seller_purchaser_tenant_organization, seller_purchaser_tenant_last_name]
+doc_type:
+  field: transaction_type
+  map:
+    ACQUISITION: DEED
+    DISPOSITION - SALE: DEED
+    DISPOSITION - LEASE: LEASE
+    DISPOSITION - LEASE/PURCHASE: LEASE
+  default: OTHER
+doc_type_raw: {field: transaction_type}
+consideration: purchase_sale_price
+parties:
+  - {role: other, name: authority_name, person_names: false}
+  - role: other
+    name: [seller_purchaser_tenant_organization, seller_purchaser_tenant_first_name,
+           seller_purchaser_tenant_last_name]
+    address: {line1: [seller_purchaser_tenant_address1, seller_purchaser_tenant_address2],
+              city: seller_purchaser_tenant_city, state: seller_purchaser_tenant_state,
+              zip: seller_purchaser_tenant_postal_code}
+extra_pii: [property_address1, property_address2]
+terms:
+  url: https://data.ny.gov/d/t7uh-5ac8
+  summary: "data.ny.gov (Socrata), attribution Authorities Budget Office (ABO), no license set on the dataset (read 2026-11-25); NY Open Data terms of use. Free, no login or app token. Internal use, not redistributed. data.ny.gov robots.txt allows /resource/."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

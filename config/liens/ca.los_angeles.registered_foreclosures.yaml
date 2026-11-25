@@ -1,0 +1,33 @@
+source_id: ca.los_angeles.registered_foreclosures
+state: CA
+county_fips: "06037"
+# City of Los Angeles Housing Department (LAHD) "Property Look-Up for 2026 Registered
+# Foreclosure Properties" (2,761 rows on 2026-11-25): properties registered with the city's
+# foreclosure registry (filed by the lender or servicer; the ordinance that triggers a
+# registration was not read here), with the APN, registration date, property type and
+# address, and the lender. Loaded like the other foreclosure lists (LIS_PENDENS on
+# the parcel, debt kind foreclosure): the lender is the creditor; the borrower is not named,
+# so the debtor is the APN's owner of record. The APN is the 10-digit AIN that
+# ca.losangeles.parcels keys. Property-manager and lender-contact names and phones are not
+# fetched. The 2025 registry is a separate dataset (2qnc-kq4g), not loaded here.
+portal: https://data.lacity.org
+dataset: 5nzp-isg9
+where: "apn IS NOT NULL"
+order_by: [apn, registered_date, ":id"]
+select: [apn, registered_date, property_type, propertyaddress, propertycity, propertystate,
+         propertyzip, lender]
+date_field: registered_date
+single_partition: true
+uid: [apn, registered_date]
+doc_type: LIS_PENDENS
+doc_type_raw: LA City registered foreclosure property
+parties:
+  - {role: creditor, name: lender, person_names: false}
+parcel: {kind: pin, field: apn, county_fips: "06037"}   # = ca.losangeles.parcels AIN
+extra_pii: [propertyaddress, lender]   # a private lender can be a person
+terms:
+  url: https://data.lacity.org/d/5nzp-isg9
+  summary: "Los Angeles Open Data (Socrata), Los Angeles Housing Department, free, no login or app token. No license set on the dataset (read 2026-11-25); City of LA open data terms of use. Internal use, not redistributed. data.lacity.org robots.txt allows /resource/ and /api/views/."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free
