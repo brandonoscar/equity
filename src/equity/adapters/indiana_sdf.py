@@ -141,13 +141,21 @@ def _kind(flags: Mapping[str, bool]) -> str:
     return "SALES DISCLOSURE" + (f" ({', '.join(marks)})" if marks else "")
 
 
-def _reader(z: zipfile.ZipFile, name: str, delimiter: str) -> Iterator[dict[str, str]]:
-    """Rows of a zip member as dicts; UTF-16 when the member starts with a byte-order mark."""
+def _reader(
+    z: zipfile.ZipFile, name: str, delimiter: str, unquoted: bool = False
+) -> Iterator[dict[str, str]]:
+    """Rows of a zip member as dicts; UTF-16 when the member starts with a byte-order mark.
+    The relational files (2021-) quote every field; the legacy pipe files do not, and their
+    free text holds stray quote marks ('A "BULK SALE" TRANSFER'), so those are read with
+    unquoted=True, csv.QUOTE_NONE (a stray quote would otherwise swallow the rows after it)."""
     with z.open(name) as raw:
         enc = "utf-16" if raw.read(2) in (b"\xff\xfe", b"\xfe\xff") else "utf-8-sig"
     with z.open(name) as raw:
         text = io.TextIOWrapper(raw, encoding=enc, errors="replace", newline="")
-        yield from csv.DictReader(text, delimiter=delimiter)
+        if unquoted:
+            yield from csv.DictReader(text, delimiter=delimiter, quoting=csv.QUOTE_NONE)
+        else:
+            yield from csv.DictReader(text, delimiter=delimiter)
 
 
 def _member(z: zipfile.ZipFile, stem: str) -> str | None:
@@ -228,7 +236,7 @@ def parse_legacy(content: bytes) -> dict[str, list[dict[str, Any]]]:
     z = zipfile.ZipFile(io.BytesIO(content))
     out: dict[str, list[dict[str, Any]]] = {}
     for name in sorted(n for n in z.namelist() if n.lower().endswith(".txt")):
-        for r in _reader(z, name, "|"):
+        for r in _reader(z, name, "|", unquoted=True):
             sid = _t(r.get("SDF_ID"))
             county = (_t(r.get("County_ID")) or "").zfill(2)
             if not sid or not county_name(county):
