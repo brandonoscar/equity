@@ -1,0 +1,32 @@
+source_id: co.chaffee.parcels
+state: CO
+# Chaffee County, Colorado GIS item 'CHAFFEE_PARCELS_20260803' (Public Works org, data last
+# edited 2026-08-13): parcel polygons joined to the Assessor's account table. Owner names
+# (NAME1/NAME2), owner mailing address and situs street parts; no value fields.
+# 18,403 rows on 2026-11-25 (1,289 polygons have no assessor join: blank PARCELNO, skipped).
+layer_url: https://services8.arcgis.com/fRzYA77NIM7odeAM/arcgis/rest/services/CHAFFEE_PARCELS_20260803/FeatureServer/0
+order_by: FID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "015"}
+fields:
+  parcel_id: PARCELNO     # 12-digit assessor parcel number (ACCOUNTNO = 'R' + the same digits)
+  owner1: NAME1
+  owner2: NAME2
+  mail_line1: ADDRESS1
+  mail_line2: ADDRESS2
+  mail_city: CITY
+  mail_state: STATECODE
+  mail_zip: ZIPCODE       # 9 digits without a dash ('812368720'); the first 5 are kept
+  # Situs street parts; PROPERTYCI is not mapped: it holds 'UNINCORPORATED' for rural parcels,
+  # not a postal city.
+  situs_line1: [STREETNO, PREDIRECTI, STREETNAME, STREETTYPE, UNITTYPE, UNITNAME]
+  land_use_desc: ACCTTYPE # assessor account type ('Residential', 'Agricultural', 'Exempt', ...)
+value_basis: "No value fields in this layer (account type, tax district, acreage, owner, mailing and situs only). The ADDRESS field (street plus PROPERTYCI) and BUSINESSNA (business name at the situs) are not mapped."
+use_restrictions: [no_redistribution, no_resale]
+terms:
+  url: https://www.arcgis.com/home/item.html?id=6d0c4585e9934b3eaa25e85dd2bdfb3e
+  summary: "Chaffee County, Colorado ArcGIS Online item 'CHAFFEE_PARCELS_20260803' (owner PWDirector2), public, no token, 18,403 rows on 2026-11-25. Item licenseInfo 'User Agreement': provided 'AS IS' without warranty, no liability, and 'The holder of this data is not to sell or distribute the data in any way whatsoever, Chaffee County is the only entity where this data can be purchased.' The snippet adds that data obtained from any source other than Chaffee County is obtained without the County's consent (this config reads the County's own layer). Recorded as no_redistribution and no_resale. services8.arcgis.com /robots.txt answers HTTP 403 'Invalid URL' (RFC 9309: 4xx = no rules, allowed; PoliteClient treats 4xx the same way)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

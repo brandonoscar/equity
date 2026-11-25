@@ -1,0 +1,37 @@
+source_id: mo.greene.parcels
+state: MO
+# Greene County, Missouri parcels as served by the City of Springfield GIS ('GisViewer' map
+# service layer 66 Parcels; county-wide, with Greene County Assessor attributes): owner names,
+# owner mailing address, property address, appraised and assessed values, land use, deed
+# book/page. 123,884 rows on 2026-11-25.
+layer_url: https://maps.springfieldmo.gov/arcgis/rest/services/Maps/GisViewer/MapServer/66
+order_by: OBJECTID
+page_size: 1000          # maxRecordCount 1000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "077"}
+fields:
+  parcel_id: PIN          # 'Parcel Number' ('880113100001'; DPIN '01-13-100-001' is the dashed form)
+  owner1: OWN1
+  owner2: OWN2            # 'Alternate Owner Name'
+  mail_line1: Own_Addr
+  mail_city: CITYNAME
+  mail_state: STATECODE
+  mail_zip: ZIP1
+  # Property address; L_CITYNAME is not mapped: it is the municipality, and 'GREENE COUNTY'
+  # for 45,290 unincorporated parcels, not a postal city. L_ZIP1 is blank in the rows sampled.
+  situs_line1: PropAdr
+  land_use_code: LUC      # 'GC Land Use Description' (a code, e.g. '512')
+  deed_book: BOOK
+  deed_page: PAGE
+  land_value: TOTLAND
+  bldg_value: TOTBLDG
+  total_value: P_VALAPR3
+  assessed_value: P_VALASM3
+  tax_year: {as_retrieved: true}   # no roll-year field: values as observed on retrieval
+value_basis: "TOTLAND / TOTBLDG / P_VALAPR3 = Greene County Assessor appraised (market) value of land, buildings and their total; P_VALASM3 = total assessed value (Missouri assesses residential at 19%, agricultural at 12% and commercial at 32% of appraised value; the per-class RES*/AG*/COM* and *ASMT* columns are its parts and are not mapped). No roll-year field, so tax_year is {as_retrieved: true}: values are recorded as observed on the retrieval date (tax_year = that year, valid_from = that date), not assigned to a roll year. BOOK/PAGE = recorder book and page of the latest sale (SALEDT); CLASS (A/R/C use class), PLAN_DESCR / PLAN_ZONING_LU (City of Springfield planning land use, not zoning) and CAREOF are not mapped."
+terms:
+  url: https://maps.springfieldmo.gov/arcgis/rest/services/Maps/GisViewer/MapServer
+  summary: "City of Springfield, MO GIS map service 'GisViewer' ('GIS layers for Springfield Missouri'), layer 66 Parcels covering all of Greene County with Greene County Assessor attributes and links to greenecountyassessor.org; free REST, no login; 123,884 rows on 2026-11-25. Service iteminfo has empty licenseInfo and accessInformation and no copyright text; no license, use restriction or mailing-list clause found. maps.springfieldmo.gov /robots.txt answers HTTP 200 with an HTML 'not found' page (no robots directives; PoliteClient parses it as no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

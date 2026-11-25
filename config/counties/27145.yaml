@@ -1,0 +1,35 @@
+source_id: mn.stearns.parcels
+state: MN
+# Stearns County, Minnesota 'Vendor/Parcels' map service layer 0: owner, owner mailing,
+# situs, EMV and property class, with TAX_YEAR / ASSESSMENT_YEAR. 73,260 rows on 2026-11-25:
+# 70,608 tax parcels (TAXPARCEL, OWNER, TAX_YEAR 2027 / ASSESSMENT_YEAR 2026) and 2,652
+# polygons with no TAXPARCEL, filtered out: all but 2 carry only a bare code as PARCEL ('44',
+# '55', '88', '99'; road/water/gap) and would collapse into a few fake parcels. mn.statewide.parcels carries Stearns with no owner names and dash-separated
+# county_pin ('08-05295-0000') where this layer uses dots ('13.07677.0003').
+layer_url: https://gis.co.stearns.mn.us/arcgis/rest/services/Vendor/Parcels/MapServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 80000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "145"}
+filter: "TAXPARCEL IS NOT NULL"
+fields:
+  parcel_id: PARCEL       # dotted county parcel number (TAXPARCEL = the same digits, no dots)
+  owner1: OWNER           # 'MELVIN & JOLENE BRETH' (OWNERDISPLAY is the last-name-first form)
+  mail_line1: OWNERADDR
+  mail_city_state_zip: OWNER_CITYSTATEZIP   # 'COLD SPRING MN 56320-8700'
+  situs_line1: PROPADDR
+  situs_city: PROP_CITY
+  situs_state: PROP_STATE
+  situs_zip: PROP_ZIP
+  land_use_desc: PROPCLASSLONG
+  land_value: EMV_LAND
+  bldg_value: EMV_BLDG
+  total_value: emvtotal
+  tax_year: TAX_YEAR
+value_basis: "EMV_LAND / EMV_BLDG / emvtotal = county estimated market value for ASSESSMENT_YEAR (2026 on all 70,608 tax parcels on 2026-11-25); tax_year = TAX_YEAR, the taxes-payable year those values are for (2027), as in mn.statewide.parcels. tmvtotal (taxable market value), EMV_MACHINE, GATOTAL (Green Acres), NET_TAX_CAPACITY, REF_MARKET_VALUE and the tax amounts are not mapped. No homestead flag in the layer. OWNERATTNLINE (attention line) is not mapped."
+terms:
+  url: https://gis.co.stearns.mn.us/arcgis/rest/services/Vendor/Parcels/MapServer
+  summary: "Stearns County, MN 'Vendor/Parcels' map service ('Stearns County Parcels Map Service'); free REST, no login; 73,260 rows on 2026-11-25. Service iteminfo has empty licenseInfo and accessInformation and no copyright text; no license, use restriction or mailing-list clause found. gis.co.stearns.mn.us /robots.txt answers 404 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

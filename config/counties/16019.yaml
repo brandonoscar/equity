@@ -1,0 +1,35 @@
+source_id: id.bonneville.parcels
+state: ID
+# Bonneville County, Idaho ArcGIS Online item 'Bonneville Parcels April 2025' ('Temporary
+# Bonneville Parcels Layer - April 2025', data last edited 2025-05-07): parcel polygons joined
+# to assessor owner, mailing, situs, land value, last assessed value and homeowner exemption.
+# 63,803 rows on 2026-11-25 (owner filled on 62,779).
+layer_url: https://services2.arcgis.com/Xd5SMhLZ1h9t0F3b/arcgis/rest/services/Bonneville_Parcels_April_2025/FeatureServer/0
+order_by: FID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "019"}
+fields:
+  parcel_id: parcelnumb
+  owner1: owner
+  owner2: additional
+  mail_line1: owneraddre
+  mail_city: ownercity
+  mail_state: ownerstate
+  mail_zip: ownerzipco
+  situs_line1: parceladdr
+  situs_city: parcelcity
+  situs_zip: parcelzipc
+  land_use_desc: descriptio  # land category ('City Subdivision Land', ...)
+  land_value: landvalue
+  total_value: lastassess
+  homestead: homeownere      # homeowner exemption amount: > 0 = exemption granted
+  tax_year: {as_retrieved: true}   # no roll-year field: values as observed on retrieval
+value_basis: "landvalue = assessor land value; lastassess = last total assessed value (Idaho assesses at market value); homeownere = Idaho homeowner's exemption amount (positive on 32,229 rows, read as homestead = true). No roll-year field: the layer is an April 2025 snapshot (last edited 2025-05-07), so these are most likely the 2024 roll values, but nothing in the layer says so; tax_year is {as_retrieved: true} (tax_year = retrieval year, valid_from = retrieval date), which records when the values were observed, not the roll they belong to. valueofabo / animprovem / yearbuilto describe one improvement per row and are not mapped as building value; instrument (pipe-joined instrument numbers) is not mapped."
+use_restrictions: [no_mailing_list]
+terms:
+  url: https://www.arcgis.com/home/item.html?id=0786973e6d5c4fbca95a2bdda393d64d
+  summary: "Bonneville County, Idaho ArcGIS Online item 'Bonneville Parcels April 2025' (owner BonnevilleAdmin), public, no token, 63,803 rows on 2026-11-25. No licenseInfo, description or copyright text on the item or layer. Idaho Code 74-120 (applies to lists of persons prepared by any Idaho public agency): no such list may be used as a mailing list or telephone list unless Idaho law expressly permits it; recorded as no_mailing_list, as for id.statewide.parcels. services2.arcgis.com /robots.txt answers HTTP 403 'Invalid URL' (RFC 9309: 4xx = no rules, allowed; PoliteClient treats 4xx the same way)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -1,18 +1,31 @@
 source_id: pa.lancaster.parcels
 state: PA
-# Lancaster County assessment-office parcel polygons as republished on PASDA ('Lancaster
-# County Parcels 202609'). Ids only: the layer has ACCOUNT and geometry, nothing else.
-layer_url: https://mapservices.pasda.psu.edu/server/rest/services/pasda/LancasterCounty/MapServer/21
+# Lancaster County, Pennsylvania 'Land_Parcels' map service layer 0 on the county's own ArcGIS
+# server ('Polygon layer representing the real Lancaster County property, as mapped by the
+# assessment office'): owner, owner mailing address, situs, land use, assessed values.
+# 189,165 rows on 2026-11-25 (OWNER_NAME on 189,119). Replaces the ids-only PASDA republication
+# (pasda/LancasterCounty/MapServer/21); ACCOUNT is the same key, so parcel ids are unchanged.
+layer_url: https://arcgis.co.lancaster.pa.us/arcgis/rest/services/Land_Parcels/MapServer/0
 order_by: OBJECTID
-page_size: 1000          # maxRecordCount 1000; supportsPagination true
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
 min_interval_s: 1.0
 county: {constant: "071"}
 fields:
-  parcel_id: ACCOUNT
-value_basis: "No value fields in this layer (ACCOUNT and geometry only)."
+  parcel_id: ACCOUNT      # 13-digit assessment account ('0902384400000'); PIN is the map-based id
+  owner1: OWNER_NAME
+  mail_line1: OWNERADD1
+  mail_line2: OWNERADD2
+  mail_city: OWNER_CITY
+  mail_state: OWNERSTATE
+  mail_zip: OWNER_ZIP
+  situs_line1: ADDRESS    # street line only; the layer has no situs city or ZIP
+  land_use_code: LANDUSECD
+  assessed_value: TOTLASSESS
+  tax_year: {as_retrieved: true}   # no roll-year field: values as observed on retrieval
+value_basis: "TOTLASSESS = total assessed value (Lancaster County assesses at 100% of its 2018 base-year values, so this is not current market value); LANDASSESS / BLDGASSESS are its land and building parts and are not mapped (there are no assessed-component canonical columns). No roll-year field, so tax_year is {as_retrieved: true}: values are recorded as observed on the retrieval date (tax_year = that year, valid_from = that date), not assigned to a roll year. DEED_BK_PG is one string with no separator ('5043769', '65920257'), so deed_book/deed_page are not mapped. ACT_319 (Clean and Green), TAX_EXEMPT, SALE_PRICE / SALE_DATE are not mapped."
 terms:
-  url: https://mapservices.pasda.psu.edu/server/rest/services/pasda/LancasterCounty/MapServer/21
-  summary: "Lancaster County PA parcels ('Polygon layer representing the real Lancaster County property, as mapped by the assessment office') served by PASDA, Pennsylvania's public geospatial clearinghouse at Penn State. Free REST, no login; 188,990 polygons on 2026-11-16. Service iteminfo has empty licenseInfo; the per-dataset PASDA metadata page (www.pasda.psu.edu) could not be read from this environment. No commercial-use or mailing-list restriction found. mapservices.pasda.psu.edu /robots.txt answers 404 (RFC 9309: no rules)."
-  checked_on: 2026-11-16
-  robots_checked_on: 2026-11-16
+  url: https://arcgis.co.lancaster.pa.us/arcgis/rest/services/Land_Parcels/MapServer
+  summary: "Lancaster County, PA 'Land_Parcels' map service on the county ArcGIS server (iteminfo snippet 'Land Parcels - should be by reference published'); free REST, no login; 189,165 rows on 2026-11-25. Service iteminfo has empty licenseInfo and accessInformation and no copyright text; no license, use restriction or mailing-list clause found. arcgis.co.lancaster.pa.us /robots.txt answers 301 to /portal, which serves the portal home page (HTTP 200 HTML, no robots directives; PoliteClient follows the redirect and parses it as no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
   cost_model: free

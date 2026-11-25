@@ -1,0 +1,37 @@
+source_id: ri.cranston.parcels
+state: RI
+# City of Cranston, Rhode Island 'Parcels' feature service layer 54 Parcels_RIGIS (city
+# assessor CAMA extract joined to the RIGIS-standard parcel polygons): owner names, owner
+# mailing address, property address, assessed land and total value, tax roll year, use code.
+# 36,632 rows on 2026-11-25 (33,355 with a CAMA join; the rest are rights of way, water, etc.).
+# Cranston is in Providence County (44007); ri.statewide.parcels has Cranston ids only.
+layer_url: https://arcgisserver.cranstonri.org/arcgis/rest/services/Parcels/FeatureServer/54
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 8000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "007"}
+fields:
+  # Plat-lot-unit ('11-2723-0'); null on rights of way and other unjoined polygons, which are
+  # skipped. ri.statewide.parcels keys the same lot as 'CR 7-3460-0' (town code prefix), so the
+  # two uids differ by the 'CR' prefix.
+  parcel_id: CAMAExtract_PropID
+  owner1: CAMAExtract_Owner1
+  owner2: CAMAExtract_Owner2
+  mail_line1: CAMAExtract_OwnerAddress
+  mail_city: CAMAExtract_OwnerCity
+  mail_state: CAMAExtract_OwnerState
+  mail_zip: CAMAExtract_OwnerZip   # '02920-5136' or '02920.'; the first 5 digits are kept
+  situs_line1: CAMAExtract_ParcAddress
+  land_use_code: CAMAExtract_MuniUseCode
+  land_use_desc: CAMAExtract_MuniUseCodeDesc
+  land_value: CAMAExtract_AssessedValueLand
+  total_value: CAMAExtract_AssessedValueTotal
+  assessed_value: CAMAExtract_AssessedValueTotal   # assessed = full value in RI; kept for ri.providence parity
+  tax_year: CAMAExtract_TaxRollYear
+value_basis: "CAMAExtract_AssessedValueLand / CAMAExtract_AssessedValueTotal = Cranston assessor assessed values (Rhode Island assesses at 100% of full and fair cash value as of the last revaluation), mapped as land_value / total_value, and the total also as assessed_value (as ri.providence.parcels records Providence's total assessment); CAMAExtract_AssessedValueBuildi is null in the rows sampled and is not mapped. tax_year = CAMAExtract_TaxRollYear (2026 on all 33,355 joined rows on 2026-11-25). CAMAExtract_LastBook / LastPage (last deed) are blank on some rows and not mapped; CAMAExtract_StateUse and the building fields are not mapped."
+terms:
+  url: https://arcgisserver.cranstonri.org/arcgis/rest/services/Parcels/FeatureServer
+  summary: "City of Cranston, RI 'Parcels' feature service (ArcGIS Online item 9769e90497fc4908a0165de828fd752d, public, last modified 2026-04-15) on the city's ArcGIS server; free REST, no login; 36,632 rows on 2026-11-25. The item and the service have empty licenseInfo, description and copyright text; no license, use restriction or mailing-list clause found. The polygons follow the RIGIS parcel standard (see ri.statewide.parcels for the RIGIS reference-use disclaimer). arcgisserver.cranstonri.org /robots.txt answers 404 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free
