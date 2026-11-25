@@ -1,0 +1,29 @@
+source_id: wa.tacoma.code_violations
+state: WA
+county_fips: "53053"
+# City of Tacoma Neighborhood and Community Services "Code Violations (Tacoma)" (ArcGIS
+# Online, IT.OpenDataMgr; 15,668 cases on 2026-11-25): nuisance, derelict / vacant building,
+# junk vehicle and other code cases with the case number, open date, type, status,
+# description, address and the Pierce County parcel number. OTHER instruments on
+# 53053-<parcelnumber> (as wa.pierce.permits), in no match run. Inspector names and customer
+# numbers are not read.
+api: arcgis
+layer_url: https://services3.arcgis.com/SCwJH1pD8WSn5T5y/arcgis/rest/services/Code%20Violations/FeatureServer/0
+order_by: [objectid]
+select: [objectid, casenumber, opendate, description, parcelnumber, address, casetype,
+         currentstatus, casestatus, dateupdated, daysopentoclosed]
+date_field: opendate
+partition: year
+first_year: 2000
+uid: casenumber
+doc_type: OTHER
+doc_type_raw: {field: casetype}
+extra_pii: [address, description]
+parties: []
+parcel: {kind: pin, field: parcelnumber, county_fips: "53053"}
+terms:
+  url: https://www.arcgis.com/home/item.html?id=df48d8a9799147889a2f506ad8a3f249
+  summary: "City of Tacoma Open Data (ArcGIS Online, IT.OpenDataMgr; accessInformation City of Tacoma, Neighborhood and Community Services), free, no login or token. Item licenseInfo (read 2026-11-25): 'Disclaimer | City of Tacoma Open Data' (as-is); no resale or redistribution clause. services3.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

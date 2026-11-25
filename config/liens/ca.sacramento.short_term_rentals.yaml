@@ -1,0 +1,30 @@
+source_id: ca.sacramento.short_term_rentals
+state: CA
+county_fips: "06067"
+# City of Sacramento Community Development Department "Active Short Term Rental Permits"
+# (ArcGIS Online, Publisher_SacCity; 549 permits on 2026-11-25): each active short-term rental
+# permit with its number, status, expiration date (M/D/YYYY text), the property address, the
+# City business operation tax account and the local manager's name (and phone, not read). The
+# parcel id is blank on most rows. One OTHER instrument per permit in Sacramento County, dated
+# by the expiration date, the manager as an 'other' party, in no match run. Read whole.
+api: arcgis
+layer_url: https://services5.arcgis.com/54falWtcpty3V47Z/arcgis/rest/services/Active_Short_Term_Rental_Permits/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, PERMIT_NUM, STATUS, EXPIRATION_DATE, MGR_FIRST_NAME, MGR_LAST_NAME,
+         PRPRTY_ADDR_ST_NUM, PRPRTY_ADDR_DIRECTION, PRPRTY_ADDR_ST_NAME, PRPRTY_ADDR_ST_SUFFIX,
+         PRPRTY_ADDR_UNIT_NUM, PRPRTY_ADDR_ZIP, PARCEL_ID, BUSINESS_OPERATION_ACCOUNT]
+date_field: EXPIRATION_DATE
+single_partition: true
+uid: PERMIT_NUM
+doc_type: OTHER
+doc_type_raw: City of Sacramento short-term rental permit
+extra_pii: [PRPRTY_ADDR_ST_NAME, MGR_FIRST_NAME, MGR_LAST_NAME]
+parties:
+  - {role: other, name: [MGR_FIRST_NAME, MGR_LAST_NAME]}
+parcel: {kind: pin, field: PARCEL_ID, county_fips: "06067"}
+terms:
+  url: https://www.arcgis.com/home/item.html?id=353ae412a63d4d978338b2be522c43f4
+  summary: "City of Sacramento open data (ArcGIS Online, Publisher_SacCity), free, no login or token. The item carries no license or use constraint (read 2026-11-25); no resale or redistribution clause found. services5.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,33 @@
+source_id: az.mesa.code_compliance
+state: AZ
+county_fips: "04013"
+# City of Mesa "Code Compliance" (data.mesaaz.gov hgf6-yenu, 83,168 cases on 2026-11-25):
+# code enforcement cases (building issues, property maintenance, zoning, junk vehicles...)
+# with the case number, type, description, opened / closed dates, status, fees billed and
+# paid, balance, violation ordinance, voluntary compliance flag, address and the Maricopa
+# County APN. OTHER instruments on 04013-<parcel_number> (the az.maricopa.parcels APN), with
+# the case balance as the amount, in no match run.
+portal: https://data.mesaaz.gov
+dataset: hgf6-yenu
+where: "opened_date IS NOT NULL"
+order_by: [":id"]
+select: [record_id, permit_number, permit_type, opened_date, closed_date, status, description,
+         total_fee, total_pay, balance, case_address, case_city, case_zip, parcel_number,
+         voilation_ordinance, voluntary_compliance, source_of_complaint, certified_deed,
+         warrant_issued_date]
+date_field: opened_date
+partition: year
+first_year: 1990
+uid: record_id
+doc_type: OTHER
+doc_type_raw: {field: permit_type}
+amount: balance
+extra_pii: [case_address, description]
+parties: []
+parcel: {kind: pin, field: parcel_number, county_fips: "04013"}   # = az.maricopa.parcels APN
+terms:
+  url: https://data.mesaaz.gov/d/hgf6-yenu
+  summary: "City of Mesa open data (data.mesaaz.gov, Socrata), Code Compliance, free, no login or app token. Dataset license (read 2026-11-25): 'See Terms of Use' (City of Mesa open data terms: as-is, no warranty); no resale or redistribution prohibition found. data.mesaaz.gov/robots.txt allows /resource/ (Crawl-delay: 1)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

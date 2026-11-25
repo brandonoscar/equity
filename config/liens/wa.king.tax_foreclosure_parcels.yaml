@@ -1,0 +1,27 @@
+source_id: wa.king.tax_foreclosure_parcels
+state: WA
+county_fips: "53033"
+# King County Treasury "Foreclosure parcels" (data.kingcounty.gov nx4x-daw6, attribution
+# taxforeclosures@kingcounty.gov; 145 parcels on 2026-11-25): the parcels in the current
+# real-property tax foreclosure action (three or more years delinquent, RCW 84.64), one
+# 10-digit parcel number per row and nothing else. A current list with no per-row date
+# (listed_on = fetch date), read whole. One OTHER instrument per parcel on 53033-<parcel>, in
+# no match run: the match run names the owner of record.
+portal: https://data.kingcounty.gov
+dataset: nx4x-daw6
+where: "parcels IS NOT NULL"
+order_by: [":id"]
+listed_on: listed_on
+date_field: listed_on
+single_partition: true
+uid: parcels
+doc_type: OTHER
+doc_type_raw: King County tax foreclosure parcel
+parties: []
+parcel: {kind: pin, field: parcels, county_fips: "53033"}
+terms:
+  url: https://data.kingcounty.gov/d/nx4x-daw6
+  summary: "King County open data (data.kingcounty.gov, Socrata), Treasury Operations, free, no login or app token. Dataset license (read 2026-11-25): Public Domain. data.kingcounty.gov/robots.txt allows /resource/ (Crawl-delay: 1)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

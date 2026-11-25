@@ -84,6 +84,18 @@ def test_windows_query_the_raw_date(tmp_path: Path) -> None:
     assert plain().where(window) == "rec >= DATE '2015-01-01' AND rec < DATE '2016-01-01'"
 
 
+def test_mdy_dates_need_no_window_when_the_source_is_read_whole(tmp_path: Path) -> None:
+    mdy = {"date_format": {"rec": "mdy"}}
+    for whole in ({"single_partition": True}, {"partition": "none"},
+                  {"api": "csv", "url": "https://f.test/permits.csv"}):  # fmt: skip
+        cls = deed_adapter_for(load_deed_config(_cfg(tmp_path, **mdy, **whole)))
+        assert [p for p in cls().partitions() if "from" in p] == []
+    cls = deed_adapter_for(load_deed_config(_cfg(tmp_path, **mdy, single_partition=True)))
+    rows = [{"doc": "D1", "rec": "4/10/2018 12:00:00 AM", "span": "78625010932", "seller": "A"}]
+    (inst,) = [r for t, r in _facts(cls, rows) if t == "instrument"]
+    assert inst["recorded_on"] == date(2018, 4, 10)
+
+
 def test_rows_get_iso_dates_and_rewritten_parcel_ids(tmp_path: Path) -> None:
     cls = deed_adapter_for(load_deed_config(_cfg(tmp_path)))
     rows = [

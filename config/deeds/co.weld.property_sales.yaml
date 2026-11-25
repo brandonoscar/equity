@@ -1,0 +1,47 @@
+source_id: co.weld.property_sales
+state: CO
+county_fips: "08123"
+# Weld County CO Assessor property sales ("Sales_Point_open_data", ArcGIS Online, owner
+# WeldCounty; 244,141 rows on 2026-11-25, sale dates 2010-01-04 to 2026-11-18): one row per
+# account per recorded conveyance with the Clerk and Recorder reception number, deed code,
+# sale date and price, grantor (seller) and grantee (buyer), plus the assessor's property
+# characteristics at sale (bedrooms, baths, living area, year built, basement, garage,
+# land size, class, subdivision / lot / block, situs address). Loaded as DEED instruments
+# (grantor = seller, grantee = buyer) on 08123-<PARCELNO> (the 12-digit Weld parcel number =
+# co.statewide.parcels parcel_id); the characteristics stay in the source record. Several
+# names in one field are separated by '; '.
+# DEEDCODE (most frequent first): SWD 137k, WD 81k, MHTL 9.7k, WDE, PRD, QC, SWDE, BSD, PRDE,
+# MHTLE, TRU, D, CONS, QCE, BOS, TRUE, PLT, DE, PAT, BSDE. TODO(Brandon): confirm the codes
+# (nothing in the layer defines them; a trailing E looks like an exempt / non-valuation
+# sale). MHTL / MHTLE (manufactured-home title?) and PLT (plat) are loaded as OTHER, the
+# rest as DEED.
+api: arcgis
+layer_url: https://services.arcgis.com/ewjSqmSyHJnkfBLL/arcgis/rest/services/Sales_Point_open_data/FeatureServer/1
+order_by: [OBJECTID]
+select: [OBJECTID, ValuationSale, RECEPTIONNO, ACCOUNTNO, PARCELNO, AccountsInSale, SaleType,
+         SALEDATE, SALEPRICE, DEEDCODE, GRANTOR, GRANTEE, PROPERTYTYPE, PROPERTYADDRESS,
+         PROPERTYCITY, BEDROOMCOUNT, BATHCOUNT, GLA, TOTALIMPSF, BLTASYEARBUILT, YEARREMODELED,
+         BasementSF, GARTOTAL, SaleTotLandAcres, BLTASDESCRIPTION, IMPEXTERIOR,
+         OCCCODEDESCRIPTION1, SUBDIVISIONNAME, LOT, BLOCK, NBHD]
+date_field: SALEDATE
+partition: year
+first_year: 2010
+uid: [RECEPTIONNO, PARCELNO]
+doc_type: {field: DEEDCODE, map: {MHTL: OTHER, MHTLE: OTHER, PLT: OTHER}, default: DEED}
+doc_type_raw: {field: DEEDCODE}
+consideration: SALEPRICE
+extra_pii: [PROPERTYADDRESS]
+parties:
+  - role: grantor
+    name: GRANTOR
+    split: ";"
+  - role: grantee
+    name: GRANTEE
+    split: ";"
+parcel: {kind: pin, field: PARCELNO, county_fips: "08123"}   # = co.statewide.parcels parcel_id
+terms:
+  url: https://www.arcgis.com/home/item.html?id=c85fc41cf189402caf5dc4c86ab4b646
+  summary: "Weld County Government (Assessor) public ArcGIS Online layer 'Sales_Point_open_data' (snippet 'Weld County Assessor property sales'), free, no login, token or fee. Item licenseInfo (read 2026-11-25) is a disclaimer: 'developed solely for internal use only by Weld County', accuracy not guaranteed, not for final design, no warranties; no license grant, resale or redistribution clause. Treated as internal use only, no redistribution. services.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

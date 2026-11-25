@@ -1,0 +1,36 @@
+source_id: co.boulder.construction_permits
+state: CO
+county_fips: "08013"
+# City of Boulder "Construction Permits" (ArcGIS Online table, BoulderCO; 338,442 permits on
+# 2026-11-25): building, accessory, electrical, mechanical, plumbing and other construction
+# permits with permit number, type and work type, description, applied / issued / completed
+# dates (ISO text), status, address, City PIN, Boulder County parcel number and tax account,
+# estimated project and solar costs, housing units added / removed, square feet and the
+# contractor's company and trade. OTHER instruments on 08013-<BOCOPIN> (co.statewide.parcels
+# parcel_id), the contractor as an 'other' party, in no match run. Dated by the applied date
+# (issued is blank until issue); the dates are text, so windows compare strings.
+api: arcgis
+layer_url: https://services.arcgis.com/ePKBjXrBZ2vEEgWd/arcgis/rest/services/Construction_Permits/FeatureServer/0
+order_by: [ObjectId]
+select: [ObjectId, PermitNum, MasterPermitNum, Description, AppliedDate, IssuedDate,
+         CompletedDate, StatusCurrent, OriginalAddress, OriginalZip, COBPIN, BOCOPIN, BOCOTAX,
+         ProjectName, PermitType, PermitWorkType, EstProjectCost, NewHousingUnits,
+         RemovedHousingUnits, AddedSqFt, ContractorCompanyName, ContractorTrade]
+date_field: AppliedDate
+date_is_text: true
+partition: year
+first_year: 1990
+uid: PermitNum
+doc_type: OTHER
+doc_type_raw: {field: PermitType}
+consideration: EstProjectCost
+extra_pii: [OriginalAddress, Description]
+parties:
+  - {role: other, name: ContractorCompanyName, person_names: false}
+parcel: {kind: pin, field: BOCOPIN, county_fips: "08013"}   # = co.statewide.parcels parcel_id
+terms:
+  url: https://www.arcgis.com/home/item.html?id=e3ff6248e4a547bcba31025d2c5c9fee
+  summary: "City of Boulder open data (ArcGIS Online, BoulderCO), free, no login or token. Item licenseInfo (read 2026-11-25): Creative Commons CC0 1.0. services.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

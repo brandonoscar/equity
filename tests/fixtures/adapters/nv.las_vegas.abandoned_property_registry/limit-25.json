@@ -1,0 +1,256 @@
+{
+ "layer": "https://services1.arcgis.com/F1v0ufATbBQScMtY/arcgis/rest/services/ABANDONED_PROPERTY_REGISTRY/FeatureServer/0",
+ "rows": [
+  {
+   "ADDRESS": "2279 TEST ST",
+   "APNO": "FR21-00020",
+   "AREA": "02329-55",
+   "LASTINSPDATE": null,
+   "OBJECTID": 1,
+   "OWNERNAME": "TESTOWNER C8CF14",
+   "PRCLID": "14029710026",
+   "WARD": "W3"
+  },
+  {
+   "ADDRESS": "3811 TEST ST",
+   "APNO": "FR21-00021",
+   "AREA": "02121-56",
+   "LASTINSPDATE": null,
+   "OBJECTID": 2,
+   "OWNERNAME": "TESTOWNER FF6BB9",
+   "PRCLID": "13813711016",
+   "WARD": "W5"
+  },
+  {
+   "ADDRESS": "405 TEST ST",
+   "APNO": "FR21-00022",
+   "AREA": "02317-98",
+   "LASTINSPDATE": null,
+   "OBJECTID": 3,
+   "OWNERNAME": "TESTOWNER 5F8071",
+   "PRCLID": "13828815009",
+   "WARD": "W1"
+  },
+  {
+   "ADDRESS": "2535 TEST ST",
+   "APNO": "FR21-00024",
+   "AREA": "01818-13",
+   "LASTINSPDATE": null,
+   "OBJECTID": 4,
+   "OWNERNAME": "TESTOWNER B61502",
+   "PRCLID": "13803110030",
+   "WARD": "W4"
+  },
+  {
+   "ADDRESS": "6046 TEST ST",
+   "APNO": "FR21-00026",
+   "AREA": "01216-94",
+   "LASTINSPDATE": null,
+   "OBJECTID": 5,
+   "OWNERNAME": "TESTOWNER 947547",
+   "PRCLID": "12505411121",
+   "WARD": "W6"
+  },
+  {
+   "ADDRESS": "1662 TEST ST",
+   "APNO": "FR21-00027",
+   "AREA": "01514-82",
+   "LASTINSPDATE": null,
+   "OBJECTID": 6,
+   "OWNERNAME": "TESTOWNER 3FCE6B",
+   "PRCLID": "12624411056",
+   "WARD": "W4"
+  },
+  {
+   "ADDRESS": "1517 TEST ST",
+   "APNO": "FR21-00028",
+   "AREA": "02319-43",
+   "LASTINSPDATE": null,
+   "OBJECTID": 7,
+   "OWNERNAME": "TESTOWNER 01AE65",
+   "PRCLID": "13826214039",
+   "WARD": "W1"
+  },
+  {
+   "ADDRESS": "8084 TEST ST",
+   "APNO": "FR21-00030",
+   "AREA": "02526-41",
+   "LASTINSPDATE": null,
+   "OBJECTID": 8,
+   "OWNERNAME": "TESTOWNER 6D64FA",
+   "PRCLID": "16202210086",
+   "WARD": "W3"
+  },
+  {
+   "ADDRESS": "7940 TEST ST",
+   "APNO": "FR21-00031",
+   "AREA": "02423-16",
+   "LASTINSPDATE": null,
+   "OBJECTID": 9,
+   "OWNERNAME": "TESTOWNER D131ED",
+   "PRCLID": "13932510009",
+   "WARD": "W1"
+  },
+  {
+   "ADDRESS": "4499 TEST ST",
+   "APNO": "FR21-00032",
+   "AREA": "02321-56",
+   "LASTINSPDATE": null,
+   "OBJECTID": 10,
+   "OWNERNAME": "TESTOWNER B96A77",
+   "PRCLID": "13825614020",
+   "WARD": "W5"
+  },
+  {
+   "ADDRESS": "2385 TEST ST",
+   "APNO": "FR21-00033",
+   "AREA": "01821-13",
+   "LASTINSPDATE": null,
+   "OBJECTID": 11,
+   "OWNERNAME": "TESTOWNER F6AA92",
+   "PRCLID": "13801111013",
+   "WARD": "W5"
+  },
+  {
+   "ADDRESS": "2513 TEST ST",
+   "APNO": "FR21-00037",
+   "AREA": "01721-95",
+   "LASTINSPDATE": null,
+   "OBJECTID": 12,
+   "OWNERNAME": "TESTOWNER 4707C1",
+   "PRCLID": "12536812033",
+   "WARD": "W6"
+  },
+  {
+   "ADDRESS": "7435 TEST ST",
+   "APNO": "FR21-00038",
+   "AREA": "02428-13",
+   "LASTINSPDATE": null,
+   "OBJECTID": 13,
+   "OWNERNAME": "TESTOWNER B687B0",
+   "PRCLID": "14031113020",
+   "WARD": "W3"
+  },
+  {
+   "ADDRESS": "3362 TEST ST",
+   "APNO": "FR21-00041",
+   "AREA": "01414-23",
+   "LASTINSPDATE": null,
+   "OBJECTID": 14,
+   "OWNERNAME": "TESTOWNER 5A2535",
+   "PRCLID": "12613116018",
+   "WARD": "W6"
+  },
+  {
+   "ADDRESS": "4370 TEST ST",
+   "APNO": "FR21-00045",
+   "AREA": "02615-44",
+   "LASTINSPDATE": null,
+   "OBJECTID": 15,
+   "OWNERNAME": "TESTOWNER 825651",
+   "PRCLID": "16307216038",
+   "WARD": "W2"
+  },
+  {
+   "ADDRESS": "1932 TEST ST",
+   "APNO": "FR21-00047",
+   "AREA": "02426-23",
+   "LASTINSPDATE": null,
+   "OBJECTID": 16,
+   "OWNERNAME": "TESTOWNER 848AA7",
+   "PRCLID": "13935111183",
+   "WARD": "W5"
+  },
+  {
+   "ADDRESS": "6615 TEST ST",
+   "APNO": "FR21-00051",
+   "AREA": "01721-84",
+   "LASTINSPDATE": null,
+   "OBJECTID": 17,
+   "OWNERNAME": "TESTOWNER 2FD01B",
+   "PRCLID": "12536411078",
+   "WARD": "W6"
+  },
+  {
+   "ADDRESS": "8303 TEST ST",
+   "APNO": "FR21-00054",
+   "AREA": "02418-95",
+   "LASTINSPDATE": null,
+   "OBJECTID": 18,
+   "OWNERNAME": "TESTOWNER A62F73",
+   "PRCLID": "13834416001",
+   "WARD": "W1"
+  },
+  {
+   "ADDRESS": "892 TEST ST",
+   "APNO": "FR21-00057",
+   "AREA": "02525-56",
+   "LASTINSPDATE": null,
+   "OBJECTID": 19,
+   "OWNERNAME": "TESTOWNER 58579D",
+   "PRCLID": "16203701003",
+   "WARD": "W3"
+  },
+  {
+   "ADDRESS": "3945 TEST ST",
+   "APNO": "FR21-00059",
+   "AREA": "02217-57",
+   "LASTINSPDATE": null,
+   "OBJECTID": 20,
+   "OWNERNAME": "TESTOWNER F465AE",
+   "PRCLID": "13821618085",
+   "WARD": "W1"
+  },
+  {
+   "ADDRESS": "8080 TEST ST",
+   "APNO": "FR21-00061",
+   "AREA": "02217-83",
+   "LASTINSPDATE": null,
+   "OBJECTID": 21,
+   "OWNERNAME": "TESTOWNER 60B8F9",
+   "PRCLID": "13821419004",
+   "WARD": "W2"
+  },
+  {
+   "ADDRESS": "4223 TEST ST",
+   "APNO": "FR21-00062",
+   "AREA": "02222-52",
+   "LASTINSPDATE": null,
+   "OBJECTID": 22,
+   "OWNERNAME": "TESTOWNER 980D1A",
+   "PRCLID": "13919310090",
+   "WARD": "W5"
+  },
+  {
+   "ADDRESS": "8474 TEST ST",
+   "APNO": "FR21-00063",
+   "AREA": "02326-38",
+   "LASTINSPDATE": null,
+   "OBJECTID": 23,
+   "OWNERNAME": "TESTOWNER 72C725",
+   "PRCLID": "13926611047",
+   "WARD": "W3"
+  },
+  {
+   "ADDRESS": "1586 TEST ST",
+   "APNO": "FR21-00069",
+   "AREA": "02329-73",
+   "LASTINSPDATE": null,
+   "OBJECTID": 24,
+   "OWNERNAME": "TESTOWNER 98B53C",
+   "PRCLID": "14029311019",
+   "WARD": "W3"
+  },
+  {
+   "ADDRESS": "2608 TEST ST",
+   "APNO": "FR21-00071",
+   "AREA": "01416-72",
+   "LASTINSPDATE": null,
+   "OBJECTID": 25,
+   "OWNERNAME": "TESTOWNER 3889FF",
+   "PRCLID": "12517310203",
+   "WARD": "W4"
+  }
+ ],
+ "where": "1=1"
+}

@@ -1,0 +1,32 @@
+source_id: co.denver.short_term_rentals
+state: CO
+county_fips: "08031"
+# City and County of Denver Excise and Licenses "Short Term Rental Licenses", republished on
+# the State of Colorado open data portal (data.colorado.gov f3vc-vat3, attribution 'City and
+# county of Denver'; 2,329 licenses on 2026-11-25): each short-term rental license with its
+# number, status, address, Denver schedule (parcel) number, original and latest issue dates and
+# expiration. No licensee names. One OTHER instrument per license on 08031-<parcel_number>
+# (the 13-digit schedule number of co.denver.property_sales / co.statewide.parcels), dated by
+# the original issue date, in no match run.
+portal: https://data.colorado.gov
+dataset: f3vc-vat3
+where: "original_issued_date IS NOT NULL"
+order_by: [":id"]
+select: [license, license_type, license_status, address, zip_code, parcel_number,
+         expiration_date, renewal_status, multiple_licenses, original_issued_date,
+         most_recently_issued_date]
+date_field: original_issued_date
+partition: year
+first_year: 2016
+uid: license
+doc_type: OTHER
+doc_type_raw: {field: license_status}
+extra_pii: [address]
+parties: []
+parcel: {kind: pin, field: parcel_number, county_fips: "08031"}   # = co.statewide parcel_id
+terms:
+  url: https://data.colorado.gov/d/f3vc-vat3
+  summary: "Colorado Information Marketplace (data.colorado.gov, Socrata), data from the City and County of Denver, free, no login or app token. Dataset license (read 2026-11-25): Public Domain. data.colorado.gov/robots.txt allows /resource/ (Crawl-delay: 1)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

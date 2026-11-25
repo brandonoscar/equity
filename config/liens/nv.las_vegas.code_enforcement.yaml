@@ -1,0 +1,28 @@
+source_id: nv.las_vegas.code_enforcement
+state: NV
+county_fips: "32003"
+# City of Las Vegas Code Enforcement cases ("Code_Enforcement_Open_Data" table, ArcGIS Online,
+# OfficeOfGIS_LasVegas; 28,505 rows on 2026-11-25): each case event with the Las Vegas
+# Municipal Code section cited (dangerous building, nuisance, property maintenance...),
+# status, ward, address and the Clark County APN. OTHER instruments on 32003-<APN> (the
+# 11-digit Clark County parcel number of nv.clark.property_sales; published as a number, so
+# left-padded to 11 digits), in no match run.
+api: arcgis
+layer_url: https://services1.arcgis.com/F1v0ufATbBQScMtY/arcgis/rest/services/Code_Enforcement_Open_Data/FeatureServer/0
+order_by: [ObjectId]
+select: [ObjectId, Event_Date, STAT, WARD, DESCRIPT, ADDRESS, Parcel_Number]
+date_field: Event_Date
+partition: year
+first_year: 1990
+uid: ObjectId
+doc_type: OTHER
+doc_type_raw: {field: DESCRIPT}
+extra_pii: [ADDRESS]
+parties: []
+parcel: {kind: pin, field: Parcel_Number, county_fips: "32003", zfill: 11}
+terms:
+  url: https://www.arcgis.com/home/item.html?id=1df0b0233bdf46a084065a221c0ab6c1
+  summary: "City of Las Vegas Office of GIS (OfficeOfGIS_LasVegas) public ArcGIS Online table 'Code_Enforcement_Open_Data' (the org's code enforcement items carry the same disclaimer), free, no login or token. licenseInfo (read 2026-11-25): the City of Las Vegas makes no warranty, representation or guarantee; no license grant, resale or redistribution clause. services1.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

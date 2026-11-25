@@ -1,0 +1,32 @@
+source_id: wa.seattle.short_term_rentals
+state: WA
+county_fips: "53033"
+# City of Seattle "Short Term Rental License" (cos-data.seattle.gov s7df-xba4, 11,600 rental
+# units on 2026-11-25, updated daily): every short-term rental operator license and the units
+# registered on it, with the unit address, property type, bedrooms, whether it is the
+# operator's primary residence, the operator's Seattle business license number, the unit's
+# RRIO (rental registration) number and the license status and expiration. No operator names
+# and no parcel number are published: one OTHER instrument per registered unit in King County
+# (no parcel link), dated by the license expiration, in no match run. The business license
+# number joins to wa.seattle.business_licenses.
+portal: https://cos-data.seattle.gov
+dataset: s7df-xba4
+where: "licenseexpirationdate IS NOT NULL"
+order_by: [":id"]
+select: [licenseid, licensestatus, licenseexpirationdate, seattlebusinesslicensenumber,
+         legacystatus, unitid, unitstatus, addressline, zipcode, city, state, propertytype,
+         unitnumber, bedroomcount, primaryresidence, rrioregistration]
+date_field: licenseexpirationdate
+partition: year
+first_year: 2018
+uid: [licenseid, unitid]
+doc_type: OTHER
+doc_type_raw: {field: licensestatus}
+extra_pii: [addressline]
+parties: []
+terms:
+  url: https://data.seattle.gov/d/s7df-xba4
+  summary: "Seattle Open Data (cos-data.seattle.gov, Socrata), City of Seattle Finance and Administrative Services, free, no login or app token. Dataset license (read 2026-11-25): Public Domain. cos-data.seattle.gov/robots.txt allows /resource/ (Crawl-delay: 1)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

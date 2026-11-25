@@ -1,0 +1,42 @@
+source_id: wa.grant.parcel_sales
+state: WA
+county_fips: "53025"
+# Grant County WA Assessor "Parcel Sales" (ArcGIS Online, Admin_GrantCoWA; 12 layers, one per
+# sale year 2015-2025 plus 'Sales_2014_and_Older' with 58,103 rows; about 78k rows on
+# 2026-11-25): qualifying sales with the excise affidavit number, deed type, sale date and
+# price and the seller's name (no buyer name is published). Loaded as DEED instruments
+# (grantor = seller) on 53025-<PARCELNUMBER>. One partition per layer.
+# DEEDTYPE: SWD, WD, LC (real estate contract) ... TODO(Brandon): confirm the codes; LC is
+# loaded as LAND_CONTRACT, the rest as DEED.
+api: arcgis
+layer_urls:
+  - https://services2.arcgis.com/hQZvdtFxRzJpMtdS/arcgis/rest/services/Parcel_Sales/FeatureServer/0
+  - https://services2.arcgis.com/hQZvdtFxRzJpMtdS/arcgis/rest/services/Parcel_Sales/FeatureServer/1
+  - https://services2.arcgis.com/hQZvdtFxRzJpMtdS/arcgis/rest/services/Parcel_Sales/FeatureServer/2
+  - https://services2.arcgis.com/hQZvdtFxRzJpMtdS/arcgis/rest/services/Parcel_Sales/FeatureServer/3
+  - https://services2.arcgis.com/hQZvdtFxRzJpMtdS/arcgis/rest/services/Parcel_Sales/FeatureServer/4
+  - https://services2.arcgis.com/hQZvdtFxRzJpMtdS/arcgis/rest/services/Parcel_Sales/FeatureServer/5
+  - https://services2.arcgis.com/hQZvdtFxRzJpMtdS/arcgis/rest/services/Parcel_Sales/FeatureServer/6
+  - https://services2.arcgis.com/hQZvdtFxRzJpMtdS/arcgis/rest/services/Parcel_Sales/FeatureServer/7
+  - https://services2.arcgis.com/hQZvdtFxRzJpMtdS/arcgis/rest/services/Parcel_Sales/FeatureServer/8
+  - https://services2.arcgis.com/hQZvdtFxRzJpMtdS/arcgis/rest/services/Parcel_Sales/FeatureServer/9
+  - https://services2.arcgis.com/hQZvdtFxRzJpMtdS/arcgis/rest/services/Parcel_Sales/FeatureServer/10
+  - https://services2.arcgis.com/hQZvdtFxRzJpMtdS/arcgis/rest/services/Parcel_Sales/FeatureServer/11
+order_by: [OBJECTID]
+select: [OBJECTID, SALEDATE, DEEDTYPE, ExciseAffidavitNumber, ORIGINALSALEPRICE, SELLER,
+         SaleYear, PARCELNUMBER]
+date_field: SALEDATE
+uid: [ExciseAffidavitNumber, PARCELNUMBER]
+doc_type: {field: DEEDTYPE, map: {LC: LAND_CONTRACT}, default: DEED}
+doc_type_raw: {field: DEEDTYPE}
+consideration: ORIGINALSALEPRICE
+parties:
+  - role: grantor
+    name: SELLER
+parcel: {kind: pin, field: PARCELNUMBER, county_fips: "53025"}
+terms:
+  url: https://www.arcgis.com/home/item.html?id=0416b75593704fb682a25f13ced3d7e6
+  summary: "Grant County WA Assessor's Office public ArcGIS Online layer 'Parcel Sales', free, no login, token, fee or acknowledgement. Item licenseInfo (read 2026-11-25) is a disclaimer only (accuracy not verified, general information, not legal advice); no license grant, resale or redistribution clause. Washington's Public Records Act (RCW 42.56.070(9)) bars agencies from providing lists of individuals for commercial purposes: internal locate/link use only, no solicitation or resale. services2.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

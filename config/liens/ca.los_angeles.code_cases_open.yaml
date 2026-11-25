@@ -1,0 +1,27 @@
+source_id: ca.los_angeles.code_cases_open
+state: CA
+county_fips: "06037"
+# City of Los Angeles Department of Building and Safety "Code Enforcement Case - Open"
+# (data.lacity.org u82d-eh7z, 28,749 cases on 2026-11-25, refreshed weekly): one row per code
+# enforcement case (complaint investigations, PACE, systematic inspections) with the property
+# address, case type and open date (and resolution date once closed). prclid is the LADBS
+# map PIN ('102B209    94'), not the County AIN, so no parcel link is made: OTHER
+# instruments in Los Angeles County, in no match run; address and PIN stay in the record.
+portal: https://data.lacity.org
+dataset: u82d-eh7z
+where: "adddttm IS NOT NULL"
+order_by: [":id"]
+date_field: adddttm
+partition: year
+first_year: 1990
+uid: apno
+doc_type: OTHER
+doc_type_raw: {field: aptype}
+extra_pii: [stno, stname]
+parties: []
+terms:
+  url: https://data.lacity.org/d/u82d-eh7z
+  summary: "Los Angeles Open Data (data.lacity.org, Socrata), Department of Building and Safety, free, no login or app token. No license is set on the dataset (read 2026-11-25); City of Los Angeles open data terms of use (as-is, no warranty); no resale or redistribution clause found. data.lacity.org/robots.txt allows /resource/ (Crawl-delay: 1)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free
