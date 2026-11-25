@@ -488,9 +488,11 @@ class StateParcelAdapter(ArcGISCountyAdapter):
                 "f": "json",
             }
             body = get_json(self.client, url + "/query", params)
-            if "features" not in body:
+            id_range = _stat_range(body)
+            if id_range is None:
                 # Some servers (e.g. MARIS for Mississippi) refuse statistics queries but answer
-                # returnIdsOnly. Cut windows from the id list instead; fail only if both refuse.
+                # returnIdsOnly; others answer them with null min/max (Montgomery MD, seen
+                # 2026-11-25). Cut windows from the id list instead; fail only if both refuse.
                 ids = self._id_list(url)
                 if ids is None:
                     raise StateConfigError(
@@ -498,9 +500,7 @@ class StateParcelAdapter(ArcGISCountyAdapter):
                     )
                 yield from ({**base, **w} for w in _id_windows(ids, window))
                 continue
-            raw_attrs = body["features"][0]["attributes"]
-            attrs = {str(k).lower(): v for k, v in raw_attrs.items()}  # some servers upper-case
-            lo, hi = int(attrs["lo"]), int(attrs["hi"])
+            lo, hi = id_range
             count = self._count(url)
             if count and (hi - lo + 1) > 4 * count:
                 # Sparse ids: fixed-width windows would be mostly empty. Cut windows from the
@@ -723,6 +723,18 @@ def config_paths(*dirs: Path) -> list[Path]:
 
 def all_state_adapters(*dirs: Path) -> list[type[StateParcelAdapter]]:
     return [adapter_for(load_config(p)) for p in config_paths(*dirs)]
+
+
+def _stat_range(body: Mapping[str, Any]) -> tuple[int, int] | None:
+    """(min, max) object id from an outStatistics answer, or None if refused or null."""
+    features = body.get("features")
+    if not features:
+        return None
+    # Some servers upper-case the statistic names.
+    attrs = {str(k).lower(): v for k, v in features[0].get("attributes", {}).items()}
+    if attrs.get("lo") is None or attrs.get("hi") is None:
+        return None
+    return int(attrs["lo"]), int(attrs["hi"])
 
 
 def _id_windows(ids: list[int], window: int) -> Iterator[dict[str, str]]:

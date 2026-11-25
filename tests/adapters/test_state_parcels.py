@@ -549,6 +549,26 @@ def test_refused_statistics_fall_back_to_the_id_list(tmp_path: Path) -> None:
         {"oid_min": "8", "oid_max": "10"}]  # fmt: skip
 
 
+def test_null_statistics_fall_back_to_the_id_list(tmp_path: Path) -> None:
+    """Montgomery MD once answered outStatistics with null LO/HI; the id list still worked."""
+    from collections.abc import Mapping as _M
+
+    from equity.adapters.http import PoliteClient
+
+    def transport(url: str, headers: _M[str, str], timeout: float) -> tuple[int, bytes, str]:
+        if url.endswith("robots.txt"):
+            return 404, b"", ""
+        if "outStatistics" in url:
+            body: dict[str, Any] = {"features": [{"attributes": {"LO": None, "HI": None}}]}
+        else:
+            body = {"objectIdFieldName": "OID", "objectIds": [5, 1, 2]}
+        return 200, json.dumps(body).encode(), "application/json"
+
+    cfg = load_config(_cfg(tmp_path, partition_window=4))
+    client = PoliteClient(min_interval_s=0, transport=transport, sleep=lambda s: None)
+    assert list(adapter_for(cfg)(client).partitions()) == [{"oid_min": "1", "oid_max": "6"}]
+
+
 def test_homestead_values() -> None:
     from equity.adapters.state_parcels import parse_homestead
 
