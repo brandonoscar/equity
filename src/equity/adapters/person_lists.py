@@ -79,7 +79,7 @@ import yaml
 
 from equity.adapters.arcgis import ArcGISError, ArcGISQuery, fetch_all, get_json
 from equity.adapters.base import Adapter, Fetched, FetchRequest, HealthReport, NormalizedRow
-from equity.adapters.http import PoliteClient, Response
+from equity.adapters.http import OVERLAP, RangeClient, Response, window_lines
 from equity.adapters.licenses import AddressSpec
 from equity.adapters.licenses import address_of as license_address_of
 from equity.adapters.pdf_lists import pdf_rows
@@ -98,8 +98,6 @@ ACCESS = {"socrata": "api", "csv_ranges": "bulk", "html_table": "html", "arcgis"
 KINDS = frozenset({"sos", "tax", "court", "vessel", "government_sale"})
 FORMATS = frozenset({"as_is", "first_last", "last_first", "last_comma_first", "last_first_comma"})
 REQUIRED = ("source_id", "state", "jurisdiction", "kind", "record_type", "parties", "terms")
-# Past the end of a byte window: enough for the line that straddles it (lines are ~300 bytes).
-OVERLAP = 65_536
 PART_KEYS = ("first", "middle", "last", "suffix")
 SUFFIXES = frozenset({"JR", "SR", "II", "III", "IV"})
 PLACEHOLDERS = frozenset({"UNKNOWN", "UNK", "NONE", "NO ADDRESS", "ADDRESS UNKNOWN", "NA", "N A"})
@@ -341,41 +339,6 @@ def link_values(page: str, id_prefix: str) -> list[str]:
         if text:
             seen.setdefault(text, None)
     return list(seen)
-
-
-# --- csv_ranges -------------------------------------------------------------------------------
-
-
-def window_lines(data: bytes, lo: int, hi: int, start: int, at_eof: bool) -> list[bytes]:
-    """The complete lines of `data` (bytes from file offset `start`, at most lo - 1) that begin
-    at an offset in [lo, hi). A line that starts before `lo` belongs to the previous window
-    (data starts a byte early so a line beginning exactly at lo is seen); the last line is used
-    only when it ends in a newline or at the end of the file."""
-    pos = 0
-    if lo > 0:
-        nl = data.find(b"\n", lo - start - 1)
-        if nl == -1:
-            return []
-        pos = nl + 1
-    lines: list[bytes] = []
-    while pos < len(data) and start + pos < hi:
-        nl = data.find(b"\n", pos)
-        if nl == -1:
-            if at_eof:
-                lines.append(data[pos:])
-            break
-        lines.append(data[pos : nl + 1])
-        pos = nl + 1
-    return lines
-
-
-class RangeClient(PoliteClient):
-    """PoliteClient plus GET with a Range header (same robots.txt, spacing and retries)."""
-
-    def get_range(self, url: str, first: int, last: int) -> Response:
-        rng = f"bytes={first}-{last}"
-        return self._send(url, lambda hdrs: self.transport(url, {**hdrs, "Range": rng},
-                                                           self.timeout_s))  # fmt: skip
 
 
 # --- arcgis -----------------------------------------------------------------------------------

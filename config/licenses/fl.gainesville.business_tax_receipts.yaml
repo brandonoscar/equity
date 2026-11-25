@@ -1,0 +1,25 @@
+# City of Gainesville, "Active and Inactive Businesses" (data.cityofgainesville.org
+# hk2b-em59, Public Domain): about 7.4K local business tax accounts with business name,
+# owner, type, status, start date and physical and mailing addresses (last updated April
+# 2023).
+source_id: fl.gainesville.business_tax_receipts
+state: FL
+jurisdiction: "12001"
+portal: https://data.cityofgainesville.org
+dataset: hk2b-em59
+key: id
+key_is_number: true
+id_prefix: "GNV-BTR:"
+terms_url: https://data.cityofgainesville.org/Business-Economy/Active-and-Inactive-Businesses/hk2b-em59
+terms_summary: "Public Domain (dataset license field)."
+checked_on: 2026-11-25
+license:
+  name: name
+  type: business_type
+  status: statusid
+  issued_on: start_date
+  address: {street: physical_address, city: physical_city, state: physical_state}
+  mailing: {street: mailing_address, city: mailing_city, state: mailing_state, zip: mailing_zip_code}
+holders:
+  - {role: other, title: OWNER, name: owner, address: {street: mailing_address, city: mailing_city, state: mailing_state, zip: mailing_zip_code}}
+pii_fields: [name, owner, physical_address, mailing_address, business_phone, email, latitude, longitude, location]

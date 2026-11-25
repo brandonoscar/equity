@@ -1,0 +1,218 @@
+{
+ "portal": "https://data.texas.gov",
+ "rows": [
+  {
+   "entity_type": "INDIVIDUAL",
+   "license_expiration_date": "2027-08-31T00:00:00.000",
+   "license_number": "1687205",
+   "license_original_issue_date": "2011-05-19T00:00:00.000",
+   "license_status": "Active",
+   "licensee_name": "TESTOWNER 0F28A2",
+   "resident_state": "Texas",
+   "status_date": "2019-07-03T00:00:00.000"
+  },
+  {
+   "entity_type": "FIRM",
+   "license_expiration_date": "2015-09-19T00:00:00.000",
+   "license_inactivation_reason": "No Underlying License",
+   "license_number": "16873",
+   "license_original_issue_date": "2003-09-19T00:00:00.000",
+   "license_status": "Inactive",
+   "licensee_name": "TESTOWNER F9B2D4 INC",
+   "resident_state": "Texas",
+   "status_date": "2015-04-28T00:00:00.000"
+  },
+  {
+   "entity_type": "INDIVIDUAL",
+   "license_expiration_date": "2013-05-19T00:00:00.000",
+   "license_inactivation_reason": "Failure to Renew",
+   "license_number": "1687311",
+   "license_original_issue_date": "2011-05-19T00:00:00.000",
+   "license_status": "Inactive",
+   "licensee_name": "TESTOWNER 882D21",
+   "resident_state": "Alabama",
+   "status_date": "2013-05-19T00:00:00.000"
+  },
+  {
+   "entity_type": "INDIVIDUAL",
+   "license_expiration_date": "2019-12-31T00:00:00.000",
+   "license_inactivation_reason": "Failure to Renew",
+   "license_number": "1687410",
+   "license_original_issue_date": "2011-05-19T00:00:00.000",
+   "license_status": "Inactive",
+   "licensee_name": "TESTOWNER 4E9B2D",
+   "resident_state": "Texas",
+   "status_date": "2019-12-31T00:00:00.000"
+  },
+  {
+   "entity_type": "INDIVIDUAL",
+   "license_expiration_date": "2021-10-31T00:00:00.000",
+   "license_inactivation_reason": "Failure to Renew",
+   "license_number": "1687478",
+   "license_original_issue_date": "2011-05-20T00:00:00.000",
+   "license_status": "Inactive",
+   "licensee_name": "TESTOWNER BF96F0",
+   "resident_state": "Louisiana",
+   "status_date": "2021-10-31T00:00:00.000"
+  },
+  {
+   "entity_type": "FIRM",
+   "license_expiration_date": "2027-02-21T00:00:00.000",
+   "license_number": "1687609",
+   "license_original_issue_date": "2011-05-20T00:00:00.000",
+   "license_status": "Active",
+   "licensee_name": "TESTOWNER 1F84CC LLC",
+   "resident_state": "Utah",
+   "status_date": "2011-05-20T00:00:00.000"
+  },
+  {
+   "entity_type": "INDIVIDUAL",
+   "license_expiration_date": "2020-05-31T00:00:00.000",
+   "license_inactivation_reason": "Failure to Renew",
+   "license_number": "1687622",
+   "license_original_issue_date": "2011-05-23T00:00:00.000",
+   "license_status": "Inactive",
+   "licensee_name": "TESTOWNER BE60FE",
+   "resident_state": "New York",
+   "status_date": "2020-05-31T00:00:00.000"
+  },
+  {
+   "entity_type": "INDIVIDUAL",
+   "license_expiration_date": "2025-05-31T00:00:00.000",
+   "license_inactivation_reason": "Voluntary Surrender",
+   "license_number": "1687687",
+   "license_original_issue_date": "2011-05-23T00:00:00.000",
+   "license_status": "Inactive",
+   "licensee_name": "TESTOWNER 5ACBBE",
+   "resident_state": "Washington",
+   "status_date": "2023-12-11T00:00:00.000"
+  },
+  {
+   "entity_type": "INDIVIDUAL",
+   "license_expiration_date": "2013-05-23T00:00:00.000",
+   "license_inactivation_reason": "Failure to Renew",
+   "license_number": "1687697",
+   "license_original_issue_date": "2011-05-23T00:00:00.000",
+   "license_status": "Inactive",
+   "licensee_name": "TESTOWNER DAC175",
+   "resident_state": "Virginia",
+   "status_date": "2013-05-23T00:00:00.000"
+  },
+  {
+   "entity_type": "INDIVIDUAL",
+   "license_expiration_date": "2013-05-24T00:00:00.000",
+   "license_inactivation_reason": "Voluntary Surrender",
+   "license_number": "1687838",
+   "license_original_issue_date": "2011-05-24T00:00:00.000",
+   "license_status": "Inactive",
+   "licensee_name": "TESTOWNER 87AF3B",
+   "resident_state": "Connecticut",
+   "status_date": "2012-03-27T00:00:00.000"
+  },
+  {
+   "entity_type": "INDIVIDUAL",
+   "license_expiration_date": "2022-02-28T00:00:00.000",
+   "license_inactivation_reason": "Failure to Renew",
+   "license_number": "1687895",
+   "license_original_issue_date": "2011-05-24T00:00:00.000",
+   "license_status": "Inactive",
+   "licensee_name": "TESTOWNER 42B14C",
+   "resident_state": "California",
+   "status_date": "2022-02-28T00:00:00.000"
+  },
+  {
+   "entity_type": "FIRM",
+   "license_expiration_date": "2027-05-24T00:00:00.000",
+   "license_number": "1687904",
+   "license_original_issue_date": "2011-05-24T00:00:00.000",
+   "license_status": "Active",
+   "licensee_name": "TESTOWNER 96EDAC INC",
+   "resident_state": "Minnesota",
+   "status_date": "2011-05-24T00:00:00.000"
+  },
+  {
+   "entity_type": "INDIVIDUAL",
+   "license_expiration_date": "2028-02-29T00:00:00.000",
+   "license_number": "1688294",
+   "license_original_issue_date": "2011-05-26T00:00:00.000",
+   "license_status": "Active",
+   "licensee_name": "TESTOWNER 752534",
+   "resident_state": "North Carolina",
+   "status_date": "2011-05-26T00:00:00.000"
+  },
+  {
+   "entity_type": "INDIVIDUAL",
+   "license_expiration_date": "2028-01-31T00:00:00.000",
+   "license_number": "1688325",
+   "license_original_issue_date": "2011-05-26T00:00:00.000",
+   "license_status": "Active",
+   "licensee_name": "TESTOWNER 1CD6F0",
+   "resident_state": "Alabama",
+   "status_date": "2011-05-26T00:00:00.000"
+  },
+  {
+   "entity_type": "INDIVIDUAL",
+   "license_expiration_date": "2021-11-30T00:00:00.000",
+   "license_inactivation_reason": "Failure to Renew",
+   "license_number": "1688393",
+   "license_original_issue_date": "2011-05-26T00:00:00.000",
+   "license_status": "Inactive",
+   "licensee_name": "TESTOWNER 46781F",
+   "resident_state": "Texas",
+   "status_date": "2021-11-30T00:00:00.000"
+  },
+  {
+   "entity_type": "INDIVIDUAL",
+   "license_expiration_date": "2017-10-30T00:00:00.000",
+   "license_inactivation_reason": "Failure to Renew",
+   "license_number": "1688407",
+   "license_original_issue_date": "2011-05-26T00:00:00.000",
+   "license_status": "Inactive",
+   "licensee_name": "TESTOWNER 2B7F52",
+   "resident_state": "Louisiana",
+   "status_date": "2017-10-30T00:00:00.000"
+  },
+  {
+   "entity_type": "INDIVIDUAL",
+   "license_expiration_date": "2028-04-30T00:00:00.000",
+   "license_number": "1688424",
+   "license_original_issue_date": "2011-05-26T00:00:00.000",
+   "license_status": "Active",
+   "licensee_name": "TESTOWNER 3F0CD8",
+   "resident_state": "Texas",
+   "status_date": "2011-05-26T00:00:00.000"
+  },
+  {
+   "entity_type": "INDIVIDUAL",
+   "license_expiration_date": "2020-02-29T00:00:00.000",
+   "license_inactivation_reason": "Failure to Renew",
+   "license_number": "1688430",
+   "license_original_issue_date": "2011-05-26T00:00:00.000",
+   "license_status": "Inactive",
+   "licensee_name": "TESTOWNER C86022",
+   "resident_state": "Texas",
+   "status_date": "2020-02-29T00:00:00.000"
+  },
+  {
+   "entity_type": "INDIVIDUAL",
+   "license_expiration_date": "2028-02-29T00:00:00.000",
+   "license_number": "1688435",
+   "license_original_issue_date": "2011-05-26T00:00:00.000",
+   "license_status": "Active",
+   "licensee_name": "TESTOWNER 7CAE97",
+   "resident_state": "Texas",
+   "status_date": "2011-05-26T00:00:00.000"
+  },
+  {
+   "entity_type": "INDIVIDUAL",
+   "license_expiration_date": "2028-05-31T00:00:00.000",
+   "license_number": "1688437",
+   "license_original_issue_date": "2011-05-26T00:00:00.000",
+   "license_status": "Active",
+   "licensee_name": "TESTOWNER EE08F5",
+   "resident_state": "Texas",
+   "status_date": "2011-05-26T00:00:00.000"
+  }
+ ],
+ "where": "license_number::text >= '1687205'"
+}

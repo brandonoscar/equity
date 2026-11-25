@@ -1,0 +1,23 @@
+# New York Department of State, "Currently Licensed Real Estate Appraisers" (data.ny.gov
+# 3nr4-s9yt): about 3.6K active appraiser licenses with the appraiser's name (printed
+# 'LAST FIRST'), business name and address, license type and original license date.
+source_id: ny.dos.appraisers
+state: NY
+jurisdiction: "36"
+portal: https://data.ny.gov
+dataset: 3nr4-s9yt
+key: uid
+key_is_number: true
+id_prefix: "NY-APPR:"
+terms_url: https://data.ny.gov/download/77gx-ii52/application%2Fpdf
+terms_summary: "NY Open Data terms: free to use; no warranty. No restriction on commercial use found."
+checked_on: 2026-11-25
+license:
+  name: [prin_bus_name, applicant_name]
+  type: license_type
+  status_value: Active  # current licenses only
+  issued_on: org_date
+  address: {street: [prin_bus_addr1, apt], city: business_city, state: st, zip: zip_code}
+holders:
+  - {role: other, title: APPRAISER, name: applicant_name, address: {street: [prin_bus_addr1, apt], city: business_city, state: st, zip: zip_code}}
+pii_fields: [prin_bus_name, prin_bus_addr1, apt, applicant_name]

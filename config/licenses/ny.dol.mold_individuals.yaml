@@ -1,0 +1,20 @@
+# New York State Department of Labor, "Mold Individual Licenses: Four Year Window"
+# (data.ny.gov h6jr-vxqt): about 9.4K mold assessor, remediator and abatement worker licenses
+# with name parts, status and issue date.
+source_id: ny.dol.mold_individuals
+state: NY
+jurisdiction: "36"
+portal: https://data.ny.gov
+dataset: h6jr-vxqt
+key: license_number
+id_prefix: "NY-DOL-MOLD:"
+terms_url: https://data.ny.gov/download/77gx-ii52/application%2Fpdf
+terms_summary: "NY Open Data terms: free to use; no warranty. No restriction on commercial use found."
+checked_on: 2026-11-25
+license:
+  type: license_type
+  status: license_status
+  issued_on: issued_date
+holders:
+  - {role: other, title: LICENSEE, parts: {first: first_name, last: last_name}}
+pii_fields: [first_name, last_name]

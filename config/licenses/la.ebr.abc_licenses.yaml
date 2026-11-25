@@ -1,0 +1,23 @@
+# City of Baton Rouge / Parish of East Baton Rouge Finance Department, "ABC_License"
+# (data.brla.gov xhjf-mdnv, Public Domain): about 1K local alcoholic beverage control
+# licenses with account name and premises address.
+# TODO(Brandon): no issue date is published, so licenses are dated from the retrieval day.
+source_id: la.ebr.abc_licenses
+state: LA
+jurisdiction: "22033"
+portal: https://data.brla.gov
+dataset: xhjf-mdnv
+key: rev_acct_num
+key_is_number: true
+id_prefix: "EBR-ABC:"
+terms_url: https://data.brla.gov/Business-and-Financial/ABC_License/xhjf-mdnv
+terms_summary: "Public Domain (dataset license field)."
+checked_on: 2026-11-25
+license:
+  name: account_name
+  type_value: Alcoholic Beverage License
+  status_value: Active  # current licenses only
+  address: {street: address, city: city, zip: zip}
+holders:
+  - {role: other, title: LICENSEE, with_type: false, name: account_name, address: {street: address, city: city, zip: zip}}
+pii_fields: [account_name, address, the_geom]

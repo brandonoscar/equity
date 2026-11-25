@@ -24,6 +24,22 @@ Partitions are ranges of the partition `key`, planned by keyset paging over its 
 distinct values (no deep offsets), as in business_registry; a numeric key is compared as
 text in every dataset so ranges agree.
 
+`fetch` picks how rows are read (Socrata unless given):
+
+  socrata  `portal` + `dataset`, as above; `related` datasets only here
+  csv      one or more whole CSV files (`urls`), one partition each: state board extracts
+           (Florida DBPR), a city's CKAN or Carto export. `columns` names a headerless
+           file's columns; `delimiter`, `encoding` as needed. With `chunk_bytes`, each file
+           is planned as byte windows found by 1-byte Range probes (never by downloading
+           it) and a window holds the lines that start inside it, so a large file is read
+           a part at a time. A fixture (`limit`) reads the file's first bytes with a Range
+           request (all of it if ranges are ignored).
+
+Every row becomes a dict of text keyed by column name, so the license mapping is the same
+for both. Terms: `cost_model` (default free), `use_restrictions` (tags as in the parcel
+configs, e.g. internal_use_only, no_redistribution; shown as RESTRICTED[...] in the source
+row) and `robots_checked_on` (default `checked_on`).
+
 Valid time (a convention, as for registries): a license runs from its first issue date (the
 retrieval date when none is published); a role runs from the same day unless the related
 dataset publishes its own start and end. Expiration dates stay in the raw record: the
@@ -32,6 +48,8 @@ business table has no column for them.
 
 from __future__ import annotations
 
+import csv
+import io
 import json
 import re
 from collections import defaultdict
@@ -45,7 +63,7 @@ from typing import Any, ClassVar
 import yaml
 
 from equity.adapters.base import Adapter, Fetched, FetchRequest, HealthReport, NormalizedRow
-from equity.adapters.http import PoliteClient
+from equity.adapters.http import OVERLAP, PoliteClient, RangeClient, Response, window_lines
 from equity.adapters.rows import RecordContext, canonical_json
 from equity.adapters.socrata import SocrataQuery, fetch_all, quote
 from equity.adapters.state_parcels import (
@@ -59,6 +77,7 @@ from equity.schema.ids import stable_id
 
 LICENSE_DIR = CONFIG_DIR / "licenses"
 PLAN_KEYS = 50_000
+FIXTURE_BYTES = 262_144  # a csv fixture reads this much of the file
 ROLES = frozenset({"member", "manager", "officer", "director", "organizer", "incorporator",
                    "registered_agent", "other"})  # fmt: skip
 PART_NAMES = ("first", "middle", "last", "suffix")
@@ -80,6 +99,9 @@ US_STATES = {
     "PUERTO RICO": "PR",
 }  # fmt: skip
 _MDY = re.compile(r"^(\d{1,2})/(\d{1,2})/(\d{4})")
+_DMY = re.compile(r"^(\d{1,2})-([A-Za-z]{3})-(\d{2}|\d{4})$")  # 17-MAR-00 (Florida DBPR)
+_MONTHS = {m: i for i, m in enumerate(("JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG",
+                                       "SEP", "OCT", "NOV", "DEC"), 1)}  # fmt: skip
 _YMD8 = re.compile(r"^(\d{4})(\d{2})(\d{2})$")
 
 
@@ -95,7 +117,8 @@ def _text(value: Any) -> str | None:
 
 
 def parse_date(value: Any) -> date | None:
-    """ISO (Socrata calendar_date), MM/DD/YYYY or YYYYMMDD; anything else is None."""
+    """ISO (Socrata calendar_date), MM/DD/YYYY, DD-MON-YY or YYYYMMDD; anything else is
+    None."""
     s = _text(value)
     if s is None:
         return None
@@ -104,6 +127,11 @@ def parse_date(value: Any) -> date | None:
             return date.fromisoformat(s[:10])
         if m := _MDY.match(s):
             return date(int(m[3]), int(m[1]), int(m[2]))
+        if (m := _DMY.match(s)) and m[2].upper() in _MONTHS:
+            year = int(m[3])
+            if len(m[3]) == 2:  # two-digit years: 00-49 are 2000s, 50-99 are 1900s
+                year += 2000 if year < 50 else 1900
+            return date(year, _MONTHS[m[2].upper()], int(m[1]))
         if m := _YMD8.match(s.split(".")[0]):
             return date(int(m[1]), int(m[2]), int(m[3]))
     except ValueError:
@@ -295,6 +323,21 @@ class LicenseConfig:
     holders: tuple[HolderSpec, ...]
     related: tuple[Related, ...]
     pii_fields: tuple[str, ...]
+    fetch: str = "socrata"
+    urls: tuple[str, ...] = ()
+    columns: tuple[str, ...] = ()
+    delimiter: str = ","
+    encoding: str = "utf-8-sig"
+    chunk_bytes: int | None = None
+    cost_model: str = "free"
+    use_restrictions: tuple[str, ...] = ()
+    robots_checked_on: date | None = None
+
+    @property
+    def base_url(self) -> str:
+        if self.fetch == "socrata":
+            return f"{self.portal}/resource/{self.dataset}.json"
+        return self.urls[0]
 
     def key_expr(self, column: str) -> str:
         return f"{column}::text" if self.key_is_number else column
@@ -306,7 +349,11 @@ class LicenseConfig:
 
 _TOP = {"source_id", "state", "jurisdiction", "portal", "dataset", "key", "key_is_number",
         "record_key", "id_prefix", "terms_url", "terms_summary", "checked_on", "license",
-        "holders", "related", "pii_fields"}  # fmt: skip
+        "holders", "related", "pii_fields", "fetch", "urls", "columns", "delimiter",
+        "encoding", "chunk_bytes", "cost_model", "use_restrictions",
+        "robots_checked_on"}  # fmt: skip
+FETCHES = {"socrata": "api", "csv": "bulk"}  # fetch -> access_method
+COST_MODELS = frozenset({"free", "fee", "paid"})
 _LICENSE = {"name", "number", "type", "type_value", "status", "status_value", "issued_on",
             "expires_on", "latest_by", "address", "mailing"}  # fmt: skip
 
@@ -336,9 +383,19 @@ def load_license(path: Path) -> LicenseConfig:
     holders = tuple(HolderSpec.parse(h) for h in d.get("holders") or ())
     if not holders and not related:
         raise LicenseConfigError(f"{path.name}: a license source needs holders or related")
+    fetch = str(d.get("fetch", "socrata"))
+    if fetch not in FETCHES:
+        raise LicenseConfigError(f"{path.name}: unknown fetch {fetch!r}")
+    urls = _cols(d.get("urls"))
+    if fetch == "socrata" and not (d.get("portal") and d.get("dataset")):
+        raise LicenseConfigError(f"{path.name}: a socrata source needs portal and dataset")
+    if fetch != "socrata" and (not urls or related):
+        raise LicenseConfigError(f"{path.name}: a {fetch} source needs urls and no related")
+    if str(d.get("cost_model", "free")) not in COST_MODELS:
+        raise LicenseConfigError(f"{path.name}: cost_model must be one of {sorted(COST_MODELS)}")
     return LicenseConfig(
         source_id=d["source_id"], state=d["state"], jurisdiction=str(d["jurisdiction"]),
-        portal=d["portal"], dataset=d["dataset"], key=d["key"],
+        portal=str(d.get("portal") or ""), dataset=str(d.get("dataset") or ""), key=d["key"],
         key_is_number=bool(d.get("key_is_number", False)),
         record_key=_cols(d.get("record_key")) or (d["key"],), id_prefix=str(d["id_prefix"]),
         terms_url=d["terms_url"], terms_summary=d["terms_summary"],
@@ -348,6 +405,12 @@ def load_license(path: Path) -> LicenseConfig:
         latest_by=lic.get("latest_by"), address=AddressSpec.parse(lic.get("address")),
         mailing=AddressSpec.parse(lic.get("mailing")), holders=holders,
         related=tuple(related), pii_fields=tuple(d.get("pii_fields") or ()),
+        fetch=fetch, urls=urls, columns=_cols(d.get("columns")),
+        delimiter=str(d.get("delimiter", ",")), encoding=str(d.get("encoding", "utf-8-sig")),
+        chunk_bytes=int(d["chunk_bytes"]) if d.get("chunk_bytes") else None,
+        cost_model=str(d.get("cost_model", "free")),
+        use_restrictions=tuple(sorted(d.get("use_restrictions") or ())),
+        robots_checked_on=d.get("robots_checked_on"),
     )  # fmt: skip
 
 
@@ -362,26 +425,32 @@ class LicenseAdapter(Adapter):
     pii_fields: ClassVar[tuple[str, ...]] = ()
 
     def __init__(self, client: PoliteClient | None = None) -> None:
-        self.client = client or PoliteClient(min_interval_s=1.0, timeout_s=300.0)
+        self.client = client or RangeClient(min_interval_s=1.0, timeout_s=300.0)
 
     def source_row(self) -> Mapping[str, Any]:
         c = self.config
+        restricted = f"RESTRICTED[{','.join(c.use_restrictions)}] " if c.use_restrictions else ""
         return {
             "source_id": c.source_id,
             "kind": "sos",  # the nearest source kind: a state or city registry of names
             "jurisdiction": c.jurisdiction,
-            "access_method": "api",
-            "base_url": f"{c.portal}/resource/{c.dataset}.json",
+            "access_method": FETCHES[c.fetch],
+            "base_url": c.base_url,
             "terms_url": c.terms_url,
-            "terms_summary": c.terms_summary,
+            "terms_summary": restricted + c.terms_summary,
             "terms_checked_on": c.checked_on,
-            "robots_checked_on": c.checked_on,
-            "cost_model": "free",
+            "robots_checked_on": c.robots_checked_on or c.checked_on,
+            "cost_model": c.cost_model,
         }
 
     def partitions(self) -> Iterator[dict[str, str]]:
-        """Keyset paging over sorted distinct keys; each page of PLAN_KEYS keys is one range."""
+        """Socrata: keyset paging over sorted distinct keys, each page of PLAN_KEYS keys one
+        range. csv: one partition per file."""
         c = self.config
+        if c.fetch != "socrata":
+            for u in c.urls:
+                yield from self._file_windows(u)
+            return
         expr = c.key_expr(c.key)
         firsts: list[str] = []
         last: str | None = None
@@ -410,9 +479,105 @@ class LicenseAdapter(Adapter):
         rows, _ = fetch_all(self.client, q, max_pages=1 if limit else 10_000, sample=bool(limit))
         return rows
 
-    def fetch(self, request: FetchRequest) -> Fetched:
-        """params: lo, hi (key range; empty hi = open end); limit (fixtures)."""
+    def _file_windows(self, url: str) -> Iterator[dict[str, str]]:
+        chunk = self.config.chunk_bytes
+        if chunk is None:
+            yield {"url": url}
+            return
+        if self._get_range(url, 0, 0).status != 206:  # no byte ranges here: the whole file
+            yield {"url": url}
+            return
+        lo = 0
+        while lo == 0 or self._get_range(url, lo, lo).status == 206:
+            yield {"url": url, "lo": str(lo), "hi": str(lo + chunk)}
+            lo += chunk
+
+    def _get_range(self, url: str, first: int, last: int) -> Response:
+        get_range = getattr(self.client, "get_range", None)
+        if not callable(get_range):
+            raise LicenseConfigError(f"{self.source_id}: byte windows need a RangeClient")
+        resp: Response = get_range(url, first, last)
+        return resp
+
+    def _window(self, url: str, lo: int, hi: int) -> bytes:
+        """The lines of the file that start in [lo, hi) (the header line excluded)."""
+        start = max(lo - 1, 0)
+        want = hi + OVERLAP - 1
+        resp = self._get_range(url, start, want)
+        if resp.status == 416:  # the window starts past the end
+            return b""
+        if resp.status not in (200, 206):
+            raise RuntimeError(f"HTTP {resp.status} from {url}")
+        data = resp.content if resp.status == 206 else resp.content[start : want + 1]
+        lines = window_lines(data, lo, hi, start, len(data) < want - start + 1)
+        if lo == 0 and lines and not self.config.columns:
+            lines = lines[1:]
+        return b"".join(lines)
+
+    def _header(self, url: str) -> list[str]:
+        if self.config.columns:
+            return list(self.config.columns)
+        head = self._get_range(url, 0, 65_535)
+        if head.status not in (200, 206):
+            raise RuntimeError(f"HTTP {head.status} from {url}")
+        first = head.content.split(b"\n", 1)[0].decode(self.config.encoding, "replace")
+        return [h.strip() for h in next(csv.reader([first], delimiter=self.config.delimiter))]
+
+    def _csv_rows(
+        self, url: str, limit: int | None, window: tuple[int, int] | None = None
+    ) -> list[dict[str, str]]:
         c = self.config
+        if window is not None:
+            header = self._header(url)
+            data = self._window(url, *window)
+        else:
+            get_range = getattr(self.client, "get_range", None)
+            if limit and callable(get_range):
+                resp = get_range(url, 0, FIXTURE_BYTES - 1)
+            else:
+                resp = self.client.get(url)
+            if resp.status not in (200, 206):
+                raise RuntimeError(f"HTTP {resp.status} from {url}")
+            data = resp.content
+            if resp.status == 206 and b"\n" in data:
+                data = data[: data.rindex(b"\n")]  # the last line may be cut off
+            header = []
+        text = data.decode(c.encoding, "replace")
+        reader = csv.reader(io.StringIO(text, newline=""), delimiter=c.delimiter)
+        if window is None:
+            header = list(c.columns) or [h.strip() for h in next(reader, [])]
+        rows = []
+        for r in reader:
+            if any(v.strip() for v in r):
+                rows.append(dict(zip(header, (v.strip() for v in r), strict=False)))
+            if limit and len(rows) >= limit:
+                break
+        return rows
+
+    def _fetch_file(self, request: FetchRequest) -> Fetched:
+        c = self.config
+        p = request.params
+        url = p.get("url") or c.urls[0]
+        limit = int(p["limit"]) if "limit" in p else None
+        window = (int(p["lo"]), int(p["hi"])) if "lo" in p and "limit" not in p else None
+        rows = self._csv_rows(url, limit, window)
+        body: dict[str, Any] = {"url": url, "rows": rows}
+        asked = url
+        if window is not None:
+            body.update(lo=window[0], hi=window[1])
+            asked = f"{url}#bytes={window[0]}-{window[1] - 1}"
+        return Fetched(
+            source_id=c.source_id, request=asked, retrieved_at=datetime.now(UTC),
+            http_status=200, content=canonical_json(body), content_type="application/json",
+        )  # fmt: skip
+
+    def fetch(self, request: FetchRequest) -> Fetched:
+        """socrata params: lo, hi (key range; empty hi = open end); limit (fixtures).
+        csv params: url (one of `urls`; default the first); lo, hi (byte window, with
+        `chunk_bytes`); limit (fixtures: the file's first rows)."""
+        c = self.config
+        if c.fetch != "socrata":
+            return self._fetch_file(request)
         p = request.params
         limit = int(p["limit"]) if "limit" in p else None
         where = self._range(c.key, p["lo"], p.get("hi", ""))
@@ -573,8 +738,20 @@ class LicenseAdapter(Adapter):
             title = f"{title}: {ltype}" if title else ltype
         return (spec.role, title, got[0], address_of(row, spec.address), got[1], start, end)
 
+    def _file_health(self) -> HealthReport:
+        c = self.config
+        try:
+            rows = self._csv_rows(c.urls[0], 5)
+        except (RuntimeError, ValueError, OSError) as e:
+            return HealthReport(c.source_id, False, datetime.now(UTC), str(e)[:200], ())
+        ok = bool(rows) and c.key in rows[0]
+        shape = tuple(sorted(rows[0])) if ok else ()
+        return HealthReport(c.source_id, ok, datetime.now(UTC), "ok" if ok else "no rows", shape)
+
     def health(self) -> HealthReport:
         c = self.config
+        if c.fetch != "socrata":
+            return self._file_health()
         q = SocrataQuery(c.portal, c.dataset, f"{c.key} IS NOT NULL", (c.key_expr(c.key),), 1)
         resp = self.client.get(q.url, q.params(0))
         try:
@@ -587,15 +764,15 @@ class LicenseAdapter(Adapter):
         return HealthReport(c.source_id, ok, datetime.now(UTC), detail, shape)
 
 
+def adapter_class(cfg: LicenseConfig) -> type[LicenseAdapter]:
+    return type(
+        f"License_{cfg.source_id.replace('.', '_')}",
+        (LicenseAdapter,),
+        {"source_id": cfg.source_id, "config": cfg, "pii_fields": cfg.pii_fields,
+         "access_method": FETCHES[cfg.fetch]},
+    )  # fmt: skip
+
+
 @cache
 def all_license_adapters() -> tuple[type[LicenseAdapter], ...]:
-    out = []
-    for path in sorted(LICENSE_DIR.glob("*.yaml")):
-        cfg = load_license(path)
-        cls = type(
-            f"License_{cfg.source_id.replace('.', '_')}",
-            (LicenseAdapter,),
-            {"source_id": cfg.source_id, "config": cfg, "pii_fields": cfg.pii_fields},
-        )
-        out.append(cls)
-    return tuple(out)
+    return tuple(adapter_class(load_license(p)) for p in sorted(LICENSE_DIR.glob("*.yaml")))

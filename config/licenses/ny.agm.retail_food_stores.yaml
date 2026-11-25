@@ -1,0 +1,22 @@
+# New York State Department of Agriculture and Markets, "Retail Food Stores" (data.ny.gov
+# 9a8c-vfzj): about 24K licensed retail food stores with entity name, DBA, establishment type
+# and address.
+# TODO(Brandon): no issue date is published, so licenses are dated from the retrieval day.
+source_id: ny.agm.retail_food_stores
+state: NY
+jurisdiction: "36"
+portal: https://data.ny.gov
+dataset: 9a8c-vfzj
+key: license_number
+id_prefix: "NY-AGM-RFS:"
+terms_url: https://data.ny.gov/download/77gx-ii52/application%2Fpdf
+terms_summary: "NY Open Data terms: free to use; no warranty. No restriction on commercial use found."
+checked_on: 2026-11-25
+license:
+  name: [dba_name, entity_name]
+  type: operation_type
+  status_value: Licensed  # current licenses only
+  address: {street: [street_number, street_name, address_line_2, address_line_3], city: city, state: state, zip: zip_code}
+holders:
+  - {role: other, title: LICENSEE, name: entity_name, address: {street: [street_number, street_name, address_line_2, address_line_3], city: city, state: state, zip: zip_code}}
+pii_fields: [entity_name, dba_name, street_name, address_line_2, address_line_3, georeference]

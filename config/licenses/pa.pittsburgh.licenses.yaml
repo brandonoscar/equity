@@ -1,0 +1,30 @@
+# City of Pittsburgh Department of Permits, Licenses, and Inspections, "Licensed Businesses,
+# Contractors & Trades" (data.wprdc.org business-contractors-trades, CC0): three CKAN
+# datastore dumps with a header row, one partition each: business licenses (about 8.5K, with
+# address, email and phone), licensed contractors (about 5.7K) and trade licenses (about
+# 4.7K, mostly people), with license type, state (status) and initial issue date. WPRDC's
+# robots.txt welcomes DataStore dump downloads from scripts. A license
+# number repeats across types, so a record is (license_type_name, license_number).
+source_id: pa.pittsburgh.licenses
+state: PA
+jurisdiction: "42003"
+fetch: csv
+urls:
+  - https://data.wprdc.org/datastore/dump/e88c10d5-541d-417f-aef6-25cc5637aeb1
+  - https://data.wprdc.org/datastore/dump/7e195511-5219-4d16-84f7-f34a2aedf5b4
+  - https://data.wprdc.org/datastore/dump/51470435-a36f-4385-aee2-1c4766214a9a
+key: license_number
+record_key: [license_type_name, license_number]
+id_prefix: "PGH-PLI:"
+terms_url: https://data.wprdc.org/dataset/business-contractors-trades
+terms_summary: "Creative Commons CCZero (CKAN dataset license)."
+checked_on: 2026-11-25
+license:
+  name: business_name
+  type: license_type_name
+  status: license_state
+  issued_on: initial_issue_date
+  address: {line: address}
+holders:
+  - {role: other, title: LICENSEE, name: business_name, address: {line: address}}
+pii_fields: [business_name, address, email_address, primary_phone_number]

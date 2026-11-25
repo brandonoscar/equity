@@ -1,0 +1,25 @@
+# Illinois Department of Public Health, "IDPH Asbestos Licensed Contractors"
+# (data.illinois.gov kt5u-9dcu): about 150 licensed asbestos abatement contractors with
+# contact person, city, state and ZIP. The street column is often the placeholder 'NA', so
+# only city, state and ZIP are mapped.
+# TODO(Brandon): no issue date is published, so licenses are dated from the retrieval day.
+source_id: il.idph.asbestos_contractors
+state: IL
+jurisdiction: "17"
+portal: https://data.illinois.gov
+dataset: kt5u-9dcu
+key: contractor_id_numb
+key_is_number: true
+id_prefix: "IL-IDPH-ASBC:"
+terms_url: https://data.illinois.gov/Health-and-Human-Services/IDPH-Asbestos-Licensed-Contractors/kt5u-9dcu
+terms_summary: "Illinois open data portal; no license text on the dataset (public information published by IDPH)."
+checked_on: 2026-11-25
+license:
+  name: contractor_name
+  type_value: Asbestos Abatement Contractor
+  status_value: Licensed  # current licenses only
+  address: {city: city, state: state, zip: zip}
+holders:
+  - {role: other, title: CONTRACTOR, with_type: false, name: contractor_name, address: {city: city, state: state, zip: zip}}
+  - {role: other, title: CONTACT PERSON, with_type: false, name: contact_person}
+pii_fields: [contractor_name, address, contact_person, phone, fax, email]

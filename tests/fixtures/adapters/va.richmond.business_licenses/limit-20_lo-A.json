@@ -1,0 +1,223 @@
+{
+ "portal": "https://data.richmondgov.com",
+ "rows": [
+  {
+   "business_geo_location": {
+    "coordinates": [
+     -77.49297,
+     37.49215
+    ],
+    "type": "Point"
+   },
+   "customer_s_address": "6645 TEST ST",
+   "customer_s_name": "TESTOWNER DC902B LLC"
+  },
+  {
+   "business_geo_location": {
+    "coordinates": [
+     -77.52769,
+     37.40323
+    ],
+    "type": "Point"
+   },
+   "customer_s_address": "7650 TEST ST",
+   "customer_s_name": "TESTOWNER 1BC15D CO"
+  },
+  {
+   "business_geo_location": {
+    "coordinates": [
+     -77.14888,
+     37.75704
+    ],
+    "type": "Point"
+   },
+   "customer_s_address": "6573 TEST ST",
+   "customer_s_name": "TESTOWNER 8C29CE LLC"
+  },
+  {
+   "business_geo_location": {
+    "coordinates": [
+     -77.4562,
+     37.5595
+    ],
+    "type": "Point"
+   },
+   "customer_s_address": "2903 TEST ST",
+   "customer_s_name": "TESTOWNER B780BC LLC"
+  },
+  {
+   "business_geo_location": {
+    "coordinates": [
+     -77.52082,
+     37.51271
+    ],
+    "type": "Point"
+   },
+   "customer_s_address": "886 TEST ST",
+   "customer_s_name": "TESTOWNER E717F1 LLC"
+  },
+  {
+   "business_geo_location": {
+    "coordinates": [
+     -77.44209,
+     37.55579
+    ],
+    "type": "Point"
+   },
+   "customer_s_address": "1048 TEST ST",
+   "customer_s_name": "TESTOWNER E52568 LLC"
+  },
+  {
+   "business_geo_location": {
+    "coordinates": [
+     -77.46838,
+     37.56366
+    ],
+    "type": "Point"
+   },
+   "customer_s_address": "7691 TEST ST",
+   "customer_s_name": "TESTOWNER 804E77 INC"
+  },
+  {
+   "business_geo_location": {
+    "coordinates": [
+     -77.43452,
+     37.52017
+    ],
+    "type": "Point"
+   },
+   "customer_s_address": "3512 TEST ST",
+   "customer_s_name": "TESTOWNER EFA43B INC"
+  },
+  {
+   "business_geo_location": {
+    "coordinates": [
+     -77.49916,
+     37.49509
+    ],
+    "type": "Point"
+   },
+   "customer_s_address": "570 TEST ST",
+   "customer_s_name": "TESTOWNER B4A036 LLC"
+  },
+  {
+   "business_geo_location": {
+    "coordinates": [
+     -77.47107,
+     37.55374
+    ],
+    "type": "Point"
+   },
+   "customer_s_address": "2713 TEST ST",
+   "customer_s_name": "TESTOWNER 5AE53E LLC"
+  },
+  {
+   "customer_s_address": "5881 TEST ST",
+   "customer_s_name": "TESTOWNER 892C27 LLC"
+  },
+  {
+   "business_geo_location": {
+    "coordinates": [
+     -77.44494,
+     37.48606
+    ],
+    "type": "Point"
+   },
+   "customer_s_address": "7355 TEST ST",
+   "customer_s_name": "TESTOWNER C9373F LLC",
+   "doing_business_as": "TESTOWNER 78C40B"
+  },
+  {
+   "business_geo_location": {
+    "coordinates": [
+     -77.44494,
+     37.48606
+    ],
+    "type": "Point"
+   },
+   "customer_s_address": "7355 TEST ST",
+   "customer_s_name": "TESTOWNER C9373F LLC",
+   "doing_business_as": "TESTOWNER 78C40B"
+  },
+  {
+   "business_geo_location": {
+    "coordinates": [
+     -77.47413,
+     37.56071
+    ],
+    "type": "Point"
+   },
+   "customer_s_address": "4248 TEST ST",
+   "customer_s_name": "TESTOWNER E5BF72 INC",
+   "doing_business_as": "TESTOWNER 25A405"
+  },
+  {
+   "business_geo_location": {
+    "coordinates": [
+     -77.37517,
+     37.6644
+    ],
+    "type": "Point"
+   },
+   "customer_s_address": "1448 TEST ST",
+   "customer_s_name": "TESTOWNER 418AA5 INC"
+  },
+  {
+   "business_geo_location": {
+    "coordinates": [
+     -77.50959,
+     37.52062
+    ],
+    "type": "Point"
+   },
+   "customer_s_address": "8248 TEST ST",
+   "customer_s_name": "TESTOWNER 183B83 LLC"
+  },
+  {
+   "business_geo_location": {
+    "coordinates": [
+     -77.44,
+     37.43365
+    ],
+    "type": "Point"
+   },
+   "customer_s_address": "7752 TEST ST",
+   "customer_s_name": "TESTOWNER D91BE3 INC"
+  },
+  {
+   "business_geo_location": {
+    "coordinates": [
+     -77.4131,
+     37.53311
+    ],
+    "type": "Point"
+   },
+   "customer_s_address": "3665 TEST ST",
+   "customer_s_name": "TESTOWNER 60A5DC LLC"
+  },
+  {
+   "business_geo_location": {
+    "coordinates": [
+     -77.47688,
+     37.50991
+    ],
+    "type": "Point"
+   },
+   "customer_s_address": "1245 TEST ST",
+   "customer_s_name": "TESTOWNER CFE249 LLC"
+  },
+  {
+   "business_geo_location": {
+    "coordinates": [
+     -77.46917,
+     37.58392
+    ],
+    "type": "Point"
+   },
+   "customer_s_address": "4611 TEST ST",
+   "customer_s_name": "TESTOWNER 75CEF3 LLC",
+   "doing_business_as": "TESTOWNER 75B543"
+  }
+ ],
+ "where": "customer_s_name >= 'A'"
+}

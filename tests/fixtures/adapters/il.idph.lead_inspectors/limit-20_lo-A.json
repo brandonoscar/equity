@@ -1,0 +1,166 @@
+{
+ "portal": "https://data.illinois.gov",
+ "rows": [
+  {
+   "city": "CHICAGO",
+   "employer_name": "TESTOWNER D71B01 LLC",
+   "first": "TESTOWNER B93551",
+   "last": "TESTOWNER B868F1",
+   "raexp": "2026-01-31T00:00:00.000",
+   "state": "IL"
+  },
+  {
+   "city": "Chicago",
+   "employer_name": "TESTOWNER A0B326 INC",
+   "first": "TESTOWNER 4C7F5A",
+   "last": "TESTOWNER 14F432",
+   "raexp": "2026-01-31T00:00:00.000",
+   "state": "IL"
+  },
+  {
+   "city": "Downers Grove",
+   "employer_name": "TESTOWNER 8CB0DA",
+   "first": "TESTOWNER FB45F1",
+   "last": "TESTOWNER C4B04E",
+   "raexp": "2026-01-31T00:00:00.000",
+   "state": "IL"
+  },
+  {
+   "city": "Belleville",
+   "employer_name": "TESTOWNER CE3147",
+   "first": "TESTOWNER 9EAD21",
+   "last": "TESTOWNER 6C62E4",
+   "raexp": "2026-01-31T00:00:00.000",
+   "state": "IL"
+  },
+  {
+   "city": "CHICAGO",
+   "employer_name": "TESTOWNER 92CF20 LLC",
+   "first": "TESTOWNER 48C226",
+   "last": "TESTOWNER D2B908",
+   "raexp": "2026-01-31T00:00:00.000",
+   "state": "IL"
+  },
+  {
+   "city": "Waukegan",
+   "employer_name": "TESTOWNER F03C1B INC",
+   "first": "TESTOWNER 7D8C6F",
+   "last": "TESTOWNER 5D39D0",
+   "raexp": "2026-01-31T00:00:00.000",
+   "state": "IL"
+  },
+  {
+   "city": "Chicago",
+   "employer_name": "TESTOWNER 4C4709",
+   "first": "TESTOWNER 1CAB24",
+   "last": "TESTOWNER 3B5DCC",
+   "raexp": "2026-01-31T00:00:00.000",
+   "state": "IL"
+  },
+  {
+   "city": "Chicago",
+   "employer_name": "TESTOWNER DE4D68",
+   "first": "TESTOWNER BA9BB0",
+   "last": "TESTOWNER E14A98",
+   "raexp": "2026-01-31T00:00:00.000",
+   "state": "IL"
+  },
+  {
+   "city": "Wauconda",
+   "employer_name": "TESTOWNER DE4D68",
+   "first": "TESTOWNER 40CBC0",
+   "last": "TESTOWNER 1D6517",
+   "raexp": "2026-01-31T00:00:00.000",
+   "state": "IL"
+  },
+  {
+   "city": "Elk Grove Village",
+   "employer_name": "TESTOWNER 5F6D6D CORP",
+   "first": "TESTOWNER 964FD5",
+   "inspexp": "2026-01-31T00:00:00.000",
+   "last": "TESTOWNER EB0B96",
+   "state": "IL"
+  },
+  {
+   "city": "Ottawa",
+   "employer_name": "TESTOWNER C9079B INC",
+   "first": "TESTOWNER 3129CB",
+   "last": "TESTOWNER 7F7CD8",
+   "raexp": "2026-01-31T00:00:00.000",
+   "state": "IL"
+  },
+  {
+   "city": "Marion",
+   "employer_name": "TESTOWNER F08902",
+   "first": "TESTOWNER A1B3C5",
+   "last": "TESTOWNER FE1E3B",
+   "raexp": "2026-01-31T00:00:00.000",
+   "state": "IL"
+  },
+  {
+   "city": "Jacksonville",
+   "employer_name": "TESTOWNER 004885 INC",
+   "first": "TESTOWNER 009C41",
+   "last": "TESTOWNER 6D6ED7",
+   "raexp": "2026-01-31T00:00:00.000",
+   "state": "IL"
+  },
+  {
+   "city": "O'Fallon",
+   "employer_name": "TESTOWNER 884B23 LLC",
+   "first": "TESTOWNER 9BEA86",
+   "last": "TESTOWNER DD3CCA",
+   "raexp": "2026-01-31T00:00:00.000",
+   "state": "MO"
+  },
+  {
+   "city": "Chicago",
+   "employer_name": "TESTOWNER D3F59B",
+   "first": "TESTOWNER B52A02",
+   "inspexp": "2026-01-31T00:00:00.000",
+   "last": "TESTOWNER 6D3D65",
+   "state": "IL"
+  },
+  {
+   "city": "Davenport",
+   "employer_name": "TESTOWNER DE9CB7 INC",
+   "first": "TESTOWNER B77391",
+   "last": "TESTOWNER E7A3E3",
+   "raexp": "2026-01-31T00:00:00.000",
+   "state": "IA"
+  },
+  {
+   "city": "HOMEWOOD",
+   "employer_name": "TESTOWNER A5BA06 INC",
+   "first": "TESTOWNER 3A0192",
+   "last": "TESTOWNER 82CECD",
+   "raexp": "2026-01-31T00:00:00.000",
+   "state": "IL"
+  },
+  {
+   "city": "DES PLAINES",
+   "employer_name": "TESTOWNER 750036 CORP",
+   "first": "TESTOWNER 16CAA0",
+   "inspexp": "2026-01-31T00:00:00.000",
+   "last": "TESTOWNER 6539F6",
+   "state": "IL"
+  },
+  {
+   "city": "Sullivan",
+   "employer_name": "TESTOWNER 8BD221 LLC",
+   "first": "TESTOWNER 9CC4AE",
+   "last": "TESTOWNER 2B1450",
+   "raexp": "2026-01-31T00:00:00.000",
+   "state": "IL"
+  },
+  {
+   "city": "Chicago",
+   "employer_name": "TESTOWNER 4C4709",
+   "first": "TESTOWNER 7892A7",
+   "last": "TESTOWNER AE1DF5",
+   "raexp": "2026-01-31T00:00:00.000",
+   "state": "IL"
+  }
+ ],
+ "where": "last >= 'A'"
+}

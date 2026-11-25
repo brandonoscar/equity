@@ -1,0 +1,26 @@
+# Cook County Department of Revenue, "Department of Revenue - Registered Businesses"
+# (datacatalog.cookcountyil.gov rfq6-w7ja, Public Domain): about 6K businesses registered for
+# county taxes (alcoholic beverage, cigarette, gasoline, parking, amusement...), one row per
+# tax type, with company name and address. A record is (registration_account, tax_type).
+# TODO(Brandon): no registration date is published, so registrations are dated from the
+# retrieval day.
+source_id: il.cook.registered_businesses
+state: IL
+jurisdiction: "17031"
+portal: https://datacatalog.cookcountyil.gov
+dataset: rfq6-w7ja
+key: registration_account
+key_is_number: true
+record_key: [registration_account, tax_type]
+id_prefix: "COOK-REV:"
+terms_url: https://datacatalog.cookcountyil.gov/Finance-Operations/Department-of-Revenue-Registered-Businesses/rfq6-w7ja
+terms_summary: "Public Domain (dataset license field)."
+checked_on: 2026-11-25
+license:
+  name: company
+  type: tax_type
+  status_value: Registered  # current registrations only
+  address: {street: [address_line_1, address_line_2], city: city, state: state, zip: zip_code}
+holders:
+  - {role: other, title: REGISTRANT, name: company, address: {street: [address_line_1, address_line_2], city: city, state: state, zip: zip_code}}
+pii_fields: [company, address_line_1, address_line_2, location]

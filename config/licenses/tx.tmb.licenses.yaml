@@ -1,0 +1,26 @@
+# Texas Medical Board, "DataSet-01-All Licenses" (data.texas.gov tm3v-pfq9): about 515K
+# rows for every TMB license and permit ever issued (physicians, physician assistants,
+# acupuncturists, institutional permits...), 458K license numbers. A license number repeats
+# across types and registrations, so a record is (license_type, license_number) and the row
+# with the latest expiration wins. Rows carry name parts, year of birth, degree, specialties,
+# registration and disciplinary status, and the practice address.
+source_id: tx.tmb.licenses
+state: TX
+jurisdiction: "48"
+portal: https://data.texas.gov
+dataset: tm3v-pfq9
+key: license_number
+record_key: [license_type, license_number]
+id_prefix: "TX-TMB:"
+terms_url: https://data.texas.gov/dataset/DataSet-01-All-Licenses/tm3v-pfq9
+terms_summary: "Texas Open Data Portal; no license text on the dataset (public information published by the Texas Medical Board)."
+checked_on: 2026-11-25
+license:
+  type: license_type
+  status: registration_status
+  issued_on: license_issue_date
+  latest_by: license_expiration_date
+  address: {street: practice_address, city: practice_city, state: practice_state, zip: practice_zip}
+holders:
+  - {role: other, title: LICENSEE, parts: {first: first_name, last: last_name, suffix: suffix}, address: {street: practice_address, city: practice_city, state: practice_state, zip: practice_zip}}
+pii_fields: [first_name, last_name, year_of_birth, practice_address]

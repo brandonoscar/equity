@@ -1,0 +1,25 @@
+# Pennsylvania Department of Banking and Securities, "Non-Depository Licensee Information
+# Current Banking and Securities" (data.pa.gov tyxc-jyug, Public Domain U.S. Government):
+# about 33K current mortgage originators, lenders, brokers, debt collectors, money
+# transmitters, check cashers, consumer discount companies and similar licensees.
+# Individual originators carry "No Registered Location" in the address columns, so the
+# address is not mapped (it would join every originator to one fake address).
+# TODO(Brandon): no issue date is published, so licenses are dated from the retrieval day.
+source_id: pa.dobs.non_depository
+state: PA
+jurisdiction: "42"
+portal: https://data.pa.gov
+dataset: tyxc-jyug
+key: principal_license
+record_key: [non_depository_license_type, principal_license]
+id_prefix: "PA-DOBS:"
+terms_url: https://data.pa.gov/Government-Efficiency-Citizen-Engagement/Non-Depository-Licensee-Information-Current-Bankin/tyxc-jyug
+terms_summary: "Public Domain U.S. Government (dataset license field)."
+checked_on: 2026-11-25
+license:
+  name: licensee_name
+  type: non_depository_license_type
+  status_value: Licensed  # current licensees only
+holders:
+  - {role: other, title: LICENSEE, name: licensee_name}
+pii_fields: [licensee_name, address_1, address_2, phone_number, georeferenced_latitude_longitude]

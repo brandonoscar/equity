@@ -1,0 +1,21 @@
+# Texas Real Estate Commission, "Inspector License Holder Information" (data.texas.gov
+# pkr9-9isv): about 9K real estate inspector licenses with the licensee's name, status and
+# original license date. No address is published.
+source_id: tx.trec.inspectors
+state: TX
+jurisdiction: "48"
+portal: https://data.texas.gov
+dataset: pkr9-9isv
+key: license_number
+id_prefix: "TX-TREC-INSP:"
+terms_url: https://data.texas.gov/dataset/Inspector-License-Holder-Information/pkr9-9isv
+terms_summary: "Texas Open Data Portal; no license text on the dataset (public information published by TREC)."
+checked_on: 2026-11-25
+license:
+  type: license_type
+  status: status
+  issued_on: original_license_date
+holders:
+  - {role: other, title: INSPECTOR, name: key_name, last_first: true}
+  - {role: other, title: RELATED LICENSEE, with_type: false, name: related_license_full_name}
+pii_fields: [full_name, key_name, first_name, middle_name, last_name, related_license_full_name]

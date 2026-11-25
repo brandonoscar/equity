@@ -1,0 +1,25 @@
+# Washington State Department of Children, Youth, and Families, "DCYF Licensed Childcare
+# Center and School Age Program Providers" (data.wa.gov was8-3ni8): about 2.5K active center
+# and school-age program licenses with provider name, trade name, initial license date,
+# physical and shipping addresses and the primary contact person.
+source_id: wa.dcyf.childcare_centers
+state: WA
+jurisdiction: "53"
+portal: https://data.wa.gov
+dataset: was8-3ni8
+key: wacompassid
+id_prefix: "WA-DCYF:"
+terms_url: https://data.wa.gov/education/DCYF-Licensed-Childcare-Center-and-School-Age-Prog/was8-3ni8
+terms_summary: "Washington Open Data Portal; no license text on the dataset (public information published by DCYF)."
+checked_on: 2026-11-25
+license:
+  name: [doingbusinessas, providername]
+  type: facilitytypegeneric
+  status: latestoperatingstatus
+  issued_on: initiallicensedate
+  address: {street: physicalstreetaddress, city: physicalcity, state: physicalstate, zip: physicalzip}
+  mailing: {street: providershippingaddress, city: providershippingcity, state: providershippingstate, zip: shippingzip}
+holders:
+  - {role: other, title: PROVIDER, name: providername, address: {street: physicalstreetaddress, city: physicalcity, state: physicalstate, zip: physicalzip}}
+  - {role: other, title: PRIMARY CONTACT, with_type: false, name: primarycontactpersonname}
+pii_fields: [providername, doingbusinessas, primarycontactpersonname, primarycontactphonenumber, primarycontactemail, physicalstreetaddress, providershippingaddress, primarylicensor]

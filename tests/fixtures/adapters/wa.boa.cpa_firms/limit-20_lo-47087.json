@@ -1,0 +1,186 @@
+{
+ "portal": "https://data.wa.gov",
+ "rows": [
+  {
+   "city": "Sandpoint",
+   "description": "Sole Proprietorship",
+   "expires": "2023-06-30T00:00:00.000",
+   "firmname": "TESTOWNER B6B6A7",
+   "firmnumber": "47087",
+   "registered": "2008-10-03T07:00:00.000",
+   "state": "ID"
+  },
+  {
+   "city": "Longview",
+   "description": "P.S. Corporation",
+   "expires": "2025-07-01T00:00:00.000",
+   "firmname": "TESTOWNER 221491",
+   "firmnumber": "4709",
+   "registered": "2004-07-15T07:00:00.000",
+   "state": "WA"
+  },
+  {
+   "city": "Clackamas",
+   "description": "P.S. Corporation",
+   "expires": "2029-06-30T00:00:00.000",
+   "firmname": "TESTOWNER 6F8969 PC",
+   "firmnumber": "47090",
+   "registered": "2008-10-14T07:00:00.000",
+   "state": "OR"
+  },
+  {
+   "city": "Vancouver",
+   "description": "Sole Proprietorship",
+   "expires": "2029-06-30T00:00:00.000",
+   "firmname": "TESTOWNER E0B278",
+   "firmnumber": "47096",
+   "registered": "2008-11-05T08:00:00.000",
+   "state": "WA"
+  },
+  {
+   "city": "Auburn",
+   "description": "Limited Liability Company",
+   "expires": "2029-06-30T00:00:00.000",
+   "firmname": "TESTOWNER C398CB LLC",
+   "firmnumber": "47105",
+   "registered": "2008-11-19T08:00:00.000",
+   "state": "WA"
+  },
+  {
+   "city": "FAIRBANKS",
+   "description": "P.S. Corporation",
+   "expires": "2023-06-30T00:00:00.000",
+   "firmname": "TESTOWNER B47492 CORP",
+   "firmnumber": "47110",
+   "registered": "2008-11-25T08:00:00.000",
+   "state": "AK"
+  },
+  {
+   "city": "ROSEVILLE",
+   "description": "Sole Proprietorship",
+   "expires": "2020-06-30T00:00:00.000",
+   "firmname": "TESTOWNER 159B72",
+   "firmnumber": "47114",
+   "registered": "2008-12-15T08:00:00.000",
+   "state": "CA"
+  },
+  {
+   "city": "Lake Oswego",
+   "description": "P.S. Corporation",
+   "expires": "2028-06-30T00:00:00.000",
+   "firmname": "TESTOWNER BAB7A5 PC",
+   "firmnumber": "4713",
+   "registered": "2004-07-15T07:00:00.000",
+   "state": "OR"
+  },
+  {
+   "city": "Vancouver",
+   "description": "P.S. Corporation",
+   "expires": "2023-07-05T00:00:00.000",
+   "firmname": "TESTOWNER 9F6C4B",
+   "firmnumber": "47130",
+   "registered": "2009-01-27T08:00:00.000",
+   "state": "WA"
+  },
+  {
+   "city": "KIRKLAND",
+   "description": "Limited Liability Company",
+   "expires": "2020-10-19T00:00:00.000",
+   "firmname": "TESTOWNER 557C5A LLC",
+   "firmnumber": "47135",
+   "registered": "2009-01-27T08:00:00.000",
+   "state": "WA"
+  },
+  {
+   "city": "SEATTLE",
+   "description": "P.S. Corporation",
+   "expires": "2021-02-25T00:00:00.000",
+   "firmname": "TESTOWNER CD9A54",
+   "firmnumber": "47155",
+   "registered": "2010-02-03T08:00:00.000",
+   "state": "WA"
+  },
+  {
+   "city": "Issaquah",
+   "description": "Sole Proprietorship",
+   "expires": "2027-06-30T00:00:00.000",
+   "firmname": "TESTOWNER C7D65B",
+   "firmnumber": "47156",
+   "registered": "2009-02-26T08:00:00.000",
+   "state": "WA"
+  },
+  {
+   "city": "Hermiston",
+   "description": "P.S. Corporation",
+   "expires": "2028-06-30T00:00:00.000",
+   "firmname": "TESTOWNER 895006 PC",
+   "firmnumber": "4716",
+   "registered": "2004-07-22T07:00:00.000",
+   "state": "OR"
+  },
+  {
+   "city": "San Ramon",
+   "description": "Limited Liability Partnership",
+   "expires": "2022-07-18T00:00:00.000",
+   "firmname": "TESTOWNER 9CB542 LLP",
+   "firmnumber": "4718",
+   "registered": "2004-08-05T07:00:00.000",
+   "state": "CA"
+  },
+  {
+   "city": "Kent",
+   "description": "Limited Liability Company",
+   "expires": "2022-10-04T00:00:00.000",
+   "firmname": "TESTOWNER 36DAD1 PLLC",
+   "firmnumber": "47191",
+   "registered": "2009-06-01T07:00:00.000",
+   "state": "WA"
+  },
+  {
+   "city": "Bainbridge Island",
+   "description": "Limited Liability Company",
+   "expires": "2028-06-30T00:00:00.000",
+   "firmname": "TESTOWNER DF1745 PLLC",
+   "firmnumber": "47199",
+   "registered": "2010-05-05T07:00:00.000",
+   "state": "WA"
+  },
+  {
+   "city": "Hillsboro",
+   "description": "Limited Liability Company",
+   "expires": "2027-06-30T00:00:00.000",
+   "firmname": "TESTOWNER 837C98 LLC",
+   "firmnumber": "47203",
+   "registered": "2009-07-02T07:00:00.000",
+   "state": "OR"
+  },
+  {
+   "city": "LYNNWOOD",
+   "description": "P.S. Corporation",
+   "expires": "2024-06-30T00:00:00.000",
+   "firmname": "TESTOWNER 810276",
+   "firmnumber": "47206",
+   "registered": "2009-07-17T07:00:00.000",
+   "state": "WA"
+  },
+  {
+   "city": "Castle Rock",
+   "description": "Sole Proprietorship",
+   "expires": "2027-06-30T00:00:00.000",
+   "firmname": "TESTOWNER B4E548",
+   "firmnumber": "47216",
+   "registered": "2009-08-13T07:00:00.000",
+   "state": "WA"
+  },
+  {
+   "city": "Bothell",
+   "description": "Limited Liability Company",
+   "expires": "2028-06-30T00:00:00.000",
+   "firmname": "TESTOWNER 96B99F PLLC",
+   "firmnumber": "4723",
+   "registered": "2004-08-05T07:00:00.000",
+   "state": "WA"
+  }
+ ],
+ "where": "firmnumber::text >= '47087'"
+}

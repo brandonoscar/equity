@@ -1,0 +1,386 @@
+{
+ "portal": "https://data.ny.gov",
+ "rows": [
+  {
+   "activity_type_desc": "Fishing",
+   "badge_number": "6714",
+   "city": "Whitney Point",
+   "county": "BROOME",
+   "expiration_date": "2027-04-02T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -75.96362,
+     42.32933
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER FC14EB",
+   "name": "TESTOWNER B4B479",
+   "phone": "TESTOWNER A9375F",
+   "state": "NY",
+   "zip": "13862"
+  },
+  {
+   "activity_type_desc": "Boats and Canoes",
+   "badge_number": "6714",
+   "city": "Whitney Point",
+   "county": "BROOME",
+   "expiration_date": "2027-04-02T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -75.96362,
+     42.32933
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER FC14EB",
+   "name": "TESTOWNER B4B479",
+   "phone": "TESTOWNER A9375F",
+   "state": "NY",
+   "zip": "13862"
+  },
+  {
+   "activity_type_desc": "Hiking",
+   "badge_number": "6714",
+   "city": "Whitney Point",
+   "county": "BROOME",
+   "expiration_date": "2027-04-02T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -75.96362,
+     42.32933
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER FC14EB",
+   "name": "TESTOWNER B4B479",
+   "phone": "TESTOWNER A9375F",
+   "state": "NY",
+   "zip": "13862"
+  },
+  {
+   "activity_type_desc": "Camping",
+   "badge_number": "6714",
+   "city": "Whitney Point",
+   "county": "BROOME",
+   "expiration_date": "2027-04-02T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -75.96362,
+     42.32933
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER FC14EB",
+   "name": "TESTOWNER B4B479",
+   "phone": "TESTOWNER A9375F",
+   "state": "NY",
+   "zip": "13862"
+  },
+  {
+   "activity_type_desc": "Hunting",
+   "badge_number": "6714",
+   "city": "Whitney Point",
+   "county": "BROOME",
+   "expiration_date": "2027-04-02T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -75.96362,
+     42.32933
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER FC14EB",
+   "name": "TESTOWNER B4B479",
+   "phone": "TESTOWNER A9375F",
+   "state": "NY",
+   "zip": "13862"
+  },
+  {
+   "activity_type_desc": "Hiking",
+   "badge_number": "6716",
+   "city": "Pine Hill",
+   "county": "ULSTER",
+   "expiration_date": "2031-03-19T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -74.47556,
+     42.13133
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER 54EF8C",
+   "name": "TESTOWNER 923E27",
+   "phone": "TESTOWNER CA77A6",
+   "state": "NY",
+   "zip": "12465"
+  },
+  {
+   "activity_type_desc": "Fishing",
+   "badge_number": "6716",
+   "city": "Pine Hill",
+   "county": "ULSTER",
+   "expiration_date": "2031-03-19T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -74.47556,
+     42.13133
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER 54EF8C",
+   "name": "TESTOWNER 923E27",
+   "phone": "TESTOWNER CA77A6",
+   "state": "NY",
+   "zip": "12465"
+  },
+  {
+   "activity_type_desc": "Hunting",
+   "badge_number": "6716",
+   "city": "Pine Hill",
+   "county": "ULSTER",
+   "expiration_date": "2031-03-19T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -74.47556,
+     42.13133
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER 54EF8C",
+   "name": "TESTOWNER 923E27",
+   "phone": "TESTOWNER CA77A6",
+   "state": "NY",
+   "zip": "12465"
+  },
+  {
+   "activity_type_desc": "Boats and Canoes",
+   "badge_number": "6716",
+   "city": "Pine Hill",
+   "county": "ULSTER",
+   "expiration_date": "2031-03-19T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -74.47556,
+     42.13133
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER 54EF8C",
+   "name": "TESTOWNER 923E27",
+   "phone": "TESTOWNER CA77A6",
+   "state": "NY",
+   "zip": "12465"
+  },
+  {
+   "activity_type_desc": "WW Rafting",
+   "badge_number": "6727",
+   "city": "Scotia",
+   "county": "SCHENECTADY",
+   "expiration_date": "2027-05-24T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -73.9639,
+     42.82704
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER BD9222",
+   "name": "TESTOWNER 4BDC12",
+   "phone": "TESTOWNER E23020",
+   "state": "NY",
+   "zip": "12302"
+  },
+  {
+   "activity_type_desc": "Hiking",
+   "badge_number": "6727",
+   "city": "Scotia",
+   "county": "SCHENECTADY",
+   "expiration_date": "2027-05-24T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -73.9639,
+     42.82704
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER BD9222",
+   "name": "TESTOWNER 4BDC12",
+   "phone": "TESTOWNER E23020",
+   "state": "NY",
+   "zip": "12302"
+  },
+  {
+   "activity_type_desc": "Camping",
+   "badge_number": "6727",
+   "city": "Scotia",
+   "county": "SCHENECTADY",
+   "expiration_date": "2027-05-24T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -73.9639,
+     42.82704
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER BD9222",
+   "name": "TESTOWNER 4BDC12",
+   "phone": "TESTOWNER E23020",
+   "state": "NY",
+   "zip": "12302"
+  },
+  {
+   "activity_type_desc": "Boats and Canoes",
+   "badge_number": "6727",
+   "city": "Scotia",
+   "county": "SCHENECTADY",
+   "expiration_date": "2027-05-24T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -73.9639,
+     42.82704
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER BD9222",
+   "name": "TESTOWNER 4BDC12",
+   "phone": "TESTOWNER E23020",
+   "state": "NY",
+   "zip": "12302"
+  },
+  {
+   "activity_type_desc": "WW Rafting",
+   "badge_number": "6728",
+   "city": "Grand Island",
+   "county": "ERIE",
+   "expiration_date": "2027-05-22T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -78.96603,
+     43.03396
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER 439E52",
+   "name": "TESTOWNER FFAC70",
+   "phone": "TESTOWNER B07A35",
+   "state": "NY",
+   "zip": "14072"
+  },
+  {
+   "activity_type_desc": "Hiking",
+   "badge_number": "6728",
+   "city": "Grand Island",
+   "county": "ERIE",
+   "expiration_date": "2027-05-22T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -78.96603,
+     43.03396
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER 439E52",
+   "name": "TESTOWNER FFAC70",
+   "phone": "TESTOWNER B07A35",
+   "state": "NY",
+   "zip": "14072"
+  },
+  {
+   "activity_type_desc": "Camping",
+   "badge_number": "6728",
+   "city": "Grand Island",
+   "county": "ERIE",
+   "expiration_date": "2027-05-22T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -78.96603,
+     43.03396
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER 439E52",
+   "name": "TESTOWNER FFAC70",
+   "phone": "TESTOWNER B07A35",
+   "state": "NY",
+   "zip": "14072"
+  },
+  {
+   "activity_type_desc": "Fishing",
+   "badge_number": "6743",
+   "city": "Altmar",
+   "county": "OSWEGO",
+   "expiration_date": "2028-04-23T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -76.00222,
+     43.50964
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER 43ADFF",
+   "name": "TESTOWNER 9485E0",
+   "phone": "TESTOWNER D05890",
+   "state": "NY",
+   "zip": "13302"
+  },
+  {
+   "activity_type_desc": "Camping",
+   "badge_number": "6743",
+   "city": "Altmar",
+   "county": "OSWEGO",
+   "expiration_date": "2028-04-23T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -76.00222,
+     43.50964
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER 43ADFF",
+   "name": "TESTOWNER 9485E0",
+   "phone": "TESTOWNER D05890",
+   "state": "NY",
+   "zip": "13302"
+  },
+  {
+   "activity_type_desc": "Hiking",
+   "badge_number": "6743",
+   "city": "Altmar",
+   "county": "OSWEGO",
+   "expiration_date": "2028-04-23T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -76.00222,
+     43.50964
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER 43ADFF",
+   "name": "TESTOWNER 9485E0",
+   "phone": "TESTOWNER D05890",
+   "state": "NY",
+   "zip": "13302"
+  },
+  {
+   "activity_type_desc": "Boats and Canoes",
+   "badge_number": "6743",
+   "city": "Altmar",
+   "county": "OSWEGO",
+   "expiration_date": "2028-04-23T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -76.00222,
+     43.50964
+    ],
+    "type": "Point"
+   },
+   "last_name": "TESTOWNER 43ADFF",
+   "name": "TESTOWNER 9485E0",
+   "phone": "TESTOWNER D05890",
+   "state": "NY",
+   "zip": "13302"
+  }
+ ],
+ "where": "badge_number::text >= '6714'"
+}

@@ -1,0 +1,22 @@
+# Missouri Department of Revenue, "Cigarette and Other Tobacco Products Licensees"
+# (data.mo.gov inpf-ekav): about 320 cigarette and other-tobacco-product wholesalers and
+# retailers with a one-line mailing address.
+# TODO(Brandon): no issue date is published, so licenses are dated from the retrieval day.
+source_id: mo.dor.tobacco
+state: MO
+jurisdiction: "29"
+portal: https://data.mo.gov
+dataset: inpf-ekav
+key: license_number
+key_is_number: true
+id_prefix: "MO-TOB:"
+terms_url: https://data.mo.gov/Revenue/Cigarette-and-Other-Tobacco-Products-Licensees/inpf-ekav
+terms_summary: "Missouri Open Data Portal; no license text on the dataset (public information published by the Department of Revenue)."
+checked_on: 2026-11-25
+license:
+  name: licensee_name
+  type_value: Cigarette / Other Tobacco Products
+  mailing: {line: mailing_address}
+holders:
+  - {role: other, title: LICENSEE, with_type: false, name: licensee_name, address: {line: mailing_address}}
+pii_fields: [licensee_name, mailing_address]

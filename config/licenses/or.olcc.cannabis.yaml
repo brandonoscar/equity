@@ -1,0 +1,23 @@
+# Oregon Liquor and Cannabis Commission, "OLCC Cannabis Business Licenses & Endorsements"
+# (data.oregon.gov q32u-cmam): about 3.7K cannabis producer, processor, wholesaler,
+# retailer and laboratory licenses with trade name, licensee (the legal entity), status,
+# effective date and a one-line premises address.
+source_id: or.olcc.cannabis
+state: OR
+jurisdiction: "41"
+portal: https://data.oregon.gov
+dataset: q32u-cmam
+key: license_number
+id_prefix: "OR-OLCC-MJ:"
+terms_url: https://data.oregon.gov/business/OLCC-Cannabis-Business-Licenses-Endorsements/q32u-cmam
+terms_summary: "Oregon Open Data Portal; no license text on the dataset (public information published by OLCC)."
+checked_on: 2026-11-25
+license:
+  name: [business_name, business_licenses]
+  type: license_type
+  status: license_status
+  issued_on: effective_date
+  address: {line: physical_address}
+holders:
+  - {role: other, title: LICENSEE, name: business_licenses, address: {line: physical_address}}
+pii_fields: [business_name, business_licenses, physical_address]

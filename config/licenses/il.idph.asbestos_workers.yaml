@@ -1,0 +1,20 @@
+# Illinois Department of Public Health, "IDPH Asbestos Licensed Workers" (data.illinois.gov
+# 437c-unzu): about 2K licensed asbestos abatement workers with name, city, state and ZIP.
+# The street column is mostly the placeholder 'NA', so only city, state and ZIP are mapped.
+# TODO(Brandon): no issue date is published, so licenses are dated from the retrieval day.
+source_id: il.idph.asbestos_workers
+state: IL
+jurisdiction: "17"
+portal: https://data.illinois.gov
+dataset: 437c-unzu
+key: id
+id_prefix: "IL-IDPH-ASBW:"
+terms_url: https://data.illinois.gov/Health-and-Human-Services/IDPH-Asbestos-Licensed-Workers/437c-unzu
+terms_summary: "Illinois open data portal; no license text on the dataset (public information published by IDPH)."
+checked_on: 2026-11-25
+license:
+  type_value: Asbestos Abatement Worker
+  status_value: Licensed  # current licenses only
+holders:
+  - {role: other, title: ASBESTOS WORKER, with_type: false, parts: {first: first_name, last: last_name}, address: {city: city, state: state, zip: zip_code}}
+pii_fields: [last_name, first_name, address, phone]

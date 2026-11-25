@@ -1,0 +1,357 @@
+{
+ "portal": "https://data.ny.gov",
+ "rows": [
+  {
+   "city": "BROOKLYN",
+   "georeference": {
+    "coordinates": [
+     -73.992674,
+     40.697564
+    ],
+    "type": "Point"
+   },
+   "latitude": "40.697564",
+   "longitude": "-73.992674",
+   "name": "TESTOWNER F157E6",
+   "quick_draw": "Y",
+   "retailer": "079019",
+   "state": "NY",
+   "street": "TESTOWNER E728A3",
+   "zip": "11201"
+  },
+  {
+   "city": "NEW YORK",
+   "georeference": {
+    "coordinates": [
+     -73.979956,
+     40.735453
+    ],
+    "type": "Point"
+   },
+   "latitude": "40.735453",
+   "longitude": "-73.979956",
+   "name": "TESTOWNER 591BCA",
+   "quick_draw": "Y",
+   "retailer": "079021",
+   "state": "NY",
+   "street": "TESTOWNER 70DEAE",
+   "zip": "10010"
+  },
+  {
+   "city": "NEW YORK",
+   "georeference": {
+    "coordinates": [
+     -74.016595,
+     40.709716
+    ],
+    "type": "Point"
+   },
+   "latitude": "40.709716",
+   "longitude": "-74.016595",
+   "name": "TESTOWNER A0D53C",
+   "quick_draw": "Y",
+   "retailer": "079034",
+   "state": "NY",
+   "street": "TESTOWNER 4B4FCF",
+   "zip": "10280"
+  },
+  {
+   "city": "BRONX",
+   "georeference": {
+    "coordinates": [
+     -73.889113,
+     40.873451
+    ],
+    "type": "Point"
+   },
+   "latitude": "40.873451",
+   "longitude": "-73.889113",
+   "name": "TESTOWNER 3BDE4F",
+   "retailer": "079044",
+   "state": "NY",
+   "street": "TESTOWNER 423722",
+   "zip": "10468"
+  },
+  {
+   "city": "JACKSON HEIGHTS",
+   "georeference": {
+    "coordinates": [
+     -73.89287,
+     40.746459
+    ],
+    "type": "Point"
+   },
+   "latitude": "40.746459",
+   "longitude": "-73.892870",
+   "name": "TESTOWNER 8D3E44 INC",
+   "quick_draw": "Y",
+   "retailer": "079056",
+   "state": "NY",
+   "street": "TESTOWNER AD0D33",
+   "zip": "11372"
+  },
+  {
+   "city": "BRONX",
+   "georeference": {
+    "coordinates": [
+     -73.893529,
+     40.842793
+    ],
+    "type": "Point"
+   },
+   "latitude": "40.842793",
+   "longitude": "-73.893529",
+   "name": "TESTOWNER 6BDCA8",
+   "retailer": "079063",
+   "state": "NY",
+   "street": "TESTOWNER 410D08",
+   "zip": "10457"
+  },
+  {
+   "city": "FLUSHING",
+   "georeference": {
+    "coordinates": [
+     -73.792754,
+     40.763422
+    ],
+    "type": "Point"
+   },
+   "latitude": "40.763422",
+   "longitude": "-73.792754",
+   "name": "TESTOWNER EF1922",
+   "retailer": "079080",
+   "state": "NY",
+   "street": "TESTOWNER 7AD1EF",
+   "zip": "11358"
+  },
+  {
+   "city": "WOODHAVEN",
+   "georeference": {
+    "coordinates": [
+     -73.859138,
+     40.692301
+    ],
+    "type": "Point"
+   },
+   "latitude": "40.692301",
+   "longitude": "-73.859138",
+   "name": "TESTOWNER B41AF3 CORP",
+   "quick_draw": "Y",
+   "retailer": "079093",
+   "state": "NY",
+   "street": "TESTOWNER C0EE4F",
+   "zip": "11421"
+  },
+  {
+   "city": "JAMAICA",
+   "georeference": {
+    "coordinates": [
+     -73.793371,
+     40.685565
+    ],
+    "type": "Point"
+   },
+   "latitude": "40.685565",
+   "longitude": "-73.793371",
+   "name": "TESTOWNER 041AFC INC",
+   "quick_draw": "Y",
+   "retailer": "079096",
+   "state": "NY",
+   "street": "TESTOWNER ADA4D9",
+   "zip": "11434"
+  },
+  {
+   "city": "NEW YORK",
+   "georeference": {
+    "coordinates": [
+     -73.946302,
+     40.799971
+    ],
+    "type": "Point"
+   },
+   "latitude": "40.799971",
+   "longitude": "-73.946302",
+   "name": "TESTOWNER 890B49",
+   "quick_draw": "Y",
+   "retailer": "079116",
+   "state": "NY",
+   "street": "TESTOWNER AEC640",
+   "zip": "10029"
+  },
+  {
+   "city": "NEW YORK",
+   "georeference": {
+    "coordinates": [
+     -74.000778,
+     40.731023
+    ],
+    "type": "Point"
+   },
+   "latitude": "40.731023",
+   "longitude": "-74.000778",
+   "name": "TESTOWNER 2EC04B",
+   "retailer": "079120",
+   "state": "NY",
+   "street": "TESTOWNER 123716",
+   "zip": "10012"
+  },
+  {
+   "city": "BRONX",
+   "georeference": {
+    "coordinates": [
+     -73.846187,
+     40.839627
+    ],
+    "type": "Point"
+   },
+   "latitude": "40.839627",
+   "longitude": "-73.846187",
+   "name": "TESTOWNER 08DD05 CORP",
+   "retailer": "079123",
+   "state": "NY",
+   "street": "TESTOWNER 5395B3",
+   "zip": "10461"
+  },
+  {
+   "city": "FLUSHING",
+   "georeference": {
+    "coordinates": [
+     -73.817555,
+     40.71868
+    ],
+    "type": "Point"
+   },
+   "latitude": "40.718680",
+   "longitude": "-73.817555",
+   "name": "TESTOWNER E05373",
+   "retailer": "079133",
+   "state": "NY",
+   "street": "TESTOWNER 4868F4",
+   "zip": "11367"
+  },
+  {
+   "city": "BROOKLYN",
+   "georeference": {
+    "coordinates": [
+     -73.991357,
+     40.621574
+    ],
+    "type": "Point"
+   },
+   "latitude": "40.621574",
+   "longitude": "-73.991357",
+   "name": "TESTOWNER B08ED7 INC",
+   "quick_draw": "Y",
+   "retailer": "079157",
+   "state": "NY",
+   "street": "TESTOWNER 53E01A",
+   "zip": "11204"
+  },
+  {
+   "city": "JAMAICA",
+   "georeference": {
+    "coordinates": [
+     -73.768403,
+     40.686272
+    ],
+    "type": "Point"
+   },
+   "latitude": "40.686272",
+   "longitude": "-73.768403",
+   "name": "TESTOWNER 260486 CORP",
+   "quick_draw": "Y",
+   "retailer": "079191",
+   "state": "NY",
+   "street": "TESTOWNER 7DCBEE",
+   "zip": "11434"
+  },
+  {
+   "city": "NEW YORK",
+   "georeference": {
+    "coordinates": [
+     -73.955105,
+     40.765272
+    ],
+    "type": "Point"
+   },
+   "latitude": "40.765272",
+   "longitude": "-73.955105",
+   "name": "TESTOWNER B43E84",
+   "retailer": "079206",
+   "state": "NY",
+   "street": "TESTOWNER 661790",
+   "zip": "10065"
+  },
+  {
+   "city": "BRONX",
+   "georeference": {
+    "coordinates": [
+     -73.853144,
+     40.82777
+    ],
+    "type": "Point"
+   },
+   "latitude": "40.827770",
+   "longitude": "-73.853144",
+   "name": "TESTOWNER E52AC8 CORP",
+   "retailer": "079207",
+   "state": "NY",
+   "street": "TESTOWNER F021F2",
+   "zip": "10472"
+  },
+  {
+   "city": "BROOKLYN",
+   "georeference": {
+    "coordinates": [
+     -74.010436,
+     40.635065
+    ],
+    "type": "Point"
+   },
+   "latitude": "40.635065",
+   "longitude": "-74.010436",
+   "name": "TESTOWNER D1D5F6 INC",
+   "retailer": "079289",
+   "state": "NY",
+   "street": "TESTOWNER 50A345",
+   "zip": "11220"
+  },
+  {
+   "city": "BROOKLYN",
+   "georeference": {
+    "coordinates": [
+     -73.915229,
+     40.661292
+    ],
+    "type": "Point"
+   },
+   "latitude": "40.661292",
+   "longitude": "-73.915229",
+   "name": "TESTOWNER 8BE051 INC",
+   "quick_draw": "Y",
+   "retailer": "079328",
+   "state": "NY",
+   "street": "TESTOWNER 0D26E3",
+   "zip": "11212"
+  },
+  {
+   "city": "BROOKLYN",
+   "georeference": {
+    "coordinates": [
+     -73.941233,
+     40.704408
+    ],
+    "type": "Point"
+   },
+   "latitude": "40.704408",
+   "longitude": "-73.941233",
+   "name": "TESTOWNER 7B0F79",
+   "quick_draw": "Y",
+   "retailer": "079335",
+   "state": "NY",
+   "street": "TESTOWNER 067C4D",
+   "zip": "11206"
+  }
+ ],
+ "where": "retailer >= '079019'"
+}

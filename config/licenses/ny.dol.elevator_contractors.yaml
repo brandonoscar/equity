@@ -1,0 +1,22 @@
+# New York State Department of Labor, "Elevator Contractor License: New York State
+# Department of Labor" (data.ny.gov jrac-r9vc): about 300 elevator and elevator-inspection
+# contractor licenses with business name, DBA, address, status and issue date.
+source_id: ny.dol.elevator_contractors
+state: NY
+jurisdiction: "36"
+portal: https://data.ny.gov
+dataset: jrac-r9vc
+key: license_number
+id_prefix: "NY-DOL-ELEVC:"
+terms_url: https://data.ny.gov/download/77gx-ii52/application%2Fpdf
+terms_summary: "NY Open Data terms: free to use; no warranty. No restriction on commercial use found."
+checked_on: 2026-11-25
+license:
+  name: [dba_name, business_name]
+  type: license_type
+  status: license_status
+  issued_on: issued_date
+  address: {street: [address, address_2], city: city, state: state, zip: zip_code}
+holders:
+  - {role: other, title: CONTRACTOR, name: business_name, address: {street: [address, address_2], city: city, state: state, zip: zip_code}}
+pii_fields: [business_name, dba_name, address, address_2, phone]

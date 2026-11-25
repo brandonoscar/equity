@@ -1,0 +1,422 @@
+{
+ "portal": "https://data.montgomerycountymd.gov",
+ "rows": [
+  {
+   "addr1": "TESTOWNER 62856B",
+   "applicant": "TESTOWNER E0DDE8",
+   "city": "DAMASCUS",
+   "expiredate": "2020-04-23T05:04:38.000",
+   "geolocation": {
+    "human_address": "{\"address\": \"10008 DURANGO DR\", \"city\": \"DAMASCUS\", \"state\": \"MD\", \"zip\": \"20872\"}",
+    "latitude": "39.268254",
+    "longitude": "-77.208066"
+   },
+   "graceexpire": "2020-04-23T05:04:38.000",
+   "issueddate": "2018-04-23T05:04:38.000",
+   "jurisdictional_reciprocal": "N",
+   "licensedate": "2018-04-23T03:04:11.000",
+   "licenseno": "ME224454",
+   "licensetype": "MASTER ELECTRICIAN",
+   "next_renewal_date": "2020-04-23T05:04:38.000",
+   "reciprocal_with_state": "Y",
+   "state": "MD",
+   "zip": "20872"
+  },
+  {
+   "addr1": "TESTOWNER 91B539",
+   "applicant": "TESTOWNER 186C4E",
+   "city": "WALDORF",
+   "expiredate": "2020-05-07T12:05:02.000",
+   "geolocation": {
+    "human_address": "{\"address\": \"13720 BOOTH PLACE\", \"city\": \"WALDORF\", \"state\": \"MD\", \"zip\": \"20601\"}",
+    "latitude": "38.580331",
+    "longitude": "-76.833841"
+   },
+   "graceexpire": "2020-05-07T12:05:02.000",
+   "issueddate": "2018-05-07T12:05:02.000",
+   "jurisdictional_reciprocal": "N",
+   "licensedate": "2018-04-26T08:04:20.000",
+   "licenseno": "ME224457",
+   "licensetype": "MASTER ELECTRICIAN",
+   "next_renewal_date": "2020-05-07T12:05:02.000",
+   "reciprocal_with_state": "Y",
+   "state": "MD",
+   "zip": "20601"
+  },
+  {
+   "addr1": "TESTOWNER F0121C",
+   "applicant": "TESTOWNER 3CA883",
+   "city": "BALTIMORE",
+   "expiredate": "2020-05-08T08:05:37.000",
+   "geolocation": {
+    "human_address": "{\"address\": \"6913 BEECH AVE\", \"city\": \"BALTIMORE\", \"state\": \"MD\", \"zip\": \"21206\"}",
+    "latitude": "39.354601",
+    "longitude": "-76.525554"
+   },
+   "graceexpire": "2020-05-08T08:05:37.000",
+   "issueddate": "2018-05-08T08:05:37.000",
+   "jurisdictional_reciprocal": "N",
+   "licensedate": "2018-04-26T09:04:01.000",
+   "licenseno": "ME224458",
+   "licensetype": "MASTER ELECTRICIAN",
+   "next_renewal_date": "2020-05-08T08:05:37.000",
+   "reciprocal_with_state": "Y",
+   "state": "MD",
+   "zip": "21206"
+  },
+  {
+   "addr1": "TESTOWNER BCD051",
+   "applicant": "TESTOWNER 47A34B",
+   "city": "ELLICOTT CITY",
+   "expiredate": "2022-05-08T09:05:40.000",
+   "geolocation": {
+    "human_address": "{\"address\": \"10241 LITTLE BRICK HOUSE CT\", \"city\": \"ELLICOTT CITY\", \"state\": \"MD\", \"zip\": \"21042\"}",
+    "latitude": "39.271946",
+    "longitude": "-76.869174"
+   },
+   "graceexpire": "2022-05-08T09:05:40.000",
+   "issueddate": "2018-05-08T09:05:40.000",
+   "jurisdiction": "HOWARD",
+   "jurisdictional_reciprocal": "Y",
+   "licensedate": "2018-05-03T02:05:25.000",
+   "licenseno": "ME224468",
+   "licensetype": "MASTER ELECTRICIAN",
+   "next_renewal_date": "2022-05-08T09:05:40.000",
+   "reciprocal_with_state": "N",
+   "state": "MD",
+   "zip": "21042"
+  },
+  {
+   "addr1": "TESTOWNER CBF32D",
+   "applicant": "TESTOWNER 1F1AA2",
+   "city": "LUTHERVILLE",
+   "expiredate": "2020-05-08T08:05:43.000",
+   "geolocation": {
+    "human_address": "{\"address\": \"219 DEEP DALE DR\", \"city\": \"LUTHERVILLE\", \"state\": \"MD\", \"zip\": \"21093\"}",
+    "latitude": "39.438743",
+    "longitude": "-76.637586"
+   },
+   "graceexpire": "2020-05-08T08:05:43.000",
+   "issueddate": "2018-05-08T08:05:43.000",
+   "jurisdictional_reciprocal": "N",
+   "licensedate": "2018-05-04T01:05:46.000",
+   "licenseno": "ME224470",
+   "licensetype": "MASTER ELECTRICIAN",
+   "next_renewal_date": "2020-05-08T08:05:43.000",
+   "reciprocal_with_state": "Y",
+   "state": "MD",
+   "zip": "21093"
+  },
+  {
+   "addr1": "TESTOWNER 069AC5",
+   "applicant": "TESTOWNER A7E81F",
+   "city": "GERMANTOWN",
+   "expiredate": "2022-05-22T08:05:25.000",
+   "geolocation": {
+    "human_address": "{\"address\": \"19252 ESMOND TERRACE\", \"city\": \"GERMANTOWN\", \"state\": \"MD\", \"zip\": \"20874\"}",
+    "latitude": "39.172697",
+    "longitude": "-77.251034"
+   },
+   "graceexpire": "2022-05-22T08:05:25.000",
+   "issueddate": "2018-05-22T08:05:25.000",
+   "jurisdictional_reciprocal": "N",
+   "licensedate": "2018-05-10T02:05:24.000",
+   "licenseno": "ME224478",
+   "licensetype": "MASTER ELECTRICIAN",
+   "next_renewal_date": "2022-05-22T08:05:25.000",
+   "reciprocal_with_state": "Y",
+   "state": "MD",
+   "zip": "20874"
+  },
+  {
+   "addr1": "TESTOWNER 9E0D51",
+   "applicant": "TESTOWNER B76539",
+   "city": "WASHINGTON",
+   "expiredate": "2020-05-23T08:05:44.000",
+   "geolocation": {
+    "human_address": "{\"address\": \"2116 BRANCH AVE SE\", \"city\": \"WASHINGTON\", \"state\": \"DC\", \"zip\": \"20020\"}",
+    "latitude": "38.8636",
+    "longitude": "-76.9589"
+   },
+   "graceexpire": "2020-05-23T08:05:44.000",
+   "issueddate": "2018-05-23T08:05:44.000",
+   "jurisdictional_reciprocal": "N",
+   "licensedate": "2018-05-18T08:05:33.000",
+   "licenseno": "ME224484",
+   "licensetype": "MASTER ELECTRICIAN",
+   "next_renewal_date": "2020-05-23T08:05:44.000",
+   "reciprocal_with_state": "Y",
+   "state": "DC",
+   "zip": "20020"
+  },
+  {
+   "addr1": "TESTOWNER B1D9B4",
+   "applicant": "TESTOWNER 320888",
+   "city": "UPPER MARLBORO",
+   "expiredate": "2022-05-25T10:05:40.000",
+   "geolocation": {
+    "human_address": "{\"address\": \"4509 LARGO ROAD\", \"city\": \"UPPER MARLBORO\", \"state\": \"MD\", \"zip\": \"20772\"}",
+    "latitude": "38.826764",
+    "longitude": "-76.750667"
+   },
+   "graceexpire": "2022-05-25T10:05:40.000",
+   "issueddate": "2018-05-25T10:05:40.000",
+   "jurisdictional_reciprocal": "N",
+   "licensedate": "2018-05-18T10:05:52.000",
+   "licenseno": "ME224488",
+   "licensetype": "MASTER ELECTRICIAN",
+   "next_renewal_date": "2022-05-25T10:05:40.000",
+   "reciprocal_with_state": "Y",
+   "state": "MD",
+   "zip": "20772"
+  },
+  {
+   "addr1": "TESTOWNER 04DBC4",
+   "applicant": "TESTOWNER FDAB56",
+   "city": "RIVERDALE",
+   "expiredate": "2022-05-22T12:05:11.000",
+   "geolocation": {
+    "human_address": "{\"address\": \"6209 57TH AVE\", \"city\": \"RIVERDALE\", \"state\": \"MD\", \"zip\": \"20737\"}",
+    "latitude": "38.962638",
+    "longitude": "-76.917975"
+   },
+   "graceexpire": "2022-05-22T12:05:11.000",
+   "issueddate": "2018-05-22T12:05:11.000",
+   "jurisdictional_reciprocal": "N",
+   "licensedate": "2018-05-22T12:05:01.000",
+   "licenseno": "ME224490",
+   "licensetype": "MASTER ELECTRICIAN",
+   "next_renewal_date": "2022-05-22T12:05:11.000",
+   "reciprocal_with_state": "Y",
+   "state": "MD",
+   "zip": "20737"
+  },
+  {
+   "addr1": "TESTOWNER 7B785E",
+   "applicant": "TESTOWNER 9324B8",
+   "city": "UPPERCO",
+   "expiredate": "2000-01-17T12:01:00.000",
+   "geolocation": {
+    "human_address": "{\"address\": \"970 AURORA LA\", \"city\": \"UPPERCO\", \"state\": \"MD\", \"zip\": \"21155\"}",
+    "latitude": "39.548491",
+    "longitude": "-76.866871"
+   },
+   "graceexpire": "2000-01-17T12:01:00.000",
+   "issueddate": "2000-02-17T06:02:00.000",
+   "jurisdictional_reciprocal": "N",
+   "licensedate": "2000-02-17T05:02:00.000",
+   "licenseno": "ME2245",
+   "licensetype": "MASTER ELECTRICIAN",
+   "next_renewal_date": "2000-01-17T12:01:00.000",
+   "reciprocal_with_state": "N",
+   "state": "MD",
+   "zip": "21155"
+  },
+  {
+   "addr1": "TESTOWNER 09B01B",
+   "applicant": "TESTOWNER B3AF86",
+   "city": "LITTLESTOWN",
+   "expiredate": "2020-06-06T08:06:34.000",
+   "geolocation": {
+    "human_address": "{\"address\": \"6370 BALTIMORE PIKE\", \"city\": \"LITTLESTOWN\", \"state\": \"MD\", \"zip\": \"17340\"}",
+    "latitude": "39.730193",
+    "longitude": "-77.072327"
+   },
+   "graceexpire": "2020-06-06T08:06:34.000",
+   "issueddate": "2018-06-06T08:06:34.000",
+   "jurisdictional_reciprocal": "N",
+   "licensedate": "2018-05-29T09:05:37.000",
+   "licenseno": "ME224667",
+   "licensetype": "MASTER ELECTRICIAN",
+   "next_renewal_date": "2020-06-06T08:06:34.000",
+   "reciprocal_with_state": "Y",
+   "state": "MD",
+   "zip": "17340"
+  },
+  {
+   "addr1": "TESTOWNER E916DE",
+   "applicant": "TESTOWNER 1F2A01",
+   "city": "ELLICOTT CITY",
+   "expiredate": "2022-06-05T10:06:33.000",
+   "geolocation": {
+    "human_address": "{\"address\": \"2602 MELBA ROAD\", \"city\": \"ELLICOTT CITY\", \"state\": \"MD\", \"zip\": \"21042\"}",
+    "latitude": "39.29909",
+    "longitude": "-76.827013"
+   },
+   "graceexpire": "2022-06-05T10:06:33.000",
+   "issueddate": "2018-06-05T10:06:33.000",
+   "jurisdictional_reciprocal": "N",
+   "licensedate": "2018-05-29T10:05:55.000",
+   "licenseno": "ME224686",
+   "licensetype": "MASTER ELECTRICIAN",
+   "next_renewal_date": "2022-06-05T10:06:33.000",
+   "reciprocal_with_state": "Y",
+   "state": "MD",
+   "zip": "21042"
+  },
+  {
+   "addr1": "TESTOWNER 74E5AE",
+   "applicant": "TESTOWNER B8AE47",
+   "city": "CHANTILLY",
+   "expiredate": "2022-06-05T09:06:48.000",
+   "geolocation": {
+    "human_address": "{\"address\": \"26110 NIMBLETON SQUARE\", \"city\": \"CHANTILLY\", \"state\": \"VA\", \"zip\": \"20152\"}",
+    "latitude": "38.894223",
+    "longitude": "-77.495321"
+   },
+   "graceexpire": "2022-06-05T09:06:48.000",
+   "issueddate": "2018-06-05T09:06:48.000",
+   "jurisdictional_reciprocal": "N",
+   "licensedate": "2018-05-30T01:05:09.000",
+   "licenseno": "ME224789",
+   "licensetype": "MASTER ELECTRICIAN",
+   "next_renewal_date": "2022-06-05T09:06:48.000",
+   "reciprocal_with_state": "Y",
+   "state": "VA",
+   "zip": "20152"
+  },
+  {
+   "addr1": "TESTOWNER DCA2D0",
+   "applicant": "TESTOWNER 3E2F15",
+   "city": "BALTIMORE",
+   "expiredate": "1994-01-21T12:01:00.000",
+   "geolocation": {
+    "human_address": "{\"address\": \"003215 ACTON RD\", \"city\": \"BALTIMORE\", \"state\": \"MD\", \"zip\": \"21234\"}",
+    "latitude": "39.377346",
+    "longitude": "-76.531716"
+   },
+   "graceexpire": "1994-01-21T12:01:00.000",
+   "issueddate": "2000-02-17T06:02:33.000",
+   "licensedate": "2000-02-17T05:02:06.000",
+   "licenseno": "ME2248",
+   "licensetype": "MASTER ELECTRICIAN",
+   "next_renewal_date": "1994-01-21T12:01:00.000",
+   "state": "MD",
+   "zip": "21234"
+  },
+  {
+   "addr1": "TESTOWNER E9A77D",
+   "applicant": "TESTOWNER 97570D",
+   "city": "BALTIMORE",
+   "expiredate": "2022-06-05T09:06:14.000",
+   "geolocation": {
+    "human_address": "{\"address\": \"4511 CHERRY WAY\", \"city\": \"BALTIMORE\", \"state\": \"MD\", \"zip\": \"21229\"}"
+   },
+   "graceexpire": "2022-06-05T09:06:14.000",
+   "issueddate": "2018-06-05T09:06:14.000",
+   "jurisdictional_reciprocal": "N",
+   "licensedate": "2018-05-31T01:05:27.000",
+   "licenseno": "ME224848",
+   "licensetype": "MASTER ELECTRICIAN",
+   "next_renewal_date": "2022-06-05T09:06:14.000",
+   "reciprocal_with_state": "Y",
+   "state": "MD",
+   "zip": "21229"
+  },
+  {
+   "addr1": "TESTOWNER 189617",
+   "applicant": "TESTOWNER 7823B4",
+   "city": "MANASSAS",
+   "expiredate": "2022-06-04T04:06:30.000",
+   "geolocation": {
+    "human_address": "{\"address\": \"7252 RIDGEWAY DRIVE\", \"city\": \"MANASSAS\", \"state\": \"VA\", \"zip\": \"20112\"}",
+    "latitude": "38.679307",
+    "longitude": "-77.423899"
+   },
+   "graceexpire": "2022-06-04T04:06:30.000",
+   "issueddate": "2018-06-04T04:06:30.000",
+   "jurisdictional_reciprocal": "N",
+   "licensedate": "2018-06-01T08:06:34.000",
+   "licenseno": "ME224885",
+   "licensetype": "MASTER ELECTRICIAN",
+   "next_renewal_date": "2022-06-04T04:06:30.000",
+   "reciprocal_with_state": "Y",
+   "state": "VA",
+   "zip": "20112"
+  },
+  {
+   "addr1": "TESTOWNER 0786C1",
+   "applicant": "TESTOWNER 04CF9C",
+   "city": "FREDERICK",
+   "expiredate": "1988-02-20T12:02:00.000",
+   "geolocation": {
+    "human_address": "{\"address\": \"000412 N MARKET ST\", \"city\": \"FREDERICK\", \"state\": \"MD\", \"zip\": \"21701\"}",
+    "latitude": "39.419324",
+    "longitude": "-77.410271"
+   },
+   "graceexpire": "1988-02-20T12:02:00.000",
+   "issueddate": "2000-02-17T06:02:33.000",
+   "licensedate": "2000-02-17T05:02:06.000",
+   "licenseno": "ME2249",
+   "licensetype": "MASTER ELECTRICIAN",
+   "next_renewal_date": "1988-02-20T12:02:00.000",
+   "state": "MD",
+   "zip": "21701"
+  },
+  {
+   "addr1": "TESTOWNER D6B543",
+   "applicant": "TESTOWNER F3E6B8",
+   "city": "FORT WASHINGTON",
+   "expiredate": "2022-06-05T08:06:12.000",
+   "geolocation": {
+    "human_address": "{\"address\": \"9421 SANDY CREEK RD\", \"city\": \"FORT WASHINGTON\", \"state\": \"MD\", \"zip\": \"20744\"}",
+    "latitude": "38.763214",
+    "longitude": "-77.007526"
+   },
+   "graceexpire": "2022-06-05T08:06:12.000",
+   "issueddate": "2018-06-05T08:06:12.000",
+   "jurisdictional_reciprocal": "N",
+   "licensedate": "2018-06-01T11:06:05.000",
+   "licenseno": "ME224908",
+   "licensetype": "MASTER ELECTRICIAN",
+   "next_renewal_date": "2022-06-05T08:06:12.000",
+   "reciprocal_with_state": "Y",
+   "state": "MD",
+   "zip": "20744"
+  },
+  {
+   "addr1": "TESTOWNER 420939",
+   "applicant": "TESTOWNER DA97C1",
+   "city": "COLLEGE PARK",
+   "expiredate": "2022-02-20T12:02:00.000",
+   "geolocation": {
+    "human_address": "{\"address\": \"7520 EDMONSTON ROAD\", \"city\": \"COLLEGE PARK\", \"state\": \"MD\", \"zip\": \"20740\"}",
+    "latitude": "38.983081",
+    "longitude": "-76.910273"
+   },
+   "graceexpire": "2022-02-20T12:02:00.000",
+   "issueddate": "1986-02-20T12:02:00.000",
+   "jurisdictional_reciprocal": "N",
+   "licensedate": "1986-02-20T12:02:00.000",
+   "licenseno": "ME2250",
+   "licensetype": "MASTER ELECTRICIAN",
+   "next_renewal_date": "2022-02-20T12:02:00.000",
+   "reciprocal_with_state": "N",
+   "state": "MD",
+   "zip": "20740"
+  },
+  {
+   "addr1": "TESTOWNER F12001",
+   "addr2": "TESTOWNER 3EAF80",
+   "applicant": "TESTOWNER 4BA591",
+   "city": "TIMONIUM",
+   "expiredate": "2008-03-06T12:03:00.000",
+   "geolocation": {
+    "human_address": "{\"address\": \"2525 POT SPRING RD.S# 304\", \"city\": \"TIMONIUM\", \"state\": \"MD\", \"zip\": \"21093\"}",
+    "latitude": "39.457321",
+    "longitude": "-76.602701"
+   },
+   "graceexpire": "2008-03-06T12:03:00.000",
+   "issueddate": "1986-03-06T12:03:00.000",
+   "jurisdictional_reciprocal": "N",
+   "licensedate": "1986-03-06T12:03:00.000",
+   "licenseno": "ME2252",
+   "licensetype": "MASTER ELECTRICIAN",
+   "next_renewal_date": "2008-03-06T12:03:00.000",
+   "reciprocal_with_state": "Y",
+   "state": "MD",
+   "zip": "21093"
+  }
+ ],
+ "where": "licenseno >= 'ME224454'"
+}

@@ -1,0 +1,25 @@
+# New York Office of Cannabis Management, "Current OCM Licenses" (data.ny.gov jskf-tt3q):
+# about 3K adult-use cannabis licenses (retail dispensaries, cultivators, processors,
+# distributors...), one row per licensed location, with entity name, DBA, status, issue date,
+# address and the primary contact person. A record is (license_number, location_id).
+source_id: ny.ocm.licenses
+state: NY
+jurisdiction: "36"
+portal: https://data.ny.gov
+dataset: jskf-tt3q
+key: license_number
+record_key: [license_number, location_id]
+id_prefix: "NY-OCM:"
+terms_url: https://data.ny.gov/download/77gx-ii52/application%2Fpdf
+terms_summary: "NY Open Data terms: free to use; no warranty. No restriction on commercial use found."
+checked_on: 2026-11-25
+license:
+  name: [dba, entity_name]
+  type: license_type
+  status: license_status
+  issued_on: issued_date
+  address: {street: [address_line_1, address_line_2], city: city, state: state, zip: zip_code}
+holders:
+  - {role: other, title: LICENSEE, name: entity_name, address: {street: [address_line_1, address_line_2], city: city, state: state, zip: zip_code}}
+  - {role: other, title: PRIMARY CONTACT, with_type: false, name: primary_contact_name}
+pii_fields: [entity_name, dba, address_line_1, address_line_2, primary_contact_name, business_website, georeference]

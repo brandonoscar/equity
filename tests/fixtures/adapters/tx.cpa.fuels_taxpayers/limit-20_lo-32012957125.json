@@ -1,0 +1,126 @@
+{
+ "portal": "https://data.texas.gov",
+ "rows": [
+  {
+   "city": "GAUSE",
+   "name": "TESTOWNER 8A35D9",
+   "tp_id": "32012957125",
+   "zip": "77857-7220"
+  },
+  {
+   "city": "BRADY",
+   "name": "TESTOWNER 99620F",
+   "tp_id": "32012957133",
+   "zip": "76825-5311"
+  },
+  {
+   "city": "OKLAUNION",
+   "name": "TESTOWNER 6A8490",
+   "tp_id": "32012957141",
+   "zip": "76373-4305"
+  },
+  {
+   "city": "LEXINGTON",
+   "name": "TESTOWNER 444A7D",
+   "tp_id": "32012957158",
+   "zip": "78947-9801"
+  },
+  {
+   "city": "DALE",
+   "name": "TESTOWNER E8FFF1",
+   "tp_id": "32012957166",
+   "zip": "78616-2325"
+  },
+  {
+   "city": "JOHNSON CITY",
+   "name": "TESTOWNER F90B8A",
+   "tp_id": "32012957174",
+   "zip": "78636-4971"
+  },
+  {
+   "city": "TERRELL",
+   "name": "TESTOWNER 9F81E8",
+   "tp_id": "32012957182",
+   "zip": "75160-0804"
+  },
+  {
+   "city": "LA GRANGE",
+   "name": "TESTOWNER 7A84D9",
+   "tp_id": "32012957190",
+   "zip": "78945-5206"
+  },
+  {
+   "city": "MARION",
+   "name": "TESTOWNER FAB686",
+   "tp_id": "32012957208",
+   "zip": "78124-3031"
+  },
+  {
+   "city": "PFLUGERVILLE",
+   "name": "TESTOWNER 55E04B",
+   "tp_id": "32012957216",
+   "zip": "78660-5776"
+  },
+  {
+   "city": "BASTROP",
+   "name": "TESTOWNER 6DA3FB",
+   "tp_id": "32012957224",
+   "zip": "78602-2097"
+  },
+  {
+   "city": "KERRVILLE",
+   "name": "TESTOWNER 781CA3",
+   "tp_id": "32012957232",
+   "zip": "78028-6417"
+  },
+  {
+   "city": "GOLIAD",
+   "name": "TESTOWNER 8E90D3",
+   "tp_id": "32012957240",
+   "zip": "77963-3717"
+  },
+  {
+   "city": "COLLEGE STA",
+   "name": "TESTOWNER A0B114",
+   "tp_id": "32012957257",
+   "zip": "77842-1780"
+  },
+  {
+   "city": "NAVASOTA",
+   "name": "TESTOWNER 6AA53B",
+   "tp_id": "32012957265",
+   "zip": "77868-4026"
+  },
+  {
+   "city": "GIDDINGS",
+   "name": "TESTOWNER 472B1F",
+   "tp_id": "32012957273",
+   "zip": "78942-6081"
+  },
+  {
+   "city": "COLLEGE STA",
+   "name": "TESTOWNER 503918",
+   "tp_id": "32012957281",
+   "zip": "77845-3122"
+  },
+  {
+   "city": "GIDDINGS",
+   "name": "TESTOWNER A0D998",
+   "tp_id": "32012957299",
+   "zip": "78942-9802"
+  },
+  {
+   "city": "ROSANKY",
+   "name": "TESTOWNER 8E558C",
+   "tp_id": "32012957307",
+   "zip": "78953-9039"
+  },
+  {
+   "city": "FREDERICKSBRG",
+   "name": "TESTOWNER BD4CDD",
+   "tp_id": "32012957315",
+   "zip": "78624-6548"
+  }
+ ],
+ "where": "tp_id >= '32012957125'"
+}

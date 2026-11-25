@@ -1,0 +1,221 @@
+{
+ "portal": "https://data.oregon.gov",
+ "rows": [
+  {
+   "city": "OREGON CITY",
+   "commsn_nbr": "1045296",
+   "effective_date": "2024-03-04T00:00:00.000",
+   "expiration_date": "2028-03-03T00:00:00.000",
+   "first_name": "TESTOWNER 418C5E",
+   "last_name": "TESTOWNER 75A4F4",
+   "state": "OR",
+   "zip": "97045"
+  },
+  {
+   "city": "KEIZER",
+   "commsn_nbr": "1045297",
+   "effective_date": "2024-02-12T00:00:00.000",
+   "expiration_date": "2028-02-11T00:00:00.000",
+   "first_name": "TESTOWNER 342FF4",
+   "last_name": "TESTOWNER 7C227A",
+   "state": "OR",
+   "zip": "97303"
+  },
+  {
+   "city": "PORTLAND",
+   "commsn_nbr": "1045298",
+   "effective_date": "2024-02-21T00:00:00.000",
+   "expiration_date": "2028-02-20T00:00:00.000",
+   "first_name": "TESTOWNER D876F8",
+   "last_name": "TESTOWNER 4A7EDB",
+   "mdle_name": "TESTOWNER CEE98A",
+   "state": "OR",
+   "zip": "97210"
+  },
+  {
+   "city": "SALEM",
+   "commsn_nbr": "1045299A",
+   "effective_date": "2024-03-01T00:00:00.000",
+   "expiration_date": "2028-02-29T00:00:00.000",
+   "first_name": "TESTOWNER 88741D",
+   "last_name": "TESTOWNER 2A682F",
+   "state": "OR",
+   "zip": "97302"
+  },
+  {
+   "city": "JACKSONVILLE",
+   "commsn_nbr": "1045300",
+   "effective_date": "2024-02-16T00:00:00.000",
+   "expiration_date": "2028-02-15T00:00:00.000",
+   "first_name": "TESTOWNER B7E061",
+   "last_name": "TESTOWNER 8BCDAD",
+   "mdle_name": "TESTOWNER F76232",
+   "state": "OR",
+   "zip": "97530"
+  },
+  {
+   "city": "CLACKAMAS",
+   "commsn_nbr": "1045301A",
+   "effective_date": "2024-02-21T00:00:00.000",
+   "expiration_date": "2028-02-20T00:00:00.000",
+   "first_name": "TESTOWNER 086B7A",
+   "last_name": "TESTOWNER 940FCF",
+   "mdle_name": "TESTOWNER 52C1E1",
+   "state": "OR",
+   "zip": "97015"
+  },
+  {
+   "city": "SEASIDE",
+   "commsn_nbr": "1045302",
+   "effective_date": "2024-03-11T00:00:00.000",
+   "expiration_date": "2028-03-10T00:00:00.000",
+   "first_name": "TESTOWNER 06C6A2",
+   "last_name": "TESTOWNER D5B858",
+   "mdle_name": "TESTOWNER 7D3AF4",
+   "state": "OR",
+   "zip": "97138"
+  },
+  {
+   "city": "SAINT HELENS",
+   "commsn_nbr": "1045303",
+   "effective_date": "2024-02-13T00:00:00.000",
+   "expiration_date": "2028-02-12T00:00:00.000",
+   "first_name": "TESTOWNER A1FD4F",
+   "last_name": "TESTOWNER DB2A6B",
+   "mdle_name": "TESTOWNER C51B80",
+   "state": "OR",
+   "zip": "97051"
+  },
+  {
+   "city": "OREGON CITY",
+   "commsn_nbr": "1045304",
+   "effective_date": "2024-02-21T00:00:00.000",
+   "expiration_date": "2028-02-20T00:00:00.000",
+   "first_name": "TESTOWNER 6072B6",
+   "last_name": "TESTOWNER A272EE",
+   "mdle_name": "TESTOWNER 786D10",
+   "state": "OR",
+   "zip": "97045"
+  },
+  {
+   "city": "HAPPY VALLEY",
+   "commsn_nbr": "1045305",
+   "effective_date": "2024-02-13T00:00:00.000",
+   "expiration_date": "2028-02-12T00:00:00.000",
+   "first_name": "TESTOWNER C23EDF",
+   "last_name": "TESTOWNER F1AA66",
+   "state": "OR",
+   "zip": "97086"
+  },
+  {
+   "city": "COQUILLE",
+   "commsn_nbr": "1045306A",
+   "effective_date": "2024-02-26T00:00:00.000",
+   "expiration_date": "2028-02-25T00:00:00.000",
+   "first_name": "TESTOWNER 843C56",
+   "last_name": "TESTOWNER A304EF",
+   "mdle_name": "TESTOWNER 765BC3",
+   "state": "OR",
+   "zip": "97423"
+  },
+  {
+   "city": "PORTLAND",
+   "commsn_nbr": "1045308",
+   "effective_date": "2024-02-09T00:00:00.000",
+   "expiration_date": "2028-02-08T00:00:00.000",
+   "first_name": "TESTOWNER A73E1A",
+   "last_name": "TESTOWNER 9259F6",
+   "mdle_name": "TESTOWNER C13C29",
+   "state": "OR",
+   "zip": "97202"
+  },
+  {
+   "city": "PORTLAND",
+   "commsn_nbr": "1045309",
+   "effective_date": "2024-02-12T00:00:00.000",
+   "expiration_date": "2028-02-11T00:00:00.000",
+   "first_name": "TESTOWNER 1C8718",
+   "last_name": "TESTOWNER 4A7195",
+   "mdle_name": "TESTOWNER C3F7E4",
+   "state": "OR",
+   "zip": "97201"
+  },
+  {
+   "city": "EUGENE",
+   "commsn_nbr": "1045310",
+   "effective_date": "2024-02-21T00:00:00.000",
+   "expiration_date": "2028-02-20T00:00:00.000",
+   "first_name": "TESTOWNER 9F6156",
+   "last_name": "TESTOWNER 1BED17",
+   "mdle_name": "TESTOWNER 8A4BDB",
+   "state": "OR",
+   "zip": "97401"
+  },
+  {
+   "city": "MERRILL",
+   "commsn_nbr": "1045311",
+   "effective_date": "2024-02-15T00:00:00.000",
+   "expiration_date": "2028-02-14T00:00:00.000",
+   "first_name": "TESTOWNER 8D024D",
+   "last_name": "TESTOWNER 4CCC61",
+   "mdle_name": "TESTOWNER 786D10",
+   "state": "OR",
+   "zip": "97633"
+  },
+  {
+   "city": "LAKE OSWEGO",
+   "commsn_nbr": "1045312",
+   "effective_date": "2024-02-14T00:00:00.000",
+   "expiration_date": "2028-02-13T00:00:00.000",
+   "first_name": "TESTOWNER E5B561",
+   "last_name": "TESTOWNER B9BE75",
+   "state": "OR",
+   "zip": "97034"
+  },
+  {
+   "city": "SALEM",
+   "commsn_nbr": "1045313",
+   "effective_date": "2024-02-26T00:00:00.000",
+   "expiration_date": "2028-02-25T00:00:00.000",
+   "first_name": "TESTOWNER D876F8",
+   "last_name": "TESTOWNER 54BD25",
+   "mdle_name": "TESTOWNER 786D10",
+   "state": "OR",
+   "zip": "97302"
+  },
+  {
+   "city": "PORTLAND",
+   "commsn_nbr": "1045314",
+   "effective_date": "2024-02-15T00:00:00.000",
+   "expiration_date": "2028-02-14T00:00:00.000",
+   "first_name": "TESTOWNER 72D150",
+   "last_name": "TESTOWNER DAAFAE",
+   "mdle_name": "TESTOWNER 128382",
+   "state": "OR",
+   "zip": "97216"
+  },
+  {
+   "city": "PORTLAND",
+   "commsn_nbr": "1045315",
+   "effective_date": "2024-03-04T00:00:00.000",
+   "expiration_date": "2028-03-03T00:00:00.000",
+   "first_name": "TESTOWNER D874F9",
+   "last_name": "TESTOWNER C1C4D3",
+   "mdle_name": "TESTOWNER F2047C",
+   "state": "OR",
+   "zip": "97233"
+  },
+  {
+   "city": "SALEM",
+   "commsn_nbr": "1045317",
+   "effective_date": "2024-02-13T00:00:00.000",
+   "expiration_date": "2028-02-12T00:00:00.000",
+   "first_name": "TESTOWNER 36AC2A",
+   "last_name": "TESTOWNER 3BA00B",
+   "mdle_name": "TESTOWNER 2293C8",
+   "state": "OR",
+   "zip": "97301"
+  }
+ ],
+ "where": "commsn_nbr >= '1045296'"
+}

@@ -1,0 +1,186 @@
+{
+ "portal": "https://data.ny.gov",
+ "rows": [
+  {
+   "expiration_date": "2027-12-31T00:00:00.000",
+   "first_name": "TESTOWNER B52DEC",
+   "issued_date": "2025-10-31T00:00:00.000",
+   "last_name": "TESTOWNER D9DE60",
+   "license_number": "25-61KQ8-SHEL",
+   "license_status": "Active",
+   "license_type": "Elevator Mechanic License (SH132)"
+  },
+  {
+   "expiration_date": "2027-12-31T00:00:00.000",
+   "first_name": "TESTOWNER 5F1658",
+   "issued_date": "2025-09-10T00:00:00.000",
+   "last_name": "TESTOWNER 489981",
+   "license_number": "25-61KQB-SHEL",
+   "license_status": "Active",
+   "license_type": "Elevator Mechanic License (SH132)"
+  },
+  {
+   "expiration_date": "2027-12-31T00:00:00.000",
+   "first_name": "TESTOWNER F2ED30",
+   "issued_date": "2025-11-20T00:00:00.000",
+   "last_name": "TESTOWNER 3F7236",
+   "license_number": "25-61KQX-SHEL",
+   "license_status": "Active",
+   "license_type": "Elevator Mechanic License (SH132)"
+  },
+  {
+   "expiration_date": "2027-12-31T00:00:00.000",
+   "first_name": "TESTOWNER 64DC60",
+   "issued_date": "2025-10-10T00:00:00.000",
+   "last_name": "TESTOWNER B4347B",
+   "license_number": "25-61KV1-SHEL",
+   "license_status": "Active",
+   "license_type": "Elevator Mechanic License (SH132)"
+  },
+  {
+   "expiration_date": "2027-12-31T00:00:00.000",
+   "first_name": "TESTOWNER B8460A",
+   "issued_date": "2025-12-11T00:00:00.000",
+   "last_name": "TESTOWNER 226C3B",
+   "license_number": "25-61KV7-SHEL",
+   "license_status": "Active",
+   "license_type": "Elevator Mechanic License (SH132)"
+  },
+  {
+   "expiration_date": "2027-12-31T00:00:00.000",
+   "first_name": "TESTOWNER 50B6C0",
+   "issued_date": "2025-10-07T00:00:00.000",
+   "last_name": "TESTOWNER 3E5BB9",
+   "license_number": "25-61KV8-SHEL",
+   "license_status": "Active",
+   "license_type": "Elevator Mechanic License (SH132)"
+  },
+  {
+   "expiration_date": "2027-12-31T00:00:00.000",
+   "first_name": "TESTOWNER 2CB932",
+   "issued_date": "2025-10-08T00:00:00.000",
+   "last_name": "TESTOWNER FAE554",
+   "license_number": "25-61KVC-SHEL",
+   "license_status": "Active",
+   "license_type": "Elevator Mechanic License (SH132)"
+  },
+  {
+   "expiration_date": "2027-12-31T00:00:00.000",
+   "first_name": "TESTOWNER B00F11",
+   "issued_date": "2025-10-23T00:00:00.000",
+   "last_name": "TESTOWNER F185AE",
+   "license_number": "25-61KVR-SHEL",
+   "license_status": "Active",
+   "license_type": "SH132: Elevator Accessibility Lift Technician"
+  },
+  {
+   "expiration_date": "2027-12-31T00:00:00.000",
+   "first_name": "TESTOWNER C9EF1C",
+   "issued_date": "2025-11-07T00:00:00.000",
+   "last_name": "TESTOWNER 77670B",
+   "license_number": "25-61KVX-SHEL",
+   "license_status": "Active",
+   "license_type": "Elevator Mechanic License (SH132)"
+  },
+  {
+   "expiration_date": "2027-12-31T00:00:00.000",
+   "first_name": "TESTOWNER CA7DD4",
+   "issued_date": "2025-10-09T00:00:00.000",
+   "last_name": "TESTOWNER 9FD1CB",
+   "license_number": "25-61KX8-SHEL",
+   "license_status": "Active",
+   "license_type": "Elevator Inspector License (SH132)"
+  },
+  {
+   "expiration_date": "2027-12-31T00:00:00.000",
+   "first_name": "TESTOWNER 029695",
+   "issued_date": "2025-11-21T00:00:00.000",
+   "last_name": "TESTOWNER 4BAE2B",
+   "license_number": "25-61KXB-SHEL",
+   "license_status": "Active",
+   "license_type": "Elevator Inspector License (SH132)"
+  },
+  {
+   "expiration_date": "2027-12-31T00:00:00.000",
+   "first_name": "TESTOWNER B30AC4",
+   "issued_date": "2025-10-09T00:00:00.000",
+   "last_name": "TESTOWNER F389DE",
+   "license_number": "25-61KXK-SHEL",
+   "license_status": "Active",
+   "license_type": "Elevator Mechanic License (SH132)"
+  },
+  {
+   "expiration_date": "2027-12-31T00:00:00.000",
+   "first_name": "TESTOWNER 3430C9",
+   "issued_date": "2025-09-10T00:00:00.000",
+   "last_name": "TESTOWNER 72D0AB",
+   "license_number": "25-61KXP-SHEL",
+   "license_status": "Active",
+   "license_type": "Elevator Mechanic License (SH132)"
+  },
+  {
+   "expiration_date": "2027-12-31T00:00:00.000",
+   "first_name": "TESTOWNER CA7DD4",
+   "issued_date": "2025-10-09T00:00:00.000",
+   "last_name": "TESTOWNER 9FD1CB",
+   "license_number": "25-61KXR-SHEL",
+   "license_status": "Active",
+   "license_type": "Elevator Mechanic License (SH132)"
+  },
+  {
+   "expiration_date": "2027-12-31T00:00:00.000",
+   "first_name": "TESTOWNER C1678B",
+   "issued_date": "2025-12-02T00:00:00.000",
+   "last_name": "TESTOWNER 814EE9",
+   "license_number": "25-61KXU-SHEL",
+   "license_status": "Active",
+   "license_type": "Elevator Mechanic License (SH132)"
+  },
+  {
+   "expiration_date": "2027-12-31T00:00:00.000",
+   "first_name": "TESTOWNER 410B3A",
+   "issued_date": "2025-12-30T00:00:00.000",
+   "last_name": "TESTOWNER DB47C5",
+   "license_number": "25-61KY1-SHEL",
+   "license_status": "Active",
+   "license_type": "Elevator Mechanic License (SH132)"
+  },
+  {
+   "expiration_date": "2027-12-31T00:00:00.000",
+   "first_name": "TESTOWNER 7EF17F",
+   "issued_date": "2025-11-13T00:00:00.000",
+   "last_name": "TESTOWNER E893EA",
+   "license_number": "25-61KY3-SHEL",
+   "license_status": "Active",
+   "license_type": "Elevator Mechanic License (SH132)"
+  },
+  {
+   "expiration_date": "2027-12-31T00:00:00.000",
+   "first_name": "TESTOWNER 9C0016",
+   "issued_date": "2025-11-07T00:00:00.000",
+   "last_name": "TESTOWNER C146D7",
+   "license_number": "25-61KYC-SHEL",
+   "license_status": "Active",
+   "license_type": "Elevator Mechanic License (SH132)"
+  },
+  {
+   "expiration_date": "2027-12-31T00:00:00.000",
+   "first_name": "TESTOWNER 5AEC16",
+   "issued_date": "2025-10-30T00:00:00.000",
+   "last_name": "TESTOWNER FC948F",
+   "license_number": "25-61KYD-SHEL",
+   "license_status": "Active",
+   "license_type": "Elevator Mechanic License (SH132)"
+  },
+  {
+   "expiration_date": "2027-12-31T00:00:00.000",
+   "first_name": "TESTOWNER 7DBCDA",
+   "issued_date": "2025-12-02T00:00:00.000",
+   "last_name": "TESTOWNER D7667E",
+   "license_number": "25-61KYH-SHEL",
+   "license_status": "Active",
+   "license_type": "Elevator Mechanic License (SH132)"
+  }
+ ],
+ "where": "license_number >= '25-61KQ8-SHEL'"
+}

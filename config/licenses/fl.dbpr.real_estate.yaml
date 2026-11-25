@@ -1,0 +1,37 @@
+# Florida Department of Business and Professional Regulation, Division of Real Estate,
+# licensee extract files (www2.myfloridalicense.com/sto/file_download/extracts/, refreshed
+# weekly): real estate sales associates and brokers (115 MB, about 700K rows by size) and
+# real estate corporations, partnerships and branch offices (9 MB), current, active and
+# inactive. Headerless quote/comma files in the Division of Real Estate layout (on the
+# Commission's Public Records page): license code, name ('LAST, FIRST' for people), DBA,
+# rank, mailing address, county, license number, statuses, dates printed DD-MON-YY, the
+# self-proprietor and the employing broker (name and license number). Each file is read in
+# 16 MB byte windows, one partition each.
+source_id: fl.dbpr.real_estate
+state: FL
+jurisdiction: "12"
+fetch: csv
+urls:
+  - https://www2.myfloridalicense.com/sto/file_download/extracts//REALESTATE2501LICENSE_1.csv
+  - https://www2.myfloridalicense.com/sto/file_download/extracts//RealEstateCorpLicense.csv
+columns: [license_code, licensee_name, dba_name, rank, address_1, address_2, address_3, city, state, zip, county_name, license_number, primary_status, secondary_status, original_license_date, status_effective_date, license_expiration_date, alternate_license_number, self_proprietor_name, employer_name, employer_license_number]
+encoding: latin-1
+chunk_bytes: 16000000  # about 100K rows per partition
+key: license_number
+record_key: [license_code, license_number]
+id_prefix: "FL-DBPR-RE:"
+terms_url: https://www2.myfloridalicense.com/public-records-read-medisclaimer/
+terms_summary: "Public records under Chapter 119, F.S., provided by DBPR as free downloads; the Read Me/Disclaimer sets no use restriction (data refreshed weekly; no warranty, no technical support)."
+checked_on: 2026-11-25
+license:
+  name: [dba_name, licensee_name]
+  type: rank
+  status: secondary_status
+  issued_on: original_license_date
+  latest_by: status_effective_date
+  address: {street: [address_1, address_2, address_3], city: city, state: state, zip: zip}
+holders:
+  - {role: other, title: LICENSEE, name: licensee_name, last_first: true, address: {street: [address_1, address_2, address_3], city: city, state: state, zip: zip}}
+  - {role: other, title: SELF PROPRIETOR, with_type: false, name: self_proprietor_name}
+  - {role: other, title: EMPLOYING BROKER, with_type: false, name: employer_name}
+pii_fields: [licensee_name, dba_name, address_1, address_2, address_3, self_proprietor_name, employer_name]

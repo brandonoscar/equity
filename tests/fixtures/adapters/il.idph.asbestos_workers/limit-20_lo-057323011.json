@@ -1,0 +1,222 @@
+{
+ "portal": "https://data.illinois.gov",
+ "rows": [
+  {
+   "address": "2146 TEST ST",
+   "city": "LAKE IN THE HILLS",
+   "county": "Mc Henry",
+   "first_name": "TESTOWNER 0AF5D8",
+   "id": "057323011",
+   "last_name": "TESTOWNER F1A69A",
+   "phone": "TESTOWNER 7608A2",
+   "state": "IL",
+   "zip_code": "60156"
+  },
+  {
+   "address": "7105 TEST ST",
+   "city": "INDIANAPOLIS",
+   "county": "OUT OF STATE",
+   "first_name": "TESTOWNER 6CDB0A",
+   "id": "057323014",
+   "last_name": "TESTOWNER C780F7",
+   "phone": "TESTOWNER C9E198",
+   "state": "IN",
+   "zip_code": "46222"
+  },
+  {
+   "address": "2190 TEST ST",
+   "city": "ERLANGER",
+   "county": "BOONE",
+   "first_name": "TESTOWNER C95753",
+   "id": "057323020",
+   "last_name": "TESTOWNER 38407A",
+   "phone": "TESTOWNER 78EF74",
+   "state": "KY",
+   "zip_code": "41018"
+  },
+  {
+   "address": "2190 TEST ST",
+   "city": "ERLANGER",
+   "county": "BOONE",
+   "first_name": "TESTOWNER A67128",
+   "id": "057323023",
+   "last_name": "TESTOWNER CB779F",
+   "phone": "TESTOWNER 78EF74",
+   "state": "KY",
+   "zip_code": "41018"
+  },
+  {
+   "address": "3303 TEST ST",
+   "city": "BARNHART",
+   "county": "OUT OF STATE",
+   "first_name": "TESTOWNER 394F85",
+   "id": "057323024",
+   "last_name": "TESTOWNER B8EAFE",
+   "phone": "TESTOWNER 8FF9CA",
+   "state": "MO",
+   "zip_code": "63012"
+  },
+  {
+   "address": "2146 TEST ST",
+   "city": "ALHAMBRA",
+   "county": "Madison",
+   "first_name": "TESTOWNER D9D02E",
+   "id": "057323028",
+   "last_name": "TESTOWNER 011A7C",
+   "phone": "TESTOWNER 7608A2",
+   "state": "IL",
+   "zip_code": "62001"
+  },
+  {
+   "address": "2146 TEST ST",
+   "city": "INDIANAPOLIS",
+   "county": "OUT OF STATE",
+   "first_name": "TESTOWNER 101692",
+   "id": "057323035",
+   "last_name": "TESTOWNER DCF770",
+   "phone": "TESTOWNER 7608A2",
+   "state": "IN",
+   "zip_code": "46228"
+  },
+  {
+   "address": "2146 TEST ST",
+   "city": "GREENFIELD",
+   "first_name": "TESTOWNER 33E14E",
+   "id": "057323045",
+   "last_name": "TESTOWNER 510E08",
+   "phone": "TESTOWNER 7608A2",
+   "state": "WI",
+   "zip_code": "53228"
+  },
+  {
+   "address": "1213 TEST ST",
+   "city": "Speedway",
+   "first_name": "TESTOWNER 0C0EA6",
+   "id": "057323054",
+   "last_name": "TESTOWNER EEB448",
+   "phone": "TESTOWNER E1A7E2",
+   "state": "IN",
+   "zip_code": "46224"
+  },
+  {
+   "address": "6786 TEST ST",
+   "city": "BEACH PARK",
+   "county": "Lake",
+   "first_name": "TESTOWNER 6918D4",
+   "id": "057323076",
+   "last_name": "TESTOWNER E12D9B",
+   "phone": "TESTOWNER D978CC",
+   "state": "IL",
+   "zip_code": "60099"
+  },
+  {
+   "address": "2146 TEST ST",
+   "city": "CHARLESTON",
+   "county": "Coles",
+   "first_name": "TESTOWNER ECAA67",
+   "id": "057323078",
+   "last_name": "TESTOWNER 2774DD",
+   "phone": "TESTOWNER 7608A2",
+   "state": "IL",
+   "zip_code": "61920"
+  },
+  {
+   "address": "2146 TEST ST",
+   "city": "ST LOUIS",
+   "county": "OUT OF STATE",
+   "first_name": "TESTOWNER 696F44",
+   "id": "057323116",
+   "last_name": "TESTOWNER FB5F52",
+   "phone": "TESTOWNER 7608A2",
+   "state": "MO",
+   "zip_code": "63125"
+  },
+  {
+   "address": "2146 TEST ST",
+   "city": "CHAMPAIGN",
+   "county": "Champaign",
+   "first_name": "TESTOWNER 852BA9",
+   "id": "057323121",
+   "last_name": "TESTOWNER 7229E4",
+   "phone": "TESTOWNER 7608A2",
+   "state": "IL",
+   "zip_code": "61821"
+  },
+  {
+   "address": "2146 TEST ST",
+   "city": "CHICAGO RIDGE",
+   "county": "Cook",
+   "first_name": "TESTOWNER 1AC008",
+   "id": "057323123",
+   "last_name": "TESTOWNER 5A4276",
+   "phone": "TESTOWNER 7608A2",
+   "state": "IL",
+   "zip_code": "60415"
+  },
+  {
+   "address": "2146 TEST ST",
+   "city": "HIGHLAND",
+   "county": "OUT OF STATE",
+   "first_name": "TESTOWNER 4CFE64",
+   "id": "057323126",
+   "last_name": "TESTOWNER 5721BB",
+   "phone": "TESTOWNER 7608A2",
+   "state": "IN",
+   "zip_code": "46322"
+  },
+  {
+   "address": "2146 TEST ST",
+   "city": "FENTON",
+   "first_name": "TESTOWNER 242292",
+   "id": "057323127",
+   "last_name": "TESTOWNER 10B1D0",
+   "phone": "TESTOWNER 7608A2",
+   "state": "MO",
+   "zip_code": "63026"
+  },
+  {
+   "address": "2146 TEST ST",
+   "city": "CHICAGO",
+   "county": "Cook",
+   "first_name": "TESTOWNER 79354A",
+   "id": "057323197",
+   "last_name": "TESTOWNER 1A1DE9",
+   "phone": "TESTOWNER 7608A2",
+   "state": "IL",
+   "zip_code": "60629"
+  },
+  {
+   "address": "1088 TEST ST",
+   "city": "GLENDALE HEIGHTS",
+   "county": "Du Page",
+   "first_name": "TESTOWNER 49BB17",
+   "id": "057323203",
+   "last_name": "TESTOWNER CB0D59",
+   "phone": "TESTOWNER 51F231",
+   "state": "IL",
+   "zip_code": "60139"
+  },
+  {
+   "address": "2146 TEST ST",
+   "city": "TAYLOR SPRINGS",
+   "county": "Montgomery",
+   "first_name": "TESTOWNER 849175",
+   "id": "057323215",
+   "last_name": "TESTOWNER 7B9788",
+   "phone": "TESTOWNER 7608A2",
+   "state": "IL",
+   "zip_code": "62089"
+  },
+  {
+   "address": "2146 TEST ST",
+   "city": "FENTON",
+   "first_name": "TESTOWNER 7D6D9E",
+   "id": "057323218",
+   "last_name": "TESTOWNER 2CD79E",
+   "phone": "TESTOWNER 7608A2",
+   "state": "MO",
+   "zip_code": "63026"
+  }
+ ],
+ "where": "id >= '057323011'"
+}

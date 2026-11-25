@@ -182,6 +182,7 @@ WPRDC_ROBOTS = b"""# If you use WPRDC data for your scripts or applications, you
 # ignore these rules.
 User-agent: *
 Disallow: /api/
+Disallow: /datastore/dump/
 Disallow: /private/
 """
 
@@ -191,6 +192,7 @@ def test_written_script_permission_opens_only_its_prefix_while_still_published()
                    "https://data.wprdc.org/": (200, b"ok")})  # fmt: skip
     c = client(net, FakeClock())
     assert c.get("https://data.wprdc.org/api/3/action/datastore_search").content == b"ok"
+    assert c.get("https://data.wprdc.org/datastore/dump/abc").content == b"ok"
     with pytest.raises(AccessDenied):  # not a permitted prefix
         c.get("https://data.wprdc.org/private/x")
     withdrawn = FakeNet({"https://data.wprdc.org/robots.txt":

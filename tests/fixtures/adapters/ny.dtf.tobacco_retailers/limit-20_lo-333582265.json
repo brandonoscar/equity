@@ -1,0 +1,351 @@
+{
+ "portal": "https://data.ny.gov",
+ "rows": [
+  {
+   "cig_vape": "CIG",
+   "cor_id": "333582265",
+   "cor_seq_nmbr": "0",
+   "georeference": {
+    "coordinates": [
+     -75.24751,
+     43.10642
+    ],
+    "type": "Point"
+   },
+   "last_or_bus_name": "TESTOWNER E31BCD INC",
+   "phys_city_adr": "UTICA",
+   "phys_ln_2_adr": "TESTOWNER 49D996",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "13502"
+  },
+  {
+   "cig_vape": "VAPE",
+   "cor_id": "333583331",
+   "cor_seq_nmbr": "0",
+   "georeference": {
+    "coordinates": [
+     -75.88986,
+     42.16582
+    ],
+    "type": "Point"
+   },
+   "last_or_bus_name": "TESTOWNER BBBAC4 INC",
+   "phys_city_adr": "BINGHAMTON",
+   "phys_ln_2_adr": "TESTOWNER CAD5F6",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "13901"
+  },
+  {
+   "cig_vape": "CIG",
+   "cor_id": "333583331",
+   "cor_seq_nmbr": "0",
+   "georeference": {
+    "coordinates": [
+     -75.88986,
+     42.16582
+    ],
+    "type": "Point"
+   },
+   "last_or_bus_name": "TESTOWNER BBBAC4 INC",
+   "phys_city_adr": "BINGHAMTON",
+   "phys_ln_2_adr": "TESTOWNER CAD5F6",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "13901"
+  },
+  {
+   "cig_vape": "CIG",
+   "cor_id": "333590994",
+   "cor_seq_nmbr": "0",
+   "georeference": {
+    "coordinates": [
+     -73.95339,
+     40.81732
+    ],
+    "type": "Point"
+   },
+   "last_or_bus_name": "TESTOWNER C11284 INC",
+   "phys_city_adr": "NEW YORK",
+   "phys_ln_2_adr": "TESTOWNER 25F314",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "10027"
+  },
+  {
+   "cig_vape": "CIG",
+   "cor_id": "333592046",
+   "cor_seq_nmbr": "0",
+   "georeference": {
+    "coordinates": [
+     -78.97587,
+     43.09857
+    ],
+    "type": "Point"
+   },
+   "last_or_bus_name": "TESTOWNER F74990 INC",
+   "phys_city_adr": "NIAGARA FALLS",
+   "phys_ln_2_adr": "TESTOWNER 65C1A7",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "14304"
+  },
+  {
+   "cig_vape": "VAPE",
+   "cor_id": "333592046",
+   "cor_seq_nmbr": "0",
+   "georeference": {
+    "coordinates": [
+     -78.97587,
+     43.09857
+    ],
+    "type": "Point"
+   },
+   "last_or_bus_name": "TESTOWNER F74990 INC",
+   "phys_city_adr": "NIAGARA FALLS",
+   "phys_ln_2_adr": "TESTOWNER 65C1A7",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "14304"
+  },
+  {
+   "cig_vape": "CIG",
+   "cor_id": "333593789",
+   "cor_seq_nmbr": "0",
+   "dba_name": "TESTOWNER 938A72",
+   "georeference": {
+    "coordinates": [
+     -73.46905,
+     40.7948
+    ],
+    "type": "Point"
+   },
+   "last_or_bus_name": "TESTOWNER 6BA037 INC",
+   "phys_city_adr": "PLAINVIEW",
+   "phys_ln_2_adr": "TESTOWNER CCF3D3",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "11803"
+  },
+  {
+   "cig_vape": "VAPE",
+   "cor_id": "333593789",
+   "cor_seq_nmbr": "0",
+   "dba_name": "TESTOWNER 938A72",
+   "georeference": {
+    "coordinates": [
+     -73.46905,
+     40.7948
+    ],
+    "type": "Point"
+   },
+   "last_or_bus_name": "TESTOWNER 6BA037 INC",
+   "phys_city_adr": "PLAINVIEW",
+   "phys_ln_2_adr": "TESTOWNER CCF3D3",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "11803"
+  },
+  {
+   "cig_vape": "CIG",
+   "cor_id": "333601796",
+   "cor_seq_nmbr": "0",
+   "dba_name": "TESTOWNER 5E896A",
+   "georeference": {
+    "coordinates": [
+     -77.34251,
+     42.34931
+    ],
+    "type": "Point"
+   },
+   "last_or_bus_name": "TESTOWNER 2C0121 INC",
+   "phys_city_adr": "BATH",
+   "phys_ln_2_adr": "TESTOWNER 1BE4E5",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "14810"
+  },
+  {
+   "cig_vape": "VAPE",
+   "cor_id": "333601796",
+   "cor_seq_nmbr": "0",
+   "dba_name": "TESTOWNER 5E896A",
+   "georeference": {
+    "coordinates": [
+     -77.34251,
+     42.34931
+    ],
+    "type": "Point"
+   },
+   "last_or_bus_name": "TESTOWNER 2C0121 INC",
+   "phys_city_adr": "BATH",
+   "phys_ln_2_adr": "TESTOWNER 1BE4E5",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "14810"
+  },
+  {
+   "cig_vape": "CIG",
+   "cor_id": "333624320",
+   "cor_seq_nmbr": "0",
+   "georeference": {
+    "coordinates": [
+     -76.17155,
+     42.60776
+    ],
+    "type": "Point"
+   },
+   "last_or_bus_name": "TESTOWNER 4D0388 LLC",
+   "phys_city_adr": "CORTLAND",
+   "phys_ln_2_adr": "TESTOWNER 61F4A8",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "13045"
+  },
+  {
+   "cig_vape": "VAPE",
+   "cor_id": "333624320",
+   "cor_seq_nmbr": "0",
+   "georeference": {
+    "coordinates": [
+     -76.17155,
+     42.60776
+    ],
+    "type": "Point"
+   },
+   "last_or_bus_name": "TESTOWNER 4D0388 LLC",
+   "phys_city_adr": "CORTLAND",
+   "phys_ln_2_adr": "TESTOWNER 61F4A8",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "13045"
+  },
+  {
+   "cig_vape": "VAPE",
+   "cor_id": "33362432001",
+   "cor_seq_nmbr": "0",
+   "georeference": {
+    "coordinates": [
+     -76.20493,
+     42.59759
+    ],
+    "type": "Point"
+   },
+   "last_or_bus_name": "TESTOWNER 4D0388 LLC",
+   "phys_city_adr": "CORTLAND",
+   "phys_ln_2_adr": "TESTOWNER C1669C",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "13045"
+  },
+  {
+   "cig_vape": "CIG",
+   "cor_id": "33362432001",
+   "cor_seq_nmbr": "0",
+   "georeference": {
+    "coordinates": [
+     -76.20493,
+     42.59759
+    ],
+    "type": "Point"
+   },
+   "last_or_bus_name": "TESTOWNER 4D0388 LLC",
+   "phys_city_adr": "CORTLAND",
+   "phys_ln_2_adr": "TESTOWNER C1669C",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "13045"
+  },
+  {
+   "cig_vape": "CIG",
+   "cor_id": "333639285",
+   "cor_seq_nmbr": "0",
+   "dba_name": "TESTOWNER CCD25D",
+   "georeference": {
+    "coordinates": [
+     -73.92892,
+     40.85589
+    ],
+    "type": "Point"
+   },
+   "last_or_bus_name": "TESTOWNER 0B602B CORP",
+   "phys_city_adr": "NEW YORK",
+   "phys_ln_2_adr": "TESTOWNER 8F908C",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "10040"
+  },
+  {
+   "cig_vape": "CIG",
+   "cor_id": "333641196",
+   "cor_seq_nmbr": "0",
+   "georeference": {
+    "coordinates": [
+     -75.26144,
+     43.10977
+    ],
+    "type": "Point"
+   },
+   "last_or_bus_name": "TESTOWNER BBA768 CORP",
+   "phys_city_adr": "UTICA",
+   "phys_ln_2_adr": "TESTOWNER 273AD7",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "13502"
+  },
+  {
+   "cig_vape": "VAPE",
+   "cor_id": "333641319",
+   "cor_seq_nmbr": "0",
+   "georeference": {
+    "coordinates": [
+     -74.19206,
+     41.56499
+    ],
+    "type": "Point"
+   },
+   "last_or_bus_name": "TESTOWNER BD626E CORP",
+   "phys_city_adr": "WALDEN",
+   "phys_ln_2_adr": "TESTOWNER B782D6",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "12586"
+  },
+  {
+   "cig_vape": "CIG",
+   "cor_id": "333641319",
+   "cor_seq_nmbr": "0",
+   "georeference": {
+    "coordinates": [
+     -74.19206,
+     41.56499
+    ],
+    "type": "Point"
+   },
+   "last_or_bus_name": "TESTOWNER BD626E CORP",
+   "phys_city_adr": "WALDEN",
+   "phys_ln_2_adr": "TESTOWNER B782D6",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "12586"
+  },
+  {
+   "cig_vape": "CIG",
+   "cor_id": "333641679",
+   "cor_seq_nmbr": "0",
+   "georeference": {
+    "coordinates": [
+     -74.38854,
+     41.45495
+    ],
+    "type": "Point"
+   },
+   "last_or_bus_name": "TESTOWNER A04321 CORP",
+   "phys_city_adr": "MIDDLETOWN",
+   "phys_ln_2_adr": "TESTOWNER 3AC8CE",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "10940"
+  },
+  {
+   "cig_vape": "VAPE",
+   "cor_id": "333641679",
+   "cor_seq_nmbr": "0",
+   "georeference": {
+    "coordinates": [
+     -74.38854,
+     41.45495
+    ],
+    "type": "Point"
+   },
+   "last_or_bus_name": "TESTOWNER A04321 CORP",
+   "phys_city_adr": "MIDDLETOWN",
+   "phys_ln_2_adr": "TESTOWNER 3AC8CE",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "10940"
+  }
+ ],
+ "where": "cor_id >= '333582265'"
+}

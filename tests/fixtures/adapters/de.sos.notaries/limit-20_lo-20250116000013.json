@@ -1,0 +1,166 @@
+{
+ "portal": "https://data.delaware.gov",
+ "rows": [
+  {
+   "city": "Seaford",
+   "commission_number": "20250116000013",
+   "electronic": false,
+   "expiration": "2029-02-01T00:00:00.000",
+   "full_name": "TESTOWNER 8A36A8",
+   "remote": false
+  },
+  {
+   "city": "New Castle",
+   "commission_number": "20250116000014",
+   "electronic": false,
+   "expiration": "2029-01-19T00:00:00.000",
+   "full_name": "TESTOWNER 6FF268",
+   "remote": false
+  },
+  {
+   "city": "NEW CASTLE",
+   "commission_number": "20250116000015",
+   "electronic": false,
+   "expiration": "2027-01-17T00:00:00.000",
+   "full_name": "TESTOWNER 4BC5B0",
+   "remote": false
+  },
+  {
+   "city": "NEW CASTLE",
+   "commission_number": "20250116000016",
+   "electronic": false,
+   "expiration": "2027-01-27T00:00:00.000",
+   "full_name": "TESTOWNER 4BA380",
+   "remote": false
+  },
+  {
+   "city": "Newark",
+   "commission_number": "20250116000017",
+   "electronic": false,
+   "expiration": "2029-02-15T00:00:00.000",
+   "full_name": "TESTOWNER 325D57",
+   "remote": false
+  },
+  {
+   "city": "Seaford",
+   "commission_number": "20250116000018",
+   "electronic": false,
+   "expiration": "2027-02-15T00:00:00.000",
+   "full_name": "TESTOWNER 377E40",
+   "remote": false
+  },
+  {
+   "city": "bear",
+   "commission_number": "20250116000019",
+   "electronic": false,
+   "expiration": "2027-02-15T00:00:00.000",
+   "full_name": "TESTOWNER 981CA3",
+   "remote": false
+  },
+  {
+   "city": "Wilmington",
+   "commission_number": "20250116000020",
+   "electronic": true,
+   "expiration": "2027-01-16T00:00:00.000",
+   "full_name": "TESTOWNER BD23B5",
+   "remote": false
+  },
+  {
+   "city": "WILMINGTON",
+   "commission_number": "20250116000021",
+   "electronic": false,
+   "expiration": "2029-01-25T00:00:00.000",
+   "full_name": "TESTOWNER D1550E",
+   "remote": false
+  },
+  {
+   "city": "Wilmington",
+   "commission_number": "20250116000022",
+   "electronic": false,
+   "expiration": "2027-01-16T00:00:00.000",
+   "full_name": "TESTOWNER 8AF1DD",
+   "remote": false
+  },
+  {
+   "city": "Laurel",
+   "commission_number": "20250116000024",
+   "electronic": false,
+   "expiration": "2027-01-16T00:00:00.000",
+   "full_name": "TESTOWNER D95B53",
+   "remote": false
+  },
+  {
+   "city": "Milford",
+   "commission_number": "20250117000000",
+   "electronic": false,
+   "expiration": "2027-01-17T00:00:00.000",
+   "full_name": "TESTOWNER 5B982A",
+   "remote": false
+  },
+  {
+   "city": "Smyrna",
+   "commission_number": "20250117000001",
+   "electronic": false,
+   "expiration": "2027-01-17T00:00:00.000",
+   "full_name": "TESTOWNER 095B68",
+   "remote": false
+  },
+  {
+   "city": "Felton",
+   "commission_number": "20250117000002",
+   "electronic": false,
+   "expiration": "2027-01-17T00:00:00.000",
+   "full_name": "TESTOWNER 36DB42",
+   "remote": false
+  },
+  {
+   "city": "WILMINGTON",
+   "commission_number": "20250117000003",
+   "electronic": false,
+   "expiration": "2027-01-17T00:00:00.000",
+   "full_name": "TESTOWNER 72267D",
+   "remote": false
+  },
+  {
+   "city": "Newcastle",
+   "commission_number": "20250117000004",
+   "electronic": false,
+   "expiration": "2027-02-06T00:00:00.000",
+   "full_name": "TESTOWNER 30506E",
+   "remote": false
+  },
+  {
+   "city": "Wilmington",
+   "commission_number": "20250117000005",
+   "electronic": false,
+   "expiration": "2027-01-17T00:00:00.000",
+   "full_name": "TESTOWNER 241BC7",
+   "remote": false
+  },
+  {
+   "city": "Lincoln",
+   "commission_number": "20250117000006",
+   "electronic": false,
+   "expiration": "2029-02-15T00:00:00.000",
+   "full_name": "TESTOWNER 0B3C8F",
+   "remote": false
+  },
+  {
+   "city": "Middletown",
+   "commission_number": "20250117000007",
+   "electronic": false,
+   "expiration": "2027-01-17T00:00:00.000",
+   "full_name": "TESTOWNER 8AEB84",
+   "remote": false
+  },
+  {
+   "city": "Smyrna",
+   "commission_number": "20250117000008",
+   "electronic": false,
+   "expiration": "2027-02-16T00:00:00.000",
+   "full_name": "TESTOWNER 0F59E8",
+   "remote": false
+  }
+ ],
+ "where": "commission_number >= '20250116000013'"
+}

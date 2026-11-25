@@ -1,0 +1,25 @@
+# Texas Alcoholic Beverage Commission, "Tax Assessor-Collector Licenses/Permits Issued"
+# (data.texas.gov yqpn-9vyh): about 563K monthly issue records since 2012 for the beer and
+# wine permits that county tax assessor-collectors issue, about 147K distinct permits (CLP).
+# A permit's rows make one license; the latest issue wins. Names are trade names and the
+# permittee (a company, or a person printed 'LAST, FIRST').
+source_id: tx.tabc.tac_permits
+state: TX
+jurisdiction: "48"
+portal: https://data.texas.gov
+dataset: yqpn-9vyh
+key: clp
+id_prefix: "TX-TABC-TAC:"
+terms_url: https://data.texas.gov/dataset/Tax-Assessor-Collector-Licenses-Permits-Issued/yqpn-9vyh
+terms_summary: "Texas Open Data Portal; no license text on the dataset (public information published by TABC)."
+checked_on: 2026-11-25
+license:
+  name: [trade_name, person_corp_name]
+  type: liquor_beer
+  issued_on: original_license_date
+  latest_by: issue_date
+  address: {street: [location_str_no, location_street], city: location_city, state: location_state, zip: location_zip}
+  mailing: {street: mail_street, city: mail_city, state: mail_state, zip: mail_zip}
+holders:
+  - {role: other, title: PERMITTEE, name: [person_corp_name, person_corp_name2], last_first: true, address: {street: mail_street, city: mail_city, state: mail_state, zip: mail_zip}}
+pii_fields: [trade_name, trade_name2, trade_name3, person_corp_name, person_corp_name2, location_street, location_desc, location_desc2, mail_street, mail_desc]

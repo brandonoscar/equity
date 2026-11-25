@@ -1,0 +1,22 @@
+# New York State Department of Labor, "Apparel Industry Certification of Registration"
+# (data.ny.gov xtgv-xf66): about 850 apparel manufacturers and contractors registered under
+# Labor Law article 11 with business name, address, status and issue date.
+source_id: ny.dol.apparel_registrations
+state: NY
+jurisdiction: "36"
+portal: https://data.ny.gov
+dataset: xtgv-xf66
+key: certificate_number
+id_prefix: "NY-DOL-APP:"
+terms_url: https://data.ny.gov/download/77gx-ii52/application%2Fpdf
+terms_summary: "NY Open Data terms: free to use; no warranty. No restriction on commercial use found."
+checked_on: 2026-11-25
+license:
+  name: business_name
+  type_value: Apparel Industry Registration
+  status: status
+  issued_on: issue_date
+  address: {street: [address1, address2], city: city, state: state, zip: zip_code}
+holders:
+  - {role: other, title: REGISTRANT, with_type: false, name: business_name, address: {street: [address1, address2], city: city, state: state, zip: zip_code}}
+pii_fields: [business_name, address1, address2, phone]

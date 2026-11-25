@@ -1,0 +1,22 @@
+# City of Corona Economic Development, "CorStat - Business Licenses" (corstat.coronaca.gov
+# ibcd-bv79, Public Domain): about 7.2K business license accounts with DBA, address, type,
+# business and license status and submission date (last updated June 2024).
+source_id: ca.corona.business_licenses
+state: CA
+jurisdiction: "06065"
+portal: https://corstat.coronaca.gov
+dataset: ibcd-bv79
+key: account
+id_prefix: "CORONA-BL:"
+terms_url: https://corstat.coronaca.gov/Government/CorStat-Business-Licenses/ibcd-bv79
+terms_summary: "Public Domain (dataset license field)."
+checked_on: 2026-11-25
+license:
+  name: business_name_dba
+  type: business_type
+  status: business_status
+  issued_on: date_submitted
+  address: {street: business_address, city_state_zip: business_city_state}
+holders:
+  - {role: other, title: LICENSEE, name: business_name_dba, address: {street: business_address, city_state_zip: business_city_state}}
+pii_fields: [business_name_dba, business_address]

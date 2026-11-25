@@ -1,0 +1,145 @@
+{
+ "portal": "https://data.delaware.gov",
+ "rows": [
+  {
+   "current_status": "V",
+   "first_name": "TESTOWNER 257606",
+   "last_name": "TESTOWNER A674EA",
+   "middle_name": "TESTOWNER 185D03",
+   "row_number": "1"
+  },
+  {
+   "current_status": "V",
+   "first_name": "TESTOWNER 30CDCF",
+   "last_name": "TESTOWNER CFF5DA",
+   "middle_name": "TESTOWNER F863B7",
+   "row_number": "2"
+  },
+  {
+   "current_status": "V",
+   "first_name": "TESTOWNER 3B7E15",
+   "last_name": "TESTOWNER A6583A",
+   "middle_name": "TESTOWNER 481720",
+   "row_number": "3"
+  },
+  {
+   "current_status": "V",
+   "first_name": "TESTOWNER DC8AC9",
+   "last_name": "TESTOWNER 2E5B34",
+   "middle_name": "TESTOWNER F863B7",
+   "row_number": "4"
+  },
+  {
+   "current_status": "V",
+   "first_name": "TESTOWNER 01D327",
+   "last_name": "TESTOWNER 10B850",
+   "row_number": "5"
+  },
+  {
+   "current_status": "V",
+   "first_name": "TESTOWNER DC8AC9",
+   "last_name": "TESTOWNER 8CD30C",
+   "middle_name": "TESTOWNER 481720",
+   "row_number": "6"
+  },
+  {
+   "current_status": "V",
+   "first_name": "TESTOWNER 7E62FB",
+   "last_name": "TESTOWNER 2126ED",
+   "middle_name": "TESTOWNER 0C0B8D",
+   "row_number": "7"
+  },
+  {
+   "current_status": "V",
+   "first_name": "TESTOWNER 0E8C42",
+   "last_name": "TESTOWNER 548A80",
+   "middle_name": "TESTOWNER 6D7E8F",
+   "row_number": "8"
+  },
+  {
+   "current_status": "V",
+   "first_name": "TESTOWNER B58747",
+   "last_name": "TESTOWNER 50A468",
+   "middle_name": "TESTOWNER 6D7E8F",
+   "row_number": "9"
+  },
+  {
+   "current_status": "V",
+   "first_name": "TESTOWNER 67992E",
+   "last_name": "TESTOWNER A34CA8",
+   "middle_name": "TESTOWNER 4CCA4B",
+   "row_number": "10"
+  },
+  {
+   "current_status": "V",
+   "first_name": "TESTOWNER F38038",
+   "last_name": "TESTOWNER 2CC9F6",
+   "middle_name": "TESTOWNER D4E5D9",
+   "row_number": "11"
+  },
+  {
+   "current_status": "V",
+   "first_name": "TESTOWNER 8C8A2C",
+   "last_name": "TESTOWNER EC5517",
+   "middle_name": "TESTOWNER F0EF52",
+   "row_number": "12"
+  },
+  {
+   "current_status": "V",
+   "first_name": "TESTOWNER A8A3EF",
+   "last_name": "TESTOWNER B5D1F3",
+   "middle_name": "TESTOWNER 93444C",
+   "row_number": "13"
+  },
+  {
+   "current_status": "V",
+   "first_name": "TESTOWNER B58747",
+   "last_name": "TESTOWNER E06223",
+   "middle_name": "TESTOWNER D1BE9A",
+   "row_number": "14"
+  },
+  {
+   "current_status": "V",
+   "first_name": "TESTOWNER 7D6D9E",
+   "last_name": "TESTOWNER BD586E",
+   "middle_name": "TESTOWNER D4E5D9",
+   "row_number": "15"
+  },
+  {
+   "current_status": "V",
+   "first_name": "TESTOWNER 050776",
+   "last_name": "TESTOWNER 84593A",
+   "middle_name": "TESTOWNER F863B7",
+   "row_number": "16"
+  },
+  {
+   "current_status": "V",
+   "first_name": "TESTOWNER BA9544",
+   "last_name": "TESTOWNER 4D96BC",
+   "middle_name": "TESTOWNER 4CCA4B",
+   "row_number": "17"
+  },
+  {
+   "current_status": "V",
+   "first_name": "TESTOWNER 2B57F7",
+   "last_name": "TESTOWNER C1D63D",
+   "middle_name": "TESTOWNER 364722",
+   "row_number": "18"
+  },
+  {
+   "current_status": "V",
+   "first_name": "TESTOWNER A3BCA6",
+   "last_name": "TESTOWNER 653C22",
+   "middle_name": "TESTOWNER E73B09",
+   "row_number": "19"
+  },
+  {
+   "current_status": "V",
+   "first_name": "TESTOWNER D7A61B",
+   "last_name": "TESTOWNER E77E37",
+   "middle_name": "TESTOWNER E73B09",
+   "row_number": "20"
+  }
+ ],
+ "where": "last_name >= 'A'"
+}

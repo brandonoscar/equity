@@ -1,0 +1,501 @@
+{
+ "portal": "https://data.ny.gov",
+ "rows": [
+  {
+   "actual_address_of_premises": "6042 TEST ST",
+   "city": "BROOKLYN",
+   "class": "81",
+   "description": "Grocery Store",
+   "effective_date": "2022-05-01T00:00:00.000",
+   "expiration_date": "2025-04-30T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -73.92521,
+     40.70041
+    ],
+    "type": "Point"
+   },
+   "last_issue_date": "2022-04-01T00:00:00.000",
+   "legacy_serial_number": "1294109",
+   "legalname": "TESTOWNER E36FDD CORP",
+   "license_permit_id": "0081-22-128828",
+   "original_issue_date": "2022-04-01T00:00:00.000",
+   "premises_county": "Kings",
+   "state_name": "New York",
+   "type": "1",
+   "zip_code": "11237"
+  },
+  {
+   "actual_address_of_premises": "3365 TEST ST",
+   "additional_address_information": "6281 TEST ST",
+   "city": "PLEASANTVILLE",
+   "class": "81",
+   "dba": "TESTOWNER 5BCB9F",
+   "description": "Grocery Store",
+   "effective_date": "2022-06-01T00:00:00.000",
+   "expiration_date": "2025-05-31T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -73.77879,
+     41.14048
+    ],
+    "type": "Point"
+   },
+   "last_issue_date": "2022-05-18T00:00:00.000",
+   "legacy_serial_number": "1229151",
+   "legalname": "TESTOWNER 4AA965 CORP",
+   "license_permit_id": "0081-22-128835",
+   "original_issue_date": "2022-05-18T00:00:00.000",
+   "premises_county": "Westchester",
+   "state_name": "New York",
+   "type": "1",
+   "zip_code": "10570"
+  },
+  {
+   "actual_address_of_premises": "5362 TEST ST",
+   "city": "KINGS PARK",
+   "class": "81",
+   "dba": "TESTOWNER 0A15AA",
+   "description": "Grocery Store",
+   "effective_date": "2025-02-01T00:00:00.000",
+   "expiration_date": "2028-01-31T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -73.26266,
+     40.88427
+    ],
+    "type": "Point"
+   },
+   "last_issue_date": "2025-01-28T00:00:00.000",
+   "legacy_serial_number": "1290015",
+   "legalname": "TESTOWNER FBF328 LLC",
+   "license_permit_id": "0081-22-128837",
+   "original_issue_date": "2025-01-28T00:00:00.000",
+   "premises_county": "Suffolk",
+   "state_name": "New York",
+   "type": "1",
+   "zip_code": "11754"
+  },
+  {
+   "actual_address_of_premises": "2671 TEST ST",
+   "city": "BROOKLYN",
+   "class": "81",
+   "dba": "TESTOWNER 9EC7D0",
+   "description": "Grocery Store",
+   "effective_date": "2022-09-01T00:00:00.000",
+   "expiration_date": "2025-08-31T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -73.93363,
+     40.66912
+    ],
+    "type": "Point"
+   },
+   "last_issue_date": "2022-07-05T00:00:00.000",
+   "legacy_serial_number": "1296451",
+   "legalname": "TESTOWNER 4649E4 INC",
+   "license_permit_id": "0081-22-128852",
+   "original_issue_date": "2022-07-05T00:00:00.000",
+   "premises_county": "Kings",
+   "state_name": "New York",
+   "type": "1",
+   "zip_code": "11213"
+  },
+  {
+   "actual_address_of_premises": "5043 TEST ST",
+   "city": "NEW YORK",
+   "class": "81",
+   "dba": "TESTOWNER 7E13EA",
+   "description": "Grocery Store",
+   "effective_date": "2025-03-05T00:00:00.000",
+   "expiration_date": "2025-08-31T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -73.98143,
+     40.72894
+    ],
+    "type": "Point"
+   },
+   "last_issue_date": "2022-08-10T00:00:00.000",
+   "legacy_serial_number": "1296183",
+   "legalname": "TESTOWNER ECE65E INC",
+   "license_permit_id": "0081-22-128858",
+   "original_issue_date": "2022-08-10T00:00:00.000",
+   "premises_county": "New York",
+   "state_name": "New York",
+   "type": "1",
+   "zip_code": "10009"
+  },
+  {
+   "actual_address_of_premises": "4789 TEST ST",
+   "city": "BROOKLYN",
+   "class": "81",
+   "description": "Grocery Store",
+   "effective_date": "2022-09-01T00:00:00.000",
+   "expiration_date": "2025-08-31T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -73.94392,
+     40.68336
+    ],
+    "type": "Point"
+   },
+   "last_issue_date": "2022-08-10T00:00:00.000",
+   "legacy_serial_number": "1296652",
+   "legalname": "TESTOWNER 334F4D CORP",
+   "license_permit_id": "0081-22-128860",
+   "original_issue_date": "2022-08-10T00:00:00.000",
+   "premises_county": "Kings",
+   "state_name": "New York",
+   "type": "1",
+   "zip_code": "11216"
+  },
+  {
+   "actual_address_of_premises": "3876 TEST ST",
+   "city": "NEW YORK",
+   "class": "81",
+   "dba": "TESTOWNER 9F1489",
+   "description": "Grocery Store",
+   "effective_date": "2022-07-01T00:00:00.000",
+   "expiration_date": "2025-06-30T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -73.99741,
+     40.75634
+    ],
+    "type": "Point"
+   },
+   "last_issue_date": "2022-06-27T00:00:00.000",
+   "legacy_serial_number": "1236782",
+   "legalname": "TESTOWNER A9D3F6 LTD",
+   "license_permit_id": "0081-22-128862",
+   "original_issue_date": "2022-06-27T00:00:00.000",
+   "premises_county": "New York",
+   "state_name": "New York",
+   "type": "1",
+   "zip_code": "10018"
+  },
+  {
+   "actual_address_of_premises": "7255 TEST ST",
+   "city": "BROOKLYN",
+   "class": "81",
+   "description": "Grocery Store",
+   "effective_date": "2022-11-01T00:00:00.000",
+   "expiration_date": "2025-10-31T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -73.88468,
+     40.65917
+    ],
+    "type": "Point"
+   },
+   "last_issue_date": "2022-10-25T00:00:00.000",
+   "legacy_serial_number": "1297600",
+   "legalname": "TESTOWNER 5FC62E INC",
+   "license_permit_id": "0081-22-128865",
+   "original_issue_date": "2022-10-25T00:00:00.000",
+   "premises_county": "Kings",
+   "state_name": "New York",
+   "type": "1",
+   "zip_code": "11207"
+  },
+  {
+   "actual_address_of_premises": "3875 TEST ST",
+   "city": "BRONX",
+   "class": "81",
+   "description": "Grocery Store",
+   "effective_date": "2022-09-01T00:00:00.000",
+   "expiration_date": "2025-08-31T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -73.88526,
+     40.87363
+    ],
+    "type": "Point"
+   },
+   "last_issue_date": "2022-08-11T00:00:00.000",
+   "legacy_serial_number": "1295633",
+   "legalname": "TESTOWNER FF581D CORP",
+   "license_permit_id": "0081-22-128874",
+   "original_issue_date": "2022-08-11T00:00:00.000",
+   "premises_county": "Bronx",
+   "state_name": "New York",
+   "type": "1",
+   "zip_code": "10458"
+  },
+  {
+   "actual_address_of_premises": "5151 TEST ST",
+   "city": "FREEPORT",
+   "class": "81",
+   "dba": "TESTOWNER 34E233",
+   "description": "Grocery Store",
+   "effective_date": "2022-09-01T00:00:00.000",
+   "expiration_date": "2025-08-31T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -73.59205,
+     40.64481
+    ],
+    "type": "Point"
+   },
+   "last_issue_date": "2022-07-21T00:00:00.000",
+   "legacy_serial_number": "1295666",
+   "legalname": "TESTOWNER 74676D INC",
+   "license_permit_id": "0081-22-128875",
+   "original_issue_date": "2022-07-21T00:00:00.000",
+   "premises_county": "Nassau",
+   "state_name": "New York",
+   "type": "1",
+   "zip_code": "11758"
+  },
+  {
+   "actual_address_of_premises": "4940 TEST ST",
+   "city": "BRONX",
+   "class": "81",
+   "dba": "TESTOWNER 93C0D3 CORP",
+   "description": "Grocery Store",
+   "effective_date": "2022-08-01T00:00:00.000",
+   "expiration_date": "2025-07-31T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -73.87077,
+     40.83466
+    ],
+    "type": "Point"
+   },
+   "last_issue_date": "2022-07-27T00:00:00.000",
+   "legacy_serial_number": "1295576",
+   "legalname": "TESTOWNER 50AA5A CORP",
+   "license_permit_id": "0081-22-128879",
+   "original_issue_date": "2022-07-27T00:00:00.000",
+   "premises_county": "Bronx",
+   "state_name": "New York",
+   "type": "1",
+   "zip_code": "10472"
+  },
+  {
+   "actual_address_of_premises": "6038 TEST ST",
+   "city": "WOODSIDE",
+   "class": "81",
+   "description": "Grocery Store",
+   "effective_date": "2022-03-01T00:00:00.000",
+   "expiration_date": "2025-02-28T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -73.9172,
+     40.74115
+    ],
+    "type": "Point"
+   },
+   "last_issue_date": "2022-03-01T00:00:00.000",
+   "legacy_serial_number": "1291943",
+   "legalname": "TESTOWNER DAAAAA INC",
+   "license_permit_id": "0081-22-128885",
+   "original_issue_date": "2022-03-01T00:00:00.000",
+   "premises_county": "Queens",
+   "state_name": "New York",
+   "type": "1",
+   "zip_code": "11377"
+  },
+  {
+   "actual_address_of_premises": "5809 TEST ST",
+   "city": "ELMHURST",
+   "class": "81",
+   "description": "Grocery Store",
+   "effective_date": "2022-07-07T00:00:00.000",
+   "expiration_date": "2025-06-30T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -73.88824,
+     40.74351
+    ],
+    "type": "Point"
+   },
+   "last_issue_date": "2022-07-07T00:00:00.000",
+   "legacy_serial_number": "1294284",
+   "legalname": "TESTOWNER 9EB812 INC",
+   "license_permit_id": "0081-22-128891",
+   "original_issue_date": "2022-07-07T00:00:00.000",
+   "premises_county": "Queens",
+   "state_name": "New York",
+   "type": "1",
+   "zip_code": "11373"
+  },
+  {
+   "actual_address_of_premises": "5058 TEST ST",
+   "city": "NEW YORK",
+   "class": "81",
+   "dba": "TESTOWNER 5F702D",
+   "description": "Grocery Store",
+   "effective_date": "2022-06-01T00:00:00.000",
+   "expiration_date": "2025-05-31T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -73.97737,
+     40.74276
+    ],
+    "type": "Point"
+   },
+   "last_issue_date": "2022-05-23T00:00:00.000",
+   "legacy_serial_number": "1235331",
+   "legalname": "TESTOWNER 8D2C59",
+   "license_permit_id": "0081-22-128892",
+   "original_issue_date": "2022-05-23T00:00:00.000",
+   "premises_county": "New York",
+   "state_name": "New York",
+   "type": "1",
+   "zip_code": "10016"
+  },
+  {
+   "actual_address_of_premises": "6824 TEST ST",
+   "city": "QUOGUE",
+   "class": "81",
+   "dba": "TESTOWNER DAC66D",
+   "description": "Grocery Store",
+   "effective_date": "2025-02-01T00:00:00.000",
+   "expiration_date": "2028-01-31T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -72.60904,
+     40.82277
+    ],
+    "type": "Point"
+   },
+   "last_issue_date": "2025-01-28T00:00:00.000",
+   "legacy_serial_number": "1290004",
+   "legalname": "TESTOWNER FBF328 LLC",
+   "license_permit_id": "0081-22-128918",
+   "original_issue_date": "2025-01-28T00:00:00.000",
+   "premises_county": "Suffolk",
+   "state_name": "New York",
+   "type": "1",
+   "zip_code": "11959"
+  },
+  {
+   "actual_address_of_premises": "5485 TEST ST",
+   "city": "LAKE GROVE",
+   "class": "81",
+   "dba": "TESTOWNER AAF8F8",
+   "description": "Grocery Store",
+   "effective_date": "2025-02-01T00:00:00.000",
+   "expiration_date": "2028-01-31T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -73.1129,
+     40.86052
+    ],
+    "type": "Point"
+   },
+   "last_issue_date": "2025-01-28T00:00:00.000",
+   "legacy_serial_number": "1290006",
+   "legalname": "TESTOWNER FBF328 LLC",
+   "license_permit_id": "0081-22-128919",
+   "original_issue_date": "2025-01-28T00:00:00.000",
+   "premises_county": "Suffolk",
+   "state_name": "New York",
+   "type": "1",
+   "zip_code": "11755"
+  },
+  {
+   "actual_address_of_premises": "8869 TEST ST",
+   "city": "STATEN ISLAND",
+   "class": "81",
+   "dba": "TESTOWNER CFD8CB",
+   "description": "Grocery Store",
+   "effective_date": "2025-02-01T00:00:00.000",
+   "expiration_date": "2028-01-31T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -74.10928,
+     40.57051
+    ],
+    "type": "Point"
+   },
+   "last_issue_date": "2025-01-28T00:00:00.000",
+   "legacy_serial_number": "1289979",
+   "legalname": "TESTOWNER FBF328 LLC",
+   "license_permit_id": "0081-22-128923",
+   "original_issue_date": "2025-01-28T00:00:00.000",
+   "premises_county": "Richmond",
+   "state_name": "New York",
+   "type": "1",
+   "zip_code": "10306"
+  },
+  {
+   "actual_address_of_premises": "671 TEST ST",
+   "city": "BROOKLYN",
+   "class": "81",
+   "description": "Grocery Store",
+   "effective_date": "2022-08-01T00:00:00.000",
+   "expiration_date": "2025-07-31T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -73.96479,
+     40.60641
+    ],
+    "type": "Point"
+   },
+   "last_issue_date": "2022-05-27T00:00:00.000",
+   "legacy_serial_number": "1244185",
+   "legalname": "TESTOWNER 2BC75A CORP",
+   "license_permit_id": "0081-22-128929",
+   "original_issue_date": "2022-05-27T00:00:00.000",
+   "premises_county": "Kings",
+   "state_name": "New York",
+   "type": "1",
+   "zip_code": "11223"
+  },
+  {
+   "actual_address_of_premises": "4478 TEST ST",
+   "additional_address_information": "8533 TEST ST",
+   "city": "NEW YORK",
+   "class": "81",
+   "description": "Grocery Store",
+   "effective_date": "2022-10-01T00:00:00.000",
+   "expiration_date": "2025-09-30T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -73.98795,
+     40.77504
+    ],
+    "type": "Point"
+   },
+   "last_issue_date": "2022-09-26T00:00:00.000",
+   "legacy_serial_number": "1120886",
+   "legalname": "TESTOWNER D9E51C CORP",
+   "license_permit_id": "0081-22-128933",
+   "original_issue_date": "2022-09-26T00:00:00.000",
+   "premises_county": "New York",
+   "state_name": "New York",
+   "type": "1",
+   "zip_code": "10023"
+  },
+  {
+   "actual_address_of_premises": "737 TEST ST",
+   "additional_address_information": "7726 TEST ST",
+   "city": "BROOKLYN",
+   "class": "81",
+   "dba": "TESTOWNER C8D92E",
+   "description": "Grocery Store",
+   "effective_date": "2022-05-01T00:00:00.000",
+   "expiration_date": "2025-04-30T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -73.99776,
+     40.57755
+    ],
+    "type": "Point"
+   },
+   "last_issue_date": "2022-04-20T00:00:00.000",
+   "legacy_serial_number": "1117124",
+   "legalname": "TESTOWNER 656A9C",
+   "license_permit_id": "0081-22-128944",
+   "original_issue_date": "2022-04-20T00:00:00.000",
+   "premises_county": "Kings",
+   "state_name": "New York",
+   "type": "1",
+   "zip_code": "11224"
+  }
+ ],
+ "where": "license_permit_id >= '0081-22-128828'"
+}

@@ -1,0 +1,21 @@
+# City of College Station, "Liquor Licenses" (data.cstx.gov waq4-gs4m): about 250 city liquor
+# licenses with the business (printed in the owner column), TABC license number and type,
+# TABC original issue date and address.
+source_id: tx.college_station.liquor_licenses
+state: TX
+jurisdiction: "48041"
+portal: https://data.cstx.gov
+dataset: waq4-gs4m
+key: license_number
+id_prefix: "CSTX-LIQ:"
+terms_url: https://data.cstx.gov/dataset/Liquor-Licenses/waq4-gs4m
+terms_summary: "College Station open data portal; no license text on the dataset (public information published by the City)."
+checked_on: 2026-11-25
+license:
+  name: owner
+  type: tabc_license_type
+  issued_on: tabc_original_issued_date
+  address: {street: [address_1, address_2], city: city, state: state, zip: zip}
+holders:
+  - {role: other, title: LICENSEE, name: owner, address: {street: [address_1, address_2], city: city, state: state, zip: zip}}
+pii_fields: [owner, address_1, address_2, geocoded_column]

@@ -1,0 +1,23 @@
+# City of New Orleans, "Active Short-Term Rental Licenses" (data.nola.gov ufdg-ajws): about
+# 4.3K active short-term rental licenses with the license holder, the operator (and the
+# operator's own license), address, type and issue date.
+source_id: la.nola.short_term_rentals
+state: LA
+jurisdiction: "22071"
+portal: https://data.nola.gov
+dataset: ufdg-ajws
+key: license_number
+id_prefix: "NOLA-STR:"
+terms_url: https://data.nola.gov/Housing-Land-Use-and-Blight/Active-Short-Term-Rental-Licenses/ufdg-ajws
+terms_summary: "New Orleans open data portal; no license text on the dataset (public information published by the City)."
+checked_on: 2026-11-25
+license:
+  name: license_holder_name
+  type: license_type
+  status_value: Active  # active licenses only
+  issued_on: issue_date
+  address: {street: address}  # street only: the city (New Orleans) is not a column
+holders:
+  - {role: other, title: LICENSE HOLDER, name: license_holder_name}
+  - {role: other, title: OPERATOR, with_type: false, name: operator_name}
+pii_fields: [license_holder_name, operator_name, operator_phone, operator_email, address, x, y, longitude, latitude, location]

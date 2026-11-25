@@ -1,0 +1,459 @@
+{
+ "portal": "https://data.ny.gov",
+ "rows": [
+  {
+   "address_line_1": "2224 TEST ST",
+   "application_number": "OCMHMPR21-2024-001771",
+   "city": "Monroe",
+   "county": "Orange",
+   "dba": "TESTOWNER DCC813",
+   "effective_date": "2025-11-13T00:00:00.000",
+   "entity_name": "TESTOWNER 095A9C CORP",
+   "expiration_date": "2026-11-13T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -74.1908,
+     41.32743
+    ],
+    "type": "Point"
+   },
+   "issued_date": "2024-11-13T00:00:00.000",
+   "license_number": "OCM-HMPR-24-09675",
+   "license_status_code": "LICACT",
+   "license_status_code_1": "Active",
+   "license_type_code": "HMPR",
+   "license_type_description": "Cannabinoid Hemp Retail License",
+   "state": "NY",
+   "zip_code": "10950"
+  },
+  {
+   "address_line_1": "7171 TEST ST",
+   "application_number": "OCMHMPR21-2024-001716",
+   "city": "DEER PARK",
+   "county": "Suffolk",
+   "effective_date": "2025-11-13T00:00:00.000",
+   "entity_name": "TESTOWNER 88B123 CORP",
+   "expiration_date": "2026-11-13T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -73.31872,
+     40.74767
+    ],
+    "type": "Point"
+   },
+   "issued_date": "2024-11-13T00:00:00.000",
+   "license_number": "OCM-HMPR-24-09676",
+   "license_status_code": "LICACT",
+   "license_status_code_1": "Active",
+   "license_type_code": "HMPR",
+   "license_type_description": "Cannabinoid Hemp Retail License",
+   "state": "NY",
+   "zip_code": "11729"
+  },
+  {
+   "address_line_1": "780 TEST ST",
+   "application_number": "OCMHMPR21-2024-001705",
+   "city": "Wallkill",
+   "county": "Orange",
+   "effective_date": "2025-11-14T00:00:00.000",
+   "entity_name": "TESTOWNER 661ECC LLC",
+   "expiration_date": "2026-11-14T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -74.12318,
+     41.58156
+    ],
+    "type": "Point"
+   },
+   "issued_date": "2024-11-14T00:00:00.000",
+   "license_number": "OCM-HMPR-24-09678",
+   "license_status_code": "LICACT",
+   "license_status_code_1": "Active",
+   "license_type_code": "HMPR",
+   "license_type_description": "Cannabinoid Hemp Retail License",
+   "state": "NY",
+   "zip_code": "12589"
+  },
+  {
+   "application_number": "OCMHMPR21-2024-001783",
+   "business_website": "TESTOWNER EF03CC",
+   "effective_date": "2024-11-15T00:00:00.000",
+   "entity_name": "TESTOWNER C852EF LLC",
+   "expiration_date": "2025-11-15T00:00:00.000",
+   "issued_date": "2024-11-15T00:00:00.000",
+   "license_number": "OCM-HMPR-24-09683",
+   "license_status_code": "LICACT",
+   "license_status_code_1": "Active",
+   "license_type_code": "HMPR",
+   "license_type_description": "Cannabinoid Hemp Retail License"
+  },
+  {
+   "address_line_1": "263 TEST ST",
+   "address_line_2": "7588 TEST ST",
+   "application_number": "OCMHMPR21-2024-001792",
+   "city": "Halfmoon",
+   "county": "Saratoga",
+   "dba": "TESTOWNER 9430C7",
+   "effective_date": "2025-11-19T00:00:00.000",
+   "entity_name": "TESTOWNER 2142DD INC",
+   "expiration_date": "2026-11-19T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -73.76473,
+     42.81992
+    ],
+    "type": "Point"
+   },
+   "issued_date": "2024-11-19T00:00:00.000",
+   "license_number": "OCM-HMPR-24-09686",
+   "license_status_code": "LICACT",
+   "license_status_code_1": "Active",
+   "license_type_code": "HMPR",
+   "license_type_description": "Cannabinoid Hemp Retail License",
+   "state": "NY",
+   "zip_code": "12065"
+  },
+  {
+   "application_number": "OCMHMPR21-2024-001800",
+   "business_website": "TESTOWNER 8F770E",
+   "effective_date": "2025-11-19T00:00:00.000",
+   "entity_name": "TESTOWNER BBD030 INC",
+   "expiration_date": "2026-11-19T00:00:00.000",
+   "issued_date": "2024-11-19T00:00:00.000",
+   "license_number": "OCM-HMPR-24-09692",
+   "license_status_code": "LICACT",
+   "license_status_code_1": "Active",
+   "license_type_code": "HMPR",
+   "license_type_description": "Cannabinoid Hemp Retail License"
+  },
+  {
+   "address_line_1": "7471 TEST ST",
+   "application_number": "OCMHMPR21-2024-001801",
+   "city": "Merrick",
+   "county": "Nassau",
+   "dba": "TESTOWNER CBC643",
+   "effective_date": "2025-11-19T00:00:00.000",
+   "entity_name": "TESTOWNER 00DD88",
+   "expiration_date": "2026-11-19T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -73.56354,
+     40.66014
+    ],
+    "type": "Point"
+   },
+   "issued_date": "2024-11-19T00:00:00.000",
+   "license_number": "OCM-HMPR-24-09693",
+   "license_status_code": "LICACT",
+   "license_status_code_1": "Active",
+   "license_type_code": "HMPR",
+   "license_type_description": "Cannabinoid Hemp Retail License",
+   "state": "NY",
+   "zip_code": "11566"
+  },
+  {
+   "address_line_1": "8515 TEST ST",
+   "application_number": "OCMHMPR21-2024-001802",
+   "city": "Queens Vlg",
+   "county": "Queens",
+   "effective_date": "2025-11-19T00:00:00.000",
+   "entity_name": "TESTOWNER 74FEC7 CORP",
+   "expiration_date": "2026-11-19T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -73.73546,
+     40.71319
+    ],
+    "type": "Point"
+   },
+   "issued_date": "2024-11-19T00:00:00.000",
+   "license_number": "OCM-HMPR-24-09694",
+   "license_status_code": "LICACT",
+   "license_status_code_1": "Active",
+   "license_type_code": "HMPR",
+   "license_type_description": "Cannabinoid Hemp Retail License",
+   "state": "NY",
+   "zip_code": "11429"
+  },
+  {
+   "address_line_1": "7213 TEST ST",
+   "application_number": "OCMHMPR21-2024-001313",
+   "business_website": "TESTOWNER BE3187",
+   "city": "Buffalo",
+   "county": "Erie",
+   "dba": "TESTOWNER 4F5E26",
+   "effective_date": "2025-11-20T00:00:00.000",
+   "entity_name": "TESTOWNER 40B613 LLC",
+   "expiration_date": "2026-11-20T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -78.78663,
+     42.97924
+    ],
+    "type": "Point"
+   },
+   "issued_date": "2024-11-20T00:00:00.000",
+   "license_number": "OCM-HMPR-24-09699",
+   "license_status_code": "LICACT",
+   "license_status_code_1": "Active",
+   "license_type_code": "HMPR",
+   "license_type_description": "Cannabinoid Hemp Retail License",
+   "state": "NY",
+   "zip_code": "14226"
+  },
+  {
+   "application_number": "OCMHMPR21-2024-000132",
+   "business_website": "TESTOWNER F7F8FA",
+   "effective_date": "2024-11-20T00:00:00.000",
+   "entity_name": "TESTOWNER 57CB88 LLC",
+   "expiration_date": "2025-11-20T00:00:00.000",
+   "issued_date": "2024-11-20T00:00:00.000",
+   "license_number": "OCM-HMPR-24-09700",
+   "license_status_code": "LICACT",
+   "license_status_code_1": "Active",
+   "license_type_code": "HMPR",
+   "license_type_description": "Cannabinoid Hemp Retail License"
+  },
+  {
+   "address_line_1": "2464 TEST ST",
+   "application_number": "OCMHMPR21-2024-001784",
+   "business_website": "TESTOWNER 06A5BF",
+   "city": "Mount Vernon",
+   "county": "Westchester",
+   "dba": "TESTOWNER 76EA70",
+   "effective_date": "2026-11-20T00:00:00.000",
+   "entity_name": "TESTOWNER 919731 LLC",
+   "expiration_date": "2027-11-20T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -73.83907,
+     40.92639
+    ],
+    "type": "Point"
+   },
+   "issued_date": "2024-11-20T00:00:00.000",
+   "license_number": "OCM-HMPR-24-09701",
+   "license_status_code": "LICACT",
+   "license_status_code_1": "Active",
+   "license_type_code": "HMPR",
+   "license_type_description": "Cannabinoid Hemp Retail License",
+   "state": "NY",
+   "zip_code": "10552"
+  },
+  {
+   "address_line_1": "7101 TEST ST",
+   "application_number": "OCMHMPR21-2024-001806",
+   "business_website": "TESTOWNER 2F9B8F",
+   "city": "Montauk",
+   "county": "Suffolk",
+   "dba": "TESTOWNER 6BC8C4",
+   "effective_date": "2025-11-21T00:00:00.000",
+   "entity_name": "TESTOWNER BB797C LLC",
+   "expiration_date": "2026-11-21T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -71.94556,
+     41.03385
+    ],
+    "type": "Point"
+   },
+   "issued_date": "2024-11-21T00:00:00.000",
+   "license_number": "OCM-HMPR-24-09703",
+   "license_status_code": "LICACT",
+   "license_status_code_1": "Active",
+   "license_type_code": "HMPR",
+   "license_type_description": "Cannabinoid Hemp Retail License",
+   "state": "NY",
+   "zip_code": "11954"
+  },
+  {
+   "address_line_1": "3809 TEST ST",
+   "application_number": "OCMHMPR21-2024-001807",
+   "city": "Yonkers",
+   "county": "Westchester",
+   "effective_date": "2025-11-21T00:00:00.000",
+   "entity_name": "TESTOWNER 3DE22B CORP",
+   "expiration_date": "2026-11-21T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -73.86422,
+     40.9486
+    ],
+    "type": "Point"
+   },
+   "issued_date": "2024-11-21T00:00:00.000",
+   "license_number": "OCM-HMPR-24-09704",
+   "license_status_code": "LICACT",
+   "license_status_code_1": "Active",
+   "license_type_code": "HMPR",
+   "license_type_description": "Cannabinoid Hemp Retail License",
+   "state": "NY",
+   "zip_code": "10701"
+  },
+  {
+   "address_line_1": "3984 TEST ST",
+   "application_number": "OCMHMPR21-2024-001335",
+   "city": "Riverhead",
+   "county": "Suffolk",
+   "effective_date": "2025-11-21T00:00:00.000",
+   "entity_name": "TESTOWNER 9D9CC1 INC",
+   "expiration_date": "2026-11-21T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -72.66296,
+     40.91421
+    ],
+    "type": "Point"
+   },
+   "issued_date": "2024-11-21T00:00:00.000",
+   "license_number": "OCM-HMPR-24-09718",
+   "license_status_code": "LICACT",
+   "license_status_code_1": "Active",
+   "license_type_code": "HMPR",
+   "license_type_description": "Cannabinoid Hemp Retail License",
+   "state": "NY",
+   "zip_code": "11901"
+  },
+  {
+   "address_line_1": "736 TEST ST",
+   "address_line_2": "2898 TEST ST",
+   "application_number": "OCMHMPR21-2024-001819",
+   "city": "central valley",
+   "county": "Orange",
+   "effective_date": "2025-11-25T00:00:00.000",
+   "entity_name": "TESTOWNER 87CC73 CORP",
+   "expiration_date": "2026-11-25T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -74.12144,
+     41.33032
+    ],
+    "type": "Point"
+   },
+   "issued_date": "2024-11-25T00:00:00.000",
+   "license_number": "OCM-HMPR-24-09762",
+   "license_status_code": "LICACT",
+   "license_status_code_1": "Active",
+   "license_type_code": "HMPR",
+   "license_type_description": "Cannabinoid Hemp Retail License",
+   "state": "NY",
+   "zip_code": "10917"
+  },
+  {
+   "address_line_1": "8248 TEST ST",
+   "application_number": "OCMHMPR21-2024-001824",
+   "city": "Mahopac",
+   "county": "Putnam",
+   "effective_date": "2024-11-26T00:00:00.000",
+   "entity_name": "TESTOWNER 92B03D INC",
+   "expiration_date": "2025-11-26T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -73.73788,
+     41.36969
+    ],
+    "type": "Point"
+   },
+   "issued_date": "2024-11-26T00:00:00.000",
+   "license_number": "OCM-HMPR-24-09770",
+   "license_status_code": "LICACT",
+   "license_status_code_1": "Active",
+   "license_type_code": "HMPR",
+   "license_type_description": "Cannabinoid Hemp Retail License",
+   "state": "NY",
+   "zip_code": "10541"
+  },
+  {
+   "address_line_1": "1166 TEST ST",
+   "application_number": "OCMHMPR21-2024-001828",
+   "business_website": "TESTOWNER 47AA23",
+   "city": "New York",
+   "county": "New York",
+   "dba": "TESTOWNER D24E26",
+   "effective_date": "2025-11-26T00:00:00.000",
+   "entity_name": "TESTOWNER 641CD4 LLC",
+   "expiration_date": "2026-11-26T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -74.00007,
+     40.72148
+    ],
+    "type": "Point"
+   },
+   "issued_date": "2024-11-26T00:00:00.000",
+   "license_number": "OCM-HMPR-24-09771",
+   "license_status_code": "LICACT",
+   "license_status_code_1": "Active",
+   "license_type_code": "HMPR",
+   "license_type_description": "Cannabinoid Hemp Retail License",
+   "state": "NY",
+   "zip_code": "10013"
+  },
+  {
+   "application_number": "OCMHMPR21-2024-001837",
+   "business_website": "TESTOWNER 26799F",
+   "effective_date": "2025-11-27T00:00:00.000",
+   "entity_name": "TESTOWNER 603891 LLC",
+   "expiration_date": "2026-11-27T00:00:00.000",
+   "issued_date": "2024-11-27T00:00:00.000",
+   "license_number": "OCM-HMPR-24-09776",
+   "license_status_code": "LICACT",
+   "license_status_code_1": "Active",
+   "license_type_code": "HMPR",
+   "license_type_description": "Cannabinoid Hemp Retail License"
+  },
+  {
+   "address_line_1": "5708 TEST ST",
+   "application_number": "OCMHMPR21-2024-001560",
+   "business_website": "TESTOWNER 69A5D9",
+   "city": "Kingston",
+   "county": "Ulster",
+   "dba": "TESTOWNER 56D039",
+   "effective_date": "2025-11-27T00:00:00.000",
+   "entity_name": "TESTOWNER 1C6819 LLC",
+   "expiration_date": "2026-11-27T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -74.01948,
+     41.93774
+    ],
+    "type": "Point"
+   },
+   "issued_date": "2024-11-27T00:00:00.000",
+   "license_number": "OCM-HMPR-24-09777",
+   "license_status_code": "LICACT",
+   "license_status_code_1": "Active",
+   "license_type_code": "HMPR",
+   "license_type_description": "Cannabinoid Hemp Retail License",
+   "state": "NY",
+   "zip_code": "12401"
+  },
+  {
+   "address_line_1": "5153 TEST ST",
+   "application_number": "OCMHMPR21-2024-001849",
+   "business_website": "TESTOWNER C296E1",
+   "city": "Lancaster",
+   "county": "Erie",
+   "dba": "TESTOWNER 416FD5",
+   "effective_date": "2025-11-29T00:00:00.000",
+   "entity_name": "TESTOWNER 23CAF0 LLC",
+   "expiration_date": "2026-11-29T00:00:00.000",
+   "georeference": {
+    "coordinates": [
+     -78.68305,
+     42.89266
+    ],
+    "type": "Point"
+   },
+   "issued_date": "2024-11-29T00:00:00.000",
+   "license_number": "OCM-HMPR-24-09781",
+   "license_status_code": "LICACT",
+   "license_status_code_1": "Active",
+   "license_type_code": "HMPR",
+   "license_type_description": "Cannabinoid Hemp Retail License",
+   "state": "NY",
+   "zip_code": "14086"
+  }
+ ],
+ "where": "license_number >= 'OCM-HMPR-24-09675'"
+}

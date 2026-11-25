@@ -1,0 +1,25 @@
+# New York City Department of Small Business Services, "SBS Certified Business List"
+# (data.cityofnewyork.us ci93-uc8s): about 12K certified minority-, women- and emerging
+# business enterprises with formal name, DBA, the owner's name, certification, date of
+# establishment, business and mailing addresses and references to past clients.
+source_id: ny.nyc.sbs_certified
+state: NY
+jurisdiction: "36"
+portal: https://data.cityofnewyork.us
+dataset: ci93-uc8s
+key: account_number
+id_prefix: "NYC-SBS:"
+terms_url: https://www.nyc.gov/home/terms-of-use.page
+terms_summary: "NYC Open Data terms of use: free to use, no warranty; credit not required."
+checked_on: 2026-11-25
+license:
+  name: [vendor_dba, vendor_formal_name]
+  type: certification
+  status_value: Certified  # current certifications only
+  issued_on: date_of_establishment
+  address: {street: [address1, address2], city: city, state: state, zip: zip}
+  mailing: {street: [mailingaddress1, mailingaddress2], city: mailingcity, state: mailingstate, zip: mailingzip}
+holders:
+  - {role: other, title: CERTIFIED BUSINESS, name: vendor_formal_name, address: {street: [address1, address2], city: city, state: state, zip: zip}}
+  - {role: other, title: OWNER, with_type: false, parts: {first: first_name, last: last_name}}
+pii_fields: [vendor_formal_name, vendor_dba, first_name, last_name, telephone, address1, address2, mailingaddress1, mailingaddress2, business_description, name_of_client_job_exp_1, name_of_client_job_exp_2, name_of_client_job_exp_3, website, latitude, longitude]

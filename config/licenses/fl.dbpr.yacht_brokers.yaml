@@ -1,0 +1,26 @@
+# Florida Department of Business and Professional Regulation, Division of Florida
+# Condominiums, Timeshares and Mobile Homes, "Yacht and Ship Broker/Salesperson Licensee's"
+# extract (ysmailing.csv, with a header row): yacht and ship brokers and salespersons with
+# the licensee ('LAST, FIRST'), business name, mailing address, expiry, status and rank.
+# TODO(Brandon): no issue date is published, so licenses are dated from the retrieval day.
+source_id: fl.dbpr.yacht_brokers
+state: FL
+jurisdiction: "12"
+fetch: csv
+urls:
+  - https://www2.myfloridalicense.com/sto/file_download/extracts/ysmailing.csv
+encoding: latin-1
+key: License Number
+id_prefix: "FL-YACHT:"
+terms_url: https://www2.myfloridalicense.com/public-records-read-medisclaimer/
+terms_summary: "Public records under Chapter 119, F.S., provided by DBPR as free downloads; the Read Me/Disclaimer sets no use restriction (data refreshed weekly; no warranty, no technical support)."
+checked_on: 2026-11-25
+license:
+  name: [Business Name, Licensee Name]
+  type: Rank Description
+  status: License Status
+  mailing: {street: [Mailing Street, Mailing Address Line2, Mailing Address Line3], city: Mailing City, state: Mailing State, zip: Mailing Zip}
+holders:
+  - {role: other, title: LICENSEE, name: Licensee Name, last_first: true, address: {street: [Mailing Street, Mailing Address Line2, Mailing Address Line3], city: Mailing City, state: Mailing State, zip: Mailing Zip}}
+  - {role: other, title: BUSINESS, with_type: false, name: Business Name}
+pii_fields: [Licensee Name, Business Name, Mailing Street, Mailing Address Line2, Mailing Address Line3]

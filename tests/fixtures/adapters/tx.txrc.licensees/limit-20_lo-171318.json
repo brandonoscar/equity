@@ -1,0 +1,357 @@
+{
+ "portal": "https://data.texas.gov",
+ "rows": [
+  {
+   "badge_desc": "OWNER",
+   "end_date": "2027-07-31T00:00:00.000",
+   "first_name": "TESTOWNER 51E42F",
+   "last_name": "TESTOWNER EF8DA9",
+   "last_renewal_date": "2022-08-04T00:00:00.000",
+   "license_no": "171318",
+   "middle_name": "TESTOWNER 37738A",
+   "nick_name": "TESTOWNER D73B93",
+   "status_code": "ACTV",
+   "zip": "73052",
+   "zip_geo_reference": {
+    "coordinates": [
+     -97.60204,
+     34.83687
+    ],
+    "type": "Point"
+   }
+  },
+  {
+   "badge_desc": "TRAINER",
+   "end_date": "2028-08-31T00:00:00.000",
+   "first_name": "TESTOWNER 3EBDCB",
+   "last_name": "TESTOWNER 8CDF53",
+   "last_renewal_date": "2024-08-14T00:00:00.000",
+   "license_no": "171320",
+   "status_code": "ACTV",
+   "zip": "75147",
+   "zip_geo_reference": {
+    "coordinates": [
+     -96.10102,
+     32.36544
+    ],
+    "type": "Point"
+   }
+  },
+  {
+   "badge_desc": "OWNER",
+   "end_date": "2026-06-30T00:00:00.000",
+   "first_name": "TESTOWNER 959913",
+   "last_name": "TESTOWNER 1E8083",
+   "last_renewal_date": "2025-06-19T00:00:00.000",
+   "license_no": "171322",
+   "middle_name": "TESTOWNER D76191",
+   "nick_name": "TESTOWNER 0FA6A6",
+   "status_code": "EXPD",
+   "zip": "75006",
+   "zip_geo_reference": {
+    "coordinates": [
+     -96.89023,
+     32.97555
+    ],
+    "type": "Point"
+   }
+  },
+  {
+   "badge_desc": "OWNER-TRAINER",
+   "end_date": "2029-11-30T00:00:00.000",
+   "first_name": "TESTOWNER 5BDBA5",
+   "last_name": "TESTOWNER 4F1096",
+   "last_renewal_date": "2023-11-11T00:00:00.000",
+   "license_no": "171325",
+   "middle_name": "TESTOWNER 8A97DD",
+   "nick_name": "TESTOWNER 7C4067",
+   "status_code": "ACTV",
+   "zip": "76266",
+   "zip_geo_reference": {
+    "coordinates": [
+     -97.17174,
+     33.36229
+    ],
+    "type": "Point"
+   }
+  },
+  {
+   "badge_desc": "OWNER",
+   "end_date": "2029-09-30T00:00:00.000",
+   "first_name": "TESTOWNER 05F9F7",
+   "last_name": "TESTOWNER 96020F",
+   "last_renewal_date": "2026-09-08T00:00:00.000",
+   "license_no": "171337",
+   "nick_name": "TESTOWNER 909B27",
+   "status_code": "ACTV",
+   "zip": "75165",
+   "zip_geo_reference": {
+    "coordinates": [
+     -96.84862,
+     32.38621
+    ],
+    "type": "Point"
+   }
+  },
+  {
+   "badge_desc": "GROOM/HOTWALKER",
+   "end_date": "2027-07-31T00:00:00.000",
+   "first_name": "TESTOWNER 5F2A35",
+   "last_name": "TESTOWNER C77E58",
+   "license_no": "171340",
+   "status_code": "ACTV",
+   "zip": "79714",
+   "zip_geo_reference": {
+    "coordinates": [
+     -102.54667,
+     32.31898
+    ],
+    "type": "Point"
+   }
+  },
+  {
+   "badge_desc": "GROOM/HOTWALKER",
+   "end_date": "2026-07-31T00:00:00.000",
+   "first_name": "TESTOWNER 6CDB0A",
+   "last_name": "TESTOWNER 5A4276",
+   "last_renewal_date": "2024-07-11T00:00:00.000",
+   "license_no": "171346",
+   "status_code": "EXPD",
+   "zip": "78211",
+   "zip_geo_reference": {
+    "coordinates": [
+     -98.55727,
+     29.36285
+    ],
+    "type": "Point"
+   }
+  },
+  {
+   "badge_desc": "OWNER",
+   "end_date": "2028-09-30T00:00:00.000",
+   "first_name": "TESTOWNER AE5FD7",
+   "last_name": "TESTOWNER 51149C",
+   "last_renewal_date": "2022-08-14T00:00:00.000",
+   "license_no": "171347",
+   "middle_name": "TESTOWNER CCE146",
+   "status_code": "ACTV",
+   "zip": "78239",
+   "zip_geo_reference": {
+    "coordinates": [
+     -98.36438,
+     29.51769
+    ],
+    "type": "Point"
+   }
+  },
+  {
+   "badge_desc": "GROOM/HOTWALKER",
+   "end_date": "2027-04-30T00:00:00.000",
+   "first_name": "TESTOWNER 49BB17",
+   "last_name": "TESTOWNER 2892EA",
+   "last_renewal_date": "2023-05-04T00:00:00.000",
+   "license_no": "171350",
+   "middle_name": "TESTOWNER F863B7",
+   "status_code": "ACTV",
+   "zip": "78230",
+   "zip_geo_reference": {
+    "coordinates": [
+     -98.56096,
+     29.54215
+    ],
+    "type": "Point"
+   }
+  },
+  {
+   "badge_desc": "OWNER",
+   "end_date": "2026-08-31T00:00:00.000",
+   "first_name": "TESTOWNER 6918D4",
+   "last_name": "TESTOWNER 5A4276",
+   "last_renewal_date": "2022-06-10T00:00:00.000",
+   "license_no": "171378",
+   "status_code": "EXPD",
+   "zip": "79766",
+   "zip_geo_reference": {
+    "coordinates": [
+     -102.36573,
+     31.75744
+    ],
+    "type": "Point"
+   }
+  },
+  {
+   "badge_desc": "GROOM/HOTWALKER",
+   "end_date": "2026-06-30T00:00:00.000",
+   "first_name": "TESTOWNER C5716C",
+   "last_name": "TESTOWNER 0964E7",
+   "license_no": "171379",
+   "status_code": "EXPD",
+   "zip": "78574",
+   "zip_geo_reference": {
+    "coordinates": [
+     -98.34968,
+     26.33107
+    ],
+    "type": "Point"
+   }
+  },
+  {
+   "badge_desc": "OWNER",
+   "end_date": "2027-06-30T00:00:00.000",
+   "first_name": "TESTOWNER 6918D4",
+   "last_name": "TESTOWNER B8D9D1",
+   "last_renewal_date": "2026-06-05T00:00:00.000",
+   "license_no": "171384",
+   "middle_name": "TESTOWNER D002C6",
+   "status_code": "ACTV",
+   "zip": "75241",
+   "zip_geo_reference": {
+    "coordinates": [
+     -96.80023,
+     32.67496
+    ],
+    "type": "Point"
+   }
+  },
+  {
+   "badge_desc": "OWNER",
+   "end_date": "2026-09-30T00:00:00.000",
+   "first_name": "TESTOWNER 201C90",
+   "last_name": "TESTOWNER 156E8F",
+   "license_no": "171388",
+   "nick_name": "TESTOWNER 26D424",
+   "status_code": "EXPD",
+   "zip": "78626",
+   "zip_geo_reference": {
+    "coordinates": [
+     -97.67703,
+     30.63816
+    ],
+    "type": "Point"
+   }
+  },
+  {
+   "badge_desc": "OWNER",
+   "end_date": "2027-08-31T00:00:00.000",
+   "first_name": "TESTOWNER 797F7D",
+   "last_name": "TESTOWNER B6E3B8",
+   "last_renewal_date": "2021-08-04T00:00:00.000",
+   "license_no": "171393",
+   "middle_name": "TESTOWNER DEB395",
+   "status_code": "ACTV",
+   "zip": "79938",
+   "zip_geo_reference": {
+    "coordinates": [
+     -106.22931,
+     31.77089
+    ],
+    "type": "Point"
+   }
+  },
+  {
+   "badge_desc": "OWNER",
+   "end_date": "2029-05-31T00:00:00.000",
+   "first_name": "TESTOWNER 198CD7",
+   "last_name": "TESTOWNER 5CBEAA",
+   "last_renewal_date": "2026-05-01T00:00:00.000",
+   "license_no": "171396",
+   "status_code": "ACTV",
+   "zip": "76078",
+   "zip_geo_reference": {
+    "coordinates": [
+     -97.47266,
+     33.05513
+    ],
+    "type": "Point"
+   }
+  },
+  {
+   "badge_desc": "GROOM/EXERCISE RIDER",
+   "end_date": "2027-05-31T00:00:00.000",
+   "first_name": "TESTOWNER 529571",
+   "last_name": "TESTOWNER BDC473",
+   "last_renewal_date": "2026-05-07T00:00:00.000",
+   "license_no": "171405",
+   "status_code": "ACTV",
+   "zip": "75050",
+   "zip_geo_reference": {
+    "coordinates": [
+     -97.00685,
+     32.74773
+    ],
+    "type": "Point"
+   }
+  },
+  {
+   "badge_desc": "STABLE FOREMAN",
+   "end_date": "2027-02-28T00:00:00.000",
+   "first_name": "TESTOWNER 948BDA",
+   "last_name": "TESTOWNER ED98E2",
+   "last_renewal_date": "2025-02-03T00:00:00.000",
+   "license_no": "171406",
+   "status_code": "ACTV",
+   "zip": "77066",
+   "zip_geo_reference": {
+    "coordinates": [
+     -95.4985,
+     29.95664
+    ],
+    "type": "Point"
+   }
+  },
+  {
+   "badge_desc": "OWNER-TRAINER",
+   "end_date": "2027-07-31T00:00:00.000",
+   "first_name": "TESTOWNER 032137",
+   "last_name": "TESTOWNER 4F1AEB",
+   "last_renewal_date": "2026-09-24T00:00:00.000",
+   "license_no": "171420",
+   "middle_name": "TESTOWNER C77B85",
+   "status_code": "ACTV",
+   "zip": "79029",
+   "zip_geo_reference": {
+    "coordinates": [
+     -101.97341,
+     35.84535
+    ],
+    "type": "Point"
+   }
+  },
+  {
+   "badge_desc": "OWNER-TRAINER",
+   "end_date": "2027-02-28T00:00:00.000",
+   "first_name": "TESTOWNER 7CA71A",
+   "last_name": "TESTOWNER E21BE1",
+   "last_renewal_date": "2025-01-29T00:00:00.000",
+   "license_no": "171425",
+   "middle_name": "TESTOWNER F257A9",
+   "status_code": "ACTV",
+   "zip": "78624",
+   "zip_geo_reference": {
+    "coordinates": [
+     -98.87211,
+     30.27499
+    ],
+    "type": "Point"
+   }
+  },
+  {
+   "badge_desc": "OWNER",
+   "end_date": "2028-09-30T00:00:00.000",
+   "first_name": "TESTOWNER 590433",
+   "last_name": "TESTOWNER D1A487",
+   "last_renewal_date": "2025-09-05T00:00:00.000",
+   "license_no": "171432",
+   "status_code": "ACTV",
+   "zip": "80621",
+   "zip_geo_reference": {
+    "coordinates": [
+     -104.81291,
+     40.08016
+    ],
+    "type": "Point"
+   }
+  }
+ ],
+ "where": "license_no >= '171318'"
+}

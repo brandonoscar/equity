@@ -1,0 +1,26 @@
+# City of Norfolk Commissioner of the Revenue, "Business Licenses" (data.norfolk.gov
+# dpi6-sct5): about 10.5K current business licenses with trade name, primary owner (a
+# company, or a person printed 'LAST, FIRST'), one-line location and mailing addresses and
+# the date the business opened. No license number is published, so a record is (trade
+# name, owner, location).
+source_id: va.norfolk.business_licenses
+state: VA
+jurisdiction: "51710"
+portal: https://data.norfolk.gov
+dataset: dpi6-sct5
+key: trading_as_name
+record_key: [trading_as_name, primary_owner, location_address]
+id_prefix: "NORFOLK-BL:"
+terms_url: https://data.norfolk.gov/Government/Business-Licenses/dpi6-sct5
+terms_summary: "Norfolk open data portal; no license text on the dataset (public information published by the Commissioner of the Revenue)."
+checked_on: 2026-11-25
+license:
+  name: [trading_as_name, primary_owner]
+  type: naics
+  status_value: Active  # current licenses only
+  issued_on: business_opened_date
+  address: {line: location_address}
+  mailing: {line: mailing_address}
+holders:
+  - {role: other, title: PRIMARY OWNER, name: primary_owner, last_first: true, address: {line: mailing_address}}
+pii_fields: [trading_as_name, primary_owner, location_address, mailing_address, latitude, longitude, geocoded_point]

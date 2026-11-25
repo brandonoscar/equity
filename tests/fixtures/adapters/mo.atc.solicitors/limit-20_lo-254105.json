@@ -1,0 +1,146 @@
+{
+ "portal": "https://data.mo.gov",
+ "rows": [
+  {
+   "business_name": "TESTOWNER 587939 CO",
+   "city": "BREESE",
+   "license_number": "254105",
+   "license_type": "22% Solicitor - Out-State",
+   "zip_code": "622301805"
+  },
+  {
+   "business_name": "TESTOWNER ACA576 LP",
+   "city": "OAKLAND",
+   "license_number": "254444",
+   "license_type": "22% Solicitor - Out-State",
+   "zip_code": "94612"
+  },
+  {
+   "business_name": "TESTOWNER 8A26DD CO",
+   "city": "CERES",
+   "license_number": "254445",
+   "license_type": "Liquor Solicitor - Out-State",
+   "zip_code": "953076652"
+  },
+  {
+   "business_name": "TESTOWNER 66C895 INC",
+   "city": "PASO ROBLES",
+   "license_number": "254448",
+   "license_type": "22% Solicitor - Out-State",
+   "zip_code": "934463993"
+  },
+  {
+   "business_name": "TESTOWNER 044F08 INC",
+   "city": "PASO ROBLES",
+   "license_number": "254629",
+   "license_type": "22% Solicitor - Out-State",
+   "zip_code": "934465989"
+  },
+  {
+   "business_name": "TESTOWNER E8A804",
+   "city": "O FALLON",
+   "license_number": "255157",
+   "license_type": "22% Solicitor - Out-State",
+   "zip_code": "622692046"
+  },
+  {
+   "business_name": "TESTOWNER C92505 LLC",
+   "city": "CHICAGO",
+   "license_number": "255845",
+   "license_type": "22% Solicitor - Out-State",
+   "zip_code": "606473453"
+  },
+  {
+   "business_name": "TESTOWNER 3DA7F4 INC",
+   "city": "ZOLFO SPRINGS",
+   "license_number": "255987",
+   "license_type": "Liquor Solicitor - Out-State",
+   "zip_code": "338904776"
+  },
+  {
+   "business_name": "TESTOWNER 7472D2 CORP",
+   "city": "SAINT LOUIS",
+   "license_number": "256278",
+   "license_type": "22% Manufacturer Solicitor",
+   "zip_code": "631471840"
+  },
+  {
+   "business_name": "TESTOWNER 810CD0 LLC",
+   "city": "MOUNTAIN VIEW",
+   "license_number": "256334",
+   "license_type": "22% Manufacturer Solicitor",
+   "zip_code": "655488092"
+  },
+  {
+   "business_name": "TESTOWNER 434161 LLC",
+   "city": "SANTA ROSA",
+   "license_number": "256390",
+   "license_type": "22% Solicitor - Out-State",
+   "zip_code": "954031917"
+  },
+  {
+   "business_name": "TESTOWNER C59F03 LLC",
+   "city": "UNION",
+   "license_number": "256650",
+   "license_type": "Liquor Manufacturer Solicitor",
+   "zip_code": "63084"
+  },
+  {
+   "business_name": "TESTOWNER D1BA15 LLC",
+   "city": "LODI",
+   "license_number": "256775",
+   "license_type": "22% Solicitor - Out-State",
+   "zip_code": "95242"
+  },
+  {
+   "business_name": "TESTOWNER A23F4D LLC",
+   "city": "SPRINGFIELD",
+   "license_number": "256835",
+   "license_type": "Liquor Solicitor - In-State",
+   "zip_code": "65802-4579"
+  },
+  {
+   "business_name": "TESTOWNER 74315D LLC",
+   "city": "PLACERVILLE",
+   "license_number": "256956",
+   "license_type": "22% Solicitor - Out-State",
+   "zip_code": "956678881"
+  },
+  {
+   "business_name": "TESTOWNER C21230 INC",
+   "city": "SONOMA",
+   "license_number": "257110",
+   "license_type": "22% Solicitor - Out-State",
+   "zip_code": "954769292"
+  },
+  {
+   "business_name": "TESTOWNER F9D967 LLC",
+   "city": "SWISHER",
+   "license_number": "257111",
+   "license_type": "Liquor Solicitor - Out-State",
+   "zip_code": "52338"
+  },
+  {
+   "business_name": "TESTOWNER 26C258",
+   "city": "SANTA MARIA",
+   "license_number": "257327",
+   "license_type": "22% Solicitor - Out-State",
+   "zip_code": "934555811"
+  },
+  {
+   "business_name": "TESTOWNER 742676 LLC",
+   "city": "SEBASTOPOL",
+   "license_number": "257788",
+   "license_type": "22% Solicitor - Out-State",
+   "zip_code": "954723495"
+  },
+  {
+   "business_name": "TESTOWNER 06B76E LLC",
+   "city": "BOCA RATON",
+   "license_number": "257789",
+   "license_type": "22% Solicitor - Out-State",
+   "zip_code": "334318510"
+  }
+ ],
+ "where": "license_number >= '254105'"
+}

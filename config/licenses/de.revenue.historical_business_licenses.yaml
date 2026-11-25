@@ -1,0 +1,25 @@
+# Delaware Department of Finance, Division of Revenue, "Delaware Historical Business
+# Licenses" (data.delaware.gov khpy-2pnr, Public Domain): about 1M year-end snapshots since
+# 2007 of about 223K business licenses, including lapsed ones the current list
+# (de.revenue.business_licenses) no longer shows. A license's snapshots make one record; the
+# latest snapshot wins.
+source_id: de.revenue.historical_business_licenses
+state: DE
+jurisdiction: "10"
+portal: https://data.delaware.gov
+dataset: khpy-2pnr
+key: license_number
+key_is_number: true
+id_prefix: "DE-BLH:"
+terms_url: https://data.delaware.gov/Licenses-and-Certifications/Delaware-Historical-Business-Licenses/khpy-2pnr
+terms_summary: "Public Domain (dataset license field)."
+checked_on: 2026-11-25
+license:
+  name: [trade_name, business_name]
+  type: category
+  issued_on: current_license_valid_from
+  latest_by: snapshot_date
+  address: {street: [address_1, address_2], city: city, state: state, zip: zip}
+holders:
+  - {role: other, title: LICENSEE, name: business_name, address: {street: [address_1, address_2], city: city, state: state, zip: zip}}
+pii_fields: [business_name, trade_name, address_1, address_2, geocoded_location]

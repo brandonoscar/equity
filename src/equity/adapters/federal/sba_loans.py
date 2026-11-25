@@ -32,7 +32,7 @@ are not kept.
 Partitions: one per file and byte window. The files are large (PPP: 13 files, ~3.7 GB and
 ~11M rows; 7(a)/504: 6 files, ~1 GB), so they are never downloaded whole: each partition is a
 window of WINDOW bytes read with an HTTP Range request, holding the CSV lines that start
-inside it (equity.adapters.person_lists.window_lines), the header read from the first bytes.
+inside it (equity.adapters.http.window_lines), the header read from the first bytes.
 Windows are found with 1-byte probes. A line the csv module splits into the wrong number of
 fields (a quoted newline cut by a window edge) is dropped and counted in `bad_lines`.
 
@@ -56,7 +56,7 @@ from typing import Any, ClassVar
 from equity.adapters.base import Adapter, Fetched, FetchRequest, HealthReport, NormalizedRow
 from equity.adapters.federal import sba_chargeoffs, sba_ppp
 from equity.adapters.federal.sba_chargeoffs import _day, _text
-from equity.adapters.person_lists import OVERLAP, RangeClient, window_lines
+from equity.adapters.http import OVERLAP, RangeClient, window_lines
 from equity.adapters.rows import RecordContext, canonical_json
 from equity.adapters.state_parcels import normalized_address
 from equity.geo import county_by_name

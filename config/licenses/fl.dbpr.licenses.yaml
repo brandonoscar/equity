@@ -1,0 +1,57 @@
+# Florida Department of Business and Professional Regulation, licensee extract files
+# (www2.myfloridalicense.com/sto/file_download/extracts/, refreshed weekly): current, active
+# and inactive licensees of the boards that share DBPR's standard quote/comma layout
+# (headerless; layout on each board's Public Records page): construction, electrical,
+# cosmetology, barbers, architecture and interior design, landscape architecture,
+# veterinary medicine, home inspectors, mold services, building code administrators,
+# community association managers, auctioneers, athlete agents, asbestos, geologists, harbor
+# pilots, employee leasing companies, real estate appraisers and farm labor contractors.
+# About 900K licensees in all by file size (148 MB; construction 47 MB, cosmetology 69 MB).
+# Each file is read in 16 MB byte windows, one partition each. Names are printed 'LAST,
+# FIRST MIDDLE'; the DBA is the qualified business when there is one. Null-and-void and delinquent records are not in the
+# files. The appraisal file has no alternate license number (20 fields); the 22nd field of
+# the others is not in the published layout (it holds e.g. 'CE Exempt').
+source_id: fl.dbpr.licenses
+state: FL
+jurisdiction: "12"
+fetch: csv
+urls:
+  - https://www2.myfloridalicense.com/sto/file_download/extracts//CONSTRUCTIONLICENSE_1.csv
+  - https://www2.myfloridalicense.com/sto/file_download/extracts/lic08el.csv
+  - https://www2.myfloridalicense.com/sto/file_download/extracts/COSMETOLOGYLICENSE_1.csv
+  - https://www2.myfloridalicense.com/sto/file_download/extracts/lic03bb.csv
+  - https://www2.myfloridalicense.com/sto/file_download/extracts/lic02ai.csv
+  - https://www2.myfloridalicense.com/sto/file_download/extracts/lic13la.csv
+  - https://www2.myfloridalicense.com/sto/file_download/extracts/lic26vt.csv
+  - https://www2.myfloridalicense.com/sto/file_download/extracts/lic04home.csv
+  - https://www2.myfloridalicense.com/sto/file_download/extracts/lic07mold.csv
+  - https://www2.myfloridalicense.com/sto/file_download/extracts//BuildingCodeLicensee.csv
+  - https://www2.myfloridalicense.com/sto/file_download/extracts/lic38cam.csv
+  - https://www2.myfloridalicense.com/sto/file_download/extracts/lic48auc.csv
+  - https://www2.myfloridalicense.com/sto/file_download/extracts/lic60ath.csv
+  - https://www2.myfloridalicense.com/sto/file_download/extracts/lic59asb.csv
+  - https://www2.myfloridalicense.com/sto/file_download/extracts/lic53gl.csv
+  - https://www2.myfloridalicense.com/sto/file_download/extracts/lic23hp.csv
+  - https://www2.myfloridalicense.com/sto/file_download/extracts/lic63elc.csv
+  - https://www2.myfloridalicense.com/sto/file_download/extracts/lic64appr.csv
+  - https://www2.myfloridalicense.com/sto/file_download/extracts/FarmLabor.csv
+columns: [board_number, occupation_code, licensee_name, dba_name, class_code, address_1, address_2, address_3, city, state, zip, county_code, license_number, primary_status, secondary_status, original_licensure_date, effective_date, expiration_date, blank, renewal_period, alternate_license_number, field_22]
+encoding: latin-1
+chunk_bytes: 16000000  # about 100K rows per partition
+key: license_number
+record_key: [board_number, occupation_code, license_number]
+id_prefix: "FL-DBPR:"
+terms_url: https://www2.myfloridalicense.com/public-records-read-medisclaimer/
+terms_summary: "Public records under Chapter 119, F.S., provided by DBPR as free downloads; the Read Me/Disclaimer sets no use restriction (data refreshed weekly; no warranty, no technical support)."
+checked_on: 2026-11-25
+license:
+  name: [dba_name, licensee_name]
+  type: occupation_code
+  status: primary_status
+  issued_on: original_licensure_date
+  latest_by: effective_date
+  address: {street: [address_1, address_2, address_3], city: city, state: state, zip: zip}
+holders:
+  - {role: other, title: LICENSEE, name: licensee_name, last_first: true, address: {street: [address_1, address_2, address_3], city: city, state: state, zip: zip}}
+  - {role: other, title: BUSINESS, with_type: false, name: dba_name}
+pii_fields: [licensee_name, dba_name, address_1, address_2, address_3]

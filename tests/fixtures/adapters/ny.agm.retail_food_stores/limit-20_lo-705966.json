@@ -1,0 +1,425 @@
+{
+ "portal": "https://data.ny.gov",
+ "rows": [
+  {
+   "city": "ALEXANDRIA BAY",
+   "county": "JEFFERSON",
+   "dba_name": "TESTOWNER 0B0C6C",
+   "entity_name": "TESTOWNER 9A4C92 INC",
+   "estab_type": "A,C",
+   "georeference": {
+    "coordinates": [
+     -75.96795,
+     44.29861
+    ],
+    "type": "Point"
+   },
+   "license_number": "705966",
+   "operation_type": "Store",
+   "square_footage": "30000",
+   "state": "NY",
+   "street_name": "TESTOWNER E39BD8",
+   "street_number": "43449",
+   "zip_code": "13607"
+  },
+  {
+   "city": "NORTH CREEK",
+   "county": "WARREN",
+   "dba_name": "TESTOWNER FD52DB",
+   "entity_name": "TESTOWNER 924FD3 LLC",
+   "estab_type": "A,C",
+   "georeference": {
+    "coordinates": [
+     -73.97554,
+     43.68326
+    ],
+    "type": "Point"
+   },
+   "license_number": "705969",
+   "operation_type": "Store",
+   "square_footage": "900",
+   "state": "NY",
+   "street_name": "TESTOWNER 43ED4B",
+   "street_number": "3235",
+   "zip_code": "12853"
+  },
+  {
+   "city": "BROOKLYN",
+   "county": "KINGS",
+   "dba_name": "TESTOWNER 0188FA",
+   "entity_name": "TESTOWNER 3855A1 INC",
+   "estab_type": "A",
+   "georeference": {
+    "coordinates": [
+     -73.96659,
+     40.58056
+    ],
+    "type": "Point"
+   },
+   "license_number": "705970",
+   "operation_type": "Store",
+   "square_footage": "2400",
+   "state": "NY",
+   "street_name": "TESTOWNER BEFD93",
+   "street_number": "371",
+   "zip_code": "11235"
+  },
+  {
+   "city": "ELMIRA",
+   "county": "CHEMUNG",
+   "dba_name": "TESTOWNER 1B023A",
+   "entity_name": "TESTOWNER 5DF16F LLC",
+   "estab_type": "A",
+   "georeference": {
+    "coordinates": [
+     -76.80419,
+     42.08486
+    ],
+    "type": "Point"
+   },
+   "license_number": "705971",
+   "operation_type": "Store",
+   "square_footage": "2500",
+   "state": "NY",
+   "street_name": "TESTOWNER EFCFFA",
+   "street_number": "100",
+   "zip_code": "14904"
+  },
+  {
+   "city": "BROOKLYN",
+   "county": "KINGS",
+   "dba_name": "TESTOWNER C0840D",
+   "entity_name": "TESTOWNER 01FC89 INC",
+   "estab_type": "A,C",
+   "georeference": {
+    "coordinates": [
+     -74.01198,
+     40.61591
+    ],
+    "type": "Point"
+   },
+   "license_number": "705983",
+   "operation_type": "Store",
+   "square_footage": "1200",
+   "state": "NY",
+   "street_name": "TESTOWNER 7717DE",
+   "street_number": "8220",
+   "zip_code": "11228"
+  },
+  {
+   "city": "BRONX",
+   "county": "BRONX",
+   "dba_name": "TESTOWNER 0A2E8A",
+   "entity_name": "TESTOWNER 0202F2 CORP",
+   "estab_type": "A,C",
+   "georeference": {
+    "coordinates": [
+     -73.91453,
+     40.84426
+    ],
+    "type": "Point"
+   },
+   "license_number": "705986",
+   "operation_type": "Store",
+   "square_footage": "2000",
+   "state": "NY",
+   "street_name": "TESTOWNER 2E3BC4",
+   "street_number": "5",
+   "zip_code": "10452"
+  },
+  {
+   "city": "NEW YORK",
+   "county": "NEW YORK",
+   "dba_name": "TESTOWNER CC2849",
+   "entity_name": "TESTOWNER 7E53CD",
+   "estab_type": "A,C",
+   "georeference": {
+    "coordinates": [
+     -73.99753,
+     40.76049
+    ],
+    "type": "Point"
+   },
+   "license_number": "705988",
+   "operation_type": "Store",
+   "square_footage": "1500",
+   "state": "NY",
+   "street_name": "TESTOWNER 1BB9E1",
+   "street_number": "555",
+   "zip_code": "10036"
+  },
+  {
+   "city": "HAMMONDSPORT",
+   "county": "STEUBEN",
+   "dba_name": "TESTOWNER 8DC183",
+   "entity_name": "TESTOWNER 9315CB CORP",
+   "estab_type": "A,C",
+   "georeference": {
+    "coordinates": [
+     -77.22385,
+     42.40815
+    ],
+    "type": "Point"
+   },
+   "license_number": "705993",
+   "operation_type": "Store",
+   "state": "NY",
+   "street_name": "TESTOWNER 98E1C5",
+   "street_number": "46",
+   "zip_code": "14840"
+  },
+  {
+   "city": "BROOKLYN",
+   "county": "KINGS",
+   "dba_name": "TESTOWNER 3703A3",
+   "entity_name": "TESTOWNER 4D6EB4 INC",
+   "estab_type": "A,C",
+   "georeference": {
+    "coordinates": [
+     -74.02485,
+     40.62409
+    ],
+    "type": "Point"
+   },
+   "license_number": "705994",
+   "operation_type": "Store",
+   "square_footage": "4000",
+   "state": "NY",
+   "street_name": "TESTOWNER D7EBE6",
+   "street_number": "8210",
+   "zip_code": "11209"
+  },
+  {
+   "city": "BROOKLYN",
+   "county": "KINGS",
+   "dba_name": "TESTOWNER 33DE9F",
+   "entity_name": "TESTOWNER 855C66 INC",
+   "estab_type": "A",
+   "georeference": {
+    "coordinates": [
+     -73.95219,
+     40.59607
+    ],
+    "type": "Point"
+   },
+   "license_number": "706019",
+   "operation_type": "Store",
+   "square_footage": "1600",
+   "state": "NY",
+   "street_name": "TESTOWNER 0AD49D",
+   "street_number": "1826",
+   "zip_code": "11229"
+  },
+  {
+   "city": "PEARL RIVER",
+   "county": "ROCKLAND",
+   "dba_name": "TESTOWNER 2B251C",
+   "entity_name": "TESTOWNER 3AF6A3 LLC",
+   "estab_type": "A,C",
+   "georeference": {
+    "coordinates": [
+     -74.01211,
+     41.06069
+    ],
+    "type": "Point"
+   },
+   "license_number": "706028",
+   "operation_type": "Store",
+   "square_footage": "700",
+   "state": "NY",
+   "street_name": "TESTOWNER C1FBD9",
+   "street_number": "26",
+   "zip_code": "10965"
+  },
+  {
+   "city": "BUFFALO",
+   "county": "ERIE",
+   "dba_name": "TESTOWNER 5BE798",
+   "entity_name": "TESTOWNER 5DF16F LLC",
+   "estab_type": "A",
+   "georeference": {
+    "coordinates": [
+     -78.8136,
+     42.96272
+    ],
+    "type": "Point"
+   },
+   "license_number": "706032",
+   "operation_type": "Store",
+   "square_footage": "9056",
+   "state": "NY",
+   "street_name": "TESTOWNER 2BBC27",
+   "street_number": "3947",
+   "zip_code": "14226"
+  },
+  {
+   "city": "TROY",
+   "county": "RENSSELAER",
+   "dba_name": "TESTOWNER 11BC50",
+   "entity_name": "TESTOWNER CC885C",
+   "estab_type": "A,C",
+   "georeference": {
+    "coordinates": [
+     -73.69083,
+     42.72299
+    ],
+    "type": "Point"
+   },
+   "license_number": "706047",
+   "operation_type": "Store",
+   "square_footage": "1500",
+   "state": "NY",
+   "street_name": "TESTOWNER E29440",
+   "street_number": "273",
+   "zip_code": "12180"
+  },
+  {
+   "city": "STATEN ISLAND",
+   "county": "RICHMOND",
+   "dba_name": "TESTOWNER DF3845",
+   "entity_name": "TESTOWNER 1A0937 INC",
+   "estab_type": "A,C",
+   "georeference": {
+    "coordinates": [
+     -74.10097,
+     40.631
+    ],
+    "type": "Point"
+   },
+   "license_number": "706056",
+   "operation_type": "Store",
+   "square_footage": "2500",
+   "state": "NY",
+   "street_name": "TESTOWNER 7C3E43",
+   "street_number": "350",
+   "zip_code": "10301"
+  },
+  {
+   "city": "BROOKLYN",
+   "county": "KINGS",
+   "dba_name": "TESTOWNER CADC01",
+   "entity_name": "TESTOWNER D60415 INC",
+   "estab_type": "A,C",
+   "georeference": {
+    "coordinates": [
+     -73.91089,
+     40.69458
+    ],
+    "type": "Point"
+   },
+   "license_number": "706066",
+   "operation_type": "Store",
+   "square_footage": "600",
+   "state": "NY",
+   "street_name": "TESTOWNER 497BDD",
+   "street_number": "692",
+   "zip_code": "11221"
+  },
+  {
+   "city": "BROOKLYN",
+   "county": "KINGS",
+   "dba_name": "TESTOWNER 1430F1 CO",
+   "entity_name": "TESTOWNER 1626F7 INC",
+   "estab_type": "A,C,H",
+   "georeference": {
+    "coordinates": [
+     -73.93937,
+     40.71226
+    ],
+    "type": "Point"
+   },
+   "license_number": "706084",
+   "operation_type": "Store",
+   "square_footage": "2400",
+   "state": "NY",
+   "street_name": "TESTOWNER 1E802E",
+   "street_number": "861",
+   "zip_code": "11211"
+  },
+  {
+   "city": "NEW YORK",
+   "county": "NEW YORK",
+   "dba_name": "TESTOWNER 18724E",
+   "entity_name": "TESTOWNER 623FF9 INC",
+   "estab_type": "A,C",
+   "georeference": {
+    "coordinates": [
+     -73.99295,
+     40.71382
+    ],
+    "type": "Point"
+   },
+   "license_number": "706102",
+   "operation_type": "Store",
+   "square_footage": "95000",
+   "state": "NY",
+   "street_name": "TESTOWNER 61937F",
+   "street_number": "109",
+   "zip_code": "10002"
+  },
+  {
+   "city": "JACKSON HEIGHTS",
+   "county": "QUEENS",
+   "dba_name": "TESTOWNER C157BE",
+   "entity_name": "TESTOWNER 88D4F0 CORP",
+   "estab_type": "A,C",
+   "georeference": {
+    "coordinates": [
+     -73.89011,
+     40.74698
+    ],
+    "type": "Point"
+   },
+   "license_number": "706132",
+   "operation_type": "Store",
+   "square_footage": "1000",
+   "state": "NY",
+   "street_name": "TESTOWNER 7C0DC0",
+   "street_number": "75-08",
+   "zip_code": "11372"
+  },
+  {
+   "city": "FLORAL PARK",
+   "county": "NASSAU",
+   "dba_name": "TESTOWNER D79DD9",
+   "entity_name": "TESTOWNER 3CACB0 INC",
+   "estab_type": "A",
+   "georeference": {
+    "coordinates": [
+     -73.71301,
+     40.72686
+    ],
+    "type": "Point"
+   },
+   "license_number": "706133",
+   "operation_type": "Store",
+   "square_footage": "10000",
+   "state": "NY",
+   "street_name": "TESTOWNER 19E90F",
+   "street_number": "250-80",
+   "zip_code": "11001"
+  },
+  {
+   "city": "BROOKLYN",
+   "county": "KINGS",
+   "dba_name": "TESTOWNER AFE77D",
+   "entity_name": "TESTOWNER 6B13F3 INC",
+   "estab_type": "A,C",
+   "georeference": {
+    "coordinates": [
+     -73.86797,
+     40.6764
+    ],
+    "type": "Point"
+   },
+   "license_number": "706135",
+   "operation_type": "Store",
+   "square_footage": "1000",
+   "state": "NY",
+   "street_name": "TESTOWNER 873BD5",
+   "street_number": "586",
+   "zip_code": "11208"
+  }
+ ],
+ "where": "license_number >= '705966'"
+}

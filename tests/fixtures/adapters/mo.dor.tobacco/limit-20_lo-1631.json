@@ -1,0 +1,146 @@
+{
+ "portal": "https://data.mo.gov",
+ "rows": [
+  {
+   "license_number": "1631",
+   "licensee_name": "TESTOWNER 89DCFD",
+   "mailing_address": "6037 TEST ST",
+   "other_tobacco_products": "OTP",
+   "retailer": "YES"
+  },
+  {
+   "license_number": "1633",
+   "licensee_name": "TESTOWNER BB0D4F LLC",
+   "mailing_address": "4225 TEST ST",
+   "other_tobacco_products": "OTP",
+   "retailer": "YES"
+  },
+  {
+   "license_number": "1635",
+   "licensee_name": "TESTOWNER A42C6A",
+   "mailing_address": "8214 TEST ST",
+   "other_tobacco_products": "OTP",
+   "retailer": "YES"
+  },
+  {
+   "license_number": "1643",
+   "licensee_name": "TESTOWNER FA872C",
+   "mailing_address": "3842 TEST ST",
+   "other_tobacco_products": "OTP",
+   "retailer": "YES"
+  },
+  {
+   "license_number": "1645",
+   "licensee_name": "TESTOWNER B5984F",
+   "mailing_address": "7168 TEST ST",
+   "other_tobacco_products": "OTP",
+   "retailer": "NO"
+  },
+  {
+   "license_number": "1647",
+   "licensee_name": "TESTOWNER B59053",
+   "mailing_address": "5101 TEST ST",
+   "other_tobacco_products": "OTP",
+   "retailer": "NO"
+  },
+  {
+   "license_number": "1648",
+   "licensee_name": "TESTOWNER A798AB",
+   "mailing_address": "2859 TEST ST",
+   "other_tobacco_products": "OTP",
+   "retailer": "YES"
+  },
+  {
+   "license_number": "1651",
+   "licensee_name": "TESTOWNER 09CF29 LLC",
+   "mailing_address": "8566 TEST ST",
+   "other_tobacco_products": "OTP",
+   "retailer": "NO"
+  },
+  {
+   "license_number": "1652",
+   "licensee_name": "TESTOWNER AE0714",
+   "mailing_address": "7089 TEST ST",
+   "other_tobacco_products": "OTP",
+   "retailer": "NO"
+  },
+  {
+   "license_number": "1654",
+   "licensee_name": "TESTOWNER E00C2A",
+   "mailing_address": "3877 TEST ST",
+   "other_tobacco_products": "OTP",
+   "retailer": "NO"
+  },
+  {
+   "license_number": "1655",
+   "licensee_name": "TESTOWNER F3BF2D",
+   "mailing_address": "1171 TEST ST",
+   "other_tobacco_products": "OTP",
+   "retailer": "YES"
+  },
+  {
+   "license_number": "1657",
+   "licensee_name": "TESTOWNER 5B0993 LLC",
+   "mailing_address": "2680 TEST ST",
+   "other_tobacco_products": "OTP",
+   "retailer": "NO"
+  },
+  {
+   "license_number": "1662",
+   "licensee_name": "TESTOWNER AD6B25 LLC",
+   "mailing_address": "7865 TEST ST",
+   "other_tobacco_products": "OTP",
+   "retailer": "YES"
+  },
+  {
+   "license_number": "1664",
+   "licensee_name": "TESTOWNER 26C0A1",
+   "mailing_address": "8561 TEST ST",
+   "other_tobacco_products": "OTP",
+   "retailer": "YES"
+  },
+  {
+   "license_number": "1665",
+   "licensee_name": "TESTOWNER CD365E",
+   "mailing_address": "3259 TEST ST",
+   "other_tobacco_products": "OTP",
+   "retailer": "YES"
+  },
+  {
+   "license_number": "1667",
+   "licensee_name": "TESTOWNER F67FF4",
+   "mailing_address": "8253 TEST ST",
+   "other_tobacco_products": "OTP",
+   "retailer": "YES"
+  },
+  {
+   "license_number": "1668",
+   "licensee_name": "TESTOWNER B87E44",
+   "mailing_address": "5439 TEST ST",
+   "other_tobacco_products": "OTP",
+   "retailer": "YES"
+  },
+  {
+   "license_number": "1669",
+   "licensee_name": "TESTOWNER 050474 LLC",
+   "mailing_address": "4157 TEST ST",
+   "other_tobacco_products": "OTP",
+   "retailer": "YES"
+  },
+  {
+   "license_number": "1670",
+   "licensee_name": "TESTOWNER 666C2D LLC",
+   "mailing_address": "4314 TEST ST",
+   "other_tobacco_products": "OTP",
+   "retailer": "NO"
+  },
+  {
+   "license_number": "1671",
+   "licensee_name": "TESTOWNER F63BC3 LLC",
+   "mailing_address": "8533 TEST ST",
+   "other_tobacco_products": "OTP",
+   "retailer": "YES"
+  }
+ ],
+ "where": "license_number::text >= '1631'"
+}

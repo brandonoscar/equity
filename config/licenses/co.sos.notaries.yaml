@@ -1,0 +1,21 @@
+# Colorado Department of State, "Current Notaries in Colorado" (data.colorado.gov k4uv-yvnk,
+# Public Domain): about 74K current notary commissions with name parts, ZIP code and
+# commission dates.
+source_id: co.sos.notaries
+state: CO
+jurisdiction: "08"
+portal: https://data.colorado.gov
+dataset: k4uv-yvnk
+key: notaryid
+key_is_number: true
+id_prefix: "CO-NOT:"
+terms_url: https://data.colorado.gov/Government/Current-Notaries-in-Colorado/k4uv-yvnk
+terms_summary: "Public Domain (dataset license field)."
+checked_on: 2026-11-25
+license:
+  type_value: Notary Public
+  status_value: Commissioned  # current commissions only
+  issued_on: commissionstart
+holders:
+  - {role: other, title: NOTARY PUBLIC, with_type: false, parts: {first: firstname, middle: middlename, last: lastname, suffix: suffix}, address: {zip: zipcode}}
+pii_fields: [lastname, firstname, middlename]

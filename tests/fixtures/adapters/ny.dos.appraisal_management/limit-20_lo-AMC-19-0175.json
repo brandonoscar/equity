@@ -1,0 +1,443 @@
+{
+ "portal": "https://data.ny.gov",
+ "rows": [
+  {
+   "business_address_1": "745 TEST ST",
+   "business_city": "Voorhees",
+   "business_country": "US",
+   "business_name": "TESTOWNER 286361 LLC",
+   "business_postal_code": "08043-4318",
+   "business_state": "NJ",
+   "first_name_of_designated": "TESTOWNER 11ADF1",
+   "georeference": {
+    "coordinates": [
+     -74.97204,
+     39.84706
+    ],
+    "type": "Point"
+   },
+   "last_name_of_designated": "TESTOWNER 10F52C",
+   "license_effective_term": "2025-05-13T00:00:00.000",
+   "license_expiration_date": "2027-05-12T00:00:00.000",
+   "license_issue_date": "2019-05-13T00:00:00.000",
+   "license_number": "AMC-19-0175"
+  },
+  {
+   "business_address_1": "3051 TEST ST",
+   "business_city": "HAZLET",
+   "business_country": "US",
+   "business_name": "TESTOWNER 3A12B0 INC",
+   "business_postal_code": "07730",
+   "business_state": "NJ",
+   "first_name_of_designated": "TESTOWNER 683B43",
+   "georeference": {
+    "coordinates": [
+     -74.17404,
+     40.41597
+    ],
+    "type": "Point"
+   },
+   "last_name_of_designated": "TESTOWNER 6C53FC",
+   "license_effective_term": "2025-06-20T00:00:00.000",
+   "license_expiration_date": "2027-06-19T00:00:00.000",
+   "license_issue_date": "2019-06-20T00:00:00.000",
+   "license_number": "AMC-19-0184"
+  },
+  {
+   "business_address_1": "2208 TEST ST",
+   "business_address_2": "733 TEST ST",
+   "business_city": "Coraopolis",
+   "business_country": "US",
+   "business_name": "TESTOWNER 178F17 LLC",
+   "business_postal_code": "15108-1310",
+   "business_state": "PA",
+   "first_name_of_designated": "TESTOWNER 467D1C",
+   "georeference": {
+    "coordinates": [
+     -80.17549,
+     40.46025
+    ],
+    "type": "Point"
+   },
+   "last_name_of_designated": "TESTOWNER F05051",
+   "license_effective_term": "2025-06-10T00:00:00.000",
+   "license_expiration_date": "2027-06-09T00:00:00.000",
+   "license_issue_date": "2019-06-10T00:00:00.000",
+   "license_number": "AMC-19-0190",
+   "middle_initial_of_designated": "TESTOWNER 01738B"
+  },
+  {
+   "business_address_1": "296 TEST ST",
+   "business_city": "West Mifflin",
+   "business_country": "US",
+   "business_name": "TESTOWNER 514E6A INC",
+   "business_postal_code": "15122-2428",
+   "business_state": "PA",
+   "first_name_of_designated": "TESTOWNER 640888",
+   "georeference": {
+    "coordinates": [
+     -79.94002,
+     40.34651
+    ],
+    "type": "Point"
+   },
+   "last_name_of_designated": "TESTOWNER E8310C",
+   "license_effective_term": "2025-06-26T00:00:00.000",
+   "license_expiration_date": "2027-06-25T00:00:00.000",
+   "license_issue_date": "2019-06-26T00:00:00.000",
+   "license_number": "AMC-19-0191",
+   "middle_initial_of_designated": "TESTOWNER C4CD4E",
+   "suffix_of_designated": "JR"
+  },
+  {
+   "business_address_1": "6537 TEST ST",
+   "business_city": "Alpharetta",
+   "business_country": "US",
+   "business_name": "TESTOWNER 9BAA4B LLC",
+   "business_postal_code": "30009-9082",
+   "business_state": "GA",
+   "first_name_of_designated": "TESTOWNER 879699",
+   "georeference": {
+    "coordinates": [
+     -84.28772,
+     34.05851
+    ],
+    "type": "Point"
+   },
+   "last_name_of_designated": "TESTOWNER 97B08F",
+   "license_effective_term": "2025-05-28T00:00:00.000",
+   "license_expiration_date": "2027-05-27T00:00:00.000",
+   "license_issue_date": "2019-05-28T00:00:00.000",
+   "license_number": "AMC-19-0197"
+  },
+  {
+   "business_address_1": "4601 TEST ST",
+   "business_city": "Chicago",
+   "business_country": "US",
+   "business_name": "TESTOWNER 622CA6 LLC",
+   "business_postal_code": "60606-1503",
+   "business_state": "IL",
+   "first_name_of_designated": "TESTOWNER C10B79",
+   "georeference": {
+    "coordinates": [
+     -87.63846,
+     41.88401
+    ],
+    "type": "Point"
+   },
+   "last_name_of_designated": "TESTOWNER 63B7AD",
+   "license_effective_term": "2025-06-10T00:00:00.000",
+   "license_expiration_date": "2027-06-09T00:00:00.000",
+   "license_issue_date": "2019-06-10T00:00:00.000",
+   "license_number": "AMC-19-0199",
+   "middle_initial_of_designated": "TESTOWNER D537F4"
+  },
+  {
+   "business_address_1": "1545 TEST ST",
+   "business_city": "Fort Wayne",
+   "business_country": "US",
+   "business_name": "TESTOWNER 6CCDC4 LLC",
+   "business_postal_code": "46825-1912",
+   "business_state": "IN",
+   "first_name_of_designated": "TESTOWNER 18CF71",
+   "georeference": {
+    "coordinates": [
+     -85.14594,
+     41.17699
+    ],
+    "type": "Point"
+   },
+   "last_name_of_designated": "TESTOWNER 2DAB96",
+   "license_effective_term": "2025-05-28T00:00:00.000",
+   "license_expiration_date": "2027-05-27T00:00:00.000",
+   "license_issue_date": "2019-05-28T00:00:00.000",
+   "license_number": "AMC-19-0202"
+  },
+  {
+   "business_address_1": "1761 TEST ST",
+   "business_address_2": "1826 TEST ST",
+   "business_city": "Santa Ana",
+   "business_country": "US",
+   "business_name": "TESTOWNER F9969F LLC",
+   "business_postal_code": "92707",
+   "business_state": "CA",
+   "first_name_of_designated": "TESTOWNER AD9486",
+   "georeference": {
+    "coordinates": [
+     -117.86224,
+     33.70201
+    ],
+    "type": "Point"
+   },
+   "last_name_of_designated": "TESTOWNER 929074",
+   "license_effective_term": "2025-05-06T00:00:00.000",
+   "license_expiration_date": "2027-05-05T00:00:00.000",
+   "license_issue_date": "2019-05-06T00:00:00.000",
+   "license_number": "AMC-19-0207"
+  },
+  {
+   "business_address_1": "1768 TEST ST",
+   "business_city": "Atlanta",
+   "business_country": "US",
+   "business_name": "TESTOWNER BA4D6E LLC",
+   "business_postal_code": "30339-5014",
+   "business_state": "GA",
+   "first_name_of_designated": "TESTOWNER 39890C",
+   "georeference": {
+    "coordinates": [
+     -84.45062,
+     33.90097
+    ],
+    "type": "Point"
+   },
+   "last_name_of_designated": "TESTOWNER 96FD81",
+   "license_effective_term": "2025-07-15T00:00:00.000",
+   "license_expiration_date": "2027-07-14T00:00:00.000",
+   "license_issue_date": "2019-07-15T00:00:00.000",
+   "license_number": "AMC-19-0208"
+  },
+  {
+   "business_address_1": "2556 TEST ST",
+   "business_city": "Pittsburgh",
+   "business_country": "US",
+   "business_name": "TESTOWNER 99DA85 INC",
+   "business_postal_code": "15241-1633",
+   "business_state": "PA",
+   "first_name_of_designated": "TESTOWNER 7237F0",
+   "georeference": {
+    "coordinates": [
+     -80.06598,
+     40.32882
+    ],
+    "type": "Point"
+   },
+   "last_name_of_designated": "TESTOWNER 9DE6E6",
+   "license_effective_term": "2025-08-18T00:00:00.000",
+   "license_expiration_date": "2027-08-17T00:00:00.000",
+   "license_issue_date": "2019-07-15T00:00:00.000",
+   "license_number": "AMC-19-0209",
+   "middle_initial_of_designated": "TESTOWNER 946EB6"
+  },
+  {
+   "business_address_1": "4254 TEST ST",
+   "business_city": "East Dundee",
+   "business_country": "US",
+   "business_name": "TESTOWNER 5AA92A INC",
+   "business_postal_code": "60118-2440",
+   "business_state": "NY",
+   "first_name_of_designated": "TESTOWNER 6B35F4",
+   "georeference": {
+    "coordinates": [
+     -88.24331,
+     42.08784
+    ],
+    "type": "Point"
+   },
+   "last_name_of_designated": "TESTOWNER 1B5531",
+   "license_effective_term": "2025-07-15T00:00:00.000",
+   "license_expiration_date": "2027-07-14T00:00:00.000",
+   "license_issue_date": "2019-07-15T00:00:00.000",
+   "license_number": "AMC-19-0210",
+   "middle_initial_of_designated": "TESTOWNER 0600BC"
+  },
+  {
+   "business_address_1": "2195 TEST ST",
+   "business_city": "Grand Junction",
+   "business_country": "US",
+   "business_name": "TESTOWNER 40EF60 LLC",
+   "business_postal_code": "81506-6900",
+   "business_state": "CO",
+   "first_name_of_designated": "TESTOWNER 30A6FA",
+   "georeference": {
+    "coordinates": [
+     -108.53674,
+     39.12166
+    ],
+    "type": "Point"
+   },
+   "last_name_of_designated": "TESTOWNER DCAA04",
+   "license_effective_term": "2025-07-24T00:00:00.000",
+   "license_expiration_date": "2027-07-23T00:00:00.000",
+   "license_issue_date": "2019-07-24T00:00:00.000",
+   "license_number": "AMC-19-0214",
+   "middle_initial_of_designated": "TESTOWNER CF1F32"
+  },
+  {
+   "business_address_1": "4673 TEST ST",
+   "business_city": "Cardiff",
+   "business_country": "US",
+   "business_name": "TESTOWNER 3FB2DB",
+   "business_postal_code": "92007-1726",
+   "business_state": "CA",
+   "first_name_of_designated": "TESTOWNER 59B181",
+   "georeference": {
+    "coordinates": [
+     -117.28303,
+     33.02194
+    ],
+    "type": "Point"
+   },
+   "last_name_of_designated": "TESTOWNER D3141A",
+   "license_effective_term": "2025-08-05T00:00:00.000",
+   "license_expiration_date": "2027-08-04T00:00:00.000",
+   "license_issue_date": "2019-08-05T00:00:00.000",
+   "license_number": "AMC-19-0225"
+  },
+  {
+   "business_address_1": "4986 TEST ST",
+   "business_city": "Morris Plains",
+   "business_country": "US",
+   "business_name": "TESTOWNER B8C852 LLC",
+   "business_postal_code": "07950-1258",
+   "business_state": "NJ",
+   "first_name_of_designated": "TESTOWNER 5FC696",
+   "georeference": {
+    "coordinates": [
+     -74.48788,
+     40.85862
+    ],
+    "type": "Point"
+   },
+   "last_name_of_designated": "TESTOWNER 3238FE",
+   "license_effective_term": "2025-09-22T00:00:00.000",
+   "license_expiration_date": "2027-09-21T00:00:00.000",
+   "license_issue_date": "2019-08-12T00:00:00.000",
+   "license_number": "AMC-19-0228",
+   "middle_initial_of_designated": "TESTOWNER B979B4"
+  },
+  {
+   "business_address_1": "4002 TEST ST",
+   "business_city": "Irvine",
+   "business_country": "US",
+   "business_name": "TESTOWNER 9CFB37",
+   "business_postal_code": "92602-1316",
+   "business_state": "CA",
+   "first_name_of_designated": "TESTOWNER 2EABFF",
+   "georeference": {
+    "coordinates": [
+     -117.78322,
+     33.71454
+    ],
+    "type": "Point"
+   },
+   "last_name_of_designated": "TESTOWNER E35847",
+   "license_effective_term": "2025-08-12T00:00:00.000",
+   "license_expiration_date": "2027-08-11T00:00:00.000",
+   "license_issue_date": "2019-08-12T00:00:00.000",
+   "license_number": "AMC-19-0229",
+   "middle_initial_of_designated": "TESTOWNER 0600BC"
+  },
+  {
+   "business_address_1": "5290 TEST ST",
+   "business_city": "Draper",
+   "business_country": "US",
+   "business_name": "TESTOWNER B30034",
+   "business_postal_code": "84020-5320",
+   "business_state": "UT",
+   "first_name_of_designated": "TESTOWNER 928DE8",
+   "georeference": {
+    "coordinates": [
+     -111.88571,
+     40.49879
+    ],
+    "type": "Point"
+   },
+   "last_name_of_designated": "TESTOWNER 2817DA",
+   "license_effective_term": "2025-10-07T00:00:00.000",
+   "license_expiration_date": "2027-10-06T00:00:00.000",
+   "license_issue_date": "2019-08-12T00:00:00.000",
+   "license_number": "AMC-19-0232",
+   "middle_initial_of_designated": "TESTOWNER DA4611"
+  },
+  {
+   "business_address_1": "8579 TEST ST",
+   "business_address_2": "3433 TEST ST",
+   "business_city": "Toledo",
+   "business_country": "US",
+   "business_name": "TESTOWNER 112DC2 INC",
+   "business_postal_code": "43604-2787",
+   "business_state": "OH",
+   "first_name_of_designated": "TESTOWNER 16ADBC",
+   "georeference": {
+    "coordinates": [
+     -83.53603,
+     41.65194
+    ],
+    "type": "Point"
+   },
+   "last_name_of_designated": "TESTOWNER 7736D1",
+   "license_effective_term": "2025-08-12T00:00:00.000",
+   "license_expiration_date": "2027-08-11T00:00:00.000",
+   "license_issue_date": "2019-08-12T00:00:00.000",
+   "license_number": "AMC-19-0233"
+  },
+  {
+   "business_address_1": "8297 TEST ST",
+   "business_city": "Jackson",
+   "business_country": "US",
+   "business_name": "TESTOWNER 173926 INC",
+   "business_postal_code": "08527-4972",
+   "business_state": "NJ",
+   "first_name_of_designated": "TESTOWNER 2FFB52",
+   "georeference": {
+    "coordinates": [
+     -74.28479,
+     40.13411
+    ],
+    "type": "Point"
+   },
+   "last_name_of_designated": "TESTOWNER 063BC6",
+   "license_effective_term": "2025-08-06T00:00:00.000",
+   "license_expiration_date": "2027-08-05T00:00:00.000",
+   "license_issue_date": "2019-08-06T00:00:00.000",
+   "license_number": "AMC-19-0240"
+  },
+  {
+   "business_address_1": "1681 TEST ST",
+   "business_city": "White Plains",
+   "business_country": "US",
+   "business_county": "Westchester",
+   "business_name": "TESTOWNER 19AA8D INC",
+   "business_postal_code": "10603-2416",
+   "business_state": "NY",
+   "first_name_of_designated": "TESTOWNER FD871A",
+   "georeference": {
+    "coordinates": [
+     -73.76573,
+     41.05654
+    ],
+    "type": "Point"
+   },
+   "last_name_of_designated": "TESTOWNER 42EAA8",
+   "license_effective_term": "2025-08-12T00:00:00.000",
+   "license_expiration_date": "2027-08-11T00:00:00.000",
+   "license_issue_date": "2019-08-12T00:00:00.000",
+   "license_number": "AMC-19-0248",
+   "middle_initial_of_designated": "TESTOWNER 01738B"
+  },
+  {
+   "business_address_1": "1275 TEST ST",
+   "business_address_2": "1604 TEST ST",
+   "business_city": "Irvine",
+   "business_country": "US",
+   "business_name": "TESTOWNER C8F30E INC",
+   "business_postal_code": "92614-6802",
+   "business_state": "CA",
+   "first_name_of_designated": "TESTOWNER 13E389",
+   "georeference": {
+    "coordinates": [
+     -117.86123,
+     33.69449
+    ],
+    "type": "Point"
+   },
+   "last_name_of_designated": "TESTOWNER 71D979",
+   "license_effective_term": "2025-08-13T00:00:00.000",
+   "license_expiration_date": "2027-08-12T00:00:00.000",
+   "license_issue_date": "2019-08-13T00:00:00.000",
+   "license_number": "AMC-19-0249",
+   "middle_initial_of_designated": "TESTOWNER D537F4"
+  }
+ ],
+ "where": "license_number >= 'AMC-19-0175'"
+}

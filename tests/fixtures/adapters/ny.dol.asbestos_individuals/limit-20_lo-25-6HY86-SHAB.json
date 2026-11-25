@@ -1,0 +1,186 @@
+{
+ "portal": "https://data.ny.gov",
+ "rows": [
+  {
+   "certificate_number": "25-6HY86-SHAB",
+   "certificate_status": "Active",
+   "endorsement_type": "Asbestos Endorsement - Supervisor",
+   "expiration_date": "2026-12-31T00:00:00.000",
+   "first_name": "TESTOWNER 4EAE83",
+   "issued_date": "2025-06-25T00:00:00.000",
+   "last_name": "TESTOWNER FF0001"
+  },
+  {
+   "certificate_number": "25-6HYBG-SHAB",
+   "certificate_status": "Active",
+   "endorsement_type": "Asbestos Endorsement - Handler",
+   "expiration_date": "2026-12-31T00:00:00.000",
+   "first_name": "TESTOWNER BAD5CA",
+   "issued_date": "2025-06-24T00:00:00.000",
+   "last_name": "TESTOWNER C4C28A"
+  },
+  {
+   "certificate_number": "25-6HYDO-SHAB",
+   "certificate_status": "Active",
+   "endorsement_type": "Asbestos Endorsement - Air Sampling Technician",
+   "expiration_date": "2026-11-30T00:00:00.000",
+   "first_name": "TESTOWNER 4EAE83",
+   "issued_date": "2025-06-24T00:00:00.000",
+   "last_name": "TESTOWNER 0B3E6A"
+  },
+  {
+   "certificate_number": "25-6HYDO-SHAB",
+   "certificate_status": "Active",
+   "endorsement_type": "Asbestos Endorsement - Project Monitor",
+   "expiration_date": "2026-11-30T00:00:00.000",
+   "first_name": "TESTOWNER 4EAE83",
+   "issued_date": "2025-06-24T00:00:00.000",
+   "last_name": "TESTOWNER 0B3E6A"
+  },
+  {
+   "certificate_number": "25-6HYEZ-SHAB",
+   "certificate_status": "Active",
+   "endorsement_type": "Asbestos Endorsement - Supervisor",
+   "expiration_date": "2027-01-31T00:00:00.000",
+   "first_name": "TESTOWNER B834B0",
+   "issued_date": "2025-06-25T00:00:00.000",
+   "last_name": "TESTOWNER 0D3E7F"
+  },
+  {
+   "certificate_number": "25-6HYGH-SHAB",
+   "certificate_status": "Expired",
+   "endorsement_type": "Asbestos Endorsement - Handler",
+   "expiration_date": "2026-06-30T00:00:00.000",
+   "first_name": "TESTOWNER 28E5F3",
+   "issued_date": "2025-06-25T00:00:00.000",
+   "last_name": "TESTOWNER 368DB0"
+  },
+  {
+   "certificate_number": "25-6HYHH-SHAB",
+   "certificate_status": "Active",
+   "endorsement_type": "Asbestos Endorsement - Handler",
+   "expiration_date": "2026-12-31T00:00:00.000",
+   "first_name": "TESTOWNER B02775",
+   "issued_date": "2025-06-26T00:00:00.000",
+   "last_name": "TESTOWNER C4C28A"
+  },
+  {
+   "certificate_number": "25-6HYIG-SHAB",
+   "certificate_status": "Expired",
+   "endorsement_type": "Asbestos Endorsement - Supervisor",
+   "expiration_date": "2026-08-31T00:00:00.000",
+   "first_name": "TESTOWNER C51D27",
+   "issued_date": "2025-06-26T00:00:00.000",
+   "last_name": "TESTOWNER 07FC3D"
+  },
+  {
+   "certificate_number": "25-6HYIY-SHAB",
+   "certificate_status": "Active",
+   "endorsement_type": "Asbestos Endorsement - Handler",
+   "expiration_date": "2027-01-31T00:00:00.000",
+   "first_name": "TESTOWNER CEFF9F",
+   "issued_date": "2025-06-26T00:00:00.000",
+   "last_name": "TESTOWNER 6700F7"
+  },
+  {
+   "certificate_number": "25-6HYLH-SHAB",
+   "certificate_status": "Expired",
+   "endorsement_type": "Asbestos Endorsement - Project Monitor",
+   "expiration_date": "2026-06-30T00:00:00.000",
+   "first_name": "TESTOWNER B230B6",
+   "issued_date": "2025-06-26T00:00:00.000",
+   "last_name": "TESTOWNER 470947"
+  },
+  {
+   "certificate_number": "25-6HYLH-SHAB",
+   "certificate_status": "Expired",
+   "endorsement_type": "Asbestos Endorsement - Air Sampling Technician",
+   "expiration_date": "2026-06-30T00:00:00.000",
+   "first_name": "TESTOWNER B230B6",
+   "issued_date": "2025-06-26T00:00:00.000",
+   "last_name": "TESTOWNER 470947"
+  },
+  {
+   "certificate_number": "25-6HYNV-SHAB",
+   "certificate_status": "Expired",
+   "endorsement_type": "Asbestos Endorsement - Project Monitor",
+   "expiration_date": "2026-03-31T00:00:00.000",
+   "first_name": "TESTOWNER D04BB2",
+   "issued_date": "2025-06-24T00:00:00.000",
+   "last_name": "TESTOWNER CB0972"
+  },
+  {
+   "certificate_number": "25-6HYO8-SHAB",
+   "certificate_status": "Active",
+   "endorsement_type": "Asbestos Endorsement - Inspector",
+   "expiration_date": "2026-12-31T00:00:00.000",
+   "first_name": "TESTOWNER 504ED5",
+   "issued_date": "2025-06-25T00:00:00.000",
+   "last_name": "TESTOWNER C1BC6A"
+  },
+  {
+   "certificate_number": "25-6HYO8-SHAB",
+   "certificate_status": "Active",
+   "endorsement_type": "Asbestos Endorsement - Supervisor",
+   "expiration_date": "2026-12-31T00:00:00.000",
+   "first_name": "TESTOWNER 504ED5",
+   "issued_date": "2025-06-25T00:00:00.000",
+   "last_name": "TESTOWNER C1BC6A"
+  },
+  {
+   "certificate_number": "25-6HYOC-SHAB",
+   "certificate_status": "Expired",
+   "endorsement_type": "Asbestos Endorsement - Supervisor",
+   "expiration_date": "2026-07-31T00:00:00.000",
+   "first_name": "TESTOWNER BAD5CA",
+   "issued_date": "2025-06-25T00:00:00.000",
+   "last_name": "TESTOWNER 07A1AC"
+  },
+  {
+   "certificate_number": "25-6HYOC-SHAB",
+   "certificate_status": "Expired",
+   "endorsement_type": "Asbestos Endorsement - Inspector",
+   "expiration_date": "2026-07-31T00:00:00.000",
+   "first_name": "TESTOWNER BAD5CA",
+   "issued_date": "2025-06-25T00:00:00.000",
+   "last_name": "TESTOWNER 07A1AC"
+  },
+  {
+   "certificate_number": "25-6HYOI-SHAB",
+   "certificate_status": "Active",
+   "endorsement_type": "Asbestos Endorsement - Inspector",
+   "expiration_date": "2027-01-31T00:00:00.000",
+   "first_name": "TESTOWNER 187F7D",
+   "issued_date": "2025-06-25T00:00:00.000",
+   "last_name": "TESTOWNER D867FD"
+  },
+  {
+   "certificate_number": "25-6HYOR-SHAB",
+   "certificate_status": "Expired",
+   "endorsement_type": "Asbestos Endorsement - Inspector",
+   "expiration_date": "2026-10-31T00:00:00.000",
+   "first_name": "TESTOWNER EC14BD",
+   "issued_date": "2025-06-25T00:00:00.000",
+   "last_name": "TESTOWNER 4EDB1A"
+  },
+  {
+   "certificate_number": "25-6HYOR-SHAB",
+   "certificate_status": "Expired",
+   "endorsement_type": "Asbestos Endorsement - Supervisor",
+   "expiration_date": "2026-10-31T00:00:00.000",
+   "first_name": "TESTOWNER EC14BD",
+   "issued_date": "2025-06-25T00:00:00.000",
+   "last_name": "TESTOWNER 4EDB1A"
+  },
+  {
+   "certificate_number": "25-6HYQ4-SHAB",
+   "certificate_status": "Expired",
+   "endorsement_type": "Asbestos Endorsement - Supervisor",
+   "expiration_date": "2026-04-30T00:00:00.000",
+   "first_name": "TESTOWNER C9EF1C",
+   "issued_date": "2025-06-25T00:00:00.000",
+   "last_name": "TESTOWNER 960598"
+  }
+ ],
+ "where": "certificate_number >= '25-6HY86-SHAB'"
+}

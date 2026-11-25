@@ -1,0 +1,357 @@
+{
+ "portal": "https://data.delaware.gov",
+ "rows": [
+  {
+   "address_2": "1107 TEST ST",
+   "business_name": "TESTOWNER E0FAA9",
+   "category": "PROFESSIONAL AND/OR PRSL SRVCS-UNCLASSIFIED",
+   "city": "MILTON",
+   "current_license_valid_from": "2009-01-01T00:00:00.000",
+   "current_license_valid_to": "2011-12-31T00:00:00.000",
+   "geocoded_location": {
+    "human_address": "{\"address\": \"503 CHESTNUT ST\", \"city\": \"MILTON\", \"state\": \"DE\", \"zip\": \"19968-1319\"}",
+    "latitude": "38.772037",
+    "longitude": "-75.311945"
+   },
+   "license_number": "2003106293",
+   "snapshot_date": "2010-12-31T00:00:00.000",
+   "state": "DE",
+   "trade_name": "TESTOWNER 3DBAEB",
+   "zip": "19968-1319"
+  },
+  {
+   "address_2": "5825 TEST ST",
+   "business_name": "TESTOWNER E0FAA9",
+   "category": "PROFESSIONAL AND/OR PRSL SRVCS-UNCLASSIFIED",
+   "city": "MILTON",
+   "current_license_valid_from": "2015-01-01T00:00:00.000",
+   "current_license_valid_to": "2017-12-31T00:00:00.000",
+   "geocoded_location": {
+    "human_address": "{\"address\": \"14412 RUSSELL ST\", \"city\": \"MILTON\", \"state\": \"DE\", \"zip\": \"19968-2643\"}",
+    "latitude": "38.789838",
+    "longitude": "-75.326264"
+   },
+   "license_number": "2003106293",
+   "snapshot_date": "2016-12-31T00:00:00.000",
+   "state": "DE",
+   "trade_name": "TESTOWNER 3DBAEB",
+   "zip": "19968-2643"
+  },
+  {
+   "address_2": "1107 TEST ST",
+   "business_name": "TESTOWNER E0FAA9",
+   "category": "PROFESSIONAL AND/OR PRSL SRVCS-UNCLASSIFIED",
+   "city": "MILTON",
+   "current_license_valid_from": "2012-01-01T00:00:00.000",
+   "current_license_valid_to": "2014-12-31T00:00:00.000",
+   "geocoded_location": {
+    "human_address": "{\"address\": \"503 CHESTNUT ST\", \"city\": \"MILTON\", \"state\": \"DE\", \"zip\": \"19968-1319\"}",
+    "latitude": "38.772037",
+    "longitude": "-75.311945"
+   },
+   "license_number": "2003106293",
+   "snapshot_date": "2011-12-31T00:00:00.000",
+   "state": "DE",
+   "trade_name": "TESTOWNER 3DBAEB",
+   "zip": "19968-1319"
+  },
+  {
+   "address_2": "1107 TEST ST",
+   "business_name": "TESTOWNER E0FAA9",
+   "category": "PROFESSIONAL AND/OR PERSONAL SERVICES",
+   "city": "MILTON",
+   "current_license_valid_from": "2009-01-01T00:00:00.000",
+   "current_license_valid_to": "2011-12-31T00:00:00.000",
+   "geocoded_location": {
+    "human_address": "{\"address\": \"503 CHESTNUT ST\", \"city\": \"MILTON\", \"state\": \"DE\", \"zip\": \"19968-1319\"}",
+    "latitude": "38.772037",
+    "longitude": "-75.311945"
+   },
+   "license_number": "2003106293",
+   "snapshot_date": "2009-12-31T00:00:00.000",
+   "state": "DE",
+   "trade_name": "TESTOWNER 3DBAEB",
+   "zip": "19968-1319"
+  },
+  {
+   "address_2": "1107 TEST ST",
+   "business_name": "TESTOWNER E0FAA9",
+   "category": "PROFESSIONAL AND/OR PRSL SRVCS-UNCLASSIFIED",
+   "city": "MILTON",
+   "current_license_valid_from": "2012-01-01T00:00:00.000",
+   "current_license_valid_to": "2014-12-31T00:00:00.000",
+   "geocoded_location": {
+    "human_address": "{\"address\": \"503 CHESTNUT ST\", \"city\": \"MILTON\", \"state\": \"DE\", \"zip\": \"19968-1319\"}",
+    "latitude": "38.772037",
+    "longitude": "-75.311945"
+   },
+   "license_number": "2003106293",
+   "snapshot_date": "2012-12-31T00:00:00.000",
+   "state": "DE",
+   "trade_name": "TESTOWNER 3DBAEB",
+   "zip": "19968-1319"
+  },
+  {
+   "address_2": "1107 TEST ST",
+   "business_name": "TESTOWNER E0FAA9",
+   "category": "PROFESSIONAL AND/OR PRSL SRVCS-UNCLASSIFIED",
+   "city": "MILTON",
+   "current_license_valid_from": "2012-01-01T00:00:00.000",
+   "current_license_valid_to": "2014-12-31T00:00:00.000",
+   "geocoded_location": {
+    "human_address": "{\"address\": \"503 CHESTNUT ST\", \"city\": \"MILTON\", \"state\": \"DE\", \"zip\": \"19968-1319\"}",
+    "latitude": "38.772037",
+    "longitude": "-75.311945"
+   },
+   "license_number": "2003106293",
+   "snapshot_date": "2014-12-31T00:00:00.000",
+   "state": "DE",
+   "trade_name": "TESTOWNER 3DBAEB",
+   "zip": "19968-1319"
+  },
+  {
+   "address_2": "1107 TEST ST",
+   "business_name": "TESTOWNER E0FAA9",
+   "category": "PROFESSIONAL AND/OR PRSL SRVCS-UNCLASSIFIED",
+   "city": "MILTON",
+   "current_license_valid_from": "2012-01-01T00:00:00.000",
+   "current_license_valid_to": "2014-12-31T00:00:00.000",
+   "geocoded_location": {
+    "human_address": "{\"address\": \"503 CHESTNUT ST\", \"city\": \"MILTON\", \"state\": \"DE\", \"zip\": \"19968-1319\"}",
+    "latitude": "38.772037",
+    "longitude": "-75.311945"
+   },
+   "license_number": "2003106293",
+   "snapshot_date": "2013-12-31T00:00:00.000",
+   "state": "DE",
+   "trade_name": "TESTOWNER 3DBAEB",
+   "zip": "19968-1319"
+  },
+  {
+   "address_2": "3407 TEST ST",
+   "business_name": "TESTOWNER E0FAA9",
+   "category": "PROFESSIONAL AND/OR PRSL SRVCS-UNCLASSIFIED",
+   "city": "MILTON",
+   "current_license_valid_from": "2007-01-01T00:00:00.000",
+   "current_license_valid_to": "2007-12-31T00:00:00.000",
+   "geocoded_location": {
+    "human_address": "{\"address\": \"423 CHESTNUT ST\", \"city\": \"MILTON\", \"state\": \"DE\", \"zip\": \"19968-1317\"}",
+    "latitude": "38.772784",
+    "longitude": "-75.311565"
+   },
+   "license_number": "2003106293",
+   "snapshot_date": "2007-12-31T00:00:00.000",
+   "state": "DE",
+   "trade_name": "TESTOWNER 0AB736",
+   "zip": "19968-1317"
+  },
+  {
+   "address_2": "5825 TEST ST",
+   "business_name": "TESTOWNER E0FAA9",
+   "category": "PROFESSIONAL AND/OR PRSL SRVCS-UNCLASSIFIED",
+   "city": "MILTON",
+   "current_license_valid_from": "2015-01-01T00:00:00.000",
+   "current_license_valid_to": "2017-12-31T00:00:00.000",
+   "geocoded_location": {
+    "human_address": "{\"address\": \"14412 RUSSELL ST\", \"city\": \"MILTON\", \"state\": \"DE\", \"zip\": \"19968-2643\"}",
+    "latitude": "38.789838",
+    "longitude": "-75.326264"
+   },
+   "license_number": "2003106293",
+   "snapshot_date": "2015-12-31T00:00:00.000",
+   "state": "DE",
+   "trade_name": "TESTOWNER 3DBAEB",
+   "zip": "19968-2643"
+  },
+  {
+   "address_2": "3407 TEST ST",
+   "business_name": "TESTOWNER E0FAA9",
+   "category": "PROFESSIONAL AND/OR PRSL SRVCS-UNCLASSIFIED",
+   "city": "MILTON",
+   "current_license_valid_from": "2009-01-01T00:00:00.000",
+   "current_license_valid_to": "2011-12-31T00:00:00.000",
+   "geocoded_location": {
+    "human_address": "{\"address\": \"423 CHESTNUT ST\", \"city\": \"MILTON\", \"state\": \"DE\", \"zip\": \"19968-1317\"}",
+    "latitude": "38.772784",
+    "longitude": "-75.311565"
+   },
+   "license_number": "2003106293",
+   "snapshot_date": "2008-12-31T00:00:00.000",
+   "state": "DE",
+   "trade_name": "TESTOWNER 3DBAEB",
+   "zip": "19968-1317"
+  },
+  {
+   "address_2": "167 TEST ST",
+   "business_name": "TESTOWNER 4DB34D",
+   "category": "CONTRACTOR-RESIDENT",
+   "city": "MILFORD",
+   "current_license_valid_from": "2007-01-01T00:00:00.000",
+   "current_license_valid_to": "2007-12-31T00:00:00.000",
+   "geocoded_location": {
+    "human_address": "{\"address\": \"407 MARSHALL ST\", \"city\": \"MILFORD\", \"state\": \"DE\", \"zip\": \"19963-2059\"}",
+    "latitude": "38.90698",
+    "longitude": "-75.422488"
+   },
+   "license_number": "2003106294",
+   "snapshot_date": "2007-12-31T00:00:00.000",
+   "state": "DE",
+   "trade_name": "TESTOWNER D19D92",
+   "zip": "19963-2059"
+  },
+  {
+   "address_2": "1923 TEST ST",
+   "business_name": "TESTOWNER 6C037E",
+   "category": "WHOLESALER-ANY PRODUCTS",
+   "city": "HARTLY",
+   "current_license_valid_from": "2015-01-01T00:00:00.000",
+   "current_license_valid_to": "2015-12-31T00:00:00.000",
+   "geocoded_location": {
+    "human_address": "{\"address\": \"5302 HALLTOWN RD\", \"city\": \"HARTLY\", \"state\": \"DE\", \"zip\": \"19953-2535\"}",
+    "latitude": "39.147185",
+    "longitude": "-75.668356"
+   },
+   "license_number": "2003106296",
+   "snapshot_date": "2015-12-31T00:00:00.000",
+   "state": "DE",
+   "zip": "19953-2535"
+  },
+  {
+   "address_2": "1923 TEST ST",
+   "business_name": "TESTOWNER 6C037E",
+   "category": "WHOLESALER-ANY PRODUCTS",
+   "city": "HARTLY",
+   "current_license_valid_from": "2011-01-01T00:00:00.000",
+   "current_license_valid_to": "2011-12-31T00:00:00.000",
+   "geocoded_location": {
+    "human_address": "{\"address\": \"5302 HALLTOWN RD\", \"city\": \"HARTLY\", \"state\": \"DE\", \"zip\": \"19953-2535\"}",
+    "latitude": "39.147185",
+    "longitude": "-75.668356"
+   },
+   "license_number": "2003106296",
+   "snapshot_date": "2011-12-31T00:00:00.000",
+   "state": "DE",
+   "zip": "19953-2535"
+  },
+  {
+   "address_2": "1923 TEST ST",
+   "business_name": "TESTOWNER 6C037E",
+   "category": "WHOLESALER-ANY PRODUCTS",
+   "city": "HARTLY",
+   "current_license_valid_from": "2014-01-01T00:00:00.000",
+   "current_license_valid_to": "2014-12-31T00:00:00.000",
+   "geocoded_location": {
+    "human_address": "{\"address\": \"5302 HALLTOWN RD\", \"city\": \"HARTLY\", \"state\": \"DE\", \"zip\": \"19953-2535\"}",
+    "latitude": "39.147185",
+    "longitude": "-75.668356"
+   },
+   "license_number": "2003106296",
+   "snapshot_date": "2014-12-31T00:00:00.000",
+   "state": "DE",
+   "zip": "19953-2535"
+  },
+  {
+   "address_2": "1923 TEST ST",
+   "business_name": "TESTOWNER 6C037E",
+   "category": "WHOLESALER-ANY PRODUCTS",
+   "city": "HARTLY",
+   "current_license_valid_from": "2011-01-01T00:00:00.000",
+   "current_license_valid_to": "2011-12-31T00:00:00.000",
+   "geocoded_location": {
+    "human_address": "{\"address\": \"5302 HALLTOWN RD\", \"city\": \"HARTLY\", \"state\": \"DE\", \"zip\": \"19953-2535\"}",
+    "latitude": "39.147185",
+    "longitude": "-75.668356"
+   },
+   "license_number": "2003106296",
+   "snapshot_date": "2010-12-31T00:00:00.000",
+   "state": "DE",
+   "zip": "19953-2535"
+  },
+  {
+   "address_2": "1923 TEST ST",
+   "business_name": "TESTOWNER 6C037E",
+   "category": "WHOLESALER-ANY PRODUCTS",
+   "city": "HARTLY",
+   "current_license_valid_from": "2009-01-01T00:00:00.000",
+   "current_license_valid_to": "2009-12-31T00:00:00.000",
+   "geocoded_location": {
+    "human_address": "{\"address\": \"5302 HALLTOWN RD\", \"city\": \"HARTLY\", \"state\": \"DE\", \"zip\": \"19953-2535\"}",
+    "latitude": "39.147185",
+    "longitude": "-75.668356"
+   },
+   "license_number": "2003106296",
+   "snapshot_date": "2009-12-31T00:00:00.000",
+   "state": "DE",
+   "zip": "19953-2535"
+  },
+  {
+   "address_2": "1923 TEST ST",
+   "business_name": "TESTOWNER 6C037E",
+   "category": "WHOLESALER-ANY PRODUCTS",
+   "city": "HARTLY",
+   "current_license_valid_from": "2012-01-01T00:00:00.000",
+   "current_license_valid_to": "2011-12-31T00:00:00.000",
+   "geocoded_location": {
+    "human_address": "{\"address\": \"5302 HALLTOWN RD\", \"city\": \"HARTLY\", \"state\": \"DE\", \"zip\": \"19953-2535\"}",
+    "latitude": "39.147185",
+    "longitude": "-75.668356"
+   },
+   "license_number": "2003106296",
+   "snapshot_date": "2008-12-31T00:00:00.000",
+   "state": "DE",
+   "zip": "19953-2535"
+  },
+  {
+   "address_2": "1923 TEST ST",
+   "business_name": "TESTOWNER 6C037E",
+   "category": "WHOLESALER-ANY PRODUCTS",
+   "city": "HARTLY",
+   "current_license_valid_from": "2006-01-01T00:00:00.000",
+   "current_license_valid_to": "2008-12-31T00:00:00.000",
+   "geocoded_location": {
+    "human_address": "{\"address\": \"5302 HALLTOWN RD\", \"city\": \"HARTLY\", \"state\": \"DE\", \"zip\": \"19953-2535\"}",
+    "latitude": "39.147185",
+    "longitude": "-75.668356"
+   },
+   "license_number": "2003106296",
+   "snapshot_date": "2007-12-31T00:00:00.000",
+   "state": "DE",
+   "zip": "19953-2535"
+  },
+  {
+   "address_2": "1923 TEST ST",
+   "business_name": "TESTOWNER 6C037E",
+   "category": "WHOLESALER-ANY PRODUCTS",
+   "city": "HARTLY",
+   "current_license_valid_from": "2016-01-01T00:00:00.000",
+   "current_license_valid_to": "2016-12-31T00:00:00.000",
+   "geocoded_location": {
+    "human_address": "{\"address\": \"5302 HALLTOWN RD\", \"city\": \"HARTLY\", \"state\": \"DE\", \"zip\": \"19953-2535\"}",
+    "latitude": "39.147185",
+    "longitude": "-75.668356"
+   },
+   "license_number": "2003106296",
+   "snapshot_date": "2016-12-31T00:00:00.000",
+   "state": "DE",
+   "zip": "19953-2535"
+  },
+  {
+   "address_2": "1923 TEST ST",
+   "business_name": "TESTOWNER 6C037E",
+   "category": "WHOLESALER-ANY PRODUCTS",
+   "city": "HARTLY",
+   "current_license_valid_from": "2018-01-01T00:00:00.000",
+   "current_license_valid_to": "2018-12-31T00:00:00.000",
+   "geocoded_location": {
+    "human_address": "{\"address\": \"5302 HALLTOWN RD\", \"city\": \"HARTLY\", \"state\": \"DE\", \"zip\": \"199532535\"}",
+    "latitude": "39.147185",
+    "longitude": "-75.668356"
+   },
+   "license_number": "2003106296",
+   "snapshot_date": "2018-12-31T00:00:00.000",
+   "state": "DE",
+   "zip": "199532535"
+  }
+ ],
+ "where": "license_number::text >= '2003106293'"
+}

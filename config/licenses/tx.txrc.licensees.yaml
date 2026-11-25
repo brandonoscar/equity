@@ -1,0 +1,20 @@
+# Texas Racing Commission, "Texas Racing Commission Licensees" (data.texas.gov 2bw4-yv8x):
+# about 8K occupational licensees (owners, trainers, jockeys, grooms...) with name parts,
+# badge (license type), status, end date and ZIP code.
+# TODO(Brandon): no issue date is published, so licenses are dated from the retrieval day.
+source_id: tx.txrc.licensees
+state: TX
+jurisdiction: "48"
+portal: https://data.texas.gov
+dataset: 2bw4-yv8x
+key: license_no
+id_prefix: "TX-TXRC:"
+terms_url: https://data.texas.gov/See-Category-Tile/Texas-Racing-Commission-Licensees/2bw4-yv8x
+terms_summary: "Texas Open Data Portal; no license text on the dataset (public information published by the Texas Racing Commission)."
+checked_on: 2026-11-25
+license:
+  type: badge_desc
+  status: status_code
+holders:
+  - {role: other, title: LICENSEE, parts: {first: first_name, middle: middle_name, last: last_name}, address: {zip: zip}}
+pii_fields: [first_name, middle_name, last_name, nick_name]

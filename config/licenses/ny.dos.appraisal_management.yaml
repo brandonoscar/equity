@@ -1,0 +1,23 @@
+# New York Department of State, "Current Licensed Real Estate Appraisal Management Companies"
+# (data.ny.gov 7ttn-4nwr): about 135 licensed AMCs with business address and the designated
+# controlling person.
+source_id: ny.dos.appraisal_management
+state: NY
+jurisdiction: "36"
+portal: https://data.ny.gov
+dataset: 7ttn-4nwr
+key: license_number
+id_prefix: "NY-AMC:"
+terms_url: https://data.ny.gov/download/77gx-ii52/application%2Fpdf
+terms_summary: "NY Open Data terms: free to use; no warranty. No restriction on commercial use found."
+checked_on: 2026-11-25
+license:
+  name: business_name
+  type_value: Appraisal Management Company
+  status_value: Active  # current licenses only
+  issued_on: license_issue_date
+  address: {street: [business_address_1, business_address_2], city: business_city, state: business_state, zip: business_postal_code}
+holders:
+  - {role: other, title: LICENSEE, with_type: false, name: business_name, address: {street: [business_address_1, business_address_2], city: business_city, state: business_state, zip: business_postal_code}}
+  - {role: officer, title: DESIGNATED CONTROLLING PERSON, with_type: false, parts: {first: first_name_of_designated, middle: middle_initial_of_designated, last: last_name_of_designated, suffix: suffix_of_designated}}
+pii_fields: [business_name, business_address_1, business_address_2, last_name_of_designated, first_name_of_designated, middle_initial_of_designated, georeference]

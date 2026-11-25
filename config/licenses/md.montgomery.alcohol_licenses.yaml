@@ -1,0 +1,23 @@
+# Montgomery County Department of Alcohol Beverage Services, "Department of Alcohol Beverage
+# Services (ABS) Licensee Data" (data.montgomerycountymd.gov c6rw-fazn, Public Domain): about
+# 1.1K county alcohol licenses with licensee (trade) name, account (legal) name, class, type
+# and premises address.
+# TODO(Brandon): no issue date is published, so licenses are dated from the retrieval day.
+source_id: md.montgomery.alcohol_licenses
+state: MD
+jurisdiction: "24031"
+portal: https://data.montgomerycountymd.gov
+dataset: c6rw-fazn
+key: licensee_number
+id_prefix: "MOCO-ABS:"
+terms_url: https://data.montgomerycountymd.gov/Community-Recreation/Department-of-Alcohol-Beverage-Services-ABS-Licens/c6rw-fazn
+terms_summary: "Public Domain (dataset license field)."
+checked_on: 2026-11-25
+license:
+  name: [licensee_name, account_name]
+  type: licensetype
+  status_value: Active  # current licenses only
+  address: {street: street, city: city, state: state, zip: zip}
+holders:
+  - {role: other, title: LICENSEE, name: account_name, address: {street: street, city: city, state: state, zip: zip}}
+pii_fields: [licensee_name, account_name, street, location]

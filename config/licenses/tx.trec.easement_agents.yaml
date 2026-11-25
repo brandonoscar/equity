@@ -1,0 +1,21 @@
+# Texas Real Estate Commission, "Easement or Right-Of-Ways Agents License Holder Information"
+# (data.texas.gov 3p42-m5cn): about 3.9K easement and right-of-way agent licenses with the
+# licensee's name, status and original license date. No address is published.
+source_id: tx.trec.easement_agents
+state: TX
+jurisdiction: "48"
+portal: https://data.texas.gov
+dataset: 3p42-m5cn
+key: license_number
+id_prefix: "TX-TREC-ROW:"
+terms_url: https://data.texas.gov/dataset/Easement-or-Right-Of-Ways-Agents-License-Holder-In/3p42-m5cn
+terms_summary: "Texas Open Data Portal; no license text on the dataset (public information published by TREC)."
+checked_on: 2026-11-25
+license:
+  type: license_type
+  status: status
+  issued_on: original_license_date
+holders:
+  - {role: other, title: LICENSEE, name: key_name, last_first: true}
+  - {role: other, title: RELATED LICENSEE, with_type: false, name: related_license_full_name}
+pii_fields: [full_name, key_name, first_name, middle_name, last_name, related_license_full_name]

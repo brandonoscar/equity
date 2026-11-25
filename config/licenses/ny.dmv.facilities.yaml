@@ -1,0 +1,23 @@
+# New York State Department of Motor Vehicles, "Facilities Licensed by the Department of
+# Motor Vehicles (DMV)" (data.ny.gov nhjr-rpi2): about 54K repair shop, inspection station,
+# dealer and similar licenses at about 33K facilities, with facility (trade) name, owner
+# name, address and original issue date. A record is (facility, business_type).
+source_id: ny.dmv.facilities
+state: NY
+jurisdiction: "36"
+portal: https://data.ny.gov
+dataset: nhjr-rpi2
+key: facility
+record_key: [facility, business_type]
+id_prefix: "NY-DMV-FAC:"
+terms_url: https://data.ny.gov/download/77gx-ii52/application%2Fpdf
+terms_summary: "NY Open Data terms: free to use; no warranty. No restriction on commercial use found."
+checked_on: 2026-11-25
+license:
+  name: [facility_name, owner_name]
+  type: business_type
+  issued_on: origional_issuance_date
+  address: {street: facility_street, city: facility_city, state: facility_state, zip: facility_zip_code}
+holders:
+  - {role: other, title: OWNER, name: owner_name, address: {street: facility_street, city: facility_city, state: facility_state, zip: facility_zip_code}}
+pii_fields: [facility_name, facility_name_overflow, owner_name, owner_name_overflow, facility_street, georeference]

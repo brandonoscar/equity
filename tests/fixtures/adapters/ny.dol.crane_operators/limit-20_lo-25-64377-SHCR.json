@@ -1,0 +1,186 @@
+{
+ "portal": "https://data.ny.gov",
+ "rows": [
+  {
+   "certificate_number": "25-64377-SHCR",
+   "certificate_status": "Active",
+   "class": "Class A",
+   "expiration_date": "2028-01-31T00:00:00.000",
+   "first_name": "TESTOWNER A8A3EF",
+   "issued_date": "2025-02-21T00:00:00.000",
+   "last_name": "TESTOWNER B3D3D9"
+  },
+  {
+   "certificate_number": "25-643H6-SHCR",
+   "certificate_status": "Active",
+   "class": "Class B",
+   "expiration_date": "2028-04-30T00:00:00.000",
+   "first_name": "TESTOWNER 8CC41D",
+   "issued_date": "2026-01-14T00:00:00.000",
+   "last_name": "TESTOWNER 1CE99D"
+  },
+  {
+   "certificate_number": "25-644A1-SHCR",
+   "certificate_status": "Active",
+   "class": "Class A",
+   "expiration_date": "2027-06-30T00:00:00.000",
+   "first_name": "TESTOWNER B58747",
+   "issued_date": "2025-02-25T00:00:00.000",
+   "last_name": "TESTOWNER 096F29"
+  },
+  {
+   "certificate_number": "25-644F3-SHCR",
+   "certificate_status": "Active",
+   "class": "Class A",
+   "expiration_date": "2027-08-31T00:00:00.000",
+   "first_name": "TESTOWNER E8FB47",
+   "issued_date": "2025-02-21T00:00:00.000",
+   "last_name": "TESTOWNER 377922"
+  },
+  {
+   "certificate_number": "25-644RQ-SHCR",
+   "certificate_status": "Active",
+   "class": "Class A",
+   "expiration_date": "2027-05-31T00:00:00.000",
+   "first_name": "TESTOWNER BFBD3E",
+   "issued_date": "2025-02-21T00:00:00.000",
+   "last_name": "TESTOWNER DE7B3D"
+  },
+  {
+   "certificate_number": "25-645KD-SHCR",
+   "certificate_status": "Active",
+   "class": "Class F",
+   "expiration_date": "2027-09-30T00:00:00.000",
+   "first_name": "TESTOWNER 51E42F",
+   "issued_date": "2025-02-26T00:00:00.000",
+   "last_name": "TESTOWNER 28BA45"
+  },
+  {
+   "certificate_number": "25-649J3-SHCR",
+   "certificate_status": "Active",
+   "class": "Class A",
+   "expiration_date": "2028-04-30T00:00:00.000",
+   "first_name": "TESTOWNER 9A1F51",
+   "issued_date": "2025-03-07T00:00:00.000",
+   "last_name": "TESTOWNER 382395"
+  },
+  {
+   "certificate_number": "25-649J5-SHCR",
+   "certificate_status": "Active",
+   "class": "Class A",
+   "expiration_date": "2028-05-31T00:00:00.000",
+   "first_name": "TESTOWNER 9A1F51",
+   "issued_date": "2025-03-07T00:00:00.000",
+   "last_name": "TESTOWNER 3A0EDA"
+  },
+  {
+   "certificate_number": "25-649J6-SHCR",
+   "certificate_status": "Active",
+   "class": "Class A",
+   "expiration_date": "2028-04-30T00:00:00.000",
+   "first_name": "TESTOWNER C149EA",
+   "issued_date": "2025-03-07T00:00:00.000",
+   "last_name": "TESTOWNER 9F9466"
+  },
+  {
+   "certificate_number": "25-649JS-SHCR",
+   "certificate_status": "Active",
+   "class": "Class F",
+   "expiration_date": "2028-04-30T00:00:00.000",
+   "first_name": "TESTOWNER A2E776",
+   "issued_date": "2025-03-07T00:00:00.000",
+   "last_name": "TESTOWNER 18F0FB"
+  },
+  {
+   "certificate_number": "25-649KD-SHCR",
+   "certificate_status": "Active",
+   "class": "Class A",
+   "expiration_date": "2028-04-30T00:00:00.000",
+   "first_name": "TESTOWNER 7C17DC",
+   "issued_date": "2025-03-07T00:00:00.000",
+   "last_name": "TESTOWNER 1BABB7"
+  },
+  {
+   "certificate_number": "25-649KY-SHCR",
+   "certificate_status": "Active",
+   "class": "Class F",
+   "expiration_date": "2028-04-30T00:00:00.000",
+   "first_name": "TESTOWNER 3430C9",
+   "issued_date": "2025-03-07T00:00:00.000",
+   "last_name": "TESTOWNER 4ADBED"
+  },
+  {
+   "certificate_number": "25-64CJ3-SHCR",
+   "certificate_status": "Active",
+   "class": "Class A",
+   "expiration_date": "2027-10-31T00:00:00.000",
+   "first_name": "TESTOWNER 01D327",
+   "issued_date": "2025-01-10T00:00:00.000",
+   "last_name": "TESTOWNER CAC41D"
+  },
+  {
+   "certificate_number": "25-64HGU-SHCR",
+   "certificate_status": "Active",
+   "class": "Class A",
+   "expiration_date": "2027-10-31T00:00:00.000",
+   "first_name": "TESTOWNER A05498",
+   "issued_date": "2025-02-28T00:00:00.000",
+   "last_name": "TESTOWNER E3EF38"
+  },
+  {
+   "certificate_number": "25-64HJ7-SHCR",
+   "certificate_status": "Active",
+   "class": "Class A",
+   "expiration_date": "2028-01-31T00:00:00.000",
+   "first_name": "TESTOWNER CF06D0",
+   "issued_date": "2025-02-28T00:00:00.000",
+   "last_name": "TESTOWNER A8B786"
+  },
+  {
+   "certificate_number": "25-64HL8-SHCR",
+   "certificate_status": "Active",
+   "class": "Class B",
+   "expiration_date": "2027-11-30T00:00:00.000",
+   "first_name": "TESTOWNER 55E21B",
+   "issued_date": "2025-02-28T00:00:00.000",
+   "last_name": "TESTOWNER 4DA8DC"
+  },
+  {
+   "certificate_number": "25-64HS8-SHCR",
+   "certificate_status": "Active",
+   "class": "Class F",
+   "expiration_date": "2027-06-30T00:00:00.000",
+   "first_name": "TESTOWNER C7F527",
+   "issued_date": "2025-02-28T00:00:00.000",
+   "last_name": "TESTOWNER F9F8DC"
+  },
+  {
+   "certificate_number": "25-64I34-SHCR",
+   "certificate_status": "Active",
+   "class": "Class B",
+   "expiration_date": "2027-06-30T00:00:00.000",
+   "first_name": "TESTOWNER 2CA5FD",
+   "issued_date": "2025-02-06T00:00:00.000",
+   "last_name": "TESTOWNER 2EEF5B"
+  },
+  {
+   "certificate_number": "25-64IRV-SHCR",
+   "certificate_status": "Active",
+   "class": "Class F",
+   "expiration_date": "2027-10-31T00:00:00.000",
+   "first_name": "TESTOWNER 2B57F7",
+   "issued_date": "2025-02-06T00:00:00.000",
+   "last_name": "TESTOWNER B40CFF"
+  },
+  {
+   "certificate_number": "25-64ISH-SHCR",
+   "certificate_status": "Active",
+   "class": "Class A",
+   "expiration_date": "2028-02-05T00:00:00.000",
+   "first_name": "TESTOWNER F2ED30",
+   "issued_date": "2025-02-06T00:00:00.000",
+   "last_name": "TESTOWNER 402EDA"
+  }
+ ],
+ "where": "certificate_number >= '25-64377-SHCR'"
+}

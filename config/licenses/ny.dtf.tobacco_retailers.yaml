@@ -1,0 +1,25 @@
+# New York State Department of Taxation and Finance, "Registered Retail Dealers of Cigarettes
+# and Tobacco Products and Vapor Products" (data.ny.gov 55xf-9jat): about 23K registered
+# retail locations with the dealer's name (a person or company), DBA, registration kind and
+# physical address. A record is (cor_id, cor_seq_nmbr, cig_vape).
+# TODO(Brandon): no registration date is published, so registrations are dated from the
+# retrieval day.
+source_id: ny.dtf.tobacco_retailers
+state: NY
+jurisdiction: "36"
+portal: https://data.ny.gov
+dataset: 55xf-9jat
+key: cor_id
+record_key: [cor_id, cor_seq_nmbr, cig_vape]
+id_prefix: "NY-DTF-TOB:"
+terms_url: https://data.ny.gov/download/77gx-ii52/application%2Fpdf
+terms_summary: "NY Open Data terms: free to use; no warranty. No restriction on commercial use found."
+checked_on: 2026-11-25
+license:
+  name: [dba_name, last_or_bus_name]
+  type: cig_vape
+  status_value: Registered  # current registrations only
+  address: {street: phys_ln_2_adr, city: phys_city_adr, state: phys_state_adr, zip: phys_zip_5_adr}
+holders:
+  - {role: other, title: RETAIL DEALER, name: last_or_bus_name, address: {street: phys_ln_2_adr, city: phys_city_adr, state: phys_state_adr, zip: phys_zip_5_adr}}
+pii_fields: [last_or_bus_name, dba_name, phys_ln_2_adr, georeference]

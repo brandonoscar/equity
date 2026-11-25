@@ -1,0 +1,23 @@
+# City of Everett, "Licensed Businesses within the City of Everett" (data.everettwa.gov
+# qvfa-2v26): about 11.7K businesses licensed to operate in Everett with legal name, DBA,
+# UBI, NAICS, a one-line address and issue date.
+source_id: wa.everett.business_licenses
+state: WA
+jurisdiction: "53061"
+portal: https://data.everettwa.gov
+dataset: qvfa-2v26
+key: registration
+key_is_number: true
+id_prefix: "EVERETT-BL:"
+terms_url: https://data.everettwa.gov/Economic-and-Cultural-Vitality/Licensed-Businesses-within-the-City-of-Everett/qvfa-2v26
+terms_summary: "Everett open data portal; no license text on the dataset (public information published by the City of Everett)."
+checked_on: 2026-11-25
+license:
+  name: [primarydba, legalentityname]
+  type: naics
+  status_value: Active  # current licenses only
+  issued_on: issuedate
+  address: {line: address}
+holders:
+  - {role: other, title: LICENSEE, with_type: false, name: legalentityname, address: {line: address}}
+pii_fields: [legalentityname, primarydba, address, geocoded_column]

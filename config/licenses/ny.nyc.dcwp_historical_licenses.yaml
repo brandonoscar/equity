@@ -1,0 +1,26 @@
+# New York City Department of Consumer and Worker Protection, "Historical Licenses"
+# (data.cityofnewyork.us m4ph-grrm): about 195K licenses that are no longer active (out of
+# business, failed to renew, revoked...) back to the 1990s, with business name, second name,
+# category, status and date, creation date and address. The active ones are
+# ny.nyc.dcwp_licenses.
+source_id: ny.nyc.dcwp_historical_licenses
+state: NY
+jurisdiction: "36"
+portal: https://data.cityofnewyork.us
+dataset: m4ph-grrm
+key: dca_license_number
+key_is_number: true
+id_prefix: "NYC-DCWP-HIST:"
+terms_url: https://www.nyc.gov/home/terms-of-use.page
+terms_summary: "NYC Open Data terms of use: free to use, no warranty; credit not required."
+checked_on: 2026-11-25
+license:
+  name: [business_name2, business_name]
+  type: business_code_description
+  status: license_status
+  issued_on: license_creation_date
+  latest_by: license_status_date
+  address: {street: [address_building, address_street_name, secondary_address_street], city: address_city, state: address_state, zip: address_zip}
+holders:
+  - {role: other, title: LICENSEE, name: business_name, address: {street: [address_building, address_street_name, secondary_address_street], city: address_city, state: address_state, zip: address_zip}}
+pii_fields: [business_name, business_name2, address_building, address_street_name, secondary_address_street, contact_phone_number, latitude, longitude]

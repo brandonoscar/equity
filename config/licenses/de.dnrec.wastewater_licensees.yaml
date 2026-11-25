@@ -1,0 +1,24 @@
+# Delaware Department of Natural Resources and Environmental Control, "Licensed On-Site
+# Wastewater Treatment and Disposal System Licensees" (data.delaware.gov 56uc-mvju, Public
+# Domain): about 630 septic designers, inspectors, contractors and percolation testers, with
+# the person ('LAST, FIRST'), company, one-line company address and status.
+# TODO(Brandon): no issue date is published, so licenses are dated from the retrieval day.
+source_id: de.dnrec.wastewater_licensees
+state: DE
+jurisdiction: "10"
+portal: https://data.delaware.gov
+dataset: 56uc-mvju
+key: licensenumber
+id_prefix: "DE-OWW:"
+terms_url: https://data.delaware.gov/Energy-and-Environment/Licensed-On-Site-Wastewater-Treatment-and-Disposal/56uc-mvju
+terms_summary: "Public Domain (dataset license field)."
+checked_on: 2026-11-25
+license:
+  name: [companyname, displayname]
+  type: licensesubtype
+  status: licstatus
+  address: {line: companyaddress}
+holders:
+  - {role: other, title: LICENSEE, name: displayname, last_first: true}
+  - {role: other, title: COMPANY, with_type: false, name: companyname, address: {line: companyaddress}}
+pii_fields: [displayname, companyname, companyaddress, companyphone, cellphone, companyemailaddress]

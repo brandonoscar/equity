@@ -1,0 +1,23 @@
+# City of Berkeley Finance Department, "Business Licenses" (data.cityofberkeley.info
+# rwnf-bu3w): about 14K business license tax accounts with DBA, business name, ownership
+# type, category, the owner contact's (mailing) address and the business (situs) address.
+# TODO(Brandon): no issue date is published, so licenses are dated from the retrieval day.
+source_id: ca.berkeley.business_licenses
+state: CA
+jurisdiction: "06001"
+portal: https://data.cityofberkeley.info
+dataset: rwnf-bu3w
+key: recordid
+id_prefix: "BERKELEY-BL:"
+terms_url: https://data.cityofberkeley.info/Business/Business-Licenses/rwnf-bu3w
+terms_summary: "City of Berkeley open data portal; no license text on the dataset (public information published by the Finance Department)."
+checked_on: 2026-11-25
+license:
+  name: [dba, b1_business_name]
+  type: b1_per_sub_type
+  status_value: Active  # current accounts only
+  address: {street: b1_full_address, city: b1_situs_city, state: b1_situs_state, zip: b1_situs_zip}
+  mailing: {street: [b1_address1, b1_address2], city: b1_city, state: b1_state, zip: b1_zip}
+holders:
+  - {role: other, title: BUSINESS OWNER, name: b1_business_name, address: {street: [b1_address1, b1_address2], city: b1_city, state: b1_state, zip: b1_zip}}
+pii_fields: [dba, b1_business_name, b1_address1, b1_address2, b1_full_address, business_location]

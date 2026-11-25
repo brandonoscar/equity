@@ -1,0 +1,226 @@
+{
+ "portal": "https://data.colorado.gov",
+ "rows": [
+  {
+   "city": "Colorado Springs",
+   "doing_business_as": "TESTOWNER 11F346",
+   "expires": "2025-09-22T00:00:00.000",
+   "license_no": "TOB-002165",
+   "license_type": "Tobacco Retailer Off-Premises",
+   "licensee_name": "TESTOWNER C67FDE INC",
+   "state": "CO",
+   "street_address": "8692 TEST ST",
+   "zip": "80923"
+  },
+  {
+   "city": "Colorado Springs",
+   "doing_business_as": "TESTOWNER 29B582",
+   "expires": "2025-09-22T00:00:00.000",
+   "license_no": "TOB-002166",
+   "license_type": "Tobacco Retailer Off-Premises",
+   "licensee_name": "TESTOWNER C67FDE INC",
+   "state": "CO",
+   "street_address": "1439 TEST ST",
+   "zip": "80909"
+  },
+  {
+   "city": "COLORADO SPRINGS",
+   "doing_business_as": "TESTOWNER 485482",
+   "expires": "2025-09-22T00:00:00.000",
+   "license_no": "TOB-002167",
+   "license_type": "Tobacco Retailer Off-Premises",
+   "licensee_name": "TESTOWNER 64EABD INC",
+   "state": "CO",
+   "street_address": "1634 TEST ST",
+   "zip": "80910"
+  },
+  {
+   "city": "Colorado Springs",
+   "doing_business_as": "TESTOWNER 34560B",
+   "expires": "2025-09-22T00:00:00.000",
+   "license_no": "TOB-002168",
+   "license_type": "Tobacco Retailer Off-Premises",
+   "licensee_name": "TESTOWNER C67FDE INC",
+   "state": "CO",
+   "street_address": "8433 TEST ST",
+   "zip": "80915"
+  },
+  {
+   "city": "Parker",
+   "doing_business_as": "TESTOWNER 778944",
+   "expires": "2025-09-22T00:00:00.000",
+   "license_no": "TOB-002169",
+   "license_type": "Tobacco Retailer Off-Premises",
+   "licensee_name": "TESTOWNER C67FDE INC",
+   "state": "CO",
+   "street_address": "6663 TEST ST",
+   "zip": "80134"
+  },
+  {
+   "city": "Colorado Springs",
+   "doing_business_as": "TESTOWNER 4C0CC3",
+   "expires": "2025-09-22T00:00:00.000",
+   "license_no": "TOB-002170",
+   "license_type": "Tobacco Retailer Off-Premises",
+   "licensee_name": "TESTOWNER C67FDE INC",
+   "state": "CO",
+   "street_address": "8074 TEST ST",
+   "zip": "80923"
+  },
+  {
+   "city": "Firestone",
+   "doing_business_as": "TESTOWNER 0197D4",
+   "expires": "2025-09-22T00:00:00.000",
+   "license_no": "TOB-002171",
+   "license_type": "Tobacco Retailer Off-Premises",
+   "licensee_name": "TESTOWNER C67FDE INC",
+   "state": "CO",
+   "street_address": "7850 TEST ST",
+   "zip": "80504"
+  },
+  {
+   "city": "Colorado Springs",
+   "doing_business_as": "TESTOWNER 228A2B",
+   "expires": "2025-09-22T00:00:00.000",
+   "license_no": "TOB-002172",
+   "license_type": "Tobacco Retailer Off-Premises",
+   "licensee_name": "TESTOWNER C67FDE INC",
+   "state": "CO",
+   "street_address": "8730 TEST ST",
+   "zip": "80915"
+  },
+  {
+   "city": "Colorado Springs",
+   "doing_business_as": "TESTOWNER 7830C3",
+   "expires": "2025-09-22T00:00:00.000",
+   "license_no": "TOB-002173",
+   "license_type": "Tobacco Retailer Off-Premises",
+   "licensee_name": "TESTOWNER C67FDE INC",
+   "state": "CO",
+   "street_address": "1571 TEST ST",
+   "zip": "80906"
+  },
+  {
+   "city": "Westminster",
+   "doing_business_as": "TESTOWNER D447CB",
+   "expires": "2025-09-22T00:00:00.000",
+   "license_no": "TOB-002174",
+   "license_type": "Tobacco Retailer Off-Premises",
+   "licensee_name": "TESTOWNER C67FDE INC",
+   "state": "CO",
+   "street_address": "3626 TEST ST",
+   "zip": "80234"
+  },
+  {
+   "city": "Colorado Springs",
+   "doing_business_as": "TESTOWNER 6F1102",
+   "expires": "2025-09-22T00:00:00.000",
+   "license_no": "TOB-002175",
+   "license_type": "Tobacco Retailer Off-Premises",
+   "licensee_name": "TESTOWNER C67FDE INC",
+   "state": "CO",
+   "street_address": "5312 TEST ST",
+   "zip": "80919"
+  },
+  {
+   "city": "Monument",
+   "doing_business_as": "TESTOWNER BF2F24",
+   "expires": "2025-09-22T00:00:00.000",
+   "license_no": "TOB-002176",
+   "license_type": "Tobacco Retailer Off-Premises",
+   "licensee_name": "TESTOWNER C67FDE INC",
+   "state": "CO",
+   "street_address": "5351 TEST ST",
+   "zip": "80132"
+  },
+  {
+   "city": "Denver",
+   "doing_business_as": "TESTOWNER 409BB2",
+   "expires": "2026-01-11T00:00:00.000",
+   "license_no": "TOB-002177",
+   "license_type": "Tobacco Retailer Off-Premises",
+   "licensee_name": "TESTOWNER C67FDE INC",
+   "state": "CO",
+   "street_address": "3076 TEST ST",
+   "zip": "80239"
+  },
+  {
+   "city": "Colorado Springs",
+   "doing_business_as": "TESTOWNER 7A527B",
+   "expires": "2025-09-22T00:00:00.000",
+   "license_no": "TOB-002178",
+   "license_type": "Tobacco Retailer Off-Premises",
+   "licensee_name": "TESTOWNER C67FDE INC",
+   "state": "CO",
+   "street_address": "4101 TEST ST",
+   "zip": "80923"
+  },
+  {
+   "city": "Thornton",
+   "doing_business_as": "TESTOWNER 8A37D2",
+   "expires": "2025-09-22T00:00:00.000",
+   "license_no": "TOB-002179",
+   "license_type": "Tobacco Retailer Off-Premises",
+   "licensee_name": "TESTOWNER C67FDE INC",
+   "state": "CO",
+   "street_address": "1175 TEST ST",
+   "zip": "80233"
+  },
+  {
+   "city": "Centennial",
+   "doing_business_as": "TESTOWNER 54DDBF",
+   "expires": "2025-09-22T00:00:00.000",
+   "license_no": "TOB-002180",
+   "license_type": "Tobacco Retailer Off-Premises",
+   "licensee_name": "TESTOWNER C67FDE INC",
+   "state": "CO",
+   "street_address": "8574 TEST ST",
+   "zip": "80112"
+  },
+  {
+   "city": "Longmont",
+   "doing_business_as": "TESTOWNER 2B6CB2",
+   "expires": "2025-09-22T00:00:00.000",
+   "license_no": "TOB-002181",
+   "license_type": "Tobacco Retailer Off-Premises",
+   "licensee_name": "TESTOWNER C67FDE INC",
+   "state": "CO",
+   "street_address": "6303 TEST ST",
+   "zip": "80504"
+  },
+  {
+   "city": "Colorado Springs",
+   "doing_business_as": "TESTOWNER 2312F3",
+   "expires": "2025-09-22T00:00:00.000",
+   "license_no": "TOB-002182",
+   "license_type": "Tobacco Retailer Off-Premises",
+   "licensee_name": "TESTOWNER C67FDE INC",
+   "state": "CO",
+   "street_address": "4995 TEST ST",
+   "zip": "80919"
+  },
+  {
+   "city": "Colorado Springs",
+   "doing_business_as": "TESTOWNER C11099",
+   "expires": "2025-09-22T00:00:00.000",
+   "license_no": "TOB-002183",
+   "license_type": "Tobacco Retailer Off-Premises",
+   "licensee_name": "TESTOWNER C67FDE INC",
+   "state": "CO",
+   "street_address": "6665 TEST ST",
+   "zip": "80919"
+  },
+  {
+   "city": "Thornton",
+   "doing_business_as": "TESTOWNER 2A6FC7",
+   "expires": "2025-09-22T00:00:00.000",
+   "license_no": "TOB-002184",
+   "license_type": "Tobacco Retailer Off-Premises",
+   "licensee_name": "TESTOWNER C67FDE INC",
+   "state": "CO",
+   "street_address": "4888 TEST ST",
+   "zip": "80241"
+  }
+ ],
+ "where": "license_no >= 'TOB-002165'"
+}

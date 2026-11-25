@@ -1,0 +1,23 @@
+# City of Richmond Finance Department, "Business Licenses" (data.richmondgov.com
+# hy5d-7dcv): about 8K business license holders with customer name, DBA and street address
+# (last updated March 2025). No license number or date is published, so a record is
+# (customer name, address).
+# TODO(Brandon): no issue date is published, so licenses are dated from the retrieval day.
+source_id: va.richmond.business_licenses
+state: VA
+jurisdiction: "51760"
+portal: https://data.richmondgov.com
+dataset: hy5d-7dcv
+key: customer_s_name
+record_key: [customer_s_name, customer_s_address]
+id_prefix: "RVA-BL:"
+terms_url: https://data.richmondgov.com/Economic-Growth/Business-Licenses/hy5d-7dcv
+terms_summary: "Richmond open data portal; no license text on the dataset (public information published by the Finance Department)."
+checked_on: 2026-11-25
+license:
+  name: [doing_business_as, customer_s_name]
+  type_value: Business License
+  address: {street: customer_s_address}  # street only: no city, state or ZIP is published
+holders:
+  - {role: other, title: LICENSEE, with_type: false, name: customer_s_name}
+pii_fields: [customer_s_name, doing_business_as, customer_s_address, business_geo_location]

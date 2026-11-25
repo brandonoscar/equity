@@ -1,0 +1,22 @@
+# Texas Department of Insurance, "Surplus lines agent and agency status detail"
+# (data.texas.gov 7isd-ex6t): about 19K active and inactive surplus lines licenses held by
+# people and firms, with entity type, resident state, issue date and status.
+source_id: tx.tdi.surplus_lines
+state: TX
+jurisdiction: "48"
+portal: https://data.texas.gov
+dataset: 7isd-ex6t
+key: license_number
+key_is_number: true
+id_prefix: "TX-TDI-SL:"
+terms_url: https://data.texas.gov/dataset/Surplus-lines-agent-and-agency-status-detail/7isd-ex6t
+terms_summary: "Texas Open Data Portal; no license text on the dataset (public information published by TDI)."
+checked_on: 2026-11-25
+license:
+  name: licensee_name
+  type: entity_type
+  status: license_status
+  issued_on: license_original_issue_date
+holders:
+  - {role: other, title: SURPLUS LINES LICENSEE, name: licensee_name}
+pii_fields: [licensee_name]

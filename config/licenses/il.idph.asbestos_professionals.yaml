@@ -1,0 +1,23 @@
+# Illinois Department of Public Health, "IDPH Asbestos Licensed Professionals"
+# (data.illinois.gov duif-eqac): about 1.5K licensed asbestos supervisors, inspectors,
+# project designers, managers and air sampling professionals with name, home city, company
+# and company city. Street columns are mostly the placeholder 'NA', so only city, state and
+# ZIP are mapped.
+# TODO(Brandon): no issue date is published, so licenses are dated from the retrieval day.
+source_id: il.idph.asbestos_professionals
+state: IL
+jurisdiction: "17"
+portal: https://data.illinois.gov
+dataset: duif-eqac
+key: id
+id_prefix: "IL-IDPH-ASBP:"
+terms_url: https://data.illinois.gov/Health-and-Human-Services/IDPH-Asbestos-Licensed-Professionals/duif-eqac
+terms_summary: "Illinois open data portal; no license text on the dataset (public information published by IDPH)."
+checked_on: 2026-11-25
+license:
+  type_value: Asbestos Professional
+  status_value: Licensed  # current licenses only
+holders:
+  - {role: other, title: ASBESTOS PROFESSIONAL, with_type: false, parts: {first: first_name, last: last_name}, address: {city: home_city, state: home_state, zip: home_zip}}
+  - {role: other, title: EMPLOYER, with_type: false, name: company_name, address: {city: company_city, state: company_state, zip: company_zip}}
+pii_fields: [first_name, last_name, home_address, home_phone, company_name, company_address, company_phone, email]

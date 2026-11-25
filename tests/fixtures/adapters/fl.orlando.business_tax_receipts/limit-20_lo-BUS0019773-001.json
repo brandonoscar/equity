@@ -1,0 +1,512 @@
+{
+ "portal": "https://data.cityoforlando.net",
+ "rows": [
+  {
+   "business_address": "8090 TEST ST",
+   "business_close_date": "2004-07-11T00:00:00.000",
+   "business_mailing_address": "6860 TEST ST",
+   "business_name": "TESTOWNER FB353F LTD",
+   "business_open_date": "1999-10-01T00:00:00.000",
+   "business_owner_name": "TESTOWNER D184AE",
+   "case_number": "BUS0019773-001",
+   "commissioner_district": "6",
+   "geocoded_column": {
+    "coordinates": [
+     -81.457219981,
+     28.463067984
+    ],
+    "type": "Point"
+   },
+   "gpsx": "TESTOWNER D77B37",
+   "gpsy": "TESTOWNER C1605F",
+   "license_category": "SERREP",
+   "license_status": "Closed",
+   "license_type": "SERVICE 7243",
+   "neighborhood_name": "Florida Center",
+   "phone": "TESTOWNER A78E8E"
+  },
+  {
+   "business_address": "4473 TEST ST",
+   "business_close_date": "2012-12-07T00:00:00.000",
+   "business_mailing_address": "5092 TEST ST",
+   "business_name": "TESTOWNER 2BA68F",
+   "business_open_date": "2009-02-15T00:00:00.000",
+   "business_owner_name": "TESTOWNER C102A7 LLC",
+   "case_number": "BUS-0019774",
+   "commissioner_district": "5",
+   "geocoded_column": {
+    "coordinates": [
+     -81.378822029,
+     28.552892985
+    ],
+    "type": "Point"
+   },
+   "gpsx": "TESTOWNER 2CEE51",
+   "gpsy": "TESTOWNER C5E831",
+   "last_licensed_issue_date": "2011-11-08T00:00:00.000",
+   "license_category": "MERCNT",
+   "license_status": "Closed",
+   "license_type": "RETAIL VARIETY",
+   "neighborhood_name": "Central Business District",
+   "phone": "TESTOWNER 9D6E5C",
+   "received_date": "2009-01-21T00:00:00.000"
+  },
+  {
+   "business_address": "4473 TEST ST",
+   "business_close_date": "2012-12-07T00:00:00.000",
+   "business_mailing_address": "5092 TEST ST",
+   "business_name": "TESTOWNER 2BA68F",
+   "business_open_date": "2009-02-15T00:00:00.000",
+   "business_owner_name": "TESTOWNER C102A7 LLC",
+   "case_number": "BUS-0019774",
+   "commissioner_district": "5",
+   "geocoded_column": {
+    "coordinates": [
+     -81.378822029,
+     28.552892985
+    ],
+    "type": "Point"
+   },
+   "gpsx": "TESTOWNER 2CEE51",
+   "gpsy": "TESTOWNER C5E831",
+   "last_licensed_issue_date": "2011-11-08T00:00:00.000",
+   "license_category": "SERREP",
+   "license_status": "Closed",
+   "license_type": "TATTOO PARLOR",
+   "neighborhood_name": "Central Business District",
+   "phone": "TESTOWNER 9D6E5C",
+   "received_date": "2009-01-21T00:00:00.000"
+  },
+  {
+   "business_address": "4473 TEST ST",
+   "business_close_date": "2012-12-07T00:00:00.000",
+   "business_mailing_address": "5092 TEST ST",
+   "business_name": "TESTOWNER 2BA68F",
+   "business_open_date": "2010-01-19T00:00:00.000",
+   "business_owner_name": "TESTOWNER C102A7 LLC",
+   "case_number": "BUS-0019774",
+   "commissioner_district": "5",
+   "geocoded_column": {
+    "coordinates": [
+     -81.378822029,
+     28.552892985
+    ],
+    "type": "Point"
+   },
+   "gpsx": "TESTOWNER 2CEE51",
+   "gpsy": "TESTOWNER C5E831",
+   "last_licensed_issue_date": "2011-11-08T00:00:00.000",
+   "license_category": "SERREP",
+   "license_status": "Closed",
+   "license_type": "BODY PIERCING",
+   "neighborhood_name": "Central Business District",
+   "phone": "TESTOWNER 9D6E5C",
+   "received_date": "2009-01-21T00:00:00.000"
+  },
+  {
+   "business_address": "4698 TEST ST",
+   "business_close_date": "2010-06-29T00:00:00.000",
+   "business_mailing_address": "1100 TEST ST",
+   "business_name": "TESTOWNER 2FCBC7",
+   "business_open_date": "1999-10-01T00:00:00.000",
+   "business_owner_name": "TESTOWNER A4B323",
+   "case_number": "BUS0019774-001",
+   "commissioner_district": "3",
+   "geocoded_column": {
+    "coordinates": [
+     -81.350526987,
+     28.558904989
+    ],
+    "type": "Point"
+   },
+   "gpsx": "TESTOWNER D2892B",
+   "gpsy": "TESTOWNER 94BB54",
+   "last_licensed_issue_date": "2009-09-22T00:00:00.000",
+   "license_category": "SERREP",
+   "license_status": "Closed",
+   "license_type": "SERVICE",
+   "neighborhood_name": "Audubon Park",
+   "phone": "TESTOWNER 328D01"
+  },
+  {
+   "business_address": "2739 TEST ST",
+   "business_close_date": "2013-01-14T00:00:00.000",
+   "business_mailing_address": "6304 TEST ST",
+   "business_name": "TESTOWNER E22DBB PA",
+   "business_open_date": "2009-01-26T00:00:00.000",
+   "business_owner_name": "TESTOWNER 6AC217 PA",
+   "case_number": "BUS-0019775",
+   "commissioner_district": "1",
+   "geocoded_column": {
+    "coordinates": [
+     -81.25568701,
+     28.43313998
+    ],
+    "type": "Point"
+   },
+   "gpsx": "TESTOWNER 52D9E8",
+   "gpsy": "TESTOWNER 3AC03F",
+   "last_licensed_issue_date": "2011-10-06T00:00:00.000",
+   "license_category": "BUSOFF",
+   "license_status": "Closed",
+   "license_type": "BUSINESS OFFICE",
+   "neighborhood_name": "LaVina",
+   "received_date": "2009-01-21T00:00:00.000"
+  },
+  {
+   "business_address": "5195 TEST ST",
+   "business_close_date": "2004-12-01T00:00:00.000",
+   "business_mailing_address": "8822 TEST ST",
+   "business_name": "TESTOWNER 09C171",
+   "business_open_date": "2002-12-05T00:00:00.000",
+   "business_owner_name": "TESTOWNER F35C90",
+   "case_number": "BUS0019775-002",
+   "geocoded_column": {
+    "coordinates": [
+     -81.305762008,
+     28.527341005
+    ],
+    "type": "Point"
+   },
+   "license_category": "SERREP",
+   "license_status": "Closed",
+   "license_type": "ADMINISTRATIVE",
+   "phone": "TESTOWNER 786D5D"
+  },
+  {
+   "business_address": "2739 TEST ST",
+   "business_close_date": "2013-02-05T00:00:00.000",
+   "business_mailing_address": "6304 TEST ST",
+   "business_name": "TESTOWNER 5C6D40 PA",
+   "business_open_date": "2009-01-26T00:00:00.000",
+   "business_owner_name": "TESTOWNER 6AC217 PA",
+   "case_number": "BUS-0019776",
+   "commissioner_district": "1",
+   "geocoded_column": {
+    "coordinates": [
+     -81.25568701,
+     28.43313998
+    ],
+    "type": "Point"
+   },
+   "gpsx": "TESTOWNER 52D9E8",
+   "gpsy": "TESTOWNER 3AC03F",
+   "last_licensed_issue_date": "2011-10-06T00:00:00.000",
+   "license_category": "PROFES",
+   "license_status": "Closed",
+   "license_type": "OPTOMETRIST",
+   "neighborhood_name": "LaVina",
+   "received_date": "2009-01-21T00:00:00.000"
+  },
+  {
+   "business_address": "4167 TEST ST",
+   "business_close_date": "2010-10-07T00:00:00.000",
+   "business_mailing_address": "725 TEST ST",
+   "business_name": "TESTOWNER B0A4E5",
+   "business_open_date": "2008-08-01T00:00:00.000",
+   "business_owner_name": "TESTOWNER 3119A8 LLC",
+   "case_number": "BUS-0019777",
+   "commissioner_district": "5",
+   "geocoded_column": {
+    "coordinates": [
+     -81.47142496,
+     28.521046992
+    ],
+    "type": "Point"
+   },
+   "gpsx": "TESTOWNER B7A05B",
+   "gpsy": "TESTOWNER 11DE88",
+   "last_licensed_issue_date": "2009-01-30T00:00:00.000",
+   "license_category": "BUSOFF",
+   "license_status": "Closed",
+   "license_type": "BUSINESS OFFICE",
+   "neighborhood_name": "Metro West",
+   "phone": "TESTOWNER ED6FA0",
+   "received_date": "2009-01-22T00:00:00.000"
+  },
+  {
+   "business_address": "795 TEST ST",
+   "business_close_date": "2010-06-29T00:00:00.000",
+   "business_mailing_address": "8913 TEST ST",
+   "business_name": "TESTOWNER 97664F LLC",
+   "business_open_date": "2008-12-01T00:00:00.000",
+   "business_owner_name": "TESTOWNER 0A50CB LLC",
+   "case_number": "BUS-0019778",
+   "commissioner_district": "3",
+   "geocoded_column": {
+    "coordinates": [
+     -81.36573704,
+     28.555667982
+    ],
+    "type": "Point"
+   },
+   "gpsx": "TESTOWNER 5CB5F9",
+   "gpsy": "TESTOWNER 253DF5",
+   "last_licensed_issue_date": "2010-01-28T00:00:00.000",
+   "license_category": "SERREP",
+   "license_status": "Closed",
+   "license_type": "CONSULTANT",
+   "neighborhood_name": "Park Lake/Highland",
+   "phone": "TESTOWNER 2BA3D0",
+   "received_date": "2009-01-22T00:00:00.000"
+  },
+  {
+   "business_address": "7304 TEST ST",
+   "business_close_date": "2013-01-14T00:00:00.000",
+   "business_email": "TESTOWNER C14CC5",
+   "business_mailing_address": "710 TEST ST",
+   "business_name": "TESTOWNER 9461CA",
+   "business_open_date": "2008-12-08T00:00:00.000",
+   "business_owner_name": "TESTOWNER 6FC43E INC",
+   "case_number": "BUS-0019779",
+   "commissioner_district": "5",
+   "geocoded_column": {
+    "coordinates": [
+     -81.397844004,
+     28.545356984
+    ],
+    "type": "Point"
+   },
+   "gpsx": "TESTOWNER 4E7DE3",
+   "gpsy": "TESTOWNER A46D98",
+   "last_licensed_issue_date": "2011-09-29T00:00:00.000",
+   "license_category": "PROFES",
+   "license_status": "Closed",
+   "license_type": "NURSE PRACTITIONER",
+   "main_street_district_name": "West Lakes",
+   "neighborhood_name": "Rock Lake",
+   "phone": "TESTOWNER 65FDC4",
+   "received_date": "2009-01-22T00:00:00.000"
+  },
+  {
+   "business_address": "1416 TEST ST",
+   "business_close_date": "2004-07-10T00:00:00.000",
+   "business_mailing_address": "3197 TEST ST",
+   "business_name": "TESTOWNER 1E8509",
+   "business_open_date": "1997-10-01T00:00:00.000",
+   "business_owner_name": "TESTOWNER 85BACB",
+   "case_number": "BUS0019779-001",
+   "commissioner_district": "4",
+   "geocoded_column": {
+    "coordinates": [
+     -81.361860997,
+     28.551129014
+    ],
+    "type": "Point"
+   },
+   "gpsx": "TESTOWNER 4F7C4D",
+   "gpsy": "TESTOWNER D8B913",
+   "license_category": "BUSOFF",
+   "license_status": "Closed",
+   "license_type": "BUSINESS OFFICE",
+   "neighborhood_name": "Colonialtown South",
+   "phone": "TESTOWNER F57CE1"
+  },
+  {
+   "business_address": "7897 TEST ST",
+   "business_close_date": "2010-12-06T00:00:00.000",
+   "business_mailing_address": "7236 TEST ST",
+   "business_name": "TESTOWNER 872F07 INC",
+   "business_open_date": "2003-07-01T00:00:00.000",
+   "business_owner_name": "TESTOWNER 2E3C7E INC",
+   "case_number": "BUS0019779-002",
+   "commissioner_district": "3",
+   "geocoded_column": {
+    "coordinates": [
+     -81.327733994,
+     28.557628006
+    ],
+    "type": "Point"
+   },
+   "gpsx": "TESTOWNER E19688",
+   "gpsy": "TESTOWNER 2A7EA2",
+   "last_licensed_issue_date": "2009-09-22T00:00:00.000",
+   "license_category": "INSURE",
+   "license_status": "Closed",
+   "license_type": "TITLE INS COMPANY",
+   "neighborhood_name": "Baldwin Park",
+   "phone": "TESTOWNER 174F52"
+  },
+  {
+   "business_address": "7308 TEST ST",
+   "business_close_date": "2013-04-01T00:00:00.000",
+   "business_mailing_address": "8609 TEST ST",
+   "business_name": "TESTOWNER 762158 INC",
+   "business_open_date": "2009-02-01T00:00:00.000",
+   "business_owner_name": "TESTOWNER 3246C2 INC",
+   "case_number": "BUS-0019780",
+   "commissioner_district": "6",
+   "geocoded_column": {
+    "coordinates": [
+     -81.456850004,
+     28.463163999
+    ],
+    "type": "Point"
+   },
+   "gpsx": "TESTOWNER C4EE80",
+   "gpsy": "TESTOWNER 0F8135",
+   "last_licensed_issue_date": "2011-11-23T00:00:00.000",
+   "license_category": "INSURE",
+   "license_status": "Closed",
+   "license_type": "INSURANCE AGENCY",
+   "neighborhood_name": "Florida Center",
+   "phone": "TESTOWNER 1B0888",
+   "received_date": "2009-01-22T00:00:00.000"
+  },
+  {
+   "business_address": "6485 TEST ST",
+   "business_close_date": "2009-01-22T00:00:00.000",
+   "business_mailing_address": "2407 TEST ST",
+   "business_name": "TESTOWNER E1A3C8 LLC",
+   "business_open_date": "2009-01-22T00:00:00.000",
+   "business_owner_name": "TESTOWNER 683258 LLC",
+   "case_number": "BUS-0019782",
+   "commissioner_district": "3",
+   "geocoded_column": {
+    "coordinates": [
+     -81.408546018,
+     28.554645012
+    ],
+    "type": "Point"
+   },
+   "gpsx": "TESTOWNER 239841",
+   "gpsy": "TESTOWNER BCC6B3",
+   "last_licensed_issue_date": "2009-01-22T00:00:00.000",
+   "license_category": "MERCNT",
+   "license_status": "Closed",
+   "license_type": "RETAIL MERCHANT",
+   "neighborhood_name": "Spring Lake",
+   "phone": "TESTOWNER C9F7CD",
+   "received_date": "2009-01-22T00:00:00.000"
+  },
+  {
+   "business_address": "1488 TEST ST",
+   "business_close_date": "2011-01-05T00:00:00.000",
+   "business_mailing_address": "4060 TEST ST",
+   "business_name": "TESTOWNER 5CD859 LLC",
+   "business_open_date": "2009-01-10T00:00:00.000",
+   "business_owner_name": "TESTOWNER 612AE4 LLC",
+   "case_number": "BUS-0019783",
+   "commissioner_district": "4",
+   "geocoded_column": {
+    "coordinates": [
+     -81.35390699,
+     28.552466011
+    ],
+    "type": "Point"
+   },
+   "gpsx": "TESTOWNER B8ACF9",
+   "gpsy": "TESTOWNER 49DF4D",
+   "last_licensed_issue_date": "2009-01-22T00:00:00.000",
+   "license_category": "SERREP",
+   "license_status": "Closed",
+   "license_type": "CONSULTANT",
+   "main_street_district_name": "Mills 50",
+   "neighborhood_name": "Colonialtown South",
+   "phone": "TESTOWNER A4D078",
+   "received_date": "2009-01-22T00:00:00.000"
+  },
+  {
+   "business_address": "1319 TEST ST",
+   "business_close_date": "2012-02-03T00:00:00.000",
+   "business_mailing_address": "3185 TEST ST",
+   "business_name": "TESTOWNER 9AC1F9 LLC",
+   "business_open_date": "2009-01-22T00:00:00.000",
+   "business_owner_name": "TESTOWNER 0DBEDA LLC",
+   "case_number": "BUS-0019784",
+   "commissioner_district": "6",
+   "geocoded_column": {
+    "coordinates": [
+     -81.453533034,
+     28.472925019
+    ],
+    "type": "Point"
+   },
+   "gpsx": "TESTOWNER CABD73",
+   "gpsy": "TESTOWNER D7E44A",
+   "last_licensed_issue_date": "2011-02-02T00:00:00.000",
+   "license_category": "ARTIST",
+   "license_status": "Closed",
+   "license_type": "ARTIST",
+   "neighborhood_name": "Florida Center",
+   "phone": "TESTOWNER FF4CF1",
+   "received_date": "2009-01-22T00:00:00.000"
+  },
+  {
+   "business_address": "5773 TEST ST",
+   "business_close_date": "2009-01-23T00:00:00.000",
+   "business_mailing_address": "9005 TEST ST",
+   "business_name": "TESTOWNER 6877F1 INC",
+   "business_open_date": "2008-12-15T00:00:00.000",
+   "business_owner_name": "TESTOWNER 104D5F INC",
+   "case_number": "BUS-0019785",
+   "geocoded_column": {
+    "coordinates": [
+     -81.455928869,
+     28.475458516
+    ],
+    "type": "Point"
+   },
+   "gpsx": "TESTOWNER 48B348",
+   "gpsy": "TESTOWNER A85A0A",
+   "license_category": "SERREP",
+   "license_status": "Closed",
+   "license_type": "SERVICE 7243",
+   "phone": "TESTOWNER 3BE9B3",
+   "received_date": "2009-01-23T00:00:00.000"
+  },
+  {
+   "business_address": "8269 TEST ST",
+   "business_close_date": "2016-04-01T00:00:00.000",
+   "business_mailing_address": "6486 TEST ST",
+   "business_name": "TESTOWNER D153D4",
+   "business_open_date": "2009-01-23T00:00:00.000",
+   "business_owner_name": "TESTOWNER 1F97A2",
+   "case_number": "BUS-0019786",
+   "commissioner_district": "4",
+   "geocoded_column": {
+    "coordinates": [
+     -81.363627986,
+     28.550192001
+    ],
+    "type": "Point"
+   },
+   "gpsx": "TESTOWNER 1FB965",
+   "gpsy": "TESTOWNER E76592",
+   "last_licensed_issue_date": "2015-01-09T00:00:00.000",
+   "license_category": "PROFES",
+   "license_status": "Closed",
+   "license_type": "ACUPUNCTURE",
+   "neighborhood_name": "Colonialtown South",
+   "phone": "TESTOWNER 4B6507",
+   "received_date": "2009-01-23T00:00:00.000"
+  },
+  {
+   "business_address": "664 TEST ST",
+   "business_close_date": "2010-06-29T00:00:00.000",
+   "business_mailing_address": "6633 TEST ST",
+   "business_name": "TESTOWNER D828DF",
+   "business_open_date": "2009-01-23T00:00:00.000",
+   "business_owner_name": "TESTOWNER E590E7",
+   "case_number": "BUS-0019787",
+   "commissioner_district": "5",
+   "geocoded_column": {
+    "coordinates": [
+     -81.470235987,
+     28.518197019
+    ],
+    "type": "Point"
+   },
+   "gpsx": "TESTOWNER 5545F1",
+   "gpsy": "TESTOWNER 23A3FB",
+   "last_licensed_issue_date": "2009-01-23T00:00:00.000",
+   "license_category": "PROFES",
+   "license_status": "Closed",
+   "license_type": "PSYCHOLOGIST",
+   "neighborhood_name": "Metro West",
+   "phone": "TESTOWNER 1921D8",
+   "received_date": "2009-01-23T00:00:00.000"
+  }
+ ],
+ "where": "case_number >= 'BUS0019773-001'"
+}

@@ -1,0 +1,186 @@
+{
+ "portal": "https://data.ny.gov",
+ "rows": [
+  {
+   "expiration_date": "2027-03-31T00:00:00.000",
+   "first_name": "TESTOWNER 4075F5",
+   "issued_date": "2025-03-28T00:00:00.000",
+   "last_name": "TESTOWNER 5667CA",
+   "license_number": "25-65G4N-SHMO",
+   "license_status": "Active",
+   "license_type": "Mold Assessor License (SH128)"
+  },
+  {
+   "expiration_date": "2027-03-31T00:00:00.000",
+   "first_name": "TESTOWNER B85B1F",
+   "issued_date": "2025-03-28T00:00:00.000",
+   "last_name": "TESTOWNER 340ED2",
+   "license_number": "25-65G6O-SHMO",
+   "license_status": "Active",
+   "license_type": "Mold Abatement Worker License (SH127)"
+  },
+  {
+   "expiration_date": "2027-03-31T00:00:00.000",
+   "first_name": "TESTOWNER 6824A9",
+   "issued_date": "2025-03-28T00:00:00.000",
+   "last_name": "TESTOWNER 52CDED",
+   "license_number": "25-65G6Q-SHMO",
+   "license_status": "Active",
+   "license_type": "Mold Supervisor License (SH127)"
+  },
+  {
+   "expiration_date": "2027-03-31T00:00:00.000",
+   "first_name": "TESTOWNER 9A1F51",
+   "issued_date": "2025-03-28T00:00:00.000",
+   "last_name": "TESTOWNER 3B8FF1",
+   "license_number": "25-65G6X-SHMO",
+   "license_status": "Active",
+   "license_type": "Mold Abatement Worker License (SH127)"
+  },
+  {
+   "expiration_date": "2027-03-31T00:00:00.000",
+   "first_name": "TESTOWNER 8D12E3",
+   "issued_date": "2025-03-27T00:00:00.000",
+   "last_name": "TESTOWNER 0137B8",
+   "license_number": "25-65GB1-SHMO",
+   "license_status": "Active",
+   "license_type": "Mold Abatement Worker License (SH127)"
+  },
+  {
+   "expiration_date": "2027-03-31T00:00:00.000",
+   "first_name": "TESTOWNER 31EBC9",
+   "issued_date": "2025-03-27T00:00:00.000",
+   "last_name": "TESTOWNER E56A16",
+   "license_number": "25-65GB5-SHMO",
+   "license_status": "Active",
+   "license_type": "Mold Assessor License (SH128)"
+  },
+  {
+   "expiration_date": "2027-03-31T00:00:00.000",
+   "first_name": "TESTOWNER 3430C9",
+   "issued_date": "2025-03-27T00:00:00.000",
+   "last_name": "TESTOWNER 7E3937",
+   "license_number": "25-65GBC-SHMO",
+   "license_status": "Active",
+   "license_type": "Mold Abatement Worker License (SH127)"
+  },
+  {
+   "expiration_date": "2027-03-31T00:00:00.000",
+   "first_name": "TESTOWNER D37F9F",
+   "issued_date": "2025-03-27T00:00:00.000",
+   "last_name": "TESTOWNER 218EE0",
+   "license_number": "25-65GBI-SHMO",
+   "license_status": "Active",
+   "license_type": "Mold Abatement Worker License (SH127)"
+  },
+  {
+   "expiration_date": "2027-03-31T00:00:00.000",
+   "first_name": "TESTOWNER 6D0D82",
+   "issued_date": "2025-03-27T00:00:00.000",
+   "last_name": "TESTOWNER 13D156",
+   "license_number": "25-65GBK-SHMO",
+   "license_status": "Active",
+   "license_type": "Mold Abatement Worker License (SH127)"
+  },
+  {
+   "expiration_date": "2027-03-31T00:00:00.000",
+   "first_name": "TESTOWNER 9085DB",
+   "issued_date": "2025-03-27T00:00:00.000",
+   "last_name": "TESTOWNER B57583",
+   "license_number": "25-65GBS-SHMO",
+   "license_status": "Active",
+   "license_type": "Mold Abatement Worker License (SH127)"
+  },
+  {
+   "expiration_date": "2027-03-31T00:00:00.000",
+   "first_name": "TESTOWNER 9EE075",
+   "issued_date": "2025-03-27T00:00:00.000",
+   "last_name": "TESTOWNER 3EB1A9",
+   "license_number": "25-65GBT-SHMO",
+   "license_status": "Active",
+   "license_type": "Mold Abatement Worker License (SH127)"
+  },
+  {
+   "expiration_date": "2027-06-30T00:00:00.000",
+   "first_name": "TESTOWNER 374E15",
+   "issued_date": "2025-06-14T00:00:00.000",
+   "last_name": "TESTOWNER 751B14",
+   "license_number": "25-65H1O-SHMO",
+   "license_status": "Active",
+   "license_type": "Mold Supervisor License (SH127)"
+  },
+  {
+   "expiration_date": "2027-06-30T00:00:00.000",
+   "first_name": "TESTOWNER 51C54E",
+   "issued_date": "2025-06-12T00:00:00.000",
+   "last_name": "TESTOWNER 70BA0E",
+   "license_number": "25-65HBO-SHMO",
+   "license_status": "Active",
+   "license_type": "Mold Supervisor License (SH127)"
+  },
+  {
+   "expiration_date": "2027-06-30T00:00:00.000",
+   "first_name": "TESTOWNER 82C86C",
+   "issued_date": "2025-06-13T00:00:00.000",
+   "last_name": "TESTOWNER 44373B",
+   "license_number": "25-65HID-SHMO",
+   "license_status": "Active",
+   "license_type": "Mold Assessor License (SH128)"
+  },
+  {
+   "expiration_date": "2027-06-30T00:00:00.000",
+   "first_name": "TESTOWNER 7EF17F",
+   "issued_date": "2025-06-13T00:00:00.000",
+   "last_name": "TESTOWNER E3DA31",
+   "license_number": "25-65HIZ-SHMO",
+   "license_status": "Active",
+   "license_type": "Mold Abatement Worker License (SH127)"
+  },
+  {
+   "expiration_date": "2027-06-30T00:00:00.000",
+   "first_name": "TESTOWNER 5F33B0",
+   "issued_date": "2025-06-13T00:00:00.000",
+   "last_name": "TESTOWNER 0CE6A4",
+   "license_number": "25-65HJA-SHMO",
+   "license_status": "Active",
+   "license_type": "Mold Supervisor License (SH127)"
+  },
+  {
+   "expiration_date": "2027-06-30T00:00:00.000",
+   "first_name": "TESTOWNER 0205B9",
+   "issued_date": "2025-06-13T00:00:00.000",
+   "last_name": "TESTOWNER 5255F5",
+   "license_number": "25-65HJG-SHMO",
+   "license_status": "Active",
+   "license_type": "Mold Abatement Worker License (SH127)"
+  },
+  {
+   "expiration_date": "2027-06-30T00:00:00.000",
+   "first_name": "TESTOWNER 7499A4",
+   "issued_date": "2025-06-13T00:00:00.000",
+   "last_name": "TESTOWNER 92FCEC",
+   "license_number": "25-65HJR-SHMO",
+   "license_status": "Active",
+   "license_type": "Mold Supervisor License (SH127)"
+  },
+  {
+   "expiration_date": "2027-06-30T00:00:00.000",
+   "first_name": "TESTOWNER 237360",
+   "issued_date": "2025-06-13T00:00:00.000",
+   "last_name": "TESTOWNER C820AA",
+   "license_number": "25-65HJZ-SHMO",
+   "license_status": "Active",
+   "license_type": "Mold Supervisor License (SH127)"
+  },
+  {
+   "expiration_date": "2027-06-30T00:00:00.000",
+   "first_name": "TESTOWNER B858B9",
+   "issued_date": "2025-06-13T00:00:00.000",
+   "last_name": "TESTOWNER 6967F0",
+   "license_number": "25-65HSH-SHMO",
+   "license_status": "Active",
+   "license_type": "Mold Assessor License (SH128)"
+  }
+ ],
+ "where": "license_number >= '25-65G4N-SHMO'"
+}

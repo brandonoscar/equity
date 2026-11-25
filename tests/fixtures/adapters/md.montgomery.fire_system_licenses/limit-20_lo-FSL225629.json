@@ -1,0 +1,332 @@
+{
+ "portal": "https://data.montgomerycountymd.gov",
+ "rows": [
+  {
+   "address1": "7311 TEST ST",
+   "applicant": "TESTOWNER 72A05D",
+   "city": "Waldorf",
+   "geo_location": {
+    "coordinates": [
+     -76.93087,
+     38.62536
+    ],
+    "type": "Point"
+   },
+   "license_date": "2018-06-28T08:06:14.000",
+   "license_number": "FSL225629",
+   "license_type": "FIRE SYSTEM LICENSE",
+   "state": "MD",
+   "zip_code": "20603"
+  },
+  {
+   "applicant": "TESTOWNER B99676",
+   "city": "Emmitsburg",
+   "geo_location": {
+    "coordinates": [
+     -77.32663,
+     39.70465
+    ],
+    "type": "Point"
+   },
+   "license_date": "2018-06-28T08:06:50.000",
+   "license_number": "FSL225630",
+   "license_type": "FIRE SYSTEM LICENSE",
+   "state": "MD",
+   "zip_code": "21727"
+  },
+  {
+   "applicant": "TESTOWNER CC6E5B",
+   "city": "Baltimore",
+   "geo_location": {
+    "coordinates": [
+     -76.59159,
+     39.28853
+    ],
+    "type": "Point"
+   },
+   "license_date": "2018-06-28T08:06:43.000",
+   "license_number": "FSL225631",
+   "license_type": "FIRE SYSTEM LICENSE",
+   "state": "MD",
+   "zip_code": "21231"
+  },
+  {
+   "applicant": "TESTOWNER 9D5B46",
+   "city": "Fort Washington",
+   "geo_location": {
+    "coordinates": [
+     -76.99163,
+     38.73101
+    ],
+    "type": "Point"
+   },
+   "license_date": "2018-06-28T08:06:17.000",
+   "license_number": "FSL225632",
+   "license_type": "FIRE SYSTEM LICENSE",
+   "state": "MD",
+   "zip_code": "20749"
+  },
+  {
+   "applicant": "TESTOWNER BB0424",
+   "city": "Maitland",
+   "geo_location": {
+    "coordinates": [
+     -81.36454,
+     28.6274
+    ],
+    "type": "Point"
+   },
+   "license_date": "2018-06-28T08:06:30.000",
+   "license_number": "FSL225633",
+   "license_type": "FIRE SYSTEM LICENSE",
+   "state": "FL",
+   "zip_code": "32751"
+  },
+  {
+   "address1": "2070 TEST ST",
+   "applicant": "TESTOWNER 54AA75",
+   "city": "Beltsville",
+   "license_date": "2018-06-28T08:06:42.000",
+   "license_number": "FSL225634",
+   "license_type": "FIRE SYSTEM LICENSE",
+   "state": "MD",
+   "zip_code": "20705"
+  },
+  {
+   "applicant": "TESTOWNER 8ED8E1",
+   "city": "Hagerstown",
+   "expired_date": "2020-03-11T12:03:00.000",
+   "geo_location": {
+    "coordinates": [
+     -77.70607,
+     39.6579
+    ],
+    "type": "Point"
+   },
+   "issue_date": "2018-03-11T12:03:00.000",
+   "license_date": "2018-03-11T12:03:00.000",
+   "license_number": "FSL225635",
+   "license_type": "FIRE SYSTEM LICENSE",
+   "state": "MD",
+   "zip_code": "21742"
+  },
+  {
+   "applicant": "TESTOWNER 496C0F",
+   "city": "Baltimore",
+   "geo_location": {
+    "coordinates": [
+     -76.66756,
+     39.30935
+    ],
+    "type": "Point"
+   },
+   "license_date": "2018-06-28T09:06:34.000",
+   "license_number": "FSL225636",
+   "license_type": "FIRE SYSTEM LICENSE",
+   "state": "MD",
+   "zip_code": "21216"
+  },
+  {
+   "address1": "745 TEST ST",
+   "applicant": "TESTOWNER 423DED",
+   "city": "Baltimore",
+   "geo_location": {
+    "coordinates": [
+     -76.58193,
+     39.29245
+    ],
+    "type": "Point"
+   },
+   "license_date": "2018-06-28T09:06:44.000",
+   "license_number": "FSL225637",
+   "license_type": "FIRE SYSTEM LICENSE",
+   "state": "MD",
+   "zip_code": "21224"
+  },
+  {
+   "address1": "5612 TEST ST",
+   "applicant": "TESTOWNER A6D52C",
+   "city": "Grasonville",
+   "geo_location": {
+    "coordinates": [
+     -76.19626,
+     38.95472
+    ],
+    "type": "Point"
+   },
+   "license_date": "2018-06-28T09:06:33.000",
+   "license_number": "FSL225638",
+   "license_type": "FIRE SYSTEM LICENSE",
+   "state": "MD",
+   "zip_code": "21638"
+  },
+  {
+   "applicant": "TESTOWNER E489D4",
+   "city": "Baltimore",
+   "geo_location": {
+    "coordinates": [
+     -76.40496,
+     39.33743
+    ],
+    "type": "Point"
+   },
+   "license_date": "2018-06-28T11:06:20.000",
+   "license_number": "FSL225639",
+   "license_type": "FIRE SYSTEM LICENSE",
+   "state": "MD",
+   "zip_code": "21220"
+  },
+  {
+   "address1": "8227 TEST ST",
+   "applicant": "TESTOWNER 1AAA25",
+   "city": "Annapolis",
+   "geo_location": {
+    "coordinates": [
+     -76.52026,
+     38.97654
+    ],
+    "type": "Point"
+   },
+   "license_date": "2018-06-28T11:06:22.000",
+   "license_number": "FSL225640",
+   "license_type": "FIRE SYSTEM LICENSE",
+   "state": "MD",
+   "zip_code": "24101"
+  },
+  {
+   "address1": "3360 TEST ST",
+   "applicant": "TESTOWNER 86D929",
+   "city": "Woodbridge",
+   "expired_date": "2020-01-12T12:01:00.000",
+   "issue_date": "2018-01-12T12:01:00.000",
+   "license_date": "2018-01-12T12:01:00.000",
+   "license_number": "FSL225641",
+   "license_type": "FIRE SYSTEM LICENSE",
+   "state": "VA",
+   "zip_code": "22191"
+  },
+  {
+   "address1": "4204 TEST ST",
+   "address2": "165 TEST ST",
+   "applicant": "TESTOWNER E4ECC7",
+   "city": "Rockville",
+   "geo_location": {
+    "coordinates": [
+     -77.14931,
+     39.10532
+    ],
+    "type": "Point"
+   },
+   "license_date": "2018-06-28T11:06:30.000",
+   "license_number": "FSL225642",
+   "license_type": "FIRE SYSTEM LICENSE",
+   "state": "MD",
+   "zip_code": "20850"
+  },
+  {
+   "address1": "8679 TEST ST",
+   "applicant": "TESTOWNER 88D72A",
+   "city": "Woodbridge",
+   "geo_location": {
+    "coordinates": [
+     -77.30786,
+     38.63159
+    ],
+    "type": "Point"
+   },
+   "license_date": "2018-06-28T11:06:47.000",
+   "license_number": "FSL225643",
+   "license_type": "FIRE SYSTEM LICENSE",
+   "state": "VA",
+   "zip_code": "22193"
+  },
+  {
+   "address1": "8831 TEST ST",
+   "applicant": "TESTOWNER 757FF1",
+   "city": "Silver Spring",
+   "geo_location": {
+    "coordinates": [
+     -77.00055,
+     39.04495
+    ],
+    "type": "Point"
+   },
+   "license_date": "2018-06-28T12:06:21.000",
+   "license_number": "FSL225644",
+   "license_type": "FIRE SYSTEM LICENSE",
+   "state": "MD",
+   "zip_code": "20901"
+  },
+  {
+   "address1": "7077 TEST ST",
+   "applicant": "TESTOWNER 5DFD60",
+   "city": "Fairfax",
+   "geo_location": {
+    "coordinates": [
+     -77.24301,
+     38.84638
+    ],
+    "type": "Point"
+   },
+   "license_date": "2018-06-28T12:06:10.000",
+   "license_number": "FSL225645",
+   "license_type": "FIRE SYSTEM LICENSE",
+   "state": "VA",
+   "zip_code": "22031"
+  },
+  {
+   "address1": "5759 TEST ST",
+   "applicant": "TESTOWNER 9E98DC",
+   "city": "Edgemere",
+   "expired_date": "2020-02-10T12:02:00.000",
+   "geo_location": {
+    "coordinates": [
+     -76.52069,
+     39.2689
+    ],
+    "type": "Point"
+   },
+   "issue_date": "2018-02-10T12:02:00.000",
+   "license_date": "2018-02-10T12:02:00.000",
+   "license_number": "FSL225646",
+   "license_type": "FIRE SYSTEM LICENSE",
+   "state": "MD",
+   "zip_code": "21219"
+  },
+  {
+   "applicant": "TESTOWNER 36EB3F",
+   "city": "Alexandria",
+   "geo_location": {
+    "coordinates": [
+     -77.12363,
+     38.81125
+    ],
+    "type": "Point"
+   },
+   "license_date": "2018-06-28T12:06:06.000",
+   "license_number": "FSL225647",
+   "license_type": "FIRE SYSTEM LICENSE",
+   "state": "VA",
+   "zip_code": "22304"
+  },
+  {
+   "applicant": "TESTOWNER 72D62A",
+   "city": "Stafford",
+   "expired_date": "2020-04-10T12:04:00.000",
+   "geo_location": {
+    "coordinates": [
+     -77.40815,
+     38.42366
+    ],
+    "type": "Point"
+   },
+   "issue_date": "2018-04-10T12:04:00.000",
+   "license_date": "2018-04-10T12:04:00.000",
+   "license_number": "FSL225648",
+   "license_type": "FIRE SYSTEM LICENSE",
+   "state": "VA",
+   "zip_code": "22554"
+  }
+ ],
+ "where": "license_number >= 'FSL225629'"
+}

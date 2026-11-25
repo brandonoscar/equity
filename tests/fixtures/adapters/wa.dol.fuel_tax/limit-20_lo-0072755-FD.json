@@ -1,0 +1,146 @@
+{
+ "portal": "https://data.wa.gov",
+ "rows": [
+  {
+   "license_number": "0072755-FD",
+   "license_status": "Active",
+   "license_type": "Fuel Distributor",
+   "name": "TESTOWNER 818B5B CORP",
+   "state": "WA"
+  },
+  {
+   "license_number": "0072756-FD",
+   "license_status": "Active",
+   "license_type": "Fuel Distributor",
+   "name": "TESTOWNER 6F22CB INC",
+   "state": "TN"
+  },
+  {
+   "license_number": "0072757-FD",
+   "license_status": "Active",
+   "license_type": "Fuel Distributor",
+   "name": "TESTOWNER 2B42FE INC",
+   "state": "OR"
+  },
+  {
+   "license_number": "0072758-FD",
+   "license_status": "Active",
+   "license_type": "Fuel Distributor",
+   "name": "TESTOWNER 9DDC21 INC",
+   "state": "ID"
+  },
+  {
+   "license_number": "0072759-FD",
+   "license_status": "Active",
+   "license_type": "Fuel Distributor",
+   "name": "TESTOWNER B88FA6 INC",
+   "state": "NY"
+  },
+  {
+   "license_number": "0072763-FA",
+   "license_status": "Active",
+   "license_type": "Aircraft Fuel Distributor",
+   "name": "TESTOWNER C5AE0D LTD",
+   "state": "AB"
+  },
+  {
+   "license_number": "0072763-FS",
+   "license_status": "Active",
+   "license_type": "Fuel Supplier",
+   "name": "TESTOWNER C5AE0D LTD",
+   "state": "AB"
+  },
+  {
+   "license_number": "0072766-FA",
+   "license_status": "Active",
+   "license_type": "Aircraft Fuel Distributor",
+   "name": "TESTOWNER 5C8994 LLC",
+   "state": "TX"
+  },
+  {
+   "license_number": "0072766-FS",
+   "license_status": "Active",
+   "license_type": "Fuel Supplier",
+   "name": "TESTOWNER 5C8994 LLC",
+   "state": "TX"
+  },
+  {
+   "license_number": "0072767-FS",
+   "license_status": "Active",
+   "license_type": "Fuel Supplier",
+   "name": "TESTOWNER 4E52AC INC",
+   "state": "WI"
+  },
+  {
+   "license_number": "0072769-FS",
+   "license_status": "Active",
+   "license_type": "Fuel Supplier",
+   "name": "TESTOWNER B08C2F INC",
+   "state": "WA"
+  },
+  {
+   "license_number": "0072769-FT01",
+   "license_status": "Active",
+   "license_type": "Fuel Terminal",
+   "name": "TESTOWNER B08C2F INC",
+   "state": "WA"
+  },
+  {
+   "license_number": "0072770-FD",
+   "license_status": "Active",
+   "license_type": "Fuel Distributor",
+   "name": "TESTOWNER A1F0A7 LLC",
+   "state": "KS"
+  },
+  {
+   "license_number": "0072772-FS",
+   "license_status": "Active",
+   "license_type": "Fuel Supplier",
+   "name": "TESTOWNER FB8B51 INC",
+   "state": "WA"
+  },
+  {
+   "license_number": "0072773-FD",
+   "license_status": "Active",
+   "license_type": "Fuel Distributor",
+   "name": "TESTOWNER 597250 INC",
+   "state": "NE"
+  },
+  {
+   "license_number": "0072776-FS",
+   "license_status": "Active",
+   "license_type": "Fuel Supplier",
+   "name": "TESTOWNER CBFF8D LTD",
+   "state": "AB"
+  },
+  {
+   "license_number": "0072777-FD",
+   "license_status": "Active",
+   "license_type": "Fuel Distributor",
+   "name": "TESTOWNER 6F8EE5 INC",
+   "state": "WA"
+  },
+  {
+   "license_number": "0072778-FD",
+   "license_status": "Active",
+   "license_type": "Fuel Distributor",
+   "name": "TESTOWNER F31BDC LLC",
+   "state": "WA"
+  },
+  {
+   "license_number": "0072780-FA",
+   "license_status": "Active",
+   "license_type": "Aircraft Fuel Distributor",
+   "name": "TESTOWNER 3DB50A LLC",
+   "state": "WA"
+  },
+  {
+   "license_number": "0072782-FS",
+   "license_status": "Active",
+   "license_type": "Fuel Supplier",
+   "name": "TESTOWNER F3A75D LLC",
+   "state": "OK"
+  }
+ ],
+ "where": "license_number >= '0072755-FD'"
+}

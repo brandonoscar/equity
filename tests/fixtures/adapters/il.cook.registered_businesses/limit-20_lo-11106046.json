@@ -1,0 +1,326 @@
+{
+ "portal": "https://datacatalog.cookcountyil.gov",
+ "rows": [
+  {
+   "address_line_1": "1979 TEST ST",
+   "city": "CHICAGO",
+   "company": "TESTOWNER FC0DAE LLC",
+   "location": {
+    "coordinates": [
+     -87.66774,
+     41.97099
+    ],
+    "type": "Point"
+   },
+   "registration_account": "11106046",
+   "state": "IL",
+   "tax_type": "PARKING TAX",
+   "zip_code": "60640 - 4711"
+  },
+  {
+   "address_line_1": "1979 TEST ST",
+   "city": "CHICAGO",
+   "company": "TESTOWNER FC0DAE LLC",
+   "location": {
+    "coordinates": [
+     -87.66774,
+     41.97099
+    ],
+    "type": "Point"
+   },
+   "registration_account": "11106046",
+   "state": "IL",
+   "tax_type": "HOTEL TAX",
+   "zip_code": "60640"
+  },
+  {
+   "address_line_1": "6335 TEST ST",
+   "city": "CHICAGO",
+   "company": "TESTOWNER 2EDF15 INC",
+   "location": {
+    "coordinates": [
+     -87.75464,
+     41.80748
+    ],
+    "type": "Point"
+   },
+   "registration_account": "11106055",
+   "state": "IL",
+   "tax_type": "DEALER USE TAX",
+   "zip_code": "60638 - 1800"
+  },
+  {
+   "address_line_1": "5483 TEST ST",
+   "city": "MATTESON",
+   "company": "TESTOWNER ADFFEC INC",
+   "location": {
+    "coordinates": [
+     -87.77097,
+     41.49587
+    ],
+    "type": "Point"
+   },
+   "registration_account": "11106059",
+   "state": "IL",
+   "tax_type": "NEW MOTOR VEHICLE AND TRAILERS TAX",
+   "zip_code": "60445"
+  },
+  {
+   "address_line_1": "5483 TEST ST",
+   "city": "MATTESON",
+   "company": "TESTOWNER ADFFEC INC",
+   "location": {
+    "coordinates": [
+     -87.77097,
+     41.49587
+    ],
+    "type": "Point"
+   },
+   "registration_account": "11106059",
+   "state": "IL",
+   "tax_type": "DEALER USE TAX",
+   "zip_code": "60445"
+  },
+  {
+   "address_line_1": "6271 TEST ST",
+   "city": "CRESTWOOD",
+   "company": "TESTOWNER 795329 INC",
+   "location": {
+    "coordinates": [
+     -87.73814,
+     41.63572
+    ],
+    "type": "Point"
+   },
+   "registration_account": "11106151",
+   "state": "IL",
+   "tax_type": "DEALER USE TAX",
+   "zip_code": "60418 - 2153"
+  },
+  {
+   "address_line_1": "8035 TEST ST",
+   "city": "CHICAGO",
+   "company": "TESTOWNER 8F7BE3",
+   "location": {
+    "coordinates": [
+     -87.65639,
+     41.86943
+    ],
+    "type": "Point"
+   },
+   "registration_account": "11106229",
+   "state": "IL",
+   "tax_type": "TOBACCO TAX / CIGARETTE FLOOR TAX",
+   "zip_code": "60607"
+  },
+  {
+   "address_line_1": "8035 TEST ST",
+   "city": "CHICAGO",
+   "company": "TESTOWNER 8F7BE3",
+   "location": {
+    "coordinates": [
+     -87.65639,
+     41.86943
+    ],
+    "type": "Point"
+   },
+   "registration_account": "11106229",
+   "state": "IL",
+   "tax_type": "TOBACCO TAX / WHOLESALER QUARTERLY",
+   "zip_code": "60607"
+  },
+  {
+   "address_line_1": "8035 TEST ST",
+   "city": "CHICAGO",
+   "company": "TESTOWNER 8F7BE3",
+   "location": {
+    "coordinates": [
+     -87.65639,
+     41.86943
+    ],
+    "type": "Point"
+   },
+   "registration_account": "11106229",
+   "state": "IL",
+   "tax_type": "TOBACCO TAX / WHOLESALER",
+   "zip_code": "60607"
+  },
+  {
+   "address_line_1": "4653 TEST ST",
+   "city": "BRIDGEVIEW",
+   "company": "TESTOWNER A37F68 INC",
+   "location": {
+    "coordinates": [
+     -87.80802,
+     41.71091
+    ],
+    "type": "Point"
+   },
+   "registration_account": "11106283",
+   "state": "IL",
+   "tax_type": "TOBACCO TAX / WHOLESALER QUARTERLY",
+   "zip_code": "60455"
+  },
+  {
+   "address_line_1": "4653 TEST ST",
+   "city": "BRIDGEVIEW",
+   "company": "TESTOWNER A37F68 INC",
+   "location": {
+    "coordinates": [
+     -87.80802,
+     41.71091
+    ],
+    "type": "Point"
+   },
+   "registration_account": "11106283",
+   "state": "IL",
+   "tax_type": "TOBACCO TAX / CIGARETTE FLOOR TAX",
+   "zip_code": "60455"
+  },
+  {
+   "address_line_1": "1757 TEST ST",
+   "city": "CHICAGO",
+   "company": "TESTOWNER E81EC0 CO",
+   "location": {
+    "coordinates": [
+     -87.74508,
+     41.92953
+    ],
+    "type": "Point"
+   },
+   "registration_account": "11106285",
+   "state": "IL",
+   "tax_type": "ALCOHOLIC BEVERAGE TAX / WHOLESALER",
+   "zip_code": "60639 - 1843"
+  },
+  {
+   "address_line_1": "4059 TEST ST",
+   "city": "SKOKIE",
+   "company": "TESTOWNER 56A4B8 CO",
+   "location": {
+    "coordinates": [
+     -87.7498,
+     42.03328
+    ],
+    "type": "Point"
+   },
+   "registration_account": "11106291",
+   "state": "IL",
+   "tax_type": "ALCOHOLIC BEVERAGE TAX / WHOLESALER",
+   "zip_code": "60077 - 2515"
+  },
+  {
+   "address_line_1": "1687 TEST ST",
+   "city": "JOLIET",
+   "company": "TESTOWNER FC145F INC",
+   "location": {
+    "coordinates": [
+     -88.11845,
+     41.52258
+    ],
+    "type": "Point"
+   },
+   "registration_account": "11106442",
+   "state": "IL",
+   "tax_type": "DEALER USE TAX",
+   "zip_code": "60435 - 6704"
+  },
+  {
+   "address_line_1": "1593 TEST ST",
+   "city": "TINLEY PARK",
+   "company": "TESTOWNER 7D89E2 INC",
+   "location": {
+    "coordinates": [
+     -87.78439,
+     41.57608
+    ],
+    "type": "Point"
+   },
+   "registration_account": "11106526",
+   "state": "IL",
+   "tax_type": "GAMBLING MACHINE TAX",
+   "zip_code": "60477"
+  },
+  {
+   "address_line_1": "1474 TEST ST",
+   "city": "WHEELING",
+   "company": "TESTOWNER B98BF4 INC",
+   "location": {
+    "coordinates": [
+     -87.90449,
+     42.13659
+    ],
+    "type": "Point"
+   },
+   "registration_account": "11106527",
+   "state": "IL",
+   "tax_type": "GAMBLING MACHINE TAX",
+   "zip_code": "60090"
+  },
+  {
+   "address_line_1": "6957 TEST ST",
+   "city": "ELK GROVE VILLAGE",
+   "company": "TESTOWNER E10173 INC",
+   "location": {
+    "coordinates": [
+     -88.00222,
+     41.99362
+    ],
+    "type": "Point"
+   },
+   "registration_account": "11106529",
+   "state": "IL",
+   "tax_type": "GAMBLING MACHINE TAX",
+   "zip_code": "60007"
+  },
+  {
+   "address_line_1": "7344 TEST ST",
+   "city": "OAK FOREST",
+   "company": "TESTOWNER F18357 INC",
+   "location": {
+    "coordinates": [
+     -87.73716,
+     41.61041
+    ],
+    "type": "Point"
+   },
+   "registration_account": "11106530",
+   "state": "IL",
+   "tax_type": "GAMBLING MACHINE TAX",
+   "zip_code": "60452"
+  },
+  {
+   "address_line_1": "8977 TEST ST",
+   "city": "BURBANK",
+   "company": "TESTOWNER 96BCE8 CO",
+   "location": {
+    "coordinates": [
+     -87.74176,
+     41.74369
+    ],
+    "type": "Point"
+   },
+   "registration_account": "11106531",
+   "state": "IL",
+   "tax_type": "GAMBLING MACHINE TAX",
+   "zip_code": "60459"
+  },
+  {
+   "address_line_1": "6303 TEST ST",
+   "city": "NORTHLAKE",
+   "company": "TESTOWNER 9B7F92 INC",
+   "location": {
+    "coordinates": [
+     -87.88453,
+     41.91516
+    ],
+    "type": "Point"
+   },
+   "registration_account": "11106532",
+   "state": "IL",
+   "tax_type": "GAMBLING MACHINE TAX",
+   "zip_code": "60164"
+  }
+ ],
+ "where": "registration_account::text >= '11106046'"
+}

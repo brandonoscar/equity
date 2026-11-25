@@ -1,0 +1,22 @@
+# New York State Department of Motor Vehicles, "DMV Driving Schools" (data.ny.gov
+# 3p6i-cv8y): about 560 licensed driving schools with name, second name, address and the
+# vehicle classes taught.
+# TODO(Brandon): no issue date is published, so licenses are dated from the retrieval day.
+source_id: ny.dmv.driving_schools
+state: NY
+jurisdiction: "36"
+portal: https://data.ny.gov
+dataset: 3p6i-cv8y
+key: school_number
+id_prefix: "NY-DMV-DS:"
+terms_url: https://data.ny.gov/download/77gx-ii52/application%2Fpdf
+terms_summary: "NY Open Data terms: free to use; no warranty. No restriction on commercial use found."
+checked_on: 2026-11-25
+license:
+  name: [school_name_2, school_name]
+  type_value: Driving School
+  status_value: Licensed  # current schools only
+  address: {street: street, city: city, state: state, zip: zip}
+holders:
+  - {role: other, title: DRIVING SCHOOL, with_type: false, name: school_name, address: {street: street, city: city, state: state, zip: zip}}
+pii_fields: [school_name, school_name_2, street, phone_number, georeference]
