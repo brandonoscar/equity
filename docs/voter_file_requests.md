@@ -147,8 +147,14 @@ For each state, once its file is in place:
 
    ```python
    from equity.adapters.voter_files import (
-       AlaskaVoterFile, ArkansasVoterFile, ColoradoVoterFile, DistrictOfColumbiaVoterFile,
-       FloridaVoterFile, MichiganVoterFile, MississippiVoterFile, NorthCarolinaVoterFile,
+       AlaskaVoterFile,
+       ArkansasVoterFile,
+       ColoradoVoterFile,
+       DistrictOfColumbiaVoterFile,
+       FloridaVoterFile,
+       MichiganVoterFile,
+       MississippiVoterFile,
+       NorthCarolinaVoterFile,
        WisconsinVoterFile,
    )
    ```
