@@ -16,7 +16,7 @@ from equity.adapters.federal.dol_whd import DOLWageHourCases
 from equity.adapters.federal.ecf_rss import NDWVBankruptcyRSS, NDWVDistrictRSS, court_adapters
 from equity.adapters.federal.epa_echo import EPAJudicialCases
 from equity.adapters.federal.fcc_uls import FCC_ULS_ADAPTERS
-from equity.adapters.federal.federal_register import FederalRegisterRealty
+from equity.adapters.federal.federal_register import FederalRegisterLoanSales, FederalRegisterRealty
 from equity.adapters.federal.fjc_idb import FJCCivilJudgments
 from equity.adapters.federal.fjc_idb_direct import FJCDirectCivilJudgments
 from equity.adapters.federal.fmcsa import FMCSACarrierCensus
@@ -108,6 +108,7 @@ _ALL: tuple[type[Adapter], ...] = (
     EPAJudicialCases,
     HudFhaReo,
     FederalRegisterRealty,
+    FederalRegisterLoanSales,
     SBAChargeOffs,
     SBAPPPChargeOffs,
     SBAPPPLoans,

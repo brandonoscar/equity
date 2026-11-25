@@ -41,7 +41,7 @@ rules:
     mode: listing
     listing_table: tax_delinquency_snapshot
   # Federal Register realty / surplus / lease-sale notices: new ones most business days.
-  - match: [us.federalregister.realty_notices]
+  - match: [us.federalregister.realty_notices, us.federalregister.loan_sales]
     every_hours: 24
     mode: rebuild
   # Lists that change weekly or slower: delinquent taxes, warrants, liens, judgments, orders.
