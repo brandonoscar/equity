@@ -1,0 +1,36 @@
+source_id: oh.stark.delinquent_taxes
+state: OH
+county_fips: "39151"   # Stark County (Canton)
+# Stark County Auditor parcel view: parcels certified delinquent (CERTIFIED_DELINQUENT_YEAR and
+# _DATE set) that still carry a balance (FINAL_BALANCE > 0; 13,724 of 17,287 certified
+# parcels on 2026-11-25), with the owner, owner address, total billed / paid and the balance.
+# Certified delinquent taxes are a lien on the parcel (ORC 5721.10); a senior lien, not a
+# judgment. FINAL_BALANCE is the parcel's whole unpaid balance as published (it may include
+# current-half taxes). The date is the certification date. Debt kind: tax_delinquency.
+# Same layer as the owner source oh.stark.parcels (PIN = parcel_id there).
+api: arcgis
+layer_url: https://scgisa.starkcountyohio.gov/arcgis/rest/services/Auditor/StarkCountyParcels/MapServer/0
+where: "CERTIFIED_DELINQUENT_YEAR > 0 AND FINAL_BALANCE > 0"
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, PIN, OWNER, OWNER_ADDR1, OWNER_ADDR2, OWNER_ADDR3, SITE_ADDRESS1,
+         TOTAL_BILLED, TOTAL_PAID, FINAL_BALANCE, CERTIFIED_DELINQUENT_YEAR,
+         CERTIFIED_DELINQUENT_DATE]
+date_field: CERTIFIED_DELINQUENT_DATE
+uid: PIN
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Stark County certified delinquent real estate tax
+amount: FINAL_BALANCE
+parties:
+  - role: debtor
+    name: OWNER
+    address: {line1: [OWNER_ADDR1, OWNER_ADDR2], csz: OWNER_ADDR3}
+  - {role: creditor, const: Stark County Treasurer}
+parcel: {kind: pin, field: PIN, county_fips: "39151"}
+extra_pii: [SITE_ADDRESS1]
+terms:
+  url: https://scgisa.starkcountyohio.gov/arcgis/rest/services/Auditor/StarkCountyParcels/MapServer/0
+  summary: "Stark County (Ohio) GIS ArcGIS Server, folder 'Auditor' (ArcGIS Online item 'Certified Delinquent Parcels' points at this service), public MapServer, no login, token or fee. No description, copyright or license text on the service or layer (read 2026-11-25); no use restriction found. scgisa.starkcountyohio.gov/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

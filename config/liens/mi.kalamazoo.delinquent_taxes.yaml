@@ -1,0 +1,41 @@
+source_id: mi.kalamazoo.delinquent_taxes
+state: MI
+county_fips: "26077"   # Kalamazoo County
+# Kalamazoo County Treasurer '2025 Parcels - Treasury Query' (the layer behind the
+# Treasurer's 'Delinquent Tax Lookup & Estimated Payment Plans' app; data edited 2025-11-13):
+# parcels with a delinquent outstanding balance (GenericExport_Outstanding_Balance not 0;
+# 2,681 of 118,311 rows on 2026-11-25), with the owners, care-of, owner mailing address and the
+# estimated March 2026 and March 2027 payoff. Michigan delinquent property taxes are a lien on
+# the parcel and lead to forfeiture and foreclosure (MCL 211.78); a senior lien, not a
+# judgment. TAX and SAR1_MBOR are taxable / assessed values, not amounts owed, and are not
+# mapped. No date is published: the date is the day the list was read. PELNUMBER
+# ('01-02-490-060') is pelnumber in mi.kalamazoo.parcels. Debt kind: tax_delinquency.
+api: arcgis
+layer_url: https://services3.arcgis.com/RGltUbqpl4h9E3Qh/arcgis/rest/services/2025_Parcels___Treasury_Query/FeatureServer/0
+where: "GenericExport_Outstanding_Balance <> '0' AND GenericExport_Outstanding_Balance IS NOT NULL"
+single_partition: true
+order_by: [ObjectId]
+select: [ObjectId, PELNUMBER, ONERNAME1, ONERNAME2, OERCAREOF, OTADDRESS, OWNERCITY, ONERSTATE,
+         ORZIPCODE, PCOMBINED, GenericExport_Outstanding_Balance, March_2026_Payoff,
+         March_2027_Payoff]
+listed_on: listed_on
+date_field: listed_on
+uid: PELNUMBER
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Kalamazoo County delinquent property tax
+amount: GenericExport_Outstanding_Balance
+parties:
+  - role: debtor
+    name: ONERNAME1
+    address: {line1: OTADDRESS, city: OWNERCITY, state: ONERSTATE, zip: ORZIPCODE}
+  - role: debtor
+    name: ONERNAME2
+  - {role: creditor, const: Kalamazoo County Treasurer}
+parcel: {kind: pin, field: PELNUMBER, county_fips: "26077"}
+extra_pii: [OERCAREOF, PCOMBINED]
+terms:
+  url: https://www.arcgis.com/home/item.html?id=1c47997cc5b64c368756fdcdcbcc06a5
+  summary: "Kalamazoo County Treasurer's ArcGIS Online items (owner trwhit_kalcounty, public), used by the Treasurer's public 'Delinquent Tax Lookup' Experience app; no login, token or fee. No licenseInfo or description (read 2026-11-25); no use restriction found. services3.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

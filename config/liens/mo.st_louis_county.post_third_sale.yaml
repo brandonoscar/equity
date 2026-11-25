@@ -1,0 +1,37 @@
+source_id: mo.st_louis_county.post_third_sale
+state: MO
+county_fips: "29189"   # St. Louis County
+# St. Louis County GIS Service Center 'Tax Sale Post Third Properties view' ("Post Third
+# Properties for Tax Sale 2025"): 1,091 parcels offered at three delinquent land tax sales
+# without a bid (RSMo 140.250), with the owner of record, owner mailing address, site address
+# and tax status. Delinquent Missouri land taxes are a lien on the parcel (RSMo 140.040); a
+# senior lien, not a judgment. No amount and no per-row date: the date is the day the list was
+# read. The mailing address has no comma between street and city, so street and city stay
+# together as line1 with state and ZIP split off. USER_property_key is the county locator,
+# as LOCATOR in mo.st_louis_county.parcels. Debt kind: tax_delinquency.
+api: arcgis
+layer_url: https://services2.arcgis.com/w657bnjzrjguNyOy/arcgis/rest/services/Tax_Sale_Post_Third_Properties_view/FeatureServer/0
+single_partition: true
+order_by: [ObjectID]
+select: [ObjectID, USER_property_key, USER_tax_status, USER_last_name, USER_first_name,
+         USER_middle_initial, USER_suffix, USER_mailing_address, USER_site_address,
+         USER_property_class, USER_class_code]
+address_split: {field: USER_mailing_address, prefix: mail_, form: slash}
+listed_on: listed_on
+date_field: listed_on
+uid: USER_property_key
+doc_type: TAX_LIEN_STATE
+doc_type_raw: St. Louis County post-third tax sale parcel
+parties:
+  - role: debtor
+    name: [USER_last_name, USER_first_name, USER_middle_initial, USER_suffix]
+    address: {line1: mail_line1, state: mail_state, zip: mail_zip}
+  - {role: creditor, const: St. Louis County Collector of Revenue}
+parcel: {kind: pin, field: USER_property_key, county_fips: "29189"}
+extra_pii: [USER_mailing_address, USER_site_address]
+terms:
+  url: https://www.arcgis.com/home/item.html?id=6745efd54acb4c95829a7893726249c0
+  summary: "Saint Louis County GIS Service Center ArcGIS org item 'Tax Sale Post Third Properties view', public hosted feature view, no login, token or fee. No licenseInfo or description (read 2026-11-25); no use restriction found. Data edited 2025-06-25. services2.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

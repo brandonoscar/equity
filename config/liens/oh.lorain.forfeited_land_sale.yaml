@@ -1,0 +1,32 @@
+source_id: oh.lorain.forfeited_land_sale
+state: OH
+county_fips: "39093"   # Lorain County
+# Lorain County Auditor forfeited land sale lists (ORC 5723): parcels forfeited to the state
+# for unpaid taxes and offered at the Auditor's land sale, with the owner of record, the
+# address and the taxes owed. Two layers, one partition each: the 2026 sale (8 rows on
+# 2026-11-25) and the 2025 sale (9 rows). Field names differ by year (NAME / NAME_1); PIN is
+# the 13-digit parcel number, as PARCELID in oh.lorain.parcels. No list date is published:
+# the date is the day the list was read. Debt kind: tax_delinquency.
+api: arcgis
+layer_urls:
+  - https://services1.arcgis.com/vGBb7WYV10mOJRNM/arcgis/rest/services/2026_Land_Sale/FeatureServer/3
+  - https://services1.arcgis.com/vGBb7WYV10mOJRNM/arcgis/rest/services/2025_Land_Sale_Parcels/FeatureServer/0
+order_by: [OBJECTID]
+listed_on: listed_on
+date_field: listed_on
+uid: [PIN, TAXES_OWED]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Lorain County forfeited land sale parcel
+amount: TAXES_OWED
+parties:
+  - role: debtor
+    name: [NAME, NAME_1]
+  - {role: creditor, const: Lorain County Treasurer}
+parcel: {kind: pin, field: PIN, county_fips: "39093", strip: "-"}
+extra_pii: [ADDRESS, created_user, last_edited_user]
+terms:
+  url: https://www.arcgis.com/home/item.html?id=2903fecced364960b281792397294ab6
+  summary: "Lorain County Auditor GIS ArcGIS org (urlKey LorainGIS), public hosted layers '2026 Land Sale' and '2025 Land Sale Parcels', no login, token or fee. No licenseInfo (read 2026-11-25); no use restriction found. services1.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

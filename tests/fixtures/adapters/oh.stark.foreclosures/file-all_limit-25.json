@@ -1,0 +1,256 @@
+{
+ "layer": "https://scgisa.starkcountyohio.gov/arcgis/rest/services/Auditor/HistoricForeclosures/MapServer/0",
+ "rows": [
+  {
+   "CaseNumber": "2017CV00845",
+   "Foreclosure_Type": "Bank Foreclosure",
+   "Month": "September",
+   "OBJECTID": 77183,
+   "ParcelNumber": "5208749",
+   "Tax_Lien_Code": "N/A",
+   "Total_Property_Value": 69000,
+   "Year": "2017"
+  },
+  {
+   "CaseNumber": "2001CV03059",
+   "Foreclosure_Type": "Bank Foreclosure",
+   "Month": "July",
+   "OBJECTID": 77184,
+   "ParcelNumber": "232955",
+   "Tax_Lien_Code": "N/A",
+   "Total_Property_Value": 30000,
+   "Year": "2003"
+  },
+  {
+   "CaseNumber": "2017CV00793",
+   "Foreclosure_Type": "Bank Foreclosure",
+   "Month": "October",
+   "OBJECTID": 77185,
+   "ParcelNumber": "221616",
+   "Tax_Lien_Code": "N/A",
+   "Total_Property_Value": 63000,
+   "Year": "2017"
+  },
+  {
+   "CaseNumber": "2010CV02252",
+   "Foreclosure_Type": "Bank Foreclosure",
+   "Month": "November",
+   "OBJECTID": 77186,
+   "ParcelNumber": "5500881",
+   "Tax_Lien_Code": "N/A",
+   "Total_Property_Value": 129000,
+   "Year": "2010"
+  },
+  {
+   "CaseNumber": "2016CV02229",
+   "Foreclosure_Type": "Bank Foreclosure",
+   "Month": "April",
+   "OBJECTID": 77187,
+   "ParcelNumber": "6900209",
+   "Tax_Lien_Code": "N/A",
+   "Total_Property_Value": null,
+   "Year": "2017"
+  },
+  {
+   "CaseNumber": "2016CV01626",
+   "Foreclosure_Type": "Bank Foreclosure",
+   "Month": "February",
+   "OBJECTID": 77188,
+   "ParcelNumber": "5200022",
+   "Tax_Lien_Code": "N/A",
+   "Total_Property_Value": 60000,
+   "Year": "2017"
+  },
+  {
+   "CaseNumber": "2008CV03120",
+   "Foreclosure_Type": "Bank Foreclosure",
+   "Month": "February",
+   "OBJECTID": 77189,
+   "ParcelNumber": "9201040",
+   "Tax_Lien_Code": "N/A",
+   "Total_Property_Value": 99000,
+   "Year": "2009"
+  },
+  {
+   "CaseNumber": "208495A",
+   "Foreclosure_Type": "Bank Foreclosure",
+   "Month": "May",
+   "OBJECTID": 77190,
+   "ParcelNumber": "223793",
+   "Tax_Lien_Code": "N/A",
+   "Total_Property_Value": null,
+   "Year": "2011"
+  },
+  {
+   "CaseNumber": "2012CV00574",
+   "Foreclosure_Type": "Bank Foreclosure",
+   "Month": "July",
+   "OBJECTID": 77191,
+   "ParcelNumber": "221246",
+   "Tax_Lien_Code": "N/A",
+   "Total_Property_Value": 42000,
+   "Year": "2012"
+  },
+  {
+   "CaseNumber": "2008CV01001",
+   "Foreclosure_Type": "Bank Foreclosure",
+   "Month": "November",
+   "OBJECTID": 77192,
+   "ParcelNumber": "3604801",
+   "Tax_Lien_Code": "N/A",
+   "Total_Property_Value": 111000,
+   "Year": "2008"
+  },
+  {
+   "CaseNumber": "2017CV00663",
+   "Foreclosure_Type": "Bank Foreclosure",
+   "Month": "September",
+   "OBJECTID": 77193,
+   "ParcelNumber": "220192",
+   "Tax_Lien_Code": "N/A",
+   "Total_Property_Value": 42000,
+   "Year": "2017"
+  },
+  {
+   "CaseNumber": "2008CV05174",
+   "Foreclosure_Type": "Bank Foreclosure",
+   "Month": "February",
+   "OBJECTID": 77194,
+   "ParcelNumber": "4104212",
+   "Tax_Lien_Code": "N/A",
+   "Total_Property_Value": 120000,
+   "Year": "2010"
+  },
+  {
+   "CaseNumber": "2009CV00164",
+   "Foreclosure_Type": "Bank Foreclosure",
+   "Month": "June",
+   "OBJECTID": 77195,
+   "ParcelNumber": "220915",
+   "Tax_Lien_Code": "N/A",
+   "Total_Property_Value": 48000,
+   "Year": "2009"
+  },
+  {
+   "CaseNumber": "2013CV00071",
+   "Foreclosure_Type": "Bank Foreclosure",
+   "Month": "June",
+   "OBJECTID": 77196,
+   "ParcelNumber": "1901859",
+   "Tax_Lien_Code": "N/A",
+   "Total_Property_Value": 120000,
+   "Year": "2013"
+  },
+  {
+   "CaseNumber": "2010CV03220",
+   "Foreclosure_Type": "Bank Foreclosure",
+   "Month": "February",
+   "OBJECTID": 77197,
+   "ParcelNumber": "5206820",
+   "Tax_Lien_Code": "N/A",
+   "Total_Property_Value": 60000,
+   "Year": "2011"
+  },
+  {
+   "CaseNumber": "2005CV02207",
+   "Foreclosure_Type": "Bank Foreclosure",
+   "Month": "April",
+   "OBJECTID": 77198,
+   "ParcelNumber": "5501793",
+   "Tax_Lien_Code": "N/A",
+   "Total_Property_Value": 135000,
+   "Year": "2006"
+  },
+  {
+   "CaseNumber": "2001CV01019",
+   "Foreclosure_Type": "Bank Foreclosure",
+   "Month": "October",
+   "OBJECTID": 77199,
+   "ParcelNumber": "214029",
+   "Tax_Lien_Code": "N/A",
+   "Total_Property_Value": 60000,
+   "Year": "2001"
+  },
+  {
+   "CaseNumber": "2011CV00853",
+   "Foreclosure_Type": "Bank Foreclosure",
+   "Month": "April",
+   "OBJECTID": 77200,
+   "ParcelNumber": "608682",
+   "Tax_Lien_Code": "N/A",
+   "Total_Property_Value": 105000,
+   "Year": "2012"
+  },
+  {
+   "CaseNumber": "2010CV04416",
+   "Foreclosure_Type": "Bank Foreclosure",
+   "Month": "May",
+   "OBJECTID": 77201,
+   "ParcelNumber": "4201656",
+   "Tax_Lien_Code": "N/A",
+   "Total_Property_Value": null,
+   "Year": "2011"
+  },
+  {
+   "CaseNumber": "2005CV04031",
+   "Foreclosure_Type": "Bank Foreclosure",
+   "Month": "July",
+   "OBJECTID": 77202,
+   "ParcelNumber": "241134",
+   "Tax_Lien_Code": "N/A",
+   "Total_Property_Value": null,
+   "Year": "2006"
+  },
+  {
+   "CaseNumber": "2015CV00310",
+   "Foreclosure_Type": "Bank Foreclosure",
+   "Month": "September",
+   "OBJECTID": 77203,
+   "ParcelNumber": "210569",
+   "Tax_Lien_Code": "N/A",
+   "Total_Property_Value": 60000,
+   "Year": "2015"
+  },
+  {
+   "CaseNumber": "2012CV02655",
+   "Foreclosure_Type": "Bank Foreclosure",
+   "Month": "July",
+   "OBJECTID": 77204,
+   "ParcelNumber": "200574",
+   "Tax_Lien_Code": "N/A",
+   "Total_Property_Value": 24000,
+   "Year": "2013"
+  },
+  {
+   "CaseNumber": "2011CV02191",
+   "Foreclosure_Type": "Bank Foreclosure",
+   "Month": "August",
+   "OBJECTID": 77205,
+   "ParcelNumber": "4105555",
+   "Tax_Lien_Code": "N/A",
+   "Total_Property_Value": 99000,
+   "Year": "2012"
+  },
+  {
+   "CaseNumber": "2015CV00724",
+   "Foreclosure_Type": "Bank Foreclosure",
+   "Month": "August",
+   "OBJECTID": 77206,
+   "ParcelNumber": "7200494",
+   "Tax_Lien_Code": "N/A",
+   "Total_Property_Value": 75000,
+   "Year": "2016"
+  },
+  {
+   "CaseNumber": "2004CV00547",
+   "Foreclosure_Type": "Bank Foreclosure",
+   "Month": "September",
+   "OBJECTID": 77207,
+   "ParcelNumber": "4308518",
+   "Tax_Lien_Code": "N/A",
+   "Total_Property_Value": null,
+   "Year": "2004"
+  }
+ ],
+ "where": "1=1"
+}

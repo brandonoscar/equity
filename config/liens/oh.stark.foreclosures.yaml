@@ -1,0 +1,35 @@
+source_id: oh.stark.foreclosures
+state: OH
+county_fips: "39151"   # Stark County (Canton)
+# Stark County GIS 'Foreclosures' (service description: "current and historic foreclosures in
+# Stark County, Ohio. Foreclosures include tax-related foreclosures based on tax lien codes
+# maintained by the Stark County Treasurers Department and bank foreclosures that go through
+# the Stark County Sheriff Sales"): 27,752 rows on 2026-11-25, 1999 to 2026, one per case and
+# parcel, with the case number, month and year, the treasurer's tax lien code and the type
+# (Bank, Tax, Tax Lien, NIP, SCLRC land bank, BOR). No party is named: each is owed by the
+# parcel's owner (parcel_on_lien). Year is read as Jan 1 of that year ('Unknown' and 'Current'
+# rows have no date and are skipped). Tax foreclosures enforce the tax lien; bank foreclosures
+# are notices (LIS_PENDENS) like pa.allegheny.foreclosures. Debt kind: foreclosure.
+api: arcgis
+layer_url: https://scgisa.starkcountyohio.gov/arcgis/rest/services/Auditor/HistoricForeclosures/MapServer/0
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, CaseNumber, ParcelNumber, Month, Year, Tax_Lien_Code, Foreclosure_Type,
+         Total_Property_Value]
+year_dates: [Year]
+date_field: Year
+uid: [CaseNumber, ParcelNumber, Year, Month, Foreclosure_Type]
+doc_type:
+  field: Foreclosure_Type
+  map:
+    BANK FORECLOSURE: LIS_PENDENS
+  default: TAX_LIEN_STATE
+doc_type_raw: {field: Foreclosure_Type}
+parties: []
+parcel: {kind: pin, field: ParcelNumber, county_fips: "39151"}
+terms:
+  url: https://scgisa.starkcountyohio.gov/arcgis/rest/services/Auditor/HistoricForeclosures/MapServer
+  summary: "Stark County (Ohio) GIS ArcGIS Server, folder 'Auditor', public MapServer, copyright 'Stark County GIS', no login, token or fee. No license or use-restriction text (read 2026-11-25). scgisa.starkcountyohio.gov/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

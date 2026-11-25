@@ -1,0 +1,256 @@
+{
+ "layer": "https://gis.greenecountyohio.gov/webgis2/rest/services/OpenData/OpenData/MapServer/1",
+ "rows": [
+  {
+   "Delinquent_Taxes_Due": 2648.34,
+   "OBJECTID": 38152860,
+   "Owner_Name": "TESTOWNER E9AAE5",
+   "Parcel_Id": "E13000100120003800",
+   "Tax_Mailing_Address": "7754 TEST ST",
+   "Tax_Mailing_City_St_Zip": "NEBO KY 42441",
+   "Tax_Year": 2025,
+   "Total_Taxes_Due": 3679.42
+  },
+  {
+   "Delinquent_Taxes_Due": 3013.04,
+   "OBJECTID": 38152988,
+   "Owner_Name": "TESTOWNER A48662",
+   "Parcel_Id": "C05000100110003400",
+   "Tax_Mailing_Address": "8090 TEST ST",
+   "Tax_Mailing_City_St_Zip": "XENIA OH 45385-9668",
+   "Tax_Year": 2025,
+   "Total_Taxes_Due": 5340.58
+  },
+  {
+   "Delinquent_Taxes_Due": 58.1,
+   "OBJECTID": 38153261,
+   "Owner_Name": "TESTOWNER 70CD8D",
+   "Parcel_Id": "E15000100020009700",
+   "Tax_Mailing_Address": "4126 TEST ST",
+   "Tax_Mailing_City_St_Zip": "JAMESTOWN OH 45335-1316",
+   "Tax_Year": 2025,
+   "Total_Taxes_Due": 164.48
+  },
+  {
+   "Delinquent_Taxes_Due": 304.08,
+   "OBJECTID": 38153271,
+   "Owner_Name": "TESTOWNER 70CD8D",
+   "Parcel_Id": "E15000100020009600",
+   "Tax_Mailing_Address": "2540 TEST ST",
+   "Tax_Mailing_City_St_Zip": "BOWERSVILLE OH 45307",
+   "Tax_Year": 2025,
+   "Total_Taxes_Due": 860.04
+  },
+  {
+   "Delinquent_Taxes_Due": 3146.94,
+   "OBJECTID": 38153296,
+   "Owner_Name": "TESTOWNER FEE42F",
+   "Parcel_Id": "E15000100020009200",
+   "Tax_Mailing_Address": "5260 TEST ST",
+   "Tax_Mailing_City_St_Zip": "SABINA OH 45169",
+   "Tax_Year": 2025,
+   "Total_Taxes_Due": 4383.14
+  },
+  {
+   "Delinquent_Taxes_Due": 18.93,
+   "OBJECTID": 38153347,
+   "Owner_Name": "TESTOWNER 5B89D3",
+   "Parcel_Id": "E15000100020011000",
+   "Tax_Mailing_Address": "7447 TEST ST",
+   "Tax_Mailing_City_St_Zip": "XENIA OH 45385",
+   "Tax_Year": 2025,
+   "Total_Taxes_Due": 504.29
+  },
+  {
+   "Delinquent_Taxes_Due": 156.9,
+   "OBJECTID": 38153370,
+   "Owner_Name": "TESTOWNER 5B89D3",
+   "Parcel_Id": "E15000100020011500",
+   "Tax_Mailing_Address": "7447 TEST ST",
+   "Tax_Mailing_City_St_Zip": "XENIA OH 45385",
+   "Tax_Year": 2025,
+   "Total_Taxes_Due": 798.26
+  },
+  {
+   "Delinquent_Taxes_Due": 510.57,
+   "OBJECTID": 38153417,
+   "Owner_Name": "TESTOWNER C92965",
+   "Parcel_Id": "E15000100020002200",
+   "Tax_Mailing_Address": "8722 TEST ST",
+   "Tax_Mailing_City_St_Zip": "BOWERSVILLE OH 45307",
+   "Tax_Year": 2025,
+   "Total_Taxes_Due": 1065.43
+  },
+  {
+   "Delinquent_Taxes_Due": 3626.61,
+   "OBJECTID": 38153452,
+   "Owner_Name": "TESTOWNER B6EACB",
+   "Parcel_Id": "C05000100110007500",
+   "Tax_Mailing_Address": "7535 TEST ST",
+   "Tax_Mailing_City_St_Zip": "XENIA OH 45385",
+   "Tax_Year": 2025,
+   "Total_Taxes_Due": 6760.15
+  },
+  {
+   "Delinquent_Taxes_Due": 4448.01,
+   "OBJECTID": 38153492,
+   "Owner_Name": "TESTOWNER DA6DCB",
+   "Parcel_Id": "E15000100010011000",
+   "Tax_Mailing_Address": "4606 TEST ST",
+   "Tax_Mailing_City_St_Zip": "BOWERSVILLE OH 45307",
+   "Tax_Year": 2025,
+   "Total_Taxes_Due": 5683.55
+  },
+  {
+   "Delinquent_Taxes_Due": 1377.99,
+   "OBJECTID": 38153532,
+   "Owner_Name": "TESTOWNER DA6DCB",
+   "Parcel_Id": "E15000100010010500",
+   "Tax_Mailing_Address": "4606 TEST ST",
+   "Tax_Mailing_City_St_Zip": "BOWERSVILLE OH 45307",
+   "Tax_Year": 2025,
+   "Total_Taxes_Due": 1676.77
+  },
+  {
+   "Delinquent_Taxes_Due": 6347.62,
+   "OBJECTID": 38153537,
+   "Owner_Name": "TESTOWNER A802DD",
+   "Parcel_Id": "E15000100010011600",
+   "Tax_Mailing_Address": "2821 TEST ST",
+   "Tax_Mailing_City_St_Zip": "SABINA OH 45169",
+   "Tax_Year": 2025,
+   "Total_Taxes_Due": 7188.0
+  },
+  {
+   "Delinquent_Taxes_Due": 938.53,
+   "OBJECTID": 38153622,
+   "Owner_Name": "TESTOWNER 292B02",
+   "Parcel_Id": "E15000100010003400",
+   "Tax_Mailing_Address": "5367 TEST ST",
+   "Tax_Mailing_City_St_Zip": "BOWERSVILLE OH 45307",
+   "Tax_Year": 2025,
+   "Total_Taxes_Due": 1069.79
+  },
+  {
+   "Delinquent_Taxes_Due": 92.31,
+   "OBJECTID": 38153684,
+   "Owner_Name": "TESTOWNER A52F2E",
+   "Parcel_Id": "E15000100010016100",
+   "Tax_Mailing_Address": "436 TEST ST",
+   "Tax_Mailing_City_St_Zip": "BOWERSVILLE OH 45307",
+   "Tax_Year": 2025,
+   "Total_Taxes_Due": 98.45
+  },
+  {
+   "Delinquent_Taxes_Due": 4112.57,
+   "OBJECTID": 38153773,
+   "Owner_Name": "TESTOWNER 270441",
+   "Parcel_Id": "C05000100070003300",
+   "Tax_Mailing_Address": "6384 TEST ST",
+   "Tax_Mailing_City_St_Zip": "BOCA RATON FL 33431",
+   "Tax_Year": 2025,
+   "Total_Taxes_Due": 4899.95
+  },
+  {
+   "Delinquent_Taxes_Due": 842.97,
+   "OBJECTID": 38153812,
+   "Owner_Name": "TESTOWNER 4E25B1",
+   "Parcel_Id": "L34000100071001800",
+   "Tax_Mailing_Address": "8282 TEST ST",
+   "Tax_Mailing_City_St_Zip": "SUGARCREEK TWP OH 45305",
+   "Tax_Year": 2025,
+   "Total_Taxes_Due": 870.59
+  },
+  {
+   "Delinquent_Taxes_Due": 5787.76,
+   "OBJECTID": 38153875,
+   "Owner_Name": "TESTOWNER F29716",
+   "Parcel_Id": "E13000100050008600",
+   "Tax_Mailing_Address": "3753 TEST ST",
+   "Tax_Mailing_City_St_Zip": "JAMESTOWN OH 45335",
+   "Tax_Year": 2025,
+   "Total_Taxes_Due": 6840.86
+  },
+  {
+   "Delinquent_Taxes_Due": 3476.74,
+   "OBJECTID": 38153891,
+   "Owner_Name": "TESTOWNER 389D05",
+   "Parcel_Id": "E13000100020001500",
+   "Tax_Mailing_Address": "3753 TEST ST",
+   "Tax_Mailing_City_St_Zip": "JAMESTOWN OH 45335",
+   "Tax_Year": 2025,
+   "Total_Taxes_Due": 6485.16
+  },
+  {
+   "Delinquent_Taxes_Due": 5688.43,
+   "OBJECTID": 38154263,
+   "Owner_Name": "TESTOWNER 4C368B",
+   "Parcel_Id": "K28000100220001000",
+   "Tax_Mailing_Address": "1518 TEST ST",
+   "Tax_Mailing_City_St_Zip": "XENIA OH 45385-9421",
+   "Tax_Year": 2025,
+   "Total_Taxes_Due": 8690.29
+  },
+  {
+   "Delinquent_Taxes_Due": 112.87,
+   "OBJECTID": 38154426,
+   "Owner_Name": "TESTOWNER C59361",
+   "Parcel_Id": "K28000100190001300",
+   "Tax_Mailing_Address": "1239 TEST ST",
+   "Tax_Mailing_City_St_Zip": "XENIA OH 45385",
+   "Tax_Year": 2025,
+   "Total_Taxes_Due": 162.49
+  },
+  {
+   "Delinquent_Taxes_Due": 1285.22,
+   "OBJECTID": 38154525,
+   "Owner_Name": "TESTOWNER 52BDC9",
+   "Parcel_Id": "K28000100050004300",
+   "Tax_Mailing_Address": "3075 TEST ST",
+   "Tax_Mailing_City_St_Zip": "SPRING VALLEY OH 45370",
+   "Tax_Year": 2025,
+   "Total_Taxes_Due": 3373.88
+  },
+  {
+   "Delinquent_Taxes_Due": 29.78,
+   "OBJECTID": 38154535,
+   "Owner_Name": "TESTOWNER 52BDC9",
+   "Parcel_Id": "K28000100050004500",
+   "Tax_Mailing_Address": "3075 TEST ST",
+   "Tax_Mailing_City_St_Zip": "SPRING VALLEY OH 45370",
+   "Tax_Year": 2025,
+   "Total_Taxes_Due": 90.72
+  },
+  {
+   "Delinquent_Taxes_Due": 1026.75,
+   "OBJECTID": 38154654,
+   "Owner_Name": "TESTOWNER F33F7E",
+   "Parcel_Id": "J26000100120002000",
+   "Tax_Mailing_Address": "1698 TEST ST",
+   "Tax_Mailing_City_St_Zip": "SABINA OH 45169-9208",
+   "Tax_Year": 2025,
+   "Total_Taxes_Due": 4345.43
+  },
+  {
+   "Delinquent_Taxes_Due": 1433.05,
+   "OBJECTID": 38154685,
+   "Owner_Name": "TESTOWNER 6DD296",
+   "Parcel_Id": "K28000100210000700",
+   "Tax_Mailing_Address": "3720 TEST ST",
+   "Tax_Mailing_City_St_Zip": "WAYNESVILLE OH 45068",
+   "Tax_Year": 2025,
+   "Total_Taxes_Due": 4100.29
+  },
+  {
+   "Delinquent_Taxes_Due": 8516.1,
+   "OBJECTID": 38154737,
+   "Owner_Name": "TESTOWNER 6DD296",
+   "Parcel_Id": "K28000100210004700",
+   "Tax_Mailing_Address": "3720 TEST ST",
+   "Tax_Mailing_City_St_Zip": "WAYNESVILLE OH 45068",
+   "Tax_Year": 2025,
+   "Total_Taxes_Due": 24366.38
+  }
+ ],
+ "where": "(Delinquent_Taxes_Due > 0)"
+}

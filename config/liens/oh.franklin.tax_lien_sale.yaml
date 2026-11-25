@@ -1,0 +1,34 @@
+source_id: oh.franklin.tax_lien_sale
+state: OH
+county_fips: "39049"   # Franklin County (Columbus)
+# Franklin County Treasurer 'Final Tax Lien List 2025' (CSV): 926 parcels delinquent in their
+# real estate taxes as of 2025-10-27 and subject to the 2025 tax lien certificate sale (ORC
+# 5721.30-.43), with the owner, owner mailing address, location, land use, the certified
+# delinquent year (CDQ Year), net tax due, net lien value and fee. Certified delinquent taxes
+# are a lien on the parcel (ORC 5721.10); a senior lien, not a judgment. The date is Jan 1 of
+# the CDQ year. The list's parcel number carries the extension ('010-000034-00'), which
+# oh.franklin.parcels drops ('010-280536'), so no parcel link is made: owners are matched by
+# name and mailing address. Debt kind: tax_lien.
+api: csv
+url: https://treasurer.franklincountyohio.gov/files/assets/treasurer/v/1/documents/final-tax-lien-list-2025.csv
+link_from:
+  page: https://treasurer.franklincountyohio.gov/Delinquent-Taxes/Tax-Lien-Sale
+  pattern: "tax-lien-list[^\"']*\\.csv"
+year_dates: [cdq_year]
+date_field: cdq_year
+uid: dist_parc_ext
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Franklin County tax lien certificate sale parcel
+amount: net_lien_value
+parties:
+  - role: debtor
+    name: owner_name_1
+    address: {line1: mail_address_1, city: mail_city, state: mail_state, zip: mail_zip}
+  - {role: creditor, const: Franklin County Treasurer}
+extra_pii: [location_address]
+terms:
+  url: https://treasurer.franklincountyohio.gov/Delinquent-Taxes/Tax-Lien-Sale
+  summary: "Franklin County (Ohio) Treasurer publishes the tax lien sale list as a free CSV download, no login. No license or reuse terms stated on the page (read 2026-11-25). treasurer.franklincountyohio.gov/robots.txt disallows only a few /About and /Star pages."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

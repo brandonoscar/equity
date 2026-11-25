@@ -1,0 +1,36 @@
+source_id: sc.horry.delinquent_tax_sale
+state: SC
+county_fips: "45051"   # Horry County (Myrtle Beach)
+# Horry County GIS 'DelinquentTaxParcels2025' ("Delinquent Tax Parcels for the year 2025";
+# edited 2026-11-20): 1,768 rows, one per parcel on the county's delinquent tax sale list, with
+# the owner, sale item number, legal description, the Forfeited Land Commission bid amount
+# (taxes, penalties and costs owed) and, for 209 rows, the new owner (the purchaser). Delinquent
+# South Carolina property tax is a first lien on the property (S.C. Code 12-49-10); a senior
+# lien, not a judgment. No list date is published: the date is the day the list was read.
+# PIN_1 ('44314040003') is PINtext in sc.horry.parcels. Debt kind: tax_delinquency.
+api: arcgis
+layer_url: https://services1.arcgis.com/If0JkGr8ABreBTuS/arcgis/rest/services/DelinquentTaxParcels2025/FeatureServer/0
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, PIN_1, Item_Number, Owner_Name, OwnerName, New_Owner_Name, Description,
+         FLC_Bid_Amount]
+listed_on: listed_on
+date_field: listed_on
+uid: [PIN_1, Item_Number]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Horry County 2025 delinquent tax sale parcel
+amount: FLC_Bid_Amount
+parties:
+  - role: debtor
+    name: Owner_Name
+  - role: other
+    name: New_Owner_Name
+  - {role: creditor, const: Horry County Treasurer}
+parcel: {kind: pin, field: PIN_1, county_fips: "45051"}
+extra_pii: [OwnerName]
+terms:
+  url: https://www.arcgis.com/home/item.html?id=50dcc14d254a4795b30db3bfd9480b22
+  summary: "Horry County GIS ArcGIS org item 'DelinquentTaxParcels2025', public hosted layer, no login, token or fee. No licenseInfo or description beyond the snippet (read 2026-11-25); no use restriction found. services1.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,29 @@
+source_id: ak.fairbanks_north_star.tax_foreclosures
+state: AK
+county_fips: "02090"   # Fairbanks North Star Borough
+# Fairbanks North Star Borough 'Foreclosure_Interactive_Map' (Interactive_Map_Points): 61
+# parcels the borough took by tax foreclosure (AS 29.45.290-.450) offered at its foreclosure
+# sale, with the sale id, legal, situs, assessed value and minimum bid. No owner is named:
+# each is owed by the parcel's former owner (parcel_on_lien). No list date is published: the
+# date is the day the list was read. PAN is the borough parcel account number, as in
+# ak.fairbanks_north_star.parcels. Debt kind: tax_delinquency.
+api: arcgis
+layer_url: https://services.arcgis.com/f4rR7WnIfGBdVYFd/arcgis/rest/services/Foreclosure_Interactive_Map/FeatureServer/86
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, PAN, ID_Number, Slegal, Situs, Assessed_Value, Minimum_Bid]
+listed_on: listed_on
+date_field: listed_on
+uid: [PAN, ID_Number]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Fairbanks North Star Borough tax foreclosure sale parcel
+amount: Minimum_Bid
+parties: []
+parcel: {kind: pin, field: PAN, county_fips: "02090"}
+extra_pii: [Situs]
+terms:
+  url: https://services.arcgis.com/f4rR7WnIfGBdVYFd/arcgis/rest/services/Foreclosure_Interactive_Map/FeatureServer/86
+  summary: "Fairbanks North Star Borough ArcGIS org, public hosted layer 'Foreclosure_Interactive_Map', no login, token or fee. No licenseInfo (read 2026-11-25); no use restriction found. services.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

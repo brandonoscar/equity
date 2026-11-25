@@ -1,0 +1,206 @@
+{
+ "layer": "https://services6.arcgis.com/VKHi8CC6pMIyYUIs/arcgis/rest/services/Delinquent_Tax_Records_9_16_25/FeatureServer/3",
+ "rows": [
+  {
+   "Amt_Due": "879.35",
+   "Dist": "1",
+   "OBJECTID": 1,
+   "OWNER_NAME": "TESTOWNER 860FA2",
+   "Prop_ID": "00001/00002/004",
+   "Situs": "TESTOWNER CDE73F"
+  },
+  {
+   "Amt_Due": "996.08",
+   "Dist": "1",
+   "OBJECTID": 2,
+   "OWNER_NAME": "TESTOWNER C50029",
+   "Prop_ID": "00001/00004/007",
+   "Situs": "TESTOWNER 2D5AC5"
+  },
+  {
+   "Amt_Due": "996.08",
+   "Dist": "1",
+   "OBJECTID": 3,
+   "OWNER_NAME": "TESTOWNER 654195",
+   "Prop_ID": "00001/00004/008",
+   "Situs": "TESTOWNER 322D2D"
+  },
+  {
+   "Amt_Due": "6540.4",
+   "Dist": "1",
+   "OBJECTID": 4,
+   "OWNER_NAME": "TESTOWNER B34D93",
+   "Prop_ID": "00001/00005/001",
+   "Situs": "TESTOWNER 9CD69D"
+  },
+  {
+   "Amt_Due": "2954.36",
+   "Dist": "1",
+   "OBJECTID": 5,
+   "OWNER_NAME": "TESTOWNER B34D93",
+   "Prop_ID": "00001/00005/002",
+   "Situs": "TESTOWNER 1568D9"
+  },
+  {
+   "Amt_Due": "1993.64",
+   "Dist": "1",
+   "OBJECTID": 6,
+   "OWNER_NAME": "TESTOWNER 5B4A3F",
+   "Prop_ID": "00001/00005/009",
+   "Situs": "TESTOWNER D62759"
+  },
+  {
+   "Amt_Due": "814.85",
+   "Dist": "1",
+   "OBJECTID": 7,
+   "OWNER_NAME": "TESTOWNER 690837",
+   "Prop_ID": "00001/00006/005",
+   "Situs": "TESTOWNER FFF9D2"
+  },
+  {
+   "Amt_Due": "250.6",
+   "Dist": "1",
+   "OBJECTID": 8,
+   "OWNER_NAME": "TESTOWNER 027476",
+   "Prop_ID": "00001/00007/005",
+   "Situs": "TESTOWNER 615B34"
+  },
+  {
+   "Amt_Due": "716.52",
+   "Dist": "1",
+   "OBJECTID": 9,
+   "OWNER_NAME": "TESTOWNER 55D0BF",
+   "Prop_ID": "00001/00008/012",
+   "Situs": "TESTOWNER 70C419"
+  },
+  {
+   "Amt_Due": "938.96",
+   "Dist": "1",
+   "OBJECTID": 10,
+   "OWNER_NAME": "TESTOWNER 85B1BF",
+   "Prop_ID": "00001/00008/01D",
+   "Situs": "TESTOWNER 5093D0"
+  },
+  {
+   "Amt_Due": "1912.31",
+   "Dist": "1",
+   "OBJECTID": 11,
+   "OWNER_NAME": "TESTOWNER 8B1D65",
+   "Prop_ID": "00001/00008/01E",
+   "Situs": "TESTOWNER 43097E"
+  },
+  {
+   "Amt_Due": "938.96",
+   "Dist": "1",
+   "OBJECTID": 12,
+   "OWNER_NAME": "TESTOWNER C34EDF",
+   "Prop_ID": "00001/00008/01I",
+   "Situs": "TESTOWNER 8BC5D6"
+  },
+  {
+   "Amt_Due": "1516.59",
+   "Dist": "1",
+   "OBJECTID": 13,
+   "OWNER_NAME": "TESTOWNER 4A25CD",
+   "Prop_ID": "00001/00008/02A",
+   "Situs": "TESTOWNER 5115FA"
+  },
+  {
+   "Amt_Due": "1949.51",
+   "Dist": "1",
+   "OBJECTID": 14,
+   "OWNER_NAME": "TESTOWNER 1A7496",
+   "Prop_ID": "00001/00012/007",
+   "Situs": "TESTOWNER 3D770A"
+  },
+  {
+   "Amt_Due": "660.65",
+   "Dist": "1",
+   "OBJECTID": 15,
+   "OWNER_NAME": "TESTOWNER C3CAB9",
+   "Prop_ID": "00001/00013/014",
+   "Situs": "TESTOWNER 790FE4"
+  },
+  {
+   "Amt_Due": "1088.21",
+   "Dist": "1",
+   "OBJECTID": 16,
+   "OWNER_NAME": "TESTOWNER E7662A",
+   "Prop_ID": "00001/00013/19B",
+   "Situs": "TESTOWNER E2314A"
+  },
+  {
+   "Amt_Due": "996.08",
+   "Dist": "1",
+   "OBJECTID": 17,
+   "OWNER_NAME": "TESTOWNER 51BD32",
+   "Prop_ID": "00001/00013/23C",
+   "Situs": "TESTOWNER D0FA41"
+  },
+  {
+   "Amt_Due": "1015.27",
+   "Dist": "1",
+   "OBJECTID": 18,
+   "OWNER_NAME": "TESTOWNER 51BD32",
+   "Prop_ID": "00001/00013/23D",
+   "Situs": "TESTOWNER 9C1649"
+  },
+  {
+   "Amt_Due": "1057.31",
+   "Dist": "1",
+   "OBJECTID": 19,
+   "OWNER_NAME": "TESTOWNER E7662A",
+   "Prop_ID": "00001/00013/29C",
+   "Situs": "TESTOWNER E4DE7C"
+  },
+  {
+   "Amt_Due": "3639.86",
+   "Dist": "1",
+   "OBJECTID": 20,
+   "OWNER_NAME": "TESTOWNER 88C0F4",
+   "Prop_ID": "00001/00014/015",
+   "Situs": "TESTOWNER E4030D"
+  },
+  {
+   "Amt_Due": "802.83",
+   "Dist": "1",
+   "OBJECTID": 21,
+   "OWNER_NAME": "TESTOWNER 30D293",
+   "Prop_ID": "00001/00014/017",
+   "Situs": "TESTOWNER 7B1468"
+  },
+  {
+   "Amt_Due": "1636.07",
+   "Dist": "1",
+   "OBJECTID": 22,
+   "OWNER_NAME": "TESTOWNER 3CB8AE",
+   "Prop_ID": "00001/00016/010",
+   "Situs": "TESTOWNER 00488E"
+  },
+  {
+   "Amt_Due": "2879.86",
+   "Dist": "1",
+   "OBJECTID": 23,
+   "OWNER_NAME": "TESTOWNER D7B74C",
+   "Prop_ID": "00001/00017/007",
+   "Situs": "TESTOWNER 8A87C4"
+  },
+  {
+   "Amt_Due": "1926.07",
+   "Dist": "1",
+   "OBJECTID": 24,
+   "OWNER_NAME": "TESTOWNER 05421F",
+   "Prop_ID": "00001/00017/008",
+   "Situs": "TESTOWNER 34FE03"
+  },
+  {
+   "Amt_Due": "504.92",
+   "Dist": "1",
+   "OBJECTID": 25,
+   "OWNER_NAME": "TESTOWNER 55B0C8",
+   "Prop_ID": "00001/00017/010",
+   "Situs": "TESTOWNER 4134BD"
+  }
+ ],
+ "where": "1=1"
+}

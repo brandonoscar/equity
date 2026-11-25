@@ -1,0 +1,39 @@
+source_id: ga.gwinnett.delinquent_taxes
+state: GA
+county_fips: "13135"   # Gwinnett County
+# Gwinnett County Tax Commissioner delinquent tax list ("a complete list of all Gwinnett County
+# Tax Commissioner delinquent accounts ... updated frequently"; the 2026-11-10 workbook has
+# 278,302 rows, one per account and tax year): owner, situs, tax year, tax, penalty,
+# interest, fees, costs, total balance due, first-installment due date and owner mailing
+# address. Real property accounts start with R (240,465 rows; 'R1001 001' is TAXPIN in
+# ga.gwinnett.parcels); the rest are personal property (B business, M boats, H mobile homes,
+# A aircraft, U utilities, F financial), whose account numbers name no parcel and link by
+# name and address only. Unpaid Georgia property tax is a lien on the owner's property
+# (O.C.G.A. 48-2-56); a senior lien, not a judgment. The date is the installment due date
+# (Excel serial day). The file's address carries the date of each issue, so it is found on
+# the list page (link_from). About 30 MB per fetch. Debt kind: tax_delinquency.
+api: xlsx
+url: https://www.gwinnetttaxcommissioner.com/documents/d/egov/weeklydelqlender-1
+link_from:
+  page: https://www.gwinnetttaxcommissioner.com/property-tax/delinquent-tax/delinquent-tax-list
+  pattern: "weeklydelq"
+sheet: 0
+excel_dates: [inst1duedate]
+date_field: inst1duedate
+uid: [parcel, taxyear]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Gwinnett County delinquent property tax
+amount: totalbalancedue
+parties:
+  - role: debtor
+    name: owner
+    address: {line1: mailingaddress, city: city, state: state, zip: zip}
+  - {role: creditor, const: Gwinnett County Tax Commissioner}
+parcel: {kind: pin, field: parcel, county_fips: "13135"}
+extra_pii: [situsaddress]
+terms:
+  url: https://www.gwinnetttaxcommissioner.com/property-tax/delinquent-tax/delinquent-tax-list
+  summary: "Gwinnett County Tax Commissioner publishes the complete delinquent account list as a free .xlsx download, no login. No license or reuse terms stated on the page (read 2026-11-25). robots.txt: 'User-Agent: * / Disallow:' (all allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

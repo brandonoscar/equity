@@ -1,0 +1,33 @@
+source_id: oh.cuyahoga.forfeited_land_sale
+state: OH
+county_fips: "39035"   # Cuyahoga County (Cleveland)
+# Cuyahoga County 'Forfeited Land Sale Parcels' (layer FLS_Parcels_2026_All, edited
+# 2026-08-17): 402 parcels forfeited to the State of Ohio for unpaid taxes (ORC 5723) and
+# offered at the county's 2026 forfeited land sale. The owner of record is now 'STATE OF OHIO
+# FORF CV# ...'; the grantor is the owner who forfeited it, who is the debtor here. The
+# delinquent balance is total_net_delq_balance. No list date is published: the date is the
+# day the list was read. parcel_id is as in oh.cuyahoga.parcels. Debt kind: tax_delinquency.
+api: arcgis
+layer_url: https://services7.arcgis.com/GXM8JipKyc0m6HBi/arcgis/rest/services/2024_Forfeited_Land_Sale_Update/FeatureServer/1
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, parcel_id, parcel_owner, grantor, par_addr_all, total_net_delq_balance,
+         grand_total_balance, last_transfer_date]
+listed_on: listed_on
+date_field: listed_on
+uid: parcel_id
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Cuyahoga County 2026 forfeited land sale parcel
+amount: total_net_delq_balance
+parties:
+  - role: debtor
+    name: grantor
+  - {role: creditor, const: Cuyahoga County Treasurer}
+parcel: {kind: pin, field: parcel_id, county_fips: "39035"}
+extra_pii: [par_addr_all]
+terms:
+  url: https://services7.arcgis.com/GXM8JipKyc0m6HBi/arcgis/rest/services/2024_Forfeited_Land_Sale_Update/FeatureServer
+  summary: "Cuyahoga County ArcGIS org (owner JAbbott_cuyahoga5), public hosted layer 'Forfeited Land Sale Parcels', no login, token or fee. No licenseInfo (read 2026-11-25); no use restriction found. services7.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

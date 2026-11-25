@@ -1,0 +1,35 @@
+source_id: va.fauquier.delinquent_taxes
+state: VA
+county_fips: "51061"   # Fauquier County
+# Fauquier County 'DelinquentParcelsService': 870 parcels with delinquent taxes, with the
+# owner, co-owner, owner mailing address, the type and years delinquent (TYPE_YEARS_TICKET,
+# e.g. 'RE 2008-2024') and the amount due. Data last updated 2024-06-07 (LASTUPDATE; layer
+# edited 2024-10-10). Unpaid Virginia real estate tax is a lien on the parcel (Va. Code
+# 58.1-3340); a senior lien, not a judgment. The date is LASTUPDATE. PARCELID is the GPIN, as
+# in va.fauquier.parcels. Debt kind: tax_delinquency.
+api: arcgis
+layer_url: https://services.arcgis.com/oAoeYJ1kqmAwcEC2/arcgis/rest/services/DelinquentParcelsService/FeatureServer/0
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, PARCELID, OWNERNME1, Co_Owner2, PSTLADDRESS, PSTLADDRESS2, PSTLCITY,
+         PSTLSTATE, PSTLZIP5, SITEADDRESS, TYPE_YEARS_TICKET, AMOUNT_DUE, STATUS, LASTUPDATE]
+date_field: LASTUPDATE
+uid: [PARCELID, TYPE_YEARS_TICKET]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: {field: TYPE_YEARS_TICKET}
+amount: AMOUNT_DUE
+parties:
+  - role: debtor
+    name: OWNERNME1
+    address: {line1: [PSTLADDRESS, PSTLADDRESS2], city: PSTLCITY, state: PSTLSTATE, zip: PSTLZIP5}
+  - role: debtor
+    name: Co_Owner2
+  - {role: creditor, const: Fauquier County Treasurer}
+parcel: {kind: pin, field: PARCELID, county_fips: "51061"}
+extra_pii: [SITEADDRESS]
+terms:
+  url: https://www.arcgis.com/home/item.html?id=dbe2d348b5f54eac948e454875dfeeb0
+  summary: "Fauquier County Maps ArcGIS org item 'DelinquentParcelsService', public hosted layer, no login, token or fee. No licenseInfo (read 2026-11-25); no use restriction found. Data as of 2024-06-07 (not refreshed since). services.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

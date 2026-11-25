@@ -1,0 +1,231 @@
+{
+ "layer": "https://services.arcgis.com/f4rR7WnIfGBdVYFd/arcgis/rest/services/Foreclosure_Interactive_Map/FeatureServer/86",
+ "rows": [
+  {
+   "Assessed_Value": 64718,
+   "ID_Number": "23-06",
+   "Minimum_Bid": 7758.37,
+   "OBJECTID": 1,
+   "PAN": "0285285",
+   "Situs": "TESTOWNER B6F0CE",
+   "Slegal": "LEVEE INDUSTRIAL PARK LOT 03 "
+  },
+  {
+   "Assessed_Value": 22980,
+   "ID_Number": "23-11",
+   "Minimum_Bid": 5720.11,
+   "OBJECTID": 2,
+   "PAN": "0079731",
+   "Situs": "TESTOWNER E02F6D",
+   "Slegal": "JOHNSTON BLOCK 01 LOT 10 "
+  },
+  {
+   "Assessed_Value": 69380,
+   "ID_Number": "23-14",
+   "Minimum_Bid": 6851.66,
+   "OBJECTID": 4,
+   "PAN": "0340111",
+   "Situs": "TESTOWNER 6E1A40",
+   "Slegal": "MIDWAY INDUSTRIAL LOT 06"
+  },
+  {
+   "Assessed_Value": 361565,
+   "ID_Number": "23-27",
+   "Minimum_Bid": 25425.22,
+   "OBJECTID": 5,
+   "PAN": "0348937",
+   "Situs": "TESTOWNER AA0477",
+   "Slegal": "RAMOS LOT 02 "
+  },
+  {
+   "Assessed_Value": 20915,
+   "ID_Number": "23-28",
+   "Minimum_Bid": 5580.96,
+   "OBJECTID": 6,
+   "PAN": "0068934",
+   "Situs": "TESTOWNER 77703C",
+   "Slegal": "GRAEHL TOWNSITE BLOCK E  LOT 18 "
+  },
+  {
+   "Assessed_Value": 123830,
+   "ID_Number": "23-31",
+   "Minimum_Bid": 10031.89,
+   "OBJECTID": 7,
+   "PAN": "0119075",
+   "Situs": "TESTOWNER 949969",
+   "Slegal": "BIG SKY COUNTRY 1 BLOCK 05 LOT 06"
+  },
+  {
+   "Assessed_Value": 5499,
+   "ID_Number": "20-31",
+   "Minimum_Bid": 7240.31,
+   "OBJECTID": 8,
+   "PAN": "0355585",
+   "Situs": "TESTOWNER E02F6D",
+   "Slegal": "HAYES CREEK BLOCK 03 LOT 08 "
+  },
+  {
+   "Assessed_Value": 11428,
+   "ID_Number": "23-33",
+   "Minimum_Bid": 4876.2,
+   "OBJECTID": 9,
+   "PAN": "0360414",
+   "Situs": "TESTOWNER 2FF426",
+   "Slegal": "BEARS DEN BLOCK 05 LOT 02 "
+  },
+  {
+   "Assessed_Value": 146019,
+   "ID_Number": "23-64",
+   "Minimum_Bid": 12018.99,
+   "OBJECTID": 10,
+   "PAN": "0422371",
+   "Situs": "TESTOWNER D8FA32",
+   "Slegal": "1N 1E BLOCK 08 LOT 07"
+  },
+  {
+   "Assessed_Value": 15468,
+   "ID_Number": "23-65",
+   "Minimum_Bid": 5138.01,
+   "OBJECTID": 11,
+   "PAN": "0333808",
+   "Situs": "TESTOWNER E02F6D",
+   "Slegal": "CHAPARRAL LOT 10    "
+  },
+  {
+   "Assessed_Value": 71729,
+   "ID_Number": "23-67",
+   "Minimum_Bid": 8857.02,
+   "OBJECTID": 12,
+   "PAN": "0388289",
+   "Situs": "TESTOWNER 4A729B",
+   "Slegal": "MURPHY BLOCK 03 LOT 08    "
+  },
+  {
+   "Assessed_Value": 24625,
+   "ID_Number": "17-01",
+   "Minimum_Bid": 11617.64,
+   "OBJECTID": 13,
+   "PAN": "0237493",
+   "Situs": "TESTOWNER 2A7B59",
+   "Slegal": "KASALEK 4  BLOCK 02  LOT 08"
+  },
+  {
+   "Assessed_Value": 39512,
+   "ID_Number": "23-74",
+   "Minimum_Bid": 6147.77,
+   "OBJECTID": 14,
+   "PAN": "0319384",
+   "Situs": "TESTOWNER D54222",
+   "Slegal": "1S 1E BLOCK 13 LOT 1355"
+  },
+  {
+   "Assessed_Value": 3220,
+   "ID_Number": "20-88",
+   "Minimum_Bid": 6928.31,
+   "OBJECTID": 15,
+   "PAN": "0162051",
+   "Situs": "TESTOWNER E02F6D",
+   "Slegal": "US SURVEY 3453 BLOCK 06  LOT 07"
+  },
+  {
+   "Assessed_Value": 14062,
+   "ID_Number": "23-75",
+   "Minimum_Bid": 5006.02,
+   "OBJECTID": 16,
+   "PAN": "0464031",
+   "Situs": "TESTOWNER 52070A",
+   "Slegal": "1N 4E BLOCK 32 LOT 3223"
+  },
+  {
+   "Assessed_Value": 11407,
+   "ID_Number": "23-77",
+   "Minimum_Bid": 4706.36,
+   "OBJECTID": 17,
+   "PAN": "0304221",
+   "Situs": "TESTOWNER C9DF8B",
+   "Slegal": "LAKLOEY PARK 4 LOT 08    "
+  },
+  {
+   "Assessed_Value": 11416,
+   "ID_Number": "23-78",
+   "Minimum_Bid": 4706.94,
+   "OBJECTID": 18,
+   "PAN": "0304239",
+   "Situs": "TESTOWNER E02F6D",
+   "Slegal": "LAKLOEY PARK 4 LOT 09    "
+  },
+  {
+   "Assessed_Value": 53477,
+   "ID_Number": "23-79",
+   "Minimum_Bid": 6942.2,
+   "OBJECTID": 19,
+   "PAN": "0130001",
+   "Situs": "TESTOWNER DDA310",
+   "Slegal": "FRITO BLOCK 02 LOT 04    "
+  },
+  {
+   "Assessed_Value": 11924,
+   "ID_Number": "18-20",
+   "Minimum_Bid": 13648.16,
+   "OBJECTID": 20,
+   "PAN": "0312096",
+   "Situs": "TESTOWNER 2DB560",
+   "Slegal": "SPAULDING ACRES BLOCK 04  LOT 23 "
+  },
+  {
+   "Assessed_Value": 15861,
+   "ID_Number": "23-85",
+   "Minimum_Bid": 5193.99,
+   "OBJECTID": 21,
+   "PAN": "0427861",
+   "Situs": "TESTOWNER CF9256",
+   "Slegal": "BIG Q BLOCK B LOT 08    "
+  },
+  {
+   "Assessed_Value": 18590,
+   "ID_Number": "22-39",
+   "Minimum_Bid": 27096.69,
+   "OBJECTID": 23,
+   "PAN": "0424803",
+   "Situs": "TESTOWNER 7DF86B",
+   "Slegal": "TWIN MOOSE BLOCK B   LOT 03       "
+  },
+  {
+   "Assessed_Value": 87552,
+   "ID_Number": "23-90",
+   "Minimum_Bid": 7626.92,
+   "OBJECTID": 24,
+   "PAN": "0237299",
+   "Situs": "TESTOWNER 801558",
+   "Slegal": "KASALEK SOUTH LOT 02    "
+  },
+  {
+   "Assessed_Value": 203491,
+   "ID_Number": "23-91",
+   "Minimum_Bid": 8552.42,
+   "OBJECTID": 25,
+   "PAN": "0259411",
+   "Situs": "TESTOWNER 6D236F",
+   "Slegal": "MCKINLEY ACRES BLOCK 04 LOT UMB04 "
+  },
+  {
+   "Assessed_Value": 32672,
+   "ID_Number": "23-92",
+   "Minimum_Bid": 6126.44,
+   "OBJECTID": 26,
+   "PAN": "0204081",
+   "Situs": "TESTOWNER EE712A",
+   "Slegal": "1N 2W BLOCK 21 LOT 2102"
+  },
+  {
+   "Assessed_Value": 16669,
+   "ID_Number": "23-93",
+   "Minimum_Bid": 5479.89,
+   "OBJECTID": 27,
+   "PAN": "0405671",
+   "Situs": "TESTOWNER DE2F66",
+   "Slegal": "SALCHAKET HEIGHTS BLOCK 05 LOT 06"
+  }
+ ],
+ "where": "1=1"
+}

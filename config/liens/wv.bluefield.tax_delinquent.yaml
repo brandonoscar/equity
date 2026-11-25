@@ -1,0 +1,37 @@
+source_id: wv.bluefield.tax_delinquent
+state: WV
+county_fips: "54055"   # Mercer County (City of Bluefield)
+# City of Bluefield, WV '2026 - Tax Delinquent Property': 131 Bluefield parcels whose tax liens
+# were offered at the Mercer County sheriff's tax lien sale (W. Va. Code 11A-3) and not sold
+# ('NO BID'), joined to the parcel record: owner, owner mailing address, property address,
+# certificate of sale number, ticket, minimum bid (taxes, interest and charges owed) and
+# status. Unpaid West Virginia property taxes are a lien on the parcel; a senior lien, not a
+# judgment. STATUS_DATE is empty, so the date is the day the list was read. The WV parcel uid
+# drops the
+# 2-digit county code from CleanParcelID, which this config cannot do, so no parcel link is
+# made: owners are matched by name and address. Debt kind: tax_delinquency.
+api: arcgis
+layer_url: https://services5.arcgis.com/56UKT5NHVCJyli9q/arcgis/rest/services/2026_Tax_Delinquent_Property/FeatureServer/0
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, CleanParcelID, GISPID, FullOwnerName, FullOwnerAddress, FullPhysicalAddress,
+         Certificate_of_Sale, Ticket__, Minimum_Bid, STATUS]
+address_split: {field: FullOwnerAddress, prefix: mail_, form: comma}
+listed_on: listed_on
+date_field: listed_on
+uid: [CleanParcelID, Certificate_of_Sale]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Bluefield tax delinquent property (Mercer County tax lien sale, no bid)
+amount: Minimum_Bid
+parties:
+  - role: debtor
+    name: FullOwnerName
+    address: {line1: mail_line1, city: mail_city, state: mail_state, zip: mail_zip}
+  - {role: creditor, const: Mercer County Sheriff}
+extra_pii: [FullOwnerAddress, FullPhysicalAddress]
+terms:
+  url: https://services5.arcgis.com/56UKT5NHVCJyli9q/arcgis/rest/services/2026_Tax_Delinquent_Property/FeatureServer/0
+  summary: "City of Bluefield, WV ArcGIS org, public hosted layer '2026 Tax Delinquent Property', no login, token or fee. No licenseInfo (read 2026-11-25); no use restriction found. services5.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

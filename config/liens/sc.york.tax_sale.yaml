@@ -1,0 +1,35 @@
+source_id: sc.york.tax_sale
+state: SC
+county_fips: "45091"   # York County (Rock Hill)
+# York County, SC 'Tax Sale Properties 2026 View' (item snippet: 'Public View of Tax Sale
+# Properties'): 853 parcels on the 2026 delinquent tax sale list (TAX_YEAR 2026, SOLD = N on
+# every row on 2026-11-25), with the owners and owner mailing address. Delinquent South
+# Carolina property tax is a first lien on the property (S.C. Code 12-49-10); a senior lien,
+# not a judgment. No amount and no list date are published: the date is the day the list was
+# read. ParcelID is the tax map number, as in sc.york.parcels. Debt kind: tax_delinquency.
+api: arcgis
+layer_url: https://services1.arcgis.com/2AGLxyiJoNiVHKwq/arcgis/rest/services/Tax_Sale_Properties_2025_View/FeatureServer/0
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, ParcelID, Owner1, Owner2, MailAddr1, MailAddr2, MailCity, MailState, MailZip,
+         PropertyAddress, TAX_YEAR, SOLD]
+listed_on: listed_on
+date_field: listed_on
+uid: [ParcelID, TAX_YEAR]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: York County delinquent tax sale parcel
+parties:
+  - role: debtor
+    name: Owner1
+    address: {line1: [MailAddr1, MailAddr2], city: MailCity, state: MailState, zip: MailZip}
+  - role: debtor
+    name: Owner2
+  - {role: creditor, const: York County Tax Collector}
+parcel: {kind: pin, field: ParcelID, county_fips: "45091"}
+extra_pii: [PropertyAddress]
+terms:
+  url: https://www.arcgis.com/home/item.html?id=0bf91b9d18f14702873af5f3ad870429
+  summary: "York County, SC GIS Online item 'Tax Sale Properties 2026 View', public hosted feature view, no login, token or fee. No licenseInfo (read 2026-11-25); no use restriction found. The view is named for the sale year and may be replaced each year. services1.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,33 @@
+source_id: az.yavapai.tax_sale
+state: AZ
+county_fips: "04025"   # Yavapai County (Prescott)
+# Yavapai County Treasurer tax sale list ("tax sale properties for the 2024 tax year. Sale to be
+# conducted February 10, 2026"; layer TaxSale_2025, loaded 2026-01-13): 2,602 parcels with
+# unpaid taxes offered as tax lien certificates, with the owner, tax year, the amount owed and
+# the prior-years amount. Unpaid Arizona property tax is a lien on the parcel (A.R.S.
+# 42-17153); a senior lien, not a judgment. The date is the list's CreateDate.
+# PARLABEL is the Assessor's book-map-parcel label, as in az.yavapai.parcels.
+# Debt kind: tax_delinquency.
+api: arcgis
+layer_url: https://services1.arcgis.com/BajuNXbtZNiBKFkx/arcgis/rest/services/Tax_Sale_map_Manual_Load_for_Tax_Sale/FeatureServer/0
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, PARLABEL, TrsParcelNo, NAME, TaxYear, ParcelYearAmount, Amount, PriorAmount,
+         CreateDate, SITUS_ADD_DOR]
+date_field: CreateDate
+uid: [PARLABEL, TaxYear]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Yavapai County tax sale parcel (tax lien certificate offered)
+amount: Amount
+parties:
+  - role: debtor
+    name: NAME
+  - {role: creditor, const: Yavapai County Treasurer}
+parcel: {kind: pin, field: PARLABEL, county_fips: "04025"}
+extra_pii: [SITUS_ADD_DOR]
+terms:
+  url: https://www.arcgis.com/home/item.html?id=c9c9fca6534d4f48a20f1dce2cc0b146
+  summary: "Yavapai County ArcGIS Organization item 'Tax Sale map Manual Load for Tax Sale' (Yavapai County Treasurer tax sale properties), public hosted layer, no login, token or fee. No licenseInfo (read 2026-11-25); no use restriction found. services1.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free
