@@ -106,6 +106,20 @@ def test_legacy_zip_rows() -> None:
     assert lake["conveyed_on"] == "2008-09-01" and lake["kind"] == "LAND CONTRACT"
 
 
+def test_legacy_stray_quote_does_not_swallow_rows() -> None:
+    """Legacy pipe files are unquoted; a quote mark in free text (seen in 2011: 'A "BULK
+    SALE" TRANSFER') must stay text, not open a quoted field that eats the rows after it."""
+    head = "SDF_ID|County_ID|Conveyance_Date|C6_Sales_Price|Seller1|Buyer1\n"
+    rows = ['01-2011-1|1|01/05/2011|100|DEE "BULK INC|EVE FOX',
+            "01-2011-2|1|01/06/2011|200|ANN LEE|BO RAY"]  # fmt: skip
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w") as z:
+        z.writestr("2011.txt", (head + "\n".join(rows) + "\n").encode("utf-8"))
+    out = parse_legacy(buf.getvalue())["01"]
+    assert [r["sdf_id"] for r in out] == ["01-2011-1", "01-2011-2"]
+    assert out[0]["seller1"] == 'DEE "BULK INC' and out[1]["buyer1"] == "BO RAY"
+
+
 def _client(routes: Mapping[str, bytes]) -> PoliteClient:
     def transport(url: str, headers: Mapping[str, str], timeout: float) -> tuple[int, bytes, str]:
         if url.endswith("robots.txt"):
