@@ -75,7 +75,25 @@ def test_unreachable_robots_means_disallow() -> None:
     net = FakeNet({"https://c.test/x": (200, b"ok")})  # robots.txt raises OSError
     with pytest.raises(AccessDenied):
         client(net, FakeClock()).get("https://c.test/x")
-    assert net.calls == ["https://c.test/robots.txt"]  # the page itself was never requested
+    # tried three times before giving up; the page itself was never requested
+    assert net.calls == ["https://c.test/robots.txt"] * 3
+
+
+def test_robots_fetch_is_retried_after_a_network_error() -> None:
+    class Flaky(FakeNet):
+        def __call__(
+            self, url: str, headers: Mapping[str, str], timeout: float
+        ) -> tuple[int, bytes, str]:
+            if url.endswith("/robots.txt") and not self.calls:
+                self.calls.append(url)
+                raise OSError("connection reset")
+            return super().__call__(url, headers, timeout)
+
+    net = Flaky({"https://f.test/robots.txt": (404, b""), "https://f.test/": (200, b"ok")})
+    clock = FakeClock()
+    assert client(net, clock).get("https://f.test/x").status == 200
+    assert net.calls == ["https://f.test/robots.txt"] * 2 + ["https://f.test/x"]
+    assert 5.0 in clock.slept  # backed off before the second attempt
 
 
 def test_requests_to_one_host_are_spaced() -> None:
