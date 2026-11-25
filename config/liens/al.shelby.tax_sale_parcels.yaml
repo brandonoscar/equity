@@ -1,0 +1,35 @@
+source_id: al.shelby.tax_sale_parcels
+state: AL
+county_fips: "01117"   # Shelby County AL
+# Shelby County AL "Parcels to be bid" (Shelby GIS / Alabama Department of Revenue): parcels
+# bid in to the State at past tax sales for unpaid ad valorem taxes (state-held tax-sale
+# parcels, Ala. Code 40-10-18 ff.), offered again by the State, with the owner assessed at the
+# sale, the parcel id, the tax year of the sale and the amount bid at the tax sale (the taxes,
+# interest and costs). 191 rows on 2026-11-25, sale years 2006-2013; layer data edited
+# 2026-10-27. Rows whose Status says the sale was cancelled or the parcel redeemed are left
+# out. Year_1 (the sale's tax year) is read as Jan 1 of that year. No Shelby County parcel
+# layer is registered yet, so ParcelID_1 is kept as published. Debt kind: tax_delinquency.
+api: arcgis
+layer_url: https://services7.arcgis.com/rlLdOn8r3xxx5WJs/arcgis/rest/services/Parcels_to_be_bid_Layer__view/FeatureServer/0
+where: "Status NOT LIKE '%Cancelled%' AND Status NOT LIKE '%redeemed%'"
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, CSNumber_1, Amt_Bid_at_Tax_Sale_1, County_Mun_Code, Year_1, ParcelID_1,
+         Assess_Num_1, Owner_Name_1, Status, Purchased]
+year_dates: [Year_1]
+date_field: Year_1
+uid: CSNumber_1
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Shelby County AL state-held tax sale parcel
+amount: Amt_Bid_at_Tax_Sale_1
+parties:
+  - role: debtor
+    name: Owner_Name_1
+  - {role: creditor, const: State of Alabama, person_names: false}
+parcel: {kind: pin, field: ParcelID_1, county_fips: "01117"}
+terms:
+  url: https://services7.arcgis.com/rlLdOn8r3xxx5WJs/arcgis/rest/services/Parcels_to_be_bid_Layer__view/FeatureServer/0
+  summary: "Shelby County AL public ArcGIS Online layer (view of the 'Parcels to be bid' app data; credits ADOR, Shelby GIS/Mapping), free, no login. No licenseInfo on the layer; the app carries a general-information disclaimer only. services7.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

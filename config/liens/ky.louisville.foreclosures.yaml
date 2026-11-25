@@ -1,0 +1,42 @@
+source_id: ky.louisville.foreclosures
+state: KY
+county_fips: "21111"   # Jefferson County (Louisville Metro)
+# Louisville Metro "Property Foreclosures" (Develop Louisville, ArcGIS Online): foreclosure
+# actions Louisville Metro brought in Jefferson Circuit Court on its own liens (code
+# enforcement, vacant-property and abatement liens; the plaintiff is "CW" / "Metro" / "LJMG"),
+# with the case number, caption, filing date, commissioner's sale date and purchaser.
+# 3,624 rows on 2026-11-25, actions filed 2008-2026; layer data edited 2026-09-24. Only the
+# 1,823 rows with both a case number and a filing date are loaded (the rest are sale-only
+# rows with no case). Rows of one case are one action (one row per property). The caption
+# "CW vs <defendants>" (also "v.", "V.") is split into plaintiff and defendants; defendants
+# stay one name as captioned ("... ET AL"). Full_Parcel_ID and Sale_Price are empty on every
+# row, so the property is found by its street address (CITED PROPERTY, as mn.dakota.
+# sheriff_sales). Loaded like the other foreclosure lists (LIS_PENDENS): counted, not added to
+# open amounts. Debt kind: foreclosure.
+api: arcgis
+layer_url: https://services1.arcgis.com/79kfd2K6fskCAkyg/arcgis/rest/services/Louisville_Metro_KY_Property_Foreclosures/FeatureServer/0
+where: "Action_Filed IS NOT NULL AND Case_ IS NOT NULL"
+single_partition: true
+order_by: [ObjectId]
+select: [ObjectId, Case_, Case_Style, Action_Filed, Sale_Date, L_S, House_Nr, Dir,
+         Street_Name, St_Type, Post_Dir, Zip]
+date_field: Action_Filed            # epoch milliseconds
+uid: Case_
+doc_type: LIS_PENDENS
+doc_type_raw: Louisville Metro lien foreclosure action
+caption_field: Case_Style
+parties:
+  - {role: creditor, name: caption_plaintiff, person_names: false}
+  - role: debtor
+    name: caption_defendant
+  - role: other                     # the foreclosed property; the matcher finds its parcel by address
+    const: CITED PROPERTY
+    address: {line1: [House_Nr, Dir, Street_Name, St_Type, Post_Dir], city_const: LOUISVILLE,
+              state_const: KY, zip: Zip}
+extra_pii: [Case_Style]
+terms:
+  url: https://services1.arcgis.com/79kfd2K6fskCAkyg/arcgis/rest/services/Louisville_Metro_KY_Property_Foreclosures/FeatureServer/0
+  summary: "Louisville Metro (Develop Louisville) public ArcGIS Online layer, free, no login; item licenseInfo points to the Louisville Metro Open Data terms of use and license. services1.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

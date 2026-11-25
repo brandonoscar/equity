@@ -174,3 +174,8 @@ sources:
   pa.washington.repository_sales: tax_delinquency
   pa.washington.upset_sales: tax_delinquency
   pa.west_chester.upset_sale: tax_delinquency
+  # free debt lists verified 2026-11-25 (reports/_debt_sources_verified.md)
+  la.east_baton_rouge.adjudicated: tax_delinquency
+  ky.louisville.foreclosures: foreclosure
+  al.shelby.tax_sale_parcels: tax_delinquency
+  ky.jefferson.tax_sale_bills: tax_delinquency
