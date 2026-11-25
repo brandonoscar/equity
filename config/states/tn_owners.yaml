@@ -1,0 +1,126 @@
+source_id: tn.owners.parcels
+state: TN
+# TN Comptroller (Division of Property Assessments) "Tennessee Property Boundaries Public Use"
+# hosted layer: 2,144,655 parcels in 86 counties on 2026-11-25 (the 9 counties outside the
+# state assessment system, e.g. Davidson, Shelby, Knox, Hamilton, are absent). Owner and
+# co-owner names, site address; no mailing address and no values. GISLINK is the same parcel
+# key as tn.statewide.parcels (land-use layer with values), so the two join on parcel_id.
+layer_url: https://services1.arcgis.com/YuVBSS7Y1of2Qud1/arcgis/rest/services/Tennessee_Property_Boundaries_Public_Use/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county_window: 20000
+county:
+  field: COUNTY_ID       # alphabetical county index 1-95 (Anderson 1 ... Wilson 95): FIPS = 2*id - 1
+  format: code_map
+  numeric: true
+  code_map:
+    "1": "001"
+    "2": "003"
+    "3": "005"
+    "4": "007"
+    "5": "009"
+    "6": "011"
+    "7": "013"
+    "8": "015"
+    "9": "017"
+    "10": "019"
+    "11": "021"
+    "12": "023"
+    "13": "025"
+    "14": "027"
+    "15": "029"
+    "16": "031"
+    "17": "033"
+    "18": "035"
+    "19": "037"
+    "20": "039"
+    "21": "041"
+    "22": "043"
+    "23": "045"
+    "24": "047"
+    "25": "049"
+    "26": "051"
+    "27": "053"
+    "28": "055"
+    "29": "057"
+    "30": "059"
+    "31": "061"
+    "32": "063"
+    "33": "065"
+    "34": "067"
+    "35": "069"
+    "36": "071"
+    "37": "073"
+    "38": "075"
+    "39": "077"
+    "40": "079"
+    "41": "081"
+    "42": "083"
+    "43": "085"
+    "44": "087"
+    "45": "089"
+    "46": "091"
+    "47": "093"
+    "48": "095"
+    "49": "097"
+    "50": "099"
+    "51": "101"
+    "52": "103"
+    "53": "105"
+    "54": "107"
+    "55": "109"
+    "56": "111"
+    "57": "113"
+    "58": "115"
+    "59": "117"
+    "60": "119"
+    "61": "121"
+    "62": "123"
+    "63": "125"
+    "64": "127"
+    "65": "129"
+    "66": "131"
+    "67": "133"
+    "68": "135"
+    "69": "137"
+    "70": "139"
+    "71": "141"
+    "72": "143"
+    "73": "145"
+    "74": "147"
+    "75": "149"
+    "76": "151"
+    "77": "153"
+    "78": "155"
+    "79": "157"
+    "80": "159"
+    "81": "161"
+    "82": "163"
+    "83": "165"
+    "84": "167"
+    "85": "169"
+    "86": "171"
+    "87": "173"
+    "88": "175"
+    "89": "177"
+    "90": "179"
+    "91": "181"
+    "92": "183"
+    "93": "185"
+    "94": "187"
+    "95": "189"
+use_restrictions: [agency_use_stated, internal_use_only, no_redistribution]
+fields:
+  parcel_id: GISLINK
+  owner1: OWNER
+  owner2: OWNER2
+  situs_line1: ADDRESS
+  situs_state: {const: TN}
+value_basis: "The layer has no value, tax-year or mailing-address fields, so no assessment facts are emitted; values come from tn.statewide.parcels on the same GISLINK. PARCEL_TYPE, DEEDAC (deeded acres), SUBDIV and LOT stay in source records."
+terms:
+  url: https://services1.arcgis.com/YuVBSS7Y1of2Qud1/arcgis/rest/services/Tennessee_Property_Boundaries_Public_Use/FeatureServer/0
+  summary: "TN Comptroller of the Treasury, Division of Property Assessments, ArcGIS Online hosted layer 'TENNESSEE PROPERTY BOUNDARIES'; answers without a token, login or fee. Layer description (read 2026-11-25): 'This data is intended for use by state agencies with approved access.' Loaded on the owner's decision of 2026-11-25 for internal use only, no redistribution (recorded as agency_use_stated, internal_use_only, no_redistribution). services1.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

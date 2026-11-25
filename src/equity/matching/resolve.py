@@ -993,7 +993,7 @@ STATES: dict[str, dict[str, Any]] = {
                       "sd.miner.parcels", "sd.minnehaha.parcels", "sd.pennington.parcels"]},
     "TN": {"debtors": [], "courts": FEDERAL_COURTS,
            "owners": ["tn.davidson.parcels", "tn.hamilton.parcels", "tn.rutherford.parcels",
-                      "tn.washington.parcels", "tn.williamson.parcels"],
+                      "tn.washington.parcels", "tn.williamson.parcels", "tn.owners.parcels"],
            "deeds": ["tn.rutherford.last_sale"]},
     "UT": {"debtors": ["ut.box_elder.tax_sale"], "courts": FEDERAL_COURTS, "parcel_on_lien": True,
            "owners": ["ut.salt_lake.parcels", "ut.utah.parcels"]},
