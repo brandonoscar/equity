@@ -1,0 +1,39 @@
+source_id: mo.greene.parcels
+state: MO
+# Greene County (Springfield) Assessor public MapServer 'ParcelPublicAccessAug242026' (iasWorld
+# parcel snapshot published 2026-08-24), layer 10 'Parcels_1K' (124,022 rows on 2026-11-25):
+# owner names, owner mailing address (ADR*), property location (L_*, PropAdr), appraised and
+# assessed land/building values, class and land-use code. The county republishes the snapshot under
+# a new dated service name; when this one is retired, point layer_url at the newest
+# ParcelPublicAccess<date> service (same layer).
+# The layer refuses paged queries, statistics and ORDER BY (supportsPagination/supportsStatistics/
+# supportsOrderBy false); it answers returnIdsOnly, so FID windows of page_size ids are read whole.
+# ParcelPolygon2 on the same host has the same columns with paging, but its queries fail (HTTP 400).
+layer_url: https://greenecountyassessor.org/arcgis/rest/services/ParcelPublicAccessAug242026/MapServer/10
+order_by: FID
+page_size: 1000          # maxRecordCount 1000
+paginate: false
+min_interval_s: 1.0
+county: {constant: "077"}
+fields:
+  parcel_id: PIN         # '881322113016'; PARID is the same number without the leading '88'
+  owner1: OWN1
+  owner2: OWN2
+  mail_line1: {join: [ADRNO, ADRDIR, ADRSTR, ADRSUF, ADRSUF2]}
+  mail_city: CITYNAME
+  mail_state: STATECODE
+  mail_zip: ZIP1
+  situs_line1: PropAdr   # '528 S LEXINGTON AVE'
+  situs_city: L_CITYNAME
+  situs_state: {const: MO}
+  situs_zip: L_ZIP1
+  land_use_code: LUC
+  land_value: TOTLAND
+  bldg_value: TOTBLDG
+value_basis: "TOTLAND / TOTBLDG = assessor appraised (market) land and building value; TOTASDLAND / TOTASDBLDG = assessed value (19% of appraised for residential, e.g. 25,000 -> 4,750), not mapped as they are split land/building only. The layer has no tax-year field, so no tax_year is mapped and no assessment facts are emitted; raw values stay in source records. BOOK/PAGE hold the recording year and instrument number ('2021' / '04533921'), not a deed book and page, so they are not mapped. ADRNO is 0 on rows without a house number (PO boxes); kept as published. CAREOF (care-of line) not mapped."
+terms:
+  url: https://greenecountyassessor.org/arcgis/rest/services/ParcelPublicAccessAug242026/MapServer
+  summary: "Greene County (MO) Assessor public ArcGIS Server MapServer, no login, token or fee. Service iteminfo licenseInfo, accessInformation and copyrightText are empty (read 2026-11-25); no use-constraint text found. greenecountyassessor.org/robots.txt redirects (307) to www.greenecountyassessor.org/assessor/robots.txt, which answers HTTP 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

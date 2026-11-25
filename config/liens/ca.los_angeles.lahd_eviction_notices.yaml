@@ -1,0 +1,28 @@
+source_id: ca.los_angeles.lahd_eviction_notices
+state: CA
+county_fips: "06037"
+# City of Los Angeles Housing Department (LAHD) "LAHD Property Look-Up for Eviction Cases": eviction notices filed with LAHD under
+# the City's eviction notice filing requirement, with the APN, at-fault / no-fault category,
+# notice type and date (no tenant or landlord names)
+# (data.lacity.org 2u8b-eyuu, 332,780 rows on 2026-11-25). Rental-housing enforcement history on the
+# parcel: OTHER instruments on 06037-<apn> (the 10-digit AIN of ca.losangeles.parcels), in no
+# match run.
+portal: https://data.lacity.org
+dataset: 2u8b-eyuu
+where: "received IS NOT NULL AND apn IS NOT NULL AND apn != 'No Record Found'"
+order_by: [":id"]
+date_field: received
+partition: year
+first_year: 2019
+uid: [apn, notice_type, notice_date, received]
+doc_type: OTHER
+doc_type_raw: {field: notice_type}
+extra_pii: [officialaddress]
+parties: []
+parcel: {kind: pin, field: apn, county_fips: "06037"}   # = ca.losangeles.parcels AIN
+terms:
+  url: https://data.lacity.org/d/2u8b-eyuu
+  summary: "Los Angeles Open Data (data.lacity.org, Socrata), Los Angeles Housing Department, free, no login or app token. No license is set on the dataset (read 2026-11-25); City of Los Angeles open data terms of use (as-is, no warranty); no resale or redistribution clause found. data.lacity.org/robots.txt allows /resource/ (Crawl-delay: 1)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,29 @@
+source_id: il.chicago.building_scofflaws
+state: IL
+county_fips: "17031"
+# City of Chicago "Building Code Scofflaw List" (data.cityofchicago.org crg5-4zyp, 701 rows on
+# 2026-11-25, updated monthly): owners of buildings with serious, unremedied building code
+# violations that the City has taken to Circuit Court (Municipal Code 2-92-416), with the
+# building address(es), the circuit court case number and the dates the building and owner
+# were put on the list. The defendant owner is the debtor of a housing court case; the City is
+# the other side. No PIN is published (address only).
+portal: https://data.cityofchicago.org
+dataset: crg5-4zyp
+order_by: [record_id]
+select: [record_id, defendant_owner, address, secondary_address, tertiary_address,
+         circuit_court_case_number, building_list_date, owner_list_date, community_area, ward]
+date_field: building_list_date
+partition: none
+uid: record_id
+doc_type: COURT_ORDER
+doc_type_raw: Chicago building code scofflaw (circuit court case)
+parties:
+  - role: debtor
+    name: defendant_owner
+  - {role: creditor, const: City of Chicago, person_names: false}
+terms:
+  url: https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html
+  summary: "City of Chicago Data Portal (Socrata), Department of Buildings / Law, public, no login. City of Chicago data terms of use: provided as is, free to use; no commercial-use or redistribution restriction. data.cityofchicago.org/robots.txt allows /resource/ (Crawl-delay: 1)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,33 @@
+source_id: nv.henderson.short_term_rentals
+state: NV
+county_fips: "32003"
+# City of Henderson "Short-Term Vacation Rentals" (maps.cityofhenderson.com public
+# OpenDataDevelopment MapServer/14; 336 registrations on 2026-11-25): each registered
+# short-term vacation rental with its registration number, address, Clark County APN,
+# occupancy and bedrooms, status, and the property manager's and business names (phone not
+# read). Issue and expiration dates are blank on most rows, so this is a current list dated by
+# the fetch (listed_on), read whole. One OTHER instrument per registration on 32003-<PARCEL>
+# (as nv.clark.property_sales), the manager and business as 'other' parties, in no match run.
+api: arcgis
+layer_url: https://maps.cityofhenderson.com/arcgis/rest/services/public/OpenDataDevelopment/MapServer/14
+order_by: [OBJECTID]
+select: [OBJECTID, REGISTRATION_NUMBER, REGISTERED_ADDRESS, REGISTERED_UNIT_NUMBER, PARCEL,
+         MAX_OCCUPANCY, PERMIT_BEDROOMS, STATUS, EXPIRATION_DATE, PROPERTY_MANAGER_NAME,
+         BUSINESS_NAME, LICENSE_ISSUE_DATE]
+listed_on: listed_on
+date_field: listed_on
+single_partition: true
+uid: REGISTRATION_NUMBER
+doc_type: OTHER
+doc_type_raw: {field: STATUS}
+extra_pii: [REGISTERED_ADDRESS]
+parties:
+  - {role: other, name: PROPERTY_MANAGER_NAME}
+  - {role: other, name: BUSINESS_NAME, person_names: false}
+parcel: {kind: pin, field: PARCEL, county_fips: "32003"}   # = nv.clark.property_sales PARCEL
+terms:
+  url: https://www.arcgis.com/home/item.html?id=9c268cd08bbb4021a8b7f0d4557c1018
+  summary: "City of Henderson public ArcGIS Server map service (item owner HendersonNV_GIS), free, no login or token. Item licenseInfo (read 2026-11-25): no warranty, no liability for accuracy or completeness; no license grant, resale or redistribution clause. maps.cityofhenderson.com/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

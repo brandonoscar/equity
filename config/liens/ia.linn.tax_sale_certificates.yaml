@@ -1,0 +1,32 @@
+source_id: ia.linn.tax_sale_certificates
+state: IA
+county_fips: "19113"
+# Linn County IA Treasurer "Treasurer Tax Detail" tax sale table (TreasurerTaxDetail
+# FeatureServer/4, 11,690 certificates dated 1997-06 on, updated about daily): every tax sale
+# certificate sold on a parcel (Iowa Code 446) with its number, date, type (regular, public
+# bidder), sale amount, status (redeemed 10,537, open 601, canceled 436, deeded 100...) and
+# the redemption date and amount. A certificate is a lien on the parcel for the delinquent
+# taxes: TAX_LIEN_STATE on 19113-<GPN> (the ia.linn.parcels key); a redemption date is its
+# RELEASE. The buyer and owner are not named.
+api: arcgis
+layer_url: https://services.arcgis.com/i14SLLmXo7Hn9vNc/arcgis/rest/services/TreasurerTaxDetail/FeatureServer/4
+order_by: [OBJECTID]
+select: [OBJECTID, GPN, CertificateIndex, CertificateNumber, CertificateDate, CertificateType,
+         SaleAmount, SaleStatus, RedemptionDate, RedemptionAmount]
+date_field: CertificateDate
+partition: year
+first_year: 1997
+uid: [CertificateNumber, GPN]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: {field: CertificateType}
+amount: SaleAmount
+released_on: RedemptionDate
+parties: []
+parcel: {kind: pin, field: GPN, county_fips: "19113"}   # = ia.linn.parcels GPN
+terms:
+  url: https://www.arcgis.com/home/item.html?id=1b9a081644a6419b8ece6d6f5918d2e8
+  summary: "Linn County, Iowa GIS (owner lc.ago.user, org of ia.linn.parcels), public hosted layer, no login, token or fee. licenseInfo (read 2026-11-25): 'No person shall sell, give, reproduce, or receive for the purpose of selling or offering for sale, any portion of the data provided herein', plus a no-warranty clause: internal use, never resold. services.arcgis.com/robots.txt answers 4xx (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  use_restrictions: [no_resale, no_redistribution]
+  cost_model: free

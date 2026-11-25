@@ -1,0 +1,35 @@
+source_id: mo.kansas_city.permits
+state: MO
+county_fips: "29095"
+# City of Kansas City, Missouri City Planning and Development "Permits - CPD Dataset"
+# (data.kcmo.org ntw8-aacc, 681,036 permits issued 1991-12 to 2025-05, last refreshed
+# 2025-05): building, trade, sign and right-of-way permits with type, class, work class,
+# estimated project cost, square footage, housing units and the contractor (company and
+# business-license name). The pin is the City's internal parcel number, not a county
+# parcel id, so no parcel is linked: OTHER instruments in Jackson County (the City spans
+# Jackson, Clay, Platte and Cass), the contractor a party of role other, in no match run.
+portal: https://data.kcmo.org
+dataset: ntw8-aacc
+where: "issueddate IS NOT NULL"
+order_by: [permitnum, ":id"]
+select: [permitnum, masterpermitnum, permittype, permittypedesc, permittypemapped, permitclass,
+         workclass, description, applieddate, issueddate, completeddate, statuscurrent,
+         estprojectcost, totalsqft, housingunits, originaladdress1, originalcity, originalzip,
+         pin, contractorcompanyname, businesslicensecontractor, contractortrade]
+date_field: issueddate
+partition: year
+first_year: 1991
+uid: permitnum
+doc_type: OTHER
+doc_type_raw: {field: permittypemapped}
+parties:
+  - {role: other, name: contractorcompanyname}
+  - {role: other, name: businesslicensecontractor}
+skip_names: ["NULL"]
+extra_pii: [originaladdress1, description]
+terms:
+  url: https://data.kcmo.org/d/ntw8-aacc
+  summary: "City of Kansas City, Missouri Open Data (Socrata, data.kcmo.org), Department of City Planning and Development, public, no login; no license tag on the dataset (no commercial-use or redistribution restriction found). data.kcmo.org/robots.txt allows /resource/."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

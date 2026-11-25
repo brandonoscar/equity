@@ -1,0 +1,34 @@
+source_id: wa.pierce.permits
+state: WA
+county_fips: "53053"
+# Pierce County Planning and Public Works "Permits - Pierce County" (open.piercecountywa.gov
+# nhnt-v7ka, 684,796 permits on 2026-11-25): building, plumbing, mechanical, land-use and
+# other permit applications in unincorporated Pierce County with the application number and
+# type, status, work type, building and housing type, square feet, valuation, units, project
+# value, application / issue / final dates, description, site address and the 10-digit
+# Pierce County parcel number. No names. OTHER instruments on 53053-<parcelnumber>, in no
+# match run.
+portal: https://open.piercecountywa.gov
+dataset: nhnt-v7ka
+where: "applicationdate IS NOT NULL"
+order_by: [":id"]
+select: [applicationnumber, applicationtype, applicationstatus, parcelnumber, worktype,
+         buildingtype, housingtype, sqfttotal, buildingvaluation, dwellingunits, projectvalue,
+         projectid, applicationdept, applicationdate, issueddate, finaldate, workdescription,
+         siteaddress, projectname]
+date_field: applicationdate
+partition: year
+first_year: 1980
+uid: applicationnumber
+doc_type: OTHER
+doc_type_raw: {field: applicationtype}
+consideration: projectvalue
+extra_pii: [siteaddress]
+parties: []
+parcel: {kind: pin, field: parcelnumber, county_fips: "53053"}
+terms:
+  url: https://open.piercecountywa.gov/d/nhnt-v7ka
+  summary: "Pierce County open data (open.piercecountywa.gov, Socrata), free, no login or app token. No license is set on the dataset (read 2026-11-25); Pierce County open data terms of use (as-is); no resale or redistribution clause found. open.piercecountywa.gov/robots.txt allows /resource/ (Crawl-delay: 1)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

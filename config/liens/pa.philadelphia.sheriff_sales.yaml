@@ -1,0 +1,32 @@
+source_id: pa.philadelphia.sheriff_sales
+state: PA
+county_fips: "42101"   # Philadelphia
+# Philadelphia Sheriff's Office real estate sales listing on CivilView (salesweb.civilview.com,
+# countyId=60; 1,518 properties on 2026-11-25): every property listed for an upcoming
+# sheriff's sale (mortgage foreclosure and tax sales), with the book and writ number, the OPA
+# account (parcel), the property address and the plaintiff. Defendants and sale dates are not
+# in the listing, so each property is an EXECUTION instrument (a sale under a writ) dated the
+# day it was fetched (listed_on), on the OPA parcel (pa.philadelphia.parcels key), with the
+# plaintiff as creditor; the owner of record comes from the parcel layer. In no match run.
+# The page lists open sales only, so it is refreshed whole and snapshotted daily
+# (config/refresh). A handful of OPA numbers are mistyped on the page (not 9 digits): their
+# instruments link to a parcel id no owner layer holds.
+api: html
+url: https://salesweb.civilview.com/Sales/SalesSearch?countyId=60
+table: 1   # the second table on the page; the first is the page banner
+listed_on: listed_on
+date_field: listed_on
+uid: book_writ
+doc_type: EXECUTION
+doc_type_raw: Philadelphia sheriff's sale listing
+parties:
+  - role: creditor
+    name: plaintiff
+parcel: {kind: pin, field: opa, county_fips: "42101"}   # = pa.philadelphia.parcels OPA account
+extra_pii: [address]
+terms:
+  url: https://salesweb.civilview.com/Sales/SalesSearch?countyId=60
+  summary: "Philadelphia Sheriff's Office sales listing on CivilView (salesweb.civilview.com), public, no login, token, CAPTCHA or fee; the page disclaims any warranty of accuracy. No license or reuse terms stated; internal use only, not redistributed. salesweb.civilview.com/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

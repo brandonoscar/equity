@@ -1,0 +1,29 @@
+source_id: la.st_bernard.parcels
+state: LA
+# St. Bernard Parish Government 'ComDev/Parcels3' FeatureServer layer 0 ('SBPG Parcels'; 21,779
+# rows on 2026-11-25, Owner_Name filled on all): assessor owner name, mailing street and
+# 'CITY ST ZIP' line, physical address, assessed value, homestead exemption, last deed book/page.
+# Owner_CityStateZipCode ends in a bare '-' after the ZIP on 10,840 rows ('CHALMETTE LA 70043-');
+# the city/state/ZIP parser reads that as a plain ZIP.
+layer_url: https://lucity.sbpg.net/arcgis/rest/services/ComDev/Parcels3/FeatureServer/0
+order_by: OBJECTID
+page_size: 1000          # maxRecordCount 1000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "087"}
+fields:
+  parcel_id: AssID02     # assessment number, '30200000088A' (ParcelNumber equal on sampled rows)
+  owner1: Owner_Name
+  mail_line1: Owner_Address
+  mail_city_state_zip: Owner_CityStateZipCode
+  situs_line1: [Address_Number, Street_Name]
+  situs_state: {const: LA}
+  homestead: HomesteadValue   # homestead exemption (assessed dollars, e.g. 7500); 0 = none
+  deed_book: Book
+  deed_page: Page
+value_basis: "Assessed_Value is the assessor's total assessed value (Louisiana: 10% of fair market value for residential property) and HomesteadValue the homestead exemption applied, but the layer has no tax-year field, so no tax_year is mapped and no assessment facts are emitted; raw values stay in source records. DeedNumber, SaleDate / SalesPrice and LTCStatus are not mapped."
+terms:
+  url: https://lucity.sbpg.net/arcgis/rest/services/ComDev/Parcels3/FeatureServer
+  summary: "St. Bernard Parish Government public ArcGIS Server feature service (iteminfo 'SBPG Parcels'), no login, token or fee. iteminfo licenseInfo and accessInformation are empty and the service has no copyright text (read 2026-11-25); no use-constraint text found. lucity.sbpg.net/robots.txt answers HTTP 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

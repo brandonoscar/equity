@@ -1,0 +1,256 @@
+{
+ "dataset": "5nzp-isg9",
+ "rows": [
+  {
+   "apn": "2005004006",
+   "lender": "TESTOWNER AF27CE",
+   "property_type": "Single Family",
+   "propertyaddress": "2309 TEST ST",
+   "propertycity": "LOS ANGELES",
+   "propertystate": "CA",
+   "propertyzip": "93063",
+   "registered_date": "2026-04-10T00:00:00.000"
+  },
+  {
+   "apn": "2005013019",
+   "lender": "TESTOWNER 5A2D05 LLC",
+   "property_type": "Single Family",
+   "propertyaddress": "5886 TEST ST",
+   "propertycity": "LOS ANGELES",
+   "propertystate": "CA",
+   "propertyzip": "91304",
+   "registered_date": "2026-07-28T00:00:00.000"
+  },
+  {
+   "apn": "2005013019",
+   "lender": "TESTOWNER C3D491",
+   "property_type": "Single Family",
+   "propertyaddress": "5886 TEST ST",
+   "propertycity": "LOS ANGELES",
+   "propertystate": "CA",
+   "propertyzip": "91304",
+   "registered_date": "2026-09-10T00:00:00.000"
+  },
+  {
+   "apn": "2010002045",
+   "lender": "TESTOWNER CD8A05 NA",
+   "property_type": "Single Family",
+   "propertyaddress": "7596 TEST ST",
+   "propertycity": "LOS ANGELES",
+   "propertystate": "CA",
+   "propertyzip": "93063",
+   "registered_date": "2026-06-03T00:00:00.000"
+  },
+  {
+   "apn": "2010005010",
+   "lender": "TESTOWNER E3C76C",
+   "property_type": "Single Family",
+   "propertyaddress": "7521 TEST ST",
+   "propertycity": "LOS ANGELES",
+   "propertystate": "CA",
+   "propertyzip": "93063",
+   "registered_date": "2026-09-04T00:00:00.000"
+  },
+  {
+   "apn": "2010007002",
+   "lender": "TESTOWNER 4C09D5",
+   "property_type": "Single Family",
+   "propertyaddress": "6667 TEST ST",
+   "propertycity": "LOS ANGELES",
+   "propertystate": "CA",
+   "propertyzip": "91304",
+   "registered_date": "2026-01-27T00:00:00.000"
+  },
+  {
+   "apn": "2010007004",
+   "lender": "TESTOWNER CF616C",
+   "property_type": "Single Family",
+   "propertyaddress": "3170 TEST ST",
+   "propertycity": "LOS ANGELES",
+   "propertystate": "CA",
+   "propertyzip": "91304",
+   "registered_date": "2026-06-02T00:00:00.000"
+  },
+  {
+   "apn": "2010024042",
+   "lender": "TESTOWNER 9E01D3",
+   "property_type": "Single Family",
+   "propertyaddress": "662 TEST ST",
+   "propertycity": "LOS ANGELES",
+   "propertystate": "CA",
+   "propertyzip": "91304",
+   "registered_date": "2026-06-26T00:00:00.000"
+  },
+  {
+   "apn": "2012003003",
+   "lender": "TESTOWNER 8C6F01",
+   "property_type": "Single Family",
+   "propertyaddress": "7912 TEST ST",
+   "propertycity": "LOS ANGELES",
+   "propertystate": "CA",
+   "propertyzip": "93063",
+   "registered_date": "2026-01-08T00:00:00.000"
+  },
+  {
+   "apn": "2012011021",
+   "lender": "TESTOWNER CD8A05 NA",
+   "property_type": "Single Family",
+   "propertyaddress": "8463 TEST ST",
+   "propertycity": "LOS ANGELES",
+   "propertystate": "CA",
+   "propertyzip": "93063",
+   "registered_date": "2026-06-03T00:00:00.000"
+  },
+  {
+   "apn": "2012011022",
+   "lender": "TESTOWNER 01919D CORP",
+   "property_type": "Multi-Family",
+   "propertyaddress": "6736 TEST ST",
+   "propertycity": "LOS ANGELES",
+   "propertystate": "CA",
+   "propertyzip": "93063",
+   "registered_date": "2026-08-31T00:00:00.000"
+  },
+  {
+   "apn": "2012024007",
+   "lender": "TESTOWNER 9EC651",
+   "property_type": "Single Family",
+   "propertyaddress": "3327 TEST ST",
+   "propertycity": "LOS ANGELES",
+   "propertystate": "CA",
+   "propertyzip": "93063",
+   "registered_date": "2026-01-05T00:00:00.000"
+  },
+  {
+   "apn": "2013031021",
+   "lender": "TESTOWNER 0691DB",
+   "property_type": "Single Family",
+   "propertyaddress": "8731 TEST ST",
+   "propertycity": "LOS ANGELES",
+   "propertystate": "CA",
+   "propertyzip": "93063",
+   "registered_date": "2026-01-23T00:00:00.000"
+  },
+  {
+   "apn": "2014002005",
+   "lender": "TESTOWNER E1F3BA CORP",
+   "property_type": "Single Family",
+   "propertyaddress": "5810 TEST ST",
+   "propertycity": "LOS ANGELES",
+   "propertystate": "CA",
+   "propertyzip": "91304",
+   "registered_date": "2026-02-17T00:00:00.000"
+  },
+  {
+   "apn": "2014002006",
+   "lender": "TESTOWNER 29E7FE",
+   "property_type": "Single Family",
+   "propertyaddress": "1638 TEST ST",
+   "propertycity": "LOS ANGELES",
+   "propertystate": "CA",
+   "propertyzip": "91304",
+   "registered_date": "2026-04-21T00:00:00.000"
+  },
+  {
+   "apn": "2014010005",
+   "lender": "TESTOWNER 6ADDFD LLC",
+   "property_type": "Single Family",
+   "propertyaddress": "3908 TEST ST",
+   "propertycity": "LOS ANGELES",
+   "propertystate": "CA",
+   "propertyzip": "91304",
+   "registered_date": "2026-04-04T00:00:00.000"
+  },
+  {
+   "apn": "2014033053",
+   "lender": "TESTOWNER 5A2D05 LLC",
+   "property_type": "Single Family",
+   "propertyaddress": "3097 TEST ST",
+   "propertycity": "LOS ANGELES",
+   "propertystate": "CA",
+   "propertyzip": "91304",
+   "registered_date": "2026-07-27T00:00:00.000"
+  },
+  {
+   "apn": "2014033053",
+   "lender": "TESTOWNER C3D491",
+   "property_type": "Single Family",
+   "propertyaddress": "3097 TEST ST",
+   "propertycity": "LOS ANGELES",
+   "propertystate": "CA",
+   "propertyzip": "91304",
+   "registered_date": "2026-09-14T00:00:00.000"
+  },
+  {
+   "apn": "2017025049",
+   "lender": "TESTOWNER 9EEECC",
+   "property_type": "Single Family",
+   "propertyaddress": "8393 TEST ST",
+   "propertycity": "LOS ANGELES",
+   "propertystate": "CA",
+   "propertyzip": "91304",
+   "registered_date": "2026-01-21T00:00:00.000"
+  },
+  {
+   "apn": "2017027017",
+   "lender": "TESTOWNER B87D20",
+   "property_type": "Single Family",
+   "propertyaddress": "5067 TEST ST",
+   "propertycity": "LOS ANGELES",
+   "propertystate": "CA",
+   "propertyzip": "93063",
+   "registered_date": "2026-01-26T00:00:00.000"
+  },
+  {
+   "apn": "2017028022",
+   "lender": "TESTOWNER 4C09D5",
+   "property_type": "Single Family",
+   "propertyaddress": "1585 TEST ST",
+   "propertycity": "LOS ANGELES",
+   "propertystate": "CA",
+   "propertyzip": "93063",
+   "registered_date": "2026-01-08T00:00:00.000"
+  },
+  {
+   "apn": "2017040001",
+   "lender": "TESTOWNER 9EEECC",
+   "property_type": "Single Family",
+   "propertyaddress": "8788 TEST ST",
+   "propertycity": "LOS ANGELES",
+   "propertystate": "CA",
+   "propertyzip": "91304",
+   "registered_date": "2026-03-16T00:00:00.000"
+  },
+  {
+   "apn": "2020014041",
+   "lender": "TESTOWNER 5A2D05 LLC",
+   "property_type": "Single Family",
+   "propertyaddress": "7468 TEST ST",
+   "propertycity": "LOS ANGELES",
+   "propertystate": "CA",
+   "propertyzip": "93063",
+   "registered_date": "2026-01-08T00:00:00.000"
+  },
+  {
+   "apn": "2020014041",
+   "lender": "TESTOWNER C3D491",
+   "property_type": "Single Family",
+   "propertyaddress": "7468 TEST ST",
+   "propertycity": "LOS ANGELES",
+   "propertystate": "CA",
+   "propertyzip": "93063",
+   "registered_date": "2026-09-11T00:00:00.000"
+  },
+  {
+   "apn": "2020022024",
+   "lender": "TESTOWNER 4C09D5",
+   "property_type": "Single Family",
+   "propertyaddress": "6141 TEST ST",
+   "propertycity": "LOS ANGELES",
+   "propertystate": "CA",
+   "propertyzip": "93063",
+   "registered_date": "2026-07-29T00:00:00.000"
+  }
+ ],
+ "where": "(apn IS NOT NULL)"
+}

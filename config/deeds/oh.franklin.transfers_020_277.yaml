@@ -1,0 +1,38 @@
+source_id: oh.franklin.transfers_020_277
+state: OH
+county_fips: "39049"
+# Franklin County (Columbus) OH Auditor monthly 'Tax Accounting' extract Transfer020-277.xlsx: every
+# recorded transfer (conveyance) of the parcels in taxing districts 020-277, back to the
+# 1980s, with sale date, conveyance number, sale amount, parcel count, the new owner names
+# (OwnerName1, OwnerName2: grantee), transfer and instrument type, exempt and sale type and
+# the validity flag. The previous owner is not on the row (it is the grantee of the parcel's
+# preceding transfer). Loaded as DEED instruments on 39049-<parcel>, the oh.franklin.parcels
+# PARCELID. The workbook is replaced each month in a new dated folder (link_from). SaleDate
+# is an Excel serial day number.
+api: xlsx
+url: https://apps.franklincountyauditor.com/Outside_User_Files/2026/2026-11-20%20Tax%20Accounting/Transfer020-277.xlsx
+link_from:   # the newest year folder, its newest 'Tax Accounting' folder, the file in it
+  page: https://apps.franklincountyauditor.com/Outside_User_Files/
+  pattern: "/Outside_User_Files/\\d{4}/$"
+  pick: last
+  then:
+    - {pattern: "Tax%20Accounting/$", pick: last}
+    - {pattern: "/Transfer020-277.xlsx$"}
+excel_dates: [saledate]
+date_field: saledate
+uid: [parcel_id, conveynumber, saledate]
+doc_type: DEED
+doc_type_raw: {field: transfertype}
+consideration: saleamount
+parties:
+  - {role: grantee, name: ownername1}
+  - {role: grantee, name: ownername2}
+rewrite:   # '420-268862-00' -> '420-268862' (oh.franklin.parcels drops the 2-digit extension)
+  parcel_id: {pattern: "^\\s*(\\d{3}-\\d{6})-\\d{2}\\s*$", replace: "\\1"}
+parcel: {kind: pin, field: parcel_id, county_fips: "39049"}   # = oh.franklin.parcels PARCELID
+terms:
+  url: https://auditor.franklincountyohio.gov/Auditor/FTP
+  summary: "Franklin County (Ohio) Auditor 'Outside User Files', the monthly appraisal and tax accounting extracts the Auditor publishes for anonymous download (apps.franklincountyauditor.com, the host its FTP instructions name), free, no login. No license or reuse terms are stated for the files; the Auditor's site disclaimer (read 2026-11-25) gives them 'as is' with no warranty or liability. apps.franklincountyauditor.com/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

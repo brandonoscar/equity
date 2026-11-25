@@ -1,0 +1,268 @@
+{
+ "dataset": "crg5-4zyp",
+ "rows": [
+  {
+   "address": "649 E GROVELAND PARK",
+   "building_list_date": "2025-09-01T00:00:00.000",
+   "circuit_court_case_number": "10-M1-400195",
+   "community_area": "DOUGLAS",
+   "defendant_owner": "TESTOWNER 32EDCE LLC",
+   "owner_list_date": "2025-10-01T00:00:00.000",
+   "record_id": "10-M1-400195-9/1/2025",
+   "secondary_address": "649-651 E GROVELAND PARK",
+   "ward": "4"
+  },
+  {
+   "address": "649 E GROVELAND PARK",
+   "building_list_date": "2022-03-01T00:00:00.000",
+   "circuit_court_case_number": "10-M1-400984",
+   "community_area": "DOUGLAS",
+   "defendant_owner": "TESTOWNER 54FB04",
+   "owner_list_date": "2022-04-01T00:00:00.000",
+   "record_id": "10-M1-400984-3/1/2022",
+   "ward": "4"
+  },
+  {
+   "address": "649 E GROVELAND PARK",
+   "building_list_date": "2021-09-01T00:00:00.000",
+   "circuit_court_case_number": "10-M1-400984",
+   "community_area": "DOUGLAS",
+   "defendant_owner": "TESTOWNER 54FB04",
+   "owner_list_date": "2021-10-01T00:00:00.000",
+   "record_id": "10-M1-400984-9/1/2021",
+   "ward": "4"
+  },
+  {
+   "address": "649 E GROVELAND PARK",
+   "building_list_date": "2022-09-01T00:00:00.000",
+   "circuit_court_case_number": "10-M1-400984",
+   "community_area": "DOUGLAS",
+   "defendant_owner": "TESTOWNER 54FB04",
+   "owner_list_date": "2022-10-01T00:00:00.000",
+   "record_id": "10-M1-400984-9/1/2022",
+   "ward": "4"
+  },
+  {
+   "address": "1807 W 17TH ST",
+   "building_list_date": "2022-03-01T00:00:00.000",
+   "circuit_court_case_number": "10-M1-402034",
+   "community_area": "LOWER WEST SIDE",
+   "defendant_owner": "TESTOWNER 5B814A",
+   "owner_list_date": "2022-04-01T00:00:00.000",
+   "record_id": "10-M1-402034-3/1/2022",
+   "ward": "25"
+  },
+  {
+   "address": "1807 W 17TH ST",
+   "building_list_date": "2022-09-01T00:00:00.000",
+   "circuit_court_case_number": "10-M1-402034",
+   "community_area": "LOWER WEST SIDE",
+   "defendant_owner": "TESTOWNER 5B814A",
+   "owner_list_date": "2022-10-01T00:00:00.000",
+   "record_id": "10-M1-402034-9/1/2022",
+   "ward": "25"
+  },
+  {
+   "address": "4540 W JACKSON BLVD",
+   "building_list_date": "2022-03-01T00:00:00.000",
+   "circuit_court_case_number": "10-M1-402080",
+   "community_area": "WEST GARFIELD PARK",
+   "defendant_owner": "TESTOWNER A4C0C5",
+   "owner_list_date": "2022-04-01T00:00:00.000",
+   "record_id": "10-M1-402080-3/1/2022",
+   "ward": "28"
+  },
+  {
+   "address": "4540 W JACKSON BLVD",
+   "building_list_date": "2021-09-01T00:00:00.000",
+   "circuit_court_case_number": "10-M1-402080",
+   "community_area": "WEST GARFIELD PARK",
+   "defendant_owner": "TESTOWNER A4C0C5",
+   "owner_list_date": "2021-10-01T00:00:00.000",
+   "record_id": "10-M1-402080-9/1/2021",
+   "ward": "28"
+  },
+  {
+   "address": "1315 N LOCKWOOD AVE",
+   "building_list_date": "2022-03-01T00:00:00.000",
+   "circuit_court_case_number": "12-M1-400166",
+   "community_area": "AUSTIN",
+   "defendant_owner": "TESTOWNER 92945F",
+   "owner_list_date": "2022-04-01T00:00:00.000",
+   "record_id": "12-M1-400166-3/1/2022",
+   "ward": "37"
+  },
+  {
+   "address": "1315 N LOCKWOOD AVE",
+   "building_list_date": "2022-09-01T00:00:00.000",
+   "circuit_court_case_number": "12-M1-400166",
+   "community_area": "AUSTIN",
+   "defendant_owner": "TESTOWNER 92945F",
+   "owner_list_date": "2022-10-01T00:00:00.000",
+   "record_id": "12-M1-400166-9/1/2022",
+   "ward": "37"
+  },
+  {
+   "address": "7700 S SOUTH SHORE DR",
+   "building_list_date": "2022-03-01T00:00:00.000",
+   "circuit_court_case_number": "12-M1-400968",
+   "community_area": "SOUTH SHORE",
+   "defendant_owner": "TESTOWNER D02AE6 LLC",
+   "owner_list_date": "2022-04-01T00:00:00.000",
+   "record_id": "12-M1-400968-3/1/2022",
+   "ward": "7"
+  },
+  {
+   "address": "7700 S SOUTH SHORE DR",
+   "building_list_date": "2021-09-01T00:00:00.000",
+   "circuit_court_case_number": "12-M1-400968",
+   "community_area": "SOUTH SHORE",
+   "defendant_owner": "TESTOWNER D02AE6 LLC",
+   "owner_list_date": "2021-10-01T00:00:00.000",
+   "record_id": "12-M1-400968-9/1/2021",
+   "ward": "7"
+  },
+  {
+   "address": "7700 S SOUTH SHORE DR",
+   "building_list_date": "2022-09-01T00:00:00.000",
+   "circuit_court_case_number": "12-M1-400968",
+   "community_area": "SOUTH SHORE",
+   "defendant_owner": "TESTOWNER D02AE6 LLC",
+   "owner_list_date": "2022-10-01T00:00:00.000",
+   "record_id": "12-M1-400968-9/1/2022",
+   "ward": "7"
+  },
+  {
+   "address": "1500 S LAWNDALE AVE",
+   "building_list_date": "2023-03-01T00:00:00.000",
+   "circuit_court_case_number": "13-M1-402034",
+   "community_area": "NORTH LAWNDALE",
+   "defendant_owner": "TESTOWNER 4A9C7B LLC",
+   "owner_list_date": "2023-04-01T00:00:00.000",
+   "record_id": "13-M1-402034-3/1/2023",
+   "secondary_address": "3705-3707 W 15TH ST",
+   "ward": "24"
+  },
+  {
+   "address": "1500 S LAWNDALE AVE",
+   "building_list_date": "2022-09-01T00:00:00.000",
+   "circuit_court_case_number": "13-M1-402034",
+   "community_area": "NORTH LAWNDALE",
+   "defendant_owner": "TESTOWNER 4A9C7B LLC",
+   "owner_list_date": "2022-10-01T00:00:00.000",
+   "record_id": "13-M1-402034-9/1/2022",
+   "secondary_address": "3705-3707 W 15TH ST",
+   "ward": "24"
+  },
+  {
+   "address": "1500 S LAWNDALE AVE",
+   "building_list_date": "2023-09-01T00:00:00.000",
+   "circuit_court_case_number": "13-M1-402034",
+   "community_area": "NORTH LAWNDALE",
+   "defendant_owner": "TESTOWNER 4A9C7B LLC",
+   "owner_list_date": "2023-10-01T00:00:00.000",
+   "record_id": "13-M1-402034-9/1/2023",
+   "secondary_address": "3705-3707 W 15TH ST",
+   "ward": "24"
+  },
+  {
+   "address": "8924 S WALLACE ST",
+   "building_list_date": "2022-03-01T00:00:00.000",
+   "circuit_court_case_number": "14-M1-401364",
+   "community_area": "AUBURN GRESHAM",
+   "defendant_owner": "TESTOWNER 6A411D",
+   "owner_list_date": "2022-04-01T00:00:00.000",
+   "record_id": "14-M1-401364-3/1/2022",
+   "ward": "21"
+  },
+  {
+   "address": "8924 S WALLACE ST",
+   "building_list_date": "2021-09-01T00:00:00.000",
+   "circuit_court_case_number": "14-M1-401364",
+   "community_area": "AUBURN GRESHAM",
+   "defendant_owner": "TESTOWNER 6A411D",
+   "owner_list_date": "2021-10-01T00:00:00.000",
+   "record_id": "14-M1-401364-9/1/2021",
+   "ward": "21"
+  },
+  {
+   "address": "8924 S WALLACE ST",
+   "building_list_date": "2022-09-01T00:00:00.000",
+   "circuit_court_case_number": "14-M1-401364",
+   "community_area": "AUBURN GRESHAM",
+   "defendant_owner": "TESTOWNER 6A411D",
+   "owner_list_date": "2022-10-01T00:00:00.000",
+   "record_id": "14-M1-401364-9/1/2022",
+   "ward": "21"
+  },
+  {
+   "address": "5020 S MICHIGAN AVE",
+   "building_list_date": "2022-03-01T00:00:00.000",
+   "circuit_court_case_number": "14-M1-401465",
+   "community_area": "GRAND BOULEVARD",
+   "defendant_owner": "TESTOWNER 494E21",
+   "owner_list_date": "2022-04-01T00:00:00.000",
+   "record_id": "14-M1-401465-3/1/2022",
+   "secondary_address": "5020-5022 S MICHIGAN AVE",
+   "ward": "3"
+  },
+  {
+   "address": "5020 S MICHIGAN AVE",
+   "building_list_date": "2021-09-01T00:00:00.000",
+   "circuit_court_case_number": "14-M1-401465",
+   "community_area": "GRAND BOULEVARD",
+   "defendant_owner": "TESTOWNER B2E308",
+   "owner_list_date": "2021-10-01T00:00:00.000",
+   "record_id": "14-M1-401465-9/1/2021",
+   "secondary_address": "5020-5022 S MICHIGAN AVE",
+   "ward": "3"
+  },
+  {
+   "address": "5020 S MICHIGAN AVE",
+   "building_list_date": "2022-09-01T00:00:00.000",
+   "circuit_court_case_number": "14-M1-401465",
+   "community_area": "GRAND BOULEVARD",
+   "defendant_owner": "TESTOWNER 494E21",
+   "owner_list_date": "2022-10-01T00:00:00.000",
+   "record_id": "14-M1-401465-9/1/2022",
+   "secondary_address": "5020-5022 S MICHIGAN AVE",
+   "ward": "3"
+  },
+  {
+   "address": "6117 S RACINE AVE",
+   "building_list_date": "2021-09-01T00:00:00.000",
+   "circuit_court_case_number": "14-M1-402101",
+   "community_area": "ENGLEWOOD",
+   "defendant_owner": "TESTOWNER 2A4E27 INC",
+   "owner_list_date": "2021-10-01T00:00:00.000",
+   "record_id": "14-M1-402101-9/1/2021",
+   "secondary_address": "6117-6119 S RACINE AVE",
+   "ward": "16"
+  },
+  {
+   "address": "7200 S VINCENNES AVE",
+   "building_list_date": "2022-03-01T00:00:00.000",
+   "circuit_court_case_number": "14-M1-402339",
+   "community_area": "GREATER GRAND CROSSING",
+   "defendant_owner": "TESTOWNER E1E60A LLC",
+   "owner_list_date": "2022-04-01T00:00:00.000",
+   "record_id": "14-M1-402339-3/1/2022",
+   "secondary_address": "7200-7206 S VINCENNES AVE",
+   "tertiary_address": "149-152 W 72ND ST",
+   "ward": "6"
+  },
+  {
+   "address": "7200 S VINCENNES AVE",
+   "building_list_date": "2021-09-01T00:00:00.000",
+   "circuit_court_case_number": "14-M1-402339",
+   "community_area": "GREATER GRAND CROSSING",
+   "defendant_owner": "TESTOWNER E1E60A LLC",
+   "owner_list_date": "2021-10-01T00:00:00.000",
+   "record_id": "14-M1-402339-9/1/2021",
+   "secondary_address": "7200-7206 S VINCENNES AVE",
+   "tertiary_address": "149-152 W 72ND ST",
+   "ward": "6"
+  }
+ ],
+ "where": "1=1"
+}

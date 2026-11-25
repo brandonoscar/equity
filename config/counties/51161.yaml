@@ -1,0 +1,32 @@
+source_id: va.roanoke_county.parcels
+state: VA
+# Roanoke County (VA) ArcGIS Online item 'Parcels_Hosted' (owner wrayda, the county org that
+# publishes its zoning and planning open data; 47,568 rows on 2026-11-25, edited 2026-11;
+# ParcelID null on 206): parcels joined to the CAMA and tax systems: owner names, owner
+# mailing street and ZIP, property address, values for TaxYearForValue (2026).
+layer_url: https://services1.arcgis.com/VlZ73DcE2ya6FnSK/arcgis/rest/services/Parcels_Hosted/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "161"}
+fields:
+  parcel_id: ParcelID            # '003.00-01-01.00-0000' (GPIN '0627-76-2134-29' is the state grid id)
+  owner1: Owner1_LastAndFirst    # 'SMITH JOHN A (TOD)'; empty where OwnerInfoIsProtected = 'YES' (454 rows)
+  owner2: Owner2_LastAndFirst
+  mail_line1: MailingAddressLine1
+  mail_zip: MailingAddressZipCode
+  situs_line1: Address_String    # '8249 Williamson Rd'
+  situs_city: Zip_City
+  situs_state: State
+  situs_zip: Zip_Code
+  land_value: SumAllCardsLandOnlyValue
+  bldg_value: SumAllCardsBuildingOnlyValue
+  total_value: SumAllCardsTotalMarketValue
+  tax_year: TaxYearForValue
+value_basis: "SumAllCardsLandOnlyValue / SumAllCardsBuildingOnlyValue / SumAllCardsTotalMarketValue = the Assessor's land, building and total market values summed over all cards, for TaxYearForValue (2026 on every valued row on 2026-11-25; Virginia assesses at 100% of fair market value as of January 1). SumAllCardsTotalValue (0 on sampled land parcels, meaning not documented) is not mapped. Mailing city and state are not mapped: they sit in MailingAddressLine2 on most rows but in MailingAddressLine3 on 1,518 rows whose second line is a street, so the street line and ZIP alone are kept. Where OwnerInfoIsProtected is 'YES' the county publishes no owner name or mailing address."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=e439b99c594f4bf598eb31268ca55c2d
+  summary: "Roanoke County (VA) ArcGIS Online item 'Parcels_Hosted' (owner wrayda; description: real property areas 'combined with assessing and tax information from CAMA and Tax systems'), public hosted feature service, no login, token or fee. accessInformation and licenseInfo are empty (read 2026-11-25); no resale, redistribution or mailing-list clause. The county withholds owner data for protected owners (OwnerInfoIsProtected). services1.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

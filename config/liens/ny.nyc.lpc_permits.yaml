@@ -1,0 +1,39 @@
+source_id: ny.nyc.lpc_permits
+state: NY
+county_fips: "36061"
+# NYC Landmarks Preservation Commission "LPC Permit Application Information"
+# (data.cityofnewyork.us dpm2-m9mq, 353,645 permits on 2026-11-25, updated daily): every
+# permit LPC issued for work on a landmark or in a historic district, with the owner's name,
+# company (often the managing agent) and address, the borough/block/lot and the work types.
+# A signal of who controls a lot and is putting money into it, not a debt: OTHER instruments
+# on the lot, in no match run. The applicant (architect / expediter) is not read.
+portal: https://data.cityofnewyork.us
+dataset: dpm2-m9mq
+where: "issue_date IS NOT NULL"
+order_by: [":id"]
+select: [docket, regulation_number, regulation_type, address, borough, block, lot, lmnametype,
+         worktypes, received_date, issue_date, owner_name, owner_co, owner_address1,
+         owner_address2, owner_city, owner_state, owner_zip]
+date_field: issue_date
+partition: year
+first_year: 1900          # a few legacy permits carry 1900s dates
+uid: [docket, regulation_number]
+doc_type: OTHER
+doc_type_raw: {field: regulation_type}
+parties:
+  - role: other
+    name: owner_name
+    address: {line1: [owner_address1, owner_address2], city: owner_city, state: owner_state,
+              zip: owner_zip}
+  - role: other
+    name: owner_co
+    address: {line1: [owner_address1, owner_address2], city: owner_city, state: owner_state,
+              zip: owner_zip}
+parcel: {kind: nyc_bbl, borough: borough, block: block, lot: lot}
+extra_pii: [address]
+terms:
+  url: https://data.cityofnewyork.us/d/dpm2-m9mq
+  summary: "NYC Open Data (Socrata), Landmarks Preservation Commission, free, no login; NYC Open Data terms of use (no license field on the dataset). robots.txt (Crawl-delay 1) allows /resource/."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

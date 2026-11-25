@@ -1,0 +1,155 @@
+{
+ "rows": [
+  {
+   "address": "7860 TEST ST",
+   "book_writ": "2406-394",
+   "opa": "66255900",
+   "plaintiff": "TESTOWNER 673764 INC"
+  },
+  {
+   "address": "649 TEST ST",
+   "book_writ": "2403-367",
+   "opa": "321103700",
+   "plaintiff": "TESTOWNER DC0766"
+  },
+  {
+   "address": "1638 TEST ST",
+   "book_writ": "2312-379",
+   "opa": "151102000",
+   "plaintiff": "TESTOWNER C44757 LLC"
+  },
+  {
+   "address": "2386 TEST ST",
+   "book_writ": "2405-325",
+   "opa": "521205300",
+   "plaintiff": "TESTOWNER 5D58E0 NA"
+  },
+  {
+   "address": "2195 TEST ST",
+   "book_writ": "2410-382",
+   "opa": "502418515",
+   "plaintiff": "TESTOWNER 16EF3E NA"
+  },
+  {
+   "address": "7127 TEST ST",
+   "book_writ": "2411-397",
+   "opa": "101343800",
+   "plaintiff": "TESTOWNER D48577"
+  },
+  {
+   "address": "4683 TEST ST",
+   "book_writ": "2502-387",
+   "opa": "273022300",
+   "plaintiff": "TESTOWNER D42885 LP"
+  },
+  {
+   "address": "1411 TEST ST",
+   "book_writ": "2504-321",
+   "opa": "243084100",
+   "plaintiff": "TESTOWNER 8FAC7A NA"
+  },
+  {
+   "address": "6488 TEST ST",
+   "book_writ": "2505-420",
+   "opa": "441143000",
+   "plaintiff": "TESTOWNER 58FAB6"
+  },
+  {
+   "address": "6102 TEST ST",
+   "book_writ": "2507-391",
+   "opa": "062163000",
+   "plaintiff": "TESTOWNER 17A429"
+  },
+  {
+   "address": "8759 TEST ST",
+   "book_writ": "2508-469",
+   "opa": "234235300",
+   "plaintiff": "TESTOWNER F78207 LLC"
+  },
+  {
+   "address": "5048 TEST ST",
+   "book_writ": "2510-451",
+   "opa": "888030035",
+   "plaintiff": "TESTOWNER 5249CC LLC"
+  },
+  {
+   "address": "8457 TEST ST",
+   "book_writ": "2510-420",
+   "opa": "452104000",
+   "plaintiff": "TESTOWNER EE36D2"
+  },
+  {
+   "address": "4995 TEST ST",
+   "book_writ": "2511-316",
+   "opa": "364036600",
+   "plaintiff": "TESTOWNER 191579"
+  },
+  {
+   "address": "6976 TEST ST",
+   "book_writ": "2511-318",
+   "opa": "631064800",
+   "plaintiff": "TESTOWNER 31EB8A"
+  },
+  {
+   "address": "5487 TEST ST",
+   "book_writ": "2511-351",
+   "opa": "604125900",
+   "plaintiff": "TESTOWNER F377FA LLC"
+  },
+  {
+   "address": "8202 TEST ST",
+   "book_writ": "2512-353A",
+   "opa": "171000001",
+   "plaintiff": "TESTOWNER 41170B"
+  },
+  {
+   "address": "2322 TEST ST",
+   "book_writ": "2512-353B",
+   "opa": "592033600",
+   "plaintiff": "TESTOWNER 41170B"
+  },
+  {
+   "address": "8367 TEST ST",
+   "book_writ": "2512-340",
+   "opa": "522100600",
+   "plaintiff": "TESTOWNER 37E138"
+  },
+  {
+   "address": "8154 TEST ST",
+   "book_writ": "2512-357",
+   "opa": "234068600",
+   "plaintiff": "TESTOWNER 41170B"
+  },
+  {
+   "address": "7080 TEST ST",
+   "book_writ": "2512-400",
+   "opa": "321205100",
+   "plaintiff": "TESTOWNER 5BB8FA"
+  },
+  {
+   "address": "7483 TEST ST",
+   "book_writ": "2512-444",
+   "opa": "171036600",
+   "plaintiff": "TESTOWNER 7FF62E"
+  },
+  {
+   "address": "2420 TEST ST",
+   "book_writ": "2601-313",
+   "opa": "042083800",
+   "plaintiff": "TESTOWNER 290804"
+  },
+  {
+   "address": "4629 TEST ST",
+   "book_writ": "2601-314",
+   "opa": "101373300",
+   "plaintiff": "TESTOWNER 5B791B"
+  },
+  {
+   "address": "3295 TEST ST",
+   "book_writ": "2601-315",
+   "opa": "324169600",
+   "plaintiff": "TESTOWNER B74CE8"
+  }
+ ],
+ "url": "https://salesweb.civilview.com/Sales/SalesSearch?countyId=60"
+}

@@ -1,0 +1,28 @@
+source_id: il.cook.recorder_mortgages_2012
+state: IL
+county_fips: "17031"
+# Cook County Recorder of Deeds open-data extract (datacatalog.cookcountyil.gov myuk-usmm): 187,019 mortgages recorded 2012-01-01 to 2012-11-29.
+# Each row is one recorded document on one PIN: document number, type, recorded and
+# executed dates and the mortgage amount as principal_amount. No party names are
+# published, so these are instruments on the parcel only (the lien stack and its dates);
+# PINs are printed with dashes ('25-16-213-015-0000'), stripped to the 14-digit il.cook.parcels key.
+portal: https://datacatalog.cookcountyil.gov
+dataset: myuk-usmm
+where: "pin IS NOT NULL"
+order_by: [doc_number, pin, ":id"]
+select: [pin, doc_number, doc_type, recorded_date, execution_date, consideration_amount]
+date_field: recorded_date
+partition: year
+first_year: 2012
+uid: doc_number   # one document on several PINs is one instrument on each lot
+doc_type: {field: doc_type, map: {MORTGAGE: MORTGAGE, CORRECTED MORTGAGE: MORTGAGE, MORTGAGE AND ASSIGNMENT: MORTGAGE, LIS PENDENS FORECLOSURE: LIS_PENDENS, AMENDED LIS PENDENS FORECLOSURE: LIS_PENDENS, CORRECTED LIS PENDENS FORECLOSURE: LIS_PENDENS, QUIT CLAIM DEED: DEED, CORRECTED QUIT CLAIM DEED: DEED}, default: OTHER}
+doc_type_raw: {field: doc_type}
+amount: consideration_amount
+parties: []
+parcel: {kind: pin, field: pin, county_fips: "17031", strip: "-"}   # = il.cook.parcels pin
+terms:
+  url: https://datacatalog.cookcountyil.gov/d/myuk-usmm
+  summary: "Cook County Recorder of Deeds extract on the Cook County open data portal (Socrata), free, no login; no license tag on the dataset (Cook County open data terms). A one-time extract: the Recorder's later index is not on the portal. datacatalog.cookcountyil.gov/robots.txt allows /resource/ (Crawl-delay: 1)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

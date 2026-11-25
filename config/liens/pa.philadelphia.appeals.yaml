@@ -1,0 +1,36 @@
+source_id: pa.philadelphia.appeals
+state: PA
+county_fips: "42101"   # Philadelphia
+# City of Philadelphia L&I appeals (OpenDataPhilly "Appeals", Carto table `appeals`, 44,988
+# appeals since 2007 on 2026-11-25, updated daily): appeals to the Zoning Board of Adjustment,
+# the L&I Review Board and the Board of Building Standards (variances, special exceptions,
+# appeals of violations), with the property's OPA account, its owner of record as the city
+# joins it today (opa_owner) and the primary appellant (often the owner's lawyer or
+# expediter, kept in the raw row only), the grounds and the decision. A signal of who
+# controls a parcel and what they plan for it: OTHER instruments on the parcel, in no match run.
+api: carto
+carto: https://phl.carto.com/api/v2/sql
+table: appeals
+where: "createddate IS NOT NULL"
+order_by: [cartodb_id]
+select: [appealnumber, appealtype, applicationtype, appealstatus, createddate, completeddate,
+         decision, decisiondate, primaryappellant, appellanttype, opa_account_num, address, zip,
+         opa_owner]
+date_field: createddate
+partition: year
+first_year: 2007
+uid: appealnumber
+doc_type: OTHER
+doc_type_raw: {field: appealtype}
+parties:
+  - role: other
+    name: opa_owner            # 'A, B' for joint owners
+    split: ","
+parcel: {kind: pin, field: opa_account_num, county_fips: "42101"}   # same key as pa.philadelphia.parcels
+extra_pii: [address, primaryappellant]
+terms:
+  url: https://opendataphilly.org/datasets/licenses-and-inspections-appeals/
+  summary: "OpenDataPhilly, City of Philadelphia L&I, Carto SQL API, free, no login. City of Philadelphia terms of use (as read for pa.philadelphia.business_licenses): the City keeps all rights in the database, data as-is, user indemnifies the City; treated as internal use only, no redistribution. phl.carto.com robots.txt disallows /api/ only for named search crawlers, not other agents."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

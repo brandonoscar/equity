@@ -1,0 +1,29 @@
+# City of Orlando, "Short Term Rental Licenses" (data.cityoforlando.net ssrj-rbua, 539
+# licenses on 2026-11-25, daily): license number, status, the license holder, the property
+# address, license / issue / expiration dates, and the property's owner(s) of record with the
+# owner's mailing address as the City joins them. Holder and owners are all holders.
+source_id: fl.orlando.short_term_rentals
+state: FL
+jurisdiction: "12095"
+portal: https://data.cityoforlando.net
+dataset: ssrj-rbua
+key: license_number
+id_prefix: "ORL-STR:"
+terms_url: https://data.cityoforlando.net/d/ssrj-rbua
+terms_summary: "City of Orlando open data (Socrata), free, no login; no license set on the dataset. robots.txt allows /resource/. Holder phone and e-mail are in the raw record only; internal use."
+checked_on: 2026-11-25
+robots_checked_on: 2026-11-25
+license:
+  name: license_holder_name
+  status: license_status
+  issued_on: issued_date
+  address: {street: property_address}  # street only: the city (Orlando) is not a column
+holders:
+  - {role: other, title: LICENSE HOLDER, name: license_holder_name}
+  - role: other
+    title: PROPERTY OWNER
+    with_type: false
+    name: property_owner_name1
+    address: {street: [property_owner_address1, property_owner_address2], city: property_owner_city, state: property_owner_state, zip: property_owner_zip}
+  - {role: other, title: PROPERTY OWNER, with_type: false, name: property_owner_name2}
+pii_fields: [license_holder_name, license_holder_phone, license_holder_email, property_address, property_owner_name1, property_owner_name2, property_owner_address1, property_owner_address2]

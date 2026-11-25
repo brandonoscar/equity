@@ -1,0 +1,256 @@
+{
+ "layer": "https://services1.arcgis.com/F1v0ufATbBQScMtY/arcgis/rest/services/Archived_Building_Permits/FeatureServer/0",
+ "rows": [
+  {
+   "Applicant": "TESTOWNER D3B205 INC",
+   "Application_Number": 68028,
+   "Application_Type": "OTC",
+   "Issue_Date": 1231141560000,
+   "Location": null,
+   "ObjectId": 1,
+   "Valuation": 5500,
+   "Work_Type": null
+  },
+  {
+   "Applicant": "TESTOWNER 39B416",
+   "Application_Number": 140506,
+   "Application_Type": "OTC",
+   "Issue_Date": 1243519260000,
+   "Location": null,
+   "ObjectId": 12,
+   "Valuation": 0,
+   "Work_Type": "B-FTWH"
+  },
+  {
+   "Applicant": "TESTOWNER 39B416",
+   "Application_Number": 140509,
+   "Application_Type": "OTC",
+   "Issue_Date": 1243519380000,
+   "Location": null,
+   "ObjectId": 15,
+   "Valuation": 0,
+   "Work_Type": "B-FTWH"
+  },
+  {
+   "Applicant": "TESTOWNER 39B416",
+   "Application_Number": 140513,
+   "Application_Type": "OTC",
+   "Issue_Date": 1243519500000,
+   "Location": null,
+   "ObjectId": 21,
+   "Valuation": 0,
+   "Work_Type": "B-FTWH"
+  },
+  {
+   "Applicant": "TESTOWNER 39B416",
+   "Application_Number": 140515,
+   "Application_Type": "OTC",
+   "Issue_Date": 1243519620000,
+   "Location": null,
+   "ObjectId": 25,
+   "Valuation": 0,
+   "Work_Type": "B-FTWH"
+  },
+  {
+   "Applicant": "TESTOWNER 39B416",
+   "Application_Number": 140517,
+   "Application_Type": "OTC",
+   "Issue_Date": 1243519680000,
+   "Location": null,
+   "ObjectId": 26,
+   "Valuation": 0,
+   "Work_Type": "B-FTWH"
+  },
+  {
+   "Applicant": "TESTOWNER E2D5B0",
+   "Application_Number": 143381,
+   "Application_Type": "OTC",
+   "Issue_Date": 1247565540000,
+   "Location": null,
+   "ObjectId": 35,
+   "Valuation": 0,
+   "Work_Type": "B-FTWH"
+  },
+  {
+   "Applicant": "TESTOWNER 9D340A",
+   "Application_Number": 134230,
+   "Application_Type": "DISASTER",
+   "Issue_Date": 1235481960000,
+   "Location": "TESTOWNER 32823C",
+   "ObjectId": 36,
+   "Valuation": 8000,
+   "Work_Type": null
+  },
+  {
+   "Applicant": "TESTOWNER 39B416",
+   "Application_Number": 140502,
+   "Application_Type": "OTC",
+   "Issue_Date": 1243519080000,
+   "Location": null,
+   "ObjectId": 39,
+   "Valuation": 0,
+   "Work_Type": "B-FTWH"
+  },
+  {
+   "Applicant": "TESTOWNER B9D155",
+   "Application_Number": 139213,
+   "Application_Type": "OTC",
+   "Issue_Date": 1241782500000,
+   "Location": null,
+   "ObjectId": 40,
+   "Valuation": 0,
+   "Work_Type": "B-FTWH"
+  },
+  {
+   "Applicant": "TESTOWNER AFC8B4 CO",
+   "Application_Number": 139581,
+   "Application_Type": "OTC",
+   "Issue_Date": 1242293640000,
+   "Location": "TESTOWNER 21815E",
+   "ObjectId": 41,
+   "Valuation": 500,
+   "Work_Type": "B-WTRH"
+  },
+  {
+   "Applicant": "TESTOWNER 39B416",
+   "Application_Number": 140496,
+   "Application_Type": "OTC",
+   "Issue_Date": 1243515900000,
+   "Location": null,
+   "ObjectId": 44,
+   "Valuation": 0,
+   "Work_Type": "B-FTWH"
+  },
+  {
+   "Applicant": "TESTOWNER 30004F",
+   "Application_Number": 140822,
+   "Application_Type": "OTC",
+   "Issue_Date": 1244031360000,
+   "Location": null,
+   "ObjectId": 45,
+   "Valuation": 0,
+   "Work_Type": "B-FTWH"
+  },
+  {
+   "Applicant": "TESTOWNER 74ADE2",
+   "Application_Number": 141045,
+   "Application_Type": "OTC",
+   "Issue_Date": 1244199120000,
+   "Location": null,
+   "ObjectId": 46,
+   "Valuation": 0,
+   "Work_Type": "B-FTWH"
+  },
+  {
+   "Applicant": "TESTOWNER 959097 LLC",
+   "Application_Number": 143606,
+   "Application_Type": "OTC",
+   "Issue_Date": 1247675580000,
+   "Location": null,
+   "ObjectId": 47,
+   "Valuation": 0,
+   "Work_Type": "B-FTWH"
+  },
+  {
+   "Applicant": "TESTOWNER 39B416",
+   "Application_Number": 144256,
+   "Application_Type": "OTC",
+   "Issue_Date": 1248696720000,
+   "Location": "TESTOWNER 53EF19",
+   "ObjectId": 48,
+   "Valuation": 0,
+   "Work_Type": "B-FTWH"
+  },
+  {
+   "Applicant": "TESTOWNER 311CD6 LLC",
+   "Application_Number": 147080,
+   "Application_Type": "WALL FENCE",
+   "Issue_Date": 1252504860000,
+   "Location": "TESTOWNER 1C5CA4",
+   "ObjectId": 205,
+   "Valuation": 21120,
+   "Work_Type": "BLOCK"
+  },
+  {
+   "Applicant": "TESTOWNER 39B416",
+   "Application_Number": 151812,
+   "Application_Type": "OTC",
+   "Issue_Date": 1258735020000,
+   "Location": null,
+   "ObjectId": 212,
+   "Valuation": 0,
+   "Work_Type": "B-FTWH"
+  },
+  {
+   "Applicant": "TESTOWNER F79FBD",
+   "Application_Number": 136291,
+   "Application_Type": "OTC",
+   "Issue_Date": 1237975380000,
+   "Location": "TESTOWNER 7EC1B6",
+   "ObjectId": 244,
+   "Valuation": 0,
+   "Work_Type": null
+  },
+  {
+   "Applicant": "TESTOWNER 195622 INC",
+   "Application_Number": 133230,
+   "Application_Type": "OTC",
+   "Issue_Date": 1234191660000,
+   "Location": "TESTOWNER 138E68",
+   "ObjectId": 307,
+   "Valuation": 703,
+   "Work_Type": null
+  },
+  {
+   "Applicant": "TESTOWNER AFC8B4 CO",
+   "Application_Number": 133809,
+   "Application_Type": "OTC",
+   "Issue_Date": 1234881780000,
+   "Location": "TESTOWNER 7B3E97",
+   "ObjectId": 308,
+   "Valuation": 500,
+   "Work_Type": "B-WTRH"
+  },
+  {
+   "Applicant": "TESTOWNER 03EA32",
+   "Application_Number": 133917,
+   "Application_Type": "WALL FENCE",
+   "Issue_Date": 1235032080000,
+   "Location": "TESTOWNER C2FE88",
+   "ObjectId": 309,
+   "Valuation": 264,
+   "Work_Type": "BLOCK"
+  },
+  {
+   "Applicant": "TESTOWNER 1D8F12 INC",
+   "Application_Number": 134258,
+   "Application_Type": "OTC",
+   "Issue_Date": 1236333240000,
+   "Location": "TESTOWNER 00B493",
+   "ObjectId": 310,
+   "Valuation": 4500,
+   "Work_Type": null
+  },
+  {
+   "Applicant": "TESTOWNER E4BC31",
+   "Application_Number": 134839,
+   "Application_Type": "OTC",
+   "Issue_Date": 1236262440000,
+   "Location": "TESTOWNER 432E03",
+   "ObjectId": 311,
+   "Valuation": 5714,
+   "Work_Type": null
+  },
+  {
+   "Applicant": "TESTOWNER EBFB79",
+   "Application_Number": 135032,
+   "Application_Type": "OTC",
+   "Issue_Date": 1236594780000,
+   "Location": "TESTOWNER E3282C",
+   "ObjectId": 312,
+   "Valuation": 500,
+   "Work_Type": "B-WTRH"
+  }
+ ],
+ "where": "Issue_Date >= DATE '2009-01-01' AND Issue_Date < DATE '2010-01-01'"
+}

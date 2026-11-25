@@ -52,7 +52,9 @@ Config keys: source_id, state, jurisdiction (FIPS), kind (source kind), record_t
   last_first_comma (either of the last two),
   split (separator for a column holding several names), address: {street: field | [fields],
   city, state | state_const, zip, city_state_zip, line}}; key_prefix; skip_names; extra_pii;
-  terms: {url, summary, checked_on, cost_model}.
+  terms: {url, summary, checked_on, cost_model, robots_checked_on (default checked_on),
+  use_restrictions (tags as in the parcel configs, shown as RESTRICTED[...] in the source
+  row)}.
 
 Names in a person list are mostly people, but holders report companies too: classify() decides
 org vs unknown (as everywhere), and only a non-org name gets first/middle/last parts.
@@ -497,6 +499,8 @@ class PersonListAdapter(Adapter):
     def source_row(self) -> Mapping[str, Any]:
         c = self.config
         t = c["terms"]
+        tags = sorted(str(x) for x in t.get("use_restrictions") or ())
+        restricted = f"RESTRICTED[{','.join(tags)}] " if tags else ""
         return {
             "source_id": c.source_id,
             "kind": c["kind"],
@@ -504,9 +508,9 @@ class PersonListAdapter(Adapter):
             "access_method": ACCESS[c.api],
             "base_url": self.base_url,
             "terms_url": t["url"],
-            "terms_summary": t["summary"],
+            "terms_summary": restricted + t["summary"],
             "terms_checked_on": t["checked_on"],
-            "robots_checked_on": t["checked_on"],
+            "robots_checked_on": t.get("robots_checked_on", t["checked_on"]),
             "cost_model": t.get("cost_model", "free"),
         }
 

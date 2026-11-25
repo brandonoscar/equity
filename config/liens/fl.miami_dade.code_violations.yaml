@@ -1,0 +1,34 @@
+source_id: fl.miami_dade.code_violations
+state: FL
+county_fips: "12086"
+# Miami-Dade Regulatory and Economic Resources code compliance violations, every status
+# (ArcGIS Online CCVIOL_gdb, 177,887 rows on 2026-11-25, cases 1995-09 .. 2026-11, daily):
+# case number and date, status (open, closed, civil, active lis pendens, referred to
+# internal compliance), the violation, last action and the folio. Cases in lien status
+# (6,911) are left out: they are fl.miami_dade.code_liens. A case number repeats when the
+# case was referred more than once (5,101 rows), so the uid adds the referral number. No
+# owner name: a match names the folio's owner of record. OTHER instruments on the folio, in
+# no match run.
+api: arcgis
+layer_url: https://services.arcgis.com/8Pc9XBTAsYuxx9Ny/arcgis/rest/services/CCVIOL_gdb/FeatureServer/0
+where: "CASE_STATUS <> '4'"
+order_by: [OBJECTID]
+select: [OBJECTID, CASE_NUM, CASE_DATE, CASE_STATUS, STAT_DESC, ADDRESS, FOLIO, PROBLEM,
+         PROBLEM_DESC, LAST_ACTV, LN_RFRL, LN_RFRLTYP, LN_RFRLTDE, SR_NUMBER]
+date_field: CASE_DATE
+partition: year
+first_year: 1995
+uid: [CASE_NUM, LN_RFRL]
+doc_type: OTHER
+doc_type_raw: {field: PROBLEM_DESC}
+extra_pii: [ADDRESS]
+parties:
+  - role: creditor
+    const: Miami-Dade County
+parcel: {kind: pin, field: FOLIO, county_fips: "12086", zfill: 13}   # fl.statewide.parcels
+terms:
+  url: https://www.arcgis.com/home/item.html?id=da0e434c7a914bb983222393dab2b897
+  summary: "Miami-Dade County Open Data Hub (ArcGIS Online, CCVIOL_gdb), free, no login. Item licenseInfo: provided 'as is', approximate, not for site-specific decisions; no licence restriction on reuse found. services.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

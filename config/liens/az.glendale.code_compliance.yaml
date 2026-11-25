@@ -1,0 +1,31 @@
+source_id: az.glendale.code_compliance
+state: AZ
+county_fips: "04013"
+# City of Glendale AZ "Code Compliance Cases - GlendaleOne" (ArcGIS Online, GisAdmin_COG;
+# 110,182 cases on 2026-11-25): code compliance requests and cases with the case number,
+# request / first inspection / close dates, request type (property maintenance, zoning,
+# junk vehicle...), status, up to seven violations with their dates, and clean-and-lien,
+# criminal and civil citation dates and court case number, with the street address. No
+# parcel id and no names: OTHER instruments in Maricopa County (no parcel link), in no match
+# run; the address stays in the source record.
+api: arcgis
+layer_url: https://services1.arcgis.com/9fVTQQSiODPjLUTa/arcgis/rest/services/GlendaleOne_Code_Compliance_Cases/FeatureServer/0
+order_by: [ObjectID]
+select: [ObjectID, CodeCaseNumber, RequestDate, CloseDate, FirstInspectionDate, Proactive,
+         StreetNum, StreetName, CityName, CodePropertyType, RequestStatus, RequestTypeName,
+         Violation1, Violation2, Violation3, CleanandLien, CriminalCitations, CivilCitations,
+         CivilCitationsDate, CourtCaseNumber]
+date_field: RequestDate
+partition: year
+first_year: 2000
+uid: CodeCaseNumber
+doc_type: OTHER
+doc_type_raw: {field: RequestTypeName}
+extra_pii: [StreetNum, StreetName]
+parties: []
+terms:
+  url: https://www.arcgis.com/home/item.html?id=8026de93be8147d2aa2941c3e7ceed97
+  summary: "City of Glendale AZ public ArcGIS Online layer (GisAdmin_COG), free, no login or token. Item licenseInfo (read 2026-11-25): reference-only disclaimer (not a substitute for official records or surveys, accuracy for limited uses); no resale or redistribution clause. services1.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

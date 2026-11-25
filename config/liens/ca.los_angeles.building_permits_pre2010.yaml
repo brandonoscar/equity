@@ -1,0 +1,31 @@
+source_id: ca.los_angeles.building_permits_pre2010
+state: CA
+county_fips: "06037"
+# City of Los Angeles Department of Building and Safety "Building Permits Issued Before 2010"
+# (data.lacity.org e67z-kt2n, 639,942 permits on 2026-11-25, refreshed weekly): building permits
+# (alterations, additions, new buildings, demolitions, signs...) with the LA County APN, the
+# property address, work description, valuation and status. No owner or applicant names are
+# published. Like ny.nyc.dob_permits: a signal that someone is putting money into the
+# parcel, not a debt: OTHER instruments on 06037-<apn> (the 10-digit AIN of
+# ca.losangeles.parcels), in no match run.
+portal: https://data.lacity.org
+dataset: e67z-kt2n
+where: "issue_date IS NOT NULL"
+order_by: [":id"]
+select: [permit_nbr, primary_address, zip_code, apn, permit_group, permit_type, permit_sub_type,
+         use_desc, submitted_date, issue_date, status_desc, status_date, valuation, work_desc]
+date_field: issue_date
+partition: year
+first_year: 1900
+uid: permit_nbr
+doc_type: OTHER
+doc_type_raw: {field: permit_type}
+extra_pii: [primary_address]
+parties: []
+parcel: {kind: pin, field: apn, county_fips: "06037"}   # = ca.losangeles.parcels AIN
+terms:
+  url: https://data.lacity.org/d/e67z-kt2n
+  summary: "Los Angeles Open Data (data.lacity.org, Socrata), Department of Building and Safety, free, no login or app token. No license is set on the dataset (read 2026-11-25); City of Los Angeles open data terms of use (as-is, no warranty); no resale or redistribution clause found. data.lacity.org/robots.txt allows /resource/ (Crawl-delay: 1)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

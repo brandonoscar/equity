@@ -1,0 +1,33 @@
+source_id: nm.albuquerque.building_permits
+state: NM
+county_fips: "35001"
+# City of Albuquerque Planning Department "City Building Permits" (coageo.cabq.gov AGIS
+# FeatureServer/0; 45,382 permits on 2026-11-25, issued 2009 to date): permit number, issue
+# date, address, category, type of work and structure, valuation, square footage, units, and
+# the owner, applicant and contractor names. No parcel id (UPC) is published, so these are
+# OTHER instruments in Bernalillo County with owner, applicant and contractor as 'other'
+# parties, in no match run; the address stays in the source record.
+api: arcgis
+layer_url: https://coageo.cabq.gov/cabqgeo/rest/services/agis/City_Building_Permits/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, PermitNumber, DateIssued, CalculatedAddress, GeneralCategory, TypeofWork,
+         TypeofStructure, Valuation, SquareFootage, NumberofUnits, Owner, Applicant, Contractor,
+         WorkDescription]
+date_field: DateIssued
+partition: year
+first_year: 2009
+uid: PermitNumber
+doc_type: OTHER
+doc_type_raw: {field: TypeofWork}
+consideration: Valuation
+extra_pii: [CalculatedAddress]
+parties:
+  - {role: other, name: Owner}
+  - {role: other, name: Applicant}
+  - {role: other, name: Contractor, person_names: false}
+terms:
+  url: https://www.arcgis.com/home/item.html?id=70e71c05e00a4f04ad80dd967e097606
+  summary: "City of Albuquerque AGIS Division (Planning Department) public ArcGIS Server feature service, free, no login or token. Item licenseInfo (read 2026-11-25): please credit AGIS Division, Planning Department, City of Albuquerque; data 'as is', no guarantee of accuracy. No resale or redistribution clause. coageo.cabq.gov/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

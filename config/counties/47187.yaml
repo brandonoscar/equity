@@ -1,0 +1,37 @@
+source_id: tn.williamson.parcels
+state: TN
+# City of Franklin GIS 'COFBase' MapServer, layer 11 'Parcels' (37,706 rows on 2026-11-25):
+# Williamson County parcel data (copyright 'Williamson County Tennessee, City of Franklin Tennessee')
+# limited to the Franklin urban growth boundary and the Grassland water service area (per the
+# iteminfo of the same 37,706-row parcel set in Maps/Planning layer 2: 'Update Frequency: Monthly'),
+# so only part of Williamson County. Owner, co-owner, owner mailing address, property
+# street, deed book/page and market/assessed values. Williamson is not in the state's statewide
+# land-use layer (tn.statewide.parcels), so this is the only Williamson source.
+layer_url: https://publicmaps.franklintn.gov/arcgis/rest/services/Maps/COFBase/MapServer/11
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 100000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "187"}
+fields:
+  parcel_id: GISLINK     # same key as the Comptroller's statewide layer, '064    03002'
+  owner1: OWNER1
+  owner2: OWNER2
+  mail_line1: OWN_STREET
+  mail_city: OWN_CITY
+  mail_state: OWN_STATE
+  mail_zip: OWN_ZIP
+  situs_line1: PROP_STREE
+  situs_state: {const: TN}
+  land_value: land_market
+  bldg_value: imp_value
+  total_value: total_market
+  assessed_value: total_assess
+  deed_book: DEED_BOO_1
+  deed_page: DEED_PAG_1
+value_basis: "land_market / imp_value / total_market = assessor market (appraised) land, improvement and total value; total_assess = assessed value (25% of market for residential in Tennessee, e.g. 224,600 -> 56,150). The layer has no tax-year field, so no tax_year is mapped and no assessment facts are emitted; raw values stay in source records. land_assess / imp_assess and Consideration (last sale price) are not mapped."
+terms:
+  url: https://publicmaps.franklintn.gov/arcgis/rest/services/Maps/COFBase/MapServer
+  summary: "City of Franklin (TN) GIS public MapServer 'COFBase' ('City of Franklin Base Map'), no login, token or fee; accessInformation 'City of Franklin GIS Dept.', layer copyright 'Williamson County Tennessee, City of Franklin Tennessee'. licenseInfo empty (read 2026-11-25); no use-constraint text found. publicmaps.franklintn.gov/robots.txt answers HTTP 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,30 @@
+source_id: mi.detroit.building_permits
+state: MI
+county_fips: "26163"
+# City of Detroit BSEED "Building Permits" (bseed_building_permits/0, 48,477 permits issued
+# since 2019-01 on 2026-11-25, updated daily): building permits with the parcel, type of
+# work, current and proposed use, units, permit and estimated contractor cost, and flags for
+# vacant buildings and DLBA (land bank) purchases. No owner or contractor is named: OTHER
+# instruments on the parcel, in no match run (a signal that money is going into a property).
+api: arcgis
+layer_url: https://services2.arcgis.com/qvkbeam7Wirps6zC/arcgis/rest/services/bseed_building_permits/FeatureServer/0
+order_by: [ObjectId]
+select: [ObjectId, record_id, address, submitted_date, issued_date, work_description, permit_type,
+         current_use_type, proposed_use_type, num_units, amt_permit_cost,
+         amt_estimated_contractor_cost, is_purchased_from_dlba, is_in_dlba_compliance, is_vacant,
+         parcel_id]
+date_field: issued_date
+partition: year
+first_year: 2019
+uid: record_id
+doc_type: OTHER
+doc_type_raw: {field: permit_type}
+parties: []
+extra_pii: [address, work_description]
+parcel: {kind: pin, field: parcel_id, county_fips: "26163"}   # same parcel_id as mi.wayne.parcels
+terms:
+  url: https://www.arcgis.com/home/item.html?id=86d47e86062e4beeb19344eb125b75d2
+  summary: "City of Detroit Buildings, Safety Engineering and Environmental Department (BSEED) on the Detroit Open Data Portal (ArcGIS Online, org of mi.wayne.parcels), public hosted layer, free, no login. No licenseInfo on the item (read 2026-11-25); no commercial-use or mailing-list restriction found. services2.arcgis.com/robots.txt answers 4xx (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

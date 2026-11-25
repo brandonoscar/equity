@@ -1,0 +1,41 @@
+source_id: hi.honolulu.building_permits
+state: HI
+county_fips: "15003"
+# City and County of Honolulu Department of Planning and Permitting "Building Permits -
+# January 1, 2005 through June 30, 2025" (data.honolulu.gov 4vab-c87q, 432,021 permits on
+# 2026-11-25; the portal's last refresh was 2025-08): every building permit with the TMK,
+# job address, work flags (new building, addition, alteration, demolition, solar, ADU...),
+# proposed use, estimated value of work, issue and completion dates, the applicant's name and
+# the contractor. A signal that money is going into the parcel, not a debt: OTHER instruments
+# with the applicant as an 'other' party. tmk is the 8-digit Oahu TMK without the island
+# digit ('39080008'), so it is rewritten to '1' + TMK: 15003-139080008, the lot key of
+# hi.honolulu.owners and hi.statewide.parcels. In no match run.
+# Lives in config/deeds only for the TMK rewrite (DeedAdapter); it is not a deed source.
+portal: https://data.honolulu.gov
+dataset: 4vab-c87q
+where: "issuedate IS NOT NULL"
+order_by: [":id"]
+select: [buildingpermitno, buildingpermittype, issuedate, createddate, completeddate, tmk,
+         jobaddress, applicant, contractorelectrical, proposeduse, structurecode,
+         commercialresidential, newbuilding, addition, alteration, demolition, repair, solar,
+         accessorydwellingunitadu, estimatedvalueofwork, acceptedvalue, statusdescription,
+         numunitsadd, numunitsdel]
+date_field: issuedate
+partition: year
+first_year: 2005
+uid: buildingpermitno
+rewrite:
+  tmk: {pattern: "^(\\d{8})$", replace: "1\\1"}
+doc_type: OTHER
+doc_type_raw: {field: proposeduse}
+consideration: estimatedvalueofwork
+extra_pii: [jobaddress]
+parties:
+  - {role: other, name: applicant}
+parcel: {kind: pin, field: tmk, county_fips: "15003"}   # = hi.honolulu.owners lot uid
+terms:
+  url: https://data.honolulu.gov/d/4vab-c87q
+  summary: "Honolulu Open Data (data.honolulu.gov, Socrata), Department of Planning and Permitting, free, no login or app token. No license is set on the dataset (read 2026-11-25); no resale or redistribution clause found. data.honolulu.gov/robots.txt allows /resource/ (Crawl-delay: 1)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

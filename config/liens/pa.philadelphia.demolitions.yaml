@@ -1,0 +1,36 @@
+source_id: pa.philadelphia.demolitions
+state: PA
+county_fips: "42101"   # Philadelphia
+# City of Philadelphia L&I demolitions (OpenDataPhilly "Demolitions", Carto table
+# `li_demolitions`, 10,614 demolitions 2007-2020 on 2026-11-25): private (permit) and
+# city-ordered (city_demo = YES) demolitions with the OPA account, the owner of record named
+# in the case (ownername, organization) and the demolition contractor (kept in the raw row).
+# City demolitions are billed to the owner; the table carries no amount, so each demolition
+# is an OTHER instrument on the parcel, in no match run.
+api: carto
+carto: https://phl.carto.com/api/v2/sql
+table: li_demolitions
+where: "start_date IS NOT NULL"
+order_by: [cartodb_id]
+select: [caseorpermitnumber, record_type, typeofwork, city_demo, start_date, completed_date,
+         status, opa_account_num, address, zip, ownername, organization, primarycontact,
+         contractorname]
+date_field: start_date
+partition: year
+first_year: 2007
+uid: caseorpermitnumber
+doc_type: OTHER
+doc_type_raw: {field: record_type}
+parties:
+  - role: other
+    name: ownername
+  - role: other
+    name: organization
+parcel: {kind: pin, field: opa_account_num, county_fips: "42101"}   # same key as pa.philadelphia.parcels
+extra_pii: [address, primarycontact, contractorname]
+terms:
+  url: https://opendataphilly.org/datasets/licenses-and-inspections-demolitions/
+  summary: "OpenDataPhilly, City of Philadelphia L&I, Carto SQL API, free, no login. City of Philadelphia terms of use (as read for pa.philadelphia.business_licenses): the City keeps all rights in the database, data as-is, user indemnifies the City; treated as internal use only, no redistribution. phl.carto.com robots.txt disallows /api/ only for named search crawlers, not other agents."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

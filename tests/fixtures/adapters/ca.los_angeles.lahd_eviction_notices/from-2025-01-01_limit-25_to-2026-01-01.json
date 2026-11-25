@@ -1,0 +1,256 @@
+{
+ "dataset": "2u8b-eyuu",
+ "rows": [
+  {
+   "apn": "6004009006",
+   "city": "Los Angeles",
+   "eviction_category": "At-Fault",
+   "notice_date": "2025-12-30T00:00:00.000",
+   "notice_type": "3 Day",
+   "officialaddress": "4766 TEST ST",
+   "received": "2025-12-31T00:00:00.000",
+   "zip_code": "90044"
+  },
+  {
+   "apn": "2784001025",
+   "city": "Northridge",
+   "eviction_category": "At-Fault",
+   "notice_date": "2025-12-31T00:00:00.000",
+   "notice_type": "3 Day",
+   "officialaddress": "445 TEST ST",
+   "received": "2025-12-31T00:00:00.000",
+   "zip_code": "91324"
+  },
+  {
+   "apn": "5077018010",
+   "city": "Los Angeles",
+   "eviction_category": "At-Fault",
+   "notice_date": "2025-12-31T00:00:00.000",
+   "notice_type": "3 Day",
+   "officialaddress": "4976 TEST ST",
+   "received": "2025-12-31T00:00:00.000",
+   "zip_code": "90005"
+  },
+  {
+   "apn": "4225006008",
+   "city": "MARINA DEL REY",
+   "eviction_category": "At-Fault",
+   "notice_date": "2025-12-31T00:00:00.000",
+   "notice_type": "3 Day",
+   "officialaddress": "659 TEST ST",
+   "received": "2025-12-31T00:00:00.000",
+   "zip_code": "90292"
+  },
+  {
+   "apn": "5093002020",
+   "city": "Los Angeles",
+   "eviction_category": "At-Fault",
+   "notice_date": "2025-12-29T00:00:00.000",
+   "notice_type": "3 Day",
+   "officialaddress": "6224 TEST ST",
+   "received": "2025-12-31T00:00:00.000",
+   "zip_code": "90005"
+  },
+  {
+   "apn": "5528013009",
+   "city": "Los Angeles",
+   "eviction_category": "At-Fault",
+   "notice_date": "2025-12-31T00:00:00.000",
+   "notice_type": "3 Day",
+   "officialaddress": "4606 TEST ST",
+   "received": "2025-12-31T00:00:00.000",
+   "zip_code": "90048"
+  },
+  {
+   "apn": "6037001030",
+   "city": "Los Angeles",
+   "eviction_category": "At-Fault",
+   "notice_date": "2025-12-26T00:00:00.000",
+   "notice_type": "3 Day",
+   "officialaddress": "8759 TEST ST",
+   "received": "2025-12-31T00:00:00.000",
+   "zip_code": "90047"
+  },
+  {
+   "apn": "4225006008",
+   "city": "MARINA DEL REY",
+   "eviction_category": "At-Fault",
+   "notice_date": "2025-12-26T00:00:00.000",
+   "notice_type": "3 Day",
+   "officialaddress": "659 TEST ST",
+   "received": "2025-12-31T00:00:00.000",
+   "zip_code": "90292"
+  },
+  {
+   "apn": "6031035007",
+   "city": "Los Angeles",
+   "eviction_category": "At-Fault",
+   "notice_date": "2025-12-31T00:00:00.000",
+   "notice_type": "3 Day",
+   "officialaddress": "8994 TEST ST",
+   "received": "2025-12-31T00:00:00.000",
+   "zip_code": "90003"
+  },
+  {
+   "apn": "2723023003",
+   "city": "Los Angeles",
+   "eviction_category": "At-Fault",
+   "notice_date": "2025-12-31T00:00:00.000",
+   "notice_type": "3 Day",
+   "officialaddress": "2026 TEST ST",
+   "received": "2025-12-31T00:00:00.000",
+   "zip_code": "91311"
+  },
+  {
+   "apn": "2747005022",
+   "city": "Los Angeles",
+   "eviction_category": "At-Fault",
+   "notice_date": "2025-12-30T00:00:00.000",
+   "notice_type": "3 Day",
+   "officialaddress": "2351 TEST ST",
+   "received": "2025-12-31T00:00:00.000",
+   "zip_code": "91311"
+  },
+  {
+   "apn": "5518029006",
+   "city": "Los Angeles",
+   "eviction_category": "At-Fault",
+   "notice_date": "2025-12-30T00:00:00.000",
+   "notice_type": "30 Day",
+   "officialaddress": "2227 TEST ST",
+   "received": "2025-12-31T00:00:00.000",
+   "zip_code": "90004"
+  },
+  {
+   "apn": "5547004016",
+   "city": "HOLLYWOOD",
+   "eviction_category": "At-Fault",
+   "notice_date": "2025-12-30T00:00:00.000",
+   "notice_type": "3 Day",
+   "officialaddress": "5372 TEST ST",
+   "received": "2025-12-31T00:00:00.000",
+   "zip_code": "90028"
+  },
+  {
+   "apn": "5547004040",
+   "city": "HOLLYWOOD",
+   "eviction_category": "At-Fault",
+   "notice_date": "2025-12-30T00:00:00.000",
+   "notice_type": "3 Day",
+   "officialaddress": "8085 TEST ST",
+   "received": "2025-12-31T00:00:00.000",
+   "zip_code": "90028"
+  },
+  {
+   "apn": "2107001042",
+   "city": "WINNETKA",
+   "eviction_category": "At-Fault",
+   "notice_date": "2025-12-29T00:00:00.000",
+   "notice_type": "30 Day",
+   "officialaddress": "1623 TEST ST",
+   "received": "2025-12-31T00:00:00.000",
+   "zip_code": "91306"
+  },
+  {
+   "apn": "2416010066",
+   "city": "NORTH HOLLYWOOD",
+   "eviction_category": "At-Fault",
+   "notice_date": "2025-12-30T00:00:00.000",
+   "notice_type": "30 Day",
+   "officialaddress": "7907 TEST ST",
+   "received": "2025-12-31T00:00:00.000",
+   "zip_code": "91601"
+  },
+  {
+   "apn": "2416010066",
+   "city": "NORTH HOLLYWOOD",
+   "eviction_category": "At-Fault",
+   "notice_date": "2025-12-30T00:00:00.000",
+   "notice_type": "30 Day",
+   "officialaddress": "7907 TEST ST",
+   "received": "2025-12-31T00:00:00.000",
+   "zip_code": "91601"
+  },
+  {
+   "apn": "5202007027",
+   "city": "Los Angeles",
+   "eviction_category": "At-Fault",
+   "notice_date": "2025-12-30T00:00:00.000",
+   "notice_type": "3 Day",
+   "officialaddress": "5556 TEST ST",
+   "received": "2025-12-31T00:00:00.000",
+   "zip_code": "90033"
+  },
+  {
+   "apn": "5142023010",
+   "city": "Los Angeles",
+   "eviction_category": "At-Fault",
+   "notice_date": "2025-12-30T00:00:00.000",
+   "notice_type": "3 Day",
+   "officialaddress": "177 TEST ST",
+   "received": "2025-12-31T00:00:00.000",
+   "zip_code": "90017"
+  },
+  {
+   "apn": "2311001001",
+   "city": "NORTH HOLLYWOOD",
+   "eviction_category": "At-Fault",
+   "notice_date": "2025-12-30T00:00:00.000",
+   "notice_type": "3 Day",
+   "officialaddress": "2076 TEST ST",
+   "received": "2025-12-31T00:00:00.000",
+   "zip_code": "91605"
+  },
+  {
+   "apn": "4006004011",
+   "city": "Los Angeles",
+   "eviction_category": "At-Fault",
+   "notice_date": "2025-12-30T00:00:00.000",
+   "notice_type": "3 Day",
+   "officialaddress": "4897 TEST ST",
+   "received": "2025-12-31T00:00:00.000",
+   "zip_code": "90043"
+  },
+  {
+   "apn": "6023009011",
+   "city": "Los Angeles",
+   "eviction_category": "At-Fault",
+   "notice_date": "2025-12-30T00:00:00.000",
+   "notice_type": "3 Day",
+   "officialaddress": "4549 TEST ST",
+   "received": "2025-12-31T00:00:00.000",
+   "zip_code": "90001"
+  },
+  {
+   "apn": "5188006026",
+   "city": "Los Angeles",
+   "eviction_category": "At-Fault",
+   "notice_date": "2025-12-30T00:00:00.000",
+   "notice_type": "3 Day",
+   "officialaddress": "4318 TEST ST",
+   "received": "2025-12-31T00:00:00.000",
+   "zip_code": "90023"
+  },
+  {
+   "apn": "4006004011",
+   "city": "Los Angeles",
+   "eviction_category": "At-Fault",
+   "notice_date": "2025-12-30T00:00:00.000",
+   "notice_type": "3 Day",
+   "officialaddress": "4897 TEST ST",
+   "received": "2025-12-31T00:00:00.000",
+   "zip_code": "90043"
+  },
+  {
+   "apn": "5144018052",
+   "city": "Los Angeles",
+   "eviction_category": "At-Fault",
+   "notice_date": "2025-12-27T00:00:00.000",
+   "notice_type": "3 Day",
+   "officialaddress": "6285 TEST ST",
+   "received": "2025-12-31T00:00:00.000",
+   "zip_code": "90014"
+  }
+ ],
+ "where": "(received IS NOT NULL AND apn IS NOT NULL AND apn != 'No Record Found') AND received >= '2025-01-01T00:00:00' AND received < '2026-01-01T00:00:00'"
+}

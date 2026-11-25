@@ -1,0 +1,230 @@
+{
+ "rows": [
+  {
+   "amount": "0",
+   "description": "TESTOWNER A20DD2",
+   "map_routing": "010-R044-09400",
+   "parcel_id": "010-000002-00",
+   "permdt": "2022-05-10",
+   "permitnum": "MMLSR2218990",
+   "permittype": ""
+  },
+  {
+   "amount": "65000",
+   "description": "TESTOWNER D1AB65",
+   "map_routing": "010-I017-08000",
+   "parcel_id": "010-000004-00",
+   "permdt": "2024-06-03",
+   "permitnum": "ALTR2422607",
+   "permittype": ""
+  },
+  {
+   "amount": "0",
+   "description": "TESTOWNER 8BB41D",
+   "map_routing": "010-I017-08000",
+   "parcel_id": "010-000004-00",
+   "permdt": "2024-07-16",
+   "permitnum": "EMEPR2429155",
+   "permittype": ""
+  },
+  {
+   "amount": "0",
+   "description": "TESTOWNER 34A530",
+   "map_routing": "010-N146A-01400",
+   "parcel_id": "010-000006-00",
+   "permdt": "2026-07-10",
+   "permitnum": "EMEPC2627478",
+   "permittype": ""
+  },
+  {
+   "amount": "0",
+   "description": "TESTOWNER 6EDDEB",
+   "map_routing": "010-N146A-01400",
+   "parcel_id": "010-000006-00",
+   "permdt": "2026-07-10",
+   "permitnum": "MMEPC2627483",
+   "permittype": ""
+  },
+  {
+   "amount": "100000",
+   "description": "TESTOWNER 787D7E",
+   "map_routing": "010-J035-10600",
+   "parcel_id": "010-000007-00",
+   "permdt": "2023-04-27",
+   "permitnum": "ALTR2317507",
+   "permittype": ""
+  },
+  {
+   "amount": "0",
+   "description": "TESTOWNER 29AFF7",
+   "map_routing": "010-J035-10600",
+   "parcel_id": "010-000007-00",
+   "permdt": "2023-09-15",
+   "permitnum": "MMEPR2339348",
+   "permittype": ""
+  },
+  {
+   "amount": "0",
+   "description": "TESTOWNER DC299C",
+   "map_routing": "010-J035-10600",
+   "parcel_id": "010-000007-00",
+   "permdt": "2023-10-09",
+   "permitnum": "PMEPR2342821",
+   "permittype": ""
+  },
+  {
+   "amount": "0",
+   "description": "TESTOWNER D29B96",
+   "map_routing": "010-J035-10600",
+   "parcel_id": "010-000007-00",
+   "permdt": "2023-11-29",
+   "permitnum": "EMEPR2349825",
+   "permittype": ""
+  },
+  {
+   "amount": "",
+   "description": "TESTOWNER BD0431",
+   "map_routing": "010-K065-00800",
+   "parcel_id": "010-000010-00",
+   "permdt": "2021-03-01",
+   "permitnum": "",
+   "permittype": ""
+  },
+  {
+   "amount": "",
+   "description": "TESTOWNER 6E56E1",
+   "map_routing": "010-J041-09200",
+   "parcel_id": "010-000014-00",
+   "permdt": "2021-03-10",
+   "permitnum": "",
+   "permittype": ""
+  },
+  {
+   "amount": "5000",
+   "description": "TESTOWNER 695CE4",
+   "map_routing": "010-A037-04400",
+   "parcel_id": "010-000015-00",
+   "permdt": "2021-05-18",
+   "permitnum": "",
+   "permittype": ""
+  },
+  {
+   "amount": "1600",
+   "description": "TESTOWNER F30359",
+   "map_routing": "010-F036-07100",
+   "parcel_id": "010-000020-00",
+   "permdt": "2021-10-28",
+   "permitnum": "RSWDR2142913",
+   "permittype": ""
+  },
+  {
+   "amount": "",
+   "description": "TESTOWNER A49DA3",
+   "map_routing": "010-D056-01700",
+   "parcel_id": "010-000021-00",
+   "permdt": "2025-02-21",
+   "permitnum": "",
+   "permittype": ""
+  },
+  {
+   "amount": "0",
+   "description": "TESTOWNER 111AB8",
+   "map_routing": "010-J037-09000",
+   "parcel_id": "010-000022-00",
+   "permdt": "2025-11-09",
+   "permitnum": "MMLSR2541248",
+   "permittype": ""
+  },
+  {
+   "amount": "0",
+   "description": "TESTOWNER 3C89E8",
+   "map_routing": "010-J050-03700",
+   "parcel_id": "010-000024-00",
+   "permdt": "2021-06-02",
+   "permitnum": "MMLSR2120573",
+   "permittype": ""
+  },
+  {
+   "amount": "0",
+   "description": "TESTOWNER 8D5D38",
+   "map_routing": "010-J050-03700",
+   "parcel_id": "010-000024-00",
+   "permdt": "2023-09-21",
+   "permitnum": "MMLSR2340186",
+   "permittype": ""
+  },
+  {
+   "amount": "55000",
+   "description": "TESTOWNER 1D2E36",
+   "map_routing": "010-J050-03700",
+   "parcel_id": "010-000024-00",
+   "permdt": "2025-05-08",
+   "permitnum": "ALTR2516809",
+   "permittype": ""
+  },
+  {
+   "amount": "0",
+   "description": "TESTOWNER 8846D2",
+   "map_routing": "010-J050-03700",
+   "parcel_id": "010-000024-00",
+   "permdt": "2025-05-13",
+   "permitnum": "MMLSR2517250",
+   "permittype": ""
+  },
+  {
+   "amount": "",
+   "description": "TESTOWNER C6634F",
+   "map_routing": "010-J050-03700",
+   "parcel_id": "010-000024-00",
+   "permdt": "2026-03-02",
+   "permitnum": "",
+   "permittype": ""
+  },
+  {
+   "amount": "0",
+   "description": "TESTOWNER DCF492",
+   "map_routing": "010-J050-03700",
+   "parcel_id": "010-000024-00",
+   "permdt": "2026-04-09",
+   "permitnum": "EMEPR2613331",
+   "permittype": ""
+  },
+  {
+   "amount": "0",
+   "description": "TESTOWNER D40B93",
+   "map_routing": "010-J050-03700",
+   "parcel_id": "010-000024-00",
+   "permdt": "2026-04-13",
+   "permitnum": "PMEPR2613903",
+   "permittype": ""
+  },
+  {
+   "amount": "0",
+   "description": "TESTOWNER FFB1BE",
+   "map_routing": "010-J050-03700",
+   "parcel_id": "010-000024-00",
+   "permdt": "2026-04-16",
+   "permitnum": "MMEPR2614269",
+   "permittype": ""
+  },
+  {
+   "amount": "30493",
+   "description": "TESTOWNER F30359",
+   "map_routing": "010-I053-02600",
+   "parcel_id": "010-000026-00",
+   "permdt": "2026-06-16",
+   "permitnum": "RSWDR2623347",
+   "permittype": ""
+  },
+  {
+   "amount": "0",
+   "description": "TESTOWNER 1904DD",
+   "map_routing": "010-A043-01600",
+   "parcel_id": "010-000028-00",
+   "permdt": "2024-02-02",
+   "permitnum": "EMEPR2405711",
+   "permittype": ""
+  }
+ ],
+ "url": "https://apps.franklincountyauditor.com/Outside_User_Files/2026/2026-11-20%20Appraisal/Permit.xlsx"
+}

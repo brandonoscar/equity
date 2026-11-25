@@ -1,0 +1,36 @@
+source_id: sc.york.last_deed
+state: SC
+county_fips: "45091"   # York County
+# York County (SC) parcels (the sc.york.parcels hosted layer, 129,091 parcels with a
+# previous owner on 2026-11-25): each parcel's latest transfer (deed book and page, date
+# sold, sale price), the previous owner and the owners of record. Loaded like
+# al.houston.last_deed: one DEED instrument per parcel and sale date, grantor =
+# PreviousOwner (seller), grantees = Owner1 / Owner2 (the owners of record, read as the
+# buyers). Linked to 45091-<ParcelID>, the sc.york.parcels key. TODO(Brandon): confirm the
+# roll's owners are the grantees of the DateSold deed (they can lag a later transfer).
+api: arcgis
+layer_url: https://services1.arcgis.com/2AGLxyiJoNiVHKwq/arcgis/rest/services/Parcels/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, ParcelID, Owner1, Owner2, PreviousOwner, DateSold, SalePrice, TransferBook,
+         TransferPage]
+date_field: DateSold
+partition: year
+first_year: 1880
+uid: [ParcelID, DateSold, TransferBook, TransferPage]
+doc_type: DEED
+doc_type_raw: York County (SC) last transfer (previous owner to owner)
+consideration: SalePrice
+parties:
+  - role: grantor
+    name: PreviousOwner
+  - role: grantee
+    name: [Owner1]
+  - role: grantee
+    name: [Owner2]
+parcel: {kind: pin, field: ParcelID, county_fips: "45091"}   # = sc.york.parcels parcel_id
+terms:
+  url: https://www.arcgis.com/home/item.html?id=5b08a7b311ab46949a63845f25125425
+  summary: "York County SC public hosted feature service (owner yorkcountysc_gisonline; the same layer as sc.york.parcels), no login, token or fee. licenseInfo: York County and its mapping contractors disclaim warranty; 'THIS MAP IS NOT A LEGAL SURVEY'; no use restriction. services1.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

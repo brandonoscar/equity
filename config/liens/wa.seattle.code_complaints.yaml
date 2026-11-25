@@ -1,0 +1,31 @@
+source_id: wa.seattle.code_complaints
+state: WA
+county_fips: "53033"
+# Seattle Department of Construction and Inspections "Code Complaints and Violations"
+# (cos-data.seattle.gov ez4a-iug7, 252,613 records on 2026-11-25, updated daily): every code
+# compliance complaint and violation case (housing, construction, land use, vacant building,
+# tenant relocation...) with the address, record type, description, open and last inspection
+# dates, last inspection result and status. No parcel number or names are published: OTHER
+# instruments in King County (no parcel link), in no match run; the address and description
+# stay in the source record.
+portal: https://cos-data.seattle.gov
+dataset: ez4a-iug7
+where: "opendate IS NOT NULL"
+order_by: [":id"]
+select: [recordnum, recordtype, recordtypemapped, recordtypedesc, description, opendate,
+         lastinspdate, lastinspresult, statuscurrent, originaladdress1, originalcity,
+         originalstate, originalzip]
+date_field: opendate
+partition: year
+first_year: 1990
+uid: recordnum
+doc_type: OTHER
+doc_type_raw: {field: recordtypedesc}
+extra_pii: [originaladdress1, description]
+parties: []
+terms:
+  url: https://data.seattle.gov/d/ez4a-iug7
+  summary: "Seattle Open Data (cos-data.seattle.gov, Socrata), Seattle Department of Construction and Inspections, free, no login or app token. Dataset license (read 2026-11-25): Public Domain. cos-data.seattle.gov/robots.txt allows /resource/ (Crawl-delay: 1)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

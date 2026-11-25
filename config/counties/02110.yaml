@@ -1,0 +1,38 @@
+source_id: ak.juneau.parcels
+state: AK
+# City and Borough of Juneau 'unc_property_layers_2b' MapServer ('parcel, condominium, manufactured
+# homes, and cell towers of the CBJ. Attribute data comes from Govern views, downloaded daily';
+# gis_date 2026-11-25): owners, mailing address, site address, 2026 CAMA land/building/total value.
+# Three layers with the same columns: 6 'parcels (light lines)' (16,247 rows on 2026-11-25),
+# 0 'condominiums' (1,774) and 2 'manufactured homes, etc' (1,181), each its own tax_id.
+# owners holds every owner in one string ('Last First M; Last2 First2'), kept whole as owner1.
+# mail_addrs is one string laid out 'LINE - City, ST ZIP'; without the 'LINE, CITY, ST ZIP' commas
+# it stays whole as the mailing street line (no city/ZIP split is guessed).
+# The layers refuse paged queries and statistics (supportsPagination/supportsStatistics false) but
+# answer returnIdsOnly, so FID windows of page_size ids are read whole.
+layers:
+  - https://epv.ci.juneau.ak.us/arcgis/rest/services/prod/unc_property_layers_2b/MapServer/6
+  - https://epv.ci.juneau.ak.us/arcgis/rest/services/prod/unc_property_layers_2b/MapServer/0
+  - https://epv.ci.juneau.ak.us/arcgis/rest/services/prod/unc_property_layers_2b/MapServer/2
+order_by: FID
+page_size: 1000          # maxRecordCount 1000
+paginate: false
+min_interval_s: 1.0
+county: {constant: "110"}
+fields:
+  parcel_id: tax_id      # '5B2501100020'
+  owner1: owners
+  mail_full: mail_addrs
+  situs_line1: site_addrs
+  situs_state: {const: AK}
+  land_value: AE_LANDVAL
+  bldg_value: AE_BLDGVAL
+  total_value: AE_CAMAVAL
+  tax_year: AE_TAXYR
+value_basis: "AE_LANDVAL / AE_BLDGVAL / AE_CAMAVAL = CBJ Assessor CAMA land, building and total value (land + building = total on sampled rows; published with thousands separators, e.g. '343,700') for AE_TAXYR 2026 (Alaska assesses at full and true value as of Jan 1, AS 29.45.110). AE_EXMPVAL (exemptions), AE_PREVOWN and AE_LASTXFR are not mapped."
+terms:
+  url: https://epv.ci.juneau.ak.us/arcgis/rest/services/prod/unc_property_layers_2b/MapServer
+  summary: "City and Borough of Juneau public ArcGIS Server MapServer, no login, token or fee; copyrightText 'Simonson, Quinn, Vetesy, et al'. No licenseInfo or use-constraint text on the service (read 2026-11-25). epv.ci.juneau.ak.us/robots.txt answers HTTP 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

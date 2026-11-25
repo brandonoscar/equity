@@ -1,0 +1,31 @@
+source_id: or.umatilla.parcels
+state: OR
+# Umatilla County (OR) GIS ArcGIS Online item 'Tax Lots' (accessInformation 'Umatilla County GIS';
+# updated nightly, last edit 2026-11; 45,267 rows on 2026-11-25, MAILING_NA on every row):
+# taxlots with the assessor's account: owner (mailing name), in-care-of, owner mailing
+# address, situs address, property class.
+layer_url: https://services3.arcgis.com/tNPgIZWOB0Efvm0g/arcgis/rest/services/Tax_Lots/FeatureServer/0
+order_by: FID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "059"}
+use_restrictions: [attribution_required, no_resale]
+fields:
+  parcel_id: account_id  # 109131 tax account (map_tax '1N29000000100' is the map + taxlot)
+  owner1: MAILING_NA
+  mail_line1: M_ADDRESS
+  mail_city: M_CITY
+  mail_state: M_STATE
+  mail_zip: zip
+  situs_line1: [SITUS_HOUS, SITUS_PRE_, SITUS_DIRE, SITUS_STRE, SITUS_ST_1, SITUS_UNIT]
+  situs_city: SITUS_CITY
+  situs_state: {const: OR}
+  situs_zip: SITUS_ZIP
+  land_use_code: PROPERTY_C
+value_basis: "RMV_PROPER (real market value) is present with YEAR (2027 on sampled rows), but the layer does not say whether YEAR is the roll year the value belongs to (Oregon values are as of Jan 1 for the July-June tax year), so no values or tax_year are mapped and no assessment facts are emitted. IN_CARE_OF and AGENT are not mapped (not owners)."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=37cf486b6fb742fd86dc45cbda131a0b
+  summary: "Umatilla County (OR) GIS ArcGIS Online item 'Tax Lots' (accessInformation 'Umatilla County GIS'); public hosted feature service, no login, token or fee. Item description: displayed on the county Interactive Map; 'For non governmental agencies, the cost to purchase the taxlot data is $500-530' (the free service is read, nothing is bought). licenseInfo (read 2026-11-25): 'as is', 'Umatilla County should be cited as the data source in any products derived from this data', no misrepresentation of the data: recorded as attribution_required, and no_resale conservatively because the county sells the dataset. services3.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

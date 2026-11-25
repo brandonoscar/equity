@@ -1,0 +1,34 @@
+source_id: nv.clark.parcels
+state: NV
+# City of Las Vegas Office of GIS hosted copy of the Clark County Assessor parcel roll
+# (CLV_PARCELS_POLY layer 7; 302,403 rows on 2026-11-25, 292,242 with an OWNER, all ASSDYR 2027,
+# data last edited 2026-11-19). Covers the Las Vegas Valley parcels the city's GIS carries
+# (by STRCITY: Las Vegas 204,004, North Las Vegas 27,826, Sunrise Manor, Spring Valley, Summerlin,
+# Winchester, Paradise, CNTY and blank town codes); no Henderson town code appears, so this is not
+# every Clark County parcel.
+# Mailing block: ADDRESS1-ADDRESS5 are free-form lines whose layout shifts (a second owner or
+# c/o line comes first on some rows, so the 'CITY ST ZIP' line can be ADDRESS2 or ADDRESS3);
+# they are not mapped. ZIPMAIN is the mailing ZIP. STRCITY is a town abbreviation (LV, NLV,
+# SPRV...), not a city name, so it is not mapped.
+layer_url: https://services1.arcgis.com/F1v0ufATbBQScMtY/arcgis/rest/services/CLV_PARCELS_POLY/FeatureServer/7
+order_by: OBJECTID_1
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "003"}
+use_restrictions: [internal_use_only, no_redistribution]
+fields:
+  parcel_id: PARCEL      # 11-digit APN, '12518212057'
+  owner1: OWNER
+  mail_zip: ZIPMAIN
+  situs_line1: [STRNO, STRDIR, STRNAME, STRTYPE, STRUNIT]
+  situs_state: {const: NV}
+  situs_zip: ZIP
+  land_use_code: STATELU
+  land_use_desc: STATELU_DE
+value_basis: "No values are emitted. The layer carries LANDVAL1/LANDVAL2 (two land lines), IMPVAL, PRVAL1-3 and last-year columns for roll year ASSDYR 2027, but the service does not say whether they are taxable or assessed (35%) values, and land is split over two columns, so none is mapped. DOCNO/DOCDATE (last recorded document number) and SALEPRICE/SALEDATE are not mapped. STRNO is 0 on parcels without a house number; kept as published."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=a417208438f1454084ae029d6759da14
+  summary: "Public hosted feature service of the City of Las Vegas Office of GIS (item owner OfficeOfGIS_LasVegas, 'City of Las Vegas Parcels ... ownership and location'), no login, token or fee; accessInformation 'Clark County Assessor's Office, Clark County GISMO (GIS Management Office) and City of Las Vegas'. licenseInfo (read 2026-11-25) is a no-warranty disclaimer only. The Clark County Assessor sells its own roll data (earlier research: $2,500, or $7,500 a year) and Nevada limits redistribution of state copies (NRS 250), so the project records internal_use_only and no_redistribution and keeps the data internal. services1.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

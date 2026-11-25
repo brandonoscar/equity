@@ -1,0 +1,131 @@
+{
+ "attributes": [
+  {
+   "ACCT_NO": "5082-000-030-0004",
+   "NAME": "TESTOWNER 4D5BB6",
+   "OBJECTID": 1
+  },
+  {
+   "ACCT_NO": "3797-023-005-0008",
+   "NAME": "TESTOWNER 807F59",
+   "OBJECTID": 3
+  },
+  {
+   "ACCT_NO": "3797-023-005-0008",
+   "NAME": "TESTOWNER 807F59",
+   "OBJECTID": 4
+  },
+  {
+   "ACCT_NO": "112301-1-015-2006",
+   "NAME": "TESTOWNER 4AC956",
+   "OBJECTID": 5
+  },
+  {
+   "ACCT_NO": "012601-3-045-2005",
+   "NAME": "TESTOWNER 4AC956",
+   "OBJECTID": 6
+  },
+  {
+   "ACCT_NO": "5330-000-053-0006",
+   "NAME": "TESTOWNER 97588F",
+   "OBJECTID": 7
+  },
+  {
+   "ACCT_NO": "012301-2-121-2007",
+   "NAME": "TESTOWNER 09C7C9",
+   "OBJECTID": 8
+  },
+  {
+   "ACCT_NO": "4546-012-010-0709",
+   "NAME": "TESTOWNER E8E2E1",
+   "OBJECTID": 9
+  },
+  {
+   "ACCT_NO": "162802-3-003-2005",
+   "NAME": "TESTOWNER DE62AD",
+   "OBJECTID": 10
+  },
+  {
+   "ACCT_NO": "172302-3-073-2004",
+   "NAME": "TESTOWNER D8F40E",
+   "OBJECTID": 11
+  },
+  {
+   "ACCT_NO": "4562-000-023-0005",
+   "NAME": "TESTOWNER 40394F",
+   "OBJECTID": 12
+  },
+  {
+   "ACCT_NO": "152501-4-078-1000",
+   "NAME": "TESTOWNER F1BB9E",
+   "OBJECTID": 13
+  },
+  {
+   "ACCT_NO": "152501-4-077-1001",
+   "NAME": "TESTOWNER F1BB9E",
+   "OBJECTID": 14
+  },
+  {
+   "ACCT_NO": "4682-000-012-0201",
+   "NAME": "TESTOWNER D953B1",
+   "OBJECTID": 15
+  },
+  {
+   "ACCT_NO": "032301-4-013-2002",
+   "NAME": "TESTOWNER FF7DF7",
+   "OBJECTID": 16
+  },
+  {
+   "ACCT_NO": "342301-4-015-2003",
+   "NAME": "TESTOWNER 345E8D",
+   "OBJECTID": 17
+  },
+  {
+   "ACCT_NO": "022201-3-037-2008",
+   "NAME": "TESTOWNER 345E8D",
+   "OBJECTID": 18
+  },
+  {
+   "ACCT_NO": "302501-1-025-2009",
+   "NAME": "TESTOWNER 345E8D",
+   "OBJECTID": 19
+  },
+  {
+   "ACCT_NO": "062301-4-018-2004",
+   "NAME": "TESTOWNER 345E8D",
+   "OBJECTID": 20
+  },
+  {
+   "ACCT_NO": "122301-3-037-2005",
+   "NAME": "TESTOWNER 345E8D",
+   "OBJECTID": 21
+  },
+  {
+   "ACCT_NO": "302501-1-020-2004",
+   "NAME": "TESTOWNER 345E8D",
+   "OBJECTID": 22
+  },
+  {
+   "ACCT_NO": "202501-3-043-1007",
+   "NAME": "TESTOWNER 345E8D",
+   "OBJECTID": 23
+  },
+  {
+   "ACCT_NO": "122301-4-007-2009",
+   "NAME": "TESTOWNER 345E8D",
+   "OBJECTID": 24
+  },
+  {
+   "ACCT_NO": "162501-3-081-2004",
+   "NAME": "TESTOWNER 345E8D",
+   "OBJECTID": 25
+  },
+  {
+   "ACCT_NO": "162501-3-060-2009",
+   "NAME": "TESTOWNER 345E8D",
+   "OBJECTID": 26
+  }
+ ],
+ "layer": "https://services6.arcgis.com/qt3UCV9x5kB4CwRA/arcgis/rest/services/Taxpayer_Name/FeatureServer/0",
+ "where": "1=1"
+}

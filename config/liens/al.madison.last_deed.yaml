@@ -1,0 +1,36 @@
+source_id: al.madison.last_deed
+state: AL
+county_fips: "01089"   # Madison County (Huntsville)
+# Madison County (AL) Revenue Commission parcels on the City of Madison's public map service
+# (the al.madison.parcels layer, tax year 2026: 190,655 parcels with a previous owner on
+# 2026-11-25): each parcel's latest deed (type: WARR, SURV, QUIT ...; Probate book and page;
+# deed date), the previous owner(s) and the tax-account owner. Loaded like al.houston.
+# last_deed: one DEED instrument per parcel and deed date, grantor = PreviousOwners (seller),
+# grantee = AccountOwner (the owner of record, read as the buyer under that deed). Only those
+# columns and the parcel are read; linked to 01089-<ParcelNum>, the al.madison.parcels key.
+# TODO(Brandon): confirm the roll's AccountOwner is the grantee of the DeedDate deed (it can
+# lag a later transfer not yet posted to the roll).
+api: arcgis
+layer_url: https://maps.madisonal.gov/arcgis/rest/services/DV_BoundariesPro_MIL1/MapServer/10
+where: "TaxYear = 2026"
+order_by: [OBJECTID]
+select: [OBJECTID, ParcelNum, AccountOwner, PreviousOwners, DeedType, DeedBook, DeedPage,
+         DeedDate]
+date_field: DeedDate
+partition: year
+first_year: 1880
+uid: [ParcelNum, DeedDate]
+doc_type: DEED
+doc_type_raw: {field: DeedType}
+parties:
+  - role: grantor
+    name: PreviousOwners
+  - role: grantee
+    name: AccountOwner
+parcel: {kind: pin, field: ParcelNum, county_fips: "01089"}   # = al.madison.parcels parcel_id
+terms:
+  url: https://maps.madisonal.gov/arcgis/rest/services/DV_BoundariesPro_MIL1/MapServer/10
+  summary: "City of Madison AL GIS public map service, layer 'Madison County Parcels' (Madison County Revenue Commission data), the same layer as al.madison.parcels; free, no login. No license, use-constraint or copyright text in the service; no resale or redistribution clause found. maps.madisonal.gov/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

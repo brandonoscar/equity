@@ -1,0 +1,181 @@
+{
+ "layer": "https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/Current_Condemnations/FeatureServer/0",
+ "rows": [
+  {
+   "Active_Condemnation": "Yes",
+   "Address": "6705 TEST ST",
+   "Condemnation_Date": 1741150800000,
+   "OBJECTID": 11,
+   "Parcel_Number": "00108080"
+  },
+  {
+   "Active_Condemnation": "Yes",
+   "Address": "8186 TEST ST",
+   "Condemnation_Date": 1762318800000,
+   "OBJECTID": 20,
+   "Parcel_Number": "11807041"
+  },
+  {
+   "Active_Condemnation": "Yes",
+   "Address": "5533 TEST ST",
+   "Condemnation_Date": 1754625600000,
+   "OBJECTID": 21,
+   "Parcel_Number": "00116035"
+  },
+  {
+   "Active_Condemnation": "Yes",
+   "Address": "8744 TEST ST",
+   "Condemnation_Date": 1742270400000,
+   "OBJECTID": 32,
+   "Parcel_Number": "00125018"
+  },
+  {
+   "Active_Condemnation": "Yes",
+   "Address": "8744 TEST ST",
+   "Condemnation_Date": 1742270400000,
+   "OBJECTID": 33,
+   "Parcel_Number": "00125018"
+  },
+  {
+   "Active_Condemnation": "Yes",
+   "Address": "2872 TEST ST",
+   "Condemnation_Date": 1758513600000,
+   "OBJECTID": 35,
+   "Parcel_Number": "00125081"
+  },
+  {
+   "Active_Condemnation": "Yes",
+   "Address": "5210 TEST ST",
+   "Condemnation_Date": 1745294400000,
+   "OBJECTID": 40,
+   "Parcel_Number": "00128044"
+  },
+  {
+   "Active_Condemnation": "Yes",
+   "Address": "5210 TEST ST",
+   "Condemnation_Date": 1745294400000,
+   "OBJECTID": 42,
+   "Parcel_Number": "00128044"
+  },
+  {
+   "Active_Condemnation": "Yes",
+   "Address": "5982 TEST ST",
+   "Condemnation_Date": 1765861200000,
+   "OBJECTID": 45,
+   "Parcel_Number": "00130022"
+  },
+  {
+   "Active_Condemnation": "Yes",
+   "Address": "3837 TEST ST",
+   "Condemnation_Date": 1765861200000,
+   "OBJECTID": 49,
+   "Parcel_Number": "00130072"
+  },
+  {
+   "Active_Condemnation": "Yes",
+   "Address": "8632 TEST ST",
+   "Condemnation_Date": 1743739200000,
+   "OBJECTID": 85,
+   "Parcel_Number": "11921053"
+  },
+  {
+   "Active_Condemnation": "Yes",
+   "Address": "2746 TEST ST",
+   "Condemnation_Date": 1758600000000,
+   "OBJECTID": 91,
+   "Parcel_Number": "11927031"
+  },
+  {
+   "Active_Condemnation": "Yes",
+   "Address": "1719 TEST ST",
+   "Condemnation_Date": 1759464000000,
+   "OBJECTID": 92,
+   "Parcel_Number": "11927033"
+  },
+  {
+   "Active_Condemnation": "Yes",
+   "Address": "3998 TEST ST",
+   "Condemnation_Date": 1754539200000,
+   "OBJECTID": 93,
+   "Parcel_Number": "11927035"
+  },
+  {
+   "Active_Condemnation": "Yes",
+   "Address": "3806 TEST ST",
+   "Condemnation_Date": 1757390400000,
+   "OBJECTID": 95,
+   "Parcel_Number": "11928006"
+  },
+  {
+   "Active_Condemnation": "Yes",
+   "Address": "7809 TEST ST",
+   "Condemnation_Date": 1756267200000,
+   "OBJECTID": 110,
+   "Parcel_Number": "11930010"
+  },
+  {
+   "Active_Condemnation": "Yes",
+   "Address": "2895 TEST ST",
+   "Condemnation_Date": 1749096000000,
+   "OBJECTID": 121,
+   "Parcel_Number": "12003055"
+  },
+  {
+   "Active_Condemnation": "Yes",
+   "Address": "2895 TEST ST",
+   "Condemnation_Date": 1749096000000,
+   "OBJECTID": 122,
+   "Parcel_Number": "12003055"
+  },
+  {
+   "Active_Condemnation": "Yes",
+   "Address": "8199 TEST ST",
+   "Condemnation_Date": 1763614800000,
+   "OBJECTID": 130,
+   "Parcel_Number": "12007060"
+  },
+  {
+   "Active_Condemnation": "Yes",
+   "Address": "246 TEST ST",
+   "Condemnation_Date": 1765774800000,
+   "OBJECTID": 151,
+   "Parcel_Number": "12014046"
+  },
+  {
+   "Active_Condemnation": "Yes",
+   "Address": "246 TEST ST",
+   "Condemnation_Date": 1765774800000,
+   "OBJECTID": 152,
+   "Parcel_Number": "12014046"
+  },
+  {
+   "Active_Condemnation": "Yes",
+   "Address": "246 TEST ST",
+   "Condemnation_Date": 1765774800000,
+   "OBJECTID": 153,
+   "Parcel_Number": "12014046"
+  },
+  {
+   "Active_Condemnation": "Yes",
+   "Address": "246 TEST ST",
+   "Condemnation_Date": 1765774800000,
+   "OBJECTID": 154,
+   "Parcel_Number": "12014046"
+  },
+  {
+   "Active_Condemnation": "Yes",
+   "Address": "6121 TEST ST",
+   "Condemnation_Date": 1757304000000,
+   "OBJECTID": 155,
+   "Parcel_Number": "12014072"
+  },
+  {
+   "Active_Condemnation": "Yes",
+   "Address": "8879 TEST ST",
+   "Condemnation_Date": 1761278400000,
+   "OBJECTID": 164,
+   "Parcel_Number": "12118145"
+  }
+ ],
+ "where": "Condemnation_Date >= DATE '2025-01-01' AND Condemnation_Date < DATE '2026-01-01'"
+}

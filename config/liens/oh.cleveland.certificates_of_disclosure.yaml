@@ -1,0 +1,44 @@
+source_id: oh.cleveland.certificates_of_disclosure
+state: OH
+county_fips: "39035"
+# City of Cleveland "Certificates of Disclosure" (Certificates_of_Disclosure/0, 94,259
+# certificates issued since 2015-01 on 2026-11-25, updated daily): the disclosure of open
+# building violations and condemnations that a seller must obtain before a sale (Codified
+# Ordinances 3101.07), naming the owner (seller), the buyer, the title agency, the mortgage
+# broker and the mortgage company, with the parcel and the violation flags. A pending-sale
+# signal, not a recorded deed: OTHER instruments on the parcel (grantor = owner, grantee =
+# buyer, lender = mortgage company), in no match run. 'N/A' fills blank names.
+api: arcgis
+layer_url: https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/Certificates_of_Disclosure/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, PERMIT_ID, FILE_DATE, PRIMARY_PARCEL, PRIMARY_ADDRESS, OWNER_NAME,
+         TITLE_AGENCY_NAME, TITLE_AGENCY_BUSINESS_NAME, BUYER_NAME, BUYER_BUSINESS_NAME,
+         MORTGAGE_BROKER_NAME, MORTGAGE_BROKER_BUSINESS_NAME, MORTGAGE_COMPANY,
+         MORTGAGE_COMPANY_BUSINESS_NAME, ISSUE_DATE, CONDEMNED_STATUS, CONDEMNED_EVER,
+         CURRENT_VIOLATIONS]
+date_field: ISSUE_DATE
+partition: year
+first_year: 2015
+uid: PERMIT_ID
+doc_type: OTHER
+doc_type_raw: Cleveland certificate of disclosure (pre-sale)
+skip_names: ["N/A", "NA", "NONE"]
+parties:
+  - {role: grantor, name: OWNER_NAME}
+  - {role: grantee, name: BUYER_NAME}
+  - {role: grantee, name: BUYER_BUSINESS_NAME}
+  - {role: lender, name: MORTGAGE_COMPANY}
+  - {role: lender, name: MORTGAGE_COMPANY_BUSINESS_NAME}
+  - {role: other, name: MORTGAGE_BROKER_NAME}
+  - {role: other, name: MORTGAGE_BROKER_BUSINESS_NAME}
+  - {role: other, name: TITLE_AGENCY_NAME}
+  - {role: other, name: TITLE_AGENCY_BUSINESS_NAME}
+extra_pii: [PRIMARY_ADDRESS]
+parcel: {kind: pin, field: PRIMARY_PARCEL, county_fips: "39035"}   # = oh.cuyahoga.parcels parcel_id ('12829029')
+terms:
+  url: https://www.arcgis.com/home/item.html?id=e3946f944a7f43e782417dc161890d21
+  summary: "City of Cleveland Department of Building and Housing on the Cleveland Open Data Portal (ArcGIS Online, owner opendataCLE), public hosted layer, free, no login. Item licenseInfo (read 2026-11-25): Open Data Commons Open Database License (ODbL): attribute the City; a derived database that is shared publicly must be offered under the ODbL (internal use only here, not redistributed). services3.arcgis.com/robots.txt answers 4xx (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  use_restrictions: [attribution_required]
+  cost_model: free

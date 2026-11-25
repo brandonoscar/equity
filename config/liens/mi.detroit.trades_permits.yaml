@@ -1,0 +1,36 @@
+source_id: mi.detroit.trades_permits
+state: MI
+county_fips: "26163"
+# City of Detroit BSEED "Trades Permits" (bseed_trades_permits/0, 123,737 electrical,
+# mechanical, plumbing and other trades permits issued since 2019-01 on 2026-11-25, updated
+# daily), with the parcel, the property owner's name, and the contractor or contact (person
+# and business) with the contractor's street address. OTHER instruments on the parcel, in no
+# match run; owner and contacts are parties of role other.
+api: arcgis
+layer_url: https://services2.arcgis.com/qvkbeam7Wirps6zC/arcgis/rest/services/bseed_trades_permits/FeatureServer/0
+order_by: [ObjectId]
+select: [ObjectId, record_id, address, issued_date, permit_type, work_description, owner_name,
+         contractor_address, contact_name, contact_business_name, contact_address, zip_code,
+         parcel_id]
+date_field: issued_date
+partition: year
+first_year: 2019
+uid: record_id
+doc_type: OTHER
+doc_type_raw: {field: permit_type}
+parties:
+  - role: other
+    name: owner_name
+  - role: other
+    name: contact_name
+  - role: other
+    name: contact_business_name
+    address: {line1: contact_address}
+extra_pii: [address, work_description, contractor_address]
+parcel: {kind: pin, field: parcel_id, county_fips: "26163"}   # same parcel_id as mi.wayne.parcels
+terms:
+  url: https://www.arcgis.com/home/item.html?id=f77e9fd44b7e44089b41d3f8161631fa
+  summary: "City of Detroit Buildings, Safety Engineering and Environmental Department (BSEED) on the Detroit Open Data Portal (ArcGIS Online, org of mi.wayne.parcels), public hosted layer, free, no login. No licenseInfo on the item (read 2026-11-25); no commercial-use or mailing-list restriction found. services2.arcgis.com/robots.txt answers 4xx (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,28 @@
+source_id: sc.dorchester.parcels
+state: SC
+# Dorchester County (SC) GIS ArcGIS Online item 'Parcel_PUBLIC' (owner Dorchester_GIS; 80,335
+# rows on 2026-11-25, edited 2026-11; OWNER filled on all but 20): tax map parcels joined to
+# the assessor database: owner, in-care-of, owner mailing address, property location, last
+# deed book-page, grantor/grantee of the last sale, zoning.
+layer_url: https://services.arcgis.com/ehmkfEMN55hUsomR/arcgis/rest/services/Parcel_PUBLIC/FeatureServer/0
+order_by: FID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "035"}
+fields:
+  parcel_id: FULL_PARCE              # '129-11-08-004.000' (PARCELNO is the same id undashed)
+  owner1: OWNER
+  mail_line1: MAILING_AD
+  mail_city_state_zip: CITY_STATE    # 'SUMMERVILLE SC 294842005'
+  situs_line1: PROPERTY_L            # ' NOT BUILT' on vacant lots (kept as published)
+  situs_state: {const: SC}
+  deed_ref: DEED                     # '012792-073' = book-page
+  zoning: ZONINGCODE
+deed_ref_pattern: '^(?P<book>\d+)-(?P<page>\d+)$'
+value_basis: "The layer has no value fields, so no assessment facts are emitted. CARE_OF (in-care-of line), GRANTOR / GRANTEE and SALE_DATE / SALE_PRICE of the last sale are not mapped (GRANTEE matches OWNER on sampled rows)."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=53bfd9b1c6014be6902020c62fb95e3d
+  summary: "Dorchester County (SC) GIS ArcGIS Online item 'Parcel_PUBLIC' (owner Dorchester_GIS; description: the Tax Assessor's notional parcel boundaries, 'updated quarterly'); public hosted feature service, no login, token or fee. accessInformation and licenseInfo are empty (read 2026-11-25); no resale, redistribution or mailing-list clause. services.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

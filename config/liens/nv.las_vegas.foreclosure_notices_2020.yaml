@@ -1,0 +1,31 @@
+source_id: nv.las_vegas.foreclosure_notices_2020
+state: NV
+county_fips: "32003"
+# City of Las Vegas "Parcel_Foreclosures" (ArcGIS Online table, OfficeOfGIS_LasVegas; 1,925
+# rows on 2026-11-25, recorded 2020-01-02 to 2020-09-11, a one-off extract): Clark County
+# Recorder index entries for foreclosure notices on City parcels: notice of breach and
+# election to sell (notice of default), notice of trustee sale, with the instrument number,
+# recording date, direct (grantor: trustee / beneficiary / filer) and indirect (grantee:
+# trustor / owner) names and the APN. OTHER instruments on 32003-<APN without dashes>
+# (as nv.clark.property_sales), in no match run.
+api: arcgis
+layer_url: https://services1.arcgis.com/F1v0ufATbBQScMtY/arcgis/rest/services/Parcel_Foreclosures/FeatureServer/0
+order_by: [ObjectId]
+select: [ObjectId, DirectName, IndirectName, NumberOfPages, InstrumentNumber, DocTypeDescription,
+         Comments2, RecordDate, ParcelNumber, Consideration]
+date_field: RecordDate
+partition: year
+first_year: 2020
+uid: [InstrumentNumber, ParcelNumber]
+doc_type: OTHER
+doc_type_raw: {field: DocTypeDescription}
+parties:
+  - {role: grantor, name: DirectName}
+  - {role: grantee, name: IndirectName}
+parcel: {kind: pin, field: ParcelNumber, county_fips: "32003", strip: "-"}
+terms:
+  url: https://www.arcgis.com/home/item.html?id=d56a5c63fc8043c7b1d34b051d63f0a0
+  summary: "City of Las Vegas Office of GIS (OfficeOfGIS_LasVegas) public ArcGIS Online table 'Parcel_Foreclosures', free, no login or token. licenseInfo (read 2026-11-25): the City of Las Vegas makes no warranty, representation or guarantee; no license grant, resale or redistribution clause. services1.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

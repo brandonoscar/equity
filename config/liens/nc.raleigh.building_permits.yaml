@@ -1,0 +1,41 @@
+source_id: nc.raleigh.building_permits
+state: NC
+county_fips: "37183"   # Wake County
+# City of Raleigh "Building Permits" (Open Data Raleigh, ArcGIS Online
+# Building_Permits/FeatureServer/0, 185,225 permits issued 2000 .. 2026-11 on 2026-11-25,
+# daily): BLDS-format permits with the permit number, class and work class, estimated project
+# cost, the contractor (company, DBA, address and state license number), the parcel owner of
+# record as the City joins it at issue (name and mailing address) and the Wake County PIN
+# (and county account number). A signal that an owner is putting money into a property, not
+# a debt: OTHER instruments on the parcel, in no match run.
+api: arcgis
+layer_url: https://services.arcgis.com/v400IkDOw1ad7Yad/arcgis/rest/services/Building_Permits/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, permitnum, permittype, permittypemapped, workclass, permitclassmapped,
+         applieddate, issueddate, coissueddate, statuscurrent, estprojectcost, housingunitstotal,
+         pin, cntyacctnum, originaladdress1, originalcity, originalzip, parcelownername,
+         parcelowneraddress1, parcelowneraddress2, contractorcompanyname, contractordba,
+         contractoraddress1, contractoraddress2, contractorcity, contractorstate, contractorzip,
+         contractorlicnum, statelicnum]
+date_field: issueddate
+partition: year
+first_year: 1990
+uid: permitnum
+doc_type: OTHER
+doc_type_raw: {field: permittypemapped}
+extra_pii: [originaladdress1, parcelowneraddress2, contractoraddress2]
+parties:
+  - role: other
+    name: parcelownername
+    address: {line1: parcelowneraddress1}
+  - role: other
+    name: contractorcompanyname
+    address: {line1: contractoraddress1, city: contractorcity, state: contractorstate, zip: contractorzip}
+  - {role: other, name: contractordba}
+parcel: {kind: pin, field: pin, county_fips: "37183"}   # Wake PIN = nc.statewide.parcels parno
+terms:
+  url: https://www.arcgis.com/home/item.html?id=bdfad82b15344d37beb28d7f90b6c4be
+  summary: "City of Raleigh Open Data (ArcGIS Online, OpenData_ral), free, no login. Item licenseInfo 'Open Raleigh Data Policy' (read 2026-11-25): no warranty, the City may modify or discontinue feeds; no commercial-use or redistribution restriction. services.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

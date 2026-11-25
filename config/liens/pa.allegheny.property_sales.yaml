@@ -1,0 +1,29 @@
+source_id: pa.allegheny.property_sales
+state: PA
+county_fips: "42003"   # Allegheny County
+# Allegheny County Office of Property Assessments "Property Sale Transactions" (WPRDC
+# real-estate-sales, CKAN resource 5bbe6c55, 508,924 transfers 2012-2026 on 2026-11-25,
+# updated monthly): every deed recorded on a parcel since 2012 with the sale and record dates,
+# price, deed book and page, instrument type (deed, corrective deed, sheriff deed, ...) and
+# the assessor's sale validity code. No grantor or grantee is published, so each transfer is
+# a DEED instrument with a price and no parties, on the parcel (PARID, the 16-character
+# pa.allegheny.parcels key): the price history behind the owner of record. Dated by SALEDATE.
+api: ckan
+portal: https://data.wprdc.org
+resource_id: 5bbe6c55-bce6-4edb-9d04-68edeb6bf7b1   # Property Sales Transactions
+date_field: SALEDATE
+partition: year
+first_year: 2012
+uid: [PARID, DEEDBOOK, DEEDPAGE]
+doc_type: DEED
+doc_type_raw: {field: INSTRTYPDESC}
+consideration: PRICE
+parties: []
+parcel: {kind: pin, field: PARID, county_fips: "42003"}   # = pa.allegheny.parcels PIN
+extra_pii: [FULL_ADDRESS]
+terms:
+  url: https://data.wprdc.org/dataset/real-estate-sales
+  summary: "WPRDC (Western Pennsylvania Regional Data Center, University of Pittsburgh) dataset from the Allegheny County Office of Property Assessments, CKAN DataStore API, free, no login. WPRDC robots.txt disallows /api/ for crawlers but states scripts and applications may use it (see equity.adapters.http SCRIPT_PERMISSIONS)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

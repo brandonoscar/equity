@@ -1,0 +1,27 @@
+source_id: oh.cleveland.boardup_permits
+state: OH
+county_fips: "39035"
+# City of Cleveland "Board Up Permits" (Boardup_Permits/0, 20,630 permits issued since
+# 2015-01 on 2026-11-25): permits to board up vacant or open buildings, with the parcel. No
+# owner is named: OTHER instruments on the parcel (a vacancy signal), in no match run.
+api: arcgis
+layer_url: https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/Boardup_Permits/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, PERMIT_ID, PERMIT_TYPE, PERMIT_SUBTYPE, PERMIT_CATEGORY, PRIMARY_ADDRESS,
+         PARCEL_NUMBER, FILE_DATE, ISSUE_DATE]
+date_field: ISSUE_DATE
+partition: year
+first_year: 2015
+uid: PERMIT_ID
+doc_type: OTHER
+doc_type_raw: {field: PERMIT_CATEGORY}
+parties: []
+extra_pii: [PRIMARY_ADDRESS]
+parcel: {kind: pin, field: PARCEL_NUMBER, county_fips: "39035"}   # = oh.cuyahoga.parcels parcel_id ('12829029')
+terms:
+  url: https://www.arcgis.com/home/item.html?id=ba57c55fc6b54f34994420b67e831cc8
+  summary: "City of Cleveland Department of Building and Housing on the Cleveland Open Data Portal (ArcGIS Online, owner opendataCLE), public hosted layer, free, no login. Item licenseInfo (read 2026-11-25): Open Data Commons Open Database License (ODbL): attribute the City; a derived database that is shared publicly must be offered under the ODbL (internal use only here, not redistributed). services3.arcgis.com/robots.txt answers 4xx (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  use_restrictions: [attribution_required]
+  cost_model: free

@@ -1,0 +1,50 @@
+source_id: or.sos.ucc
+state: OR
+county_fips: "41"   # statewide filing office; no county or parcel on the record
+# Oregon Secretary of State "UCC List of Filings Entered Last Month" (data.oregon.gov
+# snfi-f79b, Public Domain; 5,302 rows for October 2026 on 2026-11-25): one row per party
+# (party_type DB debtor, SP secured party) of every UCC and lien filing entered the month
+# before, with the lien type, file number, filing and lapse dates and the party's mailing
+# address. The dataset is replaced each month, so it is polled in append mode
+# (config/refresh.yaml, append_polls): every month's filings stay in the lake.
+# Initial filings only: an amendment row does not say whether it terminates, continues or
+# changes the filing. Lien types: UCC financing statements and EFS (effective financing
+# statements) as FIXTURE_FILING, as in co.sos.ucc and ct.sots.liens; IRS federal tax liens as
+# TAX_LIEN_FEDERAL; the rest (RW, PF, ASL, TU: the dataset defines no codes) as OTHER with
+# the code kept in doc_type_raw. TODO(Brandon): confirm the RW, PF, ASL and TU codes.
+portal: https://data.oregon.gov
+dataset: snfi-f79b
+where: "file_type = 'INITIAL'"
+order_by: [file_number, party_type, ":id"]
+select: [lien_type, original_file_number, file_number, file_type, filing_date, lapse_date,
+         party_type, entity_type, entity, mail_addr_1, mail_addr_2, city_descr, st_cd_txt,
+         zip_code_txt, cntry_cd_txt]
+date_field: filing_date
+single_partition: true
+append_polls: true
+uid: file_number
+doc_type:
+  field: lien_type
+  map:
+    UCC: FIXTURE_FILING
+    EFS: FIXTURE_FILING
+    IRS: TAX_LIEN_FEDERAL
+  default: OTHER
+doc_type_raw: {field: lien_type}
+parties:
+  - role: debtor
+    name: entity
+    when: {party_type: DB}
+    address: {line1: [mail_addr_1, mail_addr_2], city: city_descr, state: st_cd_txt,
+              zip: zip_code_txt}
+  - role: creditor
+    name: entity
+    when: {party_type: SP}
+    address: {line1: [mail_addr_1, mail_addr_2], city: city_descr, state: st_cd_txt,
+              zip: zip_code_txt}
+terms:
+  url: https://data.oregon.gov/d/snfi-f79b
+  summary: "Oregon Open Data (Socrata), Secretary of State, license Public Domain (read 2026-11-25), free, no login or app token, published monthly (previous month's filings only). No amounts. data.oregon.gov robots.txt allows /resource/."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

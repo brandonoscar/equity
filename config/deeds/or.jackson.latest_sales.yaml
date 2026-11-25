@@ -1,0 +1,50 @@
+source_id: or.jackson.latest_sales
+state: OR
+county_fips: "41029"
+# Jackson County OR Assessor "Latest Sales" (spatial.jacksoncountyor.gov Assessment/LatestSales
+# MapServer/0; 60,577 rows on 2026-11-25): each tax account's latest recorded sale since 2002
+# (some earlier), with the recording document number and a link to its image
+# (pdo.jacksoncountyor.gov), sale date and price, grantor (seller), grantee (buyer), document
+# type, and the assessor's characteristics (year built, bedrooms, baths, square feet, property
+# and stat class, market value, situs address). Loaded as DEED instruments (grantor = seller,
+# grantee = buyer) on 41029-<AccountId> (the tax account = or.jackson.parcels parcel_id
+# ACCOUNT); the characteristics stay in the source record. AccountId is published as a double,
+# so a trailing '.0' is dropped.
+# DocumentTypeDescription: WARRANTY DEED 56k, UNKNOWN 1.9k, BARGAIN & SALE 1.5k, (null), QUIT
+# CLAIM, CONTRACT, MEMO, DEED, DEATH CERTIFICATE, CONSERVATOR DEED, ASSIGN, LETTER, AFFIDAVIT
+# ... Non-conveyances are mapped below; UNKNOWN and blank stay DEED (TODO(Brandon): confirm).
+api: arcgis
+layer_url: https://spatial.jacksoncountyor.gov/arcgis/rest/services/Assessment/LatestSales/MapServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, AccountId, DocumentNumber, SalesDate, SalesPrice, Grantee, Grantor,
+         DocumentTypeDescription, DocumentURL, PropertyClass, PropertyClassDescription, Acres,
+         YearBuilt, EffectiveYearBuilt, Bedrooms, Bathrooms, SquareFeet, MarketValue,
+         StatClassDescription, SiteAddress, SiteCity]
+date_field: SalesDate
+partition: year
+first_year: 1930
+uid: [AccountId, DocumentNumber]
+rewrite:
+  AccountId: {pattern: "^(\\d+)(?:\\.0+)?$", replace: "\\1"}
+doc_type:
+  field: DocumentTypeDescription
+  map: {CONTRACT: LAND_CONTRACT, MEMO: OTHER, "DEATH CERTIFICATE": OTHER, ASSIGN: ASSIGNMENT,
+        LETTER: OTHER, AFFIDAVIT: AFFIDAVIT, MERGER: OTHER, "POWER OF ATTORNEY": POWER_OF_ATTORNEY,
+        PLAT: OTHER, PROBATE: COURT_ORDER, "CIRCUIT COURT": COURT_ORDER, REVOCATION: OTHER,
+        "DECLARATION OF FORFEITURE": OTHER, CONSENT: OTHER, DISOLUTION: OTHER}
+  default: DEED
+doc_type_raw: {field: DocumentTypeDescription}
+consideration: SalesPrice
+extra_pii: [SiteAddress]
+parties:
+  - role: grantor
+    name: Grantor
+  - role: grantee
+    name: Grantee
+parcel: {kind: pin, field: AccountId, county_fips: "41029"}   # = or.jackson.parcels ACCOUNT
+terms:
+  url: https://www.arcgis.com/home/item.html?id=f62d5a2326544c0aa954ae2175df53fb
+  summary: "Jackson County OR GIS public ArcGIS Server map service (Assessment/LatestSales), free, no login, token or fee. ArcGIS Online item licenseInfo (read 2026-11-25): CC BY 4.0. spatial.jacksoncountyor.gov/robots.txt redirects to an HTML page (no robots rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

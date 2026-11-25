@@ -1,0 +1,36 @@
+source_id: tx.collin.cad_building_permits
+state: TX
+county_fips: "48085"   # Collin County
+# Collin Central Appraisal District "Collin CAD Building Permits" on the Texas Open Data Portal
+# (data.texas.gov 82ee-gbj5, 117,991 permits issued 2023-01 .. on 2026-11-25, refreshed
+# nightly): the city permits the CAD tracks for appraisal, with the issuing city, permit
+# number, type and subtype, value, building area, comments, the builder (106k rows), who the
+# permit was issued to (12k), and the property's owner of record (every row), on the CAD
+# property id (propid, = tx.collin.parcels parcel_id). A signal that an owner is putting money
+# into a property, not a debt: OTHER instruments on the parcel, in no match run. A future
+# issue date typed in error (2206) stays as published.
+portal: https://data.texas.gov
+dataset: 82ee-gbj5
+order_by: [permitid]
+select: [permitid, permitnum, permittypecode, permittypedescr, permitsubtypedescr,
+         permitissueddate, permitissuedby, permitissuedto, permitvalue, permitbldgarea,
+         permitcomments, permitbuildername, propid, proprescom, propownername, proplegaldescr,
+         situsconcat]
+date_field: permitissueddate
+partition: year
+first_year: 2023
+uid: [permitid, propid]
+doc_type: OTHER
+doc_type_raw: {field: permittypedescr}
+extra_pii: [permitcomments, proplegaldescr, situsconcat]
+parties:
+  - {role: other, name: propownername}
+  - {role: other, name: permitissuedto}
+  - {role: other, name: permitbuildername}
+parcel: {kind: pin, field: propid, county_fips: "48085"}   # = tx.collin.parcels parcel_id
+terms:
+  url: https://data.texas.gov/d/82ee-gbj5
+  summary: "Collin Central Appraisal District dataset on the Texas Open Data Portal (Socrata), free, no login or app token. No license or use restriction stated on the dataset (read 2026-11-25). data.texas.gov robots.txt allows /resource/ with Crawl-delay: 1."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

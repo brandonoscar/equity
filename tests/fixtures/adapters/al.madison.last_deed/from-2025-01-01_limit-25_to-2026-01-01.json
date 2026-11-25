@@ -1,0 +1,256 @@
+{
+ "layer": "https://maps.madisonal.gov/arcgis/rest/services/DV_BoundariesPro_MIL1/MapServer/10",
+ "rows": [
+  {
+   "AccountOwner": "TESTOWNER 9D23D3",
+   "DeedBook": "2025",
+   "DeedDate": 1742774400000,
+   "DeedPage": "10417",
+   "DeedType": "QTCL",
+   "OBJECTID": 16,
+   "ParcelNum": "04-07-26-0-000-019.000",
+   "PreviousOwners": "TESTOWNER C4DDA0"
+  },
+  {
+   "AccountOwner": "TESTOWNER 12B0DE",
+   "DeedBook": "2025",
+   "DeedDate": 1747353600000,
+   "DeedPage": "19136",
+   "DeedType": "WARR",
+   "OBJECTID": 21,
+   "ParcelNum": "14-06-23-2-003-062.000",
+   "PreviousOwners": "TESTOWNER 914349"
+  },
+  {
+   "AccountOwner": "TESTOWNER 76C9AD",
+   "DeedBook": "2025",
+   "DeedDate": 1744761600000,
+   "DeedPage": "14305",
+   "DeedType": "WARR",
+   "OBJECTID": 47,
+   "ParcelNum": "14-05-22-1-003-034.000",
+   "PreviousOwners": "TESTOWNER 5FD136 LLC"
+  },
+  {
+   "AccountOwner": "TESTOWNER 918DDA",
+   "DeedBook": "2025",
+   "DeedDate": 1753920000000,
+   "DeedPage": "30877",
+   "DeedType": "QTCL",
+   "OBJECTID": 54,
+   "ParcelNum": "13-01-01-4-000-022.000",
+   "PreviousOwners": "TESTOWNER 4DB24D"
+  },
+  {
+   "AccountOwner": "TESTOWNER ECA8C9",
+   "DeedBook": "2025",
+   "DeedDate": 1756771200000,
+   "DeedPage": "35719",
+   "DeedType": "QTCL",
+   "OBJECTID": 101,
+   "ParcelNum": "14-05-22-1-002-034.000",
+   "PreviousOwners": "TESTOWNER 2D33F1"
+  },
+  {
+   "AccountOwner": "TESTOWNER 2C7FD3",
+   "DeedBook": "2025",
+   "DeedDate": 1762387200000,
+   "DeedPage": "46344",
+   "DeedType": "SCHR",
+   "OBJECTID": 128,
+   "ParcelNum": "23-01-02-0-000-034.000",
+   "PreviousOwners": "TESTOWNER E34386"
+  },
+  {
+   "AccountOwner": "TESTOWNER 24B6DD",
+   "DeedBook": "2025",
+   "DeedDate": 1767052800000,
+   "DeedPage": "54451",
+   "DeedType": "DEED",
+   "OBJECTID": 131,
+   "ParcelNum": "14-05-22-1-003-067.000",
+   "PreviousOwners": "TESTOWNER E4EFA2"
+  },
+  {
+   "AccountOwner": "TESTOWNER B3DCE1",
+   "DeedBook": "2025",
+   "DeedDate": 1746403200000,
+   "DeedPage": "17093",
+   "DeedType": "WARR",
+   "OBJECTID": 166,
+   "ParcelNum": "14-05-22-1-002-036.000",
+   "PreviousOwners": "TESTOWNER B65900"
+  },
+  {
+   "AccountOwner": "TESTOWNER 621D3B",
+   "DeedBook": "2025",
+   "DeedDate": 1751241600000,
+   "DeedPage": "26066",
+   "DeedType": "SURV",
+   "OBJECTID": 185,
+   "ParcelNum": "15-08-34-4-003-095.000",
+   "PreviousOwners": "TESTOWNER A8E189 LLC"
+  },
+  {
+   "AccountOwner": "TESTOWNER 85E3F4 LLC",
+   "DeedBook": "2025",
+   "DeedDate": 1748390400000,
+   "DeedPage": "20577",
+   "DeedType": "WARR",
+   "OBJECTID": 205,
+   "ParcelNum": "23-04-19-0-001-006.000",
+   "PreviousOwners": "TESTOWNER 38E8A8 LLC"
+  },
+  {
+   "AccountOwner": "TESTOWNER F152B7",
+   "DeedBook": "2025",
+   "DeedDate": 1761782400000,
+   "DeedPage": "45176",
+   "DeedType": "TRUST",
+   "OBJECTID": 213,
+   "ParcelNum": "19-01-12-0-000-063.002",
+   "PreviousOwners": "TESTOWNER 975FE9"
+  },
+  {
+   "AccountOwner": "TESTOWNER F3D757",
+   "DeedBook": "2025",
+   "DeedDate": 1744675200000,
+   "DeedPage": "14082",
+   "DeedType": "SURV",
+   "OBJECTID": 219,
+   "ParcelNum": "16-02-03-3-001-096.000",
+   "PreviousOwners": "TESTOWNER 3650B3"
+  },
+  {
+   "AccountOwner": "TESTOWNER C5554C",
+   "DeedBook": "2025",
+   "DeedDate": 1748995200000,
+   "DeedPage": "22094",
+   "DeedType": "SURV",
+   "OBJECTID": 242,
+   "ParcelNum": "15-01-11-0-002-018.000",
+   "PreviousOwners": "TESTOWNER F25B12 LLC"
+  },
+  {
+   "AccountOwner": "TESTOWNER 7709CF LLC",
+   "DeedBook": "2025",
+   "DeedDate": 1747353600000,
+   "DeedPage": "19202",
+   "DeedType": "WARR",
+   "OBJECTID": 259,
+   "ParcelNum": "14-05-22-4-001-010.000",
+   "PreviousOwners": "TESTOWNER BD6214 INC"
+  },
+  {
+   "AccountOwner": "TESTOWNER D255B1",
+   "DeedBook": "2025",
+   "DeedDate": 1741824000000,
+   "DeedPage": "9037",
+   "DeedType": "SURV",
+   "OBJECTID": 330,
+   "ParcelNum": "14-06-23-2-004-023.000",
+   "PreviousOwners": "TESTOWNER 8DABBB"
+  },
+  {
+   "AccountOwner": "TESTOWNER 77BC2A",
+   "DeedBook": "2025",
+   "DeedDate": 1749686400000,
+   "DeedPage": "23312",
+   "DeedType": "QTCL",
+   "OBJECTID": 343,
+   "ParcelNum": "07-02-09-0-000-001.000",
+   "PreviousOwners": "TESTOWNER 95A67E"
+  },
+  {
+   "AccountOwner": "TESTOWNER 908D84",
+   "DeedBook": "2025",
+   "DeedDate": 1745971200000,
+   "DeedPage": "16397",
+   "DeedType": "SURV",
+   "OBJECTID": 389,
+   "ParcelNum": "06-05-22-4-002-065.000",
+   "PreviousOwners": "TESTOWNER F08737"
+  },
+  {
+   "AccountOwner": "TESTOWNER EAB148",
+   "DeedBook": "2025",
+   "DeedDate": 1752624000000,
+   "DeedPage": "28652",
+   "DeedType": "DEED",
+   "OBJECTID": 432,
+   "ParcelNum": "06-05-22-4-002-003.000",
+   "PreviousOwners": "TESTOWNER 231284"
+  },
+  {
+   "AccountOwner": "TESTOWNER A9988E",
+   "DeedBook": "2025",
+   "DeedDate": 1744588800000,
+   "DeedPage": "13612",
+   "DeedType": "WARR",
+   "OBJECTID": 453,
+   "ParcelNum": "06-05-22-4-002-088.000",
+   "PreviousOwners": "TESTOWNER 953E36"
+  },
+  {
+   "AccountOwner": "TESTOWNER 05A84A",
+   "DeedBook": "2025",
+   "DeedDate": 1757289600000,
+   "DeedPage": "37025",
+   "DeedType": "SURV",
+   "OBJECTID": 462,
+   "ParcelNum": "06-05-22-4-001-012.000",
+   "PreviousOwners": "TESTOWNER 919B4E"
+  },
+  {
+   "AccountOwner": "TESTOWNER 75C40E",
+   "DeedBook": "2025",
+   "DeedDate": 1747958400000,
+   "DeedPage": "20052",
+   "DeedType": "SURV",
+   "OBJECTID": 478,
+   "ParcelNum": "04-05-22-0-000-005.000",
+   "PreviousOwners": "TESTOWNER 37099C"
+  },
+  {
+   "AccountOwner": "TESTOWNER 569AFB",
+   "DeedBook": "2025",
+   "DeedDate": 1749600000000,
+   "DeedPage": "23142",
+   "DeedType": "DEED",
+   "OBJECTID": 494,
+   "ParcelNum": "16-02-03-4-001-039.000",
+   "PreviousOwners": "TESTOWNER D33C28"
+  },
+  {
+   "AccountOwner": "TESTOWNER 53599A",
+   "DeedBook": "2025",
+   "DeedDate": 1755043200000,
+   "DeedPage": "33064",
+   "DeedType": "QTCL",
+   "OBJECTID": 506,
+   "ParcelNum": "16-02-10-0-001-066.000",
+   "PreviousOwners": "TESTOWNER D02A22"
+  },
+  {
+   "AccountOwner": "TESTOWNER E11620",
+   "DeedBook": "2025",
+   "DeedDate": 1746057600000,
+   "DeedPage": "16745",
+   "DeedType": "DEED",
+   "OBJECTID": 537,
+   "ParcelNum": "24-06-13-4-001-070.000",
+   "PreviousOwners": "TESTOWNER 2B49F2 LLC"
+  },
+  {
+   "AccountOwner": "TESTOWNER 9CDCFF",
+   "DeedBook": "2025",
+   "DeedDate": 1749772800000,
+   "DeedPage": "23770",
+   "DeedType": "SURV",
+   "OBJECTID": 553,
+   "ParcelNum": "24-06-13-4-001-042.000",
+   "PreviousOwners": "TESTOWNER 4046BD"
+  }
+ ],
+ "where": "(TaxYear = 2026) AND DeedDate >= DATE '2025-01-01' AND DeedDate < DATE '2026-01-01'"
+}

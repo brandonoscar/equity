@@ -1,0 +1,34 @@
+source_id: oh.cleveland.building_permits
+state: OH
+county_fips: "39035"
+# City of Cleveland "Issued Building Permits" (Building_Permits/0, 203,582 permits issued
+# since 2015-01 on 2026-11-25, updated daily): permit id, type, subtype, category, job and
+# work description, job value, fees, issue date, the parcel and the contractor (person and
+# business, with the contractor's license id). Like ny.nyc.dob_permits: a signal that an
+# owner is putting money into a property, not a debt: OTHER instruments on the parcel, in no
+# match run. The contractor is a party of role other; the owner is not named.
+api: arcgis
+layer_url: https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/Building_Permits/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, PERMIT_ID, PRIMARY_ADDRESS, PERMIT_TYPE, PERMIT_SUBTYPE, PERMIT_CATEGORY,
+         JOB_DESCRIPTION, USE_GROUP_1, WORK_DESCRIPTION, CONTRACTOR_NAME,
+         CONTRATOR_BUSINESS_NAME, CONTRATOR_LICENSE_ID, JOB_VALUE, TOTAL_FEES_PAID, FILE_DATE,
+         ISSUE_DATE, CURRENT_TASK_STATUS, PARCEL_NUMBER]
+date_field: ISSUE_DATE
+partition: year
+first_year: 2015
+uid: PERMIT_ID
+doc_type: OTHER
+doc_type_raw: {field: PERMIT_CATEGORY}
+parties:
+  - {role: other, name: CONTRACTOR_NAME}
+  - {role: other, name: CONTRATOR_BUSINESS_NAME}
+extra_pii: [PRIMARY_ADDRESS, WORK_DESCRIPTION]
+parcel: {kind: pin, field: PARCEL_NUMBER, county_fips: "39035"}   # = oh.cuyahoga.parcels parcel_id ('12829029')
+terms:
+  url: https://www.arcgis.com/home/item.html?id=c08ddeaf2d1e41679a03103ff4e9fe17
+  summary: "City of Cleveland Department of Building and Housing on the Cleveland Open Data Portal (ArcGIS Online, owner opendataCLE), public hosted layer, free, no login. Item licenseInfo (read 2026-11-25): Open Data Commons Open Database License (ODbL): attribute the City; a derived database that is shared publicly must be offered under the ODbL (internal use only here, not redistributed). services3.arcgis.com/robots.txt answers 4xx (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  use_restrictions: [attribution_required]
+  cost_model: free

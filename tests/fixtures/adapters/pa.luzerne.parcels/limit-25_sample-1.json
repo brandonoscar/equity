@@ -1,0 +1,131 @@
+{
+ "attributes": [
+  {
+   "OBJECTID": 1,
+   "PIN": "17A10   00A005000",
+   "PUB_OWNER": "TESTOWNER CFD7F1"
+  },
+  {
+   "OBJECTID": 2,
+   "PIN": "17A10S1 004002000",
+   "PUB_OWNER": "TESTOWNER 6C5923"
+  },
+  {
+   "OBJECTID": 3,
+   "PIN": "17A10S1 004001000",
+   "PUB_OWNER": "TESTOWNER 3FF396"
+  },
+  {
+   "OBJECTID": 4,
+   "PIN": "17A10S1 002002000",
+   "PUB_OWNER": "TESTOWNER 94BB79"
+  },
+  {
+   "OBJECTID": 5,
+   "PIN": "17A10S1 006005000",
+   "PUB_OWNER": "TESTOWNER 06DA1A"
+  },
+  {
+   "OBJECTID": 6,
+   "PIN": "17A10S1 001002000",
+   "PUB_OWNER": "TESTOWNER 3132F3"
+  },
+  {
+   "OBJECTID": 7,
+   "PIN": "17A10   00A004000",
+   "PUB_OWNER": "TESTOWNER C1592F"
+  },
+  {
+   "OBJECTID": 8,
+   "PIN": "17A10S1 009002000",
+   "PUB_OWNER": "TESTOWNER 94BB79"
+  },
+  {
+   "OBJECTID": 9,
+   "PIN": "17A10   00A27B000",
+   "PUB_OWNER": "TESTOWNER 25DE20"
+  },
+  {
+   "OBJECTID": 10,
+   "PIN": "17A10   00A025000",
+   "PUB_OWNER": "TESTOWNER 96B311"
+  },
+  {
+   "OBJECTID": 11,
+   "PIN": "17A10   00A03A000",
+   "PUB_OWNER": "TESTOWNER 4674CA"
+  },
+  {
+   "OBJECTID": 12,
+   "PIN": "17A10   00A015000",
+   "PUB_OWNER": "TESTOWNER 9373EE"
+  },
+  {
+   "OBJECTID": 13,
+   "PIN": "17A10   00A02A000",
+   "PUB_OWNER": "TESTOWNER B101D3"
+  },
+  {
+   "OBJECTID": 14,
+   "PIN": "17A10   00A01B000",
+   "PUB_OWNER": "TESTOWNER 00295E"
+  },
+  {
+   "OBJECTID": 15,
+   "PIN": "17A10   00A37A000",
+   "PUB_OWNER": "TESTOWNER A386AA"
+  },
+  {
+   "OBJECTID": 16,
+   "PIN": "24A10   00A01A000",
+   "PUB_OWNER": "TESTOWNER 766CE2"
+  },
+  {
+   "OBJECTID": 17,
+   "PIN": "24A10   00A01B000",
+   "PUB_OWNER": "TESTOWNER E657C6"
+  },
+  {
+   "OBJECTID": 18,
+   "PIN": "17A10   00A23A000",
+   "PUB_OWNER": "TESTOWNER BD2F8E"
+  },
+  {
+   "OBJECTID": 19,
+   "PIN": "17A10   00A15J000",
+   "PUB_OWNER": "TESTOWNER C1ACFE"
+  },
+  {
+   "OBJECTID": 20,
+   "PIN": "17A10   00A15F000",
+   "PUB_OWNER": "TESTOWNER 20868B"
+  },
+  {
+   "OBJECTID": 21,
+   "PIN": "17A10   00A15K000",
+   "PUB_OWNER": "TESTOWNER 4E7938"
+  },
+  {
+   "OBJECTID": 22,
+   "PIN": "17A10   00A15E000",
+   "PUB_OWNER": "TESTOWNER 46AFF3"
+  },
+  {
+   "OBJECTID": 23,
+   "PIN": "17A10   00A40P000",
+   "PUB_OWNER": "TESTOWNER D8CF4C"
+  },
+  {
+   "OBJECTID": 24,
+   "PIN": "17A10   00A019000",
+   "PUB_OWNER": "TESTOWNER 5DB46C CO"
+  },
+  {
+   "OBJECTID": 25,
+   "PIN": "17A10   00A40G000",
+   "PUB_OWNER": "TESTOWNER C373E1"
+  }
+ ],
+ "layer": "https://gis.luzernecounty.org/server/rest/services/PublicMap/MapServer/1",
+ "where": "1=1"
+}

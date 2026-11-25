@@ -1,0 +1,30 @@
+source_id: sc.berkeley.parcels
+state: SC
+# Berkeley County (SC) GIS internet map service, parcel layer 'Parcel Lines (Yellow)' (polygons
+# joined to the assessor's owner table; 123,473 rows on 2026-11-25; O_TMS on every row,
+# OwnerName filled on 123,438): owner name, owner mailing address, property address, last
+# deed book/page.
+layer_url: https://gis.berkeleycountysc.gov/arcgis/rest/services/internet/MapServer/4
+order_by: OBJECTID_1
+page_size: 1000          # maxRecordCount 1000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "015"}
+fields:
+  parcel_id: O_TMS       # '0060000001' (TMS number without dashes)
+  owner1: OwnerName
+  mail_line1: StreetAddress1
+  mail_line2: StreetAddress2
+  mail_city: City
+  mail_state: StateProvince
+  mail_zip: Zip          # '29461-6101'
+  situs_line1: GIS_Address
+  situs_state: {const: SC}
+  deed_book: DeedBook
+  deed_page: DeedPage
+value_basis: "TotalTaxValue is present but the layer has no tax-year field, so no values or tax_year are mapped and no assessment facts are emitted. CareOf (an in-care-of name, not an owner) and SalePrice/SaleDate are not mapped."
+terms:
+  url: https://gis.berkeleycountysc.gov/arcgis/rest/services/internet/MapServer
+  summary: "Berkeley County (SC) GIS ArcGIS Server, 'Berkeley County GIS Internet Mapping Service' (internet/MapServer), layer 4; public, no login, token or fee. No copyright, licence or use-restriction text on the service or its item info (read 2026-11-25). gis.berkeleycountysc.gov/robots.txt allows / for all crawlers (disallows only /pages/consortium/, /static/, /images/)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

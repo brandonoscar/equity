@@ -1,0 +1,41 @@
+source_id: ny.nyc.dob_legacy_permits
+state: NY
+county_fips: "36061"
+# NYC Department of Buildings "DOB Permit Issuance" (data.cityofnewyork.us ipu4-2q9a, 3.99M
+# permits on 2026-11-25): permits issued through the legacy BIS system, the companion of the
+# DOB NOW permits in ny.nyc.dob_permits (rbx6-tga4), with the owner's name, business name and
+# address, borough/block/lot, job and work type. Loaded the same way: a signal that an owner
+# is putting money into a property (and who controls it), not a debt: OTHER instruments on
+# the parcel, in no match run. It is a config/deeds source only because the dates are
+# 'MM/DD/YYYY' text (date_format mdy: year windows by LIKE). The 20,953 permits with no
+# issuance date are skipped. Permittee, site-safety and superintendent names and phones are
+# not fetched.
+portal: https://data.cityofnewyork.us
+dataset: ipu4-2q9a
+order_by: [":id"]
+select: [permit_si_no, job__, job_doc___, job_type, work_type, permit_status, filing_status,
+         permit_type, permit_sequence__, permit_subtype, borough, block, lot, bin__,
+         filing_date, issuance_date, expiration_date, job_start_date, owner_s_business_type,
+         non_profit, owner_s_business_name, owner_s_first_name, owner_s_last_name,
+         owner_s_house__, owner_s_house_street_name, city, state, owner_s_zip_code]
+date_field: issuance_date
+date_format: {issuance_date: mdy}
+partition: year
+first_year: 1989
+uid: permit_si_no
+doc_type: OTHER
+doc_type_raw: {field: permit_type}
+parties:
+  - role: other
+    name: [owner_s_first_name, owner_s_last_name]
+    address: {line1: [owner_s_house__, owner_s_house_street_name], city: city, state: state,
+              zip: owner_s_zip_code}
+  - {role: other, name: owner_s_business_name, person_names: false}
+parcel: {kind: nyc_bbl, borough: borough, block: block, lot: lot}
+extra_pii: [owner_s_business_name]   # often a person's name
+terms:
+  url: https://data.cityofnewyork.us/d/ipu4-2q9a
+  summary: "NYC Open Data (Socrata), Department of Buildings, NYC open data terms of use, free, no login or app token. Internal use, not redistributed. data.cityofnewyork.us robots.txt allows /resource/."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

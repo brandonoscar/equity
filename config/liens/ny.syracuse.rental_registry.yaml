@@ -1,0 +1,37 @@
+source_id: ny.syracuse.rental_registry
+state: NY
+county_fips: "36067"   # Onondaga (City of Syracuse)
+# City of Syracuse Division of Code Enforcement "Syracuse Rental Registry" (Open Data
+# Syracuse, ArcGIS Online Syracuse_Rental_Registry, 10,969 rental properties on 2026-11-25,
+# updated daily): every one- and two-family rental property that must register, with the SBL,
+# the property address, the registry status and inspection dates, the property owner
+# (pc_owner) and the registry contact (often the owner or its manager). A current list with
+# no registration date for every row, so each property is one OTHER instrument dated the day
+# it was fetched (listed_on), naming who answers for the rental, in no match run. No parcel
+# link (the SBL is the city's print key, not ny.statewide.parcels SWIS_SBL_ID): the property
+# is found by its address (CITED PROPERTY).
+api: arcgis
+layer_url: https://services6.arcgis.com/bdPqSfflsdgFRVVM/arcgis/rest/services/Syracuse_Rental_Registry/FeatureServer/0
+order_by: [ObjectId]
+select: [ObjectId, SBL, PropertyAddress, zip, NeedsRR, completion_type_name, completion_date,
+         valid_until, RRisValid, RR_contact_name, pc_owner]
+listed_on: listed_on
+date_field: listed_on
+single_partition: true
+uid: SBL
+doc_type: OTHER
+doc_type_raw: Syracuse rental registry property
+parties:
+  - role: other
+    name: pc_owner
+  - role: other
+    name: RR_contact_name
+  - role: other                 # the rental property; the matcher finds its parcel by address
+    const: CITED PROPERTY
+    address: {line1: PropertyAddress, city_const: SYRACUSE, state_const: NY, zip: zip}
+terms:
+  url: https://data.syr.gov/datasets/4d07491bc81b4d248f22de5da2641021
+  summary: "City of Syracuse (Open Data Syracuse, ArcGIS Online), free, no login. Terms of Use (data.syr.gov/pages/termsofuse, read 2026-11-25): informational, no warranty, not official records; reuse allowed with the City named as source and the access and publication dates, and work products must state 'The City of Syracuse makes no representation, warranty or guarantee relating to the data or analyses derived from these data.' services6.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

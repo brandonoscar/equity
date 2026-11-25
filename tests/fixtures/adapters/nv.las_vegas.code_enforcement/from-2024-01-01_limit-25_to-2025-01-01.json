@@ -1,0 +1,231 @@
+{
+ "layer": "https://services1.arcgis.com/F1v0ufATbBQScMtY/arcgis/rest/services/Code_Enforcement_Open_Data/FeatureServer/0",
+ "rows": [
+  {
+   "ADDRESS": "7127 TEST ST",
+   "DESCRIPT": "19.12.070(1)RES VEH STORAGE",
+   "Event_Date": 1704726420000,
+   "ObjectId": 3545834,
+   "Parcel_Number": 12534503013,
+   "STAT": "Open",
+   "WARD": null
+  },
+  {
+   "ADDRESS": "1237 TEST ST",
+   "DESCRIPT": "9.04.010 (9)(D) DILAPIDATED",
+   "Event_Date": 1704727330000,
+   "ObjectId": 3545835,
+   "Parcel_Number": 13929514003,
+   "STAT": "Open",
+   "WARD": null
+  },
+  {
+   "ADDRESS": "3028 TEST ST",
+   "DESCRIPT": "HC-1001.2LCK HT/CLD WTR DWELL",
+   "Event_Date": 1705491480000,
+   "ObjectId": 3545836,
+   "Parcel_Number": 13928410048,
+   "STAT": "Open",
+   "WARD": null
+  },
+  {
+   "ADDRESS": "3028 TEST ST",
+   "DESCRIPT": "HC-SEC 1103 VACATE ORDER",
+   "Event_Date": 1705491480000,
+   "ObjectId": 3545837,
+   "Parcel_Number": 13928410048,
+   "STAT": "Open",
+   "WARD": null
+  },
+  {
+   "ADDRESS": "3028 TEST ST",
+   "DESCRIPT": "9.04.010 (4) REFUSE & WASTE",
+   "Event_Date": 1705491480000,
+   "ObjectId": 3545843,
+   "Parcel_Number": 13928410048,
+   "STAT": "Open",
+   "WARD": null
+  },
+  {
+   "ADDRESS": "3028 TEST ST",
+   "DESCRIPT": "9.04.010(9)(A) HIGH VEGETATION",
+   "Event_Date": 1705491480000,
+   "ObjectId": 3545844,
+   "Parcel_Number": 13928410048,
+   "STAT": "Open",
+   "WARD": null
+  },
+  {
+   "ADDRESS": "4196 TEST ST",
+   "DESCRIPT": "19.12.010(6A) VEH INOP 1 ALLOW",
+   "Event_Date": 1705913535000,
+   "ObjectId": 3545849,
+   "Parcel_Number": 16205210015,
+   "STAT": "Open",
+   "WARD": null
+  },
+  {
+   "ADDRESS": "4196 TEST ST",
+   "DESCRIPT": "19.12.010(6B) VEH INOP 60 DAY",
+   "Event_Date": 1705913535000,
+   "ObjectId": 3545855,
+   "Parcel_Number": 16205210015,
+   "STAT": "Open",
+   "WARD": null
+  },
+  {
+   "ADDRESS": "2830 TEST ST",
+   "DESCRIPT": "9.04.010 (4) REFUSE & WASTE",
+   "Event_Date": 1705392739000,
+   "ObjectId": 3545861,
+   "Parcel_Number": 16301103027,
+   "STAT": "Open",
+   "WARD": null
+  },
+  {
+   "ADDRESS": "2830 TEST ST",
+   "DESCRIPT": "9.04.010 (9) GENERAL NUISANCE",
+   "Event_Date": 1705392739000,
+   "ObjectId": 3545862,
+   "Parcel_Number": 16301103027,
+   "STAT": "Open",
+   "WARD": null
+  },
+  {
+   "ADDRESS": "1237 TEST ST",
+   "DESCRIPT": "9.04.010 (9)(D) DILAPIDATED",
+   "Event_Date": 1704727330000,
+   "ObjectId": 3545863,
+   "Parcel_Number": 13929514003,
+   "STAT": "Open",
+   "WARD": null
+  },
+  {
+   "ADDRESS": "1237 TEST ST",
+   "DESCRIPT": "9.04.010 (9)(D) DILAPIDATED",
+   "Event_Date": 1704727330000,
+   "ObjectId": 3545864,
+   "Parcel_Number": 13929514003,
+   "STAT": "Open",
+   "WARD": null
+  },
+  {
+   "ADDRESS": "3028 TEST ST",
+   "DESCRIPT": "9.04.010 (9)(D) DILAPIDATED",
+   "Event_Date": 1705491480000,
+   "ObjectId": 3545865,
+   "Parcel_Number": 13928410048,
+   "STAT": "Open",
+   "WARD": null
+  },
+  {
+   "ADDRESS": "2830 TEST ST",
+   "DESCRIPT": "9.12.030 STORED MATERIALS",
+   "Event_Date": 1705392739000,
+   "ObjectId": 3545872,
+   "Parcel_Number": 16301103027,
+   "STAT": "Open",
+   "WARD": null
+  },
+  {
+   "ADDRESS": "2830 TEST ST",
+   "DESCRIPT": "13.04.040 OFFENSIVE FLUIDS",
+   "Event_Date": 1705392739000,
+   "ObjectId": 3545873,
+   "Parcel_Number": 16301103027,
+   "STAT": "Open",
+   "WARD": null
+  },
+  {
+   "ADDRESS": "2830 TEST ST",
+   "DESCRIPT": "9.04.010 IMMINENT HAZARD",
+   "Event_Date": 1705392739000,
+   "ObjectId": 3545874,
+   "Parcel_Number": 16301103028,
+   "STAT": "Open",
+   "WARD": null
+  },
+  {
+   "ADDRESS": "3634 TEST ST",
+   "DESCRIPT": "9.04.010 Public Nuisance  (2) Title 16 Violation",
+   "Event_Date": 1704789585000,
+   "ObjectId": 3545875,
+   "Parcel_Number": 13934601009,
+   "STAT": "Open",
+   "WARD": null
+  },
+  {
+   "ADDRESS": "3634 TEST ST",
+   "DESCRIPT": "9.04.010 (4) REFUSE & WASTE",
+   "Event_Date": 1704789585000,
+   "ObjectId": 3545876,
+   "Parcel_Number": 13934601009,
+   "STAT": "Open",
+   "WARD": null
+  },
+  {
+   "ADDRESS": "3634 TEST ST",
+   "DESCRIPT": "9.04.010 (5) ZONING VIOLATION",
+   "Event_Date": 1704789585000,
+   "ObjectId": 3545877,
+   "Parcel_Number": 13934601009,
+   "STAT": "Open",
+   "WARD": null
+  },
+  {
+   "ADDRESS": "2147 TEST ST",
+   "DESCRIPT": "9.12.060 LITTER/OWNER MAINTAIN",
+   "Event_Date": 1705909682000,
+   "ObjectId": 3545881,
+   "Parcel_Number": 12517214001,
+   "STAT": "Open",
+   "WARD": null
+  },
+  {
+   "ADDRESS": "2147 TEST ST",
+   "DESCRIPT": "19.10.160(C)4 MAINTENANCE",
+   "Event_Date": 1705909682000,
+   "ObjectId": 3545882,
+   "Parcel_Number": 12517214001,
+   "STAT": "Open",
+   "WARD": null
+  },
+  {
+   "ADDRESS": "2278 TEST ST",
+   "DESCRIPT": "9.04.010(9)(A) HIGH VEGETATION",
+   "Event_Date": 1705909891000,
+   "ObjectId": 3545883,
+   "Parcel_Number": 13935211121,
+   "STAT": "Open",
+   "WARD": null
+  },
+  {
+   "ADDRESS": "2830 TEST ST",
+   "DESCRIPT": "9.04.010 (4) REFUSE & WASTE",
+   "Event_Date": 1705392739000,
+   "ObjectId": 3545884,
+   "Parcel_Number": 16301103028,
+   "STAT": "Open",
+   "WARD": null
+  },
+  {
+   "ADDRESS": "2830 TEST ST",
+   "DESCRIPT": "9.04.010 (9) GENERAL NUISANCE",
+   "Event_Date": 1705392739000,
+   "ObjectId": 3545885,
+   "Parcel_Number": 16301103028,
+   "STAT": "Open",
+   "WARD": null
+  },
+  {
+   "ADDRESS": "2278 TEST ST",
+   "DESCRIPT": "9.04.010 (9)(D) DILAPIDATED",
+   "Event_Date": 1705909891000,
+   "ObjectId": 3545890,
+   "Parcel_Number": 13935211121,
+   "STAT": "Open",
+   "WARD": null
+  }
+ ],
+ "where": "Event_Date >= DATE '2024-01-01' AND Event_Date < DATE '2025-01-01'"
+}

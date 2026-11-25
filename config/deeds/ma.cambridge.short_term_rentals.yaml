@@ -1,0 +1,36 @@
+source_id: ma.cambridge.short_term_rentals
+state: MA
+county_fips: "25017"   # Middlesex (City of Cambridge)
+# City of Cambridge Inspectional Services "Short Term Rentals" (data.cambridgema.gov
+# wxgv-w968, 571 registrations on 2026-11-25, updated daily): every short-term rental
+# registered with the city (operator-occupied or owner-adjacent units), with the applicant
+# (the operator, who under the ordinance must live in or own the dwelling), issue date,
+# status, type of property and the map-block-lot (mbl). One OTHER instrument per
+# registration on the lot, in no match run: who answers for a rental unit. mbl ('79-59') is
+# the MassGIS PROP_ID for Cambridge (TOWN_ID 49), so the lot is 25017-49-<mbl>, the
+# ma.statewide.parcels key ([TOWN_ID, PROP_ID]).
+portal: https://data.cambridgema.gov
+dataset: wxgv-w968
+where: "issue_date IS NOT NULL"
+order_by: [":id"]
+select: [id, issue_date, status, permit_type, please_select_the_appropriate_str_type,
+         type_of_property, full_address, mbl, applicant_name, renewal_schedule]
+date_field: issue_date
+partition: year
+first_year: 2018
+uid: id
+doc_type: OTHER
+doc_type_raw: {field: please_select_the_appropriate_str_type}
+rewrite:
+  mbl: {pattern: "^(.+)$", replace: "49-\\1"}   # Cambridge's MassGIS TOWN_ID
+parties:
+  - role: other
+    name: applicant_name
+parcel: {kind: pin, field: mbl, county_fips: "25017"}   # = ma.statewide.parcels 49-<PROP_ID>
+extra_pii: [full_address]
+terms:
+  url: https://data.cambridgema.gov/d/wxgv-w968
+  summary: "City of Cambridge open data (Socrata), Inspectional Services Department, license Open Data Commons Public Domain Dedication and License (dataset license field, read 2026-11-25), free, no login. robots.txt (Crawl-delay 1) allows /resource/."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,31 @@
+source_id: or.portland.residential_permits
+state: OR
+county_fips: "41051"
+# City of Portland "Residential Building Permits" (PortlandMaps open data,
+# COP_OpenData_PlanningDevelopment MapServer/89, Bureau of Planning and Sustainability;
+# 36,560 permits on 2026-11-25, 1995 on): new residential construction and alteration permits
+# with the folder number, intake and issue dates, class and type, ADU flag, new units,
+# valuation, square feet, address, the state map-taxlot id and the property account
+# (PROPLOT, e.g. 'R194056' or 'M355359'). OTHER instruments on 41051-<PROPLOT> (the Multnomah
+# County account = or.multnomah.parcels PROPID), in no match run.
+api: arcgis
+layer_url: https://www.portlandmaps.com/od/rest/services/COP_OpenData_PlanningDevelopment/MapServer/89
+order_by: [OBJECTID]
+select: [OBJECTID, INDATE, ISSUEDATE, STATUS, NEWCLASS, NEWTYPE, IS_ADU, FOLDERNUMB, PROP_ADDRE,
+         WORKDESC, OCC, NEW_UNITS, FOLDER_DES, VALUATION, CONST, PROPLOT, PROPERTYRO, SQFT]
+date_field: ISSUEDATE
+partition: year
+first_year: 1990
+uid: FOLDERNUMB
+doc_type: OTHER
+doc_type_raw: {field: NEWCLASS}
+consideration: VALUATION
+extra_pii: [PROP_ADDRE]
+parties: []
+parcel: {kind: pin, field: PROPLOT, county_fips: "41051"}   # = or.multnomah.parcels PROPID
+terms:
+  url: https://www.arcgis.com/home/item.html?id=02d99db039e0428da88262bff513056a
+  summary: "City of Portland open data (PortlandMaps ArcGIS Server, item owner cgis.maps, accessInformation Portland Bureau of Planning and Sustainability), free, no login or token. No license or use constraint on the item (read 2026-11-25); no resale or redistribution clause found. www.portlandmaps.com/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free
