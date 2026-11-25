@@ -1,0 +1,31 @@
+source_id: ia.dubuque.parcels
+state: IA
+# Dubuque County GIS (ArcGIS Online org DbqGIS) item 'AGOL Land Records', layer 6 'Parcels'
+# (53,081 rows on 2026-11-25, OwnerName filled on 52,945, all TaxYear 2026; item modified
+# 2026-11-25): deed holder name and its mailing address (Line1/City/State/PostalCode), site street
+# line (this layer has no site city or ZIP), property class and full/taxable values. Layer 0 ('Building on Leased Land') is not used.
+layer_url: https://services5.arcgis.com/lCfrR7MoHN9FsfMi/arcgis/rest/services/AGOL_Land_Records/FeatureServer/6
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "061"}
+fields:
+  parcel_id: PIN         # '0525400002'
+  owner1: OwnerName
+  mail_line1: Line1
+  mail_city: City
+  mail_state: State
+  mail_zip: PostalCode
+  situs_line1: FullSitus # street line only ('123 MAIN ST'); empty on land without an address
+  situs_state: {const: IA}
+  land_use_code: PropertyClass   # 'A', 'R', 'C' ...
+  land_value: FullLandValue
+  total_value: FullTotalValue
+  tax_year: TaxYear
+value_basis: "FullLandValue / FullTotalValue = assessor full (100% actual) land and total value for TaxYear 2026 (the Jan 1 assessment year); building value is split into FullBuildingValue and FullDwellingValue, so bldg_value is not mapped. TaxableTotalValue (after rollback) is not mapped. Homestead is 0 on every row and is not mapped. DeededBook/DeededPage mix recording year + document number with old book/page pairs, so no deed is mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=0b9c6bd96454429c9655829a5fe622b0
+  summary: "Dubuque County GIS public hosted feature service 'AGOL Land Records' (item owner DbqGIS; county zoning layers for Asbury, Dyersville, Farley and rural Dubuque County in the same service), no login, token or fee. licenseInfo and accessInformation empty (read 2026-11-25); no use-constraint text found. services5.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

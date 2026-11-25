@@ -1,0 +1,29 @@
+source_id: la.ascension.parcels
+state: LA
+# Ascension Parish GIS 'AssessorData/Assessor_Parcels' MapServer, layer 317 'Parcels' (59,956 rows
+# on 2026-11-25, Owner_Name filled on 48,654, last edited 2026-11-24): assessor owner name,
+# mailing address, physical address, assessed value, last deed number and sale. 1,150 rows have no
+# PN_Join (assessment number) and are skipped. The physical address city/state/ZIP columns are
+# blank on sampled rows; Address_Number and Street_Name are space-padded (whitespace is collapsed).
+layer_url: https://gis.ascensionparishla.gov/server/rest/services/AssessorData/Assessor_Parcels/MapServer/317
+order_by: OBJECTID_12
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "005"}
+fields:
+  parcel_id: PN_Join     # assessor parcel/assessment number, '20011378'
+  owner1: Owner_Name
+  mail_line1: Owner_Address
+  mail_city_state_zip: Owner_CityStateZipCode   # 'PRAIRIEVILLE LA 70769-0000'
+  situs_line1: [Address_Number, Street_Direction, Street_Name]
+  situs_city: Physical_Address_City
+  situs_state: {const: LA}
+  situs_zip: Physical_Address_Zip_Code
+  land_use_code: ParcelType   # 'RE', 'EX' ...
+value_basis: "Assessed_Value is the assessor's total assessed value (Louisiana assesses residential land and improvements at 10% of fair market value), but the layer has no tax-year or roll-date field, so no tax_year is mapped and no assessment facts are emitted; raw values stay in source records. DeedNumber, SaleDate/SalesPrice and Prior_Owner are not mapped."
+terms:
+  url: https://gis.ascensionparishla.gov/server/rest/services/AssessorData/Assessor_Parcels/MapServer
+  summary: "Ascension Parish Government GIS public MapServer, no login, token or fee. Service iteminfo description, licenseInfo and accessInformation are empty and the layer has no copyright text (read 2026-11-25); no use-constraint text found. gis.ascensionparishla.gov/robots.txt answers HTTP 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

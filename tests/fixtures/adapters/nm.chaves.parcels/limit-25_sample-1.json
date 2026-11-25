@@ -1,0 +1,206 @@
+{
+ "attributes": [
+  {
+   "BK_PG": "BK 341 PG 605 QCD",
+   "Name": "4089100279157000000",
+   "OBJECTID": 2,
+   "OWNER_NAME": "TESTOWNER DFB7EF LLC",
+   "PROP_ADD": null,
+   "ZONE": null
+  },
+  {
+   "BK_PG": "202003036 WD",
+   "Name": "4089101259410000000",
+   "OBJECTID": 3,
+   "OWNER_NAME": "TESTOWNER 237F1E LLC",
+   "PROP_ADD": null,
+   "ZONE": null
+  },
+  {
+   "BK_PG": "202106747 PRD",
+   "Name": "4089103433466000000",
+   "OBJECTID": 4,
+   "OWNER_NAME": "TESTOWNER 187712",
+   "PROP_ADD": null,
+   "ZONE": null
+  },
+  {
+   "BK_PG": "202106747 PRD",
+   "Name": "4089104411029000000",
+   "OBJECTID": 5,
+   "OWNER_NAME": "TESTOWNER 3A7EA2",
+   "PROP_ADD": null,
+   "ZONE": null
+  },
+  {
+   "BK_PG": "BK 81 PG 299 WD",
+   "Name": "4089104476319000000",
+   "OBJECTID": 6,
+   "OWNER_NAME": "TESTOWNER F480F4",
+   "PROP_ADD": null,
+   "ZONE": null
+  },
+  {
+   "BK_PG": "BK 518 Pg 452 WD Bk 730 Pg 60 PRD",
+   "Name": "4089105174306000000",
+   "OBJECTID": 7,
+   "OWNER_NAME": "TESTOWNER 66C030",
+   "PROP_ADD": null,
+   "ZONE": null
+  },
+  {
+   "BK_PG": "BK 805 PG 1703 WD",
+   "Name": "4089109254277000000",
+   "OBJECTID": 8,
+   "OWNER_NAME": "TESTOWNER FE23A7 INC",
+   "PROP_ADD": null,
+   "ZONE": null
+  },
+  {
+   "BK_PG": "BK 805 PG 1703 WD",
+   "Name": "4089111279131000000",
+   "OBJECTID": 9,
+   "OWNER_NAME": "TESTOWNER 6AD8E4 CO",
+   "PROP_ADD": null,
+   "ZONE": null
+  },
+  {
+   "BK_PG": "202003036 WD",
+   "Name": "4089115135007000000",
+   "OBJECTID": 10,
+   "OWNER_NAME": "TESTOWNER 237F1E LLC",
+   "PROP_ADD": null,
+   "ZONE": null
+  },
+  {
+   "BK_PG": "BK 19 PG 397",
+   "Name": "4089115239332000000",
+   "OBJECTID": 11,
+   "OWNER_NAME": "TESTOWNER 36AA06",
+   "PROP_ADD": "TESTOWNER BB274D",
+   "ZONE": null
+  },
+  {
+   "BK_PG": null,
+   "Name": "4090092075439000000",
+   "OBJECTID": 12,
+   "OWNER_NAME": "TESTOWNER BDFAAE",
+   "PROP_ADD": null,
+   "ZONE": null
+  },
+  {
+   "BK_PG": "BK 807 PG 617 WD",
+   "Name": "4090092134649000000",
+   "OBJECTID": 13,
+   "OWNER_NAME": "TESTOWNER 0E97D3",
+   "PROP_ADD": "TESTOWNER D08846",
+   "ZONE": ""
+  },
+  {
+   "BK_PG": "BK 597 PG 297 WD",
+   "Name": "4090092176644000000",
+   "OBJECTID": 14,
+   "OWNER_NAME": "TESTOWNER 4CDFC9",
+   "PROP_ADD": "TESTOWNER 39CFCF",
+   "ZONE": null
+  },
+  {
+   "BK_PG": "BK 819 PG 222 SWD",
+   "Name": "4090092207156000000",
+   "OBJECTID": 15,
+   "OWNER_NAME": "TESTOWNER D1D914 LLC",
+   "PROP_ADD": "TESTOWNER 6F773A",
+   "ZONE": null
+  },
+  {
+   "BK_PG": "Bk 749 Pg 1204 PRD",
+   "Name": "4090092222693000000",
+   "OBJECTID": 16,
+   "OWNER_NAME": "TESTOWNER FFAF3C",
+   "PROP_ADD": null,
+   "ZONE": null
+  },
+  {
+   "BK_PG": "BK 456 PG 1648 QCD",
+   "Name": "4090092244579000000",
+   "OBJECTID": 17,
+   "OWNER_NAME": "TESTOWNER 086887",
+   "PROP_ADD": null,
+   "ZONE": null
+  },
+  {
+   "BK_PG": "202505701 SWD",
+   "Name": "4090092417594000000",
+   "OBJECTID": 18,
+   "OWNER_NAME": "TESTOWNER C9DB7A LLC",
+   "PROP_ADD": "TESTOWNER 2C7714",
+   "ZONE": null
+  },
+  {
+   "BK_PG": "BK 650 PG 388 WDJT",
+   "Name": "4090093111384000000",
+   "OBJECTID": 19,
+   "OWNER_NAME": "TESTOWNER 0FD163",
+   "PROP_ADD": "TESTOWNER 52675B",
+   "ZONE": null
+  },
+  {
+   "BK_PG": "Bk 688 Pg 915 PRD",
+   "Name": "4090093118173000000",
+   "OBJECTID": 20,
+   "OWNER_NAME": "TESTOWNER 5E2A5F",
+   "PROP_ADD": "",
+   "ZONE": ""
+  },
+  {
+   "BK_PG": "Bk 710 Pg 1254 WD",
+   "Name": "4090093118418000000",
+   "OBJECTID": 21,
+   "OWNER_NAME": "TESTOWNER B508F9 LLC",
+   "PROP_ADD": "",
+   "ZONE": ""
+  },
+  {
+   "BK_PG": "Bk 688 Pg 916 PRD",
+   "Name": "4090093122250000000",
+   "OBJECTID": 22,
+   "OWNER_NAME": "TESTOWNER 023306",
+   "PROP_ADD": "TESTOWNER 7412DA",
+   "ZONE": ""
+  },
+  {
+   "BK_PG": "BK 506 PG 133 QCD",
+   "Name": "4090093159152000000",
+   "OBJECTID": 23,
+   "OWNER_NAME": "TESTOWNER 7A84A1",
+   "PROP_ADD": "",
+   "ZONE": null
+  },
+  {
+   "BK_PG": "Bk 688 Pg 913 PRD",
+   "Name": "4090093171140000000",
+   "OBJECTID": 24,
+   "OWNER_NAME": "TESTOWNER 78A237",
+   "PROP_ADD": "TESTOWNER 568C56",
+   "ZONE": ""
+  },
+  {
+   "BK_PG": "BK 246 PG 105",
+   "Name": "4090093371069000000",
+   "OBJECTID": 26,
+   "OWNER_NAME": "TESTOWNER E6FB7A",
+   "PROP_ADD": null,
+   "ZONE": null
+  },
+  {
+   "BK_PG": "BK 341 PG 605 QCD",
+   "Name": "4090095113036000000",
+   "OBJECTID": 27,
+   "OWNER_NAME": "TESTOWNER DFB7EF LLC",
+   "PROP_ADD": "TESTOWNER A002CE",
+   "ZONE": null
+  }
+ ],
+ "layer": "https://services3.arcgis.com/2P9mvTRBkjNHMsaa/arcgis/rest/services/Parcels/FeatureServer/90",
+ "where": "1=1"
+}

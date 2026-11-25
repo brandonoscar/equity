@@ -415,6 +415,7 @@ def test_state_health_respects_paging_mode(tmp_path: Path) -> None:
     [
         ("WASHINGTON DC 20001-1234", ("WASHINGTON", "DC", "20001")),
         ("Saint Paul, mn 55101", ("Saint Paul", "MN", "55101")),
+        ("CHALMETTE LA 70043-    ", ("CHALMETTE", "LA", "70043")),
         ("NOWHERE", (None, None, None)),
     ],
 )

@@ -1,0 +1,191 @@
+{
+ "endpoint": "lobbyists",
+ "page_from": 40,
+ "page_to": 41,
+ "rows": [
+  {
+   "first_name": "TESTOWNER 107BB9",
+   "id": 392,
+   "last_name": "TESTOWNER FE9A7E",
+   "registrant": {
+    "address_1": "4575 TEST ST",
+    "address_2": "4722 TEST ST",
+    "city": "TOLEDO",
+    "contact_name": "TESTOWNER 800565",
+    "country": "US",
+    "dt_updated": "2022-04-06T16:07:28.152782-04:00",
+    "house_registrant_id": 30201,
+    "id": 23703,
+    "name": "TESTOWNER FFAC2D",
+    "ppb_country": "US",
+    "state": "OH",
+    "zip": "43699"
+   }
+  },
+  {
+   "first_name": "TESTOWNER 7D6D9E",
+   "id": 393,
+   "last_name": "TESTOWNER B17034",
+   "registrant": {
+    "address_1": "2554 TEST ST",
+    "address_2": "8307 TEST ST",
+    "city": "Washington",
+    "contact_name": "TESTOWNER 7B76C2",
+    "country": "US",
+    "description": "Law Firm",
+    "dt_updated": "2026-07-30T09:01:35.571012-04:00",
+    "house_registrant_id": 30352,
+    "id": 29846,
+    "name": "TESTOWNER 70D178 LLP",
+    "ppb_country": "US",
+    "state": "DC",
+    "zip": "20005"
+   }
+  },
+  {
+   "first_name": "TESTOWNER 561EDE",
+   "id": 394,
+   "last_name": "TESTOWNER 1605DC",
+   "middle_name": "TESTOWNER F863B7",
+   "registrant": {
+    "address_1": "6470 TEST ST",
+    "city": "WASHINGTON",
+    "country": "US",
+    "dt_updated": "2022-01-13T14:51:32.305676-05:00",
+    "house_registrant_id": 31419,
+    "id": 37460,
+    "name": "TESTOWNER C4A9EA LLP",
+    "ppb_country": "US",
+    "state": "DC"
+   }
+  },
+  {
+   "first_name": "TESTOWNER F71B9A",
+   "id": 395,
+   "last_name": "TESTOWNER C58567",
+   "registrant": {
+    "address_1": "1872 TEST ST",
+    "address_2": "4626 TEST ST",
+    "city": "Washington",
+    "contact_name": "TESTOWNER C30170",
+    "country": "US",
+    "description": "Public policy, government relations and public affairs firm",
+    "dt_updated": "2022-04-06T16:07:38.635383-04:00",
+    "house_registrant_id": 31110,
+    "id": 31680,
+    "name": "TESTOWNER 825A60 INC",
+    "ppb_country": "US",
+    "state": "DC",
+    "zip": "20001"
+   }
+  },
+  {
+   "first_name": "TESTOWNER DC8AC9",
+   "id": 396,
+   "last_name": "TESTOWNER 38F3B0",
+   "registrant": {
+    "address_1": "8343 TEST ST",
+    "city": "WASHINGTON",
+    "country": "US",
+    "description": "6/30/05",
+    "dt_updated": "2022-01-13T14:54:01.499651-05:00",
+    "house_registrant_id": 36133,
+    "id": 77413,
+    "name": "TESTOWNER CBC895",
+    "ppb_country": "US",
+    "state": "DC",
+    "zip": "20005"
+   }
+  },
+  {
+   "first_name": "TESTOWNER CD86F5",
+   "id": 397,
+   "last_name": "TESTOWNER 876512",
+   "registrant": {
+    "address_1": "2118 TEST ST",
+    "city": "NEW YORK",
+    "country": "US",
+    "dt_updated": "2022-01-13T14:53:43.962427-05:00",
+    "house_registrant_id": 35754,
+    "id": 68877,
+    "name": "TESTOWNER 7EC3B7",
+    "ppb_country": "US",
+    "state": "NY",
+    "zip": "10005"
+   }
+  },
+  {
+   "first_name": "TESTOWNER 51E42F",
+   "id": 398,
+   "last_name": "TESTOWNER 585D03",
+   "registrant": {
+    "address_1": "6780 TEST ST",
+    "city": "WASHINGTON",
+    "country": "US",
+    "dt_updated": "2022-01-13T14:53:47.291938-05:00",
+    "house_registrant_id": 35957,
+    "id": 70893,
+    "name": "TESTOWNER 28469C INC",
+    "ppb_country": "US",
+    "state": "DC",
+    "zip": "20004"
+   }
+  },
+  {
+   "first_name": "TESTOWNER EF7893",
+   "id": 399,
+   "last_name": "TESTOWNER F47613",
+   "middle_name": "TESTOWNER D4E5D9",
+   "registrant": {
+    "address_1": "280 TEST ST",
+    "city": "WASHINGTON",
+    "contact_name": "TESTOWNER 5626B6",
+    "country": "US",
+    "description": "Law firm",
+    "dt_updated": "2026-07-30T23:00:42.376033-04:00",
+    "house_registrant_id": 31784,
+    "id": 682,
+    "name": "TESTOWNER A0B0D4",
+    "ppb_country": "US",
+    "state": "DC",
+    "zip": "20006"
+   }
+  },
+  {
+   "first_name": "TESTOWNER DC8AC9",
+   "id": 400,
+   "last_name": "TESTOWNER 765C65",
+   "middle_name": "TESTOWNER E73B09",
+   "registrant": {
+    "address_1": "3629 TEST ST",
+    "city": "WASHINGTON",
+    "country": "US",
+    "dt_updated": "2022-01-13T14:52:40.452993-05:00",
+    "house_registrant_id": 34591,
+    "id": 49373,
+    "name": "TESTOWNER E1C43C",
+    "ppb_country": "US",
+    "state": "DC",
+    "zip": "20004"
+   }
+  },
+  {
+   "first_name": "TESTOWNER 21D507",
+   "id": 401,
+   "last_name": "TESTOWNER 4EE851",
+   "registrant": {
+    "address_1": "7543 TEST ST",
+    "city": "WASHINGTON",
+    "contact_name": "TESTOWNER F205AB",
+    "country": "US",
+    "dt_updated": "2026-07-09T13:18:42.426797-04:00",
+    "house_registrant_id": 32102,
+    "id": 32362,
+    "name": "TESTOWNER AAE4CA",
+    "ppb_country": "US",
+    "state": "DC",
+    "zip": "20009"
+   }
+  }
+ ]
+}

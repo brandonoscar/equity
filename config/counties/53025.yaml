@@ -1,0 +1,33 @@
+source_id: wa.grant.parcels
+state: WA
+# Grant County (WA) ArcGIS Online item 'Parcel' (owner Admin_GrantCoWA), layer Parcel_boundaries
+# (58,565 rows on 2026-11-25, edited 2026-11; prop_val_yr 2026 and file_as_name on every row):
+# parcels joined to the Assessor's roll: owner, owner mailing address, situs address, market
+# values.
+layer_url: https://services2.arcgis.com/hQZvdtFxRzJpMtdS/arcgis/rest/services/Parcel/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "025"}
+use_restrictions: [no_commercial_name_address_lists]
+fields:
+  parcel_id: PARCEL      # '010001001' (geo_id is the same number)
+  owner1: file_as_name
+  mail_line1: addr_line1 # a 'c/o' line on some rows; the street is then in addr_line2
+  mail_line2: addr_line2
+  mail_city: addr_city
+  mail_state: addr_state
+  mail_zip: zip
+  situs_line1: {join: [situs_num, situs_street]}
+  situs_city: situs_city
+  situs_state: {const: WA}
+  land_value: LAND_MKT_VAL
+  total_value: market
+  tax_year: prop_val_yr
+value_basis: "LAND_MKT_VAL / market = the Assessor's market land and total values (Washington assesses at 100% of true and fair value, RCW 84.40.030) for prop_val_yr (2026 on every row on 2026-11-25), mapped as tax_year; the layer does not document whether it is the assessment or the taxes-payable year. The improvement value is not published separately. sl_dt / sl_price (last sale) are not mapped. The OwnerListing table (several owners per parcel) is not read."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=c0eeee697cd74f0a825c0a842d0a878d
+  summary: "Grant County (WA) ArcGIS Online item 'Parcel' (owner Admin_GrantCoWA; 'Updates are usually posted bi-monthly'), public hosted feature service, no login, token or fee. licenseInfo (read 2026-11-25): accuracy disclaimer, 'as is' and for reference only, no warranty, indemnify / hold harmless; no resale or redistribution clause. Washington's Public Records Act, RCW 42.56.070(8), bars agencies from providing lists of individuals for commercial purposes (recorded as no_commercial_name_address_lists, as for the other WA counties). services2.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

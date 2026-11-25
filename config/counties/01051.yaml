@@ -1,0 +1,31 @@
+source_id: al.elmore.parcels
+state: AL
+# Elmore County (AL) tax parcels joined to the CAMA roll (KCS-hosted county public service
+# 'Public_2022', parcel layer 133; 54,699 rows on 2026-11-25, RecordYear 2025/2026; PARCELID
+# filled on 54,141, OwnerName on 52,055): owner names, owner mailing address, property
+# address, deed book/page.
+layer_url: https://web5.kcsgis.com/kcsgis/rest/services/Elmore/Public_2022/MapServer/133
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "051"}
+fields:
+  parcel_id: PARCELID   # '26093000030320000' (ParcelNo '26 09 30 0 003 032.000' is the same id spaced)
+  owner1: OwnerName     # several owners joined with '&' on sampled rows
+  owner2: OwnerName2
+  mail_line1: MailAddress1
+  mail_line2: MailAddress2
+  mail_city: MailCity
+  mail_state: MailState
+  mail_zip: MailZip
+  situs_line1: PropertyAddr1
+  situs_state: {const: AL}
+  deed_book: Book1      # the most recent of two book/page pairs
+  deed_page: Page1
+value_basis: "TotalLandValue / TotalImpValue / TotalValue are present with RecordYear (2025 or 2026), but the layer does not say whether RecordYear is the tax year the values belong to (Alabama lien date is Oct 1), so no values or tax_year are mapped and no assessment facts are emitted. AssessmentClass is not mapped (a tax class, not a land use)."
+terms:
+  url: https://web5.kcsgis.com/kcsgis/rest/services/Elmore/Public_2022/MapServer
+  summary: "Layer 133 'Parcels' of Elmore County's public map service (Elmore/Public_2022), hosted by the county's mapping contractor KCS (web5.kcsgis.com; copyrightText 'KCS'); public, no login, token or fee. No licence, use-constraint or disclaimer text in the service metadata (read 2026-11-25). web5.kcsgis.com/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

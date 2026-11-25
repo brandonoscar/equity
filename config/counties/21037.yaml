@@ -1,0 +1,38 @@
+source_id: ky.campbell.parcels
+state: KY
+# LINK-GIS (Northern Kentucky consortium) public MapServer 'Parcel_QueryOnly', layer 0 'Parcels_CC'
+# (38,055 rows on 2026-11-25, OWNER_NAME_1 filled on 37,989): Campbell County PVA owner, co-owner,
+# mailing address, site address, assessment, last three deeds and last sale.
+# OWNER_ADDRESS_1 is the mailing street; OWNER_ADDRESS_2 holds the literal 'None' on sampled rows
+# (read as empty). BUSINESS_NAME and deeds 2-3 are not mapped.
+layer_url: https://maps.linkgis.org/server/rest/services/Parcel_QueryOnly/MapServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "037"}
+fields:
+  parcel_id: PIDN        # '999-99-18-421.01'
+  owner1: OWNER_NAME_1
+  owner2: OWNER_NAME_2
+  mail_line1: OWNER_ADDRESS_1
+  mail_line2: OWNER_ADDRESS_2
+  mail_city: OWNER_CITY
+  mail_state: OWNER_STATE
+  mail_zip: OWNER_ZIP_CODE
+  situs_line1: [PROPERTY_LOCATION_NUMBER, PROPERTY_LOCATION_STREET, PROPERTY_LOCATION_SUFFIX]
+  situs_state: {const: KY}
+  situs_zip: PROPERTY_LOCATION_ZIP
+  land_use_desc: LAND_USE
+  land_value: LAND_VALUE
+  bldg_value: IMPROVEMENT_VALUE
+  assessed_value: TOTAL_ASSESSMENT
+  tax_year: TAX_YEAR
+  deed_book: DEED_BOOK_1
+  deed_page: DEED_PAGE_1
+value_basis: "LAND_VALUE + IMPROVEMENT_VALUE = TOTAL_ASSESSMENT (checked on sampled rows), the PVA assessment; Kentucky assesses property at its fair cash value (Ky. Const. section 172), so land/improvement are emitted as the value components and TOTAL_ASSESSMENT as assessed value. TAX_YEAR is 2026 on 35,550 rows and 2027 on 2,437 (66 empty, two older); each row keeps its own year. EXEMPTION_AMOUNT / TAXABLE_ASSESSMENT (after homestead or disability exemption) and SALE_PRICE / SALE_DATE are not mapped."
+terms:
+  url: https://linkgis.org/disclaimer/
+  summary: "LINK-GIS public MapServer on maps.linkgis.org, no login, token or fee (LINK-GIS also sells data on order). Service iteminfo licenseInfo empty; the linkgis.org full disclaimer (read 2026-11-25) is a no-warranty / no-liability notice ('By using this website, you agree with these terms') with no resale, redistribution or mailing-list clause. maps.linkgis.org/robots.txt answers HTTP 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,28 @@
+source_id: la.livingston.parcels
+state: LA
+# Livingston Parish Government (ArcGIS Online org LivParishGov) hosted table
+# 'Livingston_Parish_Parcels' (no geometry; 83,119 rows on 2026-11-25, 78,645 with a non-blank
+# Owner_Name; item modified 2026-11-03): assessor owner name, mailing street and 'CITY, ST ZIP',
+# physical address, assessed value, homestead exemption value, last deed book/page and sale.
+layer_url: https://services6.arcgis.com/mSEzdNclc2tW7uJE/arcgis/rest/services/Livingston_Parish_Parcels/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "063"}
+fields:
+  parcel_id: ParcelNumb  # assessment number, '0054841'
+  owner1: Owner_Name
+  mail_line1: Owner_Addr
+  mail_city_state_zip: Owner_City   # 'DENHAM SPRINGS, LA 70726'
+  situs_line1: [Address_Nu, Street_Nam]
+  situs_state: {const: LA}
+  homestead: HomesteadV  # homestead exemption (assessed dollars, e.g. 7500); 0 = none
+  deed_book: Book
+  deed_page: Page
+value_basis: "Assessed_V is the assessor's total assessed value (Louisiana: 10% of fair market value for residential property) and HomesteadV the homestead exemption applied, but the table has no tax-year field, so no tax_year is mapped and no assessment facts are emitted; raw values stay in source records. DeedNumber, SaleDate / SalesPrice, LTCStatus not mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=a579c81e17314605b69abfee454152fb
+  summary: "Livingston Parish Government public hosted table on ArcGIS Online (item owner LivParishGov), no login, token or fee. Item snippet, description, licenseInfo and accessInformation are empty (read 2026-11-25); no use-constraint text found. services6.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

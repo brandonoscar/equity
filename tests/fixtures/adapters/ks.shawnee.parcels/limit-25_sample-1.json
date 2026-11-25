@@ -1,0 +1,231 @@
+{
+ "attributes": [
+  {
+   "OBJECTID": 34550019,
+   "PIN": "1773600001008000",
+   "mailaddress": "290 TEST ST",
+   "mailaddress2": "HARVEYVILLE KS 66431",
+   "oname": "TESTOWNER 85C305",
+   "paddress": "3996 TEST ST",
+   "propertytype": "Residential"
+  },
+  {
+   "OBJECTID": 34550020,
+   "PIN": "1773600001009020",
+   "mailaddress": "1058 TEST ST",
+   "mailaddress2": "HARVEYVILLE KS 66431-9607",
+   "oname": "TESTOWNER 48AE19",
+   "paddress": "8527 TEST ST",
+   "propertytype": "Residential"
+  },
+  {
+   "OBJECTID": 34550021,
+   "PIN": "1893100001008010",
+   "mailaddress": "9065 TEST ST",
+   "mailaddress2": "AUBURN KS 66402",
+   "oname": "TESTOWNER C0EC47",
+   "paddress": "5710 TEST ST",
+   "propertytype": "Residential"
+  },
+  {
+   "OBJECTID": 34550022,
+   "PIN": "1983300001007000",
+   "mailaddress": "8314 TEST ST",
+   "mailaddress2": "MERIDEN KS 66512-8839",
+   "oname": "TESTOWNER 24CF1B",
+   "paddress": "5534 TEST ST",
+   "propertytype": "Exempt"
+  },
+  {
+   "OBJECTID": 34550023,
+   "PIN": "1873600001012000",
+   "mailaddress": "5321 TEST ST",
+   "mailaddress2": "TOPEKA KS 66614",
+   "oname": "TESTOWNER 43FF66",
+   "paddress": "4682 TEST ST",
+   "propertytype": "Residential"
+  },
+  {
+   "OBJECTID": 34550024,
+   "PIN": "1873500001002040",
+   "mailaddress": "4186 TEST ST",
+   "mailaddress2": "WAKARUSA KS 66546-9330",
+   "oname": "TESTOWNER CDC52F",
+   "paddress": "2359 TEST ST",
+   "propertytype": "Residential"
+  },
+  {
+   "OBJECTID": 34550025,
+   "PIN": "1873500001002030",
+   "mailaddress": "9035 TEST ST",
+   "mailaddress2": "WAKARUSA KS 66546",
+   "oname": "TESTOWNER 589A10",
+   "paddress": "8723 TEST ST",
+   "propertytype": "Residential"
+  },
+  {
+   "OBJECTID": 34550026,
+   "PIN": "1883300001011000",
+   "mailaddress": "6326 TEST ST",
+   "mailaddress2": "AUBURN KS 66402-0297",
+   "oname": "TESTOWNER 33A36C",
+   "paddress": "5559 TEST ST",
+   "propertytype": "Agricultural Use"
+  },
+  {
+   "OBJECTID": 34550027,
+   "PIN": "1883300001008010",
+   "mailaddress": "614 TEST ST",
+   "mailaddress2": "AUBURN KS 66402-9614",
+   "oname": "TESTOWNER E82587",
+   "paddress": "5408 TEST ST",
+   "propertytype": "Residential"
+  },
+  {
+   "OBJECTID": 34550028,
+   "PIN": "1883300001009000",
+   "mailaddress": "7858 TEST ST",
+   "mailaddress2": "AUBURN KS 66402",
+   "oname": "TESTOWNER 8E6D44",
+   "paddress": "8758 TEST ST",
+   "propertytype": "Farm Homesite"
+  },
+  {
+   "OBJECTID": 34550029,
+   "PIN": "1883300001010000",
+   "mailaddress": "8031 TEST ST",
+   "mailaddress2": "AUBURN KS 66402-9614",
+   "oname": "TESTOWNER A6A021",
+   "paddress": "2663 TEST ST",
+   "propertytype": "Residential"
+  },
+  {
+   "OBJECTID": 34550030,
+   "PIN": "1773500001002000",
+   "mailaddress": "5003 TEST ST",
+   "mailaddress2": "HARVEYVILLE KS 66431-9609",
+   "oname": "TESTOWNER DBB8E6",
+   "paddress": "1465 TEST ST",
+   "propertytype": "Residential"
+  },
+  {
+   "OBJECTID": 34550031,
+   "PIN": "1773600001006000",
+   "mailaddress": "258 TEST ST",
+   "mailaddress2": "HARVEYVILLE KS 66431",
+   "oname": "TESTOWNER 3B2A1C",
+   "paddress": "1454 TEST ST",
+   "propertytype": "Farm Homesite"
+  },
+  {
+   "OBJECTID": 34550032,
+   "PIN": "1983400002006010",
+   "mailaddress": "2056 TEST ST",
+   "mailaddress2": "TOPEKA KS 66605",
+   "oname": "TESTOWNER B3FBFA",
+   "paddress": "2844 TEST ST",
+   "propertytype": "Residential"
+  },
+  {
+   "OBJECTID": 34550033,
+   "PIN": "1883400001005010",
+   "mailaddress": "910 TEST ST",
+   "mailaddress2": "AUBURN KS 66402",
+   "oname": "TESTOWNER 910D2E",
+   "paddress": "4477 TEST ST",
+   "propertytype": "Residential"
+  },
+  {
+   "OBJECTID": 34550034,
+   "PIN": "1893100001009010",
+   "mailaddress": "2219 TEST ST",
+   "mailaddress2": "AUBURN KS 66402-9618",
+   "oname": "TESTOWNER C8559D",
+   "paddress": "5534 TEST ST",
+   "propertytype": "Agricultural Use"
+  },
+  {
+   "OBJECTID": 34550035,
+   "PIN": "1893200001003000",
+   "mailaddress": "1828 TEST ST",
+   "mailaddress2": "Auburn KS 66402",
+   "oname": "TESTOWNER F33C61",
+   "paddress": "6634 TEST ST",
+   "propertytype": "Agricultural Use"
+  },
+  {
+   "OBJECTID": 34550036,
+   "PIN": "1983400001006010",
+   "mailaddress": "8047 TEST ST",
+   "mailaddress2": "Wakarusa KS 66546-9513",
+   "oname": "TESTOWNER AAD455",
+   "paddress": "8642 TEST ST",
+   "propertytype": "Residential"
+  },
+  {
+   "OBJECTID": 34550037,
+   "PIN": "1983400001006000",
+   "mailaddress": "3522 TEST ST",
+   "mailaddress2": "WAKARUSA KS 66546-9513",
+   "oname": "TESTOWNER 4DB84F",
+   "paddress": "216 TEST ST",
+   "propertytype": "Residential"
+  },
+  {
+   "OBJECTID": 34550038,
+   "PIN": "1883300001006000",
+   "mailaddress": "8208 TEST ST",
+   "mailaddress2": "AUBURN KS 66402-9623",
+   "oname": "TESTOWNER 9318D3",
+   "paddress": "5559 TEST ST",
+   "propertytype": "Agricultural Use"
+  },
+  {
+   "OBJECTID": 34550039,
+   "PIN": "1983400002007000",
+   "mailaddress": "6299 TEST ST",
+   "mailaddress2": "WAKARUSA KS 66546-9611",
+   "oname": "TESTOWNER 5F7EFD",
+   "paddress": "4213 TEST ST",
+   "propertytype": "Residential"
+  },
+  {
+   "OBJECTID": 34550040,
+   "PIN": "1773600001009010",
+   "mailaddress": "6677 TEST ST",
+   "mailaddress2": "HARVEYVILLE KS 66431",
+   "oname": "TESTOWNER B5ADE9",
+   "paddress": "2842 TEST ST",
+   "propertytype": "Residential"
+  },
+  {
+   "OBJECTID": 34550041,
+   "PIN": "1873500001002050",
+   "mailaddress": "4186 TEST ST",
+   "mailaddress2": "WAKARUSA KS 66546-9330",
+   "oname": "TESTOWNER CDC52F",
+   "paddress": "5534 TEST ST",
+   "propertytype": "Agricultural Use"
+  },
+  {
+   "OBJECTID": 34550042,
+   "PIN": "1873500001002060",
+   "mailaddress": "3339 TEST ST",
+   "mailaddress2": "WAKARUSA KS 66546-9329",
+   "oname": "TESTOWNER D302AF",
+   "paddress": "1142 TEST ST",
+   "propertytype": "Farm Homesite"
+  },
+  {
+   "OBJECTID": 34550043,
+   "PIN": "1873500001002000",
+   "mailaddress": "950 TEST ST",
+   "mailaddress2": "WAKARUSA KS 66546",
+   "oname": "TESTOWNER 1E10B9",
+   "paddress": "409 TEST ST",
+   "propertytype": "Farm Homesite"
+  }
+ ],
+ "layer": "https://maps.topeka.gov/arcgis/rest/services/ParcelPublishing/ParcelsWithCAMA/MapServer/0",
+ "where": "1=1"
+}

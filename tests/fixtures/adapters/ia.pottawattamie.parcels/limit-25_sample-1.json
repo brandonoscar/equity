@@ -1,0 +1,256 @@
+{
+ "attributes": [
+  {
+   "ADDRESS": "",
+   "LANDVALUE": 58600.0,
+   "OBJECTID": 1,
+   "OWNER": "TESTOWNER 7CA8A3",
+   "PIN": "743801100003",
+   "PROPCLASS": "A",
+   "TOTALVALUE": 58600.0,
+   "TaxAddress": "3873 TEST ST"
+  },
+  {
+   "ADDRESS": "1995 TEST ST",
+   "LANDVALUE": 45600.0,
+   "OBJECTID": 2,
+   "OWNER": "TESTOWNER 797247",
+   "PIN": "743801100004",
+   "PROPCLASS": "A, AD",
+   "TOTALVALUE": 202200.0,
+   "TaxAddress": "7280 TEST ST"
+  },
+  {
+   "ADDRESS": "",
+   "LANDVALUE": 10100.0,
+   "OBJECTID": 3,
+   "OWNER": "TESTOWNER 563357",
+   "PIN": "743801100005",
+   "PROPCLASS": "A",
+   "TOTALVALUE": 10100.0,
+   "TaxAddress": "6594 TEST ST"
+  },
+  {
+   "ADDRESS": "1843 TEST ST",
+   "LANDVALUE": 37300.0,
+   "OBJECTID": 4,
+   "OWNER": "TESTOWNER A934CC",
+   "PIN": "743801100006",
+   "PROPCLASS": "A, AD",
+   "TOTALVALUE": 387700.0,
+   "TaxAddress": "3382 TEST ST"
+  },
+  {
+   "ADDRESS": "4179 TEST ST",
+   "LANDVALUE": 13400.0,
+   "OBJECTID": 5,
+   "OWNER": "TESTOWNER BA53E9",
+   "PIN": "743801100007",
+   "PROPCLASS": "A, AD",
+   "TOTALVALUE": 279200.0,
+   "TaxAddress": "8556 TEST ST"
+  },
+  {
+   "ADDRESS": "",
+   "LANDVALUE": 43200.0,
+   "OBJECTID": 6,
+   "OWNER": "TESTOWNER 563357",
+   "PIN": "743801200001",
+   "PROPCLASS": "A",
+   "TOTALVALUE": 43200.0,
+   "TaxAddress": "6594 TEST ST"
+  },
+  {
+   "ADDRESS": "",
+   "LANDVALUE": 82300.0,
+   "OBJECTID": 7,
+   "OWNER": "TESTOWNER D35A4A",
+   "PIN": "743801200002",
+   "PROPCLASS": "A",
+   "TOTALVALUE": 82300.0,
+   "TaxAddress": "4146 TEST ST"
+  },
+  {
+   "ADDRESS": "",
+   "LANDVALUE": 26300.0,
+   "OBJECTID": 8,
+   "OWNER": "TESTOWNER 563357",
+   "PIN": "743801200003",
+   "PROPCLASS": "A",
+   "TOTALVALUE": 26300.0,
+   "TaxAddress": "6594 TEST ST"
+  },
+  {
+   "ADDRESS": "",
+   "LANDVALUE": 15700.0,
+   "OBJECTID": 9,
+   "OWNER": "TESTOWNER D35A4A",
+   "PIN": "743801200004",
+   "PROPCLASS": "A",
+   "TOTALVALUE": 15700.0,
+   "TaxAddress": "4146 TEST ST"
+  },
+  {
+   "ADDRESS": "",
+   "LANDVALUE": 8800.0,
+   "OBJECTID": 10,
+   "OWNER": "TESTOWNER D86821 LLC",
+   "PIN": "743801200005",
+   "PROPCLASS": "A",
+   "TOTALVALUE": 8800.0,
+   "TaxAddress": "2715 TEST ST"
+  },
+  {
+   "ADDRESS": "",
+   "LANDVALUE": 2800.0,
+   "OBJECTID": 11,
+   "OWNER": "TESTOWNER D86821 LLC",
+   "PIN": "743801200006",
+   "PROPCLASS": "A",
+   "TOTALVALUE": 2800.0,
+   "TaxAddress": "2715 TEST ST"
+  },
+  {
+   "ADDRESS": "",
+   "LANDVALUE": 127600.0,
+   "OBJECTID": 12,
+   "OWNER": "TESTOWNER D35A4A",
+   "PIN": "743801200008",
+   "PROPCLASS": "A",
+   "TOTALVALUE": 127600.0,
+   "TaxAddress": "4146 TEST ST"
+  },
+  {
+   "ADDRESS": "6598 TEST ST",
+   "LANDVALUE": 25000.0,
+   "OBJECTID": 13,
+   "OWNER": "TESTOWNER 563357",
+   "PIN": "743801200009",
+   "PROPCLASS": "A, AD",
+   "TOTALVALUE": 534300.0,
+   "TaxAddress": "6594 TEST ST"
+  },
+  {
+   "ADDRESS": "",
+   "LANDVALUE": 60400.0,
+   "OBJECTID": 14,
+   "OWNER": "TESTOWNER D86821 LLC",
+   "PIN": "743801200011",
+   "PROPCLASS": "A",
+   "TOTALVALUE": 60400.0,
+   "TaxAddress": "2715 TEST ST"
+  },
+  {
+   "ADDRESS": "",
+   "LANDVALUE": 6600.0,
+   "OBJECTID": 15,
+   "OWNER": "TESTOWNER D86821 LLC",
+   "PIN": "743801200012",
+   "PROPCLASS": "A",
+   "TOTALVALUE": 6600.0,
+   "TaxAddress": "2715 TEST ST"
+  },
+  {
+   "ADDRESS": "6155 TEST ST",
+   "LANDVALUE": 48300.0,
+   "OBJECTID": 16,
+   "OWNER": "TESTOWNER 188B20",
+   "PIN": "743801300001",
+   "PROPCLASS": "A, AD",
+   "TOTALVALUE": 325200.0,
+   "TaxAddress": "5741 TEST ST"
+  },
+  {
+   "ADDRESS": "",
+   "LANDVALUE": 0.0,
+   "OBJECTID": 17,
+   "OWNER": "TESTOWNER AAE26F",
+   "PIN": "743801300002",
+   "PROPCLASS": "C",
+   "TOTALVALUE": 0.0,
+   "TaxAddress": "2139 TEST ST"
+  },
+  {
+   "ADDRESS": "2026 TEST ST",
+   "LANDVALUE": 38200.0,
+   "OBJECTID": 18,
+   "OWNER": "TESTOWNER 6E84F6",
+   "PIN": "743801300003",
+   "PROPCLASS": "A, AD",
+   "TOTALVALUE": 71800.0,
+   "TaxAddress": "3348 TEST ST"
+  },
+  {
+   "ADDRESS": "",
+   "LANDVALUE": 8200.0,
+   "OBJECTID": 19,
+   "OWNER": "TESTOWNER D2AC86",
+   "PIN": "743801300004",
+   "PROPCLASS": "A",
+   "TOTALVALUE": 8200.0,
+   "TaxAddress": "2443 TEST ST"
+  },
+  {
+   "ADDRESS": "",
+   "LANDVALUE": 0.0,
+   "OBJECTID": 20,
+   "OWNER": "TESTOWNER AAE26F",
+   "PIN": "743801300005",
+   "PROPCLASS": "R",
+   "TOTALVALUE": 0.0,
+   "TaxAddress": "5259 TEST ST"
+  },
+  {
+   "ADDRESS": "",
+   "LANDVALUE": 15800.0,
+   "OBJECTID": 21,
+   "OWNER": "TESTOWNER 36DD00",
+   "PIN": "743801300006",
+   "PROPCLASS": "A",
+   "TOTALVALUE": 15800.0,
+   "TaxAddress": "765 TEST ST"
+  },
+  {
+   "ADDRESS": "",
+   "LANDVALUE": 0.0,
+   "OBJECTID": 22,
+   "OWNER": "TESTOWNER 6E84F6",
+   "PIN": "743801300007",
+   "PROPCLASS": "A",
+   "TOTALVALUE": 0.0,
+   "TaxAddress": "3794 TEST ST"
+  },
+  {
+   "ADDRESS": "3927 TEST ST",
+   "LANDVALUE": 76100.0,
+   "OBJECTID": 23,
+   "OWNER": "TESTOWNER 244979 LLC",
+   "PIN": "743801300008",
+   "PROPCLASS": "A, AD",
+   "TOTALVALUE": 436700.0,
+   "TaxAddress": "2812 TEST ST"
+  },
+  {
+   "ADDRESS": "8967 TEST ST",
+   "LANDVALUE": 64900.0,
+   "OBJECTID": 24,
+   "OWNER": "TESTOWNER F114E5",
+   "PIN": "743801400001",
+   "PROPCLASS": "R",
+   "TOTALVALUE": 192600.0,
+   "TaxAddress": "4465 TEST ST"
+  },
+  {
+   "ADDRESS": "",
+   "LANDVALUE": 121300.0,
+   "OBJECTID": 25,
+   "OWNER": "TESTOWNER 47E771",
+   "PIN": "743801400003",
+   "PROPCLASS": "A",
+   "TOTALVALUE": 121300.0,
+   "TaxAddress": "5546 TEST ST"
+  }
+ ],
+ "layer": "https://gis.pottcounty-ia.gov/arcgis/rest/services/PublicDataEnterprise/PublicData_Parcels/FeatureServer/0",
+ "where": "1=1"
+}

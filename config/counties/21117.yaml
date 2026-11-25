@@ -1,0 +1,33 @@
+source_id: ky.kenton.parcels
+state: KY
+# LINK-GIS (Northern Kentucky consortium: Kenton, Campbell, Pendleton) public MapServer
+# 'Parcel_QueryOnly', layer 1 'Parcels_KC_PVA' (64,647 rows on 2026-11-25, OWNER filled on 64,320):
+# Kenton County PVA owner, co-owner, mailing address, site address and land use. No values.
+# OWNER_NAME repeats OWNER and MAIL_ADD repeats MAIL_ADD1 (0 rows differ); OWNERICO (in-care-of)
+# is not mapped.
+layer_url: https://maps.linkgis.org/server/rest/services/Parcel_QueryOnly/MapServer/1
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "117"}
+fields:
+  parcel_id: PIDN        # '032-30-02-070.00'
+  owner1: OWNER
+  owner2: OWNER2
+  mail_line1: MAIL_ADD1
+  mail_line2: MAIL_ADD2  # filled on 147 rows
+  mail_city: MAIL_CITY
+  mail_state: MAIL_STATE
+  mail_zip: MAIL_ZIP
+  situs_line1: ADDRESS   # '53 SYLVAN DR'
+  situs_city: CITY_TEXT
+  situs_state: {const: KY}
+  land_use_code: LANDUSE_CO
+  land_use_desc: LANDUSE_TE
+value_basis: "No value fields in this layer (owner, mailing and site address, land use, subdivision, taxing districts only)."
+terms:
+  url: https://linkgis.org/disclaimer/
+  summary: "LINK-GIS public MapServer on maps.linkgis.org, no login, token or fee (LINK-GIS also sells data on order). Service iteminfo licenseInfo empty; the linkgis.org full disclaimer (read 2026-11-25) is a no-warranty / no-liability notice ('By using this website, you agree with these terms') with no resale, redistribution or mailing-list clause. maps.linkgis.org/robots.txt answers HTTP 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

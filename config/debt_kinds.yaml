@@ -50,6 +50,7 @@ sources:
   tx.tceq.administrative_orders: administrative_order
   pa.dli.bwc_noncompliance: administrative_order
   pa.dli.bllc_noncompliance: administrative_order
+  us.dol.msha_assessed_penalties: administrative_order  # unpaid MSHA civil penalties past due
   # taxes
   ny.dtf.tax_warrants: tax_warrant
   ny.dtf.child_support_warrants: tax_warrant

@@ -1,0 +1,28 @@
+source_id: ia.pottawattamie.parcels
+state: IA
+# Pottawattamie County (Council Bluffs) GIS item 'Parcels (Pottawattamie County, IA)',
+# PublicDataEnterprise/PublicData_Parcels FeatureServer layer 0 (53,889 rows on 2026-11-25, item
+# modified 2026-11-25): owner (deed holder) name, property address and tax-statement mailing address
+# (each one 'LINE, CITY, ST ZIP' string), property class and assessor land/building/dwelling/total
+# values, last deed link.
+layer_url: https://gis.pottcounty-ia.gov/arcgis/rest/services/PublicDataEnterprise/PublicData_Parcels/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "155"}
+fields:
+  parcel_id: PIN         # '754319453006' (TAXPIN equal on sampled rows)
+  owner1: OWNER
+  mail_full: TaxAddress  # '123 MAIN ST, COUNCIL BLUFFS, IA 51501'
+  situs_full: ADDRESS    # same layout; empty on land without an address
+  situs_state: {const: IA}
+  land_use_code: PROPCLASS   # 'R', 'C', 'A' ...
+  land_value: LANDVALUE
+  total_value: TOTALVALUE
+value_basis: "LANDVALUE / TOTALVALUE = assessor land and total (100% actual) value; building value is split into BLDGVALUE and DWELLVALUE (LANDVALUE + BLDGVALUE + DWELLVALUE = TOTALVALUE on sampled rows), so bldg_value is not mapped. The layer has no assessment-year field, so no tax_year is mapped and no assessment facts are emitted; raw values stay in source records. BOOK / PAGE mix recording year + document number ('2015' / '4433') with old book/page pairs, so no deed is mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=05161ee013a84e4784072c8fc0dbe1d9
+  summary: "Pottawattamie County GIS public FeatureServer (item owner PottawattamieGIS, accessInformation 'Pottawattamie County GIS'), no login, token or fee. licenseInfo (read 2026-11-25): users agree to indemnify and hold the county harmless; no accuracy claim; no liability; no resale, redistribution or mailing-list clause. gis.pottcounty-ia.gov/robots.txt redirects (302) to www.pottcounty-ia.gov/departments/gis, which answers HTTP 403 with a Cloudflare challenge page (RFC 9309: 4xx = no rules, allowed); the REST service itself answers queries without a challenge."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

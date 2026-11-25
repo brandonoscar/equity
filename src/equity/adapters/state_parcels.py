@@ -80,7 +80,8 @@ _FULL = re.compile(
 )
 
 
-_CSZ = re.compile(r"^(?P<city>.+?)[,\s]+(?P<st>[A-Za-z]{2})\s+(?P<zip>\d{5})(?:-?\d{4})?\s*$")
+# A ZIP+4 slot left empty ('70043-', St. Bernard Parish) still ends the ZIP.
+_CSZ = re.compile(r"^(?P<city>.+?)[,\s]+(?P<st>[A-Za-z]{2})\s+(?P<zip>\d{5})(?:-?\d{4}|-)?\s*$")
 
 
 def parse_city_state_zip(text: str) -> tuple[str | None, str | None, str | None]:

@@ -1,0 +1,206 @@
+{
+ "attributes": [
+  {
+   "OBJECTID": 369992,
+   "PROP_ID": 100008,
+   "land_state_cd": "F1",
+   "land_type_desc": "COMMERCIAL IMPROVED",
+   "py_address": "4262 TEST ST",
+   "py_owner_name": "TESTOWNER 2320E2 LLC"
+  },
+  {
+   "OBJECTID": 369993,
+   "PROP_ID": 100012,
+   "land_state_cd": "B1",
+   "land_type_desc": "MULTIFAMILY",
+   "py_address": "7670 TEST ST",
+   "py_owner_name": "TESTOWNER D99270 LLC"
+  },
+  {
+   "OBJECTID": 369994,
+   "PROP_ID": 100015,
+   "land_state_cd": "F1",
+   "land_type_desc": "COMMERCIAL IMPROVED",
+   "py_address": "1868 TEST ST",
+   "py_owner_name": "TESTOWNER 5309D5 LTD"
+  },
+  {
+   "OBJECTID": 369995,
+   "PROP_ID": 100018,
+   "land_state_cd": "F1",
+   "land_type_desc": "COMMERCIAL IMPROVED",
+   "py_address": "2128 TEST ST",
+   "py_owner_name": "TESTOWNER D2F2AB INC"
+  },
+  {
+   "OBJECTID": 369996,
+   "PROP_ID": 100020,
+   "land_state_cd": "F1",
+   "land_type_desc": "COMMERCIAL IMPROVED",
+   "py_address": "6532 TEST ST",
+   "py_owner_name": "TESTOWNER 07BC74"
+  },
+  {
+   "OBJECTID": 369997,
+   "PROP_ID": 100022,
+   "land_state_cd": "F5",
+   "land_type_desc": "COMMERCIAL RES CONVERSION",
+   "py_address": "2218 TEST ST",
+   "py_owner_name": "TESTOWNER 9725EA LTD"
+  },
+  {
+   "OBJECTID": 369998,
+   "PROP_ID": 100023,
+   "land_state_cd": "C1",
+   "land_type_desc": "VACANT LOT",
+   "py_address": "2218 TEST ST",
+   "py_owner_name": "TESTOWNER 9725EA LTD"
+  },
+  {
+   "OBJECTID": 369999,
+   "PROP_ID": 100024,
+   "land_state_cd": "F1",
+   "land_type_desc": "COMMERCIAL IMPROVED",
+   "py_address": "2218 TEST ST",
+   "py_owner_name": "TESTOWNER 9725EA LTD"
+  },
+  {
+   "OBJECTID": 370000,
+   "PROP_ID": 100025,
+   "land_state_cd": "C1",
+   "land_type_desc": "VACANT LOT",
+   "py_address": "2218 TEST ST",
+   "py_owner_name": "TESTOWNER 9725EA LTD"
+  },
+  {
+   "OBJECTID": 370001,
+   "PROP_ID": 100026,
+   "land_state_cd": "A1",
+   "land_type_desc": "SINGLE FAMILY RESIDENCE",
+   "py_address": "6220 TEST ST",
+   "py_owner_name": "TESTOWNER A32D65"
+  },
+  {
+   "OBJECTID": 370002,
+   "PROP_ID": 100027,
+   "land_state_cd": "A1",
+   "land_type_desc": "SINGLE FAMILY RESIDENCE",
+   "py_address": "8763 TEST ST",
+   "py_owner_name": "TESTOWNER FC10B2"
+  },
+  {
+   "OBJECTID": 370003,
+   "PROP_ID": 100028,
+   "land_state_cd": "F1",
+   "land_type_desc": "COMMERCIAL IMPROVED",
+   "py_address": "7214 TEST ST",
+   "py_owner_name": "TESTOWNER 05D083 LLC"
+  },
+  {
+   "OBJECTID": 370004,
+   "PROP_ID": 100029,
+   "land_state_cd": "F1",
+   "land_type_desc": "COMMERCIAL IMPROVED",
+   "py_address": "996 TEST ST",
+   "py_owner_name": "TESTOWNER EA2B17 LLC"
+  },
+  {
+   "OBJECTID": 370005,
+   "PROP_ID": 100030,
+   "land_state_cd": "B1",
+   "land_type_desc": "MULTIFAMILY",
+   "py_address": "4106 TEST ST",
+   "py_owner_name": "TESTOWNER 921FBF LLC"
+  },
+  {
+   "OBJECTID": 370006,
+   "PROP_ID": 100033,
+   "land_state_cd": "F1",
+   "land_type_desc": "COMMERCIAL IMPROVED",
+   "py_address": "6155 TEST ST",
+   "py_owner_name": "TESTOWNER 803B43"
+  },
+  {
+   "OBJECTID": 370007,
+   "PROP_ID": 100036,
+   "land_state_cd": "C1",
+   "land_type_desc": "VACANT LOT",
+   "py_address": "6155 TEST ST",
+   "py_owner_name": "TESTOWNER 803B43"
+  },
+  {
+   "OBJECTID": 370008,
+   "PROP_ID": 100037,
+   "land_state_cd": "A1",
+   "land_type_desc": "SINGLE FAMILY RESIDENCE",
+   "py_address": "1185 TEST ST",
+   "py_owner_name": "TESTOWNER 564117"
+  },
+  {
+   "OBJECTID": 370009,
+   "PROP_ID": 100038,
+   "land_state_cd": "A1",
+   "land_type_desc": "SINGLE FAMILY RESIDENCE",
+   "py_address": "4425 TEST ST",
+   "py_owner_name": "TESTOWNER 8F6951"
+  },
+  {
+   "OBJECTID": 370010,
+   "PROP_ID": 100039,
+   "land_state_cd": "A1",
+   "land_type_desc": "SINGLE FAMILY RESIDENCE",
+   "py_address": "7764 TEST ST",
+   "py_owner_name": "TESTOWNER 1926C1"
+  },
+  {
+   "OBJECTID": 370011,
+   "PROP_ID": 100040,
+   "land_state_cd": "A1",
+   "land_type_desc": "SINGLE FAMILY RESIDENCE",
+   "py_address": "5565 TEST ST",
+   "py_owner_name": "TESTOWNER F894A1"
+  },
+  {
+   "OBJECTID": 370012,
+   "PROP_ID": 100041,
+   "land_state_cd": "A1",
+   "land_type_desc": "SINGLE FAMILY RESIDENCE",
+   "py_address": "1190 TEST ST",
+   "py_owner_name": "TESTOWNER C7565B"
+  },
+  {
+   "OBJECTID": 370013,
+   "PROP_ID": 100042,
+   "land_state_cd": "A1",
+   "land_type_desc": "SINGLE FAMILY RESIDENCE",
+   "py_address": "7293 TEST ST",
+   "py_owner_name": "TESTOWNER 09A6E8"
+  },
+  {
+   "OBJECTID": 370014,
+   "PROP_ID": 100044,
+   "land_state_cd": "A1",
+   "land_type_desc": "SINGLE FAMILY RESIDENCE",
+   "py_address": "2039 TEST ST",
+   "py_owner_name": "TESTOWNER B79BB6"
+  },
+  {
+   "OBJECTID": 370015,
+   "PROP_ID": 100045,
+   "land_state_cd": "A1",
+   "land_type_desc": "SINGLE FAMILY RESIDENCE",
+   "py_address": "4259 TEST ST",
+   "py_owner_name": "TESTOWNER E8584F"
+  },
+  {
+   "OBJECTID": 370016,
+   "PROP_ID": 100046,
+   "land_state_cd": "A1",
+   "land_type_desc": "SINGLE FAMILY RESIDENCE",
+   "py_address": "2222 TEST ST",
+   "py_owner_name": "TESTOWNER 7C16FB"
+  }
+ ],
+ "layer": "https://taxmaps.traviscountytx.gov/arcgis/rest/services/Parcels/MapServer/0",
+ "where": "1=1"
+}

@@ -1,0 +1,256 @@
+{
+ "attributes": [
+  {
+   "CITY": "ATHENS              ",
+   "OBJECTID": 2,
+   "OWNER_ADD": "TESTOWNER 3C554E",
+   "OWNER_NAME": "TESTOWNER E4E07C",
+   "PARCEL_NO": "252A1 A005",
+   "PAR_ADD": "TESTOWNER 119763",
+   "STATE": "GA",
+   "ZIP": "30605     "
+  },
+  {
+   "CITY": "ATHENS              ",
+   "OBJECTID": 3,
+   "OWNER_ADD": "TESTOWNER BA9850",
+   "OWNER_NAME": "TESTOWNER A5BF83",
+   "PARCEL_NO": "311    022",
+   "PAR_ADD": "TESTOWNER C81BA4",
+   "STATE": "GA",
+   "ZIP": "30605     "
+  },
+  {
+   "CITY": "ATHENS              ",
+   "OBJECTID": 4,
+   "OWNER_ADD": "TESTOWNER E5F836",
+   "OWNER_NAME": "TESTOWNER 973619",
+   "PARCEL_NO": "251C1 A007",
+   "PAR_ADD": "TESTOWNER 5AD645",
+   "STATE": "GA",
+   "ZIP": "30605     "
+  },
+  {
+   "CITY": "ATHENS              ",
+   "OBJECTID": 5,
+   "OWNER_ADD": "TESTOWNER E17073",
+   "OWNER_NAME": "TESTOWNER E2E907",
+   "PARCEL_NO": "252A1 A003",
+   "PAR_ADD": "TESTOWNER D2CB3D",
+   "STATE": "GA",
+   "ZIP": "30605     "
+  },
+  {
+   "CITY": "ATHENS              ",
+   "OBJECTID": 6,
+   "OWNER_ADD": "TESTOWNER DA6F44",
+   "OWNER_NAME": "TESTOWNER DB1251",
+   "PARCEL_NO": "252A1 A028",
+   "PAR_ADD": "TESTOWNER 064A43",
+   "STATE": "GA",
+   "ZIP": "30605     "
+  },
+  {
+   "CITY": "ATHENS              ",
+   "OBJECTID": 7,
+   "OWNER_ADD": "TESTOWNER AD0DA4",
+   "OWNER_NAME": "TESTOWNER 780891",
+   "PARCEL_NO": "251C1 A008",
+   "PAR_ADD": "TESTOWNER 4BD472",
+   "STATE": "GA",
+   "ZIP": "30605     "
+  },
+  {
+   "CITY": "ATHENS              ",
+   "OBJECTID": 8,
+   "OWNER_ADD": "TESTOWNER 91E75C",
+   "OWNER_NAME": "TESTOWNER 569A18",
+   "PARCEL_NO": "251    026",
+   "PAR_ADD": "TESTOWNER A04CD7",
+   "STATE": "GA",
+   "ZIP": "30605     "
+  },
+  {
+   "CITY": "ATHENS              ",
+   "OBJECTID": 9,
+   "OWNER_ADD": "TESTOWNER AFB267",
+   "OWNER_NAME": "TESTOWNER 9B35E0",
+   "PARCEL_NO": "303D3 A005",
+   "PAR_ADD": "TESTOWNER D88590",
+   "STATE": "GA",
+   "ZIP": "30605     "
+  },
+  {
+   "CITY": "ATHENS              ",
+   "OBJECTID": 10,
+   "OWNER_ADD": "TESTOWNER BE8DE9",
+   "OWNER_NAME": "TESTOWNER 3170EA",
+   "PARCEL_NO": "251    040",
+   "PAR_ADD": "TESTOWNER 2BD4E9",
+   "STATE": "GA",
+   "ZIP": "30605     "
+  },
+  {
+   "CITY": "ATHENS              ",
+   "OBJECTID": 11,
+   "OWNER_ADD": "TESTOWNER 76C56B",
+   "OWNER_NAME": "TESTOWNER 1C750D",
+   "PARCEL_NO": "251C1 A001",
+   "PAR_ADD": "TESTOWNER 190302",
+   "STATE": "GA",
+   "ZIP": "30605     "
+  },
+  {
+   "CITY": "ATHENS              ",
+   "OBJECTID": 12,
+   "OWNER_ADD": "TESTOWNER 10454C",
+   "OWNER_NAME": "TESTOWNER AE8FD8",
+   "PARCEL_NO": "252A1 A042",
+   "PAR_ADD": "TESTOWNER 21E766",
+   "STATE": "GA",
+   "ZIP": "30605     "
+  },
+  {
+   "CITY": "ATHENS              ",
+   "OBJECTID": 13,
+   "OWNER_ADD": "TESTOWNER EF6AB1",
+   "OWNER_NAME": "TESTOWNER 15E1AF",
+   "PARCEL_NO": "251    024B",
+   "PAR_ADD": "TESTOWNER BFD48B",
+   "STATE": "GA",
+   "ZIP": "30605     "
+  },
+  {
+   "CITY": "ARNOLDSVILLE        ",
+   "OBJECTID": 14,
+   "OWNER_ADD": "TESTOWNER 6FE44E",
+   "OWNER_NAME": "TESTOWNER 45EBD4",
+   "PARCEL_NO": "251    033C",
+   "PAR_ADD": "TESTOWNER 4184C5",
+   "STATE": "GA",
+   "ZIP": "30619     "
+  },
+  {
+   "CITY": "ATHENS              ",
+   "OBJECTID": 15,
+   "OWNER_ADD": "TESTOWNER 904332",
+   "OWNER_NAME": "TESTOWNER ED4BAE",
+   "PARCEL_NO": "251    039",
+   "PAR_ADD": "TESTOWNER FAD522",
+   "STATE": "GA",
+   "ZIP": "30605     "
+  },
+  {
+   "CITY": "ATHENS              ",
+   "OBJECTID": 16,
+   "OWNER_ADD": "TESTOWNER 87CBE2",
+   "OWNER_NAME": "TESTOWNER 521F88",
+   "PARCEL_NO": "251    034",
+   "PAR_ADD": "TESTOWNER 0230D7",
+   "STATE": "GA",
+   "ZIP": "30605     "
+  },
+  {
+   "CITY": "ATHENS              ",
+   "OBJECTID": 17,
+   "OWNER_ADD": "TESTOWNER 5D73FF",
+   "OWNER_NAME": "TESTOWNER 0E2B32",
+   "PARCEL_NO": "251    043",
+   "PAR_ADD": "TESTOWNER 17B6B2",
+   "STATE": "GA",
+   "ZIP": "30605     "
+  },
+  {
+   "CITY": "ATHENS              ",
+   "OBJECTID": 18,
+   "OWNER_ADD": "TESTOWNER AD2BF8",
+   "OWNER_NAME": "TESTOWNER 62B433",
+   "PARCEL_NO": "252A1 D009",
+   "PAR_ADD": "TESTOWNER 72EC81",
+   "STATE": "GA",
+   "ZIP": "30605     "
+  },
+  {
+   "CITY": "ATHENS              ",
+   "OBJECTID": 19,
+   "OWNER_ADD": "TESTOWNER 5AE051",
+   "OWNER_NAME": "TESTOWNER 995EC0",
+   "PARCEL_NO": "252A1 D002",
+   "PAR_ADD": "TESTOWNER 8EFA04",
+   "STATE": "GA",
+   "ZIP": "30605     "
+  },
+  {
+   "CITY": "ATHENS              ",
+   "OBJECTID": 20,
+   "OWNER_ADD": "TESTOWNER C86AAE",
+   "OWNER_NAME": "TESTOWNER 6C17A8",
+   "PARCEL_NO": "252A1 B006",
+   "PAR_ADD": "TESTOWNER F2A642",
+   "STATE": "GA",
+   "ZIP": "30605     "
+  },
+  {
+   "CITY": "ATHENS              ",
+   "OBJECTID": 21,
+   "OWNER_ADD": "TESTOWNER 7941DB",
+   "OWNER_NAME": "TESTOWNER 369964",
+   "PARCEL_NO": "244C5 A014",
+   "PAR_ADD": "TESTOWNER A4F425",
+   "STATE": "GA",
+   "ZIP": "30605     "
+  },
+  {
+   "CITY": "ATHENS              ",
+   "OBJECTID": 22,
+   "OWNER_ADD": "TESTOWNER 837C4B",
+   "OWNER_NAME": "TESTOWNER 568015",
+   "PARCEL_NO": "244C5 A017",
+   "PAR_ADD": "TESTOWNER 94B1AA",
+   "STATE": "GA",
+   "ZIP": "30605     "
+  },
+  {
+   "CITY": "PROSPECT HEIGHTS    ",
+   "OBJECTID": 23,
+   "OWNER_ADD": "TESTOWNER 441576",
+   "OWNER_NAME": "TESTOWNER E42D28",
+   "PARCEL_NO": "303D2 B014",
+   "PAR_ADD": "TESTOWNER 5040F5",
+   "STATE": "IL",
+   "ZIP": "60070     "
+  },
+  {
+   "CITY": "ATHENS              ",
+   "OBJECTID": 24,
+   "OWNER_ADD": "TESTOWNER 995E9C",
+   "OWNER_NAME": "TESTOWNER 2C5545",
+   "PARCEL_NO": "252A1 E036",
+   "PAR_ADD": "TESTOWNER A7E581",
+   "STATE": "GA",
+   "ZIP": "30605     "
+  },
+  {
+   "CITY": "ATHENS              ",
+   "OBJECTID": 25,
+   "OWNER_ADD": "TESTOWNER CF6D9B",
+   "OWNER_NAME": "TESTOWNER A17DDB",
+   "PARCEL_NO": "244C5 A010",
+   "PAR_ADD": "TESTOWNER B9EB14",
+   "STATE": "GA",
+   "ZIP": "30605     "
+  },
+  {
+   "CITY": "ATHENS              ",
+   "OBJECTID": 26,
+   "OWNER_ADD": "TESTOWNER BAC564",
+   "OWNER_NAME": "TESTOWNER 65A130",
+   "PARCEL_NO": "251    037",
+   "PAR_ADD": "TESTOWNER 86E003",
+   "STATE": "GA",
+   "ZIP": "30601     "
+  }
+ ],
+ "layer": "https://enigma.accgov.com/server/rest/services/ACC_Parcels/FeatureServer/0",
+ "where": "(OWNER_NAME IS NULL OR OWNER_NAME <> 'REDACTED') AND (1=1)"
+}

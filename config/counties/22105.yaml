@@ -1,0 +1,33 @@
+source_id: la.tangipahoa.parcels
+state: LA
+# Tangipahoa Parish GIS (TanGIS) 'Cadastral/TaxParcelAssessment_A' MapServer layer 0 'Tax Parcels and
+# Assessments' (76,254 rows on 2026-11-25, taxpayer_name filled on 75,307): assessor taxpayer name,
+# care-of contact, mailing lines with a final 'CITY ST ZIP' line, physical address, last conveyance
+# book/folio. One row per assessment; a parcel with several assessments has several rows.
+# contact_name (care-of) and primary_owner are not mapped; the literal string 'None' fills empty
+# address lines (read as empty).
+layer_url: https://tangis.tangipahoa.org/server/rest/services/Cadastral/TaxParcelAssessment_A/MapServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "105"}
+filter: "ASSESSMENT_NO > 0"   # 828 polygons carry no assessment (null or 0); 75,426 rows remain
+fields:
+  parcel_id: ASSESSMENT_NO   # '3661504'; parcel_no ('24T6R60000016') can repeat across assessments
+  owner1: taxpayer_name
+  mail_line1: taxpayer_addr1
+  mail_line2: taxpayer_addr2
+  mail_city_state_zip: taxpayer_addr3   # 'HAMMOND LA 70401'
+  situs_line1: par_address
+  situs_city: PHYSICAL_PSTLCITY
+  situs_state: {const: LA}
+  situs_zip: PHYSICAL_PSTLZIP5
+  deed_book: conv_book
+  deed_page: conv_folio
+value_basis: "The layer has no value fields (tax_year reads 2027 and assess_date 2020-07-29 on sampled rows; neither is mapped). purchase_price / transfer_date, instru_no and lender_id are not mapped."
+terms:
+  url: https://tangis.tangipahoa.org/server/rest/services/Cadastral/TaxParcelAssessment_A/MapServer
+  summary: "Tangipahoa Parish GIS (TanGIS) public ArcGIS Server MapServer, no login, token or fee; iteminfo: 'Tax Parcel Assessment is a polygon feature class displaying the legal boundaries of tax parcels and the assessment information within Tangipahoa Parish.' No licenseInfo or use-constraint text on the service (read 2026-11-25). tangis.tangipahoa.org/robots.txt answers HTTP 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

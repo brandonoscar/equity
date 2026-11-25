@@ -1,0 +1,281 @@
+{
+ "attributes": [
+  {
+   "Mailing_Address_1": "1733 TEST ST",
+   "Mailing_Address_2": "                                        ",
+   "Mailing_City": "SANDY SPRINGS       ",
+   "Mailing_State": "GA",
+   "Mailing_Zip": "30327     ",
+   "OBJECTID": 78297602,
+   "Owner1": "TESTOWNER 8F8505 LLC",
+   "Owner2": "                                        ",
+   "PARCELID": "0002-0059-001"
+  },
+  {
+   "Mailing_Address_1": "1733 TEST ST",
+   "Mailing_Address_2": "                                        ",
+   "Mailing_City": "SANDY SPRINGS       ",
+   "Mailing_State": "GA",
+   "Mailing_Zip": "30327     ",
+   "OBJECTID": 78297603,
+   "Owner1": "TESTOWNER 8F8505 LLC",
+   "Owner2": "                                        ",
+   "PARCELID": "0002-0059-001"
+  },
+  {
+   "Mailing_Address_1": "1733 TEST ST",
+   "Mailing_Address_2": "                                        ",
+   "Mailing_City": "SANDY SPRINGS       ",
+   "Mailing_State": "GA",
+   "Mailing_Zip": "30327     ",
+   "OBJECTID": 78297604,
+   "Owner1": "TESTOWNER 8F8505 LLC",
+   "Owner2": "                                        ",
+   "PARCELID": "0002-0059-001"
+  },
+  {
+   "Mailing_Address_1": "4434 TEST ST",
+   "Mailing_Address_2": "                                        ",
+   "Mailing_City": "ADAIRSVILLE         ",
+   "Mailing_State": "GA",
+   "Mailing_Zip": "30103     ",
+   "OBJECTID": 78297605,
+   "Owner1": "TESTOWNER 8B2BF7",
+   "Owner2": "                                        ",
+   "PARCELID": "0002-0059-002"
+  },
+  {
+   "Mailing_Address_1": "8570 TEST ST",
+   "Mailing_Address_2": "                                        ",
+   "Mailing_City": "CHATTANOOGA         ",
+   "Mailing_State": "TN",
+   "Mailing_Zip": "37415     ",
+   "OBJECTID": 78297606,
+   "Owner1": "TESTOWNER 33BE00",
+   "Owner2": "TESTOWNER 109CC4",
+   "PARCELID": "0002-0059-003"
+  },
+  {
+   "Mailing_Address_1": "897 TEST ST",
+   "Mailing_Address_2": "                                        ",
+   "Mailing_City": "KINGSTON            ",
+   "Mailing_State": "GA",
+   "Mailing_Zip": "30145     ",
+   "OBJECTID": 78297607,
+   "Owner1": "TESTOWNER 6C635C",
+   "Owner2": "                                        ",
+   "PARCELID": "0002-0059-004"
+  },
+  {
+   "Mailing_Address_1": "3832 TEST ST",
+   "Mailing_Address_2": "7901 TEST ST",
+   "Mailing_City": "Not Disclosed",
+   "Mailing_State": null,
+   "Mailing_Zip": null,
+   "OBJECTID": 78297608,
+   "Owner1": "TESTOWNER 7B905B",
+   "Owner2": "TESTOWNER B3F186",
+   "PARCELID": "0002-0059-005"
+  },
+  {
+   "Mailing_Address_1": "2327 TEST ST",
+   "Mailing_Address_2": "                                        ",
+   "Mailing_City": "KINGSTON            ",
+   "Mailing_State": "GA",
+   "Mailing_Zip": "30145     ",
+   "OBJECTID": 78297609,
+   "Owner1": "TESTOWNER 419925",
+   "Owner2": "                                        ",
+   "PARCELID": "0002-0059-006"
+  },
+  {
+   "Mailing_Address_1": "6237 TEST ST",
+   "Mailing_Address_2": "                                        ",
+   "Mailing_City": "KINGSTON            ",
+   "Mailing_State": "GA",
+   "Mailing_Zip": "30145     ",
+   "OBJECTID": 78297610,
+   "Owner1": "TESTOWNER 9138D7",
+   "Owner2": "TESTOWNER E733A1",
+   "PARCELID": "0002-0059-007"
+  },
+  {
+   "Mailing_Address_1": "3318 TEST ST",
+   "Mailing_Address_2": "                                        ",
+   "Mailing_City": "KINGSTON            ",
+   "Mailing_State": "GA",
+   "Mailing_Zip": "30145     ",
+   "OBJECTID": 78297611,
+   "Owner1": "TESTOWNER 228085",
+   "Owner2": "TESTOWNER 75A396",
+   "PARCELID": "0002-0059-009"
+  },
+  {
+   "Mailing_Address_1": "2059 TEST ST",
+   "Mailing_Address_2": "                                        ",
+   "Mailing_City": "WHITE               ",
+   "Mailing_State": "GA",
+   "Mailing_Zip": "30184     ",
+   "OBJECTID": 78297612,
+   "Owner1": "TESTOWNER 645AC5",
+   "Owner2": "                                        ",
+   "PARCELID": "0002-0059-010"
+  },
+  {
+   "Mailing_Address_1": "2215 TEST ST",
+   "Mailing_Address_2": "                                        ",
+   "Mailing_City": "KINGSTON            ",
+   "Mailing_State": "GA",
+   "Mailing_Zip": "30145     ",
+   "OBJECTID": 78297613,
+   "Owner1": "TESTOWNER 645AC5",
+   "Owner2": "                                        ",
+   "PARCELID": "0002-0059-011"
+  },
+  {
+   "Mailing_Address_1": "2215 TEST ST",
+   "Mailing_Address_2": "                                        ",
+   "Mailing_City": "KINGSTON            ",
+   "Mailing_State": "GA",
+   "Mailing_Zip": "30145     ",
+   "OBJECTID": 78297614,
+   "Owner1": "TESTOWNER 645AC5",
+   "Owner2": "                                        ",
+   "PARCELID": "0002-0059-011"
+  },
+  {
+   "Mailing_Address_1": "997 TEST ST",
+   "Mailing_Address_2": "                                        ",
+   "Mailing_City": "KINGSTON            ",
+   "Mailing_State": "GA",
+   "Mailing_Zip": "301451336 ",
+   "OBJECTID": 78297615,
+   "Owner1": "TESTOWNER 488550",
+   "Owner2": "                                        ",
+   "PARCELID": "0002-0059-012"
+  },
+  {
+   "Mailing_Address_1": "7544 TEST ST",
+   "Mailing_Address_2": "                                        ",
+   "Mailing_City": "KINGSTON            ",
+   "Mailing_State": "GA",
+   "Mailing_Zip": "30145     ",
+   "OBJECTID": 78297616,
+   "Owner1": "TESTOWNER 0EEBE6",
+   "Owner2": "                                        ",
+   "PARCELID": "0002-0059-013"
+  },
+  {
+   "Mailing_Address_1": "3318 TEST ST",
+   "Mailing_Address_2": "                                        ",
+   "Mailing_City": "KINGSTON            ",
+   "Mailing_State": "GA",
+   "Mailing_Zip": "30145     ",
+   "OBJECTID": 78297617,
+   "Owner1": "TESTOWNER 228085",
+   "Owner2": "TESTOWNER 75A396",
+   "PARCELID": "0002-0059-014"
+  },
+  {
+   "Mailing_Address_1": "4793 TEST ST",
+   "Mailing_Address_2": "                                        ",
+   "Mailing_City": "KINGSTON            ",
+   "Mailing_State": "GA",
+   "Mailing_Zip": "30145     ",
+   "OBJECTID": 78297618,
+   "Owner1": "TESTOWNER 3A5FEF",
+   "Owner2": "TESTOWNER 6BEE82",
+   "PARCELID": "0002-0062-001"
+  },
+  {
+   "Mailing_Address_1": "8027 TEST ST",
+   "Mailing_Address_2": "                                        ",
+   "Mailing_City": "KINGSTON            ",
+   "Mailing_State": "GA",
+   "Mailing_Zip": "30145     ",
+   "OBJECTID": 78297619,
+   "Owner1": "TESTOWNER 6B72C1",
+   "Owner2": "                                        ",
+   "PARCELID": "0002-0062-002"
+  },
+  {
+   "Mailing_Address_1": "3898 TEST ST",
+   "Mailing_Address_2": "                                        ",
+   "Mailing_City": "KINGSTON            ",
+   "Mailing_State": "GA",
+   "Mailing_Zip": "30145     ",
+   "OBJECTID": 78297620,
+   "Owner1": "TESTOWNER 5B3EBC",
+   "Owner2": "TESTOWNER 5FE056",
+   "PARCELID": "0002-0062-003"
+  },
+  {
+   "Mailing_Address_1": "3898 TEST ST",
+   "Mailing_Address_2": "                                        ",
+   "Mailing_City": "KINGSTON            ",
+   "Mailing_State": "GA",
+   "Mailing_Zip": "30145     ",
+   "OBJECTID": 78297621,
+   "Owner1": "TESTOWNER 5B3EBC",
+   "Owner2": "TESTOWNER 5FE056",
+   "PARCELID": "0002-0062-003"
+  },
+  {
+   "Mailing_Address_1": "1147 TEST ST",
+   "Mailing_Address_2": "                                        ",
+   "Mailing_City": "KINGSTON            ",
+   "Mailing_State": "GA",
+   "Mailing_Zip": "30145     ",
+   "OBJECTID": 78297622,
+   "Owner1": "TESTOWNER 0247BB",
+   "Owner2": "                                        ",
+   "PARCELID": "0002-0062-004"
+  },
+  {
+   "Mailing_Address_1": "3384 TEST ST",
+   "Mailing_Address_2": "                                        ",
+   "Mailing_City": "KINGSTON            ",
+   "Mailing_State": "GA",
+   "Mailing_Zip": "30145     ",
+   "OBJECTID": 78297623,
+   "Owner1": "TESTOWNER E6C1ED",
+   "Owner2": "                                        ",
+   "PARCELID": "0002-0062-005"
+  },
+  {
+   "Mailing_Address_1": "6409 TEST ST",
+   "Mailing_Address_2": "                                        ",
+   "Mailing_City": "KINGSTON            ",
+   "Mailing_State": "GA",
+   "Mailing_Zip": "30145     ",
+   "OBJECTID": 78297624,
+   "Owner1": "TESTOWNER AB507B",
+   "Owner2": "TESTOWNER 22BB45",
+   "PARCELID": "0002-0062-006"
+  },
+  {
+   "Mailing_Address_1": "5784 TEST ST",
+   "Mailing_Address_2": "                                        ",
+   "Mailing_City": "KINGSTON            ",
+   "Mailing_State": "GA",
+   "Mailing_Zip": "30145     ",
+   "OBJECTID": 78297625,
+   "Owner1": "TESTOWNER 723D14",
+   "Owner2": "TESTOWNER 14830D",
+   "PARCELID": "0002-0062-007"
+  },
+  {
+   "Mailing_Address_1": "5784 TEST ST",
+   "Mailing_Address_2": "                                        ",
+   "Mailing_City": "KINGSTON            ",
+   "Mailing_State": "GA",
+   "Mailing_Zip": "30145     ",
+   "OBJECTID": 78297626,
+   "Owner1": "TESTOWNER 723D14",
+   "Owner2": "TESTOWNER 14830D",
+   "PARCELID": "0002-0062-007"
+  }
+ ],
+ "layer": "https://www.bartowgis.org/arcgis/rest/services/AGOServices/BartowLand/FeatureServer/2",
+ "where": "1=1"
+}

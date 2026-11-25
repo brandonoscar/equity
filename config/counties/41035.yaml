@@ -1,0 +1,33 @@
+source_id: or.klamath.parcels
+state: OR
+# Klamath County (OR) GIS ArcGIS Online item 'KC_Taxlots', layer KC_Taxlot_Publish (owner
+# ewilde, accessInformation 'Klamath County GIS'; 61,229 rows on 2026-11-25, assessor data
+# dated 2026-11-20; OWNER_NAME filled on all but 17): assessor data joined to taxlot polygons:
+# owner name, owner mailing address, situs address, property class, zoning.
+layer_url: https://services.arcgis.com/H6Mh1bySxR4oHx6x/arcgis/rest/services/KC_Taxlots/FeatureServer/1
+order_by: OBJECTID
+page_size: 1000          # maxRecordCount 1000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "035"}
+fields:
+  parcel_id: PROP_ID     # 856470 assessor property id (MTL '2305-V0000-00100' is the map/taxlot)
+  owner1: OWNER_NAME
+  mail_line1: MAIL1
+  mail_line2: MAIL2
+  mail_city: MAILCITY
+  mail_state: MAILST
+  mail_zip: ZIP          # '00000' on rows with no mailing address (kept as published)
+  situs_line1: SITUSSTR
+  situs_city: SITUSCITY
+  situs_state: {const: OR}
+  situs_zip: SITUSZIP
+  land_use_code: PCLS
+  land_use_desc: PCLSD
+  zoning: Zone_
+value_basis: "LND_APPR / IMP_APPR / Tot_Appr (appraised) and M50_VALUE (Measure 50 assessed value) are present but the layer has no tax-year field (RDATE is the assessor extract date, 20261120), so no values or tax_year are mapped and no assessment facts are emitted. OWNER_ADDR1-3 / OWNER_CSZ (another copy of the owner address) and SALE_PRICE / SALE_DATE are not mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=e3ea8ceb692f405caad95e28eed50688
+  summary: "Klamath County (OR) GIS ArcGIS Online item 'KC_Taxlots' (accessInformation 'Klamath County GIS'; 'Information is derived from Klamath County Assessor data joined with GIS polygons'); public hosted feature service, no login, token or fee. licenseInfo (read 2026-11-25): 'This layer is for reference only.'; no resale, redistribution or mailing-list clause. services.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

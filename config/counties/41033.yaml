@@ -1,0 +1,32 @@
+source_id: or.josephine.parcels
+state: OR
+# Josephine County (OR) ArcGIS Online item 'JoCo_Taxlot' (owner RNoyes_JoCo, Josephine County
+# GIS; 41,768 rows on 2026-11-25, last edit 2025-04-09; NAME filled on all but 29): taxlots
+# joined to the assessor's accounts: owner name, owner mailing address, situs address,
+# property class, zoning.
+layer_url: https://services3.arcgis.com/qwqIu50nUr6wRrbz/arcgis/rest/services/JoCo_Taxlot/FeatureServer/0
+order_by: FID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "033"}
+fields:
+  parcel_id: ACCOUNT     # 'R300814' tax account (MapNum '34050700000408' is the map + taxlot)
+  owner1: NAME           # 'AHLF REVOCABLE TRUST, JOHN J & CAROL J'
+  mail_line1: ADDR1
+  mail_line2: ADDR2      # ADDR3 (blank on sampled rows) is not mapped
+  mail_city: City
+  mail_state: State
+  mail_zip: ZIP
+  situs_line1: SITUS
+  situs_city: SITUS_CITY
+  situs_state: SITUS_ST
+  situs_zip: SITUS_ZIP
+  land_use_code: PROP_CLASS
+  zoning: Zone
+value_basis: "RMV (real market value), APPR_VALUE, ASSD_VALUE (Measure 50 assessed value), LAND_MKT / IMP_VALUE and Taxes are present but the layer has no tax-year field and was last edited 2025-04-09 (so it may hold the 2024-25 roll), so no values or tax_year are mapped and no assessment facts are emitted. SALE_DATE / SALE_PRICE / INST_NO (last sale) are not mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=ec349df7ebfc4d73b6db2da315481c16
+  summary: "Josephine County (OR) ArcGIS Online item 'JoCo_Taxlot' (owner RNoyes_JoCo, the county org that also publishes its parks layers); public hosted feature service, no login, token or fee. accessInformation and licenseInfo are empty (read 2026-11-25); no resale, redistribution or mailing-list clause. services3.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed). The layer was last edited 2025-04-09: a stale snapshot."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

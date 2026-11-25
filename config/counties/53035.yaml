@@ -1,0 +1,22 @@
+source_id: wa.kitsap.parcels
+state: WA
+# Kitsap County (WA) GIS ArcGIS Online table 'Taxpayer Name' (owner KitsapCountyGIS; 134,372
+# rows on 2026-11-25, edited 2026-11): the taxpayer name on each real property tax account. A
+# table (no geometry, no address), keyed by the account number; the item says to join it to the
+# Tax Parcel Lot Polygons by RP_ACCT_ID. The county publishes no other owner-name layer.
+layer_url: https://services6.arcgis.com/qt3UCV9x5kB4CwRA/arcgis/rest/services/Taxpayer_Name/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "035"}
+use_restrictions: [no_commercial_name_address_lists]
+fields:
+  parcel_id: ACCT_NO     # '5082-000-030-0004' (the Kitsap parcel / account number)
+  owner1: NAME           # the taxpayer, who in Washington is normally the owner of record
+value_basis: "The table has no value or address fields, so no assessment facts and no addresses are emitted. An account with several rows keeps the one with the lowest OBJECTID (the adapter's duplicate rule)."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=84af8935016848908244d46938568e6d
+  summary: "Kitsap County (WA) GIS ArcGIS Online item 'Taxpayer Name' (owner KitsapCountyGIS; 'This is a table only. To view this data on a map it should be joined to the Tax Parcel Lot Polygons using RP_ACCT_ID'), public hosted feature service, no login, token or fee. accessInformation and licenseInfo are empty (read 2026-11-25). Washington's Public Records Act, RCW 42.56.070(8), bars agencies from providing lists of individuals for commercial purposes (recorded as no_commercial_name_address_lists, as for the other WA counties). services6.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

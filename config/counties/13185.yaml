@@ -1,0 +1,28 @@
+source_id: ga.lowndes.parcels
+state: GA
+# Lowndes County (GA) ArcGIS Online item 'TaxParcels' (owner sgrcgis_valor1, the Valdosta-Lowndes
+# regional GIS; snippet 'Current Tax Parcels Information for Lowndes County'; 52,655 rows on
+# 2026-11-25, edited 2026-11; LASTNAME filled on all but 8): parcels joined to the Tax
+# Assessors' CAMA table: owner name, owner mailing address, last deed book/page.
+layer_url: https://services3.arcgis.com/fYt1jp3hqamxgSvI/arcgis/rest/services/TaxParcel/FeatureServer/0
+order_by: FID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "185"}
+fields:
+  parcel_id: PARCEL_NO   # '0046D 004' (whitespace removed in the key)
+  owner1: LASTNAME       # the full owner string despite the name
+  mail_line1: ADDRESS2   # the layer's only mailing street field (no ADDRESS1 is published)
+  mail_city: CITY
+  mail_state: STATE
+  mail_zip: ZIP
+  deed_ref: DEEDPAGE     # ' 0746 0214' = book, page (fixed-width)
+  land_use_code: USEDAS_COD
+deed_ref_pattern: '^\s*(?P<book>\d+)\s+(?P<page>\d+)\s*$'
+value_basis: "CURR_VAL, A_VALUE, BLDG_VAL and TIMP_VAL are present but the layer has no tax-year field, so no values or tax_year are mapped and no assessment facts are emitted. The site address (HOUSE_NO, STDIRECT, STREET_NAM, STTYPE) is not mapped: HOUSE_NO is 0 or null on 6,300 rows, which would put a false house number on the line."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=6d662efaeeae4347bf595aa7b19b84a5
+  summary: "Lowndes County (GA) ArcGIS Online item 'TaxParcels' (owner sgrcgis_valor1; 'Current Tax Parcels Information for Lowndes County', 'Updated 6/30/2026'), public hosted feature service, no login, token or fee. accessInformation and licenseInfo are empty (read 2026-11-25); no resale, redistribution or mailing-list clause. services3.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free
