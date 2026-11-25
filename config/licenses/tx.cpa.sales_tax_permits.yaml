@@ -1,0 +1,25 @@
+# Texas Comptroller of Public Accounts, "Active Sales Tax Permit Holders" (data.texas.gov
+# jrea-zgmq, Public Domain): one row per permitted outlet (about 896K) with the taxpayer's
+# name and mailing address and the outlet's name and location. Sole proprietors appear under
+# their own names, so this names people as well as companies.
+source_id: tx.cpa.sales_tax_permits
+state: TX
+jurisdiction: "48"
+portal: https://data.texas.gov
+dataset: jrea-zgmq
+key: taxpayer_number
+record_key: [taxpayer_number, outlet_number]
+id_prefix: "TX-STP:"
+terms_url: https://data.texas.gov/dataset/Active-Sales-Tax-Permit-Holders/jrea-zgmq
+terms_summary: "Public Domain (dataset license field)."
+checked_on: 2026-11-25
+license:
+  name: [outlet_name, taxpayer_name]
+  type_value: SALES TAX PERMIT
+  status_value: Active  # the dataset lists active permits only
+  issued_on: outlet_permit_issue_date
+  address: {street: outlet_address, city: outlet_city, state: outlet_state, zip: outlet_zip_code}
+  mailing: {street: taxpayer_address, city: taxpayer_city, state: taxpayer_state, zip: taxpayer_zip_code}
+holders:
+  - {role: other, title: PERMIT HOLDER, with_type: false, name: taxpayer_name, address: {street: taxpayer_address, city: taxpayer_city, state: taxpayer_state, zip: taxpayer_zip_code}}
+pii_fields: [taxpayer_name, taxpayer_address, outlet_name, outlet_address]

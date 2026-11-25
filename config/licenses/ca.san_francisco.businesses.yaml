@@ -1,0 +1,23 @@
+# City and County of San Francisco, Treasurer and Tax Collector, "Registered Business
+# Locations - San Francisco" (data.sfgov.org g8m3-pdis, ODC PDDL): about 370K business
+# registrations (open and closed) by location with the ownership name (a person for sole
+# proprietors), DBA, business and mailing address and start and end dates.
+source_id: ca.san_francisco.businesses
+state: CA
+jurisdiction: "06075"
+portal: https://data.sfgov.org
+dataset: g8m3-pdis
+key: uniqueid
+id_prefix: "SF-TTX:"
+terms_url: https://data.sfgov.org/Economy-and-Community/Registered-Business-Locations-San-Francisco/g8m3-pdis
+terms_summary: "Open Data Commons Public Domain Dedication and License (dataset license field)."
+checked_on: 2026-11-25
+license:
+  name: [dba_name, ownership_name]
+  type: lic_code_description
+  issued_on: location_start_date
+  address: {street: full_business_address, city: city, state: state, zip: business_zip}
+  mailing: {street: mailing_address_1, city: mail_city, state: mail_state, zip: mail_zipcode}
+holders:
+  - {role: other, title: OWNER, with_type: false, name: ownership_name, address: {street: mailing_address_1, city: mail_city, state: mail_state, zip: mail_zipcode}}
+pii_fields: [ownership_name, dba_name, full_business_address, mailing_address_1, location]

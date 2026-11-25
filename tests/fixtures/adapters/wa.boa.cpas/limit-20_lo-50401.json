@@ -1,0 +1,225 @@
+{
+ "portal": "https://data.wa.gov",
+ "rows": [
+  {
+   "city": "Kirkland",
+   "country": "United States",
+   "expires": "2027-06-30T00:00:00.000",
+   "firstname": "TESTOWNER AD23EA",
+   "lastname": "TESTOWNER C11E44",
+   "middlename": "TESTOWNER CF8182",
+   "number": "50401",
+   "originalissue": "2021-06-21T07:00:00.000",
+   "state": "WA",
+   "status": "Licensed to practice public accounting"
+  },
+  {
+   "city": "Jersey City",
+   "country": "United States",
+   "expires": "2027-06-30T00:00:00.000",
+   "firstname": "TESTOWNER E7F5FB",
+   "lastname": "TESTOWNER 7EB34F",
+   "number": "50402",
+   "originalissue": "2021-06-21T07:00:00.000",
+   "state": "NJ",
+   "status": "Licensed to practice public accounting"
+  },
+  {
+   "city": "Kirkland",
+   "country": "United States",
+   "expires": "2027-06-30T00:00:00.000",
+   "firstname": "TESTOWNER 98C7D3",
+   "lastname": "TESTOWNER AAD14B",
+   "number": "50403",
+   "originalissue": "2021-06-21T07:00:00.000",
+   "state": "WA",
+   "status": "Licensed to practice public accounting"
+  },
+  {
+   "city": "Seattle",
+   "country": "United States",
+   "expires": "2027-06-30T00:00:00.000",
+   "firstname": "TESTOWNER E512D3",
+   "lastname": "TESTOWNER AEB6EA",
+   "middlename": "TESTOWNER 40CD85",
+   "number": "50404",
+   "originalissue": "2021-06-21T07:00:00.000",
+   "state": "WA",
+   "status": "Licensed to practice public accounting"
+  },
+  {
+   "city": "Kanagawa",
+   "country": "Japan",
+   "expires": "2024-07-01T00:00:00.000",
+   "firstname": "TESTOWNER 556CD2",
+   "lastname": "TESTOWNER EF0ABE",
+   "number": "50405",
+   "originalissue": "2021-06-21T07:00:00.000",
+   "status": "Lapsed Licensee"
+  },
+  {
+   "city": "Yakima",
+   "country": "United States",
+   "expires": "2028-06-30T00:00:00.000",
+   "firstname": "TESTOWNER C49CF9",
+   "lastname": "TESTOWNER 309AE8",
+   "middlename": "TESTOWNER 7C8444",
+   "number": "50406",
+   "originalissue": "2021-06-21T07:00:00.000",
+   "state": "WA",
+   "status": "Licensed to practice public accounting"
+  },
+  {
+   "city": "Newark",
+   "country": "United States",
+   "expires": "2027-06-30T00:00:00.000",
+   "firstname": "TESTOWNER E4106B",
+   "lastname": "TESTOWNER 563D31",
+   "number": "50409",
+   "originalissue": "2021-06-22T07:00:00.000",
+   "state": "NJ",
+   "status": "Licensed to practice public accounting"
+  },
+  {
+   "city": "Castle Rock",
+   "country": "United States",
+   "expires": "2028-06-30T00:00:00.000",
+   "firstname": "TESTOWNER 5D9DAA",
+   "lastname": "TESTOWNER DEA329",
+   "middlename": "TESTOWNER 72A051",
+   "number": "50410",
+   "originalissue": "2021-06-22T07:00:00.000",
+   "state": "WA",
+   "status": "Licensed to practice public accounting"
+  },
+  {
+   "city": "Anacortes",
+   "country": "United States",
+   "expires": "2027-06-30T00:00:00.000",
+   "firstname": "TESTOWNER 43989E",
+   "lastname": "TESTOWNER 3A52D0",
+   "number": "50411",
+   "originalissue": "2021-06-23T07:00:00.000",
+   "state": "WA",
+   "status": "A non-CPA who is registered as an owner in a Washington CPA firm; may not use the title CPA"
+  },
+  {
+   "city": "Seattle",
+   "country": "United States",
+   "expires": "2027-06-30T00:00:00.000",
+   "firstname": "TESTOWNER 0F57E5",
+   "lastname": "TESTOWNER 9AD9DB",
+   "number": "50412",
+   "originalissue": "2021-06-23T07:00:00.000",
+   "state": "WA",
+   "status": "Licensed to practice public accounting"
+  },
+  {
+   "city": "Tokyo",
+   "country": "Japan",
+   "expires": "2027-06-30T00:00:00.000",
+   "firstname": "TESTOWNER 8D0636",
+   "lastname": "TESTOWNER 8379FA",
+   "number": "50413",
+   "originalissue": "2021-06-23T07:00:00.000",
+   "status": "Licensed to practice public accounting"
+  },
+  {
+   "city": "Osaka",
+   "country": "Japan",
+   "expires": "2027-06-30T00:00:00.000",
+   "firstname": "TESTOWNER 6A6F25",
+   "lastname": "TESTOWNER 9F3C7C",
+   "number": "50415",
+   "originalissue": "2021-06-23T07:00:00.000",
+   "status": "Licensed to practice public accounting"
+  },
+  {
+   "city": "Twisp",
+   "country": "United States",
+   "expires": "2027-06-30T00:00:00.000",
+   "firstname": "TESTOWNER 384450",
+   "lastname": "TESTOWNER 60C3A3",
+   "middlename": "TESTOWNER E80939",
+   "number": "50416",
+   "originalissue": "2021-06-23T07:00:00.000",
+   "state": "WA",
+   "status": "Licensed to practice public accounting"
+  },
+  {
+   "city": "Seoul",
+   "country": "Korea, South",
+   "expires": "2027-06-30T00:00:00.000",
+   "firstname": "TESTOWNER 469EA8",
+   "lastname": "TESTOWNER BF2C0E",
+   "number": "50418",
+   "originalissue": "2021-06-24T07:00:00.000",
+   "status": "Licensed to practice public accounting"
+  },
+  {
+   "city": "Marysville",
+   "country": "United States",
+   "expires": "2027-06-30T00:00:00.000",
+   "firstname": "TESTOWNER 7C98A1",
+   "lastname": "TESTOWNER D662EE",
+   "middlename": "TESTOWNER 2CDA89",
+   "number": "50419",
+   "originalissue": "2021-06-24T07:00:00.000",
+   "state": "WA",
+   "status": "Licensed to practice public accounting"
+  },
+  {
+   "city": "Bellingham",
+   "country": "United States",
+   "expires": "2027-06-30T00:00:00.000",
+   "firstname": "TESTOWNER E512D3",
+   "lastname": "TESTOWNER 2B3187",
+   "middlename": "TESTOWNER C27B67",
+   "number": "50420",
+   "originalissue": "2021-06-25T07:00:00.000",
+   "state": "WA",
+   "status": "Licensed to practice public accounting"
+  },
+  {
+   "city": "Tokyo",
+   "country": "Japan",
+   "expires": "2027-06-30T00:00:00.000",
+   "firstname": "TESTOWNER 89111D",
+   "lastname": "TESTOWNER 1C318F",
+   "number": "50421",
+   "originalissue": "2021-06-25T07:00:00.000",
+   "status": "Licensed to practice public accounting"
+  },
+  {
+   "city": "BEIJING",
+   "country": "China",
+   "expires": "2024-07-01T00:00:00.000",
+   "firstname": "TESTOWNER 9BF4CF",
+   "lastname": "TESTOWNER B09C1F",
+   "number": "50423",
+   "originalissue": "2021-06-25T07:00:00.000",
+   "status": "Lapsed Licensee"
+  },
+  {
+   "city": "Gurugram",
+   "country": "India",
+   "expires": "2027-06-30T00:00:00.000",
+   "firstname": "TESTOWNER 1912EC",
+   "lastname": "TESTOWNER E0AF5D",
+   "number": "50424",
+   "originalissue": "2021-06-25T07:00:00.000",
+   "status": "Licensed to practice public accounting"
+  },
+  {
+   "city": "Tokyo",
+   "country": "Japan",
+   "expires": "2027-06-30T00:00:00.000",
+   "firstname": "TESTOWNER 24989C",
+   "lastname": "TESTOWNER 44AA49",
+   "number": "50425",
+   "originalissue": "2021-06-25T07:00:00.000",
+   "status": "Licensed to practice public accounting"
+  }
+ ],
+ "where": "number >= '50401'"
+}

@@ -1,0 +1,25 @@
+# Texas Department of Licensing and Regulation, "TDLR - All Licenses" (data.texas.gov
+# 7358-krk7): every current TDLR license (electricians, A/C, cosmetology, barbers, tow
+# operators, water well drillers...), about 976K rows. A license number repeats across license
+# types, so a record is (license_type, license_number). Individuals carry only a county; shops
+# and contractors carry business and mailing addresses.
+# TODO(Brandon): no issue date is published, so licenses are dated from the retrieval day.
+source_id: tx.tdlr.licenses
+state: TX
+jurisdiction: "48"
+portal: https://data.texas.gov
+dataset: 7358-krk7
+key: license_number
+record_key: [license_type, license_number]
+id_prefix: "TX-TDLR:"
+terms_url: https://data.texas.gov/dataset/TDLR-All-Licenses/7358-krk7
+terms_summary: "Texas Open Data Portal; no license text on the dataset (public information published by TDLR)."
+checked_on: 2026-11-25
+license:
+  name: [business_name, owner_name]
+  type: license_type
+  address: {street: [business_address_line1, business_address_line2], city_state_zip: business_city_state_zip}
+  mailing: {street: [mailing_address_line1, mailing_address_line2], city_state_zip: mailing_address_city_state_zip}
+holders:
+  - {role: other, title: LICENSEE, name: owner_name, last_first: true, address: {street: [mailing_address_line1, mailing_address_line2], city_state_zip: mailing_address_city_state_zip}}
+pii_fields: [business_name, owner_name, business_address_line1, business_address_line2, mailing_address_line1, mailing_address_line2, business_telephone, owner_telephone, business_mailing]

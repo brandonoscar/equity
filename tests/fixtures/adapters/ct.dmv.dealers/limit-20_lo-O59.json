@@ -1,0 +1,210 @@
+{
+ "portal": "https://data.ct.gov",
+ "rows": [
+  {
+   "business_address": "767 TEST ST",
+   "business_name": "TESTOWNER C5D4E4",
+   "city": "IRVING",
+   "license_expiration": "2028-03-31T00:00:00.000",
+   "license_num": "O5900",
+   "license_type": "LEASING LICENSE",
+   "state": "TX",
+   "zip_code": "75063-2438"
+  },
+  {
+   "business_address": "3141 TEST ST",
+   "business_name": "TESTOWNER 066AA4 INC",
+   "city": "CANTON",
+   "license_expiration": "2028-03-31T00:00:00.000",
+   "license_num": "O5901",
+   "license_type": "LEASING LICENSE",
+   "state": "CT",
+   "zip_code": "06019-2507"
+  },
+  {
+   "business_address": "3141 TEST ST",
+   "business_name": "TESTOWNER 2D1BD9",
+   "city": "CANTON",
+   "dba_indicator": "DBA",
+   "license_expiration": "2028-03-31T00:00:00.000",
+   "license_num": "O5901",
+   "license_type": "LEASING LICENSE",
+   "state": "CT",
+   "zip_code": "06019-2507"
+  },
+  {
+   "business_address": "4278 TEST ST",
+   "business_name": "TESTOWNER 584182 INC",
+   "city": "LITCHFIELD",
+   "license_expiration": "2028-03-31T00:00:00.000",
+   "license_num": "O5902",
+   "license_type": "LEASING LICENSE",
+   "state": "CT",
+   "zip_code": "06759"
+  },
+  {
+   "business_address": "4278 TEST ST",
+   "business_name": "TESTOWNER 6463CB",
+   "city": "LITCHFIELD",
+   "dba_indicator": "DBA",
+   "license_expiration": "2028-03-31T00:00:00.000",
+   "license_num": "O5902",
+   "license_type": "LEASING LICENSE",
+   "state": "CT",
+   "zip_code": "06759"
+  },
+  {
+   "business_address": "1004 TEST ST",
+   "business_name": "TESTOWNER C02D03 CORP",
+   "city": "NEWBURG",
+   "license_expiration": "2028-03-31T00:00:00.000",
+   "license_num": "O5907",
+   "license_type": "LEASING LICENSE",
+   "state": "NY",
+   "zip_code": "12550"
+  },
+  {
+   "business_address": "1615 TEST ST",
+   "business_name": "TESTOWNER C09917 INC",
+   "city": "ROSELAND",
+   "license_expiration": "2028-03-31T00:00:00.000",
+   "license_num": "O5912",
+   "license_type": "LEASING LICENSE",
+   "state": "NJ",
+   "zip_code": "07068"
+  },
+  {
+   "business_address": "2465 TEST ST",
+   "business_name": "TESTOWNER 21D707 CORP",
+   "city": "CHESHIRE",
+   "license_expiration": "2028-03-31T00:00:00.000",
+   "license_num": "O5914",
+   "license_type": "LEASING LICENSE",
+   "state": "CT",
+   "zip_code": "06410"
+  },
+  {
+   "business_address": "1616 TEST ST",
+   "business_name": "TESTOWNER 810428 INC",
+   "city": "BOERNE",
+   "license_expiration": "2028-03-31T00:00:00.000",
+   "license_num": "O5922",
+   "license_type": "LEASING LICENSE",
+   "state": "TX",
+   "zip_code": "78006"
+  },
+  {
+   "business_address": "3458 TEST ST",
+   "business_name": "TESTOWNER 3A2AD6 INC",
+   "city": "NEENAH",
+   "license_expiration": "2028-03-31T00:00:00.000",
+   "license_num": "O5926",
+   "license_type": "LEASING LICENSE",
+   "state": "WI",
+   "zip_code": "54956"
+  },
+  {
+   "business_address": "7510 TEST ST",
+   "business_name": "TESTOWNER 8D090B LLC",
+   "city": "WOODCLIFF LAKE",
+   "license_expiration": "2028-03-31T00:00:00.000",
+   "license_num": "O5929",
+   "license_type": "LEASING LICENSE",
+   "state": "NJ",
+   "zip_code": "07677-7747"
+  },
+  {
+   "business_address": "7249 TEST ST",
+   "business_name": "TESTOWNER F01870 LLC",
+   "city": "FRANKLIN",
+   "license_expiration": "2028-03-31T00:00:00.000",
+   "license_num": "O5930",
+   "license_type": "LEASING LICENSE",
+   "state": "TN",
+   "zip_code": "37067-6367"
+  },
+  {
+   "business_address": "218 TEST ST",
+   "business_name": "TESTOWNER BD88F1 INC",
+   "city": "MILFORD",
+   "license_expiration": "2028-03-31T00:00:00.000",
+   "license_num": "O5933",
+   "license_type": "LEASING LICENSE",
+   "state": "CT",
+   "zip_code": "06460-4841"
+  },
+  {
+   "business_address": "1082 TEST ST",
+   "business_name": "TESTOWNER F3C134 INC",
+   "city": "THOMASTON",
+   "license_expiration": "2028-03-31T00:00:00.000",
+   "license_num": "O5934",
+   "license_type": "LEASING LICENSE",
+   "state": "CT",
+   "zip_code": "06787-1411"
+  },
+  {
+   "business_address": "2680 TEST ST",
+   "business_name": "TESTOWNER 55574C INC",
+   "city": "TORRINGTON",
+   "license_expiration": "2028-03-31T00:00:00.000",
+   "license_num": "O5939",
+   "license_type": "LEASING LICENSE",
+   "state": "CT",
+   "zip_code": "06790-3516"
+  },
+  {
+   "business_address": "3856 TEST ST",
+   "business_name": "TESTOWNER 17873D INC",
+   "city": "KILLINGWORTH",
+   "license_expiration": "2027-03-31T00:00:00.000",
+   "license_num": "O5940",
+   "license_type": "LEASING LICENSE",
+   "state": "CT",
+   "zip_code": "06419-1486"
+  },
+  {
+   "business_address": "1508 TEST ST",
+   "business_name": "TESTOWNER 2C007F INC",
+   "city": "NEW BRITAIN",
+   "license_expiration": "2028-03-31T00:00:00.000",
+   "license_num": "O5941",
+   "license_type": "LEASING LICENSE",
+   "state": "CT",
+   "zip_code": "06051-3878"
+  },
+  {
+   "business_address": "1508 TEST ST",
+   "business_name": "TESTOWNER CD66AB",
+   "city": "NEW BRITAIN",
+   "dba_indicator": "DBA",
+   "license_expiration": "2028-03-31T00:00:00.000",
+   "license_num": "O5941",
+   "license_type": "LEASING LICENSE",
+   "state": "CT",
+   "zip_code": "06051-3878"
+  },
+  {
+   "business_address": "1508 TEST ST",
+   "business_name": "TESTOWNER AB6B75",
+   "city": "NEW BRITAIN",
+   "dba_indicator": "DBA",
+   "license_expiration": "2028-03-31T00:00:00.000",
+   "license_num": "O5941",
+   "license_type": "LEASING LICENSE",
+   "state": "CT",
+   "zip_code": "06051-3878"
+  },
+  {
+   "business_address": "5091 TEST ST",
+   "business_name": "TESTOWNER 35A76E LLC",
+   "city": "NORTH GROSVENORDALE",
+   "license_expiration": "2028-03-31T00:00:00.000",
+   "license_num": "O5942",
+   "license_type": "LEASING LICENSE",
+   "state": "CT",
+   "zip_code": "06255-1123"
+  }
+ ],
+ "where": "license_num >= 'O59'"
+}

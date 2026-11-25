@@ -1,0 +1,30 @@
+# Washington Department of Labor & Industries contractor licenses (data.wa.gov, ODC Public
+# Domain Dedication): "L&I Contractor License Data - General" (m8qx-ubtq, about 162K
+# construction, electrical and plumbing contractors with business address, UBI and primary
+# principal) and "L&I Contractor License - Principal Data" (4xk5-x9j6: owners, officers and
+# partners, with start and end dates), joined on the license number.
+source_id: wa.lni.contractors
+state: WA
+jurisdiction: "53"
+portal: https://data.wa.gov
+dataset: m8qx-ubtq
+key: contractorlicensenumber
+id_prefix: "WA-LNI:"
+terms_url: https://data.wa.gov/Labor/L-I-Contractor-License-Data-General/m8qx-ubtq
+terms_summary: "Open Data Commons Public Domain Dedication and License (dataset license field)."
+checked_on: 2026-11-25
+license:
+  name: businessname
+  type: contractorlicensetypecodedesc
+  status: contractorlicensestatus
+  issued_on: licenseeffectivedate
+  address: {street: [address1, address2], city: city, state: state, zip: zip}
+holders:
+  - {role: other, title: PRIMARY PRINCIPAL, name: primaryprincipalname, last_first: true}
+related:
+  - dataset: 4xk5-x9j6
+    key: contractorlicensenumber
+    holder: {role: other, title: PRINCIPAL, name: principalname, last_first: true}
+    valid_from: startdate
+    valid_to: enddate
+pii_fields: [businessname, address1, address2, phonenumber, primaryprincipalname, principalname]

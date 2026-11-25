@@ -1,0 +1,28 @@
+# Illinois Department of Financial and Professional Regulation, "Professional Licensing"
+# (data.illinois.gov pzzh-kp68, ODbL): about 4.8M current and past licenses (nurses,
+# physicians, cosmetology, real estate, roofers...) for individuals and businesses, with
+# first/middle/last name or business name and DBA, city, state and ZIP. Dates are
+# MM/DD/YYYY text. A license number repeats across license types.
+# Read from data.illinois.gov: the illinois-edp.data.socrata.com alias disallows robots.
+source_id: il.idfpr.licenses
+state: IL
+jurisdiction: "17"
+portal: https://data.illinois.gov
+dataset: pzzh-kp68
+key: license_number
+record_key: [license_type, license_number]
+id_prefix: "IL-IDFPR:"
+terms_url: https://data.illinois.gov/Regulatory/Professional-Licensing/pzzh-kp68
+terms_summary: "Open Data Commons Open Database License (ODbL): attribution and share-alike for public databases; internal use is fine."
+checked_on: 2026-11-25
+license:
+  name: [businessdba, business_name]
+  type: description
+  status: license_status
+  issued_on: original_issue_date
+  latest_by: effective_date
+  address: {city: city, state: state, zip: zip}
+holders:
+  - {role: other, title: LICENSEE, parts: {first: first_name, middle: middle, last: last_name, suffix: suffix}, address: {city: city, state: state, zip: zip}}
+  - {role: other, title: BUSINESS, name: business_name, address: {city: city, state: state, zip: zip}}
+pii_fields: [first_name, middle, last_name, business_name, businessdba]

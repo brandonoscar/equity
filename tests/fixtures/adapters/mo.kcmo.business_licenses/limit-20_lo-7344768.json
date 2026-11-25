@@ -1,0 +1,214 @@
+{
+ "portal": "https://data.kcmo.org",
+ "rows": [
+  {
+   "address": "4520 TEST ST",
+   "business_type": "All Other Legal Services",
+   "city": "KANSAS CITY",
+   "dba_name": "TESTOWNER B26690 LLC",
+   "id": "7344768",
+   "state": "MO",
+   "valid_license_for": "20251231",
+   "zipcode": "64133"
+  },
+  {
+   "address": "4520 TEST ST",
+   "business_type": "Flat Rate 16",
+   "city": "KANSAS CITY",
+   "dba_name": "TESTOWNER B26690 LLC",
+   "id": "7344768",
+   "state": "MO",
+   "valid_license_for": "20251231",
+   "zipcode": "64133"
+  },
+  {
+   "address": "1018 TEST ST",
+   "business_name": "TESTOWNER 5AD3CD LLC",
+   "business_type": "Independent Artists Writers and Performers",
+   "city": "KANSAS CITY",
+   "dba_name": "TESTOWNER 4FCB7F",
+   "id": "734511744",
+   "state": "MO",
+   "valid_license_for": "20251231",
+   "zipcode": "64114"
+  },
+  {
+   "address": "8610 TEST ST",
+   "business_type": "Engineering Services",
+   "city": "LENEXA",
+   "dba_name": "TESTOWNER DC5148 LLC",
+   "id": "734526592",
+   "state": "KS",
+   "valid_license_for": "20261231",
+   "zipcode": "66215"
+  },
+  {
+   "address": "8610 TEST ST",
+   "business_type": "Flat Rate 127A",
+   "city": "LENEXA",
+   "dba_name": "TESTOWNER DC5148 LLC",
+   "id": "734526592",
+   "state": "KS",
+   "valid_license_for": "20261231",
+   "zipcode": "66215"
+  },
+  {
+   "address": "8795 TEST ST",
+   "business_type": "All Other Specialty Trade Contractors",
+   "city": "BUCKNER",
+   "dba_name": "TESTOWNER B043B1 LLC",
+   "id": "734528128",
+   "state": "MO",
+   "valid_license_for": "20251231",
+   "zipcode": "64016"
+  },
+  {
+   "address": "627 TEST ST",
+   "business_type": "Residential Property Managers",
+   "city": "KANSAS CITY",
+   "dba_name": "TESTOWNER 11D9D4",
+   "id": "734585472",
+   "state": "MO",
+   "valid_license_for": "20241231",
+   "zipcode": "64112"
+  },
+  {
+   "address": "8056 TEST ST",
+   "business_name": "TESTOWNER AD7607 LLC",
+   "business_type": "Commercial and Institutional Building Construction",
+   "city": "LEES SUMMIT",
+   "dba_name": "TESTOWNER 6605B0 LLC",
+   "id": "734590080",
+   "state": "MO",
+   "valid_license_for": "20261231",
+   "zipcode": "64063"
+  },
+  {
+   "address": "7066 TEST ST",
+   "business_name": "TESTOWNER FDF8BC",
+   "business_type": "All Other Professional Scientific and Technical Services",
+   "city": "KANSAS CITY",
+   "dba_name": "TESTOWNER 1EA5B1 LLC",
+   "id": "734618240",
+   "state": "MO",
+   "valid_license_for": "20251231",
+   "zipcode": "64138"
+  },
+  {
+   "address": "6742 TEST ST",
+   "business_type": "Residential Mental Health and Substance Abuse Facilities",
+   "city": "KANSAS CITY",
+   "dba_name": "TESTOWNER 02ED1F LLC",
+   "id": "73464960",
+   "state": "MO",
+   "valid_license_for": "20251231",
+   "zipcode": "64131"
+  },
+  {
+   "address": "7939 TEST ST",
+   "business_name": "TESTOWNER 697E5B LLC",
+   "business_type": "Flat Rate 18",
+   "city": "WICHITA",
+   "dba_name": "TESTOWNER F5AA26 LLC",
+   "id": "734749312",
+   "state": "KS",
+   "valid_license_for": "20241231",
+   "zipcode": "67211"
+  },
+  {
+   "address": "7939 TEST ST",
+   "business_name": "TESTOWNER 697E5B LLC",
+   "business_type": "Site Preparation Contractors",
+   "city": "WICHITA",
+   "dba_name": "TESTOWNER F5AA26 LLC",
+   "id": "734749312",
+   "state": "KS",
+   "valid_license_for": "20241231",
+   "zipcode": "67211"
+  },
+  {
+   "address": "5003 TEST ST",
+   "business_type": "Misc Rate 129",
+   "city": "KANSAS CITY",
+   "dba_name": "TESTOWNER D06FF0 LLC",
+   "id": "73477248",
+   "state": "MO",
+   "valid_license_for": "20251231",
+   "zipcode": "64129"
+  },
+  {
+   "address": "5003 TEST ST",
+   "business_type": "New Car Dealers",
+   "city": "KANSAS CITY",
+   "dba_name": "TESTOWNER D06FF0 LLC",
+   "id": "73477248",
+   "state": "MO",
+   "valid_license_for": "20251231",
+   "zipcode": "64129"
+  },
+  {
+   "address": "6932 TEST ST",
+   "business_type": "Commercial and Institutional Building Construction",
+   "city": "KANSAS CITY",
+   "dba_name": "TESTOWNER 31D6CC INC",
+   "id": "734809216",
+   "state": "MO",
+   "valid_license_for": "20251231",
+   "zipcode": "64141"
+  },
+  {
+   "address": "2319 TEST ST",
+   "business_type": "Research and Development in Biotechnology (except Nanobiotechnology)",
+   "city": "MARLBOROUGH",
+   "dba_name": "TESTOWNER 9DB5D5 CORP",
+   "id": "735114368",
+   "state": "MA",
+   "valid_license_for": "20251231",
+   "zipcode": "01760"
+  },
+  {
+   "address": "5050 TEST ST",
+   "business_type": "All Other General Merchandise Retailers",
+   "city": "KANSAS CITY",
+   "dba_name": "TESTOWNER FB9528 LLC",
+   "id": "735374464",
+   "state": "MO",
+   "valid_license_for": "20251231",
+   "zipcode": "64110"
+  },
+  {
+   "address": "2469 TEST ST",
+   "business_name": "TESTOWNER 83CD55 LLC",
+   "business_type": "Portfolio Management and Investment Advice",
+   "city": "STILWELL",
+   "dba_name": "TESTOWNER 0CE98B LLC",
+   "id": "735429248",
+   "state": "KS",
+   "valid_license_for": "20251231",
+   "zipcode": "66085"
+  },
+  {
+   "address": "8105 TEST ST",
+   "business_name": "TESTOWNER 8ECF31",
+   "business_type": "Electronic and Precision Equipment Repair and Maintenance",
+   "city": "KANSAS CITY",
+   "dba_name": "TESTOWNER 933AD1 INC",
+   "id": "735440000",
+   "state": "KS",
+   "valid_license_for": "20251231",
+   "zipcode": "66103"
+  },
+  {
+   "address": "385 TEST ST",
+   "business_name": "TESTOWNER 6F0156 LLC",
+   "business_type": "New Single-Family Housing Construction (except For-Sale Builders)",
+   "city": "BELTON",
+   "dba_name": "TESTOWNER 608A50",
+   "id": "735527552",
+   "state": "MO",
+   "valid_license_for": "20251231",
+   "zipcode": "64012"
+  }
+ ],
+ "where": "id::text >= '7344768'"
+}

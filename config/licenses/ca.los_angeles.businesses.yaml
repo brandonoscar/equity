@@ -1,0 +1,25 @@
+# City of Los Angeles Office of Finance, "Listing of All Businesses" (data.lacity.org
+# r4uk-afju, CC0 1.0): about 1.7M business tax registrations (active and closed) by location
+# account, with the registrant (a company, or a person for sole proprietors), DBA, business
+# and mailing address and start and end dates.
+# TODO(Brandon): a closed location keeps status None here; location_end_date stays in the raw
+# record (the business table has no end column beyond valid_to, which marks supersession).
+source_id: ca.los_angeles.businesses
+state: CA
+jurisdiction: "06037"
+portal: https://data.lacity.org
+dataset: r4uk-afju
+key: location_account
+id_prefix: "LA-BTRC:"
+terms_url: https://data.lacity.org/Administration-Finance/Listing-of-All-Businesses/r4uk-afju
+terms_summary: "Creative Commons 1.0 Universal (Public Domain Dedication) (dataset license field)."
+checked_on: 2026-11-25
+license:
+  name: [dba_name, business_name]
+  type: primary_naics_description
+  issued_on: location_start_date
+  address: {street: street_address, city: city, zip: zip_code}
+  mailing: {street: mailing_address, city: mailing_city, zip: mailing_zip_code}
+holders:
+  - {role: other, title: REGISTRANT, with_type: false, name: business_name, address: {street: mailing_address, city: mailing_city, zip: mailing_zip_code}}
+pii_fields: [business_name, dba_name, street_address, mailing_address, location_description, location]

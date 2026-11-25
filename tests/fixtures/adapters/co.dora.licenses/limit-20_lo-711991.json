@@ -1,0 +1,371 @@
+{
+ "portal": "https://data.colorado.gov",
+ "rows": [
+  {
+   "city": "Denver",
+   "firstname": "TESTOWNER 31B1BD",
+   "lastname": "TESTOWNER 9EACF5",
+   "licenseexpirationdate": "2028-04-30T00:00:00.000",
+   "licensefirstissuedate": "2018-09-21T00:00:00.000",
+   "licenselastreneweddate": "2026-05-01T00:00:00.000",
+   "licensenumber": "711991",
+   "licensestatusdescription": "Active",
+   "licensetype": "COS",
+   "linktoverifylicense": {
+    "url": "https://www.colorado.gov/dora/licensing/Lookup/PrintLicenseDetails.aspx?cred=1220562&contact=1322390"
+   },
+   "linktoviewhealthcareprofile": {
+    "url": "https://www.colorado.gov/dora/licensing/SnapshotViewer.aspx?cid=1220562&Key=48E830DE-EA7B-4AF2-9F91-B7ABED7E3812"
+   },
+   "mailzipcode": "80202",
+   "middlename": "TESTOWNER 8E55F0",
+   "state": "CO"
+  },
+  {
+   "city": "Denver",
+   "degrees": "~Bachelors of Science in Nursing",
+   "firstname": "TESTOWNER CC7EC1",
+   "lastname": "TESTOWNER 5DC2F1",
+   "licenseexpirationdate": "2008-01-31T00:00:00.000",
+   "licensefirstissuedate": "2005-10-17T00:00:00.000",
+   "licenselastreneweddate": "2005-10-17T00:00:00.000",
+   "licensenumber": "711991",
+   "licensestatusdescription": "Expired",
+   "licensetype": "NA",
+   "linktoverifylicense": {
+    "url": "https://www.colorado.gov/dora/licensing/Lookup/PrintLicenseDetails.aspx?cred=739665&contact=754200"
+   },
+   "linktoviewhealthcareprofile": {
+    "url": "https://www.colorado.gov/dora/licensing/SnapshotViewer.aspx?cid=739665&Key=2985D29C-9399-4187-8901-0FECE1356538"
+   },
+   "mailzipcode": "80238",
+   "middlename": "TESTOWNER A17EDB",
+   "state": "CO"
+  },
+  {
+   "city": "Thornton",
+   "firstname": "TESTOWNER 59835D",
+   "lastname": "TESTOWNER 0218C1",
+   "licenseexpirationdate": "2026-03-31T00:00:00.000",
+   "licensefirstissuedate": "2018-09-21T00:00:00.000",
+   "licenselastreneweddate": "2024-04-01T00:00:00.000",
+   "licensenumber": "711992",
+   "licensestatusdescription": "Expired",
+   "licensetype": "MAN",
+   "linktoverifylicense": {
+    "url": "https://www.colorado.gov/dora/licensing/Lookup/PrintLicenseDetails.aspx?cred=1220560&contact=1322388"
+   },
+   "mailzipcode": "80241",
+   "state": "CO"
+  },
+  {
+   "city": "Canon City",
+   "firstname": "TESTOWNER 8D8B36",
+   "lastname": "TESTOWNER C6DB47",
+   "licenseexpirationdate": "2010-01-31T00:00:00.000",
+   "licensefirstissuedate": "2005-10-17T00:00:00.000",
+   "licenselastreneweddate": "2008-02-01T00:00:00.000",
+   "licensenumber": "711992",
+   "licensestatusdescription": "Expired",
+   "licensetype": "NA",
+   "linktoverifylicense": {
+    "url": "https://www.colorado.gov/dora/licensing/Lookup/PrintLicenseDetails.aspx?cred=739649&contact=754184"
+   },
+   "mailzipcode": "81212",
+   "middlename": "TESTOWNER FE6FD7",
+   "state": "CO"
+  },
+  {
+   "city": "Colorado Springs",
+   "degrees": "~Masters of Social Work",
+   "firstname": "TESTOWNER 0B3FE7",
+   "lastname": "TESTOWNER 3AC654",
+   "licenseexpirationdate": "2016-01-31T00:00:00.000",
+   "licensefirstissuedate": "2005-10-17T00:00:00.000",
+   "licenselastreneweddate": "2014-02-01T00:00:00.000",
+   "licensenumber": "711993",
+   "licensestatusdescription": "Expired",
+   "licensetype": "NA",
+   "linktoverifylicense": {
+    "url": "https://www.colorado.gov/dora/licensing/Lookup/PrintLicenseDetails.aspx?cred=739663&contact=754198"
+   },
+   "linktoviewhealthcareprofile": {
+    "url": "https://www.colorado.gov/dora/licensing/SnapshotViewer.aspx?cid=739663&Key=23F3B711-AAFC-4690-ACC7-9EF4A1B39734"
+   },
+   "mailzipcode": "80916",
+   "middlename": "TESTOWNER 30D4B1",
+   "state": "CO"
+  },
+  {
+   "city": "Denver",
+   "firstname": "TESTOWNER C724BD",
+   "lastname": "TESTOWNER 7D2228",
+   "licenseexpirationdate": "2028-04-30T00:00:00.000",
+   "licensefirstissuedate": "2018-09-22T00:00:00.000",
+   "licenselastreneweddate": "2026-05-01T00:00:00.000",
+   "licensenumber": "711993",
+   "licensestatusdescription": "Active",
+   "licensetype": "COS",
+   "linktoverifylicense": {
+    "url": "https://www.colorado.gov/dora/licensing/Lookup/PrintLicenseDetails.aspx?cred=1220597&contact=1322444"
+   },
+   "mailzipcode": "80246",
+   "middlename": "TESTOWNER C79BA6",
+   "state": "CO"
+  },
+  {
+   "city": "Denver",
+   "firstname": "TESTOWNER 39CAD1",
+   "lastname": "TESTOWNER 0DFFDA",
+   "licenseexpirationdate": "2022-03-31T00:00:00.000",
+   "licensefirstissuedate": "2018-09-22T00:00:00.000",
+   "licenselastreneweddate": "2020-04-01T00:00:00.000",
+   "licensenumber": "711994",
+   "licensestatusdescription": "Expired",
+   "licensetype": "MAN",
+   "linktoverifylicense": {
+    "url": "https://www.colorado.gov/dora/licensing/Lookup/PrintLicenseDetails.aspx?cred=1220598&contact=1322445"
+   },
+   "mailzipcode": "80236",
+   "state": "CO"
+  },
+  {
+   "casenumber": "2008-3585",
+   "city": "Montrose",
+   "disciplineeffectivedate": "01/06/2009",
+   "firstname": "TESTOWNER E512D3",
+   "lastname": "TESTOWNER 8378F8",
+   "licenseexpirationdate": "2009-01-06T00:00:00.000",
+   "licensefirstissuedate": "2005-10-17T00:00:00.000",
+   "licenselastreneweddate": "2008-02-01T00:00:00.000",
+   "licensenumber": "711994",
+   "licensestatusdescription": "Revoked",
+   "licensetype": "NA",
+   "linktoverifylicense": {
+    "url": "https://www.colorado.gov/dora/licensing/Lookup/PrintLicenseDetails.aspx?cred=739654&contact=754189"
+   },
+   "mailzipcode": "81401",
+   "middlename": "TESTOWNER 719F0A",
+   "programaction": "CLS Revocation",
+   "state": "CO"
+  },
+  {
+   "city": "Denver",
+   "degrees": "~Bachelors of Science in Nursing",
+   "firstname": "TESTOWNER 6A261B",
+   "lastname": "TESTOWNER FAF621",
+   "licenseexpirationdate": "2020-05-31T00:00:00.000",
+   "licensefirstissuedate": "2018-09-22T00:00:00.000",
+   "licenselastreneweddate": "2018-09-22T00:00:00.000",
+   "licensenumber": "711995",
+   "licensestatusdescription": "Expired",
+   "licensetype": "COZ",
+   "linktoverifylicense": {
+    "url": "https://www.colorado.gov/dora/licensing/Lookup/PrintLicenseDetails.aspx?cred=1220595&contact=1322443"
+   },
+   "mailzipcode": "80204",
+   "state": "CO"
+  },
+  {
+   "city": "Victor",
+   "firstname": "TESTOWNER D991B8",
+   "lastname": "TESTOWNER 2F6A4C",
+   "licenseexpirationdate": "2010-01-31T00:00:00.000",
+   "licensefirstissuedate": "2005-10-17T00:00:00.000",
+   "licenselastreneweddate": "2008-02-01T00:00:00.000",
+   "licensenumber": "711995",
+   "licensestatusdescription": "Expired",
+   "licensetype": "NA",
+   "linktoverifylicense": {
+    "url": "https://www.colorado.gov/dora/licensing/Lookup/PrintLicenseDetails.aspx?cred=739647&contact=754182"
+   },
+   "mailzipcode": "80860",
+   "middlename": "TESTOWNER 222254",
+   "state": "CO"
+  },
+  {
+   "city": "Grand Junction",
+   "firstname": "TESTOWNER DFF209",
+   "lastname": "TESTOWNER 336AF7",
+   "licenseexpirationdate": "2012-01-31T00:00:00.000",
+   "licensefirstissuedate": "2005-10-17T00:00:00.000",
+   "licenselastreneweddate": "2010-06-14T00:00:00.000",
+   "licensenumber": "711996",
+   "licensestatusdescription": "Expired",
+   "licensetype": "NA",
+   "linktoverifylicense": {
+    "url": "https://www.colorado.gov/dora/licensing/Lookup/PrintLicenseDetails.aspx?cred=739677&contact=754212"
+   },
+   "mailzipcode": "81501",
+   "middlename": "TESTOWNER 7C8444",
+   "state": "CO"
+  },
+  {
+   "city": "Colorado Springs",
+   "firstname": "TESTOWNER 95B49F",
+   "lastname": "TESTOWNER 0D119A",
+   "licenseexpirationdate": "2024-03-31T00:00:00.000",
+   "licensefirstissuedate": "2018-09-22T00:00:00.000",
+   "licenselastreneweddate": "2022-04-01T00:00:00.000",
+   "licensenumber": "711996",
+   "licensestatusdescription": "Expired",
+   "licensetype": "COZ",
+   "linktoverifylicense": {
+    "url": "https://www.colorado.gov/dora/licensing/Lookup/PrintLicenseDetails.aspx?cred=1220596&contact=1000981"
+   },
+   "mailzipcode": "80910",
+   "middlename": "TESTOWNER 30D4B1",
+   "state": "CO"
+  },
+  {
+   "city": "Colorado Springs",
+   "firstname": "TESTOWNER F0423F",
+   "lastname": "TESTOWNER 41F561",
+   "licenseexpirationdate": "2026-04-30T00:00:00.000",
+   "licensefirstissuedate": "2018-09-22T00:00:00.000",
+   "licenselastreneweddate": "2024-07-30T00:00:00.000",
+   "licensenumber": "711997",
+   "licensestatusdescription": "Expired",
+   "licensetype": "COS",
+   "linktoverifylicense": {
+    "url": "https://www.colorado.gov/dora/licensing/Lookup/PrintLicenseDetails.aspx?cred=1220594&contact=1322442"
+   },
+   "linktoviewhealthcareprofile": {
+    "url": "https://www.colorado.gov/dora/licensing/SnapshotViewer.aspx?cid=1220594&Key=B418C382-E76F-4A7D-939A-0AE7BF9BC7C3"
+   },
+   "mailzipcode": "80922",
+   "middlename": "TESTOWNER 3A9089",
+   "state": "CO"
+  },
+  {
+   "city": "Platteville",
+   "firstname": "TESTOWNER 9642E2",
+   "lastname": "TESTOWNER 2B2375",
+   "licenseexpirationdate": "2014-01-31T00:00:00.000",
+   "licensefirstissuedate": "2005-10-17T00:00:00.000",
+   "licenselastreneweddate": "2012-02-01T00:00:00.000",
+   "licensenumber": "711997",
+   "licensestatusdescription": "Expired",
+   "licensetype": "NA",
+   "linktoverifylicense": {
+    "url": "https://www.colorado.gov/dora/licensing/Lookup/PrintLicenseDetails.aspx?cred=739671&contact=754206"
+   },
+   "mailzipcode": "80651",
+   "middlename": "TESTOWNER 2CDA89",
+   "state": "CO"
+  },
+  {
+   "city": "Thornton",
+   "firstname": "TESTOWNER 337532",
+   "lastname": "TESTOWNER 0AAC00",
+   "licenseexpirationdate": "2025-01-31T00:00:00.000",
+   "licensefirstissuedate": "2005-10-17T00:00:00.000",
+   "licenselastreneweddate": "2023-08-14T00:00:00.000",
+   "licensenumber": "711998",
+   "licensestatusdescription": "Expired",
+   "licensetype": "NA",
+   "linktoverifylicense": {
+    "url": "https://www.colorado.gov/dora/licensing/Lookup/PrintLicenseDetails.aspx?cred=739662&contact=754197"
+   },
+   "linktoviewhealthcareprofile": {
+    "url": "https://www.colorado.gov/dora/licensing/SnapshotViewer.aspx?cid=739662&Key=91053641-298C-4447-B340-876D36E749AE"
+   },
+   "mailzipcode": "80229",
+   "middlename": "TESTOWNER 54A4F4",
+   "state": "CO"
+  },
+  {
+   "city": "Golden",
+   "firstname": "TESTOWNER E13DF7",
+   "lastname": "TESTOWNER 0C2347",
+   "licenseexpirationdate": "2028-03-31T00:00:00.000",
+   "licensefirstissuedate": "2018-09-24T00:00:00.000",
+   "licenselastreneweddate": "2026-04-01T00:00:00.000",
+   "licensenumber": "711998",
+   "licensestatusdescription": "Active",
+   "licensetype": "COZ",
+   "linktoverifylicense": {
+    "url": "https://www.colorado.gov/dora/licensing/Lookup/PrintLicenseDetails.aspx?cred=1221017&contact=1134674"
+   },
+   "mailzipcode": "80401",
+   "state": "CO"
+  },
+  {
+   "city": "Aurora",
+   "firstname": "TESTOWNER C0812D",
+   "lastname": "TESTOWNER F50C6F",
+   "licenseexpirationdate": "2028-03-31T00:00:00.000",
+   "licensefirstissuedate": "2018-09-24T00:00:00.000",
+   "licenselastreneweddate": "2026-04-01T00:00:00.000",
+   "licensenumber": "711999",
+   "licensestatusdescription": "Active",
+   "licensetype": "COZ",
+   "linktoverifylicense": {
+    "url": "https://www.colorado.gov/dora/licensing/Lookup/PrintLicenseDetails.aspx?cred=1221021&contact=1302667"
+   },
+   "mailzipcode": "80013",
+   "middlename": "TESTOWNER 66D267",
+   "state": "CO"
+  },
+  {
+   "city": "Montrose",
+   "degrees": "~Certificate in Nursing",
+   "firstname": "TESTOWNER 8CE6E4",
+   "lastname": "TESTOWNER 31699D",
+   "licenseexpirationdate": "2014-01-31T00:00:00.000",
+   "licensefirstissuedate": "2005-10-17T00:00:00.000",
+   "licenselastreneweddate": "2012-02-01T00:00:00.000",
+   "licensenumber": "711999",
+   "licensestatusdescription": "Expired",
+   "licensetype": "NA",
+   "linktoverifylicense": {
+    "url": "https://www.colorado.gov/dora/licensing/Lookup/PrintLicenseDetails.aspx?cred=739680&contact=754215"
+   },
+   "linktoviewhealthcareprofile": {
+    "url": "https://www.colorado.gov/dora/licensing/SnapshotViewer.aspx?cid=739680&Key=DB766354-D97D-4ADA-B729-520E8670AD4A"
+   },
+   "mailzipcode": "81401",
+   "middlename": "TESTOWNER 043CDB",
+   "state": "CO"
+  },
+  {
+   "city": "Longmont",
+   "degrees": "~Bachelors of Science in Nursing~Doctor of Chiropractor",
+   "firstname": "TESTOWNER 7F7919",
+   "lastname": "TESTOWNER 1F6DD7",
+   "licenseexpirationdate": "2021-01-25T00:00:00.000",
+   "licensefirstissuedate": "2021-01-13T00:00:00.000",
+   "licenselastreneweddate": "2021-01-13T00:00:00.000",
+   "licensenumber": "712",
+   "licensestatusdescription": "Expired",
+   "licensetype": "T-RN",
+   "linktoverifylicense": {
+    "url": "https://www.colorado.gov/dora/licensing/Lookup/PrintLicenseDetails.aspx?cred=1352497&contact=326477"
+   },
+   "linktoviewhealthcareprofile": {
+    "url": "https://www.colorado.gov/dora/licensing/SnapshotViewer.aspx?cid=1352497&Key=565ACF0C-2B18-458F-83B5-534B15947CA3"
+   },
+   "mailzipcode": "80504",
+   "middlename": "TESTOWNER C8F209",
+   "state": "CO"
+  },
+  {
+   "city": "Columbus",
+   "firstname": "TESTOWNER DDE106",
+   "lastname": "TESTOWNER 9F8C88",
+   "licenseexpirationdate": "2024-10-31T00:00:00.000",
+   "licensefirstissuedate": "2023-05-30T00:00:00.000",
+   "licenselastreneweddate": "2023-05-30T00:00:00.000",
+   "licensenumber": "712",
+   "licensestatusdescription": "Expired",
+   "licensetype": "AV",
+   "linktoverifylicense": {
+    "url": "https://www.colorado.gov/dora/licensing/Lookup/PrintLicenseDetails.aspx?cred=1509322&contact=1605352"
+   },
+   "mailzipcode": "43202",
+   "middlename": "TESTOWNER C17F78",
+   "state": "OH"
+  }
+ ],
+ "where": "licensenumber >= '711991'"
+}

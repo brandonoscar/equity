@@ -29,6 +29,7 @@ from equity.adapters.fl.hillsborough_or import HillsboroughOfficialRecords
 from equity.adapters.fl.putnam_or import PutnamOfficialRecords
 from equity.adapters.hi.honolulu_owners import HonoluluOwners
 from equity.adapters.il.cook_parcels import CookCountyParcels
+from equity.adapters.licenses import all_license_adapters
 from equity.adapters.liens import all_lien_adapters
 from equity.adapters.md_baltimore_citations import BaltimoreCitationLiens
 from equity.adapters.md_prince_georges import PrinceGeorgesProperty
@@ -98,6 +99,7 @@ _ALL: tuple[type[Adapter], ...] = (
     HarrisJPCivilJudgments,
     HarrisDistrictCivilJudgments,
     *all_registry_adapters(),
+    *all_license_adapters(),
     # NDWV keeps its original source ids; config/courts.yaml adds every other court.
     *[c for c in court_adapters() if c.court_id not in ("wvnd", "wvnb")],
 )

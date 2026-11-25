@@ -1,0 +1,21 @@
+# Connecticut Department of Motor Vehicles, "Licensed Automobile Dealers, Repairers, Leasing
+# Companies and Manufacturers" (data.ct.gov apne-w8c6, Public Domain): about 5K licensed
+# dealers and repairers with business name and address.
+source_id: ct.dmv.dealers
+state: CT
+jurisdiction: "09"
+portal: https://data.ct.gov
+dataset: apne-w8c6
+key: license_num
+id_prefix: "CT-DMV:"
+terms_url: https://data.ct.gov/Business/Licensed-Automobile-Dealers-Repairers-Leasing-Comp/apne-w8c6
+terms_summary: "Public Domain (dataset license field)."
+checked_on: 2026-11-25
+license:
+  name: business_name
+  type: license_type
+  status_value: Active  # current licenses only
+  address: {street: business_address, city: city, state: state, zip: zip_code}
+holders:
+  - {role: other, title: LICENSEE, name: business_name, address: {street: business_address, city: city, state: state, zip: zip_code}}
+pii_fields: [business_name, business_address, geocoded_column]

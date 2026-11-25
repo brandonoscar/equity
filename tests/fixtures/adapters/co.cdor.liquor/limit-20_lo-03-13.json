@@ -1,0 +1,226 @@
+{
+ "portal": "https://data.colorado.gov",
+ "rows": [
+  {
+   "city": "Arvada",
+   "doing_business_as": "TESTOWNER 6B00B7",
+   "expiration": "2027-05-26T00:00:00.000",
+   "license_number": "03-13001",
+   "license_type": "Takeout & Delivery Permit",
+   "licensee_name": "TESTOWNER 4497F9 LLC",
+   "state": "CO",
+   "street_address": "3954 TEST ST",
+   "zip": "80002.0"
+  },
+  {
+   "city": "Arvada",
+   "doing_business_as": "TESTOWNER 6B00B7",
+   "expiration": "2027-05-26T00:00:00.000",
+   "license_number": "03-13001",
+   "license_type": "Tavern (city)",
+   "licensee_name": "TESTOWNER 4497F9 LLC",
+   "state": "CO",
+   "street_address": "3954 TEST ST",
+   "zip": "80002.0"
+  },
+  {
+   "city": "Monument",
+   "doing_business_as": "TESTOWNER 9A919D",
+   "expiration": "2027-02-11T00:00:00.000",
+   "license_number": "03-13006",
+   "license_type": "Beer & Wine (county)",
+   "licensee_name": "TESTOWNER 0F08F9 CORP",
+   "state": "CO",
+   "street_address": "3758 TEST ST",
+   "zip": "80132.0"
+  },
+  {
+   "city": "Aurora",
+   "doing_business_as": "TESTOWNER C4E0A8",
+   "expiration": "2027-06-17T00:00:00.000",
+   "license_number": "03-13010",
+   "license_type": "Retail Liquor Store (city)",
+   "licensee_name": "TESTOWNER BD6999 LLC",
+   "state": "CO",
+   "street_address": "8317 TEST ST",
+   "zip": "80014.0"
+  },
+  {
+   "city": "Sedgwick",
+   "doing_business_as": "TESTOWNER C99E5D",
+   "expiration": "2027-02-19T00:00:00.000",
+   "license_number": "03-13024",
+   "license_type": "Retail Liquor Store (city)",
+   "licensee_name": "TESTOWNER FA7D38 LLC",
+   "state": "CO",
+   "street_address": "6621 TEST ST",
+   "zip": "80749.0"
+  },
+  {
+   "city": "Grand Junction",
+   "doing_business_as": "TESTOWNER 3A17D1",
+   "expiration": "2027-04-14T00:00:00.000",
+   "license_number": "03-13025",
+   "license_type": "Beer & Wine (city)",
+   "licensee_name": "TESTOWNER 8B2031 LLC",
+   "state": "CO",
+   "street_address": "6273 TEST ST",
+   "zip": "81505.0"
+  },
+  {
+   "city": "Fort Collins",
+   "doing_business_as": "TESTOWNER 4F68A4",
+   "expiration": "2027-03-19T00:00:00.000",
+   "license_number": "03-13027",
+   "license_type": "Tavern (city)",
+   "licensee_name": "TESTOWNER 8321E5 LLC",
+   "state": "CO",
+   "street_address": "8172 TEST ST",
+   "zip": "80525.0"
+  },
+  {
+   "city": "Colorado Springs",
+   "doing_business_as": "TESTOWNER 62B279",
+   "expiration": "2027-04-30T00:00:00.000",
+   "license_number": "03-13029",
+   "license_type": "Takeout & Delivery Permit",
+   "licensee_name": "TESTOWNER 888930 LLC",
+   "state": "CO",
+   "street_address": "5299 TEST ST",
+   "zip": "80923.0"
+  },
+  {
+   "city": "Colorado Springs",
+   "doing_business_as": "TESTOWNER 62B279",
+   "expiration": "2027-04-30T00:00:00.000",
+   "license_number": "03-13029",
+   "license_type": "Hotel & Restaurant (city)",
+   "licensee_name": "TESTOWNER 888930 LLC",
+   "state": "CO",
+   "street_address": "5299 TEST ST",
+   "zip": "80923.0"
+  },
+  {
+   "city": "Montrose",
+   "doing_business_as": "TESTOWNER 188F58",
+   "expiration": "2027-05-10T00:00:00.000",
+   "license_number": "03-13030",
+   "license_type": "Hotel & Restaurant / Optional (city)",
+   "licensee_name": "TESTOWNER 827720 INC",
+   "state": "CO",
+   "street_address": "529 TEST ST",
+   "zip": "81403.0"
+  },
+  {
+   "city": "Grand Junction",
+   "doing_business_as": "TESTOWNER ACFDAF",
+   "expiration": "2027-02-18T00:00:00.000",
+   "license_number": "03-13031",
+   "license_type": "Bed & Breakfast Permit",
+   "licensee_name": "TESTOWNER 3B66CD",
+   "state": "CO",
+   "street_address": "1172 TEST ST",
+   "zip": "81506.0"
+  },
+  {
+   "city": "Sebastopol",
+   "doing_business_as": "TESTOWNER 5798D5",
+   "expiration": "2027-02-18T00:00:00.000",
+   "license_number": "03-13032",
+   "license_type": "Winery Direct Shipper's Permit",
+   "licensee_name": "TESTOWNER 9635C5 LLC",
+   "state": "CA",
+   "street_address": "6784 TEST ST",
+   "zip": "95472.0"
+  },
+  {
+   "city": "Denver",
+   "doing_business_as": "TESTOWNER D954DF",
+   "expiration": "2027-05-17T00:00:00.000",
+   "license_number": "03-13034",
+   "license_type": "Hotel & Restaurant (city)",
+   "licensee_name": "TESTOWNER 5A7CF3 INC",
+   "state": "CO",
+   "street_address": "3047 TEST ST",
+   "zip": "80220.0"
+  },
+  {
+   "city": "Denver",
+   "doing_business_as": "TESTOWNER 6815A3",
+   "expiration": "2027-08-02T00:00:00.000",
+   "license_number": "03-13036",
+   "license_type": "Takeout & Delivery Permit",
+   "licensee_name": "TESTOWNER F83A46 CORP",
+   "state": "CO",
+   "street_address": "234 TEST ST",
+   "zip": "80211.0"
+  },
+  {
+   "city": "Denver",
+   "doing_business_as": "TESTOWNER 6815A3",
+   "expiration": "2027-08-02T00:00:00.000",
+   "license_number": "03-13036",
+   "license_type": "Tavern (city)",
+   "licensee_name": "TESTOWNER 4E506E CORP",
+   "state": "CO",
+   "street_address": "234 TEST ST",
+   "zip": "80211.0"
+  },
+  {
+   "city": "Minturn",
+   "doing_business_as": "TESTOWNER D98E65 LLC",
+   "expiration": "2027-02-24T00:00:00.000",
+   "license_number": "03-13037",
+   "license_type": "Beer & Wine (city)",
+   "licensee_name": "TESTOWNER 13A118 LLC",
+   "state": "CO",
+   "street_address": "6250 TEST ST",
+   "zip": "81645.0"
+  },
+  {
+   "city": "Grand Junction",
+   "doing_business_as": "TESTOWNER 62395C",
+   "expiration": "2027-03-24T00:00:00.000",
+   "license_number": "03-13039",
+   "license_type": "Hotel & Restaurant / Optional (city)",
+   "licensee_name": "TESTOWNER 1B3A84",
+   "state": "CO",
+   "street_address": "8941 TEST ST",
+   "zip": "81501.0"
+  },
+  {
+   "city": "Aurora",
+   "doing_business_as": "TESTOWNER C3ED49",
+   "expiration": "2027-04-28T00:00:00.000",
+   "license_number": "03-13040",
+   "license_type": "Beer & Wine (city)",
+   "licensee_name": "TESTOWNER 800371 LLC",
+   "state": "CO",
+   "street_address": "8191 TEST ST",
+   "zip": "80014.0"
+  },
+  {
+   "city": "McMinnville",
+   "doing_business_as": "TESTOWNER 065C18",
+   "expiration": "2027-02-25T00:00:00.000",
+   "license_number": "03-13044",
+   "license_type": "Winery Direct Shipper's Permit",
+   "licensee_name": "TESTOWNER 3DA84C",
+   "state": "OR",
+   "street_address": "3663 TEST ST",
+   "zip": "97128.0"
+  },
+  {
+   "city": "Platteville",
+   "doing_business_as": "TESTOWNER E1CF51",
+   "expiration": "2027-03-31T00:00:00.000",
+   "license_number": "03-13046",
+   "license_type": "Hotel & Restaurant (city)",
+   "licensee_name": "TESTOWNER 164A21 INC",
+   "state": "CO",
+   "street_address": "4730 TEST ST",
+   "zip": "80651.0"
+  }
+ ],
+ "where": "license_number >= '03-13'"
+}

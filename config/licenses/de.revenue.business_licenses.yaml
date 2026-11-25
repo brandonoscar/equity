@@ -1,0 +1,25 @@
+# Delaware Department of Finance, Division of Revenue, "Delaware Business Licenses"
+# (data.delaware.gov 5zy2-grhr, Public Domain): about 75K current business licenses with the
+# business (legal) name, trade name, category and address.
+# TODO(Brandon): formed_on / valid_from is the start of the current license term (the first
+# issue date is not published).
+source_id: de.revenue.business_licenses
+state: DE
+jurisdiction: "10"
+portal: https://data.delaware.gov
+dataset: 5zy2-grhr
+key: license_number
+key_is_number: true
+id_prefix: "DE-BL:"
+terms_url: https://data.delaware.gov/Licenses-and-Certifications/Delaware-Business-Licenses/5zy2-grhr
+terms_summary: "Public Domain (dataset license field)."
+checked_on: 2026-11-25
+license:
+  name: [trade_name, business_name]
+  type: category
+  status_value: Active  # current licenses only
+  issued_on: current_license_valid_from
+  address: {street: [address_1, address_2], city: city, state: state, zip: zip}
+holders:
+  - {role: other, title: LICENSEE, name: business_name, address: {street: [address_1, address_2], city: city, state: state, zip: zip}}
+pii_fields: [business_name, trade_name, address_1, address_2, geocoded_location]

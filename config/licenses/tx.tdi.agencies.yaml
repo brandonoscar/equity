@@ -1,0 +1,22 @@
+# Texas Department of Insurance, "Insurance agencies and businesses approved to manage
+# insurance-related products" (data.texas.gov 3yqc-fcdt): about 58K rows, one per agency
+# license qualification, with the agency name, organization type and city, state and ZIP.
+source_id: tx.tdi.agencies
+state: TX
+jurisdiction: "48"
+portal: https://data.texas.gov
+dataset: 3yqc-fcdt
+key: agency_license_number
+key_is_number: true
+id_prefix: "TX-TDIA:"
+terms_url: https://data.texas.gov/dataset/Insurance-agencies-and-businesses-approved-to-mana/3yqc-fcdt
+terms_summary: "Texas Open Data Portal; no license text on the dataset (public information published by TDI)."
+checked_on: 2026-11-25
+license:
+  type: license_type
+  status_value: Active  # current licenses only
+  issued_on: license_issue_date
+  address: {city: city, state: state, zip: pstl_cd}
+holders:
+  - {role: other, title: LICENSEE, name: org_name, address: {city: city, state: state, zip: pstl_cd}}
+pii_fields: [org_name]

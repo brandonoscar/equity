@@ -1,0 +1,166 @@
+{
+ "portal": "https://data.ny.gov",
+ "rows": [
+  {
+   "commission_holder_name": "TESTOWNER 331A7B",
+   "commission_number_uid": "01LI0033485",
+   "commission_type_traditional_or_electronic": "Traditional",
+   "commissioned_county": "Kings",
+   "term_expiration_date": "2029-02-05T00:00:00.000",
+   "term_issue_date": "2025-02-05T00:00:00.000"
+  },
+  {
+   "commission_holder_name": "TESTOWNER 6B43F8",
+   "commission_number_uid": "01LI0033512",
+   "commission_type_traditional_or_electronic": "Traditional",
+   "commissioned_county": "Nassau",
+   "term_expiration_date": "2029-02-05T00:00:00.000",
+   "term_issue_date": "2025-02-05T00:00:00.000"
+  },
+  {
+   "commission_holder_name": "TESTOWNER B9E436",
+   "commission_number_uid": "01LI0033788",
+   "commission_type_traditional_or_electronic": "Traditional",
+   "commissioned_county": "Kings",
+   "term_expiration_date": "2029-02-11T00:00:00.000",
+   "term_issue_date": "2025-02-11T00:00:00.000"
+  },
+  {
+   "commission_holder_name": "TESTOWNER 537EB7",
+   "commission_number_uid": "01LI0033980",
+   "commission_type_traditional_or_electronic": "Electronic",
+   "commissioned_county": "Kings",
+   "term_expiration_date": "2029-02-19T00:00:00.000",
+   "term_issue_date": "2025-02-19T00:00:00.000"
+  },
+  {
+   "commission_holder_name": "TESTOWNER 8D4FC4",
+   "commission_number_uid": "01LI0034126",
+   "commission_type_traditional_or_electronic": "Traditional",
+   "commissioned_county": "Queens",
+   "term_expiration_date": "2029-02-25T00:00:00.000",
+   "term_issue_date": "2025-02-25T00:00:00.000"
+  },
+  {
+   "commission_holder_name": "TESTOWNER 120F39",
+   "commission_number_uid": "01LI0034322",
+   "commission_type_traditional_or_electronic": "Traditional",
+   "commissioned_county": "Kings",
+   "term_expiration_date": "2029-02-28T00:00:00.000",
+   "term_issue_date": "2025-02-28T00:00:00.000"
+  },
+  {
+   "commission_holder_name": "TESTOWNER 096F8E",
+   "commission_number_uid": "01LI0034358",
+   "commission_type_traditional_or_electronic": "Electronic",
+   "commissioned_county": "Nassau",
+   "term_expiration_date": "2029-02-28T00:00:00.000",
+   "term_issue_date": "2025-02-28T00:00:00.000"
+  },
+  {
+   "commission_holder_name": "TESTOWNER 116E08",
+   "commission_number_uid": "01LI0034524",
+   "commission_type_traditional_or_electronic": "Traditional",
+   "commissioned_county": "Nassau",
+   "term_expiration_date": "2029-03-06T00:00:00.000",
+   "term_issue_date": "2025-03-06T00:00:00.000"
+  },
+  {
+   "commission_holder_name": "TESTOWNER 8A98DA",
+   "commission_number_uid": "01LI0034756",
+   "commission_type_traditional_or_electronic": "Electronic",
+   "commissioned_county": "Queens",
+   "term_expiration_date": "2029-03-12T00:00:00.000",
+   "term_issue_date": "2025-03-12T00:00:00.000"
+  },
+  {
+   "commission_holder_name": "TESTOWNER ABF327",
+   "commission_number_uid": "01LI0034924",
+   "commission_type_traditional_or_electronic": "Traditional",
+   "commissioned_county": "Queens",
+   "term_expiration_date": "2029-03-17T00:00:00.000",
+   "term_issue_date": "2025-03-17T00:00:00.000"
+  },
+  {
+   "commission_holder_name": "TESTOWNER FD8468",
+   "commission_number_uid": "01LI0035544",
+   "commission_type_traditional_or_electronic": "Traditional",
+   "commissioned_county": "New York",
+   "term_expiration_date": "2029-03-31T00:00:00.000",
+   "term_issue_date": "2025-03-31T00:00:00.000"
+  },
+  {
+   "commission_holder_name": "TESTOWNER 343DEE",
+   "commission_number_uid": "01LI0035576",
+   "commission_type_traditional_or_electronic": "Electronic",
+   "commissioned_county": "Kings",
+   "term_expiration_date": "2029-04-01T00:00:00.000",
+   "term_issue_date": "2025-04-01T00:00:00.000"
+  },
+  {
+   "commission_holder_name": "TESTOWNER 687213",
+   "commission_number_uid": "01LI0035622",
+   "commission_type_traditional_or_electronic": "Traditional",
+   "commissioned_county": "Queens",
+   "term_expiration_date": "2029-04-02T00:00:00.000",
+   "term_issue_date": "2025-04-02T00:00:00.000"
+  },
+  {
+   "commission_holder_name": "TESTOWNER C02129",
+   "commission_number_uid": "01LI0035907",
+   "commission_type_traditional_or_electronic": "Traditional",
+   "commissioned_county": "New York",
+   "term_expiration_date": "2029-04-08T00:00:00.000",
+   "term_issue_date": "2025-04-08T00:00:00.000"
+  },
+  {
+   "commission_holder_name": "TESTOWNER 62B5E7",
+   "commission_number_uid": "01LI0036040",
+   "commission_type_traditional_or_electronic": "Traditional",
+   "commissioned_county": "Kings",
+   "term_expiration_date": "2029-04-10T00:00:00.000",
+   "term_issue_date": "2025-04-10T00:00:00.000"
+  },
+  {
+   "commission_holder_name": "TESTOWNER D65569",
+   "commission_number_uid": "01LI0036049",
+   "commission_type_traditional_or_electronic": "Traditional",
+   "commissioned_county": "New York",
+   "term_expiration_date": "2029-04-11T00:00:00.000",
+   "term_issue_date": "2025-04-11T00:00:00.000"
+  },
+  {
+   "commission_holder_name": "TESTOWNER 31627A",
+   "commission_number_uid": "01LI0036243",
+   "commission_type_traditional_or_electronic": "Electronic",
+   "commissioned_county": "Queens",
+   "term_expiration_date": "2029-04-17T00:00:00.000",
+   "term_issue_date": "2025-04-17T00:00:00.000"
+  },
+  {
+   "commission_holder_name": "TESTOWNER 5F55FE",
+   "commission_number_uid": "01LI0036684",
+   "commission_type_traditional_or_electronic": "Traditional",
+   "commissioned_county": "Queens",
+   "term_expiration_date": "2029-04-29T00:00:00.000",
+   "term_issue_date": "2025-04-29T00:00:00.000"
+  },
+  {
+   "commission_holder_name": "TESTOWNER 523D8F",
+   "commission_number_uid": "01LI0036990",
+   "commission_type_traditional_or_electronic": "Traditional",
+   "commissioned_county": "Rockland",
+   "term_expiration_date": "2029-05-07T00:00:00.000",
+   "term_issue_date": "2025-05-07T00:00:00.000"
+  },
+  {
+   "commission_holder_name": "TESTOWNER 262908",
+   "commission_number_uid": "01LI0037027",
+   "commission_type_traditional_or_electronic": "Traditional",
+   "commissioned_county": "Ontario",
+   "term_expiration_date": "2029-05-07T00:00:00.000",
+   "term_issue_date": "2025-05-07T00:00:00.000"
+  }
+ ],
+ "where": "commission_number_uid >= '01LI00334'"
+}

@@ -1,0 +1,23 @@
+# New York Department of State, "Commissioned NYS Notaries Public" (data.ny.gov rwbv-mz6z):
+# about 223K notaries with their commissioned county and, when given, a business name and
+# address.
+source_id: ny.dos.notaries
+state: NY
+jurisdiction: "36"
+portal: https://data.ny.gov
+dataset: rwbv-mz6z
+key: commission_number_uid
+id_prefix: "NY-NOT:"
+terms_url: https://data.ny.gov/download/77gx-ii52/application%2Fpdf
+terms_summary: "NY Open Data terms: free to use; no warranty. No restriction on commercial use found."
+checked_on: 2026-11-25
+license:
+  name: commission_holder_name
+  type: commission_type_traditional_or_electronic
+  status_value: Commissioned  # current commissions only
+  issued_on: term_issue_date
+  address: {street: [business_address_1_if_available, business_address_2_if_available], city: business_city_if_available, state: business_state_if_available, zip: business_zip_if_available}
+holders:
+  - {role: other, title: NOTARY PUBLIC, name: commission_holder_name, address: {street: [business_address_1_if_available, business_address_2_if_available], city: business_city_if_available, state: business_state_if_available, zip: business_zip_if_available}}
+  - {role: other, title: EMPLOYER, with_type: false, name: business_name_if_available}
+pii_fields: [commission_holder_name, business_name_if_available, business_address_1_if_available, business_address_2_if_available, georeference]

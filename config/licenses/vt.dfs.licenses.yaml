@@ -1,0 +1,20 @@
+# Vermont Department of Public Safety, Division of Fire Safety, "DFS Licensing MasterList"
+# (data.vermont.gov cy8e-89cz, ODbL): about 12K electricians, plumbers, gas and oil burner
+# installers and other trade licensees with name and street address.
+source_id: vt.dfs.licenses
+state: VT
+jurisdiction: "50"
+portal: https://data.vermont.gov
+dataset: cy8e-89cz
+key: license_number
+id_prefix: "VT-DFS:"
+terms_url: https://data.vermont.gov/Public-Safety/DFS-Licensing-MasterList/cy8e-89cz
+terms_summary: "Open Data Commons Open Database License (ODbL): attribution and share-alike for public databases; internal use is fine."
+checked_on: 2026-11-25
+license:
+  type: type_desc
+  status_value: Active  # current licensees
+  address: {street: street_address, city: city, state: state, zip: zip_code}
+holders:
+  - {role: other, title: LICENSEE, parts: {first: first_name, last: last_name}, address: {street: street_address, city: city, state: state, zip: zip_code}}
+pii_fields: [last_name, first_name, street_address]

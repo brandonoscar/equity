@@ -1,0 +1,24 @@
+# Missouri Division of Alcohol and Tobacco Control, "Missouri Active Alcohol License Data"
+# (data.mo.gov yyhn-562y): about 37K rows for 16K active licenses, one per associated person
+# (assoc MGR manager, OWN owner, PART partner, CONV...), with licensee, DBA and address.
+# TODO(Brandon): associated people are "other" with the raw assoc code as title; CONV is
+# not explained in the dataset.
+source_id: mo.atc.liquor
+state: MO
+jurisdiction: "29"
+portal: https://data.mo.gov
+dataset: yyhn-562y
+key: primary_license
+id_prefix: "MO-ATC:"
+terms_url: https://data.mo.gov/Regulatory/Missouri-Active-Alcohol-License-Data/yyhn-562y
+terms_summary: "Missouri open data portal; no license text on the dataset (public record published by ATC)."
+checked_on: 2026-11-25
+license:
+  name: [dbaname, licensee]
+  type: primary_type
+  status_value: Active  # active licenses only
+  address: {street: [street_number, street], city: city, state: state, zip: zipcode}
+holders:
+  - {role: other, title: LICENSEE, name: licensee, address: {street: [street_number, street], city: city, state: state, zip: zipcode}}
+  - {role: other, title: ASSOCIATE, title_field: assoc, with_type: false, name: name}
+pii_fields: [licensee, dbaname, street_number, street, phone_number, name, phone]

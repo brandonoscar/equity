@@ -1,0 +1,27 @@
+# Colorado Department of Regulatory Agencies, "Professional and Occupational Licenses in
+# Colorado" (data.colorado.gov 7s5z-vewr, Public Domain): about 1.6M current and past
+# licenses (nurses, physicians, cosmetologists, contractors, outfitters...), individuals with
+# first/middle/last name, businesses with an entity name; city, state and mailing ZIP only.
+# A license number repeats across license types, so a record is (licensetype, licensenumber).
+# TODO(Brandon): licensetype is DORA's code (COS, RN...); 349y-twqi maps codes to names.
+source_id: co.dora.licenses
+state: CO
+jurisdiction: "08"
+portal: https://data.colorado.gov
+dataset: 7s5z-vewr
+key: licensenumber
+record_key: [licensetype, licensenumber]
+id_prefix: "CO-DORA:"
+terms_url: https://data.colorado.gov/Regulations/Professional-and-Occupational-Licenses-in-Colorado/7s5z-vewr
+terms_summary: "Public Domain (dataset license field)."
+checked_on: 2026-11-25
+license:
+  name: entityname
+  type: licensetype
+  status: licensestatusdescription
+  issued_on: licensefirstissuedate
+  latest_by: licenselastreneweddate
+  address: {city: city, state: state, zip: mailzipcode}
+holders:
+  - {role: other, title: LICENSEE, parts: {first: firstname, middle: middlename, last: lastname, suffix: suffix}, address: {city: city, state: state, zip: mailzipcode}}
+pii_fields: [lastname, firstname, middlename, entityname]

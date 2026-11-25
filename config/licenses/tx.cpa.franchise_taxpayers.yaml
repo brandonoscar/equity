@@ -1,0 +1,28 @@
+# Texas Comptroller of Public Accounts, "Active Franchise Taxpayers" (data.texas.gov 9cir-efmm):
+# about 3.5M entities subject to franchise tax (corporations, LLCs, partnerships...), with the
+# Secretary of State file number and charter date and the taxpayer's mailing address. No
+# officers or registered agents are published here (the Comptroller's public information
+# report search is a web form, not used). A state business registry, kept with the license
+# configs because the taxpayer itself is the only holder (business_registry has no layout
+# for that).
+# TODO(Brandon): the key is the Comptroller taxpayer number, not the SOS file number (kept in
+# the raw record); status is the SOS status code (A = active...).
+source_id: tx.cpa.franchise_taxpayers
+state: TX
+jurisdiction: "48"
+portal: https://data.texas.gov
+dataset: 9cir-efmm
+key: taxpayer_number
+id_prefix: "TX-FT:"
+terms_url: https://data.texas.gov/dataset/Active-Franchise-Taxpayers/9cir-efmm
+terms_summary: "Texas Open Data Portal; no license text on the dataset (public information published by the Comptroller)."
+checked_on: 2026-11-25
+license:
+  name: taxpayer_name
+  type: taxpayer_organizational_type
+  status: sos_status_code
+  issued_on: sos_charter_date
+  mailing: {street: taxpayer_address, city: taxpayer_city, state: taxpayer_state, zip: taxpayer_zip}
+holders:
+  - {role: other, title: TAXPAYER, with_type: false, name: taxpayer_name, address: {street: taxpayer_address, city: taxpayer_city, state: taxpayer_state, zip: taxpayer_zip}}
+pii_fields: [taxpayer_name, taxpayer_address]

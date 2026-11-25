@@ -1,0 +1,23 @@
+# City of New Orleans Bureau of Revenue, "Occupational Business Licenses" (data.nola.gov
+# hjcd-grvu): about 38K current occupational licenses with business name, owner name (a
+# company or a person), business type, start date, and business and mailing address.
+source_id: la.nola.business_licenses
+state: LA
+jurisdiction: "22071"
+portal: https://data.nola.gov
+dataset: hjcd-grvu
+key: businesslicensenumber
+id_prefix: "NOLA-OBL:"
+terms_url: https://data.nola.gov/Economy-and-Workforce/Occupational-Business-Licenses/hjcd-grvu
+terms_summary: "City of New Orleans open data; no license text on the dataset (public record)."
+checked_on: 2026-11-25
+license:
+  name: [businessname, ownername]
+  type: businesstype
+  status_value: Active  # current licenses only
+  issued_on: businessstartdate
+  address: {street: [address, suite], city: city, state: state, zip: zip}
+  mailing: {street: [mailaddress, mailsuite], city: mailcity, state: mailstate, zip: mailzip}
+holders:
+  - {role: other, title: OWNER, name: ownername, address: {street: [mailaddress, mailsuite], city: mailcity, state: mailstate, zip: mailzip}}
+pii_fields: [businessname, ownername, address, streetnumber, streetname, suite, mailaddress, mailsuite, phonenumber, latitude, longitude, location]

@@ -1,0 +1,22 @@
+# Oregon Department of Consumer and Business Services, Building Codes Division, "Active
+# Contractor/Individual Licenses" (data.oregon.gov vhbr-cuaq, Public Domain): about 47K
+# electrical, plumbing, boiler and elevator licenses, businesses and individuals, with
+# address. addr1-addr4 are free-form lines (the last often 'CITY ST ZIP').
+source_id: or.bcd.licenses
+state: OR
+jurisdiction: "41"
+portal: https://data.oregon.gov
+dataset: vhbr-cuaq
+key: licnbr
+id_prefix: "OR-BCD:"
+terms_url: https://data.oregon.gov/Business/Building-Codes-Division-Active-Contractor-Individua/vhbr-cuaq
+terms_summary: "Public Domain (dataset license field)."
+checked_on: 2026-11-25
+license:
+  name: [dba, full_name]
+  type: lictype
+  status: lic_status
+  address: {street: [addr1, addr2], city: city, state: state, zip: zipcode}
+holders:
+  - {role: other, title: LICENSEE, name: full_name, address: {street: [addr1, addr2], city: city, state: state, zip: zipcode}}
+pii_fields: [full_name, dba, addr1, addr2, addr3, addr4]

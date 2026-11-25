@@ -1,0 +1,21 @@
+# Washington State Board of Accountancy, "Washington State Certified Public Accountants"
+# (data.wa.gov 6du3-3h9e, Public Domain): about 52K CPA licenses with first/middle/last name
+# and city and state.
+source_id: wa.boa.cpas
+state: WA
+jurisdiction: "53"
+portal: https://data.wa.gov
+dataset: 6du3-3h9e
+key: number
+id_prefix: "WA-CPA:"
+terms_url: https://data.wa.gov/Consumer-Protection/Washington-State-Certified-Public-Accountants/6du3-3h9e
+terms_summary: "Public Domain (dataset license field)."
+checked_on: 2026-11-25
+license:
+  type_value: CERTIFIED PUBLIC ACCOUNTANT
+  status: status
+  issued_on: originalissue
+  address: {city: city, state: state}
+holders:
+  - {role: other, title: LICENSEE, parts: {first: firstname, middle: middlename, last: lastname, suffix: suffix}, address: {city: city, state: state}}
+pii_fields: [firstname, middlename, lastname, preferred_name]

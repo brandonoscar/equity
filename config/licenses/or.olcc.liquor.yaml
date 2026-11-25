@@ -1,0 +1,21 @@
+# Oregon Liquor and Cannabis Commission, "OLCC Liquor Business Licenses & Endorsements"
+# (data.oregon.gov srxe-qkm2): about 24K current and expired liquor licenses with the
+# licensee (company or person), trade name and one-line premises address.
+source_id: or.olcc.liquor
+state: OR
+jurisdiction: "41"
+portal: https://data.oregon.gov
+dataset: srxe-qkm2
+key: license_number
+id_prefix: "OR-OLCC:"
+terms_url: https://data.oregon.gov/Business/OLCC-Liquor-Business-Licenses-Endorsements/srxe-qkm2
+terms_summary: "Oregon open data portal; no license text on the dataset (public record published by OLCC)."
+checked_on: 2026-11-25
+license:
+  name: [trade_name, licensee_name]
+  type: license_type
+  issued_on: effective_date
+  address: {line: physical_address, city: city}
+holders:
+  - {role: other, title: LICENSEE, name: licensee_name, address: {line: physical_address, city: city}}
+pii_fields: [licensee_name, trade_name, physical_address]
