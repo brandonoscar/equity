@@ -1,0 +1,45 @@
+source_id: tx.austin.construction_permits
+state: TX
+county_fips: "48453"   # Travis County (City of Austin; some permits lie in Williamson and Hays)
+# City of Austin Development Services "Issued Construction Permits" (data.austintexas.gov
+# 3syk-w9eu, 2,387,023 building, electrical, mechanical, plumbing and driveway permits; issue
+# dates from 1921, mostly since the 1980s; updated daily): permit number and type, work
+# description, valuation, the site address and TCAD id, and the contractor (company and
+# person, with address and phone) and applicant (person and organisation, with address).
+# No owner name is published. Every named contractor and applicant becomes a party with role
+# other: OTHER instruments, in no match run (who works where, and who applies for a
+# property's permits). The TCAD id mixes geo ids and property ids, so no parcel link is made.
+portal: https://data.austintexas.gov
+dataset: 3syk-w9eu
+where: "issue_date IS NOT NULL"
+order_by: [":id"]
+select: [permit_number, permittype, permit_type_desc, work_class, issue_date, status_current,
+         original_address1, original_city, original_state, original_zip, tcad_id,
+         total_job_valuation, contractor_trade, contractor_company_name, contractor_full_name,
+         contractor_address1, contractor_address2, contractor_city, contractor_zip,
+         applicant_full_name, applicant_org, applicant_address1, applicant_address2,
+         applicant_city, applicantzip]
+date_field: issue_date
+partition: year
+first_year: 1921
+uid: permit_number
+doc_type: OTHER
+doc_type_raw: {field: permit_type_desc}
+parties:
+  - role: other
+    name: contractor_company_name
+    address: {line1: [contractor_address1, contractor_address2], city: contractor_city, zip: contractor_zip}
+  - role: other
+    name: contractor_full_name
+    address: {line1: [contractor_address1, contractor_address2], city: contractor_city, zip: contractor_zip}
+  - role: other
+    name: applicant_full_name
+    address: {line1: [applicant_address1, applicant_address2], city: applicant_city, zip: applicantzip}
+  - {role: other, name: applicant_org}
+extra_pii: [original_address1]
+terms:
+  url: https://data.austintexas.gov/Building-and-Development/Issued-Construction-Permits/3syk-w9eu
+  summary: "City of Austin Open Data Portal (Socrata), free, no login; dataset license Public Domain U.S. Government; City of Austin open data terms of use (no warranty). robots.txt allows /resource/."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

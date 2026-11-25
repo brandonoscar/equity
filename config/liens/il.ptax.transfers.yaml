@@ -22,11 +22,21 @@ doc_type: DEED
 doc_type_raw: Illinois transfer declaration (PTAX-203)
 consideration: line_11_full_consideration
 county_name_field: line_1_county
+# Declarations with two or more buyers or sellers list the others in two companion datasets
+# (data.illinois.gov dwt7-rycp 'PTAX-203 Additional Buyers', 1,274,547 rows; rzbz-mw8b
+# 'PTAX-203 Additional Sellers', 1,105,502 rows; Public Domain), joined by declaration_id.
+enrich:
+  - {socrata: https://data.illinois.gov, dataset: dwt7-rycp, key: declaration_id,
+     field: declaration_id, columns: [buyer_name]}
+  - {socrata: https://data.illinois.gov, dataset: rzbz-mw8b, key: declaration_id,
+     field: declaration_id, columns: [seller_name]}
 parties:
   - role: grantor
     name: step_4_seller_name
   - role: grantee
     name: step_4_buyer_name
+  - {role: grantor, name: seller_name, split: " | "}   # additional sellers (enrich)
+  - {role: grantee, name: buyer_name, split: " | "}    # additional buyers (enrich)
 parcel: {kind: pin, field: line_1_primary_pin, strip: "-"}   # '14-33-422-068-1145' -> 14 digits
 extra_pii: [line_1_street]
 terms:

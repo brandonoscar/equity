@@ -1,0 +1,47 @@
+source_id: il.chicago.building_permits
+state: IL
+county_fips: "17031"   # Cook County (City of Chicago)
+# City of Chicago Department of Buildings "Building Permits" (data.cityofchicago.org
+# ydr8-5enu, 853,942 permits issued since 2006, voided and revoked permits excluded; updated
+# daily): permit number, type, work description, reported cost, the site address and up to
+# 15 contacts, each with a type (OWNER, OWNER OCCUPIED, BUILDING OWNER, APPLICANT,
+# contractors, architects, expediters), name and city/state/ZIP (no street line). Every
+# contact becomes a party with role other (owners are mixed with the trades; the contact type
+# stays in the source record). Like ny.nyc.dob_permits: a signal that an owner is putting
+# money into a property, not a debt: OTHER instruments, in no match run. pin_list carries
+# 10-digit block PINs (no unit), which do not key the 14-digit Cook parcels, so no parcel
+# link is made.
+portal: https://data.cityofchicago.org
+dataset: ydr8-5enu
+where: "issue_date IS NOT NULL"
+order_by: [":id"]
+select: [id, permit_, permit_type, work_type, issue_date, street_number, street_direction,
+         street_name, reported_cost, pin_list, contact_1_type, contact_1_name, contact_1_city, contact_1_state, contact_1_zipcode, contact_2_type, contact_2_name, contact_2_city, contact_2_state, contact_2_zipcode, contact_3_type, contact_3_name, contact_3_city, contact_3_state, contact_3_zipcode, contact_4_type, contact_4_name, contact_4_city, contact_4_state, contact_4_zipcode, contact_5_type, contact_5_name, contact_5_city, contact_5_state, contact_5_zipcode, contact_6_type, contact_6_name, contact_6_city, contact_6_state, contact_6_zipcode, contact_7_type, contact_7_name, contact_7_city, contact_7_state, contact_7_zipcode, contact_8_type, contact_8_name, contact_8_city, contact_8_state, contact_8_zipcode, contact_9_type, contact_9_name, contact_9_city, contact_9_state, contact_9_zipcode, contact_10_type, contact_10_name, contact_10_city, contact_10_state, contact_10_zipcode, contact_11_type, contact_11_name, contact_11_city, contact_11_state, contact_11_zipcode, contact_12_type, contact_12_name, contact_12_city, contact_12_state, contact_12_zipcode, contact_13_type, contact_13_name, contact_13_city, contact_13_state, contact_13_zipcode, contact_14_type, contact_14_name, contact_14_city, contact_14_state, contact_14_zipcode, contact_15_type, contact_15_name, contact_15_city, contact_15_state, contact_15_zipcode]
+date_field: issue_date
+partition: year
+first_year: 2006
+uid: permit_
+doc_type: OTHER
+doc_type_raw: {field: permit_type}
+parties:
+  - {role: other, name: contact_1_name, address: {city: contact_1_city, state: contact_1_state, zip: contact_1_zipcode}}
+  - {role: other, name: contact_2_name, address: {city: contact_2_city, state: contact_2_state, zip: contact_2_zipcode}}
+  - {role: other, name: contact_3_name, address: {city: contact_3_city, state: contact_3_state, zip: contact_3_zipcode}}
+  - {role: other, name: contact_4_name, address: {city: contact_4_city, state: contact_4_state, zip: contact_4_zipcode}}
+  - {role: other, name: contact_5_name, address: {city: contact_5_city, state: contact_5_state, zip: contact_5_zipcode}}
+  - {role: other, name: contact_6_name, address: {city: contact_6_city, state: contact_6_state, zip: contact_6_zipcode}}
+  - {role: other, name: contact_7_name, address: {city: contact_7_city, state: contact_7_state, zip: contact_7_zipcode}}
+  - {role: other, name: contact_8_name, address: {city: contact_8_city, state: contact_8_state, zip: contact_8_zipcode}}
+  - {role: other, name: contact_9_name, address: {city: contact_9_city, state: contact_9_state, zip: contact_9_zipcode}}
+  - {role: other, name: contact_10_name, address: {city: contact_10_city, state: contact_10_state, zip: contact_10_zipcode}}
+  - {role: other, name: contact_11_name, address: {city: contact_11_city, state: contact_11_state, zip: contact_11_zipcode}}
+  - {role: other, name: contact_12_name, address: {city: contact_12_city, state: contact_12_state, zip: contact_12_zipcode}}
+  - {role: other, name: contact_13_name, address: {city: contact_13_city, state: contact_13_state, zip: contact_13_zipcode}}
+  - {role: other, name: contact_14_name, address: {city: contact_14_city, state: contact_14_state, zip: contact_14_zipcode}}
+  - {role: other, name: contact_15_name, address: {city: contact_15_city, state: contact_15_state, zip: contact_15_zipcode}}
+terms:
+  url: https://data.cityofchicago.org/Buildings/Building-Permits/ydr8-5enu
+  summary: "City of Chicago Data Portal (Socrata), free, no login; City of Chicago data terms of use (no warranty; the City may change or remove data; no commercial-use restriction). robots.txt allows /resource/."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

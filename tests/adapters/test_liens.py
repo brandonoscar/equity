@@ -575,6 +575,31 @@ def test_link_from_finds_the_current_file(tmp_path: Path) -> None:
         cls(_client({})).file_url()
 
 
+def test_link_from_all_makes_one_partition_per_file(tmp_path: Path) -> None:
+    cfg = _cfg(tmp_path, api="csv", url="https://d.test/old.csv", portal=None, dataset=None,
+               parcel=None, county_fips="39049", released_on=None, date_field="d", uid="n",
+               us_dates=["d"],
+               link_from={"page": "https://d.test/list/", "all": True,
+                          "pattern": r"List (\d{4}-\d{2})-01 to [\d-]+\.csv"},
+               parties=[{"role": "debtor", "name": "n"}])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    page = (b"<a href='/f/List 2026-10-01 to 2026-10-31.csv?83'>Oct</a>"
+            b"<a href='/f/List 2026-09-01 to 2026-09-30.csv?97'>Sep</a>"
+            b"<a href='/f/List 2026-10-01 to 2026-10-31.csv?84'>again</a>"
+            b"<a href='x.pdf'>")  # fmt: skip
+    files = {"d.test/list/": page,
+             "List%202026-09-01": b"n,d\nBee Co,09/02/2026\n",
+             "List%202026-10-01": b"n,d\nAcme,10/05/2026\n"}  # fmt: skip
+    a = cls(_client(files))
+    assert list(a.partitions()) == [{"file": "2026-10"}, {"file": "2026-09"}]
+    assert a.file_url("2026-09") == "https://d.test/f/List%202026-09-01%20to%202026-09-30.csv?97"
+    assert a.file_url() == a.file_url("2026-10") == a.file_url("all")
+    f = a.fetch(FetchRequest({"file": "2026-09"}))
+    assert json.loads(f.content)["rows"] == [{"n": "Bee Co", "d": "2026-09-02"}]
+    with pytest.raises(LienConfigError, match="no link"):
+        a.file_url("2025-01")
+
+
 def _pdf(lines: list[tuple[float, float, str]], objstm: bool = False) -> bytes:
     """A one-page PDF: a font with a ToUnicode CMap (code 0x01 -> 'Z'), a deflated content
     stream placing each (x, y, text) with Tm, and optionally the font inside an /ObjStm."""
@@ -968,3 +993,51 @@ def test_past_due_days_drops_current_bills(tmp_path: Path) -> None:
     at = datetime(2026, 11, 25, tzinfo=UTC)
     out = cls().normalize(Fetched(cls.source_id, "x", at, 200, body, ""))
     assert {r.row["instrument_number"] for r in out if r.table == "instrument"} == {"OLD"}
+
+
+def test_socrata_enrich_joins_every_match(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    import equity.adapters.liens as liens
+
+    enrich = [{"socrata": "https://e.test", "dataset": "buy-0001", "key": "decl",
+               "field": "ticket", "columns": ["buyer"]}]  # fmt: skip
+    cfg = _cfg(tmp_path, enrich=enrich, released_on=None, parcel=None, county_fips="17",
+               parties=[{"role": "grantee", "name": "buyer", "split": " | "}])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    main = [{"ticket": "T1", "docketed": "2026-01-05T00:00:00.000"},
+            {"ticket": "T2", "docketed": "2026-01-06T00:00:00.000"}]  # fmt: skip
+    extra = [{"decl": "T1", "buyer": "BO RAY"}, {"decl": "T1", "buyer": "ANN LEE"},
+             {"decl": "T1", "buyer": "ANN LEE"}, {"decl": "T9", "buyer": "NOBODY"}]  # fmt: skip
+    routes = {"buy-0001.json": json.dumps(extra).encode(),
+              "abcd-1234.json": json.dumps(main).encode()}  # fmt: skip
+    for lookup_max in (2_000, 1):  # IN queries, then the whole table read once
+        monkeypatch.setattr(liens, "ENRICH_LOOKUP_MAX", lookup_max)
+        liens._SOCRATA_TABLES.clear()
+        a = cls(_client(routes))
+        rows = json.loads(a.fetch(FetchRequest({"from": "2026-01-01", "to": "2026-02-01"})
+                                  ).content)["rows"]  # fmt: skip
+        assert [r.get("buyer") for r in rows] == ["ANN LEE | BO RAY", None]
+        names = {r.row["raw_name"] for r in a.normalize(
+            Fetched(cls.source_id, "x", AT, 200, json.dumps({"rows": rows}).encode(), "")
+        ) if r.table == "party"}  # fmt: skip
+        assert names == {"ANN LEE", "BO RAY"}
+    assert ("https://e.test", "buy-0001") in liens._SOCRATA_TABLES
+    liens._SOCRATA_TABLES.clear()
+
+
+def test_amount_in_text_and_use_restrictions(tmp_path: Path) -> None:
+    cfg = _cfg(tmp_path, amount="summary", amount_in_text=True, released_on=None,
+               use_restrictions=["no_redistribution", "internal_use_only"])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    assert cls().source_row()["terms_summary"] == (
+        "RESTRICTED[internal_use_only,no_redistribution] s")  # fmt: skip
+    rows = [{"ticket": "T1", "docketed": "2026-01-05", "summary": "$12,882.50 Fund Award",
+             "last": "ACME LLC"},
+            {"ticket": "T2", "docketed": "2026-01-05", "summary": "claim dismissed",
+             "last": "BEE INC"}]  # fmt: skip
+    body = json.dumps({"rows": rows}).encode()
+    inst = {r.row["instrument_number"]: r.row for r in cls().normalize(
+        Fetched(cls.source_id, "x", AT, 200, body, "")) if r.table == "instrument"}  # fmt: skip
+    assert str(inst["T1"]["principal_amount"]) == "12882.50"
+    assert inst["T2"]["principal_amount"] is None
+    plain = lien_adapter_for(load_lien_config(_cfg(tmp_path)))
+    assert plain().source_row()["terms_summary"] == "s"

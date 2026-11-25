@@ -51,6 +51,7 @@ from equity.adapters.fl.hillsborough_or import HillsboroughOfficialRecords
 from equity.adapters.fl.putnam_or import PutnamOfficialRecords
 from equity.adapters.hi.honolulu_owners import HonoluluOwners
 from equity.adapters.il.cook_parcels import CookCountyParcels
+from equity.adapters.indiana_sdf import IndianaSalesDisclosures
 from equity.adapters.licenses import all_license_adapters
 from equity.adapters.liens import all_lien_adapters
 from equity.adapters.md_baltimore_citations import BaltimoreCitationLiens
@@ -101,6 +102,7 @@ _ALL: tuple[type[Adapter], ...] = (
     HonoluluOwners,
     AcrisPersonalProperty,
     PhiladelphiaRTT,
+    IndianaSalesDisclosures,
     AlleghenyAssessments,
     ProvidenceTaxRoll,
     HarrisJPJudgments,

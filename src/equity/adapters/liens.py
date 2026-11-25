@@ -20,7 +20,11 @@ Config keys:
                       caption_plaintiff and caption_defendant for use in parties
   enrich              arcgis: {carto: SQL API url, table, key, field, columns} or {arcgis:
                       another layer's url, key, field, columns}: add columns from that table
-                      or layer, looked up by the row's field (e.g. owner by case)
+                      or layer, looked up by the row's field (e.g. owner by case).
+                      socrata (also a list of specs): {socrata: portal, dataset, key, field,
+                      columns}: every row of that dataset whose key is the row's field; each
+                      column's distinct values joined with ' | ' (read with split: ' | '),
+                      e.g. the additional buyers of a transfer declaration
   date_is_text        arcgis: date_field is ISO text, so windows compare strings, not DATEs
   excel_dates         xlsx: fields holding Excel serial day numbers, turned into ISO dates
   us_dates            file apis: fields holding M/D/YYYY dates, turned into ISO dates
@@ -47,6 +51,8 @@ Config keys:
                       {field, map: {VALUE: DOC_TYPE}, default} to map a row's value
   doc_type_raw        constant label, or {field: name}
   amount              field holding the amount owed (principal_amount), or a list summed
+  amount_in_text      true: the amount is the first dollar figure inside the field's text
+                      ('$12,882.00 Guaranty Fund Award' -> 12882.00)
   consideration       deeds and sales: field holding the price paid (instrument consideration)
   released_on         optional field: satisfaction date -> RELEASE + instrument_ref
   satisfied_flag      optional field: a value in satisfied_values (default true/1/yes/y) marks
@@ -67,10 +73,15 @@ Config keys:
   extra_pii           more fields pseudonymized in recorded fixtures (e.g. an apartment address)
   link_from           file apis: {page, pattern}: the file's address changes with each issue
                       (a quarter in its name), so it is the first link on `page` whose href
-                      matches the regex `pattern`; `url` is the fallback and the base_url
+                      matches the regex `pattern`; `url` is the fallback and the base_url.
+                      With `all: true` every matching link is a partition {file: key}, the
+                      key being the pattern's first group (e.g. the month or fiscal year in
+                      the file name): a source published as one file per period
   user_agent          optional identifying User-Agent for a host whose firewall refuses the
                       default one (it still names this project; robots.txt is still obeyed)
   terms               {url, summary, checked_on, cost_model}
+  use_restrictions    optional tags (internal_use_only, no_redistribution, ...), written into
+                      the source row's terms summary as RESTRICTED[...], as parcel configs do
 """
 
 from __future__ import annotations
@@ -239,6 +250,18 @@ def _amount(value: Any) -> Decimal | None:
     except (InvalidOperation, ValueError):
         return None
     return d if d >= 0 else None
+
+
+ENRICH_LOOKUP_MAX = 2_000  # Socrata enrich: more keys than this read the whole table once
+# Socrata enrich tables read whole, by (portal, dataset): {key: [rows]} for this process.
+_SOCRATA_TABLES: dict[tuple[str, str], dict[str, list[dict[str, Any]]]] = {}
+DOLLARS = re.compile(r"\$\s*([0-9][0-9,]*(?:\.[0-9]{1,2})?)")
+
+
+def _amount_in_text(value: Any) -> Decimal | None:
+    """The first dollar figure in a text ('$7,779 Guaranty Fund Award' -> 7779); None if none."""
+    m = DOLLARS.search(str(value or ""))
+    return _amount(m.group(1)) if m else None
 
 
 @cache
@@ -477,11 +500,16 @@ class LienAdapter(Adapter):
             "access_method": ACCESS.get(self.api, "api"),
             "base_url": self.base_url,
             "terms_url": t.get("url"),
-            "terms_summary": t["summary"],
+            "terms_summary": self.restricted() + t["summary"],
             "terms_checked_on": t["checked_on"],
             "robots_checked_on": t.get("robots_checked_on", t["checked_on"]),
             "cost_model": t["cost_model"],
         }
+
+    def restricted(self) -> str:
+        """'RESTRICTED[tag,...] ' for a config with use_restrictions, else ''."""
+        tags = sorted(str(x) for x in self.config.get("use_restrictions") or ())
+        return f"RESTRICTED[{','.join(tags)}] " if tags else ""
 
     @property
     def api(self) -> str:
@@ -506,6 +534,10 @@ class LienAdapter(Adapter):
             return
         if self.config.get("partition") == "none":
             yield {}  # the whole (filtered) dataset in one fetch
+            return
+        if self.api in FILE_APIS and (self.config.get("link_from") or {}).get("all"):
+            for key in dict(self.file_links()):
+                yield {"file": key}  # one file per period, each replaced in full
             return
         if self.api in FILE_APIS or self.config.get("single_partition"):
             yield {"file": "all"}  # one file or dataset, replaced in full each update
@@ -604,19 +636,36 @@ class LienAdapter(Adapter):
                            tuple(self.config.get("order_by") or ("OBJECTID",)),
                            page)  # fmt: skip
 
-    def file_url(self) -> str:
-        """The file to download: config url, or the current link found on link_from.page."""
-        spec = self.config.get("link_from")
-        if not spec:
-            return str(self.config["url"])
+    def file_links(self) -> list[tuple[str, str]]:
+        """(key, absolute url) of every link on link_from.page whose href matches the pattern,
+        in page order, first per key. The key is the pattern's first group (the whole match
+        when it has none). Spaces and other unsafe characters in the href are %-quoted."""
+        spec = self.config["link_from"]
         page = self.client.get(str(spec["page"]))
         if page.status != 200:
             raise LienConfigError(f"{self.source_id}: HTTP {page.status} from {spec['page']}")
         text = page.content.decode("utf-8", errors="replace")
+        found: dict[str, str] = {}
         for href in re.findall(r"""href\s*=\s*["']([^"']+)["']""", text, re.IGNORECASE):
             href = html.unescape(href)
-            if re.search(str(spec["pattern"]), href):
-                return urllib.parse.urljoin(str(spec["page"]), href)
+            m = re.search(str(spec["pattern"]), href)
+            if m:
+                url = urllib.parse.urljoin(str(spec["page"]), href)
+                key = m.group(1) if m.groups() else m.group(0)
+                found.setdefault(key, urllib.parse.quote(url, safe=":/?&=%#+,;@()~"))
+        return list(found.items())
+
+    def file_url(self, key: str | None = None) -> str:
+        """The file to download: config url, or the current link found on link_from.page (with
+        a key: the link for that key, link_from.all)."""
+        spec = self.config.get("link_from")
+        if not spec:
+            return str(self.config["url"])
+        links = self.file_links()
+        if key is not None and spec.get("all") and key != "all":
+            links = [(k, u) for k, u in links if k == key]
+        if links:
+            return links[0][1]
         raise LienConfigError(f"{self.source_id}: no link matching {spec['pattern']!r}")
 
     def _enrich(self, rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -626,6 +675,10 @@ class LienAdapter(Adapter):
         case but its owner and parcel live in another public table."""
         spec = self.config.get("enrich")
         if not spec or not rows:
+            return rows
+        if isinstance(spec, list) or spec.get("socrata"):
+            for one in spec if isinstance(spec, list) else [spec]:
+                rows = self._enrich_socrata(rows, one)
             return rows
         field = str(spec["field"])
         keys = sorted({str(r[field]) for r in rows if r.get(field) not in (None, "")})
@@ -640,6 +693,47 @@ class LienAdapter(Adapter):
                 found.setdefault(str(r[spec["key"]]), {c: r.get(c) for c in cols})
         empty = dict.fromkeys(cols)
         return [{**r, **found.get(str(r.get(field)), empty)} for r in rows]
+
+    def _enrich_socrata(
+        self, rows: list[dict[str, Any]], spec: Mapping[str, Any]
+    ) -> list[dict[str, Any]]:
+        """Socrata enrich: all matching rows, each column's distinct values joined with ' | '.
+        Up to ENRICH_LOOKUP_MAX keys are looked up with IN queries (fixtures, small windows);
+        more read the whole (key, columns) table once per process and keep it."""
+        field, key = str(spec["field"]), str(spec["key"])
+        cols = [str(c) for c in spec["columns"]]
+        keys = sorted({str(r[field]) for r in rows if r.get(field) not in (None, "")})
+        portal, dataset = str(spec["socrata"]), str(spec["dataset"])
+        if len(keys) > ENRICH_LOOKUP_MAX:
+            table = _SOCRATA_TABLES.get((portal, dataset))
+            if table is None:
+                table = self._socrata_table(portal, dataset, key, cols, "1=1")
+                _SOCRATA_TABLES[(portal, dataset)] = table
+        else:
+            table = {}
+            for i in range(0, len(keys), 100):
+                # Column names come from repo config; keys are quoted with '' doubled.
+                quoted = ", ".join("'" + k.replace("'", "''") + "'" for k in keys[i : i + 100])
+                part = self._socrata_table(portal, dataset, key, cols, f"{key} IN ({quoted})")
+                table.update(part)
+        out = []
+        for r in rows:
+            hits = table.get(str(r.get(field)), [])
+            add = {c: " | ".join(sorted({str(h[c]).strip() for h in hits
+                                         if str(h.get(c) or "").strip()})) or None
+                   for c in cols}  # fmt: skip
+            out.append({**r, **add})
+        return out
+
+    def _socrata_table(
+        self, portal: str, dataset: str, key: str, cols: list[str], where: str
+    ) -> dict[str, list[dict[str, Any]]]:
+        q = SocrataQuery(portal, dataset, where, (key, ":id"), self.page_size, (key, *cols))
+        got, _ = fetch_all(self.client, q)
+        table: dict[str, list[dict[str, Any]]] = {}
+        for r in got:
+            table.setdefault(str(r.get(key)), []).append(r)
+        return table
 
     def _enrich_rows(
         self, spec: Mapping[str, Any], cols: list[str], quoted: str
@@ -704,7 +798,7 @@ class LienAdapter(Adapter):
         limit = request.params.get("limit")
         where = self.where(request.params)
         if self.api in FILE_APIS:
-            url = self.file_url()
+            url = self.file_url(request.params.get("file"))
             resp = self.client.get(url)
             if resp.status != 200:
                 raise LienConfigError(f"{self.source_id}: HTTP {resp.status} from {resp.url}")
@@ -741,6 +835,7 @@ class LienAdapter(Adapter):
                          tuple(self.config.get("select") or ()))  # fmt: skip
         rows, responses = fetch_all(self.client, q, max_pages=1 if limit else 10_000,
                                     sample=bool(limit))  # fmt: skip
+        rows = self._enrich(rows)
         body = canonical_json({"dataset": self.config["dataset"], "where": where, "rows": rows})
         at = responses[-1].retrieved_at if responses else datetime.now(UTC)
         return Fetched(self.source_id, f"{q.url}?$where={where}", at, 200, body,
@@ -919,7 +1014,8 @@ class LienAdapter(Adapter):
 
     def _row_amount(self, row: Mapping[str, Any]) -> Decimal | None:
         """The row's amount field, or the sum of a list of fields (None if all are blank)."""
-        found = [a for a in (_amount(row.get(f)) for f in _fields(self.config.get("amount")))
+        read = _amount_in_text if self.config.get("amount_in_text") else _amount
+        found = [a for a in (read(row.get(f)) for f in _fields(self.config.get("amount")))
                  if a is not None]  # fmt: skip
         return sum(found, Decimal(0)).quantize(Decimal("0.01")) if found else None
 
