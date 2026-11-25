@@ -9,7 +9,9 @@ schema_version: 1
 # wiwb and canb disallow it in robots.txt; meb, nceb, nyeb, miwb serve an empty feed; mob, txsb
 # do not answer; nywb titles use a case-number form the parser does not read. wvnd (us.wvnd.rss, registered separately)
 # returned HTTP 500 that day; nyeb, nyed, nceb, miwb, gand, mdd, pamd serve an empty feed.
-enabled: [akb, almb, alnb, alsb, azb, cacb, caeb, casb, cob, ctb, dcb, deb, flmb, flnb, flsb, gamb, ganb, gasb, hib, ianb, iasb, idb, innb, insb, ksb, kywb, laeb, lamb, lawb, mab, mieb, mnb, moeb, mowb, msnb, mssb, mtb, ncmb, ncwb, ndb, neb, nhb, njb, nvb, nynb, nysb, ohnb, ohsb, okeb, oknb, okwb, orb, paeb, pawb, rib, scb, sdb, tneb, tnmb, tnwb, txeb, txnb, txwb, vaeb, vawb, vtb, waeb, wieb, wyb]  # pamb: robots.txt disallows the feed
+# 2026-11-25: ilcb, ilsb, wvsb (robots.txt 404, no rules) and meb (now lists entries) enabled;
+# ilnb's robots.txt disallows everything.
+enabled: [akb, almb, alnb, alsb, azb, cacb, caeb, casb, cob, ctb, dcb, deb, flmb, flnb, flsb, gamb, ganb, gasb, hib, ianb, iasb, idb, ilcb, ilsb, innb, insb, ksb, kywb, laeb, lamb, lawb, mab, meb, mieb, mnb, moeb, mowb, msnb, mssb, mtb, ncmb, ncwb, ndb, neb, nhb, njb, nvb, nynb, nysb, ohnb, ohsb, okeb, oknb, okwb, orb, paeb, pawb, rib, scb, sdb, tneb, tnmb, tnwb, txeb, txnb, txwb, vaeb, vawb, vtb, waeb, wieb, wvsb, wyb]  # pamb: robots.txt disallows the feed
 courts:
   FL: [flnd, flmd, flsd, flnb, flmb, flsb]
   OH: [ohnd, ohsd, ohnb, ohsb]
@@ -60,4 +62,5 @@ courts:
   AR: [areb, arwb]
   UT: [utb]
   ME: [meb]
+  IL: [ilnd, ilcd, ilsd, ilnb, ilcb, ilsb]
   NM: [nmb]

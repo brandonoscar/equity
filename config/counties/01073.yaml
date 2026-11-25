@@ -6,6 +6,7 @@ page_size: 1000          # maxRecordCount 2000
 min_interval_s: 1.0
 county: {constant: "073"}
 fields:
+  tax_year: {as_retrieved: true}   # no roll-year field: values as observed on retrieval
   situs_line1: ADDR_APR
   situs_city: Property_City
   situs_zip: ZIP
@@ -20,7 +21,7 @@ fields:
   bldg_value: PrevParcelImp
   total_value: PrevParcelTotal
   assessed_value: AssdValue
-value_basis: "PrevParcelLand/PrevParcelImp/PrevParcelTotal = appraised land/improvement/total (the field names say 'Prev'); AssdValue = assessed value (Alabama classes: 10% residential, 20% other). RecordYear = 2027 on every row, but the 'Prev' names do not say which roll year the values belong to (Alabama lien date is Oct 1). So tax_year is not mapped and no assessment facts are emitted; the raw values stay in source records."
+value_basis: "PrevParcelLand/PrevParcelImp/PrevParcelTotal = appraised land/improvement/total (the field names say 'Prev'); AssdValue = assessed value (Alabama classes: 10% residential, 20% other). RecordYear = 2027 on every row, but the 'Prev' names do not say which roll year the values belong to (Alabama lien date is Oct 1).. With no roll-year field, tax_year is {as_retrieved: true}: values are recorded as observed on the retrieval date (tax_year = that year, valid_from = that date), not assigned to a guessed roll year."
 terms:
   url: https://jccgis.jccal.org/server/rest/services/Basemap/Parcels/MapServer
   summary: "Jefferson County Commission ITS-GIS parcel layer, rebuilt nightly from Development Services (addressing), Tax Assessor (boundaries) and Board of Equalization (ownership). Public MapServer, free, no login, 410,170 rows on 2026-11-16 (845 with no owner). No license or use-constraint text in the service metadata."

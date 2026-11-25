@@ -666,3 +666,22 @@ def test_columns_listed_for_a_pii_field_are_all_pii(tmp_path: Path) -> None:
               "total_value": "TV", "tax_year": {"const": 2025}}  # fmt: skip
     cls = adapter_for(load_config(_cfg(tmp_path, fields=fields)))
     assert {"OWN", "A1", "A2"} <= set(cls.pii_fields)
+
+
+def test_values_without_a_tax_year_are_refused(tmp_path: Path) -> None:
+    fields = {"parcel_id": "PID", "total_value": "TV"}
+    with pytest.raises(StateConfigError, match="need fields"):
+        load_config(_cfg(tmp_path, fields=fields))
+    fields["tax_year"] = {"as_retrieved": "yes"}  # type: ignore[assignment]
+    with pytest.raises(StateConfigError, match="as_retrieved must be true"):
+        load_config(_cfg(tmp_path, fields=fields))
+
+
+def test_as_retrieved_records_values_on_the_retrieval_date(tmp_path: Path) -> None:
+    fields = {"parcel_id": "PID", "total_value": "TV", "tax_year": {"as_retrieved": True}}
+    cls = adapter_for(load_config(_cfg(tmp_path, fields=fields)))
+    out = _rows(cls, [{"OID": 1, "PID": "1", "CO": "061", "TV": "250000"},
+                      {"OID": 2, "PID": "2", "CO": "061", "TV": None}])  # fmt: skip
+    rows = [r for t, r in out if t == "parcel_assessment"]
+    assert [(r["parcel_uid"], r["tax_year"], r["valid_from"], r["appraised_total"])
+            for r in rows] == [("54061-1", 2026, date(2026, 11, 15), "250000.00")]  # fmt: skip

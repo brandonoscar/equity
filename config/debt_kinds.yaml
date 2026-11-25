@@ -78,6 +78,7 @@ sources:
   pa.philadelphia.li_fines: code_enforcement_charge
   oh.cincinnati.lot_abatement: code_enforcement_charge
   az.tucson.code_liens: code_enforcement_lien
+  ky.louisville.code_liens: code_enforcement_lien
   fl.lee.nuisance_liens: code_enforcement_lien
   fl.miami_dade.code_liens: code_enforcement_lien
   fl.miami_dade.code_collections: code_enforcement_lien

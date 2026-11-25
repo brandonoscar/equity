@@ -10,6 +10,7 @@ min_interval_s: 1.0
 county: {constant: "097"}
 use_restrictions: [no_commercial_name_address_lists]
 fields:
+  tax_year: {as_retrieved: true}   # no roll-year field: values as observed on retrieval
   parcel_id: STATEPARCELNUMBER   # '49-06-10-114-035.000-800'; PARCEL_C is the local number
   owner1: FULLOWNERNAME
   mail_line1: OWNERADDRESS
@@ -27,7 +28,7 @@ fields:
   land_use_code: PROPERTY_SUB_CLASS
   land_use_desc: PROPERTY_SUB_CLASS_DESCRIPTION
 extra_pii: [OWNERFOREIGNSTATE, OWNERFOREIGNCOUNTRY]
-value_basis: "ASSESSORYEAR_LANDTOTAL / _IMPTOTAL / _TOTALAV = Marion County Assessor gross assessed value (Indiana assesses at 'true tax value', a market-value-in-use standard, 50 IAC 2.4) for the current assessment year; no tax-year field. STATUS is ' ' on most rows (ACTIVE / VACANT on the rest): not filtered."
+value_basis: "ASSESSORYEAR_LANDTOTAL / _IMPTOTAL / _TOTALAV = Marion County Assessor gross assessed value (Indiana assesses at 'true tax value', a market-value-in-use standard, 50 IAC 2.4) for the current assessment year; no tax-year field. STATUS is ' ' on most rows (ACTIVE / VACANT on the rest): not filtered. With no roll-year field, tax_year is {as_retrieved: true}: values are recorded as observed on the retrieval date (tax_year = that year, valid_from = that date), not assigned to a guessed roll year."
 terms:
   url: https://gis.indy.gov/server/rest/services/MapIndy/MapIndyProperty/MapServer/10
   summary: "City of Indianapolis MapIndy public ArcGIS MapServer, no login, token or fee; the layer carries no copyright or license text (read 2026-11-23). Indiana APRA IC 5-14-3-3(f) limits disclosing lists of names and addresses to commercial entities for commercial purposes (recorded as no_commercial_name_address_lists, as for config/states/in.yaml). gis.indy.gov/robots.txt answers 404 (no rules)."

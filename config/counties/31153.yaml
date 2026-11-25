@@ -8,6 +8,7 @@ page_size: 2000          # maxRecordCount 2000
 min_interval_s: 1.0
 county: {constant: "153"}
 fields:
+  tax_year: {as_retrieved: true}   # no roll-year field: values as observed on retrieval
   parcel_id: PARCELID    # '010578439'
   owner1: OWNERNME1
   owner2: OWNERNME2
@@ -23,7 +24,7 @@ fields:
   land_use_code: CLASSCD
   land_use_desc: CLASSDSCRP
 extra_pii: [CNVYNAME]
-value_basis: "LNDVALUE / IMPVALUE = County Assessor land and improvement values; CNTASSDVAL = current assessed value and CNTTXBLVAL = taxable value (Nebraska assesses residential and commercial at actual value, agricultural land at 75%, Neb. Rev. Stat. 77-201). No tax-year field."
+value_basis: "LNDVALUE / IMPVALUE = County Assessor land and improvement values; CNTASSDVAL = current assessed value and CNTTXBLVAL = taxable value (Nebraska assesses residential and commercial at actual value, agricultural land at 75%, Neb. Rev. Stat. 77-201). No tax-year field. With no roll-year field, tax_year is {as_retrieved: true}: values are recorded as observed on the retrieval date (tax_year = that year, valid_from = that date), not assigned to a guessed roll year."
 terms:
   url: https://geodata.sarpy.gov/arcgis/rest/services/Cadastral/LandRecordsSearch/MapServer/5
   summary: "Sarpy County public ArcGIS MapServer (geodata.sarpy.gov), no login, token or fee; the layer carries no copyright or license text (read 2026-11-23). geodata.sarpy.gov/robots.txt answers 404 (no rules)."

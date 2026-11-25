@@ -1,0 +1,32 @@
+source_id: ky.louisville.code_liens
+state: KY
+county_fips: "21111"   # Jefferson County (Louisville Metro)
+# Louisville Metro Codes & Regulations "Lien Holder Final Orders": property-maintenance
+# citations that became final orders (KRS 65.8835: a final order's fine is a lien on the
+# property). Owner full name and mailing address, the cited property's street address, the
+# final citation amount and the date of notification. 513 rows on 2026-11-25, edited daily.
+# Debt kind: code_enforcement_lien.
+api: arcgis
+layer_url: https://services1.arcgis.com/79kfd2K6fskCAkyg/arcgis/rest/services/lien_notification_final_orders/FeatureServer/0
+single_partition: true
+order_by: [ObjectId]
+select: [ObjectId, b1_alt_id, final_order_state, date_of_notification, stno, predir, stname,
+         suffix, fullname, addr1, addr2, city, state, zip, final_citation_amount]
+date_field: date_of_notification
+uid: b1_alt_id
+doc_type: STATUTORY_LIEN
+doc_type_raw: {field: final_order_state}
+amount: final_citation_amount
+parties:
+  - role: debtor
+    name: fullname
+    address: {line1: [addr1, addr2], city: city, state: state, zip: zip}   # owner mailing
+  - role: creditor
+    const: Louisville/Jefferson County Metro Government
+extra_pii: [stname, addr1, addr2]
+terms:
+  url: https://services1.arcgis.com/79kfd2K6fskCAkyg/arcgis/rest/services/lien_notification_final_orders/FeatureServer/0
+  summary: "Louisville Metro public ArcGIS Online layer, free, no login; Louisville Metro Open Data Terms of Use. services1.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -8,6 +8,7 @@ page_size: 2000          # maxRecordCount 2000; supportsPagination true
 min_interval_s: 1.0
 county: {constant: "163"}
 fields:
+  tax_year: {as_retrieved: true}   # no roll-year field: values as observed on retrieval
   land_use_code: PropClass
   situs_line1: PropertyAddress
   parcel_id: PIN
@@ -19,7 +20,7 @@ fields:
   land_value: LandVal
   bldg_value: DwellVal
   total_value: TotVal
-value_basis: "LandVal / DwellVal (dwelling) / ImpVal (other improvements) / TotVal = Scott County Assessor assessed value (Iowa assesses at 100% of market); bldg_value maps DwellVal only, so land+bldg can be below TotVal when ImpVal > 0. No assessment-year field, so tax_year is not mapped. ContrHold*/Contr* (contract buyer) and MailName/MailAddr* (tax statement mailing) are not mapped. DeedDoc/Instr_Number hold the deed document number."
+value_basis: "LandVal / DwellVal (dwelling) / ImpVal (other improvements) / TotVal = Scott County Assessor assessed value (Iowa assesses at 100% of market); bldg_value maps DwellVal only, so land+bldg can be below TotVal when ImpVal > 0. No assessment-year field. ContrHold*/Contr* (contract buyer) and MailName/MailAddr* (tax statement mailing) are not mapped. DeedDoc/Instr_Number hold the deed document number. With no roll-year field, tax_year is {as_retrieved: true}: values are recorded as observed on the retrieval date (tax_year = that year, valid_from = that date), not assigned to a guessed roll year."
 terms:
   url: https://www.arcgis.com/home/item.html?id=09c82cc24dd24af6beb2ebf85bd6fa30
   summary: "Scott County, Iowa GIS item 'Cadastral', public, no token, 75,501 parcel rows on 2026-11-18 (DeedHold filled on 75,010). Item licenseInfo, description and copyrightText carry no license or restriction text; the county's general GIS disclaimer page was not reachable from here. No commercial or resale clause found. services*.arcgis.com /robots.txt answers HTTP 403 'Invalid URL' (RFC 9309: 4xx = no rules, allowed; the repo PoliteClient currently treats 401/403 as disallow-all, see states_midwest.md blocker 1)."

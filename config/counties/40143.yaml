@@ -1,7 +1,9 @@
 source_id: ok.tulsa.parcels
 state: OK
 # INCOG (Indian Nations Council of Governments) 'Parcels_TulsaCo' FeatureServer: Tulsa County Assessor
-# parcels with owner, mailing address and values. 284,813 rows. Item snippet says 'Last updated
+# parcels with values and situs. 284,813 rows. On 2026-11-25 the layer no longer carries
+# Name1/Name2, the mailing fields or HomesteadExemption (a query naming them fails with
+# 'Unable to complete operation'), so this source has no owner names now. Item snippet says 'Last updated
 # February 3, 2025', but LoadDate on the sampled row is 2026-10, so the attributes look current.
 layer_url: https://map11.incog.org/arcgis11wa/rest/services/Parcels_TulsaCo/FeatureServer/0
 order_by: OBJECTID
@@ -10,26 +12,19 @@ min_interval_s: 1.0
 county: {constant: "143"}
 use_restrictions: [no_resale]
 fields:
+  tax_year: {as_retrieved: true}   # no roll-year field: values as observed on retrieval
   land_use_code: UseCode
   situs_line1: PropertyAddress
   situs_city: PropertyCity
   situs_zip: PropertyZIP
-  homestead: HomesteadExemption
   parcel_id: ParcelNo      # AccountNo = 'R' + ParcelNo on the sampled row
-  owner1: Name1
-  owner2: Name2
-  mail_line1: Address1
-  mail_line2: Address2
-  mail_city: City
-  mail_state: State
-  mail_zip: ZIPCode
   land_value: TotalLandValue
   bldg_value: TotalImpValue
   total_value: TotalAcctValue
-value_basis: "TotalLandValue + TotalImpValue = TotalAcctValue (assessor market value) on the sampled row. TaxableValue is not mapped: its ratio to market value (~33% on the sample) does not match Oklahoma's 11-13.5% assessment ratios, so its meaning is unverified. tax_year not mapped (no roll-year field)."
+value_basis: "TotalLandValue + TotalImpValue = TotalAcctValue (assessor market value) on the sampled row. TaxableValue is not mapped: its ratio to market value (~33% on the sample) does not match Oklahoma's 11-13.5% assessment ratios, so its meaning is unverified. With no roll-year field, tax_year is {as_retrieved: true}: values are recorded as observed on the retrieval date (tax_year = that year, valid_from = that date), not assigned to a guessed roll year."
 terms:
   url: https://map11.incog.org/arcgis11wa/rest/services/Parcels_TulsaCo/FeatureServer
   summary: "INCOG regional GIS, 'Parcels_TulsaCo' FeatureServer (Query only), public, no token. Free, no login, 284,813 rows on 2026-11-18. Layer copyrightText: 'Tulsa County Assessor'; item licenseInfo and accessInformation empty; no use-constraint text found. Data originates with the Tulsa County Assessor, which also sells data, so no_resale is recorded conservatively. map11.incog.org /robots.txt answers 404 (allowed)."
-  checked_on: 2026-11-18
+  checked_on: 2026-11-25
   robots_checked_on: 2026-11-18
   cost_model: free

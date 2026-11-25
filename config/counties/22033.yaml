@@ -6,6 +6,7 @@ page_size: 1000          # maxRecordCount 2000. Do not request SALE_YEAR: with i
 min_interval_s: 1.0
 county: {constant: "033"}
 fields:
+  tax_year: {as_retrieved: true}   # no roll-year field: values as observed on retrieval
   situs_line1: PHYSICAL_ADDRESS
   homestead: SUM_HOMESTEAD_EXEMPTION
   parcel_id: ASSESSMENT_NUM   # 2,769 rows hold the placeholder '000-0000-0' and collapse into one parcel
@@ -13,7 +14,7 @@ fields:
   mail_line1: OWNER_ADDRESS
   mail_line2: OWNER_CITY_STATE_ZIP   # "CITY, ST ZIP" (one string; not split, see report)
   assessed_value: SUM_ASSESSED_VALUE
-value_basis: "SUM_ASSESSED_VALUE = total assessed value (Louisiana assesses at 10% of fair market value for land and residences, 15% for commercial improvements); the parish total was $5.09B on 2026-11-16. SUM_LAND_VALUE is assessed land and is not mapped (canonical land_value means appraised). SUM_FAIR_MARKET_VALUE is 0 and SUM_IMPROVEMENT_VALUE is empty on every row. There is no tax-year field and the roll year is not stated ('updated annually'), so tax_year is not mapped and no assessment facts are emitted."
+value_basis: "SUM_ASSESSED_VALUE = total assessed value (Louisiana assesses at 10% of fair market value for land and residences, 15% for commercial improvements); the parish total was $5.09B on 2026-11-16. SUM_LAND_VALUE is assessed land and is not mapped (canonical land_value means appraised). SUM_FAIR_MARKET_VALUE is 0 and SUM_IMPROVEMENT_VALUE is empty on every row. There is no tax-year field and the roll year is not stated ('updated annually'). With no roll-year field, tax_year is {as_retrieved: true}: values are recorded as observed on the retrieval date (tax_year = that year, valid_from = that date), not assigned to a guessed roll year."
 terms:
   url: https://maps.brla.gov/gis/rest/services/Cadastral/Tax_Parcel/MapServer/0
   summary: "City of Baton Rouge / Parish of East Baton Rouge GIS (EBRGIS; EBR Assessor's Office; Department of Information Services). Tax parcels 'maintained by the East Baton Rouge Parish Assessor's Office', updated annually. Public MapServer, free, no login, 205,820 rows on 2026-11-16. No license or use-constraint text in the layer metadata."

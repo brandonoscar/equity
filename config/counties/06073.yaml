@@ -11,6 +11,7 @@ page_size: 2000          # maxRecordCount 2000; supportsPagination true
 min_interval_s: 1.0
 county: {constant: "073"}
 fields:
+  tax_year: {as_retrieved: true}   # no roll-year field: values as observed on retrieval
   parcel_id: apn
   situs_line1: [situs_address, situs_fraction, situs_pre_dir, situs_street, situs_suffix,
                 situs_post_dir, situs_suite]
@@ -22,7 +23,7 @@ fields:
   assessed_value: asr_total
   homestead: ownerocc
   land_use_code: asr_landuse
-value_basis: "asr_land / asr_impr / asr_total = Assessor's enrolled land, improvement and total values (Proposition 13 assessed values: base-year value plus at most 2% a year, not market value). ownerocc Y/N = owner-occupied (homeowners' exemption), mapped as homestead. docnmbr/docdate (last recorded document) are not mapped. No tax-year field."
+value_basis: "asr_land / asr_impr / asr_total = Assessor's enrolled land, improvement and total values (Proposition 13 assessed values: base-year value plus at most 2% a year, not market value). ownerocc Y/N = owner-occupied (homeowners' exemption), mapped as homestead. docnmbr/docdate (last recorded document) are not mapped. No tax-year field. With no roll-year field, tax_year is {as_retrieved: true}: values are recorded as observed on the retrieval date (tax_year = that year, valid_from = that date), not assigned to a guessed roll year."
 terms:
   url: https://geo.sandag.org/server/rest/services/Hosted/Parcels/FeatureServer/0
   summary: "SANDAG regional GIS server, public, no login, token or fee. Layer copyright: 'SanGIS using legal recorded data provided by the County Recorders and Assessor's Office.' The AGOL description of the same SanGIS layer refers users to the SanGIS end user agreement and disclaimer on www.sangis.org; that site is an ArcGIS Hub app and served no readable agreement text to a plain fetch on 2026-11-23 (unread). No owner names are in this layer. geo.sandag.org/robots.txt answers 404 (no rules)."

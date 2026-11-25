@@ -10,6 +10,7 @@ page_size: 2000          # maxRecordCount 2000
 min_interval_s: 1.0
 county: {constant: "047"}
 fields:
+  tax_year: {as_retrieved: true}   # no roll-year field: values as observed on retrieval
   land_use_code: PROPCLASS
   land_use_desc: PRPCLSDESC
   zoning: ZONECODE
@@ -19,7 +20,7 @@ fields:
   bldg_value: RMVIMP
   total_value: RMVTOTAL
   assessed_value: ASSDVAL
-value_basis: "RMVLND / RMVIMP / RMVTOTAL = Real Market Value (land, improvements, total); ASSDVAL = Oregon Measure 50 maximum assessed value. No roll-year field (LASTUPDATE is an edit timestamp), so tax_year is not mapped. Sale instrument fields INSTNUM/INSTTYPE/INSTDATE/SALEPRICE exist but are not deed book/page."
+value_basis: "RMVLND / RMVIMP / RMVTOTAL = Real Market Value (land, improvements, total); ASSDVAL = Oregon Measure 50 maximum assessed value. No roll-year field (LASTUPDATE is an edit timestamp). Sale instrument fields INSTNUM/INSTTYPE/INSTDATE/SALEPRICE exist but are not deed book/page. With no roll-year field, tax_year is {as_retrieved: true}: values are recorded as observed on the retrieval date (tax_year = that year, valid_from = that date), not assigned to a guessed roll year."
 terms:
   url: https://www.arcgis.com/home/item.html?id=ada32398d70d4d1d8ccf9deab1829da0
   summary: "Marion County OR, public hosted FeatureServer, no token. Free, no login, 115,870 rows on 2026-11-18. licenseInfo is an accuracy disclaimer. The county's open-data copy removes ownership and requires a written request for it, so owner fields are NOT mapped (same pattern as Riverside CA). robots.txt on services1.arcgis.com returns 403 (allowed)."

@@ -6,13 +6,14 @@ page_size: 1000          # maxRecordCount 2000
 min_interval_s: 1.0
 county: {constant: "125"}
 fields:
+  tax_year: {as_retrieved: true}   # no roll-year field: values as observed on retrieval
   land_use_code: CLASSCODE
   situs_line1: SITEADDRESS
   situs_city: SITECITY
   situs_zip: SITEZIP5
   parcel_id: KEYPIN        # 'the unique parcel identification number used to link the tax parcel to the parcel attributes'
   assessed_value: ASSESSEDVALUE
-value_basis: "NO OWNER NAMES: NAME1/NAME2 are empty on all 490,815 rows (2026-11-16), so they are not mapped; POSTALADDRESS is a street line only (no city/ZIP) and is not mapped either. ASSESSEDVALUE = assessed value (Michigan SEV basis, 50% of true cash value); TAXABLEVALUE is not mapped. tax_year is NOT mapped, so no assessment facts are emitted: the layer has no roll-year field."
+value_basis: "NO OWNER NAMES: NAME1/NAME2 are empty on all 490,815 rows (2026-11-16), so they are not mapped; POSTALADDRESS is a street line only (no city/ZIP) and is not mapped either. ASSESSEDVALUE = assessed value (Michigan SEV basis, 50% of true cash value); TAXABLEVALUE is not mapped. The layer has no roll-year field. With no roll-year field, tax_year is {as_retrieved: true}: values are recorded as observed on the retrieval date (tax_year = that year, valid_from = that date), not assigned to a guessed roll year."
 terms:
   url: https://www.arcgis.com/home/item.html?id=e2910cc3a8f84549ab7f0f8e8f99817b
   summary: "Oakland County MI, 'OC Tax Parcels (Public)' / Tax Parcel Plus layer of the Open Parcel Data map service. Free, no login, 490,815 rows on 2026-11-16. licenseInfo is the Oakland County Open Data Terms of Use Agreement: 'You may retrieve, download, copy, modify, translate, adapt, distribute, sort, search, and reuse Open Data for any lawful purpose'; data as is, indemnification clause."
