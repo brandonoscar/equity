@@ -953,3 +953,18 @@ def test_epoch_milliseconds_before_1970_are_read() -> None:
     assert _date(-631152000000) == date(1950, 1, 1)
     assert _date(1700000000000) == date(2023, 11, 14)
     assert _date(-5) is None  # a small number is neither a year nor epoch milliseconds
+
+
+def test_past_due_days_drops_current_bills(tmp_path: Path) -> None:
+    """A balance list that also carries the current roll: only bills N days overdue are debts."""
+    from datetime import UTC, datetime
+
+    cls = lien_adapter_for(load_lien_config(_cfg(tmp_path, past_due_days=60)))
+    rows = [
+        {"ticket": "CUR", "docketed": "2026-11-15T00:00:00.000", "due": "10", "last": "A"},
+        {"ticket": "OLD", "docketed": "2025-11-15T00:00:00.000", "due": "20", "last": "A"},
+    ]
+    body = json.dumps({"dataset": "abcd-1234", "where": "1=1", "rows": rows}).encode()
+    at = datetime(2026, 11, 25, tzinfo=UTC)
+    out = cls().normalize(Fetched(cls.source_id, "x", at, 200, body, ""))
+    assert {r.row["instrument_number"] for r in out if r.table == "instrument"} == {"OLD"}

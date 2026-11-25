@@ -595,6 +595,29 @@ def match(
     con.execute(PEOPLE_SUMMARY_SQL)
 
 
+# A debt list that links more than this share of a run's owner parcels (and at least
+# OUTLIER_FLOOR of them) is almost always a list that is not what it says: Gwinnett's weekly
+# "delinquent" file carried the whole current tax roll and linked ~16% of Georgia's parcels.
+OUTLIER_SHARE = 0.10
+OUTLIER_FLOOR = 1000
+
+
+def outliers(con: duckdb.DuckDBPyConnection) -> list[dict[str, object]]:
+    """Debt sources whose automatic links cover an implausible share of the owner parcels."""
+    rows = con.execute(
+        "WITH tot AS (SELECT count(DISTINCT parcel_uid) AS n FROM owners),"
+        " per AS (SELECT d.source_id, count(DISTINCT m.parcel_uid) AS n FROM matches m"
+        " JOIN (SELECT DISTINCT instrument_uid, source_id FROM debtors) d"
+        " USING (instrument_uid) WHERE m.decision = 'auto' AND m.parcel_uid IS NOT NULL"
+        " GROUP BY 1)"
+        " SELECT per.source_id, per.n, tot.n FROM per, tot"
+        " WHERE per.n >= ? AND per.n > ? * tot.n ORDER BY per.n DESC, per.source_id",
+        [OUTLIER_FLOOR, OUTLIER_SHARE],
+    ).fetchall()
+    return [{"source_id": sid, "parcels_linked": n, "owner_parcels": total,
+             "share": round(n / total, 3)} for sid, n, total in rows]  # fmt: skip
+
+
 def summary(con: duckdb.DuckDBPyConnection) -> dict[str, object]:
     def one(sql: str) -> object:
         row = con.execute(sql).fetchone()
@@ -640,6 +663,7 @@ def summary(con: duckdb.DuckDBPyConnection) -> dict[str, object]:
                 " LEFT JOIN debt_kind k USING (source_id) GROUP BY 1 ORDER BY 1"
             ).fetchall()
         },
+        "outlier_sources": outliers(con),
         "people": one("SELECT count(*) FROM people"),
         "people_with_parcels": one("SELECT count(*) FROM people WHERE parcels > 0"),
         "people_open_amount_with_parcels": one(
@@ -1081,6 +1105,11 @@ def main(argv: list[str] | None = None) -> int:
     summary.write_text(json.dumps(result, indent=2, default=str))
     json.dump(result, sys.stdout, indent=2, default=str)
     print()
+    flagged = result.get("outlier_sources")
+    for o in flagged if isinstance(flagged, list) else []:
+        print(f"WARNING: {o['source_id']} links {o['parcels_linked']} of {o['owner_parcels']}"
+              f" owner parcels ({o['share']:.0%}); check that the list is debts only",
+              file=sys.stderr)  # fmt: skip
     return 0
 
 

@@ -28,6 +28,9 @@ Config keys:
   listed_on           a field name: set to the fetch date on every row (a current list with no
                       per-row date); use it as date_field
   single_partition    true: one fetch of the whole (filtered) dataset, no date windows
+  past_due_days       N: keep only rows whose date_field is at least N days before the fetch
+                      date (a list of open balances that also carries current bills not yet
+                      delinquent, e.g. a weekly lender list issued around the due date)
   address_split       {field, prefix, form}: form comma (default) splits
                       "line1, city, ST 12345", slash "line1 / CITY ST 12345", city_state_zip
                       "City, ST 12345", city_st_zip "CITY ST 12345" (no street), into
@@ -830,7 +833,15 @@ class LienAdapter(Adapter):
             if cfg.get("listed_on"):  # a current list with no per-row date: the fetch date
                 row = {**row, cfg["listed_on"]: fetched.retrieved_at.date().isoformat()}
             uid_raw = self._uid(row)
-            if uid_raw and _date(row.get(cfg["date_field"])) is not None:
+            due = _date(row.get(cfg["date_field"]))
+            grace = cfg.get("past_due_days")
+            if (
+                grace is not None
+                and due is not None
+                and (due > fetched.retrieved_at.date() - timedelta(days=int(grace)))
+            ):
+                continue  # a current bill, not yet delinquent: a balance, not a debt
+            if uid_raw and due is not None:
                 groups.setdefault(uid_raw, []).append(row)  # no key or no date: skipped
         for uid_raw in sorted(groups):
             rows = sorted(groups[uid_raw], key=canonical_json)
