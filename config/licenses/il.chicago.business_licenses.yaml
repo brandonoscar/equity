@@ -30,5 +30,5 @@ related:
     key: account_number
     holder: {role: other, title: OWNER, with_type: false, name: owner_name, parts: {first: owner_first_name, middle: owner_middle_initial, last: owner_last_name, suffix: owner_name_suffix}}
     role_field: owner_title
-    role_map: {PRESIDENT: officer, VICE PRESIDENT: officer, SECRETARY: officer, ASST. SECRETARY: officer, TREASURER: officer, CEO: officer, PRINCIPAL OFFICER: officer, EXECUTIVE DIRECTOR: officer, DIRECTOR: director, MEMBER: member, MANAGING MEMBER: member, MANAGER: manager}
+    role_map: {PRESIDENT: officer, VICE PRESIDENT: officer, SECRETARY: officer, ASST. SECRETARY: officer, TREASURER: officer, CEO: officer, PRINCIPAL OFFICER: officer, EXECUTIVE DIRECTOR: officer, DIRECTOR: director, MEMBER: member, MANAGING MEMBER: member, MANAGER: manager}  # pragma: allowlist secret
 pii_fields: [legal_name, doing_business_as_name, address, owner_first_name, owner_middle_initial, owner_last_name, owner_name, latitude, longitude, location]
