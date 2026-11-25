@@ -1,0 +1,35 @@
+# City of Raleigh Finance (Accounts Payable), "Uncashed Checks" (data.raleighnc.gov, ArcGIS
+# Online table, updated daily): city checks issued and not yet cashed, with the payee's name
+# and one-line mailing address ('1110 MAIN ST, RALEIGH, NC, 27606-4999'). ~900 rows, checks
+# dated 2025-07 to the present (older ones are reported to the NC Treasurer's unclaimed
+# property program), so addresses are current. People print LAST,FIRST M.
+source_id: nc.raleigh.uncashed_checks
+state: NC
+jurisdiction: "37183"
+kind: tax  # nearest source kind: a municipal treasury list (no unclaimed-property kind)
+record_type: unclaimed_check
+api: arcgis
+arcgis:
+  layer: https://services.arcgis.com/v400IkDOw1ad7Yad/arcgis/rest/services/Uncashed_Checks/FeatureServer/0
+  id_field: FID
+  window: 50000
+  page: 2000
+  fields: [FID, Name1, Pymnt_Amt, Pymnt_dt, Address, PYMNT_ID_Ref]
+key: PYMNT_ID_Ref
+key_prefix: "RAL-CHK:"
+parties:
+  - role: payee
+    name: Name1
+    format: last_comma_first
+    address: {line: Address}
+terms:
+  url: https://data.raleighnc.gov/datasets/uncashed-checks
+  summary: >-
+    Open Raleigh Data Policy (item license): data as is, no warranty; the City may modify or
+    discontinue the feed; use subject to the City's Open Data Privacy Policy. Published so
+    payees can claim through Accounts Payable; no use restriction beyond the policy. Once
+    reported, the checks fall under North Carolina's unclaimed-property law, which limits
+    paid owner-recovery agreements (G.S. 116B-78): do not use for fee-based owner-recovery
+    solicitation. Internal locate/link use only.
+  checked_on: 2026-11-25
+  cost_model: free

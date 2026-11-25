@@ -1,0 +1,41 @@
+# Orange County Public Works (OC Survey Geospatial Services), "Orange County Unclaimed
+# Properties (OCUP)" ArcGIS layer: the California State Controller's unclaimed-property
+# records (owner name and last-known address as the holder reported it, holder, property
+# type, amounts) whose owner address geocodes inside Orange County, reported after 1980.
+# ~7.0M rows (one per property and owner), object ids 1..7,022,179; version 2026.2, rebuilt
+# from the Controller's weekly file a few times a year (last 2026-04-21). Names print LAST
+# FIRST M. This is the only machine-readable route to Controller data that is not behind
+# the Controller's own Cloudflare challenge (see ca.sco.unclaimed_property for the
+# statewide file, hand-downloaded).
+source_id: ca.orange_county.unclaimed_property
+state: CA
+jurisdiction: "06059"
+kind: tax  # nearest source kind: a state treasury program (no unclaimed-property kind)
+record_type: unclaimed_property
+api: arcgis
+arcgis:
+  layer: https://services.arcgis.com/UXmFoWC7yDHcDN5Q/arcgis/rest/services/ocup/FeatureServer/0
+  id_field: OBJECTID
+  window: 50000
+  page: 2000
+  # The geocoder fields (gc_match_addr ...) repeat the owner's address; not fetched.
+  fields: [OBJECTID, property_id, property_type, cash_reported, shares_reported, securities_reported, owner_number, owner_count, owner_name, owner_address_1, owner_address_2, owner_address_3, owner_city, owner_state, owner_zip, owner_country, cash_balance, pending_claims, paid_claims, holder_name, holder_city, holder_state, holder_zip]
+key: property_id
+key_prefix: "CA-UP:"
+parties:
+  - role: owner
+    name: owner_name
+    format: last_first
+    address: {street: [owner_address_1, owner_address_2, owner_address_3], city: owner_city, state: owner_state, zip: owner_zip}
+terms:
+  url: https://www.arcgis.com/home/item.html?id=e82944bba3ea4927b0ca82a0dd7170f6
+  summary: >-
+    Creative Commons BY-SA 3.0 (item license): attribute OC Public Works, OC Survey
+    Geospatial Services; share-alike applies to redistributed derivatives; provided as is
+    under the County's disclaimer. Original data: California State Controller's public
+    unclaimed-property database (Code Civ. Proc. 1531). California regulates paid owner
+    locators (CCP 1582: fees capped at 10%, and an agreement made within 24 months after the
+    property is paid to the Controller is invalid): do not use for fee-based owner-recovery
+    solicitation. Internal locate/link use only.
+  checked_on: 2026-11-25
+  cost_model: free

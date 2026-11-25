@@ -1,0 +1,28 @@
+# City of College Station, Tex., "Unclaimed Property - Public View" (data.cstx.gov
+# q83i-2ks8): property the City holds as presumed abandoned under Texas Property Code ch. 76
+# (uncashed payroll and vendor checks, utility deposit refunds, overpayments, court fees),
+# 1994 to the present, with the payee's name and last-known street line (no city, state or
+# ZIP is published; most are local). ~12,000 rows; refreshed as the City adds items.
+# Businesses print in last_name.
+source_id: tx.college_station.unclaimed_property
+state: TX
+jurisdiction: "48041"
+kind: tax  # nearest source kind: a municipal treasury list (no unclaimed-property kind)
+record_type: unclaimed_property
+api: socrata
+portal: https://data.cstx.gov
+dataset: q83i-2ks8
+key_prefix: "CSTX-UP:"  # no row id published: the key is a hash of the row
+parties:
+  - role: owner
+    parts: {first: first_name, last: last_name}
+    address: {street: address}
+terms:
+  url: https://data.cstx.gov/d/q83i-2ks8
+  summary: >-
+    Published by the City on its open data portal so owners can claim (Tex. Prop. Code
+    ch. 76); no license stated. Texas requires a private-investigator license for anyone who
+    locates owners of unclaimed property for a fee (Tex. Occ. Code ch. 1702): do not use for
+    paid owner-recovery solicitation. Internal locate/link use only.
+  checked_on: 2026-11-25
+  cost_model: free

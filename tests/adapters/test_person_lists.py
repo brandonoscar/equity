@@ -399,3 +399,313 @@ def test_every_fixture_normalizes() -> None:
 def test_contract_on_recorded_fixtures(empty_db) -> None:  # type: ignore[no-untyped-def]
     for cls in all_person_list_adapters():
         check_contract(cls, sorted((FIX / cls.source_id).glob("*.json")), empty_db)
+
+
+# --- arcgis -----------------------------------------------------------------------------
+
+
+def test_id_windows() -> None:
+    from equity.adapters.person_lists import id_windows
+
+    assert id_windows(1, 10, 4) == [(1, 5), (5, 9), (9, 11)]
+    assert id_windows(7, 7, 50) == [(7, 8)]
+
+
+def test_arcgis_partitions_fetch_and_normalize() -> None:
+    cls = by_id("ca.orange_county.unclaimed_property")
+    layer = cls.config["arcgis"]["layer"]
+    feats = [{"attributes": {"OBJECTID": 1, "property_id": 77, "owner_name": "MANN THOMAS J",
+                             "owner_address_1": "12 OAK ST", "owner_address_2": None,
+                             "owner_city": "IRVINE", "owner_state": "CA",
+                             "owner_zip": "92618"}},
+             {"attributes": {"OBJECTID": 2, "property_id": 77, "owner_name": "MANN SUE",
+                             "owner_address_1": "12 OAK ST", "owner_city": "IRVINE",
+                             "owner_state": "CA", "owner_zip": "92618"}},
+             {"attributes": {"OBJECTID": 3, "property_id": 78,
+                             "owner_name": "ACME PLUMBING LLC", "owner_address_1": "UNKNOWN",
+                             "owner_city": "ANAHEIM", "owner_state": "CA"}}]  # fmt: skip
+    seen: list[str] = []
+
+    class T(FakeTransport):
+        def __call__(self, url: str, headers: Mapping[str, str], timeout: float
+                     ) -> tuple[int, bytes, str]:  # fmt: skip
+            if url.startswith(layer + "/query"):
+                seen.append(url)
+                body: dict[str, Any]
+                if "outStatistics" in url:
+                    body = {"features": [{"attributes": {"MIN": 1, "MAX": 120001}}]}
+                else:
+                    body = {"features": feats, "exceededTransferLimit": False}
+                return 200, json.dumps(body).encode(), "application/json"
+            return super().__call__(url, headers, timeout)
+
+    adapter = cls(client(T()))
+    parts = list(adapter.partitions())
+    assert [(p["lo"], p["hi"]) for p in parts] == [
+        ("1", "50001"), ("50001", "100001"), ("100001", "120002")]  # fmt: skip
+    f = adapter.fetch(FetchRequest(parts[0]))
+    assert "OBJECTID+%3E%3D+1+AND+OBJECTID+%3C+50001" in seen[-1].replace("%20", "+")
+    out = rows_of(adapter, f)
+    assert {r["record_key"] for r in out["source_record"]} == {"CA-UP:77", "CA-UP:78"}
+    people = {p["raw_name"]: p for p in out["party"]}
+    assert people["MANN THOMAS J"]["last_name"] == "MANN"
+    assert people["ACME PLUMBING LLC"]["party_kind"] == "org"
+    addr = {a["address_id"]: a for a in out["address"]}
+    assert addr[people["MANN SUE"]["address_id"]]["zip5"] == "92618"
+    assert adapter.health().ok
+
+
+# --- delivered --------------------------------------------------------------------------
+
+DELIVERED_CSV = (
+    "PROPERTY_ID,OWNER_NAME,OWNER_STREET_1,OWNER_STREET_2,OWNER_CITY,OWNER_STATE,OWNER_ZIP\n"
+    '"1","MANN THOMAS J","12 OAK ST","","FRESNO","CA","93701"\n'
+    '"1","MANN SUE","12 OAK ST","","FRESNO","CA","93701"\n'
+    '"2","ACME PLUMBING LLC","UNKNOWN","","UNKNOWN","CA",""\n'
+    '"3","LEE ANN","5 ELM AVE","APT 2","SAN DIEGO","CA","92101"\n'
+)
+
+
+def _delivered(cls: type[PersonListAdapter], **file_over: Any) -> PersonListAdapter:
+    spec = {**cls.config["file"], **file_over}
+    cfg = PersonListConfig({**cls.config.data, "file": spec}, cls.config.parties)
+    sub: type[PersonListAdapter] = type("T", (cls,), {"config": cfg})
+    return sub()
+
+
+def test_delivered_awaits_a_drop(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.chdir(tmp_path)
+    adapter = by_id("ca.sco.unclaimed_property")()
+    with pytest.raises(RuntimeError, match="nothing delivered yet"):
+        list(adapter.partitions())
+    report = adapter.health()
+    assert not report.ok and "nothing delivered" in report.detail
+
+
+def test_delivered_zip_windows_cover_every_row_once(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    import zipfile
+
+    monkeypatch.chdir(tmp_path)
+    drop = tmp_path / "data" / "manual" / "ca.sco.unclaimed_property"
+    drop.mkdir(parents=True)
+    with zipfile.ZipFile(drop / "From_10_To_100.zip", "w", zipfile.ZIP_DEFLATED) as z:
+        z.writestr("From_10_To_100.csv", DELIVERED_CSV)
+        z.writestr("Record_Layout.csv", "not,data\n")
+    (drop / "README.md").write_text("how this got here")
+    adapter = _delivered(by_id("ca.sco.unclaimed_property"), chunk_bytes=60)
+    parts = list(adapter.partitions())
+    assert {p["member"] for p in parts} == {"From_10_To_100.csv"}  # the layout is skipped
+    assert [p["lo"] for p in parts] == [str(n) for n in range(0, len(DELIVERED_CSV), 60)]
+    names: list[str] = []
+    for p in parts:
+        body = json.loads(adapter.fetch(FetchRequest(p)).content)
+        assert body["columns"][:2] == ["PROPERTY_ID", "OWNER_NAME"]
+        names += [r["OWNER_NAME"] for r in body["rows"]]
+    assert names == ["MANN THOMAS J", "MANN SUE", "ACME PLUMBING LLC", "LEE ANN"]
+    whole = adapter.fetch(FetchRequest({"path": str(drop / "From_10_To_100.zip"),
+                                        "member": "From_10_To_100.csv", "lo": "0"}))  # fmt: skip
+    out = rows_of(adapter, whole)
+    assert {r["record_key"] for r in out["source_record"]} == {"CA-UP:1", "CA-UP:2", "CA-UP:3"}
+    lee = next(p for p in out["party"] if p["raw_name"] == "LEE ANN")
+    addr = next(a for a in out["address"] if a["address_id"] == lee["address_id"])
+    assert (addr["line1"], addr["city"], addr["zip5"]) == ("5 ELM AVE APT 2", "SAN DIEGO", "92101")
+    assert adapter.health().ok
+
+
+def test_delivered_xlsx_and_fixed_width(tmp_path: Path) -> None:
+    import zipfile
+
+    from equity.adapters.person_lists import canon, fixed_rows, xlsx_rows
+
+    ns = 'xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"'
+    shared = (f'<sst {ns}><si><t>Owner Name</t></si><si><t>Owner Address 1</t></si>'
+              f'<si><t>MANN THOMAS J</t></si></sst>')  # fmt: skip
+    sheet = (f'<worksheet {ns}><sheetData><row r="1"><c r="A1" t="s"><v>0</v></c>'
+             '<c r="B1" t="s"><v>1</v></c><c r="C1" t="inlineStr"><is><t>Zip</t></is></c></row>'
+             '<row r="2"><c r="A2" t="s"><v>2</v></c><c r="C2"><v>82001</v></c></row>'
+             '</sheetData></worksheet>')  # fmt: skip
+    path = tmp_path / "finder_list.xlsx"
+    with zipfile.ZipFile(path, "w") as z:
+        z.writestr("xl/sharedStrings.xml", shared)
+        z.writestr("xl/worksheets/sheet1.xml", sheet)
+    with path.open("rb") as f:
+        assert list(xlsx_rows(f)) == [["Owner Name", "Owner Address 1", "Zip"],
+                                      ["MANN THOMAS J", "", "82001"]]  # fmt: skip
+    adapter = _delivered(by_id("ca.sco.unclaimed_property"), include=r"\.xlsx$")
+    body = json.loads(adapter.fetch(FetchRequest({"path": str(path)})).content)
+    assert body["rows"] == [{"OWNER_NAME": "MANN THOMAS J", "OWNER_ADDRESS_1": "", "ZIP": "82001"}]
+    assert canon("Former  Owner Address Line 1") == "FORMER_OWNER_ADDRESS_LINE_1"
+    assert canon("﻿Zip+4") == "ZIP_4"
+    assert fixed_rows(["MANN      12 OAK ST  \n", "   \n"], [("LAST", 10), ("ST", 11)]) == [
+        {"LAST": "MANN", "ST": "12 OAK ST"}]  # fmt: skip
+
+
+@pytest.mark.parametrize(
+    ("over", "match"),
+    [
+        ({"api": "arcgis", "arcgis": {"window": 5}}, "arcgis needs layer"),
+        ({"api": "delivered", "file": {"include": "x"}}, "file needs request_url"),
+        ({"api": "delivered"}, "missing"),
+    ],
+)
+def test_arcgis_and_delivered_config_errors(tmp_path: Path, over: dict[str, Any],
+                                            match: str) -> None:  # fmt: skip
+    with pytest.raises(PersonListConfigError, match=match):
+        load_person_list(_write(tmp_path, **over))
+
+
+# --- pdf_table (East: New Jersey, Ohio), csv whole, one-line addresses --------------------
+
+
+def _list_pdf(lines: list[tuple[float, float, str]]) -> bytes:
+    from .test_liens import _pdf
+
+    return _pdf(lines)
+
+
+# An Ohio-style county list: the title and header, a holder name that wraps onto a second
+# line, an address centered left of its header, a repeated header, a row without a city.
+OH_LINES: list[tuple[float, float, str]] = [
+    (128, 665, "2026 Ashland County Unclaimed Funds List"),
+    (135, 634, "NAME"), (282, 634, "ADDRESS"), (451, 634, "CITY"),
+    (78, 620, "401K SALARY RETIREMENT"), (275, 620, "600 UNION ST"), (491, 620, "ASHLAND"),
+    (78, 607, "SAVINGS PLAN TRUS"),
+    (78, 593, "ABEL JESSICA"), (245, 593, "831 TOWNSHIP ROAD 2104"), (464, 593, "BECKETT RIDGE"),
+    (135, 578, "NAME"), (282, 578, "ADDRESS"), (451, 578, "CITY"),
+    (78, 563, "ABER SHAWN"), (276, 563, "UNKNOWN"), (491, 563, "ASHLAND"),
+    (78, 548, "NO CITY ROW"), (276, 548, "1 ELM ST"),
+]  # fmt: skip
+
+
+def test_pdf_rows_cut_columns_wrap_and_require() -> None:
+    from equity.adapters.pdf_lists import pdf_rows
+
+    rows = pdf_rows(_list_pdf(OH_LINES), ["name", "address", "city"], [150, 440], "NAME",
+                    wrap="name", require={"name": r"\S", "city": r"\S"})  # fmt: skip
+    assert rows == [
+        {"name": "401K SALARY RETIREMENT SAVINGS PLAN TRUS", "address": "600 UNION ST",
+         "city": "ASHLAND"},
+        {"name": "ABEL JESSICA", "address": "831 TOWNSHIP ROAD 2104", "city": "BECKETT RIDGE"},
+        {"name": "ABER SHAWN", "address": "UNKNOWN", "city": "ASHLAND"},
+    ]  # fmt: skip
+    with pytest.raises(ValueError, match="one more name"):
+        pdf_rows(b"", ["a"], [1.0], "NAME")
+
+
+NJ_LINES: list[tuple[float, float, str]] = [
+    (14, 1274, "2026 Newly Reported Properties (As of August 18, 2026)"),
+    (14, 1198, "NAME"), (503, 1198, "ADDRESS"), (706, 1198, "CITY"), (907, 1198, "PROPERTY ID"),
+    (14, 1182, "ARCIDIACONO, JOSEPH"), (503, 1182, "254 S BROADWAY"), (706, 1182, "PENNSVILLE"),
+    (923, 1182, "47259384"),
+    (14, 1167, "ASHER-KELL DAWN M & ECRET TROY"), (503, 1167, "190 E BROADWAY APT B"),
+    (706, 1167, "SALEM"), (923, 1167, "47530698"),
+    (14, 1152, "ASHBROOK HOME INC"), (503, 1152, "ATTN EARL L WALKER"), (706, 1152, "WOODSTOWN"),
+    (923, 1152, "45034723"),
+    (168, 1100, "*If your name does not appear on this list, we may still be holding"),
+]  # fmt: skip
+NJ_INDEX = (b'<a href="pdf/counties/SALEM.pdf">SALEM</a> <a href="pdf/counties/CAPEMAY.pdf">'
+            b'CAPE MAY</a> <a href="pdf/counties/SALEM.pdf">again</a>')  # fmt: skip
+
+
+def test_pdf_table_partitions_fetch_and_normalize() -> None:
+    cls = by_id("nj.treasury.unclaimed_owners")
+    base = "https://www.nj.gov/treasury/unclaimed-property/"
+    t = FakeTransport({cls.config["pdf"]["index"]: NJ_INDEX,
+                       base + "pdf/counties/SALEM.pdf": _list_pdf(NJ_LINES)})  # fmt: skip
+    adapter = cls(client(t))
+    assert list(adapter.partitions()) == [{"value": "SALEM"}, {"value": "CAPEMAY"}]
+    f = adapter.fetch(FetchRequest({"value": "SALEM"}))
+    assert f.request == base + "pdf/counties/SALEM.pdf"
+    body = json.loads(f.content)
+    assert [r["property_id"] for r in body["rows"]] == ["47259384", "47530698", "45034723"]
+    assert body["rows"][0]["county"] == "SALEM"
+    out = rows_of(adapter, f)
+    assert {r["record_key"] for r in out["source_record"]} == {
+        "NJ-UP:47259384", "NJ-UP:47530698", "NJ-UP:45034723"}  # fmt: skip
+    people = {p["raw_name"]: p for p in out["party"]}
+    assert (people["ARCIDIACONO, JOSEPH"]["last_name"],
+            people["ARCIDIACONO, JOSEPH"]["first_name"]) == ("ARCIDIACONO", "JOSEPH")  # fmt: skip
+    assert people["ECRET TROY"]["last_name"] == "ECRET"  # joint owners split on '&'
+    assert people["ASHER-KELL DAWN M"]["middle"] == "M"
+    assert people["ASHBROOK HOME INC"]["party_kind"] == "org"
+    assert {a["state"] for a in out["address"]} == {"NJ"}
+    assert {a["city"] for a in out["address"]} == {"PENNSVILLE", "SALEM", "WOODSTOWN"}
+    one = json.loads(adapter.fetch(FetchRequest({"value": "SALEM", "limit": "1"})).content)
+    assert len(one["rows"]) == 1
+    assert adapter.health().ok
+
+
+def test_pdf_index_unreachable_falls_back_to_values() -> None:
+    cls = by_id("oh.commerce.unclaimed_funds_owners")
+    url = cls.config["pdf"]["url"].replace("{value}", "7.%20July/Ashland.pdf")
+    t = FakeTransport({url: _list_pdf(OH_LINES)})  # the index answers 404
+    adapter = cls(client(t))
+    parts = list(adapter.partitions())
+    assert parts[0] == {"value": "3.%20March/Belmont_County.pdf"}
+    assert len(parts) == len(cls.config["pdf"]["values"])
+    body = json.loads(adapter.fetch(FetchRequest({"value": "7. July/Ashland.pdf"})).content)
+    assert body["url"] == url and body["county_file"] == "Ashland"
+    out = rows_of(adapter, fetched(cls.source_id, body))
+    abel = next(p for p in out["party"] if p["raw_name"] == "ABEL JESSICA")
+    assert (abel["last_name"], abel["first_name"]) == ("ABEL", "JESSICA")
+    aber = next(p for p in out["party"] if p["raw_name"] == "ABER SHAWN")
+    addr = next(a for a in out["address"] if a["address_id"] == aber["address_id"])
+    assert (addr["line1"], addr["city"], addr["state"]) == (None, "ASHLAND", "OH")
+    no_values = PersonListConfig({**cls.config.data, "pdf": {**cls.config["pdf"], "values": []}},
+                                 cls.config.parties)  # fmt: skip
+    with pytest.raises(RuntimeError, match="HTTP 404"):
+        list(type("T", (cls,), {"config": no_values})(client(t)).partitions())
+
+
+def test_pdf_table_config_errors(tmp_path: Path) -> None:
+    with pytest.raises(PersonListConfigError, match="pdf needs url, columns and cuts"):
+        load_person_list(_write(tmp_path, api="pdf_table", pdf={"url": "x", "columns": ["n"]}))
+
+
+def test_last_first_comma_reads_either_order() -> None:
+    assert split_name("ARCIDIACONO, JOSEPH A", "last_first_comma")["middle"] == "A"
+    p = split_name("ARNDT NORA", "last_first_comma")
+    assert (p["last"], p["first"]) == ("ARNDT", "NORA")
+
+
+def test_csv_whole_file_window() -> None:
+    cls = by_id("wi.madison.outstanding_checks")
+    data = (
+        b"Check,Vendor,Name,Amount,Check Date,Address Line 1,Address Line 2,Address Line 3,"
+        b"City,State,Zip,Year\n"
+        b"1,9,ANN LEE,5.00,01/04/2024,12 OAK ST,APT 2,,MADISON,WI,53703,2024\n"
+        b'2,9,"SMITH, BO",8.36,01/26/2024,350 S HAMILTON ST,,,MADISON,WI,53703-0577,2024\n'
+    )
+    t = FakeTransport({cls.config["csv"]["url"]: data})  # no Range: the server answers 200
+    adapter = cls(client(t))
+    parts = list(adapter.partitions())
+    assert parts == [{"url": cls.config["csv"]["url"], "lo": "0", "hi": "8000000"}]
+    body = json.loads(adapter.fetch(FetchRequest(parts[0])).content)
+    assert [r["Check"] for r in body["rows"]] == ["1", "2"]
+    lo = str(data.index(b"\n2,") + 1)
+    second = json.loads(adapter.fetch(FetchRequest({"lo": lo, "hi": "8000000"})).content)
+    assert [r["Check"] for r in second["rows"]] == ["2"]  # the line starting in the window
+    out = rows_of(adapter, adapter.fetch(FetchRequest(parts[0])))
+    ann = next(p for p in out["party"] if p["raw_name"] == "ANN LEE")
+    addr = next(a for a in out["address"] if a["address_id"] == ann["address_id"])
+    assert (addr["line1"], addr["zip5"]) == ("12 OAK ST APT 2", "53703")
+    assert all(rng is None for _, rng in t.calls)
+    assert adapter.health().ok
+
+
+def test_one_line_address_with_comma_before_zip() -> None:
+    spec = AddressSpec(line="a")
+    addr = address_of({"a": "1110 MCKIMMON VIEW CT, RALEIGH, NC, 27606-4999"}, spec)
+    assert addr is not None and (addr["line1"], addr["city"], addr["state"], addr["zip5"]) == (
+        "1110 MCKIMMON VIEW CT", "RALEIGH", "NC", "27606")  # fmt: skip
+    cls = by_id("nc.raleigh.uncashed_checks")
+    body = {"lo": 0, "hi": 9, "rows": [{"FID": 1, "Name1": "JOSHI,JAY",
+                                        "Address": "12 OAK ST, RALEIGH, NC, 27606",
+                                        "PYMNT_ID_Ref": "0000282622"}]}  # fmt: skip
+    out = rows_of(cls(), fetched(cls.source_id, body))
+    (p,) = out["party"]
+    assert (p["last_name"], p["first_name"]) == ("JOSHI", "JAY")
+    assert out["source_record"][0]["record_key"] == "RAL-CHK:0000282622"
+    assert out["address"][0]["city"] == "RALEIGH"

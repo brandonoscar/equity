@@ -1,0 +1,166 @@
+{
+ "hi": 50000,
+ "lo": 0,
+ "rows": [
+  {
+   "Address": "2676 TEST ST",
+   "FID": 1,
+   "Name1": "TESTOWNER EE2042",
+   "PYMNT_ID_Ref": "0000282622",
+   "Pymnt_Amt": 15.52,
+   "Pymnt_dt": 1751328000000
+  },
+  {
+   "Address": "5463 TEST ST",
+   "FID": 2,
+   "Name1": "TESTOWNER 86061C",
+   "PYMNT_ID_Ref": "0000282614",
+   "Pymnt_Amt": 5.05,
+   "Pymnt_dt": 1751328000000
+  },
+  {
+   "Address": "7135 TEST ST",
+   "FID": 3,
+   "Name1": "TESTOWNER BFB7CA",
+   "PYMNT_ID_Ref": "0000282604",
+   "Pymnt_Amt": 7.87,
+   "Pymnt_dt": 1751328000000
+  },
+  {
+   "Address": "420 TEST ST",
+   "FID": 4,
+   "Name1": "TESTOWNER 65368C",
+   "PYMNT_ID_Ref": "0000282533",
+   "Pymnt_Amt": 336,
+   "Pymnt_dt": 1751328000000
+  },
+  {
+   "Address": "7307 TEST ST",
+   "FID": 5,
+   "Name1": "TESTOWNER 0D9524",
+   "PYMNT_ID_Ref": "0000282669",
+   "Pymnt_Amt": 100,
+   "Pymnt_dt": 1751414400000
+  },
+  {
+   "Address": "4681 TEST ST",
+   "FID": 6,
+   "Name1": "TESTOWNER 488A77",
+   "PYMNT_ID_Ref": "0000282683",
+   "Pymnt_Amt": 100,
+   "Pymnt_dt": 1751414400000
+  },
+  {
+   "Address": "5700 TEST ST",
+   "FID": 7,
+   "Name1": "TESTOWNER B76BAA",
+   "PYMNT_ID_Ref": "0000282672",
+   "Pymnt_Amt": 100,
+   "Pymnt_dt": 1751414400000
+  },
+  {
+   "Address": "3823 TEST ST",
+   "FID": 8,
+   "Name1": "TESTOWNER 1385C8",
+   "PYMNT_ID_Ref": "0000282835",
+   "Pymnt_Amt": 22.32,
+   "Pymnt_dt": 1751932800000
+  },
+  {
+   "Address": "3725 TEST ST",
+   "FID": 9,
+   "Name1": "TESTOWNER 245DE9",
+   "PYMNT_ID_Ref": "0000282834",
+   "Pymnt_Amt": 12.48,
+   "Pymnt_dt": 1751932800000
+  },
+  {
+   "Address": "7429 TEST ST",
+   "FID": 10,
+   "Name1": "TESTOWNER 93C73A",
+   "PYMNT_ID_Ref": "0000282859",
+   "Pymnt_Amt": 10.93,
+   "Pymnt_dt": 1751932800000
+  },
+  {
+   "Address": "6402 TEST ST",
+   "FID": 11,
+   "Name1": "TESTOWNER 669B80",
+   "PYMNT_ID_Ref": "0000282840",
+   "Pymnt_Amt": 28.24,
+   "Pymnt_dt": 1751932800000
+  },
+  {
+   "Address": "1249 TEST ST",
+   "FID": 12,
+   "Name1": "TESTOWNER 21EAEF LLC",
+   "PYMNT_ID_Ref": "0000282827",
+   "Pymnt_Amt": 15.01,
+   "Pymnt_dt": 1751932800000
+  },
+  {
+   "Address": "680 TEST ST",
+   "FID": 13,
+   "Name1": "TESTOWNER 3616C8",
+   "PYMNT_ID_Ref": "0000282823",
+   "Pymnt_Amt": 10.37,
+   "Pymnt_dt": 1751932800000
+  },
+  {
+   "Address": "8424 TEST ST",
+   "FID": 14,
+   "Name1": "TESTOWNER 5D66B0 LLC",
+   "PYMNT_ID_Ref": "0000282820",
+   "Pymnt_Amt": 23.26,
+   "Pymnt_dt": 1751932800000
+  },
+  {
+   "Address": "3805 TEST ST",
+   "FID": 15,
+   "Name1": "TESTOWNER 4E490B",
+   "PYMNT_ID_Ref": "0000282809",
+   "Pymnt_Amt": 9.42,
+   "Pymnt_dt": 1751932800000
+  },
+  {
+   "Address": "3298 TEST ST",
+   "FID": 16,
+   "Name1": "TESTOWNER 48EBE7",
+   "PYMNT_ID_Ref": "0000283027",
+   "Pymnt_Amt": 23.03,
+   "Pymnt_dt": 1752537600000
+  },
+  {
+   "Address": "3902 TEST ST",
+   "FID": 17,
+   "Name1": "TESTOWNER C17566",
+   "PYMNT_ID_Ref": "0000283039",
+   "Pymnt_Amt": 12.13,
+   "Pymnt_dt": 1752537600000
+  },
+  {
+   "Address": "5394 TEST ST",
+   "FID": 18,
+   "Name1": "TESTOWNER 7BB2D7",
+   "PYMNT_ID_Ref": "0000283040",
+   "Pymnt_Amt": 12.4,
+   "Pymnt_dt": 1752537600000
+  },
+  {
+   "Address": "6394 TEST ST",
+   "FID": 19,
+   "Name1": "TESTOWNER 3EA0CA LLC",
+   "PYMNT_ID_Ref": "0000283145",
+   "Pymnt_Amt": 2000,
+   "Pymnt_dt": 1752710400000
+  },
+  {
+   "Address": "693 TEST ST",
+   "FID": 20,
+   "Name1": "TESTOWNER 37412B",
+   "PYMNT_ID_Ref": "0000283256",
+   "Pymnt_Amt": 7.6,
+   "Pymnt_dt": 1753142400000
+  }
+ ]
+}

@@ -1,0 +1,75 @@
+# Ohio Department of Commerce, Division of Unclaimed Funds, "2026 Unclaimed Funds County
+# Lists": the names of owners of accounts reported to the Division in the past year that
+# R.C. 169.06 requires it to publish in a newspaper of each county, also posted as one PDF
+# per county (NAME, ADDRESS, CITY; 0.5-35 MB, ~1,500 rows for Hocking to ~32,000 for
+# Summit). Names print LAST FIRST M; long holder names wrap onto a second line. Addresses are
+# last-known as reported in the past year, so recent. The PDFs (dam.assets.ohio.gov) answer
+# this client; the index page on com.ohio.gov did not (CloudFront 404 for every path on
+# com.ohio.gov, 2026-11-25), so `values` lists the 30 county files found by web search;
+# where the index answers, it adds the rest (88 counties). Hand check:
+# https://com.ohio.gov/divisions-and-programs/unclaimed-funds/claiming-funds/county-unclaimed-fund/county-listings
+source_id: oh.commerce.unclaimed_funds_owners
+state: OH
+jurisdiction: "39"
+kind: tax  # nearest source kind: a state program (no unclaimed-property kind)
+record_type: unclaimed_property
+api: pdf_table
+pdf:
+  index: https://com.ohio.gov/divisions-and-programs/unclaimed-funds/claiming-funds/county-unclaimed-fund/county-listings
+  link: 'County(?:%20| )Lists/([^"''<>?#]+?\.pdf)'
+  url: https://dam.assets.ohio.gov/image/upload/com.ohio.gov/UNFD/County%20Lists/{value}
+  header: NAME
+  columns: [name, address, city]
+  cuts: [150, 440]  # names left-aligned at x~78; address and city centered under headers
+  wrap: name
+  require: {name: '\S', city: '\S'}
+  value_field: county_file
+  label: '^.*/|\.pdf$'
+  values:
+    - 3.%20March/Belmont_County.pdf
+    - 3.%20March/Fairfield_County.pdf
+    - 3.%20March/Guernsey_County.pdf
+    - 3.%20March/Hocking_County.pdf
+    - 3.%20March/Licking_County.pdf
+    - 5.%20May/2026_Butler_Co._Combined_Unclaimed_Funds_List.pdf
+    - 5.%20May/2026_Clark_Co._Unclaimed_Funds_Combined_Lists.pdf
+    - 5.%20May/2026_Clermont_Co._Combined_Unclaimed_Funds_List.pdf
+    - 5.%20May/2026_Greene_Co._Combined_Unclaimed_Funds_List.pdf
+    - 5.%20May/2026_Miami_County_Unclaimed_Funds_List.pdf
+    - 5.%20May/2026_Pickaway_County_Unclaimed_Funds_List.pdf
+    - 5.%20May/2026_Scioto_Co._Combined_Unclaimed_Funds_List.pdf
+    - 6.%20June/Hamilton.pdf
+    - 7.%20July/Ashland.pdf
+    - 7.%20July/Ashtabula.pdf
+    - 7.%20July/Columbiana.pdf
+    - 7.%20July/Erie.pdf
+    - 7.%20July/Jefferson.pdf
+    - 7.%20July/Knox.pdf
+    - 7.%20July/Lake.pdf
+    - 7.%20July/Lorain.pdf
+    - 7.%20July/Mahoning.pdf
+    - 7.%20July/Medina.pdf
+    - 7.%20July/Portage.pdf
+    - 7.%20July/Stark.pdf
+    - 7.%20July/Summit.pdf
+    - 7.%20July/Trumbull.pdf
+    - 7.%20July/Tuscarawas.pdf
+    - 7.%20July/Wayne.pdf
+    - 8.%20August/Cuyahoga.pdf
+    - 9.%20September/Wood.pdf
+key_prefix: "OH-UF:"  # no property id printed: the key is a hash of the row
+parties:
+  - role: owner
+    name: name
+    format: last_first
+    address: {street: address, city: city, state_const: OH}
+terms:
+  url: https://com.ohio.gov/divisions-and-programs/unclaimed-funds/claiming-funds/county-unclaimed-fund/county-listings
+  summary: >-
+    Statutory public notice (R.C. 169.06, newspaper publication of owners in each county),
+    posted by the Division for owners to find their names; no license or click-through.
+    dam.assets.ohio.gov serves no robots.txt (404, so no restrictions). Ohio regulates paid
+    owner-recovery ("finder") agreements (R.C. 169.13: written agreement, fee capped): do
+    not use for fee-based owner-recovery solicitation. Internal locate/link use only.
+  checked_on: 2026-11-25
+  cost_model: free
