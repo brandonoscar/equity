@@ -1,0 +1,146 @@
+{
+ "county": "SALEM",
+ "rows": [
+  {
+   "address": "5752 TEST ST",
+   "city": "PENNSVILLE",
+   "county": "SALEM",
+   "name": "TESTOWNER BC1119",
+   "property_id": "47259384"
+  },
+  {
+   "address": "5725 TEST ST",
+   "city": "PENNSVILLE",
+   "county": "SALEM",
+   "name": "TESTOWNER 591817",
+   "property_id": "47099578"
+  },
+  {
+   "address": "216 TEST ST",
+   "city": "PENNS GROVE",
+   "county": "SALEM",
+   "name": "TESTOWNER 0F2671",
+   "property_id": "47566496"
+  },
+  {
+   "address": "8132 TEST ST",
+   "city": "PENNSVILLE",
+   "county": "SALEM",
+   "name": "TESTOWNER F9F688",
+   "property_id": "47566518"
+  },
+  {
+   "address": "4498 TEST ST",
+   "city": "SALEM",
+   "county": "SALEM",
+   "name": "TESTOWNER D4348A",
+   "property_id": "45616399"
+  },
+  {
+   "address": "8574 TEST ST",
+   "city": "PENNS GROVE",
+   "county": "SALEM",
+   "name": "TESTOWNER 4451AB",
+   "property_id": "47525283"
+  },
+  {
+   "address": "7286 TEST ST",
+   "city": "PENNS GROVE",
+   "county": "SALEM",
+   "name": "TESTOWNER FCBD6F",
+   "property_id": "45700450"
+  },
+  {
+   "address": "1437 TEST ST",
+   "city": "WOODSTOWN",
+   "county": "SALEM",
+   "name": "TESTOWNER F08C76 INC",
+   "property_id": "45034723"
+  },
+  {
+   "address": "2499 TEST ST",
+   "city": "SALEM",
+   "county": "SALEM",
+   "name": "TESTOWNER A0AE31",
+   "property_id": "47530698"
+  },
+  {
+   "address": "2255 TEST ST",
+   "city": "PENNS GROVE",
+   "county": "SALEM",
+   "name": "TESTOWNER 3A47A6",
+   "property_id": "47566467"
+  },
+  {
+   "address": "2531 TEST ST",
+   "city": "PENNSVILLE",
+   "county": "SALEM",
+   "name": "TESTOWNER A871C7",
+   "property_id": "46234207"
+  },
+  {
+   "address": "5919 TEST ST",
+   "city": "PITTSGROVE",
+   "county": "SALEM",
+   "name": "TESTOWNER 994BE2",
+   "property_id": "47668255"
+  },
+  {
+   "address": "8891 TEST ST",
+   "city": "PENNSVILLE",
+   "county": "SALEM",
+   "name": "TESTOWNER CCAA56",
+   "property_id": "47236810"
+  },
+  {
+   "address": "2956 TEST ST",
+   "city": "PENNSVILLE",
+   "county": "SALEM",
+   "name": "TESTOWNER 8E20F2",
+   "property_id": "47153982"
+  },
+  {
+   "address": "2705 TEST ST",
+   "city": "ELMER",
+   "county": "SALEM",
+   "name": "TESTOWNER 1401C9",
+   "property_id": "45201995"
+  },
+  {
+   "address": "1201 TEST ST",
+   "city": "CARNEYS POINT",
+   "county": "SALEM",
+   "name": "TESTOWNER F797EA",
+   "property_id": "46250935"
+  },
+  {
+   "address": "7547 TEST ST",
+   "city": "PENNS GROVE",
+   "county": "SALEM",
+   "name": "TESTOWNER 506FD1",
+   "property_id": "44614200"
+  },
+  {
+   "address": "347 TEST ST",
+   "city": "SALEM",
+   "county": "SALEM",
+   "name": "TESTOWNER 544BD5",
+   "property_id": "45276568"
+  },
+  {
+   "address": "6401 TEST ST",
+   "city": "PITTSGROVE",
+   "county": "SALEM",
+   "name": "TESTOWNER FDB934",
+   "property_id": "47278695"
+  },
+  {
+   "address": "6303 TEST ST",
+   "city": "CARNEYS POINT",
+   "county": "SALEM",
+   "name": "TESTOWNER AEB3BD",
+   "property_id": "46854480"
+  }
+ ],
+ "url": "https://www.nj.gov/treasury/unclaimed-property/pdf/counties/SALEM.pdf"
+}

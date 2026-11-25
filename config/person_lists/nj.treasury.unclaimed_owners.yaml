@@ -1,0 +1,43 @@
+# New Jersey Department of the Treasury, Unclaimed Property Administration (UPA), "2026 Newly
+# Reported Properties by County": the statutory notice of names of persons appearing to be
+# owners of property reported to the State in the previous year (Uniform Unclaimed Property
+# Act, N.J.S.A. 46:30B; also run in newspapers), posted as one PDF per county (21 counties,
+# 0.9-15 MB each; Salem alone ~2,400 rows): NAME, ADDRESS, CITY, PROPERTY ID. Names print
+# LAST, FIRST or LAST FIRST; joint owners are joined with '&'. Addresses are the holders'
+# last-known ones for property reported in the past year, so recent. The index page is
+# renamed each year (advertisement-<year>.shtml): when it 404s, point `index` and
+# `terms.url` at the new year's page.
+source_id: nj.treasury.unclaimed_owners
+state: NJ
+jurisdiction: "34"
+kind: tax  # nearest source kind: a state treasury program (no unclaimed-property kind)
+record_type: unclaimed_property
+api: pdf_table
+pdf:
+  index: https://www.nj.gov/treasury/unclaimed-property/advertisement-2026.shtml
+  link: 'pdf/counties/([A-Z]+)\.pdf'
+  url: pdf/counties/{value}.pdf
+  header: NAME
+  columns: [name, address, city, property_id]
+  cuts: [490, 700, 900]  # x where ADDRESS, CITY and PROPERTY ID begin (cells left-aligned)
+  require: {property_id: '^\d+$'}
+  value_field: county
+key: property_id
+key_prefix: "NJ-UP:"
+parties:
+  - role: owner
+    name: name
+    format: last_first_comma
+    split: " & "
+    address: {street: address, city: city, state_const: NJ}
+terms:
+  url: https://www.nj.gov/treasury/unclaimed-property/advertisement-2026.shtml
+  summary: >-
+    Statutory public notice of apparent owners (N.J.S.A. 46:30B), posted by the State for
+    owners to find their names; no license or click-through. N.J.S.A. 46:30B-76.1 makes
+    only the owner's name and reported address public. robots.txt allows
+    /treasury/unclaimed-property/ (disallows /treasury/treasdocuments/). Owner-recovery
+    ("finder") agreements are restricted (N.J.S.A. 46:30B-106, unenforceable agreements):
+    do not use for fee-based owner-recovery solicitation. Internal locate/link use only.
+  checked_on: 2026-11-25
+  cost_model: free

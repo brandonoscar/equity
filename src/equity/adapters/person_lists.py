@@ -17,18 +17,39 @@ Four access methods (`api`):
                unclaimed-property file). The file's current name is found on `csv.page` (or in
                the page's `csv.script`, for a single-page app); partitions are byte windows of
                `csv.chunk_bytes`, found by 1-byte probes, never by downloading the file. A
-               window holds the lines that start inside it.
+               window holds the lines that start inside it. `csv.whole: true`: a small file
+               fetched in one GET (for servers that mangle ranges), one window.
   html_table   one HTML page per partition value (`html.url` with {value}); the values are
                the link texts of the anchors whose id starts with `html.link_id_prefix` on
                `html.index` (e.g. Missouri's 115 county lists). Rows are the <tr> elements of
                the first table (or those whose id contains `html.row_id`); `html.columns`
                names the cells.
+  arcgis       an ArcGIS FeatureServer/MapServer layer (`arcgis.layer`), planned as windows of
+               `arcgis.window` object ids (`arcgis.id_field`) between the layer's min and max
+               id, each paged `arcgis.page` features at a time (e.g. Orange County's 7M-row
+               extract of the California Controller's unclaimed-property file).
+  delivered    a file obtained by request, purchase or hand download (it is not fetchable by
+               a script), dropped into data/manual/<source_id>/ or named by a `path=` param:
+               CSV / delimited / fixed-width text, .xlsx, or a .zip of those. Text is planned
+               as byte windows of `file.chunk_bytes` per file (or zip member), like
+               csv_ranges; an .xlsx as windows of `file.rows_per_part` rows. Headers are
+               canonicalized ('Owner Name' -> OWNER_NAME) unless `file.canon: false`;
+               headerless layouts name `file.columns` (delimited) or `file.fixed` ([[name,
+               width], ...]). `file.request_url` is the form or page that says how to ask.
+  pdf_table    one PDF per partition value (`pdf.url` with {value}, resolved against
+               `pdf.index`); the values are group 1 of the `pdf.link` regex on `pdf.index`
+               and/or `pdf.values` (e.g. New Jersey's and Ohio's per-county notices of
+               owners). Lines are cut into `pdf.columns` at the x positions `pdf.cuts`, below
+               each page's `pdf.header` line; `pdf.wrap` names a column whose long values
+               continue on a line of their own; `pdf.require` ({column: regex}) keeps a row.
 
 Config keys: source_id, state, jurisdiction (FIPS), kind (source kind), record_type, api,
-  portal + dataset (socrata) | csv (csv_ranges) | html (html_table); key (field or fields that
+  portal + dataset (socrata) | csv (csv_ranges) | html (html_table) | arcgis (arcgis) | file
+  (delivered) | pdf (pdf_table); key (field or fields that
   identify a row; else a hash of the row); parties: list of {role, name: field | [fields]
   (first non-empty), parts: {first, middle, last, suffix} (used when name is empty), format:
-  as_is | first_last ('THOMAS J MANN') | last_first ('MANN THOMAS J') | last_comma_first,
+  as_is | first_last ('THOMAS J MANN') | last_first ('MANN THOMAS J') | last_comma_first |
+  last_first_comma (either of the last two),
   split (separator for a column holding several names), address: {street: field | [fields],
   city, state | state_const, zip, city_state_zip, line}}; key_prefix; skip_names; extra_pii;
   terms: {url, summary, checked_on, cost_model}.
@@ -45,6 +66,8 @@ import io
 import json
 import re
 import urllib.parse
+import xml.etree.ElementTree as ET
+import zipfile
 from collections.abc import Iterator, Mapping
 from dataclasses import dataclass
 from datetime import UTC, datetime
@@ -54,10 +77,12 @@ from typing import Any, ClassVar
 
 import yaml
 
+from equity.adapters.arcgis import ArcGISError, ArcGISQuery, fetch_all, get_json
 from equity.adapters.base import Adapter, Fetched, FetchRequest, HealthReport, NormalizedRow
 from equity.adapters.http import PoliteClient, Response
 from equity.adapters.licenses import AddressSpec
 from equity.adapters.licenses import address_of as license_address_of
+from equity.adapters.pdf_lists import pdf_rows
 from equity.adapters.rows import RecordContext, canonical_json
 from equity.adapters.socrata import SocrataError, SocrataQuery, parse_rows
 from equity.config import CONFIG_DIR
@@ -66,10 +91,12 @@ from equity.schema.ids import stable_id
 
 LISTS_DIR = CONFIG_DIR / "person_lists"
 PAGE = 50_000
-APIS = {"socrata": ("portal", "dataset"), "csv_ranges": ("csv",), "html_table": ("html",)}
-ACCESS = {"socrata": "api", "csv_ranges": "bulk", "html_table": "html"}
+APIS = {"socrata": ("portal", "dataset"), "csv_ranges": ("csv",), "html_table": ("html",),
+        "arcgis": ("arcgis",), "delivered": ("file",), "pdf_table": ("pdf",)}  # fmt: skip
+ACCESS = {"socrata": "api", "csv_ranges": "bulk", "html_table": "html", "arcgis": "arcgis",
+          "delivered": "manual", "pdf_table": "bulk"}  # fmt: skip
 KINDS = frozenset({"sos", "tax", "court", "vessel", "government_sale"})
-FORMATS = frozenset({"as_is", "first_last", "last_first", "last_comma_first"})
+FORMATS = frozenset({"as_is", "first_last", "last_first", "last_comma_first", "last_first_comma"})
 REQUIRED = ("source_id", "state", "jurisdiction", "kind", "record_type", "parties", "terms")
 # Past the end of a byte window: enough for the line that straddles it (lines are ~300 bytes).
 OVERLAP = 65_536
@@ -175,6 +202,12 @@ def load_person_list(path: Path) -> PersonListConfig:
         raise PersonListConfigError(f"{path.name}: csv needs url or page")
     if api == "html_table" and "url" not in data["html"]:
         raise PersonListConfigError(f"{path.name}: html needs url")
+    if api == "arcgis" and "layer" not in data["arcgis"]:
+        raise PersonListConfigError(f"{path.name}: arcgis needs layer")
+    if api == "pdf_table" and not {"url", "columns", "cuts"} <= set(data["pdf"]):
+        raise PersonListConfigError(f"{path.name}: pdf needs url, columns and cuts")
+    if api == "delivered" and "request_url" not in data["file"]:
+        raise PersonListConfigError(f"{path.name}: file needs request_url")
     terms = data["terms"]
     for k in ("url", "summary", "checked_on"):
         if k not in terms:
@@ -203,12 +236,20 @@ def address_of(row: Mapping[str, Any], spec: AddressSpec | None) -> dict[str, An
     }
     if spec.state and spec.state.startswith("="):
         blank[spec.state] = spec.state[1:]
+    if spec.line and (line := _text(row.get(spec.line))) and (m := _ST_COMMA_ZIP.search(line)):
+        # '1 MAIN ST, RALEIGH, NC, 27606-4999': no comma between state and ZIP.
+        blank[spec.line] = f"{line[: m.start()]}, {m['st']} {m['zip']}"
     return license_address_of({**row, **blank} if blank else row, spec)
+
+
+_ST_COMMA_ZIP = re.compile(r",\s*(?P<st>[A-Za-z]{2}),\s*(?P<zip>\d{5}(?:-?\d{4})?)\s*$")
 
 
 def split_name(name: str, fmt: str) -> dict[str, str | None]:
     """first/middle/last/suffix of a person's name printed in `fmt`; all None for as_is."""
     out: dict[str, str | None] = dict.fromkeys(PART_KEYS)
+    if fmt == "last_first_comma":  # 'LAST, FIRST M' or 'LAST FIRST M' in one list
+        fmt = "last_comma_first" if "," in name else "last_first"
     if fmt == "last_comma_first" and "," in name:
         last, _, rest = name.partition(",")
         words = rest.split()
@@ -337,6 +378,132 @@ class RangeClient(PoliteClient):
                                                            self.timeout_s))  # fmt: skip
 
 
+# --- arcgis -----------------------------------------------------------------------------------
+
+
+def id_windows(lo: int, hi: int, window: int) -> list[tuple[int, int]]:
+    """[lo, hi] (inclusive object-id bounds) as half-open windows of `window` ids."""
+    return [(a, min(a + window, hi + 1)) for a in range(lo, hi + 1, window)]
+
+
+# --- delivered --------------------------------------------------------------------------------
+
+MANUAL_DIR = Path("data") / "manual"
+DATA_FILE = r"\.(csv|txt|tsv|dat|xlsx)$"
+NOT_DATA = r"(?i)layout|readme|record_?desc"
+_XL = "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}"
+
+
+def canon(header: str) -> str:
+    """'Owner Name' -> 'OWNER_NAME'; 'Zip+4' -> 'ZIP_4'."""
+    return re.sub(r"[^A-Z0-9]+", "_", header.strip().lstrip("﻿").upper()).strip("_")
+
+
+def fixed_rows(lines: list[str], fixed: list[tuple[str, int]]) -> list[dict[str, str]]:
+    """Fixed-width lines cut by consecutive (name, width) fields."""
+    out = []
+    for line in lines:
+        line = line.rstrip("\r\n")
+        if not line.strip():
+            continue
+        row, pos = {}, 0
+        for name, width in fixed:
+            row[name] = line[pos : pos + width].strip()
+            pos += width
+        out.append(row)
+    return out
+
+
+def _xlsx_col(ref: str) -> int:
+    n = 0
+    for ch in ref:
+        if not ch.isalpha():
+            break
+        n = n * 26 + ord(ch.upper()) - 64
+    return n - 1
+
+
+def xlsx_rows(raw: Any) -> Iterator[list[str]]:
+    """Every row of the largest worksheet of an .xlsx (a binary file object), as cell texts,
+    streamed with the standard library (shared and inline strings, raw values)."""
+    with zipfile.ZipFile(raw) as zf:
+        names = zf.namelist()
+        shared: list[str] = []
+        if "xl/sharedStrings.xml" in names:
+            # A government delivery; Python's expat refuses entity-expansion bombs.
+            for _, el in ET.iterparse(zf.open("xl/sharedStrings.xml")):  # noqa: S314
+                if el.tag == f"{_XL}si":
+                    shared.append("".join(t.text or "" for t in el.iter(f"{_XL}t")))
+                    el.clear()
+        sheets = [n for n in names if n.startswith("xl/worksheets/") and n.endswith(".xml")]
+        if not sheets:
+            return
+        sheet = max(sheets, key=lambda n: (zf.getinfo(n).file_size, n))
+        for _, el in ET.iterparse(zf.open(sheet)):  # noqa: S314
+            if el.tag != f"{_XL}row":
+                continue
+            cells: dict[int, str] = {}
+            for pos, c in enumerate(el.iter(f"{_XL}c")):
+                col = _xlsx_col(c.get("r", "")) if c.get("r") else pos
+                v = c.find(f"{_XL}v")
+                if c.get("t") == "s" and v is not None and v.text:
+                    cells[col] = shared[int(v.text)]
+                elif c.get("t") == "inlineStr":
+                    cells[col] = "".join(t.text or "" for t in c.iter(f"{_XL}t"))
+                else:
+                    cells[col] = (v.text or "") if v is not None else ""
+            el.clear()
+            yield [cells.get(i, "") for i in range(max(cells) + 1)] if cells else []
+
+
+@dataclass(frozen=True)
+class Member:
+    """One data file of a delivery: a plain file, or `name` inside the zip at `path`."""
+
+    path: Path
+    name: str  # '' for a plain file
+    size: int
+
+    @property
+    def label(self) -> str:
+        return self.name or self.path.name
+
+    @property
+    def is_xlsx(self) -> bool:
+        return self.label.lower().endswith(".xlsx")
+
+    def open(self) -> Any:
+        if not self.name:
+            return self.path.open("rb")
+        zf = zipfile.ZipFile(self.path)
+        return zf.open(self.name)  # keeps the archive open until the member is closed
+
+    def read_range(self, start: int, stop: int) -> bytes:
+        """Bytes [start, stop) (seeking a zip member inflates up to `start`)."""
+        with self.open() as f:
+            f.seek(start)
+            return bytes(f.read(max(stop - start, 0)))
+
+
+def delivery_members(source: Path, include: str = DATA_FILE, exclude: str = NOT_DATA
+                     ) -> list[Member]:  # fmt: skip
+    """The data files of a delivery (a file, a zip, or a folder of either), in name order."""
+    files = sorted(p for p in source.rglob("*") if p.is_file()) if source.is_dir() else [source]
+    inc, exc = re.compile(include, re.I), re.compile(exclude)
+    out: list[Member] = []
+    for f in files:
+        if f.name.startswith(".") or exc.search(f.name):
+            continue
+        if f.suffix.lower() == ".zip":
+            with zipfile.ZipFile(f) as zf:
+                out += [Member(f, i.filename, i.file_size) for i in zf.infolist()
+                        if not i.is_dir() and inc.search(i.filename)
+                        and not exc.search(i.filename)]  # fmt: skip
+        elif inc.search(f.name):
+            out.append(Member(f, "", f.stat().st_size))
+    return out
+
+
 # --- the adapter ------------------------------------------------------------------------------
 
 
@@ -356,6 +523,12 @@ class PersonListAdapter(Adapter):
             return f"{c['portal']}/resource/{c['dataset']}.json"
         if c.api == "csv_ranges":
             return str(c["csv"].get("url") or c["csv"]["page"])
+        if c.api == "arcgis":
+            return str(c["arcgis"]["layer"])
+        if c.api == "delivered":
+            return str(c["file"]["request_url"])
+        if c.api == "pdf_table":
+            return str(c["pdf"].get("index") or c["pdf"]["url"])
         return str(c["html"].get("index") or c["html"]["url"])
 
     def source_row(self) -> Mapping[str, Any]:
@@ -388,6 +561,9 @@ class PersonListAdapter(Adapter):
             total = int(rows[0]["n"]) if rows else 0
             for off in range(0, total, PAGE):
                 yield {"offset": str(off), "limit": str(PAGE)}
+        elif c.api == "csv_ranges" and c["csv"].get("whole"):
+            yield {"url": self.current_csv_url(), "lo": "0",
+                   "hi": str(int(c["csv"].get("chunk_bytes", 8_000_000)))}  # fmt: skip
         elif c.api == "csv_ranges":
             url = self.current_csv_url()
             chunk = int(c["csv"].get("chunk_bytes", 8_000_000))
@@ -398,6 +574,12 @@ class PersonListAdapter(Adapter):
                     break
                 yield {"url": url, "lo": str(lo), "hi": str(lo + chunk)}
                 lo += chunk
+        elif c.api == "arcgis":
+            yield from self._arcgis_partitions()
+        elif c.api == "delivered":
+            yield from self._delivered_partitions()
+        elif c.api == "pdf_table":
+            yield from self._pdf_partitions()
         else:
             h = c["html"]
             if "index" in h:
@@ -441,6 +623,12 @@ class PersonListAdapter(Adapter):
             body, req = self._fetch_socrata(p)
         elif c.api == "csv_ranges":
             body, req = self._fetch_csv(p)
+        elif c.api == "arcgis":
+            body, req = self._fetch_arcgis(p)
+        elif c.api == "delivered":
+            body, req = self._fetch_delivered(p)
+        elif c.api == "pdf_table":
+            body, req = self._fetch_pdf(p)
         else:
             body, req = self._fetch_html(p)
         return Fetched(c.source_id, req, datetime.now(UTC), 200, canonical_json(body),
@@ -461,6 +649,8 @@ class PersonListAdapter(Adapter):
         """params: url (from partitions; else the current file), lo, hi (byte window)."""
         url = p.get("url") or self.current_csv_url()
         lo, hi = int(p["lo"]), int(p["hi"])
+        if self.config["csv"].get("whole"):
+            return self._fetch_csv_whole(url, lo, hi)
         head = self.client.get_range(url, 0, 16_383)
         if head.status not in (200, 206):
             raise RuntimeError(f"HTTP {head.status} from {url}")
@@ -484,6 +674,20 @@ class PersonListAdapter(Adapter):
             f"{url}#bytes={lo}-{hi - 1}"
         )
 
+    def _fetch_csv_whole(self, url: str, lo: int, hi: int) -> tuple[dict[str, Any], str]:
+        """`csv.whole`: a small CSV fetched in one GET, then cut to the lines that start in
+        [lo, hi) (for a server that mangles byte ranges, e.g. gzip under a range length)."""
+        data = self._get(url).content
+        header = next(csv.reader([data.split(b"\n", 1)[0].decode("utf-8-sig")]))
+        lines = window_lines(data[max(lo - 1, 0) :], lo, hi, max(lo - 1, 0), True)
+        if lo == 0 and lines:
+            lines = lines[1:]  # the header
+        text = b"".join(lines).decode("utf-8", errors="replace")
+        rows = [dict(zip(header, r, strict=False)) for r in csv.reader(io.StringIO(text)) if r]
+        return {"url": url, "lo": lo, "hi": hi, "columns": header, "rows": rows}, (
+            f"{url}#bytes={lo}-{hi - 1}"
+        )
+
     def _fetch_html(self, p: Mapping[str, str]) -> tuple[dict[str, Any], str]:
         """params: value (partition, e.g. a county); limit (fixtures: first rows only)."""
         h = self.config["html"]
@@ -495,6 +699,185 @@ class PersonListAdapter(Adapter):
         field = h.get("value_field", "partition")
         tagged = [{**r, field: p["value"]} for r in rows]
         return {"url": url, field: p["value"], "rows": tagged}, url
+
+    # arcgis ------------------------------------------------------------------------------
+
+    def _arcgis_query(self, where: str, page: int | None = None) -> ArcGISQuery:
+        a = self.config["arcgis"]
+        return ArcGISQuery(str(a["layer"]), where, tuple(a.get("fields") or ("*",)),
+                           (str(a.get("id_field", "OBJECTID")),),
+                           page or int(a.get("page", 2000)))  # fmt: skip
+
+    def _arcgis_partitions(self) -> Iterator[dict[str, str]]:
+        """Windows of `arcgis.window` object ids from the layer's min to its max id."""
+        a = self.config["arcgis"]
+        oid = str(a.get("id_field", "OBJECTID"))
+        stats = [{"statisticType": s, "onStatisticField": oid, "outStatisticFieldName": s}
+                 for s in ("min", "max")]  # fmt: skip
+        data = get_json(self.client, f"{a['layer']}/query", {
+            "where": str(a.get("where", "1=1")), "outStatistics": json.dumps(stats),
+            "f": "json"})  # fmt: skip
+        if "error" in data:
+            raise ArcGISError(str(data["error"]))
+        feats = data.get("features") or []
+        attrs = {k.lower(): v for k, v in (feats[0]["attributes"] if feats else {}).items()}
+        if attrs.get("min") is None:
+            return
+        for lo, hi in id_windows(int(attrs["min"]), int(attrs["max"]),
+                                 int(a.get("window", 50_000))):  # fmt: skip
+            yield {"lo": str(lo), "hi": str(hi)}
+
+    def _fetch_arcgis(self, p: Mapping[str, str]) -> tuple[dict[str, Any], str]:
+        """params: lo, hi (object ids, half-open); limit (fixtures: one page of that many)."""
+        a = self.config["arcgis"]
+        oid = str(a.get("id_field", "OBJECTID"))
+        lo, hi = int(p["lo"]), int(p["hi"])
+        where = f"({a.get('where', '1=1')}) AND {oid} >= {lo} AND {oid} < {hi}"
+        limit = int(p["limit"]) if "limit" in p else None
+        feats, resps = fetch_all(self.client, self._arcgis_query(where, limit), max_pages=1
+                                 if limit else 10_000, sample=bool(limit))  # fmt: skip
+        rows = [dict(f.get("attributes") or {}) for f in feats][:limit]
+        return {"lo": lo, "hi": hi, "rows": rows}, resps[0].url if resps else str(a["layer"])
+
+    # delivered ---------------------------------------------------------------------------
+
+    def drop_dir(self) -> Path:
+        return MANUAL_DIR / self.source_id
+
+    def delivery(self, p: Mapping[str, str] | None = None) -> Path:
+        """`path` if given, else the drop folder (data/manual/<source_id>/)."""
+        if p and p.get("path"):
+            return Path(p["path"])
+        drop = self.drop_dir()
+        if not drop.is_dir() or not any(f.is_file() and f.name.upper() != "README.MD"
+                                        for f in drop.rglob("*")):  # fmt: skip
+            raise RuntimeError(
+                f"{drop}: nothing delivered yet. This list is not downloadable by a script: "
+                f"get it as {self.config['file']['request_url']} says "
+                f"(docs/unclaimed_property_requests_west.md), drop it here, or pass path=."
+            )
+        return drop
+
+    def _members(self, source: Path) -> list[Member]:
+        f = self.config["file"]
+        return delivery_members(source, str(f.get("include", DATA_FILE)),
+                                str(f.get("exclude", NOT_DATA)))  # fmt: skip
+
+    def _delivered_partitions(self) -> Iterator[dict[str, str]]:
+        f = self.config["file"]
+        source = self.delivery()
+        members = self._members(source)
+        if not members:
+            raise RuntimeError(f"{source}: no data file found")
+        for m in members:
+            base = {"path": str(m.path), **({"member": m.name} if m.name else {})}
+            if m.is_xlsx:
+                step = int(f.get("rows_per_part", 100_000))
+                with m.open() as raw:
+                    n = sum(1 for _ in xlsx_rows(raw)) - 1
+                bounds = range(0, max(n, 1), step)
+            else:
+                step = int(f.get("chunk_bytes", 8_000_000))
+                bounds = range(0, max(m.size, 1), step)
+            for lo in bounds:
+                yield {**base, "lo": str(lo), "hi": str(lo + step)}
+
+    def _header_of(self, m: Member) -> list[str]:
+        f = self.config["file"]
+        if f.get("columns"):
+            return [str(c) for c in f["columns"]]
+        head = m.read_range(0, 65_536).split(b"\n", 1)[0]
+        cols = next(csv.reader([head.decode(str(f.get("encoding", "utf-8-sig")), "replace")],
+                               delimiter=str(f.get("delimiter", ","))))  # fmt: skip
+        return [canon(c) for c in cols] if f.get("canon", True) else cols
+
+    def _fetch_delivered(self, p: Mapping[str, str]) -> tuple[dict[str, Any], str]:
+        """params: path (a file or folder; else the drop folder), member (inside a zip),
+        lo, hi (byte window of a text file; row window of an .xlsx); limit (first rows)."""
+        f = self.config["file"]
+        source = self.delivery(p)
+        members = self._members(source)
+        want = p.get("member", "")
+        m = next((x for x in members if x.name == want), None)
+        if m is None:
+            raise RuntimeError(f"{source}: no data file {want!r}")
+        lo, hi = int(p.get("lo", "0")), int(p.get("hi", str(1 << 62)))
+        if m.is_xlsx:
+            with m.open() as raw:
+                it = xlsx_rows(raw)
+                first = next(it, [])
+                header = [canon(h) for h in first] if f.get("canon", True) else first
+                rows = [dict(zip(header, r, strict=False)) for i, r in enumerate(it)
+                        if lo <= i < hi and any(x.strip() for x in r)]  # fmt: skip
+        else:
+            enc = str(f.get("encoding", "utf-8-sig"))
+            start = max(lo - 1, 0)
+            stop = min(hi + OVERLAP, m.size)
+            data = m.read_range(start, stop)
+            lines = window_lines(data, lo, hi, start, start + len(data) >= m.size)
+            if lo == 0 and lines and not f.get("columns") and not f.get("fixed"):
+                lines = lines[1:]  # the header
+            text = b"".join(lines).decode(enc, errors="replace")
+            if f.get("fixed"):
+                fixed = [(str(n), int(w)) for n, w in f["fixed"]]
+                header = [n for n, _ in fixed]
+                rows = fixed_rows(text.splitlines(), fixed)
+            else:
+                header = self._header_of(m)
+                reader = csv.reader(io.StringIO(text), delimiter=str(f.get("delimiter", ",")))
+                rows = [dict(zip(header, r, strict=False)) for r in reader if any(r)]
+        if "limit" in p:
+            rows = rows[: int(p["limit"])]
+        where = f"{m.path}" + (f"!{m.name}" if m.name else "")
+        return {"file": m.label, "lo": lo, "hi": hi, "columns": header, "rows": rows}, (
+            f"file://{where}#{'rows' if m.is_xlsx else 'bytes'}={lo}-{hi - 1}"
+        )
+
+    def _delivered_shape(self) -> tuple[str, ...]:
+        """No network: the columns of the first data file on hand (RuntimeError if none)."""
+        source = self.delivery()
+        members = self._members(source)
+        if not members:
+            raise RuntimeError(f"{source}: no data file found")
+        body, _ = self._fetch_delivered({"path": str(members[0].path), "member": members[0].name,
+                                         "lo": "0", "hi": "65536", "limit": "1"})  # fmt: skip
+        return tuple(sorted(body["rows"][0])) if body["rows"] else ()
+
+    # pdf_table ---------------------------------------------------------------------------
+
+    def _pdf_partitions(self) -> Iterator[dict[str, str]]:
+        """The `pdf.link` matches (group 1) on `pdf.index`, then `pdf.values`, de-duplicated.
+        An index that cannot be read falls back to the values when there are some."""
+        spec = self.config["pdf"]
+        seen: dict[str, None] = {}
+        if "index" in spec:
+            try:
+                page = self._get(spec["index"]).content.decode("utf-8", errors="replace")
+            except (RuntimeError, OSError):
+                if not spec.get("values"):
+                    raise
+            else:
+                for m in re.finditer(spec["link"], page):
+                    seen.setdefault(html.unescape(m.group(1)), None)
+        for v in spec.get("values") or ():
+            seen.setdefault(str(v), None)
+        for v in seen:
+            yield {"value": v}
+
+    def _fetch_pdf(self, p: Mapping[str, str]) -> tuple[dict[str, Any], str]:
+        """params: value (partition: a county, or a file path the index links); limit
+        (fixtures: first rows only)."""
+        spec = self.config["pdf"]
+        path = str(spec["url"]).replace("{value}", p["value"].replace(" ", "%20"))
+        url = urllib.parse.urljoin(str(spec.get("index") or spec["url"]), path)
+        rows = pdf_rows(self._get(url).content, [str(c) for c in spec["columns"]],
+                        [float(x) for x in spec["cuts"]], str(spec.get("header", "NAME")),
+                        spec.get("wrap"), spec.get("require"))  # fmt: skip
+        if "limit" in p:
+            rows = rows[: int(p["limit"])]
+        field = str(spec.get("value_field", "partition"))
+        label = re.sub(str(spec.get("label", r"$^")), "", p["value"])
+        return {"url": url, field: label, "rows": [{**r, field: label} for r in rows]}, url
 
     # normalizing -------------------------------------------------------------------------
 
@@ -547,11 +930,23 @@ class PersonListAdapter(Adapter):
             if c.api == "socrata":
                 body, _ = self._fetch_socrata({"offset": "0", "limit": "1"})
                 shape = tuple(sorted(body["rows"][0])) if body["rows"] else ()
+            elif c.api == "csv_ranges" and c["csv"].get("whole"):
+                body, _ = self._fetch_csv_whole(self.current_csv_url(), 0, 1)
+                shape = tuple(sorted(body["columns"]))
             elif c.api == "csv_ranges":
                 url = self.current_csv_url()
                 head = self.client.get_range(url, 0, 4095)
                 line = head.content.split(b"\n", 1)[0].decode("utf-8-sig", errors="replace")
                 shape = tuple(sorted(next(csv.reader([line])))) if head.status == 206 else ()
+            elif c.api == "arcgis":
+                body, _ = self._fetch_arcgis({"lo": "0", "hi": "2147483647", "limit": "1"})
+                shape = tuple(sorted(body["rows"][0])) if body["rows"] else ()
+            elif c.api == "delivered":
+                shape = self._delivered_shape()
+            elif c.api == "pdf_table":
+                parts = list(self._pdf_partitions())
+                body, _ = self._fetch_pdf({**parts[0], "limit": "1"}) if parts else ({}, "")
+                shape = tuple(sorted(body["rows"][0])) if body.get("rows") else ()
             else:
                 parts = list(self.partitions())
                 body, _ = self._fetch_html({**parts[0], "limit": "1"}) if parts else ({}, "")

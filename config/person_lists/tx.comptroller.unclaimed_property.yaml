@@ -1,0 +1,47 @@
+# Texas Comptroller of Public Accounts, Unclaimed Property Division: the "Texas Unclaimed
+# Property Listing", every property the Comptroller holds, as a zip of text files (one per
+# holder report year) refreshed in the first 7 working days of each month, with a Layout
+# file. Owner name and last-known address as the holder reported it, holder, property type,
+# amount, report year: report years from the 1960s to last year.
+#
+# By request only (data.texas.gov 3un9-h9it holds just the instructions): email
+# up.dbrequests@cpa.texas.gov with your name, company, mailing address and phone (and TX PI
+# license number if you have one); the files come by the Comptroller's SIFT secure file
+# transfer. No fee is published. Drop the zip as delivered into
+# data/manual/tx.comptroller.unclaimed_property/ (or pass path=); the Layout and ReadMe
+# files are skipped. See docs/unclaimed_property_requests_west.md.
+#
+# Columns: the canonicalized labels of the Comptroller's published field list (a 2017 copy
+# of the listing on a Socrata demo site, columns only): FORMER_OWNER_LAST_NAME,
+# FORMER_OWNER_FIRST_NAME, FORMER_OWNER_ADDRESS_LINE_1..3, FORMER_OWNER_CITY,
+# FORMER_OWNER_STATE, FORMER_OWNER_ZIPCODE, FORMER_OWNER_COUNTY, HOLDER_NAME_REPORT_CONTACT,
+# HOLDER_REPORT_YEAR_YYYY, PROPERTY_TYPE, PROPERTY_SEQUENCE, REPORT_SEQ, DOLLAR_AMOUNT_...
+# The delivered Layout file is authoritative: if the text files are headerless or fixed
+# width, set file.columns or file.fixed from it.
+source_id: tx.comptroller.unclaimed_property
+state: TX
+jurisdiction: "48"
+kind: tax  # nearest source kind: a state treasury program (no unclaimed-property kind)
+record_type: unclaimed_property
+api: delivered
+file:
+  request_url: https://data.texas.gov/d/3un9-h9it
+  layout_url: https://data.texas.gov/d/3un9-h9it
+  include: '\.(txt|csv|dat)$'
+  chunk_bytes: 16000000
+key_prefix: "TX-UP:"  # no single property id in the published field list: a row hash
+parties:
+  - role: owner
+    parts: {first: FORMER_OWNER_FIRST_NAME, last: FORMER_OWNER_LAST_NAME}
+    address: {street: [FORMER_OWNER_ADDRESS_LINE_1, FORMER_OWNER_ADDRESS_LINE_2, FORMER_OWNER_ADDRESS_LINE_3], city: FORMER_OWNER_CITY, state: FORMER_OWNER_STATE, zip: FORMER_OWNER_ZIPCODE}
+terms:
+  url: https://data.texas.gov/d/3un9-h9it
+  summary: >-
+    Released by the Comptroller on emailed request (no published fee); the dataset page's
+    license field says "See Terms of Use" and the request must identify the requester.
+    Anyone who locates or notifies owners of unclaimed property for a fee may need a Texas
+    private-investigations company license (Tex. Occ. Code ch. 1702), and Tex. Prop. Code
+    ch. 74 limits locator agreements: do not use for paid owner-recovery solicitation.
+    Internal locate/link use only.
+  checked_on: 2026-11-25
+  cost_model: free

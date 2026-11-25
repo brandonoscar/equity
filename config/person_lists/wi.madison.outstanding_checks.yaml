@@ -1,0 +1,34 @@
+# City of Madison Finance Department, "Outstanding Checks" (City of Madison open data, a CSV
+# item on ArcGIS Online, ~34 KB, ~360 rows, file last modified 2026-11-03): city checks six
+# months old or older and not cashed, with the payee's name and mailing address (checks
+# with private health information are left out). Checks dated 2024-01 to 2026-04, so
+# addresses are 0.5-3 years old. Names print as the payee was set up: FIRST LAST, LAST
+# FIRST, or LAST, FIRST, and holders' names are cut at 20 characters, so names are kept as
+# printed. One small CSV, read as a single byte window.
+source_id: wi.madison.outstanding_checks
+state: WI
+jurisdiction: "55025"
+kind: tax  # nearest source kind: a municipal treasury list (no unclaimed-property kind)
+record_type: unclaimed_check
+api: csv_ranges
+csv:
+  url: https://www.arcgis.com/sharing/rest/content/items/0ae67f0f85e04bebbaac8f91a38c758c/data
+  chunk_bytes: 8000000
+  whole: true  # ArcGIS Online gzips a range reply but sends the range length: one GET
+key: Check
+key_prefix: "MSN-CHK:"
+parties:
+  - role: payee
+    name: Name
+    format: as_is
+    address: {street: [Address Line 1, Address Line 2, Address Line 3], city: City, state: State, zip: Zip}
+terms:
+  url: https://www.cityofmadison.com/policy/data
+  summary: >-
+    City of Madison Data Policy (item license): public data offered as is, no warranty.
+    Published so payees can claim; no use restriction found. Uncashed checks later go to
+    Wisconsin's unclaimed-property program (Wis. Stat. ch. 177), which limits paid
+    owner-recovery agreements: do not use for fee-based owner-recovery solicitation.
+    Internal locate/link use only.
+  checked_on: 2026-11-25
+  cost_model: free

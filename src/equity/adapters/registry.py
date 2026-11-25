@@ -12,12 +12,18 @@ from equity.adapters.dc_business import DCBusiness
 from equity.adapters.deeds import all_deed_adapters
 from equity.adapters.federal.ecf_rss import NDWVBankruptcyRSS, NDWVDistrictRSS, court_adapters
 from equity.adapters.federal.epa_echo import EPAJudicialCases
+from equity.adapters.federal.fcc_uls import FCC_ULS_ADAPTERS
 from equity.adapters.federal.federal_register import FederalRegisterRealty
 from equity.adapters.federal.fjc_idb import FJCCivilJudgments
 from equity.adapters.federal.fjc_idb_direct import FJCDirectCivilJudgments
 from equity.adapters.federal.hud_reo import HudFhaReo
+from equity.adapters.federal.irs_990 import IRS990Officers
+from equity.adapters.federal.irs_eo import IRSExemptOrgs
 from equity.adapters.federal.sba_chargeoffs import SBAChargeOffs
+from equity.adapters.federal.sba_loans import SBA7a504Loans, SBAPPPLoans
 from equity.adapters.federal.sba_ppp import SBAPPPChargeOffs
+from equity.adapters.federal.sec_edgar import SECFormD, SECInsiders
+from equity.adapters.federal.usaspending import USASpendingRecipients
 from equity.adapters.fl.citrus_civil import CitrusCivil
 from equity.adapters.fl.hernando_civil import HernandoCivilFilings
 from equity.adapters.fl.hernando_or import HernandoOfficialRecords
@@ -99,6 +105,14 @@ _ALL: tuple[type[Adapter], ...] = (
     FederalRegisterRealty,
     SBAChargeOffs,
     SBAPPPChargeOffs,
+    SBAPPPLoans,
+    SBA7a504Loans,
+    USASpendingRecipients,
+    IRSExemptOrgs,
+    IRS990Officers,
+    SECFormD,
+    SECInsiders,  # USPTO trademark/patent adapters join once hand-saved fixtures exist
+    *FCC_ULS_ADAPTERS,  # FAAAircraftRegistry joins once a hand-saved fixture exists
     PrinceGeorgesProperty,
     NYNameHistory,
     HarrisJPCivilJudgments,

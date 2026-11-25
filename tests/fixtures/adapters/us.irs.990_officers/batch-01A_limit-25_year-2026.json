@@ -1,0 +1,1927 @@
+{
+ "batch": "01A",
+ "filings": [
+  {
+   "city": "Rockwall",
+   "ein": "921704368",
+   "name": "Please Just Slow Down",
+   "object_id": "202503609349100000",
+   "people": [
+    {
+     "AverageHrsPerWkDevotedToPosRt": "0",
+     "CompensationAmt": "0",
+     "business_name": null,
+     "city": "Rockwall",
+     "person_name": "TESTOWNER CB99F6",
+     "state": "TX",
+     "street_address": "4048 TEST ST",
+     "title": "Director",
+     "zip": "75087"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "0",
+     "CompensationAmt": "0",
+     "business_name": null,
+     "city": "Rockwall",
+     "person_name": "TESTOWNER E073E6",
+     "state": "TX",
+     "street_address": "4048 TEST ST",
+     "title": "Director",
+     "zip": "75087"
+    }
+   ],
+   "return_type": "990PF",
+   "signing_officer": {
+    "person_name": "TESTOWNER CB99F6",
+    "title": "Director"
+   },
+   "state": "TX",
+   "street_address": "4048 TEST ST",
+   "tax_period_begin": "2024-01-01",
+   "tax_period_end": "2024-12-31",
+   "tax_year": "2024",
+   "zip": "75087"
+  },
+  {
+   "city": "POMONA",
+   "ein": "273305751",
+   "name": "RIDE KIND INC",
+   "object_id": "202503609349100100",
+   "people": [
+    {
+     "AverageHrsPerWkDevotedToPosRt": "0.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "city": "POMONA",
+     "person_name": "TESTOWNER 588C71",
+     "state": "NY",
+     "street_address": "4910 TEST ST",
+     "title": "PRESIDENT",
+     "zip": "10970"
+    }
+   ],
+   "return_type": "990PF",
+   "signing_officer": {
+    "person_name": "TESTOWNER 588C71",
+    "title": "PRESIDENT"
+   },
+   "state": "NY",
+   "street_address": "6687 TEST ST",
+   "tax_period_begin": "2024-01-01",
+   "tax_period_end": "2024-12-31",
+   "tax_year": "2024",
+   "zip": "10970"
+  },
+  {
+   "city": "MCDONOUGH",
+   "ein": "208765349",
+   "name": "A WOMANS WORTH FOUNDATION INC",
+   "object_id": "202503609349100200",
+   "people": [
+    {
+     "AverageHrsPerWkDevotedToPosRt": "10.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "city": "MCDONOUGH",
+     "person_name": "TESTOWNER 09E9D3",
+     "state": "GA",
+     "street_address": "2765 TEST ST",
+     "title": "DIRECTOR",
+     "zip": "30253"
+    }
+   ],
+   "return_type": "990PF",
+   "signing_officer": {
+    "person_name": "TESTOWNER 09E9D3",
+    "title": "DIRECTOR"
+   },
+   "state": "GA",
+   "street_address": "4856 TEST ST",
+   "tax_period_begin": "2024-01-01",
+   "tax_period_end": "2024-12-31",
+   "tax_year": "2024",
+   "zip": "30253"
+  },
+  {
+   "city": "JACKSON CENTER",
+   "ein": "341607510",
+   "name": "JACKSON CENTER AMERICAN LEGION",
+   "object_id": "202503609349100300",
+   "people": [
+    {
+     "AverageHrsPerWkDevotedToPosRt": "5.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "city": "Jackson Center",
+     "person_name": "TESTOWNER 0FCC7C",
+     "state": "OH",
+     "street_address": "525 TEST ST",
+     "title": "PRESIDENT",
+     "zip": "45334"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "5.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "city": "JACKSON CENTER",
+     "person_name": "TESTOWNER D0E48C",
+     "state": "OH",
+     "street_address": "3982 TEST ST",
+     "title": "BOARD MEMBER",
+     "zip": "45334"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "5.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "city": "Jackson Center",
+     "person_name": "TESTOWNER 285199",
+     "state": "OH",
+     "street_address": "720 TEST ST",
+     "title": "SECRETARY",
+     "zip": "45334"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "5.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "city": "JACKSON CENTER",
+     "person_name": "TESTOWNER FB0361",
+     "state": "OH",
+     "street_address": "296 TEST ST",
+     "title": "TREASURER",
+     "zip": "45334"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "5.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "city": "BOTKINS",
+     "person_name": "TESTOWNER CC2E2B",
+     "state": "OH",
+     "street_address": "542 TEST ST",
+     "title": "VICE PRESIDENT",
+     "zip": "45306"
+    }
+   ],
+   "return_type": "990PF",
+   "signing_officer": {
+    "person_name": "TESTOWNER CC2E2B",
+    "title": "VICE PRESIDENT"
+   },
+   "state": "OH",
+   "street_address": "8287 TEST ST",
+   "tax_period_begin": "2024-01-01",
+   "tax_period_end": "2024-12-31",
+   "tax_year": "2024",
+   "zip": "45334"
+  },
+  {
+   "city": "Keller",
+   "ein": "844065011",
+   "name": "GUPTAS CHARITABLE FOUNDATION",
+   "object_id": "202503609349100400",
+   "people": [
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "city": "Keller",
+     "person_name": "TESTOWNER B24DAC",
+     "state": "TX",
+     "street_address": "530 TEST ST",
+     "title": "TREASUER",
+     "zip": "76248"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "city": "Keller",
+     "person_name": "TESTOWNER FE750C",
+     "state": "TX",
+     "street_address": "530 TEST ST",
+     "title": "PRESIDENT",
+     "zip": "76248"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "city": "Bloomington",
+     "person_name": "TESTOWNER DDC55F",
+     "state": "IL",
+     "street_address": "3430 TEST ST",
+     "title": "DIRECTOR",
+     "zip": "61704"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "city": "Normal",
+     "person_name": "TESTOWNER 46137F",
+     "state": "IL",
+     "street_address": "7686 TEST ST",
+     "title": "DIRECTOR",
+     "zip": "61761"
+    }
+   ],
+   "return_type": "990PF",
+   "signing_officer": {
+    "person_name": "TESTOWNER FC41CF",
+    "title": "TREASURER"
+   },
+   "state": "TX",
+   "street_address": "3197 TEST ST",
+   "tax_period_begin": "2024-01-01",
+   "tax_period_end": "2024-12-31",
+   "tax_year": "2024",
+   "zip": "76248"
+  },
+  {
+   "city": "BALTIMORE",
+   "ein": "522098287",
+   "name": "MONUMENTAL CITY BAR FOUNDATION INC",
+   "object_id": "202503609349100500",
+   "people": [
+    {
+     "AverageHrsPerWkDevotedToPosRt": "5.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "city": "Baltimore",
+     "person_name": "TESTOWNER 091D35",
+     "state": "MD",
+     "street_address": "2502 TEST ST",
+     "title": "PRESIDENT",
+     "zip": "21202"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "5.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "city": "BALTIMORE",
+     "person_name": "TESTOWNER 9935A6",
+     "state": "MD",
+     "street_address": "8275 TEST ST",
+     "title": "VICE PRESIDENT",
+     "zip": "21202"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "5.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "city": "BALTIMORE",
+     "person_name": "TESTOWNER 04D3B8",
+     "state": "MD",
+     "street_address": "2629 TEST ST",
+     "title": "TREASURER",
+     "zip": "21203"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "5.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "city": "BALTIMORE",
+     "person_name": "TESTOWNER 770E5E",
+     "state": "MD",
+     "street_address": "7386 TEST ST",
+     "title": "SECRETARY",
+     "zip": "21215"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "city": "Baltimore",
+     "person_name": "TESTOWNER A32161",
+     "state": "MD",
+     "street_address": "3994 TEST ST",
+     "title": "BOARD MEMBER",
+     "zip": "21202"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "city": "Towson",
+     "person_name": "TESTOWNER 172233",
+     "state": "MD",
+     "street_address": "6981 TEST ST",
+     "title": "BOARD MEMBER",
+     "zip": "21204"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "0.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "city": "Baltimore",
+     "person_name": "TESTOWNER 28BF4A",
+     "state": "MD",
+     "street_address": "6871 TEST ST",
+     "title": "BOARD MEMBER",
+     "zip": "21202"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "0.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "city": "Baltimore",
+     "person_name": "TESTOWNER 1F765F",
+     "state": "MD",
+     "street_address": "3558 TEST ST",
+     "title": "BOARD MEMBER",
+     "zip": "21202"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "city": "Baltimore",
+     "person_name": "TESTOWNER 84EA16",
+     "state": "MD",
+     "street_address": "6300 TEST ST",
+     "title": "BOARD MEMBER",
+     "zip": "21202"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "city": "Baltimore",
+     "person_name": "TESTOWNER AAF0E0",
+     "state": "MD",
+     "street_address": "4385 TEST ST",
+     "title": "BOARD MEMBER",
+     "zip": "21202"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "city": "Baltimore",
+     "person_name": "TESTOWNER 398CB3",
+     "state": "MD",
+     "street_address": "8432 TEST ST",
+     "title": "BOARD MEMBER",
+     "zip": "21201"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "city": "Baltimore",
+     "person_name": "TESTOWNER F887B9",
+     "state": "MD",
+     "street_address": "1551 TEST ST",
+     "title": "BOARD MEMBER",
+     "zip": "21209"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "city": "Washington",
+     "person_name": "TESTOWNER 95FE09",
+     "state": "DC",
+     "street_address": "7183 TEST ST",
+     "title": "BOARD MEMBER",
+     "zip": "20008"
+    }
+   ],
+   "return_type": "990PF",
+   "signing_officer": {
+    "person_name": "TESTOWNER 04D3B8",
+    "title": "TREASURER"
+   },
+   "state": "MD",
+   "street_address": "2629 TEST ST",
+   "tax_period_begin": "2024-07-01",
+   "tax_period_end": "2025-06-30",
+   "tax_year": "2024",
+   "zip": "21203"
+  },
+  {
+   "city": "Holly Hill",
+   "ein": "882789613",
+   "name": "RAVE Rural Animal Volunteer Effort",
+   "object_id": "202503609349200000",
+   "people": [
+    {
+     "AverageHrsPerWkDevotedToPosRt": "105",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER D83E5F",
+     "title": "Founder"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER D42F6E",
+     "title": "Treasurer"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "1",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 797EFF",
+     "title": "Secretary"
+    }
+   ],
+   "return_type": "990EZ",
+   "signing_officer": {
+    "person_name": "TESTOWNER 92DB7A",
+    "title": "Director"
+   },
+   "state": "SC",
+   "street_address": "1269 TEST ST",
+   "tax_period_begin": "2023-08-01",
+   "tax_period_end": "2024-07-31",
+   "tax_year": "2023",
+   "zip": "29059"
+  },
+  {
+   "city": "NEW GRETNA",
+   "ein": "223488847",
+   "name": "NEW GRETNA VOLUNTEER FIRE CO",
+   "object_id": "202503609349200005",
+   "people": [
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER F74BD7",
+     "title": "PRESIDENT"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 1E0040",
+     "title": "VICE PRESIDENT"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 38ACAF",
+     "title": "SECRETARY"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 9BCB04",
+     "title": "TREASURER"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 4760DE",
+     "title": "TRUSTEE"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 82217C",
+     "title": "TRUSTEE"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER F52AC4",
+     "title": "TRUSTEE"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 6068DE",
+     "title": "TRUSTEE"
+    }
+   ],
+   "return_type": "990EZ",
+   "signing_officer": {
+    "person_name": "TESTOWNER 378A0B",
+    "title": "TREASURER"
+   },
+   "state": "NJ",
+   "street_address": "6010 TEST ST",
+   "tax_period_begin": "2024-01-01",
+   "tax_period_end": "2024-12-31",
+   "tax_year": "2024",
+   "zip": "08224"
+  },
+  {
+   "city": "KEWANEE",
+   "ein": "366140354",
+   "name": "KIWANIS INTERNATIONAL INC",
+   "object_id": "202503609349200100",
+   "people": [
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 019417",
+     "title": "Director"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 3C79B3",
+     "title": "President Elect"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 4028F6",
+     "title": "President"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 53EEF0",
+     "title": "Past President"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 5F936C",
+     "title": "Treasurer"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 65E67F",
+     "title": "Secretary"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 49B923",
+     "title": "Director"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 977D46",
+     "title": "Director"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 3A9DE5",
+     "title": "Director"
+    }
+   ],
+   "return_type": "990EZ",
+   "signing_officer": {
+    "person_name": "TESTOWNER 5F936C",
+    "title": "Treasurer"
+   },
+   "state": "IL",
+   "street_address": "7872 TEST ST",
+   "tax_period_begin": "2024-10-01",
+   "tax_period_end": "2025-09-30",
+   "tax_year": "2024",
+   "zip": "614430184"
+  },
+  {
+   "city": "SAN DIEGO",
+   "ein": "813918360",
+   "name": "CRESCENT LEARNING PROGRAM INC",
+   "object_id": "202503609349200200",
+   "people": [
+    {
+     "AverageHrsPerWkDevotedToPosRt": "5",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER B911CF",
+     "title": "President"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "5",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 72A35A",
+     "title": "CFO Secretary"
+    }
+   ],
+   "return_type": "990EZ",
+   "signing_officer": {
+    "person_name": "TESTOWNER B911CF",
+    "title": "President"
+   },
+   "state": "CA",
+   "street_address": "7383 TEST ST",
+   "tax_period_begin": "2023-01-01",
+   "tax_period_end": "2023-12-31",
+   "tax_year": "2023",
+   "zip": "921233417"
+  },
+  {
+   "city": "Atlanta",
+   "ein": "843837166",
+   "name": "Restaurant Giving Circle Inc",
+   "object_id": "202503609349200300",
+   "people": [
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 8C4D35",
+     "title": "President"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 442582",
+     "title": "Treasurer"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER FF3658",
+     "title": "Vice President"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "0",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER C77BEA",
+     "title": "Board member"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "0",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER D5FF5D",
+     "title": "Board member"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "0",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 41F5E9",
+     "title": "Board member"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "0",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER A6D4B0",
+     "title": "Board member"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "0",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER F48EA8",
+     "title": "Board Member"
+    }
+   ],
+   "return_type": "990EZ",
+   "signing_officer": {
+    "person_name": "TESTOWNER FF3658",
+    "title": "Robert Wagner"
+   },
+   "state": "GA",
+   "street_address": "6209 TEST ST",
+   "tax_period_begin": "2024-10-01",
+   "tax_period_end": "2025-09-30",
+   "tax_year": "2024",
+   "zip": "303330446"
+  },
+  {
+   "city": "Los Angeles",
+   "ein": "830683511",
+   "name": "TOGETHER LETS RISE",
+   "object_id": "202503609349200400",
+   "people": [
+    {
+     "AverageHrsPerWkDevotedToPosRt": "20.00",
+     "CompensationAmt": "4550",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER E0CACC",
+     "title": "CEO"
+    }
+   ],
+   "return_type": "990EZ",
+   "signing_officer": {
+    "person_name": "TESTOWNER E0CACC",
+    "title": "CEO"
+   },
+   "state": "CA",
+   "street_address": "6668 TEST ST",
+   "tax_period_begin": "2024-01-01",
+   "tax_period_end": "2024-12-31",
+   "tax_year": "2024",
+   "zip": "90045"
+  },
+  {
+   "city": "LAKEWOOD",
+   "ein": "993843767",
+   "name": "AMERICAN FRIENDS OF MOSDOS EITZ CHAIM INC",
+   "object_id": "202503609349200500",
+   "people": [
+    {
+     "AverageHrsPerWkDevotedToPosRt": "0.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 6867FF",
+     "title": "VICE PRESIDENT"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "0.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER D88A50",
+     "title": "PRESIDENT"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "0.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 94C78F",
+     "title": "TREASURER"
+    }
+   ],
+   "return_type": "990EZ",
+   "signing_officer": {
+    "person_name": "TESTOWNER 6867FF",
+    "title": "VICE PRESIDENT"
+   },
+   "state": "NJ",
+   "street_address": "9032 TEST ST",
+   "tax_period_begin": "2024-01-01",
+   "tax_period_end": "2024-12-31",
+   "tax_year": "2024",
+   "zip": "08701"
+  },
+  {
+   "city": "HOMER",
+   "ein": "581355391",
+   "name": "BANKS COUNTY CHAMBER OF COMMERCE",
+   "object_id": "202503609349200505",
+   "people": [
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER F45AB7",
+     "title": "BOARD MEMBER"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER B06051",
+     "title": "BOARD MEMBER"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 25F800",
+     "title": "BOARD MEMBER"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER FA6564",
+     "title": "BOARD MEMBER"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER C0AF37",
+     "title": "BOARD MEMBER"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 9354A4",
+     "title": "BOARD MEMBER"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "40.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER B6103A",
+     "title": "EXECUTIVE DIRECTOR"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 7D3BE2",
+     "title": "BORAD MEMBER"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 134448",
+     "title": "BOARD MEMBER"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 7B26DF",
+     "title": "BOARD MEMBER"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 5FDFDD",
+     "title": "BOARD MEMBER"
+    }
+   ],
+   "return_type": "990EZ",
+   "signing_officer": {
+    "person_name": "TESTOWNER B6103A",
+    "title": "EXECUTIVE DIRECTOR"
+   },
+   "state": "GA",
+   "street_address": "4049 TEST ST",
+   "tax_period_begin": "2024-01-01",
+   "tax_period_end": "2024-12-31",
+   "tax_year": "2024",
+   "zip": "30547"
+  },
+  {
+   "city": "Horsham",
+   "ein": "232655257",
+   "name": "Natl Assoc of Women Business Owner",
+   "object_id": "202503609349200600",
+   "people": [
+    {
+     "AverageHrsPerWkDevotedToPosRt": "5.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 42B9BF",
+     "title": "President"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "1.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 51DBA1",
+     "title": "Vice President & Semi-Circle Co-Cha"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "3.50",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 07C303",
+     "title": "Treasurer & Finance Co-Chair"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "1.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 4DC3D0",
+     "title": "Secretary"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "3.50",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 49D176",
+     "title": "Past President & DEI&B Chair"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "3.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 9232A5",
+     "title": "Power Friday Chair"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER B477BB",
+     "title": "Governance Chair"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "3.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 9F4AED",
+     "title": "Advocacy Chair"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "1.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER BBEB9E",
+     "title": "Partners Chair"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 523E0E",
+     "title": "Program Co-Chair"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER AE5EFE",
+     "title": "Program Co-Chair"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "5.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER E968E0",
+     "title": "Marketing Co-Chair"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "3.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER F210E6",
+     "title": "Marketing Co-Chair"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "1.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 04A5C3",
+     "title": "Semi-Circle Co-Chair"
+    }
+   ],
+   "return_type": "990EZ",
+   "signing_officer": {
+    "person_name": "TESTOWNER 0F1E34",
+    "title": "President"
+   },
+   "state": "PA",
+   "street_address": "4447 TEST ST",
+   "tax_period_begin": "2024-07-01",
+   "tax_period_end": "2025-06-30",
+   "tax_year": "2024",
+   "zip": "19044"
+  },
+  {
+   "city": "Barnhart",
+   "ein": "431696758",
+   "name": "Big Game Hunters Inc",
+   "object_id": "202503609349200605",
+   "people": [
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER AC90DB",
+     "title": "Treasurer"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "5.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER B82E3F",
+     "title": "President"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "1.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 1CDFA9",
+     "title": "Corresponding Secretary"
+    }
+   ],
+   "return_type": "990EZ",
+   "signing_officer": {
+    "person_name": "TESTOWNER 868BF1",
+    "title": "Treasurer"
+   },
+   "state": "MO",
+   "street_address": "3899 TEST ST",
+   "tax_period_begin": "2024-01-01",
+   "tax_period_end": "2024-12-31",
+   "tax_year": "2024",
+   "zip": "63012"
+  },
+  {
+   "city": "Kansas City",
+   "ein": "814748450",
+   "name": "TIKKUN-KC INC",
+   "object_id": "202503609349200700",
+   "people": [
+    {
+     "AverageHrsPerWkDevotedToPosRt": "15",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 984665",
+     "title": "Board President"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "1",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 379BA8",
+     "title": "Board Secretary"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "1",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 30A2A1",
+     "title": "Board Treasurer"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "1",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 951F1F",
+     "title": "Board member"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "1",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 5E22C5",
+     "title": "Board Member"
+    }
+   ],
+   "return_type": "990EZ",
+   "signing_officer": {
+    "person_name": "TESTOWNER 984665",
+    "title": "President"
+   },
+   "state": "MO",
+   "street_address": "2776 TEST ST",
+   "tax_period_begin": "2024-01-01",
+   "tax_period_end": "2024-12-31",
+   "tax_year": "2024",
+   "zip": "64114"
+  },
+  {
+   "city": "Elmira",
+   "ein": "166067570",
+   "name": "CIVIL SERVICE EMPLOYEES ASSOCIATION",
+   "object_id": "202503609349200800",
+   "people": [
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2",
+     "CompensationAmt": "1660",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER B82559",
+     "title": "President"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "1",
+     "CompensationAmt": "1650",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 0A4856",
+     "title": "Executive VP"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "1.00",
+     "CompensationAmt": "1320",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER F8B328",
+     "title": "1st VP"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "1",
+     "CompensationAmt": "1200",
+     "EmployeeBenefitProgramAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 390822",
+     "title": "2nd VP"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "1.00",
+     "CompensationAmt": "1320",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER D0295F",
+     "title": "3rd VP"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "1400",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER C5AB62",
+     "title": "Treasurer"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "1",
+     "CompensationAmt": "1530",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 87D3C1",
+     "title": "Recording Secretary"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "1",
+     "CompensationAmt": "1320",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 18D500",
+     "title": "Corresponding Secretary"
+    }
+   ],
+   "return_type": "990EZ",
+   "signing_officer": {
+    "person_name": "TESTOWNER C5AB62",
+    "title": "Treasurer"
+   },
+   "state": "NY",
+   "street_address": "140 TEST ST",
+   "tax_period_begin": "2024-10-01",
+   "tax_period_end": "2025-09-30",
+   "tax_year": "2024",
+   "zip": "14904"
+  },
+  {
+   "city": "Baltimore",
+   "ein": "332174742",
+   "name": "ISAACC18 Inc",
+   "object_id": "202503609349200850",
+   "people": [
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER EF170A",
+     "title": "President"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "0.5",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 4758AD",
+     "title": "Treasurer"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "0.5",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER C3A3BD",
+     "title": "Officer"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "4",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 9B151B",
+     "title": "Vice President"
+    }
+   ],
+   "return_type": "990EZ",
+   "signing_officer": {
+    "person_name": "TESTOWNER EF170A",
+    "title": "President"
+   },
+   "state": "MD",
+   "street_address": "8762 TEST ST",
+   "tax_period_begin": "2024-01-01",
+   "tax_period_end": "2024-12-31",
+   "tax_year": "2024",
+   "zip": "21209"
+  },
+  {
+   "city": "Compton",
+   "ein": "800737306",
+   "name": "SYLVIA-NUNN ANGELS",
+   "object_id": "202503609349200900",
+   "people": [
+    {
+     "AverageHrsPerWkDevotedToPosRt": "40",
+     "CompensationAmt": "80219",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 3A9A20",
+     "title": "Executive Director"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "10",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER B68A67",
+     "title": "Secretary"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "1",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER B5EDAC",
+     "title": "Treasurer"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "0.5",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 8CA0C4",
+     "title": "Board Member"
+    }
+   ],
+   "return_type": "990EZ",
+   "signing_officer": {
+    "person_name": "TESTOWNER 3A9A20",
+    "title": "Executive Director"
+   },
+   "state": "CA",
+   "street_address": "5547 TEST ST",
+   "tax_period_begin": "2024-01-01",
+   "tax_period_end": "2024-12-31",
+   "tax_year": "2024",
+   "zip": "90221"
+  },
+  {
+   "city": "HICKORY",
+   "ein": "815455386",
+   "name": "ST STEPHENS HIGH ATHLETIC BOOSTERS",
+   "object_id": "202503609349201000",
+   "people": [
+    {
+     "AverageHrsPerWkDevotedToPosRt": "5.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER B5C905",
+     "title": "President"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "5.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 191BBC",
+     "title": "Treasurer"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER BB3310",
+     "title": "Secretary"
+    },
+    {
+     "AverageHrsPerWkDevotedToPosRt": "2.00",
+     "CompensationAmt": "0",
+     "EmployeeBenefitProgramAmt": "0",
+     "ExpenseAccountOtherAllwncAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER FB5312",
+     "title": "Vice president"
+    }
+   ],
+   "return_type": "990EZ",
+   "signing_officer": {
+    "person_name": "TESTOWNER 9AD229",
+    "title": "Treasurer"
+   },
+   "state": "NC",
+   "street_address": "2649 TEST ST",
+   "tax_period_begin": "2024-08-01",
+   "tax_period_end": "2025-07-31",
+   "tax_year": "2024",
+   "zip": "28601"
+  },
+  {
+   "city": "Tucson",
+   "ein": "432080690",
+   "name": "Candlelighters Childhood Cancer Foundation of Southern Arizona",
+   "object_id": "202503609349300000",
+   "people": [
+    {
+     "AverageHoursPerWeekRltdOrgRt": "0.00",
+     "AverageHoursPerWeekRt": "1.00",
+     "OtherCompensationAmt": "0",
+     "ReportableCompFromOrgAmt": "0",
+     "ReportableCompFromRltdOrgAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 169D1A",
+     "positions": [
+      "IndividualTrusteeOrDirectorInd"
+     ],
+     "title": "Board member"
+    },
+    {
+     "AverageHoursPerWeekRltdOrgRt": "0.00",
+     "AverageHoursPerWeekRt": "1.00",
+     "OtherCompensationAmt": "0",
+     "ReportableCompFromOrgAmt": "0",
+     "ReportableCompFromRltdOrgAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 02A6BD",
+     "positions": [
+      "IndividualTrusteeOrDirectorInd"
+     ],
+     "title": "Board member"
+    },
+    {
+     "AverageHoursPerWeekRltdOrgRt": "0.00",
+     "AverageHoursPerWeekRt": "1.00",
+     "OtherCompensationAmt": "0",
+     "ReportableCompFromOrgAmt": "0",
+     "ReportableCompFromRltdOrgAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER DFA1D9",
+     "positions": [
+      "IndividualTrusteeOrDirectorInd"
+     ],
+     "title": "Board member"
+    },
+    {
+     "AverageHoursPerWeekRltdOrgRt": "0.00",
+     "AverageHoursPerWeekRt": "40.00",
+     "OtherCompensationAmt": "0",
+     "ReportableCompFromOrgAmt": "24000",
+     "ReportableCompFromRltdOrgAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER A6457C",
+     "positions": [
+      "OfficerInd"
+     ],
+     "title": "Executive Director"
+    },
+    {
+     "AverageHoursPerWeekRltdOrgRt": "0.00",
+     "AverageHoursPerWeekRt": "1.00",
+     "OtherCompensationAmt": "0",
+     "ReportableCompFromOrgAmt": "0",
+     "ReportableCompFromRltdOrgAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER CDB132",
+     "positions": [
+      "OfficerInd"
+     ],
+     "title": "President"
+    },
+    {
+     "AverageHoursPerWeekRltdOrgRt": "0.00",
+     "AverageHoursPerWeekRt": "1.00",
+     "OtherCompensationAmt": "0",
+     "ReportableCompFromOrgAmt": "0",
+     "ReportableCompFromRltdOrgAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 869561",
+     "positions": [
+      "OfficerInd"
+     ],
+     "title": "Secretary"
+    },
+    {
+     "AverageHoursPerWeekRltdOrgRt": "1.00",
+     "AverageHoursPerWeekRt": "1.00",
+     "OtherCompensationAmt": "0",
+     "ReportableCompFromOrgAmt": "0",
+     "ReportableCompFromRltdOrgAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 64644E",
+     "positions": [
+      "OfficerInd"
+     ],
+     "title": "Treasurer"
+    },
+    {
+     "AverageHoursPerWeekRltdOrgRt": "0.00",
+     "AverageHoursPerWeekRt": "40.00",
+     "OtherCompensationAmt": "0",
+     "ReportableCompFromOrgAmt": "65000",
+     "ReportableCompFromRltdOrgAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER F45207",
+     "positions": [
+      "KeyEmployeeInd"
+     ],
+     "title": "Highest compensated employee"
+    }
+   ],
+   "return_type": "990",
+   "signing_officer": {
+    "person_name": "TESTOWNER A6457C",
+    "title": "Executive Director"
+   },
+   "state": "AZ",
+   "street_address": "3647 TEST ST",
+   "tax_period_begin": "2024-01-01",
+   "tax_period_end": "2024-12-31",
+   "tax_year": "2024",
+   "zip": "85733"
+  },
+  {
+   "city": "Las Vegas",
+   "ein": "871917945",
+   "name": "Eye Care Professional Education Inc",
+   "object_id": "202503609349300100",
+   "people": [
+    {
+     "AverageHoursPerWeekRltdOrgRt": "0.00",
+     "AverageHoursPerWeekRt": "10.00",
+     "OtherCompensationAmt": "0",
+     "ReportableCompFromOrgAmt": "66920",
+     "ReportableCompFromRltdOrgAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER E50A45",
+     "positions": [
+      "IndividualTrusteeOrDirectorInd",
+      "OfficerInd"
+     ],
+     "title": "PRESIDENT"
+    },
+    {
+     "AverageHoursPerWeekRltdOrgRt": "0.00",
+     "AverageHoursPerWeekRt": "0.00",
+     "OtherCompensationAmt": "0",
+     "ReportableCompFromOrgAmt": "0",
+     "ReportableCompFromRltdOrgAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 894172",
+     "positions": [
+      "OfficerInd"
+     ],
+     "title": "VICE PRESIDENT"
+    },
+    {
+     "AverageHoursPerWeekRltdOrgRt": "0.00",
+     "AverageHoursPerWeekRt": "0.00",
+     "OtherCompensationAmt": "0",
+     "ReportableCompFromOrgAmt": "0",
+     "ReportableCompFromRltdOrgAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 14CD5B",
+     "positions": [
+      "OfficerInd"
+     ],
+     "title": "SECR TREASURER"
+    }
+   ],
+   "return_type": "990",
+   "signing_officer": {
+    "person_name": "TESTOWNER 24F8B9",
+    "title": "PRESIDENT"
+   },
+   "state": "NV",
+   "street_address": "5003 TEST ST",
+   "tax_period_begin": "2024-01-01",
+   "tax_period_end": "2024-12-31",
+   "tax_year": "2024",
+   "zip": "891484858"
+  },
+  {
+   "city": "PEKIN",
+   "ein": "376047962",
+   "name": "ILLINOIS UNITED POSTMASTERS AND MANAGERS OF AMERICA",
+   "object_id": "202503609349300105",
+   "people": [
+    {
+     "AverageHoursPerWeekRt": "1.00",
+     "OtherCompensationAmt": "0",
+     "ReportableCompFromOrgAmt": "0",
+     "ReportableCompFromRltdOrgAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 70EF5D",
+     "positions": [
+      "OfficerInd"
+     ],
+     "title": "SECRETARY"
+    },
+    {
+     "AverageHoursPerWeekRt": "1.00",
+     "OtherCompensationAmt": "0",
+     "ReportableCompFromOrgAmt": "0",
+     "ReportableCompFromRltdOrgAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER AAA6BB",
+     "positions": [
+      "OfficerInd"
+     ],
+     "title": "EXECUTIVE VI"
+    },
+    {
+     "AverageHoursPerWeekRt": "1.00",
+     "OtherCompensationAmt": "0",
+     "ReportableCompFromOrgAmt": "0",
+     "ReportableCompFromRltdOrgAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 597FB5",
+     "positions": [
+      "OfficerInd"
+     ],
+     "title": "TREASURER"
+    },
+    {
+     "AverageHoursPerWeekRt": "1.00",
+     "OtherCompensationAmt": "0",
+     "ReportableCompFromOrgAmt": "0",
+     "ReportableCompFromRltdOrgAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 69D8AD",
+     "positions": [
+      "OfficerInd"
+     ],
+     "title": "PRESIDENT"
+    },
+    {
+     "AverageHoursPerWeekRt": "1.00",
+     "OtherCompensationAmt": "0",
+     "ReportableCompFromOrgAmt": "0",
+     "ReportableCompFromRltdOrgAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 91254C",
+     "positions": [
+      "OfficerInd"
+     ],
+     "title": "VICE PRES AT"
+    },
+    {
+     "AverageHoursPerWeekRt": "1.00",
+     "OtherCompensationAmt": "0",
+     "ReportableCompFromOrgAmt": "0",
+     "ReportableCompFromRltdOrgAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER E0AA11",
+     "positions": [
+      "OfficerInd"
+     ],
+     "title": "EDITOR"
+    },
+    {
+     "AverageHoursPerWeekRt": "1.00",
+     "OtherCompensationAmt": "0",
+     "ReportableCompFromOrgAmt": "0",
+     "ReportableCompFromRltdOrgAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 50C88D",
+     "positions": [
+      "OfficerInd"
+     ],
+     "title": "RETIRED PRES"
+    },
+    {
+     "AverageHoursPerWeekRt": "1.00",
+     "OtherCompensationAmt": "0",
+     "ReportableCompFromOrgAmt": "0",
+     "ReportableCompFromRltdOrgAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 1F2391",
+     "positions": [
+      "OfficerInd"
+     ],
+     "title": "VICE PRES AT"
+    },
+    {
+     "AverageHoursPerWeekRt": "1.00",
+     "OtherCompensationAmt": "0",
+     "ReportableCompFromOrgAmt": "0",
+     "ReportableCompFromRltdOrgAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 579EE4",
+     "positions": [
+      "OfficerInd"
+     ],
+     "title": "VICE PRES AT"
+    }
+   ],
+   "return_type": "990",
+   "signing_officer": {
+    "person_name": "TESTOWNER 597FB5",
+    "title": "TREASURER"
+   },
+   "state": "IL",
+   "street_address": "2270 TEST ST",
+   "tax_period_begin": "2023-01-01",
+   "tax_period_end": "2023-12-31",
+   "tax_year": "2023",
+   "zip": "61554"
+  },
+  {
+   "city": "WEST HELENA",
+   "ein": "581847144",
+   "name": "DELTA HOUSE INC",
+   "object_id": "202503609349300110",
+   "people": [
+    {
+     "OtherCompensationAmt": "0",
+     "ReportableCompFromOrgAmt": "0",
+     "ReportableCompFromRltdOrgAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER D484D6",
+     "positions": [
+      "IndividualTrusteeOrDirectorInd"
+     ],
+     "title": "DIRECTOR"
+    },
+    {
+     "OtherCompensationAmt": "0",
+     "ReportableCompFromOrgAmt": "0",
+     "ReportableCompFromRltdOrgAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 778CB3",
+     "positions": [
+      "IndividualTrusteeOrDirectorInd"
+     ],
+     "title": "DIRECTOR"
+    },
+    {
+     "OtherCompensationAmt": "0",
+     "ReportableCompFromOrgAmt": "0",
+     "ReportableCompFromRltdOrgAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER F984A2",
+     "positions": [
+      "IndividualTrusteeOrDirectorInd"
+     ],
+     "title": "SECRETARY"
+    },
+    {
+     "OtherCompensationAmt": "0",
+     "ReportableCompFromOrgAmt": "0",
+     "ReportableCompFromRltdOrgAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 1908EB",
+     "positions": [
+      "IndividualTrusteeOrDirectorInd"
+     ],
+     "title": "DIRECTOR"
+    },
+    {
+     "OtherCompensationAmt": "0",
+     "ReportableCompFromOrgAmt": "0",
+     "ReportableCompFromRltdOrgAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 1908EB",
+     "positions": [
+      "IndividualTrusteeOrDirectorInd"
+     ],
+     "title": "DIRECTOR"
+    },
+    {
+     "OtherCompensationAmt": "0",
+     "ReportableCompFromOrgAmt": "0",
+     "ReportableCompFromRltdOrgAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 27005B",
+     "positions": [
+      "IndividualTrusteeOrDirectorInd"
+     ],
+     "title": "DIRECTOR"
+    },
+    {
+     "OtherCompensationAmt": "0",
+     "ReportableCompFromOrgAmt": "0",
+     "ReportableCompFromRltdOrgAmt": "0",
+     "business_name": null,
+     "person_name": "TESTOWNER 1837EF",
+     "positions": [
+      "IndividualTrusteeOrDirectorInd"
+     ],
+     "title": "PRESIDENT"
+    }
+   ],
+   "return_type": "990",
+   "signing_officer": {
+    "person_name": "TESTOWNER 0B04C0",
+    "title": "EXECUTIVE DIRECTOR"
+   },
+   "state": "AR",
+   "street_address": "3365 TEST ST",
+   "tax_period_begin": "2024-07-01",
+   "tax_period_end": "2025-06-30",
+   "tax_year": "2024",
+   "zip": "72390"
+  }
+ ],
+ "url": "https://apps.irs.gov/pub/epostcard/990/xml/2026/2026_TEOS_XML_01A.zip",
+ "year": "2026"
+}

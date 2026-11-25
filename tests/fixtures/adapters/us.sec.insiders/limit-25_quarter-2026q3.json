@@ -1,0 +1,829 @@
+{
+ "filings": [
+  {
+   "accession": "0001709048-26-000199",
+   "owners": [
+    {
+     "ACCESSION_NUMBER": "0001709048-26-000199",
+     "RPTOWNERCIK": "0001209180",
+     "RPTOWNERNAME": "TESTOWNER 6AB9A1",
+     "RPTOWNER_CITY": "MALTA",
+     "RPTOWNER_RELATIONSHIP": "Director",
+     "RPTOWNER_STATE": "NY",
+     "RPTOWNER_STATE_DESC": null,
+     "RPTOWNER_STREET1": "8734 TEST ST",
+     "RPTOWNER_STREET2": null,
+     "RPTOWNER_TITLE": null,
+     "RPTOWNER_TXT": null,
+     "RPTOWNER_ZIPCODE": "12020"
+    }
+   ],
+   "submission": {
+    "ACCESSION_NUMBER": "0001709048-26-000199",
+    "DATE_OF_ORIG_SUB": null,
+    "DOCUMENT_TYPE": "4",
+    "FILING_DATE": "31-JUL-2026",
+    "ISSUERCIK": "0001709048",
+    "ISSUERNAME": "GLOBALFOUNDRIES Inc.",
+    "ISSUERTRADINGSYMBOL": "GFS",
+    "PERIOD_OF_REPORT": "29-JUL-2026"
+   }
+  },
+  {
+   "accession": "0001437749-26-025288",
+   "owners": [
+    {
+     "ACCESSION_NUMBER": "0001437749-26-025288",
+     "RPTOWNERCIK": "0001346101",
+     "RPTOWNERNAME": "TESTOWNER 32625C",
+     "RPTOWNER_CITY": "VANCOUVER",
+     "RPTOWNER_RELATIONSHIP": "Director,Officer",
+     "RPTOWNER_STATE": null,
+     "RPTOWNER_STATE_DESC": "CANADA (FEDERAL LEVEL)",
+     "RPTOWNER_STREET1": "6936 TEST ST",
+     "RPTOWNER_STREET2": "8965 TEST ST",
+     "RPTOWNER_TITLE": "President and CEO",
+     "RPTOWNER_TXT": null,
+     "RPTOWNER_ZIPCODE": "V6E4A2"
+    }
+   ],
+   "submission": {
+    "ACCESSION_NUMBER": "0001437749-26-025288",
+    "DATE_OF_ORIG_SUB": null,
+    "DOCUMENT_TYPE": "4",
+    "FILING_DATE": "31-JUL-2026",
+    "ISSUERCIK": "0001334933",
+    "ISSUERNAME": "URANIUM ENERGY CORP",
+    "ISSUERTRADINGSYMBOL": "UEC",
+    "PERIOD_OF_REPORT": "30-JUL-2026"
+   }
+  },
+  {
+   "accession": "0000947871-26-000739",
+   "owners": [
+    {
+     "ACCESSION_NUMBER": "0000947871-26-000739",
+     "RPTOWNERCIK": "0001881905",
+     "RPTOWNERNAME": "TESTOWNER 68D07A",
+     "RPTOWNER_CITY": "FORT WORTH",
+     "RPTOWNER_RELATIONSHIP": "Officer",
+     "RPTOWNER_STATE": "TX",
+     "RPTOWNER_STATE_DESC": null,
+     "RPTOWNER_STREET1": "2418 TEST ST",
+     "RPTOWNER_STREET2": "2290 TEST ST",
+     "RPTOWNER_TITLE": "Chief Financial Officer",
+     "RPTOWNER_TXT": null,
+     "RPTOWNER_ZIPCODE": "76102"
+    }
+   ],
+   "submission": {
+    "ACCESSION_NUMBER": "0000947871-26-000739",
+    "DATE_OF_ORIG_SUB": null,
+    "DOCUMENT_TYPE": "3",
+    "FILING_DATE": "31-JUL-2026",
+    "ISSUERCIK": "0001880661",
+    "ISSUERNAME": "TPG Inc.",
+    "ISSUERTRADINGSYMBOL": "TPG",
+    "PERIOD_OF_REPORT": "27-JUL-2026"
+   }
+  },
+  {
+   "accession": "0001193125-26-328798",
+   "owners": [
+    {
+     "ACCESSION_NUMBER": "0001193125-26-328798",
+     "RPTOWNERCIK": "0001034247",
+     "RPTOWNERNAME": "TESTOWNER 1F9780",
+     "RPTOWNER_CITY": "NEWARK",
+     "RPTOWNER_RELATIONSHIP": "Director,Officer,TenPercentOwner",
+     "RPTOWNER_STATE": "NJ",
+     "RPTOWNER_STATE_DESC": null,
+     "RPTOWNER_STREET1": "312 TEST ST",
+     "RPTOWNER_STREET2": "8735 TEST ST",
+     "RPTOWNER_TITLE": "Exec Chairman, CEO & President",
+     "RPTOWNER_TXT": null,
+     "RPTOWNER_ZIPCODE": "07102"
+    }
+   ],
+   "submission": {
+    "ACCESSION_NUMBER": "0001193125-26-328798",
+    "DATE_OF_ORIG_SUB": null,
+    "DOCUMENT_TYPE": "4",
+    "FILING_DATE": "31-JUL-2026",
+    "ISSUERCIK": "0001713863",
+    "ISSUERNAME": "Rafael Holdings, Inc.",
+    "ISSUERTRADINGSYMBOL": "RFL",
+    "PERIOD_OF_REPORT": "29-JUL-2026"
+   }
+  },
+  {
+   "accession": "0001628280-26-051449",
+   "owners": [
+    {
+     "ACCESSION_NUMBER": "0001628280-26-051449",
+     "RPTOWNERCIK": "0001184180",
+     "RPTOWNERNAME": "TESTOWNER A63FD5",
+     "RPTOWNER_CITY": "DURHAM",
+     "RPTOWNER_RELATIONSHIP": "Director,Officer",
+     "RPTOWNER_STATE": "NC",
+     "RPTOWNER_STATE_DESC": null,
+     "RPTOWNER_STREET1": "5925 TEST ST",
+     "RPTOWNER_STREET2": "3254 TEST ST",
+     "RPTOWNER_TITLE": "See Remarks",
+     "RPTOWNER_TXT": null,
+     "RPTOWNER_ZIPCODE": "27703"
+    }
+   ],
+   "submission": {
+    "ACCESSION_NUMBER": "0001628280-26-051449",
+    "DATE_OF_ORIG_SUB": null,
+    "DOCUMENT_TYPE": "4",
+    "FILING_DATE": "31-JUL-2026",
+    "ISSUERCIK": "0001478242",
+    "ISSUERNAME": "IQVIA HOLDINGS INC.",
+    "ISSUERTRADINGSYMBOL": "IQV",
+    "PERIOD_OF_REPORT": "29-JUL-2026"
+   }
+  },
+  {
+   "accession": "0001216725-26-000012",
+   "owners": [
+    {
+     "ACCESSION_NUMBER": "0001216725-26-000012",
+     "RPTOWNERCIK": "0001216725",
+     "RPTOWNERNAME": "TESTOWNER 91367E",
+     "RPTOWNER_CITY": "DALLAS",
+     "RPTOWNER_RELATIONSHIP": "Director",
+     "RPTOWNER_STATE": "TX",
+     "RPTOWNER_STATE_DESC": null,
+     "RPTOWNER_STREET1": "7769 TEST ST",
+     "RPTOWNER_STREET2": "2983 TEST ST",
+     "RPTOWNER_TITLE": null,
+     "RPTOWNER_TXT": null,
+     "RPTOWNER_ZIPCODE": "75201"
+    }
+   ],
+   "submission": {
+    "ACCESSION_NUMBER": "0001216725-26-000012",
+    "DATE_OF_ORIG_SUB": null,
+    "DOCUMENT_TYPE": "4",
+    "FILING_DATE": "31-JUL-2026",
+    "ISSUERCIK": "0001361538",
+    "ISSUERNAME": "Primoris Services Corp",
+    "ISSUERTRADINGSYMBOL": "PRIM",
+    "PERIOD_OF_REPORT": "31-JUL-2026"
+   }
+  },
+  {
+   "accession": "0001786299-26-000009",
+   "owners": [
+    {
+     "ACCESSION_NUMBER": "0001786299-26-000009",
+     "RPTOWNERCIK": "0001786299",
+     "RPTOWNERNAME": "TESTOWNER 703C90",
+     "RPTOWNER_CITY": "SAN FRANCISCO",
+     "RPTOWNER_RELATIONSHIP": "Director",
+     "RPTOWNER_STATE": "CA",
+     "RPTOWNER_STATE_DESC": null,
+     "RPTOWNER_STREET1": "7408 TEST ST",
+     "RPTOWNER_STREET2": null,
+     "RPTOWNER_TITLE": null,
+     "RPTOWNER_TXT": null,
+     "RPTOWNER_ZIPCODE": "94105"
+    }
+   ],
+   "submission": {
+    "ACCESSION_NUMBER": "0001786299-26-000009",
+    "DATE_OF_ORIG_SUB": null,
+    "DOCUMENT_TYPE": "4",
+    "FILING_DATE": "31-JUL-2026",
+    "ISSUERCIK": "0001467623",
+    "ISSUERNAME": "DROPBOX, INC.",
+    "ISSUERTRADINGSYMBOL": "DBX",
+    "PERIOD_OF_REPORT": "29-JUL-2026"
+   }
+  },
+  {
+   "accession": "0001543080-26-000004",
+   "owners": [
+    {
+     "ACCESSION_NUMBER": "0001543080-26-000004",
+     "RPTOWNERCIK": "0001543080",
+     "RPTOWNERNAME": "TESTOWNER 113958",
+     "RPTOWNER_CITY": "EASTON",
+     "RPTOWNER_RELATIONSHIP": "Director",
+     "RPTOWNER_STATE": "MD",
+     "RPTOWNER_STATE_DESC": null,
+     "RPTOWNER_STREET1": "7019 TEST ST",
+     "RPTOWNER_STREET2": null,
+     "RPTOWNER_TITLE": null,
+     "RPTOWNER_TXT": null,
+     "RPTOWNER_ZIPCODE": "21601"
+    }
+   ],
+   "submission": {
+    "ACCESSION_NUMBER": "0001543080-26-000004",
+    "DATE_OF_ORIG_SUB": null,
+    "DOCUMENT_TYPE": "4",
+    "FILING_DATE": "31-JUL-2026",
+    "ISSUERCIK": "0001035092",
+    "ISSUERNAME": "SHORE BANCSHARES INC",
+    "ISSUERTRADINGSYMBOL": "SHBI",
+    "PERIOD_OF_REPORT": "29-JUL-2026"
+   }
+  },
+  {
+   "accession": "0001231919-26-000817",
+   "owners": [
+    {
+     "ACCESSION_NUMBER": "0001231919-26-000817",
+     "RPTOWNERCIK": "0001315082",
+     "RPTOWNERNAME": "TESTOWNER 50B65C LP",
+     "RPTOWNER_CITY": "BOSTON",
+     "RPTOWNER_RELATIONSHIP": "Director,TenPercentOwner",
+     "RPTOWNER_STATE": "MA",
+     "RPTOWNER_STATE_DESC": null,
+     "RPTOWNER_STREET1": "2263 TEST ST",
+     "RPTOWNER_STREET2": null,
+     "RPTOWNER_TITLE": null,
+     "RPTOWNER_TXT": null,
+     "RPTOWNER_ZIPCODE": "02116"
+    },
+    {
+     "ACCESSION_NUMBER": "0001231919-26-000817",
+     "RPTOWNERCIK": "0001619841",
+     "RPTOWNERNAME": "TESTOWNER E8176F",
+     "RPTOWNER_CITY": "BOSTON",
+     "RPTOWNER_RELATIONSHIP": "Director,TenPercentOwner",
+     "RPTOWNER_STATE": "MA",
+     "RPTOWNER_STATE_DESC": null,
+     "RPTOWNER_STREET1": "230 TEST ST",
+     "RPTOWNER_STREET2": "2263 TEST ST",
+     "RPTOWNER_TITLE": null,
+     "RPTOWNER_TXT": null,
+     "RPTOWNER_ZIPCODE": "02116"
+    },
+    {
+     "ACCESSION_NUMBER": "0001231919-26-000817",
+     "RPTOWNERCIK": "0001883840",
+     "RPTOWNERNAME": "TESTOWNER E0D46B LP",
+     "RPTOWNER_CITY": "BOSTON",
+     "RPTOWNER_RELATIONSHIP": "Director",
+     "RPTOWNER_STATE": "MA",
+     "RPTOWNER_STATE_DESC": null,
+     "RPTOWNER_STREET1": "2263 TEST ST",
+     "RPTOWNER_STREET2": null,
+     "RPTOWNER_TITLE": null,
+     "RPTOWNER_TXT": null,
+     "RPTOWNER_ZIPCODE": "02116"
+    },
+    {
+     "ACCESSION_NUMBER": "0001231919-26-000817",
+     "RPTOWNERCIK": "0001384859",
+     "RPTOWNERNAME": "TESTOWNER 6C43B4",
+     "RPTOWNER_CITY": "BOSTON",
+     "RPTOWNER_RELATIONSHIP": "Director,TenPercentOwner",
+     "RPTOWNER_STATE": "MA",
+     "RPTOWNER_STATE_DESC": null,
+     "RPTOWNER_STREET1": "230 TEST ST",
+     "RPTOWNER_STREET2": "2263 TEST ST",
+     "RPTOWNER_TITLE": null,
+     "RPTOWNER_TXT": null,
+     "RPTOWNER_ZIPCODE": "02116"
+    },
+    {
+     "ACCESSION_NUMBER": "0001231919-26-000817",
+     "RPTOWNERCIK": "0001780117",
+     "RPTOWNERNAME": "TESTOWNER 8F6714 LP",
+     "RPTOWNER_CITY": "BOSTON",
+     "RPTOWNER_RELATIONSHIP": "Director",
+     "RPTOWNER_STATE": "MA",
+     "RPTOWNER_STATE_DESC": null,
+     "RPTOWNER_STREET1": "2263 TEST ST",
+     "RPTOWNER_STREET2": null,
+     "RPTOWNER_TITLE": null,
+     "RPTOWNER_TXT": null,
+     "RPTOWNER_ZIPCODE": "02116"
+    },
+    {
+     "ACCESSION_NUMBER": "0001231919-26-000817",
+     "RPTOWNERCIK": "0001346824",
+     "RPTOWNERNAME": "TESTOWNER 5503F8 LP",
+     "RPTOWNER_CITY": "BOSTON",
+     "RPTOWNER_RELATIONSHIP": "Director,TenPercentOwner",
+     "RPTOWNER_STATE": "MA",
+     "RPTOWNER_STATE_DESC": null,
+     "RPTOWNER_STREET1": "2263 TEST ST",
+     "RPTOWNER_STREET2": null,
+     "RPTOWNER_TITLE": null,
+     "RPTOWNER_TXT": null,
+     "RPTOWNER_ZIPCODE": "02116"
+    }
+   ],
+   "submission": {
+    "ACCESSION_NUMBER": "0001231919-26-000817",
+    "DATE_OF_ORIG_SUB": null,
+    "DOCUMENT_TYPE": "4",
+    "FILING_DATE": "31-JUL-2026",
+    "ISSUERCIK": "0001817241",
+    "ISSUERNAME": "Artiva Biotherapeutics, Inc.",
+    "ISSUERTRADINGSYMBOL": "ARTV",
+    "PERIOD_OF_REPORT": "29-JUL-2026"
+   }
+  },
+  {
+   "accession": "0001213900-26-083877",
+   "owners": [
+    {
+     "ACCESSION_NUMBER": "0001213900-26-083877",
+     "RPTOWNERCIK": "0001621085",
+     "RPTOWNERNAME": "TESTOWNER 9CCC16",
+     "RPTOWNER_CITY": "SINGAPORE",
+     "RPTOWNER_RELATIONSHIP": "Director",
+     "RPTOWNER_STATE": null,
+     "RPTOWNER_STATE_DESC": "SINGAPORE",
+     "RPTOWNER_STREET1": "3691 TEST ST",
+     "RPTOWNER_STREET2": "2170 TEST ST",
+     "RPTOWNER_TITLE": null,
+     "RPTOWNER_TXT": null,
+     "RPTOWNER_ZIPCODE": "069533"
+    }
+   ],
+   "submission": {
+    "ACCESSION_NUMBER": "0001213900-26-083877",
+    "DATE_OF_ORIG_SUB": null,
+    "DOCUMENT_TYPE": "3",
+    "FILING_DATE": "31-JUL-2026",
+    "ISSUERCIK": "0001848275",
+    "ISSUERNAME": "TOP Financial Group Ltd",
+    "ISSUERTRADINGSYMBOL": "TOP",
+    "PERIOD_OF_REPORT": "18-MAR-2026"
+   }
+  },
+  {
+   "accession": "0001971797-26-000010",
+   "owners": [
+    {
+     "ACCESSION_NUMBER": "0001971797-26-000010",
+     "RPTOWNERCIK": "0001971797",
+     "RPTOWNERNAME": "TESTOWNER BEB714",
+     "RPTOWNER_CITY": "CALABASAS HILLS",
+     "RPTOWNER_RELATIONSHIP": "Officer",
+     "RPTOWNER_STATE": "CA",
+     "RPTOWNER_STATE_DESC": null,
+     "RPTOWNER_STREET1": "5740 TEST ST",
+     "RPTOWNER_STREET2": null,
+     "RPTOWNER_TITLE": "PRINCIPAL ACCOUNTING OFFICER",
+     "RPTOWNER_TXT": null,
+     "RPTOWNER_ZIPCODE": "91301"
+    }
+   ],
+   "submission": {
+    "ACCESSION_NUMBER": "0001971797-26-000010",
+    "DATE_OF_ORIG_SUB": null,
+    "DOCUMENT_TYPE": "4",
+    "FILING_DATE": "31-JUL-2026",
+    "ISSUERCIK": "0000887596",
+    "ISSUERNAME": "CHEESECAKE FACTORY INC",
+    "ISSUERTRADINGSYMBOL": "CAKE",
+    "PERIOD_OF_REPORT": "30-JUL-2026"
+   }
+  },
+  {
+   "accession": "0002073592-26-000029",
+   "owners": [
+    {
+     "ACCESSION_NUMBER": "0002073592-26-000029",
+     "RPTOWNERCIK": "0002073592",
+     "RPTOWNERNAME": "TESTOWNER E18785",
+     "RPTOWNER_CITY": "SAN FRANCISCO",
+     "RPTOWNER_RELATIONSHIP": "Officer",
+     "RPTOWNER_STATE": "CA",
+     "RPTOWNER_STATE_DESC": null,
+     "RPTOWNER_STREET1": "3859 TEST ST",
+     "RPTOWNER_STREET2": "7494 TEST ST",
+     "RPTOWNER_TITLE": "Chief Technology Officer",
+     "RPTOWNER_TXT": null,
+     "RPTOWNER_ZIPCODE": "94102"
+    }
+   ],
+   "submission": {
+    "ACCESSION_NUMBER": "0002073592-26-000029",
+    "DATE_OF_ORIG_SUB": null,
+    "DOCUMENT_TYPE": "4",
+    "FILING_DATE": "31-JUL-2026",
+    "ISSUERCIK": "0001579878",
+    "ISSUERNAME": "Figma, Inc.",
+    "ISSUERTRADINGSYMBOL": "FIG",
+    "PERIOD_OF_REPORT": "29-JUL-2026"
+   }
+  },
+  {
+   "accession": "0001193125-26-326861",
+   "owners": [
+    {
+     "ACCESSION_NUMBER": "0001193125-26-326861",
+     "RPTOWNERCIK": "0002119075",
+     "RPTOWNERNAME": "TESTOWNER 04F227",
+     "RPTOWNER_CITY": "DALLAS",
+     "RPTOWNER_RELATIONSHIP": "Director",
+     "RPTOWNER_STATE": "TX",
+     "RPTOWNER_STATE_DESC": null,
+     "RPTOWNER_STREET1": "4780 TEST ST",
+     "RPTOWNER_STREET2": null,
+     "RPTOWNER_TITLE": null,
+     "RPTOWNER_TXT": null,
+     "RPTOWNER_ZIPCODE": "75220"
+    }
+   ],
+   "submission": {
+    "ACCESSION_NUMBER": "0001193125-26-326861",
+    "DATE_OF_ORIG_SUB": null,
+    "DOCUMENT_TYPE": "4",
+    "FILING_DATE": "31-JUL-2026",
+    "ISSUERCIK": "0000829365",
+    "ISSUERNAME": "NAM TAI PROPERTY INC.",
+    "ISSUERTRADINGSYMBOL": "NTPIF",
+    "PERIOD_OF_REPORT": "29-JUL-2026"
+   }
+  },
+  {
+   "accession": "0001683168-26-005873",
+   "owners": [
+    {
+     "ACCESSION_NUMBER": "0001683168-26-005873",
+     "RPTOWNERCIK": "0002127400",
+     "RPTOWNERNAME": "TESTOWNER 6B7A89",
+     "RPTOWNER_CITY": "XIZHI DIST, NEW TAIPEI CITY",
+     "RPTOWNER_RELATIONSHIP": "Director,Officer",
+     "RPTOWNER_STATE": null,
+     "RPTOWNER_STATE_DESC": "TAIWAN",
+     "RPTOWNER_STREET1": "2991 TEST ST",
+     "RPTOWNER_STREET2": "8789 TEST ST",
+     "RPTOWNER_TITLE": "Chief Executive Officer (Asia)",
+     "RPTOWNER_TXT": null,
+     "RPTOWNER_ZIPCODE": "221"
+    }
+   ],
+   "submission": {
+    "ACCESSION_NUMBER": "0001683168-26-005873",
+    "DATE_OF_ORIG_SUB": null,
+    "DOCUMENT_TYPE": "4",
+    "FILING_DATE": "31-JUL-2026",
+    "ISSUERCIK": "0001756180",
+    "ISSUERNAME": "NOCERA, INC.",
+    "ISSUERTRADINGSYMBOL": "NCRA",
+    "PERIOD_OF_REPORT": "29-JUL-2026"
+   }
+  },
+  {
+   "accession": "0000101382-26-000165",
+   "owners": [
+    {
+     "ACCESSION_NUMBER": "0000101382-26-000165",
+     "RPTOWNERCIK": "0001417351",
+     "RPTOWNERNAME": "TESTOWNER 583C17",
+     "RPTOWNER_CITY": "DENVER",
+     "RPTOWNER_RELATIONSHIP": "Director",
+     "RPTOWNER_STATE": "CO",
+     "RPTOWNER_STATE_DESC": null,
+     "RPTOWNER_STREET1": "5759 TEST ST",
+     "RPTOWNER_STREET2": "7451 TEST ST",
+     "RPTOWNER_TITLE": null,
+     "RPTOWNER_TXT": null,
+     "RPTOWNER_ZIPCODE": "80202"
+    }
+   ],
+   "submission": {
+    "ACCESSION_NUMBER": "0000101382-26-000165",
+    "DATE_OF_ORIG_SUB": null,
+    "DOCUMENT_TYPE": "4",
+    "FILING_DATE": "31-JUL-2026",
+    "ISSUERCIK": "0000101382",
+    "ISSUERNAME": "UMB FINANCIAL CORP",
+    "ISSUERTRADINGSYMBOL": "UMBF",
+    "PERIOD_OF_REPORT": "31-JUL-2026"
+   }
+  },
+  {
+   "accession": "0001741560-26-000008",
+   "owners": [
+    {
+     "ACCESSION_NUMBER": "0001741560-26-000008",
+     "RPTOWNERCIK": "0001857392",
+     "RPTOWNERNAME": "TESTOWNER AD7FB8 LLC",
+     "RPTOWNER_CITY": "MINNEAPOLIS",
+     "RPTOWNER_RELATIONSHIP": "Director,TenPercentOwner",
+     "RPTOWNER_STATE": "MN",
+     "RPTOWNER_STATE_DESC": null,
+     "RPTOWNER_STREET1": "3305 TEST ST",
+     "RPTOWNER_STREET2": "5063 TEST ST",
+     "RPTOWNER_TITLE": null,
+     "RPTOWNER_TXT": null,
+     "RPTOWNER_ZIPCODE": "55416"
+    },
+    {
+     "ACCESSION_NUMBER": "0001741560-26-000008",
+     "RPTOWNERCIK": "0001857514",
+     "RPTOWNERNAME": "TESTOWNER EC43C8 LLC",
+     "RPTOWNER_CITY": "MINNEAPOLIS",
+     "RPTOWNER_RELATIONSHIP": "Director,TenPercentOwner",
+     "RPTOWNER_STATE": "MN",
+     "RPTOWNER_STATE_DESC": null,
+     "RPTOWNER_STREET1": "3305 TEST ST",
+     "RPTOWNER_STREET2": "5063 TEST ST",
+     "RPTOWNER_TITLE": null,
+     "RPTOWNER_TXT": null,
+     "RPTOWNER_ZIPCODE": "55416"
+    },
+    {
+     "ACCESSION_NUMBER": "0001741560-26-000008",
+     "RPTOWNERCIK": "0001741560",
+     "RPTOWNERNAME": "TESTOWNER 4E738A",
+     "RPTOWNER_CITY": "MINNEAPOLIS",
+     "RPTOWNER_RELATIONSHIP": "Director,TenPercentOwner",
+     "RPTOWNER_STATE": "MN",
+     "RPTOWNER_STATE_DESC": null,
+     "RPTOWNER_STREET1": "3305 TEST ST",
+     "RPTOWNER_STREET2": "5063 TEST ST",
+     "RPTOWNER_TITLE": null,
+     "RPTOWNER_TXT": null,
+     "RPTOWNER_ZIPCODE": "55416"
+    }
+   ],
+   "submission": {
+    "ACCESSION_NUMBER": "0001741560-26-000008",
+    "DATE_OF_ORIG_SUB": null,
+    "DOCUMENT_TYPE": "4",
+    "FILING_DATE": "31-JUL-2026",
+    "ISSUERCIK": "0001819974",
+    "ISSUERNAME": "SkyWater Technology, Inc",
+    "ISSUERTRADINGSYMBOL": "SKYT",
+    "PERIOD_OF_REPORT": "28-JUL-2026"
+   }
+  },
+  {
+   "accession": "0001437749-26-025281",
+   "owners": [
+    {
+     "ACCESSION_NUMBER": "0001437749-26-025281",
+     "RPTOWNERCIK": "0002040485",
+     "RPTOWNERNAME": "TESTOWNER 08B3C3",
+     "RPTOWNER_CITY": "VANCOUVER",
+     "RPTOWNER_RELATIONSHIP": "Officer",
+     "RPTOWNER_STATE": null,
+     "RPTOWNER_STATE_DESC": "CANADA (FEDERAL LEVEL)",
+     "RPTOWNER_STREET1": "2974 TEST ST",
+     "RPTOWNER_STREET2": null,
+     "RPTOWNER_TITLE": "Chief Financial Officer",
+     "RPTOWNER_TXT": null,
+     "RPTOWNER_ZIPCODE": "V6E 4A2"
+    }
+   ],
+   "submission": {
+    "ACCESSION_NUMBER": "0001437749-26-025281",
+    "DATE_OF_ORIG_SUB": null,
+    "DOCUMENT_TYPE": "4",
+    "FILING_DATE": "31-JUL-2026",
+    "ISSUERCIK": "0001334933",
+    "ISSUERNAME": "URANIUM ENERGY CORP",
+    "ISSUERTRADINGSYMBOL": "UEC",
+    "PERIOD_OF_REPORT": "30-JUL-2026"
+   }
+  },
+  {
+   "accession": "0001683168-26-005874",
+   "owners": [
+    {
+     "ACCESSION_NUMBER": "0001683168-26-005874",
+     "RPTOWNERCIK": "0001989911",
+     "RPTOWNERNAME": "TESTOWNER DAE0F0",
+     "RPTOWNER_CITY": "XIZHI DIST, NEW TAIPEI CITY",
+     "RPTOWNER_RELATIONSHIP": "Director,Officer",
+     "RPTOWNER_STATE": null,
+     "RPTOWNER_STATE_DESC": "TAIWAN",
+     "RPTOWNER_STREET1": "2991 TEST ST",
+     "RPTOWNER_STREET2": "1115 TEST ST",
+     "RPTOWNER_TITLE": "Chief Executive Officer",
+     "RPTOWNER_TXT": null,
+     "RPTOWNER_ZIPCODE": "221"
+    }
+   ],
+   "submission": {
+    "ACCESSION_NUMBER": "0001683168-26-005874",
+    "DATE_OF_ORIG_SUB": null,
+    "DOCUMENT_TYPE": "4",
+    "FILING_DATE": "31-JUL-2026",
+    "ISSUERCIK": "0001756180",
+    "ISSUERNAME": "NOCERA, INC.",
+    "ISSUERTRADINGSYMBOL": "NCRA",
+    "PERIOD_OF_REPORT": "29-JUL-2026"
+   }
+  },
+  {
+   "accession": "0001709048-26-000205",
+   "owners": [
+    {
+     "ACCESSION_NUMBER": "0001709048-26-000205",
+     "RPTOWNERCIK": "0002081973",
+     "RPTOWNERNAME": "TESTOWNER 3FCE4F",
+     "RPTOWNER_CITY": "MALTA",
+     "RPTOWNER_RELATIONSHIP": "Director",
+     "RPTOWNER_STATE": "NY",
+     "RPTOWNER_STATE_DESC": null,
+     "RPTOWNER_STREET1": "8734 TEST ST",
+     "RPTOWNER_STREET2": null,
+     "RPTOWNER_TITLE": null,
+     "RPTOWNER_TXT": null,
+     "RPTOWNER_ZIPCODE": "12020"
+    }
+   ],
+   "submission": {
+    "ACCESSION_NUMBER": "0001709048-26-000205",
+    "DATE_OF_ORIG_SUB": null,
+    "DOCUMENT_TYPE": "4",
+    "FILING_DATE": "31-JUL-2026",
+    "ISSUERCIK": "0001709048",
+    "ISSUERNAME": "GLOBALFOUNDRIES Inc.",
+    "ISSUERTRADINGSYMBOL": "GFS",
+    "PERIOD_OF_REPORT": "29-JUL-2026"
+   }
+  },
+  {
+   "accession": "0001193125-26-328787",
+   "owners": [
+    {
+     "ACCESSION_NUMBER": "0001193125-26-328787",
+     "RPTOWNERCIK": "0002148287",
+     "RPTOWNERNAME": "TESTOWNER 2B4522",
+     "RPTOWNER_CITY": "HOUSTON",
+     "RPTOWNER_RELATIONSHIP": "Director",
+     "RPTOWNER_STATE": "TX",
+     "RPTOWNER_STATE_DESC": null,
+     "RPTOWNER_STREET1": "842 TEST ST",
+     "RPTOWNER_STREET2": null,
+     "RPTOWNER_TITLE": null,
+     "RPTOWNER_TXT": null,
+     "RPTOWNER_ZIPCODE": "77021"
+    }
+   ],
+   "submission": {
+    "ACCESSION_NUMBER": "0001193125-26-328787",
+    "DATE_OF_ORIG_SUB": null,
+    "DOCUMENT_TYPE": "3",
+    "FILING_DATE": "31-JUL-2026",
+    "ISSUERCIK": "0001615219",
+    "ISSUERNAME": "Decoy Therapeutics Inc.",
+    "ISSUERTRADINGSYMBOL": "DCOY",
+    "PERIOD_OF_REPORT": "14-JUL-2026"
+   }
+  },
+  {
+   "accession": "0001832670-26-000004",
+   "owners": [
+    {
+     "ACCESSION_NUMBER": "0001832670-26-000004",
+     "RPTOWNERCIK": "0001832670",
+     "RPTOWNERNAME": "TESTOWNER E3ACC3",
+     "RPTOWNER_CITY": "EASTON",
+     "RPTOWNER_RELATIONSHIP": "Director",
+     "RPTOWNER_STATE": "MD",
+     "RPTOWNER_STATE_DESC": null,
+     "RPTOWNER_STREET1": "1502 TEST ST",
+     "RPTOWNER_STREET2": null,
+     "RPTOWNER_TITLE": null,
+     "RPTOWNER_TXT": null,
+     "RPTOWNER_ZIPCODE": "21601"
+    }
+   ],
+   "submission": {
+    "ACCESSION_NUMBER": "0001832670-26-000004",
+    "DATE_OF_ORIG_SUB": null,
+    "DOCUMENT_TYPE": "4",
+    "FILING_DATE": "31-JUL-2026",
+    "ISSUERCIK": "0001035092",
+    "ISSUERNAME": "SHORE BANCSHARES INC",
+    "ISSUERTRADINGSYMBOL": "SHBI",
+    "PERIOD_OF_REPORT": "29-JUL-2026"
+   }
+  },
+  {
+   "accession": "0000950142-26-002222",
+   "owners": [
+    {
+     "ACCESSION_NUMBER": "0000950142-26-002222",
+     "RPTOWNERCIK": "0001968588",
+     "RPTOWNERNAME": "TESTOWNER CDD4DC",
+     "RPTOWNER_CITY": "LONDON",
+     "RPTOWNER_RELATIONSHIP": "Director",
+     "RPTOWNER_STATE": null,
+     "RPTOWNER_STATE_DESC": "UNITED KINGDOM",
+     "RPTOWNER_STREET1": "2668 TEST ST",
+     "RPTOWNER_STREET2": "1541 TEST ST",
+     "RPTOWNER_TITLE": null,
+     "RPTOWNER_TXT": null,
+     "RPTOWNER_ZIPCODE": "W1T 4EZ"
+    }
+   ],
+   "submission": {
+    "ACCESSION_NUMBER": "0000950142-26-002222",
+    "DATE_OF_ORIG_SUB": null,
+    "DOCUMENT_TYPE": "4",
+    "FILING_DATE": "31-JUL-2026",
+    "ISSUERCIK": "0001530721",
+    "ISSUERNAME": "Capri Holdings Ltd",
+    "ISSUERTRADINGSYMBOL": "CPRI",
+    "PERIOD_OF_REPORT": "29-JUL-2026"
+   }
+  },
+  {
+   "accession": "0001831880-26-000003",
+   "owners": [
+    {
+     "ACCESSION_NUMBER": "0001831880-26-000003",
+     "RPTOWNERCIK": "0001831880",
+     "RPTOWNERNAME": "TESTOWNER 7B3A2D",
+     "RPTOWNER_CITY": "ST. GEORGE",
+     "RPTOWNER_RELATIONSHIP": "Officer",
+     "RPTOWNER_STATE": "UT",
+     "RPTOWNER_STATE_DESC": null,
+     "RPTOWNER_STREET1": "1875 TEST ST",
+     "RPTOWNER_STREET2": null,
+     "RPTOWNER_TITLE": "EXEC VP OPERATIONS",
+     "RPTOWNER_TXT": null,
+     "RPTOWNER_ZIPCODE": "84790"
+    }
+   ],
+   "submission": {
+    "ACCESSION_NUMBER": "0001831880-26-000003",
+    "DATE_OF_ORIG_SUB": null,
+    "DOCUMENT_TYPE": "4",
+    "FILING_DATE": "31-JUL-2026",
+    "ISSUERCIK": "0000793733",
+    "ISSUERNAME": "SKYWEST INC",
+    "ISSUERTRADINGSYMBOL": "SKYW",
+    "PERIOD_OF_REPORT": "30-JUL-2026"
+   }
+  },
+  {
+   "accession": "0001140361-26-030539",
+   "owners": [
+    {
+     "ACCESSION_NUMBER": "0001140361-26-030539",
+     "RPTOWNERCIK": "0002120593",
+     "RPTOWNERNAME": "TESTOWNER 6C665D",
+     "RPTOWNER_CITY": "KIFISIA, ATHENS",
+     "RPTOWNER_RELATIONSHIP": "Director",
+     "RPTOWNER_STATE": null,
+     "RPTOWNER_STATE_DESC": "GREECE",
+     "RPTOWNER_STREET1": "7152 TEST ST",
+     "RPTOWNER_STREET2": null,
+     "RPTOWNER_TITLE": null,
+     "RPTOWNER_TXT": null,
+     "RPTOWNER_ZIPCODE": "14561"
+    }
+   ],
+   "submission": {
+    "ACCESSION_NUMBER": "0001140361-26-030539",
+    "DATE_OF_ORIG_SUB": null,
+    "DOCUMENT_TYPE": "4",
+    "FILING_DATE": "31-JUL-2026",
+    "ISSUERCIK": "0001430725",
+    "ISSUERNAME": "Global Ship Lease, Inc.",
+    "ISSUERTRADINGSYMBOL": "GSL",
+    "PERIOD_OF_REPORT": "14-JUL-2026"
+   }
+  },
+  {
+   "accession": "0001193125-26-328240",
+   "owners": [
+    {
+     "ACCESSION_NUMBER": "0001193125-26-328240",
+     "RPTOWNERCIK": "0002109769",
+     "RPTOWNERNAME": "TESTOWNER 21CE21",
+     "RPTOWNER_CITY": "MILWAUKEE",
+     "RPTOWNER_RELATIONSHIP": "Officer",
+     "RPTOWNER_STATE": "WI",
+     "RPTOWNER_STATE_DESC": null,
+     "RPTOWNER_STREET1": "3760 TEST ST",
+     "RPTOWNER_STREET2": null,
+     "RPTOWNER_TITLE": "VP-Engineering",
+     "RPTOWNER_TXT": null,
+     "RPTOWNER_ZIPCODE": "53223"
+    }
+   ],
+   "submission": {
+    "ACCESSION_NUMBER": "0001193125-26-328240",
+    "DATE_OF_ORIG_SUB": null,
+    "DOCUMENT_TYPE": "4",
+    "FILING_DATE": "31-JUL-2026",
+    "ISSUERCIK": "0000009092",
+    "ISSUERNAME": "BADGER METER INC",
+    "ISSUERTRADINGSYMBOL": "BMI",
+    "PERIOD_OF_REPORT": "30-JUL-2026"
+   }
+  }
+ ],
+ "quarter": "2026q3",
+ "url": "https://www.sec.gov/files/datastandardsinnovation/data/insider-transactions-data-sets/2026q3_form345.zip"
+}

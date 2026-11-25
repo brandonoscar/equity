@@ -1,0 +1,49 @@
+# California State Controller's Office, "Download Unclaimed Property Records": the Controller's
+# whole public unclaimed-property database as zipped CSV files (split by property value),
+# refreshed every Thursday: property id and type, owner name and last-known address as the
+# holder reported it, holder, amounts. Tens of millions of rows; addresses run from decades
+# old to last year's reports. Names print LAST FIRST M.
+#
+# Not fetchable by a script: sco.ca.gov answers every request with a Cloudflare browser
+# challenge (2026-11-25), which we do not work around. Download the files by hand in a
+# browser from the request_url page and drop the zips, as downloaded, into
+# data/manual/ca.sco.unclaimed_property/ (or pass path=). Disk: the largest zip is several
+# GB; it is read member by member in byte windows, never unpacked.
+#
+# Columns follow the Controller's CSV header (also mirrored, renamed, in Orange County's
+# ca.orange_county.unclaimed_property layer): PROPERTY_ID, PROPERTY_TYPE, CASH_REPORTED,
+# SHARES_REPORTED, NAME_OF_SECURITIES_REPORTED, NO_OF_OWNERS, OWNER_NAME, OWNER_STREET_1..3,
+# OWNER_CITY, OWNER_STATE, OWNER_ZIP, OWNER_COUNTRY_CODE, CURRENT_CASH_BALANCE,
+# NUMBER_OF_PENDING_CLAIMS, NUMBER_OF_PAID_CLAIMS, HOLDER_NAME, HOLDER_STREET_1..3,
+# HOLDER_CITY, HOLDER_STATE, HOLDER_ZIP, CUSIP. Confirm on the first download (health()
+# reports the header it finds).
+source_id: ca.sco.unclaimed_property
+state: CA
+jurisdiction: "06"
+kind: tax  # nearest source kind: a state treasury program (no unclaimed-property kind)
+record_type: unclaimed_property
+api: delivered
+file:
+  request_url: https://sco.ca.gov/upd_download_property_records.html
+  include: '\.csv$'
+  chunk_bytes: 16000000
+key: PROPERTY_ID
+key_prefix: "CA-UP:"
+parties:
+  - role: owner
+    name: OWNER_NAME
+    format: last_first
+    address: {street: [OWNER_STREET_1, OWNER_STREET_2, OWNER_STREET_3], city: OWNER_CITY, state: OWNER_STATE, zip: OWNER_ZIP}
+terms:
+  url: https://sco.ca.gov/upd_download_property_records.html
+  summary: >-
+    Public download of the Controller's unclaimed-property database (Code Civ. Proc. 1531);
+    the Controller gives no technical support for it. Behind a Cloudflare browser challenge:
+    hand download only, never scripted. robots.txt (2026-11-25) allows all paths for
+    search/reference use and disallows AI-training crawlers (Content-Signal ai-train=no):
+    do not use it to train models. California regulates paid owner locators (CCP 1582: fees
+    capped at 10%; an agreement made within 24 months after the property is paid to the
+    Controller is invalid): do not use for fee-based owner-recovery solicitation. Internal
+    locate/link use only.
+  checked_on: 2026-11-25
+  cost_model: free

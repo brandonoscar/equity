@@ -1,0 +1,879 @@
+{
+ "as_of": "Sun Nov 22 09:41:30 EST 2026",
+ "file": "l_amat.zip",
+ "rows": [
+  {
+   "amateur": {
+    "group_code": "D",
+    "operator_class": "T",
+    "region_code": "8"
+   },
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "LIBERTY CENTER",
+     "entity_name": "TESTOWNER 55D61A",
+     "entity_type": "L",
+     "first_name": "TESTOWNER B3D476",
+     "frn": "TESTOWNER E30AD3",
+     "last_name": "TESTOWNER 49694D",
+     "licensee_id": "TESTOWNER 744751",
+     "mi": "TESTOWNER 0A828C",
+     "state": "OH",
+     "street_address": "479 TEST ST",
+     "zip_code": "43532"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 9EC098",
+    "cancellation_date": "05/01/2018",
+    "effective_date": "02/17/2006",
+    "expired_date": "04/30/2016",
+    "grant_date": "02/17/2006",
+    "last_action_date": "05/01/2018",
+    "license_status": "E",
+    "radio_service_code": "HA",
+    "uls_file_number": "TESTOWNER 7C5B8D"
+   },
+   "usi": "TESTOWNER B34F00"
+  },
+  {
+   "amateur": {
+    "group_code": "D",
+    "operator_class": "G",
+    "previous_operator_class": "P",
+    "region_code": "8"
+   },
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "SPRINGFIELD",
+     "entity_name": "TESTOWNER A12490",
+     "entity_type": "L",
+     "first_name": "TESTOWNER A8A3EF",
+     "frn": "TESTOWNER 907557",
+     "last_name": "TESTOWNER E80B19",
+     "licensee_id": "TESTOWNER E0CB8C",
+     "mi": "TESTOWNER 88579C",
+     "state": "OH",
+     "street_address": "3784 TEST ST",
+     "zip_code": "455032603"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER FA93B3",
+    "effective_date": "03/31/2016",
+    "expired_date": "05/01/2026",
+    "grant_date": "03/31/2016",
+    "last_action_date": "03/31/2016",
+    "license_status": "A",
+    "radio_service_code": "HA",
+    "uls_file_number": "TESTOWNER ED52DE"
+   },
+   "usi": "TESTOWNER D877C9"
+  },
+  {
+   "amateur": {
+    "group_code": "D",
+    "operator_class": "T",
+    "region_code": "8"
+   },
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "GAHANNA",
+     "entity_name": "TESTOWNER DBF29C",
+     "entity_type": "L",
+     "first_name": "TESTOWNER 768C9F",
+     "frn": "TESTOWNER F387AD",
+     "last_name": "TESTOWNER 39BEF7",
+     "licensee_id": "TESTOWNER 875BFB",
+     "mi": "TESTOWNER AC3A67",
+     "state": "OH",
+     "street_address": "2013 TEST ST",
+     "zip_code": "43230"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 170D5A",
+    "cancellation_date": "05/02/2018",
+    "effective_date": "02/21/2006",
+    "expired_date": "05/01/2016",
+    "grant_date": "02/21/2006",
+    "last_action_date": "05/02/2018",
+    "license_status": "E",
+    "radio_service_code": "HA",
+    "uls_file_number": "TESTOWNER FE1FE0"
+   },
+   "usi": "TESTOWNER 2D8249"
+  },
+  {
+   "amateur": {
+    "group_code": "D",
+    "operator_class": "G",
+    "previous_operator_class": "P",
+    "region_code": "8"
+   },
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "XENIA",
+     "entity_name": "TESTOWNER F105C1",
+     "entity_type": "L",
+     "first_name": "TESTOWNER 4AA8F8",
+     "frn": "TESTOWNER B229B1",
+     "last_name": "TESTOWNER 466B89",
+     "licensee_id": "TESTOWNER 938F46",
+     "mi": "TESTOWNER 2CFDA5",
+     "state": "OH",
+     "street_address": "6078 TEST ST",
+     "suffix": "TESTOWNER 52BF1A",
+     "zip_code": "453854556"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 0A1D99",
+    "effective_date": "06/17/2016",
+    "expired_date": "06/07/2026",
+    "grant_date": "06/17/2016",
+    "last_action_date": "06/17/2016",
+    "license_status": "A",
+    "radio_service_code": "HA",
+    "uls_file_number": "TESTOWNER 9FEB17"
+   },
+   "usi": "TESTOWNER 77573D"
+  },
+  {
+   "amateur": {
+    "group_code": "D",
+    "operator_class": "T",
+    "region_code": "8"
+   },
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "attention_line": "TESTOWNER AF310E",
+     "city": "BOARDMAN",
+     "entity_name": "TESTOWNER 326B29",
+     "entity_type": "L",
+     "first_name": "TESTOWNER F005DA",
+     "frn": "TESTOWNER 9C7946",
+     "last_name": "TESTOWNER 9E9112",
+     "licensee_id": "TESTOWNER B70E37",
+     "mi": "TESTOWNER 86A820",
+     "state": "OH",
+     "street_address": "3056 TEST ST",
+     "zip_code": "44512"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 655270",
+    "effective_date": "09/22/2026",
+    "expired_date": "09/22/2036",
+    "grant_date": "09/22/2026",
+    "last_action_date": "09/22/2026",
+    "license_status": "A",
+    "radio_service_code": "HA",
+    "uls_file_number": "TESTOWNER 5880E5"
+   },
+   "usi": "TESTOWNER 797F6D"
+  },
+  {
+   "amateur": {
+    "group_code": "D",
+    "operator_class": "T",
+    "region_code": "8"
+   },
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "BREMEN",
+     "entity_name": "TESTOWNER 2B9C6B",
+     "entity_type": "L",
+     "first_name": "TESTOWNER 7D6D9E",
+     "frn": "TESTOWNER 82E289",
+     "last_name": "TESTOWNER 4292F7",
+     "licensee_id": "TESTOWNER 006533",
+     "mi": "TESTOWNER 51918E",
+     "state": "OH",
+     "street_address": "4041 TEST ST",
+     "zip_code": "431079407"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER C11B96",
+    "cancellation_date": "05/02/2018",
+    "effective_date": "05/16/2006",
+    "expired_date": "05/01/2016",
+    "grant_date": "05/16/2006",
+    "last_action_date": "05/02/2018",
+    "license_status": "E",
+    "radio_service_code": "HA",
+    "uls_file_number": "TESTOWNER 42431E"
+   },
+   "usi": "TESTOWNER DED61E"
+  },
+  {
+   "amateur": {
+    "group_code": "D",
+    "operator_class": "G",
+    "previous_operator_class": "P",
+    "region_code": "8"
+   },
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "Wauseon",
+     "entity_name": "TESTOWNER 811AD7",
+     "entity_type": "L",
+     "first_name": "TESTOWNER C149EA",
+     "frn": "TESTOWNER 85928C",
+     "last_name": "TESTOWNER 947F5D",
+     "licensee_id": "TESTOWNER A191D7",
+     "mi": "TESTOWNER 1410A9",
+     "state": "OH",
+     "street_address": "3738 TEST ST",
+     "zip_code": "435671012"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 7E060B",
+    "effective_date": "02/22/2016",
+    "expired_date": "05/01/2026",
+    "grant_date": "02/22/2016",
+    "last_action_date": "02/22/2016",
+    "license_status": "A",
+    "radio_service_code": "HA",
+    "uls_file_number": "TESTOWNER 5E8808"
+   },
+   "usi": "TESTOWNER 96EFC7"
+  },
+  {
+   "amateur": {
+    "group_code": "D",
+    "operator_class": "T",
+    "region_code": "8"
+   },
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "SIDNEY",
+     "entity_name": "TESTOWNER 3AC455",
+     "entity_type": "L",
+     "first_name": "TESTOWNER 3D4948",
+     "frn": "TESTOWNER D3C9E3",
+     "last_name": "TESTOWNER BCCD8B",
+     "licensee_id": "TESTOWNER 2B60A6",
+     "mi": "TESTOWNER 8E2D2D",
+     "state": "OH",
+     "street_address": "3931 TEST ST",
+     "zip_code": "45365"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 4E5C4C",
+    "cancellation_date": "11/17/2000",
+    "effective_date": "10/25/2000",
+    "expired_date": "10/25/2010",
+    "grant_date": "10/25/2000",
+    "last_action_date": "11/17/2000",
+    "license_status": "C",
+    "radio_service_code": "HA"
+   },
+   "usi": "TESTOWNER 1E722C"
+  },
+  {
+   "amateur": {
+    "group_code": "D",
+    "operator_class": "E",
+    "previous_operator_class": "G",
+    "region_code": "8"
+   },
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "LIMA",
+     "entity_name": "TESTOWNER 0EB515",
+     "entity_type": "L",
+     "first_name": "TESTOWNER BB90E5",
+     "frn": "TESTOWNER BD0418",
+     "last_name": "TESTOWNER E34B5F",
+     "licensee_id": "TESTOWNER 490282",
+     "state": "OH",
+     "street_address": "4978 TEST ST",
+     "zip_code": "45801"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 9B7D28",
+    "effective_date": "03/03/2026",
+    "expired_date": "05/14/2036",
+    "grant_date": "03/03/2026",
+    "last_action_date": "03/03/2026",
+    "license_status": "A",
+    "radio_service_code": "HA",
+    "uls_file_number": "TESTOWNER 7E9B61"
+   },
+   "usi": "TESTOWNER 647C5D"
+  },
+  {
+   "amateur": {
+    "group_code": "D",
+    "operator_class": "T",
+    "region_code": "8"
+   },
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "Englewood",
+     "entity_name": "TESTOWNER F5FC69",
+     "entity_type": "L",
+     "first_name": "TESTOWNER CA7DD4",
+     "frn": "TESTOWNER 7B0DAF",
+     "last_name": "TESTOWNER F0392F",
+     "licensee_id": "TESTOWNER A45FA7",
+     "mi": "TESTOWNER 0A828C",
+     "state": "OH",
+     "street_address": "5860 TEST ST",
+     "zip_code": "453221548"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER A8C0B3",
+    "cancellation_date": "05/31/2018",
+    "effective_date": "03/13/2012",
+    "expired_date": "05/30/2016",
+    "grant_date": "03/06/2006",
+    "last_action_date": "05/31/2018",
+    "license_status": "E",
+    "radio_service_code": "HA",
+    "uls_file_number": "TESTOWNER 660BC8"
+   },
+   "usi": "TESTOWNER 16C08C"
+  },
+  {
+   "amateur": {
+    "group_code": "D",
+    "operator_class": "G",
+    "previous_operator_class": "T",
+    "region_code": "8"
+   },
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "FRANKLIN",
+     "entity_name": "TESTOWNER 1E948F",
+     "entity_type": "L",
+     "first_name": "TESTOWNER 07BFBC",
+     "frn": "TESTOWNER 37033B",
+     "last_name": "TESTOWNER 8AAB47",
+     "licensee_id": "TESTOWNER E55CA9",
+     "mi": "TESTOWNER E8F338",
+     "state": "OH",
+     "street_address": "7593 TEST ST",
+     "zip_code": "45005"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 306926",
+    "effective_date": "09/15/2026",
+    "expired_date": "09/15/2036",
+    "grant_date": "09/15/2026",
+    "last_action_date": "09/15/2026",
+    "license_status": "A",
+    "radio_service_code": "HA",
+    "uls_file_number": "TESTOWNER C86636"
+   },
+   "usi": "TESTOWNER 9F32BB"
+  },
+  {
+   "amateur": {
+    "group_code": "D",
+    "operator_class": "N",
+    "region_code": "8"
+   },
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "Massillon",
+     "entity_name": "TESTOWNER 959518",
+     "entity_type": "L",
+     "first_name": "TESTOWNER A0735B",
+     "frn": "TESTOWNER 0EDFBC",
+     "last_name": "TESTOWNER D2E5B1",
+     "licensee_id": "TESTOWNER 08D593",
+     "mi": "TESTOWNER 300378",
+     "state": "OH",
+     "street_address": "7992 TEST ST",
+     "zip_code": "44647"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 8E24AD",
+    "effective_date": "04/12/2016",
+    "expired_date": "05/30/2026",
+    "grant_date": "04/12/2016",
+    "last_action_date": "04/12/2016",
+    "license_status": "A",
+    "radio_service_code": "HA",
+    "uls_file_number": "TESTOWNER 33F914"
+   },
+   "usi": "TESTOWNER 6C5308"
+  },
+  {
+   "amateur": {
+    "group_code": "D",
+    "operator_class": "T",
+    "region_code": "8"
+   },
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "BRIDGEPORT",
+     "entity_name": "TESTOWNER DEBB3D",
+     "entity_type": "L",
+     "first_name": "TESTOWNER 51E42F",
+     "frn": "TESTOWNER 9AD56B",
+     "last_name": "TESTOWNER 1EFA45",
+     "licensee_id": "TESTOWNER B78315",
+     "mi": "TESTOWNER 51918E",
+     "state": "OH",
+     "street_address": "8776 TEST ST",
+     "zip_code": "43912"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER FE6ADE",
+    "cancellation_date": "10/27/2012",
+    "effective_date": "10/26/2000",
+    "expired_date": "10/26/2010",
+    "grant_date": "10/26/2000",
+    "last_action_date": "10/27/2012",
+    "license_status": "E",
+    "radio_service_code": "HA"
+   },
+   "usi": "TESTOWNER 3A7CA8"
+  },
+  {
+   "amateur": {
+    "group_code": "D",
+    "operator_class": "G",
+    "previous_operator_class": "T",
+    "region_code": "8"
+   },
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "ORIENT",
+     "entity_name": "TESTOWNER 78E917",
+     "entity_type": "L",
+     "first_name": "TESTOWNER A2AC08",
+     "frn": "TESTOWNER 174A2B",
+     "last_name": "TESTOWNER 896D57",
+     "licensee_id": "TESTOWNER DA9363",
+     "mi": "TESTOWNER 1410A9",
+     "state": "OH",
+     "street_address": "7228 TEST ST",
+     "zip_code": "43146"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 6B1B62",
+    "effective_date": "07/13/2016",
+    "expired_date": "07/13/2026",
+    "grant_date": "07/13/2016",
+    "last_action_date": "07/13/2016",
+    "license_status": "A",
+    "radio_service_code": "HA",
+    "uls_file_number": "TESTOWNER B97AFB"
+   },
+   "usi": "TESTOWNER C4F3CC"
+  },
+  {
+   "amateur": {
+    "group_code": "D",
+    "operator_class": "T",
+    "region_code": "8"
+   },
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "CLEVELAND",
+     "entity_name": "TESTOWNER 82DDE1",
+     "entity_type": "L",
+     "first_name": "TESTOWNER D14B51",
+     "frn": "TESTOWNER B43EA4",
+     "last_name": "TESTOWNER F48311",
+     "licensee_id": "TESTOWNER 4EBF29",
+     "mi": "TESTOWNER 51918E",
+     "state": "OH",
+     "street_address": "6979 TEST ST",
+     "zip_code": "441114505"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER E54172",
+    "cancellation_date": "06/22/2018",
+    "effective_date": "03/30/2006",
+    "expired_date": "06/21/2016",
+    "grant_date": "03/30/2006",
+    "last_action_date": "06/22/2018",
+    "license_status": "E",
+    "radio_service_code": "HA",
+    "uls_file_number": "TESTOWNER 1B603C"
+   },
+   "usi": "TESTOWNER 73E386"
+  },
+  {
+   "amateur": {
+    "group_code": "D",
+    "operator_class": "T",
+    "region_code": "8"
+   },
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "Westerville",
+     "entity_name": "TESTOWNER 8320F9",
+     "entity_type": "L",
+     "first_name": "TESTOWNER E5E414",
+     "frn": "TESTOWNER 251243",
+     "last_name": "TESTOWNER 85C35B",
+     "licensee_id": "TESTOWNER 96FA1E",
+     "mi": "TESTOWNER 51918E",
+     "state": "OH",
+     "street_address": "8794 TEST ST",
+     "zip_code": "43081"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER CEA7BD",
+    "cancellation_date": "10/13/2018",
+    "effective_date": "10/12/2006",
+    "expired_date": "10/12/2016",
+    "grant_date": "10/12/2006",
+    "last_action_date": "10/13/2018",
+    "license_status": "E",
+    "radio_service_code": "HA",
+    "uls_file_number": "TESTOWNER C52775"
+   },
+   "usi": "TESTOWNER F9C362"
+  },
+  {
+   "amateur": {
+    "group_code": "D",
+    "operator_class": "T",
+    "previous_operator_class": "P",
+    "region_code": "8"
+   },
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "Milford",
+     "entity_name": "TESTOWNER 65FE8F",
+     "entity_type": "L",
+     "first_name": "TESTOWNER EF13F5",
+     "frn": "TESTOWNER 383887",
+     "last_name": "TESTOWNER C5BC2B",
+     "licensee_id": "TESTOWNER 5207FD",
+     "mi": "TESTOWNER 86A820",
+     "state": "OH",
+     "street_address": "6539 TEST ST",
+     "zip_code": "45150"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER C2C62E",
+    "effective_date": "08/15/2020",
+    "expired_date": "02/20/2030",
+    "grant_date": "01/01/2020",
+    "last_action_date": "08/15/2020",
+    "license_status": "A",
+    "radio_service_code": "HA",
+    "uls_file_number": "TESTOWNER 9446A6"
+   },
+   "usi": "TESTOWNER 3E0652"
+  },
+  {
+   "amateur": {
+    "group_code": "D",
+    "operator_class": "E",
+    "previous_operator_class": "G",
+    "region_code": "8"
+   },
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "SIDNEY",
+     "entity_name": "TESTOWNER 18175E",
+     "entity_type": "L",
+     "first_name": "TESTOWNER 30A6D5",
+     "frn": "TESTOWNER C29C6B",
+     "last_name": "TESTOWNER E3419A",
+     "licensee_id": "TESTOWNER 131E75",
+     "mi": "TESTOWNER 1410A9",
+     "state": "OH",
+     "street_address": "7402 TEST ST",
+     "zip_code": "45365"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 0C1274",
+    "cancellation_date": "09/01/2000",
+    "effective_date": "08/03/2000",
+    "expired_date": "07/29/2006",
+    "grant_date": "11/13/1998",
+    "last_action_date": "09/01/2000",
+    "license_status": "C",
+    "radio_service_code": "HA",
+    "uls_file_number": "TESTOWNER 062499"
+   },
+   "usi": "TESTOWNER D66688"
+  },
+  {
+   "amateur": {
+    "group_code": "D",
+    "operator_class": "T",
+    "region_code": "8"
+   },
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "attention_line": "TESTOWNER EC04FF",
+     "city": "WILLIAMSFIELD",
+     "entity_name": "TESTOWNER EEBC93",
+     "entity_type": "L",
+     "first_name": "TESTOWNER 032137",
+     "frn": "TESTOWNER F44296",
+     "last_name": "TESTOWNER D26588",
+     "licensee_id": "TESTOWNER 2AE857",
+     "mi": "TESTOWNER 9C5163",
+     "state": "OH",
+     "street_address": "8453 TEST ST",
+     "zip_code": "44093"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER B64A2A",
+    "effective_date": "09/15/2026",
+    "expired_date": "09/15/2036",
+    "grant_date": "09/15/2026",
+    "last_action_date": "09/15/2026",
+    "license_status": "A",
+    "radio_service_code": "HA",
+    "uls_file_number": "TESTOWNER 72B535"
+   },
+   "usi": "TESTOWNER 181653"
+  },
+  {
+   "amateur": {
+    "group_code": "D",
+    "operator_class": "T",
+    "region_code": "8"
+   },
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "FINDLAY",
+     "entity_name": "TESTOWNER A6182F",
+     "entity_type": "L",
+     "first_name": "TESTOWNER BB3726",
+     "frn": "TESTOWNER 9B39D5",
+     "last_name": "TESTOWNER 9D877B",
+     "licensee_id": "TESTOWNER 1AD7E0",
+     "state": "OH",
+     "street_address": "8597 TEST ST",
+     "zip_code": "45840"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER BE51BB",
+    "cancellation_date": "05/15/2018",
+    "effective_date": "05/12/2006",
+    "expired_date": "05/14/2016",
+    "grant_date": "05/12/2006",
+    "last_action_date": "05/15/2018",
+    "license_status": "E",
+    "radio_service_code": "HA",
+    "uls_file_number": "TESTOWNER 24B809"
+   },
+   "usi": "TESTOWNER 53B6F8"
+  },
+  {
+   "amateur": {
+    "group_code": "D",
+    "operator_class": "T",
+    "region_code": "8"
+   },
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "Copley",
+     "entity_name": "TESTOWNER 83FBE7",
+     "entity_type": "L",
+     "first_name": "TESTOWNER D52C2C",
+     "frn": "TESTOWNER 553CFF",
+     "last_name": "TESTOWNER 7BAB4F",
+     "licensee_id": "TESTOWNER 5300BF",
+     "mi": "TESTOWNER 9C5163",
+     "state": "OH",
+     "street_address": "3661 TEST ST",
+     "zip_code": "44321"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 692A2E",
+    "cancellation_date": "05/22/2018",
+    "effective_date": "03/14/2006",
+    "expired_date": "05/21/2016",
+    "grant_date": "03/14/2006",
+    "last_action_date": "05/22/2018",
+    "license_status": "E",
+    "radio_service_code": "HA",
+    "uls_file_number": "TESTOWNER FC3785"
+   },
+   "usi": "TESTOWNER 946524"
+  },
+  {
+   "amateur": {
+    "group_code": "A",
+    "operator_class": "E",
+    "region_code": "8"
+   },
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "Elyria",
+     "entity_name": "TESTOWNER DF0656",
+     "entity_type": "L",
+     "first_name": "TESTOWNER 88EB0B",
+     "frn": "TESTOWNER A87186",
+     "last_name": "TESTOWNER AE3760",
+     "licensee_id": "TESTOWNER 87F529",
+     "mi": "TESTOWNER FFB439",
+     "state": "OH",
+     "street_address": "7711 TEST ST",
+     "zip_code": "44035"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER F2D196",
+    "cancellation_date": "05/31/2013",
+    "effective_date": "06/08/2004",
+    "expired_date": "08/19/2014",
+    "grant_date": "06/08/2004",
+    "last_action_date": "04/29/2026",
+    "license_status": "C",
+    "radio_service_code": "HA",
+    "uls_file_number": "TESTOWNER 5CFC14"
+   },
+   "usi": "TESTOWNER 4526B9"
+  },
+  {
+   "amateur": {
+    "group_code": "D",
+    "operator_class": "T",
+    "region_code": "8"
+   },
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "AMHERST",
+     "entity_name": "TESTOWNER 5233D9",
+     "entity_type": "L",
+     "first_name": "TESTOWNER ED61A3",
+     "frn": "TESTOWNER 18AA41",
+     "last_name": "TESTOWNER 8C48BB",
+     "licensee_id": "TESTOWNER 73A4F5",
+     "mi": "TESTOWNER 51918E",
+     "state": "OH",
+     "street_address": "4071 TEST ST",
+     "zip_code": "44001"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 5C40A7",
+    "effective_date": "05/13/2020",
+    "expired_date": "06/11/2026",
+    "grant_date": "06/01/2016",
+    "last_action_date": "05/13/2020",
+    "license_status": "A",
+    "radio_service_code": "HA",
+    "uls_file_number": "TESTOWNER 40CA8F"
+   },
+   "usi": "TESTOWNER D111FA"
+  },
+  {
+   "amateur": {
+    "group_code": "A",
+    "operator_class": "E",
+    "previous_operator_class": "G",
+    "region_code": "8"
+   },
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "Middletown",
+     "entity_name": "TESTOWNER 1BBE66",
+     "entity_type": "L",
+     "first_name": "TESTOWNER 48532B",
+     "frn": "TESTOWNER D6336E",
+     "last_name": "TESTOWNER 37D3AC",
+     "licensee_id": "TESTOWNER 113944",
+     "mi": "TESTOWNER 300378",
+     "state": "OH",
+     "street_address": "6854 TEST ST",
+     "zip_code": "45044"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER BB805F",
+    "cancellation_date": "10/29/2001",
+    "effective_date": "08/30/2001",
+    "expired_date": "10/27/2010",
+    "grant_date": "10/27/2000",
+    "last_action_date": "10/29/2001",
+    "license_status": "C",
+    "radio_service_code": "HA"
+   },
+   "usi": "TESTOWNER 7E48BE"
+  },
+  {
+   "amateur": {
+    "group_code": "B",
+    "operator_class": "A",
+    "region_code": "8"
+   },
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "NORTHWOOD",
+     "entity_name": "TESTOWNER E35F41",
+     "entity_type": "L",
+     "first_name": "TESTOWNER 2B57F7",
+     "frn": "TESTOWNER 48384A",
+     "last_name": "TESTOWNER 1D3FDE",
+     "licensee_id": "TESTOWNER 947278",
+     "mi": "TESTOWNER 0A828C",
+     "state": "OH",
+     "street_address": "506 TEST ST",
+     "suffix": "TESTOWNER 093FB0",
+     "zip_code": "436192219"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 34CF58",
+    "effective_date": "10/01/2019",
+    "expired_date": "10/01/2029",
+    "grant_date": "10/01/2019",
+    "last_action_date": "10/01/2019",
+    "license_status": "A",
+    "radio_service_code": "HA",
+    "uls_file_number": "TESTOWNER 20A9BD"
+   },
+   "usi": "TESTOWNER CE1036"
+  }
+ ],
+ "state": "OH",
+ "url": "https://data.fcc.gov/download/pub/uls/complete/l_amat.zip"
+}
