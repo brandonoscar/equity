@@ -5,7 +5,7 @@ county_fips: "01117"   # Shelby County AL
 # bid in to the State at past tax sales for unpaid ad valorem taxes (state-held tax-sale
 # parcels, Ala. Code 40-10-18 ff.), offered again by the State, with the owner assessed at the
 # sale, the parcel id, the tax year of the sale and the amount bid at the tax sale (the taxes,
-# interest and costs). 191 rows on 2026-11-25, sale years 2006-2013; layer data edited
+# interest and costs). 191 rows on 2026-11-25, sale years 1982-2018; layer data edited
 # 2026-10-27. Rows whose Status says the sale was cancelled or the parcel redeemed are left
 # out. Year_1 (the sale's tax year) is read as Jan 1 of that year. No Shelby County parcel
 # layer is registered yet, so ParcelID_1 is kept as published. Debt kind: tax_delinquency.
