@@ -1,0 +1,30 @@
+source_id: ky.pendleton.parcels
+state: KY
+# LINK-GIS (Northern Kentucky consortium) public MapServer 'Parcel_QueryOnly', layer 2 'Parcels_PC'
+# (9,047 rows on 2026-11-25, Name filled on 8,996): Pendleton County PVA owner, mailing address,
+# site address and deed reference. Some parcels have more than one polygon row (same PARCEL_ID).
+layer_url: https://maps.linkgis.org/server/rest/services/Parcel_QueryOnly/MapServer/2
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "191"}
+fields:
+  parcel_id: PARCEL_ID   # '020-00-00-003.02'
+  owner1: Name
+  mail_line1: Address1   # an extra line, filled on 1,380 rows; Address2 is the street
+  mail_line2: Address2
+  mail_city: City
+  mail_state: State
+  mail_zip: Zip
+  situs_line1: LOC_ADDRESS   # '793 RAVENSCRAFT RD'
+  situs_state: {const: KY}
+  land_use_code: Class       # PVA class code, 'CL10', 'CL20' ...
+  deed_ref: Deed             # 'book-page', '283-188'
+deed_ref_pattern: "^(?P<book>\\d+)-(?P<page>\\d+)$"
+value_basis: "Land / Improvemen are PVA values, but Year reads 2027 on every row with a year (2026-11-25) and the service does not say whether that is the assessment date or the tax year, so no values or tax year are mapped; raw values stay in source records."
+terms:
+  url: https://linkgis.org/disclaimer/
+  summary: "LINK-GIS public MapServer on maps.linkgis.org, no login, token or fee (LINK-GIS also sells data on order). Service iteminfo licenseInfo empty; the linkgis.org full disclaimer (read 2026-11-25) is a no-warranty / no-liability notice ('By using this website, you agree with these terms') with no resale, redistribution or mailing-list clause. maps.linkgis.org/robots.txt answers HTTP 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

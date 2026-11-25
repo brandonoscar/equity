@@ -1,0 +1,28 @@
+source_id: sd.miner.parcels
+state: SD
+# Miner County (Howard) parcels on the First District Association of Local Governments GIS server
+# (minerparcelswfs MapServer layer 0 'Miner Parcels'; 5,302 rows on 2026-11-25, OWNER1 filled on
+# 4,690, sales recorded through 2026): owner, additional owner, mailing address, property street.
+layer_url: https://www.1stdistrict.org/arcgis/rest/services/Miner/minerparcelswfs/MapServer/0
+order_by: OBJECTID
+page_size: 1000
+min_interval_s: 1.0
+county: {constant: "097"}
+fields:
+  parcel_id: RECORD
+  owner1: OWNER1
+  owner2: ADD_L_OWNE
+  mail_line1: OWNER_STRE
+  mail_city: OWNER_CITY
+  mail_state: OWNER_ST
+  mail_zip: OWNER_ZIP
+  situs_line1: PROP_STREE
+  situs_state: {const: SD}
+  land_use_code: LAND_CODE
+value_basis: "LAND_TV / BUILD_TV / TOTAL_TV and the class value columns are present but the service gives no assessment year, so none is mapped; raw values stay in source records. BOOK / PAGE / INSTRUMENT and sale columns are not mapped."
+terms:
+  url: https://www.1stdistrict.org/arcgis/rest/services/Miner/minerparcelswfs/MapServer
+  summary: "First District Association of Local Governments (Watertown, SD) public ArcGIS Server MapServer for Miner County; no login, token or fee. No licenseInfo, copyright or use-constraint text on the service (read 2026-11-25). www.1stdistrict.org/robots.txt answers HTTP 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

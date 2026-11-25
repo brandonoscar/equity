@@ -1,0 +1,156 @@
+{
+ "attributes": [
+  {
+   "CURRENT_OWNER": "TESTOWNER 88E3F6",
+   "OBJECTID": 1,
+   "PARCEL": "400235153",
+   "SITUS": ""
+  },
+  {
+   "CURRENT_OWNER": "TESTOWNER D36205",
+   "OBJECTID": 2,
+   "PARCEL": "400235161",
+   "SITUS": ""
+  },
+  {
+   "CURRENT_OWNER": "TESTOWNER D36205",
+   "OBJECTID": 3,
+   "PARCEL": "400235188",
+   "SITUS": ""
+  },
+  {
+   "CURRENT_OWNER": "TESTOWNER D36205",
+   "OBJECTID": 4,
+   "PARCEL": "400235196",
+   "SITUS": ""
+  },
+  {
+   "CURRENT_OWNER": "TESTOWNER E77947",
+   "OBJECTID": 5,
+   "PARCEL": "400235218",
+   "SITUS": ""
+  },
+  {
+   "CURRENT_OWNER": "TESTOWNER C43286",
+   "OBJECTID": 6,
+   "PARCEL": "400235226",
+   "SITUS": ""
+  },
+  {
+   "CURRENT_OWNER": "TESTOWNER C43286",
+   "OBJECTID": 7,
+   "PARCEL": "400235234",
+   "SITUS": ""
+  },
+  {
+   "CURRENT_OWNER": "TESTOWNER 12FBE7",
+   "OBJECTID": 8,
+   "PARCEL": "400230976",
+   "SITUS": ""
+  },
+  {
+   "CURRENT_OWNER": "TESTOWNER 12FBE7",
+   "OBJECTID": 9,
+   "PARCEL": "400230984",
+   "SITUS": "TESTOWNER 40926E"
+  },
+  {
+   "CURRENT_OWNER": "TESTOWNER 12FBE7",
+   "OBJECTID": 10,
+   "PARCEL": "400230992",
+   "SITUS": "TESTOWNER 0C2A2F"
+  },
+  {
+   "CURRENT_OWNER": "TESTOWNER 8E6487",
+   "OBJECTID": 11,
+   "PARCEL": "400231026",
+   "SITUS": ""
+  },
+  {
+   "CURRENT_OWNER": "TESTOWNER E7FE0E",
+   "OBJECTID": 12,
+   "PARCEL": "400336286",
+   "SITUS": ""
+  },
+  {
+   "CURRENT_OWNER": "TESTOWNER 8E6487",
+   "OBJECTID": 13,
+   "PARCEL": "400380188",
+   "SITUS": "TESTOWNER F3A657"
+  },
+  {
+   "CURRENT_OWNER": "TESTOWNER CE280C",
+   "OBJECTID": 14,
+   "PARCEL": "400434091",
+   "SITUS": "TESTOWNER 23E2CD"
+  },
+  {
+   "CURRENT_OWNER": "TESTOWNER 011908 LLC",
+   "OBJECTID": 15,
+   "PARCEL": "400467194",
+   "SITUS": "TESTOWNER F35574"
+  },
+  {
+   "CURRENT_OWNER": "TESTOWNER 5E298E LLC",
+   "OBJECTID": 16,
+   "PARCEL": "400231020",
+   "SITUS": "TESTOWNER 8FC8A0"
+  },
+  {
+   "CURRENT_OWNER": "TESTOWNER 82FC1B",
+   "OBJECTID": 17,
+   "PARCEL": "400222655",
+   "SITUS": ""
+  },
+  {
+   "CURRENT_OWNER": "TESTOWNER 2C3948",
+   "OBJECTID": 18,
+   "PARCEL": "400229390",
+   "SITUS": ""
+  },
+  {
+   "CURRENT_OWNER": "TESTOWNER 270ED9",
+   "OBJECTID": 19,
+   "PARCEL": "400355086",
+   "SITUS": ""
+  },
+  {
+   "CURRENT_OWNER": "TESTOWNER DFE792 LLC",
+   "OBJECTID": 20,
+   "PARCEL": "400226332",
+   "SITUS": ""
+  },
+  {
+   "CURRENT_OWNER": "TESTOWNER DFE792 LLC",
+   "OBJECTID": 21,
+   "PARCEL": "400226340",
+   "SITUS": ""
+  },
+  {
+   "CURRENT_OWNER": "TESTOWNER DFE792 LLC",
+   "OBJECTID": 22,
+   "PARCEL": "400226359",
+   "SITUS": ""
+  },
+  {
+   "CURRENT_OWNER": "TESTOWNER DFE792 LLC",
+   "OBJECTID": 23,
+   "PARCEL": "400226367",
+   "SITUS": ""
+  },
+  {
+   "CURRENT_OWNER": "TESTOWNER FAA532",
+   "OBJECTID": 24,
+   "PARCEL": "400208784",
+   "SITUS": "TESTOWNER A6E899"
+  },
+  {
+   "CURRENT_OWNER": "TESTOWNER 78A19B LLC",
+   "OBJECTID": 25,
+   "PARCEL": "400237326",
+   "SITUS": ""
+  }
+ ],
+ "layer": "https://services3.arcgis.com/H1fomogcAqX4720J/ArcGIS/rest/services/PV1_ParcelManagement/FeatureServer/1",
+ "where": "1=1"
+}

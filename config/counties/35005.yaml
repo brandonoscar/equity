@@ -1,0 +1,27 @@
+source_id: nm.chaves.parcels
+state: NM
+# Chaves County (Roswell) hosted parcel layer ('This is an official Chaves County parcel layer which
+# contains legal and geographical information about the properties'), FeatureServer layer 90
+# 'Nov022026Parcels' (36,032 rows on 2026-11-25, OWNER_NAME filled on 36,009, data last edited
+# 2026-11-16): owner name, property address and the last deed's book/page. No mailing address or
+# values.
+layer_url: https://services3.arcgis.com/2P9mvTRBkjNHMsaa/arcgis/rest/services/Parcels/FeatureServer/90
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "005"}
+fields:
+  parcel_id: Name        # the parcel's uniform parcel code, '4134061055103000000'; AccountNo ('R002986') not mapped
+  owner1: OWNER_NAME
+  situs_line1: PROP_ADD
+  situs_state: {const: NM}
+  zoning: ZONE
+  deed_ref: BK_PG            # 'Bk 558 Pg 1039 WD'
+deed_ref_pattern: "(?i)\\bbk\\s*(?P<book>\\d+)\\s*pg\\s*(?P<page>\\d+)"
+value_basis: "No value or tax-year fields in this layer (owner name, property address, legal description, deed reference and zone only)."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=e9c0b00b491e477bafc9124843e87656
+  summary: "Chaves County public hosted feature service on ArcGIS Online (item owner mbrinkchaves; snippet 'This is an official Chaves County parcel layer ... This layer is for references only and MUST NOT be used for any legal purposes.'), no login, token or fee. licenseInfo and accessInformation empty (read 2026-11-25); no resale, redistribution or mailing-list clause. services3.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

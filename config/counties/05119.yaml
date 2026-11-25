@@ -1,0 +1,36 @@
+source_id: ar.pulaski.parcels
+state: AR
+# City of Little Rock GIS 'Tax_Parcel_Boundary' MapServer layer 0 (iteminfo 'Pulaski County Tax
+# Parcel Boundaries'; 180,188 rows on 2026-11-25, OWNERNAME and OWNER_ADD1 filled on 180,172, all
+# CAMADATE 2026-11-01): countywide Pulaski County parcels with the county CAMA owner name, owner
+# mailing street and ZIP, site address and values. Adds the owner mailing address that the state
+# CAMP layer (ar.statewide.parcels) lacks. OWNER_ADD2 is filled on 80 rows only (a second line).
+# There is no mailing city column.
+layer_url: https://maps.littlerock.gov/server/rest/services/Tax_Parcel_Boundary/MapServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 20000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "119"}
+fields:
+  parcel_id: PIN         # '44L1450005300'; CAMA_PIN is the dashed form
+  owner1: OWNERNAME
+  mail_line1: OWNER_ADD1
+  mail_line2: OWNER_ADD2
+  mail_zip: OWNER_ZIP
+  situs_line1: ADRLABEL
+  situs_city: ADRCITY
+  situs_state: {const: AR}
+  situs_zip: ADRZIP5
+  land_use_code: PARCELTYPE   # 'RI', 'RV', 'CI' ...
+  land_value: LANDVALUE
+  bldg_value: IMPVALUE
+  total_value: TOTALVALUE
+  assessed_value: ASSESSVAL
+  tax_year: {year_of: CAMADATE}
+value_basis: "Same columns as the state CAMP layer: LANDVALUE / IMPVALUE / TOTALVALUE = county CAMA appraised values; ASSESSVAL = assessed (Arkansas assesses at 20% of market, e.g. 16,000 -> 3,200); tax year = year of CAMADATE (CAMA extract date, 2026-11-01 on every row), as in ar.statewide.parcels. TOTEFFVAL not mapped."
+terms:
+  url: https://maps.littlerock.gov/server/rest/services/Tax_Parcel_Boundary/MapServer
+  summary: "City of Little Rock public ArcGIS Server MapServer ('Pulaski County Tax Parcel Boundaries'), no login, token or fee. iteminfo licenseInfo and accessInformation are empty and the layer has no copyright text (read 2026-11-25); no use-constraint text found. maps.littlerock.gov/robots.txt answers HTTP 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

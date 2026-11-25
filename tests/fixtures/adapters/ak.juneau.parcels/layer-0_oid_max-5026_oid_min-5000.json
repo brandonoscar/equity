@@ -1,0 +1,292 @@
+{
+ "attributes": [
+  {
+   "AE_BLDGVAL": "234,400",
+   "AE_CAMAVAL": "343,700",
+   "AE_LANDVAL": "109,300",
+   "AE_TAXYR": " 2026",
+   "FID": 5000,
+   "mail_addrs": "TESTOWNER 4578C7",
+   "owners": "TESTOWNER 378541",
+   "site_addrs": "TESTOWNER 2555A3",
+   "tax_id": "5B2501100020"
+  },
+  {
+   "AE_BLDGVAL": "231,500",
+   "AE_CAMAVAL": "342,700",
+   "AE_LANDVAL": "111,200",
+   "AE_TAXYR": " 2026",
+   "FID": 5001,
+   "mail_addrs": "TESTOWNER F95A49",
+   "owners": "TESTOWNER 1375B5",
+   "site_addrs": "TESTOWNER 196CB1",
+   "tax_id": "5B2501090130"
+  },
+  {
+   "AE_BLDGVAL": "255,200",
+   "AE_CAMAVAL": "366,400",
+   "AE_LANDVAL": "111,200",
+   "AE_TAXYR": " 2026",
+   "FID": 5002,
+   "mail_addrs": "TESTOWNER 2AFE6D",
+   "owners": "TESTOWNER 6E55FD",
+   "site_addrs": "TESTOWNER B43EB7",
+   "tax_id": "5B2501090120"
+  },
+  {
+   "AE_BLDGVAL": "267,000",
+   "AE_CAMAVAL": "379,100",
+   "AE_LANDVAL": "112,100",
+   "AE_TAXYR": " 2026",
+   "FID": 5003,
+   "mail_addrs": "TESTOWNER D24C69",
+   "owners": "TESTOWNER 57EB3D",
+   "site_addrs": "TESTOWNER AD33FC",
+   "tax_id": "5B2501090090"
+  },
+  {
+   "AE_BLDGVAL": "360,300",
+   "AE_CAMAVAL": "470,600",
+   "AE_LANDVAL": "110,300",
+   "AE_TAXYR": " 2026",
+   "FID": 5004,
+   "mail_addrs": "TESTOWNER E85960",
+   "owners": "TESTOWNER 1C4FC8",
+   "site_addrs": "TESTOWNER D72FAF",
+   "tax_id": "5B2501090110"
+  },
+  {
+   "AE_BLDGVAL": "261,700",
+   "AE_CAMAVAL": "379,600",
+   "AE_LANDVAL": "117,900",
+   "AE_TAXYR": " 2026",
+   "FID": 5005,
+   "mail_addrs": "TESTOWNER CDEB27",
+   "owners": "TESTOWNER 218DEA",
+   "site_addrs": "TESTOWNER E4288E",
+   "tax_id": "5B2501090080"
+  },
+  {
+   "AE_BLDGVAL": "0",
+   "AE_CAMAVAL": "55,000",
+   "AE_LANDVAL": "55,000",
+   "AE_TAXYR": " 2026",
+   "FID": 5006,
+   "mail_addrs": " ",
+   "owners": "TESTOWNER 89539D",
+   "site_addrs": " ",
+   "tax_id": "3B3518320030"
+  },
+  {
+   "AE_BLDGVAL": "437,800",
+   "AE_CAMAVAL": "538,700",
+   "AE_LANDVAL": "100,900",
+   "AE_TAXYR": " 2026",
+   "FID": 5007,
+   "mail_addrs": "TESTOWNER 55998E",
+   "owners": "TESTOWNER 8DB786",
+   "site_addrs": "TESTOWNER EE3C7A",
+   "tax_id": "5B2501090070"
+  },
+  {
+   "AE_BLDGVAL": "383,400",
+   "AE_CAMAVAL": "493,700",
+   "AE_LANDVAL": "110,300",
+   "AE_TAXYR": " 2026",
+   "FID": 5008,
+   "mail_addrs": "TESTOWNER 37EA2F",
+   "owners": "TESTOWNER 6B6E05",
+   "site_addrs": "TESTOWNER 91E178",
+   "tax_id": "5B2501090100"
+  },
+  {
+   "AE_BLDGVAL": "240,600",
+   "AE_CAMAVAL": "352,700",
+   "AE_LANDVAL": "112,100",
+   "AE_TAXYR": " 2026",
+   "FID": 5009,
+   "mail_addrs": "TESTOWNER 779E97",
+   "owners": "TESTOWNER ACC62F",
+   "site_addrs": "TESTOWNER 07AEE3",
+   "tax_id": "5B2501090060"
+  },
+  {
+   "AE_BLDGVAL": "290,000",
+   "AE_CAMAVAL": "402,100",
+   "AE_LANDVAL": "112,100",
+   "AE_TAXYR": " 2026",
+   "FID": 5010,
+   "mail_addrs": "TESTOWNER B64012",
+   "owners": "TESTOWNER DEBAE5",
+   "site_addrs": "TESTOWNER D345EB",
+   "tax_id": "5B2501090050"
+  },
+  {
+   "AE_BLDGVAL": "262,200",
+   "AE_CAMAVAL": "374,300",
+   "AE_LANDVAL": "112,100",
+   "AE_TAXYR": " 2026",
+   "FID": 5011,
+   "mail_addrs": "TESTOWNER 657793",
+   "owners": "TESTOWNER DCA52F",
+   "site_addrs": "TESTOWNER 7148E0",
+   "tax_id": "5B2501090040"
+  },
+  {
+   "AE_BLDGVAL": "225,500",
+   "AE_CAMAVAL": "337,600",
+   "AE_LANDVAL": "112,100",
+   "AE_TAXYR": " 2026",
+   "FID": 5012,
+   "mail_addrs": "TESTOWNER 6BD6D2",
+   "owners": "TESTOWNER 4A990F",
+   "site_addrs": "TESTOWNER 8D266D",
+   "tax_id": "5B2501090030"
+  },
+  {
+   "AE_BLDGVAL": "369,000",
+   "AE_CAMAVAL": "481,100",
+   "AE_LANDVAL": "112,100",
+   "AE_TAXYR": " 2026",
+   "FID": 5013,
+   "mail_addrs": "TESTOWNER C6D806",
+   "owners": "TESTOWNER 734304",
+   "site_addrs": "TESTOWNER 464947",
+   "tax_id": "5B2501090020"
+  },
+  {
+   "AE_BLDGVAL": "312,300",
+   "AE_CAMAVAL": "468,900",
+   "AE_LANDVAL": "156,600",
+   "AE_TAXYR": " 2026",
+   "FID": 5014,
+   "mail_addrs": "TESTOWNER E7FEE0",
+   "owners": "TESTOWNER 4C7D1D",
+   "site_addrs": "TESTOWNER 6344C6",
+   "tax_id": "5B2501280060"
+  },
+  {
+   "AE_BLDGVAL": "442,100",
+   "AE_CAMAVAL": "599,000",
+   "AE_LANDVAL": "156,900",
+   "AE_TAXYR": " 2026",
+   "FID": 5015,
+   "mail_addrs": "TESTOWNER 6723BB",
+   "owners": "TESTOWNER EF761C",
+   "site_addrs": "TESTOWNER 50697E",
+   "tax_id": "5B2501280040"
+  },
+  {
+   "AE_BLDGVAL": "191,600",
+   "AE_CAMAVAL": "296,800",
+   "AE_LANDVAL": "105,200",
+   "AE_TAXYR": " 2026",
+   "FID": 5016,
+   "mail_addrs": "TESTOWNER B95123",
+   "owners": "TESTOWNER 94A279",
+   "site_addrs": "TESTOWNER 24A854",
+   "tax_id": "5B2501080100"
+  },
+  {
+   "AE_BLDGVAL": "30,200",
+   "AE_CAMAVAL": "90,200",
+   "AE_LANDVAL": "60,000",
+   "AE_TAXYR": " 2026",
+   "FID": 5017,
+   "mail_addrs": " ",
+   "owners": "TESTOWNER 89CC05",
+   "site_addrs": " ",
+   "tax_id": "3B3518020060"
+  },
+  {
+   "AE_BLDGVAL": "442,900",
+   "AE_CAMAVAL": "586,600",
+   "AE_LANDVAL": "143,700",
+   "AE_TAXYR": " 2026",
+   "FID": 5018,
+   "mail_addrs": "TESTOWNER 78E3AE",
+   "owners": "TESTOWNER 3310CC",
+   "site_addrs": "TESTOWNER 9974E5",
+   "tax_id": "5B2502000030"
+  },
+  {
+   "AE_BLDGVAL": "357,600",
+   "AE_CAMAVAL": "462,900",
+   "AE_LANDVAL": "105,300",
+   "AE_TAXYR": " 2026",
+   "FID": 5019,
+   "mail_addrs": "TESTOWNER F01D88",
+   "owners": "TESTOWNER C91F82",
+   "site_addrs": "TESTOWNER 70DC5A",
+   "tax_id": "5B2501080090"
+  },
+  {
+   "AE_BLDGVAL": "306,500",
+   "AE_CAMAVAL": "642,800",
+   "AE_LANDVAL": "336,300",
+   "AE_TAXYR": " 2026",
+   "FID": 5020,
+   "mail_addrs": "TESTOWNER 3B92B5",
+   "owners": "TESTOWNER 352CFC",
+   "site_addrs": "TESTOWNER 195766",
+   "tax_id": "8B3301000171"
+  },
+  {
+   "AE_BLDGVAL": "264,800",
+   "AE_CAMAVAL": "396,300",
+   "AE_LANDVAL": "131,500",
+   "AE_TAXYR": " 2026",
+   "FID": 5021,
+   "mail_addrs": "TESTOWNER F379EC",
+   "owners": "TESTOWNER F1CFAE",
+   "site_addrs": "TESTOWNER 9A8078",
+   "tax_id": "5B2501080080"
+  },
+  {
+   "AE_BLDGVAL": "406,700",
+   "AE_CAMAVAL": "540,500",
+   "AE_LANDVAL": "133,800",
+   "AE_TAXYR": " 2026",
+   "FID": 5022,
+   "mail_addrs": "TESTOWNER DCA38C",
+   "owners": "TESTOWNER 1BDA5E",
+   "site_addrs": "TESTOWNER 3E6724",
+   "tax_id": "5B2501280022"
+  },
+  {
+   "AE_BLDGVAL": "220,600",
+   "AE_CAMAVAL": "352,200",
+   "AE_LANDVAL": "131,600",
+   "AE_TAXYR": " 2026",
+   "FID": 5023,
+   "mail_addrs": "TESTOWNER A4BA4B",
+   "owners": "TESTOWNER 583FA1",
+   "site_addrs": "TESTOWNER 0A0949",
+   "tax_id": "5B2501080070"
+  },
+  {
+   "AE_BLDGVAL": "0",
+   "AE_CAMAVAL": "1,338,600",
+   "AE_LANDVAL": "1,338,600",
+   "AE_TAXYR": " 2026",
+   "FID": 5024,
+   "mail_addrs": "TESTOWNER B13CC7",
+   "owners": "TESTOWNER C55092 LLC",
+   "site_addrs": "TESTOWNER 61E7CC",
+   "tax_id": "4B2301060011"
+  },
+  {
+   "AE_BLDGVAL": "396,400",
+   "AE_CAMAVAL": "534,300",
+   "AE_LANDVAL": "137,900",
+   "AE_TAXYR": " 2026",
+   "FID": 5025,
+   "mail_addrs": "TESTOWNER 28EA4C",
+   "owners": "TESTOWNER 98E016",
+   "site_addrs": "TESTOWNER 2A1B51",
+   "tax_id": "5B2502000020"
+  }
+ ],
+ "layer": "https://epv.ci.juneau.ak.us/arcgis/rest/services/prod/unc_property_layers_2b/MapServer/6",
+ "where": "FID>=5000 AND FID<5026"
+}
