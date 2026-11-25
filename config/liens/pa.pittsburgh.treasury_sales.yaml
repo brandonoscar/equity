@@ -1,0 +1,29 @@
+source_id: pa.pittsburgh.treasury_sales
+state: PA
+county_fips: "42003"   # Allegheny County (City of Pittsburgh)
+# City of Pittsburgh Treasurer's sale list, via WPRDC 'City Treasury Sales' (96 parcels on
+# 2026-11-25, refreshed 2026-11-19): tax-delinquent parcels the City exposes at its treasury
+# (tax) sale under the Second Class City Treasurer's Sale and Collection Act, with the sale
+# date and the delinquent city, county, school, library, PWSA water/sewer and parks taxes and
+# demolition and clean-and-lien costs (total_tax_due, loaded). No owner is named: each is owed
+# by the parcel's owner of record (parcel_on_lien). Dated by treasury_sale_date. pin (16
+# characters) is pa.allegheny.parcels PIN. Debt kind: tax_delinquency.
+api: ckan
+portal: https://data.wprdc.org
+resource_id: 6b2aa631-26e0-4d02-abe0-7fb87707210c   # City Treasury Sales
+single_partition: true
+date_field: treasury_sale_date
+uid: [pin, treasury_sale_date]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: City of Pittsburgh treasury (tax) sale parcel
+amount: total_tax_due
+parties:
+  - {role: creditor, const: City of Pittsburgh, person_names: false}
+parcel: {kind: pin, field: pin, county_fips: "42003"}
+extra_pii: [address]
+terms:
+  url: https://data.wprdc.org/dataset/city-treasury-sales
+  summary: "WPRDC (Western Pennsylvania Regional Data Center, University of Pittsburgh) dataset from the City of Pittsburgh Treasurer; WPRDC lists 'License not specified' (read 2026-11-25), no use restriction found. CKAN DataStore API; WPRDC robots.txt disallows /api/ for crawlers but states scripts and applications may use it (see equity.adapters.http SCRIPT_PERMISSIONS)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

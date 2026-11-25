@@ -1,0 +1,256 @@
+{
+ "dataset": "cni6-nr5g",
+ "rows": [
+  {
+   "addressoccupied": "Unavailable",
+   "city": "Clinton",
+   "propertyid": "46880",
+   "state": "MD",
+   "street_address": "7764 TEST ST",
+   "submitteddate": "2026-01-02T00:00:00.000",
+   "taxaccountnumber": "918375",
+   "zip_code": "20735"
+  },
+  {
+   "addressoccupied": "Unavailable",
+   "city": "Upper Marlboro",
+   "propertyid": "52245",
+   "state": "MD",
+   "street_address": "8749 TEST ST",
+   "submitteddate": "2026-01-02T00:00:00.000",
+   "taxaccountnumber": "0208926",
+   "zip_code": "20772"
+  },
+  {
+   "addressoccupied": "Unavailable",
+   "city": "Temple Hills",
+   "propertyid": "61383",
+   "state": "MD",
+   "street_address": "8311 TEST ST",
+   "submitteddate": "2026-01-03T00:00:00.000",
+   "taxaccountnumber": "506873",
+   "zip_code": "20748"
+  },
+  {
+   "addressoccupied": "Unavailable",
+   "city": "Bowie",
+   "propertyid": "61394",
+   "state": "MD",
+   "street_address": "5213 TEST ST",
+   "submitteddate": "2026-01-05T00:00:00.000",
+   "taxaccountnumber": "0770982",
+   "zip_code": "20721"
+  },
+  {
+   "addressoccupied": "Unavailable",
+   "city": "Hyattsville",
+   "propertyid": "61395",
+   "state": "MD",
+   "street_address": "8706 TEST ST",
+   "submitteddate": "2026-01-05T00:00:00.000",
+   "taxaccountnumber": "1457399",
+   "zip_code": "20785"
+  },
+  {
+   "addressoccupied": "Unavailable",
+   "city": "Hyattsville",
+   "propertyid": "39446",
+   "state": "MD",
+   "street_address": "5770 TEST ST",
+   "submitteddate": "2026-01-05T00:00:00.000",
+   "taxaccountnumber": "1947670",
+   "zip_code": "20783"
+  },
+  {
+   "addressoccupied": "Unavailable",
+   "city": "UPPER MARLBORO",
+   "propertyid": "61396",
+   "state": "MD",
+   "street_address": "1404 TEST ST",
+   "submitteddate": "2026-01-05T00:00:00.000",
+   "taxaccountnumber": "1488584",
+   "zip_code": "20774"
+  },
+  {
+   "addressoccupied": "Unavailable",
+   "city": "HYATTSVILLE",
+   "propertyid": "61397",
+   "state": "MD",
+   "street_address": "8620 TEST ST",
+   "submitteddate": "2026-01-05T00:00:00.000",
+   "taxaccountnumber": "1459874",
+   "zip_code": "20785"
+  },
+  {
+   "addressoccupied": "Unavailable",
+   "city": "Fort Washington",
+   "propertyid": "46530",
+   "state": "MD",
+   "street_address": "5226 TEST ST",
+   "submitteddate": "2026-01-05T00:00:00.000",
+   "taxaccountnumber": "1242916",
+   "zip_code": "20744"
+  },
+  {
+   "addressoccupied": "Unavailable",
+   "city": "Upper Marlboro",
+   "propertyid": "61398",
+   "state": "MD",
+   "street_address": "1125 TEST ST",
+   "submitteddate": "2026-01-05T00:00:00.000",
+   "taxaccountnumber": "0231266",
+   "zip_code": "20772"
+  },
+  {
+   "addressoccupied": "Unavailable",
+   "city": "TEMPLE HILLS",
+   "propertyid": "61399",
+   "state": "MD",
+   "street_address": "2647 TEST ST",
+   "submitteddate": "2026-01-05T00:00:00.000",
+   "taxaccountnumber": "1375922",
+   "zip_code": "20748"
+  },
+  {
+   "addressoccupied": "Unavailable",
+   "city": "Upper Marlboro",
+   "propertyid": "56882",
+   "state": "MD",
+   "street_address": "6050 TEST ST",
+   "submitteddate": "2026-01-05T00:00:00.000",
+   "taxaccountnumber": "5547663",
+   "zip_code": "20772"
+  },
+  {
+   "addressoccupied": "Unavailable",
+   "city": "UPPER MARLBORO",
+   "propertyid": "27527",
+   "state": "MD",
+   "street_address": "2231 TEST ST",
+   "submitteddate": "2026-01-05T00:00:00.000",
+   "taxaccountnumber": "1419878",
+   "zip_code": "20774"
+  },
+  {
+   "addressoccupied": "Unavailable",
+   "city": "UPPER MARLBORO",
+   "propertyid": "59445",
+   "state": "MD",
+   "street_address": "6874 TEST ST",
+   "submitteddate": "2026-01-05T00:00:00.000",
+   "taxaccountnumber": "1717552",
+   "zip_code": "20772"
+  },
+  {
+   "addressoccupied": "Unavailable",
+   "city": "Hyattsville",
+   "propertyid": "16990",
+   "state": "MD",
+   "street_address": "7812 TEST ST",
+   "submitteddate": "2026-01-06T00:00:00.000",
+   "taxaccountnumber": "1962976",
+   "zip_code": "20783"
+  },
+  {
+   "addressoccupied": "Unavailable",
+   "city": "Lanham",
+   "propertyid": "61400",
+   "state": "MD",
+   "street_address": "2948 TEST ST",
+   "submitteddate": "2026-01-06T00:00:00.000",
+   "taxaccountnumber": "1702075",
+   "zip_code": "20706"
+  },
+  {
+   "addressoccupied": "Unavailable",
+   "city": "Bowie",
+   "propertyid": "61401",
+   "state": "MD",
+   "street_address": "4817 TEST ST",
+   "submitteddate": "2026-01-06T00:00:00.000",
+   "taxaccountnumber": "1598903",
+   "zip_code": "20720"
+  },
+  {
+   "addressoccupied": "Unavailable",
+   "city": "Lanham",
+   "propertyid": "61402",
+   "state": "MD",
+   "street_address": "4460 TEST ST",
+   "submitteddate": "2026-01-06T00:00:00.000",
+   "taxaccountnumber": "2182251",
+   "zip_code": "20706"
+  },
+  {
+   "addressoccupied": "Unavailable",
+   "city": "Upper Marlboro",
+   "propertyid": "61403",
+   "state": "MD",
+   "street_address": "8450 TEST ST",
+   "submitteddate": "2026-01-06T00:00:00.000",
+   "taxaccountnumber": "1134964",
+   "zip_code": "20772"
+  },
+  {
+   "addressoccupied": "Unavailable",
+   "city": "Laurel",
+   "propertyid": "34315",
+   "state": "MD",
+   "street_address": "2181 TEST ST",
+   "submitteddate": "2026-01-06T00:00:00.000",
+   "taxaccountnumber": "1123868",
+   "zip_code": "20707"
+  },
+  {
+   "addressoccupied": "Unavailable",
+   "city": "Upper Marlboro",
+   "propertyid": "22622",
+   "state": "MD",
+   "street_address": "6916 TEST ST",
+   "submitteddate": "2026-01-06T00:00:00.000",
+   "taxaccountnumber": "1780071",
+   "zip_code": "20772"
+  },
+  {
+   "addressoccupied": "Unavailable",
+   "city": "Hyattsville",
+   "propertyid": "2425",
+   "state": "MD",
+   "street_address": "5087 TEST ST",
+   "submitteddate": "2026-01-06T00:00:00.000",
+   "taxaccountnumber": "2123715",
+   "zip_code": "20783"
+  },
+  {
+   "addressoccupied": "Unavailable",
+   "city": "FORT WASHINGTON",
+   "propertyid": "61404",
+   "state": "MD",
+   "street_address": "4337 TEST ST",
+   "submitteddate": "2026-01-06T00:00:00.000",
+   "taxaccountnumber": "1230066",
+   "zip_code": "20744"
+  },
+  {
+   "addressoccupied": "Unavailable",
+   "city": "TEMPLE HILLS",
+   "propertyid": "61405",
+   "state": "MD",
+   "street_address": "5587 TEST ST",
+   "submitteddate": "2026-01-06T00:00:00.000",
+   "taxaccountnumber": "0474759",
+   "zip_code": "20748"
+  },
+  {
+   "addressoccupied": "Unavailable",
+   "city": "BRANDYWINE",
+   "propertyid": "61406",
+   "state": "MD",
+   "street_address": "910 TEST ST",
+   "submitteddate": "2026-01-06T00:00:00.000",
+   "taxaccountnumber": "5705378",
+   "zip_code": "20613"
+  }
+ ],
+ "where": "(length(taxaccountnumber) between 6 and 7) AND submitteddate >= '2026-01-01T00:00:00' AND submitteddate < '2027-01-01T00:00:00'"
+}

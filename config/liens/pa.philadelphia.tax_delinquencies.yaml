@@ -1,0 +1,44 @@
+source_id: pa.philadelphia.tax_delinquencies
+state: PA
+county_fips: "42101"   # Philadelphia
+# City of Philadelphia Department of Revenue 'Real Estate Tax Delinquencies' (OpenDataPhilly,
+# hosted by maps.phl.data): every property with real estate tax still unpaid on January 1
+# of the year after it was due, including accounts in payment agreements, as of the June 2022
+# snapshot (YEAR_MONTH 202206, 54,401 rows; the layer was last edited 2023-06 and is not
+# refreshed). With the owner and co-owner, the owner mailing address, the principal,
+# penalty, interest and other charges and the total due (loaded), years owed, and the
+# sheriff-sale, bankruptcy and payment-agreement flags. Unpaid Philadelphia real estate tax
+# is a lien on the property (53 P.S. 7101 et seq.). Dated Jan 1 of the snapshot year (no
+# per-row date). OPA_NUMBER is a number that lost its leading zero on ~5,900 accounts:
+# zfill 9 gives pa.philadelphia.parcels parcel_number. Debt kind: tax_delinquency.
+api: arcgis
+layer_url: https://services.arcgis.com/fLeGjb7u4uXqeF9q/arcgis/rest/services/REAL_ESTATE_TAX_DELINQUENCIES/FeatureServer/0
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, OPA_NUMBER, STREET_ADDRESS, ZIP_CODE, OWNER, CO_OWNER, PRINCIPAL_DUE,
+         PENALTY_DUE, INTEREST_DUE, OTHER_CHARGES_DUE, TOTAL_DUE, IS_ACTIONABLE,
+         PAYMENT_AGREEMENT, NUM_YEARS_OWED, MOST_RECENT_YEAR_OWED, OLDEST_YEAR_OWED,
+         MAILING_ADDRESS, MAILING_CITY, MAILING_STATE, MAILING_ZIP, SHERIFF_SALE, BANKRUPTCY,
+         YEAR_MONTH]
+year_dates: [YEAR_MONTH]        # '202206' -> 2022-01-01
+date_field: YEAR_MONTH
+uid: OPA_NUMBER
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Philadelphia delinquent real estate tax (2022-06 snapshot)
+amount: TOTAL_DUE
+parties:
+  - role: debtor
+    name: OWNER
+    address: {line1: MAILING_ADDRESS, city: MAILING_CITY, state: MAILING_STATE, zip: MAILING_ZIP}
+  - role: debtor
+    name: CO_OWNER
+    address: {line1: MAILING_ADDRESS, city: MAILING_CITY, state: MAILING_STATE, zip: MAILING_ZIP}
+  - {role: creditor, const: City of Philadelphia, person_names: false}
+parcel: {kind: pin, field: OPA_NUMBER, zfill: 9, county_fips: "42101"}   # = pa.philadelphia.parcels
+extra_pii: [STREET_ADDRESS]
+terms:
+  url: https://www.arcgis.com/home/item.html?id=b8ac65c653b343739be21cb2773faace
+  summary: "City of Philadelphia open data (OpenDataPhilly; ArcGIS Online item 'REAL_ESTATE_TAX_DELINQUENCIES', owner maps.phl.data), public, no login, token or fee. No licenseInfo on the item (read 2026-11-25); OpenDataPhilly datasets are published under the City's open data terms (free use). services.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

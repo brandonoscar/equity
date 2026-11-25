@@ -1,0 +1,37 @@
+source_id: md.st_marys.tax_sale
+state: MD
+county_fips: "24037"   # St. Mary's County
+# St. Mary's County Treasurer annual tax sale list (FINAL_2026_LIST.xlsx, the accounts
+# advertised for the 2026-03-06 online tax lien sale, 188 accounts): the owner(s), property
+# address, legal description, deed liber/folio, State assessment and the total of all taxes
+# due (current and prior years, loaded as the amount). Unpaid Maryland property taxes are a
+# lien on the property sold at the county's tax sale (MD Tax-Property 14-804, 14-808). Owner
+# names marked '(METCOM ONLY)' owe only Metropolitan Commission water/sewer charges. The list
+# carries no per-row date: the date is the day it was read.
+# A debt list kept in config/deeds/ only for the `rewrite` key: STATE TAX ID '02-002795'
+# (district-account) is rewritten to the SDAT ACCTID '1902002795' that md.st_marys.parcels
+# keys (county code 19 + district + account). Debt kind: tax_lien.
+api: xlsx
+url: https://www.stmaryscountymd.gov/docs/FINAL_2026_LIST.xlsx
+header_row: 1
+listed_on: listed_on
+date_field: listed_on
+rewrite:
+  state_tax_id: {pattern: "^(\\d{2})-(\\d{6})$", replace: "19\\1\\2"}
+uid: state_tax_id
+doc_type: TAX_LIEN_STATE
+doc_type_raw: St. Mary's County 2026 tax sale account
+amount: total_due
+parties:
+  - role: debtor
+    name: owners_name_s
+    address: {line1: property_address, state_const: MD}   # the property
+  - {role: creditor, const: St. Mary's County Treasurer, person_names: false}
+parcel: {kind: pin, field: state_tax_id, county_fips: "24037"}   # = md.st_marys.parcels ACCTID
+extra_pii: [legal_description_1]
+terms:
+  url: https://www.stmaryscountymd.gov/Treasurer/TaxSaleAuction/
+  summary: "St. Mary's County Government (Treasurer) Annual Tax Sale Auction page, free Excel download, no login. No license or reuse terms stated (the list is the statutory tax sale advertisement). stmaryscountymd.gov robots.txt: /docs/ is disallowed for Bingbot only; no rule for other agents (read 2026-11-25)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

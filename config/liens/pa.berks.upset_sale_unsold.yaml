@@ -1,0 +1,32 @@
+source_id: pa.berks.upset_sale_unsold
+state: PA
+county_fips: "42011"   # Berks County
+# Berks County Tax Claim Bureau 'Active Sale List' (final, printed 2026-09-11): the parcels
+# still on the 2026-09-10/11 upset tax sale for delinquent real estate taxes (72 P.S.
+# 5860.601) once it closed, i.e. exposed and not redeemed or sold (~70 rows), with the owner
+# of record, property location, municipality and PIN. The upset bid columns do not align
+# with the header, so no amount is read. Dated by the 'Printed:' date. The file name changes
+# with each reprint, so the current link is taken from the tax sale page (link_from).
+# PIN# (14 digits, 'T..' suffix on trailers) is pa.berks.parcels PROPID. The county's sold
+# list is not loaded (it names the buyers, with e-mail and phone). Debt kind: tax_delinquency.
+api: pdf
+url: https://www.berkspa.gov/getmedia/59e839d7-2d57-4b31-9d83-d58b20c5d75d/Active-Sale-List-As-of-09-11-26-FINAL.pdf
+link_from: {page: "https://www.berkspa.gov/departments/tax-claim-bureau/tax-sale-information", pattern: 'Active-Sale-List[^"]*\.pdf$'}
+header: Property Owner
+as_of: {field: printed_on, after: "Printed:"}
+date_field: printed_on
+uid: pin
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Berks County upset tax sale parcel, unsold (2026)
+parties:
+  - role: debtor
+    name: property_owner
+    address: {line1: property_location, state_const: PA}   # the property
+  - {role: creditor, const: Berks County Tax Claim Bureau, person_names: false}
+parcel: {kind: pin, field: pin, county_fips: "42011"}
+terms:
+  url: https://www.berkspa.gov/departments/tax-claim-bureau/tax-sale-information
+  summary: "Berks County PA Tax Claim Bureau, free text PDF on berkspa.gov, no login. No license or reuse terms stated (tax sale lists are statutory public notices). berkspa.gov robots.txt has only a sitemap line (no disallow)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

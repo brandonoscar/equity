@@ -150,3 +150,26 @@ sources:
   mn.wright.tax_forfeited_land: tax_delinquency
   pa.cumberland.tax_sales: tax_delinquency
   ut.box_elder.tax_sale: tax_delinquency
+  # NY, MD, PA and MI county delinquent-tax, tax-sale and foreclosure lists (2026-11-25)
+  md.baltimore_city.in_rem_candidates: tax_lien
+  md.baltimore_city.tax_lien_certificate_sale: tax_lien
+  md.prince_georges.foreclosures: foreclosure
+  md.st_marys.tax_sale: tax_lien
+  mi.kalamazoo.delinquent_2024: tax_delinquency
+  mi.kalamazoo.foreclosed_2022: foreclosure
+  mi.kalamazoo.forfeited_2018: tax_delinquency
+  mi.kalamazoo.forfeited_2020: tax_delinquency
+  mi.kalamazoo.forfeited_2023: tax_delinquency
+  mi.kalamazoo.forfeited_2024: tax_delinquency
+  ny.tompkins.foreclosure_parcels: tax_delinquency
+  pa.allegheny.delinquent_real_estate_taxes: tax_delinquency
+  pa.berks.upset_sale_unsold: tax_delinquency
+  pa.montgomery.judicial_sale: tax_delinquency
+  pa.montgomery.upset_sale: tax_delinquency
+  pa.philadelphia.tax_delinquencies: tax_delinquency
+  pa.pittsburgh.tax_delinquency: tax_delinquency
+  pa.pittsburgh.treasury_sales: tax_delinquency
+  pa.washington.judicial_sales: tax_delinquency
+  pa.washington.repository_sales: tax_delinquency
+  pa.washington.upset_sales: tax_delinquency
+  pa.west_chester.upset_sale: tax_delinquency

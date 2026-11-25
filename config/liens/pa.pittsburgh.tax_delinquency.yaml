@@ -1,0 +1,30 @@
+source_id: pa.pittsburgh.tax_delinquency
+state: PA
+county_fips: "42003"   # Allegheny County (City of Pittsburgh)
+# City of Pittsburgh Department of Finance property tax delinquency, via WPRDC 'City of
+# Pittsburgh Property Tax Delinquency' (26,329 parcels on 2026-11-25, refreshed 2026-11-19):
+# parcels with unpaid City real estate tax, the current-year delinquent tax and the prior
+# years' delinquent tax and number of years. No owner is named: each is owed by the
+# parcel's owner of record (parcel_on_lien). Amount = current + prior delinquent tax. No
+# per-row date: the date is the day the list was read. pin (16 characters) is
+# pa.allegheny.parcels PIN. Debt kind: tax_delinquency.
+api: ckan
+portal: https://data.wprdc.org
+resource_id: ed0d1550-c300-4114-865c-82dc7c23235b   # Tax Delinquency
+single_partition: true
+listed_on: listed_on
+date_field: listed_on
+uid: pin
+doc_type: TAX_LIEN_STATE
+doc_type_raw: City of Pittsburgh delinquent real estate tax
+amount: [current_delq_tax, prior_delq_tax]
+parties:
+  - {role: creditor, const: City of Pittsburgh, person_names: false}
+parcel: {kind: pin, field: pin, county_fips: "42003"}
+extra_pii: [address]
+terms:
+  url: https://data.wprdc.org/dataset/city-of-pittsburgh-property-tax-delinquency
+  summary: "WPRDC (Western Pennsylvania Regional Data Center, University of Pittsburgh) dataset from the City of Pittsburgh Department of Finance, Creative Commons Attribution (attribution required; read 2026-11-25). CKAN DataStore API; WPRDC robots.txt disallows /api/ for crawlers but states scripts and applications may use it (see equity.adapters.http SCRIPT_PERMISSIONS)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

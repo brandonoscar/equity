@@ -1,0 +1,33 @@
+source_id: pa.west_chester.upset_sale
+state: PA
+county_fips: "42029"   # Chester County (Borough of West Chester)
+# Borough of West Chester GIS 'upset_sale_properties': West Chester parcels on the Chester
+# County Tax Claim Bureau upset tax sale list for property taxes delinquent two years or more
+# (72 P.S. 5860.601); 21 rows on 2026-11-25 (edited 2026-07-24), with the owner of record and
+# owner mailing address. No amount and no date: the date is the day the list was read.
+# parcel_uid ('1-9-1190') is the Chester County UPI, pa.chester.parcels UPI (checked).
+# Debt kind: tax_delinquency.
+api: arcgis
+layer_url: https://services9.arcgis.com/dEM0v3itWrU2mnNn/arcgis/rest/services/upset_sale_properties/FeatureServer/1
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, parcel_uid, situs_addr1, owner_name, owner_addr1, owner_addr2, owner_city,
+         owner_state, owner_zipcode, parcel_class, total_value]
+listed_on: listed_on
+date_field: listed_on
+uid: parcel_uid
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Chester County upset tax sale parcel (Borough of West Chester)
+parties:
+  - role: debtor
+    name: owner_name
+    address: {line1: [owner_addr1, owner_addr2], city: owner_city, state: owner_state, zip: owner_zipcode}
+  - {role: creditor, const: Chester County Tax Claim Bureau, person_names: false}
+parcel: {kind: pin, field: parcel_uid, county_fips: "42029"}
+extra_pii: [situs_addr1]
+terms:
+  url: https://www.arcgis.com/home/item.html?id=1ce83e27feda483caf09e9e2c6e9ed31
+  summary: "Borough of West Chester PA ArcGIS Online org (owner nfink_West_ChesterGIS), public hosted layer 'upset_sale_properties', no login, token or fee. No licenseInfo or description (read 2026-11-25); upset sale lists are public notices. services9.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

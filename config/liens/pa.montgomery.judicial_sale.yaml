@@ -1,0 +1,29 @@
+source_id: pa.montgomery.judicial_sale
+state: PA
+county_fips: "42091"   # Montgomery County PA
+# Montgomery County PA Tax Claim Bureau '2026 Judicial Sale List' (2026-08-07): parcels not
+# sold at the 2025-or-earlier upset sales for delinquent real estate taxes, exposed free and
+# clear by court order at the 2026-08-20 judicial sale (72 P.S. 5860.610); ~20 rows with the
+# owner of record and the property location. The minimum bid prints on its own line, so no
+# amount is read. No per-row date: the date is the day the list was read. Parcel with dashes
+# and spaces removed is pa.montgomery.parcels PARCEL. Debt kind: tax_delinquency.
+api: pdf
+url: https://assets.montgomerycountypa.gov/files/2026-08/2026%20Judicial%20Sale%20List%208.7.26.pdf
+header: Municipality
+listed_on: listed_on
+date_field: listed_on
+uid: sale_no
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Montgomery County PA judicial tax sale parcel (2026)
+parties:
+  - role: debtor
+    name: owner
+    address: {line1: boa_location, state_const: PA}   # the property
+  - {role: creditor, const: Montgomery County Tax Claim Bureau, person_names: false}
+parcel: {kind: pin, field: parcel, strip: "- ", county_fips: "42091"}
+terms:
+  url: https://www.montgomerycountypa.gov/departments/tax-claim-bureau/tax-sales/judicial-sale
+  summary: "Montgomery County PA Tax Claim Bureau public sale notice, a free text PDF on assets.montgomerycountypa.gov, no login. No license or reuse terms stated (tax sale notices are statutory public advertisements). assets.montgomerycountypa.gov/robots.txt answers 403 AccessDenied (RFC 9309: 4xx = no rules, allowed); www.montgomerycountypa.gov/robots.txt disallows *.pdf on that host only."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

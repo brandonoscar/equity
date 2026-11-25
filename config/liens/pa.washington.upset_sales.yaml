@@ -1,0 +1,33 @@
+source_id: pa.washington.upset_sales
+state: PA
+county_fips: "42125"   # Washington County PA
+# Washington County PA Tax Claim Bureau upset tax sale list: parcels with property taxes
+# delinquent for two years or more (72 P.S. 5860.601), offered at the 2026-09-30 upset sale;
+# 266 rows on 2026-11-25 with the owner of record and owner mailing address. No amount is
+# published. Dated by saleDate. PIN is pa.washington.parcels PIN. Debt kind: tax_delinquency.
+api: arcgis
+layer_url: https://services2.arcgis.com/LgK9DpUhNjdU0HLy/arcgis/rest/services/Upset_Sales_of_Washington_County_PA/FeatureServer/1
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, PIN, MCN, legdat_adrno, legdat_adrdir, legdat_adrstr, legdat_adrsuf,
+         owndat_own1, owndat_own2, owndat_addr1, owndat_addr2, owndat_cityname,
+         owndat_statecode, owndat_zip1, saleDate]
+date_field: saleDate
+uid: PIN
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Washington County PA upset tax sale parcel
+parties:
+  - role: debtor
+    name: owndat_own1
+    address: {line1: [owndat_addr1, owndat_addr2], city: owndat_cityname, state: owndat_statecode, zip: owndat_zip1}
+  - role: debtor
+    name: owndat_own2
+  - {role: creditor, const: Washington County Tax Claim Bureau, person_names: false}
+parcel: {kind: pin, field: PIN, county_fips: "42125"}
+extra_pii: [legdat_adrno, legdat_adrstr]
+terms:
+  url: https://www.arcgis.com/home/item.html?id=c6fbda2f17c149dfa75091b602bd57a8
+  summary: "Washington County PA ArcGIS Online item 'Upset Sales of Washington County PA' (owner jursachr_washco), public, no login, token or fee. No licenseInfo or description (read 2026-11-25); tax sale lists are public notices. services2.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

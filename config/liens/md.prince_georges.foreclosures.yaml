@@ -1,0 +1,34 @@
+source_id: md.prince_georges.foreclosures
+state: MD
+county_fips: "24033"   # Prince George's County
+# Prince George's County 'County Foreclosures' (Foreclosed Property Registry): residential
+# properties in foreclosure registered with the county since 2009 (78,740 rows on 2026-11-25,
+# 49,772 distinct accounts; updated weekly), with the State tax account, property address
+# and the date the registration was submitted. No owner, lender or amount is published:
+# each is owed by the account's owner of record when it was registered (parcel_on_lien).
+# taxaccountnumber is the seven-digit State account that md.prince_georges.parcels keys
+# ("24033-<account>"; '477067' = '0477067', hence zfill 7); the ~900 rows whose account is
+# not six or seven digits (1-5 or 10-11 characters, bad data) are left out by the where.
+# Loaded like the other foreclosure lists (LIS_PENDENS): counted, not added to open amounts.
+# Debt kind: foreclosure.
+portal: https://data.princegeorgescountymd.gov
+dataset: cni6-nr5g
+where: "length(taxaccountnumber) between 6 and 7"
+order_by: [submitteddate, ":id"]
+select: [propertyid, taxaccountnumber, submitteddate, street_address, city, state, zip_code,
+         addressoccupied]
+date_field: submitteddate
+partition: year
+first_year: 2009
+uid: [taxaccountnumber, submitteddate]   # one registration; propertyid is the building (condos share it)
+doc_type: LIS_PENDENS
+doc_type_raw: Prince George's County foreclosed property registration
+parties: []
+parcel: {kind: pin, field: taxaccountnumber, zfill: 7, county_fips: "24033"}
+extra_pii: [street_address]
+terms:
+  url: https://data.princegeorgescountymd.gov/Urban-Planning/County-Foreclosures/cni6-nr5g
+  summary: "Prince George's County Open Data (Socrata) dataset cni6-nr5g 'County Foreclosures', public, no login or app token, updated weekly. No license or use restriction on the dataset (read 2026-11-25). data.princegeorgescountymd.gov robots.txt allows /resource/ (Crawl-delay: 1)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free
