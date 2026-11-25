@@ -13,7 +13,9 @@ order_by: _row            # record index in the county's .dbf, added by the adap
 min_interval_s: 1.0
 county: {field: FIPS, format: fips5}
 fields:
-  parcel_id: PROP_ID      # appraisal district property id
+  # Appraisal district property id. Some 2026 county files leave PROP_ID blank and carry the
+  # district id in GEO_ID (Navarro: all 46,146 PROP_ID empty, GEO_ID = the CAD's Parcel_ID).
+  parcel_id: {first_of: [PROP_ID, GEO_ID]}
   owner1: OWNER_NAME
   mail_line1: MAIL_LINE1
   mail_line2: MAIL_LINE2

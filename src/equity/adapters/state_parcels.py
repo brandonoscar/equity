@@ -11,7 +11,8 @@ Config keys (see config/states/README.md):
   fields: {parcel_id, owner1, owner2, mail_line1, mail_line2, mail_city, mail_state, mail_zip,
            land_value, bldg_value, total_value, assessed_value, tax_year, deed_book, deed_page}
            each value a source field name, {const: value}, {year_of: date field},
-           [key parts] (joined with '-') or {join: [fields]} (non-empty parts, space-joined);
+           [key parts] (joined with '-'), {join: [fields]} (non-empty parts, space-joined)
+           or {first_of: [fields]} (the first non-empty one);
            tax_year may also be {as_retrieved: true}: the layer has no roll-year field and
            publishes current values, so the values are recorded as observed on the retrieval
            date (tax_year = that date's year, valid_from = that date, never a guessed Jan 1)
@@ -236,6 +237,8 @@ class StateConfig:
                   if isinstance(v, dict) and "year_of" in v}  # fmt: skip
         names |= {str(x) for v in self.fields.values()
                   if isinstance(v, dict) and "join" in v for x in v["join"]}  # fmt: skip
+        names |= {str(x) for v in self.fields.values()
+                  if isinstance(v, dict) and "first_of" in v for x in v["first_of"]}  # fmt: skip
         for i in range(self.layer_count):
             spec = self.county_spec(i)
             if "field" in spec:
@@ -596,6 +599,10 @@ class StateParcelAdapter(ArcGISCountyAdapter):
             if ms is None:
                 return None
             return datetime.fromtimestamp(int(ms) / 1000, tz=UTC).year
+        if isinstance(spec, dict) and "first_of" in spec:
+            # Fallback columns: the first non-empty one (e.g. a district id that a compiled
+            # layer leaves blank in some counties and carries in another column).
+            return next((v for f in spec["first_of"] if _text(v := attrs.get(str(f)))), None)
         if isinstance(spec, dict) and "join" in spec:
             # Name parts in separate fields (e.g. [LASTNAME, FIRSTNAME]): the non-empty ones,
             # space-joined; None when all are empty.

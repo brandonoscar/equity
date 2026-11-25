@@ -685,3 +685,13 @@ def test_as_retrieved_records_values_on_the_retrieval_date(tmp_path: Path) -> No
     rows = [r for t, r in out if t == "parcel_assessment"]
     assert [(r["parcel_uid"], r["tax_year"], r["valid_from"], r["appraised_total"])
             for r in rows] == [("54061-1", 2026, date(2026, 11, 15), "250000.00")]  # fmt: skip
+
+
+def test_first_of_takes_the_first_non_empty_column(tmp_path: Path) -> None:
+    fields = {"parcel_id": {"first_of": ["PROP", "GEO"]}, "owner1": "OWN"}
+    cls = adapter_for(load_config(_cfg(tmp_path, fields=fields)))
+    assert {"PROP", "GEO"} <= set(cls.fields)
+    rows = [{"OID": 1, "PROP": " ", "GEO": "G-7", "CO": "061", "OWN": "A"},
+            {"OID": 2, "PROP": "P-8", "GEO": "G-8", "CO": "061", "OWN": "B"}]  # fmt: skip
+    out = _rows(cls, rows)
+    assert sorted(r["parcel_uid"] for t, r in out if t == "parcel") == ["54061-G-7", "54061-P-8"]
