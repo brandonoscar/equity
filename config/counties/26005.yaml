@@ -1,0 +1,32 @@
+source_id: mi.allegan.parcels
+state: MI
+# Allegan County (MI) GIS Enterprise portal, hosted layer 'ParcelLayer_November2026_3' (the
+# county publishes one parcel snapshot per update, e.g. ParcelLayer_September2026,
+# ParcelLayer_June2026_3; 69,460 rows on 2026-11-25; pnum and ownername1 filled on 67,659):
+# parcels joined to the BS&A assessing export: owner names, owner mailing address, property
+# address. The stable-named layers on the same server are older (Allegan_County_Tax_Parcels:
+# May 2024, owners only) or answer HTTP 500 (Hosted/Parcels).
+layer_url: https://gis.allegancounty.org/server/rest/services/Hosted/ParcelLayer_November2026_3/FeatureServer/0
+order_by: objectid
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "005"}
+fields:
+  parcel_id: pnum        # '14-001-018-02'; null on 1,801 polygons with no assessing record
+  owner1: ownername1
+  owner2: ownername2
+  mail_line1: ownerstreetaddr
+  mail_city: ownercity
+  mail_state: ownerstate
+  mail_zip: ownerzip
+  situs_line1: propstreetcombined
+  situs_city: propcity
+  situs_state: propstate
+  situs_zip: propzip
+value_basis: "The layer has no value fields, so no assessment facts are emitted. ownercareof (in-care-of line) is not mapped. The layer is a dated snapshot: point layer_url at the newest ParcelLayer_<Month><Year> service when the county publishes one."
+terms:
+  url: https://gis.allegancounty.org/portal/home/item.html?id=e94fce64f541499da586aa56ff4845b2
+  summary: "Allegan County (MI) GIS ArcGIS Enterprise (gis.allegancounty.org), public hosted feature service ParcelLayer_November2026_3 (feeds the county Parcel Viewer, with links to BS&A Online); no login, token or fee. No licence or use-restriction text on the service or its items (read 2026-11-25). gis.allegancounty.org/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

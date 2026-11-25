@@ -1,0 +1,28 @@
+source_id: ga.forsyth.parcels
+state: GA
+# Forsyth County (GA) tax parcels as published in the county's EnerGov parcel/address map
+# service (105,620 rows on 2026-11-25; OWNERNME1 filled on 105,501; PARCELID null on 2):
+# owner names, owner postal street/city/state, property street address. The public
+# Tax_Parcel layer on the same server carries values and the postal ZIP but no owner name.
+layer_url: https://geo.forsythco.com/gis/rest/services/EnerGov/EnerGovParcelAddressMapService/MapServer/1
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 5000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "117"}
+use_restrictions: [no_resale]
+fields:
+  parcel_id: PARCELID    # '184   270' (fixed-width; whitespace removed in the key)
+  owner1: OWNERNME1
+  owner2: OWNERNME2      # the co-owner on sampled rows
+  mail_line1: PSTLADDRESS
+  mail_city: PSTLCITY
+  mail_state: PSTLSTATE  # the layer has no postal ZIP (Public/Tax_Parcel has PSTLZIP5)
+  situs_line1: SITEADDRESS
+  situs_state: {const: GA}
+value_basis: "The layer has no value fields, so no assessment facts are emitted. TAXYEAR holds 2026 and 2027 (the 2027 working digest is already loaded in November). Values (LNDVALUE, CNTASSDVAL, CNTTXBLVAL) are on the separate Public/Tax_Parcel layer, which has no owner name; joining the two is not done here."
+terms:
+  url: https://geo.forsythco.com/gis/rest/services/Public/Tax_Parcel/MapServer/info/iteminfo
+  summary: "Forsyth County (GA) ArcGIS Server, EnerGov/EnerGovParcelAddressMapService layer TaxParcels (copyright 'Forsyth County Planning & Development Department'); public MapServer, no login, token or fee. That service has no licence text; the county's Public/Tax_Parcel item (same parcels, GIS and Tax Assessment departments) says 'Any sale of this map or information contained on this map is expressly prohibited except by written permission' of the county: recorded as no_resale. geo.forsythco.com/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

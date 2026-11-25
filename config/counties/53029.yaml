@@ -1,0 +1,37 @@
+source_id: wa.island.parcels
+state: WA
+# Island County (WA) ArcGIS Online item 'Parcels' (owner IslandCountyGISCoordinator,
+# accessInformation 'Island County'; exported nightly from the Assessor's parcel fabric and
+# joined to owner, value and size attributes; 56,617 rows on 2026-11-25; taxpayer filled on
+# 56,433): taxpayer (owner) name, mailing address, physical address, values.
+layer_url: https://services6.arcgis.com/Q2crTJYujvn27IJC/arcgis/rest/services/Parcels/FeatureServer/0
+order_by: OBJECTID_1
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "029"}
+use_restrictions: [no_commercial_name_address_lists]
+fields:
+  parcel_id: ParcelNo    # 'R23020-419-1900'
+  owner1: taxpayer       # 'WILDEMAN, MICHAEL & EMILY WILDEMAN' (the layer's only owner field)
+  mail_line1: mailing_addr1
+  mail_line2: mailing_addr2   # mailing_addr3 (blank on sampled rows) is not mapped
+  mail_city: mailing_addr_city
+  mail_state: mailing_addr_state
+  mail_zip: mailing_addr_zip
+  situs_line1: physical_addr
+  situs_city: physical_addr_city
+  situs_state: physical_addr_state
+  situs_zip: physical_addr_zip
+  land_value: land_value
+  bldg_value: improvement_value
+  total_value: market_value
+  assessed_value: assessed_value
+  tax_year: appraisal_year
+  land_use_code: property_land_use_code
+value_basis: "land_value / improvement_value / market_value / assessed_value = the Assessor's values (Washington assesses at 100% of true and fair value, RCW 84.40.030) for appraisal_year (2026 or 2027 on 2026-11-25), mapped as tax_year; the layer does not document whether it is the assessment or the taxes-payable year. exemptions is not mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=5b5f9b6872894eb093f24ebb5778398d
+  summary: "Island County (WA) ArcGIS Online item 'Parcels' (owner IslandCountyGISCoordinator, accessInformation 'Island County'), public hosted feature service, no login, token or fee. licenseInfo only links the full metadata on maps.islandcountywa.gov, which this session could not reach (host outside the network allowlist); the item description asks users to read the full data disclaimer. No resale or redistribution clause seen. Washington's Public Records Act, RCW 42.56.070(8), bars agencies from providing lists of individuals for commercial purposes (recorded as no_commercial_name_address_lists, as for the other WA counties). services6.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

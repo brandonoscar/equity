@@ -1,0 +1,31 @@
+source_id: oh.delaware.parcels
+state: OH
+# Delaware County (OH) Auditor parcels as republished in the City of Columbus GIS 'Central Ohio
+# Parcels' layer (CityServices/KeyLayers layer 3; one row per parcel for seven central Ohio
+# counties, field COUNTY; Delaware: 102,987 rows on 2026-11-25, uploaded 2026-11-08, OWNERNME1
+# filled on all but 2): owner names, owner postal address, property address, class code.
+# The Auditor's own 'Parcel' item (delcoa) carries the same owners but no parcel number field.
+layer_url: https://maps.columbus.gov/arcgis/rest/services/CityServices/KeyLayers/MapServer/3
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "041"}
+filter: "COUNTY = 'Delaware'"
+use_restrictions: [attribution_required, no_redistribution, no_resale]
+fields:
+  parcel_id: PARCELID            # '10010001006000' (Auditor number 100-100-01-006-000 undashed)
+  owner1: OWNERNME1
+  owner2: OWNERNME2
+  mail_line1: PSTLADDRES         # tax-mailing street (PSTLNME1/2 are the mailing name lines)
+  mail_city_state_zip: PSTLCITYSTZIP   # 'FINDLAY, OH 45840'
+  situs_line1: SITEADDRESS       # 'DAVIS-KIRK RD' (no house number on vacant land)
+  situs_state: {const: OH}
+  situs_zip: ZIPCD
+  land_use_code: CLASSCD
+value_basis: "LNDVALUEBASE / BLDVALUEBASE / TOTVALUEBASE (and the PR_ prior-year copies, CNTTXBLVAL) are present but the layer has no tax-year field, so no values or tax_year are mapped and no assessment facts are emitted. MAILNME1 / MAILNME2 repeat the site address for Delaware rows and are not mapped. SALEDATE / SALEPRICE are not mapped."
+terms:
+  url: https://maps.columbus.gov/arcgis/rest/services/CityServices/KeyLayers/MapServer
+  summary: "City of Columbus (OH) GIS ArcGIS Server, CityServices/KeyLayers layer 3 'Parcels' (Central Ohio Parcels: Delaware, Fairfield, Franklin, Licking, Madison, Pickaway, Union county auditor data); public MapServer, no login, token or fee; no licence text on the service (read 2026-11-25). The source data's own licence (Delaware County Auditor's 'Parcel' item cd8f9ac644ec4dc1979b254193b895a2, read 2026-11-25): reference use only, 'The user affirms that no data or services on this website will be sold or distributed' and agrees to acknowledge the Delaware County, Ohio Auditor's GIS Office as the source: recorded as no_resale, no_redistribution and attribution_required (the project keeps the data internal). maps.columbus.gov/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,281 @@
+{
+ "attributes": [
+  {
+   "ADDRESS2": "7763 TEST ST",
+   "CITY": "Hahira",
+   "DEEDPAGE": " 0746 0214",
+   "FID": 1,
+   "LASTNAME": "TESTOWNER F871D7 LLC",
+   "PARCEL_NO": "0046D 004",
+   "STATE": "GA",
+   "USEDAS_COD": "G415",
+   "ZIP": "31632"
+  },
+  {
+   "ADDRESS2": "2823 TEST ST",
+   "CITY": "RAY CITY",
+   "DEEDPAGE": " 1205 0230",
+   "FID": 2,
+   "LASTNAME": "TESTOWNER 4DD172",
+   "PARCEL_NO": "0177 079",
+   "STATE": "GA",
+   "USEDAS_COD": "G415",
+   "ZIP": "31645"
+  },
+  {
+   "ADDRESS2": "6036 TEST ST",
+   "CITY": "Valdosta",
+   "DEEDPAGE": " 2814  116",
+   "FID": 3,
+   "LASTNAME": "TESTOWNER 61ED2D LLC",
+   "PARCEL_NO": "0026 064",
+   "STATE": "GA",
+   "USEDAS_COD": "G713",
+   "ZIP": "31604"
+  },
+  {
+   "ADDRESS2": "167 TEST ST",
+   "CITY": "VALDOSTA",
+   "DEEDPAGE": " 6628  646",
+   "FID": 4,
+   "LASTNAME": "TESTOWNER DAE093",
+   "PARCEL_NO": "0046B 003",
+   "STATE": "GA",
+   "USEDAS_COD": "9165",
+   "ZIP": "31602"
+  },
+  {
+   "ADDRESS2": "7763 TEST ST",
+   "CITY": "Hahira",
+   "DEEDPAGE": " 157  0236",
+   "FID": 5,
+   "LASTNAME": "TESTOWNER F871D7 LLC",
+   "PARCEL_NO": "0046B 002",
+   "STATE": "GA",
+   "USEDAS_COD": "G736",
+   "ZIP": "31632"
+  },
+  {
+   "ADDRESS2": "4812 TEST ST",
+   "CITY": "LAKE PARK",
+   "DEEDPAGE": " 6612  832",
+   "FID": 6,
+   "LASTNAME": "TESTOWNER 5E6B32 LLC",
+   "PARCEL_NO": "0046C 178",
+   "STATE": "GA",
+   "USEDAS_COD": "G601",
+   "ZIP": "31636"
+  },
+  {
+   "ADDRESS2": "4169 TEST ST",
+   "CITY": "VALDOSTA",
+   "DEEDPAGE": " 289  0254",
+   "FID": 7,
+   "LASTNAME": "TESTOWNER 0EE871 LLC",
+   "PARCEL_NO": "0046C 212",
+   "STATE": "GA",
+   "USEDAS_COD": "G726",
+   "ZIP": "31602"
+  },
+  {
+   "ADDRESS2": "1848 TEST ST",
+   "CITY": "MARIETTA",
+   "DEEDPAGE": " 394  0502",
+   "FID": 8,
+   "LASTNAME": "TESTOWNER 1C3CD5 LLC",
+   "PARCEL_NO": "0046C 190",
+   "STATE": "SC",
+   "USEDAS_COD": "G415",
+   "ZIP": "29661"
+  },
+  {
+   "ADDRESS2": "2221 TEST ST",
+   "CITY": "Valdosta",
+   "DEEDPAGE": " 755  0223",
+   "FID": 9,
+   "LASTNAME": "TESTOWNER 883C8A",
+   "PARCEL_NO": "0180 068",
+   "STATE": "GA",
+   "USEDAS_COD": "G630",
+   "ZIP": "31605"
+  },
+  {
+   "ADDRESS2": "4258 TEST ST",
+   "CITY": "Melbourne",
+   "DEEDPAGE": " 1047 48",
+   "FID": 10,
+   "LASTNAME": "TESTOWNER 1F9595 INC",
+   "PARCEL_NO": "0145D 007",
+   "STATE": "FL",
+   "USEDAS_COD": "G665",
+   "ZIP": "32941"
+  },
+  {
+   "ADDRESS2": "999 TEST ST",
+   "CITY": "SAN CLEMENTE",
+   "DEEDPAGE": " 6964  264",
+   "FID": 11,
+   "LASTNAME": "TESTOWNER 21BF32",
+   "PARCEL_NO": "0026 033B",
+   "STATE": "CA",
+   "USEDAS_COD": "G598",
+   "ZIP": "92674"
+  },
+  {
+   "ADDRESS2": "1276 TEST ST",
+   "CITY": "Valdosta",
+   "DEEDPAGE": " 288  538",
+   "FID": 12,
+   "LASTNAME": "TESTOWNER 1150BF LLC",
+   "PARCEL_NO": "0177 013",
+   "STATE": "GA",
+   "USEDAS_COD": "G630",
+   "ZIP": "31605"
+  },
+  {
+   "ADDRESS2": "8843 TEST ST",
+   "CITY": "VALDOSTA",
+   "DEEDPAGE": " 6697  259",
+   "FID": 13,
+   "LASTNAME": "TESTOWNER 989D33 LLC",
+   "PARCEL_NO": "0046C 159",
+   "STATE": "GA",
+   "USEDAS_COD": "G663",
+   "ZIP": "31602"
+  },
+  {
+   "ADDRESS2": "8986 TEST ST",
+   "CITY": "HAHIRA",
+   "DEEDPAGE": " 6913  109",
+   "FID": 14,
+   "LASTNAME": "TESTOWNER 1C50E7 LLC",
+   "PARCEL_NO": "0046C 156",
+   "STATE": "GA",
+   "USEDAS_COD": "G662",
+   "ZIP": "31632"
+  },
+  {
+   "ADDRESS2": "6968 TEST ST",
+   "CITY": "PONTE VEDRA BEACH",
+   "DEEDPAGE": " 7164  790",
+   "FID": 15,
+   "LASTNAME": "TESTOWNER A9F269 CORP",
+   "PARCEL_NO": "0046C 008",
+   "STATE": "FL",
+   "USEDAS_COD": "G426",
+   "ZIP": "32004"
+  },
+  {
+   "ADDRESS2": "3176 TEST ST",
+   "CITY": "HAHIRA",
+   "DEEDPAGE": " 603  39",
+   "FID": 16,
+   "LASTNAME": "TESTOWNER AE7632",
+   "PARCEL_NO": "0046B 062",
+   "STATE": "GA",
+   "USEDAS_COD": "G456",
+   "ZIP": "31632"
+  },
+  {
+   "ADDRESS2": "3176 TEST ST",
+   "CITY": "HAHIRA",
+   "DEEDPAGE": "  883  203",
+   "FID": 17,
+   "LASTNAME": "TESTOWNER AE7632",
+   "PARCEL_NO": "0046B 063",
+   "STATE": "GA",
+   "USEDAS_COD": "G457",
+   "ZIP": "31632"
+  },
+  {
+   "ADDRESS2": "6730 TEST ST",
+   "CITY": "SAINT SIMONS ISLAND",
+   "DEEDPAGE": " 886  247",
+   "FID": 18,
+   "LASTNAME": "TESTOWNER 999516 LLC",
+   "PARCEL_NO": "0143 177",
+   "STATE": "GA",
+   "USEDAS_COD": "G736",
+   "ZIP": "31522"
+  },
+  {
+   "ADDRESS2": "307 TEST ST",
+   "CITY": "VALDOSTA",
+   "DEEDPAGE": "  293 0394",
+   "FID": 19,
+   "LASTNAME": "TESTOWNER A0AB44 LLC",
+   "PARCEL_NO": "0180 091",
+   "STATE": "GA",
+   "USEDAS_COD": "G736",
+   "ZIP": "31605"
+  },
+  {
+   "ADDRESS2": "8927 TEST ST",
+   "CITY": "HAHIRA",
+   "DEEDPAGE": " 135  565",
+   "FID": 20,
+   "LASTNAME": "TESTOWNER D3E968",
+   "PARCEL_NO": "0046C 151",
+   "STATE": "GA",
+   "USEDAS_COD": "G614",
+   "ZIP": "31632"
+  },
+  {
+   "ADDRESS2": "5854 TEST ST",
+   "CITY": "MARYVILLE",
+   "DEEDPAGE": " 342  0682",
+   "FID": 21,
+   "LASTNAME": "TESTOWNER 02DE93",
+   "PARCEL_NO": "0046C 162",
+   "STATE": "TN",
+   "USEDAS_COD": "G615",
+   "ZIP": "37804"
+  },
+  {
+   "ADDRESS2": "2885 TEST ST",
+   "CITY": "HAHIRA",
+   "DEEDPAGE": " 0817 100",
+   "FID": 22,
+   "LASTNAME": "TESTOWNER 8009E4 LP",
+   "PARCEL_NO": "0046C 153",
+   "STATE": "GA",
+   "USEDAS_COD": "G735",
+   "ZIP": "316320456"
+  },
+  {
+   "ADDRESS2": "6444 TEST ST",
+   "CITY": "BAKERSFIELD",
+   "DEEDPAGE": " 6658  828",
+   "FID": 23,
+   "LASTNAME": "TESTOWNER 679D61 LLC",
+   "PARCEL_NO": "0179 006",
+   "STATE": "CA",
+   "USEDAS_COD": "G726",
+   "ZIP": "93309"
+  },
+  {
+   "ADDRESS2": "4275 TEST ST",
+   "CITY": "VALDOSTA",
+   "DEEDPAGE": " 1641  078",
+   "FID": 24,
+   "LASTNAME": "TESTOWNER 704DF8 LLC",
+   "PARCEL_NO": "0055 054A",
+   "STATE": "GA",
+   "USEDAS_COD": "G565",
+   "ZIP": "31602"
+  },
+  {
+   "ADDRESS2": "6036 TEST ST",
+   "CITY": "VALDOSTA",
+   "DEEDPAGE": " 1295  307",
+   "FID": 25,
+   "LASTNAME": "TESTOWNER 61ED2D LLC",
+   "PARCEL_NO": "0026 065",
+   "STATE": "GA",
+   "USEDAS_COD": "G736",
+   "ZIP": "31604"
+  }
+ ],
+ "layer": "https://services3.arcgis.com/fYt1jp3hqamxgSvI/arcgis/rest/services/TaxParcel/FeatureServer/0",
+ "where": "1=1"
+}

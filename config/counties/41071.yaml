@@ -1,0 +1,32 @@
+source_id: or.yamhill.parcels
+state: OR
+# Yamhill County (OR) ArcGIS Online item 'AT Taxlots' ('Yamhill County A&T Taxlots (with
+# ownership)', owner hansberryb, links to ascendweb.co.yamhill.or.us; 51,338 rows on
+# 2026-11-25, edited 2026-11; acctnbr and owner1 filled on 49,371): owners, owner mailing
+# address, situs address.
+layer_url: https://services6.arcgis.com/toubSXwoan3LMhOW/arcgis/rest/services/AT_Taxlots/FeatureServer/1
+order_by: objectid
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "071"}
+fields:
+  parcel_id: acctnbr     # '236088' tax account; null on 1,967 taxlots with no account (skipped)
+  owner1: owner1
+  owner2: owner2         # owner3 (a third owner, rarely filled) is not mapped
+  mail_line1: mailadd1   # an 'ATTN:' line on some rows; the street is then in mailadd2
+  mail_line2: mailadd2
+  mail_city: mailcity
+  mail_state: mailstate
+  mail_zip: mailzip
+  situs_line1: situs1
+  situs_city: situscity
+  situs_state: {const: OR}
+  situs_zip: situszip
+  land_use_code: pca     # property class
+value_basis: "The layer has no value fields, so no assessment facts are emitted. instyr / instnbr (recording year and instrument number of the last deed), saledate and saleprice are not mapped: the schema's deed fields are book/page."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=2d7b3aa4cc654b89b92821a9c10d03aa
+  summary: "Yamhill County (OR) ArcGIS Online item 'AT Taxlots' (snippet 'Yamhill County A&T Taxlots (with ownership)'; owner hansberryb, the county org that publishes YC Basemap and taxing districts); public hosted feature service, no login, token or fee. accessInformation and licenseInfo are empty (read 2026-11-25); no resale, redistribution or mailing-list clause. services6.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free
