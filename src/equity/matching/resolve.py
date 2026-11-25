@@ -740,7 +740,7 @@ STATES: dict[str, dict[str, Any]] = {
         "debtors": ["ny.dtf.child_support_warrants", "ny.dtf.tax_warrants", "ny.nyc.acris.real",
                     "ny.nyc.hpd_litigation", "ny.nyc.oath.judgments",
                     "ny.tompkins.foreclosure_parcels"],
-        "owners": ["ny.local_rolls.parcels", "ny.statewide.parcels"],
+        "owners": ["ny.local_rolls.parcels", "ny.statewide.parcels", "ny.nyc.parcels"],
         "mortgages": ["ny.nyc.acris.real"],
         "links": ["ny.nyc.dof.condo_units"],
         "courts": FEDERAL_COURTS,
@@ -874,7 +874,8 @@ STATES: dict[str, dict[str, Any]] = {
                       "owners": ["pa.washington.parcels"], "parcel_on_lien": True},
     # NYC lien sale notices name no one: each is owed by the noticed parcel's owner. A run
     # of its own, so the NY run's ACRIS instruments do not take on parcel_on_lien.
-    "NY-NYC-LIENSALE": {"debtors": ["ny.nyc.tax_lien_sale"], "owners": ["ny.statewide.parcels"],
+    "NY-NYC-LIENSALE": {"debtors": ["ny.nyc.tax_lien_sale"],
+                        "owners": ["ny.statewide.parcels", "ny.nyc.parcels"],
                         "parcel_on_lien": True},
     # St. Joseph IN tax sale: named owners and state parcel numbers. Indiana's statewide layer
     # has parcels but no owner names, so debtors link to the parcels their liens name.

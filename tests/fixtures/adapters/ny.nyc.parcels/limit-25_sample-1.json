@@ -1,0 +1,244 @@
+{
+ "attributes": [
+  {
+   "bldg_class": "Y4",
+   "boro": "1",
+   "housenum_lo": "TESTOWNER F2E29E",
+   "owner": "TESTOWNER AAE4DF CORP",
+   "parid": "1000010010",
+   "street_name": "TESTOWNER F803B3",
+   "zip_code": "10004",
+   "zoning": "R3-2"
+  },
+  {
+   "bldg_class": "Y4",
+   "boro": "1",
+   "housenum_lo": "TESTOWNER ED87A0",
+   "owner": "TESTOWNER AAE4DF CORP",
+   "parid": "1000010010",
+   "street_name": "TESTOWNER EAA66B",
+   "zip_code": "10004",
+   "zoning": "R3-2"
+  },
+  {
+   "bldg_class": "Y4",
+   "boro": "1",
+   "owner": "TESTOWNER AAE4DF CORP",
+   "parid": "1000010100",
+   "street_name": "TESTOWNER EAA66B",
+   "zip_code": "10004",
+   "zoning": "R3-2"
+  },
+  {
+   "bldg_class": "P7",
+   "boro": "1",
+   "housenum_lo": "TESTOWNER 55E860",
+   "owner": "TESTOWNER 155C67",
+   "parid": "1000010101",
+   "street_name": "TESTOWNER D683BE",
+   "zip_code": "10004",
+   "zoning": "R3-2"
+  },
+  {
+   "bldg_class": "P7",
+   "boro": "1",
+   "housenum_lo": "TESTOWNER 55E860",
+   "owner": "TESTOWNER 155C67",
+   "parid": "1000010101",
+   "street_name": "TESTOWNER D683BE",
+   "zip_code": "10004",
+   "zoning": "R3-2"
+  },
+  {
+   "bldg_class": "Y4",
+   "boro": "1",
+   "owner": "TESTOWNER AAE4DF CORP",
+   "parid": "1000010111",
+   "street_name": "TESTOWNER C2B34D",
+   "zip_code": "10004",
+   "zoning": "R3-2"
+  },
+  {
+   "bldg_class": "Y4",
+   "boro": "1",
+   "owner": "TESTOWNER AAE4DF CORP",
+   "parid": "1000010111",
+   "street_name": "TESTOWNER C2B34D",
+   "zip_code": "10004",
+   "zoning": "R3-2"
+  },
+  {
+   "bldg_class": "Y4",
+   "boro": "1",
+   "owner": "TESTOWNER AAE4DF CORP",
+   "parid": "1000010112",
+   "street_name": "TESTOWNER C2B34D",
+   "zip_code": "10004",
+   "zoning": "R3-2"
+  },
+  {
+   "bldg_class": "Y4",
+   "boro": "1",
+   "owner": "TESTOWNER AAE4DF CORP",
+   "parid": "1000010112",
+   "street_name": "TESTOWNER C2B34D",
+   "zip_code": "10004",
+   "zoning": "R3-2"
+  },
+  {
+   "bldg_class": "Y4",
+   "boro": "1",
+   "owner": "TESTOWNER AAE4DF CORP",
+   "parid": "1000010150",
+   "street_name": "TESTOWNER F803B3",
+   "zip_code": "10004",
+   "zoning": "R3-2"
+  },
+  {
+   "bldg_class": "Y4",
+   "boro": "1",
+   "owner": "TESTOWNER AAE4DF CORP",
+   "parid": "1000010150",
+   "street_name": "TESTOWNER F803B3",
+   "zip_code": "10004",
+   "zoning": "R3-2"
+  },
+  {
+   "bldg_class": "Z9",
+   "boro": "1",
+   "housenum_lo": "TESTOWNER 55E860",
+   "owner": "TESTOWNER 155C67",
+   "parid": "1000010201",
+   "street_name": "TESTOWNER 52B995",
+   "zip_code": "10004",
+   "zoning": "R3-2"
+  },
+  {
+   "bldg_class": "Z9",
+   "boro": "1",
+   "housenum_lo": "TESTOWNER 55E860",
+   "owner": "TESTOWNER 155C67",
+   "parid": "1000010201",
+   "street_name": "TESTOWNER 52B995",
+   "zip_code": "10004",
+   "zoning": "R3-2"
+  },
+  {
+   "bldg_class": "U0",
+   "boro": "1",
+   "owner": "TESTOWNER D8261D",
+   "parid": "1000010301",
+   "street_name": "TESTOWNER C76872",
+   "zip_code": "0",
+   "zoning": "ZNA"
+  },
+  {
+   "bldg_class": "U0",
+   "boro": "1",
+   "owner": "TESTOWNER D8261D",
+   "parid": "1000010301",
+   "street_name": "TESTOWNER C76872",
+   "zip_code": "0",
+   "zoning": "ZNA"
+  },
+  {
+   "bldg_class": "U0",
+   "boro": "1",
+   "owner": "TESTOWNER D8261D",
+   "parid": "1000010401",
+   "street_name": "TESTOWNER C76872",
+   "zip_code": "0",
+   "zoning": "ZNA"
+  },
+  {
+   "bldg_class": "U0",
+   "boro": "1",
+   "owner": "TESTOWNER D8261D",
+   "parid": "1000010401",
+   "street_name": "TESTOWNER C76872",
+   "zip_code": "0",
+   "zoning": "ZNA"
+  },
+  {
+   "bldg_class": "Y7",
+   "boro": "1",
+   "housenum_lo": "TESTOWNER A3BF66",
+   "owner": "TESTOWNER 332EA6",
+   "parid": "1000020001",
+   "street_name": "TESTOWNER 2BD9ED",
+   "zip_code": "10004",
+   "zoning": "M1-4"
+  },
+  {
+   "bldg_class": "Y7",
+   "boro": "1",
+   "housenum_lo": "TESTOWNER A3BF66",
+   "owner": "TESTOWNER 332EA6",
+   "parid": "1000020001",
+   "street_name": "TESTOWNER 2BD9ED",
+   "zip_code": "10004",
+   "zoning": "M1-4"
+  },
+  {
+   "bldg_class": "H5",
+   "boro": "1",
+   "housenum_lo": "TESTOWNER 4F5C5A",
+   "owner": "TESTOWNER 5048FF LLC",
+   "parid": "1000020002",
+   "street_name": "TESTOWNER 2BD9ED",
+   "zip_code": "10004",
+   "zoning": "C4-6"
+  },
+  {
+   "bldg_class": "H5",
+   "boro": "1",
+   "housenum_lo": "TESTOWNER 4F5C5A",
+   "owner": "TESTOWNER 5048FF LLC",
+   "parid": "1000020002",
+   "street_name": "TESTOWNER 2BD9ED",
+   "zip_code": "10004",
+   "zoning": "C4-6"
+  },
+  {
+   "bldg_class": "Y7",
+   "boro": "1",
+   "owner": "TESTOWNER 332EA6",
+   "parid": "1000020003",
+   "street_name": "TESTOWNER F287A6",
+   "zip_code": "10004",
+   "zoning": "C4-6"
+  },
+  {
+   "bldg_class": "Y7",
+   "boro": "1",
+   "owner": "TESTOWNER 332EA6",
+   "parid": "1000020003",
+   "street_name": "TESTOWNER F287A6",
+   "zip_code": "10004",
+   "zoning": "C4-6"
+  },
+  {
+   "bldg_class": "T2",
+   "boro": "1",
+   "housenum_lo": "TESTOWNER 55E860",
+   "owner": "TESTOWNER 332EA6",
+   "parid": "1000020023",
+   "street_name": "TESTOWNER E69E3D",
+   "zip_code": "10004",
+   "zoning": "C4-6"
+  },
+  {
+   "bldg_class": "T2",
+   "boro": "1",
+   "housenum_lo": "TESTOWNER 55E860",
+   "owner": "TESTOWNER 332EA6",
+   "parid": "1000020023",
+   "street_name": "TESTOWNER E69E3D",
+   "zip_code": "10004",
+   "zoning": "C4-6"
+  }
+ ],
+ "layer": "https://data.cityofnewyork.us/resource/8y4t-faws.json",
+ "row_min": 0,
+ "where": "(year = '2027') AND (1=1)"
+}
