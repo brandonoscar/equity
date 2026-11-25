@@ -4,19 +4,29 @@ This list compares what is actually **loaded in the lake** (Supabase bucket `lak
 
 The gaps come first, numbered. The fix for each one is under the same number in the second half.
 
+## Status (updated 2026-11-25, evening)
+
+Tags on each gap: **[FIXED]** closed in the lake, **[PARTLY FIXED]**, **[IN PROGRESS]** (config or build running), **[OPEN]** (no free source yet, or needs a decision). Live-verified source tables: `reports/_owner_sources_verified.md` and `reports/_debt_sources_verified.md`. A current machine-generated view of the lake is `reports/lake_gaps.md` (`uv run python -m equity.lake_gaps`).
+
+- **Value bug fixed** (gap 23): `tax_year: {as_retrieved: true}` records values as observed on the retrieval date; `load_config` now refuses value fields with no tax year. 17 layers rebuilt or newly built with values.
+- **Stale builds found** (gap 25): 43 lake builds predate the address, land-use and homestead columns. 33 rebuilt or rebuilding; the 10 largest are rebuilding now.
+- **Bankruptcy** (gaps 45–46): 70 feeds now in the lake (was 3). ilcb, ilsb, wvsb and meb enabled.
+- **New sources built:** Marion IN (347k owners), Sarpy NE (78k owners), San Diego (1.09M values, no owners), NY local assessment rolls (owners for the 22 missing NY counties, building), Louisville code liens and foreclosures, Jefferson KY tax-sale bills, Shelby AL tax-sale parcels, East Baton Rouge adjudicated property.
+- **Changed at the source:** Tulsa County removed owner names, mailing address and homestead from its public layer (values and addresses still load).
+
 ---
 
 ## Part 1: Gaps
 
 ### A. Owner names missing (by county)
 
-1. **CA:** no owner names in any of the 58 counties. Los Angeles, Riverside and San Bernardino are loaded with parcel ids and values only. San Diego and San Jose (Santa Clara) are configured but not built. The other 53 counties have no parcel layer at all.
+1. **[OPEN]** **CA:** no owner names in any of the 58 counties. Los Angeles, Riverside and San Bernardino are loaded with parcel ids and values only. San Diego is now built (values for 1.09M parcels; its public layer has no owner names). San Jose (Santa Clara) is configured but not built. The other 53 counties have no parcel layer at all.
 2. **HI:** no owner names, values or addresses in any county (Hawaii, Honolulu, Kauai, Maui). The statewide layer has boundaries only, and there is no match run.
-3. **IN:** the statewide layer (all 92 counties) has no owners and no values. Owners exist only in Lake and Vanderburgh. Marion (Indianapolis) is configured but not built.
+3. **[PARTLY FIXED: Marion built, 347k owners]** **IN:** the statewide layer (all 92 counties) has no owners and no values. Owners exist only in Lake and Vanderburgh. Marion (Indianapolis) is configured but not built.
 4. **TN:** the statewide layer (86 counties) has no owners and no values. Owners exist only in Davidson, Hamilton, Rutherford and Washington. Shelby, Knox, Williamson, Montgomery, Chester and Hickman have no parcels at all.
 5. **WA:** the statewide layer (all 39 counties) has no owners. Owners exist only in Snohomish and Spokane. King, Pierce and Clark have none. Thurston and Whatcom are configured but not built.
 6. **UT:** both statewide layers (boundaries and LIR) have no owners and no values. Owners exist only in Salt Lake and Utah counties.
-7. **NE:** the statewide layer (93 counties) has no owners and no addresses. Owners exist only in Douglas, Lancaster and Cass. Sarpy is configured but not built.
+7. **[PARTLY FIXED: Sarpy built]** **NE:** the statewide layer (93 counties) has no owners and no addresses. Owners exist only in Douglas, Lancaster and Cass. Sarpy is configured but not built.
 8. **NH:** no owners, values or addresses statewide. Owners exist only in the 13-town NRPC region.
 9. **NJ:** no owners in 20 of 21 counties (Daniel's Law redaction). Only Monmouth has them. The statewide layer also carries no values.
 10. **RI:** no owners, values or addresses in any municipality except Providence. There is no match run.
@@ -26,7 +36,7 @@ The gaps come first, numbered. The fix for each one is under the same number in 
     - 18 counties have no owners: Benton, Big Stone, Carver, Clay, Clearwater, Fillmore, Grant, Houston, Itasca, Lake of the Woods, McLeod, Mille Lacs, Norman, Rice, Scott, Stearns, Traverse and Waseca.
     - 6 counties have owners on under 10% of parcels: Marshall, Pope, Red Lake, Renville, Wilkin and Yellow Medicine.
     - The Metro regional layer is configured but not built.
-14. **NY:** 22 counties are missing from the statewide layer: Chemung, Chenango, Clinton, Columbia, Delaware, Dutchess, Essex, Franklin, Fulton, Herkimer, Jefferson, Madison, Monroe, Nassau, Niagara, Orleans, Saratoga, Schenectady, Schoharie, Seneca, Washington and Yates. Allegany and Cattaraugus returned 0 rows. `ny.local_rolls.parcels` is configured but not built.
+14. **[IN PROGRESS: NY local rolls building]** **NY:** 22 counties are missing from the statewide layer: Chemung, Chenango, Clinton, Columbia, Delaware, Dutchess, Essex, Franklin, Fulton, Herkimer, Jefferson, Madison, Monroe, Nassau, Niagara, Orleans, Saratoga, Schenectady, Schoharie, Seneca, Washington and Yates. Allegany and Cattaraugus returned 0 rows. `ny.local_rolls.parcels` is configured but not built.
 15. **CO:** 20 counties are missing or returned 0 rows: Alamosa, Baca, Bent, Chaffee, Cheyenne, Conejos, Costilla, Crowley, Delta, Fremont, Jackson, Kiowa, Kit Carson, Las Animas, Lincoln, Mineral, Montrose, Otero, Phillips and Prowers. El Paso (Colorado Springs), Summit and Washington have no owners.
 16. **TX:** 9 counties returned 0 rows from StratMap: Bailey, Bowie, Hunt, Matagorda, Navarro, Roberts, Robertson, Terrell and Willacy. Donley is missing. Smith (Tyler) has no owners, and Cottle and Frio have owners on under 50%. Collin and Dallas city layers are configured but not built.
 17. **NC:** Clay and Swain returned 0 rows, and Hoke has no owners.
@@ -54,7 +64,7 @@ The gaps come first, numbered. The fix for each one is under the same number in 
 
 ### B. Values, addresses and other parcel fields
 
-23. **Value is mapped but thrown away (a repo bug):** 13 layers map a value column but no `tax_year`, so the normalizer drops every assessment row. The layers are Kenai Peninsula AK, Jefferson AL, Cobb GA, Black Hawk IA, Scott IA, East Baton Rouge LA, Oakland MI, Doña Ana NM, Jackson OR, Marion OR, York SC, Davidson TN and **TN statewide**.
+23. **[FIXED]** **Value is mapped but thrown away (a repo bug):** 13 layers map a value column but no `tax_year`, so the normalizer drops every assessment row. The layers are Kenai Peninsula AK, Jefferson AL, Cobb GA, Black Hawk IA, Scott IA, East Baton Rouge LA, Oakland MI, Doña Ana NM, Jackson OR, Marion OR, York SC, Davidson TN and **TN statewide**.
 24. **No assessed or market value at all** (equity can't be estimated). This covers whole states, or most counties:
     - Whole states: HI, IN, ME, NH, NJ, RI, UT, DE (statewide layer)
     - AZ: 13 of 14 ADWR county copies
@@ -73,7 +83,7 @@ The gaps come first, numbered. The fix for each one is under the same number in 
     - ND: 12 counties
     - ID: 6 counties, including Ada
     - NC: Alleghany
-25. **No property address** (situs) even though one is mapped:
+25. **[IN PROGRESS: stale builds, rebuilding]** **No property address** (situs) even though one is mapped:
     - AZ: Cochise, Mohave, Pima, Pinal and Yuma
     - CA: Los Angeles and Riverside
     - MD, MN and NE statewide layers
@@ -83,7 +93,11 @@ The gaps come first, numbered. The fix for each one is under the same number in 
     - TX: Jim Wells, Johnson, Montague and Smith
     - CO: El Paso, Sedgwick and Washington
 26. **Homestead flag** is mapped in only 13 states. The other 38 can't tell which parcels a homestead exemption protects.
-27. **Land use and zoning on parcels:** the per-county null-count scan is still running, and these results will be added on the next pass.
+27. **[IN PROGRESS: stale builds, rebuilding]** **Land use, zoning and homestead on parcels** (Parquet null counts, 204 parcel layers; 43 stale builds count as empty until rebuilt):
+    - No land use in any loaded layer: AK, AR, CA, CO, CT, HI, KS, KY, LA, NC, ND, NH, NM, WI, WV, WY.
+    - No zoning code on parcels: AK, AL, AR, CA, CO, CT, DC, DE, HI, IL, IN, KS, LA, ME, MN, MT, NC, ND, NE, NH, NM, NY, OK, RI, SD, TX, VT, WA, WI, WV, WY.
+    - Zoning mapped but empty: Rutherford TN and Norfolk VA.
+    - Homestead flag present only in FL, ID, MI, MN, NM, OH, PA, SC, UT and a few county layers; missing in 40 states.
 
 ### C. Deeds, mortgages and sales (equity behind the lien)
 
@@ -113,8 +127,8 @@ The gaps come first, numbered. The fix for each one is under the same number in 
 
 ### E. Bankruptcy
 
-45. **Only 3 of the 69 enabled bankruptcy feeds have data in the lake:** M.D. Fla., N.D. Ohio and S.D. Ohio. The other 66 are configured and never polled, so the bankruptcy screen is effectively blank in 42 states.
-46. **20 districts have no feed:**
+45. **[FIXED: 70 feeds loaded]** **Only 3 of the 69 enabled bankruptcy feeds have data in the lake:** M.D. Fla., N.D. Ohio and S.D. Ohio. The other 66 are configured and never polled, so the bankruptcy screen is effectively blank in 42 states.
+46. **[PARTLY FIXED: ilcb, ilsb, wvsb, meb added]** **20 districts have no feed:**
     - Robots.txt disallows the feed: areb, arwb, canb, kyeb, mdb, nmb, utb, wawb, wiwb and pamb.
     - The feed is empty: meb, nceb, nyeb and miwb.
     - The feed doesn't answer: txsb and mob.
@@ -161,8 +175,8 @@ The gaps come first, numbered. The fix for each one is under the same number in 
     - Never built: 18 parcel layers, 68 bankruptcy feeds, all unclaimed property, most licenses, and the federal sets in item 56.
     - Unfinished: `ok.tulsa.parcels`, `md.statewide.zoning`, `ny.nyc.acris.personal` and `in.st_joseph.transfer_history`.
 61. **8 sources are in the lake but no longer registered,** so runs may not read them: `la.nola.code_judgments`, `nc.buncombe.unpaid_taxes_2023/2024/2025`, `nc.guilford.delinquent_taxes`, `oh.clermont.delinquent_taxes` and `va.richmond.delinquent_taxes`.
-62. **`docs/gaps.md` overstates owner coverage.** It counts a field as covered when a config *maps* it, not when data exists. For example, it lists DE, IN, MD, NE, NH, NJ, RI, TN, UT and WA as having owners, but their statewide layers have none.
-63. **Maricopa AZ is loaded (1.76M owners),** but `docs/sources/gap-states.md` says it was "left out on purpose" under A.R.S. 39-121.03 (commercial purpose). One of the two is wrong.
+62. **[FIXED: equity.lake_gaps]** **`docs/gaps.md` overstates owner coverage.** It counts a field as covered when a config *maps* it, not when data exists. For example, it lists DE, IN, MD, NE, NH, NJ, RI, TN, UT and WA as having owners, but their statewide layers have none.
+63. **[DROPPED: owner said skip]** **Maricopa AZ is loaded (1.76M owners),** but `docs/sources/gap-states.md` says it was "left out on purpose" under A.R.S. 39-121.03 (commercial purpose). One of the two is wrong.
 64. **Config values that only the owner can fill:**
     - `sol.yaml`: all 51 jurisdictions are null.
     - `scoring.yaml`: 11 weights are null and there are no tiers.
@@ -259,7 +273,7 @@ Tags: **[repo]** = no new source needed, just build, map or fix code. **[free]**
       - Bernalillo (configured)
       - Tulsa (finish the build)
     - [paid] Statewide fallbacks: ReportAll GA $9,000, IL $6,000 and IA $6,000; Regrid for the rest.
-23. **Values thrown away** [repo]: add `tax_year` to those 13 configs, or a constant year from the layer's roll date. This is a config change, and no new source is needed.
+23. **Values thrown away** [repo, done]: new `tax_year: {as_retrieved: true}` option on 17 configs, plus a `load_config` guard. Rebuilt: Kenai, Jefferson AL, Cobb, Black Hawk, Scott IA, East Baton Rouge, Oakland, Doña Ana, Jackson OR, Marion OR, York SC, Davidson; TN statewide still building.
 24. **Missing values**
     - [repo] Check each layer for an unmapped value column. VA locality layers and MD county layers often have one.
     - [free] HI, IN, NJ and TN: same as fixes 2, 3, 9 and 4.
@@ -268,7 +282,7 @@ Tags: **[repo]** = no new source needed, just build, map or fix code. **[free]**
     - [free] Values can be rolled forward with FHFA HPI at ZIP5 or county level (public domain; needs an XLSX reader).
 25. **Missing addresses** [repo]: in each listed layer the situs fields exist but come out empty, so check the field names and the `situs_form` setting. Also map the mailing fields where only those exist (MD has OWNADD1 and others), and run the Census batch geocoder (free) to standardize them.
 26. **Homestead** [repo/free]: map the homestead or exemption column where the layer has one, which many assessor layers do. Otherwise use each state's exemption statute, with NCLC "No Fresh Start 2025" as a cross-check.
-27. **Land use and zoning:** pending.
+27. **Land use, zoning, homestead** [repo]: rebuild the stale layers first (most map land use and some map homestead), then re-run `equity.lake_gaps`. Zoning on parcels can be derived by point-in-polygon from the 3M zoning districts already in the lake (`us.local.zoning`). Rutherford TN and Norfolk VA: check the zoning field names.
 28. **Deeds and sales**
     - [repo] Build the registered but unbuilt sets listed in gap 28.
     - [free] NJ SR-1A, the IL PTAX already loaded, and Broward and Pasco FL Official Records downloads.
@@ -280,15 +294,19 @@ Tags: **[repo]** = no new source needed, just build, map or fix code. **[free]**
     - [paid] MD District Court bulk ($2,775 plus $500 per update), Maricopa Justice Courts ($33 a month plus an agreement), NC AOC (needs a $5,000 bond), NJ CJOD reports and MN court extracts.
     - [paid] Nationally: UniCourt (about $2,250 a month), Trellis or Docket Alarm.
     - Everywhere else: the records-request program in `reports/Republished court judgment datasets.md`.
-31. **Tax delinquency** [free]
+31. **Tax delinquency** [free; verified live 2026-11-25, see `reports/_debt_sources_verified.md`]
+    - Built: Jefferson KY tax-sale bills (PDF, 3,535 bills), Shelby AL tax-sale parcels, East Baton Rouge adjudicated property.
+    - Verified, not yet readable by the PDF reader: Alabama ADOR county delinquent-land transcripts, Clark NV delinquency publication, King WA certificate of delinquency, New Mexico PTD auction lists, Atlantic City NJ tax sale list, Providence RI collector's sale.
+    - Names missing (parcel join needed): Cook IL annual tax sale `55ju-2fs9`, Hamilton TN, Camden NJ.
+    - No machine-readable list found: CT, MA, ME, NH, IA, Baltimore County MD, Shelby TN, Miami-Dade, Newark/Jersey City.
     - County treasurer delinquent lists. Many are ArcGIS or Socrata layers that the discovery job finds, and the rest are published as newspaper legal notices before each sale.
     - Big counties to try first: Cook IL (Treasurer annual tax sale list), King WA (foreclosure list), Shelby TN, Jefferson KY and Clark NV.
 32. **Tax liens** [free]: county lien-sale lists and certificates. Examples are Maricopa "Unsold Lien Parcels" (registered) and Lake, Saguache and Douglas CO (registered, not built). NJ municipal tax sale notices and IL county "annual tax sale" lists come next.
 33. **Tax sales and land banks** [repo]: build the 37 registered sources. [free] Also add Genesee MI land bank (14,053 parcels) and the Oregon DLCD surplus inventory.
-34. **Foreclosures** [repo]: build Prince George's MD (78,657 parcels), Dakota MN sheriff sales and Milwaukee WI foreclosures. [free] Also add Stark OH sheriff civil sales and the Dallas County JP list.
-35. **Code liens** [repo]: build the four Miami-Dade lien lists. [free] Also add city open-data code-lien layers: Detroit, Chicago DOAH and Baltimore citations (already registered).
+34. **Foreclosures** [repo]: build Prince George's MD (78,657 parcels), Dakota MN sheriff sales and Milwaukee WI foreclosures. [free] Also add Stark OH sheriff civil sales and the Dallas County JP list. Built 2026-11-25: Louisville KY foreclosures (1,823 cases; defendants from the case style; no parcel ids, so matched by address). Verified but stale or nameless: New Orleans sheriff lien-foreclosure sales (2018), Adams CO Public Trustee post-sale PDFs (no borrower names), Fort Bend TX notices (scans, need OCR).
+35. **Code liens** [repo]: build the four Miami-Dade lien lists. [free] Also add city open-data code-lien layers: Detroit, Chicago DOAH and Baltimore citations (already registered). Built 2026-11-25: Louisville lien-holder final orders (513, owner name and fine). Decatur IL liens layer has PIN and amount but no names; Dallas, Norfolk, Kansas City and Chicago publish violations only.
 36. **Administrative judgments** [free]: Chicago DOAH ordinance violations and the Detroit DAH archive (629,962 records).
-37. **State tax warrants** [free]: state revenue department delinquent lists. Examples:
+37. **State tax warrants** [free]: state revenue department delinquent lists. Verified 2026-11-25: RI top-100 (fragile, behind Cloudflare), SD delinquent business (PDF, filename changes), OK top 100 (PDF, 2024), NJ top debtors (certificates of debt, 2019–2020); none parse cleanly with the PDF reader yet. Not published or app-only: SC, OR, WI, CT, WY, KS, CO, MA, IL, LA. Earlier examples:
     - CA FTB and CDTFA top 500
     - SC DOR top 250 (all in lien status)
     - NE DOR list (over $20k, lien filed)
@@ -296,17 +314,17 @@ Tags: **[repo]** = no new source needed, just build, map or fix code. **[free]**
     - FL DOR warrants of $100k or more (monthly Excel)
     - PA L&I UC tax liens (weekly)
 38. **Judgment lien indexes** [free]: CT is loaded. The CA SOS JL1 and GA GSCCCA lien indexes are [paid] subscriptions.
-39. **Evictions** [free]: Franklin OH Municipal Court nightly CSVs, the Dallas County JP eviction list, and Harris JP (in the TX judgments). Eviction Lab data is licensed [paid/legal]. Check the sealing laws in 17–19 states plus DC first.
+39. **Evictions** [free]: Franklin OH Municipal Court nightly CSVs, the Dallas County JP eviction list, and Harris JP (in the TX judgments). Eviction Lab data is licensed [paid/legal]. Check the sealing laws in 17–19 states plus DC first. Verified 2026-11-25: Franklin OH's CSV folder is disallowed by its robots.txt; Maryland District Court (814k), Los Angeles notices (333k), St. Louis County filings and San Diego carry no tenant names. (City of Phoenix eviction filings, with defendant names and money judgments, are Maricopa County court data and left out at the owner's request.)
 40. **Federal tax liens** [legal]: FL Sunbiz SFTP federal lien files. The shared public password needs the owner's OK under the no-login rule. [free] Also CO UCC (IRS liens) and the OR UCC rolling month `snfi-f79b`.
 41. **UCC** [free]: CT `xfev-8smz` and OR `snfi-f79b` / `2kf7-i54h` (Socrata, Public Domain).
 42. **Mechanic's liens:** no free bulk source exists. In FL they sit inside the Official Records `LN` type, so [repo] split them out of the loaded FL recorder data.
 43. **Probate:** no bulk index exists. [free] FL's statewide public-notice site must be searchable by party name (Fla. Stat. 50.0211). [paid] Otherwise per-county requests.
 44. **Deceased and change of address:** no free, compliant source. [paid/legal] The NTIS LADMF needs certification. Do per-case checks through PACER and probate.
-45. **Bankruptcy feeds** [repo]: run the RSS poller for the 66 enabled feeds; `refresh.yml` should already schedule it, so check why only flmb, ohnb and ohsb wrote rows.
+45. **Bankruptcy feeds** [repo, done]: built all enabled feeds into the lake (70 now). The refresh workflow polls built feeds every 2 hours; the others had never had a first build. wvnd still answers HTTP 500.
 46. **Missing districts**
     - [free] The FJC Bankruptcy IDB covers every district since FY2008, including the robots-blocked ones (`cpbank18on.zip`, 887 MB, no login: `fjc.gov/research/idb`).
     - [free] CourtListener quarterly dockets bulk (free S3) for the case names.
-    - [repo] Probe ilnb, ilcb and ilsb RSS feeds; IL has never been checked.
+    - [repo, done] Probed IL: ilcb and ilsb have no robots rules and live feeds (enabled); ilnb's robots.txt disallows everything. wvsb and meb enabled too. txsb, mob, nceb, nyeb and miwb still serve empty feeds.
     - [paid] Per-case lookups through PACER, at no more than about $28 a quarter.
 47. **Business registries**
     - [free] PA `xvd7-5r2c` (4.2M officer rows), DC beneficial owners, and the NY all-filings sets.
@@ -332,8 +350,8 @@ Tags: **[repo]** = no new source needed, just build, map or fix code. **[free]**
 59. **HI and RI match runs** [repo]: add them to `STATES` in `equity/matching/resolve.py` once owners exist (fixes 2 and 10).
 60. **Unbuilt sources** [repo]: run the lake build for each one (`uv run python -m equity.lake run --only <ids>`). `uv run python -m equity.lake hosts` groups them by host, which shows which hosts are blocked.
 61. **Orphan sources** [repo]: re-register them or delete them from the lake.
-62. **`docs/gaps.md`** [repo]: have `gaps.py` read the lake's `_counts.json` and part counts, so "owner" means owner rows exist, not just a mapped field.
-63. **Maricopa** [legal]: owner decision. Either file Maricopa's commercial-use statement, or remove the source.
+62. **`docs/gaps.md`** [repo, done]: `equity.lake_gaps` reads the lake's part counts (rows actually written, per county where parts are split by county) and writes `reports/lake_gaps.md`. `gaps.py` stays config-only so CI can check it without network.
+63. **Maricopa:** dropped from this list at the owner's request.
 64. **Owner-only config values** [owner]:
     - For `sol.yaml`, the White and Williams 50-state chart (rev. 2020) is a cross-check, and each state's statute is the source.
     - For homestead amounts, use the state statutes plus 11 USC 522(d).
