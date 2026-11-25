@@ -37,6 +37,7 @@ LOCAL_ZONING = Path(__file__).resolve().parents[2] / "config" / "zoning" / "loca
 # prefix; us.* federal court feeds name their district (us.flmb -> FL).
 INSTRUMENT_SOURCES = ("ny.nyc.acris.", "pa.philadelphia.rtt", "fl.hillsborough.or",
                       "fl.hernando.or", "fl.putnam.or", "il.ptax.", "il.cook.sales",
+                      "il.cook.recorder_",
                       "md.sdat.", "in.dlgf.sales_disclosures")  # fmt: skip
 ENTITY_SUFFIX = ".business"  # *.sos.business, pa.dos.business, dc.dlcp.business
 ORDINANCE_SUFFIX = ".code_links"

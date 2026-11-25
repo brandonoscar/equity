@@ -1,0 +1,33 @@
+source_id: oh.stark.property_sales
+state: OH
+county_fips: "39151"
+# Stark County OH Auditor "Property Sales" (scgisa.starkcountyohio.gov Auditor/StarkCountySales
+# MapServer/0, 306,601 sale rows with transfer dates 2001-12 to 2026-11, rebuilt every morning
+# from the Auditor's CAMA database): parcel, transfer date, former owner (grantor), new owner
+# (grantee), sale price, number of parcels, arm's-length flag, instrument type, sale validity
+# and type, conveyance number and recorder instrument number. Loaded as DEED instruments on
+# 39151-<PARID>, the oh.stark.parcels PIN ('4106046').
+api: arcgis
+layer_url: https://scgisa.starkcountyohio.gov/arcgis/rest/services/Auditor/StarkCountySales/MapServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, PARID, SITE_ADDRESS, TRANSFER_DATE, FORMER_OWNER, NEW_OWNER, SALE_PRICE,
+         NUMBER_OF_PARCELS, ARMS_LENGTH, INSTR_TYPE_DESC, SALE_VALIDITY, SALE_TYPE,
+         CONVEYANCE_NUMBER, INSTRUMENT_NUMBER, SALE_YEAR]
+date_field: TRANSFER_DATE
+partition: year
+first_year: 2001
+uid: [CONVEYANCE_NUMBER, INSTRUMENT_NUMBER, PARID]
+doc_type: DEED
+doc_type_raw: {field: SALE_VALIDITY}
+consideration: SALE_PRICE
+parties:
+  - {role: grantor, name: FORMER_OWNER}
+  - {role: grantee, name: NEW_OWNER}
+extra_pii: [SITE_ADDRESS]
+parcel: {kind: pin, field: PARID, county_fips: "39151"}   # = oh.stark.parcels PIN
+terms:
+  url: https://www.arcgis.com/home/item.html?id=983c134bbeae480fb8ad4c859021f019
+  summary: "Stark County (Ohio) GIS ArcGIS Server, folder 'Auditor', public MapServer, no login, token or fee. Item licenseInfo (read 2026-11-25): public information furnished by the Stark County Auditor, no warranty, not for legal or survey use; no resale, redistribution or mailing-list clause. scgisa.starkcountyohio.gov/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

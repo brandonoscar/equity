@@ -1,0 +1,34 @@
+# City of Minneapolis Regulatory Services "Active Rental Licenses" (ArcGIS Online
+# Active_Rental_Licenses/0, 23,411 licenses on 2026-11-25, refreshed weekly): every active
+# rental license with the Hennepin PIN (apn), the rental address, licensed units, tier, and
+# the owner and the applicant (manager) with their own mailing addresses (shortTermRental
+# marks short-term rentals). The addresses on the parties are the owner's and applicant's
+# own; the rental property address stays in the source record.
+source_id: mn.minneapolis.rental_licenses
+state: MN
+jurisdiction: "27053"
+kind: sos  # nearest source kind: a city registry of names
+record_type: rental_registration
+api: arcgis
+arcgis:
+  layer: https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Active_Rental_Licenses/FeatureServer/0
+  id_field: OBJECTID
+  window: 25000
+  page: 2000
+  fields: [OBJECTID, apn, licenseNumber, category, milestone, tier, status, issueDate, expirationDate, address, ownerName, ownerAddress1, ownerAddress2, ownerCity, ownerState, ownerZip, applicantName, applicantAddress1, applicantAddress2, applicantCity, applicantState, applicantZip, licensedUnits, ward, neighborhoodDesc, shortTermRental]
+key: licenseNumber
+key_prefix: "MPLS-RENTAL:"
+parties:
+  - role: owner
+    name: ownerName
+    address: {street: [ownerAddress1, ownerAddress2], city: ownerCity, state: ownerState, zip: ownerZip}
+  - role: property_contact
+    name: applicantName
+    address: {street: [applicantAddress1, applicantAddress2], city: applicantCity, state: applicantState, zip: applicantZip}
+extra_pii: [address]
+terms:
+  url: https://www.arcgis.com/home/item.html?id=a863cc08439e4457b3d64b195334f15a
+  summary: "City of Minneapolis Open Data (ArcGIS Online, owner City_of_Minneapolis), public hosted layer, no login, token or fee. Item licenseInfo (read 2026-11-25): 'To the extent possible under law, City of Minneapolis has waived all copyright and related or neighboring rights to Open Data' (CC0-style public domain dedication), with a no-warranty / reference-use disclaimer. services.arcgis.com/robots.txt answers 4xx (RFC 9309: no rules). Owner phone and e-mail columns are not fetched."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

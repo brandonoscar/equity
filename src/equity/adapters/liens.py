@@ -80,15 +80,23 @@ Config keys:
                       matches the regex `pattern`; `url` is the fallback and the base_url.
                       With `all: true` every matching link is a partition {file: key}, the
                       key being the pattern's first group (e.g. the month or fiscal year in
-                      the file name): a source published as one file per period
+                      the file name): a source published as one file per period.
+                      pick: last takes the last matching link instead; then: [{pattern,
+                      pick}, ...] follows more hops (a dated folder in a dated folder: each
+                      hop's link is the next page)
   append_polls        true: a rolling list (e.g. last month's filings) that drops old rows:
                       refresh.yaml polls it in append mode, each poll a new part, rows already
                       stored dropped (equity.lake.drop_known), so no month is lost
   user_agent          optional identifying User-Agent for a host whose firewall refuses the
                       default one (it still names this project; robots.txt is still obeyed)
-  terms               {url, summary, checked_on, cost_model}
-  use_restrictions    optional tags (internal_use_only, no_redistribution, ...), written into
-                      the source row's terms summary as RESTRICTED[...], as parcel configs do
+  terms               {url, summary, checked_on, cost_model, robots_checked_on (default
+                      checked_on), use_restrictions}
+  use_restrictions    optional tags (internal_use_only, no_redistribution, ...), top level or
+                      under terms, written into the source row's terms summary as
+                      RESTRICTED[...], as parcel configs do
+
+A pin made only of zeros ('0000000000', a placeholder some permit systems print when no
+parcel was entered) names no lot.
 """
 
 from __future__ import annotations
@@ -525,7 +533,8 @@ class LienAdapter(Adapter):
 
     def restricted(self) -> str:
         """'RESTRICTED[tag,...] ' for a config with use_restrictions, else ''."""
-        tags = sorted(str(x) for x in self.config.get("use_restrictions") or ())
+        raw = self.config.get("use_restrictions") or self.config["terms"].get("use_restrictions")
+        tags = sorted(str(x) for x in raw or ())
         return f"RESTRICTED[{','.join(tags)}] " if tags else ""
 
     @property
@@ -658,37 +667,48 @@ class LienAdapter(Adapter):
                            tuple(self.config.get("order_by") or ("OBJECTID",)),
                            page)  # fmt: skip
 
-    def file_links(self) -> list[tuple[str, str]]:
-        """(key, absolute url) of every link on link_from.page whose href matches the pattern,
-        in page order, first per key. The key is the pattern's first group (the whole match
-        when it has none). Spaces and other unsafe characters in the href are %-quoted."""
-        spec = self.config["link_from"]
-        page = self.client.get(str(spec["page"]))
+    def _links_on(self, page_url: str, pattern: str) -> list[tuple[str, str]]:
+        """(key, absolute url) of every link on the page whose href matches `pattern`, in page
+        order. The key is the pattern's first group (the whole match when it has none). Spaces
+        and other unsafe characters in the href are %-quoted."""
+        page = self.client.get(page_url)
         if page.status != 200:
-            raise LienConfigError(f"{self.source_id}: HTTP {page.status} from {spec['page']}")
+            raise LienConfigError(f"{self.source_id}: HTTP {page.status} from {page_url}")
         text = page.content.decode("utf-8", errors="replace")
-        found: dict[str, str] = {}
+        out: list[tuple[str, str]] = []
         for href in re.findall(r"""href\s*=\s*["']([^"']+)["']""", text, re.IGNORECASE):
             href = html.unescape(href)
-            m = re.search(str(spec["pattern"]), href)
+            m = re.search(pattern, href)
             if m:
-                url = urllib.parse.urljoin(str(spec["page"]), href)
+                url = urllib.parse.urljoin(page_url, href)
                 key = m.group(1) if m.groups() else m.group(0)
-                found.setdefault(key, urllib.parse.quote(url, safe=":/?&=%#+,;@()~"))
+                out.append((key, urllib.parse.quote(url, safe=":/?&=%#+,;@()~")))
+        return out
+
+    def file_links(self) -> list[tuple[str, str]]:
+        """link_from.all: (key, url) of every matching link on link_from.page, first per key."""
+        spec = self.config["link_from"]
+        found: dict[str, str] = {}
+        for key, url in self._links_on(str(spec["page"]), str(spec["pattern"])):
+            found.setdefault(key, url)
         return list(found.items())
 
     def file_url(self, key: str | None = None) -> str:
-        """The file to download: config url, or the current link found on link_from.page (with
-        a key: the link for that key, link_from.all)."""
+        """The file to download: config url, or the link found on link_from.page (the first,
+        or the last with pick: last; with a key: the link for that key, link_from.all), then
+        each `then` hop's link on the page found before it."""
         spec = self.config.get("link_from")
         if not spec:
             return str(self.config["url"])
-        links = self.file_links()
-        if key is not None and spec.get("all") and key != "all":
-            links = [(k, u) for k, u in links if k == key]
-        if links:
-            return links[0][1]
-        raise LienConfigError(f"{self.source_id}: no link matching {spec['pattern']!r}")
+        url = str(spec["page"])
+        for i, hop in enumerate([spec, *(spec.get("then") or [])]):
+            links = self._links_on(url, str(hop["pattern"]))
+            if i == 0 and key is not None and spec.get("all") and key != "all":
+                links = [(k, u) for k, u in links if k == key]
+            if not links:
+                raise LienConfigError(f"{self.source_id}: no link matching {hop['pattern']!r}")
+            url = links[-1][1] if hop.get("pick") == "last" else links[0][1]
+        return url
 
     def _enrich(self, rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
         """Config enrich: {carto, table, key, field, columns} or {arcgis: layer url, key, field,
@@ -903,7 +923,8 @@ class LienAdapter(Adapter):
                 pin = "".join(ch for ch in pin if ch not in str(spec["strip"])) or None
             if pin and spec.get("zfill"):  # a folio read as a number lost its leading zero
                 pin = pin.zfill(int(spec["zfill"]))
-            if pin is None:
+            if pin is None or not pin.strip("0-. "):  # blank or a zeros placeholder
+                return None, None
                 return None, None
             # A statewide list names each row's county instead (county_name_field).
             county = spec.get("county_fips") or self._county(row)

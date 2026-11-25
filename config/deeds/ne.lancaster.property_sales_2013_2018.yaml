@@ -1,0 +1,35 @@
+source_id: ne.lancaster.property_sales_2013_2018
+state: NE
+county_fips: "31109"
+# Lancaster County (Lincoln) NE Assessor / Register of Deeds qualified sales, one ArcGIS
+# Online layer per year (owner CountyCityPub, 2013 to 2018 year-to-date, about 7,000 sales a
+# year; published 2018, not extended): parcel, Register of Deeds instrument number, sale
+# price and date, property class and sale type (V vacant land, I improved). No grantor or
+# grantee is named: DEED instruments on the parcel (one partition per layer). Parcel_ID is
+# printed with dashes ('01-04-100-004-000'), stripped to the 13-digit ne.lancaster.parcels
+# PARCELID.
+api: arcgis
+layer_urls:
+  - https://services1.arcgis.com/wpJGOi6N4Rq5cqFv/arcgis/rest/services/LancasterCountyPropertySales2013/FeatureServer/0
+  - https://services1.arcgis.com/wpJGOi6N4Rq5cqFv/arcgis/rest/services/LancasterCountyPropertySales2014/FeatureServer/0
+  - https://services1.arcgis.com/wpJGOi6N4Rq5cqFv/arcgis/rest/services/LancasterCountyPropertySales2015/FeatureServer/0
+  - https://services1.arcgis.com/wpJGOi6N4Rq5cqFv/arcgis/rest/services/LancasterCountyPropertySales2016/FeatureServer/0
+  - https://services1.arcgis.com/wpJGOi6N4Rq5cqFv/arcgis/rest/services/LancasterCountyPropertySales2017/FeatureServer/0
+  - https://services1.arcgis.com/wpJGOi6N4Rq5cqFv/arcgis/rest/services/LancasterCountyPropertySales2018ytd/FeatureServer/0
+select: [Parcel_ID, Site_Address, Instrument_Number, Sale_Price, Sale_Date, Property_Class,
+         Sale_Type]
+order_by: [Instrument_Number, Parcel_ID]
+date_field: Sale_Date
+uid: [Instrument_Number, Parcel_ID]
+doc_type: DEED
+doc_type_raw: {field: Property_Class}
+consideration: Sale_Price
+parties: []
+extra_pii: [Site_Address]
+parcel: {kind: pin, field: Parcel_ID, county_fips: "31109", strip: "-"}   # = ne.lancaster.parcels PARCELID
+terms:
+  url: https://www.arcgis.com/home/item.html?id=7f3bc3575c474fd79c8ba2c294b13623
+  summary: "Lancaster County / City of Lincoln (ArcGIS Online org CountyCityPub) public hosted layers listed on opendata.lincoln.ne.gov, free, no login, token or fee. No licenseInfo on the items (read 2026-11-25); no use restriction found. services1.arcgis.com/robots.txt answers 4xx (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

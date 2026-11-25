@@ -1,0 +1,39 @@
+# City of Cleveland "Rental Registrations" (Rental_Registrations/0, 98,224 registrations
+# filed since 2015-01 on 2026-11-25, updated daily): every rental registration under
+# Codified Ordinances 365.02, with the parcel, units, status, the years registered, and the
+# owner (person or organization), the local agent in charge and the property manager, each
+# with a one-line mailing address ('street, CITY, ST, zip'). The addresses on the parties are
+# their own; the rental property's address stays in the source record. Phone columns are not
+# fetched.
+source_id: oh.cleveland.rental_registrations
+state: OH
+jurisdiction: "39035"
+kind: sos  # nearest source kind: a city registry of names
+record_type: rental_registration
+api: arcgis
+arcgis:
+  layer: https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/Rental_Registrations/FeatureServer/0
+  id_field: OBJECTID
+  window: 25000
+  page: 2000
+  fields: [OBJECTID, Record_ID, File_Date, Address_Full, Parcel, Units, Record_Status, Record_Status_Date, Active_Registration_Current_Year, Active_Years_Registered, Owner_Name, Owner_Org_Name, Owner_Address, Local_Agent_In_Charge_Name, Local_Agent_In_Charge_Org_Name, Local_Agent_In_Charge_Address, Property_Management_Name, Property_Management_Org_Name, Property_Management_Address]
+key: Record_ID
+key_prefix: "CLE-RR:"
+parties:
+  - role: owner
+    name: [Owner_Name, Owner_Org_Name]
+    address: {line: Owner_Address}
+  - role: property_contact
+    name: [Local_Agent_In_Charge_Name, Local_Agent_In_Charge_Org_Name]
+    address: {line: Local_Agent_In_Charge_Address}
+  - role: property_contact
+    name: [Property_Management_Name, Property_Management_Org_Name]
+    address: {line: Property_Management_Address}
+extra_pii: [Address_Full, Owner_Org_Name, Local_Agent_In_Charge_Org_Name, Property_Management_Org_Name]
+terms:
+  url: https://www.arcgis.com/home/item.html?id=700c7244cd1f4ffa894ae53b2b22dbaa
+  summary: "City of Cleveland Department of Building and Housing on the Cleveland Open Data Portal (ArcGIS Online, owner opendataCLE), public hosted layer, free, no login. Item licenseInfo (read 2026-11-25): Open Data Commons Open Database License (ODbL): attribute the City; a derived database that is shared publicly must be offered under the ODbL (internal use only here, not redistributed). services3.arcgis.com/robots.txt answers 4xx (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  use_restrictions: [attribution_required]
+  cost_model: free

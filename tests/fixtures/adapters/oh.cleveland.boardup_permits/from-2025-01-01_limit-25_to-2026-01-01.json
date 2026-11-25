@@ -1,0 +1,281 @@
+{
+ "layer": "https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/Boardup_Permits/FeatureServer/0",
+ "rows": [
+  {
+   "FILE_DATE": 1753156800000,
+   "ISSUE_DATE": 1753156800000,
+   "OBJECTID": 3816,
+   "PARCEL_NUMBER": "12636018",
+   "PERMIT_CATEGORY": "Board-ups",
+   "PERMIT_ID": "B25024212",
+   "PERMIT_SUBTYPE": "Residential",
+   "PERMIT_TYPE": "Building Permit",
+   "PRIMARY_ADDRESS": "6840 TEST ST"
+  },
+  {
+   "FILE_DATE": 1753156800000,
+   "ISSUE_DATE": 1753156800000,
+   "OBJECTID": 3844,
+   "PARCEL_NUMBER": "13304013",
+   "PERMIT_CATEGORY": "Board-ups",
+   "PERMIT_ID": "B25024218",
+   "PERMIT_SUBTYPE": "Commercial",
+   "PERMIT_TYPE": "Building Permit",
+   "PRIMARY_ADDRESS": "6697 TEST ST"
+  },
+  {
+   "FILE_DATE": 1737694800000,
+   "ISSUE_DATE": 1737694800000,
+   "OBJECTID": 3847,
+   "PARCEL_NUMBER": "13321035",
+   "PERMIT_CATEGORY": "Board-ups",
+   "PERMIT_ID": "B25002466",
+   "PERMIT_SUBTYPE": "Residential",
+   "PERMIT_TYPE": "Building Permit",
+   "PRIMARY_ADDRESS": "2595 TEST ST"
+  },
+  {
+   "FILE_DATE": 1737694800000,
+   "ISSUE_DATE": 1737694800000,
+   "OBJECTID": 3850,
+   "PARCEL_NUMBER": "01109089",
+   "PERMIT_CATEGORY": "Board-ups",
+   "PERMIT_ID": "B25002458",
+   "PERMIT_SUBTYPE": "Residential",
+   "PERMIT_TYPE": "Building Permit",
+   "PRIMARY_ADDRESS": "1464 TEST ST"
+  },
+  {
+   "FILE_DATE": 1753156800000,
+   "ISSUE_DATE": 1753156800000,
+   "OBJECTID": 3851,
+   "PARCEL_NUMBER": "11201006",
+   "PERMIT_CATEGORY": "Board-ups",
+   "PERMIT_ID": "B25024232",
+   "PERMIT_SUBTYPE": "Residential",
+   "PERMIT_TYPE": "Building Permit",
+   "PRIMARY_ADDRESS": "5478 TEST ST"
+  },
+  {
+   "FILE_DATE": 1737694800000,
+   "ISSUE_DATE": 1737694800000,
+   "OBJECTID": 3872,
+   "PARCEL_NUMBER": "13001006",
+   "PERMIT_CATEGORY": "Board-ups",
+   "PERMIT_ID": "B25002516",
+   "PERMIT_SUBTYPE": "Residential",
+   "PERMIT_TYPE": "Building Permit",
+   "PRIMARY_ADDRESS": "6764 TEST ST"
+  },
+  {
+   "FILE_DATE": 1753070400000,
+   "ISSUE_DATE": 1753070400000,
+   "OBJECTID": 3879,
+   "PARCEL_NUMBER": "01523157",
+   "PERMIT_CATEGORY": "Board-ups",
+   "PERMIT_ID": "B25023980",
+   "PERMIT_SUBTYPE": "Residential",
+   "PERMIT_TYPE": "Building Permit",
+   "PRIMARY_ADDRESS": "3609 TEST ST"
+  },
+  {
+   "FILE_DATE": 1737694800000,
+   "ISSUE_DATE": 1737694800000,
+   "OBJECTID": 3901,
+   "PARCEL_NUMBER": "10714038",
+   "PERMIT_CATEGORY": "Board-ups",
+   "PERMIT_ID": "B25002574",
+   "PERMIT_SUBTYPE": "Residential",
+   "PERMIT_TYPE": "Building Permit",
+   "PRIMARY_ADDRESS": "8572 TEST ST"
+  },
+  {
+   "FILE_DATE": 1753070400000,
+   "ISSUE_DATE": 1753070400000,
+   "OBJECTID": 3912,
+   "PARCEL_NUMBER": "02417022",
+   "PERMIT_CATEGORY": "Board-ups",
+   "PERMIT_ID": "B25023943",
+   "PERMIT_SUBTYPE": "Residential",
+   "PERMIT_TYPE": "Building Permit",
+   "PRIMARY_ADDRESS": "3849 TEST ST"
+  },
+  {
+   "FILE_DATE": 1753070400000,
+   "ISSUE_DATE": 1753070400000,
+   "OBJECTID": 3919,
+   "PARCEL_NUMBER": "00727065",
+   "PERMIT_CATEGORY": "Board-ups",
+   "PERMIT_ID": "B25023958",
+   "PERMIT_SUBTYPE": "Residential",
+   "PERMIT_TYPE": "Building Permit",
+   "PRIMARY_ADDRESS": "5922 TEST ST"
+  },
+  {
+   "FILE_DATE": 1737694800000,
+   "ISSUE_DATE": 1737694800000,
+   "OBJECTID": 3930,
+   "PARCEL_NUMBER": "12116158",
+   "PERMIT_CATEGORY": "Board-ups",
+   "PERMIT_ID": "B25002582",
+   "PERMIT_SUBTYPE": "Residential",
+   "PERMIT_TYPE": "Building Permit",
+   "PRIMARY_ADDRESS": "629 TEST ST"
+  },
+  {
+   "FILE_DATE": 1737694800000,
+   "ISSUE_DATE": 1737694800000,
+   "OBJECTID": 3943,
+   "PARCEL_NUMBER": "11015055",
+   "PERMIT_CATEGORY": "Board-ups",
+   "PERMIT_ID": "B25002585",
+   "PERMIT_SUBTYPE": "Residential",
+   "PERMIT_TYPE": "Building Permit",
+   "PRIMARY_ADDRESS": "1422 TEST ST"
+  },
+  {
+   "FILE_DATE": 1752811200000,
+   "ISSUE_DATE": 1752811200000,
+   "OBJECTID": 3955,
+   "PARCEL_NUMBER": "13811003",
+   "PERMIT_CATEGORY": "Board-ups",
+   "PERMIT_ID": "B25023768",
+   "PERMIT_SUBTYPE": "Residential",
+   "PERMIT_TYPE": "Building Permit",
+   "PRIMARY_ADDRESS": "6812 TEST ST"
+  },
+  {
+   "FILE_DATE": 1737694800000,
+   "ISSUE_DATE": 1737694800000,
+   "OBJECTID": 3959,
+   "PARCEL_NUMBER": "00629028",
+   "PERMIT_CATEGORY": "Board-ups",
+   "PERMIT_ID": "B25002522",
+   "PERMIT_SUBTYPE": "Commercial",
+   "PERMIT_TYPE": "Building Permit",
+   "PRIMARY_ADDRESS": "1075 TEST ST"
+  },
+  {
+   "FILE_DATE": 1752811200000,
+   "ISSUE_DATE": 1752811200000,
+   "OBJECTID": 3988,
+   "PARCEL_NUMBER": "01510190",
+   "PERMIT_CATEGORY": "Board-ups",
+   "PERMIT_ID": "B25023749",
+   "PERMIT_SUBTYPE": "Commercial",
+   "PERMIT_TYPE": "Building Permit",
+   "PRIMARY_ADDRESS": "5790 TEST ST"
+  },
+  {
+   "FILE_DATE": 1737694800000,
+   "ISSUE_DATE": 1737694800000,
+   "OBJECTID": 3991,
+   "PARCEL_NUMBER": "10827102",
+   "PERMIT_CATEGORY": "Board-ups",
+   "PERMIT_ID": "B25002539",
+   "PERMIT_SUBTYPE": "Residential",
+   "PERMIT_TYPE": "Building Permit",
+   "PRIMARY_ADDRESS": "7945 TEST ST"
+  },
+  {
+   "FILE_DATE": 1737694800000,
+   "ISSUE_DATE": 1737694800000,
+   "OBJECTID": 4012,
+   "PARCEL_NUMBER": "01511003",
+   "PERMIT_CATEGORY": "Board-ups",
+   "PERMIT_ID": "B25002572",
+   "PERMIT_SUBTYPE": "Residential",
+   "PERMIT_TYPE": "Building Permit",
+   "PRIMARY_ADDRESS": "1613 TEST ST"
+  },
+  {
+   "FILE_DATE": 1752811200000,
+   "ISSUE_DATE": 1752811200000,
+   "OBJECTID": 4013,
+   "PARCEL_NUMBER": "00728149",
+   "PERMIT_CATEGORY": "Board-ups",
+   "PERMIT_ID": "B25023760",
+   "PERMIT_SUBTYPE": "Residential",
+   "PERMIT_TYPE": "Building Permit",
+   "PRIMARY_ADDRESS": "6019 TEST ST"
+  },
+  {
+   "FILE_DATE": 1737694800000,
+   "ISSUE_DATE": 1737694800000,
+   "OBJECTID": 4041,
+   "PARCEL_NUMBER": "13427035",
+   "PERMIT_CATEGORY": "Board-ups",
+   "PERMIT_ID": "B25002518",
+   "PERMIT_SUBTYPE": "Residential",
+   "PERMIT_TYPE": "Building Permit",
+   "PRIMARY_ADDRESS": "2667 TEST ST"
+  },
+  {
+   "FILE_DATE": 1752811200000,
+   "ISSUE_DATE": 1752811200000,
+   "OBJECTID": 4042,
+   "PARCEL_NUMBER": "13410013",
+   "PERMIT_CATEGORY": "Board-ups",
+   "PERMIT_ID": "B25023773",
+   "PERMIT_SUBTYPE": "Commercial",
+   "PERMIT_TYPE": "Building Permit",
+   "PRIMARY_ADDRESS": "4822 TEST ST"
+  },
+  {
+   "FILE_DATE": 1737608400000,
+   "ISSUE_DATE": 1737694800000,
+   "OBJECTID": 4062,
+   "PARCEL_NUMBER": "01302031",
+   "PERMIT_CATEGORY": "Board-ups",
+   "PERMIT_ID": "B25002345",
+   "PERMIT_SUBTYPE": "Commercial",
+   "PERMIT_TYPE": "Building Permit",
+   "PRIMARY_ADDRESS": "4051 TEST ST"
+  },
+  {
+   "FILE_DATE": 1752811200000,
+   "ISSUE_DATE": 1752811200000,
+   "OBJECTID": 4069,
+   "PARCEL_NUMBER": "13213122",
+   "PERMIT_CATEGORY": "Board-ups",
+   "PERMIT_ID": "B25023809",
+   "PERMIT_SUBTYPE": "Residential",
+   "PERMIT_TYPE": "Building Permit",
+   "PRIMARY_ADDRESS": "4304 TEST ST"
+  },
+  {
+   "FILE_DATE": 1737608400000,
+   "ISSUE_DATE": 1737608400000,
+   "OBJECTID": 4095,
+   "PARCEL_NUMBER": "12527053",
+   "PERMIT_CATEGORY": "Board-ups",
+   "PERMIT_ID": "B25002308",
+   "PERMIT_SUBTYPE": "Residential",
+   "PERMIT_TYPE": "Building Permit",
+   "PRIMARY_ADDRESS": "6852 TEST ST"
+  },
+  {
+   "FILE_DATE": 1737608400000,
+   "ISSUE_DATE": 1737608400000,
+   "OBJECTID": 4104,
+   "PARCEL_NUMBER": "12502036",
+   "PERMIT_CATEGORY": "Board-ups",
+   "PERMIT_ID": "B25002287",
+   "PERMIT_SUBTYPE": "Commercial",
+   "PERMIT_TYPE": "Building Permit",
+   "PRIMARY_ADDRESS": "5697 TEST ST"
+  },
+  {
+   "FILE_DATE": 1752811200000,
+   "ISSUE_DATE": 1752811200000,
+   "OBJECTID": 4107,
+   "PARCEL_NUMBER": "12532073",
+   "PERMIT_CATEGORY": "Board-ups",
+   "PERMIT_ID": "B25023871",
+   "PERMIT_SUBTYPE": "Residential",
+   "PERMIT_TYPE": "Building Permit",
+   "PRIMARY_ADDRESS": "5358 TEST ST"
+  }
+ ],
+ "where": "ISSUE_DATE >= DATE '2025-01-01' AND ISSUE_DATE < DATE '2026-01-01'"
+}

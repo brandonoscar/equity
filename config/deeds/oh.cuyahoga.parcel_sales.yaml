@@ -1,0 +1,38 @@
+source_id: oh.cuyahoga.parcel_sales
+state: OH
+county_fips: "39035"
+# Cuyahoga County "Cuyahoga Parcel Sales 2021 to Present" (ArcGIS Online CuyahogaSalesData/0,
+# 138,445 parcel sales on 2026-11-25, updated monthly; owner dgiersz_cuyahoga6, listed on the
+# county's open data hub data-cuyahoga.opendata.arcgis.com): one row per parcel sold with the
+# sale date, amount and deed type, plus the parcel's CAMA characteristics at the sale
+# (residential style, living area, bedrooms, baths, age, condition, commercial use area and
+# units, land use, lot size, utilities) and its certified and market tax values. No grantor
+# or grantee is named (oh.cuyahoga.last_transfer names the latest one): DEED instruments on
+# 39035-<PARCEL_ID>, the oh.cuyahoga.parcels parcel_id ('00101007'), with the CAMA facts in
+# the source record.
+api: arcgis
+layer_url: https://services7.arcgis.com/GXM8JipKyc0m6HBi/arcgis/rest/services/CuyahogaSalesData/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, PARCEL_ID, SALE_AMOUNT, SALE_DATE, DEED_TYPE, PCL_ADDR_FULL, YEAR_OF_SALE,
+         PAR_CITY, NBHD_COM_GRP, PAR_LOT_SZE, RES_BLDG_COUNT, RES_STYLES, TOTAL_RES_LIV_AREA,
+         MAX_RES_HEIGHTS, MIN_AGE, RES_CONDITION, RES_BEDROOMS, RES_BATHS, TOTAL_COM_USE_AREA,
+         COM_LIVING_UNITS, MAX_COM_HEIGHTS, MIN_COM_AGE, COM_CONDITION, COM_AVG_UNIT_SIZE,
+         COM_BATHROOMS, TAX_LUC, TAX_LUC_DESCRIPTION, NEIGHBORHOOD_CODE, ROAD_TYPE, GAS,
+         ELECTRICITY, WATER, SEWER, PARCEL_LOT_SIZE, UPDATE_DATE, CUR_TAX_YEAR,
+         CERTIFIED_TAX_TOTAL, TAX_MARKET_TOTAL]
+date_field: SALE_DATE
+partition: year
+first_year: 2021
+uid: [PARCEL_ID, SALE_DATE]
+doc_type: DEED
+doc_type_raw: {field: DEED_TYPE}
+consideration: SALE_AMOUNT
+parties: []
+extra_pii: [PCL_ADDR_FULL]
+parcel: {kind: pin, field: PARCEL_ID, county_fips: "39035"}   # = oh.cuyahoga.parcels parcel_id
+terms:
+  url: https://www.arcgis.com/home/item.html?id=234b606bf7304a9f93bcc9e00afb28fc
+  summary: "Cuyahoga County public ArcGIS Online layer (item linked from the county open data hub), free, no login, token or fee. licenseInfo links the CuyahogaGIS disclaimer PDF (read 2026-11-25): free public service on an 'as is' basis, no warranty, not an official public record; no resale, redistribution or mailing-list clause. services7.arcgis.com/robots.txt answers 4xx (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

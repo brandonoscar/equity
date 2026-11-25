@@ -1,0 +1,33 @@
+source_id: oh.clermont.property_sales
+state: OH
+county_fips: "39025"
+# Clermont County, OH Auditor "SALES" (internal.opendata.clermontauditor.org gnjq-xf8x, 63,104
+# conveyances 2016-01 to 2026-11, updated daily): parcel, sale date, price, transfer number,
+# the previous owner(s) (oldown, oldown2: grantor) and the new owner(s) (own1, own2:
+# grantee), sale type, validity code (valid, multi-parcel, related parties...) and number of
+# parcels in the sale. Loaded as DEED instruments on 39025-<parid>, the oh.clermont.parcels
+# PIN ('222608A114.', trailing dot included).
+portal: https://internal.opendata.clermontauditor.org
+dataset: gnjq-xf8x
+order_by: [parid, saledt, ":id"]
+select: [parid, class, luc, saledt, price, transno, oldown, oldown2, own1, own2, source,
+         saletype, saleval, nopar, saletypedesc, salevaldesc]
+date_field: saledt
+partition: year
+first_year: 2016
+uid: [transno, parid, saledt]
+doc_type: DEED
+doc_type_raw: {field: saletypedesc}
+consideration: price
+parties:
+  - {role: grantor, name: oldown}
+  - {role: grantor, name: oldown2}
+  - {role: grantee, name: own1}
+  - {role: grantee, name: own2}
+parcel: {kind: pin, field: parid, county_fips: "39025"}   # = oh.clermont.parcels PIN
+terms:
+  url: https://internal.opendata.clermontauditor.org/d/gnjq-xf8x
+  summary: "Clermont County, OH Auditor open data (Socrata), free, no login; dataset license Public Domain. internal.opendata.clermontauditor.org/robots.txt allows /resource/."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

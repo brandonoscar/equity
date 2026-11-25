@@ -1,0 +1,206 @@
+{
+ "layer": "https://services1.arcgis.com/9meaaHE3uiba0zr8/arcgis/rest/services/VacantBuildings/FeatureServer/0",
+ "rows": [
+  {
+   "ADDRESS": "6602 TEST ST",
+   "DWELLING_TYPE": "Single Family Residential",
+   "OBJECTID": 1,
+   "PIN": "322922140187",
+   "VACANT_AS_OF": "02/15/2022",
+   "VB_CATEGORY": "2"
+  },
+  {
+   "ADDRESS": "2189 TEST ST",
+   "DWELLING_TYPE": "Duplex",
+   "OBJECTID": 2,
+   "PIN": "332922230216",
+   "VACANT_AS_OF": "08/05/2021",
+   "VB_CATEGORY": "2"
+  },
+  {
+   "ADDRESS": "7569 TEST ST",
+   "DWELLING_TYPE": "Duplex",
+   "OBJECTID": 3,
+   "PIN": "332922230092",
+   "VACANT_AS_OF": "03/18/2025",
+   "VB_CATEGORY": "2"
+  },
+  {
+   "ADDRESS": "9010 TEST ST",
+   "DWELLING_TYPE": "Duplex",
+   "OBJECTID": 4,
+   "PIN": "332922230064",
+   "VACANT_AS_OF": "12/20/2024",
+   "VB_CATEGORY": "1"
+  },
+  {
+   "ADDRESS": "8894 TEST ST",
+   "DWELLING_TYPE": "Single Family Residential",
+   "OBJECTID": 5,
+   "PIN": "342922130094",
+   "VACANT_AS_OF": "03/04/2025",
+   "VB_CATEGORY": "1"
+  },
+  {
+   "ADDRESS": "1861 TEST ST",
+   "DWELLING_TYPE": "Multi-family Residential",
+   "OBJECTID": 6,
+   "PIN": "322922420003",
+   "VACANT_AS_OF": "05/17/2022",
+   "VB_CATEGORY": "2"
+  },
+  {
+   "ADDRESS": "333 TEST ST",
+   "DWELLING_TYPE": "Duplex",
+   "OBJECTID": 7,
+   "PIN": "332922230041",
+   "VACANT_AS_OF": "10/17/2024",
+   "VB_CATEGORY": "1"
+  },
+  {
+   "ADDRESS": "7376 TEST ST",
+   "DWELLING_TYPE": "Single Family Residential",
+   "OBJECTID": 8,
+   "PIN": "352922240027",
+   "VACANT_AS_OF": "04/11/2023",
+   "VB_CATEGORY": "2"
+  },
+  {
+   "ADDRESS": "4350 TEST ST",
+   "DWELLING_TYPE": "Commercial",
+   "OBJECTID": 9,
+   "PIN": "062822110014",
+   "VACANT_AS_OF": "05/11/2021",
+   "VB_CATEGORY": "2"
+  },
+  {
+   "ADDRESS": "5900 TEST ST",
+   "DWELLING_TYPE": "Single Family Residential",
+   "OBJECTID": 10,
+   "PIN": "322922130100",
+   "VACANT_AS_OF": "02/21/2019",
+   "VB_CATEGORY": "3"
+  },
+  {
+   "ADDRESS": "3288 TEST ST",
+   "DWELLING_TYPE": "Duplex",
+   "OBJECTID": 11,
+   "PIN": "322922140077",
+   "VACANT_AS_OF": "12/05/2024",
+   "VB_CATEGORY": "2"
+  },
+  {
+   "ADDRESS": "5843 TEST ST",
+   "DWELLING_TYPE": "Single Family Residential",
+   "OBJECTID": 12,
+   "PIN": "332922120136",
+   "VACANT_AS_OF": "05/05/2025",
+   "VB_CATEGORY": "2"
+  },
+  {
+   "ADDRESS": "2996 TEST ST",
+   "DWELLING_TYPE": "Single Family Residential",
+   "OBJECTID": 13,
+   "PIN": "342922120138",
+   "VACANT_AS_OF": "02/27/2025",
+   "VB_CATEGORY": "1"
+  },
+  {
+   "ADDRESS": "7529 TEST ST",
+   "DWELLING_TYPE": "Single Family Residential",
+   "OBJECTID": 14,
+   "PIN": "342922120140",
+   "VACANT_AS_OF": "04/09/2025",
+   "VB_CATEGORY": "1"
+  },
+  {
+   "ADDRESS": "8412 TEST ST",
+   "DWELLING_TYPE": "Commercial",
+   "OBJECTID": 15,
+   "PIN": "012823140176",
+   "VACANT_AS_OF": "05/19/2022",
+   "VB_CATEGORY": "2"
+  },
+  {
+   "ADDRESS": "826 TEST ST",
+   "DWELLING_TYPE": "Commercial",
+   "OBJECTID": 16,
+   "PIN": "322922240173",
+   "VACANT_AS_OF": "02/28/2023",
+   "VB_CATEGORY": "2"
+  },
+  {
+   "ADDRESS": "3844 TEST ST",
+   "DWELLING_TYPE": "Commercial",
+   "OBJECTID": 17,
+   "PIN": "122823230129",
+   "VACANT_AS_OF": "04/23/2024",
+   "VB_CATEGORY": "1"
+  },
+  {
+   "ADDRESS": "5458 TEST ST",
+   "DWELLING_TYPE": "Duplex",
+   "OBJECTID": 18,
+   "PIN": "112823420207",
+   "VACANT_AS_OF": "08/30/2024",
+   "VB_CATEGORY": "2"
+  },
+  {
+   "ADDRESS": "6131 TEST ST",
+   "DWELLING_TYPE": "Single Family Residential",
+   "OBJECTID": 19,
+   "PIN": "302922340070",
+   "VACANT_AS_OF": "02/09/2022",
+   "VB_CATEGORY": "2"
+  },
+  {
+   "ADDRESS": "6789 TEST ST",
+   "DWELLING_TYPE": "Single Family Residential",
+   "OBJECTID": 20,
+   "PIN": "242923440133",
+   "VACANT_AS_OF": "12/04/2024",
+   "VB_CATEGORY": "1"
+  },
+  {
+   "ADDRESS": "653 TEST ST",
+   "DWELLING_TYPE": "Single Family Residential",
+   "OBJECTID": 21,
+   "PIN": "222923330079",
+   "VACANT_AS_OF": "10/02/2024",
+   "VB_CATEGORY": "2"
+  },
+  {
+   "ADDRESS": "2538 TEST ST",
+   "DWELLING_TYPE": "Single Family Residential",
+   "OBJECTID": 22,
+   "PIN": "262922130091",
+   "VACANT_AS_OF": "09/12/2023",
+   "VB_CATEGORY": "2"
+  },
+  {
+   "ADDRESS": "8875 TEST ST",
+   "DWELLING_TYPE": "Mixed Use",
+   "OBJECTID": 23,
+   "PIN": "082822120064",
+   "VACANT_AS_OF": "04/28/2025",
+   "VB_CATEGORY": "1"
+  },
+  {
+   "ADDRESS": "712 TEST ST",
+   "DWELLING_TYPE": "Commercial",
+   "OBJECTID": 24,
+   "PIN": "282922230229",
+   "VACANT_AS_OF": "05/27/2016",
+   "VB_CATEGORY": "2"
+  },
+  {
+   "ADDRESS": "1685 TEST ST",
+   "DWELLING_TYPE": "Commercial",
+   "OBJECTID": 25,
+   "PIN": "282922230199",
+   "VACANT_AS_OF": "08/14/2023",
+   "VB_CATEGORY": "1"
+  }
+ ],
+ "where": "1=1"
+}

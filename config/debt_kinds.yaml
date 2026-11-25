@@ -182,3 +182,11 @@ sources:
   ca.los_angeles.defaulted_tax: tax_delinquency
   az.maricopa.delinquent_tax_parcels: tax_delinquency
   or.sos.ucc: statutory_lien                       # UCC filings and federal tax liens
+  # Midwest tax sales, recorded foreclosure suits, scofflaws and code tickets (2026-11-25)
+  il.cook.annual_tax_sale: tax_lien                 # certificate of purchase sold (or forfeited)
+  il.cook.scavenger_sale: tax_lien
+  ia.linn.tax_sale_certificates: tax_lien
+  il.cook.recorder_foreclosures_2011: foreclosure   # lis pendens foreclosure, no parties
+  il.cook.recorder_foreclosures_2012: foreclosure
+  il.chicago.building_scofflaws: housing_court_case
+  oh.cleveland.civil_tickets: code_enforcement_charge

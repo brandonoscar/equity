@@ -1,0 +1,25 @@
+# City of Chicago BACP "Active Shared Housing Registrations" (data.cityofchicago.org
+# qfyy-956j, 3,702 rows on 2026-11-25, updated daily): short-term rental (shared housing
+# unit) registrations under Municipal Code 4-14, with the host's name, the unit's street
+# address, status and expiration. The registrant hosts the unit; the address is the rental
+# unit's, not the host's mailing address.
+source_id: il.chicago.shared_housing
+state: IL
+jurisdiction: "17031"
+portal: https://data.cityofchicago.org
+dataset: qfyy-956j
+key: registration_number
+id_prefix: "CHI-STR:"
+terms_url: https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html
+terms_summary: "City of Chicago Data Portal (Socrata), BACP, public, no login. City of Chicago data terms of use: provided as is, free to use; no commercial-use or redistribution restriction. data.cityofchicago.org/robots.txt allows /resource/ (Crawl-delay: 1)."
+checked_on: 2026-11-25
+robots_checked_on: 2026-11-25
+license:
+  name: host_name
+  type_value: Shared housing unit registration
+  status: current_status
+  issued_on: current_status_date
+  address: {street: street_address}
+holders:
+  - {role: other, title: HOST, with_type: false, name: host_name}
+pii_fields: [host_name, street_address]

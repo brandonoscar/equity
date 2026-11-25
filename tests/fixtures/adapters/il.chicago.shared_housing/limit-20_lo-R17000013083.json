@@ -1,0 +1,206 @@
+{
+ "portal": "https://data.cityofchicago.org",
+ "rows": [
+  {
+   "current_status": "APPROVED",
+   "current_status_date": "2026-07-28T00:00:00.000",
+   "expiration_date": "2027-09-15T00:00:00.000",
+   "host_name": "TESTOWNER 03EF87",
+   "precinct": "23",
+   "registration_number": "R17000013083",
+   "street_address": "1079 TEST ST",
+   "ward": "43"
+  },
+  {
+   "current_status": "APPROVED",
+   "current_status_date": "2026-08-19T00:00:00.000",
+   "expiration_date": "2027-09-15T00:00:00.000",
+   "host_name": "TESTOWNER 20D88E",
+   "precinct": "20",
+   "registration_number": "R17000013386",
+   "street_address": "4541 TEST ST",
+   "ward": "44"
+  },
+  {
+   "current_status": "APPROVED",
+   "current_status_date": "2026-08-01T00:00:00.000",
+   "expiration_date": "2027-09-15T00:00:00.000",
+   "host_name": "TESTOWNER C9077D",
+   "precinct": "11",
+   "registration_number": "R17000013415",
+   "street_address": "3677 TEST ST",
+   "ward": "44"
+  },
+  {
+   "current_status": "APPROVED",
+   "current_status_date": "2026-02-27T00:00:00.000",
+   "expiration_date": "2027-04-15T00:00:00.000",
+   "host_name": "TESTOWNER 89EC06",
+   "precinct": "15",
+   "registration_number": "R17000013785",
+   "street_address": "7772 TEST ST",
+   "ward": "40"
+  },
+  {
+   "current_status": "APPROVED",
+   "current_status_date": "2026-07-26T00:00:00.000",
+   "expiration_date": "2027-09-15T00:00:00.000",
+   "host_name": "TESTOWNER 58F539",
+   "precinct": "7",
+   "registration_number": "R17000013807",
+   "street_address": "5385 TEST ST",
+   "ward": "46"
+  },
+  {
+   "current_status": "APPROVED",
+   "current_status_date": "2026-07-28T00:00:00.000",
+   "expiration_date": "2027-09-15T00:00:00.000",
+   "host_name": "TESTOWNER FEB4FF",
+   "precinct": "22",
+   "registration_number": "R17000013811",
+   "street_address": "6385 TEST ST",
+   "ward": "45"
+  },
+  {
+   "current_status": "APPROVED",
+   "current_status_date": "2026-08-23T00:00:00.000",
+   "expiration_date": "2027-09-15T00:00:00.000",
+   "host_name": "TESTOWNER EA152D",
+   "precinct": "18",
+   "registration_number": "R17000013857",
+   "street_address": "1270 TEST ST",
+   "ward": "1"
+  },
+  {
+   "current_status": "APPROVED",
+   "current_status_date": "2026-08-31T00:00:00.000",
+   "expiration_date": "2027-09-15T00:00:00.000",
+   "host_name": "TESTOWNER FF1648",
+   "precinct": "20",
+   "registration_number": "R17000014021",
+   "street_address": "2472 TEST ST",
+   "ward": "50"
+  },
+  {
+   "current_status": "APPROVED",
+   "current_status_date": "2026-10-16T00:00:00.000",
+   "expiration_date": "2026-12-15T00:00:00.000",
+   "host_name": "TESTOWNER 0CBACC",
+   "precinct": "34",
+   "registration_number": "R17000014197",
+   "street_address": "5445 TEST ST",
+   "ward": "48"
+  },
+  {
+   "current_status": "APPROVED",
+   "current_status_date": "2025-12-22T00:00:00.000",
+   "expiration_date": "2027-02-15T00:00:00.000",
+   "host_name": "TESTOWNER 982716",
+   "precinct": "12",
+   "registration_number": "R17000014228",
+   "street_address": "3798 TEST ST",
+   "ward": "2"
+  },
+  {
+   "current_status": "APPROVED",
+   "current_status_date": "2026-08-05T00:00:00.000",
+   "expiration_date": "2027-09-15T00:00:00.000",
+   "host_name": "TESTOWNER 982716",
+   "precinct": "12",
+   "registration_number": "R17000014229",
+   "street_address": "7816 TEST ST",
+   "ward": "2"
+  },
+  {
+   "current_status": "APPROVED",
+   "current_status_date": "2026-07-30T00:00:00.000",
+   "expiration_date": "2027-09-15T00:00:00.000",
+   "host_name": "TESTOWNER 9C59CC",
+   "precinct": "14",
+   "registration_number": "R17000014289",
+   "street_address": "6309 TEST ST",
+   "ward": "47"
+  },
+  {
+   "current_status": "APPROVED",
+   "current_status_date": "2026-07-24T00:00:00.000",
+   "expiration_date": "2027-09-15T00:00:00.000",
+   "host_name": "TESTOWNER 763FB4",
+   "precinct": "21",
+   "registration_number": "R17000014543",
+   "street_address": "3569 TEST ST",
+   "ward": "46"
+  },
+  {
+   "current_status": "APPROVED",
+   "current_status_date": "2026-08-20T00:00:00.000",
+   "expiration_date": "2027-09-15T00:00:00.000",
+   "host_name": "TESTOWNER 8BD5F3",
+   "precinct": "21",
+   "registration_number": "R17000014580",
+   "street_address": "8742 TEST ST",
+   "ward": "5"
+  },
+  {
+   "current_status": "APPROVED",
+   "current_status_date": "2026-07-23T00:00:00.000",
+   "expiration_date": "2027-09-15T00:00:00.000",
+   "host_name": "TESTOWNER A62663",
+   "precinct": "31",
+   "registration_number": "R17000014863",
+   "street_address": "7102 TEST ST",
+   "ward": "48"
+  },
+  {
+   "current_status": "APPROVED",
+   "current_status_date": "2026-08-07T00:00:00.000",
+   "expiration_date": "2027-09-15T00:00:00.000",
+   "host_name": "TESTOWNER E118D3",
+   "precinct": "25",
+   "registration_number": "R17000014900",
+   "street_address": "5638 TEST ST",
+   "ward": "48"
+  },
+  {
+   "current_status": "APPROVED",
+   "current_status_date": "2026-08-05T00:00:00.000",
+   "expiration_date": "2027-09-15T00:00:00.000",
+   "host_name": "TESTOWNER 6F4F75",
+   "precinct": "13",
+   "registration_number": "R17000014937",
+   "street_address": "3263 TEST ST",
+   "ward": "14"
+  },
+  {
+   "current_status": "APPROVED",
+   "current_status_date": "2026-07-22T00:00:00.000",
+   "expiration_date": "2027-09-15T00:00:00.000",
+   "host_name": "TESTOWNER 40E701",
+   "precinct": "5",
+   "registration_number": "R17000015078",
+   "street_address": "5186 TEST ST",
+   "ward": "35"
+  },
+  {
+   "current_status": "APPROVED",
+   "current_status_date": "2026-10-27T00:00:00.000",
+   "expiration_date": "2027-09-15T00:00:00.000",
+   "host_name": "TESTOWNER A565A5",
+   "precinct": "22",
+   "registration_number": "R17000015187",
+   "street_address": "842 TEST ST",
+   "ward": "5"
+  },
+  {
+   "current_status": "APPROVED",
+   "current_status_date": "2026-07-31T00:00:00.000",
+   "expiration_date": "2027-09-15T00:00:00.000",
+   "host_name": "TESTOWNER 2FBCC9",
+   "precinct": "27",
+   "registration_number": "R17000015257",
+   "street_address": "8515 TEST ST",
+   "ward": "47"
+  }
+ ],
+ "where": "registration_number >= 'R17000013083'"
+}

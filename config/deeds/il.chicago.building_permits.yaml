@@ -1,0 +1,69 @@
+source_id: il.chicago.building_permits
+state: IL
+county_fips: "17031"
+# City of Chicago Department of Buildings "Building Permits" (data.cityofchicago.org ydr8-5enu,
+# 853,942 permits issued since 2006-01, updated daily, read 2026-11-25): permit number, type,
+# work description, reported cost, fees, and up to 15 named contacts (owner, owner-occupant,
+# architect, contractors, expediter...) with their city, state and ZIP, plus the 10-digit
+# PINs of the lots. Like ny.nyc.dob_permits: a signal that an owner is putting money into a
+# property (and who works for them), not a debt: OTHER instruments on the parcel, in no match
+# run. Every contact is a party of role other; the contact type stays in the source record.
+# Here in config/deeds only for the `rewrite`: pin_list holds the 10-digit block PIN
+# ('2029419021'), sometimes after a '0000000000 | ' placeholder or with more PINs after ' | '
+# (7,559 of 387,357 rows). The first real PIN is kept and '0000' appended, which is the
+# 14-digit Cook County PIN of a lot that is not a condominium unit (the il.cook.parcels key);
+# a permit on a condominium building links to the building's common-area PIN.
+portal: https://data.cityofchicago.org
+dataset: ydr8-5enu
+where: "issue_date IS NOT NULL"
+order_by: [id]
+select: [id, permit_, permit_status, permit_type, review_type, application_start_date, issue_date,
+         street_number, street_direction, street_name, work_type, work_description,
+         reported_cost, total_fee, pin_list,
+         contact_1_type, contact_1_name, contact_1_city, contact_1_state, contact_1_zipcode,
+         contact_2_type, contact_2_name, contact_2_city, contact_2_state, contact_2_zipcode,
+         contact_3_type, contact_3_name, contact_3_city, contact_3_state, contact_3_zipcode,
+         contact_4_type, contact_4_name, contact_4_city, contact_4_state, contact_4_zipcode,
+         contact_5_type, contact_5_name, contact_5_city, contact_5_state, contact_5_zipcode,
+         contact_6_type, contact_6_name, contact_6_city, contact_6_state, contact_6_zipcode,
+         contact_7_type, contact_7_name, contact_7_city, contact_7_state, contact_7_zipcode,
+         contact_8_type, contact_8_name, contact_8_city, contact_8_state, contact_8_zipcode,
+         contact_9_type, contact_9_name, contact_9_city, contact_9_state, contact_9_zipcode,
+         contact_10_type, contact_10_name, contact_10_city, contact_10_state, contact_10_zipcode,
+         contact_11_type, contact_11_name, contact_11_city, contact_11_state, contact_11_zipcode,
+         contact_12_type, contact_12_name, contact_12_city, contact_12_state, contact_12_zipcode,
+         contact_13_type, contact_13_name, contact_13_city, contact_13_state, contact_13_zipcode,
+         contact_14_type, contact_14_name, contact_14_city, contact_14_state, contact_14_zipcode,
+         contact_15_type, contact_15_name, contact_15_city, contact_15_state, contact_15_zipcode]
+rewrite:
+  pin_list: {pattern: "^(?:0{10} \\| )?(\\d{10})(?: \\|.*)?$", replace: "\\g<1>0000"}
+date_field: issue_date
+partition: year
+first_year: 2006
+uid: id
+doc_type: OTHER
+doc_type_raw: {field: permit_type}
+parties:
+  - {role: other, name: contact_1_name, address: {city: contact_1_city, state: contact_1_state, zip: contact_1_zipcode}}
+  - {role: other, name: contact_2_name, address: {city: contact_2_city, state: contact_2_state, zip: contact_2_zipcode}}
+  - {role: other, name: contact_3_name, address: {city: contact_3_city, state: contact_3_state, zip: contact_3_zipcode}}
+  - {role: other, name: contact_4_name, address: {city: contact_4_city, state: contact_4_state, zip: contact_4_zipcode}}
+  - {role: other, name: contact_5_name, address: {city: contact_5_city, state: contact_5_state, zip: contact_5_zipcode}}
+  - {role: other, name: contact_6_name, address: {city: contact_6_city, state: contact_6_state, zip: contact_6_zipcode}}
+  - {role: other, name: contact_7_name, address: {city: contact_7_city, state: contact_7_state, zip: contact_7_zipcode}}
+  - {role: other, name: contact_8_name, address: {city: contact_8_city, state: contact_8_state, zip: contact_8_zipcode}}
+  - {role: other, name: contact_9_name, address: {city: contact_9_city, state: contact_9_state, zip: contact_9_zipcode}}
+  - {role: other, name: contact_10_name, address: {city: contact_10_city, state: contact_10_state, zip: contact_10_zipcode}}
+  - {role: other, name: contact_11_name, address: {city: contact_11_city, state: contact_11_state, zip: contact_11_zipcode}}
+  - {role: other, name: contact_12_name, address: {city: contact_12_city, state: contact_12_state, zip: contact_12_zipcode}}
+  - {role: other, name: contact_13_name, address: {city: contact_13_city, state: contact_13_state, zip: contact_13_zipcode}}
+  - {role: other, name: contact_14_name, address: {city: contact_14_city, state: contact_14_state, zip: contact_14_zipcode}}
+  - {role: other, name: contact_15_name, address: {city: contact_15_city, state: contact_15_state, zip: contact_15_zipcode}}
+extra_pii: [street_number, street_name, work_description]
+parcel: {kind: pin, field: pin_list, county_fips: "17031"}   # = il.cook.parcels pin (14 digits)
+terms:
+  url: https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html
+  summary: "City of Chicago Data Portal (Socrata), Department of Buildings, public, no login. City of Chicago data terms of use: provided as is, free to use; no commercial-use or redistribution restriction. data.cityofchicago.org/robots.txt allows /resource/ (Crawl-delay: 1)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

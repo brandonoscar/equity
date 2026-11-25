@@ -1,0 +1,27 @@
+source_id: mi.detroit.rental_registrations
+state: MI
+county_fips: "26163"
+# City of Detroit BSEED "Rental Registrations" (bseed_rental_registrations/0, 45,863
+# registrations and renewals issued since 2019-01 on 2026-11-25): rental property
+# registrations with the parcel, building and registration type. No owner is named: OTHER
+# instruments on the parcel (the parcel is a registered rental), in no match run.
+api: arcgis
+layer_url: https://services2.arcgis.com/qvkbeam7Wirps6zC/arcgis/rest/services/bseed_rental_registrations/FeatureServer/0
+order_by: [ObjectId]
+select: [ObjectId, record_id, address, issued_date, registration_type, zip_code, parcel_id,
+         building_id]
+date_field: issued_date
+partition: year
+first_year: 2019
+uid: record_id
+doc_type: OTHER
+doc_type_raw: {field: registration_type}
+parties: []
+extra_pii: [address]
+parcel: {kind: pin, field: parcel_id, county_fips: "26163"}   # same parcel_id as mi.wayne.parcels
+terms:
+  url: https://www.arcgis.com/home/item.html?id=145ebb0e507f4aae95f028559a2f0877
+  summary: "City of Detroit Buildings, Safety Engineering and Environmental Department (BSEED) on the Detroit Open Data Portal (ArcGIS Online, org of mi.wayne.parcels), public hosted layer, free, no login. No licenseInfo on the item (read 2026-11-25); no commercial-use or mailing-list restriction found. services2.arcgis.com/robots.txt answers 4xx (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

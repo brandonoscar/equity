@@ -612,6 +612,28 @@ def test_link_from_all_makes_one_partition_per_file(tmp_path: Path) -> None:
         a.file_url("2025-01")
 
 
+def test_link_from_follows_hops_and_can_pick_the_last_link(tmp_path: Path) -> None:
+    # A folder per year, a dated folder per month in it, the file in that (Franklin County).
+    hops = {"page": "https://d.test/files/", "pattern": r"/\d{4}/$", "pick": "last",
+            "then": [{"pattern": r"Tax%20Accounting/$", "pick": "last"},
+                     {"pattern": r"Transfer010\.xlsx$"}]}  # fmt: skip
+    cfg = _cfg(tmp_path, api="csv", url="https://d.test/old.csv", portal=None, dataset=None,
+               parcel=None, county_fips="10", released_on=None, date_field="d", uid="n",
+               link_from=hops, parties=[{"role": "debtor", "name": "n"}])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    pages = {
+        "d.test/files/2026/2026-11-20%20Tax%20Accounting/": (
+            b"<A HREF='/files/2026/2026-11-20%20Tax%20Accounting/Transfer010.xlsx'>x</A>"),
+        "d.test/files/2026/": (b"<A HREF='/files/2026/2026-10-15%20Tax%20Accounting/'>a</A>"
+                               b"<A HREF='/files/2026/2026-11-20%20Tax%20Accounting/'>b</A>"
+                               b"<A HREF='/files/2026/2026-11-20%20Appraisal/'>c</A>"),
+        "d.test/files/": b"<A HREF='/files/2025/'>a</A> <A HREF='/files/2026/'>b</A>",
+    }  # fmt: skip
+    assert cls(_client(pages)).file_url() == (
+        "https://d.test/files/2026/2026-11-20%20Tax%20Accounting/Transfer010.xlsx"
+    )
+
+
 def _pdf(lines: list[tuple[float, float, str]], objstm: bool = False) -> bytes:
     """A one-page PDF: a font with a ToUnicode CMap (code 0x01 -> 'Z'), a deflated content
     stream placing each (x, y, text) with Tm, and optionally the font inside an /ObjStm."""
@@ -1097,3 +1119,22 @@ def test_party_when_reads_a_party_only_from_its_rows_and_append_polls(tmp_path: 
     assert roles == [("ACME LLC", "debtor"), ("BANK NA", "creditor")]
     assert [r.row["line1"] for r in out if r.table == "address"] == ["1 MAIN ST"]
     assert lien_adapter_for(load_lien_config(_cfg(tmp_path))).append_polls is False
+
+
+def test_zero_pins_name_no_lot_and_restrictions_reach_the_source_row(tmp_path: Path) -> None:
+    pin = {"kind": "pin", "field": "pin", "county_fips": "17031"}
+    terms = {"summary": "s", "checked_on": "2026-11-25", "cost_model": "free",
+             "robots_checked_on": "2026-11-24",
+             "use_restrictions": ["no_redistribution", "internal_use_only"]}  # fmt: skip
+    cfg = _cfg(tmp_path, released_on=None, parcel=pin, terms=terms)
+    cls = lien_adapter_for(load_lien_config(cfg))
+    rows = [{"ticket": t, "docketed": "2025-01-01T00:00:00", "pin": p, "last": "X"}
+            for t, p in (("B1", "0000000000"), ("B2", "17031000010000"), ("B3", None))]  # fmt: skip
+    body = json.dumps({"rows": rows}).encode()
+    out = list(cls().normalize(Fetched(cls.source_id, "x", AT, 200, body, "")))
+    lots = [r.row["parcel_uid"] for r in out if r.table == "instrument_parcel"]
+    assert lots == ["17031-17031000010000"]
+    assert sum(r.table == "instrument" for r in out) == 3
+    row = cls().source_row()
+    assert row["terms_summary"] == "RESTRICTED[internal_use_only,no_redistribution] s"
+    assert row["robots_checked_on"] == "2026-11-24"

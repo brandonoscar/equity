@@ -1,0 +1,35 @@
+source_id: oh.columbus.building_permits
+state: OH
+county_fips: "39049"
+# City of Columbus Building and Zoning Services "Building Permits" (ArcGIS Online
+# Building_Permits/0, 691,386 permits issued since 2010-01 on 2026-11-25, updated daily):
+# building, MEP, sign and other permits with the parcel, type, subtype, category, status,
+# value, square footage, units, issue date and the applicant (business and person). Like
+# ny.nyc.dob_permits: a signal that an owner is putting money into a property, not a debt:
+# OTHER instruments on the parcel, in no match run. The applicant is a party of role other.
+# Here in config/deeds only for the `rewrite` of the parcel number.
+api: arcgis
+layer_url: https://services1.arcgis.com/9yy6msODkIBzkUXU/arcgis/rest/services/Building_Permits/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, B1_ALT_ID, B1_PER_GROUP, B1_PER_TYPE, B1_PER_SUB_TYPE, B1_PER_CATEGORY,
+         GENERAL_TYPE, B1_PARCEL_NBR, SITE_ADDRESS, B1_SITUS_ZIP, PERMIT_STATUS,
+         APPLICANT_BUS_NAME, APPLICANT_FULL_NAME, SQFT, G3_VALUE_TTL, ISSUED_DT, UNITS]
+date_field: ISSUED_DT
+partition: year
+first_year: 2010
+uid: B1_ALT_ID
+doc_type: OTHER
+doc_type_raw: {field: GENERAL_TYPE}
+parties:
+  - {role: other, name: APPLICANT_BUS_NAME}
+  - {role: other, name: APPLICANT_FULL_NAME}
+extra_pii: [SITE_ADDRESS]
+rewrite:   # 9-digit Franklin parcel '010133133' -> '010-133133'; other ids (Delaware or Fairfield County 14-digit parcels) -> '-' (no lot)
+  B1_PARCEL_NBR: {pattern: "^\\s*(?:(\\d{3})(\\d{6})|.*?)\\s*$", replace: "\\1-\\2"}
+parcel: {kind: pin, field: B1_PARCEL_NBR, county_fips: "39049"}   # = oh.franklin.parcels parcel_id
+terms:
+  url: https://www.arcgis.com/home/item.html?id=f7a785b863454d96a0fe3f5aa5368e7d
+  summary: "City of Columbus Department of Building and Zoning Services on the Columbus open data portal (owner ColumbusOhioGIS), public layer, free, no login. Item licenseInfo (read 2026-11-25): 'dedicated to the public domain under the Creative Commons Universal License (CC0)'. services1.arcgis.com/robots.txt answers 4xx (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

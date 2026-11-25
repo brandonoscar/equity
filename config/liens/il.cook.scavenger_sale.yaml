@@ -1,0 +1,30 @@
+source_id: il.cook.scavenger_sale
+state: IL
+county_fips: "17031"
+# Cook County Treasurer "Scavenger Tax Sale" results (datacatalog.cookcountyil.gov ydgz-vkrp,
+# 5,609 PINs sold at the 2007, 2009, 2011, 2013 and 2015 scavenger sales; published 2016 and
+# not extended): PINs delinquent for three or more years (35 ILCS 200/21-260), the delinquent
+# tax years, the amount paid and the buyer's name. Each is a certificate of purchase:
+# TAX_LIEN_STATE on the parcel with the buyer as creditor. The owner is not named. The sale
+# year is the date (Jan 1 of that year).
+portal: https://datacatalog.cookcountyil.gov
+dataset: ydgz-vkrp
+order_by: [tax_sale_year, pin, ":id"]
+select: [tax_sale_year, pin, from_year, to_year, total_amount_paid, sold_at_sale, vol, township,
+         buyer, buyer_name]
+date_field: tax_sale_year
+year_dates: [tax_sale_year]
+single_partition: true
+uid: [tax_sale_year, pin]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Cook County scavenger tax sale
+amount: total_amount_paid
+parties:
+  - {role: creditor, name: buyer_name}
+parcel: {kind: pin, field: pin, county_fips: "17031", strip: "-"}   # = il.cook.parcels pin
+terms:
+  url: https://datacatalog.cookcountyil.gov/d/ydgz-vkrp
+  summary: "Cook County Treasurer on the Cook County open data portal (Socrata), free, no login; no license tag on the dataset (Cook County open data terms). datacatalog.cookcountyil.gov/robots.txt allows /resource/ (Crawl-delay: 1)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free
