@@ -1,0 +1,32 @@
+source_id: oh.columbus.code_enforcement
+state: OH
+county_fips: "39049"
+# City of Columbus Building and Zoning Services "Code Enforcement Cases" (maps2.columbus.gov
+# BuildingZoning/MapServer/23, 323,080 cases filed since 2019-01 on 2026-11-25): housing,
+# zoning, nuisance and vacant-structure code cases with the parcel, case type and subtype,
+# status, and first and last inspection dates and results. No owner is named: OTHER
+# instruments on the parcel, in no match run. Here in config/deeds only for the `rewrite`
+# of the parcel number.
+api: arcgis
+layer_url: https://maps2.columbus.gov/arcgis/rest/services/Schemas/BuildingZoning/MapServer/23
+order_by: [OBJECTID]
+select: [OBJECTID, B1_ALT_ID, B1_PER_GROUP, B1_PER_TYPE, B1_PER_SUB_TYPE, B1_PER_CATEGORY,
+         B1_PARCEL_NBR, SITE_ADDRESS, B1_FILE_DD, B1_APPL_STATUS, INSP_1ST_DATE,
+         INSP_1ST_RESULT, INSP_LAST_DATE, INSP_LAST_RESULT]
+date_field: B1_FILE_DD
+partition: year
+first_year: 2019
+uid: B1_ALT_ID
+doc_type: OTHER
+doc_type_raw: {field: B1_PER_TYPE}
+parties: []
+extra_pii: [SITE_ADDRESS]
+rewrite:   # 9-digit Franklin parcel '010133133' -> '010-133133'; other ids (Delaware or Fairfield County 14-digit parcels) -> '-' (no lot)
+  B1_PARCEL_NBR: {pattern: "^\\s*(?:(\\d{3})(\\d{6})|.*?)\\s*$", replace: "\\1-\\2"}
+parcel: {kind: pin, field: B1_PARCEL_NBR, county_fips: "39049"}   # = oh.franklin.parcels parcel_id
+terms:
+  url: https://www.arcgis.com/home/item.html?id=1d61669223fa42ba87a4d73a46e5361a
+  summary: "City of Columbus Department of Building and Zoning Services on the Columbus open data portal (owner ColumbusOhioGIS), public layer, free, no login. Item licenseInfo (read 2026-11-25): 'dedicated to the public domain under the Creative Commons Universal License (CC0)'. maps2.columbus.gov/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

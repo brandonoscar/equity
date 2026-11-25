@@ -1,0 +1,31 @@
+source_id: md.baltimore_city.vacant_building_notices
+state: MD
+county_fips: "24510"   # Baltimore City
+# Baltimore City Department of Housing and Community Development "Vacant Building Notices"
+# (Open Baltimore, DHCD_Open_Baltimore_Datasets FeatureServer layer 1 "Vacant Building
+# Notice - Open", 11,304 open notices on 2026-11-25, notices back to 2004): every open vacant
+# building notice (VBN) the city has served, with the notice number and date and the lot
+# (BLOCKLOT). Owner names are not published (OWNER_ABBR only flags city-owned lots, 'MCC'),
+# so each notice is an OTHER instrument with no parties on the lot (BLOCKLOT, the
+# md.baltimore_city.parcels key once its spaces are removed), whose owner of record comes
+# from the parcel layer; in no match run. Open notices only: a cancelled or abated notice
+# leaves the layer, so this source is refreshed whole.
+api: arcgis
+layer_url: https://baltegis.baltimorecity.gov/mapping/rest/services/Housing/DHCD_Open_Baltimore_Datasets/FeatureServer/1
+order_by: [OBJECTID]
+select: [OBJECTID, NoticeNum, DateNotice, DateCancel, DateAbate, NT, OWNER_ABBR, BLOCKLOT,
+         Address]
+date_field: DateNotice
+partition: year
+first_year: 2004
+uid: NoticeNum
+doc_type: OTHER
+doc_type_raw: {field: NT}
+parties: []
+parcel: {kind: pin, field: BLOCKLOT, county_fips: "24510"}   # = md.baltimore_city.parcels BLOCKLOT
+terms:
+  url: https://data.baltimorecity.gov/datasets/691d65a5f85640e6aaa46930bd9dc102
+  summary: "City of Baltimore DHCD layer on Open Baltimore (the city's ArcGIS Enterprise server baltegis.baltimorecity.gov), public, no login, token or fee. No licenseInfo on the item (read 2026-11-25); the city's Real Property layer on the same server is Creative Commons Attribution 3.0. No use restriction found. baltegis.baltimorecity.gov/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

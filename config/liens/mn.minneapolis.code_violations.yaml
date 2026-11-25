@@ -1,0 +1,29 @@
+source_id: mn.minneapolis.code_violations
+state: MN
+county_fips: "27053"
+# City of Minneapolis Regulatory Services "CaseViolations" (ArcGIS Online CaseViolations/0,
+# 387,376 violation rows on 2026-11-25, updated daily): housing, rental, nuisance and
+# zoning code violations by case, with the Hennepin PIN (APN), case type and group, violation
+# code and description, status, processed and resolved dates. No owner is named: OTHER
+# instruments on the parcel (one per case and violation code), in no match run.
+api: arcgis
+layer_url: https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/CaseViolations/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, APN, Display, Violation_Case_Number, RS_Number, Case_Type, Case_Group,
+         Case_Group_Desc, Status_Violation_Case, Violation_Code, Violation_Code_Description,
+         Status_Violation, Processed_Date, Resolved_Date, Resolution_Code, Violation_Case_ID]
+date_field: Processed_Date
+partition: year
+first_year: 2016
+uid: [Violation_Case_Number, Violation_Code]
+doc_type: OTHER
+doc_type_raw: {field: Case_Group_Desc}
+parties: []
+extra_pii: [Display]
+parcel: {kind: pin, field: APN, county_fips: "27053"}   # = mn.metro.parcels county_pin
+terms:
+  url: https://www.arcgis.com/home/item.html?id=96f3ea4697a64e0abaa2f33853048e0b
+  summary: "City of Minneapolis Open Data (ArcGIS Online, owner City_of_Minneapolis), public hosted layer, no login, token or fee. Item licenseInfo (read 2026-11-25): 'To the extent possible under law, City of Minneapolis has waived all copyright and related or neighboring rights to Open Data' (CC0-style public domain dedication), with a no-warranty / reference-use disclaimer. services.arcgis.com/robots.txt answers 4xx (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

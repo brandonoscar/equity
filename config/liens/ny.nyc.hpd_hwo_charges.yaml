@@ -1,0 +1,35 @@
+source_id: ny.nyc.hpd_hwo_charges
+state: NY
+county_fips: "36061"
+# NYC Department of Housing Preservation and Development "Handyman Work Order (HWO) Charges"
+# (data.cityofnewyork.us sbnd-xujn, 100,117 work orders on 2026-11-25, 79,682 with a charge
+# transferred to the Department of Finance, 2005-2026, updated daily): emergency repairs HPD
+# had done in a private building after the owner failed to correct a hazardous violation,
+# with the lot (bbl), the approved cost, sales tax, admin fee, total charge and the date the
+# charge was sent to DOF, which bills it to the property and enforces it like a property tax
+# lien (NYC Admin. Code 27-2144). Only charges sent to DOF are read: one STATUTORY_LIEN per
+# work order on the lot, dated by the DOF transfer, owed by the lot's owner of record (no
+# owner is named). In no match run. TODO(Brandon): confirm the charges count as liens.
+portal: https://data.cityofnewyork.us
+dataset: sbnd-xujn
+where: "datetransferdof IS NOT NULL AND chargeamount > 0"
+order_by: [":id"]
+select: [hwoid, hwonumber, buildingid, boroid, block, lot, bbl, lifecycle, worktypegeneral,
+         hwostatusreason, hwocreatedate, hwoapprovedamount, salestax, adminfee, chargeamount,
+         datetransferdof]
+date_field: datetransferdof
+partition: year
+first_year: 2005
+uid: hwoid
+doc_type: STATUTORY_LIEN
+doc_type_raw: {field: worktypegeneral}
+amount: chargeamount
+parties:
+  - {role: creditor, const: "NYC DEPARTMENT OF HOUSING PRESERVATION AND DEVELOPMENT", person_names: false}
+parcel: {kind: nyc_bbl10, field: bbl}
+terms:
+  url: https://data.cityofnewyork.us/d/sbnd-xujn
+  summary: "NYC Open Data (Socrata), HPD, free, no login; NYC Open Data terms of use (no license field on the dataset). robots.txt (Crawl-delay 1) allows /resource/."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

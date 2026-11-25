@@ -1,0 +1,36 @@
+source_id: mn.minneapolis.building_permits
+state: MN
+county_fips: "27053"
+# City of Minneapolis Community Planning and Economic Development "CCS Permits" (ArcGIS
+# Online CCS_Permits/0, 415,064 permits on 2026-11-25, updated daily): building, mechanical,
+# plumbing and other permits with the Hennepin PIN (APN), type, work type, value, fees,
+# issue date, the applicant (often the contractor) with the applicant's street and city, and
+# the property owner (fullName). Like ny.nyc.dob_permits: a signal that an owner is putting
+# money into a property, not a debt: OTHER instruments on the parcel, in no match run.
+api: arcgis
+layer_url: https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/CCS_Permits/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, Display, APN, applicantName, permitNumber, dwellingUnitsNew,
+         dwellingUnitsEliminated, permitType, occupancyType, workType, status, milestone,
+         permit_Value, totalFees, comments, issueDate, completeDate, fullName,
+         applicantAddress1, applicantCity]
+date_field: issueDate
+partition: year
+first_year: 2016
+uid: permitNumber
+doc_type: OTHER
+doc_type_raw: {field: permitType}
+parties:
+  - role: other
+    name: fullName
+  - role: other
+    name: applicantName
+    address: {line1: applicantAddress1, city: applicantCity}
+extra_pii: [Display, comments]
+parcel: {kind: pin, field: APN, county_fips: "27053"}   # = mn.metro.parcels county_pin
+terms:
+  url: https://www.arcgis.com/home/item.html?id=df4bfccbe60b42a6a93fb7bc1fd84cc0
+  summary: "City of Minneapolis Open Data (ArcGIS Online, owner City_of_Minneapolis), public hosted layer, no login, token or fee. Item licenseInfo (read 2026-11-25): 'To the extent possible under law, City of Minneapolis has waived all copyright and related or neighboring rights to Open Data' (CC0-style public domain dedication), with a no-warranty / reference-use disclaimer. services.arcgis.com/robots.txt answers 4xx (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

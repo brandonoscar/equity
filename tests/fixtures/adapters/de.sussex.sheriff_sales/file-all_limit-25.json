@@ -1,0 +1,280 @@
+{
+ "rows": [
+  {
+   "address": "1289 TEST ST",
+   "defendant": "TESTOWNER 6E643F",
+   "plaintiff": "TESTOWNER 0598D0 INC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER D2E569",
+   "prop_state": "DE",
+   "prop_zip": "19947",
+   "sales_date": "2026-12-15",
+   "sheriff": "26002340"
+  },
+  {
+   "address": "7483 TEST ST",
+   "defendant": "TESTOWNER A83419",
+   "plaintiff": "TESTOWNER 6A2FF3 NA",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 012221",
+   "prop_state": "DE",
+   "prop_zip": "19973",
+   "sales_date": "2026-12-15",
+   "sheriff": "26003402"
+  },
+  {
+   "address": "5488 TEST ST",
+   "defendant": "TESTOWNER F44238",
+   "plaintiff": "TESTOWNER 324AE7 LLC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 9F9C3C",
+   "prop_state": "DE",
+   "prop_zip": "19968",
+   "sales_date": "2026-12-15",
+   "sheriff": "26003403"
+  },
+  {
+   "address": "8023 TEST ST",
+   "defendant": "TESTOWNER 4010C5",
+   "plaintiff": "TESTOWNER C8B00C NA",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER B51A4B",
+   "prop_state": "DE",
+   "prop_zip": "19963",
+   "sales_date": "2026-12-15",
+   "sheriff": "26003453"
+  },
+  {
+   "address": "2109 TEST ST",
+   "defendant": "TESTOWNER CCADBE",
+   "plaintiff": "TESTOWNER 324AE7 LLC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 98AF67",
+   "prop_state": "DE",
+   "prop_zip": "19966",
+   "sales_date": "2026-12-15",
+   "sheriff": "26003458"
+  },
+  {
+   "address": "6346 TEST ST",
+   "defendant": "TESTOWNER 416C78",
+   "plaintiff": "TESTOWNER 324AE7 LLC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 7763FC",
+   "prop_state": "DE",
+   "prop_zip": "19940",
+   "sales_date": "2026-12-15",
+   "sheriff": "26003459"
+  },
+  {
+   "address": "2353 TEST ST",
+   "defendant": "TESTOWNER F90407",
+   "plaintiff": "TESTOWNER 324AE7 LLC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 76220C",
+   "prop_state": "DE",
+   "prop_zip": "19933",
+   "sales_date": "2026-12-15",
+   "sheriff": "26003460"
+  },
+  {
+   "address": "2816 TEST ST",
+   "defendant": "TESTOWNER 289F1D",
+   "plaintiff": "TESTOWNER 70B11A CORP",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 1C124D",
+   "prop_state": "DE",
+   "prop_zip": "19966",
+   "sales_date": "2026-12-15",
+   "sheriff": "26003461"
+  },
+  {
+   "address": "8410 TEST ST",
+   "defendant": "TESTOWNER BDF542",
+   "plaintiff": "TESTOWNER F6DE6C",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER A741F3",
+   "prop_state": "DE",
+   "prop_zip": "19956",
+   "sales_date": "2026-12-15",
+   "sheriff": "26003462"
+  },
+  {
+   "address": "8641 TEST ST",
+   "defendant": "TESTOWNER 326A70",
+   "plaintiff": "TESTOWNER CB4AF5",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER C2D97B",
+   "prop_state": "DE",
+   "prop_zip": "19966",
+   "sales_date": "2026-12-15",
+   "sheriff": "26003463"
+  },
+  {
+   "address": "3880 TEST ST",
+   "defendant": "TESTOWNER C3C6C1",
+   "plaintiff": "TESTOWNER 89ED27 LLC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER CAEF8B",
+   "prop_state": "DE",
+   "prop_zip": "19956",
+   "sales_date": "2026-12-15",
+   "sheriff": "26003464"
+  },
+  {
+   "address": "1110 TEST ST",
+   "defendant": "TESTOWNER 8468BE",
+   "plaintiff": "TESTOWNER 324AE7 LLC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER C738F2",
+   "prop_state": "DE",
+   "prop_zip": "19966",
+   "sales_date": "2026-12-15",
+   "sheriff": "26003518"
+  },
+  {
+   "address": "595 TEST ST",
+   "defendant": "TESTOWNER 98A496",
+   "plaintiff": "TESTOWNER 24729D CORP",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 4269B5",
+   "prop_state": "DE",
+   "prop_zip": "19956",
+   "sales_date": "2026-12-15",
+   "sheriff": "26003519"
+  },
+  {
+   "address": "7630 TEST ST",
+   "defendant": "TESTOWNER 66EE03",
+   "plaintiff": "TESTOWNER 538710",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER B6EE4F",
+   "prop_state": "DE",
+   "prop_zip": "19966",
+   "sales_date": "2026-12-15",
+   "sheriff": "26003520"
+  },
+  {
+   "address": "4410 TEST ST",
+   "defendant": "TESTOWNER 01B2FC",
+   "plaintiff": "TESTOWNER 89A5F7 INC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 8EB89E",
+   "prop_state": "DE",
+   "prop_zip": "19941",
+   "sales_date": "2026-12-15",
+   "sheriff": "26003521"
+  },
+  {
+   "address": "2409 TEST ST",
+   "defendant": "TESTOWNER 653E76",
+   "plaintiff": "TESTOWNER 27CB8B LLC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 909F72",
+   "prop_state": "DE",
+   "prop_zip": "19956",
+   "sales_date": "2026-12-15",
+   "sheriff": "26003595"
+  },
+  {
+   "address": "4492 TEST ST",
+   "defendant": "TESTOWNER 3485D4",
+   "plaintiff": "TESTOWNER 23106B LLC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER FBBFCA",
+   "prop_state": "DE",
+   "prop_zip": "19947",
+   "sales_date": "2026-12-15",
+   "sheriff": "26003596"
+  },
+  {
+   "address": "8906 TEST ST",
+   "defendant": "TESTOWNER 4CD427",
+   "plaintiff": "TESTOWNER 65F0DE LP",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 1E6AB6",
+   "prop_state": "DE",
+   "prop_zip": "19971",
+   "sales_date": "2026-12-15",
+   "sheriff": "26003609"
+  },
+  {
+   "address": "3284 TEST ST",
+   "defendant": "TESTOWNER ED8F14",
+   "plaintiff": "TESTOWNER 23106B LLC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER A6F491",
+   "prop_state": "DE",
+   "prop_zip": "19940",
+   "sales_date": "2026-12-15",
+   "sheriff": "26003612"
+  },
+  {
+   "address": "4627 TEST ST",
+   "defendant": "TESTOWNER 3A011A INC",
+   "plaintiff": "TESTOWNER 8F88D1",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 07C6DC",
+   "prop_state": null,
+   "prop_zip": null,
+   "sales_date": "2026-12-15",
+   "sheriff": "26003620"
+  },
+  {
+   "address": "4018 TEST ST",
+   "defendant": "TESTOWNER 897083",
+   "plaintiff": "TESTOWNER CD609C INC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 7D6A0B",
+   "prop_state": "DE",
+   "prop_zip": "19971",
+   "sales_date": "2026-12-16",
+   "sheriff": "26002860"
+  },
+  {
+   "address": "1753 TEST ST",
+   "defendant": "TESTOWNER AF9F25",
+   "plaintiff": "TESTOWNER 6C8731",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER EDC9E9",
+   "prop_state": "DE",
+   "prop_zip": "19947",
+   "sales_date": "2026-12-16",
+   "sheriff": "26003465"
+  },
+  {
+   "address": "8630 TEST ST",
+   "defendant": "TESTOWNER E23518",
+   "plaintiff": "TESTOWNER D90FE4 INC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 4EC73D",
+   "prop_state": "DE",
+   "prop_zip": "19966",
+   "sales_date": "2027-01-19",
+   "sheriff": "26003606"
+  },
+  {
+   "address": "5873 TEST ST",
+   "defendant": "TESTOWNER E77680",
+   "plaintiff": "TESTOWNER F6DE6C",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER F10AB8",
+   "prop_state": "DE",
+   "prop_zip": "19956",
+   "sales_date": "2027-01-19",
+   "sheriff": "26003699"
+  },
+  {
+   "address": "376 TEST ST",
+   "defendant": "TESTOWNER E35068",
+   "plaintiff": "TESTOWNER F20098 INC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER BD2676",
+   "prop_state": "DE",
+   "prop_zip": "19956",
+   "sales_date": "2027-01-19",
+   "sheriff": "26003700"
+  }
+ ],
+ "url": "https://salesweb.civilview.com/Sales/SalesSearch?countyId=12"
+}

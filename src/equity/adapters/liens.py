@@ -20,7 +20,11 @@ Config keys:
                       caption_plaintiff and caption_defendant for use in parties
   enrich              arcgis: {carto: SQL API url, table, key, field, columns} or {arcgis:
                       another layer's url, key, field, columns}: add columns from that table
-                      or layer, looked up by the row's field (e.g. owner by case)
+                      or layer, looked up by the row's field (e.g. owner by case).
+                      socrata (also a list of specs): {socrata: portal, dataset, key, field,
+                      columns}: every row of that dataset whose key is the row's field; each
+                      column's distinct values joined with ' | ' (read with split: ' | '),
+                      e.g. the additional buyers of a transfer declaration
   date_is_text        arcgis: date_field is ISO text, so windows compare strings, not DATEs
   excel_dates         xlsx: fields holding Excel serial day numbers, turned into ISO dates
   us_dates            file apis: fields holding M/D/YYYY dates, turned into ISO dates
@@ -47,14 +51,20 @@ Config keys:
                       {field, map: {VALUE: DOC_TYPE}, default} to map a row's value
   doc_type_raw        constant label, or {field: name}
   amount              field holding the amount owed (principal_amount), or a list summed
+  amount_in_text      true: the amount is the first dollar figure inside the field's text
+                      ('$12,882.00 Guaranty Fund Award' -> 12882.00)
   consideration       deeds and sales: field holding the price paid (instrument consideration)
   released_on         optional field: satisfaction date -> RELEASE + instrument_ref
   satisfied_flag      optional field: a value in satisfied_values (default true/1/yes/y) marks
                       the lien satisfied when no satisfaction date is published
   parties             list of {role, name: field|[fields] | const: text, split (optional
-                               separator: one field holding several names, e.g. ' | '),
+                               separator, or a list of them: one field holding several names,
+                               e.g. ' | '), strip (optional characters trimmed from each
+                               name, e.g. '"' around '"DOE, JANE","ROE, JOHN"'),
                                address: {line1: field|[fields], city | city_const, state |
-                               state_const, zip}}
+                               state_const, zip}, when (optional {field: value}: the party
+                               is read only from rows whose field has that value, e.g. a
+                               list with one row per party and a party-type column)}
   parcel              {kind: nyc_bbl, borough, block, lot} | {kind: nyc_bbl10, field}
                       | {kind: pin, field (or a list of fields, one lot each), county_fips
                          (or none: the row's county from county_name_field), strip (optional
@@ -67,10 +77,26 @@ Config keys:
   extra_pii           more fields pseudonymized in recorded fixtures (e.g. an apartment address)
   link_from           file apis: {page, pattern}: the file's address changes with each issue
                       (a quarter in its name), so it is the first link on `page` whose href
-                      matches the regex `pattern`; `url` is the fallback and the base_url
+                      matches the regex `pattern`; `url` is the fallback and the base_url.
+                      With `all: true` every matching link is a partition {file: key}, the
+                      key being the pattern's first group (e.g. the month or fiscal year in
+                      the file name): a source published as one file per period.
+                      pick: last takes the last matching link instead; then: [{pattern,
+                      pick}, ...] follows more hops (a dated folder in a dated folder: each
+                      hop's link is the next page)
+  append_polls        true: a rolling list (e.g. last month's filings) that drops old rows:
+                      refresh.yaml polls it in append mode, each poll a new part, rows already
+                      stored dropped (equity.lake.drop_known), so no month is lost
   user_agent          optional identifying User-Agent for a host whose firewall refuses the
                       default one (it still names this project; robots.txt is still obeyed)
-  terms               {url, summary, checked_on, cost_model}
+  terms               {url, summary, checked_on, cost_model, robots_checked_on (default
+                      checked_on), use_restrictions}
+  use_restrictions    optional tags (internal_use_only, no_redistribution, ...), top level or
+                      under terms, written into the source row's terms summary as
+                      RESTRICTED[...], as parcel configs do
+
+A pin made only of zeros ('0000000000', a placeholder some permit systems print when no
+parcel was entered) names no lot.
 """
 
 from __future__ import annotations
@@ -194,6 +220,15 @@ def _text(value: Any) -> str | None:
     return s or None
 
 
+def _party_applies(party: Mapping[str, Any], row: Mapping[str, Any]) -> bool:
+    """A party spec's `when` {field: value}: every field must hold that value (case and
+    surrounding blanks ignored); a spec with no `when` reads every row."""
+    when = party.get("when") or {}
+    return all(
+        str(row.get(f) or "").strip().upper() == str(v).strip().upper() for f, v in when.items()
+    )
+
+
 def _join(row: Mapping[str, Any], spec: Any) -> str | None:
     parts = [_text(row.get(f)) for f in _fields(spec)]
     return " ".join(p for p in parts if p) or None
@@ -239,6 +274,18 @@ def _amount(value: Any) -> Decimal | None:
     except (InvalidOperation, ValueError):
         return None
     return d if d >= 0 else None
+
+
+ENRICH_LOOKUP_MAX = 2_000  # Socrata enrich: more keys than this read the whole table once
+# Socrata enrich tables read whole, by (portal, dataset): {key: [rows]} for this process.
+_SOCRATA_TABLES: dict[tuple[str, str], dict[str, list[dict[str, Any]]]] = {}
+DOLLARS = re.compile(r"\$\s*([0-9][0-9,]*(?:\.[0-9]{1,2})?)")
+
+
+def _amount_in_text(value: Any) -> Decimal | None:
+    """The first dollar figure in a text ('$7,779 Guaranty Fund Award' -> 7779); None if none."""
+    m = DOLLARS.search(str(value or ""))
+    return _amount(m.group(1)) if m else None
 
 
 @cache
@@ -463,6 +510,7 @@ class LienAdapter(Adapter):
     access_method: ClassVar[str] = "api"
     page_size: ClassVar[int] = 50_000
     pii_fields: ClassVar[tuple[str, ...]] = ()  # set per source from its config
+    append_polls: ClassVar[bool] = False  # config append_polls (equity.lake.drop_known)
 
     def __init__(self, client: PoliteClient | None = None) -> None:
         ua = str(self.config.get("user_agent") or USER_AGENT)
@@ -477,11 +525,17 @@ class LienAdapter(Adapter):
             "access_method": ACCESS.get(self.api, "api"),
             "base_url": self.base_url,
             "terms_url": t.get("url"),
-            "terms_summary": t["summary"],
+            "terms_summary": self.restricted() + t["summary"],
             "terms_checked_on": t["checked_on"],
             "robots_checked_on": t.get("robots_checked_on", t["checked_on"]),
             "cost_model": t["cost_model"],
         }
+
+    def restricted(self) -> str:
+        """'RESTRICTED[tag,...] ' for a config with use_restrictions, else ''."""
+        raw = self.config.get("use_restrictions") or self.config["terms"].get("use_restrictions")
+        tags = sorted(str(x) for x in raw or ())
+        return f"RESTRICTED[{','.join(tags)}] " if tags else ""
 
     @property
     def api(self) -> str:
@@ -506,6 +560,10 @@ class LienAdapter(Adapter):
             return
         if self.config.get("partition") == "none":
             yield {}  # the whole (filtered) dataset in one fetch
+            return
+        if self.api in FILE_APIS and (self.config.get("link_from") or {}).get("all"):
+            for key in dict(self.file_links()):
+                yield {"file": key}  # one file per period, each replaced in full
             return
         if self.api in FILE_APIS or self.config.get("single_partition"):
             yield {"file": "all"}  # one file or dataset, replaced in full each update
@@ -536,6 +594,8 @@ class LienAdapter(Adapter):
             clauses.append(f"{f} >= {lo} AND {f} < {hi}")
         elif "from" in params:
             t = "" if self.api in ("ckan", "carto") else "T00:00:00"  # SQL: plain dates
+            if self.ckan and not re.fullmatch(r"[a-z_][a-z0-9_]*", f):
+                f = f'"{f}"'  # CKAN SQL folds unquoted names to lower case ("SALEDATE")
             clauses.append(f"{f} >= '{params['from']}{t}' AND {f} < '{params['to']}{t}'")
         return " AND ".join(clauses) or "1=1"
 
@@ -553,7 +613,10 @@ class LienAdapter(Adapter):
             body = json.loads(resp.content)
             if resp.status != 200 or not body.get("success"):
                 raise LienConfigError(f"{self.source_id}: CKAN query failed: {body.get('error')}")
-            got = body["result"]["records"]
+            # _full_text is CKAN's search index of the row (every word, names included): not
+            # data, and it would carry names past fixture pseudonymization.
+            got = [{k: v for k, v in r.items() if k != "_full_text"}
+                   for r in body["result"]["records"]]  # fmt: skip
             rows += got
             if limit or len(got) < page:
                 return rows, resp.retrieved_at
@@ -604,20 +667,48 @@ class LienAdapter(Adapter):
                            tuple(self.config.get("order_by") or ("OBJECTID",)),
                            page)  # fmt: skip
 
-    def file_url(self) -> str:
-        """The file to download: config url, or the current link found on link_from.page."""
+    def _links_on(self, page_url: str, pattern: str) -> list[tuple[str, str]]:
+        """(key, absolute url) of every link on the page whose href matches `pattern`, in page
+        order. The key is the pattern's first group (the whole match when it has none). Spaces
+        and other unsafe characters in the href are %-quoted."""
+        page = self.client.get(page_url)
+        if page.status != 200:
+            raise LienConfigError(f"{self.source_id}: HTTP {page.status} from {page_url}")
+        text = page.content.decode("utf-8", errors="replace")
+        out: list[tuple[str, str]] = []
+        for href in re.findall(r"""href\s*=\s*["']([^"']+)["']""", text, re.IGNORECASE):
+            href = html.unescape(href)
+            m = re.search(pattern, href)
+            if m:
+                url = urllib.parse.urljoin(page_url, href)
+                key = m.group(1) if m.groups() else m.group(0)
+                out.append((key, urllib.parse.quote(url, safe=":/?&=%#+,;@()~")))
+        return out
+
+    def file_links(self) -> list[tuple[str, str]]:
+        """link_from.all: (key, url) of every matching link on link_from.page, first per key."""
+        spec = self.config["link_from"]
+        found: dict[str, str] = {}
+        for key, url in self._links_on(str(spec["page"]), str(spec["pattern"])):
+            found.setdefault(key, url)
+        return list(found.items())
+
+    def file_url(self, key: str | None = None) -> str:
+        """The file to download: config url, or the link found on link_from.page (the first,
+        or the last with pick: last; with a key: the link for that key, link_from.all), then
+        each `then` hop's link on the page found before it."""
         spec = self.config.get("link_from")
         if not spec:
             return str(self.config["url"])
-        page = self.client.get(str(spec["page"]))
-        if page.status != 200:
-            raise LienConfigError(f"{self.source_id}: HTTP {page.status} from {spec['page']}")
-        text = page.content.decode("utf-8", errors="replace")
-        for href in re.findall(r"""href\s*=\s*["']([^"']+)["']""", text, re.IGNORECASE):
-            href = html.unescape(href)
-            if re.search(str(spec["pattern"]), href):
-                return urllib.parse.urljoin(str(spec["page"]), href)
-        raise LienConfigError(f"{self.source_id}: no link matching {spec['pattern']!r}")
+        url = str(spec["page"])
+        for i, hop in enumerate([spec, *(spec.get("then") or [])]):
+            links = self._links_on(url, str(hop["pattern"]))
+            if i == 0 and key is not None and spec.get("all") and key != "all":
+                links = [(k, u) for k, u in links if k == key]
+            if not links:
+                raise LienConfigError(f"{self.source_id}: no link matching {hop['pattern']!r}")
+            url = links[-1][1] if hop.get("pick") == "last" else links[0][1]
+        return url
 
     def _enrich(self, rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
         """Config enrich: {carto, table, key, field, columns} or {arcgis: layer url, key, field,
@@ -626,6 +717,10 @@ class LienAdapter(Adapter):
         case but its owner and parcel live in another public table."""
         spec = self.config.get("enrich")
         if not spec or not rows:
+            return rows
+        if isinstance(spec, list) or spec.get("socrata"):
+            for one in spec if isinstance(spec, list) else [spec]:
+                rows = self._enrich_socrata(rows, one)
             return rows
         field = str(spec["field"])
         keys = sorted({str(r[field]) for r in rows if r.get(field) not in (None, "")})
@@ -640,6 +735,47 @@ class LienAdapter(Adapter):
                 found.setdefault(str(r[spec["key"]]), {c: r.get(c) for c in cols})
         empty = dict.fromkeys(cols)
         return [{**r, **found.get(str(r.get(field)), empty)} for r in rows]
+
+    def _enrich_socrata(
+        self, rows: list[dict[str, Any]], spec: Mapping[str, Any]
+    ) -> list[dict[str, Any]]:
+        """Socrata enrich: all matching rows, each column's distinct values joined with ' | '.
+        Up to ENRICH_LOOKUP_MAX keys are looked up with IN queries (fixtures, small windows);
+        more read the whole (key, columns) table once per process and keep it."""
+        field, key = str(spec["field"]), str(spec["key"])
+        cols = [str(c) for c in spec["columns"]]
+        keys = sorted({str(r[field]) for r in rows if r.get(field) not in (None, "")})
+        portal, dataset = str(spec["socrata"]), str(spec["dataset"])
+        if len(keys) > ENRICH_LOOKUP_MAX:
+            table = _SOCRATA_TABLES.get((portal, dataset))
+            if table is None:
+                table = self._socrata_table(portal, dataset, key, cols, "1=1")
+                _SOCRATA_TABLES[(portal, dataset)] = table
+        else:
+            table = {}
+            for i in range(0, len(keys), 100):
+                # Column names come from repo config; keys are quoted with '' doubled.
+                quoted = ", ".join("'" + k.replace("'", "''") + "'" for k in keys[i : i + 100])
+                part = self._socrata_table(portal, dataset, key, cols, f"{key} IN ({quoted})")
+                table.update(part)
+        out = []
+        for r in rows:
+            hits = table.get(str(r.get(field)), [])
+            add = {c: " | ".join(sorted({str(h[c]).strip() for h in hits
+                                         if str(h.get(c) or "").strip()})) or None
+                   for c in cols}  # fmt: skip
+            out.append({**r, **add})
+        return out
+
+    def _socrata_table(
+        self, portal: str, dataset: str, key: str, cols: list[str], where: str
+    ) -> dict[str, list[dict[str, Any]]]:
+        q = SocrataQuery(portal, dataset, where, (key, ":id"), self.page_size, (key, *cols))
+        got, _ = fetch_all(self.client, q)
+        table: dict[str, list[dict[str, Any]]] = {}
+        for r in got:
+            table.setdefault(str(r.get(key)), []).append(r)
+        return table
 
     def _enrich_rows(
         self, spec: Mapping[str, Any], cols: list[str], quoted: str
@@ -704,7 +840,7 @@ class LienAdapter(Adapter):
         limit = request.params.get("limit")
         where = self.where(request.params)
         if self.api in FILE_APIS:
-            url = self.file_url()
+            url = self.file_url(request.params.get("file"))
             resp = self.client.get(url)
             if resp.status != 200:
                 raise LienConfigError(f"{self.source_id}: HTTP {resp.status} from {resp.url}")
@@ -741,6 +877,7 @@ class LienAdapter(Adapter):
                          tuple(self.config.get("select") or ()))  # fmt: skip
         rows, responses = fetch_all(self.client, q, max_pages=1 if limit else 10_000,
                                     sample=bool(limit))  # fmt: skip
+        rows = self._enrich(rows)
         body = canonical_json({"dataset": self.config["dataset"], "where": where, "rows": rows})
         at = responses[-1].retrieved_at if responses else datetime.now(UTC)
         return Fetched(self.source_id, f"{q.url}?$where={where}", at, 200, body,
@@ -786,7 +923,8 @@ class LienAdapter(Adapter):
                 pin = "".join(ch for ch in pin if ch not in str(spec["strip"])) or None
             if pin and spec.get("zfill"):  # a folio read as a number lost its leading zero
                 pin = pin.zfill(int(spec["zfill"]))
-            if pin is None:
+            if pin is None or not pin.strip("0-. "):  # blank or a zeros placeholder
+                return None, None
                 return None, None
             # A statewide list names each row's county instead (county_name_field).
             county = spec.get("county_fips") or self._county(row)
@@ -919,7 +1057,8 @@ class LienAdapter(Adapter):
 
     def _row_amount(self, row: Mapping[str, Any]) -> Decimal | None:
         """The row's amount field, or the sum of a list of fields (None if all are blank)."""
-        found = [a for a in (_amount(row.get(f)) for f in _fields(self.config.get("amount")))
+        read = _amount_in_text if self.config.get("amount_in_text") else _amount
+        found = [a for a in (read(row.get(f)) for f in _fields(self.config.get("amount")))
                  if a is not None]  # fmt: skip
         return sum(found, Decimal(0)).quantize(Decimal("0.01")) if found else None
 
@@ -930,9 +1069,16 @@ class LienAdapter(Adapter):
         found: dict[str, dict[str, dict[str, Any] | None]] = {}
         for row in rows:
             for p in self.config["parties"]:
+                if not _party_applies(p, row):
+                    continue
                 raw = _text(p["const"]) if "const" in p else _join(row, p.get("name"))
-                sep = str(p.get("split") or "").strip()
-                names = [n.strip() for n in raw.split(sep)] if raw and sep else [raw]
+                spec = p.get("split")
+                seps = [s for s in (str(x).strip() for x in (
+                    spec if isinstance(spec, list) else [spec or ""])) if s]  # fmt: skip
+                splitter = "|".join(re.escape(s) for s in seps)
+                names = [n.strip() for n in re.split(splitter, raw)] if raw and seps else [raw]
+                if p.get("strip"):  # quote marks around each name: '"DOE, JANE"'
+                    names = [n.strip(str(p["strip"])).strip() if n else n for n in names]
                 a = p.get("address") or {}
                 zipc = _text(row.get(a["zip"])) if a.get("zip") else None
                 zip5 = zipc[:5] if zipc and re.fullmatch(r"[0-9]{5}", zipc[:5]) else None
@@ -1019,6 +1165,7 @@ def lien_adapter_for(cfg: LienConfig) -> type[LienAdapter]:
     sid = cfg["source_id"]
     return type("Liens_" + sid.replace(".", "_"), (LienAdapter,),
                 {"config": cfg, "source_id": sid, "pii_fields": cfg.pii_fields,
+                 "append_polls": bool(cfg.get("append_polls")),
                  "__module__": __name__})  # fmt: skip
 
 

@@ -1,0 +1,40 @@
+source_id: mn.minneapolis.property_sales_2002_2016
+state: MN
+county_fips: "27053"
+# City of Minneapolis Assessor property sales published as yearly layers (ArcGIS Online,
+# 2016-10, not extended): 2002-2005 (60,906 rows), 2006-2009 (49,219), 2010-2013 (88,581) and
+# 2016 (8,454), one row per CRV, PIN and grantee, with the grantor and grantee as printed on
+# the Certificate of Real Estate Value, gross and adjusted price and the ratio-study flag.
+# Same layout in all four (the 2014-2015 and 2017 layers differ:
+# mn.minneapolis.property_sales_2014_2015, mn.minneapolis.property_sales_2017); one partition
+# per layer. PIN is the 13-digit Hennepin PIN in literal double quotes ('"2702924210196"'),
+# rewritten to the bare county_pin. Rows of one CRV and PIN (one per grantee) are one DEED.
+api: arcgis
+layer_urls:
+  - https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Sales2002to2005/FeatureServer/0
+  - https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Sales20062009/FeatureServer/0
+  - https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Sales20102013/FeatureServer/0
+  - https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/OpenDataStaging/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, CRV, PIN, InRTOStudy, PropType, Address, Grantee, Grantor,
+         Adjusted_Sale_Price, Gross_Sale_Price, SaleDate, Downpayment]
+date_field: SaleDate
+uid: [CRV, PIN]
+doc_type: DEED
+doc_type_raw: Minneapolis property sale (CRV)
+consideration: Gross_Sale_Price
+parties:
+  - role: grantor
+    name: Grantor
+  - role: grantee
+    name: Grantee
+extra_pii: [Address]
+rewrite:
+  PIN: {pattern: '^"(\d+)"$', replace: "\\1"}
+parcel: {kind: pin, field: PIN, county_fips: "27053"}   # = mn.metro.parcels county_pin
+terms:
+  url: https://www.arcgis.com/home/item.html?id=342cfcca2eae40838adf5602299dfcd4
+  summary: "City of Minneapolis Open Data (ArcGIS Online, owner City_of_Minneapolis), public hosted layer, no login, token or fee. Item licenseInfo (read 2026-11-25): 'To the extent possible under law, City of Minneapolis has waived all copyright and related or neighboring rights to Open Data' (CC0-style public domain dedication), with a no-warranty / reference-use disclaimer. services.arcgis.com/robots.txt answers 4xx (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,41 @@
+source_id: az.mesa.building_permits
+state: AZ
+county_fips: "04013"
+# City of Mesa Development Services "Building Permits" (data.mesaaz.gov dzpk-hxfb, 156,942
+# permits on 2026-11-25, updated daily): permit number, type and type of work, description,
+# opened / issued / finaled / CofO dates, status, valuations, square feet, dwelling units,
+# address, the Maricopa County APN, the applicant and the contractor (name, license, address;
+# phone and email not read). A signal that money is going into the parcel, not a debt: OTHER
+# instruments on 04013-<parcel_number> (the az.maricopa.parcels APN), applicant and contractor
+# as 'other' parties, in no match run. Dated by the opened (application) date.
+portal: https://data.mesaaz.gov
+dataset: dzpk-hxfb
+where: "opened_date IS NOT NULL"
+order_by: [":id"]
+select: [permit_number, property_address, issued_date, finaled_date, opened_date,
+         status, description_of_work, permit_type, type_of_work, record_type, application_name,
+         icc_value, job_value, total_valuation, contractor_name, contractor_address,
+         contractor_city, contractor_state, contractor_zip, contractor_license, cofo_date,
+         parcel_number, total_square_feet, applicant, number_of_dwelling_units,
+         new_residential_permit]
+date_field: opened_date
+partition: year
+first_year: 1990
+uid: permit_number
+doc_type: OTHER
+doc_type_raw: {field: record_type}
+consideration: total_valuation
+extra_pii: [property_address]
+parties:
+  - {role: other, name: applicant}
+  - role: other
+    name: contractor_name
+    person_names: false
+    address: {line1: contractor_address, city: contractor_city, state: contractor_state, zip: contractor_zip}
+parcel: {kind: pin, field: parcel_number, county_fips: "04013"}   # = az.maricopa.parcels APN
+terms:
+  url: https://data.mesaaz.gov/d/dzpk-hxfb
+  summary: "City of Mesa open data (data.mesaaz.gov, Socrata), Development Services, free, no login or app token. Dataset license (read 2026-11-25): 'See Terms of Use' (City of Mesa open data terms: as-is, no warranty); no resale or redistribution prohibition found. data.mesaaz.gov/robots.txt allows /resource/ (Crawl-delay: 1)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

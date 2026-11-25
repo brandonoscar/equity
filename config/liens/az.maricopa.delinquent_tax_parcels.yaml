@@ -1,0 +1,31 @@
+source_id: az.maricopa.delinquent_tax_parcels
+state: AZ
+county_fips: "04013"
+# Maricopa County Treasurer's "Delinquent Tax Parcels" (ParcelLienDelinquent layer 2, 34,594
+# rows on 2026-11-25, last edited 2026-11-22): parcels with delinquent property tax. APN, situs and the
+# last deed's recording number; no owner name and no amount: the match run names the
+# parcel's owner of record, like az.maricopa.unsold_tax_liens (layer 1 of the same service).
+# The layer has no date, so each row is dated the day it was fetched (a current list).
+# Layer 0 ("Bad Investment Parcels", 690 rows, last edited 2024-08) is not loaded: it is not
+# a delinquency list and the layer does not say what makes a parcel a bad investment.
+api: arcgis
+layer_url: https://services.arcgis.com/ykpntM6e3tHvzKRJ/arcgis/rest/services/ParcelLienDelinquent/FeatureServer/2
+order_by: [OBJECTID]
+select: [OBJECTID, APN, PropertyFullStreetAddress, DeedNumber]
+listed_on: listed_on
+date_field: listed_on
+single_partition: true
+uid: APN
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Maricopa delinquent property tax parcel
+extra_pii: [PropertyFullStreetAddress]
+parties:
+  - role: creditor
+    const: Maricopa County Treasurer
+parcel: {kind: pin, field: APN, county_fips: "04013"}   # same APN as az.maricopa.parcels
+terms:
+  url: https://services.arcgis.com/ykpntM6e3tHvzKRJ/arcgis/rest/services/ParcelLienDelinquent/FeatureServer/2
+  summary: "Maricopa County public ArcGIS Online layer, free, no login. No licenseInfo on the layer; delinquent tax lists are public records. Internal use, not redistributed. services.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

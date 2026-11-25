@@ -1,0 +1,281 @@
+{
+ "dataset": "u8gi-zru8",
+ "rows": [
+  {
+   "assigndate": "2026-07-31T00:00:00.000",
+   "casecategorykey": "CV",
+   "casenbr": "25CV000045",
+   "casestatus": "Open",
+   "casetypedesc": "CONTRACT/ACCOUNT",
+   "complex": false,
+   "datefiled": "2025-01-02T00:00:00.000",
+   "judge": "Rickman, Debbie-Ann",
+   "style": "TESTOWNER A676AF LLC"
+  },
+  {
+   "assigndate": "2026-07-31T00:00:00.000",
+   "casecategorykey": "CV",
+   "casenbr": "25CV000109",
+   "casestatus": "Open",
+   "casetypedesc": "QUIET TITLE",
+   "complex": false,
+   "datefiled": "2025-01-02T00:00:00.000",
+   "judge": "Rickman, Debbie-Ann",
+   "style": "TESTOWNER 424F54"
+  },
+  {
+   "assigndate": "2025-01-03T00:00:00.000",
+   "casecategorykey": "CV",
+   "casenbr": "25CV000191",
+   "casestatus": "Open",
+   "casetypedesc": "AUTO ACCIDENT",
+   "complex": false,
+   "datefiled": "2025-01-03T00:00:00.000",
+   "judge": "Edwards, Belinda E.",
+   "style": "TESTOWNER 0453E0"
+  },
+  {
+   "assigndate": "2025-01-07T00:00:00.000",
+   "casecategorykey": "CV",
+   "casenbr": "25CV000300",
+   "casestatus": "Open",
+   "casetypedesc": "CONTRACT/ACCOUNT",
+   "complex": false,
+   "datefiled": "2025-01-07T00:00:00.000",
+   "judge": "Carnesale, Rachelle L.",
+   "style": "TESTOWNER 6C5C70 LLC"
+  },
+  {
+   "assigndate": "2025-01-08T00:00:00.000",
+   "casecategorykey": "CV",
+   "casenbr": "25CV000369",
+   "casestatus": "Open",
+   "casetypedesc": "OTHER CIVIL CAUSE OF ACTION",
+   "complex": false,
+   "datefiled": "2025-01-08T00:00:00.000",
+   "judge": "Glanville, Ural",
+   "style": "TESTOWNER 17A655"
+  },
+  {
+   "assigndate": "2025-01-08T00:00:00.000",
+   "casecategorykey": "CV",
+   "casenbr": "25CV000377",
+   "casestatus": "Open",
+   "casetypedesc": "QUIET TITLE",
+   "complex": false,
+   "datefiled": "2025-01-08T00:00:00.000",
+   "judge": "Krause, Rachel",
+   "style": "TESTOWNER B44ACF LLC"
+  },
+  {
+   "assigndate": "2026-07-27T00:00:00.000",
+   "casecategorykey": "CV",
+   "casenbr": "25CV000397",
+   "casestatus": "Open",
+   "casetypedesc": "CONTRACT/ACCOUNT",
+   "complex": false,
+   "datefiled": "2025-01-08T00:00:00.000",
+   "judge": "Emadi, David H",
+   "style": "TESTOWNER 86C8CD"
+  },
+  {
+   "assigndate": "2026-10-01T00:00:00.000",
+   "casecategorykey": "CV",
+   "casenbr": "25CV000405",
+   "casestatus": "Open",
+   "casetypedesc": "TRANSFER - CIVIL",
+   "complex": false,
+   "datefiled": "2025-01-06T00:00:00.000",
+   "judge": "Sellers, Nikia Smith",
+   "style": "TESTOWNER 5D1B27"
+  },
+  {
+   "assigndate": "2025-01-08T00:00:00.000",
+   "casecategorykey": "CV",
+   "casenbr": "25CV000410",
+   "casestatus": "Open",
+   "casetypedesc": "CONTRACT/ACCOUNT",
+   "complex": false,
+   "datefiled": "2025-01-08T00:00:00.000",
+   "judge": "Richardson, Emily",
+   "style": "TESTOWNER 0557B7"
+  },
+  {
+   "assigndate": "2026-07-27T00:00:00.000",
+   "casecategorykey": "CV",
+   "casenbr": "25CV000436",
+   "casestatus": "Open",
+   "casetypedesc": "CONTRACT/ACCOUNT",
+   "complex": false,
+   "datefiled": "2025-01-09T00:00:00.000",
+   "judge": "Emadi, David H",
+   "style": "TESTOWNER 28EB90"
+  },
+  {
+   "assigndate": "2025-12-30T00:00:00.000",
+   "casecategorykey": "CV",
+   "casenbr": "25CV000468",
+   "casestatus": "Open",
+   "casetypedesc": "AUTO ACCIDENT",
+   "complex": false,
+   "datefiled": "2025-01-09T00:00:00.000",
+   "judge": "Ingram, Shukura L",
+   "style": "TESTOWNER E2D687 LLC"
+  },
+  {
+   "assigndate": "2025-01-09T00:00:00.000",
+   "casecategorykey": "CV",
+   "casenbr": "25CV000473",
+   "casestatus": "Open",
+   "casetypedesc": "CONTRACT/ACCOUNT",
+   "complex": false,
+   "datefiled": "2025-01-09T00:00:00.000",
+   "judge": "Krause, Rachel",
+   "style": "TESTOWNER 2BC6A9"
+  },
+  {
+   "assigndate": "2025-11-04T00:00:00.000",
+   "casecategorykey": "CV",
+   "casenbr": "25CV000490",
+   "casestatus": "Open",
+   "casetypedesc": "CONTRACT/ACCOUNT",
+   "complex": false,
+   "datefiled": "2025-01-10T00:00:00.000",
+   "judge": "Judge, Business Court",
+   "style": "TESTOWNER 95720E"
+  },
+  {
+   "assigndate": "2026-07-31T00:00:00.000",
+   "casecategorykey": "CV",
+   "casenbr": "25CV000499",
+   "casestatus": "Open",
+   "casetypedesc": "DAMAGES",
+   "complex": false,
+   "datefiled": "2025-01-13T00:00:00.000",
+   "judge": "Rickman, Debbie-Ann",
+   "style": "TESTOWNER E5D109"
+  },
+  {
+   "assigndate": "2026-10-01T00:00:00.000",
+   "casecategorykey": "CV",
+   "casenbr": "25CV000509",
+   "casestatus": "Open",
+   "casetypedesc": "DAMAGES",
+   "complex": false,
+   "datefiled": "2025-01-13T00:00:00.000",
+   "judge": "Sellers, Nikia Smith",
+   "style": "TESTOWNER 3E22C7"
+  },
+  {
+   "assigndate": "2026-07-27T00:00:00.000",
+   "casecategorykey": "CV",
+   "casenbr": "25CV000664",
+   "casestatus": "Open",
+   "casetypedesc": "FORECLOSURE",
+   "complex": false,
+   "datefiled": "2025-01-14T00:00:00.000",
+   "judge": "Emadi, David H",
+   "style": "TESTOWNER BD9450"
+  },
+  {
+   "assigndate": "2026-07-27T00:00:00.000",
+   "casecategorykey": "CV",
+   "casenbr": "25CV000691",
+   "casestatus": "Open",
+   "casetypedesc": "CONDEMNATION OF LAND",
+   "complex": false,
+   "datefiled": "2025-01-14T00:00:00.000",
+   "judge": "Emadi, David H",
+   "style": "TESTOWNER 9086E2"
+  },
+  {
+   "assigndate": "2026-07-27T00:00:00.000",
+   "casecategorykey": "CV",
+   "casenbr": "25CV000701",
+   "casestatus": "Open",
+   "casetypedesc": "FORECLOSURE",
+   "complex": false,
+   "datefiled": "2025-01-14T00:00:00.000",
+   "judge": "Emadi, David H",
+   "style": "TESTOWNER 3BBF6D"
+  },
+  {
+   "assigndate": "2025-01-14T00:00:00.000",
+   "casecategorykey": "CV",
+   "casenbr": "25CV000708",
+   "casestatus": "Open",
+   "casetypedesc": "INJUNCTION",
+   "complex": false,
+   "datefiled": "2025-01-14T00:00:00.000",
+   "judge": "Glanville, Ural",
+   "style": "TESTOWNER 0CA293 INC"
+  },
+  {
+   "assigndate": "2025-01-15T00:00:00.000",
+   "casecategorykey": "CV",
+   "casenbr": "25CV000721",
+   "casestatus": "Open",
+   "casetypedesc": "DAMAGES",
+   "complex": false,
+   "datefiled": "2025-01-15T00:00:00.000",
+   "judge": "Ingram, Shukura L",
+   "style": "TESTOWNER 6D3F81 LLC"
+  },
+  {
+   "assigndate": "2026-07-31T00:00:00.000",
+   "casecategorykey": "CV",
+   "casenbr": "25CV000830",
+   "casestatus": "Open",
+   "casetypedesc": "CONTRACT/ACCOUNT",
+   "complex": false,
+   "datefiled": "2025-01-17T00:00:00.000",
+   "judge": "Rickman, Debbie-Ann",
+   "style": "TESTOWNER 2DAC40 PC"
+  },
+  {
+   "assigndate": "2025-01-17T00:00:00.000",
+   "casecategorykey": "CV",
+   "casenbr": "25CV000831",
+   "casestatus": "Open",
+   "casetypedesc": "DAMAGES",
+   "complex": false,
+   "datefiled": "2025-01-17T00:00:00.000",
+   "judge": "Edwards, Belinda E.",
+   "style": "TESTOWNER 5E2EAA"
+  },
+  {
+   "assigndate": "2025-07-30T00:00:00.000",
+   "casecategorykey": "CV",
+   "casenbr": "25CV000867",
+   "casestatus": "Open",
+   "casetypedesc": "OTHER CIVIL CAUSE OF ACTION",
+   "complex": false,
+   "datefiled": "2025-01-21T00:00:00.000",
+   "judge": "Judge, Family 4",
+   "style": "TESTOWNER A7CBC5"
+  },
+  {
+   "assigndate": "2025-01-21T00:00:00.000",
+   "casecategorykey": "CV",
+   "casenbr": "25CV000912",
+   "casestatus": "Open",
+   "casetypedesc": "CONTRACT/ACCOUNT",
+   "complex": false,
+   "datefiled": "2025-01-21T00:00:00.000",
+   "judge": "Carnesale, Rachelle L.",
+   "style": "TESTOWNER 8713A1"
+  },
+  {
+   "assigndate": "2025-01-23T00:00:00.000",
+   "casecategorykey": "CV",
+   "casenbr": "25CV001054",
+   "casestatus": "Open",
+   "casetypedesc": "QUIET TITLE",
+   "complex": false,
+   "datefiled": "2025-01-23T00:00:00.000",
+   "judge": "Leftridge, Melynee",
+   "style": "TESTOWNER 9988F2"
+  }
+ ],
+ "where": "(casecategorykey = 'CV' AND style IS NOT NULL AND style NOT LIKE '%Sealed%') AND datefiled >= '2025-01-01T00:00:00' AND datefiled < '2026-01-01T00:00:00'"
+}

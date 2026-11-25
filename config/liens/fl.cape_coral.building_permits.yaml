@@ -1,0 +1,34 @@
+source_id: fl.cape_coral.building_permits
+state: FL
+county_fips: "12071"   # Lee County
+# City of Cape Coral "Building_Permits" (ArcGIS Online, owner CapeCoral_CapeGIS, 833,481
+# permits applied for 1925 .. 2026 on 2026-11-25, daily from EnerGov): permit number, type,
+# work class, status, apply / issue / final dates, value, the parcel's owner of record as the
+# City joins it, the contractor company and the contractor's qualifier, on the Lee County
+# STRAP (e.g. 294423C2005290960). Rows flagged Confidential are as published. A signal that
+# an owner is putting money into a property, not a debt: OTHER instruments on the parcel, in
+# no match run. Staff (assigned user) columns are not fetched.
+api: arcgis
+layer_url: https://services1.arcgis.com/MZl3VrkZJOk1VhY4/arcgis/rest/services/Building_Permits/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, Strap, Site_Address, STATUS, OWNER_NAME, PERMITNUMBER, APPLYDATE, ISSUEDATE,
+         FINALIZEDATE, Permit_Type, Work_Class, Permit_Value, company_name, contractor,
+         contact_type, Occupancy_Type, TypeOfWork, Zoning, Future_Land_Use]
+date_field: APPLYDATE
+partition: year
+first_year: 1925
+uid: [PERMITNUMBER, Strap]   # 35 permit numbers repeat across parcels
+doc_type: OTHER
+doc_type_raw: {field: Permit_Type}
+extra_pii: [Site_Address]
+parties:
+  - {role: other, name: OWNER_NAME}
+  - {role: other, name: company_name}
+  - {role: other, name: contractor}
+parcel: {kind: pin, field: Strap, county_fips: "12071"}   # Lee County STRAP
+terms:
+  url: https://www.arcgis.com/home/item.html?id=9d9934d4e3a24bc786eb44d4f1dd9c68
+  summary: "City of Cape Coral GIS (ArcGIS Online, CapeCoral_CapeGIS) public hosted layer, free, no login; no licenseInfo or use restriction on the item (read 2026-11-25). services1.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

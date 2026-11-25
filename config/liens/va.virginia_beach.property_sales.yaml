@@ -1,0 +1,31 @@
+source_id: va.virginia_beach.property_sales
+state: VA
+county_fips: "51810"   # Virginia Beach city
+# City of Virginia Beach Real Estate Assessor "Property Sales" (ArcGIS Online
+# Property_Sales_, owner VBCGIS_OrgAcct1, 598,161 rows on 2026-11-25, sale dates 1900 ..
+# 2026-11): each recorded transfer of a parcel with the sale date, sale price, the Circuit
+# Court instrument number, deed book and page, and the parcel's current land, improvement and
+# total value. No grantor or grantee names: each row is a DEED instrument on the parcel (the
+# GPIN, = va.virginia_beach_city.parcels PARCELID) with its consideration and no parties.
+api: arcgis
+layer_url: https://services2.arcgis.com/CyVvlIiUfRBmMQuu/arcgis/rest/services/Property_Sales_/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, GPIN, Street_Address, City, Zip_Code, Neighborhood, Land_Value,
+         Improvement_Value, Total_Value, Sale_Price, Document_Number, Deed_Book, Deed_Page,
+         Sales_Date]
+date_field: Sales_Date
+partition: year
+first_year: 1900
+uid: [GPIN, Sales_Date, Document_Number, Deed_Book, Deed_Page]
+doc_type: DEED
+doc_type_raw: Virginia Beach assessor recorded sale
+consideration: Sale_Price
+extra_pii: [Street_Address]
+parties: []   # no names in the table
+parcel: {kind: pin, field: GPIN, county_fips: "51810"}
+terms:
+  url: https://www.arcgis.com/home/item.html?id=948bc15e637c4bd6a65fb94ae633e052
+  summary: "City of Virginia Beach Open GIS (ArcGIS Online, VBCGIS_OrgAcct1), free, no login. Item licenseInfo: data publicly available; use constraints are the City's no-warranty terms of use; no commercial-use or redistribution restriction. services2.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

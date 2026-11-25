@@ -1,0 +1,23 @@
+# City of Norfolk Department of City Planning, "Short Term Rentals" (data.norfolk.gov
+# 7mjv-xiqs, 257 permitted homestays and vacation rentals on 2026-11-24): permit number,
+# address and unit, homestay or vacation rental, registration type, bedrooms and guests,
+# permit issue and renewal dates, and the contact person (when published).
+source_id: va.norfolk.short_term_rentals
+state: VA
+jurisdiction: "51710"
+portal: https://data.norfolk.gov
+dataset: 7mjv-xiqs
+key: permit_number
+id_prefix: "NFK-STR:"
+terms_url: https://data.norfolk.gov/d/7mjv-xiqs
+terms_summary: "City of Norfolk, VA open data (Socrata), free, no login; no license set on the dataset. robots.txt allows /resource/. Contact phone is in the raw record only; internal use."
+checked_on: 2026-11-25
+robots_checked_on: 2026-11-25
+license:
+  name: contact_name
+  type: vacation_rental_or_homestay
+  issued_on: permit_issue_date
+  address: {street: address}
+holders:
+  - {role: other, title: CONTACT, name: contact_name}
+pii_fields: [contact_name, contact_number, address, latitude, longitude, location_point]

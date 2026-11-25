@@ -1,0 +1,33 @@
+source_id: co.denver.residential_permits
+state: CO
+county_fips: "08031"
+# City and County of Denver Community Planning and Development "Residential Construction
+# Permits" (Denver Open Data, ArcGIS Online; 80,154 permits on 2026-11-25): residential construction
+# permits with the permit number, class (new building, addition, alteration...), units,
+# valuation, fee, received / issued / final dates, the contractor's name and the Denver
+# schedule number. A signal that money is going into the parcel, not a debt: OTHER instruments
+# on 08031-<SCHEDNUM> (the 13-digit schedule number of co.denver.property_sales), the
+# contractor as an 'other' party, in no match run.
+api: arcgis
+layer_url: https://services1.arcgis.com/zdB7qR0BtYrg0Xpl/arcgis/rest/services/ODC_DEV_RESIDENTIALCONSTPERMIT_P/FeatureServer/316
+order_by: [OBJECTID]
+select: [OBJECTID, DATE_ISSUED, PERMIT_NUM, ADDRESS, CLASS, UNITS, VALUATION, PERMIT_FEE,
+         CONTRACTOR_NAME, FINAL_DATE, CANCEL, DATE_RECEIVED, LOG_NUM, CO_REQUIRED, SCHEDNUM,
+         NEIGHBORHOOD]
+date_field: DATE_ISSUED
+partition: year
+first_year: 1990
+uid: PERMIT_NUM
+doc_type: OTHER
+doc_type_raw: {field: CLASS}
+consideration: VALUATION
+extra_pii: [ADDRESS]
+parties:
+  - {role: other, name: CONTRACTOR_NAME, person_names: false}
+parcel: {kind: pin, field: SCHEDNUM, county_fips: "08031"}   # = co.statewide parcel_id
+terms:
+  url: https://www.arcgis.com/home/item.html?id=014a873bf7444a658fc2ea0da7ad0704
+  summary: "City and County of Denver Open Data (ArcGIS Online, The_City_and_County_of_Denver), free, no login or token. Item licenseInfo (read 2026-11-25): use constraints only (provided as is, no warranty, city not liable); no commercial-use or redistribution restriction. services1.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

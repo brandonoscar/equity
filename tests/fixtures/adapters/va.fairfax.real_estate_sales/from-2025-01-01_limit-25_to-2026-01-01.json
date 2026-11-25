@@ -1,0 +1,256 @@
+{
+ "layer": "https://services1.arcgis.com/ioennV6PpG5Xodq0/arcgis/rest/services/Tax_Administration_Real_Estate_Sales_Data/FeatureServer/0",
+ "rows": [
+  {
+   "BOOK": "WB01349",
+   "OBJECTID": 1094863,
+   "PAGE": "0685",
+   "PARID": "0172 15  0010",
+   "PRICE": 0,
+   "SALEDT": 1753329600000,
+   "SALEVAL_DESC": "No consideration",
+   "TAXYR": 2027
+  },
+  {
+   "BOOK": "28530",
+   "OBJECTID": 1383498,
+   "PAGE": "0641",
+   "PARID": "0294 12070109",
+   "PRICE": 0,
+   "SALEDT": 1761624000000,
+   "SALEVAL_DESC": "No consideration",
+   "TAXYR": 2027
+  },
+  {
+   "BOOK": "28530",
+   "OBJECTID": 1383499,
+   "PAGE": "0762",
+   "PARID": "0374 05  0136",
+   "PRICE": 0,
+   "SALEDT": 1761710400000,
+   "SALEVAL_DESC": "No consideration",
+   "TAXYR": 2027
+  },
+  {
+   "BOOK": "28530",
+   "OBJECTID": 1383500,
+   "PAGE": "1141",
+   "PARID": "0472 03  0538",
+   "PRICE": 0,
+   "SALEDT": 1761710400000,
+   "SALEVAL_DESC": "No consideration",
+   "TAXYR": 2027
+  },
+  {
+   "BOOK": "28530",
+   "OBJECTID": 1383501,
+   "PAGE": "1289",
+   "PARID": "0304 0610    D",
+   "PRICE": 0,
+   "SALEDT": 1761710400000,
+   "SALEVAL_DESC": "No consideration",
+   "TAXYR": 2027
+  },
+  {
+   "BOOK": "28530",
+   "OBJECTID": 1383502,
+   "PAGE": "1863",
+   "PARID": "0911 10  0176",
+   "PRICE": 0,
+   "SALEDT": 1761710400000,
+   "SALEVAL_DESC": "No consideration",
+   "TAXYR": 2027
+  },
+  {
+   "BOOK": "28531",
+   "OBJECTID": 1383503,
+   "PAGE": "1795",
+   "PARID": "0772 01  0029B",
+   "PRICE": 7800000,
+   "SALEDT": 1761796800000,
+   "SALEVAL_DESC": "Valid and verified sale",
+   "TAXYR": 2027
+  },
+  {
+   "BOOK": "28531",
+   "OBJECTID": 1383504,
+   "PAGE": "1799",
+   "PARID": "0911 35  0024",
+   "PRICE": 859999,
+   "SALEDT": 1761796800000,
+   "SALEVAL_DESC": "Valid and verified sale",
+   "TAXYR": 2027
+  },
+  {
+   "BOOK": "28531",
+   "OBJECTID": 1383505,
+   "PAGE": "1934",
+   "PARID": "0803 02420005",
+   "PRICE": 475000,
+   "SALEDT": 1761796800000,
+   "SALEVAL_DESC": "Handyman special / below avg cond",
+   "TAXYR": 2027
+  },
+  {
+   "BOOK": "28533",
+   "OBJECTID": 1383506,
+   "PAGE": "0130",
+   "PARID": "0513 32350202",
+   "PRICE": 0,
+   "SALEDT": 1761883200000,
+   "SALEVAL_DESC": "No consideration",
+   "TAXYR": 2027
+  },
+  {
+   "BOOK": "28534",
+   "OBJECTID": 1383507,
+   "PAGE": "0843",
+   "PARID": "0343 16  0142",
+   "PRICE": 358800,
+   "SALEDT": 1762146000000,
+   "SALEVAL_DESC": "Property exchange / not market value",
+   "TAXYR": 2027
+  },
+  {
+   "BOOK": "28533",
+   "OBJECTID": 1383508,
+   "PAGE": "1580",
+   "PARID": "1073 06  0115",
+   "PRICE": 0,
+   "SALEDT": 1761883200000,
+   "SALEVAL_DESC": "No consideration",
+   "TAXYR": 2027
+  },
+  {
+   "BOOK": "28533",
+   "OBJECTID": 1383509,
+   "PAGE": "1801",
+   "PARID": "0493 08  0003",
+   "PRICE": 925000,
+   "SALEDT": 1761883200000,
+   "SALEVAL_DESC": "Price reflects anticipated rezoning",
+   "TAXYR": 2027
+  },
+  {
+   "BOOK": "28533",
+   "OBJECTID": 1383510,
+   "PAGE": "1962",
+   "PARID": "0214 06  0027A",
+   "PRICE": 3225000,
+   "SALEDT": 1761883200000,
+   "SALEVAL_DESC": "Valid and verified sale",
+   "TAXYR": 2027
+  },
+  {
+   "BOOK": "28535",
+   "OBJECTID": 1383511,
+   "PAGE": "1055",
+   "PARID": "1024 01  0012",
+   "PRICE": 0,
+   "SALEDT": 1762146000000,
+   "SALEVAL_DESC": "No consideration - multi-parcel",
+   "TAXYR": 2027
+  },
+  {
+   "BOOK": "28535",
+   "OBJECTID": 1383512,
+   "PAGE": "1033",
+   "PARID": "0651 07  0140",
+   "PRICE": 1025000,
+   "SALEDT": 1762146000000,
+   "SALEVAL_DESC": "Valid and verified sale",
+   "TAXYR": 2027
+  },
+  {
+   "BOOK": "28534",
+   "OBJECTID": 1383513,
+   "PAGE": "1594",
+   "PARID": "0534 08  0219",
+   "PRICE": 840000,
+   "SALEDT": 1762146000000,
+   "SALEVAL_DESC": "Valid and verified sale",
+   "TAXYR": 2027
+  },
+  {
+   "BOOK": "WB01359",
+   "OBJECTID": 1383514,
+   "PAGE": "1076",
+   "PARID": "0913 06040005",
+   "PRICE": 0,
+   "SALEDT": 1762318800000,
+   "SALEVAL_DESC": "No consideration",
+   "TAXYR": 2027
+  },
+  {
+   "BOOK": "28532",
+   "OBJECTID": 1383515,
+   "PAGE": "1322",
+   "PARID": "0284 13  0067",
+   "PRICE": 850000,
+   "SALEDT": 1761796800000,
+   "SALEVAL_DESC": "Price reflects anticipated rezoning",
+   "TAXYR": 2027
+  },
+  {
+   "BOOK": "28536",
+   "OBJECTID": 1383516,
+   "PAGE": "1085",
+   "PARID": "0992 01  0005",
+   "PRICE": 0,
+   "SALEDT": 1762318800000,
+   "SALEVAL_DESC": "No consideration",
+   "TAXYR": 2027
+  },
+  {
+   "BOOK": "28522",
+   "OBJECTID": 1383517,
+   "PAGE": "1778",
+   "PARID": "0174 23  0011",
+   "PRICE": 0,
+   "SALEDT": 1761019200000,
+   "SALEVAL_DESC": "Resubdivision",
+   "TAXYR": 2027
+  },
+  {
+   "BOOK": "28502",
+   "OBJECTID": 1383518,
+   "PAGE": "1721",
+   "PARID": "1071 11  0102",
+   "PRICE": 0,
+   "SALEDT": 1759118400000,
+   "SALEVAL_DESC": "New subdivison",
+   "TAXYR": 2027
+  },
+  {
+   "BOOK": "28502",
+   "OBJECTID": 1383519,
+   "PAGE": "1721",
+   "PARID": "1071 11  0103",
+   "PRICE": 0,
+   "SALEDT": 1759118400000,
+   "SALEVAL_DESC": "New subdivison",
+   "TAXYR": 2027
+  },
+  {
+   "BOOK": "28502",
+   "OBJECTID": 1383520,
+   "PAGE": "1721",
+   "PARID": "1071 11  0104",
+   "PRICE": 0,
+   "SALEDT": 1759118400000,
+   "SALEVAL_DESC": "New subdivison",
+   "TAXYR": 2027
+  },
+  {
+   "BOOK": "28502",
+   "OBJECTID": 1383521,
+   "PAGE": "1721",
+   "PARID": "1071 11  0105",
+   "PRICE": 0,
+   "SALEDT": 1759118400000,
+   "SALEVAL_DESC": "New subdivison",
+   "TAXYR": 2027
+  }
+ ],
+ "where": "SALEDT >= DATE '2025-01-01' AND SALEDT < DATE '2026-01-01'"
+}

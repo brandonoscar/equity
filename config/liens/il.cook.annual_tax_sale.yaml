@@ -1,0 +1,32 @@
+source_id: il.cook.annual_tax_sale
+state: IL
+county_fips: "17031"
+# Cook County Treasurer "Annual Tax Sale" results (datacatalog.cookcountyil.gov 55ju-2fs9,
+# 200,915 rows, the 2011-2014 sales; published 2016 and not extended): every PIN offered for
+# delinquent property taxes, the tax, penalty and cost offered, whether it sold, the winning
+# penalty bid and the tax buyer's name (35 ILCS 200/21-205). A sold PIN carries a certificate
+# of purchase: TAX_LIEN_STATE on the parcel with the buyer as creditor; an unsold one was
+# forfeited to the County, still a tax delinquency on the parcel. The owner is not named
+# (the parcel is: 17031-<PIN>). The sale year is the date (Jan 1 of that year).
+portal: https://datacatalog.cookcountyil.gov
+dataset: 55ju-2fs9
+order_by: [tax_sale_year, pin, ":id"]
+select: [tax_sale_year, pin, classification, township_name, sold_at_sale, tax_amount_offered,
+         penalty_amount_offered, total_tax_and_penalty_amount_offered, cost, total_amount_paid,
+         total_amount_forfeited, winning_bid_percent, buyer_name]
+date_field: tax_sale_year
+year_dates: [tax_sale_year]
+single_partition: true
+uid: [tax_sale_year, pin]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Cook County annual tax sale
+amount: total_tax_and_penalty_amount_offered
+parties:
+  - {role: creditor, name: buyer_name}
+parcel: {kind: pin, field: pin, county_fips: "17031", strip: "-"}   # = il.cook.parcels pin
+terms:
+  url: https://datacatalog.cookcountyil.gov/d/55ju-2fs9
+  summary: "Cook County Treasurer on the Cook County open data portal (Socrata), free, no login; no license tag on the dataset (Cook County open data terms). datacatalog.cookcountyil.gov/robots.txt allows /resource/ (Crawl-delay: 1)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

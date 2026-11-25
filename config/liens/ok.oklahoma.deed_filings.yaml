@@ -1,0 +1,45 @@
+source_id: ok.oklahoma.deed_filings
+state: OK
+county_fips: "40109"   # Oklahoma County (Oklahoma City)
+# Oklahoma County Assessor "Annual Deeds" (AGOL org 'Oklahoma County', owner artimcon): one
+# layer per year, 2017 .. 2025, of the tax parcels on which a deed was filed that year
+# (26,933 for 2025, 27,090 for 2024, ... about 240,000 in all on 2026-11-25), each with the
+# account number, the owner names on the account when the layer was built (name1 / name2,
+# read as the grantees of that year's deed), the property class and location. The layers
+# carry only the year (saledate); RecordedDate is empty on all but 13 rows. Loaded as one
+# DEED instrument per account and year, dated Jan 1 of the filing year, grantee = the owners;
+# no grantor or price. Each layer is a partition (layer_urls). Linked to 40109-<accountno>,
+# the ok.oklahoma.parcels key. TODO(Brandon): the owners are as of the layer's build date
+# (a later deed in the same year would show its own grantee).
+api: arcgis
+layer_urls:
+  - https://services8.arcgis.com/euhkr1dAJeQBIjV0/arcgis/rest/services/Annual_Deed_2025/FeatureServer/0
+  - https://services8.arcgis.com/euhkr1dAJeQBIjV0/arcgis/rest/services/Annual_Deeds/FeatureServer/1
+  - https://services8.arcgis.com/euhkr1dAJeQBIjV0/arcgis/rest/services/Annual_Deeds/FeatureServer/2
+  - https://services8.arcgis.com/euhkr1dAJeQBIjV0/arcgis/rest/services/Annual_Deeds/FeatureServer/3
+  - https://services8.arcgis.com/euhkr1dAJeQBIjV0/arcgis/rest/services/Annual_Deeds/FeatureServer/4
+  - https://services8.arcgis.com/euhkr1dAJeQBIjV0/arcgis/rest/services/Annual_Deeds/FeatureServer/5
+  - https://services8.arcgis.com/euhkr1dAJeQBIjV0/arcgis/rest/services/Annual_Deeds/FeatureServer/6
+  - https://services8.arcgis.com/euhkr1dAJeQBIjV0/arcgis/rest/services/Annual_Deeds/FeatureServer/7
+  - https://services8.arcgis.com/euhkr1dAJeQBIjV0/arcgis/rest/services/Annual_Deeds/FeatureServer/8
+where: "accountno IS NOT NULL AND accountno <> ''"   # common-area polygons carry no account
+order_by: [accountno]   # the layers' object id fields differ (OBJECTID / OBJECTID_1)
+select: [accountno, saledate, accttype, name1, name2, location, subname, legal]
+date_field: saledate
+year_dates: [saledate]
+uid: [accountno, saledate]
+doc_type: DEED
+doc_type_raw: Oklahoma County deed filing (year)
+extra_pii: [location, legal]
+parties:
+  - role: grantee
+    name: name1
+  - role: grantee
+    name: name2
+parcel: {kind: pin, field: accountno, county_fips: "40109"}   # = ok.oklahoma.parcels parcel_id
+terms:
+  url: https://www.arcgis.com/home/item.html?id=609c17204f164167a7076724cdafde37
+  summary: "Oklahoma County OK (AGOL org 'Oklahoma County', owner artimcon; the org of ok.oklahoma.parcels), public hosted FeatureServers 'Annual Deeds' and 'Annual Deed 2025', free, no login or token. No license, description or use-constraint text on the items (read 2026-11-25). services8.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

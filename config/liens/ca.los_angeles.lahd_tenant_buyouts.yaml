@@ -1,0 +1,28 @@
+source_id: ca.los_angeles.lahd_tenant_buyouts
+state: CA
+county_fips: "06037"
+# City of Los Angeles Housing Department (LAHD) "LAHD Property Look-Up for Tenant Buyout Cases": tenant buyout agreements disclosed
+# to LAHD, with the APN, filing date and the compensation paid
+# (data.lacity.org ci3m-f23k, 8,916 rows on 2026-11-25). Rental-housing enforcement history on the
+# parcel: OTHER instruments on 06037-<apn> (the 10-digit AIN of ca.losangeles.parcels), in no
+# match run.
+portal: https://data.lacity.org
+dataset: ci3m-f23k
+where: "disclosure_fileddate IS NOT NULL AND apn IS NOT NULL AND apn != 'No Record Found'"
+order_by: [":id"]
+date_field: disclosure_fileddate
+partition: year
+first_year: 2010
+uid: [apn, disclosure_fileddate]
+doc_type: OTHER
+doc_type_raw: LAHD tenant buyout disclosure
+amount: compensation_amount
+extra_pii: [tenant_streetaddress]
+parties: []
+parcel: {kind: pin, field: apn, county_fips: "06037"}   # = ca.losangeles.parcels AIN
+terms:
+  url: https://data.lacity.org/d/ci3m-f23k
+  summary: "Los Angeles Open Data (data.lacity.org, Socrata), Los Angeles Housing Department, free, no login or app token. No license is set on the dataset (read 2026-11-25); City of Los Angeles open data terms of use (as-is, no warranty); no resale or redistribution clause found. data.lacity.org/robots.txt allows /resource/ (Crawl-delay: 1)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

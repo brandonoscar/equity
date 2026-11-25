@@ -1,0 +1,35 @@
+source_id: sc.spartanburg.last_deed
+state: SC
+county_fips: "45083"   # Spartanburg County
+# Spartanburg County GIS "CAMA Parcels" (the sc.spartanburg.parcels layer, 182,642 parcels
+# with a previous owner on 2026-11-25, updated nightly from the assessor's CAMA): each
+# parcel's latest sale (Register of Deeds instrument number DEE-YYYY-NNNNN, deed book and
+# page, sale date, sale amount where published), the previous owner and the owner of record.
+# Loaded like al.houston.last_deed: one DEED instrument per parcel and sale date, grantor =
+# PreviousOwnerName (seller), grantee = OwnerName (the owner of record, read as the buyer).
+# Linked to 45083-<MAPNUMBER>, the sc.spartanburg.parcels key. TODO(Brandon): confirm the
+# roll's owner is the grantee of the SaleDate deed (it can lag a later transfer).
+api: arcgis
+layer_url: https://maps.spartanburgcounty.org/server/rest/services/GIS/CAMA_Parcels/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, MAPNUMBER, OwnerName, PreviousOwnerName, SaleDate, SaleAmount, DeedBook,
+         DeedPage, InstrumentNumber]
+date_field: SaleDate
+partition: year
+first_year: 1880
+uid: [MAPNUMBER, SaleDate, InstrumentNumber]
+doc_type: DEED
+doc_type_raw: Spartanburg County last sale (previous owner to owner)
+consideration: SaleAmount
+parties:
+  - role: grantor
+    name: PreviousOwnerName
+  - role: grantee
+    name: OwnerName
+parcel: {kind: pin, field: MAPNUMBER, county_fips: "45083"}   # = sc.spartanburg.parcels parcel_id
+terms:
+  url: https://maps.spartanburgcounty.org/server/rest/services/GIS/CAMA_Parcels/FeatureServer/0
+  summary: "Spartanburg County GIS 'CAMA Parcels' public FeatureServer (the same layer as sc.spartanburg.parcels), free, no login, token or fee; no licence restriction on reuse found (see sc.spartanburg.parcels). maps.spartanburgcounty.org/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

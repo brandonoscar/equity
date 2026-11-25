@@ -1,0 +1,30 @@
+# City of Chicago Department of Buildings "Foreclosed Rental Property" (data.cityofchicago.org
+# yhcw-iu53, 588 registrations on 2026-11-25, updated weekly): rental buildings that changed
+# hands through foreclosure, registered by the new owner under the Keep Chicago Renting
+# Ordinance (Municipal Code 5-14), with the owner's name and mailing address, the date of
+# ownership and the owner's management agent. The address on the owner party is the owner's
+# own (mailing) address; the property address stays in the source record.
+source_id: il.chicago.foreclosed_rental_owners
+state: IL
+jurisdiction: "17031"
+kind: sos  # nearest source kind: a city registry of names
+record_type: rental_registration
+api: socrata
+portal: https://data.cityofchicago.org
+dataset: yhcw-iu53
+key: id
+key_prefix: "CHI-KCRO:"
+parties:
+  - role: owner
+    name: owner_name
+    address: {street: owner_address, city: owner_city, state: owner_state, zip: owner_zip}
+  - role: property_contact
+    name: owner_management_agent_name
+    address: {street: owner_management_agent_address, city: owner_management_agent_city, state: owner_management_agent_state, zip: owner_management_agent_zip}
+extra_pii: [owner_notices_agent_name, owner_notices_agent_phone, owner_notices_agent_email, property_address, location]
+terms:
+  url: https://www.chicago.gov/city/en/narr/foia/data_disclaimer.html
+  summary: "City of Chicago Data Portal (Socrata), Department of Buildings, public, no login. City of Chicago data terms of use: provided as is, free to use; no commercial-use or redistribution restriction. data.cityofchicago.org/robots.txt allows /resource/ (Crawl-delay: 1)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

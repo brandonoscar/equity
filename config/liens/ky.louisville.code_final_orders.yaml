@@ -1,0 +1,42 @@
+source_id: ky.louisville.code_final_orders
+state: KY
+county_fips: "21111"   # Louisville / Jefferson County Metro Government
+# Louisville Metro "Lien Holder Final Orders" (513 rows on 2026-11-25, updated weekly): code-
+# enforcement citations that became final orders (final by citation or by hearing), with the
+# owner's name and mailing address, the cited property's address and the final citation
+# amount. Item description (read 2026-11-25): the weekly lien-holder notice (KRS 65.8828)
+# lets lien holders pay the fine and abatement costs "prior to a lien being taken on a
+# property", so an unpaid final order is a city charge that can become a lien on the
+# property. Loaded like Philadelphia L&I fines (STATUTORY_LIEN, debt kind
+# code_enforcement_charge). TODO(Brandon): confirm when the lien attaches (KRS 65.8835 not
+# re-read here). No parcel id: the cited address is a 'CITED PROPERTY' party, as in
+# oh.cincinnati.lot_abatement. Inspector names and hearing comments are not fetched.
+api: arcgis
+layer_url: https://services1.arcgis.com/79kfd2K6fskCAkyg/arcgis/rest/services/lien_notification_final_orders/FeatureServer/0
+single_partition: true
+order_by: [ObjectId]
+select: [ObjectId, b1_alt_id, b1_appl_status, final_order_state, date_of_notification, stno,
+         predir, stname, suffix, stsub, fullname, addr1, addr2, city, state, zip, insp_result,
+         insp_date, hearing_scheduled, hearing_completed, hearing_result,
+         final_citation_amount]
+date_field: date_of_notification
+uid: b1_alt_id
+doc_type: STATUTORY_LIEN
+doc_type_raw: {field: final_order_state}
+amount: final_citation_amount
+parties:
+  - role: debtor
+    name: fullname
+    address: {line1: [addr1, addr2], city: city, state: state, zip: zip}
+  - role: other                 # the cited property; the matcher finds its parcel by address
+    const: CITED PROPERTY
+    address: {line1: [stno, predir, stname, suffix, stsub], city_const: LOUISVILLE,
+              state_const: KY}
+  - role: creditor
+    const: Louisville/Jefferson County Metro Government
+terms:
+  url: https://www.arcgis.com/home/item.html?id=8f25a99a0e2347cc871a203ca325ab5e
+  summary: "Louisville Metro Government Open Data (LOJIC hub, owner LouisvilleMetro) public ArcGIS Online table, free, no login. licenseInfo (read 2026-11-25): Louisville Metro Government Open Data Platform Terms Of Use (https://louisville-metro-opendata-lojic.hub.arcgis.com/pages/terms-of-use-and-license). Internal use, not redistributed. services1.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

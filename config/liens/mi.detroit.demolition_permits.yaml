@@ -1,0 +1,32 @@
+source_id: mi.detroit.demolition_permits
+state: MI
+county_fips: "26163"
+# City of Detroit BSEED "Demolition Permits" (bseed_demolition_permits/0, 16,328 permits
+# issued since 2019-01 on 2026-11-25): demolitions with the parcel, the property owner's name
+# (often the Detroit Land Bank Authority) and the demolition contractor with its address.
+# OTHER instruments on the parcel, in no match run.
+api: arcgis
+layer_url: https://services2.arcgis.com/qvkbeam7Wirps6zC/arcgis/rest/services/bseed_demolition_permits/FeatureServer/0
+order_by: [ObjectId]
+select: [ObjectId, record_id, address, issued_date, work_description, owner_name,
+         demolition_contractor, demolition_contractor_address, is_open_to_elements, parcel_id]
+date_field: issued_date
+partition: year
+first_year: 2019
+uid: record_id
+doc_type: OTHER
+doc_type_raw: Detroit demolition permit
+parties:
+  - role: other
+    name: owner_name
+  - role: other
+    name: demolition_contractor
+    address: {line1: demolition_contractor_address}
+extra_pii: [address, work_description]
+parcel: {kind: pin, field: parcel_id, county_fips: "26163"}   # same parcel_id as mi.wayne.parcels
+terms:
+  url: https://www.arcgis.com/home/item.html?id=56b20af695134bd1b4ab65e1876ae79b
+  summary: "City of Detroit Buildings, Safety Engineering and Environmental Department (BSEED) on the Detroit Open Data Portal (ArcGIS Online, org of mi.wayne.parcels), public hosted layer, free, no login. No licenseInfo on the item (read 2026-11-25); no commercial-use or mailing-list restriction found. services2.arcgis.com/robots.txt answers 4xx (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

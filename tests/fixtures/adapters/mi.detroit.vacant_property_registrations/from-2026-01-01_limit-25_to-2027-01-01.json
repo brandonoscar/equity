@@ -1,0 +1,256 @@
+{
+ "layer": "https://services2.arcgis.com/qvkbeam7Wirps6zC/arcgis/rest/services/bseed_vacant_property_registrations/FeatureServer/0",
+ "rows": [
+  {
+   "ObjectId": 1,
+   "address": "3137 TEST ST",
+   "issued_date": "2026-03-13",
+   "owner_name": "TESTOWNER 4FC99A INC",
+   "parcel_id": "16045212.",
+   "record_id": "VPO2026-00276",
+   "task_id": "VPO2026-00276-28764-4",
+   "zip_code": "48238"
+  },
+  {
+   "ObjectId": 2,
+   "address": "979 TEST ST",
+   "issued_date": "2026-01-27",
+   "owner_name": "TESTOWNER 762755 LTD",
+   "parcel_id": "21056208.",
+   "record_id": "VPO2026-00040",
+   "task_id": "VPO2026-00040-28764-4",
+   "zip_code": "48215"
+  },
+  {
+   "ObjectId": 3,
+   "address": "4848 TEST ST",
+   "issued_date": "2026-06-09",
+   "owner_name": "TESTOWNER 52C52B LLC",
+   "parcel_id": "16039033.",
+   "record_id": "VPO2026-00799",
+   "task_id": "VPO2026-00799-28764-4",
+   "zip_code": "48238"
+  },
+  {
+   "ObjectId": 4,
+   "address": "3899 TEST ST",
+   "issued_date": "2026-10-30",
+   "owner_name": "TESTOWNER 8502ED",
+   "parcel_id": "20014846.",
+   "record_id": "VPO2026-01407",
+   "task_id": "VPO2026-01407-28764-4",
+   "zip_code": "48217"
+  },
+  {
+   "ObjectId": 5,
+   "address": "7426 TEST ST",
+   "issued_date": "2026-04-29",
+   "owner_name": "TESTOWNER 118C52 LLC",
+   "parcel_id": "19004922.",
+   "record_id": "VPO2025-00459",
+   "task_id": "VPO2025-00459-28764-4",
+   "zip_code": "48214"
+  },
+  {
+   "ObjectId": 6,
+   "address": "1480 TEST ST",
+   "issued_date": "2026-02-26",
+   "owner_name": "TESTOWNER E84AF7",
+   "parcel_id": "18000480.",
+   "record_id": "VPO2026-00119",
+   "task_id": "VPO2026-00119-28764-4",
+   "zip_code": "48209"
+  },
+  {
+   "ObjectId": 7,
+   "address": "8142 TEST ST",
+   "issued_date": "2026-10-02",
+   "owner_name": "TESTOWNER D74B03 LLC",
+   "parcel_id": "16027986.",
+   "record_id": "VPO2026-01280",
+   "task_id": "VPO2026-01280-28764-4",
+   "zip_code": "48221"
+  },
+  {
+   "ObjectId": 8,
+   "address": "1313 TEST ST",
+   "issued_date": "2026-03-03",
+   "owner_name": "TESTOWNER B16691 LLC",
+   "parcel_id": "21036124-5",
+   "record_id": "VPO2026-00236",
+   "task_id": "VPO2026-00236-28764-4",
+   "zip_code": "48205"
+  },
+  {
+   "ObjectId": 9,
+   "address": "3775 TEST ST",
+   "issued_date": "2026-09-16",
+   "owner_name": "TESTOWNER 687D4F",
+   "parcel_id": "22021367.",
+   "record_id": "VPO2026-01211",
+   "task_id": "VPO2026-01211-28764-4",
+   "zip_code": "48235"
+  },
+  {
+   "ObjectId": 10,
+   "address": "5054 TEST ST",
+   "issued_date": "2026-03-25",
+   "owner_name": "TESTOWNER 3C91BB LLC",
+   "parcel_id": "21074895.",
+   "record_id": "VPO2026-00340",
+   "task_id": "VPO2026-00340-28764-4",
+   "zip_code": "48224"
+  },
+  {
+   "ObjectId": 11,
+   "address": "4724 TEST ST",
+   "issued_date": "2026-08-28",
+   "owner_name": "TESTOWNER 9216A3",
+   "parcel_id": "16029834.",
+   "record_id": "VPO2026-01138",
+   "task_id": "VPO2026-01138-28764-4",
+   "zip_code": "48221"
+  },
+  {
+   "ObjectId": 12,
+   "address": "1428 TEST ST",
+   "issued_date": "2026-02-26",
+   "owner_name": "TESTOWNER EFF346",
+   "parcel_id": "22086245.",
+   "record_id": "VPO2026-00226",
+   "task_id": "VPO2026-00226-28764-4",
+   "zip_code": "48219"
+  },
+  {
+   "ObjectId": 13,
+   "address": "7136 TEST ST",
+   "issued_date": "2026-04-06",
+   "owner_name": "TESTOWNER 58153E LLC",
+   "parcel_id": "21071935.",
+   "record_id": "VPO2026-00385",
+   "task_id": "VPO2026-00385-28764-4",
+   "zip_code": "48224"
+  },
+  {
+   "ObjectId": 14,
+   "address": "6167 TEST ST",
+   "issued_date": "2026-08-07",
+   "owner_name": "TESTOWNER 23FD5F LLC",
+   "parcel_id": "21036116-7",
+   "record_id": "VPO2026-00856",
+   "task_id": "VPO2026-00856-28764-4",
+   "zip_code": "48205"
+  },
+  {
+   "ObjectId": 15,
+   "address": "6425 TEST ST",
+   "issued_date": "2026-10-06",
+   "owner_name": "TESTOWNER CDA557 CO",
+   "parcel_id": "22043821.",
+   "record_id": "VPO2026-01267",
+   "task_id": "VPO2026-01267-28764-4",
+   "zip_code": "48235"
+  },
+  {
+   "ObjectId": 16,
+   "address": "7216 TEST ST",
+   "issued_date": "2026-04-27",
+   "owner_name": "TESTOWNER 1864D1 LLC",
+   "parcel_id": "22123642.",
+   "record_id": "VPO2026-00576",
+   "task_id": "VPO2026-00576-28764-4",
+   "zip_code": "48219"
+  },
+  {
+   "ObjectId": 17,
+   "address": "4351 TEST ST",
+   "issued_date": "2026-04-27",
+   "owner_name": "TESTOWNER 3DA15B",
+   "parcel_id": "22043750.",
+   "record_id": "VPO2026-00562",
+   "task_id": "VPO2026-00562-28764-4",
+   "zip_code": "48227"
+  },
+  {
+   "ObjectId": 18,
+   "address": "4106 TEST ST",
+   "issued_date": "2026-07-01",
+   "owner_name": "TESTOWNER 687CF7 LLC",
+   "parcel_id": "16044288.",
+   "record_id": "VPO2026-00852",
+   "task_id": "VPO2026-00852-28764-4",
+   "zip_code": "48221"
+  },
+  {
+   "ObjectId": 19,
+   "address": "5207 TEST ST",
+   "issued_date": "2026-05-13",
+   "owner_name": null,
+   "parcel_id": "21062456-7",
+   "record_id": "VPO2026-00663",
+   "task_id": "VPO2026-00663-28764-4",
+   "zip_code": "48215"
+  },
+  {
+   "ObjectId": 20,
+   "address": "3792 TEST ST",
+   "issued_date": "2026-11-12",
+   "owner_name": "TESTOWNER E67101",
+   "parcel_id": "17016092.",
+   "record_id": "VPO2026-01413",
+   "task_id": "VPO2026-01413-28764-4",
+   "zip_code": "48234"
+  },
+  {
+   "ObjectId": 21,
+   "address": "1711 TEST ST",
+   "issued_date": "2026-06-11",
+   "owner_name": "TESTOWNER 68A376",
+   "parcel_id": "16033281.",
+   "record_id": "VPO2026-00819",
+   "task_id": "VPO2026-00819-28764-4",
+   "zip_code": "48221"
+  },
+  {
+   "ObjectId": 22,
+   "address": "3006 TEST ST",
+   "issued_date": "2026-11-23",
+   "owner_name": "TESTOWNER E73A4C LLC",
+   "parcel_id": "20000622.",
+   "record_id": "VPO2026-01485",
+   "task_id": "VPO2026-01485-28764-4",
+   "zip_code": "48209"
+  },
+  {
+   "ObjectId": 23,
+   "address": "4381 TEST ST",
+   "issued_date": "2026-01-12",
+   "owner_name": "TESTOWNER A09804",
+   "parcel_id": "15006679.",
+   "record_id": "VPO2026-00026",
+   "task_id": "VPO2026-00026-28764-4",
+   "zip_code": "48234"
+  },
+  {
+   "ObjectId": 24,
+   "address": "2460 TEST ST",
+   "issued_date": "2026-02-03",
+   "owner_name": "TESTOWNER 035321 LLC",
+   "parcel_id": "22045528.",
+   "record_id": "VPO2026-00112",
+   "task_id": "VPO2026-00112-28764-4",
+   "zip_code": "48227"
+  },
+  {
+   "ObjectId": 25,
+   "address": "2335 TEST ST",
+   "issued_date": "2026-04-02",
+   "owner_name": "TESTOWNER E1C9E7 LLC",
+   "parcel_id": "21039323.",
+   "record_id": "VPO2026-00433",
+   "task_id": "VPO2026-00433-28764-4",
+   "zip_code": "48214"
+  }
+ ],
+ "where": "issued_date >= DATE '2026-01-01' AND issued_date < DATE '2027-01-01'"
+}

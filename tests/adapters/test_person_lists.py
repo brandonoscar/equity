@@ -387,6 +387,17 @@ def test_source_rows() -> None:
     assert by_id("mo.treasurer.unclaimed_owners").access_method == "html"
 
 
+def test_source_row_carries_use_restrictions_and_robots_date(tmp_path: Path) -> None:
+    terms = {"url": "https://x.test", "summary": "test", "checked_on": "2026-11-25",
+             "robots_checked_on": "2026-11-24",
+             "use_restrictions": ["no_redistribution"]}  # fmt: skip
+    cfg = load_person_list(_write(tmp_path, terms=terms))
+    cls = type("PL", (PersonListAdapter,), {"source_id": cfg.source_id, "config": cfg})
+    row = cls(client=RangeClient()).source_row()
+    assert row["terms_summary"] == "RESTRICTED[no_redistribution] test"
+    assert row["robots_checked_on"] == "2026-11-24"
+
+
 def test_every_fixture_normalizes() -> None:
     for cls in all_person_list_adapters():
         for f in sorted((FIX / cls.source_id).glob("*.json")):

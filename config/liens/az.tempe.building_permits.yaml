@@ -1,0 +1,32 @@
+source_id: az.tempe.building_permits
+state: AZ
+county_fips: "04013"
+# City of Tempe Community Development Building Safety "Permits Issued by Building Safety"
+# (ArcGIS Online, TempeData; 20,898 permits on 2026-11-25): permit number, class and type,
+# description, applied / issued / completed / CO dates, status, square feet, estimated project
+# cost, housing units, project name, address, and the contractor's company and license. No
+# parcel id is published: OTHER instruments in Maricopa County with the contractor as an
+# 'other' party, in no match run.
+api: arcgis
+layer_url: https://services.arcgis.com/lQySeXwbBg53XWDi/arcgis/rest/services/building_permits/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, PermitNum, Description, IssuedDateDtm, AppliedDateDtm, CompletedDateDtm,
+         StatusCurrent, OriginalAddress1, OriginalCity, OriginalZip, PermitClass, PermitTypeDesc,
+         TotalSqFt, EstProjectCost, HousingUnits, ContractorCompanyName, ContractorLicNum,
+         ProjectName, COIssuedDateDtm]
+date_field: IssuedDateDtm
+partition: year
+first_year: 1990
+uid: PermitNum
+doc_type: OTHER
+doc_type_raw: {field: PermitTypeDesc}
+consideration: EstProjectCost
+extra_pii: [OriginalAddress1]
+parties:
+  - {role: other, name: ContractorCompanyName, person_names: false}
+terms:
+  url: https://www.arcgis.com/home/item.html?id=55b38626464d48cb94e81cb8227d6fde
+  summary: "City of Tempe open data (ArcGIS Online, TempeData), free, no login or token. Item licenseInfo (read 2026-11-25): Creative Commons Attribution 4.0 International. services.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

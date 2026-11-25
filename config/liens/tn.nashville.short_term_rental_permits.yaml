@@ -1,0 +1,40 @@
+source_id: tn.nashville.short_term_rental_permits
+state: TN
+county_fips: "47037"   # Davidson County (Metro Nashville)
+# Metro Nashville Codes "Residential Short Term Rental Permits" (ArcGIS Online
+# Residential_Short_Term_Rental_Permits_view, 17,671 permits entered 2015-04 .. 2026-11 on
+# 2026-11-25, daily): permit number, subtype (owner-occupied / not owner-occupied /
+# multifamily), status, entered / issued / expiration dates, the permit owner with the
+# owner's mailing address, the applicant and the local contact, on the parcel (Davidson
+# map-parcel id, e.g. 082120A10300CO). A registry tying an owner to a rental property, not a
+# debt: OTHER instruments on the parcel, in no match run. Contact phone numbers are not
+# fetched.
+api: arcgis
+layer_url: https://services2.arcgis.com/HdTo6HJqh92wn4D8/arcgis/rest/services/Residential_Short_Term_Rental_Permits_view/FeatureServer/0
+order_by: [ObjectId]
+select: [ObjectId, Permit__, Permit_Subtype_Description, Permit_Type, Permit_SubType,
+         Permit_Status, Date_Entered, Date_Issued, Expiration_Date, Address, City, State, ZIP,
+         Subdivision_Lot, Parcel, Permit_Owner_Name, Permit_Owner_Addr1, Permit_Owner_Addr2,
+         Permit_Owner_Addr3, Permit_Owner_City, Permit_Owner_State, Permit_Owner_Zip,
+         Applicant, Contact]
+date_field: Date_Entered
+partition: year
+first_year: 2015
+uid: [Permit__, Parcel]   # 32 permit numbers repeat across parcels
+doc_type: OTHER
+doc_type_raw: {field: Permit_Subtype_Description}
+skip_names: ["None"]
+extra_pii: [Address, Permit_Owner_Addr2, Permit_Owner_Addr3]
+parties:
+  - role: other
+    name: Permit_Owner_Name
+    address: {line1: [Permit_Owner_Addr1, Permit_Owner_Addr2], city: Permit_Owner_City, state: Permit_Owner_State, zip: Permit_Owner_Zip}
+  - {role: other, name: Applicant}
+  - {role: other, name: Contact}
+parcel: {kind: pin, field: Parcel, county_fips: "47037"}   # Davidson map-parcel (tn.davidson.parcels STANPAR)
+terms:
+  url: https://www.arcgis.com/home/item.html?id=b5315bda43ac459281dd35f04aa1be32
+  summary: "Metro Nashville Open Data (ArcGIS Online, NashvilleOpenData), free, no login. Item licenseInfo: Metro's Open Data Executive Order governs the portal; no commercial-use or redistribution restriction found. services2.arcgis.com/robots.txt answers 403 (RFC 9309: no rules). Internal use."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

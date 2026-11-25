@@ -1,0 +1,27 @@
+# City of Cincinnati "Cincinnati Building Permits Contacts" (data.cincinnati-oh.gov vmk6-gy84,
+# 444,305 contacts on 2026-11-25), the people and companies attached to each building permit
+# (number_key = the permit number of oh.cincinnati.building_permits) by relationship. Only
+# the 78,263 OWNER contacts are read: the owner of the permitted property with the owner's
+# mailing address (address_1 street, address_2 'CITY, ST', zip), dated by the application.
+source_id: oh.cincinnati.permit_owner_contacts
+state: OH
+jurisdiction: "39061"
+kind: sos  # nearest source kind: a city registry of names
+record_type: permit_owner
+api: socrata
+portal: https://data.cincinnati-oh.gov
+dataset: vmk6-gy84
+where: "relationship = 'OWNER'"
+key: [number_key, name]
+key_prefix: "CIN-PERMIT-OWNER:"
+parties:
+  - role: owner
+    name: name
+    address: {street: address_1, city_state_zip: address_2, zip: zip}
+extra_pii: [address_3, address_4]
+terms:
+  url: https://data.cincinnati-oh.gov/d/vmk6-gy84
+  summary: "City of Cincinnati Open Data (Socrata, data.cincinnati-oh.gov), Department of Buildings and Inspections, public, no login; dataset license Public Domain. data.cincinnati-oh.gov/robots.txt allows /resource/."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

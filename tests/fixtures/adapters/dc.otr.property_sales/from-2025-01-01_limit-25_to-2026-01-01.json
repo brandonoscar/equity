@@ -1,0 +1,231 @@
+{
+ "layer": "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Property_and_Land_WebMercator/FeatureServer/57",
+ "rows": [
+  {
+   "OBJECTID": 515673918,
+   "QUALIFIED": "Q",
+   "SALE_CODE": "01",
+   "SALE_CURR_OWNER": "1",
+   "SALE_DATE": 1749700800000,
+   "SALE_PRICE": 220000.0,
+   "SSL": "0015    2128"
+  },
+  {
+   "OBJECTID": 515673986,
+   "QUALIFIED": "U",
+   "SALE_CODE": "04",
+   "SALE_CURR_OWNER": "1",
+   "SALE_DATE": 1753329600000,
+   "SALE_PRICE": 279900.0,
+   "SSL": "0015    2163"
+  },
+  {
+   "OBJECTID": 515673987,
+   "QUALIFIED": "U",
+   "SALE_CODE": "04",
+   "SALE_CURR_OWNER": "0",
+   "SALE_DATE": 1744171200000,
+   "SALE_PRICE": 275000.0,
+   "SSL": "0015    2163"
+  },
+  {
+   "OBJECTID": 515674018,
+   "QUALIFIED": "Q",
+   "SALE_CODE": "01",
+   "SALE_CURR_OWNER": "1",
+   "SALE_DATE": 1758254400000,
+   "SALE_PRICE": 305000.0,
+   "SSL": "0015    2179"
+  },
+  {
+   "OBJECTID": 515674090,
+   "QUALIFIED": "Q",
+   "SALE_CODE": "01",
+   "SALE_CURR_OWNER": "1",
+   "SALE_DATE": 1752465600000,
+   "SALE_PRICE": 350000.0,
+   "SSL": "0015    2211"
+  },
+  {
+   "OBJECTID": 515674109,
+   "QUALIFIED": "U",
+   "SALE_CODE": "03",
+   "SALE_CURR_OWNER": "1",
+   "SALE_DATE": 1754884800000,
+   "SALE_PRICE": 0.0,
+   "SSL": "0015    2219"
+  },
+  {
+   "OBJECTID": 515674119,
+   "QUALIFIED": "Q",
+   "SALE_CODE": "01",
+   "SALE_CURR_OWNER": "1",
+   "SALE_DATE": 1748836800000,
+   "SALE_PRICE": 12700000.0,
+   "SSL": "0004N   0027"
+  },
+  {
+   "OBJECTID": 515674137,
+   "QUALIFIED": "Q",
+   "SALE_CODE": "01",
+   "SALE_CURR_OWNER": "1",
+   "SALE_DATE": 1754884800000,
+   "SALE_PRICE": 900000.0,
+   "SSL": "0004N   2008"
+  },
+  {
+   "OBJECTID": 515674160,
+   "QUALIFIED": "Q",
+   "SALE_CODE": "01",
+   "SALE_CURR_OWNER": "1",
+   "SALE_DATE": 1755057600000,
+   "SALE_PRICE": 942500.0,
+   "SSL": "0004N   2016"
+  },
+  {
+   "OBJECTID": 515674200,
+   "QUALIFIED": "U",
+   "SALE_CODE": "05",
+   "SALE_CURR_OWNER": "1",
+   "SALE_DATE": 1760068800000,
+   "SALE_PRICE": 2600000.0,
+   "SSL": "0004N   2032"
+  },
+  {
+   "OBJECTID": 515674242,
+   "QUALIFIED": "Q",
+   "SALE_CODE": "01",
+   "SALE_CURR_OWNER": "1",
+   "SALE_DATE": 1744862400000,
+   "SALE_PRICE": 469000.0,
+   "SSL": "0013    2006"
+  },
+  {
+   "OBJECTID": 515674265,
+   "QUALIFIED": "U",
+   "SALE_CODE": "03",
+   "SALE_CURR_OWNER": "1",
+   "SALE_DATE": 1764910800000,
+   "SALE_PRICE": 0.0,
+   "SSL": "0013    2016"
+  },
+  {
+   "OBJECTID": 515674277,
+   "QUALIFIED": "Q",
+   "SALE_CODE": "01",
+   "SALE_CURR_OWNER": "1",
+   "SALE_DATE": 1746417600000,
+   "SALE_PRICE": 1350000.0,
+   "SSL": "0013    2020"
+  },
+  {
+   "OBJECTID": 515674338,
+   "QUALIFIED": "U",
+   "SALE_CODE": "08",
+   "SALE_CURR_OWNER": "1",
+   "SALE_DATE": 1738904400000,
+   "SALE_PRICE": 0.0,
+   "SSL": "0013    2088"
+  },
+  {
+   "OBJECTID": 515674344,
+   "QUALIFIED": "U",
+   "SALE_CODE": "03",
+   "SALE_CURR_OWNER": "1",
+   "SALE_DATE": 1754884800000,
+   "SALE_PRICE": 0.0,
+   "SSL": "0013    2090"
+  },
+  {
+   "OBJECTID": 515674349,
+   "QUALIFIED": "Q",
+   "SALE_CODE": "01",
+   "SALE_CURR_OWNER": "1",
+   "SALE_DATE": 1754020800000,
+   "SALE_PRICE": 1660000.0,
+   "SSL": "0013    2092"
+  },
+  {
+   "OBJECTID": 515674355,
+   "QUALIFIED": "U",
+   "SALE_CODE": "03",
+   "SALE_CURR_OWNER": "1",
+   "SALE_DATE": 1741150800000,
+   "SALE_PRICE": 0.0,
+   "SSL": "0013    2095"
+  },
+  {
+   "OBJECTID": 515674360,
+   "QUALIFIED": "U",
+   "SALE_CODE": "03",
+   "SALE_CURR_OWNER": "1",
+   "SALE_DATE": 1751428800000,
+   "SALE_PRICE": 0.0,
+   "SSL": "0013    2098"
+  },
+  {
+   "OBJECTID": 515674383,
+   "QUALIFIED": "Q",
+   "SALE_CODE": "01",
+   "SALE_CURR_OWNER": "1",
+   "SALE_DATE": 1745467200000,
+   "SALE_PRICE": 2500000.0,
+   "SSL": "0013    2111"
+  },
+  {
+   "OBJECTID": 515674388,
+   "QUALIFIED": "Q",
+   "SALE_CODE": "01",
+   "SALE_CURR_OWNER": "1",
+   "SALE_DATE": 1749441600000,
+   "SALE_PRICE": 1190000.0,
+   "SSL": "0013    2114"
+  },
+  {
+   "OBJECTID": 515674459,
+   "QUALIFIED": "U",
+   "SALE_CODE": "03",
+   "SALE_CURR_OWNER": "1",
+   "SALE_DATE": 1754366400000,
+   "SALE_PRICE": 0.0,
+   "SSL": "0014    2013"
+  },
+  {
+   "OBJECTID": 515674493,
+   "QUALIFIED": "Q",
+   "SALE_CODE": "01",
+   "SALE_CURR_OWNER": "0",
+   "SALE_DATE": 1737435600000,
+   "SALE_PRICE": 1565000.0,
+   "SSL": "0014    2034"
+  },
+  {
+   "OBJECTID": 515674508,
+   "QUALIFIED": "Q",
+   "SALE_CODE": "01",
+   "SALE_CURR_OWNER": "1",
+   "SALE_DATE": 1750046400000,
+   "SALE_PRICE": 720000.0,
+   "SSL": "0014    2042"
+  },
+  {
+   "OBJECTID": 515674514,
+   "QUALIFIED": "Q",
+   "SALE_CODE": "01",
+   "SALE_CURR_OWNER": "1",
+   "SALE_DATE": 1738731600000,
+   "SALE_PRICE": 860000.0,
+   "SSL": "0014    2043"
+  },
+  {
+   "OBJECTID": 515674530,
+   "QUALIFIED": "Q",
+   "SALE_CODE": "01",
+   "SALE_CURR_OWNER": "1",
+   "SALE_DATE": 1754884800000,
+   "SALE_PRICE": 835000.0,
+   "SSL": "0014    2048"
+  }
+ ],
+ "where": "SALE_DATE >= DATE '2025-01-01' AND SALE_DATE < DATE '2026-01-01'"
+}

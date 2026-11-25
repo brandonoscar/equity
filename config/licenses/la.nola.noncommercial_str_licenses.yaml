@@ -1,0 +1,27 @@
+# City of New Orleans Department of Safety and Permits, "Non-Commercial Short-Term Rental
+# Licenses" (data.nola.gov 2ei9-wqw2, 1,231 licenses applied for 2026-03 .. 2026-09 under the
+# 2026 residential STR ordinance, on 2026-11-25, daily): license number, address, type, status
+# and dates, the owner and the operator (with the operator's own permit), bedrooms and
+# occupancy. A license names who owns the dwelling: owner and operator are both holders.
+source_id: la.nola.noncommercial_str_licenses
+state: LA
+jurisdiction: "22071"
+portal: https://data.nola.gov
+dataset: 2ei9-wqw2
+key: licid
+id_prefix: "NOLA-NCSTR:"
+terms_url: https://data.nola.gov/d/2ei9-wqw2
+terms_summary: "New Orleans open data portal (Socrata), free, no login; no license text on the dataset (public information published by the City). robots.txt allows /resource/. Operator phone and e-mail are in the raw record only; internal use."
+checked_on: 2026-11-25
+robots_checked_on: 2026-11-25
+license:
+  name: owner
+  number: license_number
+  type: type
+  status: current_status
+  issued_on: issue_date
+  address: {street: address}
+holders:
+  - {role: other, title: OWNER, name: owner}
+  - {role: other, title: OPERATOR, with_type: false, name: operator}
+pii_fields: [owner, operator, operator_phone, operator_email, address, x, y, location]

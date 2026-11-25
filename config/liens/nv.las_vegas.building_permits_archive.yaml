@@ -1,0 +1,30 @@
+source_id: nv.las_vegas.building_permits_archive
+state: NV
+county_fips: "32003"
+# City of Las Vegas "Archived_Building_Permits" (ArcGIS Online table, OfficeOfGIS_LasVegas;
+# 216,947 rows on 2026-11-25): building permits from the City's former permit system with the
+# application number and type, work type, applicant (mostly the contractor or owner-builder),
+# valuation and issue date. No parcel or address is filled on most rows, so these are OTHER
+# instruments in Clark County with the applicant as an 'other' party, in no match run. (The
+# current 'Building_Permits_Open_Data' table exposes only its object id and is not read.)
+api: arcgis
+layer_url: https://services1.arcgis.com/F1v0ufATbBQScMtY/arcgis/rest/services/Archived_Building_Permits/FeatureServer/0
+order_by: [ObjectId]
+select: [ObjectId, Application_Number, Application_Type, Work_Type, Applicant, Valuation,
+         Issue_Date, Location]
+date_field: Issue_Date
+partition: year
+first_year: 1980
+uid: Application_Number
+doc_type: OTHER
+doc_type_raw: {field: Application_Type}
+consideration: Valuation
+extra_pii: [Location]
+parties:
+  - {role: other, name: Applicant}
+terms:
+  url: https://www.arcgis.com/home/item.html?id=cf55cce578854241bcac2279443261cd
+  summary: "City of Las Vegas Office of GIS (OfficeOfGIS_LasVegas) public ArcGIS Online table 'Archived_Building_Permits' (no item of its own found; the org's items carry this disclaimer), free, no login or token. licenseInfo (read 2026-11-25): the City of Las Vegas makes no warranty, representation or guarantee; no license grant, resale or redistribution clause. services1.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

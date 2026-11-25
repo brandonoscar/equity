@@ -1,0 +1,156 @@
+{
+ "layer": "https://services.arcgis.com/ykpntM6e3tHvzKRJ/arcgis/rest/services/ParcelLienDelinquent/FeatureServer/2",
+ "rows": [
+  {
+   "APN": "13511027",
+   "DeedNumber": "20260479810",
+   "OBJECTID": 1,
+   "PropertyFullStreetAddress": "2615 TEST ST"
+  },
+  {
+   "APN": "15115013",
+   "DeedNumber": "20110093597",
+   "OBJECTID": 2,
+   "PropertyFullStreetAddress": "8769 TEST ST"
+  },
+  {
+   "APN": "10531082",
+   "DeedNumber": "20160872109",
+   "OBJECTID": 3,
+   "PropertyFullStreetAddress": "5653 TEST ST"
+  },
+  {
+   "APN": "16001017",
+   "DeedNumber": "20110712854",
+   "OBJECTID": 4,
+   "PropertyFullStreetAddress": "4742 TEST ST"
+  },
+  {
+   "APN": "11851113",
+   "DeedNumber": "20050403065",
+   "OBJECTID": 5,
+   "PropertyFullStreetAddress": "8280 TEST ST"
+  },
+  {
+   "APN": "21161161",
+   "DeedNumber": "20250229586",
+   "OBJECTID": 6,
+   "PropertyFullStreetAddress": "3845 TEST ST"
+  },
+  {
+   "APN": "20220006E",
+   "DeedNumber": "20080315840",
+   "OBJECTID": 7,
+   "PropertyFullStreetAddress": "5593 TEST ST"
+  },
+  {
+   "APN": "13512054A",
+   "DeedNumber": "20250410392",
+   "OBJECTID": 8,
+   "PropertyFullStreetAddress": "1437 TEST ST"
+  },
+  {
+   "APN": "15115054A",
+   "DeedNumber": "20260136098",
+   "OBJECTID": 9,
+   "PropertyFullStreetAddress": "7699 TEST ST"
+  },
+  {
+   "APN": "21160252",
+   "DeedNumber": "20031319945",
+   "OBJECTID": 10,
+   "PropertyFullStreetAddress": "6151 TEST ST"
+  },
+  {
+   "APN": "10531115",
+   "DeedNumber": "20210560552",
+   "OBJECTID": 11,
+   "PropertyFullStreetAddress": "7686 TEST ST"
+  },
+  {
+   "APN": "16002034",
+   "DeedNumber": "20150531047",
+   "OBJECTID": 12,
+   "PropertyFullStreetAddress": "5597 TEST ST"
+  },
+  {
+   "APN": "11853090",
+   "DeedNumber": "20260410821",
+   "OBJECTID": 13,
+   "PropertyFullStreetAddress": "7346 TEST ST"
+  },
+  {
+   "APN": "20220043J",
+   "DeedNumber": "20110551913",
+   "OBJECTID": 14,
+   "PropertyFullStreetAddress": "5734 TEST ST"
+  },
+  {
+   "APN": "13514003F",
+   "DeedNumber": "20070453994",
+   "OBJECTID": 15,
+   "PropertyFullStreetAddress": "1770 TEST ST"
+  },
+  {
+   "APN": "15115062",
+   "DeedNumber": "20190354837",
+   "OBJECTID": 16,
+   "PropertyFullStreetAddress": "9024 TEST ST"
+  },
+  {
+   "APN": "12116038",
+   "DeedNumber": "20170204824",
+   "OBJECTID": 17,
+   "PropertyFullStreetAddress": "661 TEST ST"
+  },
+  {
+   "APN": "10531128",
+   "DeedNumber": "20100750794",
+   "OBJECTID": 18,
+   "PropertyFullStreetAddress": "5467 TEST ST"
+  },
+  {
+   "APN": "14963409",
+   "DeedNumber": "20080584275",
+   "OBJECTID": 19,
+   "PropertyFullStreetAddress": "6379 TEST ST"
+  },
+  {
+   "APN": "14963531",
+   "DeedNumber": "20250292694",
+   "OBJECTID": 20,
+   "PropertyFullStreetAddress": "3238 TEST ST"
+  },
+  {
+   "APN": "14963543",
+   "DeedNumber": "20150796112",
+   "OBJECTID": 21,
+   "PropertyFullStreetAddress": "3238 TEST ST"
+  },
+  {
+   "APN": "16004148",
+   "DeedNumber": "20031282725",
+   "OBJECTID": 22,
+   "PropertyFullStreetAddress": "6687 TEST ST"
+  },
+  {
+   "APN": "16006013",
+   "DeedNumber": "20200173676",
+   "OBJECTID": 23,
+   "PropertyFullStreetAddress": "474 TEST ST"
+  },
+  {
+   "APN": "16006102",
+   "DeedNumber": "20210708131",
+   "OBJECTID": 24,
+   "PropertyFullStreetAddress": "4276 TEST ST"
+  },
+  {
+   "APN": "16228089",
+   "DeedNumber": "20160337981",
+   "OBJECTID": 25,
+   "PropertyFullStreetAddress": "5974 TEST ST"
+  }
+ ],
+ "where": "1=1"
+}

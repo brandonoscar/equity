@@ -1,0 +1,30 @@
+source_id: fl.orlando.code_enforcement_cases
+state: FL
+county_fips: "12095"   # Orange County
+# City of Orlando "Code Enforcement Cases" (data.cityoforlando.net k6e8-nw6w, 263,483 cases
+# 1994-10 .. 2026-11 on 2026-11-25, daily): case number, type (ticket, board case, lot
+# clean-up, ...), status, case and resolution dates, the violation and the Orange County
+# parcel id (201k rows). No owner name: the case is against the property, so a match names
+# its owner of record. OTHER instruments on the parcel, in no match run.
+portal: https://data.cityoforlando.net
+dataset: k6e8-nw6w
+order_by: [apno]
+select: [apno, casename, casetype, case_type, caseinfostatus, code, rescode, src, casedt,
+         resdt, parcel_id, parassdvalue, hx_exempt, dept_of_revenue_class, derived_address,
+         location_notes]
+date_field: casedt
+partition: year
+first_year: 1994
+uid: apno
+doc_type: OTHER
+doc_type_raw: {field: casename}
+extra_pii: [derived_address, location_notes]
+parties:
+  - {role: creditor, const: City of Orlando}
+parcel: {kind: pin, field: parcel_id, county_fips: "12095"}   # = fl.statewide.parcels PARCEL_ID
+terms:
+  url: https://data.cityoforlando.net/d/k6e8-nw6w
+  summary: "City of Orlando open data (data.cityoforlando.net, Socrata), Code Enforcement Division, free, no login; no license set on the dataset. robots.txt allows /resource/."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

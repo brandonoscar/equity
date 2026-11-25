@@ -51,6 +51,7 @@ sources:
   pa.dli.bwc_noncompliance: administrative_order
   pa.dli.bllc_noncompliance: administrative_order
   us.dol.msha_assessed_penalties: administrative_order  # unpaid MSHA civil penalties past due
+  md.mhic.guaranty_fund_awards: administrative_order   # contractor owes the Guaranty Fund
   # taxes
   ny.dtf.tax_warrants: tax_warrant
   ny.dtf.child_support_warrants: tax_warrant
@@ -174,3 +175,18 @@ sources:
   pa.washington.repository_sales: tax_delinquency
   pa.washington.upset_sales: tax_delinquency
   pa.west_chester.upset_sale: tax_delinquency
+  # free open-data additions (2026-11-25)
+  ky.louisville.code_final_orders: code_enforcement_charge   # final order; lien if unpaid
+  ky.louisville.metro_foreclosures: foreclosure
+  ca.los_angeles.registered_foreclosures: foreclosure
+  ca.los_angeles.defaulted_tax: tax_delinquency
+  az.maricopa.delinquent_tax_parcels: tax_delinquency
+  or.sos.ucc: statutory_lien                       # UCC filings and federal tax liens
+  # Midwest tax sales, recorded foreclosure suits, scofflaws and code tickets (2026-11-25)
+  il.cook.annual_tax_sale: tax_lien                 # certificate of purchase sold (or forfeited)
+  il.cook.scavenger_sale: tax_lien
+  ia.linn.tax_sale_certificates: tax_lien
+  il.cook.recorder_foreclosures_2011: foreclosure   # lis pendens foreclosure, no parties
+  il.cook.recorder_foreclosures_2012: foreclosure
+  il.chicago.building_scofflaws: housing_court_case
+  oh.cleveland.civil_tickets: code_enforcement_charge

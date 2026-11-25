@@ -1,0 +1,30 @@
+source_id: nv.las_vegas.abandoned_property_registry
+state: NV
+county_fips: "32003"
+# City of Las Vegas "ABANDONED_PROPERTY_REGISTRY" (ArcGIS Online table, OfficeOfGIS_LasVegas;
+# 413 rows on 2026-11-25): vacant and abandoned (foreclosure) properties registered with the
+# City under LVMC 9.04 (registration number FRyy-nnnnn), with the APN, address, last
+# inspection date and the owner of record, published as one text 'NAME,NAME,STREET,CITY,ST,ZIP'
+# (names and mailing address run together, so it is kept whole as one 'other' party rather
+# than split). A current list with no per-row date: listed_on is the fetch date. OTHER
+# instruments on 32003-<PRCLID> (as nv.clark.property_sales), in no match run.
+api: arcgis
+layer_url: https://services1.arcgis.com/F1v0ufATbBQScMtY/arcgis/rest/services/ABANDONED_PROPERTY_REGISTRY/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, APNO, PRCLID, ADDRESS, LASTINSPDATE, OWNERNAME, AREA, WARD]
+listed_on: listed_on
+date_field: listed_on
+single_partition: true
+uid: APNO
+doc_type: OTHER
+doc_type_raw: City of Las Vegas vacant / abandoned property registration
+extra_pii: [ADDRESS]
+parties:
+  - {role: other, name: OWNERNAME}
+parcel: {kind: pin, field: PRCLID, county_fips: "32003"}   # = nv.clark.property_sales PARCEL
+terms:
+  url: https://www.arcgis.com/home/item.html?id=9989f562f4f44fb997ba158d56036455
+  summary: "City of Las Vegas Office of GIS (OfficeOfGIS_LasVegas) public ArcGIS Online table 'ABANDONED_PROPERTY_REGISTRY', free, no login or token. licenseInfo (read 2026-11-25): the City of Las Vegas makes no warranty, representation or guarantee; no license grant, resale or redistribution clause. services1.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

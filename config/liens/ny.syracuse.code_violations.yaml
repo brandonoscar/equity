@@ -1,0 +1,38 @@
+source_id: ny.syracuse.code_violations
+state: NY
+county_fips: "36067"   # Onondaga (City of Syracuse)
+# City of Syracuse Division of Code Enforcement "Code Violations" (Open Data Syracuse,
+# ArcGIS Online Code_Violations_V2, 155,105 violations 2017-2026 on 2026-11-25, updated
+# daily): every property-maintenance, fire and zoning violation cited, with the complaint,
+# violation text and dates, status, the SBL, the property address and the person or company
+# the violation was issued to (usually the owner) with their address. One OTHER instrument
+# per violation, in no match run. The SBL ('086.-13-19.0') is the city's print key, not the
+# NYS SWIS_SBL_ID of ny.statewide.parcels, so no parcel link is made: the property is found
+# by its address (the CITED PROPERTY party, as for mn.dakota.sheriff_sales).
+api: arcgis
+layer_url: https://services6.arcgis.com/bdPqSfflsdgFRVVM/arcgis/rest/services/Code_Violations_V2/FeatureServer/0
+order_by: [ObjectId]
+select: [ObjectId, SBL, complaint_address, complaint_zip, complaint_number, complaint_type_name,
+         violation_id, violation_number, violation, violation_date, status_type_name,
+         status_date, issued_to, issued_to_address, issued_to_city, issued_to_zip, Vacant]
+date_field: violation_date
+partition: year
+first_year: 2017
+uid: violation_id
+doc_type: OTHER
+doc_type_raw: {field: complaint_type_name}
+skip_names: ["DELETED CONTACT"]
+parties:
+  - role: other
+    name: issued_to
+    address: {line1: issued_to_address, city: issued_to_city, zip: issued_to_zip}
+  - role: other                 # the cited property; the matcher finds its parcel by address
+    const: CITED PROPERTY
+    address: {line1: complaint_address, city_const: SYRACUSE, state_const: NY, zip: complaint_zip}
+extra_pii: [complaint_address]
+terms:
+  url: https://data.syr.gov/datasets/107745f070b049feb38273a7ab200487
+  summary: "City of Syracuse (Open Data Syracuse, ArcGIS Online), free, no login. Terms of Use (data.syr.gov/pages/termsofuse, read 2026-11-25): informational, no warranty, not official records; reuse allowed with the City named as source and the access and publication dates, and work products must state 'The City of Syracuse makes no representation, warranty or guarantee relating to the data or analyses derived from these data.' services6.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

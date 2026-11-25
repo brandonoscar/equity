@@ -1,0 +1,47 @@
+source_id: oh.franklin.rental_contacts
+state: OH
+county_fips: "39049"
+# Franklin County OH Auditor monthly 'Tax Accounting' extract RentalContact.xlsx (109,388
+# rows on 2026-11-20): the rental property registrations filed with the Auditor (ORC
+# 5323.02) by parcel, with the number of units, the owner (person, business and title) and
+# the management contact, each with a mailing address. A registry, not a debt: OTHER
+# instruments on 39049-<parcel> naming the owner and manager (role other, with their own
+# addresses), in no match run. Phone columns stay in the source record only as fetched;
+# they are pseudonymized in fixtures. 'Created' / 'Updated' are Excel serial day numbers.
+api: xlsx
+url: https://apps.franklincountyauditor.com/Outside_User_Files/2026/2026-11-20%20Tax%20Accounting/RentalContact.xlsx
+link_from:   # the newest year folder, its newest 'Tax Accounting' folder, the file in it
+  page: https://apps.franklincountyauditor.com/Outside_User_Files/
+  pattern: "/Outside_User_Files/\\d{4}/$"
+  pick: last
+  then:
+    - {pattern: "Tax%20Accounting/$", pick: last}
+    - {pattern: "/RentalContact.xlsx$"}
+excel_dates: [updated, created]
+date_field: updated
+uid: parcel_id
+doc_type: OTHER
+doc_type_raw: Franklin County rental property registration
+parties:
+  - role: other
+    name: owner_businessname
+    address: {line1: [owner_address1, owner_address2], city: owner_city, state: owner_state, zip: owner_zip}
+  - role: other
+    name: owner_name
+    address: {line1: [owner_address1, owner_address2], city: owner_city, state: owner_state, zip: owner_zip}
+  - role: other
+    name: mgmtcont_businessname
+    address: {line1: [mgmtcont_address1, mgmtcont_address2], city: mgmtcont_city, state: mgmtcont_state, zip: mgmtcont_zip}
+  - role: other
+    name: mgmtcont_name
+    address: {line1: [mgmtcont_address1, mgmtcont_address2], city: mgmtcont_city, state: mgmtcont_state, zip: mgmtcont_zip}
+extra_pii: [owner_name, owner_businessname, mgmtcont_name, mgmtcont_businessname, owner_phonenumber, mgmtcont_phonenumber]
+rewrite:   # '420-268862-00' -> '420-268862' (oh.franklin.parcels drops the 2-digit extension)
+  parcel_id: {pattern: "^\\s*(\\d{3}-\\d{6})-\\d{2}\\s*$", replace: "\\1"}
+parcel: {kind: pin, field: parcel_id, county_fips: "39049"}   # = oh.franklin.parcels PARCELID
+terms:
+  url: https://auditor.franklincountyohio.gov/Auditor/FTP
+  summary: "Franklin County (Ohio) Auditor 'Outside User Files', the monthly appraisal and tax accounting extracts the Auditor publishes for anonymous download (apps.franklincountyauditor.com, the host its FTP instructions name), free, no login. No license or reuse terms are stated for the files; the Auditor's site disclaimer (read 2026-11-25) gives them 'as is' with no warranty or liability. apps.franklincountyauditor.com/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

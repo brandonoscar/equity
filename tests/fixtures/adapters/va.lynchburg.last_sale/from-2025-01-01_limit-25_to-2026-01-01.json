@@ -1,0 +1,206 @@
+{
+ "layer": "https://mapviewer.lynchburgva.gov/ArcGIS/rest/services/OpenData/ODPDynamic/MapServer/41",
+ "rows": [
+  {
+   "Grantor1": "TESTOWNER 1DB28B LLC",
+   "OBJECTID": 10,
+   "Owner1": "TESTOWNER F2FEC5 LLC",
+   "Parcel_ID": "26601006",
+   "Sale1Amt": 390000,
+   "Sale1dt": 1753833600000
+  },
+  {
+   "Grantor1": "TESTOWNER D35CCC",
+   "OBJECTID": 31,
+   "Owner1": "TESTOWNER 3CAE6D",
+   "Parcel_ID": "26610010",
+   "Sale1Amt": 150000,
+   "Sale1dt": 1759190400000
+  },
+  {
+   "Grantor1": "TESTOWNER 9D6F0C",
+   "OBJECTID": 35,
+   "Owner1": "TESTOWNER DFA333",
+   "Parcel_ID": "26610008",
+   "Sale1Amt": 240000,
+   "Sale1dt": 1763942400000
+  },
+  {
+   "Grantor1": "TESTOWNER B5A1AB",
+   "OBJECTID": 39,
+   "Owner1": "TESTOWNER 0311B6",
+   "Parcel_ID": "26610006",
+   "Sale1Amt": 252900,
+   "Sale1dt": 1752624000000
+  },
+  {
+   "Grantor1": "TESTOWNER 4BF727",
+   "OBJECTID": 43,
+   "Owner1": "TESTOWNER A474BC",
+   "Parcel_ID": "26610005",
+   "Sale1Amt": 290000,
+   "Sale1dt": 1750032000000
+  },
+  {
+   "Grantor1": "TESTOWNER 90F31B",
+   "OBJECTID": 74,
+   "Owner1": "TESTOWNER 194189",
+   "Parcel_ID": "26315325",
+   "Sale1Amt": 272100,
+   "Sale1dt": 1758153600000
+  },
+  {
+   "Grantor1": "TESTOWNER 605A8B INC",
+   "OBJECTID": 78,
+   "Owner1": "TESTOWNER 967BD0 INC",
+   "Parcel_ID": "26320002",
+   "Sale1Amt": 0,
+   "Sale1dt": 1743379200000
+  },
+  {
+   "Grantor1": "TESTOWNER B786D0",
+   "OBJECTID": 112,
+   "Owner1": "TESTOWNER B226EB",
+   "Parcel_ID": "26609006",
+   "Sale1Amt": 0,
+   "Sale1dt": 1761523200000
+  },
+  {
+   "Grantor1": "TESTOWNER 7BAF49",
+   "OBJECTID": 115,
+   "Owner1": "TESTOWNER 375715",
+   "Parcel_ID": "26611017",
+   "Sale1Amt": 269000,
+   "Sale1dt": 1747958400000
+  },
+  {
+   "Grantor1": "TESTOWNER BE86E7",
+   "OBJECTID": 116,
+   "Owner1": "TESTOWNER F0E251",
+   "Parcel_ID": "26609007",
+   "Sale1Amt": 249900,
+   "Sale1dt": 1761868800000
+  },
+  {
+   "Grantor1": "TESTOWNER A20E14",
+   "OBJECTID": 124,
+   "Owner1": "TESTOWNER E56B18",
+   "Parcel_ID": "26315343",
+   "Sale1Amt": 237000,
+   "Sale1dt": 1762732800000
+  },
+  {
+   "Grantor1": "TESTOWNER AAAE7F",
+   "OBJECTID": 153,
+   "Owner1": "TESTOWNER CB6F46 LLC",
+   "Parcel_ID": "26315337",
+   "Sale1Amt": 0,
+   "Sale1dt": 1756857600000
+  },
+  {
+   "Grantor1": "TESTOWNER E829B7",
+   "OBJECTID": 171,
+   "Owner1": "TESTOWNER 273BED",
+   "Parcel_ID": "26315438",
+   "Sale1Amt": 0,
+   "Sale1dt": 1760659200000
+  },
+  {
+   "Grantor1": "TESTOWNER 292361",
+   "OBJECTID": 177,
+   "Owner1": "TESTOWNER C6A3D3",
+   "Parcel_ID": "26315317",
+   "Sale1Amt": 290000,
+   "Sale1dt": 1746748800000
+  },
+  {
+   "Grantor1": "TESTOWNER 07F49D",
+   "OBJECTID": 191,
+   "Owner1": "TESTOWNER B1403A LLC",
+   "Parcel_ID": "26305002",
+   "Sale1Amt": 330000,
+   "Sale1dt": 1761868800000
+  },
+  {
+   "Grantor1": "TESTOWNER 12C901",
+   "OBJECTID": 193,
+   "Owner1": "TESTOWNER 6288E0",
+   "Parcel_ID": "26315311",
+   "Sale1Amt": 0,
+   "Sale1dt": 1763596800000
+  },
+  {
+   "Grantor1": "TESTOWNER 9647D5",
+   "OBJECTID": 260,
+   "Owner1": "TESTOWNER D97618",
+   "Parcel_ID": "26315275",
+   "Sale1Amt": 425000,
+   "Sale1dt": 1740355200000
+  },
+  {
+   "Grantor1": "TESTOWNER 41713E LLC",
+   "OBJECTID": 269,
+   "Owner1": "TESTOWNER 232DBD LLC",
+   "Parcel_ID": "26315147",
+   "Sale1Amt": 205000,
+   "Sale1dt": 1756771200000
+  },
+  {
+   "Grantor1": "TESTOWNER EBEB13",
+   "OBJECTID": 303,
+   "Owner1": "TESTOWNER 86956A",
+   "Parcel_ID": "26222013",
+   "Sale1Amt": 0,
+   "Sale1dt": 1762300800000
+  },
+  {
+   "Grantor1": "TESTOWNER 18467C",
+   "OBJECTID": 315,
+   "Owner1": "TESTOWNER AAE18B",
+   "Parcel_ID": "26315172",
+   "Sale1Amt": 215000,
+   "Sale1dt": 1752796800000
+  },
+  {
+   "Grantor1": "TESTOWNER C6062D",
+   "OBJECTID": 325,
+   "Owner1": "TESTOWNER B78A64",
+   "Parcel_ID": "26222009",
+   "Sale1Amt": 348000,
+   "Sale1dt": 1746489600000
+  },
+  {
+   "Grantor1": "TESTOWNER 149D55",
+   "OBJECTID": 365,
+   "Owner1": "TESTOWNER FD13B4",
+   "Parcel_ID": "26315183",
+   "Sale1Amt": 0,
+   "Sale1dt": 1754006400000
+  },
+  {
+   "Grantor1": "TESTOWNER 383307 LLC",
+   "OBJECTID": 381,
+   "Owner1": "TESTOWNER 09DCED",
+   "Parcel_ID": "26315393",
+   "Sale1Amt": 220000,
+   "Sale1dt": 1763683200000
+  },
+  {
+   "Grantor1": "TESTOWNER DEC070",
+   "OBJECTID": 402,
+   "Owner1": "TESTOWNER 3A1351 LLC",
+   "Parcel_ID": "26315581",
+   "Sale1Amt": 320000,
+   "Sale1dt": 1753228800000
+  },
+  {
+   "Grantor1": "TESTOWNER AF6300",
+   "OBJECTID": 430,
+   "Owner1": "TESTOWNER D32DAD",
+   "Parcel_ID": "25525012",
+   "Sale1Amt": 0,
+   "Sale1dt": 1749081600000
+  }
+ ],
+ "where": "Sale1dt >= DATE '2025-01-01' AND Sale1dt < DATE '2026-01-01'"
+}

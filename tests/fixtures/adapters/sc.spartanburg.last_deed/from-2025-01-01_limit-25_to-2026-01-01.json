@@ -1,0 +1,281 @@
+{
+ "layer": "https://maps.spartanburgcounty.org/server/rest/services/GIS/CAMA_Parcels/FeatureServer/0",
+ "rows": [
+  {
+   "DeedBook": "153W",
+   "DeedPage": "110",
+   "InstrumentNumber": "DEE-2025-41536",
+   "MAPNUMBER": "1-08-00-012.01",
+   "OBJECTID": 27,
+   "OwnerName": "TESTOWNER CC9C46 LLC",
+   "PreviousOwnerName": "TESTOWNER 135B8C",
+   "SaleAmount": null,
+   "SaleDate": 1757635200000
+  },
+  {
+   "DeedBook": "154C",
+   "DeedPage": "344",
+   "InstrumentNumber": "DEE-2025-44235",
+   "MAPNUMBER": "3-33-04-049.00",
+   "OBJECTID": 31,
+   "OwnerName": "TESTOWNER 51B977",
+   "PreviousOwnerName": "TESTOWNER 77F50A",
+   "SaleAmount": null,
+   "SaleDate": 1759104000000
+  },
+  {
+   "DeedBook": "150F",
+   "DeedPage": "411",
+   "InstrumentNumber": "DEE-2025-4960",
+   "MAPNUMBER": "2-39-00-021.16",
+   "OBJECTID": 42,
+   "OwnerName": "TESTOWNER 8D5DF2",
+   "PreviousOwnerName": "TESTOWNER B62ABF",
+   "SaleAmount": null,
+   "SaleDate": 1738800000000
+  },
+  {
+   "DeedBook": "154B",
+   "DeedPage": "714",
+   "InstrumentNumber": "DEE-2025-44008",
+   "MAPNUMBER": "2-37-00-037.28",
+   "OBJECTID": 61,
+   "OwnerName": "TESTOWNER 257232",
+   "PreviousOwnerName": "TESTOWNER BB1F69",
+   "SaleAmount": null,
+   "SaleDate": 1758758400000
+  },
+  {
+   "DeedBook": "151X",
+   "DeedPage": "309",
+   "InstrumentNumber": "DEE-2025-21532",
+   "MAPNUMBER": "2-50-00-002.55",
+   "OBJECTID": 66,
+   "OwnerName": "TESTOWNER 2E40D5",
+   "PreviousOwnerName": "TESTOWNER 99FC2D",
+   "SaleAmount": null,
+   "SaleDate": 1747267200000
+  },
+  {
+   "DeedBook": "150L",
+   "DeedPage": "349",
+   "InstrumentNumber": "DEE-2025-7098",
+   "MAPNUMBER": "4-60-03-027.00",
+   "OBJECTID": 77,
+   "OwnerName": "TESTOWNER 0ED969",
+   "PreviousOwnerName": "TESTOWNER 70435E",
+   "SaleAmount": null,
+   "SaleDate": 1739145600000
+  },
+  {
+   "DeedBook": "154N",
+   "DeedPage": "799",
+   "InstrumentNumber": "DEE-2025-48845",
+   "MAPNUMBER": "7-18-07-017.00",
+   "OBJECTID": 106,
+   "OwnerName": "TESTOWNER 7E36DF",
+   "PreviousOwnerName": "TESTOWNER 62BC5C",
+   "SaleAmount": null,
+   "SaleDate": 1761264000000
+  },
+  {
+   "DeedBook": "150T",
+   "DeedPage": "61",
+   "InstrumentNumber": "DEE-2025-9808",
+   "MAPNUMBER": "1-20-16-095.00",
+   "OBJECTID": 125,
+   "OwnerName": "TESTOWNER 71FC3A LLC",
+   "PreviousOwnerName": "TESTOWNER DEA28E",
+   "SaleAmount": null,
+   "SaleDate": 1741219200000
+  },
+  {
+   "DeedBook": "151K",
+   "DeedPage": "789",
+   "InstrumentNumber": "DEE-2025-16841",
+   "MAPNUMBER": "3-33-04-026.01",
+   "OBJECTID": 130,
+   "OwnerName": "TESTOWNER C50092",
+   "PreviousOwnerName": "TESTOWNER F96A0E",
+   "SaleAmount": null,
+   "SaleDate": 1744588800000
+  },
+  {
+   "DeedBook": "153D",
+   "DeedPage": "121",
+   "InstrumentNumber": "DEE-2025-34330",
+   "MAPNUMBER": "9-07-00-112.00",
+   "OBJECTID": 135,
+   "OwnerName": "TESTOWNER F717CF",
+   "PreviousOwnerName": "TESTOWNER 86A0C2",
+   "SaleAmount": null,
+   "SaleDate": 1753747200000
+  },
+  {
+   "DeedBook": "154A",
+   "DeedPage": "918",
+   "InstrumentNumber": "DEE-2025-43701",
+   "MAPNUMBER": "9-02-10-030.00",
+   "OBJECTID": 225,
+   "OwnerName": "TESTOWNER F4B0DC",
+   "PreviousOwnerName": "TESTOWNER 331839",
+   "SaleAmount": null,
+   "SaleDate": 1758585600000
+  },
+  {
+   "DeedBook": "150G",
+   "DeedPage": "478",
+   "InstrumentNumber": "DEE-2025-5440",
+   "MAPNUMBER": "7-10-13-048.00",
+   "OBJECTID": 227,
+   "OwnerName": "TESTOWNER B54C4E",
+   "PreviousOwnerName": "TESTOWNER 239AE1",
+   "SaleAmount": null,
+   "SaleDate": 1738800000000
+  },
+  {
+   "DeedBook": "154U",
+   "DeedPage": "184",
+   "InstrumentNumber": "DEE-2025-50909",
+   "MAPNUMBER": "6-12-13-061.01",
+   "OBJECTID": 230,
+   "OwnerName": "TESTOWNER F59EDA LLC",
+   "PreviousOwnerName": "TESTOWNER FB5262",
+   "SaleAmount": null,
+   "SaleDate": 1762128000000
+  },
+  {
+   "DeedBook": "149X",
+   "DeedPage": "83",
+   "InstrumentNumber": "DEE-2025-1338",
+   "MAPNUMBER": "3-24-00-042.03",
+   "OBJECTID": 245,
+   "OwnerName": "TESTOWNER 8CD0B4",
+   "PreviousOwnerName": "TESTOWNER A1E156 LLC",
+   "SaleAmount": null,
+   "SaleDate": 1736726400000
+  },
+  {
+   "DeedBook": "155J",
+   "DeedPage": "867",
+   "InstrumentNumber": "DEE-2025-57009",
+   "MAPNUMBER": "4-33-00-090.15",
+   "OBJECTID": 335,
+   "OwnerName": "TESTOWNER 47EAD1",
+   "PreviousOwnerName": "TESTOWNER CBC7C0",
+   "SaleAmount": null,
+   "SaleDate": 1765756800000
+  },
+  {
+   "DeedBook": "152H",
+   "DeedPage": "419",
+   "InstrumentNumber": "DEE-2025-25957",
+   "MAPNUMBER": "7-09-08-017.01",
+   "OBJECTID": 342,
+   "OwnerName": "TESTOWNER 15376D",
+   "PreviousOwnerName": "TESTOWNER 6F3162",
+   "SaleAmount": null,
+   "SaleDate": 1749600000000
+  },
+  {
+   "DeedBook": "151Q",
+   "DeedPage": "264",
+   "InstrumentNumber": "DEE-2025-18575",
+   "MAPNUMBER": "1-41-00-013.01",
+   "OBJECTID": 352,
+   "OwnerName": "TESTOWNER 6AEC42",
+   "PreviousOwnerName": "TESTOWNER CA07BE",
+   "SaleAmount": null,
+   "SaleDate": 1744848000000
+  },
+  {
+   "DeedBook": "150P",
+   "DeedPage": "747",
+   "InstrumentNumber": "DEE-2025-8415",
+   "MAPNUMBER": "1-26-11-006.00",
+   "OBJECTID": 358,
+   "OwnerName": "TESTOWNER 4597CE LLC",
+   "PreviousOwnerName": "TESTOWNER BB988E",
+   "SaleAmount": null,
+   "SaleDate": 1740528000000
+  },
+  {
+   "DeedBook": "154T",
+   "DeedPage": "319",
+   "InstrumentNumber": "DEE-2025-50526",
+   "MAPNUMBER": "6-62-00-006.01",
+   "OBJECTID": 372,
+   "OwnerName": "TESTOWNER AA376D",
+   "PreviousOwnerName": "TESTOWNER 682356",
+   "SaleAmount": null,
+   "SaleDate": 1761868800000
+  },
+  {
+   "DeedBook": "155B",
+   "DeedPage": "9",
+   "InstrumentNumber": "DEE-2025-53810",
+   "MAPNUMBER": "2-36-00-062.27",
+   "OBJECTID": 382,
+   "OwnerName": "TESTOWNER 386EB6",
+   "PreviousOwnerName": "TESTOWNER 8F07B4",
+   "SaleAmount": null,
+   "SaleDate": 1763942400000
+  },
+  {
+   "DeedBook": "154B",
+   "DeedPage": "454",
+   "InstrumentNumber": "DEE-2025-43909",
+   "MAPNUMBER": "1-08-00-028.49",
+   "OBJECTID": 383,
+   "OwnerName": "TESTOWNER B03FDA",
+   "PreviousOwnerName": "TESTOWNER 6C2DE2",
+   "SaleAmount": null,
+   "SaleDate": 1758672000000
+  },
+  {
+   "DeedBook": "153L",
+   "DeedPage": "795",
+   "InstrumentNumber": "DEE-2025-37512",
+   "MAPNUMBER": "7-13-03-018.00",
+   "OBJECTID": 406,
+   "OwnerName": "TESTOWNER AF9A62 LLC",
+   "PreviousOwnerName": "TESTOWNER CD2025 LLC",
+   "SaleAmount": null,
+   "SaleDate": 1753401600000
+  },
+  {
+   "DeedBook": "155H",
+   "DeedPage": "137",
+   "InstrumentNumber": "DEE-2025-56320",
+   "MAPNUMBER": "1-07-00-031.05",
+   "OBJECTID": 407,
+   "OwnerName": "TESTOWNER 33CFEF LLC",
+   "PreviousOwnerName": "TESTOWNER C3444F LLC",
+   "SaleAmount": null,
+   "SaleDate": 1765411200000
+  },
+  {
+   "DeedBook": "153B",
+   "DeedPage": "575",
+   "InstrumentNumber": "DEE-2025-33685",
+   "MAPNUMBER": "6-19-00-109.00",
+   "OBJECTID": 449,
+   "OwnerName": "TESTOWNER 1DC267",
+   "PreviousOwnerName": "TESTOWNER 26CAD0 LLC",
+   "SaleAmount": null,
+   "SaleDate": 1753660800000
+  },
+  {
+   "DeedBook": "151B",
+   "DeedPage": "632",
+   "InstrumentNumber": "DEE-2025-13462",
+   "MAPNUMBER": "6-19-00-019.52",
+   "OBJECTID": 451,
+   "OwnerName": "TESTOWNER B08B08",
+   "PreviousOwnerName": "TESTOWNER 964B87",
+   "SaleAmount": null,
+   "SaleDate": 1743033600000
+  }
+ ],
+ "where": "SaleDate >= DATE '2025-01-01' AND SaleDate < DATE '2026-01-01'"
+}

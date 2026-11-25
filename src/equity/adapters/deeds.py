@@ -8,7 +8,8 @@ equity.adapters.liens) plus:
                   queried on the raw value: ymd as numbers (field >= 20150101 AND field <
                   20160101, arcgis and socrata; quoted when date_is_text is true), mdy as
                   text (field LIKE '%/2015 %' OR field LIKE '%/2015', socrata only;
-                  partition must be year)
+                  partition must be year). An mdy date in a source read whole (a file api,
+                  single_partition or partition none) needs no window and any api works
   rewrite         {field: {pattern, replace}}: a regex substitution on the field's text
                   (re.sub, applied once), e.g. a SPAN published without its dashes
                   ('78625010932' -> '786-250-10932') so the id matches the owner layer
@@ -24,7 +25,13 @@ from collections.abc import Mapping
 from pathlib import Path
 from typing import Any
 
-from equity.adapters.liens import LienAdapter, LienConfig, LienConfigError, load_lien_config
+from equity.adapters.liens import (
+    FILE_APIS,
+    LienAdapter,
+    LienConfig,
+    LienConfigError,
+    load_lien_config,
+)
 from equity.adapters.liens import us_date as _us_date
 from equity.config import CONFIG_DIR
 
@@ -56,8 +63,11 @@ def load_deed_config(path: Path) -> LienConfig:
     bad = {k: v for k, v in formats.items() if v not in DATE_FORMATS}
     if bad:
         raise LienConfigError(f"{path.name}: date_format must be one of {DATE_FORMATS}: {bad}")
-    windowed = (cfg.get("api", "socrata"), cfg.get("partition", "year")) == ("socrata", "year")
-    if formats.get(cfg["date_field"]) == "mdy" and not windowed:
+    api, partition = cfg.get("api", "socrata"), cfg.get("partition", "year")
+    windowed = (api, partition) == ("socrata", "year")
+    # A file, a single partition or partition none is read whole: no window on the raw date.
+    whole = api in FILE_APIS or bool(cfg.get("single_partition")) or partition == "none"
+    if formats.get(cfg["date_field"]) == "mdy" and not (windowed or whole):
         raise LienConfigError(f"{path.name}: mdy date windows need api socrata, year")
     for field, spec in (cfg.get("rewrite") or {}).items():
         if not isinstance(spec, Mapping) or "pattern" not in spec or "replace" not in spec:

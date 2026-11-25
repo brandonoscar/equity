@@ -1,0 +1,31 @@
+source_id: wa.seattle.city_properties
+state: WA
+county_fips: "53033"   # King County (City of Seattle)
+# City of Seattle Finance and Administrative Services "Current City Properties" (qhwj-ipk4,
+# 1,344 rows on 2026-11-25, rows updated 2026-11-22): property the city owns or controls, by property
+# management area number, with address, land area, ownership (Owned ...), current status
+# (Fully Utilized, Excess to Dept ...) and the jurisdictional department. A government
+# holdings list, no debt: OTHER. No parcel number is published, so the property address is
+# the city's address on the instrument and the matcher finds the parcel by address. The
+# staff contact name is not fetched.
+portal: https://cos-data.seattle.gov
+dataset: qhwj-ipk4
+order_by: [pma_number]
+select: [pma_number, pma_name, location, land_square_feet, city_ownership, city, state, zip,
+         current_status, date_status_assigned, jurisdictional_department]
+listed_on: listed_on
+date_field: listed_on
+single_partition: true
+uid: pma_number
+doc_type: OTHER
+doc_type_raw: {field: current_status}
+parties:
+  - role: other
+    const: City of Seattle
+    address: {line1: location, city: city, state: state, zip: zip}   # the property
+terms:
+  url: https://cos-data.seattle.gov/d/qhwj-ipk4
+  summary: "Seattle Open Data (Socrata), City of Seattle Finance and Administrative Services, license Public Domain (read 2026-11-25), free, no login or app token. cos-data.seattle.gov robots.txt allows /resource/."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

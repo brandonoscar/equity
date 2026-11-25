@@ -1,0 +1,30 @@
+source_id: va.fairfax.building_records
+state: VA
+county_fips: "51059"   # Fairfax County
+# Fairfax County Land Development Services "Building Records PLUS" (ArcGIS Online, owner
+# FX.AuthData, 141,238 building permit records submitted 2006 .. 2026 on 2026-11-25, daily):
+# record id, application type (residential / commercial new, addition, alteration, trade
+# permits ...), status, submitted / accepted / issued / approved / closed dates and the tax
+# map parcel (PARCEL_ID, same spacing as va.fairfax.real_estate_sales). No owner or
+# contractor name in the layer. OTHER instruments on the parcel, in no match run.
+api: arcgis
+layer_url: https://services1.arcgis.com/ioennV6PpG5Xodq0/arcgis/rest/services/Building_Records_PLUS/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, RECORDID, APPTYPEALIAS, PROJECT_NAME, PARCEL_ID, RECORD_STATUS,
+         RECORD_STATUS_DATE, SUBMITTED_DATE, ACCEPTED_DATE, ISSUED_DATE, APPROVED_DATE,
+         CLOSED_DATE, ADDRESS_1, ADDRESS_2, CITY, STATE, ZIP_CODE]
+date_field: SUBMITTED_DATE
+partition: year
+first_year: 2006
+uid: RECORDID
+doc_type: OTHER
+doc_type_raw: {field: APPTYPEALIAS}
+extra_pii: [PROJECT_NAME, ADDRESS_1, ADDRESS_2]
+parties: []   # no names in the layer
+parcel: {kind: pin, field: PARCEL_ID, county_fips: "51059"}
+terms:
+  url: https://www.arcgis.com/home/item.html?id=dcba9328acba411ca4a4fd58448c3c3e
+  summary: "Fairfax County Open Geospatial Data (ArcGIS Online, FX.AuthData), Land Development Services, free, no login. Item licenseInfo points to the Fairfax County GIS Division disclaimer (accuracy, no warranty); no commercial-use or redistribution restriction found. services1.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

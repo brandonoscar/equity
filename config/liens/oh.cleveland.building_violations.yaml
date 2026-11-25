@@ -1,0 +1,30 @@
+source_id: oh.cleveland.building_violations
+state: OH
+county_fips: "39035"
+# City of Cleveland "Issued Building Violations" (Complaint_Violation_Notices/0, 62,220
+# violation notices issued since 2015-01 on 2026-11-25, updated daily): notice id, type of
+# violation, the code sections cited, status and status history, whether the violation is
+# still active, and the parcel. No owner is named: OTHER instruments on the parcel, in no
+# match run.
+api: arcgis
+layer_url: https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/Complaint_Violation_Notices/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, V_PERMIT_ID, FILE_DATE, RECORD_STATUS, RECORD_STATUS_DATE, ISSUE_DATE,
+         ACTIVE_VIOLATION, ADDRESS, PARCEL_NUMBER, TYPE_OF_VIOLATION, OCCUPANCY_OR_USE,
+         VIOLATION_CITATIONS, CE_PARENT_RECORD_ID]
+date_field: ISSUE_DATE
+partition: year
+first_year: 2015
+uid: V_PERMIT_ID
+doc_type: OTHER
+doc_type_raw: {field: TYPE_OF_VIOLATION}
+parties: []
+extra_pii: [ADDRESS]
+parcel: {kind: pin, field: PARCEL_NUMBER, county_fips: "39035"}   # = oh.cuyahoga.parcels parcel_id ('12829029')
+terms:
+  url: https://www.arcgis.com/home/item.html?id=3fbae9a4d11f4af0be19912109c0cbff
+  summary: "City of Cleveland Department of Building and Housing on the Cleveland Open Data Portal (ArcGIS Online, owner opendataCLE), public hosted layer, free, no login. Item licenseInfo (read 2026-11-25): Open Data Commons Open Database License (ODbL): attribute the City; a derived database that is shared publicly must be offered under the ODbL (internal use only here, not redistributed). services3.arcgis.com/robots.txt answers 4xx (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  use_restrictions: [attribution_required]
+  cost_model: free

@@ -1,0 +1,231 @@
+{
+ "layer": "https://services1.arcgis.com/wpJGOi6N4Rq5cqFv/arcgis/rest/services/LancasterCountyPropertySales2017/FeatureServer/0",
+ "rows": [
+  {
+   "Instrument_Number": 2017000236,
+   "Parcel_ID": "21-03-410-012-000",
+   "Property_Class": "Residential Improved",
+   "Sale_Date": 1483423200000,
+   "Sale_Price": 207000,
+   "Sale_Type": "I",
+   "Site_Address": "2590 TEST ST"
+  },
+  {
+   "Instrument_Number": 2017000306,
+   "Parcel_ID": "16-16-105-031-000",
+   "Property_Class": "Commercial Improved",
+   "Sale_Date": 1483423200000,
+   "Sale_Price": 950000,
+   "Sale_Type": "I",
+   "Site_Address": "3256 TEST ST"
+  },
+  {
+   "Instrument_Number": 2017000469,
+   "Parcel_ID": "11-11-459-003-000",
+   "Property_Class": "Residential Improved",
+   "Sale_Date": 1483509600000,
+   "Sale_Price": 225000,
+   "Sale_Type": "I",
+   "Site_Address": "5316 TEST ST"
+  },
+  {
+   "Instrument_Number": 2017000474,
+   "Parcel_ID": "17-19-402-009-000",
+   "Property_Class": "Residential Improved",
+   "Sale_Date": 1483509600000,
+   "Sale_Price": 36000,
+   "Sale_Type": "I",
+   "Site_Address": "7344 TEST ST"
+  },
+  {
+   "Instrument_Number": 2017000475,
+   "Parcel_ID": "17-31-409-005-000",
+   "Property_Class": "Residential Improved",
+   "Sale_Date": 1483423200000,
+   "Sale_Price": 96000,
+   "Sale_Type": "I",
+   "Site_Address": "443 TEST ST"
+  },
+  {
+   "Instrument_Number": 2017000633,
+   "Parcel_ID": "09-01-116-010-000",
+   "Property_Class": "Residential Improved",
+   "Sale_Date": 1483509600000,
+   "Sale_Price": 121000,
+   "Sale_Type": "I",
+   "Site_Address": "4838 TEST ST"
+  },
+  {
+   "Instrument_Number": 2017000637,
+   "Parcel_ID": "17-16-313-011-000",
+   "Property_Class": "Residential Improved",
+   "Sale_Date": 1483423200000,
+   "Sale_Price": 121500,
+   "Sale_Type": "I",
+   "Site_Address": "2071 TEST ST"
+  },
+  {
+   "Instrument_Number": 2017000689,
+   "Parcel_ID": "16-29-206-002-000",
+   "Property_Class": "Residential Improved",
+   "Sale_Date": 1483423200000,
+   "Sale_Price": 460000,
+   "Sale_Type": "I",
+   "Site_Address": "3965 TEST ST"
+  },
+  {
+   "Instrument_Number": 2017000696,
+   "Parcel_ID": "15-28-434-002-000",
+   "Property_Class": "Residential Improved",
+   "Sale_Date": 1483509600000,
+   "Sale_Price": 219026,
+   "Sale_Type": "I",
+   "Site_Address": "7903 TEST ST"
+  },
+  {
+   "Instrument_Number": 2017000719,
+   "Parcel_ID": "16-30-122-008-000",
+   "Property_Class": "Residential Improved",
+   "Sale_Date": 1483596000000,
+   "Sale_Price": 289500,
+   "Sale_Type": "I",
+   "Site_Address": "6012 TEST ST"
+  },
+  {
+   "Instrument_Number": 2017000721,
+   "Parcel_ID": "17-31-304-009-000",
+   "Property_Class": "Residential Improved",
+   "Sale_Date": 1483509600000,
+   "Sale_Price": 115700,
+   "Sale_Type": "I",
+   "Site_Address": "6792 TEST ST"
+  },
+  {
+   "Instrument_Number": 2017000770,
+   "Parcel_ID": "17-16-227-006-000",
+   "Property_Class": "Residential Improved",
+   "Sale_Date": 1483423200000,
+   "Sale_Price": 130000,
+   "Sale_Type": "I",
+   "Site_Address": "3898 TEST ST"
+  },
+  {
+   "Instrument_Number": 2017000774,
+   "Parcel_ID": "17-34-315-011-000",
+   "Property_Class": "Residential Improved",
+   "Sale_Date": 1483336800000,
+   "Sale_Price": 196900,
+   "Sale_Type": "I",
+   "Site_Address": "827 TEST ST"
+  },
+  {
+   "Instrument_Number": 2017000777,
+   "Parcel_ID": "17-09-340-006-000",
+   "Property_Class": "Residential Improved",
+   "Sale_Date": 1483509600000,
+   "Sale_Price": 124000,
+   "Sale_Type": "I",
+   "Site_Address": "6820 TEST ST"
+  },
+  {
+   "Instrument_Number": 2017000783,
+   "Parcel_ID": "17-19-126-002-000",
+   "Property_Class": "Residential Improved",
+   "Sale_Date": 1483596000000,
+   "Sale_Price": 70000,
+   "Sale_Type": "I",
+   "Site_Address": "6474 TEST ST"
+  },
+  {
+   "Instrument_Number": 2017000811,
+   "Parcel_ID": "16-14-225-021-000",
+   "Property_Class": "Residential Improved",
+   "Sale_Date": 1483336800000,
+   "Sale_Price": 280000,
+   "Sale_Type": "I",
+   "Site_Address": "618 TEST ST"
+  },
+  {
+   "Instrument_Number": 2017000816,
+   "Parcel_ID": "17-30-413-011-000",
+   "Property_Class": "Residential Improved",
+   "Sale_Date": 1483336800000,
+   "Sale_Price": 116500,
+   "Sale_Type": "I",
+   "Site_Address": "8137 TEST ST"
+  },
+  {
+   "Instrument_Number": 2017000820,
+   "Parcel_ID": "03-31-400-003-000",
+   "Property_Class": "Ag Unimproved",
+   "Sale_Date": 1483682400000,
+   "Sale_Price": 357700,
+   "Sale_Type": "V",
+   "Site_Address": "2920 TEST ST"
+  },
+  {
+   "Instrument_Number": 2017000845,
+   "Parcel_ID": "23-08-401-001-000",
+   "Property_Class": "Residential Improved",
+   "Sale_Date": 1483682400000,
+   "Sale_Price": 94900,
+   "Sale_Type": "V",
+   "Site_Address": "7308 TEST ST"
+  },
+  {
+   "Instrument_Number": 2017000849,
+   "Parcel_ID": "10-25-103-019-000",
+   "Property_Class": "Commercial Improved",
+   "Sale_Date": 1483682400000,
+   "Sale_Price": 330000,
+   "Sale_Type": "I",
+   "Site_Address": "1189 TEST ST"
+  },
+  {
+   "Instrument_Number": 2017000882,
+   "Parcel_ID": "09-24-319-004-000",
+   "Property_Class": "Residential Improved",
+   "Sale_Date": 1483423200000,
+   "Sale_Price": 221000,
+   "Sale_Type": "I",
+   "Site_Address": "8607 TEST ST"
+  },
+  {
+   "Instrument_Number": 2017000888,
+   "Parcel_ID": "16-14-341-009-000",
+   "Property_Class": "Residential Improved",
+   "Sale_Date": 1483509600000,
+   "Sale_Price": 610692,
+   "Sale_Type": "I",
+   "Site_Address": "4466 TEST ST"
+  },
+  {
+   "Instrument_Number": 2017000952,
+   "Parcel_ID": "09-24-230-003-000",
+   "Property_Class": "Residential Improved",
+   "Sale_Date": 1483423200000,
+   "Sale_Price": 215000,
+   "Sale_Type": "I",
+   "Site_Address": "427 TEST ST"
+  },
+  {
+   "Instrument_Number": 2017001014,
+   "Parcel_ID": "17-23-250-016-000",
+   "Property_Class": "Residential Improved",
+   "Sale_Date": 1483596000000,
+   "Sale_Price": 377000,
+   "Sale_Type": "I",
+   "Site_Address": "8197 TEST ST"
+  },
+  {
+   "Instrument_Number": 2017001038,
+   "Parcel_ID": "16-21-302-002-000",
+   "Property_Class": "Residential Improved",
+   "Sale_Date": 1483509600000,
+   "Sale_Price": 248000,
+   "Sale_Type": "I",
+   "Site_Address": "324 TEST ST"
+  }
+ ],
+ "where": "1=1"
+}

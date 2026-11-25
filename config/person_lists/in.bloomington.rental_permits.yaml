@@ -1,0 +1,26 @@
+# City of Bloomington, IN Housing and Neighborhood Development "Rental Permits"
+# (data.bloomington.in.gov 9q6j-a8rc, 12,528 rows on 2026-11-25, updated daily): every rental
+# occupancy permit with the property address, type, status, expiration, buildings and units,
+# one row per contact (owner 8,053, agent 3,155, representative 1,320) with the contact's own
+# mailing address. The contact type stays in the source record; the property address too.
+source_id: in.bloomington.rental_permits
+state: IN
+jurisdiction: "18105"
+kind: sos  # nearest source kind: a city registry of names
+record_type: rental_registration
+api: socrata
+portal: https://data.bloomington.in.gov
+dataset: 9q6j-a8rc
+key: [permit_num, contact_type, contact_name]
+key_prefix: "BLOOMINGTON-RENTAL:"
+parties:
+  - role: property_contact
+    name: contact_name
+    address: {street: contact_address, city: contact_city, state: contact_state, zip: contact_zip}
+extra_pii: [property_address]
+terms:
+  url: https://data.bloomington.in.gov/d/9q6j-a8rc
+  summary: "City of Bloomington, IN open data portal (Socrata), public, no login; dataset license Open Data Commons Public Domain Dedication and License (PDDL). data.bloomington.in.gov/robots.txt allows /resource/."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

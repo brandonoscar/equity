@@ -1,0 +1,33 @@
+source_id: oh.franklin.auditor_permits
+state: OH
+county_fips: "39049"
+# Franklin County OH Auditor monthly 'Appraisal' extract Permit.xlsx (362,278 rows on
+# 2026-11-20): the building permits of every jurisdiction in the county that the Auditor
+# records against the parcel for reappraisal, with permit date, number, type, amount and
+# description. No applicant or owner is named: OTHER instruments on 39049-<parcel>, in no
+# match run. PERMDT is an Excel serial day number.
+api: xlsx
+url: https://apps.franklincountyauditor.com/Outside_User_Files/2026/2026-11-20%20Appraisal/Permit.xlsx
+link_from:   # the newest year folder, its newest 'Appraisal' folder, the file in it
+  page: https://apps.franklincountyauditor.com/Outside_User_Files/
+  pattern: "/Outside_User_Files/\\d{4}/$"
+  pick: last
+  then:
+    - {pattern: "Appraisal/$", pick: last}
+    - {pattern: "/Permit.xlsx$"}
+excel_dates: [permdt]
+date_field: permdt
+uid: [parcel_id, permitnum]
+doc_type: OTHER
+doc_type_raw: Franklin County Auditor permit
+parties: []
+extra_pii: [description]
+rewrite:   # '420-268862-00' -> '420-268862' (oh.franklin.parcels drops the 2-digit extension)
+  parcel_id: {pattern: "^\\s*(\\d{3}-\\d{6})-\\d{2}\\s*$", replace: "\\1"}
+parcel: {kind: pin, field: parcel_id, county_fips: "39049"}   # = oh.franklin.parcels PARCELID
+terms:
+  url: https://auditor.franklincountyohio.gov/Auditor/FTP
+  summary: "Franklin County (Ohio) Auditor 'Outside User Files', the monthly appraisal and tax accounting extracts the Auditor publishes for anonymous download (apps.franklincountyauditor.com, the host its FTP instructions name), free, no login. No license or reuse terms are stated for the files; the Auditor's site disclaimer (read 2026-11-25) gives them 'as is' with no warranty or liability. apps.franklincountyauditor.com/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

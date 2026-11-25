@@ -1,0 +1,33 @@
+source_id: ca.san_francisco.dbi_complaints
+state: CA
+county_fips: "06075"
+# San Francisco Department of Building Inspection "Complaints (All Divisions)" (data.sf.gov
+# gm2e-bten, 339,205 complaints on 2026-11-25, updated daily): housing, building, electrical,
+# plumbing and code-enforcement complaints with the Assessor parcel number, the dates of the
+# first and second notices of violation, final warning, referral to the City Attorney,
+# director's hearing, abatement and closing, and a description. No owner names. OTHER
+# instruments on 06075-<parcel_number> (block + lot, '0064012'), in no match run.
+portal: https://data.sf.gov
+dataset: gm2e-bten
+where: "date_filed IS NOT NULL"
+order_by: [":id"]
+select: [complaint_number, date_filed, date_1st_nov_issued, date_2nd_nov_issued,
+         date_final_warning_letter_issued, date_referred_to_city_attorney, director_hearing_date,
+         date_abated, closed_date, block, lot, parcel_number, street_number, street_name,
+         street_suffix, unit, zip_code, complaint_description, status, nov_type,
+         receiving_division, assigned_division]
+date_field: date_filed
+partition: year
+first_year: 1990
+uid: complaint_number
+doc_type: OTHER
+doc_type_raw: {field: nov_type}
+extra_pii: [street_number, street_name]
+parties: []
+parcel: {kind: pin, field: parcel_number, county_fips: "06075"}
+terms:
+  url: https://data.sf.gov/d/gm2e-bten
+  summary: "DataSF (data.sf.gov, Socrata; data.sfgov.org now redirects here), Department of Building Inspection, free, no login or app token. Dataset license (read 2026-11-25): Open Data Commons Public Domain Dedication and License (PDDL). data.sf.gov/robots.txt allows /resource/ (Crawl-delay: 1)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

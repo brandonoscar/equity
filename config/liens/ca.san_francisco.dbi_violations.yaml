@@ -1,0 +1,33 @@
+source_id: ca.san_francisco.dbi_violations
+state: CA
+county_fips: "06075"
+# San Francisco Department of Building Inspection "Notices of Violation" (data.sf.gov
+# nbtm-fbw5, 520,143 violation items on 2026-11-25, updated daily): the violations an inspector
+# found on a complaint (one row per item: work without permit, unsafe building, expired
+# permit, code section and comment), with the Assessor block and lot. The items of one
+# complaint are one OTHER instrument on 06075-<block><lot> (as ca.san_francisco.dbi_complaints),
+# in no match run. The parcel is computed in the query (block || lot).
+portal: https://data.sf.gov
+dataset: nbtm-fbw5
+where: "date_filed IS NOT NULL"
+order_by: [":id"]
+select: [complaint_number, item_sequence_number, date_filed, "block || lot AS parcel", block,
+         lot, street_number, street_name, street_suffix, unit, status, receiving_division,
+         assigned_division, nov_category_description, item, nov_item_description,
+         work_without_permit, additional_work_beyond_permit, expired_permit, cancelled_permit,
+         unsafe_building, code_violation_desc, zipcode]
+date_field: date_filed
+partition: year
+first_year: 1990
+uid: complaint_number
+doc_type: OTHER
+doc_type_raw: {field: nov_category_description}
+extra_pii: [street_number, street_name]
+parties: []
+parcel: {kind: pin, field: parcel, county_fips: "06075"}
+terms:
+  url: https://data.sf.gov/d/nbtm-fbw5
+  summary: "DataSF (data.sf.gov, Socrata; data.sfgov.org now redirects here), Department of Building Inspection, free, no login or app token. Dataset license (read 2026-11-25): Open Data Commons Public Domain Dedication and License (PDDL). data.sf.gov/robots.txt allows /resource/ (Crawl-delay: 1)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

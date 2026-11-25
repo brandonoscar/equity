@@ -1,0 +1,28 @@
+source_id: ca.san_diego.short_term_rentals
+state: CA
+county_fips: "06073"
+# City of San Diego Treasurer "Short-Term Residential Occupancy (STRO) Licenses"
+# (data.sandiego.gov stro-licenses, one CSV of 2.1 MB on 2026-11-25): every STRO license with
+# its id, tier, address, community planning area, expiration date, the rental unit and
+# transient occupancy tax account numbers, and the host's and local contact's names (phone
+# numbers are in the file and not mapped). No APN. One OTHER instrument per license in San
+# Diego County, dated by the expiration date, host and local contact as 'other' parties, in
+# no match run. The file is read whole.
+api: csv
+url: https://seshat.datasd.org/stro_licenses/stro_licenses_datasd.csv
+date_field: date_expiration
+uid: license_id
+doc_type: OTHER
+doc_type_raw: {field: tier}
+extra_pii: [address, street_number, street_name, local_contact_phone]
+parties:
+  - role: other
+    name: host_contact_name
+  - role: other
+    name: local_contact_contact_name
+terms:
+  url: https://data.sandiego.gov/datasets/stro-licenses/
+  summary: "City of San Diego open data portal (data.sandiego.gov; files on seshat.datasd.org), free, no login or token. License (read 2026-11-25): Open Data Commons Public Domain Dedication and License (PDDL). data.sandiego.gov/robots.txt disallows only /preview/; seshat.datasd.org/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

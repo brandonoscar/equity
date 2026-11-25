@@ -1,0 +1,29 @@
+source_id: az.tucson.code_cases
+state: AZ
+county_fips: "04019"
+# City of Tucson Planning and Development Services code enforcement cases from EnerGov
+# ("Code Enforcement Cases HFL", ArcGIS Online; 26,136 cases on 2026-11-25): case number,
+# type (zoning, property maintenance, building...), status, opened / closed dates,
+# description, address and the Pima County APN. OTHER instruments on 04019-<PARCEL> (the
+# az.pima.parcels APN), in no match run. (The older HCD/DNR violation layer dates its rows
+# with unparsed text and is not read.)
+api: arcgis
+layer_url: https://services3.arcgis.com/9coHY2fvuFjG9HQX/arcgis/rest/services/Code_Enforcement_Cases_HFL/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, CASENUMBER, status, OPENEDDATE, CLOSEDDATE, DESCRIPTION, type, PREFIX,
+         CaseType, MainAddress, UNITORSUITE, CITY, POSTALCODE, PARCEL, PRO_URL]
+date_field: OPENEDDATE
+partition: year
+first_year: 2000
+uid: CASENUMBER
+doc_type: OTHER
+doc_type_raw: {field: CaseType}
+extra_pii: [MainAddress, DESCRIPTION]
+parties: []
+parcel: {kind: pin, field: PARCEL, county_fips: "04019"}   # = az.pima.parcels APN
+terms:
+  url: https://www.arcgis.com/home/item.html?id=91498a0ee3a5464eb30c2153304f5d17
+  summary: "City of Tucson public ArcGIS Online layer (org of az.tucson.code_liens), free, no login or token. Item licenseInfo (read 2026-11-25): data 'as is', not guaranteed accurate, not for financial commitments without verification; no license grant, resale or redistribution clause. services3.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

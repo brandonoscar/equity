@@ -15,6 +15,12 @@ rules:
   - match: ["us.*.rss"]
     every_hours: 2
     mode: append
+  # Oregon UCC: the dataset holds only last month's filings and is replaced monthly, so it is
+  # polled daily in append mode (each poll a new part, rows already stored dropped): no month
+  # is lost when the next one replaces it. Listed before the weekly "*.ucc" rebuild rule.
+  - match: [or.sos.ucc]
+    every_hours: 24
+    mode: append
   # Government sale lists: daily dated snapshot of what is listed.
   - match: [pa.washington.sheriff_sales, ms.harrison.tax_sale_parcels,
             wi.milwaukee.foreclosure_sales, oh.lucas.forfeited_land_sale, co.lake.tax_lien_sale,
@@ -32,7 +38,21 @@ rules:
             ga.dekalb.excess_funds, nv.washoe.excess_proceeds, la.shreveport.adjudicated_property,
             nm.valencia.tax_auction, ks.linn.tax_sale, pa.cumberland.tax_sales, sc.york.tax_sale,
             sc.horry.delinquent_tax_sale, ms.harrison.tax_sale_2026,
-            mo.st_louis_county.post_third_sale]
+            mo.st_louis_county.post_third_sale, mi.genesee.land_bank, mo.kansas_city.land_bank,
+            il.chicago.city_owned_land, wa.seattle.city_properties, fl.lee.surplus_lands,
+            ca.los_angeles.defaulted_tax,
+            # CivilView sheriff sale listings (open sales only) and current vacant lists
+            "nj.*.sheriff_sales", de.new_castle.sheriff_sales, de.sussex.sheriff_sales,
+            pa.lehigh.sheriff_sales, pa.montgomery.sheriff_sales, pa.philadelphia.sheriff_sales,
+            dc.otr.vacant_blighted, pa.pittsburgh.condemned_properties,
+            md.baltimore_city.vacant_building_notices, ny.syracuse.rental_registry,
+            ny.syracuse.vacant_properties, fl.orange.tax_deed_sales]
+    every_hours: 24
+    mode: listing
+    listing_table: instrument
+  # Fulton Superior Court pending civil cases: a case drops out when it closes, so the list is
+  # snapshotted daily and the day it drops out is kept (equity.refresh listings).
+  - match: [ga.fulton.superior_pending_civil]
     every_hours: 24
     mode: listing
     listing_table: instrument
@@ -44,11 +64,36 @@ rules:
   - match: [us.federalregister.realty_notices]
     every_hours: 24
     mode: rebuild
+  # Midwest city and county feeds updated daily to monthly: permits, code cases, rental and
+  # vacancy registries, sales and transfers (read weekly). One-time or retired extracts
+  # (Cook Recorder 2011-2015, Kansas City permit listings, older Minneapolis and Lancaster
+  # sales, Saint Paul permits and vacant buildings) are loaded once.
+  - match: [il.chicago.building_permits, il.chicago.building_scofflaws,
+            il.chicago.foreclosed_rental_owners, il.chicago.shared_housing,
+            il.cook.assessor_permits, in.indianapolis.code_enforcement,
+            in.bloomington.rental_permits, mi.detroit.building_permits,
+            mi.detroit.demolition_permits, mi.detroit.rental_registrations,
+            mi.detroit.trades_permits, mi.detroit.vacant_property_registrations,
+            mn.minneapolis.building_permits, mn.minneapolis.code_violations,
+            mn.minneapolis.property_sales, mn.minneapolis.rental_licenses,
+            oh.cincinnati.building_permits, oh.cincinnati.permit_owner_contacts,
+            oh.clermont.property_sales, oh.cleveland.boardup_permits,
+            oh.cleveland.building_permits, oh.cleveland.building_violations,
+            oh.cleveland.certificates_of_disclosure, oh.cleveland.civil_tickets,
+            oh.cleveland.condemnations, oh.cleveland.demolition_permits,
+            oh.cleveland.rental_registrations, oh.columbus.building_permits,
+            oh.columbus.code_enforcement, oh.cuyahoga.parcel_sales, oh.franklin.auditor_permits,
+            oh.franklin.rental_contacts, oh.franklin.transfers_010,
+            oh.franklin.transfers_020_277, oh.franklin.transfers_410_610,
+            oh.stark.property_sales]
+    every_hours: 168
+    mode: rebuild
   # Lists that change weekly or slower: delinquent taxes, warrants, liens, judgments, orders.
   - match: ["*delinquent*", "*tax_*", "*warrants", "*liens", "*judgments", "*.top*",
             "*_fines", "*lot_abatement", "*unpaid_bills", "*noncompliance", "*wage_watchlist",
             "*.wall", "*administrative_orders", "*hpd_litigation", "*evictions",
-            "*foreclosures", "*.civil", "*.civil.cases", "*.garnishment", "*.ucc"]
+            "*foreclosures", "*.civil", "*.civil.cases", "*.garnishment", "*.ucc",
+            "*final_orders"]
     exclude: ["*.parcels", "*.zoning", "*.business", "ny.nyc.acris.*", "us.fjc.*"]
     every_hours: 168
     mode: rebuild

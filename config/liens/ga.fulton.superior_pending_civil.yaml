@@ -1,0 +1,37 @@
+source_id: ga.fulton.superior_pending_civil
+state: GA
+county_fips: "13121"
+# Fulton County GA Superior Court "Current Pending Cases" (sharefulton u8gi-zru8, CC-BY-4.0;
+# 12,973 rows on 2026-11-25, extracted daily from Odyssey): every case still pending. Only
+# civil cases are read (casecategorykey CV, 4,775 rows; criminal and family cases are not),
+# and sealed captions are left out. Each case has its number, type (CONTRACT/ACCOUNT, DAMAGES,
+# FORECLOSURE, POST JUDGMENT FILING ...), filing date, judge and caption ('A vs. B'); no
+# amount and no disposition. A lead list, not a judgment: OTHER, the caption's plaintiff as
+# creditor and defendant as debtor. A case drops out of the table once it closes, so the
+# list is snapshotted daily (config/refresh.yaml listing mode): the first day a case is
+# missing dates its closing, or its sealing (equity.refresh listings).
+portal: https://sharefulton.fultoncountyga.gov
+dataset: u8gi-zru8
+where: "casecategorykey = 'CV' AND style IS NOT NULL AND style NOT LIKE '%Sealed%'"
+order_by: [casenbr]
+select: [casenbr, casecategorykey, casetypedesc, datefiled, casestatus, judge, assigndate,
+         style, complex]   # days_pending / datepulled change daily: not kept
+date_field: datefiled
+partition: year
+first_year: 2009
+uid: casenbr
+doc_type: OTHER
+doc_type_raw: {field: casetypedesc}
+caption_field: style
+parties:
+  - role: creditor
+    name: caption_plaintiff
+  - role: debtor
+    name: caption_defendant
+extra_pii: [style]
+terms:
+  url: https://sharefulton.fultoncountyga.gov/d/u8gi-zru8
+  summary: "Fulton County GA open data (Socrata, sharefulton), Superior Court, license Creative Commons Attribution 4.0 International, attribution 'Fulton County Government (GA)' (read 2026-11-25); free, no login or app token. Internal use, not redistributed (CC-BY attribution kept here). sharefulton robots.txt allows /resource/."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,34 @@
+source_id: mn.st_paul.building_permits
+state: MN
+county_fips: "27123"
+# City of Saint Paul Department of Safety and Inspections "Approved Building Permits" (ArcGIS
+# Online Approved_Building_Permits/0, 317,968 building, plumbing, mechanical, electrical and
+# other permits issued 2015-06-30 to 2025-06-30, the layer's rolling ten-year window as last
+# refreshed): permit number, type, subtype, work type, description, estimated value and state
+# valuation, issue / expiration / final dates, the Ramsey County PIN and the contractor with
+# its one-line address. Like ny.nyc.dob_permits: a signal that an owner is putting money into
+# a property, not a debt: OTHER instruments on the parcel, in no match run.
+api: arcgis
+layer_url: https://services1.arcgis.com/9meaaHE3uiba0zr8/arcgis/rest/services/Approved_Building_Permits/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, ADDRESS, STATUS, ISSUEDATE, EXPIRATIONDATE, FINALDATE, FOLDER_TYPE, SUB_TYPE,
+         WORK_TYPE, FOLDERDESCRIPTION, PROPERTYRSN, PIN, PERMITNUMBER, EST_VALUE_OF_WORK,
+         STATE_VALUATION, CONTRACTORNAME, CONTRACTORADDRESS]
+date_field: ISSUEDATE
+partition: year
+first_year: 2015
+uid: PERMITNUMBER
+doc_type: OTHER
+doc_type_raw: {field: FOLDER_TYPE}
+parties:
+  - role: other
+    name: CONTRACTORNAME
+    address: {line1: CONTRACTORADDRESS}
+extra_pii: [ADDRESS, FOLDERDESCRIPTION]
+parcel: {kind: pin, field: PIN, county_fips: "27123"}   # = mn.metro.parcels county_pin (12 digits)
+terms:
+  url: https://www.arcgis.com/home/item.html?id=85d285812604427c9270ea44842081d0
+  summary: "City of Saint Paul open data (ArcGIS Online, owner CityofSaintPaul), public hosted layer, free, no login. Item licenseInfo (read 2026-11-25): 'Public Domain', provided as is; a copy passed to another user must carry the City's disclaimer. services1.arcgis.com/robots.txt answers 4xx (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free
