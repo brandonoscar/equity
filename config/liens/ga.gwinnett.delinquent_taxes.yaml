@@ -20,6 +20,9 @@ link_from:
 sheet: 0
 excel_dates: [inst1duedate]
 date_field: inst1duedate
+past_due_days: 60       # the weekly list also carries the current roll: 248,022 of 278,302 rows
+                        # (2026-11-25) were 2026 bills due 2026-11-15 ($1.47B); delinquent
+                        # years 2019-2025 were ~30k rows, ~$62M
 uid: [parcel, taxyear]
 doc_type: TAX_LIEN_STATE
 doc_type_raw: Gwinnett County delinquent property tax
