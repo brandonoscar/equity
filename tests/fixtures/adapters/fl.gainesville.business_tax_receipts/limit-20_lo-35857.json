@@ -1,0 +1,503 @@
+{
+ "portal": "https://data.cityofgainesville.org",
+ "rows": [
+  {
+   "business_phone": "TESTOWNER 5ADC96",
+   "business_type": "MASSAGE THERAPIST",
+   "email": "TESTOWNER D864FB",
+   "id": "35857",
+   "latitude": "TESTOWNER F65A50",
+   "location": {
+    "coordinates": [
+     -82.36452,
+     29.65393
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 59F945",
+   "mailing_address": "4431 TEST ST",
+   "mailing_city": "GAINESVILLE",
+   "mailing_state": "FL",
+   "mailing_zip_code": "32607",
+   "name": "TESTOWNER 710C25",
+   "owner": "TESTOWNER F8018B",
+   "physical_address": "6585 TEST ST",
+   "physical_city": "GAINESVILLE",
+   "physical_state": "FL",
+   "start_date": "2008-10-15T00:00:00.000",
+   "start_month": "October",
+   "statusid": "Active"
+  },
+  {
+   "business_phone": "TESTOWNER 0123BB",
+   "business_type": "PHOTOGRAPHER",
+   "email": "TESTOWNER 734580",
+   "id": "35870",
+   "latitude": "TESTOWNER 5617EE",
+   "location": {
+    "coordinates": [
+     -82.37831,
+     29.69009
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 892D3C",
+   "mailing_address": "2175 TEST ST",
+   "mailing_city": "GAINESVILLE",
+   "mailing_state": "FL",
+   "mailing_zip_code": "32606",
+   "name": "TESTOWNER DC5AB3",
+   "owner": "TESTOWNER 8E1496",
+   "physical_address": "7252 TEST ST",
+   "physical_city": "GAINESVILLE",
+   "physical_state": "FL",
+   "start_date": "2008-10-22T00:00:00.000",
+   "start_month": "October",
+   "statusid": "Active"
+  },
+  {
+   "business_phone": "TESTOWNER 75A2E1",
+   "business_type": "REFERENCE OUT OF BUSINESS",
+   "email": "TESTOWNER 81D503",
+   "end_date": "2020-03-01T00:00:00.000",
+   "id": "35871",
+   "latitude": "TESTOWNER 4EB2C5",
+   "location": {
+    "coordinates": [
+     -82.38738,
+     29.71252
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 0E0C81",
+   "mailing_address": "7823 TEST ST",
+   "mailing_city": "GAINESVILLE",
+   "mailing_state": "FL",
+   "mailing_zip_code": "32653",
+   "name": "TESTOWNER D1876E",
+   "owner": "TESTOWNER 1B33D7",
+   "physical_address": "8454 TEST ST",
+   "physical_city": "GAINESVILLE",
+   "physical_state": "FL",
+   "start_date": "2008-10-18T00:00:00.000",
+   "start_month": "October",
+   "statusid": "Inactive"
+  },
+  {
+   "business_phone": "TESTOWNER 4B5B5F",
+   "business_type": "CONSULTANT",
+   "id": "35883",
+   "latitude": "TESTOWNER 846E9A",
+   "location": {
+    "coordinates": [
+     -82.32841,
+     29.67247
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 0EE673",
+   "mailing_address": "1257 TEST ST",
+   "mailing_city": "GAINESVILLE",
+   "mailing_state": "FL",
+   "mailing_zip_code": "32609",
+   "name": "TESTOWNER A1DFD4",
+   "owner": "TESTOWNER 051244",
+   "physical_address": "5851 TEST ST",
+   "physical_city": "GAINESVILLE",
+   "physical_state": "FL",
+   "start_date": "2008-10-23T00:00:00.000",
+   "start_month": "October",
+   "statusid": "Active"
+  },
+  {
+   "business_phone": "TESTOWNER 6D8E94",
+   "business_type": "VETERINARIAN",
+   "email": "TESTOWNER 3F610D",
+   "id": "35887",
+   "latitude": "TESTOWNER 0AAB14",
+   "location": {
+    "coordinates": [
+     -82.32042,
+     29.66252
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER C954CE",
+   "mailing_address": "3663 TEST ST",
+   "mailing_city": "GAINESVILLE",
+   "mailing_state": "FL",
+   "mailing_zip_code": "32601",
+   "name": "TESTOWNER 6DF1D4",
+   "owner": "TESTOWNER DEDCBB",
+   "physical_address": "6502 TEST ST",
+   "physical_city": "GAINESVILLE",
+   "physical_state": "FL",
+   "start_date": "2008-07-01T00:00:00.000",
+   "start_month": "July",
+   "statusid": "Active"
+  },
+  {
+   "business_phone": "TESTOWNER 7BA572",
+   "business_type": "WHOLESALE MERCHANT",
+   "email": "TESTOWNER 24999F",
+   "id": "35901",
+   "latitude": "TESTOWNER 9288E7",
+   "location": {
+    "coordinates": [
+     -82.29074,
+     29.68328
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER EEF35E",
+   "mailing_address": "6746 TEST ST",
+   "mailing_city": "BELOIT",
+   "mailing_state": "WI",
+   "mailing_zip_code": "53512",
+   "name": "TESTOWNER 60EA4D",
+   "owner": "TESTOWNER 3FEED5 INC",
+   "physical_address": "4497 TEST ST",
+   "physical_city": "GAINESVILLE",
+   "physical_state": "FL",
+   "start_date": "2008-08-12T00:00:00.000",
+   "start_month": "August",
+   "statusid": "Active"
+  },
+  {
+   "business_phone": "TESTOWNER 7AF121",
+   "business_type": "RESTAURANT",
+   "email": "TESTOWNER 4B40EB",
+   "id": "35902",
+   "latitude": "TESTOWNER 4A7DB0",
+   "location": {
+    "coordinates": [
+     -82.37827,
+     29.62513
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 827E73",
+   "mailing_address": "4429 TEST ST",
+   "mailing_city": "JACKSONVILLE",
+   "mailing_state": "FL",
+   "mailing_zip_code": "32258",
+   "name": "TESTOWNER 394940 LLC",
+   "owner": "TESTOWNER FEBF29 LLC",
+   "physical_address": "2581 TEST ST",
+   "physical_city": "GAINESVILLE",
+   "physical_state": "FL",
+   "start_date": "2008-06-01T00:00:00.000",
+   "start_month": "June",
+   "statusid": "Active"
+  },
+  {
+   "business_phone": "TESTOWNER 477953",
+   "business_type": "RETAIL MERCHANT",
+   "email": "TESTOWNER 5D3F1B",
+   "id": "35903",
+   "latitude": "TESTOWNER 04868E",
+   "location": {
+    "coordinates": [
+     -82.38226,
+     29.62361
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 9DA13C",
+   "mailing_address": "926 TEST ST",
+   "mailing_city": "GAINESVILLE",
+   "mailing_state": "FL",
+   "mailing_zip_code": "32608",
+   "name": "TESTOWNER 47AAA3",
+   "owner": "TESTOWNER 151362 CORP",
+   "physical_address": "7803 TEST ST",
+   "physical_city": "GAINESVILLE",
+   "physical_state": "FL",
+   "start_date": "2008-06-01T00:00:00.000",
+   "start_month": "June",
+   "statusid": "Active"
+  },
+  {
+   "business_phone": "TESTOWNER 9C58B6",
+   "business_type": "ENGINEER",
+   "email": "TESTOWNER 4CE2D0",
+   "id": "35905",
+   "latitude": "TESTOWNER C2E0B1",
+   "location": {
+    "coordinates": [
+     -82.40637,
+     29.65707
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER F6FCB9",
+   "mailing_address": "2025 TEST ST",
+   "mailing_city": "GAINESVILLE",
+   "mailing_state": "FL",
+   "mailing_zip_code": "32607",
+   "name": "TESTOWNER 2A79D3 INC",
+   "owner": "TESTOWNER E54165 INC",
+   "physical_address": "2929 TEST ST",
+   "physical_city": "GAINESVILLE",
+   "physical_state": "FL",
+   "start_date": "1987-01-01T00:00:00.000",
+   "start_month": "January",
+   "statusid": "Active"
+  },
+  {
+   "business_phone": "TESTOWNER E1A2F7",
+   "business_type": "INSURANCE COMPANY OR BROKER",
+   "email": "TESTOWNER 9B2FA8",
+   "id": "35906",
+   "mailing_address": "6917 TEST ST",
+   "mailing_city": "COLUMBUS",
+   "mailing_state": "OH",
+   "mailing_zip_code": "43215",
+   "name": "TESTOWNER B853A0 CO",
+   "owner": "TESTOWNER 5BF8E4 CO",
+   "physical_address": "7621 TEST ST",
+   "physical_city": "GAINESVILLE",
+   "physical_state": "FL",
+   "start_date": "2008-10-01T00:00:00.000",
+   "start_month": "October",
+   "statusid": "Active"
+  },
+  {
+   "business_phone": "TESTOWNER F2E511",
+   "business_type": "INSURANCE COMPANY OR BROKER",
+   "email": "TESTOWNER 8FD3A9",
+   "id": "35909",
+   "mailing_address": "8922 TEST ST",
+   "mailing_city": "WACO",
+   "mailing_state": "TX",
+   "mailing_zip_code": "76702",
+   "name": "TESTOWNER DD9BBD CO",
+   "owner": "TESTOWNER 2FB5A7",
+   "physical_address": "7621 TEST ST",
+   "physical_city": "GAINESVILLE",
+   "physical_state": "FL",
+   "start_date": "2008-10-01T00:00:00.000",
+   "start_month": "October",
+   "statusid": "Active"
+  },
+  {
+   "business_phone": "TESTOWNER 2B1CC5",
+   "business_type": "REFERENCE OUT OF BUSINESS",
+   "email": "TESTOWNER DB1F6F",
+   "end_date": "2020-10-26T00:00:00.000",
+   "id": "35910",
+   "mailing_address": "5147 TEST ST",
+   "mailing_city": "LOUISVILLE",
+   "mailing_state": "KY",
+   "mailing_zip_code": "40201",
+   "name": "TESTOWNER D01B70 CO",
+   "owner": "TESTOWNER 410D16 CO",
+   "physical_address": "7621 TEST ST",
+   "physical_city": "GAINESVILLE",
+   "physical_state": "FL",
+   "start_date": "2008-10-01T00:00:00.000",
+   "start_month": "October",
+   "statusid": "Inactive"
+  },
+  {
+   "business_phone": "TESTOWNER FA3B8C",
+   "business_type": "RETAIL MERCHANT",
+   "id": "35911",
+   "latitude": "TESTOWNER 02C544",
+   "location": {
+    "coordinates": [
+     -82.38029,
+     29.62267
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER FD58D6",
+   "mailing_address": "5498 TEST ST",
+   "mailing_city": "MONSEY",
+   "mailing_state": "NY",
+   "mailing_zip_code": "10952",
+   "name": "TESTOWNER A7E7BC",
+   "owner": "TESTOWNER 883A96 INC",
+   "physical_address": "8667 TEST ST",
+   "physical_city": "GAINESVILLE",
+   "physical_state": "FL",
+   "start_date": "2008-06-01T00:00:00.000",
+   "start_month": "June",
+   "statusid": "Active"
+  },
+  {
+   "business_phone": "TESTOWNER 885EDB",
+   "business_type": "REFERENCE OUT OF BUSINESS",
+   "email": "TESTOWNER 9B1A83",
+   "end_date": "2019-01-31T00:00:00.000",
+   "id": "35933",
+   "latitude": "TESTOWNER 1FA7B6",
+   "location": {
+    "coordinates": [
+     -82.38286,
+     29.62149
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER DAF531",
+   "mailing_address": "8726 TEST ST",
+   "mailing_city": "DULUTH",
+   "mailing_state": "MN",
+   "mailing_zip_code": "55816",
+   "name": "TESTOWNER 7C711B INC",
+   "owner": "TESTOWNER C00110 INC",
+   "physical_address": "5377 TEST ST",
+   "physical_city": "GAINESVILLE",
+   "physical_state": "FL",
+   "start_date": "2008-06-01T00:00:00.000",
+   "start_month": "June",
+   "statusid": "Inactive"
+  },
+  {
+   "business_phone": "TESTOWNER 77322F",
+   "business_type": "REFERENCE OUT OF BUSINESS",
+   "email": "TESTOWNER E21F4C",
+   "end_date": "2020-06-04T00:00:00.000",
+   "id": "35934",
+   "latitude": "TESTOWNER 33D468",
+   "location": {
+    "coordinates": [
+     -82.38156,
+     29.61983
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER D15D59",
+   "mailing_address": "6977 TEST ST",
+   "mailing_city": "VIENNA",
+   "mailing_state": "VA",
+   "mailing_zip_code": "22182",
+   "name": "TESTOWNER 86B57B INC",
+   "owner": "TESTOWNER 801C44 INC",
+   "physical_address": "6322 TEST ST",
+   "physical_city": "GAINESVILLE",
+   "physical_state": "FL",
+   "start_date": "2008-06-01T00:00:00.000",
+   "start_month": "June",
+   "statusid": "Inactive"
+  },
+  {
+   "business_type": "INSURANCE COMPANY OR BROKER",
+   "id": "35935",
+   "mailing_address": "3845 TEST ST",
+   "mailing_city": "GLEN ALLEN",
+   "mailing_state": "VA",
+   "mailing_zip_code": "23060",
+   "name": "TESTOWNER 4527D5 CO",
+   "owner": "TESTOWNER F240EE CO",
+   "physical_address": "7621 TEST ST",
+   "physical_city": "GAINESVILLE",
+   "physical_state": "FL",
+   "start_date": "2008-10-01T00:00:00.000",
+   "start_month": "October",
+   "statusid": "Active"
+  },
+  {
+   "business_phone": "TESTOWNER 2086ED",
+   "business_type": "COIN-OP VENDING MACHINES",
+   "email": "TESTOWNER 08A291",
+   "id": "35937",
+   "mailing_address": "2022 TEST ST",
+   "mailing_city": "BOULDER",
+   "mailing_state": "CO",
+   "mailing_zip_code": "80301",
+   "name": "TESTOWNER B84811",
+   "owner": "TESTOWNER 1CBAE1 INC",
+   "physical_address": "5100 TEST ST",
+   "physical_city": "GAINESVILLE",
+   "physical_state": "FL",
+   "start_date": "2008-06-01T00:00:00.000",
+   "start_month": "June",
+   "statusid": "Active"
+  },
+  {
+   "business_phone": "TESTOWNER E8ED6B",
+   "business_type": "REFERENCE OUT OF BUSINESS",
+   "email": "TESTOWNER C632B6",
+   "end_date": "2018-08-01T00:00:00.000",
+   "id": "35941",
+   "latitude": "TESTOWNER 8A73E6",
+   "location": {
+    "coordinates": [
+     -82.33272,
+     29.65027
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 9E9B81",
+   "mailing_address": "3274 TEST ST",
+   "mailing_city": "WEST PALM BEACH",
+   "mailing_state": "FL",
+   "mailing_zip_code": "33401",
+   "name": "TESTOWNER EA9D21 LLP",
+   "owner": "TESTOWNER 01B870 LLP",
+   "physical_address": "8898 TEST ST",
+   "physical_city": "GAINESVILLE",
+   "physical_state": "FL",
+   "start_date": "2015-07-08T00:00:00.000",
+   "start_month": "July",
+   "statusid": "Inactive"
+  },
+  {
+   "business_phone": "TESTOWNER 652ADF",
+   "business_type": "LABORATORY",
+   "email": "TESTOWNER 2CE39E",
+   "id": "35945",
+   "latitude": "TESTOWNER A36A58",
+   "location": {
+    "coordinates": [
+     -82.29535,
+     29.64586
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 664344",
+   "mailing_address": "3361 TEST ST",
+   "mailing_city": "GAINESVILLE",
+   "mailing_state": "FL",
+   "mailing_zip_code": "32608",
+   "name": "TESTOWNER 4E2E1F LLC",
+   "owner": "TESTOWNER 879CC7 LLC",
+   "physical_address": "1899 TEST ST",
+   "physical_city": "GAINESVILLE",
+   "physical_state": "FL",
+   "start_date": "2008-05-22T00:00:00.000",
+   "start_month": "May",
+   "statusid": "Active"
+  },
+  {
+   "business_phone": "TESTOWNER 80C3E7",
+   "business_type": "REFERENCE OUT OF BUSINESS",
+   "email": "TESTOWNER 3BBC21",
+   "end_date": "2021-11-13T00:00:00.000",
+   "id": "35948",
+   "latitude": "TESTOWNER 70E4E5",
+   "location": {
+    "coordinates": [
+     -82.3785,
+     29.62282
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER FD0E5A",
+   "mailing_address": "8165 TEST ST",
+   "mailing_city": "BOCA RATON",
+   "mailing_state": "FL",
+   "mailing_zip_code": "33431",
+   "name": "TESTOWNER 1070C4",
+   "owner": "TESTOWNER C4E3EF INC",
+   "physical_address": "6879 TEST ST",
+   "physical_city": "GAINESVILLE",
+   "physical_state": "FL",
+   "start_date": "2008-06-01T00:00:00.000",
+   "start_month": "June",
+   "statusid": "Inactive"
+  }
+ ],
+ "where": "id::text >= '35857'"
+}

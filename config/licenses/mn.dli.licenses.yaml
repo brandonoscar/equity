@@ -1,0 +1,44 @@
+# Minnesota Department of Labor and Industry, Construction Codes and Licensing Division,
+# license, bond, certification and registration exports (secure.doli.state.mn.us/ccld/data/,
+# linked from www.dli.mn.gov/license-and-registration-lookup; updated nightly): every
+# license, bond, certification and registration the division has issued, current and past,
+# one CSV per area with a header row, read in 16 MB byte windows: electrical, residential
+# contractors, plumbing, boiler, contractor registrations, high pressure piping, mechanical
+# contractor bonds, elevator, building officials, water conditioning and manufactured
+# structures (about 56 MB, roughly 300K rows by size). Rows carry business or person, type
+# and subtype, name ('FIRST M LAST' for people), DBA, address, phone, email, status ('Issued'
+# is current), original date and enforcement-action flag. The continuing-education export
+# is left out (course records, not licenses).
+# secure.doli.state.mn.us answers /robots.txt with an HTML error page (HTTP 200), which
+# holds no rules.
+source_id: mn.dli.licenses
+state: MN
+jurisdiction: "27"
+fetch: csv
+urls:
+  - https://secure.doli.state.mn.us/ccld/data/MNDLILicRegCertExport_Electrical.csv
+  - https://secure.doli.state.mn.us/ccld/data/MNDLILicRegCertExport_Residential_Contractors.csv
+  - https://secure.doli.state.mn.us/ccld/data/MNDLILicRegCertExport_Plumbing.csv
+  - https://secure.doli.state.mn.us/ccld/data/MNDLILicRegCertExport_Boiler.csv
+  - https://secure.doli.state.mn.us/ccld/data/MNDLILicRegCertExport_Contractor_Registrations.csv
+  - https://secure.doli.state.mn.us/ccld/data/MNDLILicRegCertExport_High_Pressure_Piping.csv
+  - https://secure.doli.state.mn.us/ccld/data/MNDLILicRegCertExport_Mechanical_Contractor_Bond.csv
+  - https://secure.doli.state.mn.us/ccld/data/MNDLILicRegCertExport_Elevator.csv
+  - https://secure.doli.state.mn.us/ccld/data/MNDLILicRegCertExport_Building_Officials.csv
+  - https://secure.doli.state.mn.us/ccld/data/MNDLILicRegCertExport_Water_Conditioning.csv
+  - https://secure.doli.state.mn.us/ccld/data/MNDLILicRegCertExport_Manufactured_Structures.csv
+chunk_bytes: 16000000  # about 90K rows per partition
+key: Lic_Number
+id_prefix: "MN-DLI:"
+terms_url: https://www.dli.mn.gov/license-and-registration-lookup
+terms_summary: "Free public download offered on the DLI license lookup page ('Download a spreadsheet of all licensed businesses and individuals'); no use restriction stated."
+checked_on: 2026-11-25
+license:
+  name: [DBA_Name, Name]
+  type: License_Subtype
+  status: Status
+  issued_on: Orig_Date
+  address: {street: [Addr1, Addr2], city: City, state: St, zip: Zip}
+holders:
+  - {role: other, title: LICENSEE, name: Name, address: {street: [Addr1, Addr2], city: City, state: St, zip: Zip}}
+pii_fields: [Name, DBA_Name, Addr1, Addr2, Phone_No, Email_Address]

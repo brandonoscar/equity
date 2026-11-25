@@ -1,0 +1,23 @@
+# New York State Department of Environmental Conservation, "Guides Currently Licensed in New
+# York State" (data.ny.gov q9d5-zxbn): about 6.7K rows for about 2.7K licensed outdoor guides
+# (one row per endorsed activity), with name, business name, city, state and ZIP.
+# TODO(Brandon): no issue date is published, so licenses are dated from the retrieval day.
+source_id: ny.dec.guides
+state: NY
+jurisdiction: "36"
+portal: https://data.ny.gov
+dataset: q9d5-zxbn
+key: badge_number
+key_is_number: true
+id_prefix: "NY-GUIDE:"
+terms_url: https://data.ny.gov/download/77gx-ii52/application%2Fpdf
+terms_summary: "NY Open Data terms: free to use; no warranty. No restriction on commercial use found."
+checked_on: 2026-11-25
+license:
+  name: business_name
+  type_value: Licensed Guide
+  status_value: Active  # current licenses only
+  address: {city: city, state: state, zip: zip}
+holders:
+  - {role: other, title: GUIDE, with_type: false, parts: {first: name, last: last_name}, address: {city: city, state: state, zip: zip}}
+pii_fields: [last_name, name, phone, business_name, georeference]

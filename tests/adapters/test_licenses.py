@@ -20,6 +20,7 @@ from equity.adapters.licenses import (
     HolderSpec,
     LicenseAdapter,
     LicenseConfigError,
+    adapter_class,
     address_of,
     all_license_adapters,
     holder_of,
@@ -54,9 +55,7 @@ def _adapter(tmp_path: Path, **over: Any) -> type[LicenseAdapter]:
     data = {**BASE, **over}
     path = tmp_path / f"{data['source_id']}.yaml"
     path.write_text(yaml.safe_dump(data))
-    cfg = load_license(path)
-    return type("T", (LicenseAdapter,), {"source_id": cfg.source_id, "config": cfg,
-                                         "pii_fields": cfg.pii_fields})  # fmt: skip
+    return adapter_class(load_license(path))
 
 
 def _norm(cls: type[LicenseAdapter], body: dict[str, Any]) -> list[tuple[str, dict[str, Any]]]:
@@ -87,7 +86,13 @@ def test_every_config_loads_with_unique_prefixes() -> None:
      ({"license": {"name": "x", "expiry": "y"}}, "unknown license keys"),
      ({"licence": {}}, "unknown keys"),
      ({"related": [{"dataset": "b", "key": "num", "holder": {"name": "n"},
-                    "role_map": {"BOSS": "boss"}}]}, "unknown business role")],
+                    "role_map": {"BOSS": "boss"}}]}, "unknown business role"),
+     ({"fetch": "ftp"}, "unknown fetch"),
+     ({"fetch": "csv"}, "needs urls"),
+     ({"fetch": "csv", "urls": ["https://x.test/a.csv"],
+       "related": [{"dataset": "b", "key": "num", "holder": {"name": "n"}}]}, "no related"),
+     ({"dataset": ""}, "needs portal and dataset"),
+     ({"cost_model": "cheap"}, "cost_model")],
 )  # fmt: skip
 def test_bad_configs_are_refused(tmp_path: Path, change: dict[str, Any], problem: str) -> None:
     with pytest.raises(LicenseConfigError, match=problem):
@@ -106,6 +111,10 @@ def test_dates() -> None:
     assert parse_date("19271210") == date(1927, 12, 10)
     assert parse_date("20140814.0") == date(2014, 8, 14)
     assert parse_date("13/40/2020") is None
+    assert parse_date("17-MAR-00") == date(2000, 3, 17)  # Florida DBPR
+    assert parse_date("13-apr-87") == date(1987, 4, 13)
+    assert parse_date("01-JAN-2019") == date(2019, 1, 1)
+    assert parse_date("31-FOO-20") is None and parse_date("31-FEB-20") is None
     assert parse_date("") is None and parse_date(None) is None and parse_date("soon") is None
 
 
@@ -289,6 +298,153 @@ def test_health_and_source_row(tmp_path: Path) -> None:
     assert not cls(FakeSocrata({})).health().ok  # type: ignore[arg-type]
     row = cls().source_row()
     assert row["kind"] == "sos" and row["base_url"] == "https://x.test/resource/aaaa-1111.json"
+
+
+def test_terms_restrictions_and_cost_reach_the_source_row(tmp_path: Path) -> None:
+    cls = _adapter(tmp_path, use_restrictions=["no_redistribution", "internal_use_only"],
+                   cost_model="fee", robots_checked_on=date(2026, 11, 20))  # fmt: skip
+    row = cls().source_row()
+    assert row["terms_summary"] == "RESTRICTED[internal_use_only,no_redistribution] test"
+    assert row["cost_model"] == "fee" and row["robots_checked_on"] == date(2026, 11, 20)
+    assert row["terms_checked_on"] == BASE["checked_on"] and row["access_method"] == "api"
+    plain = _adapter(tmp_path, source_id="zz.test.plain")().source_row()
+    assert plain["terms_summary"] == "test" and plain["cost_model"] == "free"
+    assert plain["robots_checked_on"] == BASE["checked_on"]
+
+
+class FakeFiles:
+    """Files by URL, served whole by get() and by byte range by get_range() (206; 416 past
+    the end; the whole file with 200 when `ranges` is off)."""
+
+    retries = 0
+    backoff_s = 0.0
+
+    def __init__(self, files: dict[str, bytes], ranges: bool = True) -> None:
+        self.files = files
+        self.ranges = ranges
+        self.calls: list[tuple[str, int, int] | str] = []
+
+    def sleep(self, s: float) -> None:
+        pass
+
+    def get(self, url: str, params: dict[str, str] | None = None) -> Response:
+        self.calls.append(url)
+        if url not in self.files:
+            return Response(url, 404, b"", "text/html", AT)
+        return Response(url, 200, self.files[url], "text/csv", AT)
+
+    def get_range(self, url: str, first: int, last: int) -> Response:
+        self.calls.append((url, first, last))
+        data = self.files.get(url)
+        if data is None:
+            return Response(url, 404, b"", "text/html", AT)
+        if not self.ranges:
+            return Response(url, 200, data, "text/csv", AT)
+        if first >= len(data):
+            return Response(url, 416, b"", "text/plain", AT)
+        return Response(url, 206, data[first : last + 1], "text/csv", AT)
+
+
+CSV_URL = "https://x.test/lic.csv"
+HEADERLESS = (
+    b'"06","CBC","LEE, ANN Q","ACE BUILDERS LLC","1 A ST","AUSTIN","TX","78701",'
+    b'"0001","C","01/02/2003"\n'
+    b'"06","CGC","RAY, BO","","2 B ST","DALLAS","TX","75201","0002","C",""\n'
+    b'"06","CBC","DOE, JO","","3 C ST","WACO","TX","76701","0003","C","17-MAR-99"\n'
+)
+COLUMNS = ["board", "occ", "holder", "dba", "street", "city", "st", "zip", "num", "status",
+           "issued"]  # fmt: skip
+
+
+def _csv_adapter(tmp_path: Path, **over: Any) -> type[LicenseAdapter]:
+    base = {"fetch": "csv", "urls": [CSV_URL], "columns": COLUMNS, "record_key": ["occ", "num"],
+            "license": {**BASE["license"], "name": ["dba", "holder"], "type": "occ"},  # type: ignore[dict-item]
+            "encoding": "latin-1"}  # fmt: skip
+    return _adapter(tmp_path, **{**base, **over})
+
+
+def test_csv_source_reads_a_headerless_file(tmp_path: Path) -> None:
+    cls = _csv_adapter(tmp_path)
+    assert cls.access_method == "bulk"
+    fake = FakeFiles({CSV_URL: HEADERLESS})
+    a = cls(fake)  # type: ignore[arg-type]
+    assert list(a.partitions()) == [{"url": CSV_URL}]
+    f = a.fetch(FetchRequest({"url": CSV_URL}))
+    assert fake.calls == [CSV_URL] and f.request == CSV_URL
+    body = json.loads(f.content)
+    assert body["url"] == CSV_URL and [r["num"] for r in body["rows"]] == ["0001", "0002", "0003"]
+    rows = _norm(cls, body)
+    biz = {r["sos_id"]: r for tb, r in rows if tb == "business"}
+    assert set(biz) == {"ZZ:CBC|0001", "ZZ:CGC|0002", "ZZ:CBC|0003"}
+    assert biz["ZZ:CBC|0001"]["name"] == "ACE BUILDERS LLC"
+    assert biz["ZZ:CBC|0001"]["formed_on"] == date(2003, 1, 2)
+    assert biz["ZZ:CBC|0003"]["formed_on"] == date(1999, 3, 17)
+    ann = next(r for tb, r in rows if tb == "party" and r["raw_name"] == "LEE, ANN Q")
+    assert (ann["first_name"], ann["last_name"]) == ("ANN", "LEE")
+    row = cls().source_row()
+    assert row["base_url"] == CSV_URL and row["access_method"] == "bulk"
+
+
+def test_csv_fixture_reads_the_first_bytes_and_drops_a_cut_line(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    import equity.adapters.licenses as lic
+
+    cls = _csv_adapter(tmp_path)
+    monkeypatch.setattr(lic, "FIXTURE_BYTES", len(HEADERLESS) - 5)
+    fake = FakeFiles({CSV_URL: HEADERLESS})
+    body = json.loads(cls(fake).fetch(FetchRequest({"limit": "5"})).content)  # type: ignore[arg-type]
+    assert [r["num"] for r in body["rows"]] == ["0001", "0002"]  # the third line was cut off
+    assert fake.calls == [(CSV_URL, 0, len(HEADERLESS) - 6)]
+    body = json.loads(cls(fake).fetch(FetchRequest({"limit": "1"})).content)  # type: ignore[arg-type]
+    assert len(body["rows"]) == 1
+    whole = FakeFiles({CSV_URL: HEADERLESS}, ranges=False)  # ranges ignored: the whole file
+    body = json.loads(cls(whole).fetch(FetchRequest({"limit": "5"})).content)  # type: ignore[arg-type]
+    assert len(body["rows"]) == 3
+
+
+def test_csv_header_row_names_the_columns(tmp_path: Path) -> None:
+    data = b"\xef\xbb\xbfnum,holder ,dba,occ\n7,ANN LEE,,X\n,NO KEY,,X\n\n8,BO RAY,BR CO,Y\n"
+    cls = _csv_adapter(tmp_path, columns=None, encoding="utf-8-sig")
+    body = json.loads(cls(FakeFiles({CSV_URL: data})).fetch(FetchRequest({})).content)  # type: ignore[arg-type]
+    assert body["rows"][0] == {"num": "7", "holder": "ANN LEE", "dba": "", "occ": "X"}
+    assert len(body["rows"]) == 3  # the blank line is skipped
+    names = {r["name"] for tb, r in _norm(cls, body) if tb == "business"}
+    assert names == {"ANN LEE", "BR CO"}  # the row without a key makes no license
+
+
+def test_csv_byte_windows_cover_the_file_once(tmp_path: Path) -> None:
+    data = b"num,holder,occ\n" + b"".join(b"%d,P%d,X\n" % (i, i) for i in range(1, 41))
+    cls = _csv_adapter(tmp_path, columns=None, encoding="utf-8", chunk_bytes=50)
+    fake = FakeFiles({CSV_URL: data})
+    a = cls(fake)  # type: ignore[arg-type]
+    parts = list(a.partitions())
+    assert [p["lo"] for p in parts] == [str(n) for n in range(0, len(data), 50)]
+    got: list[str] = []
+    for p in parts:
+        f = a.fetch(FetchRequest(p))
+        assert f.request == f"{CSV_URL}#bytes={p['lo']}-{int(p['hi']) - 1}"
+        got += [r["num"] for r in json.loads(f.content)["rows"]]
+    assert got == [str(i) for i in range(1, 41)]
+    past = json.loads(a.fetch(FetchRequest({"url": CSV_URL, "lo": "5000", "hi": "5050"})).content)
+    assert past["rows"] == []  # 416: the window starts past the end
+    flat = cls(FakeFiles({CSV_URL: data}, ranges=False))  # type: ignore[arg-type]
+    assert list(flat.partitions()) == [{"url": CSV_URL}]
+    whole = flat.fetch(FetchRequest({"url": CSV_URL, "lo": "0", "hi": "60"}))
+    assert [r["num"] for r in json.loads(whole.content)["rows"]][:3] == ["1", "2", "3"]
+    with pytest.raises(RuntimeError, match="HTTP 404"):
+        a.fetch(FetchRequest({"url": "https://x.test/missing.csv", "lo": "0", "hi": "50"}))
+    with pytest.raises(LicenseConfigError, match="RangeClient"):
+        list(cls(FakeSocrata({})).partitions())  # type: ignore[arg-type]
+
+
+def test_csv_health(tmp_path: Path) -> None:
+    cls = _csv_adapter(tmp_path)
+    assert cls(FakeFiles({CSV_URL: HEADERLESS})).health().ok  # type: ignore[arg-type]
+    gone = cls(FakeFiles({})).health()  # type: ignore[arg-type]
+    assert not gone.ok and "404" in gone.detail
+    empty = cls(FakeFiles({CSV_URL: b"\n \n"})).health()  # type: ignore[arg-type]
+    assert not empty.ok and empty.detail == "no rows"
 
 
 def test_fixtures_normalize_to_licenses_with_holders() -> None:

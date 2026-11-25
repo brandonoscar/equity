@@ -1,0 +1,26 @@
+# Washington State Liquor and Cannabis Board, "Washington State Liquor and Cannabis Board
+# (LCB) Liquor Renewal" (data.wa.gov 9dee-kzm5, Public Domain): about 4.5K pending liquor
+# (and tobacco/vapor) license renewals sent to local authorities, with trade name, UBI,
+# premises and mailing addresses, privileges and, when listed, the applicants (a
+# comma-separated list of people).
+# TODO(Brandon): no issue date is published, so licenses are dated from the retrieval day.
+source_id: wa.lcb.liquor_renewals
+state: WA
+jurisdiction: "53"
+portal: https://data.wa.gov
+dataset: 9dee-kzm5
+key: license
+id_prefix: "WA-LCB:"
+terms_url: https://data.wa.gov/Public-Safety/Washington-State-Liquor-and-Cannabis-Board-LCB-Liq/9dee-kzm5
+terms_summary: "Public Domain (dataset license field)."
+checked_on: 2026-11-25
+license:
+  name: tradename
+  type: privdesc01
+  status: l_a_type
+  address: {street: [streetaddress, roomnumber], city: city, state: state, zip: zipcode}
+  mailing: {street: [mailaddress, mailroom], city: mailcity, state: mailstate, zip: mailzip}
+holders:
+  - {role: other, title: LICENSEE, with_type: false, name: tradename, address: {street: [streetaddress, roomnumber], city: city, state: state, zip: zipcode}}
+  - {role: other, title: APPLICANT, with_type: false, name: applicants, split: ","}
+pii_fields: [tradename, streetaddress, roomnumber, mailaddress, mailroom, applicants, dayphone, designatedsignee, location]

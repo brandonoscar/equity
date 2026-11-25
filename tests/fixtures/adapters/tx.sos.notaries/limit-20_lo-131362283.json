@@ -1,0 +1,226 @@
+{
+ "portal": "https://data.texas.gov",
+ "rows": [
+  {
+   "address": "2187 TEST ST",
+   "agency": "TESTOWNER B64E4E INC",
+   "effective_date": "11/27/2025",
+   "email_address": "2872 TEST ST",
+   "expire_date": "11/27/2029",
+   "first_name": "TESTOWNER FD0128",
+   "last_name": "TESTOWNER 98A118",
+   "notary_id": "131362283",
+   "surety_company": "TESTOWNER 7D3491"
+  },
+  {
+   "address": "3758 TEST ST",
+   "agency": "TESTOWNER 2904EE",
+   "effective_date": "08/31/2026",
+   "email_address": "220 TEST ST",
+   "expire_date": "08/31/2030",
+   "first_name": "TESTOWNER AB28AC",
+   "last_name": "TESTOWNER B1E190",
+   "notary_id": "131362292",
+   "surety_company": "TESTOWNER 288881 CO"
+  },
+  {
+   "address": "4995 TEST ST",
+   "agency": "TESTOWNER 2C4F3E",
+   "effective_date": "11/27/2021",
+   "email_address": "3777 TEST ST",
+   "expire_date": "11/27/2025",
+   "first_name": "TESTOWNER 80322E",
+   "last_name": "TESTOWNER A4EBCE",
+   "notary_id": "131362318",
+   "surety_company": "TESTOWNER 6F7E56"
+  },
+  {
+   "address": "3340 TEST ST",
+   "agency": "TESTOWNER 451E6B INC",
+   "effective_date": "11/27/2021",
+   "email_address": "7149 TEST ST",
+   "expire_date": "11/27/2025",
+   "first_name": "TESTOWNER 30D266",
+   "last_name": "TESTOWNER 8E6062",
+   "notary_id": "131362363",
+   "surety_company": "TESTOWNER 6F7E56"
+  },
+  {
+   "address": "8671 TEST ST",
+   "agency": "TESTOWNER 2C4F3E",
+   "effective_date": "12/15/2021",
+   "email_address": "1899 TEST ST",
+   "expire_date": "12/15/2025",
+   "first_name": "TESTOWNER FD0128",
+   "last_name": "TESTOWNER 581B3B",
+   "notary_id": "131362372",
+   "surety_company": "TESTOWNER 6F7E56"
+  },
+  {
+   "address": "997 TEST ST",
+   "agency": "TESTOWNER 2C4F3E",
+   "effective_date": "12/17/2021",
+   "email_address": "4520 TEST ST",
+   "expire_date": "12/17/2025",
+   "first_name": "TESTOWNER A58A2C",
+   "last_name": "TESTOWNER 2BBF2F",
+   "notary_id": "131362390",
+   "surety_company": "TESTOWNER 6F7E56"
+  },
+  {
+   "address": "6906 TEST ST",
+   "agency": "TESTOWNER 2C4F3E",
+   "effective_date": "12/30/2021",
+   "email_address": "3827 TEST ST",
+   "expire_date": "12/30/2025",
+   "first_name": "TESTOWNER 1A193F",
+   "last_name": "TESTOWNER 68154A",
+   "notary_id": "131362407",
+   "surety_company": "TESTOWNER 6F7E56"
+  },
+  {
+   "address": "8213 TEST ST",
+   "agency": "TESTOWNER 2C4F3E",
+   "effective_date": "11/27/2021",
+   "email_address": "1789 TEST ST",
+   "expire_date": "11/27/2025",
+   "first_name": "TESTOWNER 9CDE38",
+   "last_name": "TESTOWNER 367116",
+   "notary_id": "131362425",
+   "surety_company": "TESTOWNER 6F7E56"
+  },
+  {
+   "address": "7699 TEST ST",
+   "agency": "TESTOWNER 2904EE",
+   "effective_date": "11/27/2025",
+   "email_address": "1995 TEST ST",
+   "expire_date": "11/27/2029",
+   "first_name": "TESTOWNER 7C17DC",
+   "last_name": "TESTOWNER D15603",
+   "notary_id": "131362443",
+   "surety_company": "TESTOWNER 288881 CO"
+  },
+  {
+   "address": "2550 TEST ST",
+   "agency": "TESTOWNER 0F5D5A INC",
+   "effective_date": "11/27/2025",
+   "email_address": "2789 TEST ST",
+   "expire_date": "11/27/2029",
+   "first_name": "TESTOWNER F017C6",
+   "last_name": "TESTOWNER 5CA99D",
+   "notary_id": "131362498",
+   "surety_company": "TESTOWNER 7D3491"
+  },
+  {
+   "address": "7773 TEST ST",
+   "agency": "TESTOWNER 3B48FF",
+   "effective_date": "11/27/2025",
+   "email_address": "1855 TEST ST",
+   "expire_date": "11/27/2029",
+   "first_name": "TESTOWNER AA5F25",
+   "last_name": "TESTOWNER 39FC35",
+   "notary_id": "131362513",
+   "surety_company": "TESTOWNER 399751 INC"
+  },
+  {
+   "address": "6150 TEST ST",
+   "agency": "TESTOWNER 0F1ABD INC",
+   "effective_date": "11/27/2021",
+   "email_address": "2713 TEST ST",
+   "expire_date": "11/27/2025",
+   "first_name": "TESTOWNER 8EFB5E",
+   "last_name": "TESTOWNER 292EB6",
+   "notary_id": "131362531",
+   "surety_company": "TESTOWNER 7D3491"
+  },
+  {
+   "address": "5734 TEST ST",
+   "agency": "TESTOWNER 0AFE7B INC",
+   "effective_date": "11/27/2021",
+   "email_address": "1844 TEST ST",
+   "expire_date": "11/27/2025",
+   "first_name": "TESTOWNER 36112B",
+   "last_name": "TESTOWNER 0FCAFE",
+   "notary_id": "131362559",
+   "surety_company": "TESTOWNER 7D3491"
+  },
+  {
+   "address": "3100 TEST ST",
+   "agency": "TESTOWNER E2191B INC",
+   "effective_date": "11/27/2021",
+   "email_address": "319 TEST ST",
+   "expire_date": "11/27/2025",
+   "first_name": "TESTOWNER 74A87F",
+   "last_name": "TESTOWNER 592C8F",
+   "notary_id": "131362586",
+   "surety_company": "TESTOWNER 7D3491"
+  },
+  {
+   "address": "6458 TEST ST",
+   "agency": "TESTOWNER 4E39E8",
+   "effective_date": "11/27/2025",
+   "email_address": "3971 TEST ST",
+   "expire_date": "11/27/2029",
+   "first_name": "TESTOWNER 61C90D",
+   "last_name": "TESTOWNER A74407",
+   "notary_id": "131362602",
+   "surety_company": "TESTOWNER 7D3491"
+  },
+  {
+   "address": "256 TEST ST",
+   "agency": "TESTOWNER 4D6374 LLC",
+   "effective_date": "06/15/2026",
+   "email_address": "2674 TEST ST",
+   "expire_date": "06/15/2030",
+   "first_name": "TESTOWNER C83285",
+   "last_name": "TESTOWNER 3015BB",
+   "notary_id": "131362611",
+   "surety_company": "TESTOWNER 53CE1D"
+  },
+  {
+   "address": "2917 TEST ST",
+   "agency": "TESTOWNER A6109D",
+   "effective_date": "11/27/2025",
+   "email_address": "3828 TEST ST",
+   "expire_date": "11/27/2029",
+   "first_name": "TESTOWNER 7427BC",
+   "last_name": "TESTOWNER 7BE212",
+   "notary_id": "131362639",
+   "surety_company": "TESTOWNER 53CE1D"
+  },
+  {
+   "address": "7465 TEST ST",
+   "agency": "TESTOWNER 9A7767 CO",
+   "effective_date": "03/28/2022",
+   "email_address": "1380 TEST ST",
+   "expire_date": "03/28/2026",
+   "first_name": "TESTOWNER 4DCF2E",
+   "last_name": "TESTOWNER 4211A1",
+   "notary_id": "131362666",
+   "surety_company": "TESTOWNER 5A66DA CO"
+  },
+  {
+   "address": "4796 TEST ST",
+   "agency": "TESTOWNER 3B48FF",
+   "effective_date": "11/28/2021",
+   "email_address": "6748 TEST ST",
+   "expire_date": "11/28/2025",
+   "first_name": "TESTOWNER A1639D",
+   "last_name": "TESTOWNER C56B0D",
+   "notary_id": "131362719",
+   "surety_company": "TESTOWNER E4A9A1"
+  },
+  {
+   "address": "4698 TEST ST",
+   "agency": "TESTOWNER 3B48FF",
+   "effective_date": "11/28/2021",
+   "email_address": "7010 TEST ST",
+   "expire_date": "11/28/2025",
+   "first_name": "TESTOWNER 258D50",
+   "last_name": "TESTOWNER 10928B",
+   "notary_id": "131362728",
+   "surety_company": "TESTOWNER E4A9A1"
+  }
+ ],
+ "where": "notary_id >= '131362283'"
+}

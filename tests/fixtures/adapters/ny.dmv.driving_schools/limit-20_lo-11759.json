@@ -1,0 +1,448 @@
+{
+ "portal": "https://data.ny.gov",
+ "rows": [
+  {
+   "auto": "True",
+   "bus": "True",
+   "city": "New York",
+   "georeference": {
+    "coordinates": [
+     -73.9363,
+     40.84961
+    ],
+    "type": "Point"
+   },
+   "motorcycle": "False",
+   "phone_number": "TESTOWNER B737FD",
+   "pre_licensing": "True",
+   "school_name": "TESTOWNER 6FFC84 CORP",
+   "school_number": "11759",
+   "state": "NY",
+   "street": "TESTOWNER 268EDF",
+   "tractor_trailer": "True",
+   "truck": "False",
+   "zip": "10033"
+  },
+  {
+   "auto": "False",
+   "bus": "True",
+   "city": "Medford",
+   "georeference": {
+    "coordinates": [
+     -72.97042,
+     40.82034
+    ],
+    "type": "Point"
+   },
+   "motorcycle": "False",
+   "phone_number": "TESTOWNER 6CD0CF",
+   "pre_licensing": "False",
+   "school_name": "TESTOWNER 23C911 INC",
+   "school_name_2": "TESTOWNER 76A8C9",
+   "school_number": "11760",
+   "state": "NY",
+   "street": "TESTOWNER D11F4E",
+   "tractor_trailer": "True",
+   "truck": "False",
+   "zip": "11763"
+  },
+  {
+   "auto": "True",
+   "bus": "True",
+   "city": "Bronx",
+   "georeference": {
+    "coordinates": [
+     -73.85115,
+     40.83238
+    ],
+    "type": "Point"
+   },
+   "motorcycle": "False",
+   "phone_number": "TESTOWNER C7D619",
+   "pre_licensing": "True",
+   "school_name": "TESTOWNER 946550 CORP",
+   "school_number": "11761",
+   "state": "NY",
+   "street": "TESTOWNER BC59AA",
+   "tractor_trailer": "True",
+   "truck": "False",
+   "zip": "10462"
+  },
+  {
+   "auto": "True",
+   "bus": "True",
+   "city": "East Elmhurst",
+   "georeference": {
+    "coordinates": [
+     -73.87112,
+     40.76236
+    ],
+    "type": "Point"
+   },
+   "motorcycle": "True",
+   "phone_number": "TESTOWNER 180BB1",
+   "pre_licensing": "True",
+   "school_name": "TESTOWNER 0A25C7 INC",
+   "school_name_2": "TESTOWNER F88807",
+   "school_number": "11762",
+   "state": "NY",
+   "street": "TESTOWNER 2A9764",
+   "tractor_trailer": "True",
+   "truck": "False",
+   "zip": "11369"
+  },
+  {
+   "auto": "True",
+   "bus": "False",
+   "city": "Jackson Heights",
+   "georeference": {
+    "coordinates": [
+     -73.89271,
+     40.74724
+    ],
+    "type": "Point"
+   },
+   "motorcycle": "False",
+   "phone_number": "TESTOWNER 931E9A",
+   "pre_licensing": "True",
+   "school_name": "TESTOWNER 0DE6D1 INC",
+   "school_number": "11763",
+   "state": "NY",
+   "street": "TESTOWNER 766437",
+   "tractor_trailer": "False",
+   "truck": "False",
+   "zip": "11372"
+  },
+  {
+   "auto": "True",
+   "bus": "False",
+   "city": "Jackson Heights",
+   "georeference": {
+    "coordinates": [
+     -73.88527,
+     40.74749
+    ],
+    "type": "Point"
+   },
+   "motorcycle": "False",
+   "phone_number": "TESTOWNER 610794",
+   "pre_licensing": "True",
+   "school_name": "TESTOWNER E8A7C6",
+   "school_number": "11764",
+   "state": "NY",
+   "street": "TESTOWNER BECBE2",
+   "tractor_trailer": "False",
+   "truck": "False",
+   "zip": "11372"
+  },
+  {
+   "auto": "True",
+   "bus": "False",
+   "city": "Ozone Park",
+   "georeference": {
+    "coordinates": [
+     -73.85296,
+     40.68229
+    ],
+    "type": "Point"
+   },
+   "motorcycle": "False",
+   "phone_number": "TESTOWNER 99CEC1",
+   "pre_licensing": "True",
+   "school_name": "TESTOWNER 5A8F4F LLC",
+   "school_number": "11765",
+   "state": "NY",
+   "street": "TESTOWNER 718C14",
+   "tractor_trailer": "False",
+   "truck": "False",
+   "zip": "11416"
+  },
+  {
+   "auto": "True",
+   "bus": "False",
+   "city": "Bronx",
+   "georeference": {
+    "coordinates": [
+     -73.90441,
+     40.86275
+    ],
+    "type": "Point"
+   },
+   "motorcycle": "True",
+   "phone_number": "TESTOWNER 5706EC",
+   "pre_licensing": "True",
+   "school_name": "TESTOWNER 739FDE INC",
+   "school_number": "11766",
+   "state": "NY",
+   "street": "TESTOWNER DE79A3",
+   "tractor_trailer": "False",
+   "truck": "False",
+   "zip": "10468"
+  },
+  {
+   "auto": "True",
+   "bus": "False",
+   "city": "Jackson Heights",
+   "georeference": {
+    "coordinates": [
+     -73.8926,
+     40.74672
+    ],
+    "type": "Point"
+   },
+   "motorcycle": "False",
+   "phone_number": "TESTOWNER 8E979B",
+   "pre_licensing": "True",
+   "school_name": "TESTOWNER 2ADD1B INC",
+   "school_number": "11767",
+   "state": "NY",
+   "street": "TESTOWNER 9897DB",
+   "tractor_trailer": "False",
+   "truck": "False",
+   "zip": "11372"
+  },
+  {
+   "auto": "True",
+   "bus": "False",
+   "city": "Brooklyn",
+   "georeference": {
+    "coordinates": [
+     -73.86388,
+     40.67918
+    ],
+    "type": "Point"
+   },
+   "motorcycle": "False",
+   "phone_number": "TESTOWNER 285D42",
+   "pre_licensing": "False",
+   "school_name": "TESTOWNER A64F85",
+   "school_number": "11768",
+   "state": "NY",
+   "street": "TESTOWNER 4E9370",
+   "tractor_trailer": "False",
+   "truck": "False",
+   "zip": "11208"
+  },
+  {
+   "auto": "True",
+   "bus": "False",
+   "city": "Brooklyn",
+   "georeference": {
+    "coordinates": [
+     -74.00616,
+     40.63874
+    ],
+    "type": "Point"
+   },
+   "motorcycle": "False",
+   "phone_number": "TESTOWNER 342B60",
+   "pre_licensing": "True",
+   "school_name": "TESTOWNER F5A895 INC",
+   "school_number": "11769",
+   "state": "NY",
+   "street": "TESTOWNER 311F52",
+   "tractor_trailer": "False",
+   "truck": "False",
+   "zip": "11220"
+  },
+  {
+   "auto": "True",
+   "bus": "True",
+   "city": "Brooklyn",
+   "georeference": {
+    "coordinates": [
+     -73.9479,
+     40.63272
+    ],
+    "type": "Point"
+   },
+   "motorcycle": "False",
+   "phone_number": "TESTOWNER 8C80FA",
+   "pre_licensing": "True",
+   "school_name": "TESTOWNER 1E3493 INC",
+   "school_number": "11770",
+   "state": "NY",
+   "street": "TESTOWNER 06EBC2",
+   "tractor_trailer": "False",
+   "truck": "False",
+   "zip": "11210"
+  },
+  {
+   "auto": "True",
+   "bus": "False",
+   "city": "Mount Kisco",
+   "georeference": {
+    "coordinates": [
+     -73.72786,
+     41.20824
+    ],
+    "type": "Point"
+   },
+   "motorcycle": "True",
+   "phone_number": "TESTOWNER 7C5F3B",
+   "pre_licensing": "True",
+   "school_name": "TESTOWNER E986E3 INC",
+   "school_number": "11771",
+   "state": "NY",
+   "street": "TESTOWNER 5DC4E9",
+   "tractor_trailer": "False",
+   "truck": "False",
+   "zip": "10549"
+  },
+  {
+   "auto": "True",
+   "bus": "False",
+   "city": "Brooklyn",
+   "georeference": {
+    "coordinates": [
+     -73.96307,
+     40.59832
+    ],
+    "type": "Point"
+   },
+   "motorcycle": "False",
+   "phone_number": "TESTOWNER 800EB4",
+   "pre_licensing": "True",
+   "school_name": "TESTOWNER 1D32F6",
+   "school_number": "11772",
+   "state": "NY",
+   "street": "TESTOWNER F6B0D6",
+   "tractor_trailer": "False",
+   "truck": "False",
+   "zip": "11223"
+  },
+  {
+   "auto": "True",
+   "bus": "False",
+   "city": "Glenville",
+   "georeference": {
+    "coordinates": [
+     -74.00039,
+     42.89923
+    ],
+    "type": "Point"
+   },
+   "motorcycle": "False",
+   "phone_number": "TESTOWNER 85FC9C",
+   "pre_licensing": "True",
+   "school_name": "TESTOWNER 5940BB",
+   "school_number": "11773",
+   "state": "NY",
+   "street": "TESTOWNER 43371C",
+   "tractor_trailer": "False",
+   "truck": "False",
+   "zip": "12302"
+  },
+  {
+   "auto": "True",
+   "bus": "False",
+   "city": "NewYork",
+   "georeference": {
+    "coordinates": [
+     -73.93217,
+     40.84694
+    ],
+    "type": "Point"
+   },
+   "motorcycle": "False",
+   "phone_number": "TESTOWNER 4FED1E",
+   "pre_licensing": "False",
+   "school_name": "TESTOWNER C7E69D",
+   "school_number": "11774",
+   "state": "NY",
+   "street": "TESTOWNER 078FB3",
+   "tractor_trailer": "False",
+   "truck": "False",
+   "zip": "10033"
+  },
+  {
+   "auto": "False",
+   "bus": "False",
+   "city": "Hicksville",
+   "georeference": {
+    "coordinates": [
+     -73.52645,
+     40.77005
+    ],
+    "type": "Point"
+   },
+   "motorcycle": "True",
+   "phone_number": "TESTOWNER EF2351",
+   "pre_licensing": "False",
+   "school_name": "TESTOWNER F867D0 INC",
+   "school_number": "11775",
+   "state": "NY",
+   "street": "TESTOWNER EC0D80",
+   "tractor_trailer": "False",
+   "truck": "False",
+   "zip": "11801"
+  },
+  {
+   "auto": "True",
+   "bus": "False",
+   "city": "New York",
+   "georeference": {
+    "coordinates": [
+     -73.94456,
+     40.8294
+    ],
+    "type": "Point"
+   },
+   "motorcycle": "False",
+   "phone_number": "TESTOWNER 69B9C6",
+   "pre_licensing": "False",
+   "school_name": "TESTOWNER 8F1E4E",
+   "school_number": "11776",
+   "state": "NY",
+   "street": "TESTOWNER A2ECC7",
+   "tractor_trailer": "False",
+   "truck": "False",
+   "zip": "10031"
+  },
+  {
+   "auto": "True",
+   "bus": "False",
+   "city": "Ozone Park",
+   "georeference": {
+    "coordinates": [
+     -73.84262,
+     40.68523
+    ],
+    "type": "Point"
+   },
+   "motorcycle": "False",
+   "phone_number": "TESTOWNER A4AAE7",
+   "pre_licensing": "True",
+   "school_name": "TESTOWNER 2BBF3E",
+   "school_number": "11777",
+   "state": "NY",
+   "street": "TESTOWNER CEAE0D",
+   "tractor_trailer": "False",
+   "truck": "False",
+   "zip": "11416"
+  },
+  {
+   "auto": "True",
+   "bus": "False",
+   "city": "Brooklyn",
+   "georeference": {
+    "coordinates": [
+     -73.92424,
+     40.65253
+    ],
+    "type": "Point"
+   },
+   "motorcycle": "False",
+   "phone_number": "TESTOWNER B583A4",
+   "pre_licensing": "False",
+   "school_name": "TESTOWNER 1C4C26 INC",
+   "school_number": "11778",
+   "state": "NY",
+   "street": "TESTOWNER 239ACA",
+   "tractor_trailer": "False",
+   "truck": "False",
+   "zip": "11203"
+  }
+ ],
+ "where": "school_number >= '11759'"
+}

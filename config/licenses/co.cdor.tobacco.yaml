@@ -1,0 +1,24 @@
+# Colorado Department of Revenue, "Tobacco Licenses" (data.colorado.gov ejz2-rwds, Public
+# Domain): about 4.9K tobacco retailer licenses with licensee, trade name, type and premises
+# address. A license number can repeat across types, so a record is (license_type,
+# license_no).
+# TODO(Brandon): no issue date is published (expiration only), so licenses are dated from
+# the retrieval day.
+source_id: co.cdor.tobacco
+state: CO
+jurisdiction: "08"
+portal: https://data.colorado.gov
+dataset: ejz2-rwds
+key: license_no
+record_key: [license_type, license_no]
+id_prefix: "CO-TOB:"
+terms_url: https://data.colorado.gov/Business/Tobacco-Licenses/ejz2-rwds
+terms_summary: "Public Domain (dataset license field)."
+checked_on: 2026-11-25
+license:
+  name: [doing_business_as, licensee_name]
+  type: license_type
+  address: {street: street_address, city: city, state: state, zip: zip}
+holders:
+  - {role: other, title: LICENSEE, name: licensee_name, address: {street: street_address, city: city, state: state, zip: zip}}
+pii_fields: [licensee_name, doing_business_as, street_address]

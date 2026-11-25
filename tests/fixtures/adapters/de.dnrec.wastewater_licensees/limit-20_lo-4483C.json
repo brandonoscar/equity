@@ -1,0 +1,205 @@
+{
+ "portal": "https://data.delaware.gov",
+ "rows": [
+  {
+   "companyaddress": "4834 TEST ST",
+   "companyemailaddress": "5986 TEST ST",
+   "companyname": "TESTOWNER 48A6B8 LLC",
+   "companyphone": "TESTOWNER 4C5D7F",
+   "displayname": "TESTOWNER C5F719",
+   "licensenumber": "4483C",
+   "licensesubtype": "Class C (Engineered-Designer)",
+   "licstatus": "Approved"
+  },
+  {
+   "companyaddress": "1418 TEST ST",
+   "companyemailaddress": "8736 TEST ST",
+   "companyname": "TESTOWNER 2FF788",
+   "companyphone": "TESTOWNER 1AF42E",
+   "displayname": "TESTOWNER 42962D",
+   "licensenumber": "4499D3",
+   "licensesubtype": "Class D (Site Evaluator)",
+   "licstatus": "Approved"
+  },
+  {
+   "companyaddress": "730 TEST ST",
+   "companyemailaddress": "3051 TEST ST",
+   "companyname": "TESTOWNER 01A8FE LLC",
+   "companyphone": "TESTOWNER 061B6C",
+   "displayname": "TESTOWNER 932081",
+   "licensenumber": "4504E4",
+   "licensesubtype": "Class E (System Contractor)",
+   "licstatus": "Approved"
+  },
+  {
+   "companyaddress": "730 TEST ST",
+   "companyemailaddress": "3051 TEST ST",
+   "companyname": "TESTOWNER 01A8FE LLC",
+   "companyphone": "TESTOWNER 061B6C",
+   "displayname": "TESTOWNER 932081",
+   "licensenumber": "4504H",
+   "licensesubtype": "Class H (Systems Inspector)",
+   "licstatus": "Approved"
+  },
+  {
+   "companyaddress": "1857 TEST ST",
+   "companyemailaddress": "6747 TEST ST",
+   "companyname": "TESTOWNER 79EDBB",
+   "companyphone": "TESTOWNER 43141D",
+   "displayname": "TESTOWNER 4D201E",
+   "licensenumber": "4510E3",
+   "licensesubtype": "Class E (System Contractor)",
+   "licstatus": "Approved"
+  },
+  {
+   "companyaddress": "7534 TEST ST",
+   "companyemailaddress": "1794 TEST ST",
+   "companyname": "TESTOWNER 9BD8C5",
+   "companyphone": "TESTOWNER F32891",
+   "displayname": "TESTOWNER 0A6BB3",
+   "licensenumber": "4550E3",
+   "licensesubtype": "Class E (System Contractor)",
+   "licstatus": "Approved"
+  },
+  {
+   "companyaddress": "7534 TEST ST",
+   "companyemailaddress": "1794 TEST ST",
+   "companyname": "TESTOWNER 9BD8C5",
+   "companyphone": "TESTOWNER F32891",
+   "displayname": "TESTOWNER 0A6BB3",
+   "licensenumber": "4550H",
+   "licensesubtype": "Class H (Systems Inspector)",
+   "licstatus": "Approved"
+  },
+  {
+   "companyaddress": "4508 TEST ST",
+   "companyemailaddress": "4116 TEST ST",
+   "companyname": "TESTOWNER 994587 INC",
+   "companyphone": "TESTOWNER AC9193",
+   "displayname": "TESTOWNER 0BFC4F",
+   "licensenumber": "4568B",
+   "licensesubtype": "Class B (Standard-Designer)",
+   "licstatus": "Approved"
+  },
+  {
+   "companyaddress": "4508 TEST ST",
+   "companyemailaddress": "4116 TEST ST",
+   "companyname": "TESTOWNER 994587 INC",
+   "companyphone": "TESTOWNER AC9193",
+   "displayname": "TESTOWNER 0BFC4F",
+   "licensenumber": "4568C",
+   "licensesubtype": "Class C (Engineered-Designer)",
+   "licstatus": "Approved"
+  },
+  {
+   "companyaddress": "1312 TEST ST",
+   "companyemailaddress": "8201 TEST ST",
+   "companyname": "TESTOWNER E9AC33",
+   "companyphone": "TESTOWNER 209DBE",
+   "displayname": "TESTOWNER 4BFCD1",
+   "licensenumber": "4570B",
+   "licensesubtype": "Class B (Standard-Designer)",
+   "licstatus": "Approved"
+  },
+  {
+   "companyaddress": "1312 TEST ST",
+   "companyemailaddress": "8201 TEST ST",
+   "companyname": "TESTOWNER E9AC33",
+   "companyphone": "TESTOWNER 209DBE",
+   "displayname": "TESTOWNER 4BFCD1",
+   "licensenumber": "4570E3",
+   "licensesubtype": "Class E (System Contractor)",
+   "licstatus": "Approved"
+  },
+  {
+   "companyaddress": "1312 TEST ST",
+   "companyemailaddress": "8201 TEST ST",
+   "companyname": "TESTOWNER E9AC33",
+   "companyphone": "TESTOWNER 209DBE",
+   "displayname": "TESTOWNER 4BFCD1",
+   "licensenumber": "4570F",
+   "licensesubtype": "Class F (Liquid Waste)",
+   "licstatus": "Approved"
+  },
+  {
+   "companyaddress": "1312 TEST ST",
+   "companyemailaddress": "8201 TEST ST",
+   "companyname": "TESTOWNER E9AC33",
+   "companyphone": "TESTOWNER 209DBE",
+   "displayname": "TESTOWNER 4BFCD1",
+   "licensenumber": "4570H",
+   "licensesubtype": "Class H (Systems Inspector)",
+   "licstatus": "Approved"
+  },
+  {
+   "companyaddress": "1312 TEST ST",
+   "companyemailaddress": "8201 TEST ST",
+   "companyname": "TESTOWNER E9AC33",
+   "companyphone": "TESTOWNER 209DBE",
+   "displayname": "TESTOWNER 4BFCD1",
+   "licensenumber": "4570I",
+   "licensesubtype": "Class I (Construction Inspector)",
+   "licstatus": "Approved"
+  },
+  {
+   "companyaddress": "6116 TEST ST",
+   "companyemailaddress": "8221 TEST ST",
+   "companyname": "TESTOWNER 24AA25 INC",
+   "companyphone": "TESTOWNER 7C1520",
+   "displayname": "TESTOWNER EDDEB5",
+   "licensenumber": "4573E3",
+   "licensesubtype": "Class E (System Contractor)",
+   "licstatus": "Approved"
+  },
+  {
+   "companyaddress": "1312 TEST ST",
+   "companyname": "TESTOWNER E9AC33",
+   "companyphone": "TESTOWNER 209DBE",
+   "displayname": "TESTOWNER 35ED55",
+   "licensenumber": "4579E3",
+   "licensesubtype": "Class E (System Contractor)",
+   "licstatus": "Approved"
+  },
+  {
+   "companyaddress": "1312 TEST ST",
+   "companyname": "TESTOWNER E9AC33",
+   "companyphone": "TESTOWNER 209DBE",
+   "displayname": "TESTOWNER 35ED55",
+   "licensenumber": "4579F",
+   "licensesubtype": "Class F (Liquid Waste)",
+   "licstatus": "Approved"
+  },
+  {
+   "companyaddress": "1312 TEST ST",
+   "companyname": "TESTOWNER E9AC33",
+   "companyphone": "TESTOWNER 209DBE",
+   "displayname": "TESTOWNER 35ED55",
+   "licensenumber": "4579H",
+   "licensesubtype": "Class H (Systems Inspector)",
+   "licstatus": "Approved"
+  },
+  {
+   "cellphone": "TESTOWNER 4077CE",
+   "companyaddress": "1083 TEST ST",
+   "companyemailaddress": "7097 TEST ST",
+   "companyname": "TESTOWNER 30C87B LLC",
+   "companyphone": "TESTOWNER 5F5672",
+   "displayname": "TESTOWNER A14028",
+   "licensenumber": "4591E3",
+   "licensesubtype": "Class E (System Contractor)",
+   "licstatus": "Approved"
+  },
+  {
+   "cellphone": "TESTOWNER 4077CE",
+   "companyaddress": "1083 TEST ST",
+   "companyemailaddress": "7097 TEST ST",
+   "companyname": "TESTOWNER 30C87B LLC",
+   "companyphone": "TESTOWNER 5F5672",
+   "displayname": "TESTOWNER A14028",
+   "licensenumber": "4591F",
+   "licensesubtype": "Class F (Liquid Waste)",
+   "licstatus": "Approved"
+  }
+ ],
+ "where": "licensenumber >= '4483C'"
+}

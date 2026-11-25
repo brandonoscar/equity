@@ -1,0 +1,21 @@
+# Delaware Secretary of State, Division of Corporations, "Notaries Commissioned in Delaware"
+# (data.delaware.gov q8dr-mj6p): about 14K current notaries with full name, commission number,
+# expiration and the city the notary is in.
+# TODO(Brandon): no commission start date is published, so commissions are dated from the
+# retrieval day.
+source_id: de.sos.notaries
+state: DE
+jurisdiction: "10"
+portal: https://data.delaware.gov
+dataset: q8dr-mj6p
+key: commission_number
+id_prefix: "DE-NOT:"
+terms_url: https://data.delaware.gov/Licenses-and-Certifications/Notaries-Commissioned-in-Delaware/q8dr-mj6p
+terms_summary: "Delaware Open Data Portal; no license text on the dataset (public information published by the Division of Corporations)."
+checked_on: 2026-11-25
+license:
+  type_value: Notary Public
+  status_value: Commissioned  # current commissions only
+holders:
+  - {role: other, title: NOTARY PUBLIC, with_type: false, name: full_name, address: {city: city}}
+pii_fields: [full_name]

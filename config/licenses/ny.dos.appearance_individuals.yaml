@@ -1,0 +1,23 @@
+# New York Department of State, "Active Appearance Enhancement and Barber Individual
+# Licenses" (data.ny.gov ucu3-8265): about 227K active cosmetologist, nail, esthetics, waxing,
+# natural hair styling and barber licenses with the holder's name (mostly printed 'LAST
+# FIRST') and the current term. The businesses are ny.dos.appearance_businesses.
+# TODO(Brandon): only the current term's start is published, so a license is dated from it,
+# not from its first issue.
+source_id: ny.dos.appearance_individuals
+state: NY
+jurisdiction: "36"
+portal: https://data.ny.gov
+dataset: ucu3-8265
+key: license_number
+id_prefix: "NY-AEI:"
+terms_url: https://data.ny.gov/download/77gx-ii52/application%2Fpdf
+terms_summary: "NY Open Data terms: free to use; no warranty. No restriction on commercial use found."
+checked_on: 2026-11-25
+license:
+  type: license_type
+  status_value: Active  # active licenses only
+  issued_on: license_effective_term
+holders:
+  - {role: other, title: LICENSEE, name: license_holder_name}
+pii_fields: [license_holder_name]

@@ -26,8 +26,7 @@ from pathlib import Path
 from typing import Any
 
 from equity.adapters.base import NormalizedRow
-from equity.adapters.http import Response
-from equity.adapters.person_lists import RangeClient
+from equity.adapters.http import RangeClient, Response
 from equity.adapters.rows import RecordContext, canonical_json
 from equity.adapters.state_parcels import normalized_address
 from equity.geo import state_fips

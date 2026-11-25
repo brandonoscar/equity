@@ -1,0 +1,45 @@
+# City of Philadelphia Department of Licenses and Inspections, "Licenses and Inspections
+# Business Licenses" (OpenDataPhilly; Carto table business_licenses on phl.carto.com): about
+# 438K business, rental and vendor licenses (active and inactive) with license type and
+# status, issue dates, the legal name (first and last name for individuals) and entity type,
+# business name and one-line mailing address, the licensed address with its OPA account and
+# the OPA owner of record, and up to two owner contacts with addresses. Read as CSV exports
+# of the Carto SQL API in windows of 50K cartodb_id, one partition each (the table's ids ran
+# 1-438,161 on the check date; the last window, from 450,000, is open-ended).
+# phl.carto.com's robots.txt disallows /api/ only for named search crawlers (Googlebot,
+# Slurp, Yandex, msnbot, baiduspider), not for other agents.
+source_id: pa.philadelphia.business_licenses
+state: PA
+jurisdiction: "42101"
+fetch: csv
+urls:
+  - https://phl.carto.com/api/v2/sql?format=csv&q=SELECT+cartodb_id,licensenum,licensetype,rentalcategory,licensestatus,initialissuedate,mostrecentissuedate,expirationdate,inactivedate,legalentitytype,legalfirstname,legallastname,legalname,business_name,business_mailing_address,address,unit_type,unit_num,zip,opa_account_num,opa_owner,ownercontact1name,ownercontact1mailingaddress,ownercontact1city,ownercontact1state,ownercontact1zippostalcode,ownercontact2name,ownercontact2mailingaddress,ownercontact2city,ownercontact2state,ownercontact2zippostalcode+FROM+business_licenses+WHERE+cartodb_id+%3E%3D+0+AND+cartodb_id+%3C+50000+ORDER+BY+cartodb_id
+  - https://phl.carto.com/api/v2/sql?format=csv&q=SELECT+cartodb_id,licensenum,licensetype,rentalcategory,licensestatus,initialissuedate,mostrecentissuedate,expirationdate,inactivedate,legalentitytype,legalfirstname,legallastname,legalname,business_name,business_mailing_address,address,unit_type,unit_num,zip,opa_account_num,opa_owner,ownercontact1name,ownercontact1mailingaddress,ownercontact1city,ownercontact1state,ownercontact1zippostalcode,ownercontact2name,ownercontact2mailingaddress,ownercontact2city,ownercontact2state,ownercontact2zippostalcode+FROM+business_licenses+WHERE+cartodb_id+%3E%3D+50000+AND+cartodb_id+%3C+100000+ORDER+BY+cartodb_id
+  - https://phl.carto.com/api/v2/sql?format=csv&q=SELECT+cartodb_id,licensenum,licensetype,rentalcategory,licensestatus,initialissuedate,mostrecentissuedate,expirationdate,inactivedate,legalentitytype,legalfirstname,legallastname,legalname,business_name,business_mailing_address,address,unit_type,unit_num,zip,opa_account_num,opa_owner,ownercontact1name,ownercontact1mailingaddress,ownercontact1city,ownercontact1state,ownercontact1zippostalcode,ownercontact2name,ownercontact2mailingaddress,ownercontact2city,ownercontact2state,ownercontact2zippostalcode+FROM+business_licenses+WHERE+cartodb_id+%3E%3D+100000+AND+cartodb_id+%3C+150000+ORDER+BY+cartodb_id
+  - https://phl.carto.com/api/v2/sql?format=csv&q=SELECT+cartodb_id,licensenum,licensetype,rentalcategory,licensestatus,initialissuedate,mostrecentissuedate,expirationdate,inactivedate,legalentitytype,legalfirstname,legallastname,legalname,business_name,business_mailing_address,address,unit_type,unit_num,zip,opa_account_num,opa_owner,ownercontact1name,ownercontact1mailingaddress,ownercontact1city,ownercontact1state,ownercontact1zippostalcode,ownercontact2name,ownercontact2mailingaddress,ownercontact2city,ownercontact2state,ownercontact2zippostalcode+FROM+business_licenses+WHERE+cartodb_id+%3E%3D+150000+AND+cartodb_id+%3C+200000+ORDER+BY+cartodb_id
+  - https://phl.carto.com/api/v2/sql?format=csv&q=SELECT+cartodb_id,licensenum,licensetype,rentalcategory,licensestatus,initialissuedate,mostrecentissuedate,expirationdate,inactivedate,legalentitytype,legalfirstname,legallastname,legalname,business_name,business_mailing_address,address,unit_type,unit_num,zip,opa_account_num,opa_owner,ownercontact1name,ownercontact1mailingaddress,ownercontact1city,ownercontact1state,ownercontact1zippostalcode,ownercontact2name,ownercontact2mailingaddress,ownercontact2city,ownercontact2state,ownercontact2zippostalcode+FROM+business_licenses+WHERE+cartodb_id+%3E%3D+200000+AND+cartodb_id+%3C+250000+ORDER+BY+cartodb_id
+  - https://phl.carto.com/api/v2/sql?format=csv&q=SELECT+cartodb_id,licensenum,licensetype,rentalcategory,licensestatus,initialissuedate,mostrecentissuedate,expirationdate,inactivedate,legalentitytype,legalfirstname,legallastname,legalname,business_name,business_mailing_address,address,unit_type,unit_num,zip,opa_account_num,opa_owner,ownercontact1name,ownercontact1mailingaddress,ownercontact1city,ownercontact1state,ownercontact1zippostalcode,ownercontact2name,ownercontact2mailingaddress,ownercontact2city,ownercontact2state,ownercontact2zippostalcode+FROM+business_licenses+WHERE+cartodb_id+%3E%3D+250000+AND+cartodb_id+%3C+300000+ORDER+BY+cartodb_id
+  - https://phl.carto.com/api/v2/sql?format=csv&q=SELECT+cartodb_id,licensenum,licensetype,rentalcategory,licensestatus,initialissuedate,mostrecentissuedate,expirationdate,inactivedate,legalentitytype,legalfirstname,legallastname,legalname,business_name,business_mailing_address,address,unit_type,unit_num,zip,opa_account_num,opa_owner,ownercontact1name,ownercontact1mailingaddress,ownercontact1city,ownercontact1state,ownercontact1zippostalcode,ownercontact2name,ownercontact2mailingaddress,ownercontact2city,ownercontact2state,ownercontact2zippostalcode+FROM+business_licenses+WHERE+cartodb_id+%3E%3D+300000+AND+cartodb_id+%3C+350000+ORDER+BY+cartodb_id
+  - https://phl.carto.com/api/v2/sql?format=csv&q=SELECT+cartodb_id,licensenum,licensetype,rentalcategory,licensestatus,initialissuedate,mostrecentissuedate,expirationdate,inactivedate,legalentitytype,legalfirstname,legallastname,legalname,business_name,business_mailing_address,address,unit_type,unit_num,zip,opa_account_num,opa_owner,ownercontact1name,ownercontact1mailingaddress,ownercontact1city,ownercontact1state,ownercontact1zippostalcode,ownercontact2name,ownercontact2mailingaddress,ownercontact2city,ownercontact2state,ownercontact2zippostalcode+FROM+business_licenses+WHERE+cartodb_id+%3E%3D+350000+AND+cartodb_id+%3C+400000+ORDER+BY+cartodb_id
+  - https://phl.carto.com/api/v2/sql?format=csv&q=SELECT+cartodb_id,licensenum,licensetype,rentalcategory,licensestatus,initialissuedate,mostrecentissuedate,expirationdate,inactivedate,legalentitytype,legalfirstname,legallastname,legalname,business_name,business_mailing_address,address,unit_type,unit_num,zip,opa_account_num,opa_owner,ownercontact1name,ownercontact1mailingaddress,ownercontact1city,ownercontact1state,ownercontact1zippostalcode,ownercontact2name,ownercontact2mailingaddress,ownercontact2city,ownercontact2state,ownercontact2zippostalcode+FROM+business_licenses+WHERE+cartodb_id+%3E%3D+400000+AND+cartodb_id+%3C+450000+ORDER+BY+cartodb_id
+  - https://phl.carto.com/api/v2/sql?format=csv&q=SELECT+cartodb_id,licensenum,licensetype,rentalcategory,licensestatus,initialissuedate,mostrecentissuedate,expirationdate,inactivedate,legalentitytype,legalfirstname,legallastname,legalname,business_name,business_mailing_address,address,unit_type,unit_num,zip,opa_account_num,opa_owner,ownercontact1name,ownercontact1mailingaddress,ownercontact1city,ownercontact1state,ownercontact1zippostalcode,ownercontact2name,ownercontact2mailingaddress,ownercontact2city,ownercontact2state,ownercontact2zippostalcode+FROM+business_licenses+WHERE+cartodb_id+%3E%3D+450000+ORDER+BY+cartodb_id
+key: licensenum
+id_prefix: "PHL-LI:"
+terms_url: https://opendataphilly.org/datasets/licenses-and-inspections-business-licenses/
+terms_summary: "City of Philadelphia terms of use (on the dataset page): the City reserves all rights in the database, the user gets no title or interest, data is as-is, the user indemnifies the City. Internal use only; do not redistribute."
+use_restrictions: [no_redistribution]
+checked_on: 2026-11-25
+license:
+  name: [business_name, legalname]
+  type: licensetype
+  status: licensestatus
+  issued_on: initialissuedate
+  latest_by: mostrecentissuedate
+  address: {street: [address, unit_type, unit_num], zip: zip}  # the city (Philadelphia) is not a column
+  mailing: {line: business_mailing_address}
+holders:
+  - {role: other, title: LICENSEE, name: legalname, parts: {first: legalfirstname, last: legallastname}, address: {line: business_mailing_address}}
+  - {role: other, title: OWNER CONTACT, with_type: false, name: ownercontact1name, address: {street: ownercontact1mailingaddress, city: ownercontact1city, state: ownercontact1state, zip: ownercontact1zippostalcode}}
+  - {role: other, title: OWNER CONTACT, with_type: false, name: ownercontact2name, address: {street: ownercontact2mailingaddress, city: ownercontact2city, state: ownercontact2state, zip: ownercontact2zippostalcode}}
+  - {role: other, title: PROPERTY OWNER OF RECORD, with_type: false, name: opa_owner}
+pii_fields: [legalfirstname, legallastname, legalname, business_name, business_mailing_address, address, unit_num, opa_owner, ownercontact1name, ownercontact1mailingaddress, ownercontact2name, ownercontact2mailingaddress]

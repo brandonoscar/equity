@@ -1,0 +1,22 @@
+# Montgomery County Department of Permitting Services, "Electrical Business Licenses"
+# (data.montgomerycountymd.gov ydri-y5u9): about 3.5K electrical business licenses back to
+# the 1980s with the applicant (business) name, address and issue date. Company names are
+# often printed with a leading underscore.
+source_id: md.montgomery.electrical_businesses
+state: MD
+jurisdiction: "24031"
+portal: https://data.montgomerycountymd.gov
+dataset: ydri-y5u9
+key: licenseno
+id_prefix: "MOCO-EB:"
+terms_url: https://data.montgomerycountymd.gov/Licenses-Permits/Electrical-Business-Licenses/ydri-y5u9
+terms_summary: "Montgomery County open data portal; no license text on the dataset (public information published by the Department of Permitting Services)."
+checked_on: 2026-11-25
+license:
+  name: applicant
+  type: licensetype
+  issued_on: issueddate
+  address: {street: [address1, address2], city: city, state: state, zip: zip}
+holders:
+  - {role: other, title: LICENSEE, name: applicant, address: {street: [address1, address2], city: city, state: state, zip: zip}}
+pii_fields: [applicant, address1, address2, location]

@@ -1,0 +1,434 @@
+{
+ "portal": "https://data.ny.gov",
+ "rows": [
+  {
+   "actual_address_of_premises": "7309 TEST ST",
+   "additional_address_information": "2051 TEST ST",
+   "application_id": "NA-0091-23-121041",
+   "city": "NEW YORK",
+   "class": "91",
+   "description": "Wine Store",
+   "georeference": {
+    "coordinates": [
+     -74.00611,
+     40.74217
+    ],
+    "type": "Point"
+   },
+   "legalname": "TESTOWNER 404D24 LLC",
+   "premises_county": "New York",
+   "received_date": "2023-05-15T00:00:00.000",
+   "state_name": "New York",
+   "status": "Conditionally Approved",
+   "type": "1",
+   "zip_code": "10011"
+  },
+  {
+   "actual_address_of_premises": "219 TEST ST",
+   "additional_address_information": "5260 TEST ST",
+   "application_id": "NA-0091-25-114190",
+   "city": "East Hampton",
+   "class": "91",
+   "dba": "TESTOWNER E38CCA",
+   "description": "Wine Store",
+   "georeference": {
+    "coordinates": [
+     -72.15461,
+     41.0202
+    ],
+    "type": "Point"
+   },
+   "legalname": "TESTOWNER 060DD0 LLC",
+   "premises_county": "Suffolk",
+   "received_date": "2025-05-15T13:23:00.000",
+   "state_name": "NY",
+   "status": "Conditionally Approved",
+   "type": "1",
+   "zip_code": "11937"
+  },
+  {
+   "actual_address_of_premises": "1964 TEST ST",
+   "application_id": "NA-0091-26-209986",
+   "city": "Saratoga Springs",
+   "class": "91",
+   "description": "Wine Store",
+   "georeference": {
+    "coordinates": [
+     -73.78751,
+     43.08241
+    ],
+    "type": "Point"
+   },
+   "legalname": "TESTOWNER B2CEE2 LLC",
+   "premises_county": "Saratoga",
+   "received_date": "2026-04-23T14:38:00.000",
+   "state_name": "New York",
+   "status": "Under Review",
+   "type": "1",
+   "zip_code": "12866"
+  },
+  {
+   "actual_address_of_premises": "1150 TEST ST",
+   "application_id": "NA-0091-26-234710",
+   "city": "Jeffersonville",
+   "class": "91",
+   "dba": "TESTOWNER 14FB70",
+   "description": "Wine Store",
+   "georeference": {
+    "coordinates": [
+     -74.93544,
+     41.77975
+    ],
+    "type": "Point"
+   },
+   "legalname": "TESTOWNER 8FC9FB LLC",
+   "premises_county": "Sullivan",
+   "received_date": "2026-11-20T10:09:00.000",
+   "state_name": "New York",
+   "status": "IntakeComplete",
+   "type": "1",
+   "zip_code": "12748"
+  },
+  {
+   "actual_address_of_premises": "701 TEST ST",
+   "application_id": "NA-0091-26-330975",
+   "city": "Buffalo",
+   "class": "91",
+   "dba": "TESTOWNER 5D8942",
+   "description": "Wine Store",
+   "georeference": {
+    "coordinates": [
+     -78.85067,
+     42.93819
+    ],
+    "type": "Point"
+   },
+   "legalname": "TESTOWNER 382EDE LLC",
+   "premises_county": "Erie",
+   "received_date": "2026-10-20T13:40:00.000",
+   "state_name": "New York",
+   "status": "IntakeComplete",
+   "type": "1",
+   "zip_code": "14214"
+  },
+  {
+   "actual_address_of_premises": "608 TEST ST",
+   "application_id": "NA-0091-26-334439",
+   "city": "Clarence",
+   "class": "91",
+   "dba": "TESTOWNER 6FEA2E CO",
+   "description": "Wine Store",
+   "georeference": {
+    "coordinates": [
+     -78.59182,
+     42.98064
+    ],
+    "type": "Point"
+   },
+   "legalname": "TESTOWNER 1872C0 LLC",
+   "premises_county": "Erie",
+   "received_date": "2026-11-18T13:22:00.000",
+   "state_name": "New York",
+   "status": "IntakeComplete",
+   "type": "1",
+   "zip_code": "14031"
+  },
+  {
+   "actual_address_of_premises": "7880 TEST ST",
+   "application_id": "NA-0092-26-118076",
+   "city": "Shelter Island",
+   "class": "92",
+   "description": "Roadside Farm Market",
+   "georeference": {
+    "coordinates": [
+     -72.33849,
+     41.07536
+    ],
+    "type": "Point"
+   },
+   "legalname": "TESTOWNER E96C39 INC",
+   "premises_county": "Suffolk",
+   "received_date": "2026-06-30T11:12:00.000",
+   "state_name": "New York",
+   "status": "Under Review",
+   "type": "1",
+   "zip_code": "11964"
+  },
+  {
+   "actual_address_of_premises": "2316 TEST ST",
+   "application_id": "NA-0092-26-322254",
+   "city": "Watkins Glen",
+   "class": "92",
+   "description": "Roadside Farm Market",
+   "georeference": {
+    "coordinates": [
+     -76.92774,
+     42.37806
+    ],
+    "type": "Point"
+   },
+   "legalname": "TESTOWNER 1E3366 LLC",
+   "premises_county": "Schuyler",
+   "received_date": "2026-08-04T12:12:00.000",
+   "state_name": "New York",
+   "status": "Under Review",
+   "type": "1",
+   "zip_code": "14891"
+  },
+  {
+   "actual_address_of_premises": "6083 TEST ST",
+   "application_id": "NA-0100-24-141147",
+   "city": "Staten Island",
+   "class": "100",
+   "description": "Liquor Store",
+   "georeference": {
+    "coordinates": [
+     -74.09871,
+     40.64469
+    ],
+    "type": "Point"
+   },
+   "legalname": "TESTOWNER 0E0B03 INC",
+   "premises_county": "Richmond",
+   "received_date": "2024-10-24T13:53:00.000",
+   "state_name": "NY",
+   "status": "Conditionally Approved",
+   "type": "1",
+   "zip_code": "10301"
+  },
+  {
+   "actual_address_of_premises": "553 TEST ST",
+   "application_id": "NA-0100-25-108269",
+   "city": "Jamaica",
+   "class": "100",
+   "description": "Liquor Store",
+   "georeference": {
+    "coordinates": [
+     -73.77691,
+     40.7143
+    ],
+    "type": "Point"
+   },
+   "legalname": "TESTOWNER A791EE LLC",
+   "premises_county": "Queens",
+   "received_date": "2025-03-27T15:46:00.000",
+   "state_name": "New York",
+   "status": "Reconsideration",
+   "type": "1",
+   "zip_code": "11432"
+  },
+  {
+   "actual_address_of_premises": "1186 TEST ST",
+   "application_id": "NA-0100-25-120613",
+   "city": "Brooklyn",
+   "class": "100",
+   "description": "Liquor Store",
+   "georeference": {
+    "coordinates": [
+     -73.94967,
+     40.67876
+    ],
+    "type": "Point"
+   },
+   "legalname": "TESTOWNER 0076A0 INC",
+   "premises_county": "Kings",
+   "received_date": "2025-07-10T14:17:00.000",
+   "state_name": "New York",
+   "status": "Conditionally Approved",
+   "type": "1",
+   "zip_code": "11216"
+  },
+  {
+   "actual_address_of_premises": "6777 TEST ST",
+   "application_id": "NA-0100-25-120859",
+   "city": "Brooklyn",
+   "class": "100",
+   "description": "Liquor Store",
+   "georeference": {
+    "coordinates": [
+     -73.91628,
+     40.68618
+    ],
+    "type": "Point"
+   },
+   "legalname": "TESTOWNER 5F36FE INC",
+   "premises_county": "Kings",
+   "received_date": "2025-07-14T11:10:00.000",
+   "state_name": "New York",
+   "status": "Under Review",
+   "type": "1",
+   "zip_code": "11221"
+  },
+  {
+   "actual_address_of_premises": "8387 TEST ST",
+   "application_id": "NA-0100-25-128077",
+   "city": "Southampton",
+   "class": "100",
+   "dba": "TESTOWNER D6A5D4",
+   "description": "Liquor Store",
+   "georeference": {
+    "coordinates": [
+     -72.38818,
+     40.88698
+    ],
+    "type": "Point"
+   },
+   "legalname": "TESTOWNER 9492F2 LLC",
+   "premises_county": "Suffolk",
+   "received_date": "2025-09-05T14:52:00.000",
+   "state_name": "New York",
+   "status": "Conditionally Approved",
+   "type": "1",
+   "zip_code": "11968"
+  },
+  {
+   "actual_address_of_premises": "1824 TEST ST",
+   "application_id": "NA-0100-25-131183",
+   "city": "Far Rockaway",
+   "class": "100",
+   "description": "Liquor Store",
+   "georeference": {
+    "coordinates": [
+     -73.75919,
+     40.59514
+    ],
+    "type": "Point"
+   },
+   "legalname": "TESTOWNER CA2CBC LLC",
+   "premises_county": "Queens",
+   "received_date": "2025-09-26T13:27:00.000",
+   "state_name": "New York",
+   "status": "Under Review",
+   "type": "1",
+   "zip_code": "11691"
+  },
+  {
+   "actual_address_of_premises": "818 TEST ST",
+   "additional_address_information": "4112 TEST ST",
+   "application_id": "NA-0100-25-134313",
+   "city": "Bronx",
+   "class": "100",
+   "description": "Liquor Store",
+   "georeference": {
+    "coordinates": [
+     -73.89994,
+     40.85268
+    ],
+    "type": "Point"
+   },
+   "legalname": "TESTOWNER F984A2 CORP",
+   "premises_county": "Bronx",
+   "received_date": "2025-10-27T09:59:00.000",
+   "state_name": "New York",
+   "status": "Reconsideration",
+   "type": "1",
+   "zip_code": "10457"
+  },
+  {
+   "actual_address_of_premises": "1605 TEST ST",
+   "application_id": "NA-0100-25-138055",
+   "city": "Riverhead",
+   "class": "100",
+   "description": "Liquor Store",
+   "georeference": {
+    "coordinates": [
+     -72.6645,
+     40.91713
+    ],
+    "type": "Point"
+   },
+   "legalname": "TESTOWNER CDE457 INC",
+   "premises_county": "Suffolk",
+   "received_date": "2025-12-05T11:57:00.000",
+   "state_name": "New York",
+   "status": "Reconsideration",
+   "type": "1",
+   "zip_code": "11901"
+  },
+  {
+   "actual_address_of_premises": "249 TEST ST",
+   "application_id": "NA-0100-25-138377",
+   "city": "East Elmhurst",
+   "class": "100",
+   "description": "Liquor Store",
+   "georeference": {
+    "coordinates": [
+     -73.87253,
+     40.76066
+    ],
+    "type": "Point"
+   },
+   "legalname": "TESTOWNER 78E297 INC",
+   "premises_county": "Queens",
+   "received_date": "2025-12-10T10:41:00.000",
+   "state_name": "New York",
+   "status": "Conditionally Approved",
+   "type": "1",
+   "zip_code": "11369"
+  },
+  {
+   "actual_address_of_premises": "4359 TEST ST",
+   "application_id": "NA-0100-25-139093",
+   "city": "Bronx",
+   "class": "100",
+   "description": "Liquor Store",
+   "georeference": {
+    "coordinates": [
+     -73.90581,
+     40.81765
+    ],
+    "type": "Point"
+   },
+   "legalname": "TESTOWNER BC641D CORP",
+   "premises_county": "Bronx",
+   "received_date": "2025-12-19T16:14:00.000",
+   "state_name": "New York",
+   "status": "Reconsideration",
+   "type": "1",
+   "zip_code": "10455"
+  },
+  {
+   "actual_address_of_premises": "3764 TEST ST",
+   "application_id": "NA-0100-25-210173",
+   "city": "Oneida",
+   "class": "100",
+   "description": "Liquor Store",
+   "georeference": {
+    "coordinates": [
+     -75.65143,
+     43.09535
+    ],
+    "type": "Point"
+   },
+   "legalname": "TESTOWNER 0AF0A4 LLC",
+   "premises_county": "Madison",
+   "received_date": "2025-04-14T13:28:00.000",
+   "state_name": "NY",
+   "status": "Conditionally Approved",
+   "type": "1",
+   "zip_code": "13421"
+  },
+  {
+   "actual_address_of_premises": "2877 TEST ST",
+   "application_id": "NA-0100-25-219345",
+   "city": "Cropseyville",
+   "class": "100",
+   "description": "Liquor Store",
+   "georeference": {
+    "coordinates": [
+     -73.45175,
+     42.7692
+    ],
+    "type": "Point"
+   },
+   "legalname": "TESTOWNER 0C18BC LLC",
+   "premises_county": "Rensselaer",
+   "received_date": "2025-06-30T14:35:00.000",
+   "state_name": "New York",
+   "status": "Under Review",
+   "type": "1",
+   "zip_code": "12052"
+  }
+ ],
+ "where": "application_id >= 'NA-0091-23-121041'"
+}

@@ -1,0 +1,146 @@
+{
+ "portal": "https://data.mo.gov",
+ "rows": [
+  {
+   "business_name": "TESTOWNER CAC87A LLC",
+   "city": "WEBSTER GROVES",
+   "license_number": "237979",
+   "license_type": "22% Wholesale Solicitor",
+   "zip_code": "631192325"
+  },
+  {
+   "business_name": "TESTOWNER 65DDF9 LLC",
+   "city": "HIGH RIDGE",
+   "license_number": "238122",
+   "license_type": "5% Wholesale Solicitor",
+   "zip_code": "630490000"
+  },
+  {
+   "business_name": "TESTOWNER 41829B LLC",
+   "city": "KANSAS CITY",
+   "license_number": "238708",
+   "license_type": "22% Wholesale Solicitor",
+   "zip_code": "641081634"
+  },
+  {
+   "business_name": "TESTOWNER 65B024",
+   "city": "TROY",
+   "license_number": "238874",
+   "license_type": "22% Wholesale Solicitor",
+   "zip_code": "633790000"
+  },
+  {
+   "business_name": "TESTOWNER 10778C LLC",
+   "city": "EARTH CITY",
+   "license_number": "242082",
+   "license_type": "22% Wholesale Solicitor",
+   "zip_code": "63045"
+  },
+  {
+   "business_name": "TESTOWNER 23291E INC",
+   "city": "WENTZVILLE",
+   "license_number": "242161",
+   "license_type": "22% Wholesale Solicitor",
+   "zip_code": "63385"
+  },
+  {
+   "business_name": "TESTOWNER CCEC3E",
+   "city": "PERRYVILLE",
+   "license_number": "242629",
+   "license_type": "22% Wholesale Solicitor",
+   "zip_code": "637757312"
+  },
+  {
+   "business_name": "TESTOWNER 7F833D INC",
+   "city": "HILLSBORO",
+   "license_number": "242644",
+   "license_type": "22% Wholesale Solicitor",
+   "zip_code": "63050"
+  },
+  {
+   "business_name": "TESTOWNER 4AF976 LLC",
+   "city": "KANSAS CITY",
+   "license_number": "242685",
+   "license_type": "22% Wholesale Solicitor",
+   "zip_code": "641141843"
+  },
+  {
+   "business_name": "TESTOWNER D27969 LLC",
+   "city": "FESTUS",
+   "license_number": "242861",
+   "license_type": "22% Wholesale Solicitor",
+   "zip_code": "630281907"
+  },
+  {
+   "business_name": "TESTOWNER 0E698B LLC",
+   "city": "KANSAS CITY",
+   "license_number": "242955",
+   "license_type": "22% Wholesale Solicitor",
+   "zip_code": "641291387"
+  },
+  {
+   "business_name": "TESTOWNER A763A7 LLC",
+   "city": "KANSAS CITY",
+   "license_number": "243135",
+   "license_type": "22% Wholesale Solicitor",
+   "zip_code": "64111"
+  },
+  {
+   "business_name": "TESTOWNER 7EBAF1",
+   "city": "COLUMBIA",
+   "license_number": "243618",
+   "license_type": "22% Wholesale Solicitor",
+   "zip_code": "652037138"
+  },
+  {
+   "business_name": "TESTOWNER 55BA77 CO",
+   "city": "SPRINGFIELD",
+   "license_number": "244191",
+   "license_type": "22% Wholesale Solicitor",
+   "zip_code": "65802"
+  },
+  {
+   "business_name": "TESTOWNER 597B35 LLC",
+   "city": "MARTHASVILLE",
+   "license_number": "244269",
+   "license_type": "22% Wholesale Solicitor",
+   "zip_code": "63357"
+  },
+  {
+   "business_name": "TESTOWNER EFBBE1 LLC",
+   "city": "SAINT LOUIS",
+   "license_number": "244740",
+   "license_type": "22% Wholesale Solicitor",
+   "zip_code": "63104"
+  },
+  {
+   "business_name": "TESTOWNER 46388B LLC",
+   "city": "CASSVILLE",
+   "license_number": "245625",
+   "license_type": "22% Wholesale Solicitor",
+   "zip_code": "656258355"
+  },
+  {
+   "business_name": "TESTOWNER 91CDDD LLC",
+   "city": "BRAZEAU",
+   "license_number": "246058",
+   "license_type": "22% Wholesale Solicitor",
+   "zip_code": "637378702"
+  },
+  {
+   "business_name": "TESTOWNER 964736 LLC",
+   "city": "NEOSHO",
+   "license_number": "246665",
+   "license_type": "22% Wholesale Solicitor",
+   "zip_code": "648507936"
+  },
+  {
+   "business_name": "TESTOWNER 012947 LLC",
+   "city": "SAINT LOUIS",
+   "license_number": "247784",
+   "license_type": "22% Wholesale Solicitor",
+   "zip_code": "631030000"
+  }
+ ],
+ "where": "license_number >= '237979'"
+}

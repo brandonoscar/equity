@@ -1,0 +1,23 @@
+# New York State Department of Taxation and Finance, "Licensed Cigarette Stamping Agents,
+# Wholesale Dealers of Cigarettes, Distributors of Tobacco Products and Licensed Wholesale
+# Dealers of Tobacco Products" (data.ny.gov 97vn-jxpr): about 570 licenses with name, DBA,
+# license type and physical address.
+# TODO(Brandon): no issue date is published, so licenses are dated from the retrieval day.
+source_id: ny.dtf.tobacco_wholesalers
+state: NY
+jurisdiction: "36"
+portal: https://data.ny.gov
+dataset: 97vn-jxpr
+key: lic_nmbr
+id_prefix: "NY-DTF-WHL:"
+terms_url: https://data.ny.gov/download/77gx-ii52/application%2Fpdf
+terms_summary: "NY Open Data terms: free to use; no warranty. No restriction on commercial use found."
+checked_on: 2026-11-25
+license:
+  name: [dba_name, last_or_bus_name]
+  type: lic_type
+  status_value: Licensed  # current licenses only
+  address: {street: phys_ln_2_adr, city: phys_city_adr, state: phys_state_adr, zip: phys_zip_5_adr}
+holders:
+  - {role: other, title: LICENSEE, name: last_or_bus_name, address: {street: phys_ln_2_adr, city: phys_city_adr, state: phys_state_adr, zip: phys_zip_5_adr}}
+pii_fields: [last_or_bus_name, dba_name, phys_ln_2_adr, georeference]

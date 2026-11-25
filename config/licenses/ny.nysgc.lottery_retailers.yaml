@@ -1,0 +1,22 @@
+# New York State Gaming Commission, "NYS Lottery Retailers" (data.ny.gov 2vvn-pdyi): about
+# 13K lottery retailers with name and address.
+# TODO(Brandon): no contract date is published, so retailers are dated from the retrieval
+# day.
+source_id: ny.nysgc.lottery_retailers
+state: NY
+jurisdiction: "36"
+portal: https://data.ny.gov
+dataset: 2vvn-pdyi
+key: retailer
+id_prefix: "NY-LOTTO:"
+terms_url: https://data.ny.gov/download/77gx-ii52/application%2Fpdf
+terms_summary: "NY Open Data terms: free to use; no warranty. No restriction on commercial use found."
+checked_on: 2026-11-25
+license:
+  name: name
+  type_value: Lottery Retailer
+  status_value: Active  # current retailers only
+  address: {street: street, city: city, state: state, zip: zip}
+holders:
+  - {role: other, title: LOTTERY RETAILER, with_type: false, name: name, address: {street: street, city: city, state: state, zip: zip}}
+pii_fields: [name, street, georeference]

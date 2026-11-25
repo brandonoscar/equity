@@ -1,0 +1,353 @@
+{
+ "portal": "https://data.ny.gov",
+ "rows": [
+  {
+   "dba_name": "TESTOWNER 04756E",
+   "georeference": {
+    "coordinates": [
+     -80.32806,
+     25.80119
+    ],
+    "type": "Point"
+   },
+   "id_nmbr": "010569622",
+   "last_or_bus_name": "TESTOWNER 8D7E8D CORP",
+   "lic_nmbr": "TD - 010569622",
+   "lic_type": "TOBACCO DISTRIBUTOR",
+   "phys_city_adr": "MIAMI",
+   "phys_ln_2_adr": "TESTOWNER D044B7",
+   "phys_state_adr": "FL",
+   "phys_zip_5_adr": "33122"
+  },
+  {
+   "georeference": {
+    "coordinates": [
+     -73.9879,
+     41.98736
+    ],
+    "type": "Point"
+   },
+   "id_nmbr": "010944208",
+   "last_or_bus_name": "TESTOWNER 240EE0 INC",
+   "lic_nmbr": "TD - 010944208",
+   "lic_type": "TOBACCO DISTRIBUTOR",
+   "phys_city_adr": "LAKE KATRINE",
+   "phys_ln_2_adr": "TESTOWNER D462D7",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "12449"
+  },
+  {
+   "georeference": {
+    "coordinates": [
+     -74.23532,
+     40.52187
+    ],
+    "type": "Point"
+   },
+   "id_nmbr": "010973046",
+   "last_or_bus_name": "TESTOWNER 26F8B3 INC",
+   "lic_nmbr": "TD - 010973046",
+   "lic_type": "TOBACCO DISTRIBUTOR",
+   "phys_city_adr": "STATEN ISLAND",
+   "phys_ln_2_adr": "TESTOWNER 2F4463",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "10309"
+  },
+  {
+   "georeference": {
+    "coordinates": [
+     -71.48592,
+     43.17066
+    ],
+    "type": "Point"
+   },
+   "id_nmbr": "020218229",
+   "last_or_bus_name": "TESTOWNER EBF597 INC",
+   "lic_nmbr": "TD - 020218229",
+   "lic_type": "TOBACCO DISTRIBUTOR",
+   "phys_city_adr": "PEMBROKE",
+   "phys_ln_2_adr": "TESTOWNER 85D7A5",
+   "phys_state_adr": "NH",
+   "phys_zip_5_adr": "03275"
+  },
+  {
+   "georeference": {
+    "coordinates": [
+     -72.5061,
+     44.19756
+    ],
+    "type": "Point"
+   },
+   "id_nmbr": "030175096",
+   "last_or_bus_name": "TESTOWNER C9B98E INC",
+   "lic_nmbr": "TD - 030175096",
+   "lic_type": "TOBACCO DISTRIBUTOR",
+   "phys_city_adr": "BARRE",
+   "phys_ln_2_adr": "TESTOWNER 85A61C",
+   "phys_state_adr": "VT",
+   "phys_zip_5_adr": "05641"
+  },
+  {
+   "georeference": {
+    "coordinates": [
+     -71.56246,
+     42.27597
+    ],
+    "type": "Point"
+   },
+   "id_nmbr": "042843586",
+   "last_or_bus_name": "TESTOWNER 0D2E53 INC",
+   "lic_nmbr": "TD - 042843586",
+   "lic_type": "TOBACCO DISTRIBUTOR",
+   "phys_city_adr": "WESTBOROUGH",
+   "phys_ln_2_adr": "TESTOWNER 4FE8FE",
+   "phys_state_adr": "MA",
+   "phys_zip_5_adr": "01581"
+  },
+  {
+   "dba_name": "TESTOWNER 1E70F9",
+   "georeference": {
+    "coordinates": [
+     -72.61323,
+     42.16735
+    ],
+    "type": "Point"
+   },
+   "id_nmbr": "042931951",
+   "last_or_bus_name": "TESTOWNER 7B1194 LLC",
+   "lic_nmbr": "TD - 042931951",
+   "lic_type": "TOBACCO DISTRIBUTOR",
+   "phys_city_adr": "CHICOPEE",
+   "phys_ln_2_adr": "TESTOWNER 29AA10",
+   "phys_state_adr": "MA",
+   "phys_zip_5_adr": "01013"
+  },
+  {
+   "dba_name": "TESTOWNER AEB3E6",
+   "georeference": {
+    "coordinates": [
+     -77.6393,
+     43.19239
+    ],
+    "type": "Point"
+   },
+   "id_nmbr": "050527649",
+   "last_or_bus_name": "TESTOWNER 96C1BC",
+   "lic_nmbr": "TD - 050527649",
+   "lic_type": "TOBACCO DISTRIBUTOR",
+   "phys_city_adr": "ROCHESTER",
+   "phys_ln_2_adr": "TESTOWNER 1E0409",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "14613"
+  },
+  {
+   "dba_name": "TESTOWNER EB20E8",
+   "georeference": {
+    "coordinates": [
+     -74.01487,
+     41.09875
+    ],
+    "type": "Point"
+   },
+   "id_nmbr": "061607917",
+   "last_or_bus_name": "TESTOWNER 7A3CC2 INC",
+   "lic_nmbr": "TD - 061607917",
+   "lic_type": "TOBACCO DISTRIBUTOR",
+   "phys_city_adr": "NANUET",
+   "phys_ln_2_adr": "TESTOWNER 756122",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "10954"
+  },
+  {
+   "georeference": {
+    "coordinates": [
+     -74.13297,
+     40.87253
+    ],
+    "type": "Point"
+   },
+   "id_nmbr": "061627194",
+   "last_or_bus_name": "TESTOWNER 182DAC CO",
+   "lic_nmbr": "TD - 061627194",
+   "lic_type": "TOBACCO DISTRIBUTOR",
+   "phys_city_adr": "CLIFTON",
+   "phys_ln_2_adr": "TESTOWNER C86811",
+   "phys_state_adr": "NJ",
+   "phys_zip_5_adr": "07011"
+  },
+  {
+   "dba_name": "TESTOWNER A17920",
+   "georeference": {
+    "coordinates": [
+     -73.58193,
+     40.63344
+    ],
+    "type": "Point"
+   },
+   "id_nmbr": "061653569",
+   "last_or_bus_name": "TESTOWNER 59D330 INC",
+   "lic_nmbr": "TD - 061653569",
+   "lic_type": "TOBACCO DISTRIBUTOR",
+   "phys_city_adr": "FREEPORT",
+   "phys_ln_2_adr": "TESTOWNER 58E385",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "11520"
+  },
+  {
+   "georeference": {
+    "coordinates": [
+     -73.91454,
+     41.30505
+    ],
+    "type": "Point"
+   },
+   "id_nmbr": "061671355",
+   "last_or_bus_name": "TESTOWNER 486E26 INC",
+   "lic_nmbr": "TD - 061671355",
+   "lic_type": "TOBACCO DISTRIBUTOR",
+   "phys_city_adr": "PEEKSKILL",
+   "phys_ln_2_adr": "TESTOWNER 6C55C3",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "10566"
+  },
+  {
+   "georeference": {
+    "coordinates": [
+     -73.99366,
+     40.68204
+    ],
+    "type": "Point"
+   },
+   "id_nmbr": "111194850",
+   "last_or_bus_name": "TESTOWNER E745A4 INC",
+   "lic_nmbr": "TD - 111194850",
+   "lic_type": "TOBACCO DISTRIBUTOR",
+   "phys_city_adr": "BROOKLYN",
+   "phys_ln_2_adr": "TESTOWNER 6D54E6",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "11231"
+  },
+  {
+   "dba_name": "TESTOWNER 8A01C7",
+   "georeference": {
+    "coordinates": [
+     -73.87271,
+     40.80324
+    ],
+    "type": "Point"
+   },
+   "id_nmbr": "111840958",
+   "last_or_bus_name": "TESTOWNER F2E182 INC",
+   "lic_nmbr": "TD - 111840958",
+   "lic_type": "TOBACCO DISTRIBUTOR",
+   "phys_city_adr": "BRONX",
+   "phys_ln_2_adr": "TESTOWNER EF7EC5",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "10474"
+  },
+  {
+   "georeference": {
+    "coordinates": [
+     -73.56021,
+     40.75546
+    ],
+    "type": "Point"
+   },
+   "id_nmbr": "112228966",
+   "last_or_bus_name": "TESTOWNER D1E766 CORP",
+   "lic_nmbr": "TD - 112228966",
+   "lic_type": "TOBACCO DISTRIBUTOR",
+   "phys_city_adr": "WESTBURY",
+   "phys_ln_2_adr": "TESTOWNER 3A5064",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "11590"
+  },
+  {
+   "dba_name": "TESTOWNER 3784F0",
+   "georeference": {
+    "coordinates": [
+     -72.29522,
+     41.00129
+    ],
+    "type": "Point"
+   },
+   "id_nmbr": "112255763",
+   "last_or_bus_name": "TESTOWNER E6C503 CORP",
+   "lic_nmbr": "TD - 112255763",
+   "lic_type": "TOBACCO DISTRIBUTOR",
+   "phys_city_adr": "SAG HARBOR",
+   "phys_ln_2_adr": "TESTOWNER CF4465",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "11963"
+  },
+  {
+   "georeference": {
+    "coordinates": [
+     -73.3715,
+     40.70717
+    ],
+    "type": "Point"
+   },
+   "id_nmbr": "112344961",
+   "last_or_bus_name": "TESTOWNER 96C907 LTD",
+   "lic_nmbr": "TD - 112344961",
+   "lic_type": "TOBACCO DISTRIBUTOR",
+   "phys_city_adr": "LINDENHURST",
+   "phys_ln_2_adr": "TESTOWNER 9B97CC",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "11757"
+  },
+  {
+   "georeference": {
+    "coordinates": [
+     -73.41951,
+     40.71898
+    ],
+    "type": "Point"
+   },
+   "id_nmbr": "112350757",
+   "last_or_bus_name": "TESTOWNER 4C3CE2 LLC",
+   "lic_nmbr": "TD - 112350757",
+   "lic_type": "TOBACCO DISTRIBUTOR",
+   "phys_city_adr": "FARMINGDALE",
+   "phys_ln_2_adr": "TESTOWNER A743E2",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "11735"
+  },
+  {
+   "georeference": {
+    "coordinates": [
+     -71.9465,
+     41.03353
+    ],
+    "type": "Point"
+   },
+   "id_nmbr": "112447083",
+   "last_or_bus_name": "TESTOWNER 765888 INC",
+   "lic_nmbr": "TD - 112447083",
+   "lic_type": "TOBACCO DISTRIBUTOR",
+   "phys_city_adr": "MONTAUK",
+   "phys_ln_2_adr": "TESTOWNER 0BE2C6",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "11954"
+  },
+  {
+   "georeference": {
+    "coordinates": [
+     -73.74922,
+     40.69529
+    ],
+    "type": "Point"
+   },
+   "id_nmbr": "112603840",
+   "last_or_bus_name": "TESTOWNER 3C02F0 INC",
+   "lic_nmbr": "TD - 112603840",
+   "lic_type": "TOBACCO DISTRIBUTOR",
+   "phys_city_adr": "JAMAICA",
+   "phys_ln_2_adr": "TESTOWNER 3C4129",
+   "phys_state_adr": "NY",
+   "phys_zip_5_adr": "11412"
+  }
+ ],
+ "where": "lic_nmbr >= 'TD'"
+}

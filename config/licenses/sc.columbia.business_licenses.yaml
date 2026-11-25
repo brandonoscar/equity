@@ -1,0 +1,24 @@
+# City of Columbia, SC, "Business Licenses" (columbiasc.data.socrata.com 54d2-wqcs, the
+# city's Socrata site): about 120K license-year rows for about 35K business licenses
+# (2018-2022), with company name, DBA, type, class, status, issue date and main address. A
+# license's rows make one record; the latest issue wins.
+source_id: sc.columbia.business_licenses
+state: SC
+jurisdiction: "45079"
+portal: https://columbiasc.data.socrata.com
+dataset: 54d2-wqcs
+key: licensenumber
+id_prefix: "COLA-BL:"
+terms_url: https://columbiasc.data.socrata.com/dataset/Business-Licenses/54d2-wqcs
+terms_summary: "No license text on the dataset (public information published on the City of Columbia's Socrata site)."
+checked_on: 2026-11-25
+license:
+  name: [doingbusinessas, companyname]
+  type: licensetype
+  status: licensestatus
+  issued_on: issueddate
+  latest_by: issueddate
+  address: {street: mainaddress}
+holders:
+  - {role: other, title: LICENSEE, name: companyname, address: {street: mainaddress}}
+pii_fields: [companyname, doingbusinessas, mainaddress, location]

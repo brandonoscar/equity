@@ -1,0 +1,306 @@
+{
+ "portal": "https://data.brla.gov",
+ "rows": [
+  {
+   "account_name": "TESTOWNER 0EA38D",
+   "address": "8487 TEST ST",
+   "city": "BATON ROUGE",
+   "objectid": "822",
+   "rev_acct_num": "907449",
+   "the_geom": {
+    "coordinates": [
+     -91.135816909145,
+     30.551109767098
+    ],
+    "type": "Point"
+   },
+   "zip": "70811"
+  },
+  {
+   "account_name": "TESTOWNER E79D6D",
+   "address": "5437 TEST ST",
+   "city": "BATON ROUGE",
+   "objectid": "848",
+   "rev_acct_num": "907493",
+   "the_geom": {
+    "coordinates": [
+     -91.063962375381,
+     30.385613894155
+    ],
+    "type": "Point"
+   },
+   "zip": "70809"
+  },
+  {
+   "account_name": "TESTOWNER 625CAB",
+   "address": "7957 TEST ST",
+   "city": "BATON ROUGE",
+   "objectid": "11",
+   "rev_acct_num": "907658",
+   "the_geom": {
+    "coordinates": [
+     -91.074909899797,
+     30.368298924729
+    ],
+    "type": "Point"
+   },
+   "zip": "70810-1912"
+  },
+  {
+   "account_name": "TESTOWNER E26A44",
+   "address": "1687 TEST ST",
+   "city": "BATON ROUGE",
+   "objectid": "34",
+   "rev_acct_num": "907664",
+   "the_geom": {
+    "coordinates": [
+     -91.142986498194,
+     30.416399028624
+    ],
+    "type": "Point"
+   },
+   "zip": "70808"
+  },
+  {
+   "account_name": "TESTOWNER 40C1F6",
+   "address": "5536 TEST ST",
+   "city": "BATON ROUGE",
+   "objectid": "35",
+   "rev_acct_num": "907666",
+   "the_geom": {
+    "coordinates": [
+     -91.145409777112,
+     30.52179645921
+    ],
+    "type": "Point"
+   },
+   "zip": "70811"
+  },
+  {
+   "account_name": "TESTOWNER 79EC10",
+   "address": "6755 TEST ST",
+   "city": "BATON ROUGE",
+   "objectid": "18",
+   "rev_acct_num": "907667",
+   "the_geom": {
+    "coordinates": [
+     -91.108545192262,
+     30.396906204873
+    ],
+    "type": "Point"
+   },
+   "zip": "70810"
+  },
+  {
+   "account_name": "TESTOWNER BCB5E7",
+   "address": "611 TEST ST",
+   "city": "BATON ROUGE",
+   "objectid": "19",
+   "rev_acct_num": "907670",
+   "the_geom": {
+    "coordinates": [
+     -91.123717139197,
+     30.369623961726
+    ],
+    "type": "Point"
+   },
+   "zip": "70808"
+  },
+  {
+   "account_name": "TESTOWNER 9365E8",
+   "address": "6692 TEST ST",
+   "city": "BATON ROUGE",
+   "objectid": "22",
+   "rev_acct_num": "907671",
+   "the_geom": {
+    "coordinates": [
+     -91.068909572832,
+     30.415454055855
+    ],
+    "type": "Point"
+   },
+   "zip": "70816"
+  },
+  {
+   "account_name": "TESTOWNER 449D7F",
+   "address": "1831 TEST ST",
+   "city": "BATON ROUGE",
+   "objectid": "23",
+   "rev_acct_num": "907672",
+   "the_geom": {
+    "coordinates": [
+     -91.025325785964,
+     30.35113618088
+    ],
+    "type": "Point"
+   },
+   "zip": "70810-3911"
+  },
+  {
+   "account_name": "TESTOWNER 86345B",
+   "address": "3609 TEST ST",
+   "city": "BATON ROUGE",
+   "objectid": "907",
+   "rev_acct_num": "907675",
+   "the_geom": {
+    "coordinates": [
+     -91.139201254489,
+     30.45378170926
+    ],
+    "type": "Point"
+   },
+   "zip": "70806"
+  },
+  {
+   "account_name": "TESTOWNER CFAADD",
+   "address": "3791 TEST ST",
+   "city": "BATON ROUGE",
+   "objectid": "14",
+   "rev_acct_num": "907706",
+   "the_geom": {
+    "coordinates": [
+     -91.15501547398,
+     30.4503879116
+    ],
+    "type": "Point"
+   },
+   "zip": "70806"
+  },
+  {
+   "account_name": "TESTOWNER 1A7B6B",
+   "address": "3608 TEST ST",
+   "city": "BATON ROUGE",
+   "objectid": "15",
+   "rev_acct_num": "907707",
+   "the_geom": {
+    "coordinates": [
+     -91.155420488656,
+     30.492890339645
+    ],
+    "type": "Point"
+   },
+   "zip": "70805"
+  },
+  {
+   "account_name": "TESTOWNER BEEC29",
+   "address": "3744 TEST ST",
+   "city": "BATON ROUGE",
+   "objectid": "10",
+   "rev_acct_num": "907714",
+   "the_geom": {
+    "coordinates": [
+     -91.057410873041,
+     30.432689239399
+    ],
+    "type": "Point"
+   },
+   "zip": "70816"
+  },
+  {
+   "account_name": "TESTOWNER BFC113",
+   "address": "5622 TEST ST",
+   "city": "BATON ROUGE",
+   "objectid": "588",
+   "rev_acct_num": "907822",
+   "the_geom": {
+    "coordinates": [
+     -91.137143748299,
+     30.427014118756
+    ],
+    "type": "Point"
+   },
+   "zip": "70808"
+  },
+  {
+   "account_name": "TESTOWNER BABDBF",
+   "address": "7997 TEST ST",
+   "city": "BATON ROUGE",
+   "objectid": "679",
+   "rev_acct_num": "908004",
+   "the_geom": {
+    "coordinates": [
+     -91.051523960808,
+     30.416368822585
+    ],
+    "type": "Point"
+   },
+   "zip": "70816"
+  },
+  {
+   "account_name": "TESTOWNER 9B10A4",
+   "address": "5953 TEST ST",
+   "city": "BATON ROUGE",
+   "objectid": "780",
+   "rev_acct_num": "908149",
+   "the_geom": {
+    "coordinates": [
+     -91.097387567023,
+     30.380058150772
+    ],
+    "type": "Point"
+   },
+   "zip": "70810"
+  },
+  {
+   "account_name": "TESTOWNER F59EBD",
+   "address": "6101 TEST ST",
+   "city": "BATON ROUGE",
+   "objectid": "778",
+   "rev_acct_num": "908188",
+   "the_geom": {
+    "coordinates": [
+     -91.020590943616,
+     30.453702891692
+    ],
+    "type": "Point"
+   },
+   "zip": "70816"
+  },
+  {
+   "account_name": "TESTOWNER 3BFE21",
+   "address": "3124 TEST ST",
+   "city": "BATON ROUGE",
+   "objectid": "534",
+   "rev_acct_num": "908426",
+   "the_geom": {
+    "coordinates": [
+     -91.10542466869,
+     30.389361679571
+    ],
+    "type": "Point"
+   },
+   "zip": "70810"
+  },
+  {
+   "account_name": "TESTOWNER 73FDF1",
+   "address": "4435 TEST ST",
+   "city": "BATON ROUGE",
+   "objectid": "552",
+   "rev_acct_num": "908448",
+   "the_geom": {
+    "coordinates": [
+     -91.144728185065,
+     30.509181692338
+    ],
+    "type": "Point"
+   },
+   "zip": "70805"
+  },
+  {
+   "account_name": "TESTOWNER C10CB3",
+   "address": "3815 TEST ST",
+   "city": "BATON ROUGE",
+   "objectid": "406",
+   "rev_acct_num": "908556",
+   "the_geom": {
+    "coordinates": [
+     -91.151938043694,
+     30.345300920169
+    ],
+    "type": "Point"
+   },
+   "zip": "70820"
+  }
+ ],
+ "where": "rev_acct_num::text >= '907449'"
+}

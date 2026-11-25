@@ -1,0 +1,23 @@
+# Delaware State Police, Professional Licensing, "Delaware Private Investigator Employee
+# Expiration Report" (data.delaware.gov baen-tgaz): about 400 licensed private investigator
+# employees with name parts, status code and employing agency. No license number is
+# published, so a record is the person's name at the employer.
+# TODO(Brandon): no issue date is published, so licenses are dated from the retrieval day.
+source_id: de.dps.private_investigators
+state: DE
+jurisdiction: "10"
+portal: https://data.delaware.gov
+dataset: baen-tgaz
+key: last_name
+record_key: [last_name, first_name, middle_name, industry_name]
+id_prefix: "DE-PI:"
+terms_url: https://data.delaware.gov/Public-Safety/Delaware-Private-Investigator-Employee-Expiration-/baen-tgaz
+terms_summary: "Delaware Open Data Portal; no license text on the dataset (public information published by the Delaware State Police)."
+checked_on: 2026-11-25
+license:
+  type_value: Private Investigator Employee
+  status: current_status
+holders:
+  - {role: other, title: PRIVATE INVESTIGATOR, with_type: false, parts: {first: first_name, middle: middle_name, last: last_name}}
+  - {role: other, title: EMPLOYER, with_type: false, name: industry_name}
+pii_fields: [last_name, first_name, middle_name, industry_name]

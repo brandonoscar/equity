@@ -1,0 +1,22 @@
+# Delaware State Police, Professional Licensing, "Delaware Bail Enforcement Agent Employee
+# Expiration Report" (data.delaware.gov 6624-t2yu): about 60 licensed bail enforcement
+# agents with name parts and status code. No license number is published, so a record is
+# the person's name.
+# TODO(Brandon): no issue date is published, so licenses are dated from the retrieval day.
+source_id: de.dps.bail_enforcement_agents
+state: DE
+jurisdiction: "10"
+portal: https://data.delaware.gov
+dataset: 6624-t2yu
+key: last_name
+record_key: [last_name, first_name, middle_name]
+id_prefix: "DE-BEA:"
+terms_url: https://data.delaware.gov/Public-Safety/Delaware-Bail-Enforcement-Agent-Employee-Expiratio/6624-t2yu
+terms_summary: "Delaware Open Data Portal; no license text on the dataset (public information published by the Delaware State Police)."
+checked_on: 2026-11-25
+license:
+  type_value: Bail Enforcement Agent
+  status: current_status
+holders:
+  - {role: other, title: BAIL ENFORCEMENT AGENT, with_type: false, parts: {first: first_name, middle: middle_name, last: last_name}}
+pii_fields: [last_name, first_name, middle_name]

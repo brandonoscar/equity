@@ -1,0 +1,626 @@
+{
+ "portal": "https://data.nola.gov",
+ "rows": [
+  {
+   "address": "5723 TEST ST",
+   "application_date": "2026-06-05T11:50:57.000",
+   "bedroom_limit": "2",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "guest_occupancy_limit": "4",
+   "issue_date": "2026-07-08T11:29:58.000",
+   "latitude": "TESTOWNER 436484",
+   "license_holder_name": "TESTOWNER 09AB22",
+   "license_number": "23-NSTR-14477",
+   "license_type": "Non-Commercial Short Term Rental",
+   "link": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=W3VS3Z"
+   },
+   "location": {
+    "coordinates": [
+     -90.07238872272883,
+     29.970879644004828
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 76EDD9",
+   "operator_email": "TESTOWNER 64E5DB",
+   "operator_license_number": "25-OSTR-08618",
+   "operator_name": "TESTOWNER 91E139",
+   "operator_phone": "TESTOWNER A1ECFE",
+   "reference_code": "W3VS3Z",
+   "residential_subtype": "N/A",
+   "x": "TESTOWNER AAE713",
+   "y": "TESTOWNER 7CB65A"
+  },
+  {
+   "address": "4512 TEST ST",
+   "application_date": "2026-04-28T22:35:23.000",
+   "bedroom_limit": "3",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "guest_occupancy_limit": "6",
+   "issue_date": "2026-06-29T12:26:34.000",
+   "latitude": "TESTOWNER 462B0D",
+   "license_holder_name": "TESTOWNER 63C28D",
+   "license_number": "23-NSTR-14490",
+   "license_type": "Non-Commercial Short Term Rental",
+   "link": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=5SVCQZ"
+   },
+   "location": {
+    "coordinates": [
+     -90.09228676881067,
+     29.940548466591036
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 2EE20B",
+   "operator_email": "TESTOWNER 8B56E8",
+   "operator_license_number": "21-OSTR-05794",
+   "operator_name": "TESTOWNER E7424E",
+   "operator_phone": "TESTOWNER 25448B",
+   "reference_code": "5SVCQZ",
+   "residential_subtype": "N/A",
+   "x": "TESTOWNER CF8077",
+   "y": "TESTOWNER 2DE3BC"
+  },
+  {
+   "address": "3697 TEST ST",
+   "application_date": "2026-04-29T17:24:12.000",
+   "bedroom_limit": "2",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "guest_occupancy_limit": "4",
+   "issue_date": "2026-05-26T14:51:35.000",
+   "latitude": "TESTOWNER F3D869",
+   "license_holder_name": "TESTOWNER 819BEB",
+   "license_number": "23-NSTR-14500",
+   "license_type": "Non-Commercial Short Term Rental",
+   "link": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=271G8E"
+   },
+   "location": {
+    "coordinates": [
+     -90.09941319834377,
+     29.9697154029625
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER A88286",
+   "operator_email": "TESTOWNER 9A6A01",
+   "operator_license_number": "23-OSTR-14484",
+   "operator_name": "TESTOWNER 325DF8",
+   "operator_phone": "TESTOWNER FFA4C6",
+   "reference_code": "271G8E",
+   "residential_subtype": "N/A",
+   "x": "TESTOWNER F95A79",
+   "y": "TESTOWNER D91175"
+  },
+  {
+   "address": "5456 TEST ST",
+   "application_date": "2026-04-02T10:09:42.000",
+   "bedroom_limit": "2",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "guest_occupancy_limit": "4",
+   "issue_date": "2026-07-21T16:08:37.000",
+   "latitude": "TESTOWNER 807203",
+   "license_holder_name": "TESTOWNER 620058",
+   "license_number": "23-NSTR-14503",
+   "license_type": "Non-Commercial Short Term Rental",
+   "link": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=DC11UX"
+   },
+   "location": {
+    "coordinates": [
+     -90.1157342114603,
+     29.925333994017066
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 79156B",
+   "operator_email": "TESTOWNER 2C5DAA",
+   "operator_license_number": "23-OSTR-02884",
+   "operator_name": "TESTOWNER 1DEE4F",
+   "operator_phone": "TESTOWNER 960824",
+   "reference_code": "DC11UX",
+   "residential_subtype": "N/A",
+   "x": "TESTOWNER 41A656",
+   "y": "TESTOWNER FC62C8"
+  },
+  {
+   "address": "5141 TEST ST",
+   "application_date": "2026-04-28T14:50:56.000",
+   "bedroom_limit": "3",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "guest_occupancy_limit": "6",
+   "issue_date": "2026-06-23T11:10:47.000",
+   "latitude": "TESTOWNER A7851C",
+   "license_holder_name": "TESTOWNER 419DBC",
+   "license_number": "23-NSTR-14510",
+   "license_type": "Non-Commercial Short Term Rental",
+   "link": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=KPLLDK"
+   },
+   "location": {
+    "coordinates": [
+     -90.08560006554342,
+     29.937672413841383
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 0E9FF6",
+   "operator_email": "TESTOWNER 6A3335",
+   "operator_license_number": "24-OSTR-16134",
+   "operator_name": "TESTOWNER 76894E",
+   "operator_phone": "TESTOWNER 185E01",
+   "reference_code": "KPLLDK",
+   "residential_subtype": "N/A",
+   "x": "TESTOWNER 5BBFC6",
+   "y": "TESTOWNER 60CBF8"
+  },
+  {
+   "address": "6304 TEST ST",
+   "application_date": "2026-04-12T08:08:48.000",
+   "bedroom_limit": "1",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "guest_occupancy_limit": "2",
+   "issue_date": "2026-06-11T16:11:00.000",
+   "latitude": "TESTOWNER 0ECC6D",
+   "license_holder_name": "TESTOWNER 2BC179",
+   "license_number": "23-NSTR-14514",
+   "license_type": "Non-Commercial Short Term Rental",
+   "link": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=7XM571"
+   },
+   "location": {
+    "coordinates": [
+     -90.08512093649155,
+     29.97390472745472
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 369BCC",
+   "operator_email": "TESTOWNER 5C8291",
+   "operator_license_number": "24-OSTR-13021",
+   "operator_name": "TESTOWNER 496F52",
+   "operator_phone": "TESTOWNER B1679D",
+   "reference_code": "7XM571",
+   "residential_subtype": "N/A",
+   "x": "TESTOWNER 43A346",
+   "y": "TESTOWNER 09EA06"
+  },
+  {
+   "address": "4160 TEST ST",
+   "application_date": "2026-04-20T16:09:52.000",
+   "bedroom_limit": "1",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "guest_occupancy_limit": "2",
+   "issue_date": "2026-06-29T13:46:33.000",
+   "latitude": "TESTOWNER D95B42",
+   "license_holder_name": "TESTOWNER 4C9A99",
+   "license_number": "23-NSTR-14518",
+   "license_type": "Non-Commercial Short Term Rental",
+   "link": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=1N17Y3"
+   },
+   "location": {
+    "coordinates": [
+     -90.07576849476472,
+     29.926395421949422
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 56BEC2",
+   "operator_email": "TESTOWNER 50D5B7",
+   "operator_license_number": "21-OSTR-14300",
+   "operator_name": "TESTOWNER E5F79C",
+   "operator_phone": "TESTOWNER 748C97",
+   "reference_code": "1N17Y3",
+   "residential_subtype": "N/A",
+   "x": "TESTOWNER A7D4DB",
+   "y": "TESTOWNER EC6A62"
+  },
+  {
+   "address": "6002 TEST ST",
+   "application_date": "2026-05-01T15:59:18.000",
+   "bedroom_limit": "2",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "guest_occupancy_limit": "4",
+   "issue_date": "2026-06-29T11:49:04.000",
+   "latitude": "TESTOWNER B96B5D",
+   "license_holder_name": "TESTOWNER 40726C",
+   "license_number": "23-NSTR-14528",
+   "license_type": "Non-Commercial Short Term Rental",
+   "link": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=CX1P1J"
+   },
+   "location": {
+    "coordinates": [
+     -90.07772492669352,
+     29.92467814267801
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 00D3D3",
+   "operator_email": "TESTOWNER A456AA",
+   "operator_license_number": "23-OSTR-16731",
+   "operator_name": "TESTOWNER D8268F",
+   "operator_phone": "TESTOWNER F1B55A",
+   "reference_code": "CX1P1J",
+   "residential_subtype": "N/A",
+   "x": "TESTOWNER 0B5D30",
+   "y": "TESTOWNER 388941"
+  },
+  {
+   "address": "5580 TEST ST",
+   "application_date": "2026-04-25T11:45:38.000",
+   "bedroom_limit": "2",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "guest_occupancy_limit": "4",
+   "issue_date": "2026-05-20T13:09:18.000",
+   "latitude": "TESTOWNER D06D48",
+   "license_holder_name": "TESTOWNER 49D705",
+   "license_number": "23-NSTR-14553",
+   "license_type": "Non-Commercial Short Term Rental",
+   "link": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=UGWCD1"
+   },
+   "location": {
+    "coordinates": [
+     -90.04831495457339,
+     29.971262179610346
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 8D2603",
+   "operator_email": "TESTOWNER B37DDA",
+   "operator_license_number": "21-OSTR-19859",
+   "operator_name": "TESTOWNER 144131",
+   "operator_phone": "TESTOWNER FFEF2D",
+   "reference_code": "UGWCD1",
+   "residential_subtype": "N/A",
+   "x": "TESTOWNER 438ABE",
+   "y": "TESTOWNER 5537D2"
+  },
+  {
+   "address": "255 TEST ST",
+   "application_date": "2026-04-22T10:49:34.000",
+   "bedroom_limit": "2",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "guest_occupancy_limit": "4",
+   "issue_date": "2026-05-19T08:58:58.000",
+   "latitude": "TESTOWNER BDA41A",
+   "license_holder_name": "TESTOWNER 177FC8",
+   "license_number": "23-NSTR-14556",
+   "license_type": "Non-Commercial Short Term Rental",
+   "link": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=WC51PG"
+   },
+   "location": {
+    "coordinates": [
+     -90.02312809611372,
+     29.958332826852885
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 566708",
+   "operator_email": "TESTOWNER AAAFE6",
+   "operator_license_number": "26-OSTR-00424",
+   "operator_name": "TESTOWNER E6C8DA",
+   "operator_phone": "TESTOWNER 733945",
+   "reference_code": "WC51PG",
+   "residential_subtype": "N/A",
+   "x": "TESTOWNER 513C5F",
+   "y": "TESTOWNER 549262"
+  },
+  {
+   "address": "7434 TEST ST",
+   "application_date": "2026-04-29T09:23:32.000",
+   "bedroom_limit": "2",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "guest_occupancy_limit": "4",
+   "issue_date": "2026-06-29T12:16:15.000",
+   "latitude": "TESTOWNER 157EE8",
+   "license_holder_name": "TESTOWNER 21D1DC",
+   "license_number": "23-NSTR-14558",
+   "license_type": "Non-Commercial Short Term Rental",
+   "link": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=45J2UH"
+   },
+   "location": {
+    "coordinates": [
+     -90.10652872458027,
+     29.93716859364705
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER A1947F",
+   "operator_email": "TESTOWNER CBF794",
+   "operator_license_number": "22-OSTR-19296",
+   "operator_name": "TESTOWNER 15A336",
+   "operator_phone": "TESTOWNER 15EB70",
+   "reference_code": "45J2UH",
+   "residential_subtype": "N/A",
+   "x": "TESTOWNER B7D928",
+   "y": "TESTOWNER 31E41A"
+  },
+  {
+   "address": "4392 TEST ST",
+   "application_date": "2026-04-07T14:22:38.000",
+   "bedroom_limit": "2",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "guest_occupancy_limit": "4",
+   "issue_date": "2026-04-24T08:42:06.000",
+   "latitude": "TESTOWNER 531D4C",
+   "license_holder_name": "TESTOWNER AD617D",
+   "license_number": "23-NSTR-14575",
+   "license_type": "Non-Commercial Short Term Rental",
+   "link": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=X7R7YL"
+   },
+   "location": {
+    "coordinates": [
+     -90.08188439615293,
+     30.002028641852444
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 998BE3",
+   "operator_email": "TESTOWNER 724A53",
+   "operator_license_number": "23-OSTR-14568",
+   "operator_name": "TESTOWNER 26D6A3",
+   "operator_phone": "TESTOWNER 5A0348",
+   "reference_code": "X7R7YL",
+   "residential_subtype": "N/A",
+   "x": "TESTOWNER 7AAB64",
+   "y": "TESTOWNER F3E11E"
+  },
+  {
+   "address": "488 TEST ST",
+   "application_date": "2026-04-27T15:48:31.000",
+   "bedroom_limit": "2",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "guest_occupancy_limit": "4",
+   "issue_date": "2026-07-13T11:52:04.000",
+   "latitude": "TESTOWNER D78BFE",
+   "license_holder_name": "TESTOWNER 67678C",
+   "license_number": "23-NSTR-14581",
+   "license_type": "Non-Commercial Short Term Rental",
+   "link": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=7LA1QX"
+   },
+   "location": {
+    "coordinates": [
+     -90.0342296359399,
+     29.962543204589892
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER FDFA80",
+   "operator_email": "TESTOWNER 7D83BA",
+   "operator_license_number": "22-OSTR-05088",
+   "operator_name": "TESTOWNER D62EFB",
+   "operator_phone": "TESTOWNER ADD2A4",
+   "reference_code": "7LA1QX",
+   "residential_subtype": "N/A",
+   "x": "TESTOWNER 301254",
+   "y": "TESTOWNER 4D003E"
+  },
+  {
+   "address": "7519 TEST ST",
+   "application_date": "2026-04-21T10:01:38.000",
+   "bedroom_limit": "2",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "guest_occupancy_limit": "4",
+   "issue_date": "2026-05-21T09:22:06.000",
+   "latitude": "TESTOWNER 5C8298",
+   "license_holder_name": "TESTOWNER DF9188",
+   "license_number": "23-NSTR-14631",
+   "license_type": "Non-Commercial Short Term Rental",
+   "link": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=M7SW28"
+   },
+   "location": {
+    "coordinates": [
+     -90.10518417762893,
+     29.971845372788003
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 4D1B4B",
+   "operator_email": "TESTOWNER 81607F",
+   "operator_license_number": "23-OSTR-14618",
+   "operator_name": "TESTOWNER 5168F6",
+   "operator_phone": "TESTOWNER 6688B6",
+   "reference_code": "M7SW28",
+   "residential_subtype": "N/A",
+   "x": "TESTOWNER 8E7495",
+   "y": "TESTOWNER FD3EA9"
+  },
+  {
+   "address": "6929 TEST ST",
+   "application_date": "2026-04-20T15:26:34.000",
+   "bedroom_limit": "3",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "guest_occupancy_limit": "6",
+   "issue_date": "2026-04-27T09:50:28.000",
+   "latitude": "TESTOWNER 16B167",
+   "license_holder_name": "TESTOWNER 028D75",
+   "license_number": "23-NSTR-14633",
+   "license_type": "Non-Commercial Short Term Rental",
+   "link": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=MUQFDL"
+   },
+   "location": {
+    "coordinates": [
+     -90.11934847043348,
+     29.9515134707521
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 451AAD",
+   "operator_email": "TESTOWNER CAF383",
+   "operator_license_number": "24-OSTR-18259",
+   "operator_name": "TESTOWNER F884B7",
+   "operator_phone": "TESTOWNER 1F5524",
+   "reference_code": "MUQFDL",
+   "residential_subtype": "N/A",
+   "x": "TESTOWNER 5C7376",
+   "y": "TESTOWNER 93211F"
+  },
+  {
+   "address": "5999 TEST ST",
+   "application_date": "2026-04-23T19:04:33.000",
+   "bedroom_limit": "1",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "guest_occupancy_limit": "2",
+   "issue_date": "2026-05-12T16:07:42.000",
+   "latitude": "TESTOWNER 314A2C",
+   "license_holder_name": "TESTOWNER 1DEAE8",
+   "license_number": "23-NSTR-14634",
+   "license_type": "Non-Commercial Short Term Rental",
+   "link": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=WW4ZX5"
+   },
+   "location": {
+    "coordinates": [
+     -90.13063968065002,
+     29.9395802072481
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER A4F151",
+   "operator_email": "TESTOWNER E10862",
+   "operator_license_number": "24-OSTR-17733",
+   "operator_name": "TESTOWNER 0BD0F9",
+   "operator_phone": "TESTOWNER F641D3",
+   "reference_code": "WW4ZX5",
+   "residential_subtype": "N/A",
+   "x": "TESTOWNER 3E4CB8",
+   "y": "TESTOWNER B7AC55"
+  },
+  {
+   "address": "5908 TEST ST",
+   "application_date": "2026-04-23T08:26:41.000",
+   "bedroom_limit": "1",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "guest_occupancy_limit": "2",
+   "issue_date": "2026-05-26T13:10:14.000",
+   "latitude": "TESTOWNER F0E458",
+   "license_holder_name": "TESTOWNER 13B566",
+   "license_number": "23-NSTR-14640",
+   "license_type": "Non-Commercial Short Term Rental",
+   "link": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=MTFYJE"
+   },
+   "location": {
+    "coordinates": [
+     -90.05265746319591,
+     29.97267389570565
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER A6F22D",
+   "operator_email": "TESTOWNER 771DD7",
+   "operator_license_number": "23-OSTR-14718",
+   "operator_name": "TESTOWNER A3E3B2",
+   "operator_phone": "TESTOWNER 16DC41",
+   "reference_code": "MTFYJE",
+   "residential_subtype": "N/A",
+   "x": "TESTOWNER ACE960",
+   "y": "TESTOWNER AE673C"
+  },
+  {
+   "address": "7077 TEST ST",
+   "application_date": "2026-04-20T18:52:05.000",
+   "bedroom_limit": "2",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "guest_occupancy_limit": "4",
+   "issue_date": "2026-05-21T08:56:39.000",
+   "latitude": "TESTOWNER BA349C",
+   "license_holder_name": "TESTOWNER BFB2D6",
+   "license_number": "23-NSTR-14652",
+   "license_type": "Non-Commercial Short Term Rental",
+   "link": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=ECLRPM"
+   },
+   "location": {
+    "coordinates": [
+     -90.0953261717194,
+     29.923977456249332
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER C59745",
+   "operator_email": "TESTOWNER 97ECF8",
+   "operator_license_number": "23-OSTR-14204",
+   "operator_name": "TESTOWNER FA016D",
+   "operator_phone": "TESTOWNER 199514",
+   "reference_code": "ECLRPM",
+   "residential_subtype": "N/A",
+   "x": "TESTOWNER ED03DC",
+   "y": "TESTOWNER C451D5"
+  },
+  {
+   "address": "2962 TEST ST",
+   "application_date": "2026-04-28T12:07:56.000",
+   "bedroom_limit": "1",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "guest_occupancy_limit": "2",
+   "issue_date": "2026-06-01T11:02:10.000",
+   "latitude": "TESTOWNER 9E8C45",
+   "license_holder_name": "TESTOWNER BD92F6",
+   "license_number": "23-NSTR-14654",
+   "license_type": "Non-Commercial Short Term Rental",
+   "link": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=1U1KYS"
+   },
+   "location": {
+    "coordinates": [
+     -90.05312867433771,
+     29.97812706772924
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 497F8F",
+   "operator_email": "TESTOWNER 11213E",
+   "operator_license_number": "24-OSTR-06059",
+   "operator_name": "TESTOWNER 3C2220",
+   "operator_phone": "TESTOWNER 512BD9",
+   "reference_code": "1U1KYS",
+   "residential_subtype": "N/A",
+   "x": "TESTOWNER B59212",
+   "y": "TESTOWNER DE4434"
+  },
+  {
+   "address": "5078 TEST ST",
+   "application_date": "2026-04-20T09:12:30.000",
+   "bedroom_limit": "3",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "guest_occupancy_limit": "6",
+   "issue_date": "2026-05-22T08:49:20.000",
+   "latitude": "TESTOWNER C3086C",
+   "license_holder_name": "TESTOWNER FA6D4F",
+   "license_number": "23-NSTR-14656",
+   "license_type": "Non-Commercial Short Term Rental",
+   "link": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=XETN53"
+   },
+   "location": {
+    "coordinates": [
+     -90.09913079809763,
+     29.97228398811431
+    ],
+    "type": "Point"
+   },
+   "longitude": "TESTOWNER 4B1646",
+   "operator_email": "TESTOWNER 08EE8F",
+   "operator_license_number": "23-OSTR-19132",
+   "operator_name": "TESTOWNER AA9FAB",
+   "operator_phone": "TESTOWNER 178606",
+   "reference_code": "XETN53",
+   "residential_subtype": "N/A",
+   "x": "TESTOWNER DA9760",
+   "y": "TESTOWNER 046A7F"
+  }
+ ],
+ "where": "license_number >= '23-NSTR-14477'"
+}

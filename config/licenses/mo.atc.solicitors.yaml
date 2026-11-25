@@ -1,0 +1,23 @@
+# Missouri Division of Alcohol and Tobacco Control, "Missouri Beer, Wine and Liquor
+# Solicitor List with Zip Code" (data.mo.gov mmn5-wy78): about 1.4K current solicitor
+# licenses (in-state and out-of-state suppliers) with business name, type, city and ZIP.
+# Updated daily.
+# TODO(Brandon): no issue date is published, so licenses are dated from the retrieval day.
+source_id: mo.atc.solicitors
+state: MO
+jurisdiction: "29"
+portal: https://data.mo.gov
+dataset: mmn5-wy78
+key: license_number
+id_prefix: "MO-ATC-SOL:"
+terms_url: https://data.mo.gov/Regulatory/Missouri-Beer-Wine-and-Liquor-Solicitor-List-with-/mmn5-wy78
+terms_summary: "Missouri Open Data Portal; no license text on the dataset (public information published by ATC)."
+checked_on: 2026-11-25
+license:
+  name: business_name
+  type: license_type
+  status_value: Active  # current licenses only
+  address: {city: city, zip: zip_code}
+holders:
+  - {role: other, title: LICENSEE, name: business_name, address: {city: city, zip: zip_code}}
+pii_fields: [business_name]

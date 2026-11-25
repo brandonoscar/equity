@@ -1,0 +1,327 @@
+{
+ "portal": "https://data.pa.gov",
+ "rows": [
+  {
+   "address_1": "7822 TEST ST",
+   "address_2": "4130 TEST ST",
+   "city": "Livonia",
+   "georeferenced_latitude_longitude": {
+    "coordinates": [
+     -83.42187,
+     42.41362
+    ],
+    "type": "Point"
+   },
+   "licensee_name": "TESTOWNER 7C4FDC",
+   "non_depository_license_type": "Mortgage Originator",
+   "phone_number": "TESTOWNER 879309",
+   "principal_license": "118194",
+   "state": "MI",
+   "zip_code": "48152"
+  },
+  {
+   "address_1": "2670 TEST ST",
+   "address_2": "3642 TEST ST",
+   "city": "Boca Raton",
+   "georeferenced_latitude_longitude": {
+    "coordinates": [
+     -80.1078761005,
+     26.39428132615
+    ],
+    "type": "Point"
+   },
+   "licensee_name": "TESTOWNER 7E3434",
+   "non_depository_license_type": "Mortgage Originator",
+   "phone_number": "TESTOWNER 6AE56D",
+   "principal_license": "118195",
+   "state": "FL",
+   "zip_code": "33431"
+  },
+  {
+   "address_1": "4892 TEST ST",
+   "city": "YORK",
+   "georeferenced_latitude_longitude": {
+    "coordinates": [
+     -76.73578,
+     39.97209
+    ],
+    "type": "Point"
+   },
+   "licensee_name": "TESTOWNER F879A8 LLC",
+   "non_depository_license_type": "Installment Seller",
+   "phone_number": "TESTOWNER 2CCE9A",
+   "principal_license": "118196",
+   "state": "PA",
+   "zip_code": "17404"
+  },
+  {
+   "address_1": "5698 TEST ST",
+   "city": "Roanoke",
+   "georeferenced_latitude_longitude": {
+    "coordinates": [
+     -79.93909,
+     37.27083
+    ],
+    "type": "Point"
+   },
+   "licensee_name": "TESTOWNER 829A46",
+   "non_depository_license_type": "Mortgage Originator",
+   "phone_number": "TESTOWNER 3C6BDD",
+   "principal_license": "118198",
+   "state": "VA",
+   "zip_code": "24011"
+  },
+  {
+   "address_1": "7237 TEST ST",
+   "address_2": "4428 TEST ST",
+   "city": "San Diego",
+   "georeferenced_latitude_longitude": {
+    "coordinates": [
+     -117.12679,
+     32.77537
+    ],
+    "type": "Point"
+   },
+   "licensee_name": "TESTOWNER 9400FF",
+   "non_depository_license_type": "Mortgage Originator",
+   "phone_number": "TESTOWNER 3B6535",
+   "principal_license": "118199",
+   "state": "CA",
+   "zip_code": "92108"
+  },
+  {
+   "address_1": "7802 TEST ST",
+   "address_2": "6623 TEST ST",
+   "city": "Reading",
+   "georeferenced_latitude_longitude": {
+    "coordinates": [
+     -75.9526,
+     40.31014
+    ],
+    "type": "Point"
+   },
+   "licensee_name": "TESTOWNER C7D378 INC",
+   "non_depository_license_type": "Installment Seller",
+   "phone_number": "TESTOWNER 687FA9",
+   "principal_license": "11820",
+   "state": "PA",
+   "zip_code": "19607-5030"
+  },
+  {
+   "address_1": "8622 TEST ST",
+   "licensee_name": "TESTOWNER E0CD7D",
+   "non_depository_license_type": "Mortgage Originator",
+   "phone_number": "TESTOWNER 1D33D2",
+   "principal_license": "118200"
+  },
+  {
+   "address_1": "4505 TEST ST",
+   "address_2": "4014 TEST ST",
+   "city": "Mesa",
+   "georeferenced_latitude_longitude": {
+    "coordinates": [
+     -111.67886,
+     33.31514
+    ],
+    "type": "Point"
+   },
+   "licensee_name": "TESTOWNER FEDDE1",
+   "non_depository_license_type": "Mortgage Originator",
+   "phone_number": "TESTOWNER 6DE4DC",
+   "principal_license": "118201",
+   "state": "AZ",
+   "zip_code": "85212"
+  },
+  {
+   "address_1": "896 TEST ST",
+   "address_2": "1740 TEST ST",
+   "city": "Irvine",
+   "georeferenced_latitude_longitude": {
+    "coordinates": [
+     -117.85021,
+     33.68369
+    ],
+    "type": "Point"
+   },
+   "licensee_name": "TESTOWNER 092B33",
+   "non_depository_license_type": "Mortgage Originator",
+   "phone_number": "TESTOWNER C42C58",
+   "principal_license": "118202",
+   "state": "CA",
+   "zip_code": "92614"
+  },
+  {
+   "address_1": "187 TEST ST",
+   "city": "Carrollton",
+   "georeferenced_latitude_longitude": {
+    "coordinates": [
+     -96.84259,
+     32.96436
+    ],
+    "type": "Point"
+   },
+   "licensee_name": "TESTOWNER C46A3D LLC",
+   "non_depository_license_type": "Sales Finance",
+   "phone_number": "TESTOWNER A96BB4",
+   "principal_license": "118203",
+   "state": "TX",
+   "zip_code": "75006"
+  },
+  {
+   "address_1": "5587 TEST ST",
+   "city": "York",
+   "georeferenced_latitude_longitude": {
+    "coordinates": [
+     -76.7216,
+     39.96845
+    ],
+    "type": "Point"
+   },
+   "licensee_name": "TESTOWNER 7F8D5A LLC",
+   "non_depository_license_type": "Installment Seller",
+   "phone_number": "TESTOWNER 10844F",
+   "principal_license": "118204",
+   "state": "PA",
+   "zip_code": "17403"
+  },
+  {
+   "address_1": "8622 TEST ST",
+   "licensee_name": "TESTOWNER FE5114",
+   "non_depository_license_type": "Mortgage Originator",
+   "phone_number": "TESTOWNER 1D33D2",
+   "principal_license": "118205"
+  },
+  {
+   "address_1": "908 TEST ST",
+   "address_2": "8915 TEST ST",
+   "city": "Coral Gables",
+   "georeferenced_latitude_longitude": {
+    "coordinates": [
+     -80.25836,
+     25.73109
+    ],
+    "type": "Point"
+   },
+   "licensee_name": "TESTOWNER B8C325",
+   "non_depository_license_type": "Sales Finance",
+   "phone_number": "TESTOWNER BD793A",
+   "principal_license": "118207",
+   "state": "FL",
+   "zip_code": "33146"
+  },
+  {
+   "address_1": "5304 TEST ST",
+   "city": "Troy",
+   "georeferenced_latitude_longitude": {
+    "coordinates": [
+     -83.16721,
+     42.59272
+    ],
+    "type": "Point"
+   },
+   "licensee_name": "TESTOWNER CB0DDC",
+   "non_depository_license_type": "Mortgage Originator",
+   "phone_number": "TESTOWNER EC9729",
+   "principal_license": "118208",
+   "state": "MI",
+   "zip_code": "48098"
+  },
+  {
+   "address_1": "8622 TEST ST",
+   "licensee_name": "TESTOWNER A1EF12",
+   "non_depository_license_type": "Mortgage Originator",
+   "phone_number": "TESTOWNER 1D33D2",
+   "principal_license": "118209"
+  },
+  {
+   "address_1": "896 TEST ST",
+   "address_2": "1740 TEST ST",
+   "city": "Irvine",
+   "georeferenced_latitude_longitude": {
+    "coordinates": [
+     -117.85067,
+     33.68294
+    ],
+    "type": "Point"
+   },
+   "licensee_name": "TESTOWNER 4E7659",
+   "non_depository_license_type": "Mortgage Originator",
+   "phone_number": "TESTOWNER C42C58",
+   "principal_license": "118210",
+   "state": "CA",
+   "zip_code": "92614"
+  },
+  {
+   "address_1": "3856 TEST ST",
+   "address_2": "1128 TEST ST",
+   "city": "Uniondale",
+   "georeferenced_latitude_longitude": {
+    "coordinates": [
+     -73.60337,
+     40.72491
+    ],
+    "type": "Point"
+   },
+   "licensee_name": "TESTOWNER 7F0AD3",
+   "non_depository_license_type": "Mortgage Originator",
+   "phone_number": "TESTOWNER 283EAE",
+   "principal_license": "118211",
+   "state": "NY",
+   "zip_code": "11553"
+  },
+  {
+   "address_1": "3062 TEST ST",
+   "address_2": "6705 TEST ST",
+   "city": "Clifton",
+   "georeferenced_latitude_longitude": {
+    "coordinates": [
+     -74.17879,
+     40.87054
+    ],
+    "type": "Point"
+   },
+   "licensee_name": "TESTOWNER 98441B",
+   "non_depository_license_type": "Mortgage Originator",
+   "phone_number": "TESTOWNER 9C5086",
+   "principal_license": "118212",
+   "state": "NJ",
+   "zip_code": "07013"
+  },
+  {
+   "address_1": "2670 TEST ST",
+   "address_2": "3642 TEST ST",
+   "city": "Boca Raton",
+   "georeferenced_latitude_longitude": {
+    "coordinates": [
+     -80.1078761005,
+     26.39428132615
+    ],
+    "type": "Point"
+   },
+   "licensee_name": "TESTOWNER D38B19",
+   "non_depository_license_type": "Mortgage Originator",
+   "phone_number": "TESTOWNER 6AE56D",
+   "principal_license": "118213",
+   "state": "FL",
+   "zip_code": "33431"
+  },
+  {
+   "address_1": "3863 TEST ST",
+   "city": "Chicago",
+   "georeferenced_latitude_longitude": {
+    "coordinates": [
+     -87.67458,
+     41.95376
+    ],
+    "type": "Point"
+   },
+   "licensee_name": "TESTOWNER BE9E90",
+   "non_depository_license_type": "Mortgage Originator",
+   "phone_number": "TESTOWNER DA969C",
+   "principal_license": "118214",
+   "state": "IL",
+   "zip_code": "60613"
+  }
+ ],
+ "where": "principal_license >= '118194'"
+}

@@ -1,0 +1,20 @@
+# Oregon Secretary of State, Corporation Division, "Active Notaries" (data.oregon.gov
+# j2pk-zk6z, Public Domain): about 34K active notary commissions with name parts, city,
+# state, ZIP and commission dates.
+source_id: or.sos.notaries
+state: OR
+jurisdiction: "41"
+portal: https://data.oregon.gov
+dataset: j2pk-zk6z
+key: commsn_nbr
+id_prefix: "OR-NOT:"
+terms_url: https://data.oregon.gov/business/Active-Notaries/j2pk-zk6z
+terms_summary: "Public Domain (dataset license field)."
+checked_on: 2026-11-25
+license:
+  type_value: Notary Public
+  status_value: Active  # active commissions only
+  issued_on: effective_date
+holders:
+  - {role: other, title: NOTARY PUBLIC, with_type: false, parts: {first: first_name, middle: mdle_name, last: last_name}, address: {city: city, state: state, zip: zip}}
+pii_fields: [last_name, first_name, mdle_name]

@@ -1,0 +1,25 @@
+# Washington State Liquor and Cannabis Board, "Washington State Liquor and Cannabis Board
+# (LCB) Cannabis Renewal" (data.wa.gov brpd-b6zd, Public Domain): about 700 pending cannabis
+# producer, processor and retailer license renewals with trade name, UBI, premises and
+# mailing addresses, privileges and the applicants (a comma-separated list of people).
+# TODO(Brandon): no issue date is published, so licenses are dated from the retrieval day.
+source_id: wa.lcb.cannabis_renewals
+state: WA
+jurisdiction: "53"
+portal: https://data.wa.gov
+dataset: brpd-b6zd
+key: license
+id_prefix: "WA-LCB-MJ:"
+terms_url: https://data.wa.gov/Public-Safety/Washington-State-Liquor-and-Cannabis-Board-LCB-Can/brpd-b6zd
+terms_summary: "Public Domain (dataset license field)."
+checked_on: 2026-11-25
+license:
+  name: tradename
+  type: privdesc01
+  status: l_a_type
+  address: {street: [streetaddress, roomnumber], city: city, state: state, zip: zipcode}
+  mailing: {street: [mailaddress, mailroom], city: mailcity, state: mailstate, zip: mailzip}
+holders:
+  - {role: other, title: LICENSEE, with_type: false, name: tradename, address: {street: [streetaddress, roomnumber], city: city, state: state, zip: zipcode}}
+  - {role: other, title: APPLICANT, with_type: false, name: applicants, split: ","}
+pii_fields: [tradename, streetaddress, roomnumber, mailaddress, mailroom, applicants, dayphone, designatedsignee, location]

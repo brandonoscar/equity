@@ -1,0 +1,26 @@
+# New York City Department of Buildings, "DOB License Info" (data.cityofnewyork.us
+# t8hj-ruu2): about 103K DOB trade licenses (master plumbers, fire suppression contractors,
+# welders, riggers, site safety managers, electricians...) with name parts, business name and
+# address when given, and status. A license number repeats across types; the row serial
+# (license_sl_no) is the record.
+# TODO(Brandon): no issue date is published, so licenses are dated from the retrieval day.
+source_id: ny.nyc.dob_licenses
+state: NY
+jurisdiction: "36"
+portal: https://data.cityofnewyork.us
+dataset: t8hj-ruu2
+key: license_sl_no
+key_is_number: true
+id_prefix: "NYC-DOB-LIC:"
+terms_url: https://www.nyc.gov/home/terms-of-use.page
+terms_summary: "NYC Open Data terms of use: free to use, no warranty; credit not required."
+checked_on: 2026-11-25
+license:
+  name: business_name
+  type: license_type
+  status: license_status
+  address: {street: [business_house_number, business_street_name], city: license_business_city, state: business_state, zip: business_zip_code}
+holders:
+  - {role: other, title: LICENSEE, parts: {first: first_name, last: last_name}, address: {street: [business_house_number, business_street_name], city: license_business_city, state: business_state, zip: business_zip_code}}
+  - {role: other, title: BUSINESS, with_type: false, name: business_name}
+pii_fields: [first_name, last_name, business_name, business_house_number, business_street_name, business_email, business_phone_number, lat, long]

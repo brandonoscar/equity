@@ -1,0 +1,22 @@
+# New York State Liquor Authority, "Current SLA Inactive Licenses" (data.ny.gov 6dg3-2z7i):
+# about 64K expired, surrendered and cancelled liquor licenses with legal name, DBA, class,
+# original issue date and premises address (the active ones are ny.sla.liquor).
+source_id: ny.sla.inactive
+state: NY
+jurisdiction: "36"
+portal: https://data.ny.gov
+dataset: 6dg3-2z7i
+key: license_permit_id
+id_prefix: "NY-SLA-INACT:"
+terms_url: https://data.ny.gov/download/77gx-ii52/application%2Fpdf
+terms_summary: "NY Open Data terms: free to use; no warranty. No restriction on commercial use found."
+checked_on: 2026-11-25
+license:
+  name: [dba, legalname]
+  type: description
+  status_value: Inactive
+  issued_on: original_issue_date
+  address: {street: [actual_address_of_premises, additional_address_information], city: city, state: state_name, zip: zip_code}
+holders:
+  - {role: other, title: LICENSEE, name: legalname, address: {street: [actual_address_of_premises, additional_address_information], city: city, state: state_name, zip: zip_code}}
+pii_fields: [legalname, dba, actual_address_of_premises, additional_address_information, aka_address, georeference]

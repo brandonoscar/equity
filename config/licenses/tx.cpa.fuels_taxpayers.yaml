@@ -1,0 +1,21 @@
+# Texas Comptroller of Public Accounts, "Licensed Fuels Taxpayers" (data.texas.gov
+# 3fc3-wv7y, Public Domain): about 235K fuels tax license holders (distributors, suppliers,
+# exporters, interstate truckers...) with taxpayer number, name, city, ZIP and permit type.
+# TODO(Brandon): no issue date is published, so licenses are dated from the retrieval day.
+source_id: tx.cpa.fuels_taxpayers
+state: TX
+jurisdiction: "48"
+portal: https://data.texas.gov
+dataset: 3fc3-wv7y
+key: tp_id
+id_prefix: "TX-FUEL:"
+terms_url: https://data.texas.gov/Government-and-Taxes/Licensed-Fuels-Taxpayers/3fc3-wv7y
+terms_summary: "Public Domain (dataset license field)."
+checked_on: 2026-11-25
+license:
+  name: name
+  type: permit_type
+  address: {city: city, zip: zip}
+holders:
+  - {role: other, title: LICENSEE, name: name, address: {city: city, zip: zip}}
+pii_fields: [name]

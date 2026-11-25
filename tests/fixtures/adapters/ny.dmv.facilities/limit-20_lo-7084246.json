@@ -1,0 +1,440 @@
+{
+ "portal": "https://data.ny.gov",
+ "rows": [
+  {
+   "business_type": "RS",
+   "expiration_date": "04/30/2027",
+   "facility": "7084246",
+   "facility_city": "POUGHKEEPSIE",
+   "facility_county": "DUTC",
+   "facility_name": "TESTOWNER D0D128",
+   "facility_state": "NY",
+   "facility_street": "TESTOWNER 5691A9",
+   "facility_zip_code": "12601",
+   "georeference": {
+    "coordinates": [
+     -73.93185,
+     41.69335
+    ],
+    "type": "Point"
+   },
+   "last_renewal_date": "2025-02-27T00:00:00.000",
+   "origional_issuance_date": "05/05/1999",
+   "owner_name": "TESTOWNER 945F8B"
+  },
+  {
+   "business_type": "RS",
+   "expiration_date": "04/30/2023",
+   "facility": "7084250",
+   "facility_city": "JAMAICA",
+   "facility_county": "QUEE",
+   "facility_name": "TESTOWNER A0DA83",
+   "facility_state": "NY",
+   "facility_street": "TESTOWNER 430DBD",
+   "facility_zip_code": "11431",
+   "georeference": {
+    "coordinates": [
+     -73.81151,
+     40.70519
+    ],
+    "type": "Point"
+   },
+   "last_renewal_date": "2021-04-16T00:00:00.000",
+   "origional_issuance_date": "05/07/1999",
+   "owner_name": "TESTOWNER E1C6C1",
+   "owner_name_overflow": "TESTOWNER 23C4AF"
+  },
+  {
+   "business_type": "RS",
+   "expiration_date": "04/30/2027",
+   "facility": "7084251",
+   "facility_city": "ST ALBANS",
+   "facility_county": "QUEE",
+   "facility_name": "TESTOWNER 715E5B INC",
+   "facility_state": "NY",
+   "facility_street": "TESTOWNER 00AABD",
+   "facility_zip_code": "11434",
+   "georeference": {
+    "coordinates": [
+     -73.77675,
+     40.68859
+    ],
+    "type": "Point"
+   },
+   "last_renewal_date": "2025-05-14T00:00:00.000",
+   "origional_issuance_date": "05/14/1999",
+   "owner_name": "TESTOWNER 79556E"
+  },
+  {
+   "business_type": "RS",
+   "expiration_date": "03/31/2027",
+   "facility": "7084254",
+   "facility_city": "NEW WINDSOR",
+   "facility_county": "ORAN",
+   "facility_name": "TESTOWNER C8A772",
+   "facility_state": "NY",
+   "facility_street": "TESTOWNER CCADE4",
+   "facility_zip_code": "12553",
+   "georeference": {
+    "coordinates": [
+     -74.05704,
+     41.49287
+    ],
+    "type": "Point"
+   },
+   "last_renewal_date": "2025-03-17T00:00:00.000",
+   "origional_issuance_date": "04/23/1999",
+   "owner_name": "TESTOWNER 5A8BB6"
+  },
+  {
+   "business_type": "ATV",
+   "expiration_date": "03/31/2027",
+   "facility": "7084254",
+   "facility_city": "NEW WINDSOR",
+   "facility_county": "ORAN",
+   "facility_name": "TESTOWNER C8A772",
+   "facility_state": "NY",
+   "facility_street": "TESTOWNER CCADE4",
+   "facility_zip_code": "12553",
+   "georeference": {
+    "coordinates": [
+     -74.05704,
+     41.49287
+    ],
+    "type": "Point"
+   },
+   "last_renewal_date": "2025-03-17T00:00:00.000",
+   "origional_issuance_date": "10/26/2017",
+   "owner_name": "TESTOWNER 5A8BB6"
+  },
+  {
+   "business_type": "DLU",
+   "expiration_date": "03/31/2027",
+   "facility": "7084254",
+   "facility_city": "NEW WINDSOR",
+   "facility_county": "ORAN",
+   "facility_name": "TESTOWNER C8A772",
+   "facility_state": "NY",
+   "facility_street": "TESTOWNER CCADE4",
+   "facility_zip_code": "12553",
+   "georeference": {
+    "coordinates": [
+     -74.05704,
+     41.49287
+    ],
+    "type": "Point"
+   },
+   "last_renewal_date": "2025-03-17T00:00:00.000",
+   "origional_issuance_date": "01/18/2005",
+   "owner_name": "TESTOWNER 5A8BB6"
+  },
+  {
+   "business_type": "DLU",
+   "expiration_date": "03/31/2027",
+   "facility": "7084258",
+   "facility_city": "KENMORE",
+   "facility_county": "ERIE",
+   "facility_name": "TESTOWNER 64CB8A",
+   "facility_name_overflow": "TESTOWNER 48CD98",
+   "facility_state": "NY",
+   "facility_street": "TESTOWNER 74DA70",
+   "facility_zip_code": "14217",
+   "georeference": {
+    "coordinates": [
+     -78.88667,
+     42.97945
+    ],
+    "type": "Point"
+   },
+   "last_renewal_date": "2025-02-28T00:00:00.000",
+   "origional_issuance_date": "04/26/1999",
+   "owner_name": "TESTOWNER 5D132C"
+  },
+  {
+   "business_type": "RS",
+   "expiration_date": "03/31/2027",
+   "facility": "7084259",
+   "facility_city": "FT COVINGTON",
+   "facility_county": "FRAN",
+   "facility_name": "TESTOWNER 77B2F7",
+   "facility_name_overflow": "TESTOWNER 12EFDE",
+   "facility_state": "NY",
+   "facility_street": "TESTOWNER 19D6BE",
+   "facility_zip_code": "12937",
+   "georeference": {
+    "coordinates": [
+     -74.55222,
+     44.97302
+    ],
+    "type": "Point"
+   },
+   "last_renewal_date": "2025-01-30T00:00:00.000",
+   "origional_issuance_date": "04/26/1999",
+   "owner_name": "TESTOWNER 33D21B"
+  },
+  {
+   "business_type": "ISP",
+   "expiration_date": "03/31/2027",
+   "facility": "7084259",
+   "facility_city": "FT COVINGTON",
+   "facility_county": "FRAN",
+   "facility_name": "TESTOWNER 77B2F7",
+   "facility_name_overflow": "TESTOWNER 12EFDE",
+   "facility_state": "NY",
+   "facility_street": "TESTOWNER 19D6BE",
+   "facility_zip_code": "12937",
+   "georeference": {
+    "coordinates": [
+     -74.55222,
+     44.97302
+    ],
+    "type": "Point"
+   },
+   "last_renewal_date": "2025-01-30T00:00:00.000",
+   "origional_issuance_date": "04/26/1999",
+   "owner_name": "TESTOWNER 33D21B"
+  },
+  {
+   "business_type": "DLU",
+   "expiration_date": "03/31/2027",
+   "facility": "7084259",
+   "facility_city": "FT COVINGTON",
+   "facility_county": "FRAN",
+   "facility_name": "TESTOWNER 77B2F7",
+   "facility_name_overflow": "TESTOWNER 12EFDE",
+   "facility_state": "NY",
+   "facility_street": "TESTOWNER 19D6BE",
+   "facility_zip_code": "12937",
+   "georeference": {
+    "coordinates": [
+     -74.55222,
+     44.97302
+    ],
+    "type": "Point"
+   },
+   "last_renewal_date": "2025-01-30T00:00:00.000",
+   "origional_issuance_date": "04/26/1999",
+   "owner_name": "TESTOWNER 33D21B"
+  },
+  {
+   "business_type": "TRS",
+   "expiration_date": "03/31/2027",
+   "facility": "7084260",
+   "facility_city": "BINGHAMTON",
+   "facility_county": "BROO",
+   "facility_name": "TESTOWNER 9FB030",
+   "facility_name_overflow": "TESTOWNER 582069",
+   "facility_state": "NY",
+   "facility_street": "TESTOWNER 0306F5",
+   "facility_zip_code": "13901",
+   "georeference": {
+    "coordinates": [
+     -75.89472,
+     42.12257
+    ],
+    "type": "Point"
+   },
+   "last_renewal_date": "2025-02-05T00:00:00.000",
+   "origional_issuance_date": "04/27/1999",
+   "owner_name": "TESTOWNER DB5A91"
+  },
+  {
+   "business_type": "RS",
+   "expiration_date": "03/31/2023",
+   "facility": "7084263",
+   "facility_city": "LONGISLANDCITY",
+   "facility_county": "QUEE",
+   "facility_name": "TESTOWNER 404A81",
+   "facility_name_overflow": "TESTOWNER 48CD98",
+   "facility_state": "NY",
+   "facility_street": "TESTOWNER E1D9B9",
+   "facility_zip_code": "11101",
+   "georeference": {
+    "coordinates": [
+     -73.94752,
+     40.7524
+    ],
+    "type": "Point"
+   },
+   "last_renewal_date": "2021-03-17T00:00:00.000",
+   "origional_issuance_date": "04/30/1999",
+   "owner_name": "TESTOWNER C38011"
+  },
+  {
+   "business_type": "RS",
+   "expiration_date": "04/30/2027",
+   "facility": "7084265",
+   "facility_city": "ONEONTA",
+   "facility_county": "DELA",
+   "facility_name": "TESTOWNER 67E6D1",
+   "facility_name_overflow": "TESTOWNER 48CD98",
+   "facility_state": "NY",
+   "facility_street": "TESTOWNER 11E758",
+   "facility_zip_code": "13820",
+   "georeference": {
+    "coordinates": [
+     -75.00942,
+     42.44395
+    ],
+    "type": "Point"
+   },
+   "last_renewal_date": "2025-04-11T00:00:00.000",
+   "origional_issuance_date": "05/03/1999",
+   "owner_name": "TESTOWNER 2BECFE"
+  },
+  {
+   "business_type": "ATV",
+   "expiration_date": "04/30/2027",
+   "facility": "7084265",
+   "facility_city": "ONEONTA",
+   "facility_county": "DELA",
+   "facility_name": "TESTOWNER 67E6D1",
+   "facility_name_overflow": "TESTOWNER 48CD98",
+   "facility_state": "NY",
+   "facility_street": "TESTOWNER 11E758",
+   "facility_zip_code": "13820",
+   "georeference": {
+    "coordinates": [
+     -75.00942,
+     42.44395
+    ],
+    "type": "Point"
+   },
+   "last_renewal_date": "2025-04-11T00:00:00.000",
+   "origional_issuance_date": "05/03/1999",
+   "owner_name": "TESTOWNER 2BECFE"
+  },
+  {
+   "business_type": "RS",
+   "expiration_date": "04/30/2027",
+   "facility": "7084276",
+   "facility_city": "MINEOLA",
+   "facility_county": "NASS",
+   "facility_name": "TESTOWNER 27C6C2",
+   "facility_name_overflow": "TESTOWNER 48CD98",
+   "facility_state": "NY",
+   "facility_street": "TESTOWNER 560E51",
+   "facility_zip_code": "11501",
+   "georeference": {
+    "coordinates": [
+     -73.64144,
+     40.74827
+    ],
+    "type": "Point"
+   },
+   "last_renewal_date": "2025-04-28T00:00:00.000",
+   "origional_issuance_date": "05/19/1999",
+   "owner_name": "TESTOWNER 4FB8B1"
+  },
+  {
+   "business_type": "ISP",
+   "expiration_date": "04/30/2027",
+   "facility": "7084276",
+   "facility_city": "MINEOLA",
+   "facility_county": "NASS",
+   "facility_name": "TESTOWNER 27C6C2",
+   "facility_name_overflow": "TESTOWNER 48CD98",
+   "facility_state": "NY",
+   "facility_street": "TESTOWNER 560E51",
+   "facility_zip_code": "11501",
+   "georeference": {
+    "coordinates": [
+     -73.64144,
+     40.74827
+    ],
+    "type": "Point"
+   },
+   "last_renewal_date": "2025-04-28T00:00:00.000",
+   "origional_issuance_date": "10/22/1999",
+   "owner_name": "TESTOWNER 4FB8B1"
+  },
+  {
+   "business_type": "RSB",
+   "expiration_date": "04/30/2027",
+   "facility": "7084278",
+   "facility_city": "JAMAICA",
+   "facility_county": "QUEE",
+   "facility_name": "TESTOWNER 3C254A",
+   "facility_state": "NY",
+   "facility_street": "TESTOWNER BE5FCF",
+   "facility_zip_code": "11435",
+   "georeference": {
+    "coordinates": [
+     -73.80288,
+     40.69748
+    ],
+    "type": "Point"
+   },
+   "last_renewal_date": "2025-02-19T00:00:00.000",
+   "origional_issuance_date": "05/20/1999",
+   "owner_name": "TESTOWNER E6FF5D INC"
+  },
+  {
+   "business_type": "ISF",
+   "expiration_date": "02/28/2027",
+   "facility": "7084284",
+   "facility_city": "ROCHESTER",
+   "facility_county": "MONR",
+   "facility_name": "TESTOWNER A31BAB",
+   "facility_name_overflow": "TESTOWNER E68661",
+   "facility_state": "NY",
+   "facility_street": "TESTOWNER 3DB9DF",
+   "facility_zip_code": "14617",
+   "georeference": {
+    "coordinates": [
+     -77.60088,
+     43.24908
+    ],
+    "type": "Point"
+   },
+   "last_renewal_date": "2025-01-07T00:00:00.000",
+   "origional_issuance_date": "03/25/1999",
+   "owner_name": "TESTOWNER A27E31"
+  },
+  {
+   "business_type": "RS",
+   "expiration_date": "03/31/2027",
+   "facility": "7084291",
+   "facility_city": "CAIRO",
+   "facility_county": "GREE",
+   "facility_name": "TESTOWNER 6D0995",
+   "facility_name_overflow": "TESTOWNER 79C155",
+   "facility_state": "NY",
+   "facility_street": "TESTOWNER C83AC8",
+   "facility_zip_code": "12413",
+   "georeference": {
+    "coordinates": [
+     -73.98376,
+     42.29139
+    ],
+    "type": "Point"
+   },
+   "last_renewal_date": "2025-03-14T00:00:00.000",
+   "origional_issuance_date": "11/15/1999",
+   "owner_name": "TESTOWNER F4DB40"
+  },
+  {
+   "business_type": "DLU",
+   "expiration_date": "03/31/2027",
+   "facility": "7084291",
+   "facility_city": "CAIRO",
+   "facility_county": "GREE",
+   "facility_name": "TESTOWNER 6D0995",
+   "facility_name_overflow": "TESTOWNER 79C155",
+   "facility_state": "NY",
+   "facility_street": "TESTOWNER C83AC8",
+   "facility_zip_code": "12413",
+   "georeference": {
+    "coordinates": [
+     -73.98376,
+     42.29139
+    ],
+    "type": "Point"
+   },
+   "last_renewal_date": "2025-03-14T00:00:00.000",
+   "origional_issuance_date": "04/27/1999",
+   "owner_name": "TESTOWNER F4DB40"
+  }
+ ],
+ "where": "facility >= '7084246'"
+}

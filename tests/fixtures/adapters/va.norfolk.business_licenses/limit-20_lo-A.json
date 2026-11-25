@@ -1,0 +1,336 @@
+{
+ "portal": "https://data.norfolk.gov",
+ "rows": [
+  {
+   "business_opened_date": "2023-07-25T00:00:00.000",
+   "census_tract": "51710000600",
+   "geocoded_point": {
+    "coordinates": [
+     -76.2474,
+     36.9434
+    ],
+    "type": "Point"
+   },
+   "latitude": "TESTOWNER A67A04",
+   "location_address": "3841 TEST ST",
+   "longitude": "TESTOWNER C72DD5",
+   "mailing_address": "2775 TEST ST",
+   "naics": "Contractor, Concrete",
+   "primary_owner": "TESTOWNER 40789E",
+   "trading_as_name": "TESTOWNER 94C929"
+  },
+  {
+   "business_opened_date": "2019-03-04T00:00:00.000",
+   "census_tract": "51710000202",
+   "geocoded_point": {
+    "coordinates": [
+     -76.2441,
+     36.9391
+    ],
+    "type": "Point"
+   },
+   "latitude": "TESTOWNER BF1980",
+   "location_address": "2581 TEST ST",
+   "longitude": "TESTOWNER 32F18B",
+   "mailing_address": "8863 TEST ST",
+   "naics": "Building & Dwelling Services",
+   "primary_owner": "TESTOWNER C93FC0",
+   "trading_as_name": "TESTOWNER 07C74D"
+  },
+  {
+   "business_opened_date": "2020-07-01T00:00:00.000",
+   "census_tract": "51710002700",
+   "geocoded_point": {
+    "coordinates": [
+     -76.2921,
+     36.8785
+    ],
+    "type": "Point"
+   },
+   "latitude": "TESTOWNER C1DB90",
+   "location_address": "241 TEST ST",
+   "longitude": "TESTOWNER 43240B",
+   "mailing_address": "1459 TEST ST",
+   "naics": "Movie & Video Production",
+   "primary_owner": "TESTOWNER 603643 LLC",
+   "trading_as_name": "TESTOWNER 2CA3D0 LLC"
+  },
+  {
+   "business_opened_date": "2025-01-25T00:00:00.000",
+   "census_tract": "51710007002",
+   "geocoded_point": {
+    "coordinates": [
+     -76.2112,
+     36.8465
+    ],
+    "type": "Point"
+   },
+   "latitude": "TESTOWNER 7C8038",
+   "location_address": "4505 TEST ST",
+   "longitude": "TESTOWNER 6A9A45",
+   "mailing_address": "6487 TEST ST",
+   "naics": "Nail Salon",
+   "primary_owner": "TESTOWNER B4E8B4 LLC",
+   "trading_as_name": "TESTOWNER B13220"
+  },
+  {
+   "business_opened_date": "2026-10-01T00:00:00.000",
+   "census_tract": "51710006901",
+   "geocoded_point": {
+    "coordinates": [
+     -76.2028,
+     36.8606
+    ],
+    "type": "Point"
+   },
+   "latitude": "TESTOWNER 9F5481",
+   "location_address": "5995 TEST ST",
+   "longitude": "TESTOWNER F7C30F",
+   "mailing_address": "6508 TEST ST",
+   "naics": "Janitorial Services",
+   "primary_owner": "TESTOWNER CE9577 LLC",
+   "trading_as_name": "TESTOWNER BFC565 LLC"
+  },
+  {
+   "business_opened_date": "2025-05-26T00:00:00.000",
+   "census_tract": "51710004900",
+   "geocoded_point": {
+    "coordinates": [
+     -76.2874,
+     36.8431
+    ],
+    "type": "Point"
+   },
+   "latitude": "TESTOWNER 3172F1",
+   "location_address": "1262 TEST ST",
+   "longitude": "TESTOWNER FB483E",
+   "mailing_address": "3156 TEST ST",
+   "naics": "Contractor, Misc",
+   "primary_owner": "TESTOWNER E7B6FF LLC",
+   "trading_as_name": "TESTOWNER D96FEC"
+  },
+  {
+   "business_opened_date": "2021-01-01T00:00:00.000",
+   "census_tract": "51710006502",
+   "geocoded_point": {
+    "coordinates": [
+     -76.1859,
+     36.9279
+    ],
+    "type": "Point"
+   },
+   "latitude": "TESTOWNER CAD0EC",
+   "location_address": "5436 TEST ST",
+   "longitude": "TESTOWNER 290C65",
+   "mailing_address": "7151 TEST ST",
+   "naics": "Building & Dwelling Services",
+   "primary_owner": "TESTOWNER D1B2B1 LLC",
+   "trading_as_name": "TESTOWNER 14A969"
+  },
+  {
+   "business_opened_date": "2023-04-16T00:00:00.000",
+   "census_tract": "51710000100",
+   "geocoded_point": {
+    "coordinates": [
+     -76.2285,
+     36.9399
+    ],
+    "type": "Point"
+   },
+   "latitude": "TESTOWNER 7DE97A",
+   "location_address": "999 TEST ST",
+   "longitude": "TESTOWNER 48ABCC",
+   "mailing_address": "8572 TEST ST",
+   "naics": "Cosmetics, Beauty Supplies & Perfume Retailers",
+   "primary_owner": "TESTOWNER 3B9406 LLC",
+   "trading_as_name": "TESTOWNER 73DDE0 LLC"
+  },
+  {
+   "business_opened_date": "2019-01-01T00:00:00.000",
+   "location_address": "1195 TEST ST",
+   "mailing_address": "1862 TEST ST",
+   "naics": "Contractor, Misc",
+   "primary_owner": "TESTOWNER 06774C INC",
+   "trading_as_name": "TESTOWNER 7C4ED1"
+  },
+  {
+   "business_opened_date": "2021-07-16T00:00:00.000",
+   "census_tract": "51710006100",
+   "geocoded_point": {
+    "coordinates": [
+     -76.2505,
+     36.8816
+    ],
+    "type": "Point"
+   },
+   "latitude": "TESTOWNER C3A967",
+   "location_address": "8063 TEST ST",
+   "longitude": "TESTOWNER 7A936A",
+   "mailing_address": "2118 TEST ST",
+   "naics": "Janitorial Services",
+   "primary_owner": "TESTOWNER 3115FB LLC",
+   "trading_as_name": "TESTOWNER DD340C LLC"
+  },
+  {
+   "business_opened_date": "2022-01-01T00:00:00.000",
+   "location_address": "4462 TEST ST",
+   "mailing_address": "8674 TEST ST",
+   "naics": "Contractor, Misc",
+   "primary_owner": "TESTOWNER E295BF LLC",
+   "trading_as_name": "TESTOWNER AED9FC LLC"
+  },
+  {
+   "business_opened_date": "2023-03-01T00:00:00.000",
+   "census_tract": "51710006602",
+   "geocoded_point": {
+    "coordinates": [
+     -76.2259,
+     36.9167
+    ],
+    "type": "Point"
+   },
+   "latitude": "TESTOWNER B2C3D8",
+   "location_address": "3221 TEST ST",
+   "longitude": "TESTOWNER 033BC4",
+   "mailing_address": "4319 TEST ST",
+   "naics": "Contractor, Misc",
+   "primary_owner": "TESTOWNER A35FC9 LLC",
+   "trading_as_name": "TESTOWNER DEB537"
+  },
+  {
+   "business_opened_date": "2023-03-27T00:00:00.000",
+   "census_tract": "51710006502",
+   "geocoded_point": {
+    "coordinates": [
+     -76.195,
+     36.9294
+    ],
+    "type": "Point"
+   },
+   "latitude": "TESTOWNER 4BA7E6",
+   "location_address": "1118 TEST ST",
+   "longitude": "TESTOWNER 495973",
+   "mailing_address": "4310 TEST ST",
+   "naics": "Vacation Rental",
+   "primary_owner": "TESTOWNER F4D28C LLC",
+   "trading_as_name": "TESTOWNER A3B11C"
+  },
+  {
+   "business_opened_date": "2025-01-01T00:00:00.000",
+   "census_tract": "51710006606",
+   "geocoded_point": {
+    "coordinates": [
+     -76.2268,
+     36.9152
+    ],
+    "type": "Point"
+   },
+   "latitude": "TESTOWNER 9EAF54",
+   "location_address": "1905 TEST ST",
+   "longitude": "TESTOWNER 84DC0C",
+   "mailing_address": "1959 TEST ST",
+   "naics": "Transportation, All Other Passenger",
+   "primary_owner": "TESTOWNER 3DB754",
+   "trading_as_name": "TESTOWNER 7A812F"
+  },
+  {
+   "business_opened_date": "2026-01-02T00:00:00.000",
+   "census_tract": "51710004900",
+   "geocoded_point": {
+    "coordinates": [
+     -76.288,
+     36.846
+    ],
+    "type": "Point"
+   },
+   "latitude": "TESTOWNER A8FC78",
+   "location_address": "820 TEST ST",
+   "longitude": "TESTOWNER 6FD836",
+   "mailing_address": "3196 TEST ST",
+   "naics": "Other Legal Services",
+   "primary_owner": "TESTOWNER 4A097E",
+   "trading_as_name": "TESTOWNER EAED62"
+  },
+  {
+   "business_opened_date": "2021-01-04T00:00:00.000",
+   "census_tract": "51710004900",
+   "geocoded_point": {
+    "coordinates": [
+     -76.2935,
+     36.8548
+    ],
+    "type": "Point"
+   },
+   "latitude": "TESTOWNER 0E7CE0",
+   "location_address": "4140 TEST ST",
+   "longitude": "TESTOWNER EAE644",
+   "mailing_address": "8420 TEST ST",
+   "naics": "Transportation, Scheduled Freight Air",
+   "primary_owner": "TESTOWNER 7FFDD6",
+   "trading_as_name": "TESTOWNER 982339"
+  },
+  {
+   "business_opened_date": "2023-01-01T00:00:00.000",
+   "census_tract": "51710005702",
+   "geocoded_point": {
+    "coordinates": [
+     -76.2564,
+     36.8998
+    ],
+    "type": "Point"
+   },
+   "latitude": "TESTOWNER 048F41",
+   "location_address": "4366 TEST ST",
+   "longitude": "TESTOWNER CC2DB7",
+   "mailing_address": "5448 TEST ST",
+   "naics": "Contractor, Handyman",
+   "primary_owner": "TESTOWNER AF8294 LLC",
+   "trading_as_name": "TESTOWNER E0C440"
+  },
+  {
+   "business_opened_date": "2021-01-04T00:00:00.000",
+   "census_tract": "51710003501",
+   "geocoded_point": {
+    "coordinates": [
+     -76.2756,
+     36.8656
+    ],
+    "type": "Point"
+   },
+   "latitude": "TESTOWNER 942573",
+   "location_address": "2756 TEST ST",
+   "longitude": "TESTOWNER C00828",
+   "mailing_address": "4166 TEST ST",
+   "naics": "Transportation, Long Distance Truck Driving",
+   "primary_owner": "TESTOWNER 0FD615",
+   "trading_as_name": "TESTOWNER 3C64BB"
+  },
+  {
+   "business_opened_date": "2024-07-13T00:00:00.000",
+   "location_address": "1195 TEST ST",
+   "mailing_address": "4339 TEST ST",
+   "naics": "Special Event, Food Vendor $50",
+   "primary_owner": "TESTOWNER 423BBF",
+   "trading_as_name": "TESTOWNER 866923"
+  },
+  {
+   "business_opened_date": "2026-07-01T00:00:00.000",
+   "census_tract": "51710006607",
+   "geocoded_point": {
+    "coordinates": [
+     -76.2119,
+     36.8891
+    ],
+    "type": "Point"
+   },
+   "latitude": "TESTOWNER 2B9B7A",
+   "location_address": "6880 TEST ST",
+   "longitude": "TESTOWNER BAAE5D",
+   "mailing_address": "4483 TEST ST",
+   "naics": "All Other Miscellaneous Retailers; Misc Intermediation",
+   "primary_owner": "TESTOWNER 8799BE LLC",
+   "trading_as_name": "TESTOWNER D53A6A LLC"
+  }
+ ],
+ "where": "trading_as_name >= 'A'"
+}

@@ -1,0 +1,29 @@
+# Colorado Department of State, "Registration of Charities, Paid Solicitors, Professional
+# Fundraising Consultants, and for-profit Public Benefit Corporations in Colorado"
+# (data.colorado.gov 37wu-kn3g, Public Domain): about 275K registration filings for about
+# 30K registrants, with the registrant's addresses, FEIN, status, formation date and the
+# officer who signed (plus the CFO when given). A registrant's filings make one record; the
+# latest signed filing wins and every signer is kept.
+source_id: co.sos.charities
+state: CO
+jurisdiction: "08"
+portal: https://data.colorado.gov
+dataset: 37wu-kn3g
+key: entityid
+id_prefix: "CO-CHAR:"
+terms_url: https://data.colorado.gov/Business/Registration-of-Charities-Paid-Solicitors-Professi/37wu-kn3g
+terms_summary: "Public Domain (dataset license field)."
+checked_on: 2026-11-25
+license:
+  name: name
+  type: registranttypeabbr
+  status: currentstatus
+  issued_on: dateformed
+  latest_by: authorizedofficersigneddate
+  address: {street: [principaladdress, principaladdress2], city: principalcity, state: principalstate, zip: principalzipcode}
+  mailing: {street: [mailingaddress, mailingaddress2], city: mailingcity, state: mailingstate, zip: mailingzipcode}
+holders:
+  - {role: other, title: REGISTRANT, name: name, address: {street: [principaladdress, principaladdress2], city: principalcity, state: principalstate, zip: principalzipcode}}
+  - {role: officer, title: AUTHORIZED OFFICER, with_type: false, name: authorizedofficername}
+  - {role: officer, title: CFO, with_type: false, name: cfoname}
+pii_fields: [name, principaladdress, principaladdress2, mailingaddress, mailingaddress2, phone, fax, website, authorizedofficername, cfoname, relatedorganizationsname]

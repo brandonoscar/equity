@@ -1,0 +1,32 @@
+# Florida Department of Business and Professional Regulation, Division of Alcoholic Beverages
+# and Tobacco, "Alcoholic Beverages and Tobacco Licensees" extract (bd400lic.csv, 43 MB,
+# refreshed weekly): every AB&T license and permit (retail alcohol, wholesale tobacco,
+# manufacturers and distributors, retail tobacco permits, salespersons, bottle clubs...),
+# with the owner or primary name, the business (DBA) name, mailing and location addresses,
+# status codes and dates. Headerless quote/comma layout from the Division's Public Records
+# page; the last three fields are not in the published layout. Read in 16 MB byte windows.
+source_id: fl.dbpr.alcohol_tobacco
+state: FL
+jurisdiction: "12"
+fetch: csv
+urls:
+  - https://www2.myfloridalicense.com/sto/file_download/extracts/bd400lic.csv
+columns: [board, profession, owner_name, series_rank, class_modifier, mailing_street, mailing_address_2, mailing_address_3, mailing_city, mailing_state, mailing_zip, mailing_county_code, dba_name, location_street, location_address_2, location_address_3, location_city, location_state, location_zip, location_county_code, license_number, primary_status_code, secondary_status_code, original_issue_date, effective_date, expiration_date, field_27, field_28, field_29]
+encoding: latin-1
+chunk_bytes: 16000000  # about 100K rows per partition
+key: license_number
+id_prefix: "FL-ABT:"
+terms_url: https://www2.myfloridalicense.com/public-records-read-medisclaimer/
+terms_summary: "Public records under Chapter 119, F.S., provided by DBPR as free downloads; the Read Me/Disclaimer sets no use restriction (data refreshed weekly; no warranty, no technical support)."
+checked_on: 2026-11-25
+license:
+  name: [dba_name, owner_name]
+  type: series_rank
+  status: primary_status_code
+  issued_on: original_issue_date
+  latest_by: effective_date
+  address: {street: [location_street, location_address_2, location_address_3], city: location_city, state: location_state, zip: location_zip}
+  mailing: {street: [mailing_street, mailing_address_2, mailing_address_3], city: mailing_city, state: mailing_state, zip: mailing_zip}
+holders:
+  - {role: other, title: OWNER, name: owner_name, last_first: true, address: {street: [mailing_street, mailing_address_2, mailing_address_3], city: mailing_city, state: mailing_state, zip: mailing_zip}}
+pii_fields: [owner_name, dba_name, mailing_street, mailing_address_2, mailing_address_3, location_street, location_address_2, location_address_3]

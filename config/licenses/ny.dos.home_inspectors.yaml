@@ -1,0 +1,23 @@
+# New York Department of State, "Licensed Home Inspectors" (data.ny.gov r9fr-48vu): about
+# 2.2K licensed home inspectors with name parts, business name and address and original issue
+# date.
+source_id: ny.dos.home_inspectors
+state: NY
+jurisdiction: "36"
+portal: https://data.ny.gov
+dataset: r9fr-48vu
+key: uid
+key_is_number: true
+id_prefix: "NY-HI:"
+terms_url: https://data.ny.gov/download/77gx-ii52/application%2Fpdf
+terms_summary: "NY Open Data terms: free to use; no warranty. No restriction on commercial use found."
+checked_on: 2026-11-25
+license:
+  name: hi_business_name
+  type_value: Home Inspector
+  status_value: Active  # current licenses only
+  issued_on: original_issue_date
+  address: {street: [business_street, business_apt_unit], city: business_city, state: business_state, zip: business_zip_code}
+holders:
+  - {role: other, title: HOME INSPECTOR, with_type: false, parts: {first: first_name, middle: middle_initial, last: last_name, suffix: name_suffix}, address: {street: [business_street, business_apt_unit], city: business_city, state: business_state, zip: business_zip_code}}
+pii_fields: [last_name, first_name, middle_initial, hi_business_name, business_street, business_apt_unit]

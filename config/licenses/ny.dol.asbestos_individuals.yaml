@@ -1,0 +1,22 @@
+# New York State Department of Labor, "Asbestos Individual Certificates: Two Year Window"
+# (data.ny.gov 95bk-87hc): about 36K asbestos handler, supervisor, inspector and other
+# certificates with name parts, status and issue date. A certificate number repeats across
+# endorsements, so a record is (endorsement_type, certificate_number).
+source_id: ny.dol.asbestos_individuals
+state: NY
+jurisdiction: "36"
+portal: https://data.ny.gov
+dataset: 95bk-87hc
+key: certificate_number
+record_key: [endorsement_type, certificate_number]
+id_prefix: "NY-DOL-ASB:"
+terms_url: https://data.ny.gov/download/77gx-ii52/application%2Fpdf
+terms_summary: "NY Open Data terms: free to use; no warranty. No restriction on commercial use found."
+checked_on: 2026-11-25
+license:
+  type: endorsement_type
+  status: certificate_status
+  issued_on: issued_date
+holders:
+  - {role: other, title: CERTIFICATE HOLDER, parts: {first: first_name, last: last_name}}
+pii_fields: [first_name, last_name]

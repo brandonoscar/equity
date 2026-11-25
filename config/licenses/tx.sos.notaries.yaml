@@ -1,0 +1,22 @@
+# Texas Secretary of State, "Texas Notary Public Commissions" (data.texas.gov gmd3-bnrd):
+# about 583K notary commissions with the notary's first and last name, commission dates, a
+# free-text address (often a business name and street over two lines), email, surety
+# company and the vendor (agency) that filed the bond.
+source_id: tx.sos.notaries
+state: TX
+jurisdiction: "48"
+portal: https://data.texas.gov
+dataset: gmd3-bnrd
+key: notary_id
+id_prefix: "TX-NOT:"
+terms_url: https://data.texas.gov/dataset/Texas-Notary-Public-Commissions/gmd3-bnrd
+terms_summary: "Texas Open Data Portal; no license text on the dataset. The SOS disclaimer on the dataset page warns the data may be incomplete or out of date; no use restriction stated."
+checked_on: 2026-11-25
+license:
+  type_value: Notary Public
+  issued_on: effective_date
+  address: {line: address}
+holders:
+  - {role: other, title: NOTARY PUBLIC, with_type: false, parts: {first: first_name, last: last_name}, address: {line: address}}
+  - {role: other, title: SURETY, with_type: false, name: surety_company}
+pii_fields: [first_name, last_name, address, email_address, surety_company, agency]

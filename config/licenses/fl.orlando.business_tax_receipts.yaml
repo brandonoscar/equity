@@ -1,0 +1,25 @@
+# City of Orlando, "Business Tax Receipts" (data.cityoforlando.net 7388-4re5): about 119K
+# local business tax receipt records (open and closed) for about 112K cases, with business
+# name, owner (a person or company), one-line business and mailing addresses, type, open
+# date and status. A case's rows make one record; the latest licensed issue wins.
+source_id: fl.orlando.business_tax_receipts
+state: FL
+jurisdiction: "12095"
+portal: https://data.cityoforlando.net
+dataset: 7388-4re5
+key: case_number
+id_prefix: "ORL-BTR:"
+terms_url: https://data.cityoforlando.net/Permitting/Business-Tax-Receipts/7388-4re5
+terms_summary: "City of Orlando open data portal; no license text on the dataset (public information published by the City)."
+checked_on: 2026-11-25
+license:
+  name: business_name
+  type: license_type
+  status: license_status
+  issued_on: business_open_date
+  latest_by: last_licensed_issue_date
+  address: {line: business_address}
+  mailing: {line: business_mailing_address}
+holders:
+  - {role: other, title: OWNER, name: business_owner_name, address: {line: business_mailing_address}}
+pii_fields: [business_name, business_owner_name, business_address, business_mailing_address, phone, business_email, geocoded_column, gpsx, gpsy]

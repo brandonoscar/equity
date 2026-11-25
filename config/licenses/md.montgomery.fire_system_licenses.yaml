@@ -1,0 +1,20 @@
+# Montgomery County Department of Permitting Services, "DPS - Fire System License"
+# (data.montgomerycountymd.gov yjd7-guhd, Public Domain): about 820 fire alarm and
+# suppression system licenses held by people and companies, with address and license date.
+source_id: md.montgomery.fire_system_licenses
+state: MD
+jurisdiction: "24031"
+portal: https://data.montgomerycountymd.gov
+dataset: yjd7-guhd
+key: license_number
+id_prefix: "MOCO-FSL:"
+terms_url: https://data.montgomerycountymd.gov/Licenses-Permits/DPS-Fire-System-License/yjd7-guhd
+terms_summary: "Public Domain (dataset license field)."
+checked_on: 2026-11-25
+license:
+  type: license_type
+  issued_on: license_date
+  address: {street: [address1, address2], city: city, state: state, zip: zip_code}
+holders:
+  - {role: other, title: LICENSEE, name: applicant, address: {street: [address1, address2], city: city, state: state, zip: zip_code}}
+pii_fields: [applicant, address1, address2, geo_location]

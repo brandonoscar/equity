@@ -19,7 +19,7 @@ from equity.adapters.federal.sba_loans import (
     SBAPPPLoans,
     parse_window,
 )
-from equity.adapters.person_lists import RangeClient
+from equity.adapters.http import RangeClient
 
 from ..test_adapter_contract import ADAPTER_FIXTURES, check_contract
 from ..test_fixture_privacy import _walk

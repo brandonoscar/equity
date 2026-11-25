@@ -1,0 +1,346 @@
+{
+ "portal": "https://data.everettwa.gov",
+ "rows": [
+  {
+   "address": "6145 TEST ST",
+   "firstactivitydate": "1994-08-01T00:00:00.000",
+   "geocoded_column": {
+    "coordinates": [
+     -122.23013,
+     47.91926
+    ],
+    "type": "Point"
+   },
+   "issuedate": "1994-08-01T00:00:00.000",
+   "legalentityname": "TESTOWNER F21A64",
+   "naics": "621111",
+   "primarydba": "TESTOWNER 29D482",
+   "registration": "56107",
+   "ubi": "6010305420010004"
+  },
+  {
+   "address": "4952 TEST ST",
+   "firstactivitydate": "1994-08-01T00:00:00.000",
+   "geocoded_column": {
+    "coordinates": [
+     -122.20156,
+     47.99875
+    ],
+    "type": "Point"
+   },
+   "issuedate": "1994-08-01T00:00:00.000",
+   "legalentityname": "TESTOWNER F21A64",
+   "naics": "621111",
+   "primarydba": "TESTOWNER 8D7B9B",
+   "registration": "56108",
+   "ubi": "6010305420010009"
+  },
+  {
+   "address": "426 TEST ST",
+   "firstactivitydate": "1994-08-01T00:00:00.000",
+   "geocoded_column": {
+    "coordinates": [
+     -122.24733,
+     47.89765
+    ],
+    "type": "Point"
+   },
+   "issuedate": "1994-08-01T00:00:00.000",
+   "legalentityname": "TESTOWNER F21A64",
+   "naics": "621111",
+   "primarydba": "TESTOWNER 6C0089",
+   "registration": "56109",
+   "ubi": "6010305420010008"
+  },
+  {
+   "address": "5426 TEST ST",
+   "firstactivitydate": "2016-04-19T00:00:00.000",
+   "geocoded_column": {
+    "coordinates": [
+     -122.20201,
+     47.97695
+    ],
+    "type": "Point"
+   },
+   "issuedate": "2016-10-03T00:00:00.000",
+   "legalentityname": "TESTOWNER EC218D LLC",
+   "naics": "721110",
+   "primarydba": "TESTOWNER 6F7353",
+   "registration": "56110",
+   "ubi": "6035952470010001"
+  },
+  {
+   "address": "8761 TEST ST",
+   "firstactivitydate": "2016-08-01T00:00:00.000",
+   "geocoded_column": {
+    "coordinates": [
+     -122.09701,
+     47.91542
+    ],
+    "type": "Point"
+   },
+   "issuedate": "2016-10-03T00:00:00.000",
+   "legalentityname": "TESTOWNER 127A48",
+   "naics": "541990",
+   "primarydba": "TESTOWNER CC47E1",
+   "registration": "56111",
+   "ubi": "6040143780000000"
+  },
+  {
+   "address": "7741 TEST ST",
+   "firstactivitydate": "2016-06-22T00:00:00.000",
+   "geocoded_column": {
+    "coordinates": [
+     -122.25213,
+     47.94366
+    ],
+    "type": "Point"
+   },
+   "issuedate": "2016-10-03T00:00:00.000",
+   "legalentityname": "TESTOWNER 0AD18B LLC",
+   "naics": "531110",
+   "primarydba": "TESTOWNER D4E23B",
+   "registration": "56116",
+   "ubi": "6034421600010004"
+  },
+  {
+   "address": "671 TEST ST",
+   "firstactivitydate": "2016-10-03T00:00:00.000",
+   "geocoded_column": {
+    "coordinates": [
+     -122.09566,
+     47.96142
+    ],
+    "type": "Point"
+   },
+   "issuedate": "2016-10-03T00:00:00.000",
+   "legalentityname": "TESTOWNER 78756B LLC",
+   "naics": "238220",
+   "primarydba": "TESTOWNER 4B6DAD LLC",
+   "registration": "56117",
+   "ubi": "6035732230010001"
+  },
+  {
+   "address": "371 TEST ST",
+   "firstactivitydate": "2016-10-03T00:00:00.000",
+   "geocoded_column": {
+    "coordinates": [
+     -122.35614,
+     47.51513
+    ],
+    "type": "Point"
+   },
+   "issuedate": "2016-10-03T00:00:00.000",
+   "legalentityname": "TESTOWNER 217579 INC",
+   "naics": "238210",
+   "primarydba": "TESTOWNER 3DB50A INC",
+   "registration": "56121",
+   "ubi": "6033307990010001"
+  },
+  {
+   "address": "3339 TEST ST",
+   "firstactivitydate": "2016-11-01T00:00:00.000",
+   "geocoded_column": {
+    "coordinates": [
+     -122.35642,
+     45.58111
+    ],
+    "type": "Point"
+   },
+   "issuedate": "2016-11-01T00:00:00.000",
+   "legalentityname": "TESTOWNER D79A47 INC",
+   "naics": "811310",
+   "primarydba": "TESTOWNER 40B27C INC",
+   "registration": "56124",
+   "ubi": "6023198550010003"
+  },
+  {
+   "address": "8923 TEST ST",
+   "firstactivitydate": "2016-10-05T00:00:00.000",
+   "geocoded_column": {
+    "coordinates": [
+     -122.2086,
+     47.97842
+    ],
+    "type": "Point"
+   },
+   "issuedate": "2016-10-05T00:00:00.000",
+   "legalentityname": "TESTOWNER 3673FE CO",
+   "naics": "523150",
+   "primarydba": "TESTOWNER E71E22 LP",
+   "registration": "56127",
+   "ubi": "6003517900010022"
+  },
+  {
+   "address": "7250 TEST ST",
+   "firstactivitydate": "2016-10-05T00:00:00.000",
+   "geocoded_column": {
+    "coordinates": [
+     -122.20537,
+     47.92421
+    ],
+    "type": "Point"
+   },
+   "issuedate": "2016-10-05T00:00:00.000",
+   "legalentityname": "TESTOWNER 3673FE CO",
+   "naics": "523150",
+   "primarydba": "TESTOWNER E71E22 LP",
+   "registration": "56128",
+   "ubi": "6003517900010736"
+  },
+  {
+   "address": "7110 TEST ST",
+   "firstactivitydate": "2016-10-05T00:00:00.000",
+   "geocoded_column": {
+    "coordinates": [
+     -122.19194,
+     47.97911
+    ],
+    "type": "Point"
+   },
+   "issuedate": "2016-10-05T00:00:00.000",
+   "legalentityname": "TESTOWNER 3673FE CO",
+   "naics": "523150",
+   "primarydba": "TESTOWNER E71E22 LP",
+   "registration": "56129",
+   "ubi": "6003517900010367"
+  },
+  {
+   "address": "924 TEST ST",
+   "firstactivitydate": "2016-07-01T00:00:00.000",
+   "geocoded_column": {
+    "coordinates": [
+     -84.09562,
+     33.97642
+    ],
+    "type": "Point"
+   },
+   "issuedate": "2016-10-06T00:00:00.000",
+   "legalentityname": "TESTOWNER 606959 INC",
+   "naics": "561320",
+   "primarydba": "TESTOWNER 39BC48 INC",
+   "registration": "56132",
+   "ubi": "6024748670010001"
+  },
+  {
+   "address": "3669 TEST ST",
+   "firstactivitydate": "2026-11-23T00:00:00.000",
+   "geocoded_column": {
+    "coordinates": [
+     -122.45099,
+     48.83336
+    ],
+    "type": "Point"
+   },
+   "issuedate": "2016-10-10T00:00:00.000",
+   "legalentityname": "TESTOWNER 535C2D INC",
+   "naics": "238220",
+   "primarydba": "TESTOWNER 776997 INC",
+   "registration": "56135",
+   "ubi": "6033639140010001"
+  },
+  {
+   "address": "943 TEST ST",
+   "firstactivitydate": "2016-10-06T00:00:00.000",
+   "geocoded_column": {
+    "coordinates": [
+     -122.15035,
+     47.76891
+    ],
+    "type": "Point"
+   },
+   "issuedate": "2016-10-06T00:00:00.000",
+   "legalentityname": "TESTOWNER D18C13 INC",
+   "naics": "238220",
+   "primarydba": "TESTOWNER 1FDD22 INC",
+   "registration": "56136",
+   "ubi": "6013403040010001"
+  },
+  {
+   "address": "8215 TEST ST",
+   "firstactivitydate": "2016-10-07T00:00:00.000",
+   "geocoded_column": {
+    "coordinates": [
+     -122.20721,
+     47.98036
+    ],
+    "type": "Point"
+   },
+   "issuedate": "2016-10-07T00:00:00.000",
+   "legalentityname": "TESTOWNER D726BD LLC",
+   "naics": "423920",
+   "primarydba": "TESTOWNER 8DE601 LLC",
+   "registration": "56137",
+   "ubi": "6024697820010001"
+  },
+  {
+   "address": "3270 TEST ST",
+   "firstactivitydate": "2016-10-10T00:00:00.000",
+   "geocoded_column": {
+    "coordinates": [
+     -122.21728,
+     47.97318
+    ],
+    "type": "Point"
+   },
+   "issuedate": "2016-10-10T00:00:00.000",
+   "legalentityname": "TESTOWNER 944A56 LLC",
+   "naics": "456120",
+   "primarydba": "TESTOWNER 25D26B LLC",
+   "registration": "56139",
+   "ubi": "6040240310010001"
+  },
+  {
+   "address": "2041 TEST ST",
+   "firstactivitydate": "2016-10-10T00:00:00.000",
+   "geocoded_column": {
+    "coordinates": [
+     -122.20841,
+     47.96659
+    ],
+    "type": "Point"
+   },
+   "issuedate": "2016-10-10T00:00:00.000",
+   "legalentityname": "TESTOWNER 5F04E3",
+   "naics": "621111",
+   "primarydba": "TESTOWNER DD27A9",
+   "registration": "56140",
+   "ubi": "6014740130010032"
+  },
+  {
+   "address": "5071 TEST ST",
+   "firstactivitydate": "2016-10-10T00:00:00.000",
+   "geocoded_column": {
+    "coordinates": [
+     -122.22286,
+     47.99485
+    ],
+    "type": "Point"
+   },
+   "issuedate": "2016-10-10T00:00:00.000",
+   "legalentityname": "TESTOWNER 5F04E3",
+   "naics": "621111",
+   "primarydba": "TESTOWNER C4A446 INC",
+   "registration": "56141",
+   "ubi": "6014740130010017"
+  },
+  {
+   "address": "6184 TEST ST",
+   "firstactivitydate": "2016-10-10T00:00:00.000",
+   "geocoded_column": {
+    "coordinates": [
+     -122.21595,
+     47.91179
+    ],
+    "type": "Point"
+   },
+   "issuedate": "2016-10-10T00:00:00.000",
+   "legalentityname": "TESTOWNER 3673FE CO",
+   "naics": "523150",
+   "primarydba": "TESTOWNER E71E22 LP",
+   "registration": "56142",
+   "ubi": "6003517900010403"
+  }
+ ],
+ "where": "registration::text >= '56107'"
+}

@@ -1,0 +1,186 @@
+{
+ "portal": "https://data.ny.gov",
+ "rows": [
+  {
+   "division": "THOROUGHBRED",
+   "eligibility": "ABLE TO PARTICIPATE",
+   "expires": "2027-12-31T00:00:00.000",
+   "license": "RECEIPT # 1549663",
+   "name": "TESTOWNER 50B8DD",
+   "occupation": "OWNER RENEWAL",
+   "person_id": "194634"
+  },
+  {
+   "division": "THOROUGHBRED",
+   "eligibility": "ABLE TO PARTICIPATE",
+   "expires": "2028-10-06T00:00:00.000",
+   "license": "LICENSE # 1621089",
+   "name": "TESTOWNER 4AE9D4",
+   "occupation": "OWNER RENEWAL",
+   "person_id": "194639"
+  },
+  {
+   "division": "THOROUGHBRED",
+   "eligibility": "ABLE TO PARTICIPATE",
+   "expires": "2028-08-05T00:00:00.000",
+   "license": "LICENSE # 1606119",
+   "name": "TESTOWNER F080EB",
+   "occupation": "OWNER RENEWAL",
+   "person_id": "194645"
+  },
+  {
+   "division": "HARNESS",
+   "eligibility": "ABLE TO PARTICIPATE",
+   "expires": "2027-07-09T00:00:00.000",
+   "license": "LICENSE # 1615712",
+   "name": "TESTOWNER F16751",
+   "occupation": "GROOM",
+   "person_id": "194654"
+  },
+  {
+   "division": "THOROUGHBRED",
+   "eligibility": "ABLE TO PARTICIPATE",
+   "expires": "2027-02-28T00:00:00.000",
+   "license": "LICENSE # 1617814",
+   "name": "TESTOWNER 02CB47",
+   "occupation": "ASST. TRAINER",
+   "person_id": "194655"
+  },
+  {
+   "division": "THOROUGHBRED",
+   "eligibility": "ABLE TO PARTICIPATE",
+   "expires": "2027-04-30T00:00:00.000",
+   "license": "LICENSE # 1595924",
+   "name": "TESTOWNER 51CB94",
+   "occupation": "ASST. TRAINER",
+   "person_id": "194663"
+  },
+  {
+   "division": "THOROUGHBRED",
+   "eligibility": "ABLE TO PARTICIPATE",
+   "expires": "2026-12-31T00:00:00.000",
+   "license": "RECEIPT # 1571440",
+   "name": "TESTOWNER 2E5845",
+   "occupation": "OWNER RENEWAL",
+   "person_id": "194666"
+  },
+  {
+   "division": "THOROUGHBRED",
+   "eligibility": "ABLE TO PARTICIPATE",
+   "expires": "2029-05-19T00:00:00.000",
+   "license": "LICENSE # 1613205",
+   "name": "TESTOWNER 2A8AD5",
+   "occupation": "OWNER RENEWAL",
+   "person_id": "194674"
+  },
+  {
+   "division": "HARNESS",
+   "eligibility": "ABLE TO PARTICIPATE",
+   "expires": "2028-05-29T00:00:00.000",
+   "license": "LICENSE # 1605478",
+   "name": "TESTOWNER 60AB3B",
+   "occupation": "OWNER RENEWAL",
+   "person_id": "194683"
+  },
+  {
+   "division": "THOROUGHBRED",
+   "eligibility": "ABLE TO PARTICIPATE",
+   "expires": "2029-06-18T00:00:00.000",
+   "license": "LICENSE # 1613940",
+   "name": "TESTOWNER 71C45E",
+   "occupation": "GENERAL SERVICES",
+   "person_id": "194687"
+  },
+  {
+   "division": "THOROUGHBRED",
+   "eligibility": "ABLE TO PARTICIPATE",
+   "expires": "2027-04-21T00:00:00.000",
+   "license": "LICENSE # 1617093",
+   "name": "TESTOWNER 29ECB9",
+   "occupation": "MUTUEL CLERK",
+   "person_id": "194689"
+  },
+  {
+   "division": "THOROUGHBRED",
+   "eligibility": "ABLE TO PARTICIPATE",
+   "expires": "2027-03-06T00:00:00.000",
+   "license": "LICENSE # 1616820",
+   "name": "TESTOWNER 602C76",
+   "occupation": "OWNER ORIGINAL",
+   "person_id": "194699"
+  },
+  {
+   "division": "THOROUGHBRED",
+   "eligibility": "ABLE TO PARTICIPATE",
+   "expires": "2027-01-24T00:00:00.000",
+   "license": "LICENSE # 1588081",
+   "name": "TESTOWNER 89B670",
+   "occupation": "MUTUEL CLERK",
+   "person_id": "1947"
+  },
+  {
+   "division": "THOROUGHBRED",
+   "eligibility": "ABLE TO PARTICIPATE",
+   "expires": "2028-09-03T00:00:00.000",
+   "license": "LICENSE # 1607518",
+   "name": "TESTOWNER D3DAC8",
+   "occupation": "OWNER RENEWAL",
+   "person_id": "194710"
+  },
+  {
+   "division": "THOROUGHBRED",
+   "eligibility": "ABLE TO PARTICIPATE",
+   "expires": "2027-06-22T00:00:00.000",
+   "license": "LICENSE # 1591926",
+   "name": "TESTOWNER 06B8D4",
+   "occupation": "OWNER RENEWAL",
+   "person_id": "194749"
+  },
+  {
+   "division": "THOROUGHBRED",
+   "eligibility": "ABLE TO PARTICIPATE",
+   "expires": "2029-01-24T00:00:00.000",
+   "license": "LICENSE # 1611795",
+   "name": "TESTOWNER AC6050",
+   "occupation": "STABLE EMPLOYEE",
+   "person_id": "194760"
+  },
+  {
+   "division": "THOROUGHBRED",
+   "eligibility": "ABLE TO PARTICIPATE",
+   "expires": "2027-10-22T00:00:00.000",
+   "license": "LICENSE # 1598688",
+   "name": "TESTOWNER 2D9106",
+   "occupation": "OWNER RENEWAL",
+   "person_id": "194766"
+  },
+  {
+   "division": "THOROUGHBRED",
+   "eligibility": "ABLE TO PARTICIPATE",
+   "expires": "2029-07-15T00:00:00.000",
+   "license": "LICENSE # 1616837",
+   "name": "TESTOWNER AECC04",
+   "occupation": "OWNER RENEWAL",
+   "person_id": "194770"
+  },
+  {
+   "division": "THOROUGHBRED",
+   "eligibility": "ABLE TO PARTICIPATE",
+   "expires": "2028-11-13T00:00:00.000",
+   "license": "LICENSE # 1608208",
+   "name": "TESTOWNER 5DA503",
+   "occupation": "OWNER RENEWAL",
+   "person_id": "194772"
+  },
+  {
+   "division": "THOROUGHBRED",
+   "eligibility": "ABLE TO PARTICIPATE",
+   "expires": "2029-07-06T00:00:00.000",
+   "license": "LICENSE # 1615818",
+   "name": "TESTOWNER 139C74",
+   "occupation": "ASST. TRAINER",
+   "person_id": "194775"
+  }
+ ],
+ "where": "person_id::text >= '194634'"
+}

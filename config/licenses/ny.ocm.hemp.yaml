@@ -1,0 +1,22 @@
+# New York Office of Cannabis Management, "Current Cannabinoid Hemp Licenses" (data.ny.gov
+# 4r7n-55mm): about 3K cannabinoid hemp processor and retail licenses with entity name, DBA,
+# status, issue date and premises address.
+source_id: ny.ocm.hemp
+state: NY
+jurisdiction: "36"
+portal: https://data.ny.gov
+dataset: 4r7n-55mm
+key: license_number
+id_prefix: "NY-OCM-HEMP:"
+terms_url: https://data.ny.gov/download/77gx-ii52/application%2Fpdf
+terms_summary: "NY Open Data terms: free to use; no warranty. No restriction on commercial use found."
+checked_on: 2026-11-25
+license:
+  name: [dba, entity_name]
+  type: license_type_description
+  status: license_status_code_1
+  issued_on: issued_date
+  address: {street: [address_line_1, address_line_2], city: city, state: state, zip: zip_code}
+holders:
+  - {role: other, title: LICENSEE, name: entity_name, address: {street: [address_line_1, address_line_2], city: city, state: state, zip: zip_code}}
+pii_fields: [entity_name, dba, address_line_1, address_line_2, business_website, georeference]

@@ -1,0 +1,23 @@
+# New York State Department of Environmental Conservation, "Currently Licensed Commercial
+# Nuisance Wildlife Control Operators" (data.ny.gov 868p-5nmh): about 1.2K licensed operators
+# with the licensee's name, business name, city, county and effective date.
+source_id: ny.dec.nuisance_wildlife
+state: NY
+jurisdiction: "36"
+portal: https://data.ny.gov
+dataset: 868p-5nmh
+key: license_number
+id_prefix: "NY-NWCO:"
+terms_url: https://data.ny.gov/download/77gx-ii52/application%2Fpdf
+terms_summary: "NY Open Data terms: free to use; no warranty. No restriction on commercial use found."
+checked_on: 2026-11-25
+license:
+  name: [business_name, licensee_name]
+  type: license_type
+  status_value: Active  # current licenses only
+  issued_on: licenses_effective_date
+  address: {city: city, state: state}
+holders:
+  - {role: other, title: LICENSEE, name: licensee_name, address: {city: city, state: state}}
+  - {role: other, title: BUSINESS, with_type: false, name: business_name}
+pii_fields: [licensee_name, business_name, business_phone]

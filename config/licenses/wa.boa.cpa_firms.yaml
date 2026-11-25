@@ -1,0 +1,22 @@
+# Washington State Board of Accountancy, "Washington State CPA (Certified Public
+# Accountant) Firms" (data.wa.gov pzcu-jpab, Public Domain): about 2.4K firms that hold or
+# held a firm license, with entity form, city, state and registration date.
+source_id: wa.boa.cpa_firms
+state: WA
+jurisdiction: "53"
+portal: https://data.wa.gov
+dataset: pzcu-jpab
+key: firmnumber
+key_is_number: true
+id_prefix: "WA-BOA-FIRM:"
+terms_url: https://data.wa.gov/Consumer-Protection/Washington-State-CPA-Certified-Public-Accountant-F/pzcu-jpab
+terms_summary: "Public Domain (dataset license field)."
+checked_on: 2026-11-25
+license:
+  name: firmname
+  type: description
+  issued_on: registered
+  address: {city: city, state: state}
+holders:
+  - {role: other, title: CPA FIRM, with_type: false, name: firmname, address: {city: city, state: state}}
+pii_fields: [firmname]

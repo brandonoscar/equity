@@ -1,0 +1,20 @@
+# Montgomery County Department of Permitting Services, "Master Electrician License"
+# (data.montgomerycountymd.gov v8mn-6i2r, Public Domain): about 4.3K master electrician
+# licenses with the applicant's name, address and license and issue dates.
+source_id: md.montgomery.master_electricians
+state: MD
+jurisdiction: "24031"
+portal: https://data.montgomerycountymd.gov
+dataset: v8mn-6i2r
+key: licenseno
+id_prefix: "MOCO-ME:"
+terms_url: https://data.montgomerycountymd.gov/Licenses-Permits/Master-Electrician-License/v8mn-6i2r
+terms_summary: "Public Domain (dataset license field)."
+checked_on: 2026-11-25
+license:
+  type: licensetype
+  issued_on: licensedate
+  address: {street: [addr1, addr2], city: city, state: state, zip: zip}
+holders:
+  - {role: other, title: LICENSEE, name: applicant, address: {street: [addr1, addr2], city: city, state: state, zip: zip}}
+pii_fields: [applicant, addr1, addr2, geolocation]

@@ -1,0 +1,23 @@
+# Illinois Department of Public Health, "Lead Risk Assessor and Inspector Licensees"
+# (data.illinois.gov 4dci-czfi): about 300 licensed lead inspectors and risk assessors with
+# name, city, state and employer. No license number is published, so a record is the
+# person's name at the employer.
+# TODO(Brandon): no issue date is published, so licenses are dated from the retrieval day.
+source_id: il.idph.lead_inspectors
+state: IL
+jurisdiction: "17"
+portal: https://data.illinois.gov
+dataset: 4dci-czfi
+key: last
+record_key: [last, first, employer_name]
+id_prefix: "IL-IDPH-LEAD:"
+terms_url: https://data.illinois.gov/Health-and-Human-Services/Lead-Risk-Assessor-and-Inspector-Licensees/4dci-czfi
+terms_summary: "Illinois open data portal; no license text on the dataset (public information published by IDPH)."
+checked_on: 2026-11-25
+license:
+  type_value: Lead Inspector / Risk Assessor
+  status_value: Licensed  # current licenses only
+holders:
+  - {role: other, title: LEAD INSPECTOR, with_type: false, parts: {first: first, last: last}, address: {city: city, state: state}}
+  - {role: other, title: EMPLOYER, with_type: false, name: employer_name}
+pii_fields: [last, first, employer_name]

@@ -1,0 +1,25 @@
+# Texas Alcoholic Beverage Commission, "TABC License Information" (data.texas.gov 7hf9-qc9f):
+# about 129K primary licenses and permits (active and expired), one row per license, with
+# trade name, owner (a person or a company), status, original issue date, and premises and
+# mailing addresses.
+source_id: tx.tabc.licenses
+state: TX
+jurisdiction: "48"
+portal: https://data.texas.gov
+dataset: 7hf9-qc9f
+key: license_id
+key_is_number: true
+id_prefix: "TX-TABC:"
+terms_url: https://data.texas.gov/dataset/TABC-License-Information/7hf9-qc9f
+terms_summary: "Texas Open Data Portal; no license text on the dataset (public information published by TABC)."
+checked_on: 2026-11-25
+license:
+  name: [trade_name, owner]
+  type: license_type
+  status: license_status
+  issued_on: original_issue_date
+  address: {street: [address, address_2], city: city, state: state, zip: zip}
+  mailing: {street: [mail_address, mail_address_2], city: mail_city, state: mail_state, zip: mail_zip}
+holders:
+  - {role: other, title: OWNER, name: owner, address: {street: [mail_address, mail_address_2], city: mail_city, state: mail_state, zip: mail_zip}}
+pii_fields: [trade_name, owner, address, address_2, mail_address, mail_address_2, phone, proposed_loc_line_1, proposed_loc_line_2]

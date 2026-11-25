@@ -1,0 +1,23 @@
+# New York State Gaming Commission, "Horse Racing Licensing" (data.ny.gov cz9u-yj7m): about
+# 21K racing occupational licenses (owners, trainers, jockeys, grooms, stable employees...)
+# with the person's name, occupation, eligibility, division and license (or receipt) number.
+# A person can hold several; a record is the license.
+# TODO(Brandon): no issue date is published, so licenses are dated from the retrieval day.
+source_id: ny.nysgc.horse_racing
+state: NY
+jurisdiction: "36"
+portal: https://data.ny.gov
+dataset: cz9u-yj7m
+key: person_id
+key_is_number: true
+record_key: [license]
+id_prefix: "NY-RACING:"
+terms_url: https://data.ny.gov/download/77gx-ii52/application%2Fpdf
+terms_summary: "NY Open Data terms: free to use; no warranty. No restriction on commercial use found."
+checked_on: 2026-11-25
+license:
+  type: occupation
+  status: eligibility
+holders:
+  - {role: other, title: LICENSEE, name: name}
+pii_fields: [name]

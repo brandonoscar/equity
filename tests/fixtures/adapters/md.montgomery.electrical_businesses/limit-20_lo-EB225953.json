@@ -1,0 +1,345 @@
+{
+ "portal": "https://data.montgomerycountymd.gov",
+ "rows": [
+  {
+   "address1": "4710 TEST ST",
+   "address2": "5584 TEST ST",
+   "applicant": "TESTOWNER FEED44 INC",
+   "city": "CHANTILLY",
+   "expiredate": "2022-08-03T10:08:23.000",
+   "insuranceexpire": "2022-01-01T12:01:00.000",
+   "issueddate": "2018-08-03T10:08:23.000",
+   "licenseno": "EB225953",
+   "licensetype": "ELECTRICAL BUSINESS",
+   "location": {
+    "human_address": "{\"address\": \"14310 SULLYFIELD CIRCLE\", \"city\": \"CHANTILLY\", \"state\": \"VA\", \"zip\": \"20151\"}",
+    "latitude": "38.891746",
+    "longitude": "-77.440463"
+   },
+   "state": "VA",
+   "zip": "20151"
+  },
+  {
+   "address1": "7163 TEST ST",
+   "address2": "1844 TEST ST",
+   "applicant": "TESTOWNER CCBCA5 INC",
+   "city": "STERLING",
+   "expiredate": "2022-08-24T02:08:58.000",
+   "insuranceexpire": "2023-10-20T12:10:00.000",
+   "issueddate": "2018-08-24T02:08:58.000",
+   "licenseno": "EB225983",
+   "licensetype": "ELECTRICAL BUSINESS",
+   "location": {
+    "human_address": "{\"address\": \"1306 SQUIRE CT\", \"city\": \"STERLING\", \"state\": \"VA\", \"zip\": \"20166\"}",
+    "latitude": "39.02226",
+    "longitude": "-77.43412"
+   },
+   "state": "VA",
+   "zip": "20166"
+  },
+  {
+   "address1": "8386 TEST ST",
+   "applicant": "TESTOWNER 7FED48",
+   "city": "MT AIRY",
+   "expiredate": "2022-08-08T03:08:02.000",
+   "insuranceexpire": "2022-05-09T12:05:00.000",
+   "issueddate": "2018-08-08T03:08:02.000",
+   "licenseno": "EB225990",
+   "licensetype": "ELECTRICAL BUSINESS",
+   "location": {
+    "human_address": "{\"address\": \"5325 SIDNEY RD\", \"city\": \"MT AIRY\", \"state\": \"MD\", \"zip\": \"21771\"}",
+    "latitude": "39.380317",
+    "longitude": "-77.181942"
+   },
+   "state": "MD",
+   "zip": "21771"
+  },
+  {
+   "address1": "5105 TEST ST",
+   "applicant": "TESTOWNER 9CC03F LLC",
+   "city": "CULPEPER",
+   "expiredate": "2020-08-10T11:08:56.000",
+   "insuranceexpire": "2020-05-24T12:05:00.000",
+   "issueddate": "2018-08-10T11:08:56.000",
+   "licenseno": "EB226014",
+   "licensetype": "ELECTRICAL BUSINESS",
+   "location": {
+    "human_address": "{\"address\": \"7087 JAMES MONROE HWY\", \"city\": \"CULPEPER\", \"state\": \"VA\", \"zip\": \"22701\"}",
+    "latitude": "38.456085",
+    "longitude": "-78.114317"
+   },
+   "state": "VA",
+   "zip": "22701"
+  },
+  {
+   "address1": "4703 TEST ST",
+   "applicant": "TESTOWNER 15ACD9 CORP",
+   "city": "SILVER SPRING",
+   "expiredate": "2020-08-14T09:08:40.000",
+   "insuranceexpire": "2018-12-31T12:12:00.000",
+   "issueddate": "2018-08-14T09:08:40.000",
+   "licenseno": "EB226021",
+   "licensetype": "ELECTRICAL BUSINESS",
+   "location": {
+    "human_address": "{\"address\": \"15812 MOUNT EVEREST LN\", \"city\": \"SILVER SPRING\", \"state\": \"MD\", \"zip\": \"20906\"}",
+    "latitude": "39.115378",
+    "longitude": "-77.056824"
+   },
+   "state": "MD",
+   "zip": "20906"
+  },
+  {
+   "address1": "6524 TEST ST",
+   "applicant": "TESTOWNER A449C2 LLC",
+   "city": "FREDERICK",
+   "expiredate": "2022-09-12T08:09:21.000",
+   "insuranceexpire": "2021-08-13T12:08:00.000",
+   "issueddate": "2018-09-12T08:09:21.000",
+   "licenseno": "EB226037",
+   "licensetype": "ELECTRICAL BUSINESS",
+   "location": {
+    "human_address": "{\"address\": \"7136 OBERLIN CIRCLE\", \"city\": \"FREDERICK\", \"state\": \"MD\", \"zip\": \"21703\"}",
+    "latitude": "39.38413",
+    "longitude": "-77.417818"
+   },
+   "state": "MD",
+   "zip": "21703"
+  },
+  {
+   "address1": "2240 TEST ST",
+   "applicant": "TESTOWNER B76FEA INC",
+   "city": "STEVENSVILLE",
+   "expiredate": "2022-08-15T11:08:27.000",
+   "insuranceexpire": "2022-03-03T12:03:00.000",
+   "issueddate": "2018-08-15T11:08:27.000",
+   "licenseno": "EB226090",
+   "licensetype": "ELECTRICAL BUSINESS",
+   "location": {
+    "human_address": "{\"address\": \"605 MAIN ST STE 101\", \"city\": \"STEVENSVILLE\", \"state\": \"MD\", \"zip\": \"21666\"}",
+    "latitude": "38.978447",
+    "longitude": "-76.309804"
+   },
+   "state": "MD",
+   "zip": "21666"
+  },
+  {
+   "address1": "3518 TEST ST",
+   "applicant": "TESTOWNER 2BB202",
+   "city": "CLARKSBURG",
+   "expiredate": "1997-04-01T12:04:00.000",
+   "issueddate": "2000-02-17T06:02:01.000",
+   "licenseno": "EB2261",
+   "licensetype": "ELECTRICAL BUSINESS",
+   "location": {
+    "human_address": "{\"address\": \"22505 FREDERICK RD\", \"city\": \"CLARKSBURG\", \"state\": \"MD\", \"zip\": \"20871\"}",
+    "latitude": "39.225618",
+    "longitude": "-77.263079"
+   },
+   "state": "MD",
+   "zip": "20871"
+  },
+  {
+   "address1": "5495 TEST ST",
+   "applicant": "TESTOWNER 511A83 LLC",
+   "city": "Germantown",
+   "expiredate": "2020-09-12T09:09:47.000",
+   "insuranceexpire": "2019-06-05T12:06:00.000",
+   "issueddate": "2018-09-12T09:09:47.000",
+   "licenseno": "EB226125",
+   "licensetype": "ELECTRICAL BUSINESS",
+   "location": {
+    "human_address": "{\"address\": \"21729 BRINK MEADOW LN\", \"city\": \"Germantown\", \"state\": \"MD\", \"zip\": \"20876\"}",
+    "latitude": "39.215458999",
+    "longitude": "-77.244910969"
+   },
+   "state": "MD",
+   "zip": "20876"
+  },
+  {
+   "address1": "858 TEST ST",
+   "applicant": "TESTOWNER DAF305 INC",
+   "city": "COLUMBIA",
+   "expiredate": "2022-08-20T04:08:44.000",
+   "insuranceexpire": "2021-05-01T12:05:00.000",
+   "issueddate": "2018-08-20T04:08:44.000",
+   "licenseno": "EB226155",
+   "licensetype": "ELECTRICAL BUSINESS",
+   "location": {
+    "human_address": "{\"address\": \"P O DRAWER 1419\", \"city\": \"COLUMBIA\", \"state\": \"SC\", \"zip\": \"29202\"}"
+   },
+   "state": "SC",
+   "zip": "29202"
+  },
+  {
+   "address1": "4941 TEST ST",
+   "applicant": "TESTOWNER 09F3E6 INC",
+   "city": "LIBERTYVILLE",
+   "expiredate": "2022-08-20T05:08:41.000",
+   "insuranceexpire": "2022-03-31T12:03:00.000",
+   "issueddate": "2018-08-20T05:08:41.000",
+   "licenseno": "EB226156",
+   "licensetype": "ELECTRICAL BUSINESS",
+   "location": {
+    "human_address": "{\"address\": \"844 E ROCKLAND RD\", \"city\": \"LIBERTYVILLE\", \"state\": \"IL\", \"zip\": \"60048\"}",
+    "latitude": "42.276778",
+    "longitude": "-87.940174"
+   },
+   "state": "IL",
+   "zip": "60048"
+  },
+  {
+   "address1": "5273 TEST ST",
+   "applicant": "TESTOWNER 8D502F INC",
+   "city": "Mount Airy",
+   "expiredate": "2022-08-22T11:08:32.000",
+   "insuranceexpire": "2021-08-01T12:08:00.000",
+   "issueddate": "2018-08-22T11:08:32.000",
+   "licenseno": "EB226174",
+   "licensetype": "ELECTRICAL BUSINESS",
+   "location": {
+    "human_address": "{\"address\": \"2360 Eagle Wood Drive\", \"city\": \"Mount Airy\", \"state\": \"MD\", \"zip\": \"21771\"}",
+    "latitude": "39.436499",
+    "longitude": "-77.078769"
+   },
+   "state": "MD",
+   "zip": "21771"
+  },
+  {
+   "address1": "4353 TEST ST",
+   "address2": "5522 TEST ST",
+   "applicant": "TESTOWNER 3C1F2D INC",
+   "city": "STERLING",
+   "expiredate": "2022-08-22T03:08:28.000",
+   "insuranceexpire": "2021-03-30T12:03:00.000",
+   "issueddate": "2018-08-22T03:08:28.000",
+   "licenseno": "EB226176",
+   "licensetype": "ELECTRICAL BUSINESS",
+   "location": {
+    "human_address": "{\"address\": \"111 CARPENTER DRIVE\", \"city\": \"STERLING\", \"state\": \"VA\", \"zip\": \"20164\"}",
+    "latitude": "38.990459",
+    "longitude": "-77.422587"
+   },
+   "state": "VA",
+   "zip": "20164"
+  },
+  {
+   "address1": "8088 TEST ST",
+   "applicant": "TESTOWNER 70D9A3",
+   "city": "WALDORF",
+   "expiredate": "2020-09-12T09:09:45.000",
+   "insuranceexpire": "2020-11-01T12:11:00.000",
+   "issueddate": "2018-09-12T09:09:45.000",
+   "licenseno": "EB226179",
+   "licensetype": "ELECTRICAL BUSINESS",
+   "location": {
+    "human_address": "{\"address\": \"2680A HAMILTON RD\", \"city\": \"WALDORF\", \"state\": \"MD\", \"zip\": \"20601\"}",
+    "latitude": "38.638325",
+    "longitude": "-76.916391"
+   },
+   "state": "MD",
+   "zip": "20601"
+  },
+  {
+   "address1": "1915 TEST ST",
+   "address2": "7268 TEST ST",
+   "applicant": "TESTOWNER 3504C6 CO",
+   "city": "FREDERICK",
+   "expiredate": "2020-09-12T03:09:40.000",
+   "insuranceexpire": "2019-03-14T12:03:00.000",
+   "issueddate": "2018-09-12T03:09:40.000",
+   "licenseno": "EB226218",
+   "licensetype": "ELECTRICAL BUSINESS",
+   "location": {
+    "human_address": "{\"address\": \"6907 BALTIMORE NATIONAL PIKE\", \"city\": \"FREDERICK\", \"state\": \"MD\", \"zip\": \"21702\"}",
+    "latitude": "39.425393",
+    "longitude": "-77.472706"
+   },
+   "state": "MD",
+   "zip": "21702"
+  },
+  {
+   "address1": "3077 TEST ST",
+   "applicant": "TESTOWNER FB3AB2 INC",
+   "city": "BETHEL",
+   "expiredate": "2020-09-04T01:09:47.000",
+   "insuranceexpire": "2019-06-29T12:06:00.000",
+   "issueddate": "2018-09-04T01:09:47.000",
+   "licenseno": "EB226220",
+   "licensetype": "ELECTRICAL BUSINESS",
+   "location": {
+    "human_address": "{\"address\": \"PO BOX 178\", \"city\": \"BETHEL\", \"state\": \"OH\", \"zip\": \"45106\"}"
+   },
+   "state": "OH",
+   "zip": "45106"
+  },
+  {
+   "address1": "6246 TEST ST",
+   "applicant": "TESTOWNER 52C21A LLC",
+   "city": "BOYDS",
+   "expiredate": "2022-09-12T08:09:00.000",
+   "insuranceexpire": "2021-06-13T12:06:00.000",
+   "issueddate": "2018-09-12T08:09:00.000",
+   "licenseno": "EB226222",
+   "licensetype": "ELECTRICAL BUSINESS",
+   "location": {
+    "human_address": "{\"address\": \"18415 THUNDERCLOUD RD\", \"city\": \"BOYDS\", \"state\": \"MD\", \"zip\": \"20841\"}",
+    "latitude": "39.159921",
+    "longitude": "-77.305985"
+   },
+   "state": "MD",
+   "zip": "20841"
+  },
+  {
+   "address1": "7009 TEST ST",
+   "applicant": "TESTOWNER FBF49D INC",
+   "city": "HERNDON",
+   "expiredate": "2022-09-12T08:09:29.000",
+   "insuranceexpire": "2021-07-29T12:07:00.000",
+   "issueddate": "2018-09-12T08:09:29.000",
+   "licenseno": "EB226226",
+   "licensetype": "ELECTRICAL BUSINESS",
+   "location": {
+    "human_address": "{\"address\": \"305 SUNSET PARK DR\", \"city\": \"HERNDON\", \"state\": \"VA\", \"zip\": \"22124\"}",
+    "latitude": "38.957254",
+    "longitude": "-77.373928"
+   },
+   "state": "VA",
+   "zip": "22124"
+  },
+  {
+   "address1": "6853 TEST ST",
+   "applicant": "TESTOWNER 4C477F LLC",
+   "city": "BROOKEVILLE",
+   "expiredate": "2022-09-06T03:09:28.000",
+   "insuranceexpire": "2022-01-06T12:01:00.000",
+   "issueddate": "2018-09-06T03:09:28.000",
+   "licenseno": "EB226229",
+   "licensetype": "ELECTRICAL BUSINESS",
+   "location": {
+    "human_address": "{\"address\": \"1020 ROCKY GLEN DR\", \"city\": \"BROOKEVILLE\", \"state\": \"MD\", \"zip\": \"20833\"}",
+    "latitude": "39.204322",
+    "longitude": "-77.026493"
+   },
+   "state": "MD",
+   "zip": "20833"
+  },
+  {
+   "address1": "4321 TEST ST",
+   "applicant": "TESTOWNER 8BEBD8 INC",
+   "city": "SAN JOSE",
+   "expiredate": "2020-09-12T09:09:06.000",
+   "insuranceexpire": "2021-12-31T12:12:00.000",
+   "issueddate": "2018-09-12T09:09:06.000",
+   "licenseno": "EB226231",
+   "licensetype": "ELECTRICAL BUSINESS",
+   "location": {
+    "human_address": "{\"address\": \"1132 N 7TH ST\", \"city\": \"SAN JOSE\", \"state\": \"CA\", \"zip\": \"95112\"}",
+    "latitude": "37.361521",
+    "longitude": "-121.900825"
+   },
+   "state": "CA",
+   "zip": "95112"
+  }
+ ],
+ "where": "licenseno >= 'EB225953'"
+}

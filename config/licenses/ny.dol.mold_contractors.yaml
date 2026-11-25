@@ -1,0 +1,22 @@
+# New York State Department of Labor, "Mold Contractor Licenses: Four Year Window"
+# (data.ny.gov ikqx-ispy): about 2.5K mold assessment and remediation contractor licenses with
+# business name, DBA, address, status and issue date.
+source_id: ny.dol.mold_contractors
+state: NY
+jurisdiction: "36"
+portal: https://data.ny.gov
+dataset: ikqx-ispy
+key: license_number
+id_prefix: "NY-DOL-MOLDC:"
+terms_url: https://data.ny.gov/download/77gx-ii52/application%2Fpdf
+terms_summary: "NY Open Data terms: free to use; no warranty. No restriction on commercial use found."
+checked_on: 2026-11-25
+license:
+  name: [dba_name, business_name]
+  type: license_type
+  status: license_status
+  issued_on: issued_date
+  address: {street: [address, address_2], city: city, state: state, zip: zip_code}
+holders:
+  - {role: other, title: CONTRACTOR, name: business_name, address: {street: [address, address_2], city: city, state: state, zip: zip_code}}
+pii_fields: [business_name, dba_name, address, address_2, phone]

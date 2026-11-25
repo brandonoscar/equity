@@ -1,0 +1,22 @@
+# Texas Real Estate Commission, "Broker and Sales Agent License Holder Information"
+# (data.texas.gov s7ft-44qi): about 328K broker, sales agent and broker-company licenses, one
+# row per license, with the licensee's name, status, original license date and the related
+# (sponsoring or designated) license holder. No address is published (county only).
+source_id: tx.trec.real_estate
+state: TX
+jurisdiction: "48"
+portal: https://data.texas.gov
+dataset: s7ft-44qi
+key: license_number
+id_prefix: "TX-TREC:"
+terms_url: https://data.texas.gov/dataset/Broker-and-Sales-Agent-License-Holder-Information/s7ft-44qi
+terms_summary: "Texas Open Data Portal; no license text on the dataset (public information published by TREC)."
+checked_on: 2026-11-25
+license:
+  type: license_type
+  status: status
+  issued_on: original_license_date
+holders:
+  - {role: other, title: LICENSEE, name: key_name, last_first: true}
+  - {role: other, title: RELATED LICENSEE, with_type: false, name: related_license_full_name}
+pii_fields: [full_name, key_name, first_name, middle_name, last_name, related_license_full_name]

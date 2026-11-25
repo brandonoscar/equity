@@ -1,0 +1,22 @@
+# Missouri Department of Revenue, "Motor Fuel Licensee List" (data.mo.gov kf27-upwz): about
+# 920 motor fuel distributors, suppliers, importers and exporters with status (and status
+# date), activity type and mailing address.
+# TODO(Brandon): no issue date is published, so licenses are dated from the retrieval day.
+source_id: mo.dor.motor_fuel
+state: MO
+jurisdiction: "29"
+portal: https://data.mo.gov
+dataset: kf27-upwz
+key: license_number
+id_prefix: "MO-FUEL:"
+terms_url: https://data.mo.gov/Revenue/Motor-Fuel-Licensee-List/kf27-upwz
+terms_summary: "Missouri Open Data Portal; no license text on the dataset (public information published by the Department of Revenue)."
+checked_on: 2026-11-25
+license:
+  name: dba_company_name
+  type: activity_type_s
+  status: status
+  mailing: {street: mailing_address, city: city, state: state, zip: zip_code}
+holders:
+  - {role: other, title: LICENSEE, name: dba_company_name, address: {street: mailing_address, city: city, state: state, zip: zip_code}}
+pii_fields: [dba_company_name, mailing_address]

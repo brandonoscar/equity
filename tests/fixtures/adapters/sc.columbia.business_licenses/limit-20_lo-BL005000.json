@@ -1,0 +1,433 @@
+{
+ "portal": "https://columbiasc.data.socrata.com",
+ "rows": [
+  {
+   "applicationdate": "2013-12-23T11:36:29.363",
+   "balancedue": "0.0000",
+   "district": "N/A",
+   "expirationdate": "2013-12-31T00:00:00.000",
+   "issueddate": "2013-12-23T11:43:02.800",
+   "licenseclass": "In City Operations",
+   "licenseid": "c05e9750-16ff-4e76-b38f-c2533a4f4b54",
+   "licensenumber": "BL005000-12-2013",
+   "licensestatus": "Inactive",
+   "licensesystemstatus": "Expired",
+   "licensetype": "Out of City Contractor",
+   "mainaddress": "8852 TEST ST",
+   "taxyear": "2013"
+  },
+  {
+   "applicationdate": "2013-12-23T12:03:50.897",
+   "balancedue": "0.0000",
+   "district": "N/A",
+   "expirationdate": "2013-12-31T00:00:00.000",
+   "issueddate": "2013-12-23T12:12:04.980",
+   "licenseclass": "General Business (Out of City)",
+   "licenseid": "e26f8e11-3639-4a61-9d60-f1c3b3a34ee7",
+   "licensenumber": "BL005001-12-2013",
+   "licensestatus": "Inactive",
+   "licensesystemstatus": "Expired",
+   "licensetype": "General Business",
+   "mainaddress": "2528 TEST ST",
+   "taxyear": "2013"
+  },
+  {
+   "applicationdate": "2013-12-23T13:42:05.847",
+   "balancedue": "0.0000",
+   "district": "N/A",
+   "expirationdate": "2013-12-31T00:00:00.000",
+   "issueddate": "2013-12-23T13:55:32.973",
+   "licenseclass": "General Business (Out of City)",
+   "licenseid": "83e70050-6124-4072-bee4-e9291e8c3296",
+   "licensenumber": "BL005002-12-2013",
+   "licensestatus": "Discontinued",
+   "licensesystemstatus": "Other",
+   "licensetype": "General Business",
+   "mainaddress": "3340 TEST ST",
+   "taxyear": "2013"
+  },
+  {
+   "applicationdate": "2015-05-06T11:59:19.683",
+   "balancedue": "0.0000",
+   "companyname": "TESTOWNER D167EC LLC",
+   "district": "N/A",
+   "expirationdate": "2015-12-31T00:00:00.000",
+   "issueddate": "2015-05-06T12:02:07.953",
+   "lastrenewaldate": "2016-02-02T09:23:00.130",
+   "licenseclass": "General Business (Out of City)",
+   "licenseid": "1b4e6264-ba97-459f-a706-09f8538716e3",
+   "licensenumber": "BL005003-12-2013",
+   "licensestatus": "Issued",
+   "licensesystemstatus": "Issued",
+   "licensetype": "General Business",
+   "location": {
+    "coordinates": [
+     -81.057713,
+     33.898393
+    ],
+    "type": "Point"
+   },
+   "mainaddress": "6012 TEST ST",
+   "taxyear": "2015"
+  },
+  {
+   "applicationdate": "2013-12-26T15:39:57.947",
+   "balancedue": "0.0000",
+   "companyname": "TESTOWNER D167EC LLC",
+   "district": "N/A",
+   "expirationdate": "2013-12-31T00:00:00.000",
+   "issueddate": "2013-12-26T15:50:23.003",
+   "lastrenewaldate": "2014-07-10T09:42:25.440",
+   "licenseclass": "General Business (Out of City)",
+   "licenseid": "3587e0ab-9b02-4d20-9022-b367ccbd031c",
+   "licensenumber": "BL005003-12-2013",
+   "licensestatus": "Issued",
+   "licensesystemstatus": "Issued",
+   "licensetype": "General Business",
+   "mainaddress": "8212 TEST ST",
+   "taxyear": "2013"
+  },
+  {
+   "applicationdate": "2017-04-24T14:02:02.217",
+   "balancedue": "0.0000",
+   "companyname": "TESTOWNER D167EC LLC",
+   "district": "N/A",
+   "expirationdate": "2017-12-31T00:00:00.000",
+   "issueddate": "2017-04-24T14:07:16.637",
+   "lastrenewaldate": "2018-03-15T15:47:42.073",
+   "licenseclass": "General Business (Out of City)",
+   "licenseid": "6c4ab6d5-8811-48dc-a065-54c9f9c6709c",
+   "licensenumber": "BL005003-12-2013",
+   "licensestatus": "Issued",
+   "licensesystemstatus": "Issued",
+   "licensetype": "General Business",
+   "location": {
+    "coordinates": [
+     -81.057713,
+     33.898393
+    ],
+    "type": "Point"
+   },
+   "mainaddress": "6012 TEST ST",
+   "taxyear": "2017"
+  },
+  {
+   "applicationdate": "2019-02-15T10:41:16.287",
+   "balancedue": "0.0000",
+   "companyname": "TESTOWNER D167EC LLC",
+   "district": "N/A",
+   "expirationdate": "2019-12-31T00:00:00.000",
+   "issueddate": "2019-02-15T10:41:48.020",
+   "lastrenewaldate": "2020-04-30T10:52:01.210",
+   "licenseclass": "General Business (Out of City)",
+   "licenseid": "7dd6de70-0a79-4611-98b6-db7f4a5aedab",
+   "licensenumber": "BL005003-12-2013",
+   "licensestatus": "Issued",
+   "licensesystemstatus": "Issued",
+   "licensetype": "General Business",
+   "location": {
+    "coordinates": [
+     -81.057713,
+     33.898393
+    ],
+    "type": "Point"
+   },
+   "mainaddress": "6012 TEST ST",
+   "taxyear": "2019"
+  },
+  {
+   "applicationdate": "2016-02-02T09:23:00.130",
+   "balancedue": "0.0000",
+   "companyname": "TESTOWNER D167EC LLC",
+   "district": "N/A",
+   "expirationdate": "2016-12-31T00:00:00.000",
+   "issueddate": "2016-02-02T09:26:03.297",
+   "lastrenewaldate": "2017-04-24T14:02:02.217",
+   "licenseclass": "General Business (Out of City)",
+   "licenseid": "9df98a48-7cf4-44e6-b7e0-c44388c6ed6a",
+   "licensenumber": "BL005003-12-2013",
+   "licensestatus": "Issued",
+   "licensesystemstatus": "Issued",
+   "licensetype": "General Business",
+   "location": {
+    "coordinates": [
+     -81.057713,
+     33.898393
+    ],
+    "type": "Point"
+   },
+   "mainaddress": "6012 TEST ST",
+   "taxyear": "2016"
+  },
+  {
+   "applicationdate": "2021-04-30T15:30:26.430",
+   "balancedue": "0.0000",
+   "companyname": "TESTOWNER D167EC LLC",
+   "district": "N/A",
+   "expirationdate": "2021-12-31T00:00:00.000",
+   "issueddate": "2021-05-05T10:50:57.090",
+   "licenseclass": "General Business (Out of City)",
+   "licenseid": "98f53139-25c2-4d6c-a01c-4bce9d1181e1",
+   "licensenumber": "BL005003-12-2013",
+   "licensestatus": "Issued",
+   "licensesystemstatus": "Issued",
+   "licensetype": "General Business",
+   "location": {
+    "coordinates": [
+     -81.057713,
+     33.898393
+    ],
+    "type": "Point"
+   },
+   "mainaddress": "6012 TEST ST",
+   "taxyear": "2021"
+  },
+  {
+   "applicationdate": "2020-04-30T10:52:01.210",
+   "balancedue": "0.0000",
+   "companyname": "TESTOWNER D167EC LLC",
+   "district": "N/A",
+   "expirationdate": "2020-12-31T00:00:00.000",
+   "issueddate": "2021-04-30T11:22:58.773",
+   "lastrenewaldate": "2021-04-30T15:30:26.430",
+   "licenseclass": "General Business (Out of City)",
+   "licenseid": "bbbd88be-b7be-412f-8c42-72098e25cab3",
+   "licensenumber": "BL005003-12-2013",
+   "licensestatus": "Issued",
+   "licensesystemstatus": "Issued",
+   "licensetype": "General Business",
+   "location": {
+    "coordinates": [
+     -81.057713,
+     33.898393
+    ],
+    "type": "Point"
+   },
+   "mainaddress": "6012 TEST ST",
+   "taxyear": "2020"
+  },
+  {
+   "applicationdate": "2014-07-10T09:42:25.440",
+   "balancedue": "0.0000",
+   "companyname": "TESTOWNER D167EC LLC",
+   "district": "N/A",
+   "expirationdate": "2014-12-31T00:00:00.000",
+   "issueddate": "2014-07-10T09:48:24.087",
+   "lastrenewaldate": "2015-05-06T11:59:19.683",
+   "licenseclass": "General Business (Out of City)",
+   "licenseid": "cc6e9b3a-ae73-4692-ad95-c8a606d3edce",
+   "licensenumber": "BL005003-12-2013",
+   "licensestatus": "Issued",
+   "licensesystemstatus": "Issued",
+   "licensetype": "General Business",
+   "location": {
+    "coordinates": [
+     -81.057713,
+     33.898393
+    ],
+    "type": "Point"
+   },
+   "mainaddress": "6012 TEST ST",
+   "taxyear": "2014"
+  },
+  {
+   "applicationdate": "2018-03-15T15:47:42.073",
+   "balancedue": "0.0000",
+   "companyname": "TESTOWNER D167EC LLC",
+   "district": "N/A",
+   "expirationdate": "2018-12-31T00:00:00.000",
+   "issueddate": "2018-03-15T15:49:51.247",
+   "lastrenewaldate": "2019-02-15T10:41:16.287",
+   "licenseclass": "General Business (Out of City)",
+   "licenseid": "e257e7cd-b848-4374-8c63-02dff7aadc04",
+   "licensenumber": "BL005003-12-2013",
+   "licensestatus": "Issued",
+   "licensesystemstatus": "Issued",
+   "licensetype": "General Business",
+   "location": {
+    "coordinates": [
+     -81.057713,
+     33.898393
+    ],
+    "type": "Point"
+   },
+   "mainaddress": "6012 TEST ST",
+   "taxyear": "2018"
+  },
+  {
+   "applicationdate": "2022-06-02T07:32:07.207",
+   "balancedue": "0.0000",
+   "companyname": "TESTOWNER D167EC LLC",
+   "district": "N/A",
+   "expirationdate": "2023-04-30T00:00:00.000",
+   "issueddate": "2022-06-02T07:34:38.000",
+   "licenseclass": "General Business (Out of City)",
+   "licenseid": "6d8efaef-8c2d-4066-9a92-428dd587354b",
+   "licensenumber": "BL005003-12-2013",
+   "licensestatus": "Issued",
+   "licensesystemstatus": "Issued",
+   "licensetype": "General Business",
+   "location": {
+    "coordinates": [
+     -81.057713,
+     33.898393
+    ],
+    "type": "Point"
+   },
+   "mainaddress": "6012 TEST ST",
+   "taxyear": "2022"
+  },
+  {
+   "applicationdate": "2013-12-30T09:53:57.477",
+   "balancedue": "0.0000",
+   "district": "N/A",
+   "expirationdate": "2013-12-31T00:00:00.000",
+   "issueddate": "2013-12-30T10:00:20.843",
+   "licenseclass": "General Business (Out of City)",
+   "licenseid": "e527cd59-8753-4879-bd9e-5ece41ddb340",
+   "licensenumber": "BL005004-12-2013",
+   "licensestatus": "Inactive",
+   "licensesystemstatus": "Expired",
+   "licensetype": "General Business",
+   "location": {
+    "coordinates": [
+     -81.083413,
+     33.95365
+    ],
+    "type": "Point"
+   },
+   "mainaddress": "1602 TEST ST",
+   "taxyear": "2013"
+  },
+  {
+   "applicationdate": "2013-12-30T12:26:54.757",
+   "balancedue": "0.0000",
+   "district": "N/A",
+   "expirationdate": "2013-12-31T00:00:00.000",
+   "issueddate": "2013-12-30T12:40:04.730",
+   "licenseclass": "General Business (Out of City)",
+   "licenseid": "fc8c0ab0-fbca-4775-a7f7-14bcbc58b100",
+   "licensenumber": "BL005005-12-2013",
+   "licensestatus": "Discontinued",
+   "licensesystemstatus": "Other",
+   "licensetype": "General Business",
+   "mainaddress": "1701 TEST ST",
+   "taxyear": "2013"
+  },
+  {
+   "applicationdate": "2016-08-22T15:14:16.703",
+   "balancedue": "0.0000",
+   "district": "N/A",
+   "expirationdate": "2016-12-31T00:00:00.000",
+   "issueddate": "2018-09-20T08:51:12.463",
+   "lastrenewaldate": "2017-11-17T15:30:51.787",
+   "licenseclass": "General Business (In City)",
+   "licenseid": "1264866c-d784-441f-baa4-1bef7c55bf44",
+   "licensenumber": "BL005006-12-2013",
+   "licensestatus": "Issued",
+   "licensesystemstatus": "Issued",
+   "licensetype": "General Business",
+   "location": {
+    "coordinates": [
+     -81.022423,
+     34.052095
+    ],
+    "type": "Point"
+   },
+   "mainaddress": "8317 TEST ST",
+   "taxyear": "2016"
+  },
+  {
+   "applicationdate": "2017-11-17T15:30:51.787",
+   "balancedue": "0.0000",
+   "district": "N/A",
+   "expirationdate": "2017-12-31T00:00:00.000",
+   "issueddate": "2018-09-20T08:53:58.743",
+   "lastrenewaldate": "2018-09-20T08:54:28.290",
+   "licenseclass": "General Business (In City)",
+   "licenseid": "314aeaca-b0ce-425f-99f6-82af549cce89",
+   "licensenumber": "BL005006-12-2013",
+   "licensestatus": "Issued",
+   "licensesystemstatus": "Issued",
+   "licensetype": "General Business",
+   "location": {
+    "coordinates": [
+     -81.022423,
+     34.052095
+    ],
+    "type": "Point"
+   },
+   "mainaddress": "8317 TEST ST",
+   "mainparcelnumber": "11705-03-12",
+   "taxyear": "2017"
+  },
+  {
+   "applicationdate": "2013-12-30T12:39:05.863",
+   "balancedue": "0.0000",
+   "district": "N/A",
+   "expirationdate": "2014-12-31T00:00:00.000",
+   "issueddate": "2014-06-17T15:55:45.463",
+   "lastrenewaldate": "2015-07-07T14:54:54.853",
+   "licenseclass": "General Business (In City)",
+   "licenseid": "4882f9b9-eb34-45d7-bcb1-e207f0b083b5",
+   "licensenumber": "BL005006-12-2013",
+   "licensestatus": "Issued",
+   "licensesystemstatus": "Issued",
+   "licensetype": "General Business",
+   "location": {
+    "coordinates": [
+     -81.022423,
+     34.052095
+    ],
+    "type": "Point"
+   },
+   "mainaddress": "8317 TEST ST",
+   "taxyear": "2014"
+  },
+  {
+   "applicationdate": "2015-07-07T14:54:54.853",
+   "balancedue": "0.0000",
+   "district": "N/A",
+   "expirationdate": "2015-12-31T00:00:00.000",
+   "issueddate": "2015-07-07T14:56:58.530",
+   "lastrenewaldate": "2016-08-22T15:14:16.703",
+   "licenseclass": "General Business (In City)",
+   "licenseid": "8f27d912-30c5-42b7-8f7f-b4bba305ed5a",
+   "licensenumber": "BL005006-12-2013",
+   "licensestatus": "Issued",
+   "licensesystemstatus": "Issued",
+   "licensetype": "General Business",
+   "location": {
+    "coordinates": [
+     -81.022423,
+     34.052095
+    ],
+    "type": "Point"
+   },
+   "mainaddress": "8317 TEST ST",
+   "taxyear": "2015"
+  },
+  {
+   "applicationdate": "2018-09-20T08:54:28.290",
+   "balancedue": "0.0000",
+   "district": "N/A",
+   "licenseclass": "General Business (In City)",
+   "licenseid": "b4766b82-4fd2-4f9d-8f97-8107058ccea5",
+   "licensenumber": "BL005006-12-2013",
+   "licensestatus": "Pending Documentation",
+   "licensesystemstatus": "Other",
+   "licensetype": "General Business",
+   "location": {
+    "coordinates": [
+     -81.022423,
+     34.052095
+    ],
+    "type": "Point"
+   },
+   "mainaddress": "8317 TEST ST",
+   "mainparcelnumber": "11705-03-12",
+   "taxyear": "2018"
+  }
+ ],
+ "where": "licensenumber >= 'BL005000'"
+}

@@ -1,0 +1,24 @@
+# Washington State Department of Licensing, "Active, Revoked, or Canceled Fuel Tax Licenses
+# by Department of Licensing" (data.wa.gov hkzi-c5cu, ODbL): about 500 fuel suppliers,
+# distributors, importers, exporters and blenders with name, alternate name, status and
+# state.
+# TODO(Brandon): no issue date is published, so licenses are dated from the retrieval day.
+source_id: wa.dol.fuel_tax
+state: WA
+jurisdiction: "53"
+portal: https://data.wa.gov
+dataset: hkzi-c5cu
+key: license_number
+id_prefix: "WA-DOL-FUEL:"
+terms_url: https://data.wa.gov/Transportation/Active-Revoked-or-Canceled-Fuel-Tax-Licenses-by-De/hkzi-c5cu
+terms_summary: "Open Data Commons Open Database License (ODbL) on the dataset: attribution and share-alike for a public database built from it; internal use is unrestricted."
+use_restrictions: [attribution_required]
+checked_on: 2026-11-25
+license:
+  name: [alternate_name, name]
+  type: license_type
+  status: license_status
+  address: {state: state}
+holders:
+  - {role: other, title: LICENSEE, name: name}
+pii_fields: [name, alternate_name]

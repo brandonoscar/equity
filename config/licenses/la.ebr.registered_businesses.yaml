@@ -1,0 +1,27 @@
+# City of Baton Rouge / Parish of East Baton Rouge Finance Department, "Businesses Registered
+# with EBR Parish" (data.brla.gov xw6s-bcqm, Public Domain): about 81K occupational license
+# and sales tax accounts (open and closed), one row per account location, with trade and
+# legal name, contact person, ownership type, account type, open date, status, and physical
+# and mailing addresses. A record is (taccount, tacctlocation).
+source_id: la.ebr.registered_businesses
+state: LA
+jurisdiction: "22033"
+portal: https://data.brla.gov
+dataset: xw6s-bcqm
+key: taccount
+record_key: [taccount, tacctlocation]
+id_prefix: "EBR-BIZ:"
+terms_url: https://data.brla.gov/Business-and-Financial/Businesses-Registered-with-EBR-Parish/xw6s-bcqm
+terms_summary: "Public Domain (dataset license field)."
+checked_on: 2026-11-25
+license:
+  name: [tname, tlegalname]
+  type: typename
+  status: tstatus
+  issued_on: topendate
+  address: {street: [tphysicaladdress1, tphysicaladdress2], city: tphysicalcity, state: tphysicalstate, zip: tphysicalzipcode5}
+  mailing: {street: [tmailaddress1, tmailaddress2], city: tmailcity, state: tmailstate, zip: tmailzipcode5}
+holders:
+  - {role: other, title: LICENSEE, name: tlegalname, address: {street: [tmailaddress1, tmailaddress2], city: tmailcity, state: tmailstate, zip: tmailzipcode5}}
+  - {role: other, title: CONTACT PERSON, with_type: false, name: tcontactperson}
+pii_fields: [tname, tlegalname, tcontactperson, tmailaddress1, tmailaddress2, tphysicaladdress1, tphysicaladdress2, geolocation]

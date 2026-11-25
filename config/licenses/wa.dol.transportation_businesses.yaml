@@ -1,0 +1,29 @@
+# Washington State Department of Licensing, "Department of Licensing's Business Licenses
+# Related to the Transportation Industry" (data.wa.gov ucdg-xgbj, ODbL): about 39K vehicle
+# dealer, manufacturer, wrecker, tow truck, driver training school and similar licenses with
+# location (trade) name, business name, location and business addresses, first issue date,
+# status and bond. A license number repeats across types, so a record is (license_type,
+# license_number).
+source_id: wa.dol.transportation_businesses
+state: WA
+jurisdiction: "53"
+portal: https://data.wa.gov
+dataset: ucdg-xgbj
+key: license_number
+record_key: [license_type, license_number]
+id_prefix: "WA-DOL-BIZ:"
+terms_url: https://data.wa.gov/Employment/Department-of-Licensing-s-Business-Licenses-Relate/ucdg-xgbj
+terms_summary: "Open Data Commons Open Database License (ODbL) on the dataset: attribution and share-alike for a public database built from it; internal use is unrestricted."
+use_restrictions: [attribution_required]
+checked_on: 2026-11-25
+license:
+  name: [location_name, business_name]
+  type: license_type
+  status: license_status
+  issued_on: first_issue_date
+  address: {street: location_street, city: location_city, state: location_state, zip: location_postal_code}
+  mailing: {street: business_street, city: business_city, state: business_state, zip: business_postal_code}
+holders:
+  - {role: other, title: LICENSEE, name: business_name, address: {street: business_street, city: business_city, state: business_state, zip: business_postal_code}}
+  - {role: other, title: SURETY, with_type: false, name: bonding_company_name}
+pii_fields: [location_name, business_name, location_street, business_street, phone_number, bonding_company_address, bond_company_phone_number]
