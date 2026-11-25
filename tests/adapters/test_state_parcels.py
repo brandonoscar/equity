@@ -667,3 +667,16 @@ def test_columns_listed_for_a_pii_field_are_all_pii(tmp_path: Path) -> None:
               "total_value": "TV", "tax_year": {"const": 2025}}  # fmt: skip
     cls = adapter_for(load_config(_cfg(tmp_path, fields=fields)))
     assert {"OWN", "A1", "A2"} <= set(cls.pii_fields)
+
+
+def test_nyc_bbl10_builds_the_acris_parcel_key() -> None:
+    from equity.adapters.liens import BOROUGHS
+    from equity.adapters.state_parcels import NYC_SWIS, nyc_parcel_id
+
+    assert nyc_parcel_id("2044810081") == "6001002044810081"
+    assert nyc_parcel_id(1000010001) == "6201001000010001"
+    assert [nyc_parcel_id(v) for v in ("", None, "6044810081", "2000000081", "20448100")] == [
+        None
+    ] * 5
+    # the same borough -> SWIS prefixes the NYC lien and deed sources use
+    assert {b: BOROUGHS[b][1] for b in NYC_SWIS} == NYC_SWIS

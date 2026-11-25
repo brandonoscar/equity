@@ -1,0 +1,38 @@
+source_id: ny.nyc.parcels
+state: NY
+# NYC Department of Finance "Property Valuation and Assessment Data Tax Classes 1,2,3,4"
+# (Socrata 8y4t-faws): the assessment roll with the owner of record for every NYC lot. NYC is
+# not in the state ORPTS roll (ny.local_rolls.parcels), so this is the NYC owner layer. Lots
+# are keyed like ACRIS and every NYC lien source: county FIPS + NYS SWIS prefix + 10-digit BBL.
+api: socrata
+layer_url: https://data.cityofnewyork.us/resource/8y4t-faws.json
+filter: "year = '2027'"       # one roll; 2,358,927 rows on 2026-11-25 (2023-2027 published)
+order_by: parid               # then Socrata's :id (added by the adapter) for a total order
+page_size: 10000
+row_window: 100000
+min_interval_s: 1.0           # robots.txt Crawl-delay: 1
+county:
+  field: boro
+  format: code_map
+  code_map:
+    "1": "061"   # Manhattan (New York County)
+    "2": "005"   # Bronx
+    "3": "047"   # Brooklyn (Kings)
+    "4": "081"   # Queens
+    "5": "085"   # Staten Island (Richmond)
+fields:
+  parcel_id: {nyc_bbl10: parid}   # '2044810081' -> '6001002044810081'
+  owner1: owner
+  situs_line1: [housenum_lo, street_name]
+  situs_city: {const: NEW YORK}
+  situs_state: {const: NY}
+  situs_zip: zip_code
+  land_use_code: bldg_class
+  zoning: zoning
+value_basis: "The roll carries market, actual assessed, transitional and taxable values for prior-year, tentative, change-by-notice, final and current periods (PY*/TEN*/CBN*/FIN*/CUR*), but the dataset publishes no column definitions and no license field, and which period YEAR denotes is not stated, so no values or tax_year are mapped and no assessment facts are emitted; raw values stay in source records. There is no owner mailing address. situs_city is the city name (borough names are in the county)."
+terms:
+  url: https://data.cityofnewyork.us/d/8y4t-faws
+  summary: "NYC Open Data (Socrata), Department of Finance (DOF), updated annually; NYC open data terms of use, free, no login, no app token. The dataset's license field is empty (Socrata metadata read 2026-11-25). data.cityofnewyork.us/robots.txt: Crawl-delay 1, disallows only /browse search pages."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free
