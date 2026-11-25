@@ -12,6 +12,7 @@ from equity.adapters.dc_business import DCBusiness
 from equity.adapters.deeds import all_deed_adapters
 from equity.adapters.federal.ecf_rss import NDWVBankruptcyRSS, NDWVDistrictRSS, court_adapters
 from equity.adapters.federal.epa_echo import EPAJudicialCases
+from equity.adapters.federal.fcc_uls import FCC_ULS_ADAPTERS
 from equity.adapters.federal.federal_register import FederalRegisterRealty
 from equity.adapters.federal.fjc_idb import FJCCivilJudgments
 from equity.adapters.federal.fjc_idb_direct import FJCDirectCivilJudgments
@@ -99,6 +100,7 @@ _ALL: tuple[type[Adapter], ...] = (
     FederalRegisterRealty,
     SBAChargeOffs,
     SBAPPPChargeOffs,
+    *FCC_ULS_ADAPTERS,  # FAAAircraftRegistry joins once a hand-saved fixture exists
     PrinceGeorgesProperty,
     NYNameHistory,
     HarrisJPCivilJudgments,

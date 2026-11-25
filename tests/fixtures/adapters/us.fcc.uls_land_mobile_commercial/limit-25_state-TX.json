@@ -1,0 +1,853 @@
+{
+ "as_of": "Sun Nov 22 10:31:05 EST 2026",
+ "file": "l_LMcomm.zip",
+ "rows": [
+  {
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "EL PASO",
+     "entity_name": "TESTOWNER A4FAED",
+     "entity_type": "L",
+     "first_name": "TESTOWNER 51E42F",
+     "frn": "TESTOWNER BF19EA",
+     "last_name": "TESTOWNER F4FB6E",
+     "licensee_id": "TESTOWNER 84800C",
+     "mi": "TESTOWNER 51918E",
+     "state": "TX",
+     "street_address": "1811 TEST ST",
+     "zip_code": "79924"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER E01456",
+    "cancellation_date": "05/31/2008",
+    "effective_date": "05/18/1998",
+    "expired_date": "04/14/2008",
+    "grant_date": "05/18/1998",
+    "last_action_date": "05/31/2008",
+    "license_status": "E",
+    "radio_service_code": "IK"
+   },
+   "usi": "TESTOWNER 6C116F"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER 0131FA",
+     "city": "LEVELLAND",
+     "entity_name": "TESTOWNER 653983 CO",
+     "entity_type": "L",
+     "frn": "TESTOWNER 0CC07F",
+     "licensee_id": "TESTOWNER ACA107",
+     "state": "TX",
+     "street_address": "6595 TEST ST",
+     "zip_code": "79336"
+    },
+    {
+     "city": "WASHINGTON",
+     "entity_name": "TESTOWNER 1D9B7F PC",
+     "entity_type": "CL",
+     "state": "DC",
+     "street_address": "7227 TEST ST",
+     "zip_code": "20015"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 62229F",
+    "cancellation_date": "09/23/2002",
+    "effective_date": "10/07/2000",
+    "expired_date": "11/22/2010",
+    "grant_date": "10/07/2000",
+    "last_action_date": "09/25/2002",
+    "license_status": "C",
+    "radio_service_code": "YX"
+   },
+   "usi": "TESTOWNER 56C474"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER 54848A",
+     "city": "THE WOODLANDS",
+     "entity_name": "TESTOWNER 16176C INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 7794CE",
+     "licensee_id": "TESTOWNER FB8C01",
+     "state": "TX",
+     "street_address": "773 TEST ST",
+     "zip_code": "77380"
+    },
+    {
+     "city": "THE WOODLANDS",
+     "entity_name": "TESTOWNER 4B9E31",
+     "entity_type": "CL",
+     "state": "TX",
+     "street_address": "773 TEST ST",
+     "zip_code": "77380"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER D01FB0",
+    "cancellation_date": "12/07/2000",
+    "effective_date": "07/22/1998",
+    "expired_date": "04/03/2002",
+    "grant_date": "04/03/1997",
+    "last_action_date": "01/10/2001",
+    "license_status": "C",
+    "radio_service_code": "YX"
+   },
+   "usi": "TESTOWNER 6F8A9F"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "city": "THE WOODLANDS",
+     "entity_name": "TESTOWNER 16176C INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 7794CE",
+     "licensee_id": "TESTOWNER FB8C01",
+     "state": "TX",
+     "street_address": "710 TEST ST",
+     "zip_code": "77380"
+    },
+    {
+     "city": "THE WOODLANDS",
+     "entity_name": "TESTOWNER 16176C INC",
+     "entity_type": "CL",
+     "state": "TX",
+     "street_address": "710 TEST ST",
+     "zip_code": "77380"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER A43E33",
+    "cancellation_date": "12/08/2000",
+    "effective_date": "11/06/1998",
+    "expired_date": "11/29/2003",
+    "grant_date": "11/29/1998",
+    "last_action_date": "12/09/2000",
+    "license_status": "C",
+    "radio_service_code": "GX"
+   },
+   "usi": "TESTOWNER 8EA58E"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER 54848A",
+     "city": "THE WOODLANDS",
+     "entity_name": "TESTOWNER 16176C INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 7794CE",
+     "licensee_id": "TESTOWNER FB8C01",
+     "state": "TX",
+     "street_address": "8499 TEST ST",
+     "zip_code": "77380"
+    },
+    {
+     "city": "THE WOODLANDS",
+     "entity_name": "TESTOWNER 16176C INC",
+     "entity_type": "CL",
+     "state": "TX",
+     "street_address": "710 TEST ST",
+     "zip_code": "77380"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER ABD510",
+    "cancellation_date": "12/08/2000",
+    "effective_date": "04/24/2000",
+    "expired_date": "04/19/2005",
+    "grant_date": "04/19/2000",
+    "last_action_date": "03/30/2001",
+    "license_status": "C",
+    "radio_service_code": "GX"
+   },
+   "usi": "TESTOWNER EF7441"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER 54848A",
+     "city": "THE WOODLANDS",
+     "entity_name": "TESTOWNER 16176C INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 7794CE",
+     "licensee_id": "TESTOWNER FB8C01",
+     "state": "TX",
+     "street_address": "710 TEST ST",
+     "zip_code": "77380"
+    },
+    {
+     "city": "THE WOODLANDS",
+     "entity_name": "TESTOWNER 16176C INC",
+     "entity_type": "CL",
+     "state": "TX",
+     "street_address": "710 TEST ST",
+     "zip_code": "77380"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 105943",
+    "cancellation_date": "12/08/2000",
+    "effective_date": "12/15/1998",
+    "expired_date": "01/10/2004",
+    "grant_date": "01/10/1994",
+    "last_action_date": "02/27/2002",
+    "license_status": "C",
+    "radio_service_code": "GX"
+   },
+   "usi": "TESTOWNER F89623"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "city": "THE WOODLANDS",
+     "entity_name": "TESTOWNER 16176C INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 7794CE",
+     "licensee_id": "TESTOWNER FB8C01",
+     "state": "TX",
+     "street_address": "8499 TEST ST",
+     "zip_code": "77380"
+    },
+    {
+     "city": "THE WOODLANDS",
+     "entity_name": "TESTOWNER 16176C INC",
+     "entity_type": "CL",
+     "state": "TX",
+     "street_address": "710 TEST ST",
+     "zip_code": "77380"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 81F5E5",
+    "cancellation_date": "12/08/2000",
+    "effective_date": "11/06/1998",
+    "expired_date": "12/09/2003",
+    "grant_date": "12/09/1998",
+    "last_action_date": "12/09/2000",
+    "license_status": "C",
+    "radio_service_code": "GX"
+   },
+   "usi": "TESTOWNER ACF448"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER 54848A",
+     "city": "THE WOODLANDS",
+     "entity_name": "TESTOWNER 16176C INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 7794CE",
+     "licensee_id": "TESTOWNER FB8C01",
+     "state": "TX",
+     "street_address": "710 TEST ST",
+     "zip_code": "77380"
+    },
+    {
+     "city": "THE WOODLANDS",
+     "entity_name": "TESTOWNER 16176C INC",
+     "entity_type": "CL",
+     "state": "TX",
+     "street_address": "710 TEST ST",
+     "zip_code": "77380"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 6C1C2A",
+    "cancellation_date": "12/06/2001",
+    "effective_date": "10/20/2001",
+    "expired_date": "10/22/2011",
+    "grant_date": "10/20/2001",
+    "last_action_date": "12/07/2001",
+    "license_status": "C",
+    "radio_service_code": "GX"
+   },
+   "usi": "TESTOWNER 21E607"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER 54848A",
+     "city": "THE WOODLANDS",
+     "entity_name": "TESTOWNER 16176C INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 7794CE",
+     "licensee_id": "TESTOWNER FB8C01",
+     "state": "TX",
+     "street_address": "773 TEST ST",
+     "zip_code": "77380"
+    },
+    {
+     "city": "THE WOODLANDS",
+     "entity_name": "TESTOWNER 4B9E31",
+     "entity_type": "CL",
+     "state": "TX",
+     "street_address": "773 TEST ST",
+     "zip_code": "77380"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 0A2986",
+    "cancellation_date": "12/08/2000",
+    "effective_date": "09/03/1999",
+    "expired_date": "11/08/2004",
+    "grant_date": "11/08/1999",
+    "last_action_date": "12/09/2000",
+    "license_status": "C",
+    "radio_service_code": "GX"
+   },
+   "usi": "TESTOWNER 8933B1"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER 54848A",
+     "city": "THE WOODLANDS",
+     "entity_name": "TESTOWNER 16176C INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 7794CE",
+     "licensee_id": "TESTOWNER FB8C01",
+     "state": "TX",
+     "street_address": "710 TEST ST",
+     "zip_code": "77380"
+    },
+    {
+     "city": "THE WOODLANDS",
+     "entity_name": "TESTOWNER 16176C INC",
+     "entity_type": "CL",
+     "state": "TX",
+     "street_address": "710 TEST ST",
+     "zip_code": "77380"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER F5B343",
+    "cancellation_date": "12/06/2001",
+    "effective_date": "11/14/2000",
+    "expired_date": "11/29/2010",
+    "grant_date": "11/14/2000",
+    "last_action_date": "12/07/2001",
+    "license_status": "C",
+    "radio_service_code": "GX"
+   },
+   "usi": "TESTOWNER 50F539"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "city": "THE WOODLANDS",
+     "entity_name": "TESTOWNER 16176C INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 7794CE",
+     "licensee_id": "TESTOWNER FB8C01",
+     "state": "TX",
+     "street_address": "710 TEST ST",
+     "zip_code": "77380"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER FEEA21",
+    "cancellation_date": "12/07/2000",
+    "effective_date": "01/09/1997",
+    "expired_date": "02/17/2002",
+    "grant_date": "02/17/1997",
+    "last_action_date": "04/01/2008",
+    "license_status": "C",
+    "radio_service_code": "GX"
+   },
+   "usi": "TESTOWNER 2EC98A"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER 54848A",
+     "city": "THE WOODLANDS",
+     "entity_name": "TESTOWNER 16176C INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 7794CE",
+     "licensee_id": "TESTOWNER FB8C01",
+     "state": "TX",
+     "street_address": "710 TEST ST",
+     "zip_code": "77380"
+    },
+    {
+     "city": "THE WOODLANDS",
+     "entity_name": "TESTOWNER 16176C INC",
+     "entity_type": "CL",
+     "state": "TX",
+     "street_address": "710 TEST ST",
+     "zip_code": "77380"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER B9B12B",
+    "cancellation_date": "12/08/2000",
+    "effective_date": "02/17/2000",
+    "expired_date": "02/22/2005",
+    "grant_date": "02/22/2000",
+    "last_action_date": "12/09/2000",
+    "license_status": "C",
+    "radio_service_code": "GX"
+   },
+   "usi": "TESTOWNER 349BE5"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER 54848A",
+     "city": "THE WOODLANDS",
+     "entity_name": "TESTOWNER 16176C INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 7794CE",
+     "licensee_id": "TESTOWNER FB8C01",
+     "state": "TX",
+     "street_address": "710 TEST ST",
+     "zip_code": "77380"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER E4CAC6",
+    "cancellation_date": "12/08/2000",
+    "effective_date": "08/08/2000",
+    "expired_date": "08/02/2005",
+    "grant_date": "08/02/2000",
+    "last_action_date": "12/09/2000",
+    "license_status": "C",
+    "radio_service_code": "GX"
+   },
+   "usi": "TESTOWNER DCA328"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER 54848A",
+     "city": "THE WOODLANDS",
+     "entity_name": "TESTOWNER 16176C INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 7794CE",
+     "licensee_id": "TESTOWNER FB8C01",
+     "state": "TX",
+     "street_address": "773 TEST ST",
+     "zip_code": "77380"
+    },
+    {
+     "city": "THE WOODLANDS",
+     "entity_name": "TESTOWNER 4B9E31",
+     "entity_type": "CL",
+     "state": "TX",
+     "street_address": "773 TEST ST",
+     "zip_code": "77380"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER C228F5",
+    "cancellation_date": "12/07/2000",
+    "effective_date": "12/15/1998",
+    "expired_date": "01/11/2004",
+    "grant_date": "01/11/1994",
+    "last_action_date": "02/27/2002",
+    "license_status": "C",
+    "radio_service_code": "GX"
+   },
+   "usi": "TESTOWNER 3E8B42"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER 54848A",
+     "city": "THE WOODLANDS",
+     "entity_name": "TESTOWNER 16176C INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 7794CE",
+     "licensee_id": "TESTOWNER FB8C01",
+     "state": "TX",
+     "street_address": "773 TEST ST",
+     "zip_code": "77380"
+    },
+    {
+     "city": "THE WOODLANDS",
+     "entity_name": "TESTOWNER 4B9E31",
+     "entity_type": "CL",
+     "state": "TX",
+     "street_address": "773 TEST ST",
+     "zip_code": "77380"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 79391A",
+    "cancellation_date": "12/08/2000",
+    "effective_date": "05/16/2000",
+    "expired_date": "05/02/2005",
+    "grant_date": "05/02/2000",
+    "last_action_date": "01/10/2001",
+    "license_status": "C",
+    "radio_service_code": "GX"
+   },
+   "usi": "TESTOWNER 650C16"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "city": "THE WOODLANDS",
+     "entity_name": "TESTOWNER 16176C INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 7794CE",
+     "licensee_id": "TESTOWNER FB8C01",
+     "state": "TX",
+     "street_address": "710 TEST ST",
+     "zip_code": "77380"
+    },
+    {
+     "city": "ARLINGTON",
+     "entity_type": "CL",
+     "state": "VA",
+     "street_address": "8788 TEST ST",
+     "zip_code": "22201"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER E2DA79",
+    "cancellation_date": "12/08/2000",
+    "effective_date": "07/24/2000",
+    "expired_date": "11/08/2004",
+    "grant_date": "11/08/1999",
+    "last_action_date": "01/10/2001",
+    "license_status": "C",
+    "radio_service_code": "GX"
+   },
+   "usi": "TESTOWNER C2B868"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER 54848A",
+     "city": "THE WOODLANDS",
+     "entity_name": "TESTOWNER 16176C INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 7794CE",
+     "licensee_id": "TESTOWNER FB8C01",
+     "state": "TX",
+     "street_address": "3451 TEST ST",
+     "zip_code": "77380"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 4E5D75",
+    "cancellation_date": "12/08/2000",
+    "effective_date": "03/23/1999",
+    "expired_date": "03/24/2004",
+    "grant_date": "03/24/1999",
+    "last_action_date": "02/27/2002",
+    "license_status": "C",
+    "radio_service_code": "GX"
+   },
+   "usi": "TESTOWNER CBA273"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER 563B2B",
+     "city": "MONTAGUE",
+     "entity_name": "TESTOWNER 9D0D19 INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 02D16F",
+     "licensee_id": "TESTOWNER 81008A",
+     "po_box": "TESTOWNER F4B1FA",
+     "state": "TX",
+     "zip_code": "76251"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER B15467",
+    "cancellation_date": "05/24/2008",
+    "effective_date": "08/09/1999",
+    "expired_date": "04/07/2008",
+    "grant_date": "04/07/1998",
+    "last_action_date": "05/24/2008",
+    "license_status": "E",
+    "radio_service_code": "YK"
+   },
+   "usi": "TESTOWNER DD3D81"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER B4274D",
+     "city": "MONTAGUE",
+     "entity_name": "TESTOWNER 9D0D19 INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 02D16F",
+     "licensee_id": "TESTOWNER 81008A",
+     "po_box": "TESTOWNER F4B1FA",
+     "state": "TX",
+     "zip_code": "76251"
+    },
+    {
+     "city": "Montague",
+     "entity_name": "TESTOWNER 49B655 INC",
+     "entity_type": "CL",
+     "first_name": "TESTOWNER 6FA386",
+     "last_name": "TESTOWNER 6E4F89",
+     "po_box": "TESTOWNER F4B1FA",
+     "state": "TX",
+     "street_address": "7334 TEST ST",
+     "zip_code": "762510076"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 238A2B",
+    "effective_date": "07/15/2025",
+    "expired_date": "09/28/2030",
+    "grant_date": "09/29/2020",
+    "last_action_date": "07/15/2025",
+    "license_status": "A",
+    "radio_service_code": "GM",
+    "uls_file_number": "TESTOWNER C3ED1C"
+   },
+   "usi": "TESTOWNER F93702"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER 6E3739",
+     "city": "MONTAGUE",
+     "entity_name": "TESTOWNER 9D0D19 INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 02D16F",
+     "licensee_id": "TESTOWNER 81008A",
+     "po_box": "TESTOWNER F4B1FA",
+     "state": "TX",
+     "street_address": "7334 TEST ST",
+     "zip_code": "762510076"
+    },
+    {
+     "attention_line": "TESTOWNER B4274D",
+     "city": "Montague",
+     "entity_name": "TESTOWNER 32E467 INC",
+     "entity_type": "CL",
+     "po_box": "TESTOWNER F4B1FA",
+     "state": "TX",
+     "street_address": "7334 TEST ST",
+     "zip_code": "762510076"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER D08037",
+    "effective_date": "04/29/2023",
+    "expired_date": "09/20/2030",
+    "grant_date": "09/29/2020",
+    "last_action_date": "04/29/2023",
+    "license_status": "A",
+    "radio_service_code": "GX",
+    "uls_file_number": "TESTOWNER C755FB"
+   },
+   "usi": "TESTOWNER 351C32"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER 6E3739",
+     "city": "MONTAGUE",
+     "entity_name": "TESTOWNER 9D0D19 INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 02D16F",
+     "licensee_id": "TESTOWNER 81008A",
+     "po_box": "TESTOWNER F4B1FA",
+     "state": "TX",
+     "street_address": "7334 TEST ST",
+     "zip_code": "762510076"
+    },
+    {
+     "attention_line": "TESTOWNER B4274D",
+     "city": "Montague",
+     "entity_name": "TESTOWNER 32E467 INC",
+     "entity_type": "CL",
+     "po_box": "TESTOWNER F4B1FA",
+     "state": "TX",
+     "street_address": "7334 TEST ST",
+     "zip_code": "762510076"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 71773A",
+    "effective_date": "04/29/2023",
+    "expired_date": "09/15/2030",
+    "grant_date": "09/29/2020",
+    "last_action_date": "04/29/2023",
+    "license_status": "A",
+    "radio_service_code": "GX",
+    "uls_file_number": "TESTOWNER 580398"
+   },
+   "usi": "TESTOWNER 346C06"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER 6E3739",
+     "city": "MONTAGUE",
+     "entity_name": "TESTOWNER 9D0D19 INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 02D16F",
+     "licensee_id": "TESTOWNER 81008A",
+     "po_box": "TESTOWNER F4B1FA",
+     "state": "TX",
+     "street_address": "7334 TEST ST",
+     "zip_code": "762510076"
+    },
+    {
+     "attention_line": "TESTOWNER B4274D",
+     "city": "Montague",
+     "entity_name": "TESTOWNER 32E467 INC",
+     "entity_type": "CL",
+     "first_name": "TESTOWNER 6FA386",
+     "last_name": "TESTOWNER 6E4F89",
+     "mi": "TESTOWNER 86A820",
+     "po_box": "TESTOWNER F4B1FA",
+     "state": "TX",
+     "street_address": "7334 TEST ST",
+     "zip_code": "762510076"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER FD8326",
+    "effective_date": "04/29/2023",
+    "expired_date": "10/02/2030",
+    "grant_date": "09/29/2020",
+    "last_action_date": "04/29/2023",
+    "license_status": "A",
+    "radio_service_code": "YM",
+    "uls_file_number": "TESTOWNER 9196F2"
+   },
+   "usi": "TESTOWNER D3F253"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER 6E3739",
+     "city": "MONTAGUE",
+     "entity_name": "TESTOWNER 9D0D19 INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 02D16F",
+     "licensee_id": "TESTOWNER 81008A",
+     "po_box": "TESTOWNER F4B1FA",
+     "state": "TX",
+     "street_address": "7334 TEST ST",
+     "zip_code": "762510076"
+    },
+    {
+     "attention_line": "TESTOWNER B4274D",
+     "city": "Montague",
+     "entity_name": "TESTOWNER 32E467 INC",
+     "entity_type": "CL",
+     "po_box": "TESTOWNER F4B1FA",
+     "state": "TX",
+     "street_address": "7334 TEST ST",
+     "zip_code": "762510076"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 44B597",
+    "effective_date": "04/29/2023",
+    "expired_date": "09/14/2030",
+    "grant_date": "09/29/2020",
+    "last_action_date": "04/29/2023",
+    "license_status": "A",
+    "radio_service_code": "GX",
+    "uls_file_number": "TESTOWNER CF5677"
+   },
+   "usi": "TESTOWNER D67923"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER 6E3739",
+     "city": "MONTAGUE",
+     "entity_name": "TESTOWNER 9D0D19 INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 02D16F",
+     "licensee_id": "TESTOWNER 81008A",
+     "po_box": "TESTOWNER F4B1FA",
+     "state": "TX",
+     "zip_code": "76251"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 9DD1AF",
+    "cancellation_date": "03/14/2007",
+    "effective_date": "08/14/2000",
+    "expired_date": "07/17/2010",
+    "grant_date": "07/17/2000",
+    "last_action_date": "03/15/2007",
+    "license_status": "C",
+    "radio_service_code": "GX"
+   },
+   "usi": "TESTOWNER 117381"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER B4274D",
+     "city": "MONTAGUE",
+     "entity_name": "TESTOWNER 9D0D19 INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 02D16F",
+     "licensee_id": "TESTOWNER 81008A",
+     "po_box": "TESTOWNER F4B1FA",
+     "state": "TX",
+     "street_address": "7334 TEST ST",
+     "zip_code": "76251"
+    },
+    {
+     "attention_line": "TESTOWNER B4274D",
+     "city": "Montague",
+     "entity_name": "TESTOWNER BD92D4 INC",
+     "entity_type": "CL",
+     "po_box": "TESTOWNER F4B1FA",
+     "state": "TX",
+     "street_address": "7334 TEST ST",
+     "zip_code": "76251"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER F0D609",
+    "effective_date": "06/18/2019",
+    "expired_date": "07/21/2029",
+    "grant_date": "06/18/2019",
+    "last_action_date": "06/18/2019",
+    "license_status": "A",
+    "radio_service_code": "YX",
+    "uls_file_number": "TESTOWNER 92291E"
+   },
+   "usi": "TESTOWNER 6CF4E7"
+  }
+ ],
+ "state": "TX",
+ "url": "https://data.fcc.gov/download/pub/uls/complete/l_LMcomm.zip"
+}

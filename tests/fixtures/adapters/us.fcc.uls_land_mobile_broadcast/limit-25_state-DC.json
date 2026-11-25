@@ -1,0 +1,705 @@
+{
+ "as_of": "Sun Nov 22 10:32:25 EST 2026",
+ "file": "l_LMbcast.zip",
+ "rows": [
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "city": "WASHINGTON",
+     "entity_name": "TESTOWNER 703B4D CORP",
+     "entity_type": "L",
+     "frn": "TESTOWNER 159933",
+     "licensee_id": "TESTOWNER 8C965A",
+     "state": "DC",
+     "street_address": "4692 TEST ST",
+     "zip_code": "200014956"
+    },
+    {
+     "attention_line": "TESTOWNER A30F73",
+     "city": "Washington",
+     "entity_name": "TESTOWNER 51A456 LLP",
+     "entity_type": "CL",
+     "state": "DC",
+     "street_address": "1043 TEST ST",
+     "zip_code": "200014956"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 9474DB",
+    "cancellation_date": "08/18/2016",
+    "effective_date": "06/21/2016",
+    "expired_date": "04/01/2022",
+    "grant_date": "09/13/1994",
+    "last_action_date": "08/19/2016",
+    "license_status": "C",
+    "radio_service_code": "RP"
+   },
+   "usi": "TESTOWNER 541D3B"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "city": "WASHINGTON",
+     "entity_name": "TESTOWNER B27DEC INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 596E10",
+     "licensee_id": "TESTOWNER DEB868",
+     "state": "DC",
+     "street_address": "972 TEST ST",
+     "zip_code": "20016"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER F24BAE",
+    "cancellation_date": "08/22/2005",
+    "effective_date": "01/16/1975",
+    "expired_date": "02/01/2006",
+    "grant_date": "01/16/1975",
+    "last_action_date": "08/23/2005",
+    "license_status": "C",
+    "radio_service_code": "RP"
+   },
+   "usi": "TESTOWNER 7B6527"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "city": "WASHINGTON",
+     "entity_name": "TESTOWNER B27DEC INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 596E10",
+     "licensee_id": "TESTOWNER DEB868",
+     "state": "DC",
+     "street_address": "972 TEST ST",
+     "zip_code": "20016"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 717613",
+    "cancellation_date": "08/22/2005",
+    "effective_date": "01/16/1975",
+    "expired_date": "02/01/2006",
+    "grant_date": "01/16/1975",
+    "last_action_date": "08/23/2005",
+    "license_status": "C",
+    "radio_service_code": "RP"
+   },
+   "usi": "TESTOWNER 33224B"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "city": "WASHINGTON",
+     "entity_name": "TESTOWNER B27DEC INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 596E10",
+     "licensee_id": "TESTOWNER DEB868",
+     "state": "DC",
+     "street_address": "972 TEST ST",
+     "zip_code": "20016"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 088C9D",
+    "cancellation_date": "08/22/2005",
+    "effective_date": "01/16/1975",
+    "expired_date": "02/01/2006",
+    "grant_date": "01/16/1975",
+    "last_action_date": "08/23/2005",
+    "license_status": "C",
+    "radio_service_code": "RP"
+   },
+   "usi": "TESTOWNER AEB2F8"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "city": "WASHINGTON",
+     "entity_name": "TESTOWNER B27DEC INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 596E10",
+     "licensee_id": "TESTOWNER DEB868",
+     "state": "DC",
+     "street_address": "972 TEST ST",
+     "zip_code": "20016"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 3838A2",
+    "cancellation_date": "08/22/2005",
+    "effective_date": "01/16/1975",
+    "expired_date": "02/01/2006",
+    "grant_date": "01/16/1975",
+    "last_action_date": "08/23/2005",
+    "license_status": "C",
+    "radio_service_code": "RP"
+   },
+   "usi": "TESTOWNER 885BB7"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "city": "WASHINGTON",
+     "entity_name": "TESTOWNER B27DEC INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 596E10",
+     "licensee_id": "TESTOWNER DEB868",
+     "state": "DC",
+     "street_address": "972 TEST ST",
+     "zip_code": "20016"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER D69BD1",
+    "cancellation_date": "08/22/2005",
+    "effective_date": "01/16/1975",
+    "expired_date": "02/01/2006",
+    "grant_date": "01/16/1975",
+    "last_action_date": "08/23/2005",
+    "license_status": "C",
+    "radio_service_code": "RP"
+   },
+   "usi": "TESTOWNER 954121"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "city": "WASHINGTON",
+     "entity_name": "TESTOWNER B27DEC INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 596E10",
+     "licensee_id": "TESTOWNER DEB868",
+     "state": "DC",
+     "street_address": "972 TEST ST",
+     "zip_code": "20016"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 38A9F1",
+    "cancellation_date": "08/22/2005",
+    "effective_date": "01/16/1975",
+    "expired_date": "02/01/2006",
+    "grant_date": "01/16/1975",
+    "last_action_date": "08/23/2005",
+    "license_status": "C",
+    "radio_service_code": "RP"
+   },
+   "usi": "TESTOWNER 991005"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "city": "WASHINGTON",
+     "entity_name": "TESTOWNER B27DEC INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 596E10",
+     "licensee_id": "TESTOWNER DEB868",
+     "state": "DC",
+     "street_address": "972 TEST ST",
+     "zip_code": "20016"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER CAD839",
+    "cancellation_date": "08/22/2005",
+    "effective_date": "02/01/1980",
+    "expired_date": "02/01/2006",
+    "grant_date": "02/01/1980",
+    "last_action_date": "08/23/2005",
+    "license_status": "C",
+    "radio_service_code": "RP"
+   },
+   "usi": "TESTOWNER 0A6D3D"
+  },
+  {
+   "entities": [
+    {
+     "city": "WASHINGTON",
+     "entity_name": "TESTOWNER B27DEC INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 596E10",
+     "licensee_id": "TESTOWNER DEB868",
+     "state": "DC",
+     "street_address": "972 TEST ST",
+     "zip_code": "20016"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER FA91AA",
+    "cancellation_date": "08/22/2005",
+    "effective_date": "01/16/1975",
+    "expired_date": "02/01/2006",
+    "grant_date": "01/16/1975",
+    "last_action_date": "08/23/2005",
+    "license_status": "C",
+    "radio_service_code": "RP"
+   },
+   "usi": "TESTOWNER 69927F"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "city": "WASHINGTON",
+     "entity_name": "TESTOWNER C96A35 INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 41090C",
+     "licensee_id": "TESTOWNER 8EEA55",
+     "state": "DC",
+     "street_address": "4692 TEST ST",
+     "zip_code": "200014956"
+    },
+    {
+     "attention_line": "TESTOWNER A30F73",
+     "city": "Washington",
+     "entity_name": "TESTOWNER 51A456 LLP",
+     "entity_type": "CL",
+     "state": "DC",
+     "street_address": "1043 TEST ST",
+     "zip_code": "200014956"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 8D86EF",
+    "cancellation_date": "08/17/2016",
+    "effective_date": "06/21/2016",
+    "expired_date": "08/01/2022",
+    "grant_date": "08/04/2006",
+    "last_action_date": "08/18/2016",
+    "license_status": "C",
+    "radio_service_code": "RP",
+    "uls_file_number": "TESTOWNER 06B94B"
+   },
+   "usi": "TESTOWNER 1E590E"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "city": "WASHINGTON",
+     "entity_name": "TESTOWNER B27DEC INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 596E10",
+     "licensee_id": "TESTOWNER DEB868",
+     "state": "DC",
+     "street_address": "972 TEST ST",
+     "zip_code": "20016"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 7069A5",
+    "cancellation_date": "08/22/2005",
+    "effective_date": "01/16/1975",
+    "expired_date": "02/01/2006",
+    "grant_date": "01/16/1975",
+    "last_action_date": "08/23/2005",
+    "license_status": "C",
+    "radio_service_code": "RP"
+   },
+   "usi": "TESTOWNER 04F6A3"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "city": "WASHINGTON",
+     "entity_name": "TESTOWNER F9EC39 INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 04C15E",
+     "licensee_id": "TESTOWNER 5E8DB3",
+     "state": "DC",
+     "street_address": "972 TEST ST",
+     "zip_code": "20016"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 6FB85D",
+    "cancellation_date": "05/07/2001",
+    "effective_date": "08/10/1995",
+    "expired_date": "12/01/2005",
+    "grant_date": "08/10/1995",
+    "last_action_date": "02/05/2003",
+    "license_status": "C",
+    "radio_service_code": "LP"
+   },
+   "usi": "TESTOWNER 0D090C"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER BC3870",
+     "city": "Washington",
+     "entity_name": "TESTOWNER 0F7162 CORP",
+     "entity_type": "L",
+     "frn": "TESTOWNER E0AB2A",
+     "licensee_id": "TESTOWNER D475A7",
+     "state": "DC",
+     "street_address": "6025 TEST ST",
+     "zip_code": "20004"
+    },
+    {
+     "attention_line": "TESTOWNER 0C764C",
+     "city": "Washington",
+     "entity_name": "TESTOWNER 866061",
+     "entity_type": "CL",
+     "first_name": "TESTOWNER 5A789B",
+     "last_name": "TESTOWNER FFB0AF",
+     "mi": "TESTOWNER 0CEA56",
+     "state": "DC",
+     "street_address": "6025 TEST ST",
+     "zip_code": "20004"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 0CE388",
+    "effective_date": "05/21/2024",
+    "expired_date": "12/01/2030",
+    "grant_date": "09/15/2022",
+    "last_action_date": "05/21/2024",
+    "license_status": "A",
+    "radio_service_code": "LP",
+    "uls_file_number": "TESTOWNER 3AE197"
+   },
+   "usi": "TESTOWNER 6241BD"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER 81506C INC",
+     "city": "WASHINGTON",
+     "entity_name": "TESTOWNER 504BA9 INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 733FFD",
+     "licensee_id": "TESTOWNER 175352",
+     "state": "DC",
+     "street_address": "3516 TEST ST",
+     "zip_code": "20006"
+    },
+    {
+     "attention_line": "TESTOWNER 5A6BA5",
+     "city": "Washington",
+     "entity_name": "TESTOWNER 15909E",
+     "entity_type": "CL",
+     "state": "DC",
+     "street_address": "5847 TEST ST",
+     "zip_code": "20006"
+    },
+    {
+     "entity_name": "TESTOWNER 504BA9 INC",
+     "entity_type": "O",
+     "licensee_id": "TESTOWNER 175352"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER E08F8C",
+    "cancellation_date": "01/03/2012",
+    "effective_date": "05/19/2011",
+    "expired_date": "12/01/2014",
+    "grant_date": "10/06/2006",
+    "last_action_date": "01/04/2012",
+    "license_status": "C",
+    "radio_service_code": "LP",
+    "uls_file_number": "TESTOWNER 676E40"
+   },
+   "usi": "TESTOWNER 6D526D"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "city": "WASHINGTON",
+     "entity_name": "TESTOWNER E46610 CORP",
+     "entity_type": "L",
+     "frn": "TESTOWNER D69EA3",
+     "licensee_id": "TESTOWNER 350C90",
+     "state": "DC",
+     "street_address": "6804 TEST ST",
+     "zip_code": "20037"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 91A5A1",
+    "cancellation_date": "05/23/2001",
+    "effective_date": "11/10/2000",
+    "expired_date": "06/01/2006",
+    "grant_date": "10/15/1985",
+    "last_action_date": "10/25/2002",
+    "license_status": "C",
+    "radio_service_code": "RP"
+   },
+   "usi": "TESTOWNER 39B4B2"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "city": "WASHINGTON",
+     "entity_name": "TESTOWNER E46610 CORP",
+     "entity_type": "L",
+     "frn": "TESTOWNER D69EA3",
+     "licensee_id": "TESTOWNER 350C90",
+     "state": "DC",
+     "street_address": "8662 TEST ST",
+     "zip_code": "20037"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 5EE737",
+    "cancellation_date": "05/31/2001",
+    "effective_date": "05/14/1968",
+    "expired_date": "06/01/2006",
+    "grant_date": "05/14/1968",
+    "last_action_date": "10/25/2002",
+    "license_status": "C",
+    "radio_service_code": "RP"
+   },
+   "usi": "TESTOWNER 896EBD"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "city": "WASHINGTON",
+     "entity_name": "TESTOWNER E46610 CORP",
+     "entity_type": "L",
+     "frn": "TESTOWNER D69EA3",
+     "licensee_id": "TESTOWNER 350C90",
+     "state": "DC",
+     "street_address": "7276 TEST ST",
+     "zip_code": "20037"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 5A7FCF",
+    "cancellation_date": "05/31/2001",
+    "effective_date": "07/28/2000",
+    "expired_date": "06/01/2006",
+    "grant_date": "07/28/2000",
+    "last_action_date": "02/05/2003",
+    "license_status": "C",
+    "radio_service_code": "RP"
+   },
+   "usi": "TESTOWNER FECB09"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "city": "WASHINGTON",
+     "entity_name": "TESTOWNER E46610 CORP",
+     "entity_type": "L",
+     "frn": "TESTOWNER D69EA3",
+     "licensee_id": "TESTOWNER 350C90",
+     "state": "DC",
+     "street_address": "7276 TEST ST",
+     "zip_code": "20037"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER BDC094",
+    "cancellation_date": "05/31/2001",
+    "effective_date": "07/27/2000",
+    "expired_date": "06/01/2006",
+    "grant_date": "07/27/2000",
+    "last_action_date": "02/05/2003",
+    "license_status": "C",
+    "radio_service_code": "RP"
+   },
+   "usi": "TESTOWNER 71DD0A"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "city": "WASHINGTON",
+     "entity_name": "TESTOWNER E46610 CORP",
+     "entity_type": "L",
+     "frn": "TESTOWNER D69EA3",
+     "licensee_id": "TESTOWNER 350C90",
+     "state": "DC",
+     "street_address": "7276 TEST ST",
+     "zip_code": "20037"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 70E0E3",
+    "cancellation_date": "05/31/2001",
+    "effective_date": "07/27/2000",
+    "expired_date": "06/01/2006",
+    "grant_date": "07/27/2000",
+    "last_action_date": "02/05/2003",
+    "license_status": "C",
+    "radio_service_code": "RP"
+   },
+   "usi": "TESTOWNER 10CD3D"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "city": "WASHINGTON",
+     "entity_name": "TESTOWNER E46610 CORP",
+     "entity_type": "L",
+     "frn": "TESTOWNER D69EA3",
+     "licensee_id": "TESTOWNER 350C90",
+     "state": "DC",
+     "street_address": "7276 TEST ST",
+     "zip_code": "20037"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 2EA02D",
+    "cancellation_date": "06/26/2001",
+    "effective_date": "06/12/1997",
+    "expired_date": "12/01/2004",
+    "grant_date": "06/12/1997",
+    "last_action_date": "02/05/2003",
+    "license_status": "C",
+    "radio_service_code": "RP"
+   },
+   "usi": "TESTOWNER 55B2A0"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "city": "WASHINGTON",
+     "entity_name": "TESTOWNER E46610 CORP",
+     "entity_type": "L",
+     "frn": "TESTOWNER D69EA3",
+     "licensee_id": "TESTOWNER 350C90",
+     "state": "DC",
+     "street_address": "7276 TEST ST",
+     "zip_code": "20037"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 99077C",
+    "cancellation_date": "05/31/2001",
+    "effective_date": "08/07/2000",
+    "expired_date": "06/01/2006",
+    "grant_date": "08/07/2000",
+    "last_action_date": "02/05/2003",
+    "license_status": "C",
+    "radio_service_code": "RP"
+   },
+   "usi": "TESTOWNER 83400D"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "city": "WASHINGTON",
+     "entity_name": "TESTOWNER E46610 CORP",
+     "entity_type": "L",
+     "frn": "TESTOWNER D69EA3",
+     "licensee_id": "TESTOWNER 350C90",
+     "state": "DC",
+     "street_address": "8662 TEST ST",
+     "zip_code": "20037"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 00210F",
+    "cancellation_date": "05/31/2001",
+    "effective_date": "02/13/1967",
+    "expired_date": "06/01/2006",
+    "grant_date": "02/13/1967",
+    "last_action_date": "10/25/2002",
+    "license_status": "C",
+    "radio_service_code": "RP"
+   },
+   "usi": "TESTOWNER 62088A"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "city": "WASHINGTON",
+     "entity_name": "TESTOWNER E46610 CORP",
+     "entity_type": "L",
+     "frn": "TESTOWNER D69EA3",
+     "licensee_id": "TESTOWNER 350C90",
+     "state": "DC",
+     "street_address": "7276 TEST ST",
+     "zip_code": "20037"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 646CB4",
+    "cancellation_date": "06/26/2001",
+    "effective_date": "06/12/1997",
+    "expired_date": "12/01/2004",
+    "grant_date": "06/12/1997",
+    "last_action_date": "02/05/2003",
+    "license_status": "C",
+    "radio_service_code": "LP"
+   },
+   "usi": "TESTOWNER CACCF4"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "city": "WASHINGTON",
+     "entity_name": "TESTOWNER E46610 CORP",
+     "entity_type": "L",
+     "frn": "TESTOWNER D69EA3",
+     "licensee_id": "TESTOWNER 350C90",
+     "state": "DC",
+     "street_address": "8662 TEST ST",
+     "zip_code": "20037"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 173409",
+    "cancellation_date": "05/31/2001",
+    "effective_date": "06/12/1978",
+    "expired_date": "06/01/2006",
+    "grant_date": "06/12/1978",
+    "last_action_date": "10/25/2002",
+    "license_status": "C",
+    "radio_service_code": "RP"
+   },
+   "usi": "TESTOWNER E13B6D"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "city": "WASHINGTON",
+     "entity_name": "TESTOWNER E46610 CORP",
+     "entity_type": "L",
+     "frn": "TESTOWNER D69EA3",
+     "licensee_id": "TESTOWNER 350C90",
+     "state": "DC",
+     "street_address": "7276 TEST ST",
+     "zip_code": "20037"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 6F2775",
+    "cancellation_date": "05/31/2001",
+    "effective_date": "08/07/2000",
+    "expired_date": "06/01/2006",
+    "grant_date": "08/07/2000",
+    "last_action_date": "02/05/2003",
+    "license_status": "C",
+    "radio_service_code": "RP"
+   },
+   "usi": "TESTOWNER BE526D"
+  }
+ ],
+ "state": "DC",
+ "url": "https://data.fcc.gov/download/pub/uls/complete/l_LMbcast.zip"
+}

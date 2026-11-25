@@ -1,0 +1,746 @@
+{
+ "as_of": "Sun Nov 22 10:56:35 EST 2026",
+ "file": "l_gmrs.zip",
+ "rows": [
+  {
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "attention_line": "TESTOWNER 41183E",
+     "city": "Charleston",
+     "entity_name": "TESTOWNER 7C7FAC",
+     "entity_type": "L",
+     "first_name": "TESTOWNER B30AC4",
+     "frn": "TESTOWNER AB2606",
+     "last_name": "TESTOWNER ECBA44",
+     "licensee_id": "TESTOWNER 624277",
+     "mi": "TESTOWNER 19CC44",
+     "state": "WV",
+     "street_address": "8204 TEST ST",
+     "zip_code": "25311"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 5B458E",
+    "effective_date": "08/22/2023",
+    "expired_date": "08/22/2033",
+    "grant_date": "08/22/2023",
+    "last_action_date": "08/22/2023",
+    "license_status": "A",
+    "radio_service_code": "ZA",
+    "uls_file_number": "TESTOWNER FC8461"
+   },
+   "usi": "TESTOWNER B1C7E7"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "attention_line": "TESTOWNER 571AAF",
+     "city": "Weirton",
+     "entity_name": "TESTOWNER 6C74CA",
+     "entity_type": "L",
+     "first_name": "TESTOWNER 410B3A",
+     "frn": "TESTOWNER 9A30DB",
+     "last_name": "TESTOWNER CEB0E8",
+     "licensee_id": "TESTOWNER C027C1",
+     "mi": "TESTOWNER FFB439",
+     "state": "WV",
+     "street_address": "1058 TEST ST",
+     "zip_code": "260624401"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 7A53D4",
+    "cancellation_date": "11/20/2021",
+    "effective_date": "07/12/2016",
+    "expired_date": "09/19/2021",
+    "grant_date": "07/12/2016",
+    "last_action_date": "11/20/2021",
+    "license_status": "E",
+    "radio_service_code": "ZA",
+    "uls_file_number": "TESTOWNER 5991AE"
+   },
+   "usi": "TESTOWNER 3BE2CA"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "Kingwood",
+     "entity_name": "TESTOWNER 6CFC6A",
+     "entity_type": "L",
+     "first_name": "TESTOWNER BB37C6",
+     "frn": "TESTOWNER 861E9B",
+     "last_name": "TESTOWNER 35F1BE",
+     "licensee_id": "TESTOWNER E3929E",
+     "mi": "TESTOWNER AC3A67",
+     "state": "WV",
+     "street_address": "8255 TEST ST",
+     "zip_code": "26537"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 84A16A",
+    "effective_date": "04/25/2020",
+    "expired_date": "03/03/2028",
+    "grant_date": "03/03/2018",
+    "last_action_date": "04/25/2020",
+    "license_status": "A",
+    "radio_service_code": "ZA",
+    "uls_file_number": "TESTOWNER AD9058"
+   },
+   "usi": "TESTOWNER 2688EB"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "JUNIOR",
+     "entity_name": "TESTOWNER FE2969",
+     "entity_type": "L",
+     "first_name": "TESTOWNER DC8AC9",
+     "frn": "TESTOWNER 309691",
+     "last_name": "TESTOWNER C5AE3C",
+     "licensee_id": "TESTOWNER 7BC983",
+     "mi": "TESTOWNER E8F338",
+     "po_box": "TESTOWNER 635489",
+     "state": "WV",
+     "zip_code": "262750000"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER C970E7",
+    "cancellation_date": "05/15/1999",
+    "effective_date": "03/14/1994",
+    "expired_date": "03/14/1999",
+    "grant_date": "03/14/1994",
+    "last_action_date": "05/15/2006",
+    "license_status": "E",
+    "radio_service_code": "ZA"
+   },
+   "usi": "TESTOWNER 12CDDA"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "Inwood",
+     "entity_name": "TESTOWNER 284500",
+     "entity_type": "L",
+     "first_name": "TESTOWNER 64DC60",
+     "frn": "TESTOWNER C72AA1",
+     "last_name": "TESTOWNER 18A054",
+     "licensee_id": "TESTOWNER 41A685",
+     "mi": "TESTOWNER 0CEA56",
+     "state": "WV",
+     "street_address": "8808 TEST ST",
+     "zip_code": "25428"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER DD9D94",
+    "cancellation_date": "05/05/2012",
+    "effective_date": "03/01/2007",
+    "expired_date": "03/01/2012",
+    "grant_date": "03/01/2007",
+    "last_action_date": "05/05/2012",
+    "license_status": "E",
+    "radio_service_code": "ZA",
+    "uls_file_number": "TESTOWNER A3DE71"
+   },
+   "usi": "TESTOWNER 5BC370"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "WEIRTON",
+     "entity_name": "TESTOWNER 22494D",
+     "entity_type": "L",
+     "first_name": "TESTOWNER 2B57F7",
+     "frn": "TESTOWNER 37F84B",
+     "last_name": "TESTOWNER 018B01",
+     "licensee_id": "TESTOWNER 8A3268",
+     "mi": "TESTOWNER 498FF5",
+     "state": "WV",
+     "street_address": "5504 TEST ST",
+     "zip_code": "260620000"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 07BF64",
+    "effective_date": "10/21/1993",
+    "expired_date": "10/21/1998",
+    "grant_date": "10/21/1993",
+    "last_action_date": "05/11/2006",
+    "license_status": "E",
+    "radio_service_code": "ZA"
+   },
+   "usi": "TESTOWNER 3B19B3"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "FOLLANSBEE",
+     "entity_name": "TESTOWNER 9C820F",
+     "entity_type": "L",
+     "first_name": "TESTOWNER 7C37CA",
+     "frn": "TESTOWNER 254085",
+     "last_name": "TESTOWNER A43EE2",
+     "licensee_id": "TESTOWNER E04EF3",
+     "mi": "TESTOWNER 51918E",
+     "state": "WV",
+     "street_address": "8547 TEST ST",
+     "zip_code": "26037"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER D989F6",
+    "cancellation_date": "05/19/2002",
+    "effective_date": "01/02/1997",
+    "expired_date": "02/11/2002",
+    "grant_date": "01/02/1997",
+    "last_action_date": "05/08/2006",
+    "license_status": "E",
+    "radio_service_code": "ZA"
+   },
+   "usi": "TESTOWNER 9A7FEA"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "attention_line": "TESTOWNER 836BE2",
+     "city": "Elkins",
+     "entity_name": "TESTOWNER C8C82E",
+     "entity_type": "L",
+     "first_name": "TESTOWNER 2FBD49",
+     "frn": "TESTOWNER 8BC4E3",
+     "last_name": "TESTOWNER 22EC19",
+     "licensee_id": "TESTOWNER 7AF39F",
+     "mi": "TESTOWNER C2998A",
+     "state": "WV",
+     "street_address": "3511 TEST ST",
+     "suffix": "TESTOWNER 3CE788",
+     "zip_code": "26241"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 747C4D",
+    "effective_date": "07/06/2022",
+    "expired_date": "07/06/2032",
+    "grant_date": "07/06/2022",
+    "last_action_date": "07/06/2022",
+    "license_status": "A",
+    "radio_service_code": "ZA",
+    "uls_file_number": "TESTOWNER 8AE449"
+   },
+   "usi": "TESTOWNER DADB7A"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "HARPERS FERRY",
+     "entity_name": "TESTOWNER 55D7EA",
+     "entity_type": "L",
+     "first_name": "TESTOWNER 7E62FB",
+     "frn": "TESTOWNER A61319",
+     "last_name": "TESTOWNER DF0442",
+     "licensee_id": "TESTOWNER 75C78B",
+     "mi": "TESTOWNER 19CC44",
+     "state": "WV",
+     "street_address": "5531 TEST ST",
+     "zip_code": "254250000"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER DE004F",
+    "effective_date": "02/10/1994",
+    "expired_date": "02/10/1999",
+    "grant_date": "02/10/1994",
+    "last_action_date": "05/15/2006",
+    "license_status": "E",
+    "radio_service_code": "ZA"
+   },
+   "usi": "TESTOWNER 541709"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "BURLINGTON",
+     "entity_name": "TESTOWNER 8DEE32",
+     "entity_type": "L",
+     "first_name": "TESTOWNER D6F031",
+     "frn": "TESTOWNER 36F240",
+     "last_name": "TESTOWNER CA73B5",
+     "licensee_id": "TESTOWNER BF5415",
+     "mi": "TESTOWNER 9C5163",
+     "state": "WV",
+     "street_address": "471 TEST ST",
+     "zip_code": "267100000"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER F4ADD7",
+    "cancellation_date": "04/07/2009",
+    "effective_date": "02/18/2004",
+    "expired_date": "03/11/2009",
+    "grant_date": "02/18/2004",
+    "last_action_date": "12/15/2008",
+    "license_status": "E",
+    "radio_service_code": "ZA"
+   },
+   "usi": "TESTOWNER 59DD85"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "NUTTER FORT",
+     "entity_name": "TESTOWNER 0686B5",
+     "entity_type": "L",
+     "first_name": "TESTOWNER B885DB",
+     "frn": "TESTOWNER ABC277",
+     "last_name": "TESTOWNER 5240D6",
+     "licensee_id": "TESTOWNER E7F6E9",
+     "state": "WV",
+     "street_address": "7872 TEST ST",
+     "suffix": "TESTOWNER 52BF1A",
+     "zip_code": "263010000"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 3DAED0",
+    "cancellation_date": "05/01/1999",
+    "effective_date": "03/01/1994",
+    "expired_date": "03/01/1999",
+    "grant_date": "03/01/1994",
+    "last_action_date": "05/15/2006",
+    "license_status": "E",
+    "radio_service_code": "ZA"
+   },
+   "usi": "TESTOWNER E6AC8F"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "attention_line": "TESTOWNER 2BCC06",
+     "city": "SUMMERSVILLE",
+     "entity_name": "TESTOWNER 6576D1",
+     "entity_type": "L",
+     "first_name": "TESTOWNER 0F4FA6",
+     "frn": "TESTOWNER 6D5811",
+     "last_name": "TESTOWNER 9CB639",
+     "licensee_id": "TESTOWNER A6C291",
+     "mi": "TESTOWNER F15B73",
+     "state": "WV",
+     "street_address": "3876 TEST ST",
+     "zip_code": "26651"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 2467CE",
+    "cancellation_date": "04/12/2014",
+    "effective_date": "02/05/2009",
+    "expired_date": "02/05/2014",
+    "grant_date": "02/05/2009",
+    "last_action_date": "04/12/2014",
+    "license_status": "E",
+    "radio_service_code": "ZA",
+    "uls_file_number": "TESTOWNER 57E428"
+   },
+   "usi": "TESTOWNER 4CC728"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "attention_line": "TESTOWNER 35CD3C",
+     "city": "BURLINGTON",
+     "entity_name": "TESTOWNER AB1C50",
+     "entity_type": "L",
+     "first_name": "TESTOWNER 5AD4B1",
+     "frn": "TESTOWNER 485C9F",
+     "last_name": "TESTOWNER A8FFAB",
+     "licensee_id": "TESTOWNER 9FF37B",
+     "mi": "TESTOWNER 0A828C",
+     "state": "WV",
+     "street_address": "261 TEST ST",
+     "zip_code": "267100000"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 398888",
+    "cancellation_date": "11/09/2013",
+    "effective_date": "08/19/2008",
+    "expired_date": "08/23/2013",
+    "grant_date": "08/19/2008",
+    "last_action_date": "11/09/2013",
+    "license_status": "E",
+    "radio_service_code": "ZA"
+   },
+   "usi": "TESTOWNER 219911"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "Chapmanville",
+     "entity_name": "TESTOWNER 49199B",
+     "entity_type": "L",
+     "first_name": "TESTOWNER A14FE8",
+     "frn": "TESTOWNER 97CD49",
+     "last_name": "TESTOWNER 36DA6A",
+     "licensee_id": "TESTOWNER 2B2EC1",
+     "mi": "TESTOWNER E8F338",
+     "state": "WV",
+     "street_address": "4107 TEST ST",
+     "suffix": "TESTOWNER 934CF8",
+     "zip_code": "255085437"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 7E8BC0",
+    "effective_date": "04/09/2025",
+    "expired_date": "04/08/2035",
+    "grant_date": "04/08/2025",
+    "last_action_date": "04/09/2025",
+    "license_status": "A",
+    "radio_service_code": "ZA",
+    "uls_file_number": "TESTOWNER 6E8AEB"
+   },
+   "usi": "TESTOWNER BB20A9"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "WILLIAMSTOWN",
+     "entity_name": "TESTOWNER FB79EA",
+     "entity_type": "L",
+     "first_name": "TESTOWNER C50D3B",
+     "frn": "TESTOWNER 9BB3EC",
+     "last_name": "TESTOWNER 6B537F",
+     "licensee_id": "TESTOWNER D94EA4",
+     "mi": "TESTOWNER C2998A",
+     "state": "WV",
+     "street_address": "5197 TEST ST",
+     "zip_code": "261870000"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER B2CC84",
+    "cancellation_date": "11/06/1999",
+    "effective_date": "07/27/1994",
+    "expired_date": "07/27/1999",
+    "grant_date": "07/27/1994",
+    "last_action_date": "05/15/2006",
+    "license_status": "E",
+    "radio_service_code": "ZA"
+   },
+   "usi": "TESTOWNER 68AB89"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "attention_line": "TESTOWNER B474AD",
+     "city": "Elkins",
+     "entity_name": "TESTOWNER 9A69D0",
+     "entity_type": "L",
+     "first_name": "TESTOWNER B18DF0",
+     "frn": "TESTOWNER 51CFEF",
+     "last_name": "TESTOWNER AF85EF",
+     "licensee_id": "TESTOWNER DC1CFE",
+     "mi": "TESTOWNER 300378",
+     "state": "WV",
+     "street_address": "9036 TEST ST",
+     "zip_code": "26241"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 09378F",
+    "effective_date": "05/25/2022",
+    "expired_date": "06/24/2032",
+    "grant_date": "05/25/2022",
+    "last_action_date": "05/25/2022",
+    "license_status": "A",
+    "radio_service_code": "ZA"
+   },
+   "usi": "TESTOWNER 707CE3"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "attention_line": "TESTOWNER A5D0F2",
+     "city": "parkersburg",
+     "entity_name": "TESTOWNER 7183DD",
+     "entity_type": "L",
+     "first_name": "TESTOWNER 2BE5AE",
+     "frn": "TESTOWNER FCCA15",
+     "last_name": "TESTOWNER A8CBCB",
+     "licensee_id": "TESTOWNER FE8E9E",
+     "mi": "TESTOWNER 205EC3",
+     "po_box": "TESTOWNER 238BCE",
+     "state": "WV",
+     "street_address": "7797 TEST ST",
+     "zip_code": "26103"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER BA63AF",
+    "cancellation_date": "07/13/2019",
+    "effective_date": "03/20/2014",
+    "expired_date": "05/13/2019",
+    "grant_date": "03/20/2014",
+    "last_action_date": "07/13/2019",
+    "license_status": "E",
+    "radio_service_code": "ZA",
+    "uls_file_number": "TESTOWNER BD8D99"
+   },
+   "usi": "TESTOWNER FDE898"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "St. Albans",
+     "entity_name": "TESTOWNER C6DE44",
+     "entity_type": "L",
+     "first_name": "TESTOWNER 51E42F",
+     "frn": "TESTOWNER BBA38A",
+     "last_name": "TESTOWNER B54774",
+     "licensee_id": "TESTOWNER 51E693",
+     "mi": "TESTOWNER 0A828C",
+     "state": "WV",
+     "street_address": "3022 TEST ST",
+     "suffix": "TESTOWNER 52BF1A",
+     "zip_code": "25177"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER FD4B98",
+    "cancellation_date": "08/20/2011",
+    "effective_date": "10/07/2008",
+    "expired_date": "06/14/2011",
+    "grant_date": "04/05/2006",
+    "last_action_date": "08/20/2011",
+    "license_status": "E",
+    "radio_service_code": "ZA"
+   },
+   "usi": "TESTOWNER EFE656"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "attention_line": "TESTOWNER 407533",
+     "city": "Richwood",
+     "entity_name": "TESTOWNER EDD142",
+     "entity_type": "L",
+     "first_name": "TESTOWNER 64DC60",
+     "frn": "TESTOWNER 341323",
+     "last_name": "TESTOWNER B282FF",
+     "licensee_id": "TESTOWNER 2ABBBB",
+     "mi": "TESTOWNER C52B6E",
+     "po_box": "TESTOWNER 7D01E0",
+     "state": "WV",
+     "street_address": "2346 TEST ST",
+     "zip_code": "26261"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER EC89A5",
+    "effective_date": "06/22/2019",
+    "expired_date": "09/08/2029",
+    "grant_date": "06/22/2019",
+    "last_action_date": "06/22/2019",
+    "license_status": "A",
+    "radio_service_code": "ZA",
+    "uls_file_number": "TESTOWNER 2CC3CB"
+   },
+   "usi": "TESTOWNER EA0EF1"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "attention_line": "TESTOWNER 407533",
+     "city": "RICHWOOD",
+     "entity_name": "TESTOWNER 251AE4",
+     "entity_type": "L",
+     "first_name": "TESTOWNER 7D6D9E",
+     "frn": "TESTOWNER 341323",
+     "last_name": "TESTOWNER 85969B",
+     "licensee_id": "TESTOWNER 2ABBBB",
+     "mi": "TESTOWNER E8F338",
+     "po_box": "TESTOWNER 7D01E0",
+     "state": "WV",
+     "street_address": "5972 TEST ST",
+     "zip_code": "26261"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 6CB49B",
+    "cancellation_date": "11/06/2004",
+    "effective_date": "02/03/2004",
+    "expired_date": "09/06/2004",
+    "grant_date": "10/02/1999",
+    "last_action_date": "05/09/2006",
+    "license_status": "E",
+    "radio_service_code": "ZA"
+   },
+   "usi": "TESTOWNER BEA75D"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "WEIRTON",
+     "entity_name": "TESTOWNER A99C78",
+     "entity_type": "L",
+     "first_name": "TESTOWNER 0F3E1F",
+     "frn": "TESTOWNER 5A0896",
+     "last_name": "TESTOWNER 1D7A90",
+     "licensee_id": "TESTOWNER EBF62C",
+     "mi": "TESTOWNER 21C4E5",
+     "state": "WV",
+     "street_address": "7032 TEST ST",
+     "zip_code": "260620000"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 9CFFD6",
+    "cancellation_date": "03/18/2000",
+    "effective_date": "12/29/1994",
+    "expired_date": "12/13/1999",
+    "grant_date": "12/29/1994",
+    "last_action_date": "05/09/2006",
+    "license_status": "E",
+    "radio_service_code": "ZA"
+   },
+   "usi": "TESTOWNER 197C97"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "WEIRTON",
+     "entity_name": "TESTOWNER F8D55D",
+     "entity_type": "L",
+     "first_name": "TESTOWNER 28388A",
+     "frn": "TESTOWNER 981958",
+     "last_name": "TESTOWNER 8A9A75",
+     "licensee_id": "TESTOWNER 5B11EB",
+     "mi": "TESTOWNER 498FF5",
+     "state": "WV",
+     "street_address": "4603 TEST ST",
+     "zip_code": "260620000"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER EAED70",
+    "cancellation_date": "09/15/2002",
+    "effective_date": "04/24/1997",
+    "expired_date": "06/10/2002",
+    "grant_date": "04/24/1997",
+    "last_action_date": "05/08/2006",
+    "license_status": "E",
+    "radio_service_code": "ZA"
+   },
+   "usi": "TESTOWNER 490AE2"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "SKELTON",
+     "entity_name": "TESTOWNER 7F5993",
+     "entity_type": "L",
+     "first_name": "TESTOWNER 32A92F",
+     "frn": "TESTOWNER EA966E",
+     "last_name": "TESTOWNER 741E90",
+     "licensee_id": "TESTOWNER 7094F7",
+     "po_box": "TESTOWNER EF8352",
+     "state": "WV",
+     "zip_code": "25919"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 33E659",
+    "cancellation_date": "10/13/2002",
+    "effective_date": "07/10/1997",
+    "expired_date": "07/10/2002",
+    "grant_date": "07/10/1997",
+    "last_action_date": "05/18/2006",
+    "license_status": "E",
+    "radio_service_code": "ZA"
+   },
+   "usi": "TESTOWNER B9F126"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "WEIRTON",
+     "entity_name": "TESTOWNER 73C488",
+     "entity_type": "L",
+     "first_name": "TESTOWNER D8F5FE",
+     "frn": "TESTOWNER 0CBED2",
+     "last_name": "TESTOWNER 67874E",
+     "licensee_id": "TESTOWNER 16A43B",
+     "state": "WV",
+     "street_address": "8170 TEST ST",
+     "zip_code": "260620000"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER D0FCEF",
+    "cancellation_date": "05/07/2000",
+    "effective_date": "01/13/1995",
+    "expired_date": "02/06/2000",
+    "grant_date": "01/13/1995",
+    "last_action_date": "05/09/2006",
+    "license_status": "E",
+    "radio_service_code": "ZA"
+   },
+   "usi": "TESTOWNER 0DFECA"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "I",
+     "city": "WEIRTON",
+     "entity_name": "TESTOWNER 665579",
+     "entity_type": "L",
+     "first_name": "TESTOWNER 71D0AE",
+     "frn": "TESTOWNER A49DEB",
+     "last_name": "TESTOWNER B613D5",
+     "licensee_id": "TESTOWNER EAB35C",
+     "state": "WV",
+     "street_address": "8458 TEST ST",
+     "zip_code": "260620000"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER BA7819",
+    "cancellation_date": "05/07/2000",
+    "effective_date": "02/06/1995",
+    "expired_date": "02/06/2000",
+    "grant_date": "02/06/1995",
+    "last_action_date": "05/09/2006",
+    "license_status": "E",
+    "radio_service_code": "ZA"
+   },
+   "usi": "TESTOWNER 506765"
+  }
+ ],
+ "state": "WV",
+ "url": "https://data.fcc.gov/download/pub/uls/complete/l_gmrs.zip"
+}

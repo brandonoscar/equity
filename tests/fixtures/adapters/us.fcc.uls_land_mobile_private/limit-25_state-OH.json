@@ -1,0 +1,944 @@
+{
+ "as_of": "Sun Nov 22 10:24:11 EST 2026",
+ "file": "l_LMpriv.zip",
+ "rows": [
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "city": "TROY",
+     "entity_name": "TESTOWNER 08E4F5",
+     "entity_type": "L",
+     "licensee_id": "TESTOWNER EEA9EC",
+     "state": "OH",
+     "street_address": "5014 TEST ST",
+     "zip_code": "453739258"
+    },
+    {
+     "city": "XENIA",
+     "entity_name": "TESTOWNER 71517E CO",
+     "entity_type": "CL",
+     "state": "OH",
+     "street_address": "1456 TEST ST",
+     "zip_code": "45385"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 46F6D5",
+    "cancellation_date": "09/09/2001",
+    "effective_date": "05/26/2001",
+    "expired_date": "07/09/2001",
+    "grant_date": "07/09/1996",
+    "last_action_date": "09/09/2001",
+    "license_status": "E",
+    "radio_service_code": "IG"
+   },
+   "usi": "TESTOWNER 4186B5"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER 4C58D5",
+     "city": "YOUNGSTOWN",
+     "entity_name": "TESTOWNER 88BE36",
+     "entity_type": "L",
+     "frn": "TESTOWNER 65F30D",
+     "licensee_id": "TESTOWNER 40A0C7",
+     "state": "OH",
+     "street_address": "4652 TEST ST",
+     "zip_code": "44504"
+    },
+    {
+     "city": "Meadville",
+     "entity_name": "TESTOWNER 925BDB",
+     "entity_type": "CL",
+     "first_name": "TESTOWNER 1FA129",
+     "last_name": "TESTOWNER 398B64",
+     "po_box": "TESTOWNER EEE31C",
+     "state": "PA",
+     "zip_code": "16335"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER AE2AFE",
+    "effective_date": "01/12/2018",
+    "expired_date": "03/08/2027",
+    "grant_date": "04/07/2017",
+    "last_action_date": "02/07/2018",
+    "license_status": "A",
+    "radio_service_code": "IG",
+    "uls_file_number": "TESTOWNER 385E77"
+   },
+   "usi": "TESTOWNER D814AE"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER 3FDC53",
+     "city": "YOUNGSTOWN",
+     "entity_name": "TESTOWNER 474180",
+     "entity_type": "L",
+     "frn": "TESTOWNER 65F30D",
+     "licensee_id": "TESTOWNER 40A0C7",
+     "state": "OH",
+     "street_address": "4652 TEST ST",
+     "zip_code": "44504"
+    },
+    {
+     "city": "MEADVILLE",
+     "entity_name": "TESTOWNER F6EC25",
+     "entity_type": "CL",
+     "first_name": "TESTOWNER 1FA129",
+     "last_name": "TESTOWNER 398B64",
+     "po_box": "TESTOWNER EEE31C",
+     "state": "PA",
+     "street_address": "5345 TEST ST",
+     "zip_code": "16335"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 10147D",
+    "effective_date": "03/21/2017",
+    "expired_date": "03/21/2027",
+    "grant_date": "03/21/2017",
+    "last_action_date": "11/01/2017",
+    "license_status": "A",
+    "radio_service_code": "IG",
+    "uls_file_number": "TESTOWNER 5A4ADE"
+   },
+   "usi": "TESTOWNER B7CDA0"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER 12FBCE",
+     "city": "Columbus",
+     "entity_name": "TESTOWNER 884363",
+     "entity_type": "L",
+     "frn": "TESTOWNER AB0863",
+     "licensee_id": "TESTOWNER D8A7B5",
+     "state": "OH",
+     "street_address": "3110 TEST ST",
+     "zip_code": "43219"
+    },
+    {
+     "city": "Annapolis",
+     "entity_name": "TESTOWNER 74CD27 INC",
+     "entity_type": "CL",
+     "first_name": "TESTOWNER F84959",
+     "last_name": "TESTOWNER D5F3BF",
+     "state": "MD",
+     "street_address": "1012 TEST ST",
+     "zip_code": "21401"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 06F226",
+    "cancellation_date": "10/07/2017",
+    "effective_date": "08/07/2007",
+    "expired_date": "08/07/2017",
+    "grant_date": "08/07/2007",
+    "last_action_date": "10/07/2017",
+    "license_status": "E",
+    "radio_service_code": "IG",
+    "uls_file_number": "TESTOWNER 97F279"
+   },
+   "usi": "TESTOWNER BD9CA5"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER 3FDC53",
+     "city": "YOUNGSTOWN",
+     "entity_name": "TESTOWNER 88BE36",
+     "entity_type": "L",
+     "frn": "TESTOWNER 65F30D",
+     "licensee_id": "TESTOWNER 40A0C7",
+     "state": "OH",
+     "street_address": "4652 TEST ST",
+     "zip_code": "44504"
+    },
+    {
+     "city": "MEADVILLE",
+     "entity_name": "TESTOWNER F6EC25",
+     "entity_type": "CL",
+     "first_name": "TESTOWNER 1FA129",
+     "last_name": "TESTOWNER 398B64",
+     "po_box": "TESTOWNER EEE31C",
+     "state": "PA",
+     "street_address": "5345 TEST ST",
+     "zip_code": "16335"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 147B34",
+    "effective_date": "07/06/2017",
+    "expired_date": "07/06/2027",
+    "grant_date": "07/06/2017",
+    "last_action_date": "11/01/2017",
+    "license_status": "A",
+    "radio_service_code": "IG",
+    "uls_file_number": "TESTOWNER 24B196"
+   },
+   "usi": "TESTOWNER 108C05"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "L",
+     "attention_line": "TESTOWNER 5EECEC",
+     "city": "HINCKLEY",
+     "entity_name": "TESTOWNER B9698F LLC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 502726",
+     "licensee_id": "TESTOWNER AAC3B8",
+     "state": "OH",
+     "street_address": "3653 TEST ST",
+     "zip_code": "44233"
+    },
+    {
+     "attention_line": "TESTOWNER D29501",
+     "city": "GETTYSBURG",
+     "entity_name": "TESTOWNER 798541 INC",
+     "entity_type": "CL",
+     "state": "PA",
+     "street_address": "5371 TEST ST",
+     "zip_code": "17325"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER A33150",
+    "cancellation_date": "06/28/2014",
+    "effective_date": "02/08/2007",
+    "expired_date": "04/26/2014",
+    "grant_date": "03/16/2004",
+    "last_action_date": "06/28/2014",
+    "license_status": "E",
+    "radio_service_code": "IG"
+   },
+   "usi": "TESTOWNER D06ABC"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER C84BFC",
+     "city": "HINCKLEY",
+     "entity_name": "TESTOWNER B715D4",
+     "entity_type": "L",
+     "frn": "TESTOWNER CA6A71",
+     "licensee_id": "TESTOWNER 3AD35C",
+     "state": "OH",
+     "street_address": "2622 TEST ST",
+     "zip_code": "44233"
+    },
+    {
+     "city": "Williamsport",
+     "entity_name": "TESTOWNER EFE698",
+     "entity_type": "CL",
+     "first_name": "TESTOWNER FF31D2",
+     "last_name": "TESTOWNER EF392B",
+     "state": "PA",
+     "street_address": "3776 TEST ST",
+     "zip_code": "177013862"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER EBBA09",
+    "effective_date": "12/28/2016",
+    "expired_date": "03/12/2027",
+    "grant_date": "12/28/2016",
+    "last_action_date": "12/28/2016",
+    "license_status": "A",
+    "radio_service_code": "IG",
+    "uls_file_number": "TESTOWNER E2CFE8"
+   },
+   "usi": "TESTOWNER 754F27"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER 6D7AB6",
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER A67AA2 INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 8A593B",
+     "licensee_id": "TESTOWNER 315BED",
+     "state": "OH",
+     "street_address": "308 TEST ST",
+     "zip_code": "45202"
+    },
+    {
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER BF2941 INC",
+     "entity_type": "CL",
+     "first_name": "TESTOWNER 4EAE83",
+     "last_name": "TESTOWNER 723381",
+     "state": "OH",
+     "street_address": "5860 TEST ST",
+     "zip_code": "45202"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER AB9DF2",
+    "effective_date": "03/04/2021",
+    "expired_date": "02/13/2031",
+    "grant_date": "03/04/2021",
+    "last_action_date": "03/04/2021",
+    "license_status": "A",
+    "radio_service_code": "GJ",
+    "uls_file_number": "TESTOWNER 5517F2"
+   },
+   "usi": "TESTOWNER F2C9AD"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER FD51F3",
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER 499115 INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 8A593B",
+     "licensee_id": "TESTOWNER 315BED",
+     "state": "OH",
+     "street_address": "4635 TEST ST",
+     "zip_code": "45202"
+    },
+    {
+     "attention_line": "TESTOWNER 7AE77B",
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER BF2941 INC",
+     "entity_type": "CL",
+     "first_name": "TESTOWNER 4EAE83",
+     "last_name": "TESTOWNER 723381",
+     "state": "OH",
+     "street_address": "5860 TEST ST",
+     "zip_code": "45202"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 2299C2",
+    "effective_date": "03/29/2022",
+    "expired_date": "03/12/2032",
+    "grant_date": "03/29/2022",
+    "last_action_date": "03/29/2022",
+    "license_status": "A",
+    "radio_service_code": "GB",
+    "uls_file_number": "TESTOWNER 1F89B8"
+   },
+   "usi": "TESTOWNER C11704"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER FD51F3",
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER A67AA2 INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 8A593B",
+     "licensee_id": "TESTOWNER 315BED",
+     "state": "OH",
+     "street_address": "4635 TEST ST",
+     "zip_code": "45202"
+    },
+    {
+     "attention_line": "TESTOWNER 7AE77B",
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER BF2941 INC",
+     "entity_type": "CL",
+     "first_name": "TESTOWNER 4EAE83",
+     "last_name": "TESTOWNER 723381",
+     "state": "OH",
+     "street_address": "5860 TEST ST",
+     "zip_code": "45202"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 01C610",
+    "effective_date": "03/08/2023",
+    "expired_date": "03/10/2033",
+    "grant_date": "03/08/2023",
+    "last_action_date": "03/08/2023",
+    "license_status": "A",
+    "radio_service_code": "GE",
+    "uls_file_number": "TESTOWNER EE9ED9"
+   },
+   "usi": "TESTOWNER 6C4F98"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER FD51F3",
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER 499115 INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 8A593B",
+     "licensee_id": "TESTOWNER 315BED",
+     "state": "OH",
+     "street_address": "4635 TEST ST",
+     "zip_code": "45202"
+    },
+    {
+     "attention_line": "TESTOWNER 7AE77B",
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER BF2941 INC",
+     "entity_type": "CL",
+     "first_name": "TESTOWNER 4EAE83",
+     "last_name": "TESTOWNER 723381",
+     "state": "OH",
+     "street_address": "5860 TEST ST",
+     "zip_code": "45202"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 7637E5",
+    "effective_date": "10/30/2023",
+    "expired_date": "11/23/2033",
+    "grant_date": "10/30/2023",
+    "last_action_date": "10/30/2023",
+    "license_status": "A",
+    "radio_service_code": "GE",
+    "uls_file_number": "TESTOWNER E91AA5"
+   },
+   "usi": "TESTOWNER 2D0D6C"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER 499115 INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 8A593B",
+     "licensee_id": "TESTOWNER 315BED",
+     "state": "OH",
+     "street_address": "4635 TEST ST",
+     "zip_code": "45202"
+    },
+    {
+     "attention_line": "TESTOWNER 7AE77B",
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER 499115 INC",
+     "entity_type": "CL",
+     "first_name": "TESTOWNER CA7DD4",
+     "last_name": "TESTOWNER F333C5",
+     "state": "OH",
+     "street_address": "308 TEST ST",
+     "zip_code": "45202"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 2018F9",
+    "effective_date": "07/29/2025",
+    "expired_date": "10/25/2035",
+    "grant_date": "07/29/2025",
+    "last_action_date": "07/29/2025",
+    "license_status": "A",
+    "radio_service_code": "GB",
+    "uls_file_number": "TESTOWNER CB55A3"
+   },
+   "usi": "TESTOWNER 2FC728"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER FD51F3",
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER 499115 INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 8A593B",
+     "licensee_id": "TESTOWNER 315BED",
+     "state": "OH",
+     "street_address": "4635 TEST ST",
+     "zip_code": "45202"
+    },
+    {
+     "attention_line": "TESTOWNER 7AE77B",
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER BF2941 INC",
+     "entity_type": "CL",
+     "first_name": "TESTOWNER 4EAE83",
+     "last_name": "TESTOWNER 723381",
+     "state": "OH",
+     "street_address": "5860 TEST ST",
+     "zip_code": "45202"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER F6DC9F",
+    "effective_date": "12/05/2022",
+    "expired_date": "11/12/2032",
+    "grant_date": "12/05/2022",
+    "last_action_date": "12/05/2022",
+    "license_status": "A",
+    "radio_service_code": "GB",
+    "uls_file_number": "TESTOWNER 447885"
+   },
+   "usi": "TESTOWNER 6F96EE"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER FD51F3",
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER A67AA2 INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 8A593B",
+     "licensee_id": "TESTOWNER 315BED",
+     "state": "OH",
+     "street_address": "308 TEST ST",
+     "zip_code": "45202"
+    },
+    {
+     "attention_line": "TESTOWNER 7AE77B",
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER BF2941 INC",
+     "entity_type": "CL",
+     "first_name": "TESTOWNER 4EAE83",
+     "last_name": "TESTOWNER 723381",
+     "state": "OH",
+     "street_address": "5860 TEST ST",
+     "zip_code": "45202"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER C3C0C6",
+    "effective_date": "03/17/2022",
+    "expired_date": "02/27/2032",
+    "grant_date": "03/17/2022",
+    "last_action_date": "03/17/2022",
+    "license_status": "A",
+    "radio_service_code": "GJ",
+    "uls_file_number": "TESTOWNER BDCC6E"
+   },
+   "usi": "TESTOWNER 1E36C4"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER A67AA2 INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 8A593B",
+     "licensee_id": "TESTOWNER 315BED",
+     "state": "OH",
+     "street_address": "4635 TEST ST",
+     "zip_code": "45202"
+    },
+    {
+     "attention_line": "TESTOWNER 7AE77B",
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER A67AA2 INC",
+     "entity_type": "CL",
+     "first_name": "TESTOWNER 5B946F",
+     "last_name": "TESTOWNER F545AC",
+     "state": "OH",
+     "street_address": "308 TEST ST",
+     "zip_code": "45202"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER E64D02",
+    "effective_date": "03/04/2025",
+    "expired_date": "03/15/2035",
+    "grant_date": "03/04/2025",
+    "last_action_date": "03/04/2025",
+    "license_status": "A",
+    "radio_service_code": "GJ",
+    "uls_file_number": "TESTOWNER 8CA2C8"
+   },
+   "usi": "TESTOWNER 35C10A"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER FD51F3",
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER 499115 INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 8A593B",
+     "licensee_id": "TESTOWNER 315BED",
+     "state": "OH",
+     "street_address": "4635 TEST ST",
+     "zip_code": "45202"
+    },
+    {
+     "attention_line": "TESTOWNER 7AE77B",
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER BF2941 INC",
+     "entity_type": "CL",
+     "first_name": "TESTOWNER 4EAE83",
+     "last_name": "TESTOWNER 723381",
+     "state": "OH",
+     "street_address": "5860 TEST ST",
+     "zip_code": "45202"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER BC7C13",
+    "effective_date": "11/01/2022",
+    "expired_date": "11/03/2032",
+    "grant_date": "11/01/2022",
+    "last_action_date": "11/01/2022",
+    "license_status": "A",
+    "radio_service_code": "GB",
+    "uls_file_number": "TESTOWNER B84F88"
+   },
+   "usi": "TESTOWNER CCCF59"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER 499115 INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 8A593B",
+     "licensee_id": "TESTOWNER 315BED",
+     "state": "OH",
+     "street_address": "4635 TEST ST",
+     "zip_code": "45202"
+    },
+    {
+     "attention_line": "TESTOWNER 7AE77B",
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER A67AA2 INC",
+     "entity_type": "CL",
+     "first_name": "TESTOWNER CA7DD4",
+     "last_name": "TESTOWNER F333C5",
+     "state": "OH",
+     "street_address": "308 TEST ST",
+     "zip_code": "45202"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER DBEFFC",
+    "effective_date": "11/22/2025",
+    "expired_date": "11/03/2035",
+    "grant_date": "11/22/2025",
+    "last_action_date": "11/22/2025",
+    "license_status": "A",
+    "radio_service_code": "GB",
+    "uls_file_number": "TESTOWNER DD6789"
+   },
+   "usi": "TESTOWNER ECA415"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER 6D7AB6",
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER 499115 INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 8A593B",
+     "licensee_id": "TESTOWNER 315BED",
+     "state": "OH",
+     "street_address": "4635 TEST ST",
+     "zip_code": "45202"
+    },
+    {
+     "attention_line": "TESTOWNER 4A39BE",
+     "city": "Merrimack",
+     "entity_name": "TESTOWNER 8B1FE9 INC",
+     "entity_type": "CL",
+     "state": "NH",
+     "street_address": "2418 TEST ST",
+     "zip_code": "03054"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 040D55",
+    "effective_date": "08/26/2025",
+    "expired_date": "07/14/2035",
+    "grant_date": "08/26/2025",
+    "last_action_date": "08/26/2025",
+    "license_status": "A",
+    "radio_service_code": "GB",
+    "uls_file_number": "TESTOWNER E724C7"
+   },
+   "usi": "TESTOWNER F64BEB"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER 6D7AB6",
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER 499115 INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 8A593B",
+     "licensee_id": "TESTOWNER 315BED",
+     "state": "OH",
+     "street_address": "4635 TEST ST",
+     "zip_code": "45202"
+    },
+    {
+     "attention_line": "TESTOWNER 7AE77B",
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER 499115 INC",
+     "entity_type": "CL",
+     "first_name": "TESTOWNER 5B946F",
+     "last_name": "TESTOWNER F545AC",
+     "state": "OH",
+     "street_address": "308 TEST ST",
+     "zip_code": "45202"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 5566E4",
+    "cancellation_date": "08/23/2025",
+    "effective_date": "05/27/2015",
+    "expired_date": "06/19/2025",
+    "grant_date": "05/27/2015",
+    "last_action_date": "08/23/2025",
+    "license_status": "E",
+    "radio_service_code": "GB",
+    "uls_file_number": "TESTOWNER AE91DE"
+   },
+   "usi": "TESTOWNER 6DA621"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER FD51F3",
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER 499115 INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 8A593B",
+     "licensee_id": "TESTOWNER 315BED",
+     "state": "OH",
+     "street_address": "4635 TEST ST",
+     "zip_code": "45202"
+    },
+    {
+     "attention_line": "TESTOWNER 7AE77B",
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER BF2941 INC",
+     "entity_type": "CL",
+     "first_name": "TESTOWNER 4EAE83",
+     "last_name": "TESTOWNER 723381",
+     "state": "OH",
+     "street_address": "5860 TEST ST",
+     "zip_code": "45202"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 2A3D00",
+    "effective_date": "07/06/2022",
+    "expired_date": "07/01/2032",
+    "grant_date": "07/06/2022",
+    "last_action_date": "07/06/2022",
+    "license_status": "A",
+    "radio_service_code": "GE",
+    "uls_file_number": "TESTOWNER DAA69F"
+   },
+   "usi": "TESTOWNER A01343"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER FD51F3",
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER 499115 INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 8A593B",
+     "licensee_id": "TESTOWNER 315BED",
+     "state": "OH",
+     "street_address": "4635 TEST ST",
+     "zip_code": "45202"
+    },
+    {
+     "attention_line": "TESTOWNER 7AE77B",
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER BF2941 INC",
+     "entity_type": "CL",
+     "first_name": "TESTOWNER 4EAE83",
+     "last_name": "TESTOWNER 723381",
+     "state": "OH",
+     "street_address": "5860 TEST ST",
+     "zip_code": "45202"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER EB3CEB",
+    "effective_date": "01/11/2024",
+    "expired_date": "01/19/2034",
+    "grant_date": "01/11/2024",
+    "last_action_date": "01/11/2024",
+    "license_status": "A",
+    "radio_service_code": "GB",
+    "uls_file_number": "TESTOWNER 5C7B19"
+   },
+   "usi": "TESTOWNER 969542"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER FD51F3",
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER A67AA2 INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 8A593B",
+     "licensee_id": "TESTOWNER 315BED",
+     "state": "OH",
+     "street_address": "4635 TEST ST",
+     "zip_code": "45202"
+    },
+    {
+     "attention_line": "TESTOWNER 7AE77B",
+     "city": "CINCINNATI",
+     "entity_name": "TESTOWNER BF2941 INC",
+     "entity_type": "CL",
+     "first_name": "TESTOWNER 4EAE83",
+     "last_name": "TESTOWNER 723381",
+     "state": "OH",
+     "street_address": "5860 TEST ST",
+     "zip_code": "45202"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER C0E118",
+    "effective_date": "09/18/2023",
+    "expired_date": "09/03/2033",
+    "grant_date": "09/18/2023",
+    "last_action_date": "09/18/2023",
+    "license_status": "A",
+    "radio_service_code": "GU",
+    "uls_file_number": "TESTOWNER 39967A"
+   },
+   "usi": "TESTOWNER 072976"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER 6D7AB6",
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER A67AA2 INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 8A593B",
+     "licensee_id": "TESTOWNER 315BED",
+     "state": "OH",
+     "street_address": "4635 TEST ST",
+     "zip_code": "45202"
+    },
+    {
+     "attention_line": "TESTOWNER 7AE77B",
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER BF2941 INC",
+     "entity_type": "CL",
+     "first_name": "TESTOWNER 4EAE83",
+     "last_name": "TESTOWNER 723381",
+     "mi": "TESTOWNER 51918E",
+     "state": "OH",
+     "street_address": "5860 TEST ST",
+     "zip_code": "45202"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 6E2412",
+    "effective_date": "03/17/2022",
+    "expired_date": "02/27/2032",
+    "grant_date": "03/17/2022",
+    "last_action_date": "03/17/2022",
+    "license_status": "A",
+    "radio_service_code": "GJ",
+    "uls_file_number": "TESTOWNER B40923"
+   },
+   "usi": "TESTOWNER 5A6C87"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER FD51F3",
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER 499115 INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 8A593B",
+     "licensee_id": "TESTOWNER 315BED",
+     "state": "OH",
+     "street_address": "4635 TEST ST",
+     "zip_code": "45202"
+    },
+    {
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER BF2941 INC",
+     "entity_type": "CL",
+     "first_name": "TESTOWNER 4EAE83",
+     "last_name": "TESTOWNER 723381",
+     "state": "OH",
+     "street_address": "5860 TEST ST",
+     "zip_code": "45202"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 0EBE52",
+    "effective_date": "03/13/2023",
+    "expired_date": "05/26/2033",
+    "grant_date": "03/13/2023",
+    "last_action_date": "03/13/2023",
+    "license_status": "A",
+    "radio_service_code": "IG",
+    "uls_file_number": "TESTOWNER 67F3AE"
+   },
+   "usi": "TESTOWNER 107B32"
+  },
+  {
+   "entities": [
+    {
+     "applicant_type_code": "C",
+     "attention_line": "TESTOWNER FD51F3",
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER 499115 INC",
+     "entity_type": "L",
+     "frn": "TESTOWNER 8A593B",
+     "licensee_id": "TESTOWNER 315BED",
+     "state": "OH",
+     "street_address": "4635 TEST ST",
+     "zip_code": "45202"
+    },
+    {
+     "attention_line": "TESTOWNER 7AE77B",
+     "city": "Cincinnati",
+     "entity_name": "TESTOWNER BF2941 INC",
+     "entity_type": "CL",
+     "first_name": "TESTOWNER 4EAE83",
+     "last_name": "TESTOWNER 723381",
+     "state": "OH",
+     "street_address": "5860 TEST ST",
+     "zip_code": "45202"
+    }
+   ],
+   "license": {
+    "call_sign": "TESTOWNER 387796",
+    "effective_date": "03/13/2023",
+    "expired_date": "04/13/2033",
+    "grant_date": "03/13/2023",
+    "last_action_date": "03/13/2023",
+    "license_status": "A",
+    "radio_service_code": "GB",
+    "uls_file_number": "TESTOWNER 901394"
+   },
+   "usi": "TESTOWNER B1AFDC"
+  }
+ ],
+ "state": "OH",
+ "url": "https://data.fcc.gov/download/pub/uls/complete/l_LMpriv.zip"
+}
