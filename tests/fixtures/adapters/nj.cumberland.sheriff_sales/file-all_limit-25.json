@@ -1,0 +1,280 @@
+{
+ "rows": [
+  {
+   "address": "6825 TEST ST",
+   "defendant": "TESTOWNER 716D06",
+   "plaintiff": "TESTOWNER F70129",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER C31E98",
+   "prop_state": "NJ",
+   "prop_zip": "08332",
+   "sales_date": "2026-12-02",
+   "sheriff": "25001202"
+  },
+  {
+   "address": "4352 TEST ST",
+   "defendant": "TESTOWNER 59E037",
+   "plaintiff": "TESTOWNER DD98C8 LLC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER DFB22D",
+   "prop_state": "NJ",
+   "prop_zip": "08361",
+   "sales_date": "2026-12-02",
+   "sheriff": "25001332"
+  },
+  {
+   "address": "6841 TEST ST",
+   "defendant": "TESTOWNER 3A3F28",
+   "plaintiff": "TESTOWNER 7AAC5F",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 16AC56",
+   "prop_state": "NJ",
+   "prop_zip": "08302",
+   "sales_date": "2026-12-02",
+   "sheriff": "25001335"
+  },
+  {
+   "address": "5592 TEST ST",
+   "defendant": "TESTOWNER 968FD8",
+   "plaintiff": "TESTOWNER 5C462A NA",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER AC87AF",
+   "prop_state": "NJ",
+   "prop_zip": "08360",
+   "sales_date": "2026-12-02",
+   "sheriff": "26000092"
+  },
+  {
+   "address": "7976 TEST ST",
+   "defendant": "TESTOWNER 588739",
+   "plaintiff": "TESTOWNER 7AAE1A",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER E1933A",
+   "prop_state": null,
+   "prop_zip": null,
+   "sales_date": "2026-12-02",
+   "sheriff": "26000270"
+  },
+  {
+   "address": "7637 TEST ST",
+   "defendant": "TESTOWNER 30F354",
+   "plaintiff": "TESTOWNER 50370D INC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER B3414C",
+   "prop_state": "NJ",
+   "prop_zip": "08332",
+   "sales_date": "2026-12-02",
+   "sheriff": "26000591"
+  },
+  {
+   "address": "7803 TEST ST",
+   "defendant": "TESTOWNER 56E6DC",
+   "plaintiff": "TESTOWNER 70B11A CORP",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 9889FB",
+   "prop_state": "NJ",
+   "prop_zip": "08332",
+   "sales_date": "2026-12-02",
+   "sheriff": "26000893"
+  },
+  {
+   "address": "2959 TEST ST",
+   "defendant": "TESTOWNER 01DD5F",
+   "plaintiff": "TESTOWNER 844669",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 02E813",
+   "prop_state": "NJ",
+   "prop_zip": "08332",
+   "sales_date": "2026-12-02",
+   "sheriff": "26000898"
+  },
+  {
+   "address": "9048 TEST ST",
+   "defendant": "TESTOWNER 7499F0",
+   "plaintiff": "TESTOWNER A6E438",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 9F236D",
+   "prop_state": "NJ",
+   "prop_zip": "08302",
+   "sales_date": "2026-12-02",
+   "sheriff": "26001046"
+  },
+  {
+   "address": "3471 TEST ST",
+   "defendant": "TESTOWNER 4D32CA",
+   "plaintiff": "TESTOWNER 7AAE1A",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 3FAABF",
+   "prop_state": "NJ",
+   "prop_zip": "08353",
+   "sales_date": "2026-12-02",
+   "sheriff": "26001049"
+  },
+  {
+   "address": "5220 TEST ST",
+   "defendant": "TESTOWNER 8CB14A",
+   "plaintiff": "TESTOWNER A878F1",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 859AC0",
+   "prop_state": "NJ",
+   "prop_zip": "08327",
+   "sales_date": "2026-12-02",
+   "sheriff": "26001206"
+  },
+  {
+   "address": "7478 TEST ST",
+   "defendant": "TESTOWNER B955D3",
+   "plaintiff": "TESTOWNER 5C462A NA",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER B87E2D",
+   "prop_state": "NJ",
+   "prop_zip": "08360",
+   "sales_date": "2026-12-02",
+   "sheriff": "26001214"
+  },
+  {
+   "address": "8173 TEST ST",
+   "defendant": "TESTOWNER CEEB56",
+   "plaintiff": "TESTOWNER 598A66 LLC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 026E11",
+   "prop_state": null,
+   "prop_zip": null,
+   "sales_date": "2026-12-02",
+   "sheriff": "26001233"
+  },
+  {
+   "address": "1852 TEST ST",
+   "defendant": "TESTOWNER 3536DF",
+   "plaintiff": "TESTOWNER F310EC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 12D854",
+   "prop_state": "NJ",
+   "prop_zip": "08360",
+   "sales_date": "2026-12-02",
+   "sheriff": "26001250"
+  },
+  {
+   "address": "6477 TEST ST",
+   "defendant": "TESTOWNER 77F72A",
+   "plaintiff": "TESTOWNER 791E8A",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 7E4C56",
+   "prop_state": "NJ",
+   "prop_zip": "08361",
+   "sales_date": "2026-12-02",
+   "sheriff": "26001254"
+  },
+  {
+   "address": "7100 TEST ST",
+   "defendant": "TESTOWNER 4A4629",
+   "plaintiff": "TESTOWNER BBAF2D CORP",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 8B345A",
+   "prop_state": "NJ",
+   "prop_zip": "08332",
+   "sales_date": "2026-12-02",
+   "sheriff": "26001268"
+  },
+  {
+   "address": "4072 TEST ST",
+   "defendant": "TESTOWNER 2956EC",
+   "plaintiff": "TESTOWNER B564B0",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 4C2B59",
+   "prop_state": "NJ",
+   "prop_zip": "08361",
+   "sales_date": "2026-12-02",
+   "sheriff": "26001271"
+  },
+  {
+   "address": "8661 TEST ST",
+   "defendant": "TESTOWNER 7C5FB0",
+   "plaintiff": "TESTOWNER 7AAE1A",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER F5FA2B",
+   "prop_state": "NJ",
+   "prop_zip": "08361",
+   "sales_date": "2026-12-16",
+   "sheriff": "26000248"
+  },
+  {
+   "address": "6442 TEST ST",
+   "defendant": "TESTOWNER 199CE3",
+   "plaintiff": "TESTOWNER 7AAE1A",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 3096D1",
+   "prop_state": "NJ",
+   "prop_zip": "08360",
+   "sales_date": "2026-12-16",
+   "sheriff": "26000808"
+  },
+  {
+   "address": "2360 TEST ST",
+   "defendant": "TESTOWNER 015848",
+   "plaintiff": "TESTOWNER DC8507",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 3947CF",
+   "prop_state": "NJ",
+   "prop_zip": "08360",
+   "sales_date": "2026-12-16",
+   "sheriff": "26001112"
+  },
+  {
+   "address": "270 TEST ST",
+   "defendant": "TESTOWNER 2F99FA",
+   "plaintiff": "TESTOWNER 598525",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 249F3B",
+   "prop_state": "NJ",
+   "prop_zip": "08361",
+   "sales_date": "2026-12-16",
+   "sheriff": "26001151"
+  },
+  {
+   "address": "5469 TEST ST",
+   "defendant": "TESTOWNER B62CD0",
+   "plaintiff": "TESTOWNER FE3D06",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 50DD52",
+   "prop_state": "NJ",
+   "prop_zip": "08360",
+   "sales_date": "2026-12-16",
+   "sheriff": "26001159"
+  },
+  {
+   "address": "4804 TEST ST",
+   "defendant": "TESTOWNER 84411A",
+   "plaintiff": "TESTOWNER B1661B LLC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER CC7352",
+   "prop_state": "NJ",
+   "prop_zip": "08360",
+   "sales_date": "2026-12-16",
+   "sheriff": "26001196"
+  },
+  {
+   "address": "2196 TEST ST",
+   "defendant": "TESTOWNER FD873B",
+   "plaintiff": "TESTOWNER B1661B LLC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 42DE82",
+   "prop_state": "NJ",
+   "prop_zip": "08360",
+   "sales_date": "2026-12-16",
+   "sheriff": "26001200"
+  },
+  {
+   "address": "9087 TEST ST",
+   "defendant": "TESTOWNER EDAE2C",
+   "plaintiff": "TESTOWNER F78207 LLC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER C3F934",
+   "prop_state": "NJ",
+   "prop_zip": "08360",
+   "sales_date": "2026-12-16",
+   "sheriff": "26001258"
+  }
+ ],
+ "url": "https://salesweb.civilview.com/Sales/SalesSearch?countyId=6"
+}

@@ -193,7 +193,8 @@ def test_ckan_sources_page_by_sql_and_mark_satisfied(tmp_path: Path) -> None:
             return 404, b"", ""
         calls.append(url)
         recs = [{"_id": 1, "dtd": "DTD-1", "filing_date": "2020-02-03", "amount": 10.5,
-                 "pin": "0001A00100000000", "satisfied": True, "assignee": "TAX CO"}]  # fmt: skip
+                 "pin": "0001A00100000000", "satisfied": True, "assignee": "TAX CO",
+                 "_full_text": "'tax':1 'co':2"}]  # fmt: skip
         page = recs if len(calls) == 1 else []
         return 200, json.dumps({"success": True, "result": {"records": page}}).encode(), ""
 
@@ -209,10 +210,21 @@ def test_ckan_sources_page_by_sql_and_mark_satisfied(tmp_path: Path) -> None:
         "filing_date >= '2020-01-01' AND filing_date < '2021-01-01'")  # fmt: skip
     f = a.fetch(FetchRequest({"from": "2020-01-01", "to": "2021-01-01"}))
     assert len(calls) == 1  # a short page ends the paging
+    assert "_full_text" not in json.loads(f.content)["rows"][0]  # CKAN's index of every word
     assert "datastore_search_sql" in calls[0] and "res-1" in calls[0]
     (inst,) = [r.row for r in a.normalize(f) if r.table == "instrument"]
     assert inst["doc_type_raw"].endswith("(satisfied)")
     assert a.source_row()["base_url"] == "https://c.test/datastore/res-1"
+    upper = lien_adapter_for(load_lien_config(_cfg(
+        tmp_path, api="ckan", resource_id="res-1", portal="https://c.test",
+        date_field="SALEDATE", uid="dtd", parcel=None, county_fips="42003")))  # fmt: skip
+    assert upper(client).where({"from": "2020-01-01", "to": "2021-01-01"}) == (
+        "\"SALEDATE\" >= '2020-01-01' AND \"SALEDATE\" < '2021-01-01'")  # fmt: skip
+    cfg = _cfg(tmp_path, api="ckan", resource_id="res-1", portal="https://c.test",
+               date_field="filing_date", uid="dtd", amount="amount", released_on=None,
+               satisfied_flag="satisfied", parcel={"kind": "pin", "field": "pin",
+                                                   "county_fips": "42003"},
+               parties=[{"role": "creditor", "name": "assignee"}])  # fmt: skip
     bad = tmp_path / "ck.yaml"
     data = yaml.safe_load(cfg.read_text())
     del data["resource_id"]
@@ -706,6 +718,23 @@ def test_one_field_can_hold_several_names_and_a_constant_city(tmp_path: Path) ->
     assert sorted(r["raw_name"] for t, r in out if t == "party") == ["ACME LLC", "ANN LEE"]
     (addr,) = {r["city"] for t, r in out if t == "address"}
     assert addr == "CHICAGO"
+
+
+def test_names_split_on_any_of_several_separators_and_lose_quotes(tmp_path: Path) -> None:
+    cfg = _cfg(tmp_path, parcel=None, county_fips="42003", released_on=None,
+               parties=[{"role": "debtor", "name": "resp", "split": [";", '","'],
+                         "strip": '"'}])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    rows = [
+        {"ticket": "C1", "docketed": "2025-01-01", "resp": '"LEE, ANN","ACME LLC"'},
+        {"ticket": "C2", "docketed": "2025-01-01", "resp": "RAY, BO; ZED, AL"},
+        {"ticket": "C3", "docketed": "2025-01-01", "resp": '"ONE, SOLE"'},
+    ]
+    body = json.dumps({"rows": rows}).encode()
+    out = [(r.table, dict(r.row)) for r in cls().normalize(Fetched(cls.source_id, "x", AT, 200,
+                                                                   body, ""))]  # fmt: skip
+    names = sorted(r["raw_name"] for t, r in out if t == "party")
+    assert names == ["ACME LLC", "LEE, ANN", "ONE, SOLE", "RAY, BO", "ZED, AL"]
 
 
 def test_arcgis_rows_can_be_enriched_from_a_carto_table(tmp_path: Path) -> None:

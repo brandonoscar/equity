@@ -1,0 +1,52 @@
+source_id: dc.dob.building_permits
+state: DC
+county_fips: "11001"
+# DC Department of Buildings (formerly DCRA) building permits, one ArcGIS layer per issue year
+# on the DC GIS FEEDS/DCRA service (opendata.dc.gov "Building Permits in <year>", 2009-2026;
+# 43,827 permits in the 2026 layer on 2026-11-25): every construction, supplemental
+# (electrical, mechanical, plumbing), demolition and after-hours permit with the issue date,
+# the SSL (square/suffix/lot), the owner of record named on the permit and the applicant. A
+# signal of who controls a lot and is putting money into it, not a debt: OTHER instruments on
+# the lot, in no match run. The SSL ("3782    0063") is the dc.statewide.parcels key once
+# its spaces are removed. The applicant (often a contractor or expediter) stays in the raw
+# row only. The "Last 30 Days" layer is not read (the year layers hold the same permits).
+# One partition per year layer: a new year's layer (FeatureServer/<id>) is added by hand.
+api: arcgis
+layer_urls:
+  - https://maps2.dcgis.dc.gov/dcgis/rest/services/FEEDS/DCRA/FeatureServer/12   # 2009
+  - https://maps2.dcgis.dc.gov/dcgis/rest/services/FEEDS/DCRA/FeatureServer/11   # 2010
+  - https://maps2.dcgis.dc.gov/dcgis/rest/services/FEEDS/DCRA/FeatureServer/10   # 2011
+  - https://maps2.dcgis.dc.gov/dcgis/rest/services/FEEDS/DCRA/FeatureServer/7    # 2012
+  - https://maps2.dcgis.dc.gov/dcgis/rest/services/FEEDS/DCRA/FeatureServer/6    # 2013
+  - https://maps2.dcgis.dc.gov/dcgis/rest/services/FEEDS/DCRA/FeatureServer/5    # 2014
+  - https://maps2.dcgis.dc.gov/dcgis/rest/services/FEEDS/DCRA/FeatureServer/25   # 2015
+  - https://maps2.dcgis.dc.gov/dcgis/rest/services/FEEDS/DCRA/FeatureServer/24   # 2016
+  - https://maps2.dcgis.dc.gov/dcgis/rest/services/FEEDS/DCRA/FeatureServer/37   # 2017
+  - https://maps2.dcgis.dc.gov/dcgis/rest/services/FEEDS/DCRA/FeatureServer/9    # 2018
+  - https://maps2.dcgis.dc.gov/dcgis/rest/services/FEEDS/DCRA/FeatureServer/8    # 2019
+  - https://maps2.dcgis.dc.gov/dcgis/rest/services/FEEDS/DCRA/FeatureServer/2    # 2020
+  - https://maps2.dcgis.dc.gov/dcgis/rest/services/FEEDS/DCRA/FeatureServer/3    # 2021
+  - https://maps2.dcgis.dc.gov/dcgis/rest/services/FEEDS/DCRA/FeatureServer/14   # 2022
+  - https://maps2.dcgis.dc.gov/dcgis/rest/services/FEEDS/DCRA/FeatureServer/15   # 2023
+  - https://maps2.dcgis.dc.gov/dcgis/rest/services/FEEDS/DCRA/FeatureServer/16   # 2024
+  - https://maps2.dcgis.dc.gov/dcgis/rest/services/FEEDS/DCRA/FeatureServer/17   # 2025
+  - https://maps2.dcgis.dc.gov/dcgis/rest/services/FEEDS/DCRA/FeatureServer/18   # 2026
+order_by: [OBJECTID]
+select: [OBJECTID, PERMIT_ID, ISSUE_DATE, PERMIT_TYPE_NAME, PERMIT_SUBTYPE_NAME,
+         PERMIT_CATEGORY_NAME, APPLICATION_STATUS_NAME, FULL_ADDRESS, SSL, PERMIT_APPLICANT,
+         FEES_PAID, OWNER_NAME]
+date_field: ISSUE_DATE
+uid: PERMIT_ID
+doc_type: OTHER
+doc_type_raw: {field: PERMIT_SUBTYPE_NAME}
+parties:
+  - role: other
+    name: OWNER_NAME
+parcel: {kind: pin, field: SSL, county_fips: "11001"}   # = dc.statewide.parcels SSL
+extra_pii: [PERMIT_APPLICANT, FULL_ADDRESS]
+terms:
+  url: https://opendata.dc.gov/datasets/7296e6392349498bb6ba6ba3db836644
+  summary: "DC Department of Buildings via DC GIS (opendata.dc.gov, public ArcGIS REST), free, no login. Item licenseInfo (read 2026-11-25): Creative Commons Attribution 4.0 International (attribution required; no commercial-use or redistribution restriction). maps2.dcgis.dc.gov/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

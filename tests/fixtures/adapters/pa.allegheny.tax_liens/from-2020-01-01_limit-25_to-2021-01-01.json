@@ -2,7 +2,6 @@
  "resource": "65d0d259-3e58-49d3-bebb-80dc75f61245",
  "rows": [
   {
-   "_full_text": "'-000510':9 '-01':4 '-02':5 '-95':8 '1993':6 '2012h00190000000':1 '2012h190':2 '2020':3 '33.3':21 'deer':15 'district':11 'dtd':7 'exoneration':17 'lien':13,20 'of':18 'school':10 'tax':12,19 'township':16 'true':22 'west':14",
    "_id": 286,
    "amount": 33.3,
    "assignee": "",
@@ -18,7 +17,6 @@
    "ward": null
   },
   {
-   "_full_text": "'-001408':9 '-02':4 '-14':5 '-95':8 '0960f00130000000':1 '1993':6 '2020':3 '55.5':21 '960f130':2 'deer':15 'district':11 'dtd':7 'east':14 'exoneration':17 'lien':13,20 'of':18 'school':10 'tax':12,19 'township':16 'true':22",
    "_id": 659,
    "amount": 55.5,
    "assignee": "",
@@ -34,7 +32,6 @@
    "ward": null
   },
   {
-   "_full_text": "'-002136':9 '-12':4 '-14':5 '-95':8 '0179k00093000000':1 '179k93':2 '1993':6 '2020':3 '291':17 'boro':15 'district':11 'dtd':7 'lien':13 'munhall':14 'satisfaction':16 'school':10 'tax':12 'true':18",
    "_id": 988,
    "amount": 291.0,
    "assignee": "",
@@ -50,7 +47,6 @@
    "ward": null
   },
   {
-   "_full_text": "'-002138':9 '-06':4 '-16':5 '-95':8 '0375p00196000000':1 '1993':6 '2020':3 '360.9':21 '375p196':2 'boro':16 'district':11 'dtd':7 'east':14 'exoneration':17 'lien':13,20 'of':18 'pittsburgh':15 'school':10 'tax':12,19 'true':22",
    "_id": 990,
    "amount": 360.9,
    "assignee": "",
@@ -66,7 +62,6 @@
    "ward": null
   },
   {
-   "_full_text": "'-003823':9 '-09':4 '-29':5 '-95':8 '0112f00278000000':1 '112f278':2 '120.45':19 '1991':6 '2020':3 'dtd':7 'exoneration':15 'lien':12,18 'of':16 'stowe':13 'tax':11,17 'township':10,14 'true':20",
    "_id": 1741,
    "amount": 120.45,
    "assignee": "",
@@ -82,7 +77,6 @@
    "ward": null
   },
   {
-   "_full_text": "'-004394':9 '-02':4 '-14':5 '-95':8 '0960f00130000000':1 '11.5':20 '1992':6 '2020':3 '960f130':2 'deer':14 'dtd':7 'east':13 'exoneration':16 'lien':12,19 'of':17 'tax':11,18 'township':10,15 'true':21",
    "_id": 2133,
    "amount": 11.5,
    "assignee": "",
@@ -98,7 +92,6 @@
    "ward": null
   },
   {
-   "_full_text": "'-004482':9 '-02':4 '-14':5 '-95':8 '0960f00130000000':1 '11.5':20 '1993':6 '2020':3 '960f130':2 'deer':14 'dtd':7 'east':13 'exoneration':16 'lien':12,19 'of':17 'tax':11,18 'township':10,15 'true':21",
    "_id": 2221,
    "amount": 11.5,
    "assignee": "",
@@ -114,7 +107,6 @@
    "ward": null
   },
   {
-   "_full_text": "'-004805':9 '-08':4 '-31':5 '-95':8 '0879c00133000000':1 '1991':6 '2020':3 '598':18 '879c133':2 'city':14 'clairton':16 'district':11 'dtd':7 'lien':13 'of':15 'satisfaction':17 'school':10 'tax':12 'true':19",
    "_id": 2311,
    "amount": 598.0,
    "assignee": "",
@@ -130,7 +122,6 @@
    "ward": null
   },
   {
-   "_full_text": "'-005877':9 '-06':4 '-22':5 '-95':8 '0801r00273000000':1 '1993':6 '2020':3 '754.7':17 '801r273':2 'district':11 'dtd':7 'findlay':14 'lien':13 'satisfaction':16 'school':10 'tax':12 'township':15 'true':18",
    "_id": 2835,
    "amount": 754.7,
    "assignee": "",
@@ -146,7 +137,6 @@
    "ward": null
   },
   {
-   "_full_text": "'-009600':9 '-06':4 '-09':5 '-95':8 '0119c00170000000':1 '119c170':2 '1992':6 '2020':3 '96.25':20 'district':11 'dtd':7 'exoneration':16 'lien':13,19 'of':17 'school':10 'shaler':14 'tax':12,18 'township':15 'true':21",
    "_id": 3346,
    "amount": 96.25,
    "assignee": "",
@@ -162,7 +152,6 @@
    "ward": null
   },
   {
-   "_full_text": "'-006621':9 '-07':5 '-12':4 '-95':8 '0131a00064000000':1 '131a64':2 '1993':6 '2020':3 '339.5':21 'boro':16 'district':11 'dtd':7 'exoneration':17 'homestead':15 'lien':13,20 'of':18 'school':10 'tax':12,19 'true':22 'west':14",
    "_id": 3474,
    "amount": 339.5,
    "assignee": "",
@@ -178,7 +167,6 @@
    "ward": null
   },
   {
-   "_full_text": "'-011406':9 '-06':4 '-09':5 '-95':8 '0119c00170000000':1 '100.6':20 '119c170':2 '1993':6 '2020':3 'district':11 'dtd':7 'exoneration':16 'lien':13,19 'of':17 'school':10 'shaler':14 'tax':12,18 'township':15 'true':21",
    "_id": 3684,
    "amount": 100.6,
    "assignee": "",
@@ -194,7 +182,6 @@
    "ward": null
   },
   {
-   "_full_text": "'-007164':9 '-08':4 '-27':5 '-95':8 '0455e00189000000':1 '15.04':20 '1993':6 '2020':3 '455e189':2 'district':11 'dtd':7 'exoneration':16 'lien':13,19 'of':17 'school':10 'tax':12,18 'township':15 'true':21 'wilkins':14",
    "_id": 4241,
    "amount": 15.04,
    "assignee": "",
@@ -210,7 +197,6 @@
    "ward": null
   },
   {
-   "_full_text": "'-007183':9 '-07':5 '-12':4 '-95':8 '0167s00159000000':1 '167s159':2 '1993':6 '2020':3 '62.7':21 'as':17 'boro':15 'borough':10 'dtd':7 'lien':13 'only':20 'satisfied':16 'school':11,19 'sharpsburg':14 'tax':12 'to':18 'true':22",
    "_id": 4252,
    "amount": 62.7,
    "assignee": "",
@@ -226,7 +212,6 @@
    "ward": null
   },
   {
-   "_full_text": "'-007271':9 '-05':4 '-28':5 '-95':8 '0917r00007000000':1 '1993':6 '2.1':18 '2020':3 '917r7':2 'district':11 'dtd':7 'fayette':15 'lien':13 'n':14 'satisfaction':17 'school':10 'tax':12 'township':16 'true':19",
    "_id": 4288,
    "amount": 2.1,
    "assignee": "",
@@ -242,7 +227,6 @@
    "ward": null
   },
   {
-   "_full_text": "'-007835':9 '-06':4 '-10':5 '-95':8 '0291l00120000000':1 '1993':6 '2020':3 '266.1':21 '291l120':2 'dtd':7 'exoneration':17 'hara':15 'lien':13,20 'o':14 'of':18 'school':11 'tax':12,19 'township':10,16 'true':22",
    "_id": 4602,
    "amount": 266.1,
    "assignee": "",
@@ -258,7 +242,6 @@
    "ward": null
   },
   {
-   "_full_text": "'-011126':9 '-05':4 '-14':5 '-95':8 '0491d00004000000':1 '112.95':18 '1993':6 '2020':3 '491d4':2 'dtd':7 'fayette':15 'lien':13 's':14 'satisfaction':17 'school':11 'tax':12 'township':10,16 'true':19",
    "_id": 4933,
    "amount": 112.95,
    "assignee": "",
@@ -274,7 +257,6 @@
    "ward": null
   },
   {
-   "_full_text": "'-011421':9 '-04':4 '-21':5 '-95':8 '0467p00051000000':1 '1991':6 '2020':3 '238':16 '467p51':2 'boro':14 'borough':10 'dtd':7 'glassport':13 'lien':12 'satisfaction':15 'tax':11 'true':17",
    "_id": 5037,
    "amount": 238.0,
    "assignee": "",
@@ -290,7 +272,6 @@
    "ward": null
   },
   {
-   "_full_text": "'-008552':9 '-06':4 '-22':5 '-95':8 '1663f00151000000':1 '1663f151':2 '1993':6 '2020':3 '98':17 'district':11 'dtd':7 'lien':13 'richland':14 'satisfaction':16 'school':10 'tax':12 'township':15 'true':18",
    "_id": 5146,
    "amount": 98.0,
    "assignee": "",
@@ -306,7 +287,6 @@
    "ward": null
   },
   {
-   "_full_text": "'-01':4 '-012158':9 '-31':5 '-95':8 '0364r00295000000':1 '1993':6 '2020':3 '266':20 '364r295':2 'boro':15 'borough':10 'dtd':7 'exoneration':16 'lien':13,19 'of':17 'school':11 'tax':12,18 'true':21 'verona':14",
    "_id": 5841,
    "amount": 266.0,
    "assignee": "",
@@ -322,7 +302,6 @@
    "ward": null
   },
   {
-   "_full_text": "'-02':4 '-053873':9 '-19':5 '-95':8 '0385m00050000000':1 '1992':6 '2020':3 '215.8':20 '385m50':2 'boro':15 'borough':10 'dtd':7 'exoneration':16 'lien':12,19 'mifflin':14 'of':17 'tax':11,18 'true':21 'west':13",
    "_id": 6096,
    "amount": 215.8,
    "assignee": "",
@@ -338,7 +317,6 @@
    "ward": null
   },
   {
-   "_full_text": "'-014185':9 '-05':4 '-19':5 '-95':8 '0010g00075000000':1 '10g75':2 '1994':6 '2020':3 '27.38':17 '5':15 'allegheny':10 'capital':19 'county':11 'dtd':7 'gls':18 'inc':20 'lien':13 'pittsburgh':14 'satisfaction':16 'tax':12 'true':21",
    "_id": 6501,
    "amount": 27.38,
    "assignee": "GLS Capital Inc.",
@@ -354,7 +332,6 @@
    "ward": "5"
   },
   {
-   "_full_text": "'-014782':9 '-08':4 '-25':5 '-95':8 '0048m00099000000':1 '1994':6 '2020':3 '420.48':20 '48m99':2 '6':15 'allegheny':10 'capital':22 'county':11 'dtd':7 'exoneration':16 'gls':21 'inc':23 'lien':13,19 'of':17 'pittsburgh':14 'tax':12,18 'true':24",
    "_id": 6744,
    "amount": 420.48,
    "assignee": "GLS Capital Inc.",
@@ -370,7 +347,6 @@
    "ward": "6"
   },
   {
-   "_full_text": "'-014920':9 '-08':4 '-25':5 '-95':8 '0048m00025000000':1 '1994':6 '2020':3 '48m25':2 '58.77':20 '6':15 'allegheny':10 'capital':22 'county':11 'dtd':7 'exoneration':16 'gls':21 'inc':23 'lien':13,19 'of':17 'pittsburgh':14 'tax':12,18 'true':24",
    "_id": 6758,
    "amount": 58.77,
    "assignee": "GLS Capital Inc.",
@@ -386,7 +362,6 @@
    "ward": "6"
   },
   {
-   "_full_text": "'-015517':9 '-05':5 '-11':4 '-95':8 '0050m00071000000':1 '10':15 '1994':6 '2020':3 '32.85':17 '50m71':2 'allegheny':10 'capital':19 'county':11 'dtd':7 'gls':18 'inc':20 'lien':13 'pittsburgh':14 'satisfaction':16 'tax':12 'true':21",
    "_id": 6844,
    "amount": 32.85,
    "assignee": "GLS Capital Inc.",

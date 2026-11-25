@@ -40,7 +40,13 @@ rules:
             sc.horry.delinquent_tax_sale, ms.harrison.tax_sale_2026,
             mo.st_louis_county.post_third_sale, mi.genesee.land_bank, mo.kansas_city.land_bank,
             il.chicago.city_owned_land, wa.seattle.city_properties, fl.lee.surplus_lands,
-            ca.los_angeles.defaulted_tax]
+            ca.los_angeles.defaulted_tax,
+            # CivilView sheriff sale listings (open sales only) and current vacant lists
+            "nj.*.sheriff_sales", de.new_castle.sheriff_sales, de.sussex.sheriff_sales,
+            pa.lehigh.sheriff_sales, pa.montgomery.sheriff_sales, pa.philadelphia.sheriff_sales,
+            dc.otr.vacant_blighted, pa.pittsburgh.condemned_properties,
+            md.baltimore_city.vacant_building_notices, ny.syracuse.rental_registry,
+            ny.syracuse.vacant_properties]
     every_hours: 24
     mode: listing
     listing_table: instrument

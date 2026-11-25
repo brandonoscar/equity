@@ -105,18 +105,21 @@ def test_real_deed_configs_load() -> None:
     assert {"ct.cama.sales", "vt.tax.property_transfers", "co.denver.property_sales"} <= ids
 
 
-def _walk(obj: object, fields: tuple[str, ...]) -> list[str]:
+def _walk(obj: object, fields: tuple[str, ...], keep: frozenset[str] = frozenset()) -> list[str]:
+    """Unscrubbed values in pii fields; a source's skip_names placeholders ('N/A') name nobody
+    and are kept as published, as in tests/test_fixture_privacy.py."""
     if isinstance(obj, dict):
         bad = []
         for k, v in obj.items():
             if k in fields and isinstance(v, str) and v.strip():
-                if not (v.startswith("TESTOWNER") or v.endswith(" TEST ST")):
+                ok = v.startswith("TESTOWNER") or v.endswith(" TEST ST")
+                if not ok and v.strip().upper() not in keep:
                     bad.append(f"{k}={v[:3]}...")
             else:
-                bad += _walk(v, fields)
+                bad += _walk(v, fields, keep)
         return bad
     if isinstance(obj, list):
-        return [b for v in obj for b in _walk(v, fields)]
+        return [b for v in obj for b in _walk(v, fields, keep)]
     return []
 
 
@@ -125,7 +128,8 @@ def test_deed_fixtures_are_pseudonymized_and_order_free() -> None:
     for cls in all_deed_adapters():
         for path in sorted((FIXTURES / cls.source_id).glob("*.json")):
             data = json.loads(path.read_text())
-            assert _walk(data, cls.pii_fields) == [], path
+            keep = frozenset(str(n).strip().upper() for n in cls.config.get("skip_names") or ())
+            assert _walk(data, cls.pii_fields, keep) == [], path
             rows = data["rows"]
             fwd = sorted(json.dumps(r, sort_keys=True, default=str) for r in _facts(cls, rows))
             back = sorted(json.dumps(r, sort_keys=True, default=str)

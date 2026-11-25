@@ -58,7 +58,9 @@ Config keys:
   satisfied_flag      optional field: a value in satisfied_values (default true/1/yes/y) marks
                       the lien satisfied when no satisfaction date is published
   parties             list of {role, name: field|[fields] | const: text, split (optional
-                               separator: one field holding several names, e.g. ' | '),
+                               separator, or a list of them: one field holding several names,
+                               e.g. ' | '), strip (optional characters trimmed from each
+                               name, e.g. '"' around '"DOE, JANE","ROE, JOHN"'),
                                address: {line1: field|[fields], city | city_const, state |
                                state_const, zip}, when (optional {field: value}: the party
                                is read only from rows whose field has that value, e.g. a
@@ -583,6 +585,8 @@ class LienAdapter(Adapter):
             clauses.append(f"{f} >= {lo} AND {f} < {hi}")
         elif "from" in params:
             t = "" if self.api in ("ckan", "carto") else "T00:00:00"  # SQL: plain dates
+            if self.ckan and not re.fullmatch(r"[a-z_][a-z0-9_]*", f):
+                f = f'"{f}"'  # CKAN SQL folds unquoted names to lower case ("SALEDATE")
             clauses.append(f"{f} >= '{params['from']}{t}' AND {f} < '{params['to']}{t}'")
         return " AND ".join(clauses) or "1=1"
 
@@ -600,7 +604,10 @@ class LienAdapter(Adapter):
             body = json.loads(resp.content)
             if resp.status != 200 or not body.get("success"):
                 raise LienConfigError(f"{self.source_id}: CKAN query failed: {body.get('error')}")
-            got = body["result"]["records"]
+            # _full_text is CKAN's search index of the row (every word, names included): not
+            # data, and it would carry names past fixture pseudonymization.
+            got = [{k: v for k, v in r.items() if k != "_full_text"}
+                   for r in body["result"]["records"]]  # fmt: skip
             rows += got
             if limit or len(got) < page:
                 return rows, resp.retrieved_at
@@ -1044,8 +1051,13 @@ class LienAdapter(Adapter):
                 if not _party_applies(p, row):
                     continue
                 raw = _text(p["const"]) if "const" in p else _join(row, p.get("name"))
-                sep = str(p.get("split") or "").strip()
-                names = [n.strip() for n in raw.split(sep)] if raw and sep else [raw]
+                spec = p.get("split")
+                seps = [s for s in (str(x).strip() for x in (
+                    spec if isinstance(spec, list) else [spec or ""])) if s]  # fmt: skip
+                splitter = "|".join(re.escape(s) for s in seps)
+                names = [n.strip() for n in re.split(splitter, raw)] if raw and seps else [raw]
+                if p.get("strip"):  # quote marks around each name: '"DOE, JANE"'
+                    names = [n.strip(str(p["strip"])).strip() if n else n for n in names]
                 a = p.get("address") or {}
                 zipc = _text(row.get(a["zip"])) if a.get("zip") else None
                 zip5 = zipc[:5] if zipc and re.fullmatch(r"[0-9]{5}", zipc[:5]) else None

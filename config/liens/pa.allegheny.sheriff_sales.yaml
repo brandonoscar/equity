@@ -1,0 +1,39 @@
+source_id: pa.allegheny.sheriff_sales
+state: PA
+county_fips: "42003"   # Allegheny County
+# Allegheny County Sheriff real estate sales, WPRDC "Allegheny County Sheriff Sales" archive
+# of sale results (CKAN resource 4af05575, 13,452 postings 2010-2022 on 2026-11-25; the
+# monthly feed stopped after the December 2022 sale): each property put up at a sheriff sale
+# with the court docket (MG- mortgage foreclosure, GD-/AR- municipal lien, tax and other
+# judgments), the plaintiff (lender, municipality, condo association), the defendants (the
+# owners), the property address, sale date and status (sold, postponed, stayed, bankruptcy
+# ...). No parcel id is published: the matcher finds the property by the defendants'
+# address. One EXECUTION instrument per docket and sale date (a sale under a writ of
+# execution), in no match run: the money judgment behind it is not in this list.
+# Defendants are 'Doe, Jane; Roe, John' (2015-2017) or '"Doe, Jane","Roe, John"' (2017 on).
+api: ckan
+portal: https://data.wprdc.org
+resource_id: 4af05575-052d-40ff-9311-d578319e810a   # Archive Sales Results
+date_field: SaleDate
+partition: year
+first_year: 2010
+uid: [DocketNumber, SaleDate]
+doc_type: EXECUTION
+doc_type_raw: {field: SaleType}
+parties:
+  - role: debtor
+    name: Defendant
+    split: [";", '","']
+    strip: '"'
+    address: {line1: Street, city: City, state: State, zip: ZIPCode}   # the property
+  - role: creditor
+    name: Plaintiff
+    split: [";", '","']
+    strip: '"'
+extra_pii: [Address, AttorneyName, AdditionalNotes]
+terms:
+  url: https://data.wprdc.org/dataset/sheriff-sales
+  summary: "WPRDC (Western Pennsylvania Regional Data Center, University of Pittsburgh) dataset from the Allegheny County Sheriff, license Creative Commons CCZero (read 2026-11-25), CKAN DataStore API, free, no login. WPRDC robots.txt disallows /api/ for crawlers but states scripts and applications may use it (see equity.adapters.http SCRIPT_PERMISSIONS)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,33 @@
+source_id: ny.nyc.hpd_omo_charges
+state: NY
+county_fips: "36061"
+# NYC Department of Housing Preservation and Development "Open Market Order (OMO) Charges"
+# (data.cityofnewyork.us mdbu-nrqn, 517,839 orders on 2026-11-25, 497,709 awarded, updated
+# daily): emergency repair, demolition, sealing and lead work HPD contracted out on the open
+# market for a private building whose owner failed to act, with the lot (bbl), work type and
+# the contract award amount. HPD bills the cost to the owner through DOF, but the amount
+# billed and the transfer date are only in the invoice table (emrz-5p35, keyed by OMO
+# number, no lot), so each order is an OTHER instrument on the lot dated by its award,
+# principal_amount = the award as published (not the charge billed). In no match run.
+portal: https://data.cityofnewyork.us
+dataset: mdbu-nrqn
+where: "omoawarddate IS NOT NULL"
+order_by: [":id"]
+select: [omoid, omonumber, buildingid, boro_id, block, lot, bbl, lifecycle, worktypegeneral,
+         omostatusreason, omoawardamount, omocreatedate, omoawarddate, servicechargeflag]
+date_field: omoawarddate
+partition: year
+first_year: 1990     # a few awards carry mistyped years (0910): not read
+uid: omoid
+doc_type: OTHER
+doc_type_raw: {field: worktypegeneral}
+amount: omoawardamount
+parties:
+  - {role: creditor, const: "NYC DEPARTMENT OF HOUSING PRESERVATION AND DEVELOPMENT", person_names: false}
+parcel: {kind: nyc_bbl10, field: bbl}
+terms:
+  url: https://data.cityofnewyork.us/d/mdbu-nrqn
+  summary: "NYC Open Data (Socrata), HPD, free, no login; NYC Open Data terms of use (no license field on the dataset). robots.txt (Crawl-delay 1) allows /resource/."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free
