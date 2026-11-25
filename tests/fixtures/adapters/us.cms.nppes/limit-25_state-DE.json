@@ -1,0 +1,810 @@
+{
+ "file": "NPPES_Data_Dissemination_November_2026_V2.zip",
+ "member": "npidata_pfile_20050523-20261102.csv",
+ "rows": [
+  {
+   "credential": "MD",
+   "entity_type": "1",
+   "enumeration_date": "05/23/2005",
+   "first_name": "TESTOWNER 01D327",
+   "last_name": "TESTOWNER 475D5B",
+   "last_update_date": "07/09/2007",
+   "mail_city": "NEWARK",
+   "mail_country": "US",
+   "mail_line1": "2088 TEST ST",
+   "mail_line2": "4011 TEST ST",
+   "mail_postal": "197134236",
+   "mail_state": "DE",
+   "middle_name": "TESTOWNER 5B879D",
+   "name_prefix": "DR.",
+   "npi": "0654097937",
+   "practice_city": "NEWARK",
+   "practice_country": "US",
+   "practice_line1": "2088 TEST ST",
+   "practice_line2": "4011 TEST ST",
+   "practice_postal": "197134236",
+   "practice_state": "DE",
+   "sole_proprietor": "Y",
+   "taxonomies": [
+    {
+     "code": "207Y00000X",
+     "license": "TEST053484",
+     "license_state": "DE",
+     "primary": "Y"
+    }
+   ]
+  },
+  {
+   "certification_date": "08/13/2020",
+   "entity_type": "1",
+   "enumeration_date": "05/23/2005",
+   "first_name": "TESTOWNER 9DE069",
+   "last_name": "TESTOWNER FA03AB",
+   "last_update_date": "06/15/2021",
+   "mail_city": "NEWARK",
+   "mail_country": "US",
+   "mail_line1": "4803 TEST ST",
+   "mail_postal": "197132049",
+   "mail_state": "DE",
+   "npi": "0852978996",
+   "practice_city": "NEWARK",
+   "practice_country": "US",
+   "practice_line1": "888 TEST ST",
+   "practice_postal": "197137021",
+   "practice_state": "DE",
+   "sole_proprietor": "N",
+   "taxonomies": [
+    {
+     "code": "208600000X",
+     "license": "TEST030177",
+     "license_state": "DE",
+     "primary": "Y"
+    }
+   ]
+  },
+  {
+   "certification_date": "01/25/2024",
+   "credential": "M.D.",
+   "entity_type": "1",
+   "enumeration_date": "05/24/2005",
+   "first_name": "TESTOWNER 55C0B0",
+   "last_name": "TESTOWNER 144234",
+   "last_update_date": "01/25/2024",
+   "mail_city": "NEWARK",
+   "mail_country": "US",
+   "mail_line1": "493 TEST ST",
+   "mail_postal": "197023358",
+   "mail_state": "DE",
+   "middle_name": "TESTOWNER 93444C",
+   "npi": "0457864309",
+   "practice_city": "DOVER",
+   "practice_country": "US",
+   "practice_line1": "951 TEST ST",
+   "practice_postal": "199047804",
+   "practice_state": "DE",
+   "sole_proprietor": "N",
+   "taxonomies": [
+    {
+     "code": "207X00000X",
+     "license": "TEST081795",
+     "license_state": "DE",
+     "primary": "Y"
+    }
+   ]
+  },
+  {
+   "credential": "MD",
+   "entity_type": "1",
+   "enumeration_date": "05/24/2005",
+   "first_name": "TESTOWNER A3BCA6",
+   "last_name": "TESTOWNER 6CA4CD",
+   "last_update_date": "01/26/2017",
+   "mail_city": "LEWES",
+   "mail_country": "US",
+   "mail_line1": "449 TEST ST",
+   "mail_postal": "199584314",
+   "mail_state": "DE",
+   "middle_name": "TESTOWNER 6D7E8F",
+   "name_prefix": "DR.",
+   "npi": "0170117860",
+   "practice_city": "LEWES",
+   "practice_country": "US",
+   "practice_line1": "449 TEST ST",
+   "practice_postal": "199584314",
+   "practice_state": "DE",
+   "sole_proprietor": "N",
+   "taxonomies": [
+    {
+     "code": "207Q00000X",
+     "license": "TEST073812",
+     "license_state": "DE",
+     "primary": "Y"
+    }
+   ]
+  },
+  {
+   "ao_credential": "MD",
+   "ao_first_name": "TESTOWNER BCD33E",
+   "ao_last_name": "TESTOWNER C97DB5",
+   "ao_middle_name": "TESTOWNER FD7403",
+   "ao_prefix": "DR.",
+   "ao_title": "PRESIDENT",
+   "certification_date": "06/10/2022",
+   "entity_type": "2",
+   "enumeration_date": "05/24/2005",
+   "last_update_date": "06/10/2022",
+   "mail_city": "LEWES",
+   "mail_country": "US",
+   "mail_line1": "449 TEST ST",
+   "mail_postal": "199584314",
+   "mail_state": "DE",
+   "npi": "1205839164",
+   "org_name": "MID-ATLANTIC FAMILY PRACTICE",
+   "org_subpart": "N",
+   "practice_city": "LEWES",
+   "practice_country": "US",
+   "practice_line1": "449 TEST ST",
+   "practice_postal": "199584314",
+   "practice_state": "DE",
+   "taxonomies": [
+    {
+     "code": "207Q00000X",
+     "license": "2003109879",
+     "license_state": "DE",
+     "primary": "Y"
+    }
+   ]
+  },
+  {
+   "ao_first_name": "TESTOWNER ADB1E4",
+   "ao_last_name": "TESTOWNER B2AFB7",
+   "ao_middle_name": "TESTOWNER 1749F9",
+   "ao_prefix": "MR.",
+   "ao_title": "DIRECTOR",
+   "entity_type": "2",
+   "enumeration_date": "05/24/2005",
+   "last_update_date": "08/22/2020",
+   "mail_city": "NEWARK",
+   "mail_country": "US",
+   "mail_line1": "1058 TEST ST",
+   "mail_line2": "3875 TEST ST",
+   "mail_postal": "197023335",
+   "mail_state": "DE",
+   "npi": "1013910926",
+   "org_name": "CHRISTIANA CARE HEALTH SYSTEMS/VNA/HOME MEDICAL EQUIPMENT",
+   "org_subpart": "N",
+   "practice_city": "NEWARK",
+   "practice_country": "US",
+   "practice_line1": "1058 TEST ST",
+   "practice_line2": "3875 TEST ST",
+   "practice_postal": "197023335",
+   "practice_state": "DE",
+   "taxonomies": [
+    {
+     "code": "332B00000X",
+     "license": "1996106974",
+     "license_state": "DE",
+     "primary": "Y"
+    }
+   ]
+  },
+  {
+   "certification_date": "03/17/2025",
+   "credential": "PA-C,PHD",
+   "entity_type": "1",
+   "enumeration_date": "05/24/2005",
+   "first_name": "TESTOWNER 01D327",
+   "last_name": "TESTOWNER E7AB4B",
+   "last_update_date": "03/17/2025",
+   "mail_city": "FELTON",
+   "mail_country": "US",
+   "mail_line1": "8579 TEST ST",
+   "mail_postal": "199435276",
+   "mail_state": "DE",
+   "middle_name": "TESTOWNER FB9088",
+   "npi": "0778934899",
+   "practice_city": "CAMDEN",
+   "practice_country": "US",
+   "practice_line1": "3152 TEST ST",
+   "practice_postal": "199341365",
+   "practice_state": "DE",
+   "sole_proprietor": "N",
+   "taxonomies": [
+    {
+     "code": "363A00000X",
+     "license": "TEST087120",
+     "license_state": "DE",
+     "primary": "Y"
+    }
+   ]
+  },
+  {
+   "credential": "PT, PHD, GCS",
+   "entity_type": "1",
+   "enumeration_date": "05/24/2005",
+   "first_name": "TESTOWNER 01D327",
+   "last_name": "TESTOWNER 8DA2F3",
+   "last_update_date": "07/11/2010",
+   "mail_city": "WILMINGTON",
+   "mail_country": "US",
+   "mail_line1": "2732 TEST ST",
+   "mail_postal": "198022968",
+   "mail_state": "DE",
+   "middle_name": "TESTOWNER 82F0E0",
+   "name_prefix": "DR.",
+   "npi": "0111184230",
+   "practice_city": "WILMINGTON",
+   "practice_country": "US",
+   "practice_line1": "2732 TEST ST",
+   "practice_postal": "198022968",
+   "practice_state": "DE",
+   "sole_proprietor": "Y",
+   "taxonomies": [
+    {
+     "code": "2251G0304X",
+     "license": "TEST091007",
+     "license_state": "DE",
+     "primary": "Y"
+    }
+   ]
+  },
+  {
+   "credential": "MD",
+   "entity_type": "1",
+   "enumeration_date": "05/27/2005",
+   "first_name": "TESTOWNER 3352C7",
+   "last_name": "TESTOWNER 5D010A",
+   "last_update_date": "02/08/2011",
+   "mail_city": "MIDDLETOWN",
+   "mail_country": "US",
+   "mail_line1": "3928 TEST ST",
+   "mail_line2": "1808 TEST ST",
+   "mail_postal": "197098894",
+   "mail_state": "DE",
+   "middle_name": "TESTOWNER A3D9FC",
+   "name_prefix": "DR.",
+   "npi": "0057055663",
+   "practice_city": "MIDDLETOWN",
+   "practice_country": "US",
+   "practice_line1": "3928 TEST ST",
+   "practice_line2": "4098 TEST ST",
+   "practice_postal": "197095841",
+   "practice_state": "DE",
+   "sole_proprietor": "N",
+   "taxonomies": [
+    {
+     "code": "207R00000X",
+     "license": "TEST070635",
+     "license_state": "DE",
+     "primary": "Y"
+    }
+   ]
+  },
+  {
+   "credential": "MD",
+   "entity_type": "1",
+   "enumeration_date": "05/27/2005",
+   "first_name": "TESTOWNER 44AC20",
+   "last_name": "TESTOWNER 12B7F6",
+   "last_update_date": "11/02/2009",
+   "mail_city": "DOVER",
+   "mail_country": "US",
+   "mail_line1": "5245 TEST ST",
+   "mail_postal": "199044117",
+   "mail_state": "DE",
+   "middle_name": "TESTOWNER AC952A",
+   "name_prefix": "DR.",
+   "npi": "0819644827",
+   "practice_city": "DOVER",
+   "practice_country": "US",
+   "practice_line1": "5245 TEST ST",
+   "practice_postal": "199044117",
+   "practice_state": "DE",
+   "sole_proprietor": "Y",
+   "taxonomies": [
+    {
+     "code": "207RH0003X",
+     "license": "TEST077151",
+     "license_state": "DE",
+     "primary": "Y"
+    }
+   ]
+  },
+  {
+   "credential": "M.D.",
+   "entity_type": "1",
+   "enumeration_date": "05/27/2005",
+   "first_name": "TESTOWNER B58747",
+   "last_name": "TESTOWNER B93847",
+   "last_update_date": "10/17/2017",
+   "mail_city": "NEWARK",
+   "mail_country": "US",
+   "mail_line1": "2120 TEST ST",
+   "mail_postal": "197025706",
+   "mail_state": "DE",
+   "middle_name": "TESTOWNER 6D7E8F",
+   "npi": "0127224214",
+   "practice_city": "NEWARK",
+   "practice_country": "US",
+   "practice_line1": "4140 TEST ST",
+   "practice_line2": "6840 TEST ST",
+   "practice_postal": "19702",
+   "practice_state": "DE",
+   "sole_proprietor": "N",
+   "taxonomies": [
+    {
+     "code": "207RC0000X",
+     "license": "TEST057860",
+     "license_state": "DE",
+     "primary": "N"
+    },
+    {
+     "code": "207RC0000X",
+     "license": "TEST025460",
+     "license_state": "DE",
+     "primary": "Y"
+    }
+   ]
+  },
+  {
+   "credential": "M.D.",
+   "entity_type": "1",
+   "enumeration_date": "05/27/2005",
+   "first_name": "TESTOWNER 2B57F7",
+   "last_name": "TESTOWNER 543876",
+   "last_update_date": "01/27/2017",
+   "mail_city": "NEWARK",
+   "mail_country": "US",
+   "mail_line1": "358 TEST ST",
+   "mail_line2": "2591 TEST ST",
+   "mail_postal": "19702",
+   "mail_state": "DE",
+   "middle_name": "TESTOWNER 364722",
+   "npi": "0123806532",
+   "practice_city": "NEWARK",
+   "practice_country": "US",
+   "practice_line1": "358 TEST ST",
+   "practice_line2": "2591 TEST ST",
+   "practice_postal": "19702",
+   "practice_state": "DE",
+   "sole_proprietor": "N",
+   "taxonomies": [
+    {
+     "code": "207RI0011X",
+     "license": "TEST096303",
+     "license_state": "DE",
+     "primary": "N"
+    },
+    {
+     "code": "207RC0000X",
+     "license": "TEST007543",
+     "license_state": "DE",
+     "primary": "Y"
+    }
+   ]
+  },
+  {
+   "credential": "M.D.",
+   "entity_type": "1",
+   "enumeration_date": "05/27/2005",
+   "first_name": "TESTOWNER 5B7C62",
+   "last_name": "TESTOWNER 52063E",
+   "last_update_date": "03/08/2017",
+   "mail_city": "NEWARK",
+   "mail_country": "US",
+   "mail_line1": "1752 TEST ST",
+   "mail_line2": "2591 TEST ST",
+   "mail_postal": "197025436",
+   "mail_state": "DE",
+   "middle_name": "TESTOWNER 185D03",
+   "npi": "0329887693",
+   "practice_city": "NEWARK",
+   "practice_country": "US",
+   "practice_line1": "2130 TEST ST",
+   "practice_line2": "7473 TEST ST",
+   "practice_postal": "197182200",
+   "practice_state": "DE",
+   "sole_proprietor": "N",
+   "taxonomies": [
+    {
+     "code": "207RC0000X",
+     "license": "TEST077299",
+     "license_state": "DE",
+     "primary": "Y"
+    }
+   ]
+  },
+  {
+   "credential": "M.D.",
+   "entity_type": "1",
+   "enumeration_date": "05/27/2005",
+   "first_name": "TESTOWNER A15BA2",
+   "last_name": "TESTOWNER 138D6C",
+   "last_update_date": "08/26/2014",
+   "mail_city": "LEWES",
+   "mail_country": "US",
+   "mail_line1": "4306 TEST ST",
+   "mail_line2": "5591 TEST ST",
+   "mail_postal": "199581663",
+   "mail_state": "DE",
+   "middle_name": "TESTOWNER FC155F",
+   "npi": "0419223955",
+   "practice_city": "LEWES",
+   "practice_country": "US",
+   "practice_line1": "2034 TEST ST",
+   "practice_postal": "199584787",
+   "practice_state": "DE",
+   "sole_proprietor": "N",
+   "taxonomies": [
+    {
+     "code": "208800000X",
+     "license": "TEST039908",
+     "license_state": "DE",
+     "primary": "Y"
+    }
+   ]
+  },
+  {
+   "certification_date": "05/11/2023",
+   "credential": "M.D.",
+   "entity_type": "1",
+   "enumeration_date": "05/27/2005",
+   "first_name": "TESTOWNER 602B1B",
+   "last_name": "TESTOWNER DDA519",
+   "last_update_date": "05/11/2023",
+   "mail_city": "DOVER",
+   "mail_country": "US",
+   "mail_line1": "2846 TEST ST",
+   "mail_line2": "5476 TEST ST",
+   "mail_postal": "199013530",
+   "mail_state": "DE",
+   "middle_name": "TESTOWNER 4CCA4B",
+   "npi": "0019482313",
+   "practice_city": "MILFORD",
+   "practice_country": "US",
+   "practice_line1": "5201 TEST ST",
+   "practice_postal": "199634366",
+   "practice_state": "DE",
+   "sole_proprietor": "N",
+   "taxonomies": [
+    {
+     "code": "208800000X",
+     "license": "TEST082154",
+     "license_state": "DE",
+     "primary": "Y"
+    }
+   ]
+  },
+  {
+   "ao_credential": "M.D.",
+   "ao_first_name": "TESTOWNER 384339",
+   "ao_last_name": "TESTOWNER ED88ED",
+   "ao_middle_name": "TESTOWNER AC40FB",
+   "ao_title": "PRESIDENT",
+   "entity_type": "2",
+   "enumeration_date": "05/27/2005",
+   "last_update_date": "03/04/2008",
+   "mail_city": "NEWARK",
+   "mail_country": "US",
+   "mail_line1": "5900 TEST ST",
+   "mail_line2": "3198 TEST ST",
+   "mail_postal": "19713",
+   "mail_state": "DE",
+   "npi": "1982607677",
+   "org_name": "DELAWARE HEART GROUP PA",
+   "org_subpart": "N",
+   "practice_city": "NEWARK",
+   "practice_country": "US",
+   "practice_line1": "5900 TEST ST",
+   "practice_line2": "3198 TEST ST",
+   "practice_postal": "19713",
+   "practice_state": "DE",
+   "taxonomies": [
+    {
+     "code": "207RC0000X",
+     "license": "C10001668",
+     "license_state": "DE",
+     "primary": "Y"
+    }
+   ]
+  },
+  {
+   "credential": "M.D.",
+   "entity_type": "1",
+   "enumeration_date": "05/27/2005",
+   "first_name": "TESTOWNER 01D327",
+   "last_name": "TESTOWNER F8309C",
+   "last_update_date": "02/21/2019",
+   "mail_city": "NEWARK",
+   "mail_country": "US",
+   "mail_line1": "7028 TEST ST",
+   "mail_postal": "197138000",
+   "mail_state": "DE",
+   "middle_name": "TESTOWNER 364722",
+   "npi": "0372987876",
+   "other_first_name": "TESTOWNER 9D41D8",
+   "other_last_name": "TESTOWNER F3F0BC",
+   "other_last_name_type": "1",
+   "other_middle_name": "TESTOWNER D09748",
+   "practice_city": "NEWARK",
+   "practice_country": "US",
+   "practice_line1": "7028 TEST ST",
+   "practice_postal": "197138000",
+   "practice_state": "DE",
+   "sole_proprietor": "N",
+   "taxonomies": [
+    {
+     "code": "207RC0000X",
+     "license": "TEST016199",
+     "license_state": "DE",
+     "primary": "Y"
+    },
+    {
+     "code": "207RI0011X",
+     "license": "TEST030775",
+     "license_state": "DE",
+     "primary": "N"
+    }
+   ]
+  },
+  {
+   "certification_date": "08/15/2023",
+   "credential": "C.R.N.P.",
+   "entity_type": "1",
+   "enumeration_date": "05/27/2005",
+   "first_name": "TESTOWNER 6A3FF5",
+   "last_name": "TESTOWNER 8A9A75",
+   "last_update_date": "08/15/2023",
+   "mail_city": "WILMINGTON",
+   "mail_country": "US",
+   "mail_line1": "5774 TEST ST",
+   "mail_postal": "198104811",
+   "mail_state": "DE",
+   "middle_name": "TESTOWNER D1BE9A",
+   "npi": "0654678730",
+   "practice_city": "WILMINGTON",
+   "practice_country": "US",
+   "practice_line1": "5774 TEST ST",
+   "practice_postal": "198104811",
+   "practice_state": "DE",
+   "sole_proprietor": "Y",
+   "taxonomies": [
+    {
+     "code": "363L00000X",
+     "license": "TEST081606",
+     "license_state": "PA",
+     "primary": "Y"
+    }
+   ]
+  },
+  {
+   "credential": "M.D.",
+   "entity_type": "1",
+   "enumeration_date": "05/27/2005",
+   "first_name": "TESTOWNER 74146C",
+   "last_name": "TESTOWNER 97C188",
+   "last_update_date": "02/22/2010",
+   "mail_city": "LEWES",
+   "mail_country": "US",
+   "mail_line1": "2034 TEST ST",
+   "mail_postal": "199584787",
+   "mail_state": "DE",
+   "middle_name": "TESTOWNER D4E5D9",
+   "npi": "0508560493",
+   "practice_city": "LEWES",
+   "practice_country": "US",
+   "practice_line1": "2034 TEST ST",
+   "practice_postal": "199584787",
+   "practice_state": "DE",
+   "sole_proprietor": "N",
+   "taxonomies": [
+    {
+     "code": "208800000X",
+     "license": "TEST041512",
+     "license_state": "DE",
+     "primary": "Y"
+    }
+   ]
+  },
+  {
+   "ao_first_name": "TESTOWNER 67552F",
+   "ao_last_name": "TESTOWNER A5245C",
+   "ao_middle_name": "TESTOWNER AD3E93",
+   "ao_title": "PRESIDENT AND CEO",
+   "certification_date": "03/20/2026",
+   "entity_type": "2",
+   "enumeration_date": "05/27/2005",
+   "last_update_date": "03/20/2026",
+   "mail_city": "BATON ROUGE",
+   "mail_country": "US",
+   "mail_line1": "1014 TEST ST",
+   "mail_postal": "708164896",
+   "mail_state": "LA",
+   "npi": "1962405506",
+   "org_name": "COMPASSIONATE CARE HOSPICE OF DELAWARE, LLC",
+   "org_subpart": "N",
+   "practice_city": "NEWARK",
+   "practice_country": "US",
+   "practice_line1": "692 TEST ST",
+   "practice_postal": "197134332",
+   "practice_state": "DE",
+   "taxonomies": [
+    {
+     "code": "251G00000X",
+     "license_state": "DE",
+     "primary": "Y"
+    }
+   ]
+  },
+  {
+   "credential": "M.D.",
+   "entity_type": "1",
+   "enumeration_date": "05/27/2005",
+   "first_name": "TESTOWNER C50D3B",
+   "last_name": "TESTOWNER F8079B",
+   "last_update_date": "09/29/2008",
+   "mail_city": "DOVER",
+   "mail_country": "US",
+   "mail_line1": "4451 TEST ST",
+   "mail_line2": "708 TEST ST",
+   "mail_postal": "19904",
+   "mail_state": "DE",
+   "middle_name": "TESTOWNER B03761",
+   "npi": "0121229099",
+   "practice_city": "DOVER",
+   "practice_country": "US",
+   "practice_line1": "2332 TEST ST",
+   "practice_line2": "708 TEST ST",
+   "practice_postal": "19904",
+   "practice_state": "DE",
+   "sole_proprietor": "N",
+   "taxonomies": [
+    {
+     "code": "208800000X",
+     "license": "TEST090840",
+     "license_state": "DE",
+     "primary": "Y"
+    }
+   ]
+  },
+  {
+   "ao_first_name": "TESTOWNER 356218",
+   "ao_last_name": "TESTOWNER 1CAB19",
+   "ao_title": "DIRECTOR OF FINANCE",
+   "certification_date": "03/26/2026",
+   "entity_type": "2",
+   "enumeration_date": "05/27/2005",
+   "last_update_date": "03/26/2026",
+   "mail_city": "WILMINGTON",
+   "mail_country": "US",
+   "mail_line1": "7305 TEST ST",
+   "mail_line2": "5285 TEST ST",
+   "mail_postal": "198033000",
+   "mail_state": "DE",
+   "npi": "1437152154",
+   "org_name": "CHRISTIANA CARE HOME HEALTH AND COMMUNITY SERVICES, INC.",
+   "org_subpart": "N",
+   "other_org_name": "<UNAVAIL>",
+   "other_org_name_type": "6",
+   "practice_city": "WILMINGTON",
+   "practice_country": "US",
+   "practice_line1": "7305 TEST ST",
+   "practice_postal": "198033000",
+   "practice_state": "DE",
+   "taxonomies": [
+    {
+     "code": "104100000X",
+     "license_state": "DE",
+     "primary": "N"
+    },
+    {
+     "code": "251E00000X",
+     "license_state": "DE",
+     "primary": "Y"
+    }
+   ]
+  },
+  {
+   "certification_date": "05/18/2021",
+   "credential": "M.D.",
+   "entity_type": "1",
+   "enumeration_date": "05/27/2005",
+   "first_name": "TESTOWNER 01D327",
+   "last_name": "TESTOWNER 96639E",
+   "last_update_date": "05/18/2021",
+   "mail_city": "PHILADELPHIA",
+   "mail_country": "US",
+   "mail_line1": "315 TEST ST",
+   "mail_postal": "191824804",
+   "mail_state": "PA",
+   "middle_name": "TESTOWNER 481720",
+   "name_suffix": "III",
+   "npi": "0004445536",
+   "practice_city": "WILMINGTON",
+   "practice_country": "US",
+   "practice_line1": "1323 TEST ST",
+   "practice_postal": "198053165",
+   "practice_state": "DE",
+   "sole_proprietor": "N",
+   "taxonomies": [
+    {
+     "code": "207RC0001X",
+     "license": "TEST048567",
+     "license_state": "DE",
+     "primary": "Y"
+    }
+   ]
+  },
+  {
+   "ao_first_name": "TESTOWNER 356218",
+   "ao_last_name": "TESTOWNER 1CAB19",
+   "ao_title": "DIRECTOR OF FINANCE",
+   "certification_date": "03/26/2026",
+   "entity_type": "2",
+   "enumeration_date": "05/27/2005",
+   "last_update_date": "03/26/2026",
+   "mail_city": "WILMINGTON",
+   "mail_country": "US",
+   "mail_line1": "7531 TEST ST",
+   "mail_postal": "198033000",
+   "mail_state": "DE",
+   "npi": "1841293438",
+   "org_name": "CHRISTIANA CARE HOME HEALTH AND COMMUNITY SERVICES, INC.",
+   "org_subpart": "N",
+   "other_org_name": "<UNAVAIL>",
+   "other_org_name_type": "6",
+   "practice_city": "SMYRNA",
+   "practice_country": "US",
+   "practice_line1": "800 TEST ST",
+   "practice_postal": "199771477",
+   "practice_state": "DE",
+   "taxonomies": [
+    {
+     "code": "104100000X",
+     "license_state": "DE",
+     "primary": "N"
+    },
+    {
+     "code": "251E00000X",
+     "license_state": "DE",
+     "primary": "Y"
+    }
+   ]
+  },
+  {
+   "ao_first_name": "TESTOWNER 73A518",
+   "ao_last_name": "TESTOWNER B601BF",
+   "ao_middle_name": "TESTOWNER 669518",
+   "ao_prefix": "MR.",
+   "ao_title": "CFO",
+   "certification_date": "06/02/2025",
+   "entity_type": "2",
+   "enumeration_date": "05/27/2005",
+   "last_update_date": "06/02/2025",
+   "mail_city": "WILMINGTON",
+   "mail_country": "US",
+   "mail_line1": "2419 TEST ST",
+   "mail_postal": "198053165",
+   "mail_state": "DE",
+   "npi": "1295738896",
+   "org_name": "ST. FRANCIS HOSPITAL INC.",
+   "org_subpart": "N",
+   "practice_city": "WILMINGTON",
+   "practice_country": "US",
+   "practice_line1": "2419 TEST ST",
+   "practice_postal": "198053165",
+   "practice_state": "DE",
+   "taxonomies": [
+    {
+     "code": "282N00000X",
+     "license": "HSPTL004",
+     "license_state": "DE",
+     "primary": "Y"
+    }
+   ]
+  }
+ ],
+ "shard": null,
+ "state": "DE",
+ "url": "https://download.cms.gov/nppes/NPPES_Data_Dissemination_November_2026_V2.zip"
+}
