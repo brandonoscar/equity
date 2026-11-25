@@ -104,3 +104,27 @@ def test_the_memory_limit_comes_from_the_environment(
     monkeypatch.setenv("EQUITY_MEMORY_LIMIT", "lots; DROP")
     with pytest.raises(ValueError, match="EQUITY_MEMORY_LIMIT"):
         memory_limit()
+
+
+def test_a_debt_list_linking_too_many_owner_parcels_is_flagged() -> None:
+    """Gwinnett's weekly list carried the whole tax roll: a list linking an implausible share
+    of the owner parcels is reported, a normal one is not."""
+    from equity.matching.resolve import OUTLIER_FLOOR, outliers
+
+    con = duckdb.connect()
+    n = OUTLIER_FLOOR * 5
+    con.execute(f"CREATE TABLE owners AS SELECT 'p' || i AS parcel_uid FROM range({n}) t(i)")
+    con.execute(
+        "CREATE TABLE debtors AS"
+        f" SELECT 'roll' || i AS instrument_uid, 'zz.roll' AS source_id FROM range({n}) t(i)"
+        " UNION ALL SELECT 'few' || i, 'zz.few' FROM range(50) t(i)"
+    )
+    con.execute(
+        "CREATE TABLE matches AS"
+        f" SELECT 'roll' || i AS instrument_uid, 'p' || i AS parcel_uid, 'auto' AS decision"
+        f" FROM range({n}) t(i)"
+        " UNION ALL SELECT 'few' || i, 'p' || i, 'auto' FROM range(50) t(i)"
+    )
+    flagged = outliers(con)
+    assert [o["source_id"] for o in flagged] == ["zz.roll"]
+    assert flagged[0]["share"] == 1.0
