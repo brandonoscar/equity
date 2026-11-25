@@ -23,24 +23,24 @@ Tags on each gap: **[FIXED]** closed in the lake, **[PARTLY FIXED]**, **[IN PROG
 1. **[OPEN]** **CA:** no owner names in any of the 58 counties. Los Angeles, Riverside and San Bernardino are loaded with parcel ids and values only. San Diego is now built (values for 1.09M parcels; its public layer has no owner names). San Jose (Santa Clara) is configured but not built. The other 53 counties have no parcel layer at all.
 2. **HI:** no owner names, values or addresses in any county (Hawaii, Honolulu, Kauai, Maui). The statewide layer has boundaries only, and there is no match run.
 3. **[PARTLY FIXED: Marion built, 347k owners]** **IN:** the statewide layer (all 92 counties) has no owners and no values. Owners exist only in Lake and Vanderburgh. Marion (Indianapolis) is configured but not built.
-4. **TN:** the statewide layer (86 counties) has no owners and no values. Owners exist only in Davidson, Hamilton, Rutherford and Washington. Shelby, Knox, Williamson, Montgomery, Chester and Hickman have no parcels at all.
+4. **[PARTLY FIXED: statewide values 1.79M, addresses 1.62M; owners still missing]** **TN:** the statewide layer (86 counties) has no owners and no values. Owners exist only in Davidson, Hamilton, Rutherford and Washington. Shelby, Knox, Williamson, Montgomery, Chester and Hickman have no parcels at all.
 5. **WA:** the statewide layer (all 39 counties) has no owners. Owners exist only in Snohomish and Spokane. King, Pierce and Clark have none. Thurston and Whatcom are configured but not built.
-6. **UT:** both statewide layers (boundaries and LIR) have no owners and no values. Owners exist only in Salt Lake and Utah counties.
+6. **[PARTLY FIXED: Weber 112k, Iron 47k owners]** **UT:** both statewide layers (boundaries and LIR) have no owners and no values. Owners exist only in Salt Lake and Utah counties.
 7. **[PARTLY FIXED: Sarpy built]** **NE:** the statewide layer (93 counties) has no owners and no addresses. Owners exist only in Douglas, Lancaster and Cass. Sarpy is configured but not built.
-8. **NH:** no owners, values or addresses statewide. Owners exist only in the 13-town NRPC region.
+8. **[PARTLY FIXED: statewide addresses 521k; owners and values still missing]** **NH:** no owners, values or addresses statewide. Owners exist only in the 13-town NRPC region.
 9. **NJ:** no owners in 20 of 21 counties (Daniel's Law redaction). Only Monmouth has them. The statewide layer also carries no values.
-10. **RI:** no owners, values or addresses in any municipality except Providence. There is no match run.
+10. **[PARTLY FIXED: Cranston 33k owners; RI match run added]** **RI:** no owners, values or addresses in any municipality except Providence. There is no match run.
 11. **MD:** the statewide layer has no owners and no addresses. Owners exist in 8 of 24 counties. Montgomery is configured but not built, and the three SDAT transfer files (which name grantees) are registered but not built.
-12. **ID:** the statewide layer covers 13 of 44 counties, and is a draft config. Ada (Boise) has no owners. These 31 counties are missing entirely: Adams, Bannock, Benewah, Bingham, Blaine, Bonner, Bonneville, Boundary, Butte, Canyon, Caribou, Cassia, Clark, Clearwater, Custer, Elmore, Franklin, Fremont, Gem, Idaho, Jefferson, Kootenai, Latah, Lemhi, Lewis, Madison, Owyhee, Payette, Power, Shoshone and Twin Falls.
-13. **MN:** 27 counties are missing from the statewide layer: Beltrami, Blue Earth, Brown, Cottonwood, Faribault, Freeborn, Goodhue, Hubbard, Kanabec, Kandiyohi, Kittson, Le Sueur, Lincoln, Mahnomen, Martin, Meeker, Nicollet, Nobles, Pine, Redwood, Rock, Roseau, Sibley, Swift, Todd, Wadena and Watonwan.
+12. **[PARTLY FIXED: Bonneville 44k, Twin Falls 46k owners]** **ID:** the statewide layer covers 13 of 44 counties, and is a draft config. Ada (Boise) has no owners. These 31 counties are missing entirely: Adams, Bannock, Benewah, Bingham, Blaine, Bonner, Bonneville, Boundary, Butte, Canyon, Caribou, Cassia, Clark, Clearwater, Custer, Elmore, Franklin, Fremont, Gem, Idaho, Jefferson, Kootenai, Latah, Lemhi, Lewis, Madison, Owyhee, Payette, Power, Shoshone and Twin Falls.
+13. **[PARTLY FIXED: Beltrami, Carver, Goodhue, Kandiyohi, Rice, Scott, Stearns added]** **MN:** 27 counties are missing from the statewide layer: Beltrami, Blue Earth, Brown, Cottonwood, Faribault, Freeborn, Goodhue, Hubbard, Kanabec, Kandiyohi, Kittson, Le Sueur, Lincoln, Mahnomen, Martin, Meeker, Nicollet, Nobles, Pine, Redwood, Rock, Roseau, Sibley, Swift, Todd, Wadena and Watonwan.
     - 18 counties have no owners: Benton, Big Stone, Carver, Clay, Clearwater, Fillmore, Grant, Houston, Itasca, Lake of the Woods, McLeod, Mille Lacs, Norman, Rice, Scott, Stearns, Traverse and Waseca.
     - 6 counties have owners on under 10% of parcels: Marshall, Pope, Red Lake, Renville, Wilkin and Yellow Medicine.
     - The Metro regional layer is configured but not built.
 14. **[IN PROGRESS: NY local rolls building]** **NY:** 22 counties are missing from the statewide layer: Chemung, Chenango, Clinton, Columbia, Delaware, Dutchess, Essex, Franklin, Fulton, Herkimer, Jefferson, Madison, Monroe, Nassau, Niagara, Orleans, Saratoga, Schenectady, Schoharie, Seneca, Washington and Yates. Allegany and Cattaraugus returned 0 rows. `ny.local_rolls.parcels` is configured but not built.
-15. **CO:** 20 counties are missing or returned 0 rows: Alamosa, Baca, Bent, Chaffee, Cheyenne, Conejos, Costilla, Crowley, Delta, Fremont, Jackson, Kiowa, Kit Carson, Las Animas, Lincoln, Mineral, Montrose, Otero, Phillips and Prowers. El Paso (Colorado Springs), Summit and Washington have no owners.
+15. **[PARTLY FIXED: Chaffee 17k owners]** **CO:** 20 counties are missing or returned 0 rows: Alamosa, Baca, Bent, Chaffee, Cheyenne, Conejos, Costilla, Crowley, Delta, Fremont, Jackson, Kiowa, Kit Carson, Las Animas, Lincoln, Mineral, Montrose, Otero, Phillips and Prowers. El Paso (Colorado Springs), Summit and Washington have no owners.
 16. **TX:** 9 counties returned 0 rows from StratMap: Bailey, Bowie, Hunt, Matagorda, Navarro, Roberts, Robertson, Terrell and Willacy. Donley is missing. Smith (Tyler) has no owners, and Cottle and Frio have owners on under 50%. Collin and Dallas city layers are configured but not built.
-17. **NC:** Clay and Swain returned 0 rows, and Hoke has no owners.
-18. **PA:** Allegheny (Pittsburgh), Lancaster and Erie are loaded as ids only, with no owners. 54 of 67 counties have no parcel layer.
+17. **[PARTLY FIXED: Swain 13k owners]** **NC:** Clay and Swain returned 0 rows, and Hoke has no owners.
+18. **[PARTLY FIXED: Lancaster 189k owners and values]** **PA:** Allegheny (Pittsburgh), Lancaster and Erie are loaded as ids only, with no owners. 54 of 67 counties have no parcel layer.
 19. **MI:** Oakland (490k parcels) has no owners, values or addresses. 73 of 83 counties have no parcel layer.
 20. **OR:** Marion has no owners. Clackamas, Washington and 29 other counties have no parcel layer. Multnomah, Lane, Deschutes and Jackson are loaded.
 21. **ME:** Aroostook is missing from the statewide layer.
@@ -48,7 +48,7 @@ Tags on each gap: **[FIXED]** closed in the lake, **[PARTLY FIXED]**, **[IN PROG
     - GA 7 of 159
     - KY 1 of 120 (Boone only; Jefferson/Louisville is missing)
     - KS 1 of 105 (Douglas only; Johnson, Sedgwick, Wyandotte and Shawnee are missing)
-    - MO 4 of 115 (St. Louis City and Greene are missing)
+    - MO 5 of 115 (Greene added 2026-11-25, 124k parcels; St. Louis City in progress)
     - IA 6 of 99 (Polk/Des Moines is missing)
     - IL 8 of 102
     - OK 2 of 77 (Tulsa build unfinished)
@@ -183,6 +183,13 @@ Tags on each gap: **[FIXED]** closed in the lake, **[PARTLY FIXED]**, **[IN PROG
     - `rules.yaml`: 9 values are null.
     - There is no homestead exemption table per state.
     - There are no buyer criteria in `config/private/queries/`.
+
+### J. Free sources checked and refused on their own terms (2026-11-25)
+
+65. Montrose CO ("use only with permission from Montrose County"), Bannock ID ("Authorized use only!") and Summit CO (layer described as confidential, meant to be private) carry owner names but their publishers restrict use. Not loaded.
+66. King County WA bulk files require agreeing not to use them commercially; Clark WA and Washington County UT owner copies are licensed for project or internal use only; Maui's only owner copy was made by a private user.
+67. Tennessee's statewide owner layer (86 counties) says it is "not intended for commercial use"; the Comptroller's per-county downloads it points to sit behind a CAPTCHA. Needs an owner decision.
+68. Smith County TX: robots.txt allows all agents in general but names ClaudeBot, GPTBot and CCBot as disallowed. The project's own client is not one of those, but the roll should be fetched by the project's adapter, not by an assistant.
 
 ---
 
