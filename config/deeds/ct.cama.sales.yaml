@@ -1,0 +1,210 @@
+source_id: ct.cama.sales
+state: CT
+# Connecticut OPM / CT GIS Office "2026 Connecticut Parcel and CAMA Data" (data.ct.gov
+# ibe8-9i3q, 1,359,259 rows on 2026-11-25): one row per parcel from each town assessor's CAMA
+# system with its latest recorded sale: sale date, price, book/page, instrument code,
+# qualified flag, sale grantor (seller) and sale grantee (buyer). Only those columns and the
+# parcel link are read (the current owner, mailing address and building data are not).
+# One DEED instrument per parcel and sale (grantor = seller, grantee = buyer) on
+# <county>-<link>, the ct.statewide.parcels CAMA_Link ("<town cousub FIPS>-<town link>").
+# sale_date is M/D/YYYY text (some towns add ' 12:00:00 AM'), so years are queried with
+# LIKE and the date rewritten to ISO (config/deeds, equity.adapters.deeds). The county comes
+# from the town (property_city), mapped as in config/states/ct.yaml (legacy counties).
+# The 2024 / 2025 editions (pqrn-qghw, rny9-6ak2) keep earlier sales of parcels sold since;
+# not loaded (they would duplicate this edition's instruments).
+# TODO(Brandon): instrument codes are town-specific (Vision '00'..'25'); all loaded as DEED.
+portal: https://data.ct.gov
+dataset: ibe8-9i3q
+order_by: [link, ":id"]
+select: [link, property_city, town_id, sale_date, sale_price, book_page, instrument, qualified,
+         validity_code, sale_grantor_name, sale_grantee_name]
+date_field: sale_date
+date_format: {sale_date: mdy}
+partition: year
+first_year: 1900
+uid: [link, sale_date, book_page]
+doc_type: DEED
+doc_type_raw: Connecticut CAMA latest sale
+consideration: sale_price
+county_name_field: property_city
+county_aliases:
+  "Andover": Tolland
+  "Ansonia": New Haven
+  "Ashford": Windham
+  "Avon": Hartford
+  "Barkhamsted": Litchfield
+  "Beacon Falls": New Haven
+  "Berlin": Hartford
+  "Bethany": New Haven
+  "Bethel": Fairfield
+  "Bethlehem": Litchfield
+  "Bloomfield": Hartford
+  "Bolton": Tolland
+  "Bozrah": New London
+  "Branford": New Haven
+  "Bridgeport": Fairfield
+  "Bridgewater": Litchfield
+  "Bristol": Hartford
+  "Brookfield": Fairfield
+  "Brooklyn": Windham
+  "Burlington": Hartford
+  "Canaan": Litchfield
+  "Canterbury": Windham
+  "Canton": Hartford
+  "Chaplin": Windham
+  "Cheshire": New Haven
+  "Chester": Middlesex
+  "Clinton": Middlesex
+  "Colchester": New London
+  "Colebrook": Litchfield
+  "Columbia": Tolland
+  "Cornwall": Litchfield
+  "Coventry": Tolland
+  "Cromwell": Middlesex
+  "Danbury": Fairfield
+  "Darien": Fairfield
+  "Deep River": Middlesex
+  "Derby": New Haven
+  "Durham": Middlesex
+  "East Granby": Hartford
+  "East Haddam": Middlesex
+  "East Hampton": Middlesex
+  "East Hartford": Hartford
+  "East Haven": New Haven
+  "East Lyme": New London
+  "East Windsor": Hartford
+  "Eastford": Windham
+  "Easton": Fairfield
+  "Ellington": Tolland
+  "Enfield": Hartford
+  "Essex": Middlesex
+  "Fairfield": Fairfield
+  "Farmington": Hartford
+  "Franklin": New London
+  "Glastonbury": Hartford
+  "Goshen": Litchfield
+  "Granby": Hartford
+  "Greenwich": Fairfield
+  "Griswold": New London
+  "Groton": New London
+  "Guilford": New Haven
+  "Haddam": Middlesex
+  "Hamden": New Haven
+  "Hampton": Windham
+  "Hartford": Hartford
+  "Hartland": Hartford
+  "Harwinton": Litchfield
+  "Hebron": Tolland
+  "Kent": Litchfield
+  "Killingly": Windham
+  "Killingworth": Middlesex
+  "Lebanon": New London
+  "Ledyard": New London
+  "Lisbon": New London
+  "Litchfield": Litchfield
+  "Lyme": New London
+  "Madison": New Haven
+  "Manchester": Hartford
+  "Mansfield": Tolland
+  "Marlborough": Hartford
+  "Meriden": New Haven
+  "Middlebury": New Haven
+  "Middlefield": Middlesex
+  "Middletown": Middlesex
+  "Milford": New Haven
+  "Monroe": Fairfield
+  "Montville": New London
+  "Morris": Litchfield
+  "Naugatuck": New Haven
+  "New Britain": Hartford
+  "New Canaan": Fairfield
+  "New Fairfield": Fairfield
+  "New Hartford": Litchfield
+  "New Haven": New Haven
+  "New London": New London
+  "New Milford": Litchfield
+  "Newington": Hartford
+  "Newtown": Fairfield
+  "Norfolk": Litchfield
+  "North Branford": New Haven
+  "North Canaan": Litchfield
+  "North Haven": New Haven
+  "North Stonington": New London
+  "Norwalk": Fairfield
+  "Norwich": New London
+  "Old Lyme": New London
+  "Old Saybrook": Middlesex
+  "Orange": New Haven
+  "Oxford": New Haven
+  "Plainfield": Windham
+  "Plainville": Hartford
+  "Plymouth": Litchfield
+  "Pomfret": Windham
+  "Portland": Middlesex
+  "Preston": New London
+  "Prospect": New Haven
+  "Putnam": Windham
+  "Redding": Fairfield
+  "Ridgefield": Fairfield
+  "Rocky Hill": Hartford
+  "Roxbury": Litchfield
+  "Salem": New London
+  "Salisbury": Litchfield
+  "Scotland": Windham
+  "Seymour": New Haven
+  "Sharon": Litchfield
+  "Shelton": Fairfield
+  "Sherman": Fairfield
+  "Simsbury": Hartford
+  "Somers": Tolland
+  "South Windsor": Hartford
+  "Southbury": New Haven
+  "Southington": Hartford
+  "Sprague": New London
+  "Stafford": Tolland
+  "Stamford": Fairfield
+  "Sterling": Windham
+  "Stonington": New London
+  "Stratford": Fairfield
+  "Suffield": Hartford
+  "Thomaston": Litchfield
+  "Thompson": Windham
+  "Tolland": Tolland
+  "Torrington": Litchfield
+  "Trumbull": Fairfield
+  "Union": Tolland
+  "Vernon": Tolland
+  "Voluntown": New London
+  "Wallingford": New Haven
+  "Warren": Litchfield
+  "Washington": Litchfield
+  "Waterbury": New Haven
+  "Waterford": New London
+  "Watertown": Litchfield
+  "West Hartford": Hartford
+  "West Haven": New Haven
+  "Westbrook": Middlesex
+  "Weston": Fairfield
+  "Westport": Fairfield
+  "Wethersfield": Hartford
+  "Willington": Tolland
+  "Wilton": Fairfield
+  "Winchester": Litchfield
+  "Windham": Windham
+  "Windsor": Hartford
+  "Windsor Locks": Hartford
+  "Wolcott": New Haven
+  "Woodbridge": New Haven
+  "Woodbury": Litchfield
+  "Woodstock": Windham
+parties:
+  - role: grantor
+    name: sale_grantor_name
+  - role: grantee
+    name: sale_grantee_name
+parcel: {kind: pin, field: link}   # county from the town; = ct.statewide.parcels CAMA_Link
+terms:
+  url: https://data.ct.gov/d/ibe8-9i3q
+  summary: "Connecticut Office of Policy and Management (attribution) on data.ct.gov (Socrata), free, no login; no license field on the dataset (the same office's ArcGIS layer used for ct.statewide.parcels is CC0)."
+  checked_on: 2026-11-25
+  cost_model: free

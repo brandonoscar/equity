@@ -1,0 +1,33 @@
+source_id: va.norfolk.property_transfers
+state: VA
+county_fips: "51710"
+# City of Norfolk Office of the Real Estate Assessor "Property Assessment and Sales - FY27"
+# (data.norfolk.gov qva7-tzrf, daily, 74,295 rows on 2026-11-25): one row per parcel with its
+# most recent recorded transfer: transfer date, grantor (seller), grantee (buyer),
+# consideration and the Clerk's document number. Only those columns are read (the current
+# owner and site address are not taken). One DEED instrument per parcel and transfer
+# (grantor = seller, grantee = buyer) on 51710-<GPIN>, the va.norfolk_city.parcels PARCELID.
+# The FY19 .. FY26 datasets keep each earlier year's last transfer; not loaded (they would
+# duplicate the instruments of this one).
+portal: https://data.norfolk.gov
+dataset: qva7-tzrf
+order_by: [gpin, extension, ":id"]
+select: [gpin, extension, transfer_date, grantor, grantee, consideration, document_number]
+date_field: transfer_date
+partition: year
+first_year: 1900
+uid: [gpin, transfer_date, document_number]
+doc_type: DEED
+doc_type_raw: Norfolk assessor last transfer
+consideration: consideration
+parties:
+  - role: grantor
+    name: grantor
+  - role: grantee
+    name: grantee
+parcel: {kind: pin, field: gpin, county_fips: "51710"}   # = va.norfolk_city.parcels PARCELID
+terms:
+  url: https://data.norfolk.gov/d/qva7-tzrf
+  summary: "City of Norfolk, VA open data (Socrata), Office of the Real Estate Assessor; public, free, no login; no license set on the dataset."
+  checked_on: 2026-11-25
+  cost_model: free

@@ -729,7 +729,8 @@ STATES: dict[str, dict[str, Any]] = {
                      "registries": ["pa.dos.business"], "parcel_on_lien": True,
                      "courts": FEDERAL_COURTS},
     "CT": {"debtors": ["ct.sots.liens"], "owners": ["ct.statewide.parcels"], "street_town": True,
-           "registries": ["ct.sos.business"], "courts": FEDERAL_COURTS},
+           "registries": ["ct.sos.business"], "courts": FEDERAL_COURTS,
+           "deeds": ["ct.cama.sales"]},
     # Baltimore City: environmental citation liens name the parcel (block/lot), not a person.
     "MD-BALTIMORE": {"debtors": ["md.baltimore_city.citation_liens"],
                      "owners": ["md.baltimore_city.parcels"], "parcel_on_lien": True,
@@ -759,12 +760,15 @@ STATES: dict[str, dict[str, Any]] = {
                        "co.saguache.tax_lien_sale", "co.sos.ucc"],
            "debtor_doc_types": {"co.sos.ucc": ["TAX_LIEN_FEDERAL", "STATUTORY_LIEN"]},
            "owners": ["co.statewide.parcels"], "registries": ["co.sos.business"],
-           "parcel_on_lien": True, "courts": FEDERAL_COURTS},
+           "parcel_on_lien": True, "courts": FEDERAL_COURTS,
+           "deeds": ["co.adams.property_sales", "co.denver.property_sales",
+                     "co.douglas.property_sales"]},
     # Detroit blight judgments name both the owner and the ticketed parcel (same parcel_id as
     # the Detroit assessor layer); Harris tax-suit judgments name the HCAD account; Washington
     # County sheriff sales list every parcel sold.
     "MI-DETROIT": {"debtors": ["mi.detroit.blight_judgments"], "owners": ["mi.wayne.parcels"],
-                   "parcel_on_lien": True, "courts": FEDERAL_COURTS},
+                   "parcel_on_lien": True, "courts": FEDERAL_COURTS,
+                   "deeds": ["mi.detroit.property_sales"]},
     "TX-HARRIS": {"debtors": ["tx.harris.tax_judgments", "tx.tceq.civil_judgments",
                               "tx.tceq.administrative_orders", "tx.harris.delinquent_taxes"],
                   "owners": ["tx.statewide.parcels"], "parcel_on_lien": True,
@@ -793,7 +797,8 @@ STATES: dict[str, dict[str, Any]] = {
     # The PA and VT lists publish street and town but no ZIP: street + town rules, as in CT.
     "VT": {"debtors": ["vt.tax.top100_individuals", "vt.tax.top100_businesses"],
            "owners": ["vt.statewide.parcels"], "courts": FEDERAL_COURTS,
-           "street_town": True},
+           "street_town": True,
+           "deeds": ["vt.tax.property_transfers"]},
     # Chicago DOAH cites the property's street address with no ZIP: street + town rules.
     "IL-COOK": {"debtors": ["il.chicago.doah_judgments", "il.chicago.doe_judgments",
                             "il.chicago.vacant_building_judgments"], "owners": ["il.cook.parcels"],
@@ -840,7 +845,8 @@ STATES: dict[str, dict[str, Any]] = {
     # St. Joseph IN tax sale: named owners and state parcel numbers. Indiana's statewide layer
     # has parcels but no owner names, so debtors link to the parcels their liens name.
     "IN-STJOSEPH": {"debtors": ["in.st_joseph.tax_sale"], "owners": ["in.statewide.parcels"],
-                    "parcel_on_lien": True, "courts": FEDERAL_COURTS},
+                    "parcel_on_lien": True, "courts": FEDERAL_COURTS,
+                    "deeds": ["in.st_joseph.transfer_history"]},
     # West Virginia, the pilot state: Bluefield's tax-delinquent list (names and addresses), plus
     # federal court judgments and the national debt lists against WV owners.
     "WV": {"debtors": ["wv.bluefield.tax_delinquent"], "owners": ["wv.statewide.parcels"],
@@ -856,7 +862,8 @@ STATES: dict[str, dict[str, Any]] = {
     "MN": {"debtors": ["mn.carlton.tax_forfeited_land_sale", "mn.dakota.sheriff_sales",
                        "mn.mille_lacs.tax_forfeited_land", "mn.wright.tax_forfeited_land"],
            "owners": ["mn.statewide.parcels", "mn.metro.parcels"],
-           "courts": FEDERAL_COURTS, "parcel_on_lien": True},
+           "courts": FEDERAL_COURTS, "parcel_on_lien": True,
+           "deeds": ["mn.grant.parcel_sales", "mn.isanti.parcel_sales", "mn.polk.parcel_sales"]},
     "MA": {"debtors": [], "owners": ["ma.statewide.parcels"], "courts": FEDERAL_COURTS},
     "NV-WASHOE": {"debtors": [], "owners": ["nv.washoe.parcels"], "courts": FEDERAL_COURTS},
     # County parcel layers with owner names in states (or counties) with no county debt list
@@ -871,7 +878,8 @@ STATES: dict[str, dict[str, Any]] = {
                       "al.houston.parcels", "al.jefferson.parcels", "al.lauderdale.parcels",
                       "al.madison.parcels", "al.marshall.parcels", "al.mobile.parcels",
                       "al.montgomery.parcels", "al.morgan.parcels", "al.talladega.parcels",
-                      "al.tuscaloosa.parcels"]},
+                      "al.tuscaloosa.parcels"],
+           "deeds": ["al.houston.last_deed", "al.lauderdale.last_deed"]},
     "AZ-COUNTIES": {"debtors": ["az.coconino.tax_liens", "az.navajo.back_tax_auction",
                                 "az.yavapai.tax_sale"],
                     "courts": FEDERAL_COURTS,
@@ -934,7 +942,8 @@ STATES: dict[str, dict[str, Any]] = {
            "owners": ["sd.lincoln.parcels", "sd.minnehaha.parcels", "sd.pennington.parcels"]},
     "TN": {"debtors": [], "courts": FEDERAL_COURTS,
            "owners": ["tn.davidson.parcels", "tn.hamilton.parcels", "tn.rutherford.parcels",
-                      "tn.washington.parcels"]},
+                      "tn.washington.parcels"],
+           "deeds": ["tn.rutherford.last_sale"]},
     "UT": {"debtors": ["ut.box_elder.tax_sale"], "courts": FEDERAL_COURTS, "parcel_on_lien": True,
            "owners": ["ut.salt_lake.parcels", "ut.utah.parcels"]},
     "WA": {"debtors": [], "courts": FEDERAL_COURTS,
@@ -951,7 +960,8 @@ STATES: dict[str, dict[str, Any]] = {
                                "va.norfolk_city.parcels", "va.portsmouth_city.parcels",
                                "va.prince_william.parcels", "va.spotsylvania.parcels",
                                "va.suffolk_city.parcels", "va.virginia_beach_city.parcels",
-                               "va.williamsburg_city.parcels", "va.york.parcels"]},
+                               "va.williamsburg_city.parcels", "va.york.parcels"],
+                    "deeds": ["va.norfolk.property_transfers"]},
     # Ohio's statewide Name field is a placeholder: county layers carry the owner names.
     "OH-COUNTIES": {"debtors": ["oh.cuyahoga.delinquent_taxes", "oh.cuyahoga.forfeited_land_sale",
                                 "oh.franklin.tax_lien_sale", "oh.greene.delinquent_taxes",
@@ -964,7 +974,8 @@ STATES: dict[str, dict[str, Any]] = {
                                "oh.lake.parcels", "oh.licking.parcels", "oh.lorain.parcels",
                                "oh.lucas.parcels", "oh.mahoning.parcels", "oh.pickaway.parcels",
                                "oh.stark.parcels", "oh.summit.parcels", "oh.tuscarawas.parcels",
-                               "oh.wayne.parcels"]},
+                               "oh.wayne.parcels"],
+                    "deeds": ["oh.cuyahoga.last_transfer"]},
     "TX-COUNTIES": {"debtors": ["tx.tabc.credit_law_delinquent"], "courts": FEDERAL_COURTS,
                     "owners": ["tx.collin.parcels", "tx.dallas_city.parcels",
                                "tx.montgomery.parcels", "tx.williamson.parcels"]},
@@ -994,7 +1005,8 @@ STATES: dict[str, dict[str, Any]] = {
            "owners": ["in.statewide.parcels", "in.marion.parcels", "in.vanderburgh.parcels",
                       "in.lake.parcels"],
            "parcel_on_lien": True,
-           "courts": FEDERAL_COURTS},
+           "courts": FEDERAL_COURTS,
+           "deeds": ["in.st_joseph.transfer_history"]},
     # DC: prior-year real property tax owed by the lot's owner (OTR extract, keyed by SSL).
     "DC": {"debtors": ["dc.otr.delinquent_taxes"], "owners": ["dc.statewide.parcels"],
            "parcel_on_lien": True, "registries": ["dc.dlcp.business"], "courts": FEDERAL_COURTS},

@@ -1,0 +1,36 @@
+source_id: mn.polk.parcel_sales
+state: MN
+county_fips: "27119"
+# Polk County MN Assessor "Tax Parcel Sales" (county ArcGIS Server, Assessor/TaxParcelSales,
+# 26,223 rows on 2026-11-25; sale dates run to 2023, the layer is no longer extended): sales
+# with the parcel, eCRV number, sale date, buyer, seller, adjusted sale amount and the
+# county's reject code / reason (partial interest, relative...).
+# Loaded as DEED instruments (grantor = seller, grantee = buyer) on the parcel. PARCELID is
+# published with dots ('01.00001.01'); mn.statewide.parcels county_pin has dashes
+# ('01-00001-01'), so the id is rewritten (config/deeds, equity.adapters.deeds).
+api: arcgis
+layer_url: https://gis.co.polk.mn.us/arcgis/rest/services/Assessor/TaxParcelSales/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, PARCELID, ECRV_NUMBER, SALE_DATE, BUYER, SELLER, ADJUSTED_SALE_AMOUNT,
+         MULTI_PARCEL_CODE, COUNTY_REJECT_CODE, NUTC_DESCRIPTION, REJECTREASON]
+date_field: SALE_DATE
+rewrite:
+  PARCELID: {pattern: "^(\\d+)\\.(\\d+)\\.(\\d+)$", replace: "\\1-\\2-\\3"}
+partition: year
+first_year: 1880                 # earliest deeds; pre-1970 epoch-ms dates are negative
+uid: [ECRV_NUMBER, PARCELID]
+doc_type: DEED
+doc_type_raw: Polk County MN parcel sale
+consideration: ADJUSTED_SALE_AMOUNT
+parties:
+  - role: grantor
+    name: SELLER
+  - role: grantee
+    name: BUYER
+parcel: {kind: pin, field: PARCELID, county_fips: "27119"}   # = mn.statewide.parcels county_pin
+terms:
+  url: https://gis.co.polk.mn.us/arcgis/rest/services/Assessor/TaxParcelSales/FeatureServer
+  summary: "Polk County MN public ArcGIS Server (Assessor folder), free, no login; no license or use restriction stated on the service. gis.co.polk.mn.us/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

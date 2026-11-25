@@ -1,0 +1,41 @@
+source_id: co.denver.property_sales
+state: CO
+county_fips: "08031"
+# City and County of Denver Assessor "Real Property Sales and Transfers" (Denver Open Data,
+# ArcGIS Online table ODC_real_property_sales_and_transfers/51, 315,528 rows on 2026-11-25):
+# every transfer of ownership by sale or otherwise with a sale year of 2010 on, with the
+# Clerk and Recorder reception number and date, instrument code, price, grantor (seller) and
+# grantee (buyer). Loaded as DEED instruments (grantor = seller, grantee = buyer) on the
+# parcel: PARID is the 13-digit schedule number published as a number (3100025000), so it is
+# read without the '.0' and left-padded to 13 digits (0003100025000 = co.statewide.parcels
+# parcel_id). RECEPTION_DATE (yyyymmdd number) is the instrument date.
+# Instruments (most frequent): WD 159k, SW 56k, QC 56k, PR, PS, DC, DL, BS, DE, DD, BF, TR, AF,
+# PT ... TODO(Brandon): confirm the codes (nothing in the layer defines them); every one is
+# loaded as a DEED except AF (affidavit).
+api: arcgis
+layer_url: https://services1.arcgis.com/zdB7qR0BtYrg0Xpl/arcgis/rest/services/ODC_real_property_sales_and_transfers/FeatureServer/51
+order_by: [OBJECTID]
+select: [OBJECTID, PARID, RECEPTION_NUM, INSTRUMENT, SALE_YEAR, SALE_MONTHDAY, RECEPTION_DATE,
+         SALE_PRICE, GRANTOR, GRANTEE]
+date_field: RECEPTION_DATE
+date_format: {RECEPTION_DATE: ymd}
+rewrite:
+  PARID: {pattern: "^(\\d+)(?:\\.0+)?$", replace: "\\1"}
+  RECEPTION_NUM: {pattern: "^(\\d+)(?:\\.0+)?$", replace: "\\1"}
+partition: year
+first_year: 2010
+uid: [RECEPTION_NUM, PARID]
+doc_type: {field: INSTRUMENT, map: {AF: AFFIDAVIT}, default: DEED}
+doc_type_raw: {field: INSTRUMENT}
+consideration: SALE_PRICE
+parties:
+  - role: grantor
+    name: GRANTOR
+  - role: grantee
+    name: GRANTEE
+parcel: {kind: pin, field: PARID, county_fips: "08031", zfill: 13}   # = co.statewide parcel_id
+terms:
+  url: https://www.arcgis.com/home/item.html?id=55040dd13cb647bcbc7c555a4cfd6844
+  summary: "City and County of Denver 'Real Property Sales and Transfers' (Denver Open Data Catalog, ArcGIS Online), free, no login. Item licenseInfo (read 2026-11-25): use constraints only (provided as is, no warranty, city not liable); no commercial-use or redistribution restriction."
+  checked_on: 2026-11-25
+  cost_model: free

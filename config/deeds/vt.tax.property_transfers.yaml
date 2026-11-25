@@ -1,0 +1,303 @@
+source_id: vt.tax.property_transfers
+state: VT
+# Vermont Department of Taxes property transfer tax returns (32 V.S.A. 9606), published by
+# VCGI as "VT Property Transfers" (ArcGIS Online, 238,242 returns on 2026-11-25, every deed
+# transfer since 2019-01): seller and buyer (entity name, or last and first name) with their
+# mailing addresses, the SPAN, close date, use before and after, exemptions and the tax paid.
+# Loaded as DEED instruments (grantor = seller, grantee = buyer, with addresses) on the
+# parcel. The SPAN is published without dashes ('78625010932'), so it is rewritten to the
+# vt.statewide.parcels form ('786-250-10932'); the county comes from the town the return was
+# located in (TOWNNAME), mapped as in config/states/vt.yaml. Additional sellers and buyers
+# (addSellNam / addBuyrNam, free text) are not read. ValPdOrTrn (value paid or transferred)
+# is the consideration.
+api: arcgis
+layer_url: https://services1.arcgis.com/BkFxaEFNwHqX3tAw/arcgis/rest/services/FS_VCGI_OPENDATA_Cadastral_PTTR_point_WM_v1_view/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, returnID, closeDate, recvdDate, span, TOWNNAME, ttlSellers, ttlBuyers,
+         sellEntNam, sellLstNam, sellFstNam, sellerStrt, sellerCity, sellerSt, sellerZip,
+         buyEntNam, buyLstNam, buyFstNam, buyerStrt, buyerCity, buyerState, buyerZip,
+         ValPdOrTrn, TownBkNum, TownPgNum]
+date_field: closeDate
+rewrite:
+  span: {pattern: "^(\\d{3})(\\d{3})(\\d{5})$", replace: "\\1-\\2-\\3"}
+partition: year
+first_year: 2019
+uid: returnID
+doc_type: DEED
+doc_type_raw: Vermont property transfer tax return
+consideration: ValPdOrTrn
+county_name_field: TOWNNAME
+county_aliases:
+  "ADDISON": Addison
+  "ALBANY": Orleans
+  "ALBURGH": Grand Isle
+  "ANDOVER": Windsor
+  "ARLINGTON": Bennington
+  "ATHENS": Windham
+  "AVERILL": Essex
+  "AVERY'S GORE": Essex
+  "AVERYS GORE": Essex
+  "BAKERSFIELD": Franklin
+  "BALTIMORE": Windsor
+  "BARNARD": Windsor
+  "BARNET": Caledonia
+  "BARRE CITY": Washington
+  "BARRE TOWN": Washington
+  "BARTON": Orleans
+  "BELVIDERE": Lamoille
+  "BENNINGTON": Bennington
+  "BENSON": Rutland
+  "BERKSHIRE": Franklin
+  "BERLIN": Washington
+  "BETHEL": Windsor
+  "BLOOMFIELD": Essex
+  "BOLTON": Chittenden
+  "BRADFORD": Orange
+  "BRAINTREE": Orange
+  "BRANDON": Rutland
+  "BRATTLEBORO": Windham
+  "BRIDGEWATER": Windsor
+  "BRIDPORT": Addison
+  "BRIGHTON": Essex
+  "BRISTOL": Addison
+  "BROOKFIELD": Orange
+  "BROOKLINE": Windham
+  "BROWNINGTON": Orleans
+  "BRUNSWICK": Essex
+  "BUELS GORE": Chittenden
+  "BURKE": Caledonia
+  "BURLINGTON": Chittenden
+  "CABOT": Washington
+  "CALAIS": Washington
+  "CAMBRIDGE": Lamoille
+  "CANAAN": Essex
+  "CASTLETON": Rutland
+  "CAVENDISH": Windsor
+  "CHARLESTON": Orleans
+  "CHARLOTTE": Chittenden
+  "CHELSEA": Orange
+  "CHESTER": Windsor
+  "CHITTENDEN": Rutland
+  "CLARENDON": Rutland
+  "COLCHESTER": Chittenden
+  "CONCORD": Essex
+  "CORINTH": Orange
+  "CORNWALL": Addison
+  "COVENTRY": Orleans
+  "CRAFTSBURY": Orleans
+  "DANBY": Rutland
+  "DANVILLE": Caledonia
+  "DERBY": Orleans
+  "DORSET": Bennington
+  "DOVER": Windham
+  "DUMMERSTON": Windham
+  "DUXBURY": Washington
+  "EAST HAVEN": Essex
+  "EAST MONTPELIER": Washington
+  "EDEN": Lamoille
+  "ELMORE": Lamoille
+  "ENOSBURGH": Franklin
+  "ESSEX": Chittenden
+  "ESSEX JUNCTION": Chittenden
+  "FAIR HAVEN": Rutland
+  "FAIRFAX": Franklin
+  "FAIRFIELD": Franklin
+  "FAIRLEE": Orange
+  "FAYSTON": Washington
+  "FERDINAND": Essex
+  "FERRISBURGH": Addison
+  "FLETCHER": Franklin
+  "FRANKLIN": Franklin
+  "GEORGIA": Franklin
+  "GLASTENBURY": Bennington
+  "GLOVER": Orleans
+  "GOSHEN": Addison
+  "GRAFTON": Windham
+  "GRANBY": Essex
+  "GRAND ISLE": Grand Isle
+  "GRANVILLE": Addison
+  "GREENSBORO": Orleans
+  "GROTON": Caledonia
+  "GUILDHALL": Essex
+  "GUILFORD": Windham
+  "HALIFAX": Windham
+  "HANCOCK": Addison
+  "HARDWICK": Caledonia
+  "HARTFORD": Windsor
+  "HARTLAND": Windsor
+  "HIGHGATE": Franklin
+  "HINESBURG": Chittenden
+  "HOLLAND": Orleans
+  "HUBBARDTON": Rutland
+  "HUNTINGTON": Chittenden
+  "HYDE PARK": Lamoille
+  "IRA": Rutland
+  "IRASBURG": Orleans
+  "ISLE LA MOTTE": Grand Isle
+  "JAMAICA": Windham
+  "JAY": Orleans
+  "JERICHO": Chittenden
+  "JOHNSON": Lamoille
+  "KILLINGTON": Rutland
+  "KIRBY": Caledonia
+  "LANDGROVE": Bennington
+  "LEICESTER": Addison
+  "LEMINGTON": Essex
+  "LEWIS": Essex
+  "LINCOLN": Addison
+  "LONDONDERRY": Windham
+  "LOWELL": Orleans
+  "LUDLOW": Windsor
+  "LUNENBURG": Essex
+  "LYNDON": Caledonia
+  "MAIDSTONE": Essex
+  "MANCHESTER": Bennington
+  "MARLBORO": Windham
+  "MARSHFIELD": Washington
+  "MENDON": Rutland
+  "MIDDLEBURY": Addison
+  "MIDDLESEX": Washington
+  "MIDDLETOWN SPRINGS": Rutland
+  "MILTON": Chittenden
+  "MONKTON": Addison
+  "MONTGOMERY": Franklin
+  "MONTPELIER": Washington
+  "MORETOWN": Washington
+  "MORGAN": Orleans
+  "MORRISTOWN": Lamoille
+  "MOUNT HOLLY": Rutland
+  "MOUNT TABOR": Rutland
+  "NEW HAVEN": Addison
+  "NEWARK": Caledonia
+  "NEWBURY": Orange
+  "NEWFANE": Windham
+  "NEWPORT CITY": Orleans
+  "NEWPORT TOWN": Orleans
+  "NORTH BENNINGTON V": Bennington
+  "NORTH HERO": Grand Isle
+  "NORTHFIELD": Washington
+  "NORTON": Essex
+  "NORWICH": Windsor
+  "ORANGE": Orange
+  "ORWELL": Addison
+  "PANTON": Addison
+  "PAWLET": Rutland
+  "PEACHAM": Caledonia
+  "PERU": Bennington
+  "PITTSFIELD": Rutland
+  "PITTSFORD": Rutland
+  "PLAINFIELD": Washington
+  "PLYMOUTH": Windsor
+  "POMFRET": Windsor
+  "POULTNEY": Rutland
+  "POWNAL": Bennington
+  "PROCTOR": Rutland
+  "PUTNEY": Windham
+  "RANDOLPH": Orange
+  "READING": Windsor
+  "READSBORO": Bennington
+  "RICHFORD": Franklin
+  "RICHMOND": Chittenden
+  "RIPTON": Addison
+  "ROCHESTER": Windsor
+  "ROCKINGHAM": Windham
+  "ROXBURY": Washington
+  "ROYALTON": Windsor
+  "RUPERT": Bennington
+  "RUTLAND CITY": Rutland
+  "RUTLAND TOWN": Rutland
+  "RYEGATE": Caledonia
+  "SAINT ALBANS CITY": Franklin
+  "SAINT ALBANS TOWN": Franklin
+  "SAINT GEORGE": Chittenden
+  "SAINT JOHNSBURY": Caledonia
+  "SALISBURY": Addison
+  "SANDGATE": Bennington
+  "SEARSBURG": Bennington
+  "SHAFTSBURY": Bennington
+  "SHARON": Windsor
+  "SHEFFIELD": Caledonia
+  "SHELBURNE": Chittenden
+  "SHELDON": Franklin
+  "SHOREHAM": Addison
+  "SHREWSBURY": Rutland
+  "SOMERSET": Windham
+  "SOUTH BURLINGTON": Chittenden
+  "SOUTH HERO": Grand Isle
+  "SPRINGFIELD": Windsor
+  "STAMFORD": Bennington
+  "STANNARD": Caledonia
+  "STARKSBORO": Addison
+  "STOCKBRIDGE": Windsor
+  "STOWE": Lamoille
+  "STRAFFORD": Orange
+  "STRATTON": Windham
+  "SUDBURY": Rutland
+  "SUNDERLAND": Bennington
+  "SUTTON": Caledonia
+  "SWANTON": Franklin
+  "THETFORD": Orange
+  "TINMOUTH": Rutland
+  "TOPSHAM": Orange
+  "TOWNSHEND": Windham
+  "TROY": Orleans
+  "TUNBRIDGE": Orange
+  "UNDERHILL": Chittenden
+  "VERGENNES": Addison
+  "VERNON": Windham
+  "VERSHIRE": Orange
+  "VICTORY": Essex
+  "WAITSFIELD": Washington
+  "WALDEN": Caledonia
+  "WALLINGFORD": Rutland
+  "WALTHAM": Addison
+  "WARDSBORO": Windham
+  "WARNERS GRANT": Essex
+  "WARREN": Washington
+  "WARREN GORE": Essex
+  "WARREN'S GORE": Essex
+  "WARRENS GORE": Essex
+  "WASHINGTON": Orange
+  "WATERBURY": Washington
+  "WATERFORD": Caledonia
+  "WATERVILLE": Lamoille
+  "WEATHERSFIELD": Windsor
+  "WELLS": Rutland
+  "WEST FAIRLEE": Orange
+  "WEST HAVEN": Rutland
+  "WEST RUTLAND": Rutland
+  "WEST WINDSOR": Windsor
+  "WESTFIELD": Orleans
+  "WESTFORD": Chittenden
+  "WESTMINSTER": Windham
+  "WESTMORE": Orleans
+  "WESTON": Windsor
+  "WEYBRIDGE": Addison
+  "WHEELOCK": Caledonia
+  "WHITING": Addison
+  "WHITINGHAM": Windham
+  "WILLIAMSTOWN": Orange
+  "WILLISTON": Chittenden
+  "WILMINGTON": Windham
+  "WINDHAM": Windham
+  "WINDSOR": Windsor
+  "WINHALL": Bennington
+  "WINOOSKI": Chittenden
+  "WOLCOTT": Lamoille
+  "WOODBURY": Washington
+  "WOODFORD": Bennington
+  "WOODSTOCK": Windsor
+  "WORCESTER": Washington
+parties:
+  - role: grantor
+    name: [sellEntNam, sellLstNam, sellFstNam]
+    address: {line1: sellerStrt, city: sellerCity, state: sellerSt, zip: sellerZip}
+  - role: grantee
+    name: [buyEntNam, buyLstNam, buyFstNam]
+    address: {line1: buyerStrt, city: buyerCity, state: buyerState, zip: buyerZip}
+parcel: {kind: pin, field: span}   # county from TOWNNAME; = vt.statewide.parcels SPAN
+terms:
+  url: https://www.arcgis.com/home/item.html?id=91afc67976d54f9c86437c4fe8744e03
+  summary: "Vermont Department of Taxes data published by VCGI ('VT Property Transfers', ArcGIS Online, Services_VCGI), public information collected under 32 V.S.A. 9606; free, no login. licenseInfo (read 2026-11-25): VCGI and the State make no representations or warranties; no license grant and no commercial-use restriction stated."
+  checked_on: 2026-11-25
+  cost_model: free

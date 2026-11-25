@@ -1,0 +1,231 @@
+{
+ "layer": "https://services.arcgis.com/OjftlhRHkAABcyiF/arcgis/rest/services/Parcel_Trans_History_gdb/FeatureServer/1",
+ "rows": [
+  {
+   "GranteeName": "TESTOWNER 8961C4",
+   "GrantorName": "TESTOWNER 3A80DF",
+   "OBJECTID": 59585150,
+   "PARCELSTAT": "71-03-12-176-005.000-003",
+   "pxfer_date": 1643673600000,
+   "status": "A",
+   "tax_bill_id": "002-1002-000902"
+  },
+  {
+   "GranteeName": "TESTOWNER 306B8A",
+   "GrantorName": "TESTOWNER 720786",
+   "OBJECTID": 59585161,
+   "PARCELSTAT": "71-03-12-176-012.000-003",
+   "pxfer_date": 1652227200000,
+   "status": "A",
+   "tax_bill_id": "002-1002-001403"
+  },
+  {
+   "GranteeName": "TESTOWNER 306B8A",
+   "GrantorName": "TESTOWNER 720786",
+   "OBJECTID": 59585162,
+   "PARCELSTAT": "71-03-12-176-012.000-003",
+   "pxfer_date": 1652227200000,
+   "status": "A",
+   "tax_bill_id": "002-1002-001403"
+  },
+  {
+   "GranteeName": "TESTOWNER 8086F4",
+   "GrantorName": "TESTOWNER 2664B6",
+   "OBJECTID": 59585179,
+   "PARCELSTAT": "71-03-12-276-018.000-003",
+   "pxfer_date": 1665014400000,
+   "status": "A",
+   "tax_bill_id": "002-1002-001618"
+  },
+  {
+   "GranteeName": "TESTOWNER 5C4BE5",
+   "GrantorName": "TESTOWNER 734DEC",
+   "OBJECTID": 59585181,
+   "PARCELSTAT": "71-03-12-276-020.000-003",
+   "pxfer_date": 1656547200000,
+   "status": "A",
+   "tax_bill_id": "002-1002-001620"
+  },
+  {
+   "GranteeName": "TESTOWNER D4BA16",
+   "GrantorName": "TESTOWNER 15C5AD",
+   "OBJECTID": 59585224,
+   "PARCELSTAT": "71-03-12-428-001.000-003",
+   "pxfer_date": 1671408000000,
+   "status": "A",
+   "tax_bill_id": "002-1002-002205"
+  },
+  {
+   "GranteeName": "TESTOWNER D0E377",
+   "GrantorName": "TESTOWNER 041416",
+   "OBJECTID": 59585225,
+   "PARCELSTAT": "71-03-12-428-001.000-003",
+   "pxfer_date": 1671408000000,
+   "status": "A",
+   "tax_bill_id": "002-1002-002205"
+  },
+  {
+   "GranteeName": "TESTOWNER 22BE17 LLC",
+   "GrantorName": "TESTOWNER EB8280",
+   "OBJECTID": 59585229,
+   "PARCELSTAT": "71-03-13-151-017.000-003",
+   "pxfer_date": 1660694400000,
+   "status": "A",
+   "tax_bill_id": "002-1003-002721"
+  },
+  {
+   "GranteeName": "TESTOWNER 567549",
+   "GrantorName": "TESTOWNER 4AD81B",
+   "OBJECTID": 59585267,
+   "PARCELSTAT": "71-03-12-427-013.000-003",
+   "pxfer_date": 1656028800000,
+   "status": "A",
+   "tax_bill_id": "002-1002-002190"
+  },
+  {
+   "GranteeName": "TESTOWNER B9A775",
+   "GrantorName": "TESTOWNER E8E582",
+   "OBJECTID": 59585268,
+   "PARCELSTAT": "71-03-12-427-013.000-003",
+   "pxfer_date": 1662076800000,
+   "status": "A",
+   "tax_bill_id": "002-1002-002190"
+  },
+  {
+   "GranteeName": "TESTOWNER AE2780",
+   "GrantorName": "TESTOWNER 1FD6D5",
+   "OBJECTID": 59585372,
+   "PARCELSTAT": "71-03-13-451-019.000-003",
+   "pxfer_date": 1654646400000,
+   "status": "A",
+   "tax_bill_id": "002-1003-005719"
+  },
+  {
+   "GranteeName": "TESTOWNER F0D015",
+   "GrantorName": "TESTOWNER D11355",
+   "OBJECTID": 59585626,
+   "PARCELSTAT": "71-03-13-103-007.000-003",
+   "pxfer_date": 1658275200000,
+   "status": "A",
+   "tax_bill_id": "002-1003-0031"
+  },
+  {
+   "GranteeName": "TESTOWNER D2BD6A",
+   "GrantorName": "TESTOWNER 6C9CA2",
+   "OBJECTID": 59585697,
+   "PARCELSTAT": "71-03-24-229-008.000-003",
+   "pxfer_date": 1648425600000,
+   "status": "A",
+   "tax_bill_id": "002-1003-006139"
+  },
+  {
+   "GranteeName": "TESTOWNER A42903",
+   "GrantorName": "TESTOWNER 838000",
+   "OBJECTID": 59585916,
+   "PARCELSTAT": "71-04-19-326-001.000-003",
+   "pxfer_date": 1670889600000,
+   "status": "A",
+   "tax_bill_id": "002-1015-031006"
+  },
+  {
+   "GranteeName": "TESTOWNER DDFB97",
+   "GrantorName": "TESTOWNER 7B55E4",
+   "OBJECTID": 59585918,
+   "PARCELSTAT": "71-04-19-376-006.000-003",
+   "pxfer_date": 1669680000000,
+   "status": "A",
+   "tax_bill_id": "002-1015-031014"
+  },
+  {
+   "GranteeName": "TESTOWNER 9212FF",
+   "GrantorName": "TESTOWNER B271B2",
+   "OBJECTID": 59585961,
+   "PARCELSTAT": "71-04-18-376-015.000-003",
+   "pxfer_date": 1663200000000,
+   "status": "A",
+   "tax_bill_id": "002-1014-029489"
+  },
+  {
+   "GranteeName": "TESTOWNER ED38D2",
+   "GrantorName": "TESTOWNER ED0E43",
+   "OBJECTID": 59586014,
+   "PARCELSTAT": "71-04-18-451-002.000-003",
+   "pxfer_date": 1670976000000,
+   "status": "A",
+   "tax_bill_id": "002-1014-029477"
+  },
+  {
+   "GranteeName": "TESTOWNER 031166",
+   "GrantorName": "TESTOWNER 907B05",
+   "OBJECTID": 59586066,
+   "PARCELSTAT": "71-03-13-101-013.000-003",
+   "pxfer_date": 1646784000000,
+   "status": "A",
+   "tax_bill_id": "002-1003-002707"
+  },
+  {
+   "GranteeName": "TESTOWNER 15DF84",
+   "GrantorName": "TESTOWNER 093A4C",
+   "OBJECTID": 59586114,
+   "PARCELSTAT": null,
+   "pxfer_date": 1655251200000,
+   "status": "A",
+   "tax_bill_id": "002-1002-000903"
+  },
+  {
+   "GranteeName": "TESTOWNER 6D73DA",
+   "GrantorName": "TESTOWNER 3BC5F0",
+   "OBJECTID": 59586115,
+   "PARCELSTAT": null,
+   "pxfer_date": 1672185600000,
+   "status": "A",
+   "tax_bill_id": "002-1002-000903"
+  },
+  {
+   "GranteeName": "TESTOWNER 8086F4",
+   "GrantorName": "TESTOWNER E7BA6B",
+   "OBJECTID": 59586134,
+   "PARCELSTAT": "71-03-12-276-019.000-003",
+   "pxfer_date": 1665014400000,
+   "status": "A",
+   "tax_bill_id": "002-1002-001619"
+  },
+  {
+   "GranteeName": "TESTOWNER AE43AA",
+   "GrantorName": "TESTOWNER 1F6B4B",
+   "OBJECTID": 59586177,
+   "PARCELSTAT": "71-04-30-126-002.000-003",
+   "pxfer_date": 1663286400000,
+   "status": "A",
+   "tax_bill_id": "002-1020-042918"
+  },
+  {
+   "GranteeName": "TESTOWNER 2568DB",
+   "GrantorName": "TESTOWNER 7C9229",
+   "OBJECTID": 59586178,
+   "PARCELSTAT": "71-04-30-126-002.000-003",
+   "pxfer_date": 1664150400000,
+   "status": "A",
+   "tax_bill_id": "002-1020-042918"
+  },
+  {
+   "GranteeName": "TESTOWNER 8FB4BC",
+   "GrantorName": "TESTOWNER 322855",
+   "OBJECTID": 59586220,
+   "PARCELSTAT": "71-03-25-230-009.000-003",
+   "pxfer_date": 1659398400000,
+   "status": "A",
+   "tax_bill_id": "002-1007-017705"
+  },
+  {
+   "GranteeName": "TESTOWNER 17C728",
+   "GrantorName": "TESTOWNER 99A760 LLC",
+   "OBJECTID": 59586271,
+   "PARCELSTAT": "71-04-19-226-110.000-003",
+   "pxfer_date": 1661212800000,
+   "status": "A",
+   "tax_bill_id": "002-1015-030539"
+  }
+ ],
+ "where": "pxfer_date >= DATE '2022-01-01' AND pxfer_date < DATE '2023-01-01'"
+}

@@ -1,0 +1,38 @@
+source_id: in.st_joseph.transfer_history
+state: IN
+county_fips: "18141"
+# St. Joseph County IN (South Bend) GIS "Parcel Transfer History" (ArcGIS Online, SJCGIS;
+# 473,210 rows on 2026-11-25, transfer dates 1900 .. 2023-07): every recorded ownership
+# transfer the auditor keeps per tax parcel, with grantor (seller; 361,742 rows name one) and
+# grantee (buyer). Loaded as DEED instruments (grantor = seller, grantee = buyer). Rows name the
+# county tax bill id (002-1002-000902); the state parcel number is looked up in the same
+# service's parcel layer (layer 0, PARCELID -> PARCELSTAT) and the deed linked to
+# 18141-<state parcel no.>, the in.statewide.parcels key (as in.st_joseph.tax_sale).
+# No price, deed type or document number. The layer has not been extended past 2023-07-24
+# although the item says 'Updated: 11/18/2026'.
+api: arcgis
+layer_url: https://services.arcgis.com/OjftlhRHkAABcyiF/arcgis/rest/services/Parcel_Trans_History_gdb/FeatureServer/1
+order_by: [OBJECTID]
+select: [OBJECTID, tax_bill_id, pxfer_date, GrantorName, GranteeName, status]
+enrich:
+  arcgis: https://services.arcgis.com/OjftlhRHkAABcyiF/arcgis/rest/services/Parcel_Trans_History_gdb/FeatureServer/0
+  key: PARCELID
+  field: tax_bill_id
+  columns: [PARCELSTAT]
+date_field: pxfer_date
+partition: year
+first_year: 1880                 # earliest deeds; pre-1970 epoch-ms dates are negative
+uid: [tax_bill_id, pxfer_date]   # no document number: one transfer per parcel and day
+doc_type: DEED
+doc_type_raw: St. Joseph County IN parcel transfer
+parties:
+  - role: grantor
+    name: GrantorName
+  - role: grantee
+    name: GranteeName
+parcel: {kind: pin, field: PARCELSTAT, county_fips: "18141"}   # = in.statewide parcel_id
+terms:
+  url: https://www.arcgis.com/home/item.html?id=eec7332a7792423383627b6286c1a96a
+  summary: "St. Joseph County IN GIS (SJCGIS) public ArcGIS Online item 'Parcel_Trans_History_gdb' (Parcel transfer history), free, no login. No licenseInfo or accessInformation on the item; no commercial-use or mailing-list restriction found."
+  checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,230 @@
+{
+ "dataset": "qva7-tzrf",
+ "rows": [
+  {
+   "consideration": "84265",
+   "document_number": "260012752",
+   "gpin": "1334981401",
+   "grantee": "TESTOWNER 2862A1 CORP",
+   "grantor": "TESTOWNER 3604B7 LLC",
+   "transfer_date": "2025-07-01T00:00:00.000"
+  },
+  {
+   "consideration": "570000",
+   "document_number": "250018326",
+   "extension": "R01",
+   "gpin": "1427673405",
+   "grantee": "TESTOWNER A088B7",
+   "grantor": "TESTOWNER 359664",
+   "transfer_date": "2025-10-08T00:00:00.000"
+  },
+  {
+   "consideration": "526000",
+   "document_number": "250017152",
+   "extension": "R01",
+   "gpin": "1427673405",
+   "grantee": "TESTOWNER DA9FCD",
+   "grantor": "TESTOWNER 6D7403",
+   "transfer_date": "2025-09-23T00:00:00.000"
+  },
+  {
+   "consideration": "600000",
+   "document_number": "250010202",
+   "extension": "R01",
+   "gpin": "1427673405",
+   "grantee": "TESTOWNER 264CDE",
+   "grantor": "TESTOWNER 10F841",
+   "transfer_date": "2025-06-10T00:00:00.000"
+  },
+  {
+   "consideration": "416000",
+   "document_number": "250005271",
+   "extension": "R02",
+   "gpin": "1427673405",
+   "grantee": "TESTOWNER 227C96",
+   "grantor": "TESTOWNER FB398E",
+   "transfer_date": "2025-03-28T00:00:00.000"
+  },
+  {
+   "consideration": "0",
+   "document_number": "250003758",
+   "extension": "R02",
+   "gpin": "1427673405",
+   "grantee": "TESTOWNER F3163D",
+   "grantor": "TESTOWNER E037C0",
+   "transfer_date": "2025-03-03T00:00:00.000"
+  },
+  {
+   "consideration": "0",
+   "document_number": "250017113",
+   "extension": "R02",
+   "gpin": "1427673405",
+   "grantee": "TESTOWNER BA268F",
+   "grantor": "TESTOWNER BCF244",
+   "transfer_date": "2025-09-22T00:00:00.000"
+  },
+  {
+   "consideration": "0",
+   "document_number": "250000068",
+   "extension": "R02",
+   "gpin": "1427673405",
+   "grantee": "TESTOWNER 612E8B",
+   "grantor": "TESTOWNER 9C1550",
+   "transfer_date": "2025-01-28T00:00:00.000"
+  },
+  {
+   "consideration": "1160000",
+   "document_number": "250015268",
+   "extension": "R01",
+   "gpin": "1427699441",
+   "grantee": "TESTOWNER 5D0C16",
+   "grantor": "TESTOWNER D8C2D8",
+   "transfer_date": "2025-08-25T00:00:00.000"
+  },
+  {
+   "consideration": "0",
+   "document_number": "250019337",
+   "extension": "R01",
+   "gpin": "1427766699",
+   "grantee": "TESTOWNER 19F24A",
+   "grantor": "TESTOWNER F57A23",
+   "transfer_date": "2025-10-23T00:00:00.000"
+  },
+  {
+   "consideration": "0",
+   "document_number": "250000843",
+   "extension": "R01",
+   "gpin": "1427766699",
+   "grantee": "TESTOWNER 6E4358",
+   "grantor": "TESTOWNER 2BC2D0",
+   "transfer_date": "2025-09-03T00:00:00.000"
+  },
+  {
+   "consideration": "490000",
+   "document_number": "250010071",
+   "extension": "R01",
+   "gpin": "1427767341",
+   "grantee": "TESTOWNER 7A88DB",
+   "grantor": "TESTOWNER AD025F",
+   "transfer_date": "2025-06-06T00:00:00.000"
+  },
+  {
+   "consideration": "390000",
+   "document_number": "250017553",
+   "extension": "R01",
+   "gpin": "1427767341",
+   "grantee": "TESTOWNER 84BFD0",
+   "grantor": "TESTOWNER F00A46",
+   "transfer_date": "2025-09-29T00:00:00.000"
+  },
+  {
+   "consideration": "415000",
+   "document_number": "250014563",
+   "extension": "R01",
+   "gpin": "1427767341",
+   "grantee": "TESTOWNER 5D0C3E",
+   "grantor": "TESTOWNER D1B3AF",
+   "transfer_date": "2025-08-13T00:00:00.000"
+  },
+  {
+   "consideration": "385000",
+   "document_number": "250006401",
+   "extension": "R01",
+   "gpin": "1427767341",
+   "grantee": "TESTOWNER 1C2016",
+   "grantor": "TESTOWNER 1052E9",
+   "transfer_date": "2025-04-15T00:00:00.000"
+  },
+  {
+   "consideration": "0",
+   "document_number": "250002551",
+   "extension": "R01",
+   "gpin": "1427767341",
+   "grantee": "TESTOWNER F95B27",
+   "grantor": "TESTOWNER 0897EC",
+   "transfer_date": "2025-02-14T00:00:00.000"
+  },
+  {
+   "consideration": "565000",
+   "document_number": "250010709",
+   "extension": "R01",
+   "gpin": "1427767341",
+   "grantee": "TESTOWNER D72C98",
+   "grantor": "TESTOWNER 503D70",
+   "transfer_date": "2025-06-16T00:00:00.000"
+  },
+  {
+   "consideration": "516000",
+   "document_number": "250008010",
+   "extension": "R01",
+   "gpin": "1427767341",
+   "grantee": "TESTOWNER E23AF6",
+   "grantor": "TESTOWNER 07A16A",
+   "transfer_date": "2025-05-08T00:00:00.000"
+  },
+  {
+   "consideration": "900000",
+   "document_number": "250000970",
+   "extension": "R01",
+   "gpin": "1427767341",
+   "grantee": "TESTOWNER 6E6881 LLC",
+   "grantor": "TESTOWNER 6F3176",
+   "transfer_date": "2025-01-21T00:00:00.000"
+  },
+  {
+   "consideration": "350000",
+   "document_number": "250010722",
+   "extension": "R01",
+   "gpin": "1427768301",
+   "grantee": "TESTOWNER A88D4D",
+   "grantor": "TESTOWNER 4BD42D",
+   "transfer_date": "2025-06-16T00:00:00.000"
+  },
+  {
+   "consideration": "395000",
+   "document_number": "250020332",
+   "extension": "R01",
+   "gpin": "1427768301",
+   "grantee": "TESTOWNER 085A78",
+   "grantor": "TESTOWNER E77EA4",
+   "transfer_date": "2025-11-06T00:00:00.000"
+  },
+  {
+   "consideration": "325000",
+   "document_number": "250007359",
+   "extension": "R01",
+   "gpin": "1427769766",
+   "grantee": "TESTOWNER 7B6D72",
+   "grantor": "TESTOWNER 7D8AB6",
+   "transfer_date": "2025-04-29T00:00:00.000"
+  },
+  {
+   "consideration": "450000",
+   "document_number": "250001150",
+   "extension": "R01",
+   "gpin": "1427769766",
+   "grantee": "TESTOWNER B8B001",
+   "grantor": "TESTOWNER 5675AC",
+   "transfer_date": "2025-01-23T00:00:00.000"
+  },
+  {
+   "consideration": "335000",
+   "document_number": "250021217",
+   "extension": "R01",
+   "gpin": "1427769766",
+   "grantee": "TESTOWNER 9D51E5",
+   "grantor": "TESTOWNER 18EFCA",
+   "transfer_date": "2025-11-20T00:00:00.000"
+  },
+  {
+   "consideration": "345000",
+   "document_number": "250007959",
+   "extension": "R01",
+   "gpin": "1427769766",
+   "grantee": "TESTOWNER 6FC87C",
+   "grantor": "TESTOWNER 3E784C",
+   "transfer_date": "2025-05-07T00:00:00.000"
+  }
+ ],
+ "where": "transfer_date >= '2025-01-01T00:00:00' AND transfer_date < '2026-01-01T00:00:00'"
+}

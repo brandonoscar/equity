@@ -1,0 +1,33 @@
+source_id: al.lauderdale.last_deed
+state: AL
+county_fips: "01077"
+# Lauderdale County (AL) Revenue Commission tax parcels and CAMA roll (the al.lauderdale.parcels map service,
+# KCS-hosted): each parcel's latest deed date, sale price, the previous owner and the current
+# owner. Loaded as one DEED instrument per parcel and deed date: grantor = PrevOwner (seller),
+# grantee = Owner (the owner of record, read as the buyer under that deed). Only those
+# columns and the parcel are read. Linked to 01077-<ParcelNum>, the al.lauderdale.parcels key.
+# TODO(Brandon): confirm the roll's Owner is the grantee of the DeedDate deed (it can lag a
+# later transfer not yet posted to the roll).
+api: arcgis
+layer_url: https://al41portal.kcsgis.com/al41server/rest/services/Lauderdale_Parcels/MapServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, PPIN, ParcelNum, Owner, PrevOwner, DeedDate, SalePrice]
+date_field: DeedDate
+partition: year
+first_year: 1880                 # earliest deeds; pre-1970 epoch-ms dates are negative
+uid: [ParcelNum, DeedDate]
+doc_type: DEED
+doc_type_raw: Lauderdale County (AL) last deed (previous owner to owner)
+consideration: SalePrice
+parties:
+  - role: grantor
+    name: PrevOwner
+  - role: grantee
+    name: Owner
+parcel: {kind: pin, field: ParcelNum, county_fips: "01077"}   # = al.lauderdale.parcels parcel_id
+terms:
+  url: https://al41portal.kcsgis.com/al41server/rest/services/Lauderdale_Parcels/MapServer
+  summary: "Lauderdale County (AL) Revenue Commission tax-parcel map service on the county's public ArcGIS Server, hosted by its mapping contractor KCS (al41portal.kcsgis.com), public, no login, token or fee; the same layer as al.lauderdale.parcels. No license, use-constraint or disclaimer text in the service metadata; no resale, redistribution or mailing-list clause found. al41portal.kcsgis.com/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

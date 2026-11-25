@@ -9,6 +9,7 @@ from equity.adapters.business_registry import all_registry_adapters
 from equity.adapters.co_ucc import ColoradoUCC
 from equity.adapters.code_links import NJMunicipalCodeLinks
 from equity.adapters.dc_business import DCBusiness
+from equity.adapters.deeds import all_deed_adapters
 from equity.adapters.federal.ecf_rss import NDWVBankruptcyRSS, NDWVDistrictRSS, court_adapters
 from equity.adapters.federal.epa_echo import EPAJudicialCases
 from equity.adapters.federal.federal_register import FederalRegisterRealty
@@ -64,6 +65,7 @@ _ALL: tuple[type[Adapter], ...] = (
     *all_api_parcel_adapters(),
     *all_zoning_adapters(),
     *all_lien_adapters(),
+    *all_deed_adapters(),
     LocalZoningAdapter,
     NJMunicipalCodeLinks,
     ColoradoUCC,
