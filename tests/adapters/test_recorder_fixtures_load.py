@@ -33,6 +33,8 @@ CLOCK = fixed_clock(datetime(2026, 11, 16, 13, tzinfo=UTC))
         "co.sos.business",
         "ct.sos.business",
         "or.sos.business",
+        "ia.sos.business",
+        "ri.sos.business",
     ],
 )
 def test_fixture_rows_load(source_id: str, empty_db: duckdb.DuckDBPyConnection) -> None:

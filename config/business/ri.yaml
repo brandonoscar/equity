@@ -1,0 +1,62 @@
+# Rhode Island Department of State, "Weekly Export of New Entities": one tab-delimited file
+# per week of the entities filed that week (corp_id, name, filing date, type, registered agent
+# and address, and one row per officer, director, manager or incorporator with an address).
+# The index lists the last 31 weeks (about 300-450 entities and 11,500 rows in all, 8,100
+# entities, on 2026-11-25), so weekly runs accumulate; older weeks drop off the page.
+# The full registry is sold (one-time or annual SFTP subscription, see terms_url).
+# Layout (2007, filestructure.htm): the agent's street sits in CO_address; agent_street is a
+# second line. No status is published.
+# Robots (2026-11-25): business.sos.ri.gov has no robots.txt (404).
+# TODO(Brandon): rows with an empty officer_type (the entity's agent-only row) name no officer;
+# other titles (partner, general counsel...) are "other" with the raw title. Role valid_from is
+# the incorporation date.
+source_id: ri.sos.business
+state: RI
+jurisdiction: "44"
+api: file
+file:
+  index: https://business.sos.ri.gov/corp/WeeklyCorpExport/WeeklyCorpExportList.asp
+  url: https://business.sos.ri.gov/WeeklyCorpExportFiles/{name}
+  name: "[0-9]{8}\\.txt"
+  delimiter: "\t"
+  encoding: cp1252
+key: corp_id
+terms_url: https://www.sos.ri.gov/divisions/business-services/business-data-hub
+terms_summary: "Free weekly public export; no license text. Data Hub disclaimer: offered as a public service, no liability, user indemnifies the State. Full registry is a paid subscription."
+checked_on: 2026-11-25
+robots_checked_on: 2026-11-25
+cost_model: free
+business:
+  name: corp_name
+  formed_on: incorp_dt
+roles:
+  - {role: registered_agent, name: agent, address: {street: [CO_address, agent_street], city: agent_city, state: agent_state, zip: agent_zip}}
+grouped:
+  type_field: officer_type
+  address: {street: [officer_street], city: officer_city, state: officer_state, zip: officer_zip}
+  roles:
+    PRESIDENT: {role: officer, name_parts: [officer_fname, officer_minit, officer_lname, officer_suffix]}
+    VICE PRESIDENT: {role: officer, name_parts: [officer_fname, officer_minit, officer_lname, officer_suffix]}
+    EXECUTIVE VICE PRESIDENT: {role: officer, name_parts: [officer_fname, officer_minit, officer_lname, officer_suffix]}
+    SECRETARY: {role: officer, name_parts: [officer_fname, officer_minit, officer_lname, officer_suffix]}
+    ASSISTANT SECRETARY: {role: officer, name_parts: [officer_fname, officer_minit, officer_lname, officer_suffix]}
+    TREASURER: {role: officer, name_parts: [officer_fname, officer_minit, officer_lname, officer_suffix]}
+    ASSISTANT TREASURER: {role: officer, name_parts: [officer_fname, officer_minit, officer_lname, officer_suffix]}
+    CLERK: {role: officer, name_parts: [officer_fname, officer_minit, officer_lname, officer_suffix]}
+    CEO: {role: officer, name_parts: [officer_fname, officer_minit, officer_lname, officer_suffix]}
+    CFO: {role: officer, name_parts: [officer_fname, officer_minit, officer_lname, officer_suffix]}
+    COO: {role: officer, name_parts: [officer_fname, officer_minit, officer_lname, officer_suffix]}
+    CHIEF OPERATING OFFICER: {role: officer, name_parts: [officer_fname, officer_minit, officer_lname, officer_suffix]}
+    PRESIDENT AND CEO: {role: officer, name_parts: [officer_fname, officer_minit, officer_lname, officer_suffix]}
+    OTHER OFFICER: {role: officer, name_parts: [officer_fname, officer_minit, officer_lname, officer_suffix]}
+    CHAIRMAN: {role: officer, name_parts: [officer_fname, officer_minit, officer_lname, officer_suffix]}
+    DIRECTOR: {role: director, name_parts: [officer_fname, officer_minit, officer_lname, officer_suffix]}
+    BOARD MEMBER: {role: director, name_parts: [officer_fname, officer_minit, officer_lname, officer_suffix]}
+    BOARD CHAIR: {role: director, name_parts: [officer_fname, officer_minit, officer_lname, officer_suffix]}
+    MANAGER: {role: manager, name_parts: [officer_fname, officer_minit, officer_lname, officer_suffix]}
+    MEMBER: {role: member, name_parts: [officer_fname, officer_minit, officer_lname, officer_suffix]}
+    MANAGING MEMBER: {role: member, name_parts: [officer_fname, officer_minit, officer_lname, officer_suffix]}
+    ORGANIZER: {role: organizer, name_parts: [officer_fname, officer_minit, officer_lname, officer_suffix]}
+    INCORPORATOR: {role: incorporator, name_parts: [officer_fname, officer_minit, officer_lname, officer_suffix]}
+  default: {role: other, name_parts: [officer_fname, officer_minit, officer_lname, officer_suffix]}
+pii_fields: [corp_name, elected_name, purpose, agent, CO_address, agent_street, officer_fname, officer_lname, officer_minit, officer_suffix, officer_street]

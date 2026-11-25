@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import io
 import json
+import zipfile
 from collections import Counter
 from datetime import UTC, datetime
 from pathlib import Path
@@ -19,6 +21,7 @@ from equity.adapters.business_registry import (
     all_registry_adapters,
     holder_name,
     load_registry,
+    unzip_text,
 )
 from equity.adapters.http import Response
 from equity.adapters.registry import by_source_id
@@ -42,7 +45,7 @@ def _fixture(source_id: str) -> list[tuple[str, dict[str, Any]]]:
 def test_every_config_loads_and_registers() -> None:
     ids = {c.source_id for c in all_registry_adapters()}
     assert ids == {"ny.sos.business", "co.sos.business", "ct.sos.business", "or.sos.business",
-                   "pa.dos.business"}  # fmt: skip
+                   "pa.dos.business", "ia.sos.business", "ri.sos.business"}  # fmt: skip
     for path in BUSINESS_DIR.glob("*.yaml"):
         assert load_registry(path).pii_fields
 
@@ -227,3 +230,133 @@ def test_pa_grouped_roles_are_case_insensitive_with_a_default() -> None:
     ann = next(r for t, r in rows if t == "party" and r["raw_name"] == "ANN Q LEE")
     assert (ann["first_name"], ann["middle"], ann["last_name"], ann["suffix"]) == (
         "ANN", "Q", "LEE", None)  # fmt: skip
+
+
+# --- file registries (api: file) -----------------------------------------------------------
+
+
+def test_ia_agents_and_home_office() -> None:
+    rows = _fixture("ia.sos.business")
+    biz = [r for t, r in rows if t == "business"]
+    assert biz and all(b["status"] == "Active" for b in biz)
+    assert sum(b["principal_address_id"] is not None for b in biz) > len(biz) // 2
+    assert {r["role"] for t, r in rows if t == "business_role"} == {"registered_agent"}
+
+
+def test_ri_weekly_officers_and_agents() -> None:
+    rows = _fixture("ri.sos.business")
+    roles = Counter(r["role"] for t, r in rows if t == "business_role")
+    assert roles["registered_agent"] == sum(1 for t, _ in rows if t == "business")
+    assert roles["director"] > 0 and roles["officer"] > 0 and roles["manager"] > 0
+    titles = {r["title"] for t, r in rows if t == "business_role" and r["role"] == "officer"}
+    # One officer role per person: the treasurer who is also clerk keeps the first title.
+    assert {"PRESIDENT", "SECRETARY", "CLERK"} <= titles and "TREASURER" not in titles
+    assert all(r["status"] is None for t, r in rows if t == "business")
+
+
+class FakeFiles:
+    """Serves fixed bytes by URL (an index page, a TSV, a zipped CSV)."""
+
+    retries = 0
+    backoff_s = 0.0
+
+    def __init__(self, pages: dict[str, bytes], status: int = 200) -> None:
+        self.pages, self.status = pages, status
+        self.urls: list[str] = []
+
+    def get(self, url: str, params: dict[str, str] | None = None) -> Response:
+        self.urls.append(url)
+        if url not in self.pages:
+            return Response(url, 404, b"", "text/html", AT)
+        return Response(url, self.status, self.pages[url], "text/plain", AT)
+
+
+RI_INDEX = "https://business.sos.ri.gov/corp/WeeklyCorpExport/WeeklyCorpExportList.asp"
+RI_FILE = "https://business.sos.ri.gov/WeeklyCorpExportFiles/"
+
+
+def test_ri_partitions_fetch_and_health() -> None:
+    cls = by_source_id("ri.sos.business")
+    page = (
+        f"<a href='{RI_FILE}11222026.txt'>11/22/2026</a> <a href='{RI_FILE}11152026.txt'>"
+        f"</a> <a href='{RI_FILE}11222026.txt'></a> <a href='/elsewhere/0101.txt'></a>"
+    )
+    tsv = (
+        "corp_id\tcorp_name\tincorp_dt\tagent\tCO_address\tofficer_fname\tofficer_lname\t"
+        "officer_type\r\n7\tACME LLC\t2026-11-17 00:00:00\tANN LEE\t1 A ST\tBO\tRAY\t"
+        "Manager \r\n7\tACME LLC\t2026-11-17 00:00:00\tANN LEE\t1 A ST\t\t\t\r\n"
+        "8\tCAF\xc9 INC\t2026-11-18 00:00:00\tCY DOE\t\t\t\t\r\n"
+    ).encode("cp1252")
+    fake = FakeFiles({RI_INDEX: page.encode(), RI_FILE + "11222026.txt": tsv})
+    adapter = cls(fake)  # type: ignore[call-arg]
+    assert list(adapter.partitions()) == [{"name": "11152026.txt"}, {"name": "11222026.txt"}]
+    fetched = adapter.fetch(FetchRequest({"name": "11222026.txt", "limit": "2"}))
+    body = json.loads(fetched.content)
+    assert fetched.request == RI_FILE + "11222026.txt" and len(body["entities"]) == 2
+    assert "officer_fname" not in body["entities"][1]  # empty cells are left out
+    full = json.loads(adapter.fetch(FetchRequest({"name": "11222026.txt"})).content)
+    assert full["entities"][2]["corp_name"] == "CAF\xc9 INC"
+    rows = _norm("ri.sos.business", full)
+    assert sorted((r["role"], r["title"]) for t, r in rows if t == "business_role") == [
+        ("manager", "Manager"), ("registered_agent", None), ("registered_agent", None)]  # fmt: skip
+    for bad in ("../x.txt", "1122.txt", ""):
+        with pytest.raises(ValueError, match="bad file name"):
+            adapter.fetch(FetchRequest({"name": bad}))
+    assert adapter.health().ok
+    assert not cls(FakeFiles({RI_INDEX: b"<html></html>"})).health().ok  # type: ignore[call-arg]
+    with pytest.raises(RuntimeError, match="HTTP 404"):
+        adapter.fetch(FetchRequest({"name": "11152026.txt"}))
+
+
+def test_ia_zipped_csv_one_partition_and_health() -> None:
+    cls = by_source_id("ia.sos.business")
+    spec = cls.config.file  # type: ignore[attr-defined]
+    csv_text = ("﻿corp_number,legal_name,ra_latitude,registered_agent\n"
+                '1,"ACME, LLC",41.5,ANN LEE\n2,BETA INC,,\n')  # fmt: skip
+    columns = b'[{"name": "corp_number"}, {"name": "legal_name"}]'
+    zipped = zipfile_bytes({"readme.txt": "x", "rows.csv": csv_text})
+    fake = FakeFiles({spec.url: zipped, spec.health_url: columns})
+    adapter = cls(fake)  # type: ignore[call-arg]
+    assert list(adapter.partitions()) == [{}]
+    body = json.loads(adapter.fetch(FetchRequest({})).content)
+    assert body["entities"] == [
+        {"corp_number": "1", "legal_name": "ACME, LLC", "registered_agent": "ANN LEE"},
+        {"corp_number": "2", "legal_name": "BETA INC"}]  # fmt: skip  # BOM gone, lat dropped
+    assert adapter.health().ok and fake.urls[-1] == spec.health_url
+    assert not cls(FakeFiles({}, status=404)).health().ok  # type: ignore[call-arg]
+    row = adapter.source_row()
+    assert row["access_method"] == "bulk" and row["base_url"] == spec.url
+    assert row["terms_summary"].startswith("RESTRICTED[attribution_required] CC BY 4.0")
+    assert row["robots_checked_on"].isoformat() == "2026-11-25" and row["cost_model"] == "free"
+    with pytest.raises(ValueError, match="empty zip"):
+        unzip_text(zipfile_bytes({}))
+
+
+def zipfile_bytes(members: dict[str, str]) -> bytes:
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w") as z:
+        for name, text in members.items():
+            z.writestr(name, text)
+    return buf.getvalue()
+
+
+def test_file_config_errors(tmp_path: Path) -> None:
+    ri = (BUSINESS_DIR / "ri.yaml").read_text()
+    index = "  index: https://business.sos.ri.gov/corp/WeeklyCorpExport/WeeklyCorpExportList.asp\n"
+    for old, new, msg in (("api: file", "api: ftp", "unknown api"),
+                          (index, "", "needs index and name")):  # fmt: skip
+        (tmp_path / "x.yaml").write_text(ri.replace(old, new))
+        with pytest.raises(ValueError, match=msg):
+            load_registry(tmp_path / "x.yaml")
+    co = (BUSINESS_DIR / "co.yaml").read_text()
+    (tmp_path / "y.yaml").write_text(co.replace("dataset: 4ykn-tg5h\n", ""))
+    with pytest.raises(ValueError, match="needs portal and dataset"):
+        load_registry(tmp_path / "y.yaml")
+    (tmp_path / "z.yaml").write_text(co + "api: file\n")
+    with pytest.raises(ValueError, match="needs file"):
+        load_registry(tmp_path / "z.yaml")
+    ct = (BUSINESS_DIR / "ct.yaml").read_text()
+    (tmp_path / "w.yaml").write_text(ct + "api: file\nfile: {url: https://x.test/a.csv}\n")
+    with pytest.raises(ValueError, match="role_datasets need a socrata"):
+        load_registry(tmp_path / "w.yaml")
+    assert load_registry(BUSINESS_DIR / "co.yaml").use_restrictions == ()
