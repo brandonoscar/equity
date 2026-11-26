@@ -79,7 +79,7 @@ Pierce County WA quarterly violation counts) or unrelated layers.
 | RI | Division of Taxation Top 100 income and business tax delinquents | Held back: tax.ri.gov answers with a Cloudflare JavaScript challenge. We don't work around those. |
 | WY | DOR Excise Tax delinquent taxpayers and vendors (150+ days, monthly) | Held back: the files are on Google Drive, whose robots.txt disallows downloads (`/uc`, and all of drive.usercontent.google.com). |
 | WA | DOR delinquent taxpayer list (published from 2001) | Not found any more; tax warrants are filed with each county's Superior Court. |
-| AR | Commissioner of State Lands tax-delinquent auction catalog | Not built yet: a catalog and post-auction list on cosl.org; file format not confirmed. |
+| AR | Commissioner of State Lands tax-delinquent auction catalog | Held back: the catalog is served by a vendor map app (datascoutpro.com) through encoded query links, and the post-auction list by an auction site; no published file. |
 
 The other 13 states showed no published state or county debt list on these catalogs.
 
