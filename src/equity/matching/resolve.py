@@ -62,6 +62,11 @@ county and parcel number letters and digits (punctuation ignored). Matches throu
 owner_basis ('deed:<source>' / 'record:<source>', 'roll' otherwise) and owner_seen_on; a
 'record:' owner older than RECORD_OWNER_AUTO_DAYS reaches review only.
 
+Owner strings that print several people or a trust ("SMITH JOHN A & JANE B", "JOHN A SMITH
+REVOCABLE TRUST") are split into the people they name (equity.matching.names): each is an
+extra owner name of the same party and parcel, so every rule above can meet it. Matches record
+owner_name_variant ('joint' or 'trust'); a trust's settlor only reaches review.
+
 Output (Parquet under data/derived/<state>/, which is git-ignored: it names people):
   matches.parquet   debtor party, its instrument, owner party, parcel, rule, decision, keys
   debtor_summary.parquet   per matched debtor: liens, open amount, parcels, total parcel value,
@@ -299,9 +304,11 @@ def connect(
         LEFT JOIN addr sa ON sa.address_id = pc.situs_address_id;
         ALTER TABLE owners ADD COLUMN owner_basis VARCHAR DEFAULT 'roll';
         ALTER TABLE owners ADD COLUMN owner_seen_on DATE;
+        ALTER TABLE owners ADD COLUMN name_variant VARCHAR;
     """)  # noqa: S608 - doc types come from STATES (repo config), quoted
     if record_owner_sources:
         _record_owners(con, lake, record_owner_sources)
+    _owner_name_variants(con)
     if court_sources:
         _court_debtors(con, lake, court_sources)
     if writ_sources:
@@ -361,7 +368,7 @@ WITH named AS (
 SELECT DISTINCT p.party_id, p.raw_name, p.party_kind, p.org_name_norm, n.parcel_uid,
        name_key(p.raw_name), suffix_key(p.raw_name),
        ma.addr_key, ma.zip5, sa.addr_key, sa.zip5, ma.town_key, sa.town_key,
-       n.basis, n.recorded_on
+       n.basis, n.recorded_on, NULL
 FROM latest n
 JOIN ro_party p ON p.party_id = n.party_id
 LEFT JOIN o_parcel pc ON pc.parcel_uid = n.parcel_uid
@@ -381,6 +388,52 @@ def _record_owners(con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str
     _view(con, "ro_inst", lake, sources, "instrument")
     _view(con, "ro_lot", lake, sources, "instrument_parcel")
     con.execute(RECORD_OWNERS_SQL)
+
+
+# Owner strings that print several people or a trust ("SMITH JOHN A & JANE B", "JOHN A
+# SMITH REVOCABLE TRUST"): each person they name joins the owners as an extra name of the
+# same owner party and parcel (equity.matching.names). raw_name stays the printed string;
+# name_key is the person's. A joint owner's name is matched like any owner name; a trust's
+# settlor or trustee (name_variant 'trust') only reaches review.
+VARIANT_MARK = r"&|\bAND\b|/|;|\bTR\b|\bTRS\b|TRUST|\bTTEES?\b|\bET ?UX\b|\bET ?VIR\b"
+VARIANT_NAMES_SQL = """
+SELECT DISTINCT raw_name FROM owners
+WHERE name_variant IS NULL AND regexp_matches(upper(coalesce(raw_name, '')), ?)
+ORDER BY raw_name
+"""
+VARIANT_INSERT_SQL = """
+INSERT INTO owners
+SELECT DISTINCT o.party_id, o.raw_name, 'person', NULL, o.parcel_uid,
+       name_key(v.variant), suffix_key(v.variant), o.mail_key, o.mail_zip, o.situs_key,
+       o.situs_zip, o.mail_town, o.situs_town, o.owner_basis, o.owner_seen_on, v.kind
+FROM owners o JOIN owner_name_variant v ON v.raw_name = o.raw_name
+WHERE o.name_variant IS NULL;
+"""
+
+
+def _owner_name_variants(con: duckdb.DuckDBPyConnection) -> None:
+    """Split owner strings in Python (equity.matching.names) and load the person names back
+    through a temporary CSV: only strings with a joint or trust marker are read."""
+    import csv
+    import tempfile
+
+    from equity.matching.names import owner_name_variants
+
+    names = [r[0] for r in con.execute(VARIANT_NAMES_SQL, [VARIANT_MARK]).fetchall()]
+    with tempfile.TemporaryDirectory() as tmp:
+        path = Path(tmp) / "variants.csv"
+        with path.open("w", newline="", encoding="utf-8") as f:
+            w = csv.writer(f)
+            w.writerow(["raw_name", "variant", "kind"])
+            for raw in names:
+                for variant, kind in owner_name_variants(raw):
+                    w.writerow([raw, variant, kind])
+        con.execute(
+            "CREATE TEMP TABLE owner_name_variant AS SELECT * FROM read_csv(?, header=true, "
+            "columns={'raw_name': 'VARCHAR', 'variant': 'VARCHAR', 'kind': 'VARCHAR'})",
+            [str(path)],
+        )
+    con.execute(VARIANT_INSERT_SQL)
 
 
 def _court_debtors(con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str]) -> None:
@@ -668,6 +721,18 @@ def match(
         UPDATE matches SET decision = 'review'
         WHERE decision = 'auto' AND starts_with(coalesce(owner_basis, ''), 'record:')
           AND owner_seen_on < current_date - INTERVAL {RECORD_OWNER_AUTO_DAYS} DAY;
+        -- Which name of the owner string the match used: NULL (the whole string), 'joint'
+        -- (one of several owners printed together) or 'trust' (a trust's settlor/trustee).
+        ALTER TABLE matches ADD COLUMN owner_name_variant VARCHAR;
+        UPDATE matches SET owner_name_variant = v.variant
+        FROM (SELECT party_id, parcel_uid, name_key,
+                     CASE WHEN bool_or(name_variant IS NULL) THEN NULL
+                          ELSE min(name_variant) END AS variant
+              FROM owners GROUP BY party_id, parcel_uid, name_key) v
+        WHERE v.party_id = matches.owner_party_id AND v.parcel_uid = matches.parcel_uid
+          AND v.name_key = matches.key;
+        UPDATE matches SET decision = 'review'
+        WHERE decision = 'auto' AND owner_name_variant = 'trust';
         CREATE TEMP TABLE parcel_value AS
         SELECT parcel_uid, arg_max(coalesce(appraised_total, assessed_value), tax_year) AS value
         FROM o_assess GROUP BY parcel_uid;
