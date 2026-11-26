@@ -9,7 +9,9 @@
 #   judgment lien (levy or attachment needed). Creation method and interest are from statute
 #   knowledge, UNVERIFIED. Duration/renewal: White and Williams LLP chart, rev. 2020-01-20
 #   (check post-2020 amendments, at least AZ, ID, GA). Homestead: NCLC 'No Fresh Start' 2025.
-# Sources: research_notes/Data source gap analysis/courts.md section 6.
+# Sources: research_notes/Data source gap analysis/courts.md section 6. Rows with
+# statute_text_checked were re-read against statute text on 2026-11-25 (still unverified by
+# the owner); docs/sol_schema_proposal.md proposes the dated rule layout sol.yaml needs.
 
 schema_version: 1
 sources:
@@ -33,10 +35,11 @@ states:
     verified: false
   AZ:  # TODO(Brandon): review
     lien_created_by: "R"
-    lien_instrument: "Certified copy or info statement with county recorder (ARS 33-961)"
-    duration_and_renewal: "Execution within 10 yrs of entry/renewal (12-1551)"
+    lien_instrument: "Certified copy plus information statement recorded with county recorder; no lien without both (33-961, 33-967)"
+    duration_and_renewal: "Entered on/after 2013-08-03: 10 yrs from entry or renewal; renew by affidavit (12-1612) or action within 10 yrs (12-1551, 33-964)"
     homestead: "$425,200 (33-1101)"
-    post_judgment_interest: "Lesser of 10% or prime+1% (44-1201)"
+    post_judgment_interest: "Lesser of 10% or prime+1%, fixed at entry; medical debt lesser of 1-yr CMT or 3% (44-1201)"
+    statute_text_checked: "2026-11-25 (research_notes/Judgment equity data and tasks/)"
     verified: false
   AR:  # TODO(Brandon): review
     lien_created_by: "D"
@@ -91,8 +94,9 @@ states:
     lien_created_by: "D/R"
     lien_instrument: "Fi.fa. entered on clerk's general execution docket; GSCCCA index (OCGA 9-12-81/86)"
     duration_and_renewal: "Dormant after 7 yrs; renewable (9-12-60)"
-    homestead: "$21,500 (44-13-1)"
+    homestead: "$21,500 outside bankruptcy; $50,000/$100,000 in bankruptcy from 2026-07-01 (44-13-1, 44-13-100; HB 1024)"
     post_judgment_interest: "Prime + 3% (7-4-12)"
+    statute_text_checked: "2026-11-25 (research_notes/Judgment equity data and tasks/)"
     verified: false
   HI:  # TODO(Brandon): review
     lien_created_by: "R"
@@ -111,9 +115,10 @@ states:
   IL:  # TODO(Brandon): review
     lien_created_by: "R"
     lien_instrument: "Memorandum of judgment with county recorder (735 ILCS 5/12-101)"
-    duration_and_renewal: "Lien 7 yrs from entry/revival; revive within 20 (12-101, 13-218)"
-    homestead: "$50,000 (12-901, reported)"
+    duration_and_renewal: "Lien 7 yrs from entry/revival; revive before 20 (non-consumer). Consumer-debt judgments entered on/after 2026-01-01: 15 yrs, no revival (P.A. 104-0120; 12-101, 2-1602, 13-218)"
+    homestead: "$50,000 ($100,000 joint) from 2026-01-01 (12-901, P.A. 104-120); +$1,000 personal property on consumer-debt judgments"
     post_judgment_interest: "9%; lower for small consumer debt (2-1303)"
+    statute_text_checked: "2026-11-25 (research_notes/Judgment equity data and tasks/)"
     verified: false
   IN:  # TODO(Brandon): review
     lien_created_by: "D"
@@ -132,9 +137,10 @@ states:
   KS:  # TODO(Brandon): review
     lien_created_by: "D"
     lien_instrument: "Filing in district court, county (60-2202)"
-    duration_and_renewal: "Dormant if no execution/renewal in 5 yrs (60-2403)"
+    duration_and_renewal: "Dormant 5 yrs without renewal affidavit or execution; lien in county of rendition relates back to petition filing (up to 4 months); costs/restitution after 2015-07-01 never dormant (60-2403, 60-2202)"
     homestead: "No $ cap, acreage (60-2301)"
     post_judgment_interest: "Fed discount + 4% (16-204)"
+    statute_text_checked: "2026-11-25 (research_notes/Judgment equity data and tasks/)"
     verified: false
   KY:  # TODO(Brandon): review
     lien_created_by: "R"
@@ -174,16 +180,18 @@ states:
   MI:  # TODO(Brandon): review
     lien_created_by: "R"
     lien_instrument: "Notice of judgment lien with register of deeds (MCL 600.2803)"
-    duration_and_renewal: "Lien 5 yrs from recording; re-record once +5 (600.2809)"
+    duration_and_renewal: "Judgment 10 yrs; lien 5 yrs from recording a notice of judgment lien with register of deeds, re-record once at least 120 days before expiry (600.2809, 600.5809)"
     homestead: "$3,500 (600.6023)"
     post_judgment_interest: "1% + 5-yr T-note avg (600.6013); 3.959% (2026)"
+    statute_text_checked: "2026-11-25 (research_notes/Judgment equity data and tasks/)"
     verified: false
   MN:  # TODO(Brandon): review
     lien_created_by: "D"
     lien_instrument: "Docketing in district court, county; transcript elsewhere (548.09)"
-    duration_and_renewal: "Enforce 10 yrs from entry (550.01)"
-    homestead: "$510,000 (510.01-.02)"
+    duration_and_renewal: "10 yrs after entry, lien from docketing; registered (Torrens) land only if also recorded; no renewal except child support (548.09, 548.091)"
+    homestead: "$540,000 ($1,350,000 agricultural) from 2026-07-01 (510.02, Commerce notice)"
     post_judgment_interest: "Annual rate set by court admin (549.09); 10% over $50k"
+    statute_text_checked: "2026-11-25 (research_notes/Judgment equity data and tasks/)"
     verified: false
   MS:  # TODO(Brandon): review
     lien_created_by: "D"
@@ -195,16 +203,18 @@ states:
   MO:  # TODO(Brandon): review
     lien_created_by: "D"
     lien_instrument: "Entry in circuit court, county; transcript elsewhere (RSMo 511.350)"
-    duration_and_renewal: "Lien 10 yrs (Rule 74.08); revive within 10 (74.09)"
+    duration_and_renewal: "Presumed paid 10 yrs after rendition or revival; circuit-court judgments are county liens, associate/small-claims/municipal divisions not automatically (516.350, 511.350)"
     homestead: "$15,000 (513.475)"
-    post_judgment_interest: "9% or contract; tort: T-bill + 5% (408.040)"
+    post_judgment_interest: "9% non-tort or contract rate above 9%; tort Fed-funds based (408.040)"
+    statute_text_checked: "2026-11-25 (research_notes/Judgment equity data and tasks/)"
     verified: false
   MT:  # TODO(Brandon): review
     lien_created_by: "D"
     lien_instrument: "Docketing in district court, county; abstract elsewhere (25-9-301)"
     duration_and_renewal: "Action on judgment within 10 yrs (27-2-201)"
-    homestead: "$409,450 (70-32-104)"
+    homestead: "about $425,829 (2026, chart only; 70-32-104)"
     post_judgment_interest: "Prime + 3% (25-9-205)"
+    statute_text_checked: "2026-11-25 (research_notes/Judgment equity data and tasks/)"
     verified: false
   NE:  # TODO(Brandon): review
     lien_created_by: "D"
@@ -216,16 +226,18 @@ states:
   NV:  # TODO(Brandon): review
     lien_created_by: "R"
     lien_instrument: "Transcript/abstract with county recorder (NRS 17.150)"
-    duration_and_renewal: "Judgment 6 yrs; renewable within 6 yrs (17.150, 17.214)"
+    duration_and_renewal: "6 yrs after docketing, renewable by affidavit filed within 90 days before expiry, then recorded (NRS 17.150, 17.214)"
     homestead: "$605,000 (115.010)"
     post_judgment_interest: "Prime + 2% (17.130)"
+    statute_text_checked: "2026-11-25 (research_notes/Judgment equity data and tasks/)"
     verified: false
   NH:  # TODO(Brandon): review
     lien_created_by: "X"
     lien_instrument: "Real estate reached by attachment/levy recorded in registry (RSA 511)"
     duration_and_renewal: "Action on judgment within 20 yrs (508:5)"
-    homestead: "$120,000 (480:1)"
+    homestead: "$400,000 from 2026-01-01 (RSA 480:1, 2025 c. 282)"
     post_judgment_interest: "Treasury-based annual (336:1)"
+    statute_text_checked: "2026-11-25 (research_notes/Judgment equity data and tasks/)"
     verified: false
   NJ:  # TODO(Brandon): review
     lien_created_by: "D"
@@ -251,23 +263,26 @@ states:
   NC:  # TODO(Brandon): review
     lien_created_by: "D"
     lien_instrument: "Docketing/indexing by superior court clerk, county; transcript elsewhere (1-233)"
-    duration_and_renewal: "Lien 10 yrs from entry (1-234)"
+    duration_and_renewal: "Lien 10 yrs from entry in each county where docketed (others by transcript); new action on judgment (1-234, 1-47)"
     homestead: "$35,000 (1C-1601)"
     post_judgment_interest: "8% legal rate (24-1)"
+    statute_text_checked: "2026-11-25 (research_notes/Judgment equity data and tasks/)"
     verified: false
   ND:  # TODO(Brandon): review
     lien_created_by: "D"
     lien_instrument: "Docketing in county; transcript elsewhere (28-20-13)"
-    duration_and_renewal: "Lien 10 yrs; renew by affidavit within 90 days of 10 yrs (28-20-21)"
+    duration_and_renewal: "Docketed on/after 2021-08-01: 20-yr lien, no renewal, then cancelled; earlier: 10, or 20 if renewed by affidavit (renewal section repealed 2031-08-01) (28-20-13, -21, -35)"
     homestead: "$150,000 (47-18-01)"
     post_judgment_interest: "Prime-based annual (28-20-34)"
+    statute_text_checked: "2026-11-25 (research_notes/Judgment equity data and tasks/)"
     verified: false
   OH:  # TODO(Brandon): review
-    lien_created_by: "R/D"
-    lien_instrument: "Certificate of judgment filed with common pleas clerk, county (ORC 2329.02)"
-    duration_and_renewal: "Dormant after 5 yrs; revive within 10 of dormancy (2329.07, 2325.18)"
+    lien_created_by: "R/D"  # certificate with the court clerk (proposed code C)
+    lien_instrument: "Certificate of judgment filed with the common pleas court clerk of each county, not the recorder (2329.02)"
+    duration_and_renewal: "Dormant after 5 yrs (non-state) unless execution, certificate, garnishment or aid; each renews; revival (2329.07, 2325.18)"
     homestead: "$182,625 (2329.66)"
     post_judgment_interest: "Statutory annual rate (1343.03, 5703.47)"
+    statute_text_checked: "2026-11-25 (research_notes/Judgment equity data and tasks/)"
     verified: false
   OK:  # TODO(Brandon): review
     lien_created_by: "R"
@@ -280,8 +295,9 @@ states:
     lien_created_by: "D/R"
     lien_instrument: "Lien in county of entry if judgment says so; lien record abstract elsewhere (ORS 18.150-.152)"
     duration_and_renewal: "Remedies 10 yrs; extend 10 by certificate (18.180, 18.182)"
-    homestead: "$150,000 (18.395)"
+    homestead: "$158,300 from 2026-07-01 (chart only; 18.395)"
     post_judgment_interest: "9% (82.010)"
+    statute_text_checked: "2026-11-25 (research_notes/Judgment equity data and tasks/)"
     verified: false
   PA:  # TODO(Brandon): review
     lien_created_by: "D"
@@ -300,9 +316,10 @@ states:
   SC:  # TODO(Brandon): review
     lien_created_by: "D"
     lien_instrument: "Entry/indexing in county of judgment; transcript elsewhere (15-35-810)"
-    duration_and_renewal: "Lien 10 yrs (15-35-810)"
-    homestead: "$76,125 ($152,250 joint) (15-41-30)"
+    duration_and_renewal: "10 yrs from date of judgment, from entry on abstract book in each county; no renewal; not on exempt property (15-35-810, -820)"
+    homestead: "$80,125 from 2026-07-01 (chart only; 15-41-30)"
     post_judgment_interest: "Prime + 4% (34-31-20)"
+    statute_text_checked: "2026-11-25 (research_notes/Judgment equity data and tasks/)"
     verified: false
   SD:  # TODO(Brandon): review
     lien_created_by: "D"
@@ -328,9 +345,10 @@ states:
   UT:  # TODO(Brandon): review
     lien_created_by: "R"
     lien_instrument: "Judgment/abstract recorded with county recorder (78B-5-202)"
-    duration_and_renewal: "Lien 8 yrs; renew +8 by motion (78B-5-202, 78B-6-1802)"
-    homestead: "$52,400 ($104,700 joint) (78B-5-503)"
+    duration_and_renewal: "Lien 8 yrs from entry; after 2002-07-01 only if judgment/abstract with debtor info recorded; renewals of 8 yrs repeatable, keeping original date and priority (S.B. 326, 2025; 78B-2-311, 78B-5-202, 78B-6-1802/1804)"
+    homestead: "$53,700 (2026, chart only; 78B-5-503)"
     post_judgment_interest: "1-yr T-bill + 2% (15-1-4); 5.51% in 2026"
+    statute_text_checked: "2026-11-25 (research_notes/Judgment equity data and tasks/)"
     verified: false
   VT:  # TODO(Brandon): review
     lien_created_by: "R"
@@ -341,17 +359,19 @@ states:
     verified: false
   VA:  # TODO(Brandon): review
     lien_created_by: "D"
-    lien_instrument: "Docketing in circuit clerk's judgment lien docket (8.01-446, 8.01-458)"
-    duration_and_renewal: "Enforceable 20 yrs; extend by motion (8.01-251)"
-    homestead: "$56,000 (34-4, reported)"
+    lien_instrument: "Recording on the judgment lien docket of the circuit clerk where the land lies (8.01-458)"
+    duration_and_renewal: "Dated on/after 2021-07-01: 10 yrs, child support 20; earlier: 20 yrs. Certificate recorded before expiry +10, once more +10 (max 30) (8.01-251)"
+    homestead: "$50,000 residence + $5,000 + $500/dependent; CPI from 2027-04-01 (34-4)"
     post_judgment_interest: "6% judgment rate (6.2-302)"
+    statute_text_checked: "2026-11-25 (research_notes/Judgment equity data and tasks/)"
     verified: false
   WA:  # TODO(Brandon): review
     lien_created_by: "D/R"
     lien_instrument: "Automatic in county of superior court entry; abstract elsewhere (RCW 4.56.190/200)"
-    duration_and_renewal: "Expires 10 yrs; extend 10 (4.56.190, 6.17.020(3))"
+    duration_and_renewal: "Execution within 10 yrs of entry; lien from filing on superior court execution docket; extend +10 (4.56.190, 4.56.200, 6.17.020(3))"
     homestead: "≥$125,000 or county median (6.13.030)"
-    post_judgment_interest: "12% or contract; consumer/tort lower (4.56.110)"
+    post_judgment_interest: "12% default; consumer debt 9%; private student loans prime+2%; contract rate if stated (4.56.110)"
+    statute_text_checked: "2026-11-25 (research_notes/Judgment equity data and tasks/)"
     verified: false
   WV:  # TODO(Brandon): review
     lien_created_by: "R"
