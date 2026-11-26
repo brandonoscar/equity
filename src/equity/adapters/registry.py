@@ -73,6 +73,7 @@ from equity.adapters.tx.stratmap import TexasStratMapParcels
 from equity.adapters.tx_harris_jp import HarrisJPJudgments
 from equity.adapters.tx_travis_delinquent import TravisTaxDelinquent
 from equity.adapters.voter_files import BoulderCountyVoterFile, NorthCarolinaVoterFile
+from equity.adapters.vt_pttr_archive import VermontTransferArchive
 from equity.adapters.wv.delinquent import WVDelinquentProperties
 from equity.adapters.wv.parcelweb import MonongaliaParcelWeb
 from equity.adapters.wv.statewide_parcels import WVStatewideParcels
@@ -109,6 +110,7 @@ _ALL: tuple[type[Adapter], ...] = (
     ProvidenceTaxRoll,
     HarrisJPJudgments,
     TravisTaxDelinquent,
+    VermontTransferArchive,
     HillsboroughOfficialRecords,
     HillsboroughCivilCases,
     HillsboroughCivilFilings,
