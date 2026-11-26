@@ -827,7 +827,9 @@ STATES: dict[str, dict[str, Any]] = {
                       "pa.washington.parcels", "pa.york.parcels", "pa.cumberland.parcels",
                       "pa.luzerne.parcels"],
            "parcel_on_lien": True, "courts": FEDERAL_COURTS, "street_town": True,
-           "deeds": ["pa.philadelphia.rtt"]},
+           # Philadelphia RTT: mortgages and satisfactions on OPA lots (42101-<opa>), netted
+           # by the owner-approved paid rules in equity.py; also the deed source for transfers.
+           "deeds": ["pa.philadelphia.rtt"], "mortgages": ["pa.philadelphia.rtt"]},
     # The PA and VT lists publish street and town but no ZIP: street + town rules, as in CT.
     "VT": {"debtors": ["vt.tax.top100_individuals", "vt.tax.top100_businesses"],
            "owners": ["vt.statewide.parcels"], "courts": FEDERAL_COURTS,
