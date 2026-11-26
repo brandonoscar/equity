@@ -739,7 +739,7 @@ def main(argv: list[str] | None = None) -> int:  # pragma: no cover - CLI
         n = pull(_store(), args.db, Path("data/work/search_index_pull"))
         print(f"pulled {n} sources into {args.db}")
         return 0
-    con = connect(args.db)
+    con = connect(args.db, read_only=args.cmd in ("status", "export"))
     if args.cmd == "build":
         if args.remote:
             con.execute("LOAD httpfs")

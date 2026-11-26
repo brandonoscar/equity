@@ -91,14 +91,24 @@ including addresses kept as one unsplit line.
 
 `uv run python -m equity.search --bench 60` samples real indexed names, searches each as
 written and with one typo (a letter dropped from the longest word), and reports how often the
-sampled record is in the top 10. On the Delaware index (818k names), after `compact`:
+sampled name and record are in the top 10. On the Delaware index (818k names), after `compact`:
 
 | Query | Recall in top 10 | Median | 95th percentile |
 |---|---|---|---|
-| as written | 1.00 | 0.25 s | 0.62 s |
-| one typo | 0.95 | 0.27 s | 0.45 s |
+| as written | 1.00 | 0.23 s | 0.55 s |
+| one typo | 0.95 | 0.20 s | 0.42 s |
 
 Before `compact` the median was 0.63 s: sorting the lookup tables lets DuckDB skip blocks.
+
+On Ohio, Kentucky and Louisiana (81 sources, 13.5M names, 2.7 GB), 80 sampled names:
+
+| Query | Name in top 10 | Record in top 10 | Median | 95th percentile |
+|---|---|---|---|---|
+| as written | 1.00 | 0.79 | 0.62 s | 1.18 s |
+| one typo | 0.94 | 0.75 | 0.65 s | 1.15 s |
+
+Record recall is lower than name recall when many records share one name (a common name
+can have hundreds): the right name comes back, and `--state` or `--kind` narrows it.
 
 ## SQL (CLI, notebooks, or the MCP server)
 
@@ -130,7 +140,9 @@ WHERE street_norm(line1) = street_norm('123 Main Street') AND zip5 = '43215';
 
 The MCP server starts from `.mcp.json` (Claude Code asks before using a project server). It is
 read-only by default, caps results at 500 rows and 120 seconds, and opens a fresh connection per
-query (`--ephemeral-connections`) so `equity.search_index build` can keep writing.
+query (`--ephemeral-connections`), so it holds no lock between queries. DuckDB allows one
+writer per file: while `build` or `compact` runs, queries wait for it (`status`, `export` and
+search only read).
 
 ## Licenses of what this uses
 
