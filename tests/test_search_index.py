@@ -310,3 +310,13 @@ def test_parallel_build_matches_the_serial_one(lake: Path, tmp_path: Path) -> No
         q = f"SELECT * FROM {t} ORDER BY ALL"
         assert serial.execute(q).fetchall() == par.execute(q).fetchall(), t
     assert not any((tmp_path / "scratch").glob("*/_counts.json"))  # scratch cleaned up
+
+
+def test_benchmark_reports_recall_and_latency(cat: duckdb.DuckDBPyConnection) -> None:
+    from equity.search import benchmark
+
+    b = benchmark(cat, n=10, top=10)
+    assert b["queries"] >= 3
+    assert b["as_written"]["recall_at_top"] == 1.0
+    assert 0 <= b["one_typo"]["recall_at_top"] <= 1
+    assert b["as_written"]["p95_s"] >= b["as_written"]["p50_s"] >= 0

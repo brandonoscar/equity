@@ -530,6 +530,44 @@ def address_search(
     return {"parcels": parcels, "parties": parties}
 
 
+def benchmark(
+    con: duckdb.DuckDBPyConnection, n: int = 50, seed: int = 7, top: int = 10
+) -> dict[str, Any]:
+    """Recall and latency on real names. Samples n indexed person-or-unknown names of 2+
+    words (repeatably), searches each as written and with one typo (a letter dropped from
+    its longest word), and reports how often the sampled party is in the top results."""
+    import time
+
+    sample = _rows(con, f"""
+        SELECT * FROM (
+            SELECT source_id, party_id, raw_name, name_key FROM names
+            WHERE party_kind <> 'org' AND len(string_split(name_key, ' ')) >= 2
+              AND length(name_key) >= 8)
+        USING SAMPLE reservoir({int(n)} ROWS) REPEATABLE ({int(seed)})
+    """, [])  # noqa: S608  # fmt: skip
+    out: dict[str, Any] = {"queries": len(sample)}
+    for variant in ("as_written", "one_typo"):
+        found, times = 0, []
+        for r in sample:
+            q = r["raw_name"]
+            if variant == "one_typo":
+                longest = max(r["name_key"].split(" "), key=len)
+                q = r["name_key"].replace(longest, longest[:2] + longest[3:], 1)
+            t0 = time.perf_counter()
+            hits = search(con, q, limit=top)
+            times.append(time.perf_counter() - t0)
+            found += any((h.source_id, h.party_id) == (r["source_id"], r["party_id"])
+                         for h in hits)  # fmt: skip
+        times.sort()
+        out[variant] = {
+            "recall_at_top": round(found / len(sample), 3) if sample else None,
+            "p50_s": round(times[len(times) // 2], 3) if times else None,
+            "p95_s": round(times[min(len(times) - 1, int(len(times) * 0.95))], 3)
+            if times else None,
+        }  # fmt: skip
+    return out
+
+
 def _money(x: float | None) -> str:
     return "" if x is None else f"${x:,.0f}"
 
@@ -560,10 +598,13 @@ def main(argv: list[str] | None = None) -> int:  # pragma: no cover - CLI
     ap.add_argument("--network", help="source_id:party_id: walk its links outward")
     ap.add_argument("--hops", type=int, default=2)
     ap.add_argument("--json", action="store_true")
+    ap.add_argument("--bench", type=int, metavar="N", help="recall and latency on N names")
     args = ap.parse_args(argv)
     con = connect(args.db, read_only=True)
     out: Any
-    if args.network:
+    if args.bench:
+        out = benchmark(con, args.bench)
+    elif args.network:
         out = network(con, args.network, args.hops)
     elif args.show and ":business:" in args.show:
         out = show_business(con, args.show)

@@ -73,6 +73,19 @@ Address search standardizes the street with the matcher's `street_norm` (USPS Pu
 words: STREET → ST and so on) and finds parcels at that situs and parties whose address it is,
 including addresses kept as one unsplit line.
 
+### Measured
+
+`uv run python -m equity.search --bench 60` samples real indexed names, searches each as
+written and with one typo (a letter dropped from the longest word), and reports how often the
+sampled record is in the top 10. On the Delaware index (818k names), after `compact`:
+
+| Query | Recall in top 10 | Median | 95th percentile |
+|---|---|---|---|
+| as written | 1.00 | 0.25 s | 0.62 s |
+| one typo | 0.95 | 0.27 s | 0.45 s |
+
+Before `compact` the median was 0.63 s: sorting the lookup tables lets DuckDB skip blocks.
+
 ## SQL (CLI, notebooks, or the MCP server)
 
 The catalog keeps `name_key()` and `street_norm()` as macros, plus these views:
