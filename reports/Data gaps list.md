@@ -44,6 +44,7 @@ Tags on each gap: **[FIXED]** closed in the lake, **[PARTLY FIXED]**, **[IN PROG
 19. **MI:** Oakland (490k parcels) has no owners, values or addresses. 73 of 83 counties have no parcel layer.
 20. **OR:** Marion has no owners. Clackamas, Washington and 29 other counties have no parcel layer. Multnomah, Lane, Deschutes and Jackson are loaded.
 21. **ME:** Aroostook is missing from the statewide layer.
+21b. **[OPEN] OH: the statewide layer has no owner names.** Every one of its 6,228,867 owner rows is a placeholder, "<county FIPS> | <parcel id>" (`config/states/oh.yaml` says so: the public view withholds names). Counts-based reports, including `equity.lake_gaps`, show Ohio as 88 of 88 counties with owners; the real owner names are only in the 16 county layers (Cuyahoga, Franklin, Summit, Lucas, Stark and others), so 72 Ohio counties have none. Fix: the county auditors' own parcel layers or downloads, county by county.
 22. **County-only states with thin coverage** (counties with owners ÷ all counties):
     - GA 7 of 159
     - KY 1 of 120 (Boone only; Jefferson/Louisville is missing)
