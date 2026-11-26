@@ -17,6 +17,7 @@ reordered sheet still loads, and a missing column fails loudly.
 
 from __future__ import annotations
 
+import csv
 import io
 import json
 import xml.etree.ElementTree as ET
@@ -168,3 +169,51 @@ class FhfaHpiZip5(Adapter):
     def health(self) -> HealthReport:
         n = len(json.loads(self.fetch(FetchRequest({})).content)["rows"])
         return HealthReport(self.source_id, n > 100_000, datetime.now(UTC), f"{n} ZIP-years")
+
+
+TRACT_URL = "https://www.fhfa.gov/hpi/download/annual/hpi_at_tract.csv"
+
+
+class FhfaHpiTract(FhfaHpiZip5):
+    """FHFA's annual HPI by 2010 census tract (a real CSV, about 90 MB: tract, state_abbr, year,
+    annual_change, hpi, hpi1990, hpi2000; tracts from 1998). Finer than ZIP5 for rolling a value
+    forward. The raw CSV is kept as the fetched content and read line by line; a limit keeps
+    the header and the first N data lines (fixtures)."""
+
+    source_id: ClassVar[str] = "us.fhfa.hpi_tract"
+
+    def source_row(self) -> Mapping[str, Any]:
+        return {**super().source_row(), "source_id": self.source_id, "base_url": TRACT_URL}
+
+    def fetch(self, request: FetchRequest) -> Fetched:
+        resp = self.client.get(TRACT_URL)
+        if resp.status != 200:
+            raise RuntimeError(f"{self.source_id}: HTTP {resp.status}")
+        content = resp.content
+        limit = request.params.get("limit")
+        if limit:
+            content = b"\n".join(content.splitlines()[: int(limit) + 1]) + b"\n"
+        return Fetched(self.source_id, TRACT_URL, resp.retrieved_at, 200, content, "text/csv")
+
+    def normalize(self, fetched: Fetched) -> Iterator[NormalizedRow]:
+        seen: set[str] = set()
+        lines = io.TextIOWrapper(io.BytesIO(fetched.content), encoding="utf-8-sig")
+        for r in csv.DictReader(lines):
+            tract, year = str(r.get("tract") or "").strip(), str(r.get("year") or "").strip()
+            if not (len(tract) == 11 and tract.isdigit() and year.isdigit()):
+                continue
+            key = f"{tract}-{year}"
+            if key in seen:
+                continue
+            seen.add(key)
+            ctx = RecordContext(fetched, "US", key, "hpi_row", r)
+            yield ctx.source_record()
+            yield ctx.fact("house_price_index", geo_level="tract", geo_id=tract, year=int(year),
+                           period=0, index_value=_num(r.get("hpi") or ""),
+                           index_1990_base=_num(r.get("hpi1990") or ""),
+                           index_2000_base=_num(r.get("hpi2000") or ""),
+                           annual_change_pct=_num(r.get("annual_change") or ""))  # fmt: skip
+
+    def health(self) -> HealthReport:
+        n = len(list(self.normalize(self.fetch(FetchRequest({"limit": "1000"}))))) // 2
+        return HealthReport(self.source_id, n > 0, datetime.now(UTC), f"{n} sample tract-years")
