@@ -5,7 +5,7 @@
 -- (equity.matching.resolve, inferred owners).
 
 -- DuckDB cannot alter a CHECK constraint: rebuild instrument_party with the wider role list.
-CREATE TABLE instrument_party_v18 (
+CREATE TABLE instrument_party_v19 (
     row_id           VARCHAR PRIMARY KEY,
     instrument_uid    VARCHAR NOT NULL CHECK (instrument_uid <> ''),
     party_id          VARCHAR NOT NULL CHECK (party_id <> ''),
@@ -25,6 +25,6 @@ CREATE TABLE instrument_party_v18 (
     CHECK (superseded_at IS NULL OR superseded_at >= ingested_at),
     fact_hash        VARCHAR
 );
-INSERT INTO instrument_party_v18 SELECT * FROM instrument_party;
+INSERT INTO instrument_party_v19 SELECT * FROM instrument_party;
 DROP TABLE instrument_party;
-ALTER TABLE instrument_party_v18 RENAME TO instrument_party;
+ALTER TABLE instrument_party_v19 RENAME TO instrument_party;
