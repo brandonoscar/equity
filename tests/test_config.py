@@ -70,3 +70,17 @@ def test_sol_proposed_covers_every_state_and_is_unverified() -> None:
     for state, f in data["states"].items():
         assert f["lien_created_by"] in {"R", "D", "X", "D/R", "R/D"}, state
         assert f["verified"] is False, state
+
+
+def test_exemptions_proposed_covers_every_state_and_is_unverified() -> None:
+    """The homestead draft lists every state, uses known kinds and never claims confirmation."""
+    data = yaml.safe_load((CONFIG_DIR / "exemptions_proposed.yaml").read_text())
+    assert set(data["states"]) == STATES
+    for state, f in data["states"].items():
+        assert f["kind"] in {"capped", "unlimited", "none", "formula_or_conflict"}, state
+        assert f["verified"] is False, state
+        assert f["statute"] or f["kind"] == "none", state
+        if f["kind"] == "capped":
+            assert isinstance(f["cap_usd"], int) and f["cap_usd"] > 0, state
+        else:
+            assert f["cap_usd"] in (None, 0), state

@@ -1,0 +1,548 @@
+# PROPOSED execution (homestead) exemptions per state, from research (2026-11-26), NOT
+# confirmed. They protect a debtor's home equity from a judgment creditor outside bankruptcy.
+# Nothing in code reads this file yet: once the owner confirms a state, a confirmed table and
+# an owner-occupancy rule let equity subtract the exempt amount (reports/Judgment equity data
+# and tasks.md, task 9).
+#
+# kind: capped (cap_usd is the single-owner amount), unlimited (no dollar cap; acreage limits
+#   only), none (no homestead against judgment creditors), formula_or_conflict (a county
+#   median formula, or sources disagree: read homestead_vs_judgment_creditor).
+# declaration_required: true where a recorded declaration is needed for protection (all or
+#   part), false when automatic, null when not stated. Most "false" values are UNVERIFIED.
+# tenancy_by_entirety: what a creditor of one spouse can do (Shield / Partial / None).
+# Sources: NCLC 'No Fresh Start' 2025 (Table 2, state summaries Jan 2026) with 2026 changes from
+# statute text and the Alper Law charts; research_notes/Judgment equity data and tasks/
+# exemptions_imminent_sales.md. Federal bankruptcy amounts (11 USC 522(d), cases filed
+# 2025-04-01 to 2028-03-31): homestead $31,575 (d)(1); wildcard $1,675 + up to $15,800 unused
+# (d)(5) (Federal Register 2025-02207).
+
+schema_version: 1
+states:
+  AK:
+    homestead_vs_judgment_creditor: $72,900 (adjusted every 2 years by regulation)
+    kind: capped
+    cap_usd: 72900
+    acreage_notes: No acreage limit; one cap per residence
+    declaration_required: false
+    declaration_notes: No [UNVERIFIED]
+    tenancy_by_entirety: 'Partial: levy and sell the debtor''s interest'
+    statute: AS 09.38.010; 8 AAC 95.030
+    verified: false
+  AL:
+    homestead_vs_judgment_creditor: $18,800; $56,400 if 62+/disabled from 2026-06-01 [Alper only]; $20,475
+      from 2027-04-01
+    kind: capped
+    cap_usd: 18800
+    acreage_notes: 160 acres
+    declaration_required: null
+    declaration_notes: Optional (Ala. Code 6-10-20) [UNVERIFIED]
+    tenancy_by_entirety: None (tenancy in common)
+    statute: Ala. Code § 6-10-2
+    verified: false
+  AR:
+    homestead_vs_judgment_creditor: No $ cap (married or head of family)
+    kind: unlimited
+    cap_usd: null
+    acreage_notes: ¼–1 acre urban / 80–160 acres rural
+    declaration_required: false
+    declaration_notes: No [UNVERIFIED]
+    tenancy_by_entirety: 'Partial: execute subject to the other spouse''s possession and survivorship'
+    statute: Ark. Const. art. 9 §§ 3–5; A.C.A. 16-66-210
+    verified: false
+  AZ:
+    homestead_vs_judgment_creditor: $425,200 (NCLC); statutory base $400,000, CPI-adjusted each Jan 1
+      since 2024, with no official adjusted table published (Alper)
+    kind: capped
+    cap_usd: 425200
+    acreage_notes: One per married couple
+    declaration_required: false
+    declaration_notes: No (automatic) [UNVERIFIED]
+    tenancy_by_entirety: None
+    statute: A.R.S. § 33-1101
+    verified: false
+  CA:
+    homestead_vs_judgment_creditor: 'Greater of the county median or a floor, with a cap. NCLC: floor
+      $361,076/$361,479, cap $722,507. Senate Jud. analysis: 2026 floor $373,175, cap $746,350 (conflicts
+      with $370,550 elsewhere)'
+    kind: formula_or_conflict
+    cap_usd: null
+    acreage_notes: Primary residence
+    declaration_required: false
+    declaration_notes: No. Automatic homestead; a declared homestead (CCP 704.910 ff.) adds sale-of-home
+      benefits [UNVERIFIED detail]
+    tenancy_by_entirety: None
+    statute: CCP § 704.730
+    verified: false
+  CO:
+    homestead_vs_judgment_creditor: $250,000 ($350,000 if 60+ or disabled)
+    kind: capped
+    cap_usd: 250000
+    acreage_notes: Any acreage
+    declaration_required: false
+    declaration_notes: No [UNVERIFIED]
+    tenancy_by_entirety: None
+    statute: C.R.S. § 38-41-201
+    verified: false
+  CT:
+    homestead_vs_judgment_creditor: $250,000 ($75,000 for certain tort judgments)
+    kind: capped
+    cap_usd: 250000
+    acreage_notes: Owner-occupied
+    declaration_required: false
+    declaration_notes: No [UNVERIFIED]
+    tenancy_by_entirety: None
+    statute: C.G.S. § 52-352b(21)/(t)
+    verified: false
+  DC:
+    homestead_vs_judgment_creditor: No $ cap (head of family or householder)
+    kind: unlimited
+    cap_usd: null
+    acreage_notes: Includes a co-op interest
+    declaration_required: false
+    declaration_notes: No [UNVERIFIED]
+    tenancy_by_entirety: Shield (statute; necessaries excepted)
+    statute: D.C. Code § 15-501(a)(14)
+    verified: false
+  DE:
+    homestead_vs_judgment_creditor: $500 wildcard only (non-bankruptcy); $200,000 in bankruptcy
+    kind: capped
+    cap_usd: 500
+    acreage_notes: null
+    declaration_required: null
+    declaration_notes: n/a
+    tenancy_by_entirety: 'Shield: inchoate lien vests only if the debtor spouse survives'
+    statute: 10 Del. C. §§ 4903, 4914(c)
+    verified: false
+  FL:
+    homestead_vs_judgment_creditor: No $ cap
+    kind: unlimited
+    cap_usd: null
+    acreage_notes: ½ acre in a municipality / 160 acres outside
+    declaration_required: false
+    declaration_notes: No. Constitutional and automatic [UNVERIFIED as to recording]
+    tenancy_by_entirety: Shield (Beal Bank 2001; Loumpos 2025)
+    statute: Fla. Const. art. X § 4; F.S. 222.05
+    verified: false
+  GA:
+    homestead_vs_judgment_creditor: $21,500 non-bankruptcy; bankruptcy $50,000/$100,000 from 2026-07-01
+      (HB 1024)
+    kind: capped
+    cap_usd: 21500
+    acreage_notes: null
+    declaration_required: false
+    declaration_notes: No [UNVERIFIED]
+    tenancy_by_entirety: None
+    statute: O.C.G.A. §§ 44-13-1, 44-13-100
+    verified: false
+  HI:
+    homestead_vs_judgment_creditor: $30,000 head of family or 65+; $20,000 others
+    kind: capped
+    cap_usd: 30000
+    acreage_notes: One per parcel
+    declaration_required: false
+    declaration_notes: No [UNVERIFIED]
+    tenancy_by_entirety: Shield
+    statute: HRS § 651-92
+    verified: false
+  IA:
+    homestead_vs_judgment_creditor: No $ cap
+    kind: unlimited
+    cap_usd: null
+    acreage_notes: ½ acre city / 40 acres rural
+    declaration_required: false
+    declaration_notes: No (optional platting) [UNVERIFIED]
+    tenancy_by_entirety: None
+    statute: Iowa Code §§ 561.2, 561.16
+    verified: false
+  ID:
+    homestead_vs_judgment_creditor: $175,000
+    kind: capped
+    cap_usd: 175000
+    acreage_notes: Automatic on occupancy; declaration needed if not occupied (55-1004) [UNVERIFIED]
+    declaration_required: null
+    declaration_notes: Usually no
+    tenancy_by_entirety: None
+    statute: Idaho Code §§ 55-1001 to -1003
+    verified: false
+  IL:
+    homestead_vs_judgment_creditor: $50,000 ($100,000 for 2+ owners), eff. 2026-01-01 (P.A. 104-120)
+    kind: capped
+    cap_usd: 50000
+    acreage_notes: null
+    declaration_required: false
+    declaration_notes: 'No'
+    tenancy_by_entirety: Shield, homestead only
+    statute: 735 ILCS 5/12-901; 765 ILCS 1005/1c
+    verified: false
+  IN:
+    homestead_vs_judgment_creditor: $22,750 ($45,500 TBE spouses); next adjustment by 2028-03-01
+    kind: capped
+    cap_usd: 22750
+    acreage_notes: null
+    declaration_required: false
+    declaration_notes: No [UNVERIFIED]
+    tenancy_by_entirety: Shield (not for joint debts)
+    statute: IC 34-55-10-2(c); 750 IAC 1-1-1
+    verified: false
+  KS:
+    homestead_vs_judgment_creditor: No $ cap
+    kind: unlimited
+    cap_usd: null
+    acreage_notes: 1 acre urban / 160 acres rural
+    declaration_required: false
+    declaration_notes: No [UNVERIFIED]
+    tenancy_by_entirety: None
+    statute: Kan. Const. art. 15 § 9; K.S.A. 60-2301
+    verified: false
+  KY:
+    homestead_vs_judgment_creditor: $5,000; none if the debt predates the purchase
+    kind: capped
+    cap_usd: 5000
+    acreage_notes: null
+    declaration_required: false
+    declaration_notes: No [UNVERIFIED]
+    tenancy_by_entirety: 'Partial: lien on and sale of the contingent survivorship interest'
+    statute: KRS 427.060
+    verified: false
+  LA:
+    homestead_vs_judgment_creditor: $35,000
+    kind: capped
+    cap_usd: 35000
+    acreage_notes: 5 acres city / 200 acres elsewhere
+    declaration_required: false
+    declaration_notes: No [UNVERIFIED]
+    tenancy_by_entirety: None
+    statute: La. R.S. 20:1
+    verified: false
+  MA:
+    homestead_vs_judgment_creditor: $125,000 automatic; $500,000 with a declaration; NCLC/Alper list up
+      to $1,000,000 declared (elderly/disabled, per owner)
+    kind: capped
+    cap_usd: 125000
+    acreage_notes: null
+    declaration_required: true
+    declaration_notes: Yes, for the amount above $125k
+    tenancy_by_entirety: Shield while it is the non-debtor spouse's principal residence
+    statute: M.G.L. c.188 §§ 1–5
+    verified: false
+  MD:
+    homestead_vs_judgment_creditor: $6,000 wildcard only (non-bankruptcy); $31,575 in bankruptcy (tracks
+      522(d)(1))
+    kind: capped
+    cap_usd: 6000
+    acreage_notes: null
+    declaration_required: null
+    declaration_notes: n/a
+    tenancy_by_entirety: Shield
+    statute: CJP § 11-504(b)(5), (f)
+    verified: false
+  ME:
+    homestead_vs_judgment_creditor: 'Conflict: NCLC gives $94,300 individual / $188,550 if elder, disabled
+      or with minor dependents; Alper gives $80,000/$160,000. Next CPI adjustment 2027-04-01'
+    kind: formula_or_conflict
+    cap_usd: null
+    acreage_notes: null
+    declaration_required: false
+    declaration_notes: No [UNVERIFIED]
+    tenancy_by_entirety: None
+    statute: 14 M.R.S. § 4422(1)
+    verified: false
+  MI:
+    homestead_vs_judgment_creditor: $3,500 (non-bankruptcy); $51,150 / $76,725 (65+/disabled) in bankruptcy
+      only
+    kind: capped
+    cap_usd: 3500
+    acreage_notes: 40 acres / 1 lot
+    declaration_required: false
+    declaration_notes: No [UNVERIFIED]
+    tenancy_by_entirety: Shield
+    statute: MCL 600.6023(1)(g), 600.5451
+    verified: false
+  MN:
+    homestead_vs_judgment_creditor: $540,000 ($1,350,000 agricultural) from 2026-07-01, by Commerce notice
+      (statute text still shows $510,000)
+    kind: capped
+    cap_usd: 540000
+    acreage_notes: 160 acres rural
+    declaration_required: false
+    declaration_notes: No [UNVERIFIED]
+    tenancy_by_entirety: None
+    statute: Minn. Stat. §§ 510.01, 510.02
+    verified: false
+  MO:
+    homestead_vs_judgment_creditor: $15,000; reported to rise to $40,000 on 2027-01-01 (SB 835; signing
+      not confirmed)
+    kind: capped
+    cap_usd: 15000
+    acreage_notes: Not doubled for co-owners
+    declaration_required: false
+    declaration_notes: No [UNVERIFIED]
+    tenancy_by_entirety: Shield (bank accounts included)
+    statute: RSMo § 513.475
+    verified: false
+  MS:
+    homestead_vs_judgment_creditor: $75,000
+    kind: capped
+    cap_usd: 75000
+    acreage_notes: 160 acres
+    declaration_required: false
+    declaration_notes: No [UNVERIFIED]
+    tenancy_by_entirety: Unsettled
+    statute: Miss. Code § 85-3-21
+    verified: false
+  MT:
+    homestead_vs_judgment_creditor: about $425,829 for 2026 (statute adds 4% each Jan 1; NCLC 2025 $409,450).
+      The amount is fixed in the year the declaration is recorded
+    kind: capped
+    cap_usd: 425829
+    acreage_notes: null
+    declaration_required: true
+    declaration_notes: Yes (declaration, 70-32-105)
+    tenancy_by_entirety: None
+    statute: MCA §§ 70-32-101, -104
+    verified: false
+  NC:
+    homestead_vs_judgment_creditor: $35,000 ($60,000 for an elderly surviving co-owner)
+    kind: capped
+    cap_usd: 35000
+    acreage_notes: Per debtor
+    declaration_required: false
+    declaration_notes: No [UNVERIFIED]
+    tenancy_by_entirety: Shield during marriage (lien springs on divorce or death)
+    statute: G.S. § 1C-1601(a)(1)
+    verified: false
+  ND:
+    homestead_vs_judgment_creditor: $150,000
+    kind: capped
+    cap_usd: 150000
+    acreage_notes: Contiguous tracts; exempt from the judgment lien itself
+    declaration_required: false
+    declaration_notes: No [UNVERIFIED]
+    tenancy_by_entirety: None
+    statute: NDCC § 47-18-01
+    verified: false
+  NE:
+    homestead_vs_judgment_creditor: $120,000
+    kind: capped
+    cap_usd: 120000
+    acreage_notes: 2 lots city / 160 acres rural
+    declaration_required: false
+    declaration_notes: No [UNVERIFIED]
+    tenancy_by_entirety: None
+    statute: Neb. Rev. Stat. § 40-101
+    verified: false
+  NH:
+    homestead_vs_judgment_creditor: $400,000 per person ($550,000 total for joint claimants), eff. 2026-01-01
+      (2025 c. 282, HB 617); 12-month residency requirement per Alper
+    kind: capped
+    cap_usd: 400000
+    acreage_notes: null
+    declaration_required: false
+    declaration_notes: No [UNVERIFIED]
+    tenancy_by_entirety: None
+    statute: RSA 480:1
+    verified: false
+  NJ:
+    homestead_vs_judgment_creditor: None
+    kind: none
+    cap_usd: 0
+    acreage_notes: null
+    declaration_required: null
+    declaration_notes: n/a
+    tenancy_by_entirety: 'Partial: no forced partition for post-1988 TBE; survivorship right can be sold'
+    statute: —
+    verified: false
+  NM:
+    homestead_vs_judgment_creditor: $150,000 ($300,000 in limited cases)
+    kind: capped
+    cap_usd: 150000
+    acreage_notes: null
+    declaration_required: false
+    declaration_notes: No [UNVERIFIED]
+    tenancy_by_entirety: None
+    statute: NMSA § 42-10-9
+    verified: false
+  NV:
+    homestead_vs_judgment_creditor: $605,000
+    kind: capped
+    cap_usd: 605000
+    acreage_notes: Primary residence
+    declaration_required: true
+    declaration_notes: 'Yes: no recorded declaration means no protection'
+    tenancy_by_entirety: None
+    statute: NRS 115.010, 115.020
+    verified: false
+  NY:
+    homestead_vs_judgment_creditor: $204,825 (10 NYC-area counties), lower tiers elsewhere (to $102,400);
+      adjusted 2024-04-01, next 2027-04-01
+    kind: formula_or_conflict   # tiered by county, $102,400 to $204,825
+    cap_usd: null
+    acreage_notes: null
+    declaration_required: false
+    declaration_notes: No [UNVERIFIED]
+    tenancy_by_entirety: 'Partial: debtor''s interest can be sold subject to survivorship; no partition'
+    statute: CPLR 5206
+    verified: false
+  OH:
+    homestead_vs_judgment_creditor: $182,625 (adjusted 2025-04-01; next 2028-04-01)
+    kind: capped
+    cap_usd: 182625
+    acreage_notes: null
+    declaration_required: false
+    declaration_notes: No [UNVERIFIED]
+    tenancy_by_entirety: Only pre-1985 TBE deeds survive (abolished going forward)
+    statute: ORC § 2329.66(A)(1)
+    verified: false
+  OK:
+    homestead_vs_judgment_creditor: No $ cap; urban capped at $5,000 if more than 25% business use
+    kind: unlimited
+    cap_usd: null
+    acreage_notes: 1 acre urban / 160 acres rural
+    declaration_required: false
+    declaration_notes: No [UNVERIFIED]
+    tenancy_by_entirety: 'Partial: levy and sale severs the tenancy'
+    statute: Okla. Const. art. XII; 31 O.S. §§ 1–2
+    verified: false
+  OR:
+    homestead_vs_judgment_creditor: $158,300 ($316,700 for 2+ debtors in the household), indexed, eff.
+      2026-07-01 (NCLC $150,000)
+    kind: capped
+    cap_usd: 158300
+    acreage_notes: 1 block urban / 160 acres rural
+    declaration_required: false
+    declaration_notes: No [UNVERIFIED]
+    tenancy_by_entirety: 'Partial: debtor''s interest plus half the rents'
+    statute: ORS 18.395
+    verified: false
+  PA:
+    homestead_vs_judgment_creditor: None ($300 wildcard, 42 Pa.C.S. 8123)
+    kind: none
+    cap_usd: 0
+    acreage_notes: null
+    declaration_required: null
+    declaration_notes: n/a
+    tenancy_by_entirety: Shield
+    statute: Madden (1938)
+    verified: false
+  RI:
+    homestead_vs_judgment_creditor: $500,000 (not against bank debt or debts that predate acquisition)
+    kind: capped
+    cap_usd: 500000
+    acreage_notes: null
+    declaration_required: false
+    declaration_notes: 'No: automatic'
+    tenancy_by_entirety: 'Partial: attach but no sale during the marriage'
+    statute: R.I.G.L. § 9-26-4.1
+    verified: false
+  SC:
+    homestead_vs_judgment_creditor: $80,125 ($160,250 for multiple owners), eff. 2026-07-01 (NCLC $76,125)
+    kind: capped
+    cap_usd: 80125
+    acreage_notes: null
+    declaration_required: false
+    declaration_notes: No [UNVERIFIED]
+    tenancy_by_entirety: None
+    statute: S.C. Code § 15-41-30(A)(1)
+    verified: false
+  SD:
+    homestead_vs_judgment_creditor: No $ cap ($170,000 if 70+)
+    kind: unlimited
+    cap_usd: null
+    acreage_notes: 1 acre city / 160 acres rural
+    declaration_required: false
+    declaration_notes: No [UNVERIFIED]
+    tenancy_by_entirety: None
+    statute: SDCL §§ 43-31-1 to -4, 43-45-3
+    verified: false
+  TN:
+    homestead_vs_judgment_creditor: $35,000 ($52,500 joint; conditions per NCLC)
+    kind: capped
+    cap_usd: 35000
+    acreage_notes: null
+    declaration_required: false
+    declaration_notes: No [UNVERIFIED]
+    tenancy_by_entirety: 'Partial: survivorship right only'
+    statute: T.C.A. § 26-2-301
+    verified: false
+  TX:
+    homestead_vs_judgment_creditor: No $ cap
+    kind: unlimited
+    cap_usd: null
+    acreage_notes: Urban 10 acres / rural 200 acres family, 100 acres single
+    declaration_required: false
+    declaration_notes: No (optional designation) [UNVERIFIED]
+    tenancy_by_entirety: None
+    statute: Tex. Const. art. XVI §§ 50–51; Prop. Code § 41.002
+    verified: false
+  UT:
+    homestead_vs_judgment_creditor: $53,700 ($107,500 household), 2026 CPI figure (NCLC $52,400)
+    kind: capped
+    cap_usd: 53700
+    acreage_notes: 1 acre
+    declaration_required: true
+    declaration_notes: Yes (declaration) per Alper
+    tenancy_by_entirety: None
+    statute: Utah Code § 78B-5-503
+    verified: false
+  VA:
+    homestead_vs_judgment_creditor: $50,000 principal residence + $5,000 general ($10,000 at 65+) + $500
+      per dependent; first CPI adjustment 2027-04-01
+    kind: capped
+    cap_usd: 50000
+    acreage_notes: null
+    declaration_required: true
+    declaration_notes: 'Yes: homestead deed (34-6) per Alper'
+    tenancy_by_entirety: Shield (incl. sale proceeds)
+    statute: Va. Code §§ 34-4, 34-6
+    verified: false
+  VT:
+    homestead_vs_judgment_creditor: $125,000
+    kind: capped
+    cap_usd: 125000
+    acreage_notes: null
+    declaration_required: false
+    declaration_notes: No [UNVERIFIED]
+    tenancy_by_entirety: Shield
+    statute: 27 V.S.A. § 101
+    verified: false
+  WA:
+    homestead_vs_judgment_creditor: Greater of $125,000 or county median sale price (2026 King County
+      $940,000 per Alper)
+    kind: formula_or_conflict
+    cap_usd: null
+    acreage_notes: null
+    declaration_required: null
+    declaration_notes: Automatic if occupied; declaration for unimproved land [UNVERIFIED]
+    tenancy_by_entirety: None
+    statute: RCW 6.13.010, .030
+    verified: false
+  WI:
+    homestead_vs_judgment_creditor: $75,000 ($150,000 married)
+    kind: capped
+    cap_usd: 75000
+    acreage_notes: 0.25–40 acres
+    declaration_required: false
+    declaration_notes: No [UNVERIFIED]
+    tenancy_by_entirety: None
+    statute: Wis. Stat. § 815.20
+    verified: false
+  WV:
+    homestead_vs_judgment_creditor: $5,000 non-bankruptcy ($35,000 in bankruptcy, 38-10-4)
+    kind: capped
+    cap_usd: 5000
+    acreage_notes: null
+    declaration_required: false
+    declaration_notes: No [UNVERIFIED]
+    tenancy_by_entirety: None
+    statute: W. Va. Code § 38-9-1
+    verified: false
+  WY:
+    homestead_vs_judgment_creditor: $100,000 ($200,000 for joint owner-occupants)
+    kind: capped
+    cap_usd: 100000
+    acreage_notes: null
+    declaration_required: false
+    declaration_notes: No [UNVERIFIED]
+    tenancy_by_entirety: Shield
+    statute: Wyo. Stat. § 1-20-101
+    verified: false
