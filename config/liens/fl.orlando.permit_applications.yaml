@@ -24,8 +24,8 @@ doc_type: OTHER
 doc_type_raw: {field: application_type}
 extra_pii: [permit_address, project_name]
 parties:
-  - {role: other, name: property_owner_name}
-  - {role: other, name: parcel_owner_name}
+  - {role: owner, name: property_owner_name}
+  - {role: owner, name: parcel_owner_name}
   - role: other
     name: contractor_name
     address: {line1: contractor_address}

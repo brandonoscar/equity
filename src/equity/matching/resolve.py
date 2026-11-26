@@ -32,6 +32,11 @@ Rules, strongest first (a debtor-owner pair keeps its strongest rule):
                         has one extra single-letter middle initial ("JOHN SMITH" / "SMITH JOHN
                         A"); a parent and child can share both, so -> review (approved by the
                         project owner 2026-11-22)
+  person_at_owner_occupied_property  a lot no source names an owner for (California rolls)
+                        whose property address is the debtor's own address, and the roll's
+                        latest homeowner exemption says an owner lives there       -> review
+  person_at_property    the same without the exemption (owner or tenant: unknown)   -> review
+                        (an address shared by several nameless lots gives no lead)
 With parcel_on_lien (liens recorded against a parcel id, e.g. Allegheny PINs), first; a lien
 that names a parcel but no debtor gets the stand-in debtor "owner-of:<parcel_uid>":
   lien_names_parcel         the lien itself names the parcel (instrument_parcel, or the one
@@ -48,6 +53,19 @@ enforcement writ join the debtors as judgment debtors (amount unpublished).
 With street_town (CT only, approved by the project owner 2026-11-22), also:
   person_name_street_town   same person name_key, street line and town         -> auto
   org_name_street_town      same org_name, street line and town                -> auto
+
+With record_owners (and every run's deeds): owner names for parcels whose roll publishes none
+(California counties, Indiana's statewide layer), from records that name a lot's owner: the
+grantee of a DEED, or the 'owner' party of a permit, registration or code case. Per parcel the
+latest such record counts, only where the roll has no owner, matched to the roll parcel by
+county and parcel number letters and digits (punctuation ignored). Matches through them carry
+owner_basis ('deed:<source>' / 'record:<source>', 'roll' otherwise) and owner_seen_on; a
+'record:' owner older than RECORD_OWNER_AUTO_DAYS reaches review only.
+
+Owner strings that print several people or a trust ("SMITH JOHN A & JANE B", "JOHN A SMITH
+REVOCABLE TRUST") are split into the people they name (equity.matching.names): each is an
+extra owner name of the same party and parcel, so every rule above can meet it. Matches record
+owner_name_variant ('joint' or 'trust'); a trust's settlor only reaches review.
 
 Output (Parquet under data/derived/<state>/, which is git-ignored: it names people):
   matches.parquet   debtor party, its instrument, owner party, parcel, rule, decision, keys
@@ -74,6 +92,7 @@ import duckdb
 import yaml
 
 from equity.config import CONFIG_DIR
+from equity.geo import state_fips
 
 LAKE = Path("data/lake")
 DERIVED = Path("data/derived")
@@ -117,6 +136,8 @@ RULES = (
     ("org_name_street_town", "auto", 6),
     ("org_name_county", "review", 7),
     ("person_name_initial_address", "review", 8),
+    ("person_at_owner_occupied_property", "review", 9),
+    ("person_at_property", "review", 10),
 )
 
 
@@ -139,7 +160,7 @@ COLUMNS: dict[str, dict[str, str]] = {
     "instrument_ref": {"from_uid": V, "to_uid": V, "ref_type": V},
     "instrument_parcel": {"instrument_uid": V, "parcel_uid": V},
     "parcel_link": {"from_parcel_uid": V, "to_parcel_uid": V, "link_type": V},
-    "business": {"sos_id": V, "name": V, "status": V},
+    "business": {"sos_id": V, "name": V, "status": V, "jurisdiction": V},
     "business_role": {"sos_id": V, "party_id": V, "role": V, "title": V},
     "owner_snapshot": {"parcel_uid": V, "party_id": V},
     "parcel": {"parcel_uid": V, "situs_address_id": V},
@@ -149,7 +170,7 @@ COLUMNS: dict[str, dict[str, str]] = {
     "judgment_event": {"judgment_uid": V, "event": V},
     "docket_entry": {"case_uid": V, "entry_date": "DATE", "source_id": V, "jurisdiction": V},
     "parcel_assessment": {"parcel_uid": V, "tax_year": "INTEGER", "appraised_total": "DOUBLE",
-                          "assessed_value": "DOUBLE"},
+                          "assessed_value": "DOUBLE", "homestead": "BOOLEAN"},
 }  # fmt: skip
 
 
@@ -202,6 +223,7 @@ def connect(
     court_sources: list[str] | None = None,
     writ_sources: list[str] | None = None,
     debtor_doc_types: list[str] | dict[str, list[str]] | None = None,
+    record_owner_sources: list[str] | None = None,
 ) -> duckdb.DuckDBPyConnection:
     con = duckdb.connect()
     # Large runs (NY: ~5M debtors x ~5M owners) spill to disk; cap it so a run fails cleanly
@@ -228,7 +250,7 @@ def connect(
         CREATE MACRO suffix_conflict(a, b) AS a <> '' AND b <> '' AND a <> b;
     """)
     both = sorted(set(debtor_sources) | set(owner_sources) | set(court_sources or [])
-                  | set(writ_sources or []))  # fmt: skip
+                  | set(writ_sources or []) | set(record_owner_sources or []))  # fmt: skip
     _view(con, "addr_all", lake, both, "address")
     _view(con, "d_party", lake, debtor_sources, "party")
     _view(con, "d_ip", lake, debtor_sources, "instrument_party")
@@ -280,7 +302,13 @@ def connect(
         LEFT JOIN o_parcel pc ON pc.parcel_uid = s.parcel_uid
         LEFT JOIN addr ma ON ma.address_id = p.address_id
         LEFT JOIN addr sa ON sa.address_id = pc.situs_address_id;
+        ALTER TABLE owners ADD COLUMN owner_basis VARCHAR DEFAULT 'roll';
+        ALTER TABLE owners ADD COLUMN owner_seen_on DATE;
+        ALTER TABLE owners ADD COLUMN name_variant VARCHAR;
     """)  # noqa: S608 - doc types come from STATES (repo config), quoted
+    if record_owner_sources:
+        _record_owners(con, lake, record_owner_sources)
+    _owner_name_variants(con)
     if court_sources:
         _court_debtors(con, lake, court_sources)
     if writ_sources:
@@ -304,6 +332,108 @@ def connect(
                   AND ip.role = 'debtor');
         """)
     return con
+
+
+# Owner names from records that are not owner rolls, for parcels whose roll publishes none
+# (California counties, Indiana's statewide layer): a deed's grantee, and the 'owner' party of
+# a permit, landlord or rental registration or code case. Per parcel only the latest dated
+# record counts (all its owner names), and only where no roll owner is known, so a roll owner
+# is never displaced. owner_basis says where the name came from: 'deed:<source>' or
+# 'record:<source>'; owner_seen_on is that record's date.
+RECORD_OWNERS_SQL = """
+-- Records and rolls often print one parcel number differently ('49-02-19-107-055.000-800'
+-- in the roll, '490219107055000800' on a sales form): a record's lot is the roll parcel with
+-- the same county and the same letters and digits.
+CREATE MACRO parcel_key(u) AS split_part(u, '-', 1) || '-'
+    || upper(regexp_replace(substr(u, strpos(u, '-') + 1), '[^0-9A-Za-z]', '', 'g'));
+CREATE TEMP TABLE roll_lot AS
+SELECT parcel_key(parcel_uid) AS k, min(parcel_uid) AS parcel_uid
+FROM o_parcel GROUP BY 1 HAVING count(DISTINCT parcel_uid) = 1;
+INSERT INTO owners
+WITH named AS (
+    SELECT rl.parcel_uid, ip.party_id, i.recorded_on, i.source_id,
+           CASE WHEN ip.role = 'grantee' THEN 'deed:' ELSE 'record:' END || i.source_id
+               AS basis
+    FROM ro_ip ip
+    JOIN ro_inst i ON i.instrument_uid = ip.instrument_uid
+    JOIN ro_lot l ON l.instrument_uid = ip.instrument_uid
+    JOIN roll_lot rl ON rl.k = parcel_key(l.parcel_uid)
+    WHERE (ip.role = 'owner' OR (ip.role = 'grantee' AND i.doc_type = 'DEED'))
+      AND i.recorded_on IS NOT NULL
+      AND rl.parcel_uid NOT IN (SELECT parcel_uid FROM o_snap)
+), latest AS (
+    SELECT * FROM named
+    QUALIFY recorded_on = max(recorded_on) OVER (PARTITION BY parcel_uid)
+)
+SELECT DISTINCT p.party_id, p.raw_name, p.party_kind, p.org_name_norm, n.parcel_uid,
+       name_key(p.raw_name), suffix_key(p.raw_name),
+       ma.addr_key, ma.zip5, sa.addr_key, sa.zip5, ma.town_key, sa.town_key,
+       n.basis, n.recorded_on, NULL
+FROM latest n
+JOIN ro_party p ON p.party_id = n.party_id
+LEFT JOIN o_parcel pc ON pc.parcel_uid = n.parcel_uid
+LEFT JOIN addr ma ON ma.address_id = p.address_id
+LEFT JOIN addr sa ON sa.address_id = pc.situs_address_id;
+"""
+# A 'record:' owner is who owned the lot on the record's date (a permit, a registration);
+# the lot may have been sold since. Its matches stay 'review' unless the record is recent.
+# TODO(Brandon): confirm the two-year window (deeds are not capped: the latest recorded
+# grantee is the owner of record).
+RECORD_OWNER_AUTO_DAYS = 730
+
+
+def _record_owners(con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str]) -> None:
+    _view(con, "ro_party", lake, sources, "party")
+    _view(con, "ro_ip", lake, sources, "instrument_party")
+    _view(con, "ro_inst", lake, sources, "instrument")
+    _view(con, "ro_lot", lake, sources, "instrument_parcel")
+    con.execute(RECORD_OWNERS_SQL)
+
+
+# Owner strings that print several people or a trust ("SMITH JOHN A & JANE B", "JOHN A
+# SMITH REVOCABLE TRUST"): each person they name joins the owners as an extra name of the
+# same owner party and parcel (equity.matching.names). raw_name stays the printed string;
+# name_key is the person's. A joint owner's name is matched like any owner name; a trust's
+# settlor or trustee (name_variant 'trust') only reaches review.
+VARIANT_MARK = r"&|\bAND\b|/|;|\bTR\b|\bTRS\b|TRUST|\bTTEES?\b|\bET ?UX\b|\bET ?VIR\b"
+VARIANT_NAMES_SQL = """
+SELECT DISTINCT raw_name FROM owners
+WHERE name_variant IS NULL AND regexp_matches(upper(coalesce(raw_name, '')), ?)
+ORDER BY raw_name
+"""
+VARIANT_INSERT_SQL = """
+INSERT INTO owners
+SELECT DISTINCT o.party_id, o.raw_name, 'person', NULL, o.parcel_uid,
+       name_key(v.variant), suffix_key(v.variant), o.mail_key, o.mail_zip, o.situs_key,
+       o.situs_zip, o.mail_town, o.situs_town, o.owner_basis, o.owner_seen_on, v.kind
+FROM owners o JOIN owner_name_variant v ON v.raw_name = o.raw_name
+WHERE o.name_variant IS NULL;
+"""
+
+
+def _owner_name_variants(con: duckdb.DuckDBPyConnection) -> None:
+    """Split owner strings in Python (equity.matching.names) and load the person names back
+    through a temporary CSV: only strings with a joint or trust marker are read."""
+    import csv
+    import tempfile
+
+    from equity.matching.names import owner_name_variants
+
+    names = [r[0] for r in con.execute(VARIANT_NAMES_SQL, [VARIANT_MARK]).fetchall()]
+    with tempfile.TemporaryDirectory() as tmp:
+        path = Path(tmp) / "variants.csv"
+        with path.open("w", newline="", encoding="utf-8") as f:
+            w = csv.writer(f)
+            w.writerow(["raw_name", "variant", "kind"])
+            for raw in names:
+                for variant, kind in owner_name_variants(raw):
+                    w.writerow([raw, variant, kind])
+        con.execute(
+            "CREATE TEMP TABLE owner_name_variant AS SELECT * FROM read_csv(?, header=true, "
+            "columns={'raw_name': 'VARCHAR', 'variant': 'VARCHAR', 'kind': 'VARCHAR'})",
+            [str(path)],
+        )
+    con.execute(VARIANT_INSERT_SQL)
 
 
 def _court_debtors(con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str]) -> None:
@@ -528,6 +658,34 @@ WHERE d.party_kind = 'org' AND o.party_kind = 'org' AND d.org_name_norm <> ''
   AND d.town_key IS NOT NULL AND d.town_key IN (o.mail_town, o.situs_town);
 """
 
+# Parcels no source names an owner for (California rolls publish none): a debtor whose own
+# address is the lot's property address may own it or may rent it, so these are review only.
+# The roll's homeowner (owner-occupied) exemption for the latest year says an owner lives
+# there, which ranks the lead above a plain address match. No name is compared: there is none.
+NAMELESS_SQL = """
+CREATE TEMP TABLE nameless_lots AS
+WITH occ AS (
+    SELECT parcel_uid, arg_max(homestead, tax_year) AS homestead FROM o_assess
+    WHERE homestead IS NOT NULL GROUP BY parcel_uid
+)
+SELECT DISTINCT pc.parcel_uid, a.addr_key, coalesce(occ.homestead, false) AS owner_occupied
+FROM o_parcel pc JOIN addr a ON a.address_id = pc.situs_address_id
+LEFT JOIN occ ON occ.parcel_uid = pc.parcel_uid
+WHERE a.addr_key IS NOT NULL
+  AND pc.parcel_uid NOT IN (SELECT parcel_uid FROM owners);
+-- One address can be many lots (condo units, a building split into parcels): only an
+-- address that is one nameless lot is a lead.
+CREATE TEMP TABLE nameless_one AS
+SELECT addr_key, min(parcel_uid) AS parcel_uid, bool_or(owner_occupied) AS owner_occupied
+FROM nameless_lots GROUP BY addr_key HAVING count(DISTINCT parcel_uid) = 1;
+INSERT INTO candidates
+SELECT DISTINCT d.party_id, d.instrument_uid, NULL, n.parcel_uid,
+       CASE WHEN n.owner_occupied THEN 'person_at_owner_occupied_property'
+            ELSE 'person_at_property' END, d.addr_key
+FROM debtors d JOIN nameless_one n ON n.addr_key = d.addr_key
+WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2;
+"""
+
 
 def match(
     con: duckdb.DuckDBPyConnection,
@@ -542,6 +700,7 @@ def match(
         con.execute(PARCEL_ON_LIEN_SQL)
     if street_town:
         con.execute(STREET_TOWN_SQL)
+    con.execute(NAMELESS_SQL)
     ranks = " ".join(f"WHEN '{r}' THEN {n}" for r, _, n in RULES)
     decisions = " ".join(f"WHEN '{r}' THEN '{d}'" for r, d, _ in RULES)
     con.execute(f"""
@@ -552,6 +711,28 @@ def match(
         QUALIFY row_number() OVER (
             PARTITION BY debtor_party_id, instrument_uid, owner_party_id, parcel_uid
             ORDER BY CASE rule_id {ranks} END) = 1;
+        ALTER TABLE matches ADD COLUMN owner_basis VARCHAR;
+        ALTER TABLE matches ADD COLUMN owner_seen_on DATE;
+        UPDATE matches SET owner_basis = o.owner_basis, owner_seen_on = o.owner_seen_on
+        FROM (SELECT party_id, parcel_uid, min(owner_basis) AS owner_basis,
+                     max(owner_seen_on) AS owner_seen_on
+              FROM owners GROUP BY party_id, parcel_uid) o
+        WHERE o.party_id = matches.owner_party_id AND o.parcel_uid = matches.parcel_uid;
+        UPDATE matches SET decision = 'review'
+        WHERE decision = 'auto' AND starts_with(coalesce(owner_basis, ''), 'record:')
+          AND owner_seen_on < current_date - INTERVAL {RECORD_OWNER_AUTO_DAYS} DAY;
+        -- Which name of the owner string the match used: NULL (the whole string), 'joint'
+        -- (one of several owners printed together) or 'trust' (a trust's settlor/trustee).
+        ALTER TABLE matches ADD COLUMN owner_name_variant VARCHAR;
+        UPDATE matches SET owner_name_variant = v.variant
+        FROM (SELECT party_id, parcel_uid, name_key,
+                     CASE WHEN bool_or(name_variant IS NULL) THEN NULL
+                          ELSE min(name_variant) END AS variant
+              FROM owners GROUP BY party_id, parcel_uid, name_key) v
+        WHERE v.party_id = matches.owner_party_id AND v.parcel_uid = matches.parcel_uid
+          AND v.name_key = matches.key;
+        UPDATE matches SET decision = 'review'
+        WHERE decision = 'auto' AND owner_name_variant = 'trust';
         CREATE TEMP TABLE parcel_value AS
         SELECT parcel_uid, arg_max(coalesce(appraised_total, assessed_value), tax_year) AS value
         FROM o_assess GROUP BY parcel_uid;
@@ -690,16 +871,18 @@ def run(
     debtor_doc_types: list[str] | dict[str, list[str]] | None = None,
     bankruptcy_sources: list[str] | None = None,
     deed_sources: list[str] | None = None,
+    record_owner_sources: list[str] | None = None,
+    state_fips: str | None = None,
 ) -> dict[str, object]:
     from equity.matching import bankruptcy, entities, equity, review, transfers
 
     con = connect(lake, debtor_sources, owner_sources, parcel_on_lien, court_sources,
-                  writ_sources, debtor_doc_types)  # fmt: skip
+                  writ_sources, debtor_doc_types, record_owner_sources)  # fmt: skip
     match(con, street_town, parcel_on_lien, bool(court_sources))
     review.build(con)
     tables = ["matches", "debtor_summary", "people", "person_of", "review_queue"]
     if registry_sources:
-        entities.compute(con, lake, registry_sources)
+        entities.compute(con, lake, registry_sources, state_fips)
         tables.extend(entities.TABLES)
     if bankruptcy_sources:
         bankruptcy.compute(con, lake, bankruptcy_sources)
@@ -746,6 +929,9 @@ STATES: dict[str, dict[str, Any]] = {
         "courts": FEDERAL_COURTS,
         "registries": ["ny.sos.business", "ny.sos.name_history"],
         "deeds": ["ny.nyc.acris.real"],
+        "record_owners": ["ny.nyc.dob_permits", "ny.nyc.dob_job_filings",
+                          "ny.nyc.dob_legacy_permits", "ny.nyc.dob_electrical_permits",
+                          "ny.nyc.lpc_permits", "ny.nyc.tax_commission_actions"],
     },
     # CT parcel data has no owner ZIP (Mailing_Zip is empty statewide): street + town instead.
     # Allegheny's parcel layer has no owner names, but its liens name the parcel (PIN).
@@ -754,7 +940,9 @@ STATES: dict[str, dict[str, Any]] = {
                                  "pa.pittsburgh.tax_delinquency", "pa.pittsburgh.treasury_sales"],
                      "owners": ["pa.allegheny.parcels", "pa.allegheny.assessments"],
                      "registries": ["pa.dos.business"], "parcel_on_lien": True,
-                     "courts": FEDERAL_COURTS},
+                     "courts": FEDERAL_COURTS,
+                     "record_owners": ["pa.pittsburgh.pli_permits",
+                                       "pa.pittsburgh.condemned_properties"]},
     "CT": {"debtors": ["ct.sots.liens"], "owners": ["ct.statewide.parcels"], "street_town": True,
            "registries": ["ct.sos.business"], "courts": FEDERAL_COURTS,
            "deeds": ["ct.cama.sales"]},
@@ -797,7 +985,10 @@ STATES: dict[str, dict[str, Any]] = {
     # County sheriff sales list every parcel sold.
     "MI-DETROIT": {"debtors": ["mi.detroit.blight_judgments"], "owners": ["mi.wayne.parcels"],
                    "parcel_on_lien": True, "courts": FEDERAL_COURTS,
-                   "deeds": ["mi.detroit.property_sales"]},
+                   "deeds": ["mi.detroit.property_sales"],
+                   "record_owners": ["mi.detroit.demolition_permits",
+                                     "mi.detroit.trades_permits",
+                                     "mi.detroit.vacant_property_registrations"]},
     "TX-HARRIS": {"debtors": ["tx.harris.tax_judgments", "tx.tceq.civil_judgments",
                               "tx.tceq.administrative_orders", "tx.harris.delinquent_taxes"],
                   "owners": ["tx.statewide.parcels"], "parcel_on_lien": True,
@@ -812,7 +1003,9 @@ STATES: dict[str, dict[str, Any]] = {
            "owners": ["fl.statewide.parcels"],
            "courts": ["fl.hillsborough.civil.cases", "fl.citrus.civil", *FEDERAL_COURTS],
            "writs": ["fl.hillsborough.garnishment"], "parcel_on_lien": True,
-           "deeds": ["fl.hillsborough.or", "fl.hernando.or", "fl.putnam.or"]},
+           "deeds": ["fl.hillsborough.or", "fl.hernando.or", "fl.putnam.or"],
+           "record_owners": ["fl.cape_coral.building_permits", "fl.miami_dade.building_permits",
+                             "fl.orlando.permit_applications"]},
     # PA L&I lists name employers statewide; county parcel layers with owner names.
     "PA": {"debtors": ["pa.berks.upset_sale_unsold", "pa.cumberland.tax_sales",
                        "pa.dli.bllc_noncompliance", "pa.dli.bwc_noncompliance",
@@ -829,7 +1022,10 @@ STATES: dict[str, dict[str, Any]] = {
            "parcel_on_lien": True, "courts": FEDERAL_COURTS, "street_town": True,
            # Philadelphia RTT: mortgages and satisfactions on OPA lots (42101-<opa>), netted
            # by the owner-approved paid rules in equity.py; also the deed source for transfers.
-           "deeds": ["pa.philadelphia.rtt"], "mortgages": ["pa.philadelphia.rtt"]},
+           "deeds": ["pa.philadelphia.rtt"], "mortgages": ["pa.philadelphia.rtt"],
+           "record_owners": ["pa.philadelphia.permits", "pa.philadelphia.violations",
+                             "pa.philadelphia.appeals", "pa.philadelphia.clean_seal",
+                             "pa.philadelphia.demolitions"]},
     # The PA and VT lists publish street and town but no ZIP: street + town rules, as in CT.
     "VT": {"debtors": ["vt.tax.top100_individuals", "vt.tax.top100_businesses"],
            "owners": ["vt.statewide.parcels"], "courts": FEDERAL_COURTS,
@@ -842,7 +1038,8 @@ STATES: dict[str, dict[str, Any]] = {
                 "courts": FEDERAL_COURTS, "street_town": True},
     # New Orleans code judgments name the parcel (GeoPIN), not the owner.
     "LA-NOLA": {"debtors": ["la.nola.code_hearing_judgments"], "owners": ["la.orleans.parcels"],
-                "courts": FEDERAL_COURTS, "parcel_on_lien": True},
+                "courts": FEDERAL_COURTS, "parcel_on_lien": True,
+                "record_owners": ["la.nola.permits"]},
     # Cincinnati lot abatement cites the property's address only: its parcel is found by
     # situs address (LOTS_SQL) and the charge is owed by that parcel's owner.
     "OH": {"debtors": ["oh.cincinnati.lot_abatement", "oh.clermont.tax_delinquent",
@@ -863,7 +1060,8 @@ STATES: dict[str, dict[str, Any]] = {
     "NC": {"debtors": ["nc.guilford.tax_delinquent", "nc.buncombe.unpaid_bills",
                        "nc.charlotte.municipal_liens"],
                     "owners": ["nc.statewide.parcels"], "parcel_on_lien": True,
-                    "courts": FEDERAL_COURTS},
+                    "courts": FEDERAL_COURTS,
+           "record_owners": ["nc.raleigh.building_permits"]},
     "AZ-COCHISE": {"debtors": ["az.cochise.tax_liens", "az.cochise.tax_deed_auction"],
                    "owners": ["az.cochise.parcels"],
                    "parcel_on_lien": True, "courts": FEDERAL_COURTS},
@@ -907,7 +1105,8 @@ STATES: dict[str, dict[str, Any]] = {
     "NV-WASHOE": {"debtors": [], "owners": ["nv.washoe.parcels"], "courts": FEDERAL_COURTS},
     # Clark: the City of Las Vegas copy of the assessor roll (Las Vegas Valley only).
     "NV-COUNTIES": {"debtors": [], "courts": FEDERAL_COURTS,
-                    "owners": ["nv.clark.parcels", "nv.lyon.parcels"]},
+                    "owners": ["nv.clark.parcels", "nv.lyon.parcels"],
+                    "record_owners": ["nv.las_vegas.abandoned_property_registry"]},
     # County parcel layers with owner names in states (or counties) with no county debt list
     # yet: federal court judgments, the national debt lists (SBA 7(a)/504 and PPP charge-offs)
     # and the state's bankruptcy feeds against those owners.
@@ -964,8 +1163,16 @@ STATES: dict[str, dict[str, Any]] = {
                                "la.st_bernard.parcels", "la.tangipahoa.parcels"]},
     # California: the state's top-500 delinquent taxpayer lists (FTB personal and corporate,
     # CDTFA) against the San Jose owner table, the only California owner source so far.
-    "CA": {"debtors": ["ca.cdtfa.top500", "ca.ftb.top500_corporate", "ca.ftb.top500_personal"],
-           "owners": ["ca.san_jose.parcels"], "courts": FEDERAL_COURTS},
+    # The four county rolls publish no owner names: their lots are found by property address
+    # (nameless-lot review leads) and by the LA lists that name the parcel.
+    "CA": {"debtors": ["ca.cdtfa.top500", "ca.ftb.top500_corporate", "ca.ftb.top500_personal",
+                       "ca.los_angeles.defaulted_tax", "ca.los_angeles.registered_foreclosures"],
+           "owners": ["ca.san_jose.parcels", "ca.losangeles.parcels", "ca.riverside.parcels",
+                      "ca.sanbernardino.parcels", "ca.sandiego.parcels"],
+           "courts": FEDERAL_COURTS, "parcel_on_lien": True,
+           "record_owners": ["ca.san_jose.building_permits_active",
+                             "ca.san_jose.building_permits_expired",
+                             "ca.san_jose.building_permits_under_inspection"]},
     "MI-COUNTIES": {"debtors": ["mi.eaton.tax_foreclosure_sale", "mi.kalamazoo.delinquent_2024",
                                 "mi.kalamazoo.delinquent_taxes", "mi.kalamazoo.foreclosed_2022",
                                 "mi.kalamazoo.forfeited_2018", "mi.kalamazoo.forfeited_2020",
@@ -1026,7 +1233,9 @@ STATES: dict[str, dict[str, Any]] = {
                                "va.suffolk_city.parcels", "va.virginia_beach_city.parcels",
                                "va.williamsburg_city.parcels", "va.york.parcels",
                                "va.roanoke_county.parcels"],
-                    "deeds": ["va.norfolk.property_transfers"]},
+                    "deeds": ["va.norfolk.property_transfers"],
+                    "record_owners": ["va.lynchburg.building_permits",
+                                      "va.lynchburg.code_violations"]},
     # Ohio's statewide Name field is a placeholder: county layers carry the owner names.
     "OH-COUNTIES": {"debtors": ["oh.cuyahoga.delinquent_taxes", "oh.cuyahoga.forfeited_land_sale",
                                 "oh.franklin.tax_lien_sale", "oh.greene.delinquent_taxes",
@@ -1042,11 +1251,13 @@ STATES: dict[str, dict[str, Any]] = {
                                "oh.pickaway.parcels", "oh.stark.parcels", "oh.summit.parcels",
                                "oh.tuscarawas.parcels", "oh.wayne.parcels", "oh.delaware.parcels",
                                "oh.union.parcels"],
-                    "deeds": ["oh.cuyahoga.last_transfer"]},
+                    "deeds": ["oh.cuyahoga.last_transfer"],
+                    "record_owners": ["oh.franklin.rental_contacts"]},
     "TX-COUNTIES": {"debtors": ["tx.tabc.credit_law_delinquent"], "courts": FEDERAL_COURTS,
                     "owners": ["tx.collin.parcels", "tx.dallas_city.parcels",
                                "tx.montgomery.parcels", "tx.williamson.parcels",
-                               "tx.travis.parcels"]},
+                               "tx.travis.parcels"],
+                    "record_owners": ["tx.collin.cad_building_permits"]},
     "MD-COUNTIES": {"debtors": ["md.st_marys.tax_sale"], "courts": FEDERAL_COURTS,
                     "owners": ["md.anne_arundel.parcels", "md.baltimore_county.parcels",
                                "md.charles.parcels", "md.montgomery.parcels", "md.st_marys.parcels",
@@ -1077,10 +1288,12 @@ STATES: dict[str, dict[str, Any]] = {
                       "in.lake.parcels"],
            "parcel_on_lien": True,
            "courts": FEDERAL_COURTS,
-           "deeds": ["in.st_joseph.transfer_history"]},
+           "deeds": ["in.st_joseph.transfer_history"],
+           "record_owners": ["in.dlgf.sales_disclosures"]},
     # DC: prior-year real property tax owed by the lot's owner (OTR extract, keyed by SSL).
     "DC": {"debtors": ["dc.otr.delinquent_taxes"], "owners": ["dc.statewide.parcels"],
-           "parcel_on_lien": True, "registries": ["dc.dlcp.business"], "courts": FEDERAL_COURTS},
+           "parcel_on_lien": True, "registries": ["dc.dlcp.business"], "courts": FEDERAL_COURTS,
+           "record_owners": ["dc.dob.building_permits", "dc.otr.vacant_blighted"]},
 }  # fmt: skip
 
 
@@ -1089,6 +1302,34 @@ TABLES_READ = ("address", "party", "instrument", "instrument_party", "instrument
                "instrument_parcel", "owner_snapshot", "parcel", "parcel_assessment",
                "parcel_link", "business", "business_role", "judgment", "judgment_event",
                "case_party", "court_case", "docket_entry")  # fmt: skip
+
+
+# Lists that name the people behind businesses nationwide (carrier officers, NPI authorized
+# officials, 990 officers, Form D related persons, insiders, adviser owners, mine controllers,
+# FCC licensees, lobbying registrants). Every run reads them, plus its own state's license
+# boards, as extra registries filtered to the run's state; they are optional: a run never
+# fails for want of them (missing_sources leaves them out), and --list-sources names them
+# under "optional_sources" so a loader can pull them.
+NATIONAL_REGISTRIES = ["us.cms.nppes", "us.dol.msha_mines", "us.fcc.uls_amateur",
+                       "us.fcc.uls_gmrs", "us.fcc.uls_land_mobile_broadcast",
+                       "us.fcc.uls_land_mobile_commercial", "us.fcc.uls_land_mobile_private",
+                       "us.fmcsa.carrier_census", "us.irs.990_officers", "us.sec.form_d",
+                       "us.sec.iapd_advisers", "us.sec.insiders",
+                       "us.senate.lda_registrants"]  # fmt: skip
+
+
+def run_state(state: str) -> str:
+    """A run's two-letter state: 'PA-ALLEGHENY' -> 'PA'."""
+    return state.split("-", 1)[0]
+
+
+def optional_registries(state: str) -> list[str]:
+    """National people-behind-business lists plus the run's state license boards."""
+    from equity.adapters.licenses import all_license_adapters
+
+    prefix = run_state(state).lower() + "."
+    boards = {a.source_id for a in all_license_adapters() if a.source_id.startswith(prefix)}
+    return sorted(set(NATIONAL_REGISTRIES) | boards)
 
 
 def bankruptcy_sources(state: str) -> list[str]:
@@ -1101,7 +1342,7 @@ def bankruptcy_sources(state: str) -> list[str]:
 def state_sources(state: str) -> list[str]:
     """Every source a state's match reads: debtors, owners, mortgages, links, registries."""
     spec = STATES[state]
-    keys = ("debtors", "owners", "mortgages", "links", "registries", "deeds")
+    keys = ("debtors", "owners", "mortgages", "links", "registries", "deeds", "record_owners")
     return sorted({s for k in keys for s in spec.get(k) or []} | set(bankruptcy_sources(state))
                   | set(FEDERAL_DEBTS))  # fmt: skip
 
@@ -1131,7 +1372,8 @@ def main(argv: list[str] | None = None) -> int:
     )
     args = ap.parse_args(argv)
     if args.list_sources:
-        print(json.dumps({"sources": state_sources(args.state), "tables": list(TABLES_READ)}))
+        print(json.dumps({"sources": state_sources(args.state), "tables": list(TABLES_READ),
+                          "optional_sources": optional_registries(args.state)}))  # fmt: skip
         return 0
     missing = missing_sources(args.state, args.lake)
     if missing:
@@ -1144,9 +1386,12 @@ def main(argv: list[str] | None = None) -> int:
                  spec["owners"],
                  spec.get("mortgages"), spec.get("links"),
                  bool(spec.get("street_town")), bool(spec.get("parcel_on_lien")),
-                 spec.get("courts"), spec.get("writs"), spec.get("registries"),
+                 spec.get("courts"), spec.get("writs"),
+                 [*(spec.get("registries") or []), *optional_registries(args.state)],
                  spec.get("debtor_doc_types"), bankruptcy_sources(args.state),
-                 spec.get("deeds"))  # fmt: skip
+                 spec.get("deeds"),
+                 [*(spec.get("deeds") or []), *(spec.get("record_owners") or [])],
+                 state_fips(run_state(args.state)))  # fmt: skip
     result["missing_sources"] = missing
     summary = args.out / args.state.lower() / "summary.json"
     summary.write_text(json.dumps(result, indent=2, default=str))

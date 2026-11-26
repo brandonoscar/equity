@@ -23,10 +23,10 @@ uid: parcel_id
 doc_type: OTHER
 doc_type_raw: Franklin County rental property registration
 parties:
-  - role: other
+  - role: owner
     name: owner_businessname
     address: {line1: [owner_address1, owner_address2], city: owner_city, state: owner_state, zip: owner_zip}
-  - role: other
+  - role: owner
     name: owner_name
     address: {line1: [owner_address1, owner_address2], city: owner_city, state: owner_state, zip: owner_zip}
   - role: other

@@ -20,7 +20,7 @@ doc_type: OTHER
 doc_type_raw: City of Las Vegas vacant / abandoned property registration
 extra_pii: [ADDRESS]
 parties:
-  - {role: other, name: OWNERNAME}
+  - {role: owner, name: OWNERNAME}
 parcel: {kind: pin, field: PRCLID, county_fips: "32003"}   # = nv.clark.property_sales PARCEL
 terms:
   url: https://www.arcgis.com/home/item.html?id=9989f562f4f44fb997ba158d56036455

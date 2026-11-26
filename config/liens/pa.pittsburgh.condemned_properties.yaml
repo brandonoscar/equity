@@ -16,7 +16,7 @@ uid: [record_number, property_type]
 doc_type: OTHER
 doc_type_raw: {field: property_type}
 parties:
-  - role: other
+  - role: owner
     name: owner
 parcel: {kind: pin, field: parcel_id, county_fips: "42003"}   # = pa.allegheny.parcels PIN
 extra_pii: [address]

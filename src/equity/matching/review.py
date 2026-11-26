@@ -10,6 +10,9 @@ person (or a rule the project owner approves later) can work the queue in order:
                              none now that address keys use that spelling (kept as a check)
              same_number     same house number, different street
              po_box          the debtor's address is a PO box (says nothing about property)
+             at_owner_occupied_property  the debtor lives at a lot no source names an owner
+                             for, and the roll's homeowner exemption says an owner lives there
+             at_property     the debtor lives at a nameless lot (owner or tenant: unknown)
              different       anything else
   owners_with_name_in_zip    owner parties in that ZIP with the same name key (1 = unique)
   rule_id                    the review rule that proposed the pair
@@ -72,6 +75,8 @@ SELECT q.debtor_party_id, d.raw_name AS debtor_name, d.line1 AS debtor_line1,
        o.mail_line1, o.mail_zip, o.situs_line1, o.situs_zip, q.parcel_uid, v.value AS parcel_value,
        CASE
          WHEN q.rule_id = 'person_name_initial_address' THEN 'middle_initial'
+         WHEN q.rule_id = 'person_at_owner_occupied_property' THEN 'at_owner_occupied_property'
+         WHEN q.rule_id = 'person_at_property' THEN 'at_property'
          WHEN regexp_matches(street_norm(d.line1), '^(P ?O ?BOX|POB|BOX) ')
            THEN 'po_box'
          WHEN street_norm(d.line1) <> '' AND street_norm(d.line1)
@@ -82,7 +87,7 @@ SELECT q.debtor_party_id, d.raw_name AS debtor_name, d.line1 AS debtor_line1,
        coalesce(sn.n, 0) AS owners_with_name_in_zip, q.rule_id
 FROM q
 JOIN d ON d.party_id = q.debtor_party_id AND d.instrument_uid = q.instrument_uid
-JOIN o ON o.party_id = q.owner_party_id AND o.parcel_uid = q.parcel_uid
+LEFT JOIN o ON o.party_id = q.owner_party_id AND o.parcel_uid = q.parcel_uid
 LEFT JOIN parcel_value v ON v.parcel_uid = q.parcel_uid
 LEFT JOIN same_name sn ON sn.name_key = q.key AND sn.zip = d.zip5;
 """

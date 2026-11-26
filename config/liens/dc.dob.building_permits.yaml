@@ -40,7 +40,7 @@ uid: PERMIT_ID
 doc_type: OTHER
 doc_type_raw: {field: PERMIT_SUBTYPE_NAME}
 parties:
-  - role: other
+  - role: owner
     name: OWNER_NAME
 parcel: {kind: pin, field: SSL, county_fips: "11001"}   # = dc.statewide.parcels SSL
 extra_pii: [PERMIT_APPLICANT, FULL_ADDRESS]

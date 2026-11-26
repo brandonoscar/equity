@@ -19,7 +19,7 @@ uid: record_id
 doc_type: OTHER
 doc_type_raw: {field: permit_type}
 parties:
-  - role: other
+  - role: owner
     name: owner_name
   - role: other
     name: contact_name

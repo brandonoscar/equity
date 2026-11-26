@@ -20,7 +20,7 @@ uid: [borough_code, block_number, lot_number, tax_year]
 doc_type: OTHER
 doc_type_raw: NYC Tax Commission granted assessment reduction
 parties:
-  - role: other
+  - role: owner
     name: owner_name
 parcel: {kind: nyc_bbl, borough: borough_code, block: block_number, lot: lot_number}
 extra_pii: [property_address]

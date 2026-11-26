@@ -21,7 +21,7 @@ doc_type: OTHER
 doc_type_raw: {field: type}
 extra_pii: [address]
 parties:
-  - {role: other, name: owner}
+  - {role: owner, name: owner}
   - {role: other, name: applicant}
   - {role: other, name: contractors}
 parcel: {kind: pin, field: pin, county_fips: "22071"}   # Orleans Parish assessor PIN
