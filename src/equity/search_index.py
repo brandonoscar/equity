@@ -52,7 +52,7 @@ DEFAULT_DB = Path("data/search_index.duckdb")
 STORAGE_VERSION = "v1.5.0"
 # Part of every source's version: bump it when the index layout changes, so the next build
 # re-indexes every source into the new layout.
-INDEX_VERSION = "2"
+INDEX_VERSION = "3"
 LAKE = Path("data/lake")
 
 SCHEMA = """
@@ -506,7 +506,9 @@ def index_source(con: duckdb.DuckDBPyConnection, source: Any, source_id: str) ->
                   UNION
                   SELECT name_key, source_id FROM businesses
                   WHERE source_id = ? AND name_key <> ''))
-        WHERE length(word) >= 2  -- initials find nothing useful on their own
+        -- Initials find nothing useful on their own; a name with no 2-letter word is a
+        -- placeholder (Ohio's statewide view: "39005 | A01-001-0-0001-00"), not a name.
+        WHERE length(word) >= 2 AND regexp_matches(name_key, '[A-Z]{2}')
     """, [source_id, source_id])  # fmt: skip
     con.execute("""
         INSERT OR IGNORE INTO word_sounds

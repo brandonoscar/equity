@@ -75,6 +75,7 @@ class Hit:
     cases: int = 0
     businesses: int = 0  # business roles this party holds
     officers: int = 0  # for a business hit: officer, agent and member rows
+    name_key: str = ""
 
     @property
     def ref(self) -> str:
@@ -133,7 +134,8 @@ scored AS (
       WHEN len(list_filter($words::VARCHAR[], lambda q: list_contains(w, q))) = $n - 1
            AND len(list_filter($words::VARCHAR[], lambda q: NOT list_contains(w, q)
              AND ((length(q) = 1 AND len(list_filter(w, lambda x: x[1] = q)) > 0)
-               OR len(list_filter(w, lambda x: length(x) = 1 AND q[1] = x)) > 0))) = 1
+               OR len(list_filter(w, lambda x: length(x) = 1 AND q[1] = x
+                                          AND NOT list_contains($words::VARCHAR[], x))) > 0))) = 1
            AND len(list_filter(w, lambda x: length(x) >= 2
                AND NOT list_contains($words::VARCHAR[], x)
                AND NOT list_contains($words::VARCHAR[], x[1]))) = 0
@@ -146,14 +148,14 @@ scored AS (
     END AS rule
     FROM scored
 )
-SELECT name_key, rule,
+SELECT name_key, rule, sim,
        CASE rule WHEN 'exact' THEN 1.0
                  WHEN 'all_words' THEN 1.0 - 0.05 * (len(w) - $n)
                  WHEN 'initial' THEN 0.85
                  WHEN 'sounds_like' THEN 0.82
                  ELSE round(0.8 * sim, 4) END AS score
 FROM ruled WHERE rule IS NOT NULL
-ORDER BY score DESC, name_key
+ORDER BY score DESC, sim DESC, name_key
 LIMIT {MAX_KEYS}
 """  # noqa: S608
 
@@ -203,7 +205,8 @@ def search(
     words = key.split(" ")
     ranked = con.execute(RULES_SQL, {"keys": candidate_keys(con, key), "words": words,
                                      "key": key, "n": len(words)}).fetchall()  # fmt: skip
-    rule = {str(k): (str(r), float(sc)) for k, r, sc in ranked}
+    rule = {str(k): (str(r), float(sc)) for k, r, _sim, sc in ranked}
+    closeness = {str(k): float(sim or 0) for k, _r, sim, _sc in ranked}
     if not rule:
         return []
     cond = ""
@@ -225,7 +228,13 @@ def search(
     """, params)  # noqa: S608  # fmt: skip
     rows = sorted(
         parties + firms,
-        key=lambda r: (-rule[r["name_key"]][1], r["raw_name"], r["source_id"], r["party_id"]),
+        key=lambda r: (
+            -rule[r["name_key"]][1],
+            -closeness[r["name_key"]],
+            r["raw_name"],
+            r["source_id"],
+            r["party_id"],
+        ),
     )[:limit]
     hits = [
         Hit(
@@ -236,6 +245,7 @@ def search(
             rule[r["name_key"]][0],
             rule[r["name_key"]][1],
             r["state"],
+            name_key=r["name_key"],
         )
         for r in rows
     ]
@@ -583,20 +593,22 @@ def benchmark(
     con: duckdb.DuckDBPyConnection, n: int = 50, seed: int = 7, top: int = 10
 ) -> dict[str, Any]:
     """Recall and latency on real names. Samples n indexed person-or-unknown names of 2+
-    words (repeatably), searches each as written and with one typo (a letter dropped from
-    its longest word), and reports how often the sampled party is in the top results."""
+    words with letters (repeatably), searches each as written and with one typo (a letter
+    dropped from its longest word), and reports how often the sampled name comes back in the
+    top results (name_recall) and how often the sampled record itself does (record_recall:
+    lower when many records share one name)."""
     import time
 
     sample = _rows(con, f"""
         SELECT * FROM (
             SELECT source_id, party_id, raw_name, name_key FROM names
             WHERE party_kind <> 'org' AND len(string_split(name_key, ' ')) >= 2
-              AND length(name_key) >= 8)
+              AND regexp_matches(name_key, '[A-Z]{{3}}') AND length(name_key) >= 8)
         USING SAMPLE reservoir({int(n)} ROWS) REPEATABLE ({int(seed)})
     """, [])  # noqa: S608  # fmt: skip
     out: dict[str, Any] = {"queries": len(sample)}
     for variant in ("as_written", "one_typo"):
-        found, times = 0, []
+        names, records, times = 0, 0, []
         for r in sample:
             q = r["raw_name"]
             if variant == "one_typo":
@@ -605,11 +617,14 @@ def benchmark(
             t0 = time.perf_counter()
             hits = search(con, q, limit=top)
             times.append(time.perf_counter() - t0)
-            found += any((h.source_id, h.party_id) == (r["source_id"], r["party_id"])
-                         for h in hits)  # fmt: skip
+            names += any(h.name_key == r["name_key"] for h in hits)
+            records += any((h.source_id, h.party_id) == (r["source_id"], r["party_id"])
+                           for h in hits)  # fmt: skip
         times.sort()
+        k = len(sample) or 1
         out[variant] = {
-            "recall_at_top": round(found / len(sample), 3) if sample else None,
+            "name_recall": round(names / k, 3),
+            "record_recall": round(records / k, 3),
             "p50_s": round(times[len(times) // 2], 3) if times else None,
             "p95_s": round(times[min(len(times) - 1, int(len(times) * 0.95))], 3)
             if times else None,

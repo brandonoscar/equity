@@ -321,8 +321,8 @@ def test_benchmark_reports_recall_and_latency(cat: duckdb.DuckDBPyConnection) ->
 
     b = benchmark(cat, n=10, top=10)
     assert b["queries"] >= 3
-    assert b["as_written"]["recall_at_top"] == 1.0
-    assert 0 <= b["one_typo"]["recall_at_top"] <= 1
+    assert b["as_written"]["name_recall"] == 1.0
+    assert 0 <= b["one_typo"]["record_recall"] <= b["one_typo"]["name_recall"] <= 1
     assert b["as_written"]["p95_s"] >= b["as_written"]["p50_s"] >= 0
 
 
@@ -367,3 +367,21 @@ def test_parcel_view_and_document_edges(cat: duckdb.DuckDBPyConnection) -> None:
     g = network(cat, "oh.cuyahoga.liens:d1", hops=1)
     assert {"from": "doc:oh.cuyahoga.liens:i1", "to": "parcel:39049-010-1",
             "kind": "recorded_against"} in g["edges"]  # fmt: skip
+
+
+def test_placeholder_names_are_not_word_indexed(lake: Path, tmp_path: Path) -> None:
+    p = "oh.statewide.parcels"
+    _write(lake, p, "party", [_party("z1", "39005 | A01-001-0-0001-00", "unknown", p)])
+    _finish(lake, p, {"party": 1})
+    con = connect(tmp_path / "z.duckdb")
+    build(con, FileSource(lake), log=lambda _m: None)
+    assert con.execute("SELECT count(*) FROM name_words WHERE source_id = ?", [p]
+                       ).fetchone() == (0,)  # fmt: skip
+    assert con.execute("SELECT count(*) FROM names WHERE source_id = ?", [p]).fetchone() == (1,)
+
+
+def test_initial_rule_does_not_reuse_a_query_initial(cat: duckdb.DuckDBPyConnection) -> None:
+    # "JOHN A SMOTH": SMOTH may not be explained by the name's initial A, which the query's
+    # own A already matches; the closer spelling decides the order instead.
+    rules = {h.raw_name: h.rule for h in search(cat, "JOHN A SMOTH")}
+    assert rules.get("SMITH, JOHN A") in {"sounds_like", "similar"}
