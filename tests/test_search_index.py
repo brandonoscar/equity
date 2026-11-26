@@ -1,4 +1,4 @@
-"""Query catalog and search, on a tiny synthetic lake written as Parquet (no network)."""
+"""Search index and search, on a tiny synthetic lake written as Parquet (no network)."""
 
 from __future__ import annotations
 
@@ -9,8 +9,8 @@ from typing import Any
 import duckdb
 import pytest
 
-from equity.catalog import FileSource, build, compact, connect, status
 from equity.search import address_search, query_key, search, show
+from equity.search_index import FileSource, build, compact, connect, status
 
 T = "TIMESTAMPTZ '2026-01-01 00:00:00+00'"
 
@@ -89,6 +89,17 @@ def lake(tmp_path: Path) -> Path:
          "superseded_at": None},
     ])  # fmt: skip
     _finish(lake, d, {"party": 1, "instrument": 1})
+    b = "oh.sos.business"
+    _write(lake, b, "business", [
+        {"sos_id": "B7", "name": "Acme Holdings, L.L.C.", "org_form": "LLC", "status": "Active",
+         "formed_on": "2019-03-01", "source_id": b, "superseded_at": None},
+    ])  # fmt: skip
+    _write(lake, b, "party", [_party("m1", "JOHN A SMITH", "unknown", b)])
+    _write(lake, b, "business_role", [
+        {"sos_id": "B7", "party_id": "m1", "role": "member", "title": "Managing member",
+         "source_id": b, "superseded_at": None},
+    ])  # fmt: skip
+    _finish(lake, b, {"business": 1, "party": 1})
     return lake
 
 
@@ -96,7 +107,7 @@ def lake(tmp_path: Path) -> Path:
 def cat(lake: Path, tmp_path: Path) -> duckdb.DuckDBPyConnection:
     con = connect(tmp_path / "c.duckdb")
     assert build(con, FileSource(lake), log=lambda _m: None) == [
-        "oh.cuyahoga.liens", "oh.franklin.parcels"]  # fmt: skip
+        "oh.cuyahoga.liens", "oh.franklin.parcels", "oh.sos.business"]  # fmt: skip
     return con
 
 
@@ -107,7 +118,8 @@ def test_query_key_ignores_order_punctuation_and_suffixes(cat: duckdb.DuckDBPyCo
 def test_exact_hits_carry_their_links(cat: duckdb.DuckDBPyConnection) -> None:
     hits = search(cat, "john a smith")
     top = [(h.source_id, h.rule, h.score) for h in hits if h.rule == "exact"]
-    assert top == [("oh.cuyahoga.liens", "exact", 1.0), ("oh.franklin.parcels", "exact", 1.0)]
+    assert top == [("oh.sos.business", "exact", 1.0), ("oh.cuyahoga.liens", "exact", 1.0),
+                   ("oh.franklin.parcels", "exact", 1.0)]  # fmt: skip
     debtor = next(h for h in hits if h.source_id == "oh.cuyahoga.liens")
     assert (debtor.debts, debtor.debt_amount, debtor.documents) == (1, 12500.0, 1)
     assert debtor.address == "123 MAIN STREET, COLUMBUS, OH 43215"
@@ -118,7 +130,7 @@ def test_exact_hits_carry_their_links(cat: duckdb.DuckDBPyConnection) -> None:
 def test_rules_rank_partial_and_similar_names(cat: duckdb.DuckDBPyConnection) -> None:
     rules = {h.raw_name: h.rule for h in search(cat, "JOHN SMITH")}
     assert rules["SMITH, JOHN A"] == "all_words"
-    assert rules["SMYTH JOHN A"] == "similar"
+    assert rules["SMYTH JOHN A"] == "sounds_like"
     assert "LUCAS JOHN S" not in rules  # two initials would be needed: not a match
     assert search(cat, "nobody here") == []
     assert search(cat, "") == []
@@ -127,7 +139,9 @@ def test_rules_rank_partial_and_similar_names(cat: duckdb.DuckDBPyConnection) ->
 def test_filters_and_superseded_rows(cat: duckdb.DuckDBPyConnection) -> None:
     assert {h.state for h in search(cat, "john a smith", state="oh")} == {"OH"}
     assert search(cat, "john a smith", state="TX") == []
-    assert [h.raw_name for h in search(cat, "acme holdings", kind="org")] == ["ACME HOLDINGS LLC"]
+    assert [h.raw_name for h in search(cat, "acme holdings", kind="org")] == [
+        "ACME HOLDINGS LLC", "Acme Holdings, L.L.C."]  # fmt: skip
+    assert [h.party_kind for h in search(cat, "acme holdings", kind="business")] == ["business"]
     assert search(cat, "old name") == []  # superseded in the lake
 
 
@@ -136,7 +150,7 @@ def test_show_lists_parcels_documents_and_same_name(cat: duckdb.DuckDBPyConnecti
     assert e is not None
     assert [(p["parcel_uid"], p["tax_year"], p["situs_line1"]) for p in e.parcels] == [
         ("39049-010-1", 2025, "123 MAIN STREET")]  # fmt: skip
-    assert [s["ref"] for s in e.same_name] == ["oh.cuyahoga.liens:d1"]
+    assert [s["ref"] for s in e.same_name] == ["oh.cuyahoga.liens:d1", "oh.sos.business:m1"]
     d = show(cat, "oh.cuyahoga.liens:d1")
     assert d is not None and [x["doc_type"] for x in d.documents] == ["JUDGMENT_LIEN"]
     assert show(cat, "oh.franklin.parcels:nope") is None
@@ -161,13 +175,14 @@ def test_rebuild_only_reindexes_changed_sources(cat: duckdb.DuckDBPyConnection, 
     logs: list[str] = []
     build(cat, src, log=logs.append)
     assert logs == ["dropped oh.cuyahoga.liens (no longer in the lake)"]
-    assert search(cat, "john a smith")[0].source_id == "oh.franklin.parcels"
+    assert {h.source_id for h in search(cat, "john a smith")} == {
+        "oh.franklin.parcels", "oh.sos.business"}  # fmt: skip
 
 
 def test_compact_and_status(cat: duckdb.DuckDBPyConnection) -> None:
     compact(cat)
     text = status(cat)
-    assert text.startswith("2 sources indexed")
+    assert text.startswith("3 sources indexed")
     assert "names" in text and search(cat, "john a smith")
 
 
@@ -179,8 +194,8 @@ def test_read_only_catalog_searches(cat: duckdb.DuckDBPyConnection, tmp_path: Pa
 
 
 def test_remote_source_lists_built_sources_and_part_urls() -> None:
-    from equity.catalog import RemoteSource
     from equity.lake_sync import Store
+    from equity.search_index import RemoteSource
 
     bundles = {"a.b.parcels": {"_counts.json": "{}"}, "a.c.parcels": {"_plan.json": "[]"}}
 
@@ -210,7 +225,7 @@ def test_remote_source_lists_built_sources_and_part_urls() -> None:
 def test_states_filter_force_and_city_address(lake: Path, tmp_path: Path) -> None:
     con = connect(tmp_path / "s.duckdb")
     assert build(con, FileSource(lake), states=["oh"], log=lambda _m: None) == [
-        "oh.cuyahoga.liens", "oh.franklin.parcels"]  # fmt: skip
+        "oh.cuyahoga.liens", "oh.franklin.parcels", "oh.sos.business"]  # fmt: skip
     assert build(con, FileSource(lake), states=["TX"], log=lambda _m: None) == []
     assert build(con, FileSource(lake), only=["oh.cuyahoga.liens"], force=True,
                  log=lambda _m: None) == ["oh.cuyahoga.liens"]  # fmt: skip
@@ -230,3 +245,68 @@ def test_views_and_saved_macros_for_sql_clients(
     plain = duckdb.connect(str(tmp_path / "c.duckdb"), read_only=True)  # no helper macros
     assert plain.execute("SELECT name_key('Smith, John A.')").fetchone() == ("A JOHN SMITH",)
     assert plain.execute("SELECT count(*) FROM v_owner_parcels").fetchone() == (2,)
+
+
+def test_sounds_like_survives_a_typo_in_every_word(cat: duckdb.DuckDBPyConnection) -> None:
+    hits = {h.raw_name: h.rule for h in search(cat, "JON SMYTHE")}
+    assert hits["SMITH, JOHN A"] == "sounds_like"  # JON~JOHN, SMYTHE~SMITH (Soundex)
+    assert cat.execute("SELECT soundex('ASHCRAFT'), soundex('TYMCZAK'), soundex('42')"
+                       ).fetchone() == ("A261", "T522", "42")  # fmt: skip
+
+
+def test_business_hit_and_its_people(cat: duckdb.DuckDBPyConnection) -> None:
+    from equity.search import show_business
+
+    firm = next(h for h in search(cat, "Acme Holdings") if h.party_kind == "business")
+    assert (firm.ref, firm.officers) == ("oh.sos.business:business:B7", 1)
+    member = next(h for h in search(cat, "john a smith") if h.source_id == "oh.sos.business")
+    assert member.businesses == 1
+    b = show_business(cat, firm.ref)
+    assert b is not None and b["status"] == "Active"
+    assert [(p["role"], p["raw_name"], p["parcels_under_same_name"]) for p in b["people"]] == [
+        ("member", "JOHN A SMITH", 1)]  # fmt: skip
+    assert show_business(cat, "oh.sos.business:business:none") is None
+
+
+def test_network_walks_parcels_documents_names_and_addresses(
+    cat: duckdb.DuckDBPyConnection,
+) -> None:
+    from equity.search import network
+
+    g = network(cat, "oh.cuyahoga.liens:d1", hops=2)
+    ids = {n["id"] for n in g["nodes"]}
+    assert {"party:oh.cuyahoga.liens:d1", "doc:oh.cuyahoga.liens:i1",
+            "party:oh.franklin.parcels:o1", "parcel:39049-010-1",
+            "business:oh.sos.business:B7"} <= ids  # fmt: skip
+    kinds = {(e["from"], e["to"], e["kind"]) for e in g["edges"]}
+    assert ("party:oh.cuyahoga.liens:d1", "doc:oh.cuyahoga.liens:i1", "party_to:debtor") in kinds
+    assert ("party:oh.cuyahoga.liens:d1", "party:oh.franklin.parcels:o1", "same_address") in kinds
+    assert ("party:oh.franklin.parcels:o1", "parcel:39049-010-1", "owns") in kinds
+    one = network(cat, "oh.cuyahoga.liens:d1", hops=1)
+    assert "parcel:39049-010-1" not in {n["id"] for n in one["nodes"]}
+
+
+def test_an_old_word_index_is_rebuilt(lake: Path, tmp_path: Path) -> None:
+    db = tmp_path / "old.duckdb"
+    con = connect(db)
+    build(con, FileSource(lake), log=lambda _m: None)
+    con.execute("CREATE OR REPLACE TABLE name_words AS "
+                "SELECT 'X' AS word, 'oh.x' AS source_id, 'p' AS party_id")  # fmt: skip
+    con.execute("DROP TABLE word_sounds")
+    con.close()
+    con = connect(db)  # migrates
+    assert search(con, "john a smith")[0].rule == "exact"
+    assert con.execute("SELECT count(*) > 0 FROM word_sounds").fetchone() == (True,)
+
+
+def test_parallel_build_matches_the_serial_one(lake: Path, tmp_path: Path) -> None:
+    serial = connect(tmp_path / "a.duckdb")
+    build(serial, FileSource(lake), log=lambda _m: None)
+    par = connect(tmp_path / "b.duckdb")
+    got = build(par, FileSource(lake), log=lambda _m: None, workers=3,
+                scratch=tmp_path / "scratch")  # fmt: skip
+    assert got == ["oh.cuyahoga.liens", "oh.franklin.parcels", "oh.sos.business"]
+    for t in ("names", "owners", "parcel_values", "instruments", "businesses", "name_words"):
+        q = f"SELECT * FROM {t} ORDER BY ALL"
+        assert serial.execute(q).fetchall() == par.execute(q).fetchall(), t
+    assert not any((tmp_path / "scratch").glob("*/_counts.json"))  # scratch cleaned up

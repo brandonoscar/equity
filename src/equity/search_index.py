@@ -1,20 +1,23 @@
-"""Query catalog: one local DuckDB file that indexes the whole lake for search and ad-hoc SQL.
+"""Search index: one local DuckDB file that indexes the lake for search and ad-hoc SQL.
+
+(Not equity.lake's catalog, data/catalog.duckdb, which holds read_parquet views of the lake.)
 
 The lake is ~450 sources of Parquet parts (local `data/lake/` or the object-storage bucket).
 Searching it directly means opening thousands of files per query. The catalog copies only
 the columns queries need into a few tables, one source at a time, and remembers each
 source's version so a rebuild re-indexes only sources that changed:
 
-    uv run python -m equity.catalog build                 # every built source in data/lake
-    uv run python -m equity.catalog build --remote        # read Parquet from object storage
-    uv run python -m equity.catalog build --only ia.scott.parcels --states OH NY
-    uv run python -m equity.catalog compact               # sort the search tables (faster lookups)
-    uv run python -m equity.catalog status
+    uv run python -m equity.search_index build                 # every built source in data/lake
+    uv run python -m equity.search_index build --remote   # read Parquet from object storage
+    uv run python -m equity.search_index build --remote --states OH NY --workers 8
+    uv run python -m equity.search_index compact          # sort the lookup tables
+    uv run python -m equity.search_index status
 
 Tables (every row keeps its source_id; full rows stay in the lake under the same ids):
   sources          source_id, state, version (what was indexed), indexed_at, rows per table
   names            party names: party_id, raw_name, party_kind, name_key, address_id
-  name_words       inverted index: one row per word of a name_key (search candidates)
+  name_words       inverted index: word -> name_key, per source (search candidates)
+  word_sounds      every indexed word with its Soundex code (typo-tolerant candidates)
   owners           party_id -> parcel_uid (owner_snapshot)
   parcels          parcel_uid, situs_address_id, land use, zoning
   parcel_values    latest assessment per parcel and source
@@ -44,7 +47,7 @@ import duckdb
 from equity.matching.resolve import STOP
 from equity.matching.review import WORDS
 
-DEFAULT_DB = Path("data/catalog.duckdb")
+DEFAULT_DB = Path("data/search_index.duckdb")
 STORAGE_VERSION = "v1.5.0"
 LAKE = Path("data/lake")
 
@@ -55,7 +58,8 @@ CREATE TABLE IF NOT EXISTS sources (
 CREATE TABLE IF NOT EXISTS names (
     source_id VARCHAR, party_id VARCHAR, raw_name VARCHAR, party_kind VARCHAR,
     org_form VARCHAR, name_key VARCHAR, jurisdiction VARCHAR, address_id VARCHAR);
-CREATE TABLE IF NOT EXISTS name_words (word VARCHAR, source_id VARCHAR, party_id VARCHAR);
+CREATE TABLE IF NOT EXISTS name_words (word VARCHAR, name_key VARCHAR, source_id VARCHAR);
+CREATE TABLE IF NOT EXISTS word_sounds (word VARCHAR PRIMARY KEY, sound VARCHAR);
 CREATE TABLE IF NOT EXISTS owners (
     source_id VARCHAR, party_id VARCHAR, parcel_uid VARCHAR, observed_on DATE);
 CREATE TABLE IF NOT EXISTS parcels (
@@ -65,7 +69,7 @@ CREATE TABLE IF NOT EXISTS parcel_values (
     source_id VARCHAR, parcel_uid VARCHAR, tax_year INTEGER, appraised_total DOUBLE,
     assessed_value DOUBLE, homestead BOOLEAN);
 CREATE TABLE IF NOT EXISTS addresses (
-    address_id VARCHAR PRIMARY KEY, line1 VARCHAR, city VARCHAR, state VARCHAR, zip5 VARCHAR,
+    address_id VARCHAR, line1 VARCHAR, city VARCHAR, state VARCHAR, zip5 VARCHAR,
     street_key VARCHAR);
 CREATE TABLE IF NOT EXISTS instruments (
     source_id VARCHAR, instrument_uid VARCHAR, doc_type VARCHAR, doc_type_raw VARCHAR,
@@ -252,6 +256,14 @@ INDEXED: dict[str, tuple[str, dict[str, str], bool]] = {
     ),
 }
 PER_SOURCE = (*INDEXED, "name_words", "parcel_values")
+# compact() sorts each lookup table by the key search filters on, so DuckDB's per-row-group
+# min/max (zone maps) skips nearly every block for a short list of keys.
+SORT_KEYS = (("names", "name_key"), ("name_words", "word"), ("owners", "party_id"),
+             ("instrument_parties", "party_id"), ("case_parties", "party_id"),
+             ("business_roles", "party_id"), ("businesses", "name_key"),
+             ("parcels", "parcel_uid"), ("parcel_values", "parcel_uid"),
+             ("instruments", "instrument_uid"), ("cases", "case_uid"),
+             ("judgments", "case_uid"))  # fmt: skip
 LAKE_TABLES = ("party", "owner_snapshot", "parcel", "parcel_assessment", "address", "instrument",
                "instrument_party", "court_case", "case_party", "judgment", "business",
                "business_role")  # fmt: skip
@@ -286,10 +298,52 @@ def connect(db: Path | str = DEFAULT_DB, read_only: bool = False) -> duckdb.Duck
                 '[^A-Z0-9 ]+', ' ', 'g')), ' '), lambda w: w <> ''),
             lambda w: coalesce(MAP {{{pairs}}}[w], w)), ' ');
     """)
+    con.execute(f"""
+        -- American Soundex (first letter + 3 digits; H and W do not separate equal codes).
+        CREATE OR REPLACE {kind} sx_codes(sx_w) AS list_transform(string_split(sx_w, ''),
+            lambda sx_ch: CASE WHEN sx_ch IN ('B', 'F', 'P', 'V') THEN '1'
+                WHEN sx_ch IN ('C', 'G', 'J', 'K', 'Q', 'S', 'X', 'Z') THEN '2'
+                WHEN sx_ch IN ('D', 'T') THEN '3' WHEN sx_ch = 'L' THEN '4'
+                WHEN sx_ch IN ('M', 'N') THEN '5' WHEN sx_ch = 'R' THEN '6'
+                WHEN sx_ch IN ('H', 'W') THEN 'h' ELSE '0' END);
+        -- Lambda variables are named sx_* so the macros can be used inside other lambdas.
+        CREATE OR REPLACE {kind} sx_noh(sx_c) AS
+            list_filter(sx_c, lambda sx_a, sx_i: sx_i = 1 OR sx_a <> 'h');
+        CREATE OR REPLACE {kind} sx_collapse(sx_c) AS
+            list_filter(sx_c, lambda sx_b, sx_j: sx_j = 1 OR sx_b <> sx_c[sx_j - 1]);
+        CREATE OR REPLACE {kind} soundex(sx_w) AS
+            CASE WHEN regexp_full_match(coalesce(sx_w, ''), '[A-Z]+')
+            THEN sx_w[1] || left(rpad(array_to_string(list_filter(
+                sx_collapse(sx_noh(sx_codes(sx_w)))[2:], lambda sx_d: sx_d NOT IN ('0', 'h')),
+                ''), 3, '0'), 3)
+            ELSE sx_w END;
+    """)
     if not read_only:
+        _migrate(con)
         con.execute(SCHEMA)
         con.execute(VIEWS)
     return con
+
+
+def _migrate(con: duckdb.DuckDBPyConnection) -> None:
+    """Catalogs built before name_words held name_keys: rebuild it (and word_sounds) from
+    the indexed names, so a catalog never needs a full re-index for a layout change."""
+    cols = {r[0] for r in con.execute(
+        "SELECT column_name FROM information_schema.columns WHERE table_name = 'name_words'"
+    ).fetchall()}  # fmt: skip
+    if "party_id" not in cols:
+        return
+    con.execute("""
+        CREATE OR REPLACE TABLE name_words AS
+        SELECT DISTINCT unnest(string_split(name_key, ' ')) AS word, name_key, source_id
+        FROM names WHERE name_key <> ''
+        UNION
+        SELECT DISTINCT unnest(string_split(name_key, ' ')), name_key, source_id
+        FROM businesses WHERE name_key <> ''
+    """)
+    con.execute("CREATE TABLE IF NOT EXISTS word_sounds (word VARCHAR PRIMARY KEY, sound VARCHAR)")
+    con.execute("INSERT OR IGNORE INTO word_sounds "
+                "SELECT DISTINCT word, soundex(word) FROM name_words")  # fmt: skip
 
 
 class FileSource:
@@ -420,23 +474,73 @@ def index_source(con: duckdb.DuckDBPyConnection, source: Any, source_id: str) ->
     if files:
         con.execute("""
             INSERT INTO addresses
-            SELECT address_id, any_value(line1), any_value(city), any_value(state),
-                   any_value(zip5), any_value(street_norm(line1))
-            FROM read_parquet(?, union_by_name = true)
-            WHERE address_id NOT IN (SELECT address_id FROM addresses)
-            GROUP BY address_id
+            SELECT r.address_id, any_value(r.line1), any_value(r.city), any_value(r.state),
+                   any_value(r.zip5), any_value(street_norm(r.line1))
+            FROM read_parquet(?, union_by_name = true) r
+            ANTI JOIN addresses x ON x.address_id = r.address_id
+            GROUP BY r.address_id
         """, [files])  # fmt: skip
     con.execute("""
         INSERT INTO name_words
-        SELECT DISTINCT unnest(string_split(name_key, ' ')) AS word, source_id, party_id
-        FROM names WHERE source_id = ? AND name_key <> ''
-    """, [source_id])  # fmt: skip
+        SELECT DISTINCT word, name_key, source_id FROM (
+            SELECT unnest(string_split(name_key, ' ')) AS word, name_key, source_id
+            FROM (SELECT name_key, source_id FROM names WHERE source_id = ? AND name_key <> ''
+                  UNION
+                  SELECT name_key, source_id FROM businesses
+                  WHERE source_id = ? AND name_key <> ''))
+        WHERE length(word) >= 2  -- initials find nothing useful on their own
+    """, [source_id, source_id])  # fmt: skip
     con.execute("""
-        INSERT INTO name_words
-        SELECT DISTINCT unnest(string_split(name_key, ' ')), source_id, 'business:' || sos_id
-        FROM businesses WHERE source_id = ? AND name_key <> ''
+        INSERT OR IGNORE INTO word_sounds
+        SELECT DISTINCT word, soundex(word) FROM name_words WHERE source_id = ?
     """, [source_id])  # fmt: skip
     return counts
+
+
+# Lake columns the index reads, per lake table (extract() fetches only these).
+NEEDED: dict[str, set[str]] = {
+    "party": {"source_id", "party_id", "raw_name", "party_kind", "org_form", "jurisdiction",
+              "address_id", "superseded_at"},
+    "owner_snapshot": {"source_id", "party_id", "parcel_uid", "observed_on", "superseded_at"},
+    "parcel": {"source_id", "parcel_uid", "jurisdiction", "parid_raw", "situs_address_id",
+               "land_use_desc", "land_use_code", "zoning", "superseded_at"},
+    "parcel_assessment": {"source_id", "parcel_uid", "tax_year", "appraised_total",
+                          "assessed_value", "homestead", "valid_from", "superseded_at"},
+    "address": {"address_id", "line1", "city", "state", "zip5"},
+    "instrument": {"source_id", "instrument_uid", "doc_type", "doc_type_raw", "recorded_on",
+                   "principal_amount", "max_secured_amount", "consideration", "superseded_at"},
+    "instrument_party": {"source_id", "instrument_uid", "party_id", "role", "superseded_at"},
+    "court_case": {"source_id", "case_uid", "court_id", "case_number_raw", "case_type",
+                   "nature_of_suit", "filed_on", "closed_on", "status", "superseded_at"},
+    "case_party": {"source_id", "case_uid", "party_id", "role", "superseded_at"},
+    "judgment": {"source_id", "case_uid", "entered_on", "principal", "judgment_type",
+                 "superseded_at"},
+    "business": {"source_id", "sos_id", "name", "org_form", "status", "formed_on",
+                 "superseded_at"},
+    "business_role": {"source_id", "sos_id", "party_id", "role", "title", "superseded_at"},
+}  # fmt: skip
+
+
+def extract(source: Any, source_id: str, out: Path, remote: bool = False) -> FileSource:
+    """Copy one source's needed lake columns to local Parquet under out/<source_id>/, with
+    its own connection, so many sources can be fetched at once while one writer indexes."""
+    con = duckdb.connect()
+    if remote:
+        con.execute("LOAD httpfs")
+    dest = out / source_id
+    for table in LAKE_TABLES:
+        files = source.files(source_id, table)
+        if not files:
+            continue
+        cols = sorted(NEEDED[table] & _columns(con, files))
+        (dest / table).mkdir(parents=True, exist_ok=True)
+        part = dest / table / "00000.parquet"
+        con.execute(f"COPY (SELECT {', '.join(cols)} FROM read_parquet(?, union_by_name = true)) "  # noqa: S608
+                    f"TO '{part}' (FORMAT parquet, COMPRESSION zstd)", [files])  # fmt: skip
+    dest.mkdir(parents=True, exist_ok=True)
+    (dest / "_counts.json").write_text("{}")
+    con.close()
+    return FileSource(out)
 
 
 def build(
@@ -446,9 +550,18 @@ def build(
     states: Iterable[str] | None = None,
     force: bool = False,
     log: Any = print,
+    workers: int = 1,
+    scratch: Path | None = None,
+    remote: bool = False,
 ) -> list[str]:
     """Index every source whose version changed since it was last indexed. Sources that no
-    longer exist in the lake are dropped. Returns the ids (re)indexed."""
+    longer exist in the lake are dropped. Returns the ids (re)indexed.
+
+    With workers > 1, sources are first fetched in parallel into scratch (local Parquet of
+    the needed columns, deleted once indexed) and then indexed one at a time."""
+    import shutil
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+
     want_states = {s.upper() for s in states} if states else None
     available = source.sources(only)
     ids = [s for s in available if want_states is None or _state_of(s) in want_states]
@@ -459,14 +572,14 @@ def build(
                 con.execute(f"DELETE FROM {t} WHERE source_id = ?", [gone])  # noqa: S608
             con.execute("DELETE FROM sources WHERE source_id = ?", [gone])
             log(f"dropped {gone} (no longer in the lake)")
-    done = []
-    for sid in ids:
-        version = source.version(sid)
-        if not force and known.get(sid) == version:
-            continue
+    todo = [(sid, v) for sid in ids
+            if (v := source.version(sid)) and (force or known.get(sid) != v)]  # fmt: skip
+    done: list[str] = []
+
+    def index(sid: str, version: str, src: Any) -> None:
         con.execute("BEGIN TRANSACTION")
         try:
-            counts = index_source(con, source, sid)
+            counts = index_source(con, src, sid)
             con.execute("DELETE FROM sources WHERE source_id = ?", [sid])
             con.execute("INSERT INTO sources VALUES (?, ?, ?, ?, ?)",
                         [sid, _state_of(sid), version, datetime.now(UTC),
@@ -477,31 +590,47 @@ def build(
             raise
         done.append(sid)
         log(f"indexed {sid}: " + ", ".join(f"{k} {v:,}" for k, v in sorted(counts.items())))
+
+    if workers <= 1 or not todo:
+        for sid, version in todo:
+            index(sid, version, source)
+        return done
+    tmp = scratch or Path("data/work/search_index")
+    with ThreadPoolExecutor(workers) as ex:
+        futures = {ex.submit(extract, source, sid, tmp, remote): (sid, v) for sid, v in todo}
+        for fut in as_completed(futures):
+            sid, version = futures[fut]
+            index(sid, version, fut.result())
+            shutil.rmtree(tmp / sid, ignore_errors=True)
+    done.sort()
     return done
 
 
 def compact(con: duckdb.DuckDBPyConnection) -> None:
     """Rewrite the search tables sorted by their lookup keys, so DuckDB's per-block min/max
     skips almost everything on an exact name or word lookup."""
-    for table, key in (("names", "name_key"), ("name_words", "word"),
-                       ("owners", "party_id"), ("instrument_parties", "party_id"),
-                       ("case_parties", "party_id"), ("businesses", "name_key")):  # fmt: skip
+    for table, key in SORT_KEYS:
         con.execute(f"CREATE OR REPLACE TABLE {table} AS "  # noqa: S608
                     f"SELECT * FROM {table} ORDER BY {key}")  # fmt: skip
+    # word_sounds keeps its primary key (INSERT OR IGNORE relies on it).
+    con.execute("CREATE OR REPLACE TABLE _ws (word VARCHAR PRIMARY KEY, sound VARCHAR)")
+    con.execute("INSERT INTO _ws SELECT * FROM word_sounds ORDER BY sound, word")
+    con.execute("DROP TABLE word_sounds")
+    con.execute("ALTER TABLE _ws RENAME TO word_sounds")
     con.execute("CHECKPOINT")
 
 
 def status(con: duckdb.DuckDBPyConnection) -> str:
     n = con.execute("SELECT count(*), max(indexed_at) FROM sources").fetchone()
     lines = [f"{n[0] if n else 0} sources indexed, last at {n[1] if n else None}"]
-    for t in (*PER_SOURCE, "addresses"):
+    for t in (*PER_SOURCE, "addresses", "word_sounds"):
         c = con.execute(f"SELECT count(*) FROM {t}").fetchone()  # noqa: S608
         lines.append(f"  {t:20} {c[0] if c else 0:>14,}")
     return "\n".join(lines)
 
 
 def main(argv: list[str] | None = None) -> int:  # pragma: no cover - CLI
-    ap = argparse.ArgumentParser(prog="equity.catalog")
+    ap = argparse.ArgumentParser(prog="equity.search_index")
     ap.add_argument("--db", type=Path, default=DEFAULT_DB)
     sub = ap.add_subparsers(dest="cmd", required=True)
     b = sub.add_parser("build")
@@ -510,6 +639,7 @@ def main(argv: list[str] | None = None) -> int:  # pragma: no cover - CLI
     b.add_argument("--only", nargs="*")
     b.add_argument("--states", nargs="*")
     b.add_argument("--force", action="store_true")
+    b.add_argument("--workers", type=int, default=8, help="sources fetched at once")
     sub.add_parser("compact")
     sub.add_parser("status")
     args = ap.parse_args(argv)
@@ -524,7 +654,8 @@ def main(argv: list[str] | None = None) -> int:  # pragma: no cover - CLI
             source: Any = RemoteSource(store)
         else:
             source = FileSource(args.lake)
-        done = build(con, source, args.only, args.states, args.force)
+        done = build(con, source, args.only, args.states, args.force,
+                     workers=args.workers, remote=args.remote)  # fmt: skip
         print(f"{len(done)} sources (re)indexed")
     elif args.cmd == "compact":
         compact(con)

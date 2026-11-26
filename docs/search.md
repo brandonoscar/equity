@@ -4,23 +4,31 @@ Three pieces, all deterministic (fixed rules, no models), all under permissive l
 
 | Piece | What it is | License |
 |---|---|---|
-| `equity.catalog` | One local DuckDB file indexing the lake: names, owners, parcels, values, documents, cases, businesses, addresses | this repo |
+| `equity.search_index` | One local DuckDB file (`data/search_index.duckdb`; not `equity.lake`'s views catalog) indexing the lake: names, owners, parcels, values, documents, cases, businesses, addresses | this repo |
 | `equity.search` | Name and address search over the catalog, every hit scored by a named rule and listed with its links | this repo |
-| `equity-catalog` MCP server (`.mcp.json`) | [mcp-server-motherduck](https://github.com/motherduckdb/mcp-server-motherduck) 1.1.1 over the catalog, read-only, so any Claude session can run SQL against it | MIT |
+| `equity-search` MCP server (`.mcp.json`) | [mcp-server-motherduck](https://github.com/motherduckdb/mcp-server-motherduck) 1.1.1 over the search index, read-only, so any Claude session can run SQL against it | MIT |
 
 ## Build the catalog
 
 ```bash
-uv run python -m equity.catalog build --remote          # every built source in object storage
-uv run python -m equity.catalog build                   # or the local data/lake
-uv run python -m equity.catalog build --remote --states OH NY
-uv run python -m equity.catalog compact                 # sort the lookup tables (faster)
-uv run python -m equity.catalog status
+uv run python -m equity.search_index build --remote          # every built source in object storage
+uv run python -m equity.search_index build                   # or the local data/lake
+uv run python -m equity.search_index build --remote --states OH NY --workers 8
+uv run python -m equity.search_index compact                 # sort the lookup tables (faster)
+uv run python -m equity.search_index status
 ```
+
+`--workers` fetches that many sources at once (each into local Parquet of only the columns
+the index needs, deleted after) while one writer indexes them: Delaware's 14 sources take
+3.3 minutes with 8 workers, 8.5 serially.
+
+**Size.** The index takes about 260 bytes per party name (Delaware: 818k names, 256 MB).
+The whole lake has about 197 million party names, so a national index is roughly 50 GB:
+build by state (`--states`) unless the machine has that much free disk.
 
 A source is re-indexed only when its version changed (the `_state.json` bundle remotely, the
 part markers locally), and sources gone from the lake are dropped, so `build` is cheap to
-re-run. Each source is replaced in one transaction. The file (`data/catalog.duckdb`, git-ignored)
+re-run. Each source is replaced in one transaction. The file (`data/search_index.duckdb`, git-ignored)
 is written in DuckDB's v1.5 storage format so the MCP server, which pins its own DuckDB, can
 open it.
 
@@ -31,7 +39,14 @@ uv run python -m equity.search "JOHN A SMITH" --state OH
 uv run python -m equity.search "ACME HOLDINGS LLC" --kind org --json
 uv run python -m equity.search --show <source_id>:<party_id>
 uv run python -m equity.search --address "123 Main St" --zip 43215
+uv run python -m equity.search --network <source_id>:<party_id> --hops 2
 ```
+
+`--network` walks a party's links outward, breadth first: parcels and their other owners,
+documents and their other parties, cases, businesses and their officers, parties at the same
+address, and the same name in other sources. Edges are labelled (`owns`, `party_to:<role>`,
+`in_case:<role>`, `role:<role>`, `same_address`, `same_name`); the last two are leads, not
+established identity.
 
 Names are compared on the matcher's `name_key` (upper-case words, punctuation and
 JR/SR/AND/TR... dropped, de-duplicated, sorted), so "Smith, John A." and "JOHN A SMITH" are the
@@ -42,10 +57,14 @@ same key. Rules, best first:
 | `exact` | same name_key | 1.00 |
 | `all_words` | every query word is in the name, plus 1–2 more | 0.95 / 0.90 |
 | `initial` | all query words but one are in the name, that one is an initial of a name word (or the reverse), and every full name word is accounted for | 0.85 |
+| `sounds_like` | every query word is in the name or has the same Soundex code as a name word (3+ letters), word counts within one | 0.82 |
 | `similar` | each query word's best Jaro-Winkler match among the name's words, averaged, is at least 0.90, and the word counts differ by at most one | 0.80 × similarity |
 
-Candidates come from the exact key and from the query's two rarest words (inverted index
-`name_words`), so a typo in one word still finds the name through the other. Each hit lists
+Candidates come from the exact key, from the query's two rarest words (inverted index
+`name_words`), and from words that sound like the query's two longest words (`word_sounds`,
+American Soundex as a SQL macro), so a misspelling of every word still finds the name.
+Registered businesses are searched alongside parties: their refs read
+`<source_id>:business:<sos_id>` and `--show` lists officers, agents and members. Each hit lists
 parcels owned (with the latest value), debts and amounts, documents, cases and business roles;
 `--show` lists them in full with same-name parties in other sources. A same name in two sources
 is a candidate, not a match: linking is the matcher's job (address and ZIP rules).
@@ -84,7 +103,7 @@ WHERE street_norm(line1) = street_norm('123 Main Street') AND zip5 = '43215';
 
 The MCP server starts from `.mcp.json` (Claude Code asks before using a project server). It is
 read-only by default, caps results at 500 rows and 120 seconds, and opens a fresh connection per
-query (`--ephemeral-connections`) so `equity.catalog build` can keep writing.
+query (`--ephemeral-connections`) so `equity.search_index build` can keep writing.
 
 ## Licenses of what this uses
 
