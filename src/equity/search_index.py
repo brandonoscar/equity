@@ -23,6 +23,7 @@ Tables (every row keeps its source_id; full rows stay in the lake under the same
   parcel_values    latest assessment per parcel and source
   addresses        address_id -> line1, city, state, zip5, street_key (content-addressed)
   instruments      recorded documents and debt-list items (doc_type, date, amount)
+  instrument_parcels  which parcel a document is recorded against (deed, mortgage, lien)
   instrument_parties, cases, case_parties, judgments, businesses, business_roles
 
 name_key is the matcher's key (equity.matching.resolve): upper-case name words, letters and
@@ -49,6 +50,9 @@ from equity.matching.review import WORDS
 
 DEFAULT_DB = Path("data/search_index.duckdb")
 STORAGE_VERSION = "v1.5.0"
+# Part of every source's version: bump it when the index layout changes, so the next build
+# re-indexes every source into the new layout.
+INDEX_VERSION = "2"
 LAKE = Path("data/lake")
 
 SCHEMA = """
@@ -74,6 +78,8 @@ CREATE TABLE IF NOT EXISTS addresses (
 CREATE TABLE IF NOT EXISTS instruments (
     source_id VARCHAR, instrument_uid VARCHAR, doc_type VARCHAR, doc_type_raw VARCHAR,
     recorded_on DATE, amount DOUBLE, consideration DOUBLE);
+CREATE TABLE IF NOT EXISTS instrument_parcels (
+    source_id VARCHAR, instrument_uid VARCHAR, parcel_uid VARCHAR, method VARCHAR);
 CREATE TABLE IF NOT EXISTS instrument_parties (
     source_id VARCHAR, instrument_uid VARCHAR, party_id VARCHAR, role VARCHAR);
 CREATE TABLE IF NOT EXISTS cases (
@@ -189,6 +195,16 @@ INDEXED: dict[str, tuple[str, dict[str, str], bool]] = {
         },
         True,
     ),
+    "instrument_parcels": (
+        "instrument_parcel",
+        {
+            "source_id": "source_id",
+            "instrument_uid": "instrument_uid",
+            "parcel_uid": "parcel_uid",
+            "method": "method",
+        },
+        True,
+    ),
     "instrument_parties": (
         "instrument_party",
         {
@@ -262,10 +278,12 @@ SORT_KEYS = (("names", "name_key"), ("name_words", "word"), ("owners", "party_id
              ("instrument_parties", "party_id"), ("case_parties", "party_id"),
              ("business_roles", "party_id"), ("businesses", "name_key"),
              ("parcels", "parcel_uid"), ("parcel_values", "parcel_uid"),
-             ("instruments", "instrument_uid"), ("cases", "case_uid"),
+             ("instruments", "instrument_uid"),
+    ("instrument_parcels", "parcel_uid"), ("cases", "case_uid"),
              ("judgments", "case_uid"))  # fmt: skip
 LAKE_TABLES = ("party", "owner_snapshot", "parcel", "parcel_assessment", "address", "instrument",
-               "instrument_party", "court_case", "case_party", "judgment", "business",
+               "instrument_party",
+    "instrument_parcel", "court_case", "case_party", "judgment", "business",
                "business_role")  # fmt: skip
 
 
@@ -358,7 +376,7 @@ class FileSource:
 
     def version(self, source_id: str) -> str:
         src = self.lake / source_id
-        h = hashlib.sha256((src / "_counts.json").read_bytes())
+        h = hashlib.sha256(INDEX_VERSION.encode() + (src / "_counts.json").read_bytes())
         for m in sorted((src / "_parts").glob("*.json")):
             h.update(m.name.encode() + m.read_bytes())
         return h.hexdigest()[:16]
@@ -405,7 +423,7 @@ class RemoteSource:
         text = self._bundles.get(source_id)
         if text is None:
             text = self.store.download(f"{source_id}/_state.json").decode()
-        return hashlib.sha256(text.encode()).hexdigest()[:16]
+        return hashlib.sha256(INDEX_VERSION.encode() + text.encode()).hexdigest()[:16]
 
     def files(self, source_id: str, table: str) -> list[str]:
         files, _ = self.store.list_dir(f"{source_id}/{table}/")
@@ -510,6 +528,7 @@ NEEDED: dict[str, set[str]] = {
     "instrument": {"source_id", "instrument_uid", "doc_type", "doc_type_raw", "recorded_on",
                    "principal_amount", "max_secured_amount", "consideration", "superseded_at"},
     "instrument_party": {"source_id", "instrument_uid", "party_id", "role", "superseded_at"},
+    "instrument_parcel": {"source_id", "instrument_uid", "parcel_uid", "method", "superseded_at"},
     "court_case": {"source_id", "case_uid", "court_id", "case_number_raw", "case_type",
                    "nature_of_suit", "filed_on", "closed_on", "status", "superseded_at"},
     "case_party": {"source_id", "case_uid", "party_id", "role", "superseded_at"},

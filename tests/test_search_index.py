@@ -84,6 +84,10 @@ def lake(tmp_path: Path) -> Path:
          "recorded_on": "2025-06-01", "principal_amount": 12500.0, "source_id": d,
          "superseded_at": None},
     ])  # fmt: skip
+    _write(lake, d, "instrument_parcel", [
+        {"instrument_uid": "i1", "parcel_uid": "39049-010-1", "method": "index_parcel_id",
+         "source_id": d, "superseded_at": None},
+    ])  # fmt: skip
     _write(lake, d, "instrument_party", [
         {"instrument_uid": "i1", "party_id": "d1", "role": "debtor", "source_id": d,
          "superseded_at": None},
@@ -283,7 +287,7 @@ def test_network_walks_parcels_documents_names_and_addresses(
     assert ("party:oh.cuyahoga.liens:d1", "party:oh.franklin.parcels:o1", "same_address") in kinds
     assert ("party:oh.franklin.parcels:o1", "parcel:39049-010-1", "owns") in kinds
     one = network(cat, "oh.cuyahoga.liens:d1", hops=1)
-    assert "parcel:39049-010-1" not in {n["id"] for n in one["nodes"]}
+    assert "business:oh.sos.business:B7" not in {n["id"] for n in one["nodes"]}  # 2 hops away
 
 
 def test_an_old_word_index_is_rebuilt(lake: Path, tmp_path: Path) -> None:
@@ -346,3 +350,20 @@ def test_export_and_pull_round_trip(cat: duckdb.DuckDBPyConnection, tmp_path: Pa
         h.ref for h in search(cat, "john a smith")
     ]
     assert other.execute("SELECT count(*) FROM v_debtor_owner_candidates").fetchone() == (1,)
+
+
+def test_parcel_view_and_document_edges(cat: duckdb.DuckDBPyConnection) -> None:
+    from equity.search import network, show_parcel
+
+    (p,) = [r for r in show_parcel(cat, "010-1") if r["source_id"] == "oh.franklin.parcels"]
+    assert (p["parcel_uid"], p["appraised_total"], p["situs_line1"]) == (
+        "39049-010-1", 180000.0, "123 MAIN STREET")  # fmt: skip
+    assert [o["raw_name"] for o in p["owners"]] == ["SMITH, JOHN A"]
+    assert [(d["doc_type"], d["parties"]) for d in p["documents"]] == [
+        ("JUDGMENT_LIEN", ["John A. Smith (debtor)"])]  # fmt: skip
+    assert show_parcel(cat, "nope") == []
+    d = show(cat, "oh.cuyahoga.liens:d1")
+    assert d is not None and d.documents[0]["parcels"] == ["39049-010-1"]
+    g = network(cat, "oh.cuyahoga.liens:d1", hops=1)
+    assert {"from": "doc:oh.cuyahoga.liens:i1", "to": "parcel:39049-010-1",
+            "kind": "recorded_against"} in g["edges"]  # fmt: skip

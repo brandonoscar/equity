@@ -22,8 +22,9 @@ sorted), so word order and punctuation never matter:
 
 Registered businesses (Secretary of State records) are searched too; their refs read
 source_id:business:<sos_id>, and --show lists their officers, agents and members.
---network walks a party's links outward (parcels, co-owners, documents, cases, businesses,
-same address, same name elsewhere) as nodes and edges.
+--network walks a party's links outward (parcels, co-owners, documents and the parcels they
+are recorded against, cases, businesses, same address, same name elsewhere) as nodes and
+edges. --parcel shows a parcel's owners, value and recorded documents.
 
 Each hit carries what the catalog links to it: parcels owned (with the latest value), debts
 and recorded documents it is a party to, court cases, and businesses it holds a role in.
@@ -327,7 +328,10 @@ def show(con: duckdb.DuckDBPyConnection, ref: str) -> Entity | None:
     """, [source_id, party_id])  # fmt: skip
     e.documents = _rows(con, """
         SELECT i.instrument_uid, i.doc_type, i.doc_type_raw, i.recorded_on, i.amount,
-               i.consideration, ip.role
+               i.consideration, ip.role,
+               (SELECT list(DISTINCT x.parcel_uid ORDER BY x.parcel_uid) FROM instrument_parcels x
+                 WHERE x.source_id = i.source_id AND x.instrument_uid = i.instrument_uid)
+                 AS parcels
         FROM instrument_parties ip JOIN instruments i USING (source_id, instrument_uid)
         WHERE ip.source_id = ? AND ip.party_id = ?
         ORDER BY i.recorded_on DESC NULLS LAST, i.instrument_uid
@@ -383,6 +387,44 @@ def show_business(con: duckdb.DuckDBPyConnection, ref: str) -> dict[str, Any] | 
     for p in people:
         p["parcels_under_same_name"] = owned.get(p.pop("name_key"), 0)
     return {"ref": ref, **head[0], "people": people}
+
+
+def show_parcel(con: duckdb.DuckDBPyConnection, parcel: str) -> list[dict[str, Any]]:
+    """A parcel by parcel_uid ("39049-010-1") or the id as the county prints it: each source's
+    record with situs and latest value, its owners, and the documents recorded against it
+    with their parties (deeds, mortgages, liens, lis pendens)."""
+    found = _rows(con, """
+        SELECT p.source_id, p.parcel_uid, p.parid_raw, p.land_use_desc, p.zoning,
+               a.line1 AS situs_line1, a.city AS situs_city, a.zip5 AS situs_zip,
+               v.tax_year, v.appraised_total, v.assessed_value, v.homestead
+        FROM parcels p
+        LEFT JOIN addresses a ON a.address_id = p.situs_address_id
+        LEFT JOIN parcel_values v USING (source_id, parcel_uid)
+        WHERE p.parcel_uid = ? OR p.parid_raw = ?
+        ORDER BY p.parcel_uid, p.source_id
+    """, [parcel, parcel])  # fmt: skip
+    uids = {r["parcel_uid"] for r in found}
+    owners = _rows(con, f"""
+        SELECT o.parcel_uid, o.source_id, o.source_id || ':' || o.party_id AS ref, n.raw_name,
+               o.observed_on
+        FROM owners o JOIN names n USING (source_id, party_id)
+        WHERE o.parcel_uid IN {_in(uids)} ORDER BY n.raw_name
+    """, []) if uids else []  # noqa: S608  # fmt: skip
+    docs = _rows(con, f"""
+        SELECT x.parcel_uid, i.source_id, i.instrument_uid, i.doc_type, i.doc_type_raw,
+               i.recorded_on, i.amount, i.consideration,
+               (SELECT list(n.raw_name || ' (' || ip.role || ')' ORDER BY ip.role, n.raw_name)
+                  FROM instrument_parties ip JOIN names n USING (source_id, party_id)
+                 WHERE ip.source_id = i.source_id AND ip.instrument_uid = i.instrument_uid)
+                 AS parties
+        FROM instrument_parcels x JOIN instruments i USING (source_id, instrument_uid)
+        WHERE x.parcel_uid IN {_in(uids)}
+        ORDER BY i.recorded_on DESC NULLS LAST, i.instrument_uid
+    """, []) if uids else []  # noqa: S608  # fmt: skip
+    for r in found:
+        r["owners"] = [o for o in owners if o["parcel_uid"] == r["parcel_uid"]]
+        r["documents"] = [d for d in docs if d["parcel_uid"] == r["parcel_uid"]]
+    return found
 
 
 def network(
@@ -452,6 +494,13 @@ def network(
                 edges.add((f"party:{r['source_id']}:{r['party_id']}",
                            f"{label}:{r['source_id']}:{r['k']}",
                            f"{kind}:{r['role']}"))  # fmt: skip
+        # documents recorded against a parcel
+        docs = {n.split(":", 2)[2] for n in nodes if n.startswith("doc:")}
+        q = "SELECT source_id, instrument_uid, parcel_uid FROM instrument_parcels "
+        for r in _rows(con, q + f"WHERE instrument_uid IN {_in(docs)}", []) if docs else []:
+            n = f"parcel:{r['parcel_uid']}"
+            nodes.setdefault(n, {"kind": "parcel", "label": r["parcel_uid"]})
+            edges.add((f"doc:{r['source_id']}:{r['instrument_uid']}", n, "recorded_against"))
         # same name elsewhere, same address
         keys = {r["name_key"] for r in me if r["name_key"] and " " in r["name_key"]}
         addrs = {r["address_id"] for r in me if r["address_id"]}
@@ -596,13 +645,16 @@ def main(argv: list[str] | None = None) -> int:  # pragma: no cover - CLI
     ap.add_argument("--city")
     ap.add_argument("--show", help="source_id:party_id from a search hit")
     ap.add_argument("--network", help="source_id:party_id: walk its links outward")
+    ap.add_argument("--parcel", help="parcel_uid, or the parcel id as the county prints it")
     ap.add_argument("--hops", type=int, default=2)
     ap.add_argument("--json", action="store_true")
     ap.add_argument("--bench", type=int, metavar="N", help="recall and latency on N names")
     args = ap.parse_args(argv)
     con = connect(args.db, read_only=True)
     out: Any
-    if args.bench:
+    if args.parcel:
+        out = show_parcel(con, args.parcel)
+    elif args.bench:
         out = benchmark(con, args.bench)
     elif args.network:
         out = network(con, args.network, args.hops)

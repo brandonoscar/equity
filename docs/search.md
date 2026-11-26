@@ -48,7 +48,13 @@ uv run python -m equity.search "ACME HOLDINGS LLC" --kind org --json
 uv run python -m equity.search --show <source_id>:<party_id>
 uv run python -m equity.search --address "123 Main St" --zip 43215
 uv run python -m equity.search --network <source_id>:<party_id> --hops 2
+uv run python -m equity.search --parcel 39049-010-001234       # or the county's own id
+uv run python -m equity.search --bench 60
 ```
+
+`--parcel` shows each source's record of a parcel (situs, latest value, homestead), its
+owners, and every document recorded against it with its parties (`instrument_parcels`:
+deeds, mortgages, liens, lis pendens).
 
 `--network` walks a party's links outward, breadth first: parcels and their other owners,
 documents and their other parties, cases, businesses and their officers, parties at the same
