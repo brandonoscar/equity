@@ -1,0 +1,125 @@
+{
+ "rows": [
+  {
+   "county_name": "Albany",
+   "municipality_name": "Albany",
+   "rate_year": "2021",
+   "residential_assessment_ratio": "85.62",
+   "swis_code": "010100",
+   "type": "City"
+  },
+  {
+   "county_name": "Albany",
+   "municipality_name": "Cohoes",
+   "rate_year": "2021",
+   "residential_assessment_ratio": "45.91",
+   "swis_code": "010300",
+   "type": "City"
+  },
+  {
+   "county_name": "Albany",
+   "municipality_name": "Watervliet",
+   "rate_year": "2021",
+   "residential_assessment_ratio": "87.00",
+   "swis_code": "011800",
+   "type": "City"
+  },
+  {
+   "county_name": "Albany",
+   "municipality_name": "Berne",
+   "rate_year": "2021",
+   "residential_assessment_ratio": "54.00",
+   "swis_code": "012000",
+   "type": "Town"
+  },
+  {
+   "county_name": "Albany",
+   "municipality_name": "Bethlehem",
+   "rate_year": "2021",
+   "residential_assessment_ratio": "93.00",
+   "swis_code": "012200",
+   "type": "Town"
+  },
+  {
+   "county_name": "Albany",
+   "municipality_name": "Coeymans",
+   "rate_year": "2021",
+   "residential_assessment_ratio": "100.00",
+   "swis_code": "012400",
+   "type": "Town"
+  },
+  {
+   "county_name": "Albany",
+   "municipality_name": "Colonie",
+   "rate_year": "2021",
+   "residential_assessment_ratio": "51.28",
+   "swis_code": "012600",
+   "type": "Town"
+  },
+  {
+   "county_name": "Albany",
+   "municipality_name": "Colonie",
+   "rate_year": "2021",
+   "residential_assessment_ratio": "3.08",
+   "swis_code": "012601",
+   "type": "Village",
+   "village_name": "Colonie"
+  },
+  {
+   "county_name": "Albany",
+   "municipality_name": "Green Island",
+   "rate_year": "2021",
+   "residential_assessment_ratio": "79.65",
+   "swis_code": "012800",
+   "type": "Town"
+  },
+  {
+   "county_name": "Albany",
+   "municipality_name": "Guilderland",
+   "rate_year": "2021",
+   "residential_assessment_ratio": "100.00",
+   "swis_code": "013000",
+   "type": "Town"
+  },
+  {
+   "county_name": "Albany",
+   "municipality_name": "Knox",
+   "rate_year": "2021",
+   "residential_assessment_ratio": "50.00",
+   "swis_code": "013200",
+   "type": "Town"
+  },
+  {
+   "county_name": "Albany",
+   "municipality_name": "New Scotland",
+   "rate_year": "2021",
+   "residential_assessment_ratio": "91.00",
+   "swis_code": "013400",
+   "type": "Town"
+  },
+  {
+   "county_name": "Albany",
+   "municipality_name": "Rensselaerville",
+   "rate_year": "2021",
+   "residential_assessment_ratio": "55.20",
+   "swis_code": "013600",
+   "type": "Town"
+  },
+  {
+   "county_name": "Albany",
+   "municipality_name": "Westerlo",
+   "rate_year": "2021",
+   "residential_assessment_ratio": "0.72",
+   "swis_code": "013800",
+   "type": "Town"
+  },
+  {
+   "county_name": "Allegany",
+   "municipality_name": "Alfred",
+   "rate_year": "2021",
+   "residential_assessment_ratio": "83.07",
+   "swis_code": "022000",
+   "type": "Town"
+  }
+ ]
+}

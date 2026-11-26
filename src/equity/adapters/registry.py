@@ -2,6 +2,12 @@
 
 from __future__ import annotations
 
+from equity.adapters.assessment_ratios import (
+    CTEqualizedGrandList,
+    NYEqualizationRates,
+    NYResidentialAssessmentRatios,
+)
+
 # REGISTRY is re-exported: importing it from here guarantees every adapter below is registered.
 from equity.adapters.base import REGISTRY as REGISTRY
 from equity.adapters.base import Adapter, register
@@ -111,6 +117,9 @@ _ALL: tuple[type[Adapter], ...] = (
     HarrisJPJudgments,
     TravisTaxDelinquent,
     VermontTransferArchive,
+    NYResidentialAssessmentRatios,
+    NYEqualizationRates,
+    CTEqualizedGrandList,
     HillsboroughOfficialRecords,
     HillsboroughCivilCases,
     HillsboroughCivilFilings,

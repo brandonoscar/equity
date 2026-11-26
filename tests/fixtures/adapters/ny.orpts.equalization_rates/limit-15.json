@@ -1,0 +1,127 @@
+{
+ "rows": [
+  {
+   "county_name": "Albany",
+   "equalization_rate": "79.31",
+   "rate_year": "2020",
+   "swis_code": "010000",
+   "type": "County"
+  },
+  {
+   "county_name": "Albany",
+   "equalization_rate": "93.40",
+   "municipality_name": "Albany",
+   "rate_year": "2020",
+   "swis_code": "010100",
+   "type": "City"
+  },
+  {
+   "county_name": "Albany",
+   "equalization_rate": "50.00",
+   "municipality_name": "Cohoes",
+   "rate_year": "2020",
+   "swis_code": "010300",
+   "type": "City"
+  },
+  {
+   "county_name": "Albany",
+   "equalization_rate": "89.00",
+   "municipality_name": "Watervliet",
+   "rate_year": "2020",
+   "swis_code": "011800",
+   "type": "City"
+  },
+  {
+   "county_name": "Albany",
+   "equalization_rate": "54.00",
+   "municipality_name": "Berne",
+   "rate_year": "2020",
+   "swis_code": "012000",
+   "type": "Town"
+  },
+  {
+   "county_name": "Albany",
+   "equalization_rate": "95.00",
+   "municipality_name": "Bethlehem",
+   "rate_year": "2020",
+   "swis_code": "012200",
+   "type": "Town"
+  },
+  {
+   "county_name": "Albany",
+   "equalization_rate": "100.00",
+   "municipality_name": "Coeymans",
+   "rate_year": "2020",
+   "swis_code": "012400",
+   "type": "Town"
+  },
+  {
+   "county_name": "Albany",
+   "equalization_rate": "100.00",
+   "municipality_name": "Coeymans",
+   "rate_year": "2020",
+   "swis_code": "012401",
+   "type": "Village",
+   "village_name": "Ravena"
+  },
+  {
+   "county_name": "Albany",
+   "equalization_rate": "61.00",
+   "municipality_name": "Colonie",
+   "rate_year": "2020",
+   "swis_code": "012600",
+   "type": "Town"
+  },
+  {
+   "county_name": "Albany",
+   "equalization_rate": "3.66",
+   "municipality_name": "Colonie",
+   "rate_year": "2020",
+   "swis_code": "012601",
+   "type": "Village",
+   "village_name": "Colonie"
+  },
+  {
+   "county_name": "Albany",
+   "equalization_rate": "61.00",
+   "municipality_name": "Colonie",
+   "rate_year": "2020",
+   "swis_code": "012603",
+   "type": "Village",
+   "village_name": "Menands"
+  },
+  {
+   "county_name": "Albany",
+   "equalization_rate": "91.00",
+   "municipality_name": "Green Island",
+   "rate_year": "2020",
+   "swis_code": "012800",
+   "type": "Town"
+  },
+  {
+   "county_name": "Albany",
+   "equalization_rate": "100.00",
+   "municipality_name": "Guilderland",
+   "rate_year": "2020",
+   "swis_code": "013000",
+   "type": "Town"
+  },
+  {
+   "county_name": "Albany",
+   "equalization_rate": "100.00",
+   "municipality_name": "Guilderland",
+   "rate_year": "2020",
+   "swis_code": "013001",
+   "type": "Village",
+   "village_name": "Altamont"
+  },
+  {
+   "county_name": "Albany",
+   "equalization_rate": "52.00",
+   "municipality_name": "Knox",
+   "rate_year": "2020",
+   "swis_code": "013200",
+   "type": "Town"
+  }
+ ]
+}

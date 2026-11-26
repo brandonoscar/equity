@@ -48,6 +48,9 @@ FACT_TABLES: dict[str, FactTable] = {
         FactTable("code_link", ("jurisdiction_uid",)),
         FactTable("parcel_link", ("from_parcel_uid", "link_type")),
         FactTable("house_price_index", ("geo_level", "geo_id", "year", "period")),
+        FactTable(
+            "assessment_ratio", ("geo_level", "geo_id", "year", "property_class", "ratio_kind")
+        ),
         FactTable("parcel_assessment", ("parcel_uid", "tax_year"), interval=True),
         FactTable(
             "ownership_period",
