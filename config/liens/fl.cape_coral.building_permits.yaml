@@ -22,7 +22,7 @@ doc_type: OTHER
 doc_type_raw: {field: Permit_Type}
 extra_pii: [Site_Address]
 parties:
-  - {role: other, name: OWNER_NAME}
+  - {role: owner, name: OWNER_NAME}
   - {role: other, name: company_name}
   - {role: other, name: contractor}
 parcel: {kind: pin, field: Strap, county_fips: "12071"}   # Lee County STRAP

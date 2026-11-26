@@ -22,7 +22,7 @@ consideration: permitvaluation
 extra_pii: [gx_location, foldername]
 skip_names: [NONE]
 parties:
-  - {role: other, name: ownername}
+  - {role: owner, name: ownername}
   - {role: other, name: applicant}
   - {role: other, name: contractor, person_names: false}
 parcel: {kind: pin, field: assessors_parcel_number, county_fips: "06085"}   # = ca.san_jose.parcels apn

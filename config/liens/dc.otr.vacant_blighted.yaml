@@ -20,7 +20,7 @@ uid: SSL
 doc_type: OTHER
 doc_type_raw: DC vacant (tax class 3) or blighted (class 4) building   # CLASSTYPE in the row
 parties:
-  - role: other
+  - role: owner
     name: OWNERNAME
     address: {line1: [ADDRESS1, ADDRESS2], csz: CITYSTZIP}   # the tax-billing address
   - role: other

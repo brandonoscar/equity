@@ -22,7 +22,7 @@ uid: actnumber
 doc_type: OTHER
 doc_type_raw: {field: acttype}
 parties:
-  - role: other
+  - role: owner
     name: ownername
   - role: other
     name: organization

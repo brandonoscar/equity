@@ -691,6 +691,7 @@ def test_list_sources_names_every_source_a_state_reads(
     from equity.matching.resolve import STATES, TABLES_READ, main, state_sources
 
     assert state_sources("NY") == sorted({*STATES["NY"]["debtors"], *STATES["NY"]["owners"],
+                                          *STATES["NY"]["record_owners"],
                                           "ny.sos.business", "ny.sos.name_history",
                                           "ny.nyc.acris.real",
                                           "ny.nyc.dof.condo_units",
@@ -815,3 +816,80 @@ def test_a_per_source_doc_type_filter_leaves_other_sources_alone(
                    "i.doc_type IN ('Y', 'Z')) OR (i.source_id = 'b.src' AND "
                    "i.doc_type IN ('X')))")  # fmt: skip
     assert doc_type_filter(None) == "" and doc_type_filter([]) == ""
+
+
+def test_records_that_name_an_owner_fill_parcels_without_roll_owners(tmp_path: Path) -> None:
+    """A permit's owner or a deed's grantee names the owner of a lot whose roll has no owner
+    names: the latest such record per parcel joins the owners. A roll owner is never displaced,
+    and an old non-deed record only reaches review (the lot may have been sold since)."""
+    lk = tmp_path / "lake"
+    d, o, r, s = lk / "zz.debts", lk / "zz.parcels", lk / "zz.permits", lk / "zz.sales"
+    _write(d / "address" / "0.parquet", [
+        _addr("da1", "1 A ST", "10001"), _addr("da2", "2 B ST", "10001"),
+        _addr("da3", "3 C ST", "10001"), _addr("da4", "4 D ST", "10001")])  # fmt: skip
+    names = {"d1": ("ANN LEE", "da1"), "d2": ("BO RAY", "da2"), "d3": ("CY DOE", "da3"),
+             "d4": ("EVE FOX", "da4"), "d5": ("OLD OWNER", "da1")}  # fmt: skip
+    _write(d / "party" / "0.parquet", [
+        {"party_id": k, "raw_name": n, "party_kind": "person", "org_name_norm": None,
+         "address_id": a} for k, (n, a) in names.items()])  # fmt: skip
+    _write(
+        d / "instrument_party" / "0.parquet",
+        [{"instrument_uid": f"i{k}", "party_id": k, "role": "debtor"} for k in names],
+    )
+    _write(d / "instrument" / "0.parquet", [
+        {"instrument_uid": f"i{k}", "source_id": "zz.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2026-01-01", "principal_amount": 10.0} for k in names])  # fmt: skip
+    _write(o / "address" / "0.parquet", [
+        _addr("s1", "1 A ST", "10001"), _addr("s2", "2 B ST", "10001"),
+        _addr("s3", "3 C ST", "10001"), _addr("s4", "4 D ST", "10001"),
+        _addr("m4", "40 MAIL RD", "10009")])  # fmt: skip
+    _write(
+        o / "parcel" / "0.parquet",
+        [{"parcel_uid": f"99001-{n:03d}", "situs_address_id": f"s{n}"} for n in range(1, 5)],
+    )
+    # p4 is the only lot with a roll owner.
+    _write(o / "party" / "0.parquet", [
+        {"party_id": "o4", "raw_name": "ROLL OWNER", "party_kind": "person",
+         "org_name_norm": None, "address_id": "m4"}])  # fmt: skip
+    _write(o / "owner_snapshot" / "0.parquet", [{"parcel_uid": "99001-004", "party_id": "o4"}])
+    recs = [  # (instrument, party, name, role, parcel, date, source)
+        ("r1", "q1", "LEE ANN", "owner", "99001-001", "2026-03-01", "zz.permits"),
+        ("r0", "q0", "OLD OWNER", "owner", "99001-001", "2012-05-01", "zz.permits"),
+        ("r2", "q2", "RAY BO", "owner", "99001-002", "2012-05-01", "zz.permits"),
+        ("r4", "q4", "FOX EVE", "owner", "99001-004", "2026-03-01", "zz.permits"),
+        ("s3", "g3", "DOE CY", "grantee", "99001-0.03", "2009-07-01", "zz.sales"),
+        ("s3", "g9", "SELLER NINE", "grantor", "99001-0.03", "2009-07-01", "zz.sales"),
+    ]  # fmt: skip
+    for src, folder in (("zz.permits", r), ("zz.sales", s)):
+        rows = [x for x in recs if x[6] == src]
+        _write(folder / "party" / "0.parquet", [
+            {"party_id": q, "raw_name": n, "party_kind": "person", "org_name_norm": None,
+             "address_id": None} for _, q, n, *_ in rows])  # fmt: skip
+        _write(
+            folder / "instrument_party" / "0.parquet",
+            [{"instrument_uid": i, "party_id": q, "role": role} for i, q, _, role, *_ in rows],
+        )
+        insts = sorted({(x[0], x[4], x[5]) for x in rows})  # (instrument, parcel, date)
+        _write(folder / "instrument" / "0.parquet", [
+            {"instrument_uid": i, "source_id": src, "recorded_on": day,
+             "doc_type": "DEED" if src == "zz.sales" else "OTHER"}
+            for i, _p, day in insts])  # fmt: skip
+        _write(
+            folder / "instrument_parcel" / "0.parquet",
+            [{"instrument_uid": i, "parcel_uid": p} for i, p, _d in insts],
+        )
+    out = tmp_path / "out"
+    run(lk, out, ["zz.debts"], ["zz.parcels"], record_owner_sources=["zz.permits", "zz.sales"])
+    m = {row[0]: row[1:] for row in duckdb.connect().execute(
+        f"SELECT debtor_party_id, parcel_uid, rule_id, decision, owner_basis "
+        f"FROM '{out.as_posix()}/matches.parquet'").fetchall()}  # fmt: skip
+    # The latest record on p1 (2026) names the owner; the 2012 one is not an owner any more.
+    assert m["d1"] == ("99001-001", "person_name_address", "auto", "record:zz.permits")
+    assert "d5" not in m
+    # An old permit owner: the lot may have been sold since, so review only.
+    assert m["d2"] == ("99001-002", "person_name_address", "review", "record:zz.permits")
+    # The latest deed's grantee is the owner of record however old the deed (the sale prints
+    # the lot as 99001-0.03: punctuation does not matter); its grantor is not.
+    assert m["d3"] == ("99001-003", "person_name_address", "auto", "deed:zz.sales")
+    # p4 has a roll owner: a permit naming someone else does not add an owner.
+    assert "d4" not in m

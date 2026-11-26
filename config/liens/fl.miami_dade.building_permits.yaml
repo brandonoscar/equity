@@ -28,7 +28,7 @@ doc_type_raw: {field: ApplicationTypeDescription}
 skip_names: [OWNER, NOT LISTED]
 extra_pii: [PropertyAddress, LegalDescription1]
 parties:
-  - {role: other, name: OwnerName}
+  - {role: owner, name: OwnerName}
   - role: other
     name: ContractorName
     address: {line1: ContractorAddress, city: ContractorCity, state: ContractorState, zip: ContractorZip}

@@ -23,7 +23,7 @@ uid: job_filing_number
 doc_type: OTHER
 doc_type_raw: DOB NOW electrical permit
 parties:
-  - role: other
+  - role: owner
     name: [owner_first_name, owner_last_name]
     address: {line1: owner_address, city: owner_city, state: owner_state, zip: owner_zip}
   - role: other

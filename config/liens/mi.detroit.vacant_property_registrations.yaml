@@ -16,7 +16,7 @@ uid: record_id
 doc_type: OTHER
 doc_type_raw: Detroit vacant property registration
 parties:
-  - role: other
+  - role: owner
     name: owner_name
 extra_pii: [address]
 parcel: {kind: pin, field: parcel_id, county_fips: "26163"}   # same parcel_id as mi.wayne.parcels

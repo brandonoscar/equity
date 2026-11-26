@@ -22,7 +22,7 @@ uid: caseorpermitnumber
 doc_type: OTHER
 doc_type_raw: {field: record_type}
 parties:
-  - role: other
+  - role: owner
     name: ownername
   - role: other
     name: organization

@@ -24,7 +24,7 @@ doc_type: OTHER
 doc_type_raw: {field: permittypedescr}
 extra_pii: [permitcomments, proplegaldescr, situsconcat]
 parties:
-  - {role: other, name: propownername}
+  - {role: owner, name: propownername}
   - {role: other, name: permitissuedto}
   - {role: other, name: permitbuildername}
 parcel: {kind: pin, field: propid, county_fips: "48085"}   # = tx.collin.parcels parcel_id

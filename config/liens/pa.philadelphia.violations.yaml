@@ -26,7 +26,7 @@ uid: violationnumber
 doc_type: OTHER
 doc_type_raw: {field: violationcodetitle}
 parties:
-  - role: other
+  - role: owner
     name: opa_owner            # 'A, B' for joint owners
     split: ","
 parcel: {kind: pin, field: opa_account_num, county_fips: "42101"}   # same key as pa.philadelphia.parcels

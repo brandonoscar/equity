@@ -22,10 +22,10 @@ doc_type: OTHER
 doc_type_raw: {field: Type}
 extra_pii: [Address, Name]
 parties:
-  - role: other
+  - role: owner
     name: Owner1
     address: {line1: MailingAddress, city: MailingCity, state: MailingState, zip: MailingZipCode}
-  - {role: other, name: Owner_TRAKiT}
+  - {role: owner, name: Owner_TRAKiT}
   - {role: other, name: Contact}
 parcel: {kind: pin, field: Parcel_ID, county_fips: "51680"}   # = va.lynchburg_city.parcels parcel_id
 terms:

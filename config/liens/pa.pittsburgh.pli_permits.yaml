@@ -18,7 +18,7 @@ uid: permit_id
 doc_type: OTHER
 doc_type_raw: {field: permit_type}
 parties:
-  - role: other
+  - role: owner
     name: owner_name
 parcel: {kind: pin, field: parcel_num, county_fips: "42003"}   # = pa.allegheny.parcels PIN
 extra_pii: [address, contractor_name]
