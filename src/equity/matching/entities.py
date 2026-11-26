@@ -15,6 +15,13 @@ role, title) and the role holders' `party` and `address` rows.
               ny.sos.name_history add former and assumed names), so an old name still
               reaches the entity; the current name is what the outputs show.
 
+Registries a run reads: its state's SOS registry (STATES "registries"), plus, optionally,
+the national lists that name the people behind businesses (FMCSA carrier officers, NPI
+authorized officials, IRS 990 officers, SEC Form D related persons, insiders and adviser
+owners, MSHA mine controllers, FCC licensees, lobbying registrants) and the state's license
+boards (resolve.optional_registries). All are filtered to businesses whose jurisdiction is in
+the run's state: an organization name is unique only within one state.
+
 Outputs (Parquet in the state's derived folder, git-ignored: they name people):
   owner_companies   owner organization -> registry entity, per parcel
   company_people    registry entity -> role holders (role, title, name, address)
@@ -53,10 +60,19 @@ def org_key_macro(con: duckdb.DuckDBPyConnection) -> None:
     """)
 
 
-def attach(con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str]) -> None:
+def attach(
+    con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str], state_fips: str | None = None
+) -> None:
+    """Registry views. With state_fips, only businesses of that state (jurisdiction is the
+    state's FIPS or one of its counties'): national lists (FMCSA carriers, NPI providers, IRS
+    990 filers, SEC filers) and other states' license boards carry the same names elsewhere,
+    and an organization name is only unique within one state's registry."""
     from equity.matching.resolve import _view
 
-    _view(con, "r_business", lake, sources, "business")
+    _view(con, "r_business_all", lake, sources, "business")
+    keep = (f"jurisdiction IS NULL OR left(jurisdiction, 2) = '{state_fips}'"
+            if state_fips else "true")  # fmt: skip
+    con.execute(f"CREATE TEMP VIEW r_business AS SELECT * FROM r_business_all WHERE {keep}")  # noqa: S608
     _view(con, "r_role", lake, sources, "business_role")
     _view(con, "r_party", lake, sources, "party")
     _view(con, "r_addr", lake, sources, "address")
@@ -122,9 +138,11 @@ LEFT JOIN parcel_value v ON v.parcel_uid = oc.parcel_uid;
 """
 
 
-def compute(con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str]) -> None:
+def compute(
+    con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str], state_fips: str | None = None
+) -> None:
     org_key_macro(con)
-    attach(con, lake, sources)
+    attach(con, lake, sources, state_fips)
     con.execute(SQL)
 
 

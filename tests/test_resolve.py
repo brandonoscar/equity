@@ -688,7 +688,13 @@ def test_debtor_doc_types_limit_which_instruments_are_debts(lake: Path, tmp_path
 def test_list_sources_names_every_source_a_state_reads(
     capsys: pytest.CaptureFixture[str],
 ) -> None:
-    from equity.matching.resolve import STATES, TABLES_READ, main, state_sources
+    from equity.matching.resolve import (
+        STATES,
+        TABLES_READ,
+        main,
+        optional_registries,
+        state_sources,
+    )
 
     assert state_sources("NY") == sorted({*STATES["NY"]["debtors"], *STATES["NY"]["owners"],
                                           *STATES["NY"]["record_owners"],
@@ -703,7 +709,12 @@ def test_list_sources_names_every_source_a_state_reads(
     assert got == {"sources": ["tx.statewide.parcels", "tx.travis.tax_delinquent",
                                "us.sba.chargeoffs", "us.sba.ppp_chargeoffs",
                                "us.txeb.rss", "us.txnb.rss", "us.txwb.rss"],
-                   "tables": list(TABLES_READ)}  # fmt: skip
+                   "tables": list(TABLES_READ),
+                   "optional_sources": optional_registries("TX-TRAVIS")}  # fmt: skip
+    # Optional registries: the national lists plus Texas's own license boards, no others.
+    opt = got["optional_sources"]
+    assert "us.fmcsa.carrier_census" in opt and "tx.tdlr.licenses" in opt
+    assert not any(s.startswith(("ny.", "fl.")) for s in opt)
 
 
 def test_bankruptcy_screen_flags_debtors_named_in_state_bankruptcy_cases(

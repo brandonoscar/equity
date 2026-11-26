@@ -87,6 +87,7 @@ import duckdb
 import yaml
 
 from equity.config import CONFIG_DIR
+from equity.geo import state_fips
 
 LAKE = Path("data/lake")
 DERIVED = Path("data/derived")
@@ -154,7 +155,7 @@ COLUMNS: dict[str, dict[str, str]] = {
     "instrument_ref": {"from_uid": V, "to_uid": V, "ref_type": V},
     "instrument_parcel": {"instrument_uid": V, "parcel_uid": V},
     "parcel_link": {"from_parcel_uid": V, "to_parcel_uid": V, "link_type": V},
-    "business": {"sos_id": V, "name": V, "status": V},
+    "business": {"sos_id": V, "name": V, "status": V, "jurisdiction": V},
     "business_role": {"sos_id": V, "party_id": V, "role": V, "title": V},
     "owner_snapshot": {"parcel_uid": V, "party_id": V},
     "parcel": {"parcel_uid": V, "situs_address_id": V},
@@ -806,6 +807,7 @@ def run(
     bankruptcy_sources: list[str] | None = None,
     deed_sources: list[str] | None = None,
     record_owner_sources: list[str] | None = None,
+    state_fips: str | None = None,
 ) -> dict[str, object]:
     from equity.matching import bankruptcy, entities, equity, review, transfers
 
@@ -815,7 +817,7 @@ def run(
     review.build(con)
     tables = ["matches", "debtor_summary", "people", "person_of", "review_queue"]
     if registry_sources:
-        entities.compute(con, lake, registry_sources)
+        entities.compute(con, lake, registry_sources, state_fips)
         tables.extend(entities.TABLES)
     if bankruptcy_sources:
         bankruptcy.compute(con, lake, bankruptcy_sources)
@@ -1233,6 +1235,34 @@ TABLES_READ = ("address", "party", "instrument", "instrument_party", "instrument
                "case_party", "court_case", "docket_entry")  # fmt: skip
 
 
+# Lists that name the people behind businesses nationwide (carrier officers, NPI authorized
+# officials, 990 officers, Form D related persons, insiders, adviser owners, mine controllers,
+# FCC licensees, lobbying registrants). Every run reads them, plus its own state's license
+# boards, as extra registries filtered to the run's state; they are optional: a run never
+# fails for want of them (missing_sources leaves them out), and --list-sources names them
+# under "optional_sources" so a loader can pull them.
+NATIONAL_REGISTRIES = ["us.cms.nppes", "us.dol.msha_mines", "us.fcc.uls_amateur",
+                       "us.fcc.uls_gmrs", "us.fcc.uls_land_mobile_broadcast",
+                       "us.fcc.uls_land_mobile_commercial", "us.fcc.uls_land_mobile_private",
+                       "us.fmcsa.carrier_census", "us.irs.990_officers", "us.sec.form_d",
+                       "us.sec.iapd_advisers", "us.sec.insiders",
+                       "us.senate.lda_registrants"]  # fmt: skip
+
+
+def run_state(state: str) -> str:
+    """A run's two-letter state: 'PA-ALLEGHENY' -> 'PA'."""
+    return state.split("-", 1)[0]
+
+
+def optional_registries(state: str) -> list[str]:
+    """National people-behind-business lists plus the run's state license boards."""
+    from equity.adapters.licenses import all_license_adapters
+
+    prefix = run_state(state).lower() + "."
+    boards = {a.source_id for a in all_license_adapters() if a.source_id.startswith(prefix)}
+    return sorted(set(NATIONAL_REGISTRIES) | boards)
+
+
 def bankruptcy_sources(state: str) -> list[str]:
     """The enabled bankruptcy-court RSS feeds of a run's state ('OH', 'WI-MILWAUKEE' -> WI)."""
     from equity.matching.bankruptcy import sources_for
@@ -1273,7 +1303,8 @@ def main(argv: list[str] | None = None) -> int:
     )
     args = ap.parse_args(argv)
     if args.list_sources:
-        print(json.dumps({"sources": state_sources(args.state), "tables": list(TABLES_READ)}))
+        print(json.dumps({"sources": state_sources(args.state), "tables": list(TABLES_READ),
+                          "optional_sources": optional_registries(args.state)}))  # fmt: skip
         return 0
     missing = missing_sources(args.state, args.lake)
     if missing:
@@ -1286,10 +1317,12 @@ def main(argv: list[str] | None = None) -> int:
                  spec["owners"],
                  spec.get("mortgages"), spec.get("links"),
                  bool(spec.get("street_town")), bool(spec.get("parcel_on_lien")),
-                 spec.get("courts"), spec.get("writs"), spec.get("registries"),
+                 spec.get("courts"), spec.get("writs"),
+                 [*(spec.get("registries") or []), *optional_registries(args.state)],
                  spec.get("debtor_doc_types"), bankruptcy_sources(args.state),
                  spec.get("deeds"),
-                 [*(spec.get("deeds") or []), *(spec.get("record_owners") or [])])  # fmt: skip
+                 [*(spec.get("deeds") or []), *(spec.get("record_owners") or [])],
+                 state_fips(run_state(args.state)))  # fmt: skip
     result["missing_sources"] = missing
     summary = args.out / args.state.lower() / "summary.json"
     summary.write_text(json.dumps(result, indent=2, default=str))

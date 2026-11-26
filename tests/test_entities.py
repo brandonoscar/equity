@@ -137,3 +137,39 @@ def test_a_former_name_still_reaches_the_entity(tmp_path: Path) -> None:
         f"FROM '{out.as_posix()}/owner_companies.parquet'").fetchall()  # fmt: skip
     # The deed is in the old name; the entity shows under its current registry name.
     assert got == [("p1", "100", "NORMAN'S TEEN TOURS, INC.", False)]
+
+
+def test_registries_keep_only_the_runs_state(tmp_path: Path) -> None:
+    """National lists name businesses everywhere: with state_fips only the run's state's
+    businesses link (jurisdiction is a state or county FIPS code)."""
+    lk = tmp_path / "lake"
+    d, o, r = lk / "s.debts", lk / "s.parcels", lk / "us.carriers"
+    _write(d / "party" / "0.parquet", [
+        {"party_id": "d1", "raw_name": "ACME HAULING LLC", "party_kind": "org",
+         "org_name_norm": "ACME HAULING", "address_id": None},
+        {"party_id": "d2", "raw_name": "BLUE FREIGHT INC", "party_kind": "org",
+         "org_name_norm": "BLUE FREIGHT", "address_id": None}])  # fmt: skip
+    _write(
+        d / "instrument_party" / "0.parquet",
+        [{"instrument_uid": f"i{n}", "party_id": f"d{n}", "role": "debtor"} for n in (1, 2)],
+    )
+    _write(d / "instrument" / "0.parquet", [
+        {"instrument_uid": f"i{n}", "source_id": "s.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2025-01-01", "principal_amount": 10.0} for n in (1, 2)])  # fmt: skip
+    _write(o / "party" / "0.parquet", [
+        {"party_id": "o9", "raw_name": "NOBODY", "party_kind": "person",
+         "org_name_norm": None, "address_id": None}])  # fmt: skip
+    _write(o / "owner_snapshot" / "0.parquet", [{"parcel_uid": "36001-1", "party_id": "o9"}])
+    _write(o / "parcel" / "0.parquet", [{"parcel_uid": "36001-1", "situs_address_id": None}])
+    _write(r / "business" / "0.parquet", [
+        {"sos_id": "USDOT:1", "name": "Acme Hauling, LLC", "status": "A", "jurisdiction": "36001"},
+        {"sos_id": "USDOT:2", "name": "Blue Freight Inc", "status": "A", "jurisdiction": "06037"},
+    ])  # fmt: skip
+    out = tmp_path / "out"
+    run(lk, out, ["s.debts"], ["s.parcels"], registry_sources=["us.carriers"], state_fips="36")
+    got = (
+        duckdb.connect()
+        .execute(f"SELECT debtor_party_id, sos_id FROM '{out.as_posix()}/debtor_companies.parquet'")
+        .fetchall()
+    )
+    assert got == [("d1", "USDOT:1")]  # Blue Freight is a California business
