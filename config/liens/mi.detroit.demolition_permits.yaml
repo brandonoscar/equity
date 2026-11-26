@@ -17,7 +17,7 @@ uid: record_id
 doc_type: OTHER
 doc_type_raw: Detroit demolition permit
 parties:
-  - role: other
+  - role: owner
     name: owner_name
   - role: other
     name: demolition_contractor

@@ -22,7 +22,7 @@ doc_type: OTHER
 doc_type_raw: {field: permittype}
 extra_pii: [address]
 parties:
-  - {role: other, name: opa_owner}
+  - {role: owner, name: opa_owner}
 parcel: {kind: pin, field: opa_account_num, county_fips: "42101"}   # same key as pa.philadelphia.parcels
 terms:
   url: https://opendataphilly.org/datasets/licenses-and-inspections-building-permits/

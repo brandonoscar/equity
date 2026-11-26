@@ -27,11 +27,11 @@ doc_type: OTHER
 doc_type_raw: {field: job_type}
 skip_names: ["N/A", "NA", "NONE", "N A"]
 parties:
-  - role: other
+  - role: owner
     name: [owner_s_first_name, owner_s_last_name]
     address: {line1: [owner_s_house_number, owner_shouse_street_name], city: city_, state: state,
               zip: zip}
-  - role: other
+  - role: owner
     name: owner_s_business_name
     address: {line1: [owner_s_house_number, owner_shouse_street_name], city: city_, state: state,
               zip: zip}

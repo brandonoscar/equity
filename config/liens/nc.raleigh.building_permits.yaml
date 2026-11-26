@@ -25,7 +25,7 @@ doc_type: OTHER
 doc_type_raw: {field: permittypemapped}
 extra_pii: [originaladdress1, parcelowneraddress2, contractoraddress2]
 parties:
-  - role: other
+  - role: owner
     name: parcelownername
     address: {line1: parcelowneraddress1}
   - role: other
