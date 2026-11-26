@@ -16,7 +16,15 @@ uv run python -m equity.search_index build                   # or the local data
 uv run python -m equity.search_index build --remote --states OH NY --workers 8
 uv run python -m equity.search_index compact                 # sort the lookup tables (faster)
 uv run python -m equity.search_index status
+uv run python -m equity.search_index export            # share: sorted Parquet parts in storage
+uv run python -m equity.search_index pull              # another machine: load the shared index
 ```
+
+`export` writes every table, sorted by its lookup key, as zstd Parquet parts of at most 40 MB
+under `_search_index/` in the lake bucket (the bucket takes 50 MB per object), with a manifest
+of the source versions it holds. `pull` downloads them and loads a fresh local index, so the
+data and cross-linking sessions can search without rebuilding; a later `build --remote`
+re-indexes only the sources that changed since the export.
 
 `--workers` fetches that many sources at once (each into local Parquet of only the columns
 the index needs, deleted after) while one writer indexes them: Delaware's 14 sources take

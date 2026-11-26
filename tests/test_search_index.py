@@ -320,3 +320,29 @@ def test_benchmark_reports_recall_and_latency(cat: duckdb.DuckDBPyConnection) ->
     assert b["as_written"]["recall_at_top"] == 1.0
     assert 0 <= b["one_typo"]["recall_at_top"] <= 1
     assert b["as_written"]["p95_s"] >= b["as_written"]["p50_s"] >= 0
+
+
+def test_export_and_pull_round_trip(cat: duckdb.DuckDBPyConnection, tmp_path: Path) -> None:
+    from equity.search_index import export, pull
+
+    class MemStore:
+        def __init__(self) -> None:
+            self.objects: dict[str, bytes] = {}
+
+        def upload(self, key: str, data: bytes) -> None:
+            self.objects[key] = data
+
+        def download(self, key: str) -> bytes:
+            return self.objects[key]
+
+    store = MemStore()
+    sent = export(cat, store, tmp_path / "exp", log=lambda _m: None)
+    assert sent == len(store.objects) and "_search_index/manifest.json" in store.objects
+    assert all(len(v) < 40_000_000 for v in store.objects.values())
+    n = pull(store, tmp_path / "pulled.duckdb", tmp_path / "pull", log=lambda _m: None)
+    assert n == 3
+    other = connect(tmp_path / "pulled.duckdb", read_only=True)
+    assert [h.ref for h in search(other, "john a smith")] == [
+        h.ref for h in search(cat, "john a smith")
+    ]
+    assert other.execute("SELECT count(*) FROM v_debtor_owner_candidates").fetchone() == (1,)

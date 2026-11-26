@@ -620,6 +620,68 @@ def compact(con: duckdb.DuckDBPyConnection) -> None:
     con.execute("CHECKPOINT")
 
 
+SHARE_PREFIX = "_search_index"
+PART_BYTES = 40_000_000  # object storage takes 50 MB per object; stay well under it
+TABLES = ("sources", *PER_SOURCE, "addresses", "word_sounds")
+
+
+def export(con: duckdb.DuckDBPyConnection, store: Any, work: Path, log: Any = print) -> int:
+    """Upload the index to object storage as sorted Parquet parts plus a manifest, so other
+    machines can pull it instead of rebuilding. Returns the number of files uploaded."""
+    import shutil
+
+    sort = dict(SORT_KEYS) | {"sources": "source_id", "addresses": "address_id",
+                              "word_sounds": "sound"}  # fmt: skip
+    shutil.rmtree(work, ignore_errors=True)
+    manifest: dict[str, Any] = {"exported_at": datetime.now(UTC).isoformat(), "tables": {}}
+    sent = 0
+    for t in TABLES:
+        out = work / t
+        out.mkdir(parents=True)
+        con.execute(f"COPY (SELECT * FROM {t} ORDER BY {sort[t]}) TO '{out}' "  # noqa: S608
+                    f"(FORMAT parquet, COMPRESSION zstd, FILE_SIZE_BYTES {PART_BYTES}, "
+                    "ROW_GROUP_SIZE 100000)")  # fmt: skip
+        files = sorted(p.name for p in out.glob("*.parquet"))
+        for name in files:
+            store.upload(f"{SHARE_PREFIX}/{t}/{name}", (out / name).read_bytes())
+            sent += 1
+        manifest["tables"][t] = files
+        log(f"exported {t}: {len(files)} parts")
+    manifest["sources"] = dict(con.execute("SELECT source_id, version FROM sources").fetchall())
+    store.upload(f"{SHARE_PREFIX}/manifest.json",
+                 json.dumps(manifest, indent=1, sort_keys=True).encode())  # fmt: skip
+    shutil.rmtree(work, ignore_errors=True)
+    return sent + 1
+
+
+def pull(store: Any, db: Path, work: Path, log: Any = print) -> int:
+    """Download an exported index and load it into a new local file at db (replacing it).
+    Returns the number of sources in it."""
+    import shutil
+
+    manifest = json.loads(store.download(f"{SHARE_PREFIX}/manifest.json"))
+    shutil.rmtree(work, ignore_errors=True)
+    for t, files in manifest["tables"].items():
+        (work / t).mkdir(parents=True)
+        for name in files:
+            (work / t / name).write_bytes(store.download(f"{SHARE_PREFIX}/{t}/{name}"))
+    tmp = db.with_suffix(".pull.duckdb")
+    tmp.unlink(missing_ok=True)
+    con = connect(tmp)
+    for t, files in manifest["tables"].items():
+        con.execute(f"DELETE FROM {t}")  # noqa: S608
+        if files:
+            con.execute(f"INSERT INTO {t} SELECT * FROM read_parquet(?)",  # noqa: S608
+                        [[str(work / t / f) for f in files]])  # fmt: skip
+        log(f"pulled {t}: {len(files)} parts")
+    n = int(con.execute("SELECT count(*) FROM sources").fetchone()[0])  # type: ignore[index]
+    con.execute("CHECKPOINT")
+    con.close()
+    tmp.replace(db)
+    shutil.rmtree(work, ignore_errors=True)
+    return n
+
+
 def status(con: duckdb.DuckDBPyConnection) -> str:
     n = con.execute("SELECT count(*), max(indexed_at) FROM sources").fetchone()
     lines = [f"{n[0] if n else 0} sources indexed, last at {n[1] if n else None}"]
@@ -627,6 +689,13 @@ def status(con: duckdb.DuckDBPyConnection) -> str:
         c = con.execute(f"SELECT count(*) FROM {t}").fetchone()  # noqa: S608
         lines.append(f"  {t:20} {c[0] if c else 0:>14,}")
     return "\n".join(lines)
+
+
+def _store() -> Any:  # pragma: no cover - network
+    from equity.lake_sync import DEFAULT_URL, Store
+
+    return Store(base_url=os.environ.get("SUPABASE_STORAGE_URL", DEFAULT_URL),
+                 key=os.environ.get("SUPABASE_SECRET_KEY") or None)  # fmt: skip
 
 
 def main(argv: list[str] | None = None) -> int:  # pragma: no cover - CLI
@@ -642,16 +711,18 @@ def main(argv: list[str] | None = None) -> int:  # pragma: no cover - CLI
     b.add_argument("--workers", type=int, default=8, help="sources fetched at once")
     sub.add_parser("compact")
     sub.add_parser("status")
+    sub.add_parser("export", help="upload the index to object storage (for other machines)")
+    sub.add_parser("pull", help="replace the local index with the exported one")
     args = ap.parse_args(argv)
+    if args.cmd == "pull":
+        n = pull(_store(), args.db, Path("data/work/search_index_pull"))
+        print(f"pulled {n} sources into {args.db}")
+        return 0
     con = connect(args.db)
     if args.cmd == "build":
         if args.remote:
-            from equity.lake_sync import DEFAULT_URL, Store
-
-            store = Store(base_url=os.environ.get("SUPABASE_STORAGE_URL", DEFAULT_URL),
-                          key=os.environ.get("SUPABASE_SECRET_KEY") or None)  # fmt: skip
             con.execute("LOAD httpfs")
-            source: Any = RemoteSource(store)
+            source: Any = RemoteSource(_store())
         else:
             source = FileSource(args.lake)
         done = build(con, source, args.only, args.states, args.force,
@@ -659,6 +730,8 @@ def main(argv: list[str] | None = None) -> int:  # pragma: no cover - CLI
         print(f"{len(done)} sources (re)indexed")
     elif args.cmd == "compact":
         compact(con)
+    elif args.cmd == "export":
+        print(f"uploaded {export(con, _store(), Path('data/work/search_index_export'))} files")
     print(status(con))
     return 0
 
