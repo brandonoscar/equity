@@ -15,6 +15,12 @@ from equity.adapters.business_registry import all_registry_adapters
 from equity.adapters.co_ucc import ColoradoUCC
 from equity.adapters.code_links import NJMunicipalCodeLinks
 from equity.adapters.dc_business import DCBusiness
+from equity.adapters.death_records import (
+    CookBurials,
+    CookHeightsCrematory,
+    CookIndigentCremations,
+    CookUnclaimedPersons,
+)
 from equity.adapters.deeds import all_deed_adapters
 from equity.adapters.federal.cms_lists import CMSOptOutAffidavits, CMSRevokedProviders
 from equity.adapters.federal.cms_nppes import CMSNPPES
@@ -120,6 +126,10 @@ _ALL: tuple[type[Adapter], ...] = (
     NYResidentialAssessmentRatios,
     NYEqualizationRates,
     CTEqualizedGrandList,
+    CookUnclaimedPersons,
+    CookIndigentCremations,
+    CookBurials,
+    CookHeightsCrematory,
     HillsboroughOfficialRecords,
     HillsboroughCivilCases,
     HillsboroughCivilFilings,

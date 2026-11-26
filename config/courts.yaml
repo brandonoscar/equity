@@ -17,7 +17,10 @@ schema_version: 1
 # intent is to disallow the feed, so wawb stays off. txsd and txsb answer HTTP 404 for the feed
 # (no public RSS); mob's host did not answer. Empty feeds that day: flnd, nywd, nyeb, miwb,
 # gand, gasd, alnd, nceb, pamd, wvsd. nywb titles ("2-26-20977 Name") still do not parse.
-enabled: [akb, almb, almd, alnb, alsb, alsd, azb, cacb, cacd, caeb, caed, cand, casb, casd, cob, ctb, dcb, deb, flmb, flmd, flnb, flsb, flsd, gamb, gamd, ganb, gasb, hib, ianb, iasb, idb, ilcb, ilsb, innb, innd, insb, insd, ksb, kywb, laeb, laed, lamb, lamd, lawb, lawd, mab, meb, mieb, mied, miwd, mnb, moeb, mowb, msnb, mssb, mtb, nced, ncmb, ncmd, ncwb, ncwd, ndb, neb, nhb, njb, njd, nvb, nynb, nynd, nysb, nysd, ohnb, ohsb, ohsd, okeb, oknb, okwb, orb, paeb, paed, pawb, pawd, rib, scb, sdb, tneb, tnmb, tnwb, txeb, txed, txnb, txwb, txwd, vaeb, vawb, vtb, waeb, wieb, wvsb, wyb]  # pamb: robots.txt disallows the feed
+# 2026-11-26: flsb, alnb, ianb, dcb and wvnb (listed as failing in the 2026-11-25 gap report)
+# all answer and list entries. txsd now serves its feed (robots.txt absent) and is enabled;
+# txsb still answers 404, wvnd 500, and mob's host does not answer.
+enabled: [akb, almb, almd, alnb, alsb, alsd, azb, cacb, cacd, caeb, caed, cand, casb, casd, cob, ctb, dcb, deb, flmb, flmd, flnb, flsb, flsd, gamb, gamd, ganb, gasb, hib, ianb, iasb, idb, ilcb, ilsb, innb, innd, insb, insd, ksb, kywb, laeb, laed, lamb, lamd, lawb, lawd, mab, meb, mieb, mied, miwd, mnb, moeb, mowb, msnb, mssb, mtb, nced, ncmb, ncmd, ncwb, ncwd, ndb, neb, nhb, njb, njd, nvb, nynb, nynd, nysb, nysd, ohnb, ohsb, ohsd, okeb, oknb, okwb, orb, paeb, paed, pawb, pawd, rib, scb, sdb, tneb, tnmb, tnwb, txeb, txed, txnb, txsd, txwb, txwd, vaeb, vawb, vtb, waeb, wieb, wvsb, wyb]  # pamb: robots.txt disallows the feed
 courts:
   FL: [flnd, flmd, flsd, flnb, flmb, flsb]
   OH: [ohnd, ohsd, ohnb, ohsb]

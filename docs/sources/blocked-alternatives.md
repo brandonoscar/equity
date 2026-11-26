@@ -103,3 +103,19 @@ dataset, joined) and `use_restrictions` for lien configs.
 | CA CSLB full licence file ($235) | CSLB's Public Data Portal offers the License Master, Personnel and Workers' Comp files free ("There is no charge for this service") | needs hand download | An F5 WAF rejects a scripted postback of the portal form; a person can save the CSV and it could load as a delivered file |
 | FL FWC hunting/fishing licence holders | myfwc.com public-record files | built (`fl.fwc.recreational_licenses`, `fl.fwc.commercial_licenses`) | |
 | Surplus-funds PDFs (Gwinnett excess funds, Wise TX, Hillsborough tax deed) | Pages reachable; no machine-readable list linked (Gwinnett and Wise), Hillsborough claim workbook dated 2023 | not built | Per-county extractors still needed |
+
+## Other federal sale notices (checked 2026-11-26)
+
+The Federal Register API was searched for NOTICE documents on loan, note and asset sales and
+surplus real property beyond the HUD and BLM queries already loaded
+(`us.federalregister.loan_sales`, `us.federalregister.realty_notices`):
+
+| Agency | Result |
+|---|---|
+| USDA (Rural Development, RBCS) | Two Intermediary Relending Program loan-sale invitations, 1999-2000; none since. Not added. |
+| SBA | Business and disaster loan sale notices 2000-2002 only; SBA stopped noticing sales in the Federal Register. Not added. |
+| VA | None. |
+| GSA | No sale notices: GSA lists surplus real property on realestatesales.gov, whose robots.txt disallows everything. Not added. |
+| Treasury, FDIC, others | Only HUD notices match "loan sale" since 2010. |
+
+HUD remains the only federal agency noticing loan sales in the Federal Register.

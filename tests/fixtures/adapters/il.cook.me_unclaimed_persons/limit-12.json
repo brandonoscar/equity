@@ -1,0 +1,100 @@
+{
+ "rows": [
+  {
+   "age_sex_race": "79",
+   "case": "ME2026-03659",
+   "date_of_arrival": "2026-07-10T00:00:00.000",
+   "gender": "Female",
+   "name": "TESTOWNER C9E3A7",
+   "race": "White"
+  },
+  {
+   "age_sex_race": "78",
+   "case": "ME2026-05551",
+   "date_of_arrival": "2026-10-16T00:00:00.000",
+   "gender": "Female",
+   "name": "TESTOWNER DB0722",
+   "race": "White"
+  },
+  {
+   "age_sex_race": "67",
+   "case": "ME2026-05586",
+   "date_of_arrival": "2026-10-18T00:00:00.000",
+   "gender": "Male",
+   "name": "TESTOWNER E952E9",
+   "race": "Black"
+  },
+  {
+   "age_sex_race": "78",
+   "case": "ME2026-05599",
+   "date_of_arrival": "2026-10-19T00:00:00.000",
+   "gender": "Female",
+   "name": "TESTOWNER 28B003",
+   "race": "White"
+  },
+  {
+   "age_sex_race": "86",
+   "case": "ME2026-05606",
+   "date_of_arrival": "2026-10-19T00:00:00.000",
+   "gender": "Male",
+   "name": "TESTOWNER 4E816A",
+   "race": "White"
+  },
+  {
+   "age_sex_race": "56",
+   "case": "ME2026-05657",
+   "date_of_arrival": "2026-10-26T00:00:00.000",
+   "gender": "Male",
+   "name": "TESTOWNER 147024",
+   "race": "White"
+  },
+  {
+   "age_sex_race": "61",
+   "case": "ME2026-05742",
+   "date_of_arrival": "2026-10-27T00:00:00.000",
+   "gender": "Male",
+   "name": "TESTOWNER F17B20",
+   "race": "Black"
+  },
+  {
+   "age_sex_race": "72",
+   "case": "ME2026-05755",
+   "date_of_arrival": "2026-10-27T00:00:00.000",
+   "gender": "Male",
+   "name": "TESTOWNER 386C1D",
+   "race": "White"
+  },
+  {
+   "age_sex_race": "87",
+   "case": "ME2026-05785",
+   "date_of_arrival": "2026-10-28T00:00:00.000",
+   "gender": "Female",
+   "name": "TESTOWNER 10B6F2",
+   "race": "White"
+  },
+  {
+   "age_sex_race": "76",
+   "case": "ME2026-05824",
+   "date_of_arrival": "2026-10-30T00:00:00.000",
+   "gender": "Male",
+   "name": "TESTOWNER 57C3D3",
+   "race": "White"
+  },
+  {
+   "age_sex_race": "58",
+   "case": "ME2026-05838",
+   "date_of_arrival": "2026-10-31T00:00:00.000",
+   "gender": "Male",
+   "name": "TESTOWNER 3AE75F",
+   "race": "White"
+  },
+  {
+   "age_sex_race": "76",
+   "case": "ME2026-05869",
+   "date_of_arrival": "2026-11-02T00:00:00.000",
+   "gender": "Female",
+   "name": "TESTOWNER 8B3CF2",
+   "race": "Unknown"
+  }
+ ]
+}

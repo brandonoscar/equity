@@ -1,0 +1,124 @@
+{
+ "rows": [
+  {
+   "age": "74",
+   "case_number": "HC-001",
+   "date_of_death": "2018-07-22T00:00:00.000",
+   "decedent": "TESTOWNER 8C6038",
+   "latino": false,
+   "place_of_death": "TESTOWNER E01C40",
+   "race": "BLACK",
+   "sex": "M"
+  },
+  {
+   "age": "68",
+   "case_number": "HC-002",
+   "date_of_death": "2020-03-08T00:00:00.000",
+   "decedent": "TESTOWNER 946FDA",
+   "latino": false,
+   "place_of_death": "TESTOWNER 14F2C6",
+   "race": "BLACK",
+   "sex": "F"
+  },
+  {
+   "age": "76",
+   "case_number": "HC-003",
+   "date_of_death": "2021-10-13T00:00:00.000",
+   "decedent": "TESTOWNER 45E5FC",
+   "latino": false,
+   "place_of_death": "TESTOWNER E5C411",
+   "race": "WHITE",
+   "sex": "M"
+  },
+  {
+   "age": "56",
+   "case_number": "HC-006",
+   "date_of_death": "2020-03-13T00:00:00.000",
+   "decedent": "TESTOWNER 58B580",
+   "latino": false,
+   "place_of_death": "TESTOWNER 890422",
+   "race": "BLACK",
+   "sex": "M"
+  },
+  {
+   "age": "89",
+   "case_number": "HC-007",
+   "date_of_death": "2019-08-30T00:00:00.000",
+   "decedent": "TESTOWNER 61B2B2",
+   "latino": false,
+   "place_of_death": "TESTOWNER F674C1",
+   "race": "BLACK",
+   "sex": "M"
+  },
+  {
+   "age": "65",
+   "case_number": "HC-008",
+   "date_of_death": "2023-02-06T00:00:00.000",
+   "decedent": "TESTOWNER 4054A0",
+   "latino": false,
+   "place_of_death": "TESTOWNER A53CD5",
+   "race": "BLACK",
+   "sex": "M"
+  },
+  {
+   "age": "50",
+   "case_number": "HC-009",
+   "date_of_death": "2019-11-07T00:00:00.000",
+   "decedent": "TESTOWNER D02FFD",
+   "latino": false,
+   "place_of_death": "TESTOWNER 8D28FE",
+   "race": "BLACK",
+   "sex": "M"
+  },
+  {
+   "age": "57",
+   "case_number": "HC-011",
+   "date_of_death": "2022-09-12T00:00:00.000",
+   "decedent": "TESTOWNER EB8AE0",
+   "latino": false,
+   "place_of_death": "TESTOWNER C02DA4",
+   "race": "BLACK",
+   "sex": "F"
+  },
+  {
+   "age": "69",
+   "case_number": "HC-012",
+   "date_of_death": "2022-10-27T00:00:00.000",
+   "decedent": "TESTOWNER 197C7B",
+   "latino": false,
+   "place_of_death": "TESTOWNER B36451",
+   "race": "BLACK",
+   "sex": "F"
+  },
+  {
+   "age": "54",
+   "case_number": "HC-013",
+   "date_of_death": "2022-10-15T00:00:00.000",
+   "decedent": "TESTOWNER 36398D",
+   "latino": false,
+   "place_of_death": "TESTOWNER C6E9F3",
+   "race": "BLACK",
+   "sex": "F"
+  },
+  {
+   "age": "66",
+   "case_number": "HC-014",
+   "date_of_death": "2021-10-31T00:00:00.000",
+   "decedent": "TESTOWNER C2737E",
+   "latino": false,
+   "place_of_death": "TESTOWNER 494650",
+   "race": "BLACK",
+   "sex": "M"
+  },
+  {
+   "age": "73",
+   "case_number": "HC-015",
+   "date_of_death": "2020-07-02T00:00:00.000",
+   "decedent": "TESTOWNER 70942F",
+   "latino": false,
+   "place_of_death": "TESTOWNER 494650",
+   "race": "WHITE",
+   "sex": "M"
+  }
+ ]
+}
