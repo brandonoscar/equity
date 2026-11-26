@@ -893,3 +893,60 @@ def test_records_that_name_an_owner_fill_parcels_without_roll_owners(tmp_path: P
     assert m["d3"] == ("99001-003", "person_name_address", "auto", "deed:zz.sales")
     # p4 has a roll owner: a permit naming someone else does not add an owner.
     assert "d4" not in m
+
+
+def test_a_debtor_living_at_a_nameless_lot_is_a_review_lead(tmp_path: Path) -> None:
+    """California rolls publish no owner names: a debtor whose address is a nameless lot's
+    property address is a lead (owner or tenant), ranked higher when the roll's homeowner
+    exemption says an owner lives there. Lots that share an address, lots with a known owner
+    and businesses give no lead."""
+    lk = tmp_path / "lake"
+    d, o = lk / "zz.debts", lk / "zz.parcels"
+    _write(d / "address" / "0.parquet", [
+        _addr("a1", "1 HOME ST", "90001"), _addr("a2", "2 RENT ST", "90001"),
+        _addr("a3", "3 CONDO WAY", "90001"), _addr("a4", "4 KNOWN ST", "90001")])  # fmt: skip
+    people = {"d1": ("ANN LEE", "a1", "person"), "d2": ("BO RAY", "a2", "person"),
+              "d3": ("CY DOE", "a3", "person"), "d4": ("EVE FOX", "a4", "person"),
+              "d5": ("HOME CORP", "a1", "org")}  # fmt: skip
+    _write(d / "party" / "0.parquet", [
+        {"party_id": k, "raw_name": n, "party_kind": kind,
+         "org_name_norm": "HOME" if kind == "org" else None, "address_id": a}
+        for k, (n, a, kind) in people.items()])  # fmt: skip
+    _write(
+        d / "instrument_party" / "0.parquet",
+        [{"instrument_uid": f"i{k}", "party_id": k, "role": "debtor"} for k in people],
+    )
+    _write(d / "instrument" / "0.parquet", [
+        {"instrument_uid": f"i{k}", "source_id": "zz.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2026-01-01", "principal_amount": 10.0} for k in people])  # fmt: skip
+    _write(o / "address" / "0.parquet", [
+        _addr("s1", "1 Home Street", "90001"), _addr("s2", "2 RENT ST", "90001"),
+        _addr("s3", "3 CONDO WAY", "90001"), _addr("s4", "4 KNOWN ST", "90001"),
+        _addr("m4", "9 MAIL RD", "90002")])  # fmt: skip
+    lots = [("06037-1", "s1"), ("06037-2", "s2"), ("06037-3a", "s3"), ("06037-3b", "s3"),
+            ("06037-4", "s4")]  # fmt: skip
+    _write(o / "parcel" / "0.parquet", [{"parcel_uid": u, "situs_address_id": a} for u, a in lots])
+    _write(o / "parcel_assessment" / "0.parquet", [
+        {"parcel_uid": "06037-1", "tax_year": 2025, "appraised_total": 1.0, "homestead": False},
+        {"parcel_uid": "06037-1", "tax_year": 2026, "appraised_total": 1.0, "homestead": True},
+        {"parcel_uid": "06037-2", "tax_year": 2026, "appraised_total": 1.0, "homestead": False},
+    ])  # fmt: skip
+    _write(o / "party" / "0.parquet", [
+        {"party_id": "o4", "raw_name": "SOMEONE ELSE", "party_kind": "person",
+         "org_name_norm": None, "address_id": "m4"}])  # fmt: skip
+    _write(o / "owner_snapshot" / "0.parquet", [{"parcel_uid": "06037-4", "party_id": "o4"}])
+    out = tmp_path / "out"
+    run(lk, out, ["zz.debts"], ["zz.parcels"])
+    con = duckdb.connect()
+    m = {row[0]: row[1:] for row in con.execute(
+        f"SELECT debtor_party_id, parcel_uid, rule_id, decision "
+        f"FROM '{out.as_posix()}/matches.parquet'").fetchall()}  # fmt: skip
+    assert m["d1"] == ("06037-1", "person_at_owner_occupied_property", "review")
+    assert m["d2"] == ("06037-2", "person_at_property", "review")
+    assert "d3" not in m  # two lots at one address: which one is unknown
+    assert "d4" not in m  # the lot has a roll owner, someone else
+    assert "d5" not in m  # a business at a home address says nothing about the home
+    q = dict(con.execute(
+        f"SELECT debtor_party_id, category FROM '{out.as_posix()}/review_queue.parquet'"
+    ).fetchall())  # fmt: skip
+    assert q == {"d1": "at_owner_occupied_property", "d2": "at_property"}

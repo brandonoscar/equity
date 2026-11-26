@@ -32,6 +32,11 @@ Rules, strongest first (a debtor-owner pair keeps its strongest rule):
                         has one extra single-letter middle initial ("JOHN SMITH" / "SMITH JOHN
                         A"); a parent and child can share both, so -> review (approved by the
                         project owner 2026-11-22)
+  person_at_owner_occupied_property  a lot no source names an owner for (California rolls)
+                        whose property address is the debtor's own address, and the roll's
+                        latest homeowner exemption says an owner lives there       -> review
+  person_at_property    the same without the exemption (owner or tenant: unknown)   -> review
+                        (an address shared by several nameless lots gives no lead)
 With parcel_on_lien (liens recorded against a parcel id, e.g. Allegheny PINs), first; a lien
 that names a parcel but no debtor gets the stand-in debtor "owner-of:<parcel_uid>":
   lien_names_parcel         the lien itself names the parcel (instrument_parcel, or the one
@@ -125,6 +130,8 @@ RULES = (
     ("org_name_street_town", "auto", 6),
     ("org_name_county", "review", 7),
     ("person_name_initial_address", "review", 8),
+    ("person_at_owner_occupied_property", "review", 9),
+    ("person_at_property", "review", 10),
 )
 
 
@@ -157,7 +164,7 @@ COLUMNS: dict[str, dict[str, str]] = {
     "judgment_event": {"judgment_uid": V, "event": V},
     "docket_entry": {"case_uid": V, "entry_date": "DATE", "source_id": V, "jurisdiction": V},
     "parcel_assessment": {"parcel_uid": V, "tax_year": "INTEGER", "appraised_total": "DOUBLE",
-                          "assessed_value": "DOUBLE"},
+                          "assessed_value": "DOUBLE", "homestead": "BOOLEAN"},
 }  # fmt: skip
 
 
@@ -597,6 +604,34 @@ WHERE d.party_kind = 'org' AND o.party_kind = 'org' AND d.org_name_norm <> ''
   AND d.town_key IS NOT NULL AND d.town_key IN (o.mail_town, o.situs_town);
 """
 
+# Parcels no source names an owner for (California rolls publish none): a debtor whose own
+# address is the lot's property address may own it or may rent it, so these are review only.
+# The roll's homeowner (owner-occupied) exemption for the latest year says an owner lives
+# there, which ranks the lead above a plain address match. No name is compared: there is none.
+NAMELESS_SQL = """
+CREATE TEMP TABLE nameless_lots AS
+WITH occ AS (
+    SELECT parcel_uid, arg_max(homestead, tax_year) AS homestead FROM o_assess
+    WHERE homestead IS NOT NULL GROUP BY parcel_uid
+)
+SELECT DISTINCT pc.parcel_uid, a.addr_key, coalesce(occ.homestead, false) AS owner_occupied
+FROM o_parcel pc JOIN addr a ON a.address_id = pc.situs_address_id
+LEFT JOIN occ ON occ.parcel_uid = pc.parcel_uid
+WHERE a.addr_key IS NOT NULL
+  AND pc.parcel_uid NOT IN (SELECT parcel_uid FROM owners);
+-- One address can be many lots (condo units, a building split into parcels): only an
+-- address that is one nameless lot is a lead.
+CREATE TEMP TABLE nameless_one AS
+SELECT addr_key, min(parcel_uid) AS parcel_uid, bool_or(owner_occupied) AS owner_occupied
+FROM nameless_lots GROUP BY addr_key HAVING count(DISTINCT parcel_uid) = 1;
+INSERT INTO candidates
+SELECT DISTINCT d.party_id, d.instrument_uid, NULL, n.parcel_uid,
+       CASE WHEN n.owner_occupied THEN 'person_at_owner_occupied_property'
+            ELSE 'person_at_property' END, d.addr_key
+FROM debtors d JOIN nameless_one n ON n.addr_key = d.addr_key
+WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2;
+"""
+
 
 def match(
     con: duckdb.DuckDBPyConnection,
@@ -611,6 +646,7 @@ def match(
         con.execute(PARCEL_ON_LIEN_SQL)
     if street_town:
         con.execute(STREET_TOWN_SQL)
+    con.execute(NAMELESS_SQL)
     ranks = " ".join(f"WHEN '{r}' THEN {n}" for r, _, n in RULES)
     decisions = " ".join(f"WHEN '{r}' THEN '{d}'" for r, d, _ in RULES)
     con.execute(f"""
@@ -1058,8 +1094,13 @@ STATES: dict[str, dict[str, Any]] = {
                                "la.st_bernard.parcels", "la.tangipahoa.parcels"]},
     # California: the state's top-500 delinquent taxpayer lists (FTB personal and corporate,
     # CDTFA) against the San Jose owner table, the only California owner source so far.
-    "CA": {"debtors": ["ca.cdtfa.top500", "ca.ftb.top500_corporate", "ca.ftb.top500_personal"],
-           "owners": ["ca.san_jose.parcels"], "courts": FEDERAL_COURTS,
+    # The four county rolls publish no owner names: their lots are found by property address
+    # (nameless-lot review leads) and by the LA lists that name the parcel.
+    "CA": {"debtors": ["ca.cdtfa.top500", "ca.ftb.top500_corporate", "ca.ftb.top500_personal",
+                       "ca.los_angeles.defaulted_tax", "ca.los_angeles.registered_foreclosures"],
+           "owners": ["ca.san_jose.parcels", "ca.losangeles.parcels", "ca.riverside.parcels",
+                      "ca.sanbernardino.parcels", "ca.sandiego.parcels"],
+           "courts": FEDERAL_COURTS, "parcel_on_lien": True,
            "record_owners": ["ca.san_jose.building_permits_active",
                              "ca.san_jose.building_permits_expired",
                              "ca.san_jose.building_permits_under_inspection"]},
