@@ -15,7 +15,10 @@ Config keys:
                       carto (+ carto: a Carto SQL API url, table; select and order_by are
                       columns, the date window is SQL on date_field) or
                       pdf (+ url, header: a text-based PDF list; the table starts at the line
-                      whose first cell begins with `header`, columns split at its x positions)
+                      whose first cell begins with `header`, columns split at its x positions;
+                      or, with pdf_columns: {names, cuts, require}, cut at fixed x positions
+                      (`cuts`: where each column after the first begins, for right-aligned or
+                      two-line headers) and kept when each `require` column matches its regex)
   caption_field       a 'Plaintiff vs Defendant' caption, split into the derived fields
                       caption_plaintiff and caption_defendant for use in parties
   enrich              arcgis: {carto: SQL API url, table, key, field, columns} or {arcgis:
@@ -129,6 +132,7 @@ from equity.adapters.arcgis import ArcGISQuery, get_json
 from equity.adapters.arcgis import fetch_all as arcgis_fetch_all
 from equity.adapters.base import Adapter, Fetched, FetchRequest, HealthReport, NormalizedRow
 from equity.adapters.http import USER_AGENT, PoliteClient
+from equity.adapters.pdf_lists import pdf_rows
 from equity.adapters.pdf_table import pdf_table, pdf_text
 from equity.adapters.rows import RecordContext, canonical_json
 from equity.adapters.socrata import SocrataQuery, fetch_all
@@ -815,7 +819,15 @@ class LienAdapter(Adapter):
             idx = int(cfg.get("table", 0))
             table = tables[idx] if idx < len(tables) else []
         elif self.api == "pdf":
-            table, banner = pdf_table(content, str(cfg["header"])), pdf_text(content)
+            cols = cfg.get("pdf_columns")
+            if cols:
+                names = [str(n) for n in cols["names"]]
+                found = pdf_rows(content, names, [float(c) for c in cols["cuts"]],
+                                 str(cfg["header"]), require=cols.get("require"))  # fmt: skip
+                table = [names, *([r[n] for n in names] for r in found)]
+            else:
+                table = pdf_table(content, str(cfg["header"]))
+            banner = pdf_text(content)
         elif self.api == "csv":
             table, banner = csv_table(content, str(cfg.get("delimiter", ","))), ""
         else:

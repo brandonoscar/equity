@@ -1,0 +1,44 @@
+source_id: sd.dor.top_delinquent_business
+state: SD
+county_fips: "46"   # statewide; the list gives a city and state, no county
+# South Dakota Department of Revenue, Business Tax Delinquent Report (SDCL 10-59-46 to 10-59-51):
+# the 100 largest unpaid business-tax balances (sales, use, tourism, contractors' excise,
+# municipal and telecommunications taxes), each with tax, interest, penalty and total due. The
+# report states "A lien has been filed against all taxpayers listed" and that names are
+# removed within 10 days of payment in full. A text PDF whose file name carries the report
+# date, so the current link is taken from the business-taxes page. No lien date is published,
+# so the "REPORT DATE" stands in for it. Many listed businesses are out of state.
+# TODO(Brandon): confirm a South Dakota tax lien (SDCL 10-59-45, filed with the register of
+# deeds) binds real property in the county where it was filed before treating these as
+# land liens; the report does not name the county.
+api: pdf
+url: https://dor.sd.gov/media/05oddt20/11-2-2026-100-top-delinquent-report.pdf
+link_from: {page: "https://dor.sd.gov/businesses/taxes/", pattern: 'top-delinquent-report\.pdf$'}
+header: Owner Name
+# The header is printed on two lines and the amounts are right-aligned, so the columns are cut
+# at fixed x positions (points); a row needs a name and a dollar total, which drops each row's
+# second line (the DBA name, kept only when it differs: not read here) and the grand total.
+pdf_columns:
+  names: [owner_name, address, city, state, tax_due, interest_due, penalty_due, total_due]
+  cuts: [200, 370, 470, 520, 585, 650, 715]
+  require: {owner_name: '\S', total_due: '^\$[0-9,]+\.[0-9]{2}$'}
+as_of: {field: report_date, after: "REPORT DATE"}
+date_field: report_date
+# A business can be listed twice (two accounts, told apart only by the DBA line not read
+# here), so the amounts are part of the key; two rows with the same figures merge into one,
+# which can understate but never double-count.
+uid: [owner_name, address, city, tax_due, interest_due, penalty_due, total_due]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: South Dakota delinquent business tax (lien filed)
+amount: total_due
+parties:
+  - role: debtor
+    name: owner_name
+    address: {line1: address, city: city, state: state}
+  - role: creditor
+    const: South Dakota Department of Revenue
+terms:
+  url: https://dor.sd.gov/businesses/taxes/
+  summary: "SD Department of Revenue posts the report as a free PDF on dor.sd.gov, no login; published under SDCL 10-59-46 to 51. No license or reuse terms stated; robots.txt allows all."
+  checked_on: 2026-11-26
+  cost_model: free

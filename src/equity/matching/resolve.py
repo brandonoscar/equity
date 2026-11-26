@@ -999,7 +999,8 @@ STATES: dict[str, dict[str, Any]] = {
                       "sc.spartanburg.parcels", "sc.york.parcels", "sc.beaufort.parcels",
                       "sc.berkeley.parcels", "sc.dorchester.parcels", "sc.pickens.parcels",
                       "sc.sumter.parcels"]},
-    "SD": {"debtors": [], "courts": FEDERAL_COURTS,
+    # South Dakota's business-tax delinquents (a lien filed on each) against county owners.
+    "SD": {"debtors": ["sd.dor.top_delinquent_business"], "courts": FEDERAL_COURTS,
            "owners": ["sd.beadle.parcels", "sd.codington.parcels", "sd.lincoln.parcels",
                       "sd.miner.parcels", "sd.minnehaha.parcels", "sd.pennington.parcels"]},
     "TN": {"debtors": [], "courts": FEDERAL_COURTS,

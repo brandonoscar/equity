@@ -720,6 +720,43 @@ def test_pdf_source(tmp_path: Path) -> None:
         load_lien_config(_cfg(tmp_path, api="pdf", url="https://d.test/x.pdf"))
 
 
+def test_pdf_source_with_fixed_columns(tmp_path: Path) -> None:
+    """pdf_columns: a two-line header and right-aligned amounts (the amount starts left of its
+    header word) are cut at fixed x positions; a row needs a name and a dollar total, so the
+    second (DBA) line and the grand-total line are dropped."""
+    cfg = _cfg(
+        tmp_path,
+        api="pdf",
+        url="https://d.test/list.pdf",
+        header="Owner Name",
+        pdf_columns={
+            "names": ["owner", "city", "total"],
+            "cuts": [150, 300],
+            "require": {"owner": r"\S", "total": r"^\$[0-9,.]+$"},
+        },
+        portal=None,
+        dataset=None,
+        parcel=None,
+        county_fips="46",
+        state="SD",
+        released_on=None,
+        as_of={"field": "as_of", "after": "REPORT DATE"},
+        date_field="as_of",
+        uid=["owner", "total"],
+        amount="total",
+        parties=[{"role": "debtor", "name": "owner", "address": {"city": "city"}}],
+    )
+    cls = lien_adapter_for(load_lien_config(cfg))
+    pdf = _pdf([(300, 760, "REPORT DATE: 11/02/2026"), (36, 740, "Owner Name"),
+                (36, 728, "DBA Name"), (160, 728, "City"), (330, 728, "Total Due"),
+                (36, 712, "ACME LLC"), (160, 711, "PIERRE"), (310, 711, "$12,000.50"),
+                (36, 700, "ACME DINER"), (310, 680, "$12,000.50")])  # fmt: skip
+    out = _rows_of(cls, {"list.pdf": pdf})
+    (inst,) = [r for t, r in out if t == "instrument"]
+    assert (str(inst["recorded_on"]), str(inst["principal_amount"])) == ("2026-11-02", "12000.50")
+    assert [r["raw_name"] for t, r in out if t == "party"] == ["ACME LLC"]
+
+
 def test_one_field_can_hold_several_names_and_a_constant_city(tmp_path: Path) -> None:
     cfg = _cfg(tmp_path, parcel=None, county_fips="17031", released_on=None,
                parties=[{"role": "debtor", "name": "resp", "split": " | ",
