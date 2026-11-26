@@ -1,0 +1,53 @@
+source_id: oh.stark.civil_sales
+state: OH
+county_fips: "39151"   # Stark County (Canton)
+# Stark County Sheriff 'Civil Sales' (county ArcGIS server, Sheriff/CivilSales layer 0, 29,043
+# rows on 2026-11-26): every court-ordered sheriff sale since about 2000 with the case number,
+# sale type (bank foreclosure, delinquent tax, tax certificate, Board of Revision), plaintiff,
+# each defendant with an address ("NAME, ADDRESS;"), the judgment amount, appraised value,
+# scheduled sale dates, status and outcome. Complements oh.stark.foreclosures (the auditor's
+# historic list, which names no party and has no amounts). Bank foreclosures are notices
+# (LIS_PENDENS, like pa.washington.sheriff_sales); tax and Board of Revision sales enforce the
+# tax lien. Each defendant is read up to the first comma (the rest is their address). Parcels
+# are listed "02-24227, 02-24228"; the Ohio roll stores them as digits with no leading zero
+# ("224227"). Dated by court filing; rows with impossible dates (years 18, 2109) are skipped
+# by the year windows. Debt kind: foreclosure; refreshed daily as a sale listing.
+api: arcgis
+layer_url: https://scgisa.starkcountyohio.gov/arcgis/rest/services/Sheriff/CivilSales/MapServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, ID, CASE_NUMBER, SALE_TYPE, PLAINTIFF, DEFENDANT, COURT_FILING_DATE,
+         ORDER_DATE_SALE, HOUSE_NUMBER, STREET, STREET_DIR, CITY, PARCEL_NUMBERS,
+         JUDGEMENT_AMOUNT, APPRAISED_VALUE, CANCELLED_DATE, SALE_DATE1, SALE_DATE2,
+         SALE_STATUS, SALE_DATE_STATUS, PENDING_SALE_DATE, SOLD_ON_DATE, SALE_AMOUNT]
+date_field: COURT_FILING_DATE
+partition: year
+first_year: 2000
+uid: [CASE_NUMBER, ID]
+doc_type:
+  field: SALE_TYPE
+  map:
+    BANK FORECLOSURE: LIS_PENDENS
+    DELINQUENT TAX: TAX_LIEN_STATE
+    DELINQUENT TAX CERTIFICATE: TAX_LIEN_STATE
+    BOARD OF REVISIONS: TAX_LIEN_STATE
+  default: LIS_PENDENS
+doc_type_raw: {field: SALE_TYPE}
+amount: JUDGEMENT_AMOUNT
+parties:
+  - role: creditor
+    name: PLAINTIFF
+    split: ";"
+    cut_at: ","
+  - role: debtor
+    name: DEFENDANT
+    split: ";"
+    cut_at: ","
+    address: {line1: [HOUSE_NUMBER, STREET, STREET_DIR], city: CITY, state_const: OH}  # the property
+parcel: {kind: pin, field: PARCEL_NUMBERS, county_fips: "39151", split: ",", strip: "- ",
+         lstrip_zeros: true}
+extra_pii: [DEFENDANT]
+terms:
+  url: https://scgisa.starkcountyohio.gov/arcgis/rest/services/Sheriff/CivilSales/MapServer
+  summary: "Stark County, OH public ArcGIS server (Sheriff/CivilSales), free, no login; no license text on the service; sheriff sale notices are public records. robots.txt returns 404 (no restrictions)."
+  checked_on: 2026-11-26
+  cost_model: free

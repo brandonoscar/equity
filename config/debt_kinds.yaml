@@ -135,6 +135,7 @@ sources:
   oh.lorain.forfeited_land_sale: tax_delinquency
   oh.medina.delinquent_taxes: tax_delinquency
   oh.stark.delinquent_taxes: tax_delinquency
+  oh.stark.civil_sales: foreclosure
   oh.stark.foreclosures: foreclosure
   sc.horry.delinquent_tax_sale: tax_delinquency
   sc.york.tax_sale: tax_delinquency

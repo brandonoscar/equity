@@ -1138,3 +1138,20 @@ def test_zero_pins_name_no_lot_and_restrictions_reach_the_source_row(tmp_path: P
     row = cls().source_row()
     assert row["terms_summary"] == "RESTRICTED[internal_use_only,no_redistribution] s"
     assert row["robots_checked_on"] == "2026-11-24"
+
+
+def test_cut_at_names_and_split_lots_without_leading_zeros(tmp_path: Path) -> None:
+    cfg = _cfg(tmp_path, released_on=None, uid="case", date_field="filed", amount="due",
+               parties=[{"role": "debtor", "name": "defendant", "split": ";", "cut_at": ","}],
+               parcel={"kind": "pin", "field": "lots", "county_fips": "39151", "split": ",",
+                       "strip": "- ", "lstrip_zeros": True})  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    row = {"case": "2026CV1", "filed": "2026-03-01", "due": "9282.42",
+           "defendant": "ACME LLC, 711 7TH ST NW, CANTON OH 44703; ANN LEE, ADDRESS UNKNOWN;",
+           "lots": "02-24227, 02-24228,00-0000"}  # fmt: skip
+    body = json.dumps({"rows": [row]}).encode()
+    out = [(r.table, dict(r.row)) for r in cls().normalize(Fetched(cls.source_id, "x", AT, 200,
+                                                                   body, ""))]  # fmt: skip
+    assert sorted(r["raw_name"] for t, r in out if t == "party") == ["ACME LLC", "ANN LEE"]
+    assert sorted(r["parcel_uid"] for t, r in out if t == "instrument_parcel") == [
+        "39151-224227", "39151-224228"]  # an all-zeros placeholder names no lot  # fmt: skip

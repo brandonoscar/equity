@@ -60,7 +60,9 @@ Config keys:
   parties             list of {role, name: field|[fields] | const: text, split (optional
                                separator, or a list of them: one field holding several names,
                                e.g. ' | '), strip (optional characters trimmed from each
-                               name, e.g. '"' around '"DOE, JANE","ROE, JOHN"'),
+                               name, e.g. '"' around '"DOE, JANE","ROE, JOHN"'), cut_at
+                               (optional text: keep only what comes before it in each name,
+                               e.g. ',' for 'DOE LLC, 1 MAIN ST, CANTON OH;'),
                                address: {line1: field|[fields], city | city_const, state |
                                state_const, zip}, when (optional {field: value}: the party
                                is read only from rows whose field has that value, e.g. a
@@ -69,7 +71,10 @@ Config keys:
                       | {kind: pin, field (or a list of fields, one lot each), county_fips
                          (or none: the row's county from county_name_field), strip (optional
                          characters removed from the id, e.g. '-'), zfill (optional width:
-                         left-pad with zeros an id published as a number, e.g. 13)}
+                         left-pad with zeros an id published as a number, e.g. 13),
+                         split (optional separator: one field naming several lots, e.g.
+                         ', '), lstrip_zeros (true: drop leading zeros, as a roll that stores
+                         '02-24227' as '224227' does)}
   county_fips         jurisdiction when no parcel names a county (5 digits)
   county_name_field   optional field holding the county name (mapped to FIPS in `state`)
   county_aliases      optional {name in the data: county name}, e.g. {DADE: MIAMI-DADE}
@@ -897,6 +902,9 @@ class LienAdapter(Adapter):
         if spec.get("kind") == "pin" and isinstance(spec.get("field"), list):
             return [self._parcel({**row, "_pin": row.get(f)}, {**spec, "field": "_pin"})
                     for f in spec["field"]]  # fmt: skip
+        if spec.get("kind") == "pin" and spec.get("split"):
+            pins = str(row.get(spec["field"]) or "").split(str(spec["split"]))
+            return [self._parcel({**row, "_pin": p}, {**spec, "field": "_pin"}) for p in pins]
         return [self._parcel(row)]
 
     def _parcel(
@@ -923,6 +931,8 @@ class LienAdapter(Adapter):
                 pin = "".join(ch for ch in pin if ch not in str(spec["strip"])) or None
             if pin and spec.get("zfill"):  # a folio read as a number lost its leading zero
                 pin = pin.zfill(int(spec["zfill"]))
+            if pin and spec.get("lstrip_zeros"):
+                pin = pin.lstrip("0") or None
             if pin is None or not pin.strip("0-. "):  # blank or a zeros placeholder
                 return None, None
                 return None, None
@@ -1079,6 +1089,8 @@ class LienAdapter(Adapter):
                 names = [n.strip() for n in re.split(splitter, raw)] if raw and seps else [raw]
                 if p.get("strip"):  # quote marks around each name: '"DOE, JANE"'
                     names = [n.strip(str(p["strip"])).strip() if n else n for n in names]
+                if p.get("cut_at"):  # 'DOE LLC, 1 MAIN ST, CANTON OH' -> 'DOE LLC'
+                    names = [n.split(str(p["cut_at"]), 1)[0].strip() if n else n for n in names]
                 a = p.get("address") or {}
                 zipc = _text(row.get(a["zip"])) if a.get("zip") else None
                 zip5 = zipc[:5] if zipc and re.fullmatch(r"[0-9]{5}", zipc[:5]) else None
