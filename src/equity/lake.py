@@ -433,6 +433,7 @@ EXTRA_SOURCES = ("wv.statewide.delinquent", "ny.nyc.acris.real", "ny.nyc.dof.con
                  "md.baltimore_city.citation_liens", "tx.harris.jp.judgments",
                  "tx.travis.tax_delinquent", "mi.detroit.blight_judgments",
                  "ne.douglas.tax_liens", "us.hud.fha_reo", "us.federalregister.realty_notices",
+                 "us.federalregister.loan_sales", "us.fhfa.hpi_zip5",
                  "us.sba.chargeoffs", "ny.sos.name_history")  # fmt: skip
 
 

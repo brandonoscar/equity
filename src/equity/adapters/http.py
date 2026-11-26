@@ -6,6 +6,7 @@ politeness rules are tested offline.
 from __future__ import annotations
 
 import gzip
+import hashlib
 import http.client
 import time
 import urllib.error
@@ -54,7 +55,8 @@ def urllib_transport(
 def urllib_post_transport(
     url: str, headers: Mapping[str, str], body: bytes, timeout: float
 ) -> tuple[int, bytes, str]:
-    hdrs = {**headers, "Content-Type": "application/x-www-form-urlencoded"}
+    # A caller's Content-Type (multipart uploads) wins over the form default.
+    hdrs = {"Content-Type": "application/x-www-form-urlencoded", **headers}
     return _urlopen(url, hdrs, body, timeout)
 
 
@@ -192,6 +194,34 @@ class PoliteClient:
         under the same robots.txt, spacing and retry rules as get()."""
         body = urllib.parse.urlencode(list(fields.items())).encode()
         return self._send(url, lambda hdrs: self.post_transport(url, hdrs, body, self.timeout_s))
+
+    def post_multipart(
+        self, url: str, fields: Mapping[str, str], files: Mapping[str, tuple[str, bytes]]
+    ) -> Response:
+        """POST multipart/form-data: plain fields plus files given as {field: (filename, data)}
+        (e.g. the Census batch geocoder's address file), under the same rules as get()."""
+        boundary = (
+            "equity"
+            + hashlib.sha256(
+                b"".join(d for _, d in files.values()) + repr(sorted(fields.items())).encode()
+            ).hexdigest()[:32]
+        )
+        parts: list[bytes] = []
+        for name, value in fields.items():
+            parts.append(f'--{boundary}\r\nContent-Disposition: form-data; name="{name}"'
+                         f"\r\n\r\n{value}\r\n".encode())  # fmt: skip
+        for name, (filename, data) in files.items():
+            parts.append(f'--{boundary}\r\nContent-Disposition: form-data; name="{name}"; '
+                         f'filename="{filename}"\r\nContent-Type: application/octet-stream'
+                         "\r\n\r\n".encode() + data + b"\r\n")  # fmt: skip
+        body = b"".join(parts) + f"--{boundary}--\r\n".encode()
+        ctype = f"multipart/form-data; boundary={boundary}"
+        return self._send(
+            url,
+            lambda hdrs: self.post_transport(
+                url, {**hdrs, "Content-Type": ctype}, body, self.timeout_s
+            ),
+        )
 
     def _send(
         self, full: str, call: Callable[[Mapping[str, str]], tuple[int, bytes, str]]

@@ -58,3 +58,22 @@ def test_federal_register_notices_and_partitions() -> None:
     params = dict(FederalRegisterRealty()._params("lease_sale", 2025, 2, 50))
     assert params["conditions[agencies][]"] == "land-management-bureau"
     assert params["conditions[publication_date][gte]"] == "2025-01-01" and params["page"] == "2"
+
+
+def test_hud_loan_sale_notices_are_their_own_source() -> None:
+    from equity.adapters.federal.federal_register import (
+        LOAN_SALE_QUERIES,
+        FederalRegisterLoanSales,
+    )
+
+    path = next((FIX / "us.federalregister.loan_sales").glob("*.json"))
+    out = _rows(FederalRegisterLoanSales, path)
+    inst = [r for t, r in out if t == "instrument"]
+    assert inst and {r["doc_type_raw"] for r in inst} == {"HUD loan sale notice"}
+    assert any("Loan Sale" in str(r["legal_desc_raw"]) for r in inst)
+    a = FederalRegisterLoanSales()
+    assert {p["query"] for p in a.partitions()} == set(LOAN_SALE_QUERIES) == {"hud_loan_sale"}
+    params = dict(a._params("hud_loan_sale", 2026, 1, 10))
+    assert params["conditions[agencies][]"] == "housing-and-urban-development-department"
+    assert a.source_row()["source_id"] == "us.federalregister.loan_sales"
+    assert FederalRegisterRealty.queries is QUERIES  # the realty source is unchanged
