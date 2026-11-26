@@ -26,6 +26,7 @@ make fixtures   # regenerate the synthetic test county
 | `src/equity/quality/` | provenance gate and data invariants (build-failing) |
 | `src/equity/adapters/` | adapter contract and registry; nightly health check |
 | `src/equity/rules/`, `matching/` | Phases 4 and 3 (deterministic, config-driven) |
+| `src/equity/catalog.py`, `search.py` | query catalog over the lake, name and address search, MCP SQL access (`docs/search.md`) |
 | `config/` | doc-type classes, rule thresholds, statute-of-limitations table (Brandon fills) |
 | `config/private/` | git-ignored business settings |
 | `tests/golden/` | hand-verified cases written by Brandon (CODEOWNERS) |

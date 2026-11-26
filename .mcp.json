@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "equity-catalog": {
+      "command": "uvx",
+      "args": [
+        "mcp-server-motherduck==1.1.1",
+        "--db-path", "data/catalog.duckdb",
+        "--ephemeral-connections",
+        "--max-rows", "500",
+        "--query-timeout", "120"
+      ]
+    }
+  }
+}
