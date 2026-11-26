@@ -124,22 +124,43 @@ SELECT cp.source_id, cp.party_id, cp.source_id || ':' || cp.party_id AS ref, n.r
        j.entered_on AS judgment_on, j.principal AS judgment_principal
 FROM case_parties cp JOIN cases c USING (source_id, case_uid)
 JOIN names n USING (source_id, party_id) LEFT JOIN judgments j USING (source_id, case_uid);
--- Parties named on a debt (lien, judgment, lis pendens...) whose exact name_key also owns a
--- parcel in the same state. Name-only: review before relying on it.
+-- One row per name and state: a name on a debt (lien, judgment, lis pendens...) that also
+-- owns parcels in the same state, with the debts and parcels behind it. Each side is
+-- aggregated before the join, so a common name cannot multiply rows. Name-only: these are
+-- leads to check against address and ZIP, not matches.
 CREATE OR REPLACE VIEW v_debtor_owner_candidates AS
-SELECT d.ref AS debtor_ref, d.raw_name AS debtor_name, d.doc_type, d.recorded_on, d.amount,
-       o.ref AS owner_ref, o.raw_name AS owner_name, o.parcel_uid, o.appraised_total,
-       o.assessed_value, ds.state
-FROM v_party_documents d
-JOIN names dn ON dn.source_id = d.source_id AND dn.party_id = d.party_id
-JOIN sources ds ON ds.source_id = d.source_id
-JOIN names onm ON onm.name_key = dn.name_key AND onm.name_key <> ''
-JOIN sources os ON os.source_id = onm.source_id AND os.state = ds.state
-JOIN v_owner_parcels o ON o.source_id = onm.source_id AND o.party_id = onm.party_id
-WHERE d.doc_type IN ('JUDGMENT_LIEN', 'ABSTRACT_OF_JUDGMENT', 'EXECUTION', 'LIS_PENDENS',
-                     'MECHANICS_LIEN', 'STATUTORY_LIEN', 'TAX_LIEN_STATE', 'TAX_LIEN_FEDERAL',
-                     'COURT_ORDER')
-  AND len(string_split(dn.name_key, ' ')) >= 2;
+WITH debt AS (
+    SELECT n.name_key, s.state, any_value(n.raw_name) AS debtor_name,
+           count(*) AS debts, sum(i.amount) AS debt_amount,
+           min(i.recorded_on) AS first_debt_on, max(i.recorded_on) AS last_debt_on,
+           list(DISTINCT i.doc_type ORDER BY i.doc_type) AS doc_types,
+           list(DISTINCT ip.source_id || ':' || ip.party_id)[1:20] AS debtor_refs
+    FROM instrument_parties ip
+    JOIN instruments i USING (source_id, instrument_uid)
+    JOIN names n USING (source_id, party_id)
+    JOIN sources s USING (source_id)
+    WHERE i.doc_type IN ('JUDGMENT_LIEN', 'ABSTRACT_OF_JUDGMENT', 'EXECUTION', 'LIS_PENDENS',
+                         'MECHANICS_LIEN', 'STATUTORY_LIEN', 'TAX_LIEN_STATE',
+                         'TAX_LIEN_FEDERAL', 'COURT_ORDER')
+      AND ip.role IN ('debtor', 'borrower', 'grantor')  -- the party that owes, not the creditor
+      AND len(string_split(n.name_key, ' ')) >= 2 AND regexp_matches(n.name_key, '[A-Z]{2}')
+    GROUP BY n.name_key, s.state
+), own AS (
+    SELECT n.name_key, s.state, count(DISTINCT o.parcel_uid) AS parcels,
+           sum(coalesce(v.appraised_total, v.assessed_value)) AS parcel_value,
+           list(DISTINCT o.parcel_uid ORDER BY o.parcel_uid)[1:20] AS parcel_uids,
+           list(DISTINCT o.source_id || ':' || o.party_id)[1:20] AS owner_refs
+    FROM debt d
+    JOIN names n ON n.name_key = d.name_key
+    JOIN sources s ON s.source_id = n.source_id AND s.state = d.state
+    JOIN owners o ON o.source_id = n.source_id AND o.party_id = n.party_id
+    LEFT JOIN parcel_values v ON v.source_id = o.source_id AND v.parcel_uid = o.parcel_uid
+    GROUP BY n.name_key, s.state
+)
+SELECT d.state, d.debtor_name, d.name_key, d.debts, d.debt_amount, d.doc_types,
+       d.first_debt_on, d.last_debt_on, o.parcels, o.parcel_value, d.debtor_refs,
+       o.owner_refs, o.parcel_uids
+FROM debt d JOIN own o USING (name_key, state);
 """
 
 # Catalog table -> (lake table, {catalog column: SQL over the lake row}, current-rows filter).

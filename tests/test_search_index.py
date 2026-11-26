@@ -241,10 +241,11 @@ def test_states_filter_force_and_city_address(lake: Path, tmp_path: Path) -> Non
 def test_views_and_saved_macros_for_sql_clients(
     cat: duckdb.DuckDBPyConnection, tmp_path: Path
 ) -> None:
-    rows = cat.execute("SELECT debtor_ref, owner_ref, parcel_uid, amount, appraised_total "
-                       "FROM v_debtor_owner_candidates").fetchall()  # fmt: skip
-    assert rows == [("oh.cuyahoga.liens:d1", "oh.franklin.parcels:o1", "39049-010-1",
-                     12500.0, 180000.0)]  # fmt: skip
+    q = ("SELECT state, debts, debt_amount, parcels, parcel_value, debtor_refs, owner_refs, "
+         "parcel_uids FROM v_debtor_owner_candidates")  # fmt: skip
+    rows = cat.execute(q).fetchall()
+    assert rows == [("OH", 1, 12500.0, 1, 180000.0, ["oh.cuyahoga.liens:d1"],
+                     ["oh.franklin.parcels:o1"], ["39049-010-1"])]  # fmt: skip
     cat.close()
     plain = duckdb.connect(str(tmp_path / "c.duckdb"), read_only=True)  # no helper macros
     assert plain.execute("SELECT name_key('Smith, John A.')").fetchone() == ("A JOHN SMITH",)

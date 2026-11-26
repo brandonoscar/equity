@@ -120,14 +120,16 @@ The catalog keeps `name_key()` and `street_norm()` as macros, plus these views:
 | `v_owner_parcels` | owner → parcel → latest value and situs |
 | `v_party_documents` | party → recorded document or debt-list item |
 | `v_party_cases` | party → court case → judgment |
-| `v_debtor_owner_candidates` | debtors whose exact name also owns a parcel in the same state (name-only candidates) |
+| `v_debtor_owner_candidates` | one row per name and state: debtor-side parties (debtor, borrower, grantor) on a judgment, lien or lis pendens whose exact name also owns parcels in the same state, with debts and parcels aggregated (name-only leads; on Ohio, Kentucky and Louisiana: 53,252 names, about 2 s) |
 
 ```sql
--- Debtors on a judgment or lien whose name also owns property worth $100k+ in Ohio
-SELECT debtor_name, doc_type, amount, owner_ref, parcel_uid, appraised_total
+-- Names that owe on a judgment or lien and own property worth $100k+ in Ohio (one row per
+-- name and state, debts and parcels aggregated; refs lead to --show)
+SELECT debtor_name, debts, debt_amount, doc_types, parcels, parcel_value,
+       debtor_refs, owner_refs
 FROM v_debtor_owner_candidates
-WHERE state = 'OH' AND appraised_total >= 100000
-ORDER BY amount DESC NULLS LAST LIMIT 50;
+WHERE state = 'OH' AND parcel_value >= 100000 AND parcels <= 5
+ORDER BY debt_amount DESC NULLS LAST LIMIT 50;
 
 -- Everything one name owns, across every source
 SELECT * FROM v_owner_parcels WHERE ref IN (
