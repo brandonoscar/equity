@@ -35,7 +35,7 @@ rules:
             mn.carlton.tax_forfeited_land_sale, co.douglas.tax_lien_sale,
             co.saguache.tax_lien_sale, ut.box_elder.tax_sale, ak.kenai_peninsula.land_sale,
             ak.fairbanks_north_star.tax_foreclosures, ga.dekalb.surplus_property,
-            ga.dekalb.excess_funds, nv.washoe.excess_proceeds, la.shreveport.adjudicated_property,
+            ga.dekalb.excess_funds, nv.washoe.excess_proceeds, az.mohave.excess_proceeds, la.shreveport.adjudicated_property,
             nm.valencia.tax_auction, ks.linn.tax_sale, pa.cumberland.tax_sales, sc.york.tax_sale,
             sc.horry.delinquent_tax_sale, ms.harrison.tax_sale_2026,
             mo.st_louis_county.post_third_sale, mi.genesee.land_bank, mo.kansas_city.land_bank,

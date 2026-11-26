@@ -1,0 +1,180 @@
+{
+ "rows": [
+  {
+   "case_number": "2024-02194",
+   "current_balance": "$687.76",
+   "deposit_amount": "$687.76",
+   "deposit_date": "2024-11-26",
+   "trustor": "TESTOWNER E46E81"
+  },
+  {
+   "case_number": "2024-02336",
+   "current_balance": "$25,928.80",
+   "deposit_amount": "$77,786.38",
+   "deposit_date": "2024-12-30",
+   "trustor": "TESTOWNER 09B303"
+  },
+  {
+   "case_number": "2024-02562",
+   "current_balance": "$14,831.20",
+   "deposit_amount": "$14,831.20",
+   "deposit_date": "2025-01-16",
+   "trustor": "TESTOWNER 9BD951"
+  },
+  {
+   "case_number": "2024-02570",
+   "current_balance": "$27,218.01",
+   "deposit_amount": "$27,218.01",
+   "deposit_date": "2025-02-20",
+   "trustor": "TESTOWNER 440593"
+  },
+  {
+   "case_number": "2025-00688",
+   "current_balance": "$87,802.19",
+   "deposit_amount": "$87,802.19",
+   "deposit_date": "2025-03-28",
+   "trustor": "TESTOWNER A677B5"
+  },
+  {
+   "case_number": "2025-00852",
+   "current_balance": "$14,707.93",
+   "deposit_amount": "$14,707.93",
+   "deposit_date": "2025-04-11",
+   "trustor": "TESTOWNER 8A7735"
+  },
+  {
+   "case_number": "2025-00847",
+   "current_balance": "$251.85",
+   "deposit_amount": "$251.85",
+   "deposit_date": "2025-04-18",
+   "trustor": "TESTOWNER 9BC20A"
+  },
+  {
+   "case_number": "2025-00974",
+   "current_balance": "$15,418.50",
+   "deposit_amount": "$15,418.50",
+   "deposit_date": "2025-05-01",
+   "trustor": "TESTOWNER 974994"
+  },
+  {
+   "case_number": "2025-01003",
+   "current_balance": "$68,802.56",
+   "deposit_amount": "$68,802.56",
+   "deposit_date": "2025-05-01",
+   "trustor": "TESTOWNER 85EFFB"
+  },
+  {
+   "case_number": "2025-01203",
+   "current_balance": "$5,628.16",
+   "deposit_amount": "$14,847.49",
+   "deposit_date": "2025-06-03",
+   "trustor": "TESTOWNER DF67C0"
+  },
+  {
+   "case_number": "2025-01455",
+   "current_balance": "$127,510.07",
+   "deposit_amount": "$127,510.07",
+   "deposit_date": "2025-07-15",
+   "trustor": "TESTOWNER 9D8E4D"
+  },
+  {
+   "case_number": "2025-02196",
+   "current_balance": "$18,757.72",
+   "deposit_amount": "$37,515.44",
+   "deposit_date": "2025-10-03",
+   "trustor": "TESTOWNER 650C1D"
+  },
+  {
+   "case_number": "2025-02387",
+   "current_balance": "$3,491.90",
+   "deposit_amount": "$3,491.90",
+   "deposit_date": "2025-11-04",
+   "trustor": "TESTOWNER 9D77A0"
+  },
+  {
+   "case_number": "2025-02565",
+   "current_balance": "$18,933.12",
+   "deposit_amount": "$18,933.12",
+   "deposit_date": "2025-11-06",
+   "trustor": "TESTOWNER 327166"
+  },
+  {
+   "case_number": "2025-02677",
+   "current_balance": "$68,806.83",
+   "deposit_amount": "$68,806.83",
+   "deposit_date": "2025-11-25",
+   "trustor": "TESTOWNER 60169E"
+  },
+  {
+   "case_number": "2025-02812",
+   "current_balance": "$4.17",
+   "deposit_amount": "$4.17",
+   "deposit_date": "2025-12-08",
+   "trustor": "TESTOWNER DE5EB6"
+  },
+  {
+   "case_number": "2025-02899",
+   "current_balance": "$13,263.07",
+   "deposit_amount": "$96,936.03",
+   "deposit_date": "2025-12-26",
+   "trustor": "TESTOWNER 72535E"
+  },
+  {
+   "case_number": "2026-00633",
+   "current_balance": "$37,307.59",
+   "deposit_amount": "$37,307.59",
+   "deposit_date": "2026-04-14",
+   "trustor": "TESTOWNER B90B09"
+  },
+  {
+   "case_number": "2026-00721",
+   "current_balance": "$12,320.24",
+   "deposit_amount": "$12,320.24",
+   "deposit_date": "2026-04-21",
+   "trustor": "TESTOWNER FADE1A"
+  },
+  {
+   "case_number": "2026-01413",
+   "current_balance": "$126,943.23",
+   "deposit_amount": "$126,943.23",
+   "deposit_date": "2026-06-10",
+   "trustor": "TESTOWNER 0D7EE8"
+  },
+  {
+   "case_number": "2026-01720",
+   "current_balance": "$5,972.95",
+   "deposit_amount": "$5,972.95",
+   "deposit_date": "2026-07-13",
+   "trustor": "TESTOWNER C480BB"
+  },
+  {
+   "case_number": "2026-01845",
+   "current_balance": "$22,139.85",
+   "deposit_amount": "$22,139.85",
+   "deposit_date": "2026-08-14",
+   "trustor": "TESTOWNER 59E6CD"
+  },
+  {
+   "case_number": "2026-02043",
+   "current_balance": "$2,644.26",
+   "deposit_amount": "$2,644.26",
+   "deposit_date": "2026-08-27",
+   "trustor": "TESTOWNER 283F0D"
+  },
+  {
+   "case_number": "2026-02220",
+   "current_balance": "$69,083.17",
+   "deposit_amount": "$69,083.17",
+   "deposit_date": "2026-10-13",
+   "trustor": "TESTOWNER 624897"
+  },
+  {
+   "case_number": "2026-02322",
+   "current_balance": "$64,323.16",
+   "deposit_amount": "$64,323.16",
+   "deposit_date": "2026-10-13",
+   "trustor": "TESTOWNER 910009"
+  }
+ ],
+ "url": "https://www.mohave.gov/departments/treasurer/general-use/excess-proceeds-list/"
+}
