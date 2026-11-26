@@ -60,8 +60,12 @@ rules:
     every_hours: 24
     mode: listing
     listing_table: tax_delinquency_snapshot
+  # FHFA ZIP5 house price index: a new year is published once a year; check monthly.
+  - match: [us.fhfa.hpi_zip5]
+    every_hours: 720
+    mode: rebuild
   # Federal Register realty / surplus / lease-sale notices: new ones most business days.
-  - match: [us.federalregister.realty_notices]
+  - match: [us.federalregister.realty_notices, us.federalregister.loan_sales]
     every_hours: 24
     mode: rebuild
   # Midwest city and county feeds updated daily to monthly: permits, code cases, rental and

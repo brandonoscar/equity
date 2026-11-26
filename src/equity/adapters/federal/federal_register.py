@@ -40,6 +40,13 @@ QUERIES: dict[str, dict[str, str]] = {
                    "conditions[agencies][]": "land-management-bureau",
                    "label": "BLM lease sale"},
 }  # fmt: skip
+# HUD single-family (vacant / non-vacant), multifamily and healthcare note sales: each notice
+# announces a sale of defaulted HUD-held mortgage notes, with the bid date and how to qualify.
+LOAN_SALE_QUERIES: dict[str, dict[str, str]] = {
+    "hud_loan_sale": {"conditions[term]": '"loan sale"',
+                      "conditions[agencies][]": "housing-and-urban-development-department",
+                      "label": "HUD loan sale notice"},
+}  # fmt: skip
 FIELDS = ("document_number", "title", "publication_date", "agencies", "html_url", "type")
 FIRST_YEAR = 2000
 PER_PAGE = 1000
@@ -49,6 +56,7 @@ class FederalRegisterRealty(Adapter):
     source_id: ClassVar[str] = "us.federalregister.realty_notices"
     adapter_version: ClassVar[str] = "1"
     access_method: ClassVar[str] = "api"
+    queries: ClassVar[dict[str, dict[str, str]]] = QUERIES
 
     def __init__(self, client: PoliteClient | None = None) -> None:
         self.client = client or PoliteClient(min_interval_s=1.0, timeout_s=120.0)
@@ -71,12 +79,12 @@ class FederalRegisterRealty(Adapter):
         }
 
     def partitions(self) -> Iterator[dict[str, str]]:
-        for q in QUERIES:
+        for q in self.queries:
             for year in range(FIRST_YEAR, datetime.now(UTC).year + 1):
                 yield {"query": q, "year": str(year)}
 
     def _params(self, query: str, year: int, page: int, per_page: int) -> list[tuple[str, str]]:
-        spec = [(k, v) for k, v in QUERIES[query].items() if k != "label"]
+        spec = [(k, v) for k, v in self.queries[query].items() if k != "label"]
         return [*spec, ("conditions[type][]", "NOTICE"),
                 ("conditions[publication_date][gte]", f"{year}-01-01"),
                 ("conditions[publication_date][lte]", f"{year}-12-31"),
@@ -92,7 +100,7 @@ class FederalRegisterRealty(Adapter):
 
     def fetch(self, request: FetchRequest) -> Fetched:
         query, year = request.params["query"], int(request.params["year"])
-        if query not in QUERIES:
+        if query not in self.queries:
             raise ValueError(f"unknown query {query!r}")
         limit = int(request.params["limit"]) if "limit" in request.params else None
         rows: list[dict[str, Any]] = []
@@ -110,7 +118,7 @@ class FederalRegisterRealty(Adapter):
 
     def normalize(self, fetched: Fetched) -> Iterator[NormalizedRow]:
         data = json.loads(fetched.content)
-        label = QUERIES.get(data.get("query"), {}).get("label", "Federal Register notice")
+        label = self.queries.get(data.get("query"), {}).get("label", "Federal Register notice")
         today = fetched.retrieved_at.astimezone(UTC).date()
         for r in sorted(data.get("rows") or [], key=lambda x: str(x.get("document_number"))):
             num = str(r.get("document_number") or "").strip()
@@ -153,3 +161,17 @@ class FederalRegisterRealty(Adapter):
         n = int(data.get("count") or 0)
         return HealthReport(self.source_id, n > 0, datetime.now(UTC), f"{n} notices this year",
                             shape, n)  # fmt: skip
+
+
+class FederalRegisterLoanSales(FederalRegisterRealty):
+    """HUD loan sale notices: sales of defaulted HUD-held mortgage notes (single-family vacant
+    and non-vacant, multifamily, healthcare). Each notice is a deal announcement: the sale
+    name (e.g. HVLS 2027-1), bid date and qualification steps are in the notice text. The loan
+    files themselves need HUD's confidentiality agreement and qualification statement, which
+    is the project owner's decision; nothing here registers or bids."""
+
+    source_id: ClassVar[str] = "us.federalregister.loan_sales"
+    queries: ClassVar[dict[str, dict[str, str]]] = LOAN_SALE_QUERIES
+
+    def source_row(self) -> Mapping[str, Any]:
+        return {**super().source_row(), "source_id": self.source_id}
