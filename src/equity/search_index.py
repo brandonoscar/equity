@@ -414,7 +414,7 @@ SORT_KEYS = (("names", "name_key"), ("name_words", "word"), ("owners", "party_id
     ("instrument_refs", "to_uid"),
     ("owner_history", "parcel_uid"),
     ("value_history", "parcel_uid"), ("cases", "case_uid"),
-             ("judgments", "case_uid"))  # fmt: skip
+             ("judgments", "case_uid"), ("addresses", "address_id"))  # fmt: skip
 LAKE_TABLES = ("party", "owner_snapshot", "parcel", "parcel_assessment", "address", "instrument",
                "instrument_party",
     "instrument_parcel",
@@ -916,9 +916,17 @@ def build(
     return done
 
 
-def compact(con: duckdb.DuckDBPyConnection) -> None:
+def compact(con: duckdb.DuckDBPyConnection, only: Iterable[str] | None = None) -> None:
     """Rewrite the search tables sorted by their lookup keys, so DuckDB's per-block min/max
-    skips almost everything on an exact name or word lookup."""
+    skips almost everything on an exact name or word lookup. `only` re-sorts just those
+    tables (and skips the rest of the work)."""
+    if only is not None:
+        keys = dict(SORT_KEYS)
+        for table in only:
+            con.execute(f"CREATE OR REPLACE TABLE {table} AS "  # noqa: S608
+                        f"SELECT * FROM {table} ORDER BY {keys[table]}")  # fmt: skip
+            con.execute("CHECKPOINT")
+        return
     for table, key in SORT_KEYS:
         con.execute(f"CREATE OR REPLACE TABLE {table} AS "  # noqa: S608
                     f"SELECT * FROM {table} ORDER BY {key}")  # fmt: skip
@@ -939,7 +947,8 @@ def compact(con: duckdb.DuckDBPyConnection) -> None:
 
 SHARE_PREFIX = "_search_index"
 PART_BYTES = 40_000_000  # object storage takes 50 MB per object; stay well under it
-TABLES = ("sources", *PER_SOURCE, "addresses", "word_sounds")
+TABLES = ("sources", *PER_SOURCE, "addresses", "word_sounds", "matcher_runs",
+          *(f"m_{t}" for t in MATCHER))  # fmt: skip
 
 
 def export(con: duckdb.DuckDBPyConnection, store: Any, work: Path, log: Any = print) -> int:
@@ -947,15 +956,15 @@ def export(con: duckdb.DuckDBPyConnection, store: Any, work: Path, log: Any = pr
     machines can pull it instead of rebuilding. Returns the number of files uploaded."""
     import shutil
 
-    sort = dict(SORT_KEYS) | {"sources": "source_id", "addresses": "address_id",
-                              "word_sounds": "sound"}  # fmt: skip
+    sort = dict(SORT_KEYS) | {"sources": "source_id", "word_sounds": "sound"}
     shutil.rmtree(work, ignore_errors=True)
     manifest: dict[str, Any] = {"exported_at": datetime.now(UTC).isoformat(), "tables": {}}
     sent = 0
     for t in TABLES:
         out = work / t
         out.mkdir(parents=True)
-        con.execute(f"COPY (SELECT * FROM {t} ORDER BY {sort[t]}) TO '{out}' "  # noqa: S608
+        order = f" ORDER BY {sort[t]}" if t in sort else ""
+        con.execute(f"COPY (SELECT * FROM {t}{order}) TO '{out}' "  # noqa: S608
                     f"(FORMAT parquet, COMPRESSION zstd, FILE_SIZE_BYTES {PART_BYTES}, "
                     "ROW_GROUP_SIZE 100000)")  # fmt: skip
         files = sorted(p.name for p in out.glob("*.parquet"))
@@ -963,6 +972,7 @@ def export(con: duckdb.DuckDBPyConnection, store: Any, work: Path, log: Any = pr
             store.upload(f"{SHARE_PREFIX}/{t}/{name}", (out / name).read_bytes())
             sent += 1
         manifest["tables"][t] = files
+        shutil.rmtree(out)  # free each table's copy as soon as it is uploaded
         log(f"exported {t}: {len(files)} parts")
     manifest["sources"] = dict(con.execute("SELECT source_id, version FROM sources").fetchall())
     store.upload(f"{SHARE_PREFIX}/manifest.json",
@@ -978,20 +988,26 @@ def pull(store: Any, db: Path, work: Path, log: Any = print) -> int:
 
     manifest = json.loads(store.download(f"{SHARE_PREFIX}/manifest.json"))
     shutil.rmtree(work, ignore_errors=True)
-    for t, files in manifest["tables"].items():
-        (work / t).mkdir(parents=True)
-        for name in files:
-            (work / t / name).write_bytes(store.download(f"{SHARE_PREFIX}/{t}/{name}"))
     tmp = db.with_suffix(".pull.duckdb")
     tmp.unlink(missing_ok=True)
     con = connect(tmp)
     for t, files in manifest["tables"].items():
+        # One table at a time, its download deleted once loaded: peak disk is the index plus
+        # one table's Parquet, not twice the index.
+        (work / t).mkdir(parents=True)
+        for name in files:
+            (work / t / name).write_bytes(store.download(f"{SHARE_PREFIX}/{t}/{name}"))
         con.execute(f"DELETE FROM {t}")  # noqa: S608
         if files:
-            con.execute(f"INSERT INTO {t} SELECT * FROM read_parquet(?)",  # noqa: S608
+            con.execute(f"INSERT INTO {t} BY NAME SELECT * FROM read_parquet(?)",  # noqa: S608
                         [[str(work / t / f) for f in files]])  # fmt: skip
+        shutil.rmtree(work / t)
         log(f"pulled {t}: {len(files)} parts")
     n = int(con.execute("SELECT count(*) FROM sources").fetchone()[0])  # type: ignore[index]
+    shutil.rmtree(work, ignore_errors=True)
+    for table, view in (("debtor_owner_candidates", "v_debtor_owner_candidates"),
+                        ("parcel_equity", "v_parcel_equity")):  # fmt: skip
+        con.execute(f"CREATE OR REPLACE TABLE {table} AS SELECT * FROM {view}")  # noqa: S608
     con.execute("CHECKPOINT")
     con.close()
     tmp.replace(db)
@@ -1026,7 +1042,8 @@ def main(argv: list[str] | None = None) -> int:  # pragma: no cover - CLI
     b.add_argument("--states", nargs="*")
     b.add_argument("--force", action="store_true")
     b.add_argument("--workers", type=int, default=8, help="sources fetched at once")
-    sub.add_parser("compact")
+    c = sub.add_parser("compact")
+    c.add_argument("--only", nargs="*", help="re-sort just these tables")
     sub.add_parser("status")
     sub.add_parser("export", help="upload the index to object storage (for other machines)")
     sub.add_parser("pull", help="replace the local index with the exported one")
@@ -1047,7 +1064,7 @@ def main(argv: list[str] | None = None) -> int:  # pragma: no cover - CLI
         print(f"{len(done)} sources (re)indexed")
         print(f"{len(index_matcher(con, source, args.force))} states' matcher output loaded")
     elif args.cmd == "compact":
-        compact(con)
+        compact(con, args.only)
     elif args.cmd == "export":
         print(f"uploaded {export(con, _store(), Path('data/work/search_index_export'))} files")
     print(status(con))

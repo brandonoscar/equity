@@ -15,6 +15,7 @@ uv run python -m equity.search_index build --remote          # every built sourc
 uv run python -m equity.search_index build                   # or the local data/lake
 uv run python -m equity.search_index build --remote --states OH NY --workers 8
 uv run python -m equity.search_index compact                 # sort the lookup tables (faster)
+uv run python -m equity.search_index compact --only addresses # re-sort one table
 uv run python -m equity.search_index status
 uv run python -m equity.search_index export            # share: sorted Parquet parts in storage
 uv run python -m equity.search_index pull              # another machine: load the shared index
@@ -22,7 +23,9 @@ uv run python -m equity.search_index pull              # another machine: load t
 
 `export` writes every table, sorted by its lookup key, as zstd Parquet parts of at most 40 MB
 under `_search_index/` in the lake bucket (the bucket takes 50 MB per object), with a manifest
-of the source versions it holds. `pull` downloads them and loads a fresh local index, so the
+of the source versions it holds, including the matcher tables (`m_*`). Each table's local copy
+is deleted once uploaded, and `pull` loads one table at a time, so neither needs twice the
+index's disk. `pull` downloads them and loads a fresh local index, so the
 data and cross-linking sessions can search without rebuilding; a later `build --remote`
 re-indexes only the sources that changed since the export.
 
@@ -71,12 +74,15 @@ same key. Rules, best first:
 | `exact` | same name_key | 1.00 |
 | `all_words` | every query word is in the name, plus 1–2 more | 0.95 / 0.90 |
 | `initial` | all query words but one are in the name, that one is an initial of a name word (or the reverse), and every full name word is accounted for | 0.85 |
-| `sounds_like` | every query word is in the name or has the same Soundex code as a name word (3+ letters), word counts within one | 0.82 |
+| `sounds_like` | every query word is in the name or has the same Soundex code as a name word (3+ letters), word counts within one | 0.82, less 0.03 for an extra name word |
 | `similar` | each query word's best Jaro-Winkler match among the name's words, averaged, is at least 0.90, and the word counts differ by at most one | 0.80 × similarity |
 
-Candidates come from the exact key, from the query's two rarest words (inverted index
-`name_words`), and from words that sound like the query's two longest words (`word_sounds`,
-American Soundex as a SQL macro), so a misspelling of every word still finds the name.
+Candidates come first from every name holding all the query's words in some form: the word,
+an equivalent given name, or an indexed word with the same Soundex code and Jaro-Winkler
+similarity of at least 0.85 (`name_words` and `word_sounds`; American Soundex as a SQL macro).
+That list is not capped, so a typo in "ROBINSON" among 111,000 Robinsons still finds the right
+one. Only when it finds fewer than 50 names does search add the capped lists: names with one of
+the query's two rarest words, or a word that sounds like one of its two longest.
 Registered businesses are searched alongside parties: their refs read
 `<source_id>:business:<sos_id>` and `--show` lists officers, agents and members. Each hit lists
 parcels owned (with the latest value), debts and amounts, documents, cases and business roles;

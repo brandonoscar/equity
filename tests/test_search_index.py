@@ -611,3 +611,17 @@ def test_golden_harness_scores_cases(rich: duckdb.DuckDBPyConnection, tmp_path: 
     (tmp_path / "bad.yaml").write_text(yaml.safe_dump({"query": "x"}))
     with pytest.raises(ValueError, match="needs an id"):
         load_cases(tmp_path)
+
+
+def test_extra_word_ranks_below_the_sound_alike(cat: duckdb.DuckDBPyConnection) -> None:
+    from equity.search import RULES_SQL, strict_keys
+
+    rows = cat.execute(RULES_SQL, {"keys": ["JOHNSON MARY", "ADAM JOHNSON MARY"],
+                                   "words": ["JOHNSN", "MARY"], "key": "JOHNSN MARY",
+                                   "n": 2, "alts": []}).fetchall()  # fmt: skip
+    assert [(r[0], r[1]) for r in rows] == [("JOHNSON MARY", "sounds_like"),
+                                            ("ADAM JOHNSON MARY", "sounds_like")]  # fmt: skip
+    assert rows[0][3] > rows[1][3]
+    # every query word in some form (here a dropped letter in each): no cap, no rare-word luck
+    assert "A JOHN SMITH" in strict_keys(cat, "JOHN SMTH")
+    assert strict_keys(cat, "JOHN") == set()  # one word: the capped lists handle it

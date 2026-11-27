@@ -60,6 +60,8 @@ HUB_ROLES = frozenset({"creditor", "lender", "plaintiff", "trustee", "assignee"}
 MAX_SAME_NAME = 25
 MAX_CANDIDATES = 20000  # name_keys per candidate branch that are scored
 MAX_KEYS = 500  # best-scored name_keys whose parties are fetched
+STRICT_ENOUGH = 50  # strict candidates that make the capped fallback unnecessary
+ALIKE = 0.85  # Jaro-Winkler floor for a same-Soundex word to count as a form of a query word
 
 
 @dataclass
@@ -165,7 +167,7 @@ SELECT name_key, rule, sim,
                  WHEN 'all_words' THEN 1.0 - 0.05 * (len(w) - $n)
                  WHEN 'nickname' THEN 0.9
                  WHEN 'initial' THEN 0.85
-                 WHEN 'sounds_like' THEN 0.82
+                 WHEN 'sounds_like' THEN 0.82 - 0.03 * greatest(len(w) - $n, 0)
                  ELSE round(0.8 * sim, 4) END AS score
 FROM ruled WHERE rule IS NOT NULL
 ORDER BY score DESC, sim DESC, name_key
@@ -189,10 +191,57 @@ def nickname_keys(con: duckdb.DuckDBPyConnection, key: str, limit: int = 24) -> 
     return out[:limit]
 
 
+def word_forms(con: duckdb.DuckDBPyConnection, words: list[str]) -> dict[str, set[str]]:
+    """Each query word's accepted forms: itself, its equivalent given names, and indexed words
+    with the same Soundex code and Jaro-Winkler similarity >= 0.85 (3+ letters)."""
+    forms: dict[str, set[str]] = {w: {w} for w in words}
+    for w, alt in con.execute(
+        f"SELECT word, alt FROM nicknames WHERE word IN {_in(words)}"  # noqa: S608
+    ).fetchall():
+        forms[str(w)].add(str(alt))
+    long_words = [w for w in words if len(w) >= 3 and w.isalpha()]
+    if long_words:
+        for w, alike in con.execute(f"""
+            SELECT q.w, s.word FROM (SELECT unnest(?::VARCHAR[]) AS w) q
+            JOIN word_sounds s ON s.sound = soundex(q.w)
+            WHERE s.sound IN {_in(_sounds(con, long_words))}
+              AND jaro_winkler_similarity(q.w, s.word) >= {ALIKE}
+        """, [long_words]).fetchall():  # noqa: S608  # fmt: skip
+            forms[str(w)].add(str(alike))
+    return forms
+
+
+def _sounds(con: duckdb.DuckDBPyConnection, words: list[str]) -> list[str]:
+    rows = con.execute("SELECT DISTINCT soundex(w) FROM unnest(?::VARCHAR[]) t(w)", [words])
+    return [str(r[0]) for r in rows.fetchall()]
+
+
+def strict_keys(con: duckdb.DuckDBPyConnection, key: str) -> set[str]:
+    """Every name_key holding all the query's full words (2+ letters) in some accepted form
+    (word_forms). Not capped, so a common word cannot crowd the right name out."""
+    words = [w for w in key.split(" ") if len(w) >= 2]
+    if len(words) < 2:
+        return set()
+    forms = word_forms(con, words)
+    pairs = sorted({(f, w) for w, fs in forms.items() for f in fs})
+    values = ", ".join(f"('{f}', '{w}')" for f, w in pairs if "'" not in f + w)
+    rows = con.execute(f"""
+        SELECT nw.name_key FROM name_words nw
+        JOIN (VALUES {values}) f(form, q) ON f.form = nw.word
+        WHERE nw.word IN {_in(f for f, _ in pairs)}
+        GROUP BY nw.name_key HAVING count(DISTINCT f.q) = {len(words)}
+    """).fetchall()  # noqa: S608  # fmt: skip
+    return {str(r[0]) for r in rows}
+
+
 def candidate_keys(con: duckdb.DuckDBPyConnection, key: str) -> list[str]:
-    """name_keys worth scoring: the exact key, names holding one of the query's two rarest
-    words (a typo in one still finds the name through the other), and names holding a word
-    that sounds like one of the query's two longest words (a typo in every word)."""
+    """name_keys worth scoring: the exact key and its nickname variants, every name holding all
+    the query's words in some form (strict_keys), and, only when that finds few, names holding
+    one of the query's two rarest words or a word that sounds like one of its two longest words
+    (capped: a typo that changes a word's sound)."""
+    strict = strict_keys(con, key)
+    if len(strict) >= STRICT_ENOUGH:
+        return sorted({key} | strict | set(nickname_keys(con, key)))
     words = key.split(" ")
     counts = con.execute(
         f"SELECT word, count(*) FROM name_words WHERE word IN {_in(words)} GROUP BY word"  # noqa: S608
@@ -217,7 +266,7 @@ def candidate_keys(con: duckdb.DuckDBPyConnection, key: str) -> list[str]:
             out |= {str(r[0]) for r in con.execute(
                 f"SELECT DISTINCT name_key FROM name_words WHERE word IN {_in(alike)} "  # noqa: S608
                 f"LIMIT {MAX_CANDIDATES}").fetchall()}  # fmt: skip
-    return sorted(out | set(nickname_keys(con, key)))
+    return sorted(out | strict | set(nickname_keys(con, key)))
 
 
 def search(
