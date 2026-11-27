@@ -1502,7 +1502,8 @@ STATES: dict[str, dict[str, Any]] = {
                                       "va.lynchburg.code_violations"]},
     # Ohio's statewide Name field is a placeholder: county layers carry the owner names.
     "OH-COUNTIES": {"debtors": ["oh.cuyahoga.delinquent_taxes", "oh.cuyahoga.forfeited_land_sale",
-                                "oh.franklin.tax_lien_sale", "oh.greene.delinquent_taxes",
+                                "oh.franklin.tax_lien_sale", "oh.franklin.delinquent_taxes",
+                                "oh.greene.delinquent_taxes",
                                 "oh.lorain.delinquent_taxes", "oh.lorain.forfeited_land_sale",
                                 "oh.stark.delinquent_taxes", "oh.stark.foreclosures",
                                 "oh.stark.civil_sales"],

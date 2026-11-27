@@ -135,6 +135,7 @@ sources:
   oh.cuyahoga.delinquent_taxes: tax_delinquency
   oh.cuyahoga.forfeited_land_sale: tax_delinquency
   oh.franklin.tax_lien_sale: tax_lien
+  oh.franklin.delinquent_taxes: tax_delinquency
   oh.greene.delinquent_taxes: tax_delinquency
   oh.lorain.delinquent_taxes: tax_delinquency
   oh.lorain.forfeited_land_sale: tax_delinquency
