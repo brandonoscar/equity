@@ -27,9 +27,15 @@ Outputs (Parquet in the state's derived folder, git-ignored: they name people):
   company_people    registry entity -> role holders (role, title, name, address)
   debtor_companies  debtor -> registry entity:
                       org_name_registry      organization debtor, same org key        auto
+                      org_name_registry_loose  the same once AND / & / THE, spaces and
+                                             punctuation are dropped                  auto
                       person_officer_address person debtor, same name_key and address
                                              as a role holder                        auto
                       person_officer_zip     same name_key and ZIP                     review
+                      person_officer_nickname / person_officer_typo  at the officer's
+                                             address, a nickname or one-letter typo of the
+                                             officer's name                            review
+                    (an address also counts as its building without the unit)
                     (the same evidence levels as the debtor-owner rules)
   debtor_company_parcels  parcels owned by a debtor's registry entities
 """
@@ -96,21 +102,42 @@ SELECT org_key, list(DISTINCT sos_id ORDER BY sos_id) AS ids FROM (
     SELECT sos_id, org_key(name) AS org_key FROM r_business
     WHERE sos_id IS NOT NULL AND name IS NOT NULL)
 WHERE org_key <> '' GROUP BY org_key;
+-- The same with AND / & / THE, spaces and punctuation dropped (resolve.org_loose): "SMITH AND
+-- SONS LLC" on the roll reaches the registry's "SMITH & SONS, LLC".
+CREATE TEMP TABLE biz_by_loose AS
+SELECT org_loose(org_key) AS loose, list(DISTINCT sos_id ORDER BY sos_id) AS ids FROM (
+    SELECT sos_id, org_key(name) AS org_key FROM r_business
+    WHERE sos_id IS NOT NULL AND name IS NOT NULL)
+WHERE org_loose(org_key) <> '' GROUP BY 1;
 CREATE TEMP TABLE company_people AS
 SELECT DISTINCT r.sos_id, b.business_name, r.role, r.title, p.party_id, p.raw_name AS name,
        p.party_kind, name_key(p.raw_name) AS name_key, suffix_key(p.raw_name) AS suffix_key,
        CASE WHEN street_norm(a.line1) <> '' AND a.zip5 IS NOT NULL
             THEN street_norm(a.line1) || '|' || a.zip5 END AS addr_key,
+       -- The building without a unit (resolve.UNIT_MACRO), so "12 MAIN ST STE 4" on a filing
+       -- meets a debtor at "12 MAIN ST".
+       CASE WHEN len(string_split(street_norm(unit_strip(a.line1)), ' ')) >= 2
+                 AND a.zip5 IS NOT NULL
+            THEN street_norm(unit_strip(a.line1)) || '|' || a.zip5 END AS base_key,
        a.zip5, a.line1, a.city, a.state
 FROM r_role r JOIN biz b ON b.sos_id = r.sos_id
 JOIN r_party p ON p.party_id = r.party_id
 LEFT JOIN r_addr a ON a.address_id = p.address_id;
+-- A role holder printed as several people or with an alias ("JOHN & JANE DOE", "JOHN DOE
+-- AKA JACK DOE"): each name is a role holder (rows added by compute, see OFFICER_VARIANT_SQL).
 CREATE TEMP TABLE owner_companies AS
 SELECT DISTINCT o.parcel_uid, o.party_id AS owner_party_id, o.raw_name AS owner_name,
        b.sos_id, b.business_name, b.status, len(k.ids) > 1 AS ambiguous
 FROM owners o JOIN biz_by_key k ON k.org_key = o.org_name_norm
 JOIN biz b ON list_contains(k.ids, b.sos_id)
 WHERE o.party_kind = 'org' AND coalesce(o.org_name_norm, '') <> '';
+INSERT INTO owner_companies
+SELECT DISTINCT o.parcel_uid, o.party_id, o.raw_name, b.sos_id, b.business_name, b.status,
+       len(k.ids) > 1
+FROM owners o JOIN biz_by_loose k ON k.loose = org_loose(o.org_name_norm)
+JOIN biz b ON list_contains(k.ids, b.sos_id)
+WHERE o.party_kind = 'org' AND coalesce(o.org_name_norm, '') <> ''
+  AND (o.party_id, o.parcel_uid) NOT IN (SELECT (owner_party_id, parcel_uid) FROM owner_companies);
 CREATE TEMP TABLE debtor_companies AS
 SELECT DISTINCT d.party_id AS debtor_party_id, d.raw_name AS debtor_name, b.sos_id,
        b.business_name, 'org_name_registry' AS rule_id, 'auto' AS decision,
@@ -119,17 +146,45 @@ FROM debtors d JOIN biz_by_key k ON k.org_key = d.org_name_norm
 JOIN biz b ON list_contains(k.ids, b.sos_id)
 WHERE d.party_kind = 'org' AND coalesce(d.org_name_norm, '') <> ''
 UNION
-SELECT DISTINCT d.party_id, d.raw_name, c.sos_id, c.business_name,
-       CASE WHEN d.addr_key IS NOT NULL AND d.addr_key = c.addr_key
-            THEN 'person_officer_address' ELSE 'person_officer_zip' END,
-       CASE WHEN d.addr_key IS NOT NULL AND d.addr_key = c.addr_key
-            THEN 'auto' ELSE 'review' END,
+SELECT DISTINCT d.party_id, d.raw_name, b.sos_id, b.business_name, 'org_name_registry_loose',
+       'auto', len(k.ids) > 1
+FROM debtors d JOIN biz_by_loose k ON k.loose = org_loose(d.org_name_norm)
+JOIN biz b ON list_contains(k.ids, b.sos_id)
+WHERE d.party_kind = 'org' AND coalesce(d.org_name_norm, '') <> ''
+  AND d.org_name_norm NOT IN (SELECT org_key FROM biz_by_key)
+UNION
+SELECT DISTINCT party_id, raw_name, sos_id, business_name,
+       CASE WHEN same_place THEN 'person_officer_address' ELSE 'person_officer_zip' END,
+       CASE WHEN same_place THEN 'auto' ELSE 'review' END,
        false
-FROM debtors d JOIN company_people c ON c.name_key = d.name_key
+FROM (
+    SELECT d.party_id, d.raw_name, c.sos_id, c.business_name, d.zip5 AS d_zip, c.zip5 AS c_zip,
+           -- One address, or one of them is the other's building without the unit.
+           coalesce((d.addr_key IS NOT NULL AND d.addr_key = c.addr_key)
+                    OR (db.base_key IS NOT NULL AND db.base_key = c.base_key
+                        AND (d.addr_key = db.base_key OR c.addr_key = c.base_key)),
+                    false) AS same_place
+    FROM debtors d JOIN company_people c ON c.name_key = d.name_key
+    LEFT JOIN addr_base db ON db.addr_key = d.addr_key
+    WHERE d.party_kind <> 'org' AND c.party_kind <> 'org' AND name_words(d.name_key) >= 2
+      AND NOT suffix_conflict(d.suffix_key, c.suffix_key)
+)
+WHERE same_place OR (d_zip IS NOT NULL AND d_zip = c_zip)
+UNION
+-- At the officer's own address: a nickname ("BOB SMITH" / "ROBERT SMITH") or a one-letter
+-- typo of the officer's name (not two real first names) -> review.
+SELECT DISTINCT d.party_id, d.raw_name, c.sos_id, c.business_name,
+       CASE WHEN nick_key(d.name_key) = nick_key(c.name_key) THEN 'person_officer_nickname'
+            ELSE 'person_officer_typo' END,
+       'review', false
+FROM debtors d JOIN addr_alias aa ON aa.k = d.addr_key
+JOIN company_people c ON c.addr_key = aa.k2 OR c.base_key = aa.k2
 WHERE d.party_kind <> 'org' AND c.party_kind <> 'org' AND name_words(d.name_key) >= 2
-  AND NOT suffix_conflict(d.suffix_key, c.suffix_key)
-  AND ((d.addr_key IS NOT NULL AND d.addr_key = c.addr_key)
-       OR (d.zip5 IS NOT NULL AND d.zip5 = c.zip5));
+  AND d.name_key <> c.name_key AND NOT suffix_conflict(d.suffix_key, c.suffix_key)
+  AND (nick_key(d.name_key) = nick_key(c.name_key)
+       OR (name_typo(d.name_key, c.name_key)
+           AND NOT two_first_names(name_only(d.name_key, c.name_key)[1],
+                                   name_only(c.name_key, d.name_key)[1])));
 CREATE TEMP TABLE debtor_company_parcels AS
 SELECT DISTINCT dc.debtor_party_id, dc.debtor_name, dc.sos_id, dc.business_name, dc.rule_id,
        dc.decision, oc.parcel_uid, oc.owner_name, v.value AS parcel_value
@@ -138,12 +193,28 @@ LEFT JOIN parcel_value v ON v.parcel_uid = oc.parcel_uid;
 """
 
 
+OFFICER_VARIANT_SQL = """
+INSERT INTO company_people
+SELECT DISTINCT c.sos_id, c.business_name, c.role, c.title, c.party_id, c.name, 'person',
+       name_key(v.variant), suffix_key(v.variant), c.addr_key, c.base_key, c.zip5, c.line1,
+       c.city, c.state
+FROM company_people c JOIN officer_name_variant v ON v.raw_name = c.name
+WHERE v.party_kind <> 'org' AND v.kind <> 'trust' AND name_words(name_key(v.variant)) >= 2;
+"""
+
+
 def compute(
     con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str], state_fips: str | None = None
 ) -> None:
+    from equity.matching.resolve import name_variant_table
+
     org_key_macro(con)
     attach(con, lake, sources, state_fips)
-    con.execute(SQL)
+    people, rest = SQL.split("CREATE TEMP TABLE owner_companies AS", 1)
+    con.execute(people)
+    name_variant_table(con, "officer_name_variant", "SELECT name FROM company_people")
+    con.execute(OFFICER_VARIANT_SQL)
+    con.execute("CREATE TEMP TABLE owner_companies AS" + rest)
 
 
 TABLES = ("owner_companies", "company_people", "debtor_companies", "debtor_company_parcels")

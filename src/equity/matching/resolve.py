@@ -43,6 +43,14 @@ Rules, strongest first (a debtor-owner pair keeps its strongest rule):
                         (added, dropped, changed or two swapped: SMITH / SMIHT), unless both
                         words are real first names (JOHN / JOAN: two people; 1990 Census
                         first-name lists)                                       -> review
+  person_middle_name_address  same address, and one name is the other plus a full middle
+                        name or second surname ("JOHN SMITH" / "JOHN MICHAEL SMITH", "MARIA
+                        GARCIA" / "MARIA GARCIA LOPEZ"), or a middle initial on one side
+                        and that middle name on the other ("JOHN A SMITH" / "JOHN ALAN
+                        SMITH")                                                  -> review
+  person_name_spacing_address  same address, and the same letters once spaces and
+                        punctuation are dropped ("O'BRIEN" / "OBRIEN", "DE LA CRUZ" /
+                        "DELACRUZ", "MC DONALD" / "MCDONALD")                  -> review
   person_at_owner_occupied_property  a lot no source names an owner for (California rolls)
                         whose property address is the debtor's own address, and the roll's
                         latest homeowner exemption says an owner lives there       -> review
@@ -54,6 +62,12 @@ Rules, strongest first (a debtor-owner pair keeps its strongest rule):
                         Not when that address takes bills for more than MAIL_SHARED_MAX owner
                         names (a manager, lawyer or bank), or is the company's own property
                         (a tenant there shares the address).
+Company names that differ only in AND / & / THE, spaces or punctuation ("SMITH AND SONS",
+"SMITH & SONS", "THE SMITH SONS"; org_loose):
+  org_name_loose_address    same address (or its building)                   -> auto
+  org_name_loose_zip        same ZIP                                         -> review
+An address with no ZIP (on the lien or on the roll) is compared by street and city:
+  person_name_street_city / org_name_street_city   same name, street line and city -> review
 With parcel_on_lien (liens recorded against a parcel id, e.g. Allegheny PINs), first; a lien
 that names a parcel but no debtor gets the stand-in debtor "owner-of:<parcel_uid>":
   lien_names_parcel         the lien itself names the parcel (instrument_parcel, or the one
@@ -82,7 +96,8 @@ owner_basis ('deed:<source>' / 'record:<source>', 'roll' otherwise) and owner_se
 Owner strings that print several people or a trust ("SMITH JOHN A & JANE B", "JOHN A SMITH
 REVOCABLE TRUST") are split into the people they name (equity.matching.names): each is an
 extra owner name of the same party and parcel, so every rule above can meet it. Matches record
-owner_name_variant ('joint' or 'trust'); a trust's settlor only reaches review.
+owner_name_variant ('joint', 'trust' or 'alias': a DBA/AKA/FKA name of the same owner); a
+trust's settlor only reaches review.
 Debtor strings are split the same way, plus aliases ("JOHN SMITH DBA SMITH PLUMBING", AKA,
 FKA, T/A): each name is an extra debtor name of the same party and instrument, a business
 alias with its org name. Matches record debtor_name_variant ('alias', 'joint' or 'trust').
@@ -162,9 +177,15 @@ RULES = (
     ("person_name_initial_address", "review", 10),
     ("person_nickname_address", "review", 11),
     ("person_name_typo_address", "review", 12),
-    ("person_at_owner_occupied_property", "review", 13),
-    ("person_at_property", "review", 14),
-    ("person_at_org_owner_mailing", "review", 15),
+    ("person_middle_name_address", "review", 13),
+    ("person_name_spacing_address", "review", 14),
+    ("person_at_owner_occupied_property", "review", 15),
+    ("person_at_property", "review", 16),
+    ("person_at_org_owner_mailing", "review", 17),
+    ("org_name_loose_address", "auto", 18),
+    ("org_name_loose_zip", "review", 19),
+    ("person_name_street_city", "review", 20),
+    ("org_name_street_city", "review", 21),
 )
 
 
@@ -438,43 +459,64 @@ def _record_owners(con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str
 # name_key is the person's. A joint owner's name is matched like any owner name; a trust's
 # settlor or trustee (name_variant 'trust') only reaches review.
 VARIANT_MARK = r"&|\bAND\b|/|;|\bTR\b|\bTRS\b|TRUST|\bTTEES?\b|\bET ?UX\b|\bET ?VIR\b"
-VARIANT_NAMES_SQL = """
-SELECT DISTINCT raw_name FROM owners
-WHERE name_variant IS NULL AND regexp_matches(upper(coalesce(raw_name, '')), ?)
-ORDER BY raw_name
-"""
-VARIANT_INSERT_SQL = """
-INSERT INTO owners
-SELECT DISTINCT o.party_id, o.raw_name, 'person', NULL, o.parcel_uid,
-       name_key(v.variant), suffix_key(v.variant), o.mail_key, o.mail_zip, o.situs_key,
-       o.situs_zip, o.mail_town, o.situs_town, o.owner_basis, o.owner_seen_on, v.kind
-FROM owners o JOIN owner_name_variant v ON v.raw_name = o.raw_name
-WHERE o.name_variant IS NULL;
-"""
+# Alias markers ("JOHN SMITH DBA SMITH PLUMBING", AKA, FKA, NKA, T/A), read after periods
+# are dropped (D.B.A. -> DBA).
+ALIAS_MARK = (r"\bD ?/? ?B ?/? ?A\b|\b[AFN] ?/? ?K ?/? ?A\b|\bT ?/ ?A\b"
+              r"|KNOWN AS|BUSINESS AS|TRADING AS")  # fmt: skip
+NAME_MARK = VARIANT_MARK + "|" + ALIAS_MARK
 
 
-def _owner_name_variants(con: duckdb.DuckDBPyConnection) -> None:
-    """Split owner strings in Python (equity.matching.names) and load the person names back
-    through a temporary CSV: only strings with a joint or trust marker are read."""
+def name_variant_table(con: duckdb.DuckDBPyConnection, table: str, names_sql: str) -> None:
+    """CREATE TEMP TABLE <table> (raw_name, variant, kind, party_kind, org_name_norm): every
+    name inside each string names_sql returns that carries a joint, trust or alias marker
+    (equity.matching.names.debtor_name_variants), split in Python and loaded back through a
+    temporary CSV. A business alias keeps its org name (orgs.classify); other names are
+    people. Used for owners, debtors, bankruptcy filers, deed parties and company officers."""
     import csv
     import tempfile
 
-    from equity.matching.names import owner_name_variants
+    from equity.matching.names import debtor_name_variants
+    from equity.matching.orgs import classify
 
-    names = [r[0] for r in con.execute(VARIANT_NAMES_SQL, [VARIANT_MARK]).fetchall()]
+    names = [r[0] for r in con.execute(
+        f"SELECT DISTINCT raw FROM ({names_sql}) t(raw) "  # noqa: S608 - internal SQL
+        "WHERE regexp_matches(upper(replace(coalesce(raw, ''), '.', '')), ?) ORDER BY 1",
+        [NAME_MARK]).fetchall()]  # fmt: skip
     with tempfile.TemporaryDirectory() as tmp:
         path = Path(tmp) / "variants.csv"
         with path.open("w", newline="", encoding="utf-8") as f:
             w = csv.writer(f)
-            w.writerow(["raw_name", "variant", "kind"])
+            w.writerow(["raw_name", "variant", "kind", "party_kind", "org_name_norm"])
             for raw in names:
-                for variant, kind in owner_name_variants(raw):
-                    w.writerow([raw, variant, kind])
-        con.execute(
-            "CREATE TEMP TABLE owner_name_variant AS SELECT * FROM read_csv(?, header=true, "
-            "columns={'raw_name': 'VARCHAR', 'variant': 'VARCHAR', 'kind': 'VARCHAR'})",
-            [str(path)],
-        )
+                for variant, kind in debtor_name_variants(raw):
+                    c = classify(variant) if kind == "alias" else None
+                    org = c is not None and c.party_kind == "org" and bool(c.org_name_norm)
+                    w.writerow([raw, variant, kind, "org" if org else "person",
+                                c.org_name_norm if org and c else ""])  # fmt: skip
+        cols = ("{'raw_name': 'VARCHAR', 'variant': 'VARCHAR', 'kind': 'VARCHAR', "
+                "'party_kind': 'VARCHAR', 'org_name_norm': 'VARCHAR'}")  # fmt: skip
+        sql = (f"CREATE OR REPLACE TEMP TABLE {table} AS SELECT raw_name, variant, kind, "  # noqa: S608
+               "party_kind, nullif(org_name_norm, '') AS org_name_norm "
+               f"FROM read_csv(?, header=true, columns={cols})")  # fmt: skip
+        con.execute(sql, [str(path)])
+
+
+VARIANT_INSERT_SQL = """
+INSERT INTO owners
+SELECT DISTINCT o.party_id, o.raw_name, v.party_kind, v.org_name_norm, o.parcel_uid,
+       name_key(v.variant), suffix_key(v.variant), o.mail_key, o.mail_zip, o.situs_key,
+       o.situs_zip, o.mail_town, o.situs_town, o.owner_basis, o.owner_seen_on, v.kind
+FROM owners o JOIN owner_name_variant v ON v.raw_name = o.raw_name
+WHERE o.name_variant IS NULL
+  AND (v.party_kind = 'org' OR name_words(name_key(v.variant)) >= 2);
+"""
+
+
+def _owner_name_variants(con: duckdb.DuckDBPyConnection) -> None:
+    """Owner strings that print several people, a trust or an alias: each name is an extra
+    owner row of the same party and parcel."""
+    name_variant_table(con, "owner_name_variant",
+                       "SELECT raw_name FROM owners WHERE name_variant IS NULL")  # fmt: skip
     con.execute(VARIANT_INSERT_SQL)
 
 
@@ -483,13 +525,6 @@ def _owner_name_variants(con: duckdb.DuckDBPyConnection) -> None:
 # row of the same party and instrument (equity.matching.names.debtor_name_variants), so a
 # sole proprietor's trade-name lien reaches the person's house and the business's lots. A
 # business alias keeps its org name (orgs.classify), so the org rules can meet it.
-DEBTOR_VARIANT_MARK = (VARIANT_MARK + r"|\bD ?/? ?B ?/? ?A\b|\b[AFN] ?/? ?K ?/? ?A\b|\bT ?/ ?A\b"
-                       r"|KNOWN AS|BUSINESS AS|TRADING AS")  # fmt: skip
-DEBTOR_VARIANT_NAMES_SQL = """
-SELECT DISTINCT raw_name FROM debtors
-WHERE regexp_matches(upper(replace(coalesce(raw_name, ''), '.', '')), ?)
-ORDER BY raw_name
-"""
 DEBTOR_VARIANT_INSERT_SQL = """
 INSERT INTO debtors (party_id, raw_name, party_kind, org_name_norm, instrument_uid, source_id,
                      doc_type, recorded_on, principal_amount, released, name_key, suffix_key,
@@ -505,36 +540,11 @@ WHERE d.name_variant IS NULL
 
 
 def _debtor_name_variants(con: duckdb.DuckDBPyConnection) -> None:
-    import csv
-    import tempfile
-
-    from equity.matching.names import debtor_name_variants
-    from equity.matching.orgs import classify
-
     con.execute(
         "ALTER TABLE debtors ADD COLUMN name_variant VARCHAR;"
         "ALTER TABLE debtors ADD COLUMN variant_name VARCHAR"
     )
-    names = [r[0] for r in con.execute(DEBTOR_VARIANT_NAMES_SQL,
-                                       [DEBTOR_VARIANT_MARK]).fetchall()]  # fmt: skip
-    with tempfile.TemporaryDirectory() as tmp:
-        path = Path(tmp) / "variants.csv"
-        with path.open("w", newline="", encoding="utf-8") as f:
-            w = csv.writer(f)
-            w.writerow(["raw_name", "variant", "kind", "party_kind", "org_name_norm"])
-            for raw in names:
-                for variant, kind in debtor_name_variants(raw):
-                    c = classify(variant) if kind == "alias" else None
-                    org = c is not None and c.party_kind == "org" and bool(c.org_name_norm)
-                    w.writerow([raw, variant, kind, "org" if org else "person",
-                                c.org_name_norm if org and c else ""])  # fmt: skip
-        con.execute(
-            "CREATE TEMP TABLE debtor_name_variant AS SELECT raw_name, variant, kind, "
-            "party_kind, nullif(org_name_norm, '') AS org_name_norm FROM read_csv(?, "
-            "header=true, columns={'raw_name': 'VARCHAR', 'variant': 'VARCHAR', "
-            "'kind': 'VARCHAR', 'party_kind': 'VARCHAR', 'org_name_norm': 'VARCHAR'})",
-            [str(path)],
-        )
+    name_variant_table(con, "debtor_name_variant", "SELECT raw_name FROM debtors")
     con.execute(DEBTOR_VARIANT_INSERT_SQL)
 
 
@@ -677,6 +687,16 @@ FROM debtors d JOIN subjects s ON s.party_id = d.party_id
 -- trust's settlor is someone else and merges nothing.
 WHERE (s.name_key IS NULL AND coalesce(d.name_variant, 'alias') = 'alias')
    OR (s.name_key = d.name_key AND d.name_variant = 'joint');
+-- A person's liens at "12 MAIN ST APT 3" and at "12 MAIN ST" (same name) are one person:
+-- the unit row also takes the building row's identity, when there is one.
+INSERT INTO debtor_identity
+SELECT DISTINCT s.subject, 'person:' || d.name_key || '|' || b.base_key
+FROM debtors d JOIN subjects s ON s.party_id = d.party_id
+JOIN addr_base b ON b.addr_key = d.addr_key AND b.base_key <> d.addr_key
+WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2
+  AND ((s.name_key IS NULL AND coalesce(d.name_variant, 'alias') = 'alias')
+       OR (s.name_key = d.name_key AND d.name_variant = 'joint'))
+  AND 'person:' || d.name_key || '|' || b.base_key IN (SELECT identity FROM debtor_identity);
 -- The subject a match belongs to: one joint name's match is that person's; any other match
 -- of a split party (the whole string, an address) belongs to every name on it.
 CREATE TEMP TABLE match_subject AS
@@ -694,7 +714,8 @@ SELECT DISTINCT subject, 'owner:' || owner_party_id FROM match_subject
 WHERE decision = 'auto' AND owner_party_id IS NOT NULL
   -- Two people who matched one joint owner string ("SMITH JOHN & JANE") are two people,
   -- and a split party's whole-string match is every name's, so it merges no one.
-  AND owner_name_variant IS NULL AND coalesce(debtor_name_variant, 'alias') IN ('alias', 'joint')
+  AND coalesce(owner_name_variant, 'alias') = 'alias'
+  AND coalesce(debtor_name_variant, 'alias') IN ('alias', 'joint')
   AND (debtor_name_variant = 'joint'
        OR debtor_party_id NOT IN (SELECT party_id FROM subjects WHERE name_key IS NOT NULL));
 CREATE TEMP TABLE person_edges AS
@@ -755,6 +776,20 @@ WHERE l.parcel_uid IN (SELECT parcel_uid FROM o_parcel)
   AND (NOT starts_with(d.party_id, 'owner-of:') OR d.party_id = 'owner-of:' || l.parcel_uid);
 """
 # One name key is the other plus exactly one single-letter word (a middle initial).
+# Every address and the addresses it counts as: itself, and, for a unit, its building
+# without the unit ("12 MAIN ST APT 3" <-> "12 MAIN ST"; two different units never pair).
+# Every address rule below joins through addr_alias, so a unit never hides a match.
+ADDR_ALIAS_SQL = """
+CREATE TEMP TABLE addr_base AS
+SELECT addr_key, min(base_key) AS base_key FROM addr
+WHERE addr_key IS NOT NULL AND base_key IS NOT NULL GROUP BY addr_key;
+CREATE TEMP TABLE unit_pair AS
+WITH u AS (SELECT addr_key, base_key FROM addr_base WHERE base_key <> addr_key)
+SELECT addr_key AS a, base_key AS b FROM u UNION SELECT base_key, addr_key FROM u;
+CREATE TEMP TABLE addr_alias AS
+SELECT DISTINCT addr_key AS k, addr_key AS k2 FROM addr WHERE addr_key IS NOT NULL
+UNION SELECT a, b FROM unit_pair;
+"""
 INITIAL_SQL = """
 CREATE TEMP TABLE o_by_addr AS
 SELECT party_id, parcel_uid, name_key, suffix_key, mail_key AS k FROM owners
@@ -765,7 +800,7 @@ WHERE party_kind <> 'org' AND situs_key IS NOT NULL AND name_words(name_key) >= 
 INSERT INTO candidates
 SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
        'person_name_initial_address', d.name_key
-FROM debtors d JOIN o_by_addr o ON o.k = d.addr_key
+FROM debtors d JOIN addr_alias aa ON aa.k = d.addr_key JOIN o_by_addr o ON o.k = aa.k2
 WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2
   AND NOT suffix_conflict(d.suffix_key, o.suffix_key)
   AND d.name_key <> o.name_key
@@ -781,10 +816,6 @@ WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2
 # Same name, and one address is the other without its unit ("12 MAIN ST APT 3" on the lien,
 # "12 MAIN ST" on the roll, or the reverse). Two different units of one building never pair.
 UNIT_SQL = """
-CREATE TEMP TABLE unit_pair AS
-WITH u AS (SELECT DISTINCT addr_key, base_key FROM addr
-           WHERE base_key IS NOT NULL AND addr_key IS NOT NULL AND base_key <> addr_key)
-SELECT addr_key AS a, base_key AS b FROM u UNION SELECT base_key, addr_key FROM u;
 INSERT INTO candidates
 SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
        'person_name_address_unit', d.name_key
@@ -805,7 +836,7 @@ NICK_SQL = """
 INSERT INTO candidates
 SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
        'person_nickname_address', d.name_key
-FROM debtors d JOIN o_by_addr o ON o.k = d.addr_key
+FROM debtors d JOIN addr_alias aa ON aa.k = d.addr_key JOIN o_by_addr o ON o.k = aa.k2
 WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2
   AND d.name_key <> o.name_key AND NOT suffix_conflict(d.suffix_key, o.suffix_key)
   AND nick_key(d.name_key) = nick_key(o.name_key);
@@ -818,18 +849,56 @@ TYPO_SQL = """
 INSERT INTO candidates
 SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
        'person_name_typo_address', d.name_key
-FROM debtors d JOIN o_by_addr o ON o.k = d.addr_key,
-LATERAL (SELECT string_split(d.name_key, ' ') AS a, string_split(o.name_key, ' ') AS b) w,
-LATERAL (SELECT list_filter(w.a, lambda x: NOT list_contains(w.b, x)) AS da,
-                list_filter(w.b, lambda x: NOT list_contains(w.a, x)) AS db,
-                list_filter(w.a, lambda x: list_contains(w.b, x)) AS same) x
+FROM debtors d JOIN addr_alias aa ON aa.k = d.addr_key JOIN o_by_addr o ON o.k = aa.k2
 WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2
+  AND NOT suffix_conflict(d.suffix_key, o.suffix_key)
+  AND name_typo(d.name_key, o.name_key)
+  AND NOT two_first_names(name_only(d.name_key, o.name_key)[1],
+                          name_only(o.name_key, d.name_key)[1]);
+"""
+# Same address; one name is the other plus one full word (a middle name, a second surname),
+# or the two differ only in a middle initial against a middle name that starts with it.
+MIDDLE_SQL = """
+INSERT INTO candidates
+SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
+       'person_middle_name_address', d.name_key
+FROM debtors d JOIN addr_alias aa ON aa.k = d.addr_key JOIN o_by_addr o ON o.k = aa.k2
+WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2 AND name_words(o.name_key) >= 2
   AND d.name_key <> o.name_key AND NOT suffix_conflict(d.suffix_key, o.suffix_key)
-  AND len(w.a) = len(w.b) AND len(x.da) = 1 AND len(x.db) = 1
-  AND length(x.da[1]) >= 3 AND length(x.db[1]) >= 3
-  AND damerau_levenshtein(x.da[1], x.db[1]) = 1
-  AND len(list_filter(x.same, lambda y: length(y) >= 2)) >= 1
-  AND NOT (x.da[1] IN (SELECT name FROM first_names) AND x.db[1] IN (SELECT name FROM first_names));
+  AND (
+    -- one extra full word on one side, every other word shared
+    (abs(name_words(d.name_key) - name_words(o.name_key)) = 1
+     AND least(name_words(d.name_key), name_words(o.name_key)) >= 2
+     AND ((len(name_only(d.name_key, o.name_key)) = 0
+           AND len(name_only(o.name_key, d.name_key)) = 1
+           AND length(name_only(o.name_key, d.name_key)[1]) >= 2)
+          OR (len(name_only(o.name_key, d.name_key)) = 0
+              AND len(name_only(d.name_key, o.name_key)) = 1
+              AND length(name_only(d.name_key, o.name_key)[1]) >= 2)))
+    -- an initial against a full word that starts with it
+    OR (name_words(d.name_key) = name_words(o.name_key)
+        AND len(name_only(d.name_key, o.name_key)) = 1
+        AND len(name_only(o.name_key, d.name_key)) = 1
+        AND least(length(name_only(d.name_key, o.name_key)[1]),
+                  length(name_only(o.name_key, d.name_key)[1])) = 1
+        AND greatest(length(name_only(d.name_key, o.name_key)[1]),
+                     length(name_only(o.name_key, d.name_key)[1])) >= 2
+        AND left(name_only(d.name_key, o.name_key)[1], 1)
+            = left(name_only(o.name_key, d.name_key)[1], 1)));
+"""
+# Same address and the same letters once spaces are dropped (name keys keep apostrophes as
+# word breaks: O'BRIEN is "O BRIEN"; a source that prints OBRIEN, DELACRUZ or MCDONALD is
+# the same name).
+SPACING_SQL = """
+INSERT INTO candidates
+SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
+       'person_name_spacing_address', d.name_key
+FROM debtors d JOIN addr_alias aa ON aa.k = d.addr_key JOIN o_by_addr o ON o.k = aa.k2
+WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2
+  AND d.name_key <> o.name_key AND name_words(d.name_key) <> name_words(o.name_key)
+  AND NOT suffix_conflict(d.suffix_key, o.suffix_key)
+  AND list_sort(string_split(replace(d.name_key, ' ', ''), ''))
+      = list_sort(string_split(replace(o.name_key, ' ', ''), ''));
 """
 
 
@@ -841,6 +910,33 @@ def first_names(con: duckdb.DuckDBPyConnection) -> None:
         "header=false, comment='#', columns={'name': 'VARCHAR'})",
         [str(path)],
     )
+    # name_only(a, b): the words of name key a that are not in b. name_typo(a, b): the same
+    # number of words, exactly one differing word on each side, those two words at least 3
+    # letters and one edit apart (added, dropped, changed or two swapped), and a shared word
+    # of at least 2 letters (not only initials). The caller rules out two real first names.
+    from equity.matching.nicknames import SAME_NAME_PAIRS
+
+    con.execute("CREATE OR REPLACE TEMP TABLE same_name_pairs (a VARCHAR, b VARCHAR)")
+    con.executemany("INSERT INTO same_name_pairs VALUES (?, ?)",
+                    [p for a, b in SAME_NAME_PAIRS for p in ((a, b), (b, a))])  # fmt: skip
+    # two_first_names(x, y): both words are real first names and not two spellings of one
+    # (JOHN / JOAN: two people; JOHN / JON: one name).
+    con.execute("""
+        CREATE OR REPLACE MACRO two_first_names(x, y) AS
+            x IN (SELECT name FROM first_names) AND y IN (SELECT name FROM first_names)
+            AND (x, y) NOT IN (SELECT (a, b) FROM same_name_pairs);
+    """)
+    con.execute("""
+        CREATE OR REPLACE MACRO name_only(a, b) AS list_filter(string_split(a, ' '),
+            lambda x: NOT list_contains(string_split(b, ' '), x));
+        CREATE OR REPLACE MACRO name_typo(a, b) AS
+            a <> b AND name_words(a) = name_words(b)
+            AND len(name_only(a, b)) = 1 AND len(name_only(b, a)) = 1
+            AND length(name_only(a, b)[1]) >= 3 AND length(name_only(b, a)[1]) >= 3
+            AND damerau_levenshtein(name_only(a, b)[1], name_only(b, a)[1]) = 1
+            AND len(list_filter(string_split(a, ' '),
+                    lambda y: list_contains(string_split(b, ' '), y) AND length(y) >= 2)) >= 1;
+    """)
 
 
 def nick_macro(con: duckdb.DuckDBPyConnection) -> None:
@@ -871,6 +967,42 @@ WHERE d.party_kind = 'org' AND o.party_kind = 'org' AND d.org_name_norm <> ''
   AND d.town_key IS NOT NULL AND d.town_key IN (o.mail_town, o.situs_town);
 """
 
+# Company names one way: AND / & / THE, spaces and punctuation dropped.
+ORG_LOOSE_MACRO = r"""
+CREATE OR REPLACE MACRO org_loose(n) AS regexp_replace(regexp_replace(
+    ' ' || upper(coalesce(n, '')) || ' ', '\b(AND|THE)\b|&', ' ', 'g'), '[^A-Z0-9]+', '', 'g');
+"""
+ORG_LOOSE_SQL = """
+INSERT INTO candidates
+SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
+       CASE WHEN aa.k2 IN (o.mail_key, o.situs_key) THEN 'org_name_loose_address'
+            ELSE 'org_name_loose_zip' END, d.org_name_norm
+FROM debtors d JOIN owners o ON org_loose(o.org_name_norm) = org_loose(d.org_name_norm)
+LEFT JOIN addr_alias aa ON aa.k = d.addr_key AND aa.k2 IN (o.mail_key, o.situs_key)
+WHERE d.party_kind = 'org' AND o.party_kind = 'org' AND d.org_name_norm <> o.org_name_norm
+  AND org_loose(d.org_name_norm) <> ''
+  AND (aa.k2 IS NOT NULL OR (d.zip5 IS NOT NULL AND d.zip5 IN (o.mail_zip, o.situs_zip)));
+"""
+# A debtor or owner address with no ZIP has no address key: compare street line and city.
+CITY_SQL = """
+INSERT INTO candidates
+SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
+       'person_name_street_city', d.name_key
+FROM debtors d JOIN owners o ON o.name_key = d.name_key
+WHERE d.party_kind <> 'org' AND o.party_kind <> 'org' AND name_words(d.name_key) >= 2
+  AND NOT suffix_conflict(d.suffix_key, o.suffix_key) AND d.town_key IS NOT NULL
+  AND ((d.town_key = o.mail_town AND (d.addr_key IS NULL OR o.mail_key IS NULL))
+       OR (d.town_key = o.situs_town AND (d.addr_key IS NULL OR o.situs_key IS NULL)))
+UNION ALL
+SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
+       'org_name_street_city', d.org_name_norm
+FROM debtors d JOIN owners o ON o.org_name_norm = d.org_name_norm
+WHERE d.party_kind = 'org' AND o.party_kind = 'org' AND d.org_name_norm <> ''
+  AND d.town_key IS NOT NULL
+  AND ((d.town_key = o.mail_town AND (d.addr_key IS NULL OR o.mail_key IS NULL))
+       OR (d.town_key = o.situs_town AND (d.addr_key IS NULL OR o.situs_key IS NULL)));
+"""
+
 # Parcels no source names an owner for (California rolls publish none): a debtor whose own
 # address is the lot's property address may own it or may rent it, so these are review only.
 # The roll's homeowner (owner-occupied) exemption for the latest year says an owner lives
@@ -891,12 +1023,24 @@ WHERE a.addr_key IS NOT NULL
 CREATE TEMP TABLE nameless_one AS
 SELECT addr_key, min(parcel_uid) AS parcel_uid, bool_or(owner_occupied) AS owner_occupied
 FROM nameless_lots GROUP BY addr_key HAVING count(DISTINCT parcel_uid) = 1;
+-- Through addr_alias, a debtor in a unit reaches its building's lot and the reverse; an
+-- address that reaches more than one nameless lot that way (a condo building's units) is
+-- no lead, and a unit's homeowner exemption says nothing about its neighbour: a lot reached
+-- through its unit pair is person_at_property.
 INSERT INTO candidates
-SELECT DISTINCT d.party_id, d.instrument_uid, NULL, n.parcel_uid,
-       CASE WHEN n.owner_occupied THEN 'person_at_owner_occupied_property'
-            ELSE 'person_at_property' END, d.addr_key
-FROM debtors d JOIN nameless_one n ON n.addr_key = d.addr_key
-WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2;
+WITH hits AS (
+    SELECT DISTINCT d.party_id, d.instrument_uid, d.addr_key, n.parcel_uid,
+           n.owner_occupied AND aa.k = aa.k2 AS occupied
+    FROM debtors d JOIN addr_alias aa ON aa.k = d.addr_key
+    JOIN nameless_one n ON n.addr_key = aa.k2
+    WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2
+), one AS (
+    SELECT addr_key FROM hits GROUP BY addr_key HAVING count(DISTINCT parcel_uid) = 1
+)
+SELECT DISTINCT party_id, instrument_uid, NULL, parcel_uid,
+       CASE WHEN occupied THEN 'person_at_owner_occupied_property'
+            ELSE 'person_at_property' END, addr_key
+FROM hits WHERE addr_key IN (SELECT addr_key FROM one);
 """
 
 # A company owner whose tax bill goes to a person debtor's own address. An address that takes
@@ -909,6 +1053,14 @@ WITH busy AS (
     SELECT mail_key FROM owners WHERE mail_key IS NOT NULL
     GROUP BY mail_key
     HAVING count(DISTINCT coalesce(nullif(org_name_norm, ''), name_key)) > {MAIL_SHARED_MAX}
+    -- An office building's suites each take few bills; the building takes many.
+    UNION
+    SELECT o.mail_key FROM owners o JOIN addr_base b ON b.addr_key = o.mail_key
+    WHERE b.base_key IN (
+        SELECT b2.base_key FROM owners o2 JOIN addr_base b2 ON b2.addr_key = o2.mail_key
+        GROUP BY b2.base_key
+        HAVING count(DISTINCT coalesce(nullif(o2.org_name_norm, ''), o2.name_key))
+               > {MAIL_SHARED_MAX})
 ), own_lot AS (  -- the company's own property: its tenants share the address
     SELECT DISTINCT org_name_norm, situs_key FROM owners
     WHERE party_kind = 'org' AND situs_key IS NOT NULL
@@ -921,7 +1073,7 @@ WHERE o.party_kind = 'org' AND coalesce(o.org_name_norm, '') <> '' AND o.mail_ke
 INSERT INTO candidates
 SELECT DISTINCT d.party_id, d.instrument_uid, m.party_id, m.parcel_uid,
        'person_at_org_owner_mailing', d.addr_key
-FROM debtors d JOIN org_mail m ON m.mail_key = d.addr_key
+FROM debtors d JOIN addr_alias aa ON aa.k = d.addr_key JOIN org_mail m ON m.mail_key = aa.k2
 WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2;
 """  # noqa: S608 - the cap is a constant
 
@@ -932,6 +1084,7 @@ def match(
     parcel_on_lien: bool = False,
     courts: bool = False,
 ) -> None:
+    con.execute(ADDR_ALIAS_SQL)
     con.execute(MATCH_SQL)
     con.execute(COURT_COUNTY_SQL)
     con.execute(INITIAL_SQL)
@@ -939,6 +1092,11 @@ def match(
     con.execute(NICK_SQL)
     first_names(con)
     con.execute(TYPO_SQL)
+    con.execute(MIDDLE_SQL)
+    con.execute(SPACING_SQL)
+    con.execute(ORG_LOOSE_MACRO)
+    con.execute(ORG_LOOSE_SQL)
+    con.execute(CITY_SQL)
     con.execute(UNIT_SQL)
     if parcel_on_lien:
         con.execute(PARCEL_ON_LIEN_SQL)

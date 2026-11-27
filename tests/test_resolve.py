@@ -303,7 +303,10 @@ def test_street_town_rules_only_when_enabled(tmp_path: Path) -> None:
         [{"parcel_uid": f"p{n}", "situs_address_id": None} for n in (1, 2, 3)],
     )
     off = run(lk, tmp_path / "off", ["ct.debts"], ["ct.parcels"])
-    assert off["matches_by_rule"] == {}  # no owner ZIPs: the ZIP rules cannot fire
+    # No owner ZIPs: the ZIP rules cannot fire, and without street_town the same street and
+    # city is only a review lead (never automatic); another town (BO RAY, Sharon) is none.
+    assert off["matches_by_rule"] == {"org_name_street_city": 1, "person_name_street_city": 1}
+    assert off["debtors_matched_auto"] == 0
     on = run(lk, tmp_path / "on", ["ct.debts"], ["ct.parcels"], street_town=True)
     # Same street in another town (BO RAY, Sharon) does not match.
     assert on["matches_by_rule"] == {"org_name_street_town": 1, "person_name_street_town": 1}
@@ -1039,7 +1042,8 @@ def test_joint_owners_and_trust_settlors_are_matched_by_their_own_names(tmp_path
 
 
 def test_street_norm_drops_ordinal_suffixes_on_numbered_streets() -> None:
-    """88TH ST = 88 ST (approved 2026-11-27); words that only look like ordinals stay."""
+    """88TH ST = 88 ST (approved 2026-11-27); spelled-out numbers (FIRST, from the numbered-
+    street words) land on the same key; words that only look like ordinals stay."""
     from equity.matching.review import street_macro
 
     con = duckdb.connect()
@@ -1050,7 +1054,9 @@ def test_street_norm_drops_ordinal_suffixes_on_numbered_streets() -> None:
 
     assert norm("12 West 88th Street") == norm("12 W 88 ST") == "12 W 88 ST"
     assert norm("100 1ST AVE") == "100 1 AVE" and norm("7 22ND PL") == "7 22 PL"
-    assert norm("5 STH AVE") == "5 STH AVE" and norm("9 FIRST ST") == "9 FIRST ST"
+    assert norm("5 STH AVE") == "5 STH AVE"
+    assert norm("9 FIRST ST") == norm("9 1ST ST") == norm("9 1 ST") == "9 1 ST"
+    assert norm("12 Fifth Avenue") == norm("12 5TH AVE") == "12 5 AVE"
 
 
 def test_a_company_whose_tax_bill_goes_to_a_debtors_home_is_a_review_lead(
@@ -1310,3 +1316,225 @@ def test_a_one_letter_typo_at_the_same_address_is_a_review_lead(tmp_path: Path) 
         f"SELECT debtor_party_id, category FROM '{out.as_posix()}/review_queue.parquet'"
     ).fetchall())  # fmt: skip
     assert q == {"d1": "one_letter"}
+
+
+def test_every_address_rule_sees_through_units(tmp_path: Path) -> None:
+    """A unit counts as its building in every address rule: middle initial, nickname, a
+    nameless lot (but not a building of several nameless units, and a unit says nothing
+    about the building's homeowner exemption), a company's mailing address, and one person
+    across their liens at the unit and at the building."""
+    lk = tmp_path / "lake"
+    d, o = lk / "zz.debts", lk / "zz.parcels"
+    _write(d / "address" / "0.parquet", [
+        _addr("a1", "1 ELM ST APT 2", "10001"), _addr("a2", "2 OAK ST #4", "10001"),
+        _addr("a3", "3 PINE ST APT 1", "10001"), _addr("a4", "4 FIR ST", "10001"),
+        _addr("a5", "5 ASH ST STE 3", "10001"), _addr("a6", "6 BAY ST APT 9", "10001"),
+        _addr("a7", "6 BAY ST", "10001")])  # fmt: skip
+    people = {"d1": "JOHN A SMITH", "d2": "BOB JONES", "d3": "ANN LEE", "d4": "CY DOE",
+              "d5": "EVE FOX", "d6": "GUS HALE", "d7": "GUS HALE"}  # fmt: skip
+    _write(d / "party" / "0.parquet", [
+        {"party_id": k, "raw_name": n, "party_kind": "unknown", "org_name_norm": None,
+         "address_id": "a" + k[1]} for k, n in people.items()])  # fmt: skip
+    _write(
+        d / "instrument_party" / "0.parquet",
+        [{"instrument_uid": f"i{k}", "party_id": k, "role": "debtor"} for k in people],
+    )
+    _write(d / "instrument" / "0.parquet", [
+        {"instrument_uid": f"i{k}", "source_id": "zz.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2026-01-01", "principal_amount": 10.0} for k in people])  # fmt: skip
+    _write(o / "address" / "0.parquet", [
+        _addr("m1", "1 ELM ST", "10001"), _addr("m2", "2 OAK ST", "10001"),
+        _addr("s3", "3 PINE ST", "10001"), _addr("s4a", "4 FIR ST UNIT 1", "10001"),
+        _addr("s4b", "4 FIR ST UNIT 2", "10001"), _addr("m5", "5 ASH ST", "10001"),
+        _addr("s5", "50 LOT RD", "10001")])  # fmt: skip
+    _write(o / "parcel" / "0.parquet", [
+        {"parcel_uid": "p1"}, {"parcel_uid": "p2"}, {"parcel_uid": "p3", "situs_address_id": "s3"},
+        {"parcel_uid": "p4a", "situs_address_id": "s4a"},
+        {"parcel_uid": "p4b", "situs_address_id": "s4b"},
+        {"parcel_uid": "p5", "situs_address_id": "s5"}])  # fmt: skip
+    _write(
+        o / "parcel_assessment" / "0.parquet",
+        [{"parcel_uid": "p3", "tax_year": 2026, "appraised_total": 1.0, "homestead": True}],
+    )
+    owners = [("o1", "JOHN SMITH", "unknown", None, "m1", "p1"),
+              ("o2", "ROBERT JONES", "unknown", None, "m2", "p2"),
+              ("o5", "FOX HOLDINGS LLC", "org", "FOX HOLDINGS", "m5", "p5")]  # fmt: skip
+    _write(o / "party" / "0.parquet", [
+        {"party_id": k, "raw_name": n, "party_kind": kind, "org_name_norm": norm,
+         "address_id": a} for k, n, kind, norm, a, _ in owners])  # fmt: skip
+    _write(o / "owner_snapshot" / "0.parquet",
+           [{"parcel_uid": u, "party_id": k} for k, *_, u in owners])  # fmt: skip
+    out = tmp_path / "out"
+    run(lk, out, ["zz.debts"], ["zz.parcels"])
+    con = duckdb.connect()
+    m = {r[0]: r[1:] for r in con.execute(
+        f"SELECT debtor_party_id, parcel_uid, rule_id FROM '{out.as_posix()}/matches.parquet'"
+    ).fetchall()}  # fmt: skip
+    assert m["d1"] == ("p1", "person_name_initial_address")
+    assert m["d2"] == ("p2", "person_nickname_address")
+    assert m["d3"] == ("p3", "person_at_property")  # the exemption is the building's
+    assert "d4" not in m  # two nameless units at that building: which one is unknown
+    assert m["d5"] == ("p5", "person_at_org_owner_mailing")
+    person = dict(
+        con.execute(
+            f"SELECT party_id, person_id FROM '{out.as_posix()}/person_of.parquet'"
+        ).fetchall()
+    )
+    assert person["d6"] == person["d7"]  # GUS HALE at the unit and at the building
+
+
+def test_names_are_split_on_every_side(tmp_path: Path) -> None:
+    """Owner strings with a DBA, joint bankruptcy captions and joint deed grantors are split
+    like debtor strings: JOHN SMITH meets "SMITH JOHN DBA SMITH RENTALS" on the roll, "JOHN
+    SMITH AND JANE SMITH" in a bankruptcy caption and "JOHN SMITH & JANE SMITH" on a deed."""
+    lk = tmp_path / "lake"
+    d, o, bk, dd = lk / "zz.debts", lk / "zz.parcels", lk / "us.zzb.rss", lk / "zz.deeds"
+    _write(d / "address" / "0.parquet", [_addr("a1", "1 ELM ST", "10001")])
+    _write(d / "party" / "0.parquet", [
+        {"party_id": "d1", "raw_name": "JOHN SMITH", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": "a1"}])  # fmt: skip
+    _write(d / "instrument_party" / "0.parquet",
+           [{"instrument_uid": "i1", "party_id": "d1", "role": "debtor"}])  # fmt: skip
+    _write(d / "instrument" / "0.parquet", [
+        {"instrument_uid": "i1", "source_id": "zz.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2025-01-01", "principal_amount": 10.0}])  # fmt: skip
+    _write(o / "address" / "0.parquet", [_addr("m1", "1 Elm Street", "10001")])
+    _write(o / "party" / "0.parquet", [
+        {"party_id": "o1", "raw_name": "SMITH JOHN DBA SMITH RENTALS", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": "m1"}])  # fmt: skip
+    _write(o / "owner_snapshot" / "0.parquet", [{"parcel_uid": "p1", "party_id": "o1"}])
+    _write(o / "parcel" / "0.parquet", [{"parcel_uid": "p1"}])
+    _write(bk / "court_case" / "0.parquet", [
+        {"case_uid": "zzb:1", "court_id": "zzb", "case_type": "bk",
+         "nature_of_suit": "chapter 7"}])  # fmt: skip
+    _write(bk / "party" / "0.parquet", [
+        {"party_id": "b1", "raw_name": "John Smith and Jane Smith", "party_kind": "unknown",
+         "org_name_norm": None}])  # fmt: skip
+    _write(bk / "case_party" / "0.parquet",
+           [{"case_uid": "zzb:1", "party_id": "b1", "role": "debtor"}])  # fmt: skip
+    _write(
+        bk / "docket_entry" / "0.parquet",
+        [{"case_uid": "zzb:1", "entry_date": "2026-11-01", "text": "[Voluntary Petition]"}],
+    )
+    _write(dd / "instrument" / "0.parquet", [
+        {"instrument_uid": "k1", "source_id": "zz.deeds", "doc_type": "DEED",
+         "recorded_on": "2025-06-01", "consideration": 300000.0}])  # fmt: skip
+    _write(dd / "instrument_parcel" / "0.parquet", [{"instrument_uid": "k1", "parcel_uid": "p1"}])
+    _write(dd / "party" / "0.parquet", [
+        {"party_id": "g1", "raw_name": "JOHN SMITH & JANE SMITH", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": None},
+        {"party_id": "g2", "raw_name": "ROE RICHARD", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": None}])  # fmt: skip
+    _write(dd / "instrument_party" / "0.parquet", [
+        {"instrument_uid": "k1", "party_id": "g1", "role": "grantor"},
+        {"instrument_uid": "k1", "party_id": "g2", "role": "grantee"}])  # fmt: skip
+    out = tmp_path / "out"
+    run(lk, out, ["zz.debts"], ["zz.parcels"], bankruptcy_sources=["us.zzb.rss"],
+        deed_sources=["zz.deeds"])  # fmt: skip
+    con = duckdb.connect()
+    q = lambda sql: con.execute(sql.replace("OUT", out.as_posix())).fetchall()  # noqa: E731
+    assert q(
+        "SELECT owner_party_id, rule_id, decision, owner_name_variant FROM 'OUT/matches.parquet'"
+    ) == [("o1", "person_name_address", "auto", "alias")]
+    assert q("SELECT debtor_party_id, case_uid FROM 'OUT/bankruptcy_flags.parquet'") == [
+        ("d1", "zzb:1")]  # fmt: skip
+    assert q("SELECT debtor_party_id, deed_uid, rule_id FROM 'OUT/transfer_flags.parquet'") == [
+        ("d1", "k1", "on_matched_parcel")]  # fmt: skip
+
+
+def test_spellings_middle_names_and_spacing_are_review_leads(tmp_path: Path) -> None:
+    """At one address: JON / JOHN and ERIK / ERIC (one name spelled two ways), a middle
+    name or second surname on one side only, an initial against its middle name, and
+    O'BRIEN / OBRIEN or DE LA CRUZ / DELACRUZ are review leads. An initial against a middle
+    name with another first letter is not."""
+    lk = tmp_path / "lake"
+    d, o = lk / "zz.debts", lk / "zz.parcels"
+    pairs = {  # debtor, owner, expected rule
+        "1": ("JON SMITH", "JOHN SMITH", "person_name_typo_address"),
+        "2": ("ERIK HALL", "HALL ERIC", "person_nickname_address"),
+        "3": ("PAUL KING", "KING PAUL ANDREW", "person_middle_name_address"),
+        "4": ("MARK A WEST", "WEST MARK ALAN", "person_middle_name_address"),
+        "5": ("SEAN OBRIEN", "O'BRIEN SEAN", "person_name_spacing_address"),
+        "6": ("ROSA DELACRUZ", "DE LA CRUZ ROSA", "person_name_spacing_address"),
+        "7": ("LUIS GARCIA", "GARCIA LOPEZ LUIS", "person_middle_name_address"),
+        "8": ("AMY J COLE", "COLE AMY KAY", None),
+    }
+    _write(d / "address" / "0.parquet",
+           [_addr(f"a{n}", f"{n} ELM ST", "10001") for n in pairs])  # fmt: skip
+    _write(d / "party" / "0.parquet", [
+        {"party_id": f"d{n}", "raw_name": dn, "party_kind": "unknown", "org_name_norm": None,
+         "address_id": f"a{n}"} for n, (dn, _, _) in pairs.items()])  # fmt: skip
+    _write(
+        d / "instrument_party" / "0.parquet",
+        [{"instrument_uid": f"i{n}", "party_id": f"d{n}", "role": "debtor"} for n in pairs],
+    )
+    _write(d / "instrument" / "0.parquet", [
+        {"instrument_uid": f"i{n}", "source_id": "zz.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2026-01-01", "principal_amount": 10.0} for n in pairs])  # fmt: skip
+    _write(o / "address" / "0.parquet",
+           [_addr(f"m{n}", f"{n} Elm Street", "10001") for n in pairs])  # fmt: skip
+    _write(o / "party" / "0.parquet", [
+        {"party_id": f"o{n}", "raw_name": on, "party_kind": "unknown", "org_name_norm": None,
+         "address_id": f"m{n}"} for n, (_, on, _) in pairs.items()])  # fmt: skip
+    _write(o / "owner_snapshot" / "0.parquet",
+           [{"parcel_uid": f"p{n}", "party_id": f"o{n}"} for n in pairs])  # fmt: skip
+    _write(o / "parcel" / "0.parquet", [{"parcel_uid": f"p{n}"} for n in pairs])
+    out = tmp_path / "out"
+    run(lk, out, ["zz.debts"], ["zz.parcels"])
+    m = dict(duckdb.connect().execute(
+        f"SELECT debtor_party_id, rule_id FROM '{out.as_posix()}/matches.parquet' "
+        f"WHERE decision = 'review'").fetchall())  # fmt: skip
+    for n, (_, _, rule) in pairs.items():
+        assert m.get(f"d{n}") == rule, n
+
+
+def test_po_boxes_numbered_streets_company_and_and_no_zip_addresses(tmp_path: Path) -> None:
+    """P.O. BOX 12 / POB 12 and 12 FIFTH AVENUE / 12 5TH AVE are one address; SMITH AND SONS
+    and SMITH & SONS at one address are one company; an address without a ZIP meets the same
+    street and city (review)."""
+    lk = tmp_path / "lake"
+    d, o = lk / "zz.debts", lk / "zz.parcels"
+    _write(d / "address" / "0.parquet", [
+        _addr("a1", "P.O. Box 12", "10001"), _addr("a2", "12 Fifth Avenue", "10001"),
+        _addr("a3", "40 ELM ST", "10001"),
+        {"address_id": "a4", "line1": "3 PINE ST", "city": "Kent", "zip5": None}])  # fmt: skip
+    people = {"d1": ("ANN LEE", "unknown", None), "d2": ("BO RAY", "unknown", None),
+              "d3": ("SMITH AND SONS INC", "org", "SMITH AND SONS"),
+              "d4": ("CY DOE", "unknown", None)}  # fmt: skip
+    _write(d / "party" / "0.parquet", [
+        {"party_id": k, "raw_name": n, "party_kind": kind, "org_name_norm": norm,
+         "address_id": "a" + k[1]} for k, (n, kind, norm) in people.items()])  # fmt: skip
+    _write(
+        d / "instrument_party" / "0.parquet",
+        [{"instrument_uid": f"i{k}", "party_id": k, "role": "debtor"} for k in people],
+    )
+    _write(d / "instrument" / "0.parquet", [
+        {"instrument_uid": f"i{k}", "source_id": "zz.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2026-01-01", "principal_amount": 10.0} for k in people])  # fmt: skip
+    _write(
+        o / "address" / "0.parquet",
+        [
+            _addr("m1", "POB 12", "10001"),
+            _addr("m2", "12 5TH AVE", "10001"),
+            _addr("m3", "40 Elm Street", "10001"),
+            {"address_id": "m4", "line1": "3 Pine Street", "city": "KENT", "zip5": "06757"},
+        ],
+    )
+    owners = [("o1", "LEE ANN", "unknown", None), ("o2", "RAY BO", "unknown", None),
+              ("o3", "SMITH & SONS LLC", "org", "SMITH & SONS"),
+              ("o4", "DOE CY", "unknown", None)]  # fmt: skip
+    _write(o / "party" / "0.parquet", [
+        {"party_id": k, "raw_name": n, "party_kind": kind, "org_name_norm": norm,
+         "address_id": "m" + k[1]} for k, n, kind, norm in owners])  # fmt: skip
+    _write(o / "owner_snapshot" / "0.parquet",
+           [{"parcel_uid": "p" + k[1], "party_id": k} for k, *_ in owners])  # fmt: skip
+    _write(o / "parcel" / "0.parquet", [{"parcel_uid": "p" + k[1]} for k, *_ in owners])
+    out = tmp_path / "out"
+    run(lk, out, ["zz.debts"], ["zz.parcels"])
+    m = {r[0]: r[1:] for r in duckdb.connect().execute(
+        f"SELECT debtor_party_id, rule_id, decision FROM '{out.as_posix()}/matches.parquet'"
+    ).fetchall()}  # fmt: skip
+    assert m["d1"] == ("person_name_address", "auto")
+    assert m["d2"] == ("person_name_address", "auto")
+    assert m["d3"] == ("org_name_loose_address", "auto")
+    assert m["d4"] == ("person_name_street_city", "review")
