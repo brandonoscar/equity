@@ -62,6 +62,7 @@ research output under `data/derived/` (git-ignored). Test fixtures are pseudonym
 | "Build / refresh / share the index" | skill `search-index-ops` |
 | "Score / rank <lead> for recovery" | `uv run python -m equity.facts <lead_id>` (fact sheet), then skill `score-rubric` |
 | "Score the top N leads in <state>" | saved workflow `score-people` (blind second scorer, private ledger) |
+| "Watch <name / record / parcel>" / "what's new?" | add it to `config/private/watchlist.yaml`; `uv run python -m equity.watch` (also runs after every build) |
 | Verify one lead independently | subagent `lead-verifier` |
 | "Did a search change break anything?" | `uv run python -m equity.search_golden` (owner's private cases) |
 

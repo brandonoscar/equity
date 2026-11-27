@@ -178,6 +178,17 @@ core tables.
 | `house_prices` | FHFA house price index by ZIP and tract | `--parcel`: `house_price_index` scales the value from its tax year to the latest index year, labelled an estimate |
 | `assessment_ratios` | NY and CT published assessment ratios (assessed / market) | `--parcel` for NY and CT, matched on the situs town name (`matched_on` says so) |
 
+## Watchlists
+
+`uv run python -m equity.watch` checks `config/private/watchlist.yaml` (git-ignored; template
+`docs/watchlist-template.yaml`), and every `build` runs it at the end. Entries are a name in a
+state, one record (`ref`), or a parcel. For each it collects documents (type, date, amount),
+cases, judgments and bankruptcy events, owned parcels and, for a parcel, its owners, the
+documents recorded against it and tax delinquency listings; compares them with the last
+check (`data/derived/watch/state.json`) and writes what is new to
+`data/derived/watch/alerts-<date>.md`. A name held by more than 200 records in the state is
+too common to watch and is reported as such.
+
 ## Grades and the golden set
 
 `uv run python -m equity.search --grade <debtor_ref> <owner_ref>` applies the matcher's rules

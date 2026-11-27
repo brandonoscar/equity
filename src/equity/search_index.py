@@ -1389,6 +1389,9 @@ def main(argv: list[str] | None = None) -> int:  # pragma: no cover - CLI
         print(f"{len(index_matcher(con, source, args.force))} states' matcher output loaded")
         loaded = index_supplements(con, source, args.states, args.force)
         print(f"{len(loaded)} sources' supplements loaded")
+        from equity import watch  # after every build: what is new on the watchlist
+
+        watch.run(args.db, watch.WATCHLIST, watch.OUT, con=con)
     elif args.cmd == "compact":
         compact(con, args.only)
     elif args.cmd == "export":

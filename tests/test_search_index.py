@@ -758,3 +758,35 @@ def test_fact_sheet_for_a_lead(cat: duckdb.DuckDBPyConnection) -> None:
     assert fact_sheet(cat, 10**9) is None
     again = fact_sheet(cat, lead_id, as_of=date(2026, 1, 1))
     assert again is not None and again["sheet_sha256"] == sheet["sheet_sha256"]  # repeatable
+
+
+def test_watchlist_reports_what_is_new(cat: duckdb.DuckDBPyConnection, tmp_path: Path) -> None:
+    from datetime import datetime
+
+    from equity import watch
+
+    entries = [{"parcel": "39049-010-1", "label": "a parcel"},
+               {"name": "John A. Smith", "state": "OH"},
+               {"ref": "oh.cuyahoga.liens:d1"}]  # fmt: skip
+    state = tmp_path / "watch" / "state.json"
+    first = watch.check(cat, entries, state)
+    assert [r["baseline"] for r in first] == [True, True, True] and first[0]["items"] >= 1
+    assert all(not r["new"] for r in first)
+    assert [r["new"] for r in watch.check(cat, entries, state)] == [[], [], []]  # no change
+    cat.execute("INSERT INTO instruments (source_id, instrument_uid, doc_type, doc_type_raw, "
+                "recorded_on, amount) VALUES ('oh.cuyahoga.liens', 'new-1', 'LIS_PENDENS', "
+                "'LP', DATE '2026-05-01', 90000)")  # fmt: skip
+    cat.execute(
+        "INSERT INTO instrument_parcels (source_id, instrument_uid, parcel_uid) "
+        "VALUES ('oh.cuyahoga.liens', 'new-1', '39049-010-1')"
+    )
+    cat.execute(
+        "INSERT INTO instrument_parties (source_id, instrument_uid, party_id, role) "
+        "VALUES ('oh.cuyahoga.liens', 'new-1', 'd1', 'debtor')"
+    )
+    again = watch.check(cat, entries, state)
+    assert again[0]["new"] == ["LIS_PENDENS recorded 2026-05-01 against 39049-010-1 ($90,000)"]
+    assert again[2]["new"] == ["LIS_PENDENS recorded 2026-05-01 (debtor) $90,000"]
+    assert "NEW: LIS_PENDENS" in watch.report(again, datetime(2026, 5, 2))
+    many = watch.observe(cat, {"name": "NOBODY HERE", "state": "OH"})
+    assert many["items"] == {} and many["note"] == "no record found"

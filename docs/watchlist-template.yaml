@@ -1,0 +1,9 @@
+# Copy to config/private/watchlist.yaml (git-ignored: it names people) and fill in.
+# `uv run python -m equity.watch` checks it, and every `search_index build` checks it at the
+# end. The first check of an entry records a baseline; later checks report what is new.
+watch:
+  - name: "TESTOWNER ALPHA"     # every record with this exact name in the state
+    state: OH
+    label: "debtor on file 1234"
+  - ref: oh.cuyahoga.liens:<party_id>      # one record (from a search hit)
+  - parcel: 39049-010-001234                # documents and owners of one parcel
