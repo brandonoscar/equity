@@ -264,7 +264,8 @@ def test_a_joint_role_holder_is_each_person(tmp_path: Path) -> None:
     links = (
         duckdb.connect()
         .execute(
-            f"SELECT debtor_party_id, sos_id, rule_id FROM '{out.as_posix()}/debtor_companies.parquet'"
+            f"SELECT debtor_party_id, sos_id, rule_id "
+            f"FROM '{out.as_posix()}/debtor_companies.parquet'"
         )
         .fetchall()
     )

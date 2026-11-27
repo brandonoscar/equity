@@ -8,8 +8,9 @@ grantor/grantee parties (ACRIS, Philadelphia RTT, Florida official records, Illi
 the Cook Assessor sales, Maryland SDAT transfers).
 
 A deed's party strings are split first ("JOHN DOE AND JANE DOE", "JOHN DOE TRUSTEE", "DBA"),
-each name a party of the deed. A deed is flagged when one of its grantors is an open debt's debtor (same person name_key of
-two or more words, or same organization name) and it was recorded after the debt:
+each name a party of the deed. A deed is flagged when one of its grantors is an open debt's
+debtor (same person name_key of two or more words, or same organization name) and it was
+recorded after the debt:
 
   on_matched_parcel  the deed's parcel is one the debtor is auto-matched to           -> auto
   same_county        the parcel is in the debt's county (no parcel match)              -> review

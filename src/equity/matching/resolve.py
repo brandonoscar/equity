@@ -472,13 +472,12 @@ def name_variant_table(con: duckdb.DuckDBPyConnection, table: str, names_sql: st
                     org = c is not None and c.party_kind == "org" and bool(c.org_name_norm)
                     w.writerow([raw, variant, kind, "org" if org else "person",
                                 c.org_name_norm if org and c else ""])  # fmt: skip
-        con.execute(
-            f"CREATE OR REPLACE TEMP TABLE {table} AS SELECT raw_name, variant, kind, "
-            "party_kind, nullif(org_name_norm, '') AS org_name_norm FROM read_csv(?, "
-            "header=true, columns={'raw_name': 'VARCHAR', 'variant': 'VARCHAR', "
-            "'kind': 'VARCHAR', 'party_kind': 'VARCHAR', 'org_name_norm': 'VARCHAR'})",
-            [str(path)],
-        )
+        cols = ("{'raw_name': 'VARCHAR', 'variant': 'VARCHAR', 'kind': 'VARCHAR', "
+                "'party_kind': 'VARCHAR', 'org_name_norm': 'VARCHAR'}")  # fmt: skip
+        sql = (f"CREATE OR REPLACE TEMP TABLE {table} AS SELECT raw_name, variant, kind, "  # noqa: S608
+               "party_kind, nullif(org_name_norm, '') AS org_name_norm "
+               f"FROM read_csv(?, header=true, columns={cols})")  # fmt: skip
+        con.execute(sql, [str(path)])
 
 
 VARIANT_INSERT_SQL = """
