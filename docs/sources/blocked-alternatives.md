@@ -165,3 +165,18 @@ loaded. Not added:
 | 7 | NYC Law Dept civil litigation `pjgc-h7uv` | Its Tax & Bankruptcy cases are mostly owners' assessment challenges against the City, not debts; 136 City-plaintiff judgments only. |
 | 10 | NYC LL159 vacate relocation charges `3bkg-usya` | Unpaid charges are billed through the DOF statement of account, so they are in the DOF past-due charges. |
 | 4 | NOLA adjudication fines and fees `f5zm-xkyr` | `la.nola.code_hearing_judgments` already carries each case's unpaid fees. |
+
+### Sweep of the servers we already read (2026-11-27)
+
+Every ArcGIS server and ArcGIS Online org already in config/ was listed for services and
+layers named delinquent, tax sale, tax lien, foreclosure, forfeit, redemption, surplus or
+excess. Added: `ga.dekalb.delinquent_taxes`, `md.baltimore_city.tax_sale_2026`,
+`oh.franklin.delinquent_taxes`; `nc.buncombe.unpaid_bills` now holds back the current roll.
+
+| Lead | Status |
+|---|---|
+| Mahoning OH county "ALL TAX DELINQUENT PARCELS" (gisapp.mahoningcountyoh.gov, 25,464 parcels with owner, mailing address and a DELINQUENT amount) | **Owner decision:** it overlaps `oh.mahoning.delinquent_taxes` (15,983, a Youngstown/county layer). Loading both would count the same parcels twice; replace one with the other, or keep the current one. |
+| Baltimore City 2025 tax sale (15,686, $168.9M) | Held back: no redemption shown, so liens paid since the 2025 sale would count as open. |
+| Douglas CO investor- and county-held tax liens (1,395) | Account number only (no parcel id, no owner): cannot be linked yet. |
+| Cuyahoga, Dakota MN, St. Mary's MD, Cochise, Kalamazoo, Bluefield layers | Already loaded under other names. |
+| Muncie and Hammond IN tax sale lists | Held: Indiana limits commercial use of name and address lists from public agencies (IC 5-14-3-3(f), docs/coverage.md); owner decision. |
