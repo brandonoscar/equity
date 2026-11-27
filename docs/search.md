@@ -160,6 +160,24 @@ can have hundreds): the right name comes back, and `--state` or `--kind` narrows
   makes `equity_est` NULL (`principal_unknown`). Counties without recorder data get no row:
   senior debt there is unknown, not zero.
 
+## Supplements: lake tables beside the core
+
+`build` then loads lake tables the core leaves out into their own tables, per source, under
+their own version (`supplement_runs`, `SUPPLEMENT_VERSION`): adding one never re-indexes the
+core tables.
+
+| Table | From | Shown in |
+|---|---|---|
+| `bankruptcies` | federal bankruptcy court feeds: chapter, petition, discharge, dismissal, conversion | `--show` cases |
+| `judgment_terms` | judgment interest, costs, rate, the lien it was docketed as (rows with any of them) | `--show` cases |
+| `docket_entries` | case docket text (FL counties, federal courts) | `--show` cases (count) |
+| `tax_delinquencies` | delinquent-tax listings (WV statewide) | `--parcel` |
+| `parcel_links` | splits, merges, condo units (HI, NYC) | `--parcel` |
+| `value_parts` | land and building value, tax class | `--parcel` |
+| `owner_types` | owner type where the source gives one (person, trust, LLC...) | `--parcel` |
+| `house_prices` | FHFA house price index by ZIP and tract | `--parcel`: `house_price_index` scales the value from its tax year to the latest index year, labelled an estimate |
+| `assessment_ratios` | NY and CT published assessment ratios (assessed / market) | `--parcel` for NY and CT, matched on the situs town name (`matched_on` says so) |
+
 ## Grades and the golden set
 
 `uv run python -m equity.search --grade <debtor_ref> <owner_ref>` applies the matcher's rules

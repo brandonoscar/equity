@@ -648,3 +648,76 @@ def test_sort_table_in_chunks_keeps_every_row_in_order(
     keys = [r[0] for r in cat.execute("SELECT k FROM t").fetchall()]
     assert keys == ["AA", "AA", "AB", "BA", "BB", None]
     assert not (tmp_path / "sort").exists()
+
+
+def test_supplements_load_by_their_own_version(lake: Path, tmp_path: Path) -> None:
+    from equity.search_index import index_supplements
+
+    bk = "us.ohnb.rss"
+    _write(lake, bk, "bankruptcy", [
+        {"case_uid": "ohnb:1:25-bk-1", "chapter": "7", "petition_on": "2025-02-01",
+         "discharge_on": None, "dismissed_on": None, "converted_on": None,
+         "trustee_party_id": None, "asset_case": False, "source_id": bk, "superseded_at": None},
+    ])  # fmt: skip
+    _finish(lake, bk, {"bankruptcy": 1})
+    ct = "ct.opm.equalized_grand_list"
+    _write(lake, ct, "assessment_ratio", [
+        {"geo_level": "town", "geo_id": "09001-01", "geo_name": "TESTTOWN", "year": 2024,
+         "property_class": "residential", "ratio_kind": "sales", "ratio_pct": 70.0,
+         "source_id": ct, "superseded_at": None},
+    ])  # fmt: skip
+    _finish(lake, ct, {"assessment_ratio": 1})
+    fl = "fl.testcounty.civil"
+    _write(lake, fl, "judgment", [
+        {"judgment_uid": "j1", "case_uid": "flx:1", "entered_on": "2024-01-02",
+         "principal": None, "interest": 120.5, "costs": None, "rate": 0.0912,
+         "judgment_type": "money", "lien_instrument_uid": None, "source_id": fl,
+         "superseded_at": None},
+        {"judgment_uid": "j2", "case_uid": "flx:2", "entered_on": "2024-01-03",
+         "principal": None, "interest": None, "costs": None, "rate": None,
+         "judgment_type": "money", "lien_instrument_uid": None, "source_id": fl,
+         "superseded_at": None},  # nothing worth keeping
+    ])  # fmt: skip
+    _finish(lake, fl, {"judgment": 2})
+    con = connect(tmp_path / "s.duckdb")
+    src = FileSource(lake)
+    loaded = index_supplements(con, src, log=lambda _m: None)
+    assert {bk, ct, fl} <= set(loaded)
+    assert con.execute("SELECT chapter, petition_on::VARCHAR FROM bankruptcies").fetchall() == [
+        ("7", "2025-02-01")]  # fmt: skip
+    assert con.execute("SELECT ratio_pct FROM assessment_ratios").fetchall() == [(70.0,)]
+    assert con.execute("SELECT judgment_uid, rate::DOUBLE FROM judgment_terms").fetchall() == [
+        ("j1", 0.0912)]  # fmt: skip
+    assert index_supplements(con, src, log=lambda _m: None) == []  # unchanged: nothing to do
+    assert index_supplements(con, src, states=["OH"], force=True, log=lambda _m: None) == [
+        "oh.cuyahoga.liens", "oh.franklin.parcels", "oh.sos.business", bk]  # fmt: skip
+
+
+def test_parcel_shows_supplements(cat: duckdb.DuckDBPyConnection) -> None:
+    from equity.search import house_price_adjustment, show_parcel, town_assessment_ratio
+
+    cat.execute(
+        "INSERT INTO house_prices VALUES ('us.fhfa.hpi_zip5', 'zip5', '43215', 2020, "
+        "0, 200.0, NULL), ('us.fhfa.hpi_zip5', 'zip5', '43215', 2025, 0, 260.0, 4.1)"
+    )
+    cat.execute("INSERT INTO tax_delinquencies VALUES ('wv.statewide.delinquent', '39049-010-1',"
+                " 'C-1', 'certified', 2, DATE '2025-06-01')")  # fmt: skip
+    cat.execute("INSERT INTO value_parts VALUES ('oh.franklin.parcels', '39049-010-1', 2024, "
+                "40000, 140000, 'R')")  # fmt: skip
+    cat.execute("INSERT INTO assessment_ratios VALUES ('ny.orpts.residential_assessment_ratios',"
+                " 'ny_swis', '010100', 'TESTTOWN', 2024, 'residential',"
+                " 'residential_assessment_ratio', 85.71)")  # fmt: skip
+    hpi = house_price_adjustment(cat, "43215", 2020, 100000)
+    assert hpi is not None and (hpi["to_year"], hpi["factor"], hpi["adjusted_value"]) == (
+        2025, 1.3, 130000)  # fmt: skip
+    assert house_price_adjustment(cat, "43215", 2019, 100000) is None  # no index for the year
+    assert house_price_adjustment(cat, None, 2020, 100000) is None
+    ratio = town_assessment_ratio(cat, "ny.albany.parcels", "testtown", 2024)
+    assert ratio is not None and (ratio["ratio_pct"], ratio["matched_on"]) == (
+        85.71, "situs town name")  # fmt: skip
+    assert town_assessment_ratio(cat, "oh.franklin.parcels", "testtown", 2024) is None
+    p = show_parcel(cat, "39049-010-1")[0]
+    assert [d["status_raw"] for d in p["tax_delinquency"]] == ["certified"]
+    assert [(v["appraised_land"], v["appraised_bldg"]) for v in p["value_parts"]] == [
+        (40000, 140000)]  # fmt: skip
+    assert p["parcel_links"] == [] and p["owner_types"] == []

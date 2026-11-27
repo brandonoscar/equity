@@ -128,6 +128,33 @@ CREATE TABLE IF NOT EXISTS m_bankruptcy_flags (state VARCHAR, person_id VARCHAR,
 CREATE TABLE IF NOT EXISTS m_transfer_flags (state VARCHAR);
 CREATE TABLE IF NOT EXISTS m_mortgage_status (state VARCHAR);
 CREATE TABLE IF NOT EXISTS nicknames (word VARCHAR, alt VARCHAR);
+-- Supplements: lake tables (or columns) the core tables leave out, loaded per source by
+-- index_supplements under their own version, so adding one never re-indexes the core.
+CREATE TABLE IF NOT EXISTS supplement_runs (source_id VARCHAR PRIMARY KEY, version VARCHAR,
+    loaded_at TIMESTAMPTZ, counts VARCHAR);
+CREATE TABLE IF NOT EXISTS assessment_ratios (source_id VARCHAR, geo_level VARCHAR,
+    geo_id VARCHAR, geo_name VARCHAR, year INTEGER, property_class VARCHAR,
+    ratio_kind VARCHAR, ratio_pct DOUBLE);
+CREATE TABLE IF NOT EXISTS house_prices (source_id VARCHAR, geo_level VARCHAR,
+    geo_id VARCHAR, year INTEGER, period INTEGER, index_value DOUBLE,
+    annual_change_pct DOUBLE);
+CREATE TABLE IF NOT EXISTS bankruptcies (source_id VARCHAR, case_uid VARCHAR,
+    chapter VARCHAR, petition_on DATE, discharge_on DATE, dismissed_on DATE,
+    converted_on DATE, asset_case BOOLEAN);
+CREATE TABLE IF NOT EXISTS tax_delinquencies (source_id VARCHAR, parcel_uid VARCHAR,
+    certificate_no VARCHAR, status_raw VARCHAR, times_listed INTEGER, observed_on DATE);
+CREATE TABLE IF NOT EXISTS docket_entries (source_id VARCHAR, case_uid VARCHAR,
+    entry_no INTEGER, entry_date DATE, text VARCHAR);
+CREATE TABLE IF NOT EXISTS parcel_links (source_id VARCHAR, from_parcel_uid VARCHAR,
+    to_parcel_uid VARCHAR, link_type VARCHAR, detail VARCHAR);
+CREATE TABLE IF NOT EXISTS judgment_terms (source_id VARCHAR, case_uid VARCHAR,
+    judgment_uid VARCHAR, principal DECIMAL(14,2), interest DECIMAL(14,2),
+    costs DECIMAL(14,2), rate DECIMAL(9,6), lien_instrument_uid VARCHAR);
+CREATE TABLE IF NOT EXISTS owner_types (source_id VARCHAR, party_id VARCHAR,
+    parcel_uid VARCHAR, owner_type VARCHAR);
+CREATE TABLE IF NOT EXISTS value_parts (source_id VARCHAR, parcel_uid VARCHAR,
+    tax_year INTEGER, appraised_land DECIMAL(14,2), appraised_bldg DECIMAL(14,2),
+    tax_class VARCHAR);
 """
 
 # Ready-made joins for SQL clients. Name-only links between sources are candidates, not
@@ -417,7 +444,12 @@ SORT_KEYS = (("names", "name_key"), ("name_words", "word"), ("owners", "party_id
     ("instrument_refs", "to_uid"),
     ("owner_history", "parcel_uid"),
     ("value_history", "parcel_uid"), ("cases", "case_uid"),
-             ("judgments", "case_uid"), ("addresses", "address_id"))  # fmt: skip
+             ("judgments", "case_uid"), ("addresses", "address_id"),
+             ("value_parts", "parcel_uid"), ("owner_types", "party_id"),
+             ("docket_entries", "case_uid"), ("bankruptcies", "case_uid"),
+             ("tax_delinquencies", "parcel_uid"), ("parcel_links", "from_parcel_uid"),
+             ("judgment_terms", "case_uid"), ("house_prices", "geo_id"),
+             ("assessment_ratios", "geo_id"))  # fmt: skip
 LAKE_TABLES = ("party", "owner_snapshot", "parcel", "parcel_assessment", "address", "instrument",
                "instrument_party",
     "instrument_parcel",
@@ -573,6 +605,11 @@ class FileSource:
     def files(self, source_id: str, table: str) -> list[str]:
         return sorted(str(p) for p in (self.lake / source_id / table).glob("*.parquet"))
 
+    def tables(self, source_id: str) -> set[str]:
+        """Lake tables this source built rows for (its _counts.json)."""
+        counts = json.loads((self.lake / source_id / "_counts.json").read_text() or "{}")
+        return {t for t, n in counts.items() if n}
+
     # The matcher's output lives beside the lake: data/derived/<state>/<file>.parquet.
     def derived(self) -> dict[str, dict[str, str]]:
         """{state: {file stem: path}} for every state with matcher output."""
@@ -632,6 +669,13 @@ class RemoteSource:
             text = self.store.download(f"{source_id}/_state.json").decode()
         return hashlib.sha256(INDEX_VERSION.encode() + text.encode()).hexdigest()[:16]
 
+    def tables(self, source_id: str) -> set[str]:
+        """Lake tables this source built rows for (_counts.json in its bundle)."""
+        if source_id not in self._bundles:
+            self._bundles[source_id] = self.store.download(f"{source_id}/_state.json").decode()
+        counts = json.loads(json.loads(self._bundles[source_id]).get("_counts.json", "{}"))
+        return {t for t, n in counts.items() if n}
+
     def files(self, source_id: str, table: str) -> list[str]:
         files, _ = self.store.list_dir(f"{source_id}/{table}/")
         base = f"{self.store.base_url}/object/{self.store.bucket}/{source_id}/{table}"
@@ -660,6 +704,91 @@ class RemoteSource:
 
 # Matcher output files loaded per state as m_<stem> tables (equity.matching.resolve,
 # .bankruptcy, .transfers, .equity). Columns beyond the core ones in SCHEMA are added on load.
+# Supplement table -> (lake table, its columns, columns of which a row needs at least one
+# filled to be worth keeping; empty keeps every row). Only current rows are loaded.
+SUPPLEMENTS: dict[str, tuple[str, tuple[str, ...], tuple[str, ...]]] = {
+    "assessment_ratios": ("assessment_ratio", ("source_id", "geo_level", "geo_id", "geo_name",
+                          "year", "property_class", "ratio_kind", "ratio_pct"), ()),
+    "house_prices": ("house_price_index", ("source_id", "geo_level", "geo_id", "year",
+                     "period", "index_value", "annual_change_pct"), ()),
+    "bankruptcies": ("bankruptcy", ("source_id", "case_uid", "chapter", "petition_on",
+                     "discharge_on", "dismissed_on", "converted_on", "asset_case"), ()),
+    "tax_delinquencies": ("tax_delinquency_snapshot", ("source_id", "parcel_uid",
+                          "certificate_no", "status_raw", "times_listed", "observed_on"), ()),
+    "docket_entries": ("docket_entry", ("source_id", "case_uid", "entry_no", "entry_date",
+                       "text"), ()),
+    "parcel_links": ("parcel_link", ("source_id", "from_parcel_uid", "to_parcel_uid",
+                     "link_type", "detail"), ()),
+    "judgment_terms": ("judgment", ("source_id", "case_uid", "judgment_uid", "principal",
+                       "interest", "costs", "rate", "lien_instrument_uid"),
+                       ("principal", "interest", "costs", "rate", "lien_instrument_uid")),
+    "owner_types": ("owner_snapshot", ("source_id", "party_id", "parcel_uid", "owner_type"),
+                    ("owner_type",)),
+    "value_parts": ("parcel_assessment", ("source_id", "parcel_uid", "tax_year",
+                    "appraised_land", "appraised_bldg", "tax_class"),
+                    ("appraised_land", "appraised_bldg", "tax_class")),
+}  # fmt: skip
+SUPPLEMENT_VERSION = "1"
+
+
+def index_supplements(
+    con: duckdb.DuckDBPyConnection,
+    source: Any,
+    states: Iterable[str] | None = None,
+    force: bool = False,
+    log: Any = print,
+) -> list[str]:
+    """Load the supplement tables for every source whose version (or SUPPLEMENT_VERSION)
+    changed. A source's rows are replaced in one transaction. Returns the sources loaded."""
+    want = {s.upper() for s in states} if states else None
+    known = dict(con.execute("SELECT source_id, version FROM supplement_runs").fetchall())
+    lakes = {lake for lake, _c, _f in SUPPLEMENTS.values()}
+    done = []
+    for sid in source.sources():
+        if want is not None and _state_of(sid) not in want:
+            continue
+        version = hashlib.sha256(
+            (SUPPLEMENT_VERSION + source.version(sid)).encode()).hexdigest()[:16]  # fmt: skip
+        if not force and known.get(sid) == version:
+            continue
+        has = source.tables(sid) & lakes
+        con.execute("BEGIN TRANSACTION")
+        try:
+            counts = {}
+            for table, (lake, cols, keep) in SUPPLEMENTS.items():
+                con.execute(f"DELETE FROM {table} WHERE source_id = ?", [sid])  # noqa: S608
+                files = source.files(sid, lake) if lake in has else []
+                if not files:
+                    continue
+                present = _columns(con, files)
+                filled = [c for c in keep if c in present]
+                if keep and not filled:
+                    continue  # none of the columns that make a row useful
+                conds = ["superseded_at IS NULL"] if "superseded_at" in present else []
+                if filled:
+                    conds.append("(" + " OR ".join(f"{c} IS NOT NULL" for c in filled) + ")")
+                select = ", ".join(c if c in present else f"NULL AS {c}" for c in cols)
+                where = f" WHERE {' AND '.join(conds)}" if conds else ""
+                reader = "read_parquet(?, union_by_name = true)"
+                con.execute(f"INSERT INTO {table} SELECT {select} FROM {reader}{where}",  # noqa: S608
+                            [files])  # fmt: skip
+                n = con.execute(f"SELECT count(*) FROM {table} WHERE source_id = ?",  # noqa: S608
+                                [sid]).fetchone()  # fmt: skip
+                if n and n[0]:
+                    counts[table] = int(n[0])
+            con.execute("DELETE FROM supplement_runs WHERE source_id = ?", [sid])
+            con.execute("INSERT INTO supplement_runs VALUES (?, ?, ?, ?)",
+                        [sid, version, datetime.now(UTC), json.dumps(counts)])  # fmt: skip
+            con.execute("COMMIT")
+        except Exception:
+            con.execute("ROLLBACK")
+            raise
+        done.append(sid)
+        if counts:
+            log(f"supplements {sid}: " + ", ".join(f"{k} {v:,}" for k, v in counts.items()))
+    return done
+
+
 MATCHER = ("matches", "debtor_summary", "people", "person_of", "bankruptcy_flags",
            "transfer_flags", "mortgage_status")  # fmt: skip
 
@@ -1024,6 +1153,7 @@ def compact(con: duckdb.DuckDBPyConnection, only: Iterable[str] | None = None) -
 SHARE_PREFIX = "_search_index"
 PART_BYTES = 40_000_000  # object storage takes 50 MB per object; stay well under it
 TABLES = ("sources", *PER_SOURCE, "addresses", "word_sounds", "word_edits", "matcher_runs",
+          "supplement_runs", *SUPPLEMENTS,
           *(f"m_{t}" for t in MATCHER))  # fmt: skip
 
 
@@ -1139,6 +1269,8 @@ def main(argv: list[str] | None = None) -> int:  # pragma: no cover - CLI
                      workers=args.workers, remote=args.remote)  # fmt: skip
         print(f"{len(done)} sources (re)indexed")
         print(f"{len(index_matcher(con, source, args.force))} states' matcher output loaded")
+        loaded = index_supplements(con, source, args.states, args.force)
+        print(f"{len(loaded)} sources' supplements loaded")
     elif args.cmd == "compact":
         compact(con, args.only)
     elif args.cmd == "export":

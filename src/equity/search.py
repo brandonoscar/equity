@@ -538,9 +538,17 @@ def show(con: duckdb.DuckDBPyConnection, ref: str) -> Entity | None:
     e.cases = _rows(con, """
         SELECT c.case_uid, c.court_id, c.case_number, c.nature_of_suit, c.filed_on,
                c.closed_on, c.status, cp.role, j.entered_on AS judgment_on,
-               j.principal AS judgment_principal
+               coalesce(j.principal, t.principal) AS judgment_principal,
+               t.interest AS judgment_interest, t.costs AS judgment_costs,
+               t.rate AS judgment_rate, t.lien_instrument_uid,
+               b.chapter AS bankruptcy_chapter, b.petition_on, b.discharge_on,
+               b.dismissed_on, b.converted_on,
+               (SELECT count(*) FROM docket_entries d WHERE d.source_id = c.source_id
+                  AND d.case_uid = c.case_uid) AS docket_entries
         FROM case_parties cp JOIN cases c USING (source_id, case_uid)
         LEFT JOIN judgments j USING (source_id, case_uid)
+        LEFT JOIN judgment_terms t ON t.source_id = c.source_id AND t.case_uid = c.case_uid
+        LEFT JOIN bankruptcies b ON b.source_id = c.source_id AND b.case_uid = c.case_uid
         WHERE cp.source_id = ? AND cp.party_id = ?
         ORDER BY c.filed_on DESC NULLS LAST, c.case_uid
     """, [source_id, party_id])  # fmt: skip
@@ -685,7 +693,14 @@ def show_parcel(
     """, []) if uids else []  # noqa: S608  # fmt: skip
     equity = _equity_rows(con, uids)
     past = owners_as_of(con, uids, as_of) if as_of and uids else {}
+    extra = _parcel_extras(con, uids)
     for r in found:
+        r.update({k: v.get(r["parcel_uid"], []) for k, v in extra.items()})
+        r["house_price_index"] = house_price_adjustment(
+            con, r["situs_zip"], r["tax_year"], r["appraised_total"] or r["assessed_value"]
+        )
+        r["assessment_ratio"] = town_assessment_ratio(con, r["source_id"], r["situs_city"],
+                                                      r["tax_year"])  # fmt: skip
         uid = r["parcel_uid"]
         r["owners"] = [o for o in owners if o["parcel_uid"] == uid]
         r["documents"] = [d for d in docs if d["parcel_uid"] == uid]
@@ -695,6 +710,81 @@ def show_parcel(
         if as_of:
             r["as_of"] = {"date": as_of.isoformat(), **past.get(uid, {})}
     return found
+
+
+def _parcel_extras(
+    con: duckdb.DuckDBPyConnection, uids: set[str]
+) -> dict[str, dict[str, list[dict[str, Any]]]]:
+    """Per parcel: tax delinquency listings, links to other parcels (splits, merges, condo
+    units), land and building values, and owner types."""
+    if not uids:
+        return {}
+    q = {
+        "tax_delinquency": "SELECT * FROM tax_delinquencies WHERE parcel_uid IN {u} "
+                           "ORDER BY observed_on DESC",
+        "parcel_links": "SELECT from_parcel_uid AS parcel_uid, to_parcel_uid AS other, "
+                        "link_type, detail, source_id FROM parcel_links "
+                        "WHERE from_parcel_uid IN {u} UNION ALL "
+                        "SELECT to_parcel_uid, from_parcel_uid, link_type || ' (from)', detail, "
+                        "source_id FROM parcel_links WHERE to_parcel_uid IN {u}",
+        "value_parts": "SELECT * FROM value_parts WHERE parcel_uid IN {u} "
+                       "ORDER BY tax_year DESC",
+        "owner_types": "SELECT parcel_uid, source_id, source_id || ':' || party_id AS ref, "
+                       "owner_type FROM owner_types WHERE parcel_uid IN {u}",
+    }  # fmt: skip
+    out: dict[str, dict[str, list[dict[str, Any]]]] = {}
+    for key, sql in q.items():
+        by: dict[str, list[dict[str, Any]]] = {}
+        for row in _rows(con, sql.format(u=_in(uids)), []):
+            by.setdefault(row["parcel_uid"], []).append(row)
+        out[key] = by
+    return out
+
+
+def house_price_adjustment(
+    con: duckdb.DuckDBPyConnection, zip5: str | None, year: int | None, value: Any
+) -> dict[str, Any] | None:
+    """The FHFA house price index for the parcel's ZIP from its value's tax year to the
+    latest year: factor = index(latest) / index(tax year). An estimate of today's value from
+    an old appraisal, labelled as such; None without a ZIP, a year or both index years."""
+    if not zip5 or not year:
+        return None
+    rows = con.execute("""
+        SELECT year, index_value FROM house_prices
+        WHERE geo_id = ? AND geo_level = 'zip5' AND index_value IS NOT NULL
+          AND (year = ? OR year = (SELECT max(year) FROM house_prices
+                                   WHERE geo_id = ? AND geo_level = 'zip5'))
+    """, [zip5, int(year), zip5]).fetchall()  # fmt: skip
+    idx = {int(y): float(v) for y, v in rows}
+    latest = max(idx) if idx else None
+    if latest is None or int(year) not in idx or not idx[int(year)]:
+        return None
+    factor = round(idx[latest] / idx[int(year)], 4)
+    return {"zip5": zip5, "from_year": int(year), "to_year": latest, "factor": factor,
+            "adjusted_value": round(float(value) * factor) if value is not None else None,
+            "basis": "FHFA ZIP5 house price index (estimate, not an appraisal)"}  # fmt: skip
+
+
+def town_assessment_ratio(
+    con: duckdb.DuckDBPyConnection, source_id: str, city: str | None, year: int | None
+) -> dict[str, Any] | None:
+    """For NY and CT parcels: the town's published assessment ratio (assessed / market, %) for
+    the value's year (else the latest), matched on the situs town name. Divide an assessed
+    value by ratio_pct / 100 for a market estimate. None elsewhere or with no match."""
+    state = source_id.split(".")[0]
+    if state not in ("ny", "ct") or not city:
+        return None
+    rows = _rows(con, """
+        SELECT source_id, geo_id, geo_name, year, property_class, ratio_kind, ratio_pct
+        FROM assessment_ratios
+        WHERE upper(geo_name) = upper(?) AND starts_with(source_id, ?)
+          AND ratio_kind IN ('residential_assessment_ratio', 'equalized_ratio')
+          AND property_class IN ('residential', 'all')
+        ORDER BY (year = ?) DESC, year DESC LIMIT 1
+    """, [city.strip(), state + ".", year or 0])  # fmt: skip
+    if not rows:
+        return None
+    return {**rows[0], "matched_on": "situs town name"}
 
 
 def owners_as_of(
