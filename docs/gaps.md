@@ -62,7 +62,7 @@ Federal sources (FJC civil judgments, EPA judicial cases, SBA charge-offs, HUD R
 | OR | 9 of 36 counties | owner, address, value, land use, zoning | — | statutory_lien (1) | `us.orb.rss` | `or.sos.business` | `OR` | 14 local layers | — |
 | PA | 14 of 67 counties | owner, address, value, homestead, land use, zoning | `pa.philadelphia.rtt` | administrative_order (2)<br>code_enforcement_charge (1)<br>foreclosure (2)<br>tax_delinquency (12)<br>tax_lien (2) | `us.paeb.rss`<br>`us.paed.rss`<br>`us.pawb.rss`<br>`us.pawd.rss` | `pa.dos.business` | `PA`<br>`PA-ALLEGHENY`<br>`PA-WASHINGTON` | 16 local layers | — |
 | RI | statewide | owner, value | — | — | `us.rib.rss` | `ri.sos.business` | — | statewide | — |
-| SC | 13 of 46 counties | owner, address, value, homestead, land use, zoning | — | tax_delinquency (2) | `us.scb.rss` | — | `SC` | 3 local layers | — |
+| SC | 13 of 46 counties | owner, address, value, homestead, land use, zoning | — | tax_delinquency (3) | `us.scb.rss` | — | `SC` | 3 local layers | — |
 | SD | 6 of 66 counties | owner, address, value, homestead, land use | — | tax_lien (1) | `us.sdb.rss` | — | `SD` | none | — |
 | TN | statewide | owner, address, value, land use, zoning | — | — | `us.tneb.rss`<br>`us.tnmb.rss`<br>`us.tnwb.rss` | — | `TN` | 4 local layers | — |
 | TX | statewide | owner, address, value, land use | — | administrative_order (2)<br>court_judgment (5)<br>tax_delinquency (2) | `us.txeb.rss`<br>`us.txed.rss`<br>`us.txnb.rss`<br>`us.txsd.rss`<br>`us.txwb.rss`<br>`us.txwd.rss` | — | `TX-COUNTIES`<br>`TX-HARRIS`<br>`TX-TRAVIS` | 11 local layers | — |
