@@ -18,8 +18,8 @@ By length: 242 of the 247 shared names are two words (first and last name only),
 
 No death list gives an address or a birth date, so a shared name cannot tell a debtor from a
 different person with the same name: with two-word names in a county of five million, many of
-the 247 will be different people. A judgment entered after the death date (65 names) is more
-likely a different person than an estate. The flag would be a warning on the person, never a
+the 247 will be different people. A judgment entered after the death date (65 names) is either a
+different person or a default judgment against someone already dead; the data cannot say which. The flag would be a warning on the person, never a
 match, a removal or a change in amounts.
 
 ## Decision for the owner
