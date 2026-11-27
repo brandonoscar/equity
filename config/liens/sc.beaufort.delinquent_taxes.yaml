@@ -1,0 +1,37 @@
+source_id: sc.beaufort.delinquent_taxes
+state: SC
+county_fips: "45013"   # Beaufort County
+# Beaufort County Treasurer's Office Interactive Tax Map (the county's ArcGIS Online org,
+# BCSCGIS): parcels with delinquent property tax in redemption or held by the Forfeited Land
+# Commission, with the owner's name, the property address and the balance due (779 parcels
+# without units and 33 with units on 2026-11-27, $2.63M on the first layer). The service is
+# labelled a backup of the map, but it is the one the Treasurer's "Interactive Tax Map 2026"
+# shows (last edited 2026-09-29). No tax year or sale date is given, so the fetch date stands
+# in for it. Unpaid SC property tax is a first lien on the parcel (S.C. Code 12-49-10); a
+# senior lien, not a judgment. PINs are 'R700 002 000 001C 0000', the sc.beaufort.parcels
+# key with the spaces removed.
+api: arcgis
+layer_urls:
+  - https://services.arcgis.com/mbPLXL6SDfBjrAmS/arcgis/rest/services/InteractiveTaxMap2021_OctoberUpdate/FeatureServer/0
+  - https://services.arcgis.com/mbPLXL6SDfBjrAmS/arcgis/rest/services/InteractiveTaxMap2021_OctoberUpdate/FeatureServer/1
+single_partition: true
+select: [OBJECTID, PIN, OWNER_NAME, SITUSADDR, BALANCEDUE]
+order_by: [OBJECTID]
+listed_on: listed_on
+date_field: listed_on
+uid: PIN
+doc_type: TAX_LIEN_STATE
+doc_type_raw: "Beaufort County delinquent property tax (redemption or forfeited land)"
+amount: BALANCEDUE
+parties:
+  - role: debtor
+    name: OWNER_NAME
+  - role: creditor
+    const: Beaufort County Treasurer
+parcel: {kind: pin, field: PIN, county_fips: "45013", strip: " "}
+extra_pii: [SITUSADDR]   # the property address, kept out of the public fixture
+terms:
+  url: https://www.arcgis.com/home/item.html?id=b3acab0e518446f2880154958d9fb1c3
+  summary: "Beaufort County, SC Treasurer's Office layer in the county's ArcGIS Online org (BCSCGIS), public, free, no login; no license text on the item (access: MKG). Used like the other county delinquency layers."
+  checked_on: 2026-11-27
+  cost_model: free

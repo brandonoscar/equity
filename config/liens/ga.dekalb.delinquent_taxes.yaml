@@ -1,0 +1,34 @@
+source_id: ga.dekalb.delinquent_taxes
+state: GA
+county_fips: "13089"   # DeKalb County
+# DeKalb County GIS "Final August Delinquent Report" (the county's own ArcGIS server,
+# dcgis.dekalbcountyga.gov, edited 2026-09-10): 3,966 parcels with delinquent property tax,
+# each with the owner, the property address and city, the total due ($15.6M) and the years in
+# delinquency (2,783 one year, 424 seven or more). Parcel ids ('11 248 03 013') are the
+# PARCELID of ga.dekalb.parcels. The report has no per-row date, so the fetch date stands in.
+# Unpaid GA property tax is a lien on the parcel (O.C.G.A. 48-2-56); a senior lien, not a
+# judgment. The same server also holds a 2025 Q2 full list (8,563) and a live case-status
+# layer without owners or amounts; this report is the latest with both.
+api: arcgis
+layer_url: https://dcgis.dekalbcountyga.gov/hosted/rest/services/Hosted/Final_August_Delinquent_Report/FeatureServer/0
+single_partition: true
+select: [objectid, parcel_id, owner, address, city, total_due, years_in_delinquency, property_class]
+order_by: [objectid]
+listed_on: listed_on
+date_field: listed_on
+uid: parcel_id
+doc_type: TAX_LIEN_STATE
+doc_type_raw: "DeKalb County delinquent property tax"
+amount: total_due
+parties:
+  - role: debtor
+    name: owner
+    address: {line1: address, city: city, state_const: GA}
+  - role: creditor
+    const: DeKalb County Tax Commissioner
+parcel: {kind: pin, field: parcel_id, county_fips: "13089"}
+terms:
+  url: https://dcgis.dekalbcountyga.gov/hosted/rest/services/Hosted/Final_August_Delinquent_Report/FeatureServer
+  summary: "DeKalb County, GA GIS server (dcgis.dekalbcountyga.gov, robots.txt absent), public, free, no login; no license or use restriction stated on the service. Same server as ga.dekalb.parcels."
+  checked_on: 2026-11-27
+  cost_model: free

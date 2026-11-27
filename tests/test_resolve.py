@@ -704,7 +704,7 @@ def test_list_sources_names_every_source_a_state_reads(
                                           "ny.sos.business", "ny.sos.name_history",
                                           "ny.nyc.acris.real",
                                           "ny.nyc.dof.condo_units",
-                                          "us.nynb.rss", "us.nysb.rss",  # NY bankruptcy feeds
+                                          "us.nynb.rss", "us.nysb.rss", "us.nywb.rss",  # NY bankr.
                                           "us.sba.chargeoffs",
                                           "us.sba.ppp_chargeoffs"})  # fmt: skip
     assert main(["--state", "TX-TRAVIS", "--list-sources"]) == 0
@@ -1039,6 +1039,24 @@ def test_joint_owners_and_trust_settlors_are_matched_by_their_own_names(tmp_path
     # JANE SMITH at the same address lacks JANE B SMITH's middle initial: the existing
     # middle-initial rule, review only.
     assert m["d3"] == ("o1", "person_name_initial_address", "review", None)
+
+
+def test_street_norm_drops_ordinal_suffixes_on_numbered_streets() -> None:
+    """88TH ST = 88 ST (approved 2026-11-27); spelled-out numbers (FIRST, from the numbered-
+    street words) land on the same key; words that only look like ordinals stay."""
+    from equity.matching.review import street_macro
+
+    con = duckdb.connect()
+    street_macro(con)
+
+    def norm(s: str) -> str:
+        return str(con.execute("SELECT street_norm(?)", [s]).fetchall()[0][0])
+
+    assert norm("12 West 88th Street") == norm("12 W 88 ST") == "12 W 88 ST"
+    assert norm("100 1ST AVE") == "100 1 AVE" and norm("7 22ND PL") == "7 22 PL"
+    assert norm("5 STH AVE") == "5 STH AVE"
+    assert norm("9 FIRST ST") == norm("9 1ST ST") == norm("9 1 ST") == "9 1 ST"
+    assert norm("12 Fifth Avenue") == norm("12 5TH AVE") == "12 5 AVE"
 
 
 def test_a_company_whose_tax_bill_goes_to_a_debtors_home_is_a_review_lead(

@@ -19,7 +19,8 @@ same keys, computed in SQL so every match can be re-derived:
   addr_key   street line + ZIP 5 of a normalized address. The street line is compared with
              suffix and direction words spelled one way (USPS: STREET=ST, NORTH=N, ...) and
              punctuation dropped (review.street_norm; approved by the project owner
-             2026-11-22), so "12 Main Street" and "12 MAIN ST." are one address.
+             2026-11-22), so "12 Main Street" and "12 MAIN ST." are one address; a numbered
+             street's ordinal is dropped too, "88TH ST" = "88 ST" (approved 2026-11-27).
   town_key   street line + city, for states whose parcel data carries no owner ZIP (CT).
 
 Rules, strongest first (a debtor-owner pair keeps its strongest rule):
@@ -1367,12 +1368,22 @@ STATES: dict[str, dict[str, Any]] = {
     # Baltimore City: environmental citation liens name the parcel (block/lot), not a person.
     "MD-BALTIMORE": {"debtors": ["md.baltimore_city.citation_liens",
                                  "md.baltimore_city.in_rem_candidates",
-                                 "md.baltimore_city.tax_lien_certificate_sale"],
+                                 "md.baltimore_city.tax_lien_certificate_sale",
+                                 "md.baltimore_city.tax_sale_2026"],
                      "owners": ["md.baltimore_city.parcels"], "parcel_on_lien": True,
                      "deeds": ["md.sdat.transfers_1", "md.sdat.transfers_2",
                                "md.sdat.transfers_3"],
                      "courts": FEDERAL_COURTS},
     # Travis: delinquent property tax accounts and tax-suit judgments, by owner name.
+    # Dallas County Tax Office TRW roll: delinquent accounts by Dallas CAD account, the key of
+    # the city's copy of the certified roll (Dallas and a one-mile buffer).
+    "TX-DALLAS": {"debtors": ["tx.dallas.tax_roll_delinquent"],
+                  "owners": ["tx.dallas_city.parcels"], "parcel_on_lien": True,
+                  "courts": FEDERAL_COURTS},
+    # Tarrant County Tax Office roll: delinquent accounts with owners and mailing addresses
+    # (no parcel id in the statewide form), matched by name and address, as for Travis.
+    "TX-TARRANT": {"debtors": ["tx.tarrant.tax_roll_delinquent"],
+                   "owners": ["tx.statewide.parcels"], "courts": FEDERAL_COURTS},
     "TX-TRAVIS": {"debtors": ["tx.travis.tax_delinquent"], "owners": ["tx.statewide.parcels"],
                   "courts": FEDERAL_COURTS},
     # Omaha: tax sale certificates (named taxpayers) and county-held liens (PIN only).
@@ -1476,7 +1487,7 @@ STATES: dict[str, dict[str, Any]] = {
                     "courts": FEDERAL_COURTS},
     # North Carolina: Guilford and Buncombe unpaid property taxes, Charlotte municipal liens.
     "NC": {"debtors": ["nc.guilford.tax_delinquent", "nc.buncombe.unpaid_bills",
-                       "nc.charlotte.municipal_liens"],
+                       "nc.charlotte.municipal_liens", "nc.pitt.delinquent_taxes"],
                     "owners": ["nc.statewide.parcels"], "parcel_on_lien": True,
                     "courts": FEDERAL_COURTS,
            "record_owners": ["nc.raleigh.building_permits"]},
@@ -1490,9 +1501,9 @@ STATES: dict[str, dict[str, Any]] = {
                 "courts": FEDERAL_COURTS},
     "PA-WASHINGTON": {"debtors": ["pa.washington.sheriff_sales"],
                       "owners": ["pa.washington.parcels"], "parcel_on_lien": True},
-    # NYC lien sale notices name no one: each is owed by the noticed parcel's owner. A run
-    # of its own, so the NY run's ACRIS instruments do not take on parcel_on_lien.
-    "NY-NYC-LIENSALE": {"debtors": ["ny.nyc.tax_lien_sale"],
+    # NYC lien sale notices and DOF past-due charges name no one: each is owed by the lot's
+    # owner. A run of its own, so the NY run's ACRIS instruments do not take on parcel_on_lien.
+    "NY-NYC-LIENSALE": {"debtors": ["ny.nyc.tax_lien_sale", "ny.nyc.dof.past_due_charges"],
                         "owners": ["ny.statewide.parcels", "ny.nyc.parcels"],
                         "parcel_on_lien": True},
     # St. Joseph IN tax sale: named owners and state parcel numbers. Indiana's statewide layer
@@ -1550,7 +1561,8 @@ STATES: dict[str, dict[str, Any]] = {
                                "az.gila.parcels", "az.graham.parcels", "az.greenlee.parcels",
                                "az.la_paz.parcels", "az.navajo.parcels",
                                "az.santa_cruz.parcels"]},
-    "GA": {"debtors": ["ga.albany.delinquent_taxes", "ga.gwinnett.delinquent_taxes"],
+    "GA": {"debtors": ["ga.albany.delinquent_taxes", "ga.gwinnett.delinquent_taxes",
+                       "ga.dekalb.delinquent_taxes", "ga.richmond.delinquent_taxes"],
            "courts": FEDERAL_COURTS,
            "parcel_on_lien": True,
            "owners": ["ga.chatham.parcels", "ga.clayton.parcels", "ga.cobb.parcels",
@@ -1616,7 +1628,8 @@ STATES: dict[str, dict[str, Any]] = {
            "owners": ["or.deschutes.parcels", "or.jackson.parcels", "or.lane.parcels",
                       "or.multnomah.parcels", "or.josephine.parcels", "or.yamhill.parcels",
                       "or.klamath.parcels", "or.umatilla.parcels"]},
-    "SC": {"debtors": ["sc.horry.delinquent_tax_sale", "sc.york.tax_sale"],
+    "SC": {"debtors": ["sc.horry.delinquent_tax_sale", "sc.york.tax_sale",
+                       "sc.beaufort.delinquent_taxes"],
            "courts": FEDERAL_COURTS,
            "parcel_on_lien": True,
            "owners": ["sc.charleston.parcels", "sc.georgetown.parcels", "sc.greenville.parcels",
@@ -1656,7 +1669,8 @@ STATES: dict[str, dict[str, Any]] = {
                                       "va.lynchburg.code_violations"]},
     # Ohio's statewide Name field is a placeholder: county layers carry the owner names.
     "OH-COUNTIES": {"debtors": ["oh.cuyahoga.delinquent_taxes", "oh.cuyahoga.forfeited_land_sale",
-                                "oh.franklin.tax_lien_sale", "oh.greene.delinquent_taxes",
+                                "oh.franklin.tax_lien_sale", "oh.franklin.delinquent_taxes",
+                                "oh.greene.delinquent_taxes",
                                 "oh.lorain.delinquent_taxes", "oh.lorain.forfeited_land_sale",
                                 "oh.stark.delinquent_taxes", "oh.stark.foreclosures",
                                 "oh.stark.civil_sales"],

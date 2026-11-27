@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import json
+import urllib.parse
+from collections.abc import Mapping
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -1100,6 +1102,33 @@ def test_past_due_days_drops_current_bills(tmp_path: Path) -> None:
     at = datetime(2026, 11, 25, tzinfo=UTC)
     out = cls().normalize(Fetched(cls.source_id, "x", at, 200, body, ""))
     assert {r.row["instrument_number"] for r in out if r.table == "instrument"} == {"OLD"}
+
+
+def test_enrich_zfill_pads_the_lookup_key(tmp_path: Path) -> None:
+    """A bill list keyed '18359' joins a parcel table keyed '018359' with zfill: 6."""
+    cfg = _cfg(tmp_path, api="arcgis", layer_url="https://g.test/FeatureServer/0", portal=None,
+               dataset=None, released_on=None, date_field="jd", date_is_text=True,
+               enrich={"arcgis": "https://e.test/MapServer/1", "key": "ParcelNumber",
+                       "field": "pid", "zfill": 6, "columns": ["OwnerName"]},
+               parties=[{"role": "debtor", "name": "OwnerName"}])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    feats = {"features": [{"attributes": {"ticket": "B1", "jd": "2026-01-02", "pid": "18359"}}]}
+    other = {"features": [{"attributes": {"ParcelNumber": "018359", "OwnerName": "ANN LEE"}}]}
+    seen: list[str] = []
+
+    def transport(url: str, headers: Mapping[str, str], timeout: float) -> tuple[int, bytes, str]:
+        if url.endswith("robots.txt"):
+            return 404, b"", ""
+        seen.append(urllib.parse.unquote_plus(url))
+        body = other if "MapServer/1/query" in url else feats
+        return 200, json.dumps(body).encode(), ""
+
+    from equity.adapters.http import PoliteClient
+
+    a = cls(PoliteClient(min_interval_s=0, transport=transport, sleep=lambda s: None))
+    rows = json.loads(a.fetch(FetchRequest({"from": "2026-01-01", "to": "2027-01-01"})).content)
+    assert rows["rows"][0]["OwnerName"] == "ANN LEE"
+    assert any("'018359'" in u for u in seen if "MapServer/1" in u)
 
 
 def test_socrata_enrich_joins_every_match(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:

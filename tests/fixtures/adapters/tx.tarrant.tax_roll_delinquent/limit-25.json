@@ -1,0 +1,525 @@
+{
+ "file": "TaxRoll20261125.zip",
+ "rows": [
+  {
+   "account": "00000000469",
+   "addr1": "TESTOWNER D4F68D",
+   "addr2": "",
+   "amount": "711.12",
+   "bankruptcies": [],
+   "cad_id": "14437    11    1",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 40E33F",
+   "owner2": "",
+   "roll": "01",
+   "state": "TX",
+   "years": [
+    2013
+   ],
+   "zip": "761960001"
+  },
+  {
+   "account": "00000000477",
+   "addr1": "TESTOWNER D4F68D",
+   "addr2": "",
+   "amount": "703.00",
+   "bankruptcies": [],
+   "cad_id": "14437    11    3",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 40E33F",
+   "owner2": "",
+   "roll": "01",
+   "state": "TX",
+   "years": [
+    2013
+   ],
+   "zip": "761960001"
+  },
+  {
+   "account": "00000000485",
+   "addr1": "TESTOWNER D4F68D",
+   "addr2": "",
+   "amount": "497.00",
+   "bankruptcies": [],
+   "cad_id": "14437    11    5",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 40E33F",
+   "owner2": "",
+   "roll": "01",
+   "state": "TX",
+   "years": [
+    2013
+   ],
+   "zip": "761960001"
+  },
+  {
+   "account": "00000000507",
+   "addr1": "TESTOWNER D4F68D",
+   "addr2": "",
+   "amount": "461.53",
+   "bankruptcies": [],
+   "cad_id": "14437    11    7B",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 40E33F",
+   "owner2": "",
+   "roll": "01",
+   "state": "TX",
+   "years": [
+    2013
+   ],
+   "zip": "761960001"
+  },
+  {
+   "account": "00000002798",
+   "addr1": "TESTOWNER E99155",
+   "addr2": "",
+   "amount": "90999.93",
+   "bankruptcies": [],
+   "cad_id": "14437    47    3",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 230B9B",
+   "owner2": "TESTOWNER A4525F",
+   "roll": "01",
+   "state": "TX",
+   "years": [
+    2024,
+    2025
+   ],
+   "zip": "76102"
+  },
+  {
+   "account": "00000006033",
+   "addr1": "TESTOWNER 8B4F36",
+   "addr2": "",
+   "amount": "1293.87",
+   "bankruptcies": [],
+   "cad_id": "14437    119    2B",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [
+    "D42666-24"
+   ],
+   "owner1": "TESTOWNER C24DBC LTD",
+   "owner2": "",
+   "roll": "01",
+   "state": "TX",
+   "years": [
+    2025
+   ],
+   "zip": "76102"
+  },
+  {
+   "account": "00000006491",
+   "addr1": "TESTOWNER 627DA6",
+   "addr2": "",
+   "amount": "404.89",
+   "bankruptcies": [],
+   "cad_id": "14437    124    1C1",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [
+    "D50187-25"
+   ],
+   "owner1": "TESTOWNER 2B8B0D",
+   "owner2": "",
+   "roll": "01",
+   "state": "TX",
+   "years": [
+    2025
+   ],
+   "zip": "76102"
+  },
+  {
+   "account": "00000006947",
+   "addr1": "TESTOWNER 8B4F36",
+   "addr2": "",
+   "amount": "3361.81",
+   "bankruptcies": [],
+   "cad_id": "14437    129    1",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [
+    "D42666-24"
+   ],
+   "owner1": "TESTOWNER C24DBC LTD",
+   "owner2": "",
+   "roll": "01",
+   "state": "TX",
+   "years": [
+    2025
+   ],
+   "zip": "76102"
+  },
+  {
+   "account": "00000006971",
+   "addr1": "TESTOWNER 8B4F36",
+   "addr2": "",
+   "amount": "1144.53",
+   "bankruptcies": [],
+   "cad_id": "14437    130    5",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [
+    "D42666-24"
+   ],
+   "owner1": "TESTOWNER C24DBC LTD",
+   "owner2": "",
+   "roll": "01",
+   "state": "TX",
+   "years": [
+    2025
+   ],
+   "zip": "76102"
+  },
+  {
+   "account": "00000008176",
+   "addr1": "TESTOWNER CB1A85",
+   "addr2": "",
+   "amount": "3076.88",
+   "bankruptcies": [],
+   "cad_id": "14437    156    6R",
+   "city": "FORT WORTH",
+   "installment": true,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 3387E7",
+   "owner2": "",
+   "roll": "01",
+   "state": "TX",
+   "years": [
+    2025
+   ],
+   "zip": "76179"
+  },
+  {
+   "account": "00000008184",
+   "addr1": "TESTOWNER CB1A85",
+   "addr2": "",
+   "amount": "503.13",
+   "bankruptcies": [],
+   "cad_id": "14437    156    7",
+   "city": "FORT WORTH",
+   "installment": true,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 3387E7",
+   "owner2": "",
+   "roll": "01",
+   "state": "TX",
+   "years": [
+    2025
+   ],
+   "zip": "76179"
+  },
+  {
+   "account": "00000008249",
+   "addr1": "TESTOWNER 055259",
+   "addr2": "",
+   "amount": "3558.81",
+   "bankruptcies": [],
+   "cad_id": "14437    156    12A",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [
+    "D53416-26"
+   ],
+   "owner1": "TESTOWNER 193E80",
+   "owner2": "",
+   "roll": "01",
+   "state": "TX",
+   "years": [
+    2025
+   ],
+   "zip": "76161"
+  },
+  {
+   "account": "00000008273",
+   "addr1": "TESTOWNER 0277A8",
+   "addr2": "",
+   "amount": "700.50",
+   "bankruptcies": [],
+   "cad_id": "14437    156    13B",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER C3FAC9",
+   "owner2": "",
+   "roll": "01",
+   "state": "TX",
+   "years": [
+    2025
+   ],
+   "zip": "761151646"
+  },
+  {
+   "account": "00000009210",
+   "addr1": "TESTOWNER 9795F7",
+   "addr2": "",
+   "amount": "872.01",
+   "bankruptcies": [],
+   "cad_id": "14437    162    34",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER B1EF04",
+   "owner2": "",
+   "roll": "01",
+   "state": "TX",
+   "years": [
+    2025
+   ],
+   "zip": "76102"
+  },
+  {
+   "account": "00000009679",
+   "addr1": "TESTOWNER 35C574",
+   "addr2": "",
+   "amount": "1342.94",
+   "bankruptcies": [],
+   "cad_id": "50        5",
+   "city": "ARLINGTON",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 0FEE38",
+   "owner2": "",
+   "roll": "01",
+   "state": "TX",
+   "years": [
+    2025
+   ],
+   "zip": "760034823"
+  },
+  {
+   "account": "00000010030",
+   "addr1": "TESTOWNER A26968",
+   "addr2": "",
+   "amount": "1071.27",
+   "bankruptcies": [],
+   "cad_id": "60    1    7",
+   "city": "FORT WORTH",
+   "installment": true,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER CC2245",
+   "owner2": "",
+   "roll": "01",
+   "state": "TX",
+   "years": [
+    2024,
+    2025
+   ],
+   "zip": "76112"
+  },
+  {
+   "account": "00000011193",
+   "addr1": "TESTOWNER EC23DE",
+   "addr2": "",
+   "amount": "1589.29",
+   "bankruptcies": [],
+   "cad_id": "132        A1",
+   "city": "GRAND PRAIRIE",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 1C09B2",
+   "owner2": "",
+   "roll": "01",
+   "state": "TX",
+   "years": [
+    2025
+   ],
+   "zip": "75054"
+  },
+  {
+   "account": "00000011282",
+   "addr1": "TESTOWNER BD3127",
+   "addr2": "",
+   "amount": "4666.03",
+   "bankruptcies": [],
+   "cad_id": "133    1R    1R",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [
+    "D53434-26"
+   ],
+   "owner1": "TESTOWNER 3FBB24 LLC",
+   "owner2": "",
+   "roll": "01",
+   "state": "TX",
+   "years": [
+    2025
+   ],
+   "zip": "76110"
+  },
+  {
+   "account": "00000011304",
+   "addr1": "TESTOWNER BD3127",
+   "addr2": "",
+   "amount": "4681.90",
+   "bankruptcies": [],
+   "cad_id": "133    1R    3",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [
+    "D53434-26"
+   ],
+   "owner1": "TESTOWNER 3FBB24 LLC",
+   "owner2": "",
+   "roll": "01",
+   "state": "TX",
+   "years": [
+    2025
+   ],
+   "zip": "76110"
+  },
+  {
+   "account": "00000011347",
+   "addr1": "TESTOWNER E969AC",
+   "addr2": "",
+   "amount": "0.95",
+   "bankruptcies": [],
+   "cad_id": "145    1    2",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 2D9F93",
+   "owner2": "",
+   "roll": "01",
+   "state": "TX",
+   "years": [
+    2025
+   ],
+   "zip": "761111329"
+  },
+  {
+   "account": "00000011908",
+   "addr1": "TESTOWNER D89C0A",
+   "addr2": "",
+   "amount": "0.84",
+   "bankruptcies": [],
+   "cad_id": "150    A    3R",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 34A4D6",
+   "owner2": "",
+   "roll": "01",
+   "state": "TX",
+   "years": [
+    2025
+   ],
+   "zip": "761193612"
+  },
+  {
+   "account": "00000012068",
+   "addr1": "TESTOWNER 9F1ECC",
+   "addr2": "",
+   "amount": "0.25",
+   "bankruptcies": [],
+   "cad_id": "150    B    7R",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER FA317C",
+   "owner2": "",
+   "roll": "01",
+   "state": "TX",
+   "years": [
+    2024
+   ],
+   "zip": "761193611"
+  },
+  {
+   "account": "00000012130",
+   "addr1": "TESTOWNER 20AB8B",
+   "addr2": "",
+   "amount": "1.23",
+   "bankruptcies": [],
+   "cad_id": "150    B    14R",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 8F72A8",
+   "owner2": "",
+   "roll": "01",
+   "state": "TX",
+   "years": [
+    2025
+   ],
+   "zip": "761193606"
+  },
+  {
+   "account": "00000012165",
+   "addr1": "TESTOWNER 50728B",
+   "addr2": "",
+   "amount": "1312.26",
+   "bankruptcies": [],
+   "cad_id": "150    B    17R",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 91C6B2",
+   "owner2": "",
+   "roll": "01",
+   "state": "TX",
+   "years": [
+    2022,
+    2023
+   ],
+   "zip": "76119"
+  },
+  {
+   "account": "00000012173",
+   "addr1": "TESTOWNER CACB7C",
+   "addr2": "",
+   "amount": "2635.32",
+   "bankruptcies": [],
+   "cad_id": "150    B    18R",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [
+    "D49785-25"
+   ],
+   "owner1": "TESTOWNER E73B2B",
+   "owner2": "",
+   "roll": "01",
+   "state": "TX",
+   "years": [
+    2024,
+    2025
+   ],
+   "zip": "761193606"
+  }
+ ]
+}

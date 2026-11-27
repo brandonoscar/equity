@@ -1,0 +1,281 @@
+{
+ "layer": "https://gis.pittcountync.gov/gis/rest/services/PittOpenData/Tables/MapServer/9",
+ "rows": [
+  {
+   "BASE_NUM": "0000002280",
+   "BILL_AMT": "138.85",
+   "BILL_DUE_AMT": "281.91",
+   "CityStateZip": "EAST STROUDSBURG  PA 18301",
+   "OBJECTID": 61741672,
+   "OwnerAddress": "5495 TEST ST",
+   "OwnerName": "TESTOWNER 5A4B53",
+   "PARCEL_ID": "18359",
+   "TAX_YEAR": "2015"
+  },
+  {
+   "BASE_NUM": "0000002616",
+   "BILL_AMT": "15.04",
+   "BILL_DUE_AMT": "34.91",
+   "CityStateZip": "GREENVILLE  NC 27834",
+   "OBJECTID": 61741677,
+   "OwnerAddress": "1062 TEST ST",
+   "OwnerName": "TESTOWNER C971BE",
+   "PARCEL_ID": "18941",
+   "TAX_YEAR": "2015"
+  },
+  {
+   "BASE_NUM": "0000003067",
+   "BILL_AMT": "143.82",
+   "BILL_DUE_AMT": "291.83",
+   "CityStateZip": "BETHEL  NC 27812",
+   "OBJECTID": 61741678,
+   "OwnerAddress": "3783 TEST ST",
+   "OwnerName": "TESTOWNER 72C210",
+   "PARCEL_ID": "17737",
+   "TAX_YEAR": "2015"
+  },
+  {
+   "BASE_NUM": "0000003083",
+   "BILL_AMT": "89.75",
+   "BILL_DUE_AMT": "183.95",
+   "CityStateZip": "WINTERVILLE  NC 28590",
+   "OBJECTID": 61741679,
+   "OwnerAddress": "6443 TEST ST",
+   "OwnerName": "TESTOWNER 416034",
+   "PARCEL_ID": "17746",
+   "TAX_YEAR": "2015"
+  },
+  {
+   "BASE_NUM": "0000121480",
+   "BILL_AMT": "26.19",
+   "BILL_DUE_AMT": "57.16",
+   "CityStateZip": "HAMDEN  CT 06517",
+   "OBJECTID": 61741680,
+   "OwnerAddress": "6049 TEST ST",
+   "OwnerName": "TESTOWNER 83A611",
+   "PARCEL_ID": "15493",
+   "TAX_YEAR": "2015"
+  },
+  {
+   "BASE_NUM": "0000121482",
+   "BILL_AMT": "16.62",
+   "BILL_DUE_AMT": "38.06",
+   "CityStateZip": "NEW YORK  NY 10029",
+   "OBJECTID": 61741681,
+   "OwnerAddress": "7942 TEST ST",
+   "OwnerName": "TESTOWNER 08A989",
+   "PARCEL_ID": "15494",
+   "TAX_YEAR": "2015"
+  },
+  {
+   "BASE_NUM": "0000122091",
+   "BILL_AMT": "234.61",
+   "BILL_DUE_AMT": "472.95",
+   "CityStateZip": "FARMVILLE  NC 27828",
+   "OBJECTID": 61741682,
+   "OwnerAddress": "2061 TEST ST",
+   "OwnerName": "TESTOWNER 1D5017",
+   "PARCEL_ID": "14490",
+   "TAX_YEAR": "2015"
+  },
+  {
+   "BASE_NUM": "0000122143",
+   "BILL_AMT": "612.38",
+   "BILL_DUE_AMT": "1226.60",
+   "CityStateZip": "GREENVILLE  NC 27834",
+   "OBJECTID": 61741683,
+   "OwnerAddress": "1699 TEST ST",
+   "OwnerName": "TESTOWNER B04655",
+   "PARCEL_ID": "14557",
+   "TAX_YEAR": "2015"
+  },
+  {
+   "BASE_NUM": "0000122187",
+   "BILL_AMT": "29.76",
+   "BILL_DUE_AMT": "64.27",
+   "CityStateZip": "BETHEL  NC 27812",
+   "OBJECTID": 61741684,
+   "OwnerAddress": "3193 TEST ST",
+   "OwnerName": "TESTOWNER 1D6681",
+   "PARCEL_ID": "14631",
+   "TAX_YEAR": "2015"
+  },
+  {
+   "BASE_NUM": "0000122470",
+   "BILL_AMT": "29.11",
+   "BILL_DUE_AMT": "62.98",
+   "CityStateZip": "NEW HAVEN  CT 06511",
+   "OBJECTID": 61741685,
+   "OwnerAddress": "4033 TEST ST",
+   "OwnerName": "TESTOWNER 5067AB",
+   "PARCEL_ID": "15256",
+   "TAX_YEAR": "2015"
+  },
+  {
+   "BASE_NUM": "0000122543",
+   "BILL_AMT": "20.49",
+   "BILL_DUE_AMT": "45.78",
+   "CityStateZip": "GREENVILLE  NC 27834",
+   "OBJECTID": 61741686,
+   "OwnerAddress": "1819 TEST ST",
+   "OwnerName": "TESTOWNER EBD09D",
+   "PARCEL_ID": "15376",
+   "TAX_YEAR": "2015"
+  },
+  {
+   "BASE_NUM": "0000181271",
+   "BILL_AMT": "27.72",
+   "BILL_DUE_AMT": "90.20",
+   "CityStateZip": "BROCKTON  MA 02301",
+   "OBJECTID": 61741687,
+   "OwnerAddress": "5879 TEST ST",
+   "OwnerName": "TESTOWNER F5258E",
+   "PARCEL_ID": "25425",
+   "TAX_YEAR": "2015"
+  },
+  {
+   "BASE_NUM": "0000181709",
+   "BILL_AMT": "17.24",
+   "BILL_DUE_AMT": "39.29",
+   "CityStateZip": "DANBURY  CT 06811",
+   "OBJECTID": 61741688,
+   "OwnerAddress": "8711 TEST ST",
+   "OwnerName": "TESTOWNER 099D58",
+   "PARCEL_ID": "12997",
+   "TAX_YEAR": "2015"
+  },
+  {
+   "BASE_NUM": "0000181756",
+   "BILL_AMT": "131.20",
+   "BILL_DUE_AMT": "266.64",
+   "CityStateZip": "JACKSONVILLE  NC 28540",
+   "OBJECTID": 61741689,
+   "OwnerAddress": "2988 TEST ST",
+   "OwnerName": "TESTOWNER CD2613",
+   "PARCEL_ID": "13040",
+   "TAX_YEAR": "2015"
+  },
+  {
+   "BASE_NUM": "0000181866",
+   "BILL_AMT": "7.26",
+   "BILL_DUE_AMT": "19.39",
+   "CityStateZip": "AYDEN  NC 28513",
+   "OBJECTID": 61741690,
+   "OwnerAddress": "5540 TEST ST",
+   "OwnerName": "TESTOWNER 9770F1",
+   "PARCEL_ID": "13242",
+   "TAX_YEAR": "2015"
+  },
+  {
+   "BASE_NUM": "0000182034",
+   "BILL_AMT": "50.82",
+   "BILL_DUE_AMT": "106.29",
+   "CityStateZip": "GREENVILLE  NC 27834",
+   "OBJECTID": 61741691,
+   "OwnerAddress": "8675 TEST ST",
+   "OwnerName": "TESTOWNER B8D9A5",
+   "PARCEL_ID": "13560",
+   "TAX_YEAR": "2015"
+  },
+  {
+   "BASE_NUM": "0000182160",
+   "BILL_AMT": "21.35",
+   "BILL_DUE_AMT": "47.50",
+   "CityStateZip": "PACTOLUS  NC 27834",
+   "OBJECTID": 61741692,
+   "OwnerAddress": "228 TEST ST",
+   "OwnerName": "TESTOWNER 5F63D9",
+   "PARCEL_ID": "13770",
+   "TAX_YEAR": "2015"
+  },
+  {
+   "BASE_NUM": "0000182183",
+   "BILL_AMT": "670.88",
+   "BILL_DUE_AMT": "1341.98",
+   "CityStateZip": "GREENVILLE  NC 27834",
+   "OBJECTID": 61741694,
+   "OwnerAddress": "6388 TEST ST",
+   "OwnerName": "TESTOWNER 909F8A",
+   "PARCEL_ID": "13793",
+   "TAX_YEAR": "2015"
+  },
+  {
+   "BASE_NUM": "0000182197",
+   "BILL_AMT": "78.22",
+   "BILL_DUE_AMT": "160.95",
+   "CityStateZip": "WASHINGTON  NC 27889",
+   "OBJECTID": 61741695,
+   "OwnerAddress": "3178 TEST ST",
+   "OwnerName": "TESTOWNER 58C431",
+   "PARCEL_ID": "13801",
+   "TAX_YEAR": "2015"
+  },
+  {
+   "BASE_NUM": "0000182653",
+   "BILL_AMT": "9.49",
+   "BILL_DUE_AMT": "23.84",
+   "CityStateZip": "LITHONIA  GA 30058",
+   "OBJECTID": 61741696,
+   "OwnerAddress": "2339 TEST ST",
+   "OwnerName": "TESTOWNER 09B5E7",
+   "PARCEL_ID": "12467",
+   "TAX_YEAR": "2015"
+  },
+  {
+   "BASE_NUM": "0000182700",
+   "BILL_AMT": "18.98",
+   "BILL_DUE_AMT": "42.76",
+   "CityStateZip": "FARMVILLE  NC 27828",
+   "OBJECTID": 61741697,
+   "OwnerAddress": "3764 TEST ST",
+   "OwnerName": "TESTOWNER C0E963",
+   "PARCEL_ID": "12537",
+   "TAX_YEAR": "2015"
+  },
+  {
+   "BASE_NUM": "0000182764",
+   "BILL_AMT": "38.42",
+   "BILL_DUE_AMT": "81.55",
+   "CityStateZip": "AYDEN  NC 28513",
+   "OBJECTID": 61741698,
+   "OwnerAddress": "7886 TEST ST",
+   "OwnerName": "TESTOWNER 3251B5",
+   "PARCEL_ID": "12678",
+   "TAX_YEAR": "2015"
+  },
+  {
+   "BASE_NUM": "0000182772",
+   "BILL_AMT": "225.56",
+   "BILL_DUE_AMT": "454.90",
+   "CityStateZip": "FARMVILLE  NC 27828",
+   "OBJECTID": 61741699,
+   "OwnerAddress": "3848 TEST ST",
+   "OwnerName": "TESTOWNER ABDF42",
+   "PARCEL_ID": "12728",
+   "TAX_YEAR": "2015"
+  },
+  {
+   "BASE_NUM": "0000190059",
+   "BILL_AMT": "193.73",
+   "BILL_DUE_AMT": "390.11",
+   "CityStateZip": "KINSTON  NC 28501",
+   "OBJECTID": 61741700,
+   "OwnerAddress": "8009 TEST ST",
+   "OwnerName": "TESTOWNER 5CD083",
+   "PARCEL_ID": "11298",
+   "TAX_YEAR": "2015"
+  },
+  {
+   "BASE_NUM": "0000191145",
+   "BILL_AMT": "81.19",
+   "BILL_DUE_AMT": "166.87",
+   "CityStateZip": "GREENVILLE  NC 27858",
+   "OBJECTID": 61741724,
+   "OwnerAddress": "7405 TEST ST",
+   "OwnerName": "TESTOWNER 291686",
+   "PARCEL_ID": "9724",
+   "TAX_YEAR": "2015"
+  }
+ ],
+ "where": "((TRANSACTION_TYPE IS NULL OR TRANSACTION_TYPE = '') AND BILL_DUE_AMT NOT IN ('0', '0.00', ''))"
+}

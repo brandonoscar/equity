@@ -97,6 +97,12 @@ sources:
   co.sos.ucc: statutory_lien                       # federal tax and statutory liens (doc-type filtered)
   md.baltimore_city.citation_liens: code_enforcement_lien
   nc.guilford.tax_delinquent: tax_delinquency
+  nc.pitt.delinquent_taxes: tax_delinquency
+  sc.beaufort.delinquent_taxes: tax_delinquency
+  ga.dekalb.delinquent_taxes: tax_delinquency
+  ga.richmond.delinquent_taxes: tax_delinquency
+  tx.dallas.tax_roll_delinquent: tax_delinquency
+  tx.tarrant.tax_roll_delinquent: tax_delinquency
   nc.buncombe.unpaid_bills: tax_delinquency
   nc.charlotte.municipal_liens: code_enforcement_lien
   oh.clermont.tax_delinquent: tax_delinquency
@@ -109,6 +115,7 @@ sources:
   ks.wyandotte.tax_sale: tax_delinquency
   ca.sonoma.defaulted_tax: tax_delinquency
   ny.nyc.tax_lien_sale: tax_delinquency
+  ny.nyc.dof.past_due_charges: tax_delinquency
   az.cochise.tax_deed_auction: tax_delinquency    # deeded to the State; previous owner named
   # federal loans (gap report rank 9)
   us.sba.chargeoffs: charged_off_loan
@@ -131,6 +138,7 @@ sources:
   oh.cuyahoga.delinquent_taxes: tax_delinquency
   oh.cuyahoga.forfeited_land_sale: tax_delinquency
   oh.franklin.tax_lien_sale: tax_lien
+  oh.franklin.delinquent_taxes: tax_delinquency
   oh.greene.delinquent_taxes: tax_delinquency
   oh.lorain.delinquent_taxes: tax_delinquency
   oh.lorain.forfeited_land_sale: tax_delinquency
@@ -157,6 +165,7 @@ sources:
   # NY, MD, PA and MI county delinquent-tax, tax-sale and foreclosure lists (2026-11-25)
   md.baltimore_city.in_rem_candidates: tax_lien
   md.baltimore_city.tax_lien_certificate_sale: tax_lien
+  md.baltimore_city.tax_sale_2026: tax_lien
   md.prince_georges.foreclosures: foreclosure
   md.st_marys.tax_sale: tax_lien
   mi.kalamazoo.delinquent_2024: tax_delinquency

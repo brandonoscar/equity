@@ -119,3 +119,67 @@ surplus real property beyond the HUD and BLM queries already loaded
 | Treasury, FDIC, others | Only HUD notices match "loan sale" since 2010. |
 
 HUD remains the only federal agency noticing loan sales in the Federal Register.
+
+## Discovery leads reviewed (2026-11-27)
+
+`equity.discovery` returned 90 candidates. 45 are land-bank inventories, Survey123 forms, or
+national and foreign layers (land banks are owned by the land bank, so they name no debtor);
+19 are the Brooklyn Borough President's 2024 tax-lien maps, one per community district (water
+debt by block and lot, no owner); the rest were read field by field:
+
+| Lead | Rows | Result |
+|---|---|---|
+| Pitt County NC "Delinquent Taxes" (gis.pittcountync.gov) | 8,573 | Not added: a log of payment transactions against bills (TXN_DATE, AMOUNT, BILLALLOCATION), keyed by Pitt's short parcel number, not a list of open balances. Needs a design (net payments per bill) before it can stand for a debt. |
+| "DC Tax Liens" (dcgis.org) | 380 | Not added: dcgis.org appears to be Douglas County NE's GIS, not the District's; Douglas County tax liens are already loaded (`ne.douglas.tax_liens`). |
+| Muncie IN Fall 2026 tax sale | 630 | Owner name, PIN, minimum bid. Publisher not confirmed (a personal ArcGIS account); held until the county's own list is found. |
+| Hammond IN 2027 tax sale | 142 | Deeded owner, mailing address, parcel. Published by a sanitary-district account; held for the same reason. |
+| Fulton GA "Tax Deed Activity" (Socrata) | 34,300 | Not a debt list: the assessor's internal deed-processing work queue. |
+| Frederick County, McPherson KS, other "tax sale" layers | 2-304 | Too small, no owner field, or a geocoded address list without parcel or owner. |
+| Cochise AZ 2026 tax deed layers | — | Already loaded (`az.cochise.tax_deed_auction`). |
+| WA candidate surplus funds, Massachusetts settlements | — | Campaign finance and state settlements, not property debts. |
+
+### Wider search, all years (2026-11-27)
+
+ArcGIS Online searched for public layers titled delinquent, tax lien, unpaid tax and tax sale
+list, any age, minus configured URLs (235 items). Added: `nc.pitt.delinquent_taxes` (the bill
+rows of Pitt's table, owner joined from its parcel table) and `sc.beaufort.delinquent_taxes`
+(the Treasurer's interactive tax map). Read and not added:
+
+| Lead | Why not |
+|---|---|
+| Pittsburgh URA city_tax_delinquent_3yr (12,313) | Same data as `pa.pittsburgh.tax_delinquency` (WPRDC). |
+| LA County TTC "Secured Property Taxes Liens" (2.4M) | The current year's direct assessments on every parcel (water, flood control, lighting), not delinquencies. |
+| Lake County CO 2021-2025 "Tax Liens" | Prior years' tax lien sales; the current 2026 sale is loaded (`co.lake.tax_lien_sale`); redemption is not shown. |
+| Gregg TX delinquent accounts (403), Tyler TX delinquent properties (468) | City copies of county lists (Longview, Tyler), small; Tyler's has no owner. Not in any run's counties. |
+| Harrison MS, Midland, Elgin/Shorb, Tax_Delinquent (MSIDesign, Censeo) and similar | Student, consultant or planning copies; or already loaded (Harrison). |
+| Brooklyn 2024 tax lien maps | Borough President's maps of the 2024 NYC lien sale (water debt by block and lot, no owner). |
+
+### Reachable-portal ranked list, status (2026-11-27)
+
+From `research_notes/More free judgment sources/reachable_portals_sweep.md`: #1 NYC DOF Property
+Charges Balance is now built (`ny.nyc.dof.past_due_charges`); #2, #5, #9 and #12 were already
+loaded. Not added:
+
+| # | Dataset | Why not |
+|---|---|---|
+| 7 | NYC Law Dept civil litigation `pjgc-h7uv` | Its Tax & Bankruptcy cases are mostly owners' assessment challenges against the City, not debts; 136 City-plaintiff judgments only. |
+| 10 | NYC LL159 vacate relocation charges `3bkg-usya` | Unpaid charges are billed through the DOF statement of account, so they are in the DOF past-due charges. |
+| 4 | NOLA adjudication fines and fees `f5zm-xkyr` | `la.nola.code_hearing_judgments` already carries each case's unpaid fees. |
+
+### Sweep of the servers we already read (2026-11-27)
+
+Every ArcGIS server and ArcGIS Online org already in config/ was listed for services and
+layers named delinquent, tax sale, tax lien, foreclosure, forfeit, redemption, surplus or
+excess. Added: `ga.dekalb.delinquent_taxes`, `md.baltimore_city.tax_sale_2026`,
+`oh.franklin.delinquent_taxes`, `ga.richmond.delinquent_taxes`; `nc.buncombe.unpaid_bills` now holds back the current roll.
+
+| Lead | Status |
+|---|---|
+| Mahoning OH county "ALL TAX DELINQUENT PARCELS" (gisapp.mahoningcountyoh.gov, 25,464 parcels with owner, mailing address and a DELINQUENT amount) | **Owner decision:** it overlaps `oh.mahoning.delinquent_taxes` (15,983, a Youngstown/county layer). Loading both would count the same parcels twice; replace one with the other, or keep the current one. |
+| Baltimore City 2025 tax sale (15,686, $168.9M) | Held back: no redemption shown, so liens paid since the 2025 sale would count as open. |
+| Douglas CO investor- and county-held tax liens (1,395) | Account number only (no parcel id, no owner): cannot be linked yet. |
+| Cuyahoga, Dakota MN, St. Mary's MD, Cochise, Kalamazoo, Bluefield layers | Already loaded under other names. |
+| Muncie and Hammond IN tax sale lists | Held: Indiana limits commercial use of name and address lists from public agencies (IC 5-14-3-3(f), docs/coverage.md); owner decision. |
+| Lexington SC "DelinquentTaxParcels_2023" (1,138) | A 2023 list; not current. |
+| Wyandotte KS Tax_Delinquent, Utah County UT May tax sale | The servers answer 403 and 401 (login required). |
+| Butler KS 2018 tax sale (7), Evansville IN tax sale layers | Stale or tiny; Indiana layers held for the IC 5-14-3-3(f) decision. |

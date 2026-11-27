@@ -14,7 +14,8 @@ person (or a rule the project owner approves later) can work the queue in order:
              spacing         matched by person_name_spacing_address: the same letters once
                              spaces are dropped (O BRIEN / OBRIEN, DE LA CRUZ / DELACRUZ)
              spelling_only   street lines agree once suffix and direction words are
-                             spelled one way (ST/STREET, N/NORTH, ...) and punctuation dropped;
+                             spelled one way (ST/STREET, N/NORTH, ...), ordinals dropped (88TH
+                             = 88) and punctuation dropped;
                              none now that address keys use that spelling (kept as a check)
              same_number     same house number, different street
              po_box          the debtor's address is a PO box (says nothing about property)
@@ -35,6 +36,9 @@ from __future__ import annotations
 import duckdb
 
 # One spelling for street suffix and direction words (USPS Publication 28 abbreviations).
+# A numbered street also loses its ordinal suffix: 88TH = 88, 1ST = 1 (approved by the project
+# owner 2026-11-27; NY: 1,318 review pairs, 1,300 confirmed on one street segment by the Census
+# geocoder, docs/address_spelling_proposal.md).
 WORDS = {
     "STREET": "ST", "STR": "ST", "AVENUE": "AVE", "AV": "AVE", "ROAD": "RD", "DRIVE": "DR",
     "PLACE": "PL", "BOULEVARD": "BLVD", "LANE": "LN", "COURT": "CT", "TERRACE": "TER",
@@ -42,7 +46,8 @@ WORDS = {
     "NORTH": "N", "SOUTH": "S", "EAST": "E", "WEST": "W",
     "NORTHEAST": "NE", "NORTHWEST": "NW", "SOUTHEAST": "SE", "SOUTHWEST": "SW",
     "APARTMENT": "APT", "FLOOR": "FL", "SUITE": "STE",
-    # Numbered streets one way (FIFTH AVE / 5TH AVE), and SAINT / MOUNT / FORT in names.
+    # Numbered streets one way (FIFTH AVE / 5TH AVE, then 5 AVE: the ordinal is dropped after
+    # this map), and SAINT / MOUNT / FORT in names.
     "FIRST": "1ST", "SECOND": "2ND", "THIRD": "3RD", "FOURTH": "4TH", "FIFTH": "5TH",
     "SIXTH": "6TH", "SEVENTH": "7TH", "EIGHTH": "8TH", "NINTH": "9TH", "TENTH": "10TH",
     "ELEVENTH": "11TH", "TWELFTH": "12TH",
@@ -60,7 +65,9 @@ def street_macro(con: duckdb.DuckDBPyConnection) -> None:
         CREATE OR REPLACE MACRO street_norm(s) AS array_to_string(list_transform(
             list_filter(string_split(trim(po_box(regexp_replace(upper(coalesce(s, '')),
                 '[^A-Z0-9 ]+', ' ', 'g'))), ' '), lambda w: w <> ''),
-            lambda w: coalesce(MAP {{{pairs}}}[w], w)), ' ');
+            -- words one way (FIFTH -> 5TH), then a numbered street's ordinal dropped (5TH -> 5)
+            lambda w: regexp_replace(coalesce(MAP {{{pairs}}}[w], w),
+                                     '^([0-9]+)(ST|ND|RD|TH)$', '\\1')), ' ');
         CREATE OR REPLACE MACRO house_no(s) AS regexp_extract(upper(coalesce(s, '')),
             '^\\s*([0-9]+[A-Z]?)\\b', 1);
     """)
