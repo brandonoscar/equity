@@ -23,7 +23,9 @@ Config keys:
                       caption_plaintiff and caption_defendant for use in parties
   enrich              arcgis: {carto: SQL API url, table, key, field, columns} or {arcgis:
                       another layer's url, key, field, columns}: add columns from that table
-                      or layer, looked up by the row's field (e.g. owner by case).
+                      or layer, looked up by the row's field (e.g. owner by case); zfill: N
+                      pads the row's value with leading zeros to N characters first (a list
+                      that drops the zeros the other table keeps: '18359' -> '018359').
                       socrata (also a list of specs): {socrata: portal, dataset, key, field,
                       columns}: every row of that dataset whose key is the row's field; each
                       column's distinct values joined with ' | ' (read with split: ' | '),
@@ -732,7 +734,12 @@ class LienAdapter(Adapter):
                 rows = self._enrich_socrata(rows, one)
             return rows
         field = str(spec["field"])
-        keys = sorted({str(r[field]) for r in rows if r.get(field) not in (None, "")})
+        width = int(spec.get("zfill") or 0)
+
+        def look(v: Any) -> str:
+            return str(v).strip().zfill(width) if width else str(v)
+
+        keys = sorted({look(r[field]) for r in rows if r.get(field) not in (None, "")})
         found: dict[str, dict[str, Any]] = {}
         cols = [str(c) for c in spec["columns"]]
         # ArcGIS Online answers 404 to a GET past ~2,000 characters: 50 keys per lookup there.
@@ -743,7 +750,7 @@ class LienAdapter(Adapter):
             for r in self._enrich_rows(spec, cols, quoted):
                 found.setdefault(str(r[spec["key"]]), {c: r.get(c) for c in cols})
         empty = dict.fromkeys(cols)
-        return [{**r, **found.get(str(r.get(field)), empty)} for r in rows]
+        return [{**r, **found.get(look(r.get(field)), empty)} for r in rows]
 
     def _enrich_socrata(
         self, rows: list[dict[str, Any]], spec: Mapping[str, Any]

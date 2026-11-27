@@ -123,6 +123,8 @@ class ECFRecentEntries(Adapter):
 
     def fetch(self, request: FetchRequest) -> Fetched:
         resp = self.client.get(self.url)
+        if resp.status != 200:  # a court's error page is HTML, not an empty feed
+            raise RuntimeError(f"{self.source_id}: HTTP {resp.status} from {self.url}")
         return Fetched(self.source_id, resp.url, resp.retrieved_at, resp.status, resp.content,
                        resp.content_type)  # fmt: skip
 
@@ -201,9 +203,12 @@ class ECFRecentEntries(Adapter):
     def health(self) -> HealthReport:
         try:
             resp = self.client.get(self.url)
+            if resp.status != 200:  # report the HTTP status, not a parse error on its page
+                return HealthReport(self.source_id, False, self.client.now(),
+                                    f"status={resp.status}", ("channel", "item"))  # fmt: skip
             root = ET.fromstring(resp.content)  # noqa: S314
-            ok = resp.status == 200 and root.find("channel") is not None
-            detail = "ok" if ok else f"status={resp.status}"
+            ok = root.find("channel") is not None
+            detail = "ok" if ok else "no channel"
         except (ET.ParseError, OSError) as exc:
             ok, detail = False, repr(exc)
         return HealthReport(self.source_id, ok, self.client.now(), detail, ("channel", "item"))

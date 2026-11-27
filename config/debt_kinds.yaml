@@ -97,6 +97,7 @@ sources:
   co.sos.ucc: statutory_lien                       # federal tax and statutory liens (doc-type filtered)
   md.baltimore_city.citation_liens: code_enforcement_lien
   nc.guilford.tax_delinquent: tax_delinquency
+  nc.pitt.delinquent_taxes: tax_delinquency
   nc.buncombe.unpaid_bills: tax_delinquency
   nc.charlotte.municipal_liens: code_enforcement_lien
   oh.clermont.tax_delinquent: tax_delinquency

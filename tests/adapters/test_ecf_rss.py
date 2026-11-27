@@ -139,7 +139,10 @@ def test_fetch_and_health() -> None:
     assert f.request == "https://ecf.wvnb.uscourts.gov/cgi-bin/rss_outside.pl"
     assert NDWVBankruptcyRSS(client(FEED.encode())).health().ok
     assert not NDWVDistrictRSS(client(b"not xml")).health().ok
-    assert not NDWVDistrictRSS(client(b"<rss/>", status=500)).health().ok
+    down = NDWVDistrictRSS(client(b"<html>Internal Server Error</html>", status=500))
+    assert (down.health().ok, down.health().detail) == (False, "status=500")
+    with pytest.raises(RuntimeError, match="HTTP 500"):  # an error page is not an empty feed
+        down.fetch(FetchRequest())
     assert NDWVDistrictRSS().source_row()["kind"] == "court"
     assert NDWVBankruptcyRSS().source_row()["kind"] == "bankruptcy"
 
