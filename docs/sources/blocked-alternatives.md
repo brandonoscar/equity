@@ -137,3 +137,19 @@ debt by block and lot, no owner); the rest were read field by field:
 | Frederick County, McPherson KS, other "tax sale" layers | 2-304 | Too small, no owner field, or a geocoded address list without parcel or owner. |
 | Cochise AZ 2026 tax deed layers | — | Already loaded (`az.cochise.tax_deed_auction`). |
 | WA candidate surplus funds, Massachusetts settlements | — | Campaign finance and state settlements, not property debts. |
+
+### Wider search, all years (2026-11-27)
+
+ArcGIS Online searched for public layers titled delinquent, tax lien, unpaid tax and tax sale
+list, any age, minus configured URLs (235 items). Added: `nc.pitt.delinquent_taxes` (the bill
+rows of Pitt's table, owner joined from its parcel table) and `sc.beaufort.delinquent_taxes`
+(the Treasurer's interactive tax map). Read and not added:
+
+| Lead | Why not |
+|---|---|
+| Pittsburgh URA city_tax_delinquent_3yr (12,313) | Same data as `pa.pittsburgh.tax_delinquency` (WPRDC). |
+| LA County TTC "Secured Property Taxes Liens" (2.4M) | The current year's direct assessments on every parcel (water, flood control, lighting), not delinquencies. |
+| Lake County CO 2021-2025 "Tax Liens" | Prior years' tax lien sales; the current 2026 sale is loaded (`co.lake.tax_lien_sale`); redemption is not shown. |
+| Gregg TX delinquent accounts (403), Tyler TX delinquent properties (468) | City copies of county lists (Longview, Tyler), small; Tyler's has no owner. Not in any run's counties. |
+| Harrison MS, Midland, Elgin/Shorb, Tax_Delinquent (MSIDesign, Censeo) and similar | Student, consultant or planning copies; or already loaded (Harrison). |
+| Brooklyn 2024 tax lien maps | Borough President's maps of the 2024 NYC lien sale (water debt by block and lot, no owner). |
