@@ -136,6 +136,21 @@ can have hundreds): the right name comes back, and `--state` or `--kind` narrows
   makes `equity_est` NULL (`principal_unknown`). Counties without recorder data get no row:
   senior debt there is unknown, not zero.
 
+## Grades and the golden set
+
+`uv run python -m equity.search --grade <debtor_ref> <owner_ref>` applies the matcher's rules
+in order and returns the grade with its evidence: A `lien_names_parcel` (a debt document of the
+debtor is recorded against a parcel the owner record owns), A `matcher_auto`, A `name_address`,
+B `matcher_review`, B `name_zip`, C `name_only`, or `reject` (different names, or a flagged
+name). Agents use it instead of grading by eye.
+
+`uv run python -m equity.search_golden` scores hand-verified cases from
+`config/private/golden_search/` (git-ignored: cases name real people; template
+`docs/golden-search-template.yaml`): records that must and must not come back for a query, and
+the grade each debtor-owner pair must get. It exits 1 on any failure, so a change to the search
+rules can be checked against what a person established from the documents. The pipeline's own
+acceptance cases stay in the owner-protected `tests/golden/`.
+
 ## SQL (CLI, notebooks, or the MCP server)
 
 The catalog keeps `name_key()` and `street_norm()` as macros, plus these views:

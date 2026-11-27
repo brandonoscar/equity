@@ -770,6 +770,73 @@ def address_search(
     return {"parcels": parcels, "parties": parties}
 
 
+def grade_pair(con: duckdb.DuckDBPyConnection, debtor_ref: str, owner_ref: str) -> dict[str, Any]:
+    """The identity grade for one debtor record and one owner record, by the matcher's rules
+    in order (equity.matching.resolve; CLAUDE.md), with the evidence behind it:
+
+      A lien_names_parcel  a debt document of the debtor is recorded against a parcel the
+                           owner record owns
+      A matcher_auto       the matcher linked the two automatically
+      A name_address       same name_key and the debtor's address is the owner's mailing
+                           address or the owned parcel's property address
+      B matcher_review     the matcher linked them for review
+      B name_zip           same name_key and ZIP
+      C name_only          same name_key only
+      reject               different names, or either name is flagged (name_flag)"""
+    d_src, _, d_pid = debtor_ref.partition(":")
+    o_src, _, o_pid = owner_ref.partition(":")
+    rows = {(r["source_id"], r["party_id"]): r for r in _rows(con, f"""
+        SELECT n.source_id, n.party_id, n.name_key, n.name_flag, n.address_id, a.zip5
+        FROM names n LEFT JOIN addresses a USING (address_id)
+        WHERE n.party_id IN {_in({d_pid, o_pid})}""", [])}  # noqa: S608  # fmt: skip
+    d, o = rows.get((d_src, d_pid)), rows.get((o_src, o_pid))
+    if d is None or o is None:
+        return {"grade": "reject", "rule": "not_found", "evidence": []}
+    owned = {str(r[0]) for r in con.execute(
+        "SELECT parcel_uid FROM owners WHERE source_id = ? AND party_id = ?", [o_src, o_pid]
+    ).fetchall()}  # fmt: skip
+    liened = {str(r[0]): str(r[1]) for r in con.execute(f"""
+        SELECT x.parcel_uid, x.instrument_uid FROM instrument_parties ip
+        JOIN instrument_parcels x USING (source_id, instrument_uid)
+        WHERE ip.source_id = ? AND ip.party_id = ? AND x.parcel_uid IN {_in(owned)}
+    """, [d_src, d_pid]).fetchall()} if owned else {}  # noqa: S608  # fmt: skip
+    if liened:
+        uid = sorted(liened)[0]
+        return {"grade": "A", "rule": "lien_names_parcel",
+                "evidence": [f"{d_src}:{liened[uid]} is recorded against {uid}, owned by "
+                             f"{owner_ref}"]}  # fmt: skip
+    links = con.execute(
+        "SELECT decision, rule_id FROM m_matches WHERE debtor_party_id = ? AND owner_party_id = ?",
+        [d_pid, o_pid]).fetchall()  # fmt: skip
+    if any(dec == "auto" for dec, _r in links):
+        rule = next(r for dec, r in links if dec == "auto")
+        return {"grade": "A", "rule": "matcher_auto", "evidence": [f"matcher rule {rule}"]}
+    for r in (d, o):
+        if r["name_flag"]:
+            return {"grade": "reject", "rule": f"flag_{r['name_flag']}", "evidence": []}
+    if d["name_key"] != o["name_key"]:
+        if links:
+            return {"grade": "B", "rule": "matcher_review", "evidence": [f"matcher {links[0][1]}"]}
+        return {"grade": "reject", "rule": "different_names", "evidence": []}
+    situs = {str(r[0]) for r in con.execute(f"""
+        SELECT situs_address_id FROM parcels WHERE source_id = ? AND parcel_uid IN {_in(owned)}
+          AND situs_address_id IS NOT NULL""", [o_src]).fetchall()} if owned else set()  # noqa: S608  # fmt: skip
+    if d["address_id"] and (d["address_id"] == o["address_id"] or d["address_id"] in situs):
+        where = "mailing" if d["address_id"] == o["address_id"] else "property"
+        return {"grade": "A", "rule": "name_address",
+                "evidence": [f"same name_key and the debtor's address is the owner's {where} "
+                             f"address ({d['address_id']})"]}  # fmt: skip
+    if links:
+        return {"grade": "B", "rule": "matcher_review", "evidence": [f"matcher {links[0][1]}"]}
+    if d["zip5"] and d["zip5"] == o["zip5"]:
+        return {
+            "grade": "B",
+            "rule": "name_zip",
+            "evidence": [f"same name_key and ZIP {d['zip5']}"],
+        }
+    return {"grade": "C", "rule": "name_only", "evidence": [f"same name_key {d['name_key']!r}"]}
+
+
 def benchmark(
     con: duckdb.DuckDBPyConnection, n: int = 50, seed: int = 7, top: int = 10
 ) -> dict[str, Any]:
@@ -841,6 +908,8 @@ def main(argv: list[str] | None = None) -> int:  # pragma: no cover - CLI
     ap.add_argument("--city")
     ap.add_argument("--show", help="source_id:party_id from a search hit")
     ap.add_argument("--network", help="source_id:party_id: walk its links outward")
+    ap.add_argument("--grade", nargs=2, metavar=("DEBTOR_REF", "OWNER_REF"),
+                    help="identity grade for a debtor record and an owner record")  # fmt: skip
     ap.add_argument("--parcel", help="parcel_uid, or the parcel id as the county prints it")
     ap.add_argument("--as-of", type=date.fromisoformat, help="with --parcel: owners on this date")
     ap.add_argument("--hops", type=int, default=2)
@@ -849,7 +918,9 @@ def main(argv: list[str] | None = None) -> int:  # pragma: no cover - CLI
     args = ap.parse_args(argv)
     con = connect(args.db, read_only=True)
     out: Any
-    if args.parcel:
+    if args.grade:
+        out = grade_pair(con, *args.grade)
+    elif args.parcel:
         out = show_parcel(con, args.parcel, args.as_of)
     elif args.bench:
         out = benchmark(con, args.bench)

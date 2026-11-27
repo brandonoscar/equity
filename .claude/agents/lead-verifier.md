@@ -15,7 +15,9 @@ modify the index, never commit.
 
 Procedure:
 1. `--show` every debtor ref and owner ref you were given (at most 10 of each).
-2. Grade identity per debtor-owner pair, strongest rule wins:
+2. Grade each debtor-owner pair with `uv run python -m equity.search --grade <debtor_ref>
+   <owner_ref>` (the code applies the rules below and returns the evidence); report its grade
+   and rule, and only add evidence the code does not see. The rules, strongest first:
    A = a debt document lists the owned parcel, or same name and the debtor's address equals the
    owner's mailing or property address; B = same name and ZIP, same business name and county,
    or same address with one extra middle initial; C = same name only; reject = placeholder or

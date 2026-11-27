@@ -22,7 +22,9 @@ dossier cites a ref (`source_id:party_id`, `parcel_uid`, `instrument_uid`).
    `bankruptcy`, `transfers`. An `auto` link is the deterministic system's own grade A; say
    so and cite the rule. Hits also carry `name_flag`: a flagged name is never a lead.
    Then grade any pair the matcher did not link yourself.
-4. **Grade identity per debtor-owner pair** (same tiers as `equity.matching.resolve`):
+4. **Grade identity per debtor-owner pair** with `uv run python -m equity.search --grade
+   <debtor_ref> <owner_ref>`; it applies these tiers (same as `equity.matching.resolve`) and
+   returns the evidence:
    - **A**: a debt document lists the owned parcel (`documents[].parcels` contains the
      `parcel_uid`), or same name_key and the debtor's address equals the owner's mailing
      address or the parcel's situs.

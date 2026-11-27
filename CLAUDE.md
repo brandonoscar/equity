@@ -29,7 +29,8 @@ say so.
    - **C (lead only):** same name in the same state, nothing else.
    - **Reject:** placeholder names (`39005 | <parcel id>`), surname only, conflicting
      suffixes (JR vs SR), the creditor itself (cities, treasurers, the state).
-   Same name or same address in `--network` is a lead, never proof.
+   Same name or same address in `--network` is a lead, never proof. Get the grade from the
+   code, not by eye: `uv run python -m equity.search --grade <debtor_ref> <owner_ref>`.
 3. **Equity is gross until netted:** parcel value (say whether appraised or assessed, and
    the tax year), minus recorded mortgages still open, minus homestead protection. Flag
    transfers after the debt date (`src/equity/matching/transfers.py` lists the badges).
@@ -52,6 +53,7 @@ research output under `data/derived/` (git-ignored). Test fixtures are pseudonym
 | "Write SQL for ..." | skill `ontology-sql` |
 | "Build / refresh / share the index" | skill `search-index-ops` |
 | Verify one lead independently | subagent `lead-verifier` |
+| "Did a search change break anything?" | `uv run python -m equity.search_golden` (owner's private cases) |
 
 ## Sessions
 

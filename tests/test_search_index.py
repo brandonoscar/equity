@@ -8,6 +8,7 @@ from typing import Any
 
 import duckdb
 import pytest
+import yaml
 
 from equity.search import address_search, query_key, search, show
 from equity.search_index import FileSource, build, compact, connect, status
@@ -567,3 +568,46 @@ def test_nicknames_flags_and_aliases(rich: duckdb.DuckDBPyConnection) -> None:
     b = show_business(rich, "oh.sos.business:business:B7")
     assert b is not None and [(a["name"], a["status"]) for a in b["aka"]] == [
         ("OLD ACME LLC", "former name")]  # fmt: skip
+
+
+def test_grade_pair_follows_the_matcher_rules(rich: duckdb.DuckDBPyConnection) -> None:
+    from equity.search import grade_pair
+
+    g = grade_pair(rich, "oh.cuyahoga.liens:d1", "oh.franklin.parcels:o1")
+    assert (g["grade"], g["rule"]) == ("A", "lien_names_parcel")  # the lien names o1's parcel
+    assert grade_pair(rich, "oh.cuyahoga.liens:d1", "oh.franklin.parcels:o7")["grade"] == "reject"
+    assert grade_pair(rich, "oh.cuyahoga.liens:d1", "oh.franklin.parcels:o8")["rule"] == (
+        "flag_government")  # fmt: skip
+    assert grade_pair(rich, "x:y", "oh.franklin.parcels:o1")["rule"] == "not_found"
+
+
+def test_grade_pair_name_rules(cat: duckdb.DuckDBPyConnection) -> None:
+    from equity.search import grade_pair
+
+    # same name and address, no lien on the parcel (the business-registry record)
+    g = grade_pair(cat, "oh.cuyahoga.liens:d1", "oh.franklin.parcels:o1")
+    assert g["grade"] == "A"
+    assert grade_pair(cat, "oh.sos.business:m1", "oh.franklin.parcels:o1")["rule"] == "name_only"
+
+
+def test_golden_harness_scores_cases(rich: duckdb.DuckDBPyConnection, tmp_path: Path) -> None:
+    from equity.search_golden import load_cases, report, run
+
+    (tmp_path / "c.yaml").write_text(yaml.safe_dump([
+        {"id": "good", "query": "Smith, John A", "state": "OH",
+         "expect": {"refs": ["oh.franklin.parcels:o1"], "not_refs": ["oh.franklin.parcels:o7"],
+                    "pairs": [{"debtor": "oh.cuyahoga.liens:d1",
+                               "owner": "oh.franklin.parcels:o1", "grade": "A"}]}},
+        {"id": "bad", "query": "Smith, John A",
+         "expect": {"refs": ["oh.nowhere:zz"],
+                    "pairs": [{"debtor": "oh.cuyahoga.liens:d1",
+                               "owner": "oh.franklin.parcels:o1", "grade": "C"}]}},
+    ]))  # fmt: skip
+    results = run(rich, load_cases(tmp_path))
+    assert [(r.case_id, r.ok, r.checks) for r in results] == [("good", True, 3), ("bad", False, 2)]
+    text = report(results)
+    assert text.startswith("2 cases, 5 checks, 3 passed, 2 failed")
+    assert "grade A (lien_names_parcel), expected C" in text
+    (tmp_path / "bad.yaml").write_text(yaml.safe_dump({"query": "x"}))
+    with pytest.raises(ValueError, match="needs an id"):
+        load_cases(tmp_path)
