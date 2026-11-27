@@ -227,3 +227,45 @@ def test_officer_links_see_through_units_nicknames_and_typos(tmp_path: Path) -> 
     assert links == [("d1", "B1", "person_officer_address", "auto"),
                      ("d2", "B2", "person_officer_nickname", "review"),
                      ("d3", "B3", "person_officer_typo", "review")]  # fmt: skip
+
+
+def test_a_joint_role_holder_is_each_person(tmp_path: Path) -> None:
+    """A registry that prints two members in one string ("ANN & BO LEE") lists each."""
+    lk = tmp_path / "lake"
+    d, o, r = lk / "s.debts", lk / "s.parcels", lk / "s.sos"
+    _write(d / "address" / "0.parquet", [_addr("da", "5 OAK LN", "10001")])
+    _write(d / "party" / "0.parquet", [
+        {"party_id": "d1", "raw_name": "BO LEE", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": "da"}])  # fmt: skip
+    _write(d / "instrument_party" / "0.parquet",
+           [{"instrument_uid": "i1", "party_id": "d1", "role": "debtor"}])  # fmt: skip
+    _write(d / "instrument" / "0.parquet", [
+        {"instrument_uid": "i1", "source_id": "s.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2025-01-01", "principal_amount": 10.0}])  # fmt: skip
+    _write(o / "party" / "0.parquet", [
+        {"party_id": "o1", "raw_name": "SOMEONE", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": None}])  # fmt: skip
+    _write(o / "owner_snapshot" / "0.parquet", [{"parcel_uid": "p1", "party_id": "o1"}])
+    _write(o / "parcel" / "0.parquet", [{"parcel_uid": "p1", "situs_address_id": None}])
+    _write(r / "business" / "0.parquet", [{"sos_id": "B1", "name": "LEE LLC", "status": "Active"}])
+    _write(r / "party" / "0.parquet", [
+        {"party_id": "h1", "raw_name": "ANN & BO LEE", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": "ha"}])  # fmt: skip
+    _write(
+        r / "address" / "0.parquet",
+        [{"address_id": "ha", "line1": "5 OAK LN", "city": "X", "state": "NY", "zip5": "10001"}],
+    )
+    _write(
+        r / "business_role" / "0.parquet",
+        [{"sos_id": "B1", "party_id": "h1", "role": "member", "title": "MEMBER"}],
+    )
+    out = tmp_path / "out"
+    run(lk, out, ["s.debts"], ["s.parcels"], registry_sources=["s.sos"])
+    links = (
+        duckdb.connect()
+        .execute(
+            f"SELECT debtor_party_id, sos_id, rule_id FROM '{out.as_posix()}/debtor_companies.parquet'"
+        )
+        .fetchall()
+    )
+    assert links == [("d1", "B1", "person_officer_address")]

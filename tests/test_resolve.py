@@ -1360,3 +1360,62 @@ def test_every_address_rule_sees_through_units(tmp_path: Path) -> None:
         ).fetchall()
     )
     assert person["d6"] == person["d7"]  # GUS HALE at the unit and at the building
+
+
+def test_names_are_split_on_every_side(tmp_path: Path) -> None:
+    """Owner strings with a DBA, joint bankruptcy captions and joint deed grantors are split
+    like debtor strings: JOHN SMITH meets "SMITH JOHN DBA SMITH RENTALS" on the roll, "JOHN
+    SMITH AND JANE SMITH" in a bankruptcy caption and "JOHN SMITH & JANE SMITH" on a deed."""
+    lk = tmp_path / "lake"
+    d, o, bk, dd = lk / "zz.debts", lk / "zz.parcels", lk / "us.zzb.rss", lk / "zz.deeds"
+    _write(d / "address" / "0.parquet", [_addr("a1", "1 ELM ST", "10001")])
+    _write(d / "party" / "0.parquet", [
+        {"party_id": "d1", "raw_name": "JOHN SMITH", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": "a1"}])  # fmt: skip
+    _write(d / "instrument_party" / "0.parquet",
+           [{"instrument_uid": "i1", "party_id": "d1", "role": "debtor"}])  # fmt: skip
+    _write(d / "instrument" / "0.parquet", [
+        {"instrument_uid": "i1", "source_id": "zz.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2025-01-01", "principal_amount": 10.0}])  # fmt: skip
+    _write(o / "address" / "0.parquet", [_addr("m1", "1 Elm Street", "10001")])
+    _write(o / "party" / "0.parquet", [
+        {"party_id": "o1", "raw_name": "SMITH JOHN DBA SMITH RENTALS", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": "m1"}])  # fmt: skip
+    _write(o / "owner_snapshot" / "0.parquet", [{"parcel_uid": "p1", "party_id": "o1"}])
+    _write(o / "parcel" / "0.parquet", [{"parcel_uid": "p1"}])
+    _write(bk / "court_case" / "0.parquet", [
+        {"case_uid": "zzb:1", "court_id": "zzb", "case_type": "bk",
+         "nature_of_suit": "chapter 7"}])  # fmt: skip
+    _write(bk / "party" / "0.parquet", [
+        {"party_id": "b1", "raw_name": "John Smith and Jane Smith", "party_kind": "unknown",
+         "org_name_norm": None}])  # fmt: skip
+    _write(bk / "case_party" / "0.parquet",
+           [{"case_uid": "zzb:1", "party_id": "b1", "role": "debtor"}])  # fmt: skip
+    _write(
+        bk / "docket_entry" / "0.parquet",
+        [{"case_uid": "zzb:1", "entry_date": "2026-11-01", "text": "[Voluntary Petition]"}],
+    )
+    _write(dd / "instrument" / "0.parquet", [
+        {"instrument_uid": "k1", "source_id": "zz.deeds", "doc_type": "DEED",
+         "recorded_on": "2025-06-01", "consideration": 300000.0}])  # fmt: skip
+    _write(dd / "instrument_parcel" / "0.parquet", [{"instrument_uid": "k1", "parcel_uid": "p1"}])
+    _write(dd / "party" / "0.parquet", [
+        {"party_id": "g1", "raw_name": "JOHN SMITH & JANE SMITH", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": None},
+        {"party_id": "g2", "raw_name": "ROE RICHARD", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": None}])  # fmt: skip
+    _write(dd / "instrument_party" / "0.parquet", [
+        {"instrument_uid": "k1", "party_id": "g1", "role": "grantor"},
+        {"instrument_uid": "k1", "party_id": "g2", "role": "grantee"}])  # fmt: skip
+    out = tmp_path / "out"
+    run(lk, out, ["zz.debts"], ["zz.parcels"], bankruptcy_sources=["us.zzb.rss"],
+        deed_sources=["zz.deeds"])  # fmt: skip
+    con = duckdb.connect()
+    q = lambda sql: con.execute(sql.replace("OUT", out.as_posix())).fetchall()  # noqa: E731
+    assert q(
+        "SELECT owner_party_id, rule_id, decision, owner_name_variant FROM 'OUT/matches.parquet'"
+    ) == [("o1", "person_name_address", "auto", "alias")]
+    assert q("SELECT debtor_party_id, case_uid FROM 'OUT/bankruptcy_flags.parquet'") == [
+        ("d1", "zzb:1")]  # fmt: skip
+    assert q("SELECT debtor_party_id, deed_uid, rule_id FROM 'OUT/transfer_flags.parquet'") == [
+        ("d1", "k1", "on_matched_parcel")]  # fmt: skip

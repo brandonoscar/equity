@@ -81,7 +81,8 @@ owner_basis ('deed:<source>' / 'record:<source>', 'roll' otherwise) and owner_se
 Owner strings that print several people or a trust ("SMITH JOHN A & JANE B", "JOHN A SMITH
 REVOCABLE TRUST") are split into the people they name (equity.matching.names): each is an
 extra owner name of the same party and parcel, so every rule above can meet it. Matches record
-owner_name_variant ('joint' or 'trust'); a trust's settlor only reaches review.
+owner_name_variant ('joint', 'trust' or 'alias': a DBA/AKA/FKA name of the same owner); a
+trust's settlor only reaches review.
 Debtor strings are split the same way, plus aliases ("JOHN SMITH DBA SMITH PLUMBING", AKA,
 FKA, T/A): each name is an extra debtor name of the same party and instrument, a business
 alias with its org name. Matches record debtor_name_variant ('alias', 'joint' or 'trust').
@@ -437,43 +438,65 @@ def _record_owners(con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str
 # name_key is the person's. A joint owner's name is matched like any owner name; a trust's
 # settlor or trustee (name_variant 'trust') only reaches review.
 VARIANT_MARK = r"&|\bAND\b|/|;|\bTR\b|\bTRS\b|TRUST|\bTTEES?\b|\bET ?UX\b|\bET ?VIR\b"
-VARIANT_NAMES_SQL = """
-SELECT DISTINCT raw_name FROM owners
-WHERE name_variant IS NULL AND regexp_matches(upper(coalesce(raw_name, '')), ?)
-ORDER BY raw_name
-"""
-VARIANT_INSERT_SQL = """
-INSERT INTO owners
-SELECT DISTINCT o.party_id, o.raw_name, 'person', NULL, o.parcel_uid,
-       name_key(v.variant), suffix_key(v.variant), o.mail_key, o.mail_zip, o.situs_key,
-       o.situs_zip, o.mail_town, o.situs_town, o.owner_basis, o.owner_seen_on, v.kind
-FROM owners o JOIN owner_name_variant v ON v.raw_name = o.raw_name
-WHERE o.name_variant IS NULL;
-"""
+# Alias markers ("JOHN SMITH DBA SMITH PLUMBING", AKA, FKA, NKA, T/A), read after periods
+# are dropped (D.B.A. -> DBA).
+ALIAS_MARK = (r"\bD ?/? ?B ?/? ?A\b|\b[AFN] ?/? ?K ?/? ?A\b|\bT ?/ ?A\b"
+              r"|KNOWN AS|BUSINESS AS|TRADING AS")  # fmt: skip
+NAME_MARK = VARIANT_MARK + "|" + ALIAS_MARK
 
 
-def _owner_name_variants(con: duckdb.DuckDBPyConnection) -> None:
-    """Split owner strings in Python (equity.matching.names) and load the person names back
-    through a temporary CSV: only strings with a joint or trust marker are read."""
+def name_variant_table(con: duckdb.DuckDBPyConnection, table: str, names_sql: str) -> None:
+    """CREATE TEMP TABLE <table> (raw_name, variant, kind, party_kind, org_name_norm): every
+    name inside each string names_sql returns that carries a joint, trust or alias marker
+    (equity.matching.names.debtor_name_variants), split in Python and loaded back through a
+    temporary CSV. A business alias keeps its org name (orgs.classify); other names are
+    people. Used for owners, debtors, bankruptcy filers, deed parties and company officers."""
     import csv
     import tempfile
 
-    from equity.matching.names import owner_name_variants
+    from equity.matching.names import debtor_name_variants
+    from equity.matching.orgs import classify
 
-    names = [r[0] for r in con.execute(VARIANT_NAMES_SQL, [VARIANT_MARK]).fetchall()]
+    names = [r[0] for r in con.execute(
+        f"SELECT DISTINCT raw FROM ({names_sql}) t(raw) "  # noqa: S608 - internal SQL
+        "WHERE regexp_matches(upper(replace(coalesce(raw, ''), '.', '')), ?) ORDER BY 1",
+        [NAME_MARK]).fetchall()]  # fmt: skip
     with tempfile.TemporaryDirectory() as tmp:
         path = Path(tmp) / "variants.csv"
         with path.open("w", newline="", encoding="utf-8") as f:
             w = csv.writer(f)
-            w.writerow(["raw_name", "variant", "kind"])
+            w.writerow(["raw_name", "variant", "kind", "party_kind", "org_name_norm"])
             for raw in names:
-                for variant, kind in owner_name_variants(raw):
-                    w.writerow([raw, variant, kind])
+                for variant, kind in debtor_name_variants(raw):
+                    c = classify(variant) if kind == "alias" else None
+                    org = c is not None and c.party_kind == "org" and bool(c.org_name_norm)
+                    w.writerow([raw, variant, kind, "org" if org else "person",
+                                c.org_name_norm if org and c else ""])  # fmt: skip
         con.execute(
-            "CREATE TEMP TABLE owner_name_variant AS SELECT * FROM read_csv(?, header=true, "
-            "columns={'raw_name': 'VARCHAR', 'variant': 'VARCHAR', 'kind': 'VARCHAR'})",
+            f"CREATE OR REPLACE TEMP TABLE {table} AS SELECT raw_name, variant, kind, "
+            "party_kind, nullif(org_name_norm, '') AS org_name_norm FROM read_csv(?, "
+            "header=true, columns={'raw_name': 'VARCHAR', 'variant': 'VARCHAR', "
+            "'kind': 'VARCHAR', 'party_kind': 'VARCHAR', 'org_name_norm': 'VARCHAR'})",
             [str(path)],
         )
+
+
+VARIANT_INSERT_SQL = """
+INSERT INTO owners
+SELECT DISTINCT o.party_id, o.raw_name, v.party_kind, v.org_name_norm, o.parcel_uid,
+       name_key(v.variant), suffix_key(v.variant), o.mail_key, o.mail_zip, o.situs_key,
+       o.situs_zip, o.mail_town, o.situs_town, o.owner_basis, o.owner_seen_on, v.kind
+FROM owners o JOIN owner_name_variant v ON v.raw_name = o.raw_name
+WHERE o.name_variant IS NULL
+  AND (v.party_kind = 'org' OR name_words(name_key(v.variant)) >= 2);
+"""
+
+
+def _owner_name_variants(con: duckdb.DuckDBPyConnection) -> None:
+    """Owner strings that print several people, a trust or an alias: each name is an extra
+    owner row of the same party and parcel."""
+    name_variant_table(con, "owner_name_variant",
+                       "SELECT raw_name FROM owners WHERE name_variant IS NULL")  # fmt: skip
     con.execute(VARIANT_INSERT_SQL)
 
 
@@ -482,13 +505,6 @@ def _owner_name_variants(con: duckdb.DuckDBPyConnection) -> None:
 # row of the same party and instrument (equity.matching.names.debtor_name_variants), so a
 # sole proprietor's trade-name lien reaches the person's house and the business's lots. A
 # business alias keeps its org name (orgs.classify), so the org rules can meet it.
-DEBTOR_VARIANT_MARK = (VARIANT_MARK + r"|\bD ?/? ?B ?/? ?A\b|\b[AFN] ?/? ?K ?/? ?A\b|\bT ?/ ?A\b"
-                       r"|KNOWN AS|BUSINESS AS|TRADING AS")  # fmt: skip
-DEBTOR_VARIANT_NAMES_SQL = """
-SELECT DISTINCT raw_name FROM debtors
-WHERE regexp_matches(upper(replace(coalesce(raw_name, ''), '.', '')), ?)
-ORDER BY raw_name
-"""
 DEBTOR_VARIANT_INSERT_SQL = """
 INSERT INTO debtors (party_id, raw_name, party_kind, org_name_norm, instrument_uid, source_id,
                      doc_type, recorded_on, principal_amount, released, name_key, suffix_key,
@@ -504,36 +520,11 @@ WHERE d.name_variant IS NULL
 
 
 def _debtor_name_variants(con: duckdb.DuckDBPyConnection) -> None:
-    import csv
-    import tempfile
-
-    from equity.matching.names import debtor_name_variants
-    from equity.matching.orgs import classify
-
     con.execute(
         "ALTER TABLE debtors ADD COLUMN name_variant VARCHAR;"
         "ALTER TABLE debtors ADD COLUMN variant_name VARCHAR"
     )
-    names = [r[0] for r in con.execute(DEBTOR_VARIANT_NAMES_SQL,
-                                       [DEBTOR_VARIANT_MARK]).fetchall()]  # fmt: skip
-    with tempfile.TemporaryDirectory() as tmp:
-        path = Path(tmp) / "variants.csv"
-        with path.open("w", newline="", encoding="utf-8") as f:
-            w = csv.writer(f)
-            w.writerow(["raw_name", "variant", "kind", "party_kind", "org_name_norm"])
-            for raw in names:
-                for variant, kind in debtor_name_variants(raw):
-                    c = classify(variant) if kind == "alias" else None
-                    org = c is not None and c.party_kind == "org" and bool(c.org_name_norm)
-                    w.writerow([raw, variant, kind, "org" if org else "person",
-                                c.org_name_norm if org and c else ""])  # fmt: skip
-        con.execute(
-            "CREATE TEMP TABLE debtor_name_variant AS SELECT raw_name, variant, kind, "
-            "party_kind, nullif(org_name_norm, '') AS org_name_norm FROM read_csv(?, "
-            "header=true, columns={'raw_name': 'VARCHAR', 'variant': 'VARCHAR', "
-            "'kind': 'VARCHAR', 'party_kind': 'VARCHAR', 'org_name_norm': 'VARCHAR'})",
-            [str(path)],
-        )
+    name_variant_table(con, "debtor_name_variant", "SELECT raw_name FROM debtors")
     con.execute(DEBTOR_VARIANT_INSERT_SQL)
 
 
@@ -703,7 +694,8 @@ SELECT DISTINCT subject, 'owner:' || owner_party_id FROM match_subject
 WHERE decision = 'auto' AND owner_party_id IS NOT NULL
   -- Two people who matched one joint owner string ("SMITH JOHN & JANE") are two people,
   -- and a split party's whole-string match is every name's, so it merges no one.
-  AND owner_name_variant IS NULL AND coalesce(debtor_name_variant, 'alias') IN ('alias', 'joint')
+  AND coalesce(owner_name_variant, 'alias') = 'alias'
+  AND coalesce(debtor_name_variant, 'alias') IN ('alias', 'joint')
   AND (debtor_name_variant = 'joint'
        OR debtor_party_id NOT IN (SELECT party_id FROM subjects WHERE name_key IS NOT NULL));
 CREATE TEMP TABLE person_edges AS

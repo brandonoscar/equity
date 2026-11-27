@@ -7,7 +7,8 @@ Deed sources are the state's recorder or sales files with DEED instruments and t
 grantor/grantee parties (ACRIS, Philadelphia RTT, Florida official records, Illinois PTAX-203,
 the Cook Assessor sales, Maryland SDAT transfers).
 
-A deed is flagged when one of its grantors is an open debt's debtor (same person name_key of
+A deed's party strings are split first ("JOHN DOE AND JANE DOE", "JOHN DOE TRUSTEE", "DBA"),
+each name a party of the deed. A deed is flagged when one of its grantors is an open debt's debtor (same person name_key of
 two or more words, or same organization name) and it was recorded after the debt:
 
   on_matched_parcel  the deed's parcel is one the debtor is auto-matched to           -> auto
@@ -36,7 +37,7 @@ from pathlib import Path
 import duckdb
 
 from equity.config import _load
-from equity.matching.resolve import _view
+from equity.matching.resolve import _view, name_variant_table
 
 
 def nominal_max(config_dir: Path | None = None) -> float | None:
@@ -103,6 +104,14 @@ WHERE m.debtor_party_id IS NOT NULL
    OR (h.county IS NOT NULL AND left(l.parcel_uid, 5) = h.county);
 """
 
+DEED_VARIANT_SQL = """
+INSERT INTO deed_party
+SELECT DISTINCT g.instrument_uid, g.role, g.raw_name, v.party_kind, v.org_name_norm,
+       name_key(v.variant)
+FROM deed_party g JOIN deed_name_variant v ON v.raw_name = g.raw_name
+WHERE v.party_kind = 'org' OR name_words(name_key(v.variant)) >= 2;
+"""
+
 # A grantee company whose registry entry lists the debtor's name as a role holder.
 NOMINEE_SQL = """
 CREATE TEMP TABLE nominee AS
@@ -135,7 +144,14 @@ def compute(con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str]) -> N
     _view(con, "t_lot", lake, sources, "instrument_parcel")
     limit = nominal_max()
     nominal = "NULL::BOOLEAN" if limit is None else f"coalesce(i.consideration, 0) <= {limit!r}"
-    con.execute(SQL.format(nominal=nominal))
+    sql = SQL.format(nominal=nominal)
+    parties, rest = sql.split("CREATE TEMP TABLE deed_lot", 1)
+    con.execute(parties)
+    # Deeds print several grantors or grantees, trusts and aliases in one string ("JOHN DOE
+    # AND JANE DOE", "JOHN DOE TRUSTEE"): each name is a party of the deed.
+    name_variant_table(con, "deed_name_variant", "SELECT raw_name FROM deed_party")
+    con.execute(DEED_VARIANT_SQL)
+    con.execute("CREATE TEMP TABLE deed_lot" + rest)
     if _has(con, "company_people") and _has(con, "biz_by_key"):
         con.execute(NOMINEE_SQL)
 

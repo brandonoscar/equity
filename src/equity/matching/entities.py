@@ -114,6 +114,8 @@ SELECT DISTINCT r.sos_id, b.business_name, r.role, r.title, p.party_id, p.raw_na
 FROM r_role r JOIN biz b ON b.sos_id = r.sos_id
 JOIN r_party p ON p.party_id = r.party_id
 LEFT JOIN r_addr a ON a.address_id = p.address_id;
+-- A role holder printed as several people or with an alias ("JOHN & JANE DOE", "JOHN DOE
+-- AKA JACK DOE"): each name is a role holder (rows added by compute, see OFFICER_VARIANT_SQL).
 CREATE TEMP TABLE owner_companies AS
 SELECT DISTINCT o.parcel_uid, o.party_id AS owner_party_id, o.raw_name AS owner_name,
        b.sos_id, b.business_name, b.status, len(k.ids) > 1 AS ambiguous
@@ -168,12 +170,28 @@ LEFT JOIN parcel_value v ON v.parcel_uid = oc.parcel_uid;
 """
 
 
+OFFICER_VARIANT_SQL = """
+INSERT INTO company_people
+SELECT DISTINCT c.sos_id, c.business_name, c.role, c.title, c.party_id, c.name, 'person',
+       name_key(v.variant), suffix_key(v.variant), c.addr_key, c.base_key, c.zip5, c.line1,
+       c.city, c.state
+FROM company_people c JOIN officer_name_variant v ON v.raw_name = c.name
+WHERE v.party_kind <> 'org' AND v.kind <> 'trust' AND name_words(name_key(v.variant)) >= 2;
+"""
+
+
 def compute(
     con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str], state_fips: str | None = None
 ) -> None:
+    from equity.matching.resolve import name_variant_table
+
     org_key_macro(con)
     attach(con, lake, sources, state_fips)
-    con.execute(SQL)
+    people, rest = SQL.split("CREATE TEMP TABLE owner_companies AS", 1)
+    con.execute(people)
+    name_variant_table(con, "officer_name_variant", "SELECT name FROM company_people")
+    con.execute(OFFICER_VARIANT_SQL)
+    con.execute("CREATE TEMP TABLE owner_companies AS" + rest)
 
 
 TABLES = ("owner_companies", "company_people", "debtor_companies", "debtor_company_parcels")
