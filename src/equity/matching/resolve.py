@@ -26,6 +26,9 @@ Rules, strongest first (a debtor-owner pair keeps its strongest rule):
   person_name_address   same person name_key, and the debtor's address equals the owner's
                         mailing address or the parcel's property address       -> auto
   org_name_address      same org_name and address                              -> auto
+  person_name_address_unit / org_name_address_unit  the same, where one address is the
+                        other without its unit ("12 MAIN ST APT 3" / "12 MAIN ST"; two
+                        different units never pair)                            -> auto
   org_name_zip          same org_name and ZIP                                  -> auto
   person_name_zip       same person name_key and ZIP                           -> review
   person_name_initial_address  same address, and the names are the same except that one side
@@ -139,15 +142,17 @@ RULES = (
     ("lien_names_parcel", "auto", 0),
     ("person_name_address", "auto", 1),
     ("org_name_address", "auto", 2),
-    ("org_name_zip", "auto", 3),
-    ("person_name_zip", "review", 4),
-    ("person_name_street_town", "auto", 5),
-    ("org_name_street_town", "auto", 6),
-    ("org_name_county", "review", 7),
-    ("person_name_initial_address", "review", 8),
-    ("person_at_owner_occupied_property", "review", 9),
-    ("person_at_property", "review", 10),
-    ("person_at_org_owner_mailing", "review", 11),
+    ("person_name_address_unit", "auto", 3),
+    ("org_name_address_unit", "auto", 4),
+    ("org_name_zip", "auto", 5),
+    ("person_name_zip", "review", 6),
+    ("person_name_street_town", "auto", 7),
+    ("org_name_street_town", "auto", 8),
+    ("org_name_county", "review", 9),
+    ("person_name_initial_address", "review", 10),
+    ("person_at_owner_occupied_property", "review", 11),
+    ("person_at_property", "review", 12),
+    ("person_at_org_owner_mailing", "review", 13),
 )
 
 
@@ -225,6 +230,14 @@ def doc_type_filter(spec: list[str] | dict[str, list[str]] | None) -> str:
     return f"AND (i.doc_type IN ({types}) OR i.source_id IN ({fed}))"
 
 
+# A unit designator and its number at the end of a street line.
+UNIT_MACRO = r"""
+CREATE OR REPLACE MACRO unit_strip(s) AS regexp_replace(upper(coalesce(s, '')),
+    '\s*(#\s*[A-Z0-9-]+|\b(APT|APARTMENT|UNIT|STE|SUITE|FL|FLOOR|RM|ROOM|SPC|SPACE|TRLR|LOT)'
+    '\b\.?\s*#?\s*([A-Z]?-?[0-9][A-Z0-9-]*|[A-Z]))\s*$', '');
+"""
+
+
 def connect(
     lake: Path,
     debtor_sources: list[str],
@@ -274,6 +287,7 @@ def connect(
     from equity.matching.review import street_macro
 
     street_macro(con)
+    con.execute(UNIT_MACRO)
     con.execute(f"""
         CREATE TEMP TABLE addr AS
         SELECT DISTINCT address_id,
@@ -281,7 +295,12 @@ def connect(
                     THEN street_norm(line1) || '|' || zip5 END AS addr_key,
                CASE WHEN street_norm(line1) <> '' AND city IS NOT NULL
                     THEN street_norm(line1) || '|' || upper(trim(city)) END AS town_key,
-               zip5
+               zip5,
+               -- The building's address: the street line without a trailing unit
+               -- ("12 MAIN ST APT 3B", "12 MAIN ST #3", "... STE 200", "... LOT 14").
+               CASE WHEN len(string_split(street_norm(unit_strip(line1)), ' ')) >= 2
+                         AND zip5 IS NOT NULL
+                    THEN street_norm(unit_strip(line1)) || '|' || zip5 END AS base_key
         FROM addr_all;
         CREATE TEMP TABLE debtors AS
         SELECT DISTINCT p.party_id, p.raw_name, p.party_kind, p.org_name_norm,
@@ -714,6 +733,27 @@ WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2
         lambda w: NOT list_contains(string_split(CASE WHEN name_words(o.name_key) >
             name_words(d.name_key) THEN d.name_key ELSE o.name_key END, ' '), w))[1]) = 1;
 """
+# Same name, and one address is the other without its unit ("12 MAIN ST APT 3" on the lien,
+# "12 MAIN ST" on the roll, or the reverse). Two different units of one building never pair.
+UNIT_SQL = """
+CREATE TEMP TABLE unit_pair AS
+WITH u AS (SELECT DISTINCT addr_key, base_key FROM addr
+           WHERE base_key IS NOT NULL AND addr_key IS NOT NULL AND base_key <> addr_key)
+SELECT addr_key AS a, base_key AS b FROM u UNION SELECT base_key, addr_key FROM u;
+INSERT INTO candidates
+SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
+       'person_name_address_unit', d.name_key
+FROM debtors d JOIN unit_pair u ON u.a = d.addr_key
+JOIN owners o ON o.name_key = d.name_key AND u.b IN (o.mail_key, o.situs_key)
+WHERE d.party_kind <> 'org' AND o.party_kind <> 'org' AND name_words(d.name_key) >= 2
+  AND NOT suffix_conflict(d.suffix_key, o.suffix_key)
+UNION ALL
+SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
+       'org_name_address_unit', d.org_name_norm
+FROM debtors d JOIN unit_pair u ON u.a = d.addr_key
+JOIN owners o ON o.org_name_norm = d.org_name_norm AND u.b IN (o.mail_key, o.situs_key)
+WHERE d.party_kind = 'org' AND o.party_kind = 'org' AND d.org_name_norm <> '';
+"""
 STREET_TOWN_SQL = """
 INSERT INTO candidates
 SELECT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid, 'person_name_street_town',
@@ -794,6 +834,7 @@ def match(
     con.execute(MATCH_SQL)
     con.execute(COURT_COUNTY_SQL)
     con.execute(INITIAL_SQL)
+    con.execute(UNIT_SQL)
     if parcel_on_lien:
         con.execute(PARCEL_ON_LIEN_SQL)
     if street_town:
