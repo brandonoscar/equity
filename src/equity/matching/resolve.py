@@ -38,6 +38,10 @@ Rules, strongest first (a debtor-owner pair keeps its strongest rule):
   person_nickname_address  same address, and the names are the same once each common
                         nickname is read as its formal name ("BOB SMITH" / "ROBERT SMITH",
                         equity.matching.nicknames; ambiguous nicknames left out) -> review
+  person_name_typo_address  same address, and the names differ in one word by one letter
+                        (added, dropped, changed or two swapped: SMITH / SMIHT), unless both
+                        words are real first names (JOHN / JOAN: two people; 1990 Census
+                        first-name lists)                                       -> review
   person_at_owner_occupied_property  a lot no source names an owner for (California rolls)
                         whose property address is the debtor's own address, and the roll's
                         latest homeowner exemption says an owner lives there       -> review
@@ -156,9 +160,10 @@ RULES = (
     ("org_name_county", "review", 9),
     ("person_name_initial_address", "review", 10),
     ("person_nickname_address", "review", 11),
-    ("person_at_owner_occupied_property", "review", 12),
-    ("person_at_property", "review", 13),
-    ("person_at_org_owner_mailing", "review", 14),
+    ("person_name_typo_address", "review", 12),
+    ("person_at_owner_occupied_property", "review", 13),
+    ("person_at_property", "review", 14),
+    ("person_at_org_owner_mailing", "review", 15),
 )
 
 
@@ -805,6 +810,37 @@ WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2
   AND nick_key(d.name_key) = nick_key(o.name_key);
 """
 
+# Same address, the same number of name words, and exactly one word on each side differs
+# from the other by one edit. Both words at least 3 letters, the words they share include a
+# full word (not only initials), and not two real first names (first_names table).
+TYPO_SQL = """
+INSERT INTO candidates
+SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
+       'person_name_typo_address', d.name_key
+FROM debtors d JOIN o_by_addr o ON o.k = d.addr_key,
+LATERAL (SELECT string_split(d.name_key, ' ') AS a, string_split(o.name_key, ' ') AS b) w,
+LATERAL (SELECT list_filter(w.a, lambda x: NOT list_contains(w.b, x)) AS da,
+                list_filter(w.b, lambda x: NOT list_contains(w.a, x)) AS db,
+                list_filter(w.a, lambda x: list_contains(w.b, x)) AS same) x
+WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2
+  AND d.name_key <> o.name_key AND NOT suffix_conflict(d.suffix_key, o.suffix_key)
+  AND len(w.a) = len(w.b) AND len(x.da) = 1 AND len(x.db) = 1
+  AND length(x.da[1]) >= 3 AND length(x.db[1]) >= 3
+  AND damerau_levenshtein(x.da[1], x.db[1]) = 1
+  AND len(list_filter(x.same, lambda y: length(y) >= 2)) >= 1
+  AND NOT (x.da[1] IN (SELECT name FROM first_names) AND x.db[1] IN (SELECT name FROM first_names));
+"""
+
+
+def first_names(con: duckdb.DuckDBPyConnection) -> None:
+    """first_names(name): every first name in the 1990 Census lists (data/first_names_1990.txt)."""
+    path = Path(__file__).parent / "data" / "first_names_1990.txt"
+    con.execute(
+        "CREATE OR REPLACE TEMP TABLE first_names AS SELECT DISTINCT name FROM read_csv(?, "
+        "header=false, comment='#', columns={'name': 'VARCHAR'})",
+        [str(path)],
+    )
+
 
 def nick_macro(con: duckdb.DuckDBPyConnection) -> None:
     """nick_key(k): a name key with each nickname replaced by its formal name, re-sorted."""
@@ -900,6 +936,8 @@ def match(
     con.execute(INITIAL_SQL)
     nick_macro(con)
     con.execute(NICK_SQL)
+    first_names(con)
+    con.execute(TYPO_SQL)
     con.execute(UNIT_SQL)
     if parcel_on_lien:
         con.execute(PARCEL_ON_LIEN_SQL)
