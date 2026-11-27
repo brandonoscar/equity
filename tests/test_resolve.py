@@ -303,7 +303,10 @@ def test_street_town_rules_only_when_enabled(tmp_path: Path) -> None:
         [{"parcel_uid": f"p{n}", "situs_address_id": None} for n in (1, 2, 3)],
     )
     off = run(lk, tmp_path / "off", ["ct.debts"], ["ct.parcels"])
-    assert off["matches_by_rule"] == {}  # no owner ZIPs: the ZIP rules cannot fire
+    # No owner ZIPs: the ZIP rules cannot fire, and without street_town the same street and
+    # city is only a review lead (never automatic); another town (BO RAY, Sharon) is none.
+    assert off["matches_by_rule"] == {"org_name_street_city": 1, "person_name_street_city": 1}
+    assert off["debtors_matched_auto"] == 0
     on = run(lk, tmp_path / "on", ["ct.debts"], ["ct.parcels"], street_town=True)
     # Same street in another town (BO RAY, Sharon) does not match.
     assert on["matches_by_rule"] == {"org_name_street_town": 1, "person_name_street_town": 1}
@@ -1465,3 +1468,55 @@ def test_spellings_middle_names_and_spacing_are_review_leads(tmp_path: Path) -> 
         f"WHERE decision = 'review'").fetchall())  # fmt: skip
     for n, (_, _, rule) in pairs.items():
         assert m.get(f"d{n}") == rule, n
+
+
+def test_po_boxes_numbered_streets_company_and_and_no_zip_addresses(tmp_path: Path) -> None:
+    """P.O. BOX 12 / POB 12 and 12 FIFTH AVENUE / 12 5TH AVE are one address; SMITH AND SONS
+    and SMITH & SONS at one address are one company; an address without a ZIP meets the same
+    street and city (review)."""
+    lk = tmp_path / "lake"
+    d, o = lk / "zz.debts", lk / "zz.parcels"
+    _write(d / "address" / "0.parquet", [
+        _addr("a1", "P.O. Box 12", "10001"), _addr("a2", "12 Fifth Avenue", "10001"),
+        _addr("a3", "40 ELM ST", "10001"),
+        {"address_id": "a4", "line1": "3 PINE ST", "city": "Kent", "zip5": None}])  # fmt: skip
+    people = {"d1": ("ANN LEE", "unknown", None), "d2": ("BO RAY", "unknown", None),
+              "d3": ("SMITH AND SONS INC", "org", "SMITH AND SONS"),
+              "d4": ("CY DOE", "unknown", None)}  # fmt: skip
+    _write(d / "party" / "0.parquet", [
+        {"party_id": k, "raw_name": n, "party_kind": kind, "org_name_norm": norm,
+         "address_id": "a" + k[1]} for k, (n, kind, norm) in people.items()])  # fmt: skip
+    _write(
+        d / "instrument_party" / "0.parquet",
+        [{"instrument_uid": f"i{k}", "party_id": k, "role": "debtor"} for k in people],
+    )
+    _write(d / "instrument" / "0.parquet", [
+        {"instrument_uid": f"i{k}", "source_id": "zz.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2026-01-01", "principal_amount": 10.0} for k in people])  # fmt: skip
+    _write(
+        o / "address" / "0.parquet",
+        [
+            _addr("m1", "POB 12", "10001"),
+            _addr("m2", "12 5TH AVE", "10001"),
+            _addr("m3", "40 Elm Street", "10001"),
+            {"address_id": "m4", "line1": "3 Pine Street", "city": "KENT", "zip5": "06757"},
+        ],
+    )
+    owners = [("o1", "LEE ANN", "unknown", None), ("o2", "RAY BO", "unknown", None),
+              ("o3", "SMITH & SONS LLC", "org", "SMITH & SONS"),
+              ("o4", "DOE CY", "unknown", None)]  # fmt: skip
+    _write(o / "party" / "0.parquet", [
+        {"party_id": k, "raw_name": n, "party_kind": kind, "org_name_norm": norm,
+         "address_id": "m" + k[1]} for k, n, kind, norm in owners])  # fmt: skip
+    _write(o / "owner_snapshot" / "0.parquet",
+           [{"parcel_uid": "p" + k[1], "party_id": k} for k, *_ in owners])  # fmt: skip
+    _write(o / "parcel" / "0.parquet", [{"parcel_uid": "p" + k[1]} for k, *_ in owners])
+    out = tmp_path / "out"
+    run(lk, out, ["zz.debts"], ["zz.parcels"])
+    m = {r[0]: r[1:] for r in duckdb.connect().execute(
+        f"SELECT debtor_party_id, rule_id, decision FROM '{out.as_posix()}/matches.parquet'"
+    ).fetchall()}  # fmt: skip
+    assert m["d1"] == ("person_name_address", "auto")
+    assert m["d2"] == ("person_name_address", "auto")
+    assert m["d3"] == ("org_name_loose_address", "auto")
+    assert m["d4"] == ("person_name_street_city", "review")

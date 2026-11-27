@@ -270,3 +270,39 @@ def test_a_joint_role_holder_is_each_person(tmp_path: Path) -> None:
         .fetchall()
     )
     assert links == [("d1", "B1", "person_officer_address")]
+
+
+def test_registry_names_meet_with_and_or_ampersand(tmp_path: Path) -> None:
+    """The roll's "SMITH AND SONS LLC" and a debt against "THE SMITH & SONS LLC" both reach
+    the registry's "Smith & Sons, LLC"."""
+    lk = tmp_path / "lake"
+    d, o, r = lk / "s.debts", lk / "s.parcels", lk / "s.sos"
+    _write(d / "party" / "0.parquet", [
+        {"party_id": "d1", "raw_name": "THE SMITH & SONS LLC", "party_kind": "org",
+         "org_name_norm": "THE SMITH & SONS", "address_id": None}])  # fmt: skip
+    _write(d / "instrument_party" / "0.parquet",
+           [{"instrument_uid": "i1", "party_id": "d1", "role": "debtor"}])  # fmt: skip
+    _write(d / "instrument" / "0.parquet", [
+        {"instrument_uid": "i1", "source_id": "s.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2025-01-01", "principal_amount": 10.0}])  # fmt: skip
+    _write(o / "party" / "0.parquet", [
+        {"party_id": "o1", "raw_name": "SMITH AND SONS LLC", "party_kind": "org",
+         "org_name_norm": "SMITH AND SONS", "address_id": None}])  # fmt: skip
+    _write(o / "owner_snapshot" / "0.parquet", [{"parcel_uid": "p1", "party_id": "o1"}])
+    _write(o / "parcel" / "0.parquet", [{"parcel_uid": "p1", "situs_address_id": None}])
+    _write(r / "business" / "0.parquet",
+           [{"sos_id": "B1", "name": "Smith & Sons, LLC", "status": "Active"}])  # fmt: skip
+    _write(r / "party" / "0.parquet", [
+        {"party_id": "h1", "raw_name": "ANN SMITH", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": None}])  # fmt: skip
+    _write(
+        r / "business_role" / "0.parquet",
+        [{"sos_id": "B1", "party_id": "h1", "role": "member", "title": "MEMBER"}],
+    )
+    out = tmp_path / "out"
+    run(lk, out, ["s.debts"], ["s.parcels"], registry_sources=["s.sos"])
+    con = duckdb.connect()
+    q = lambda sql: con.execute(sql.replace("OUT", out.as_posix())).fetchall()  # noqa: E731
+    assert q("SELECT parcel_uid, sos_id FROM 'OUT/owner_companies.parquet'") == [("p1", "B1")]
+    assert q("SELECT debtor_party_id, sos_id, rule_id FROM 'OUT/debtor_companies.parquet'") == [
+        ("d1", "B1", "org_name_registry_loose")]  # fmt: skip

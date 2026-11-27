@@ -27,6 +27,8 @@ Outputs (Parquet in the state's derived folder, git-ignored: they name people):
   company_people    registry entity -> role holders (role, title, name, address)
   debtor_companies  debtor -> registry entity:
                       org_name_registry      organization debtor, same org key        auto
+                      org_name_registry_loose  the same once AND / & / THE, spaces and
+                                             punctuation are dropped                  auto
                       person_officer_address person debtor, same name_key and address
                                              as a role holder                        auto
                       person_officer_zip     same name_key and ZIP                     review
@@ -100,6 +102,13 @@ SELECT org_key, list(DISTINCT sos_id ORDER BY sos_id) AS ids FROM (
     SELECT sos_id, org_key(name) AS org_key FROM r_business
     WHERE sos_id IS NOT NULL AND name IS NOT NULL)
 WHERE org_key <> '' GROUP BY org_key;
+-- The same with AND / & / THE, spaces and punctuation dropped (resolve.org_loose): "SMITH AND
+-- SONS LLC" on the roll reaches the registry's "SMITH & SONS, LLC".
+CREATE TEMP TABLE biz_by_loose AS
+SELECT org_loose(org_key) AS loose, list(DISTINCT sos_id ORDER BY sos_id) AS ids FROM (
+    SELECT sos_id, org_key(name) AS org_key FROM r_business
+    WHERE sos_id IS NOT NULL AND name IS NOT NULL)
+WHERE org_loose(org_key) <> '' GROUP BY 1;
 CREATE TEMP TABLE company_people AS
 SELECT DISTINCT r.sos_id, b.business_name, r.role, r.title, p.party_id, p.raw_name AS name,
        p.party_kind, name_key(p.raw_name) AS name_key, suffix_key(p.raw_name) AS suffix_key,
@@ -122,6 +131,13 @@ SELECT DISTINCT o.parcel_uid, o.party_id AS owner_party_id, o.raw_name AS owner_
 FROM owners o JOIN biz_by_key k ON k.org_key = o.org_name_norm
 JOIN biz b ON list_contains(k.ids, b.sos_id)
 WHERE o.party_kind = 'org' AND coalesce(o.org_name_norm, '') <> '';
+INSERT INTO owner_companies
+SELECT DISTINCT o.parcel_uid, o.party_id, o.raw_name, b.sos_id, b.business_name, b.status,
+       len(k.ids) > 1
+FROM owners o JOIN biz_by_loose k ON k.loose = org_loose(o.org_name_norm)
+JOIN biz b ON list_contains(k.ids, b.sos_id)
+WHERE o.party_kind = 'org' AND coalesce(o.org_name_norm, '') <> ''
+  AND (o.party_id, o.parcel_uid) NOT IN (SELECT (owner_party_id, parcel_uid) FROM owner_companies);
 CREATE TEMP TABLE debtor_companies AS
 SELECT DISTINCT d.party_id AS debtor_party_id, d.raw_name AS debtor_name, b.sos_id,
        b.business_name, 'org_name_registry' AS rule_id, 'auto' AS decision,
@@ -129,6 +145,13 @@ SELECT DISTINCT d.party_id AS debtor_party_id, d.raw_name AS debtor_name, b.sos_
 FROM debtors d JOIN biz_by_key k ON k.org_key = d.org_name_norm
 JOIN biz b ON list_contains(k.ids, b.sos_id)
 WHERE d.party_kind = 'org' AND coalesce(d.org_name_norm, '') <> ''
+UNION
+SELECT DISTINCT d.party_id, d.raw_name, b.sos_id, b.business_name, 'org_name_registry_loose',
+       'auto', len(k.ids) > 1
+FROM debtors d JOIN biz_by_loose k ON k.loose = org_loose(d.org_name_norm)
+JOIN biz b ON list_contains(k.ids, b.sos_id)
+WHERE d.party_kind = 'org' AND coalesce(d.org_name_norm, '') <> ''
+  AND d.org_name_norm NOT IN (SELECT org_key FROM biz_by_key)
 UNION
 SELECT DISTINCT party_id, raw_name, sos_id, business_name,
        CASE WHEN same_place THEN 'person_officer_address' ELSE 'person_officer_zip' END,

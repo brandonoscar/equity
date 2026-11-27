@@ -61,6 +61,12 @@ Rules, strongest first (a debtor-owner pair keeps its strongest rule):
                         Not when that address takes bills for more than MAIL_SHARED_MAX owner
                         names (a manager, lawyer or bank), or is the company's own property
                         (a tenant there shares the address).
+Company names that differ only in AND / & / THE, spaces or punctuation ("SMITH AND SONS",
+"SMITH & SONS", "THE SMITH SONS"; org_loose):
+  org_name_loose_address    same address (or its building)                   -> auto
+  org_name_loose_zip        same ZIP                                         -> review
+An address with no ZIP (on the lien or on the roll) is compared by street and city:
+  person_name_street_city / org_name_street_city   same name, street line and city -> review
 With parcel_on_lien (liens recorded against a parcel id, e.g. Allegheny PINs), first; a lien
 that names a parcel but no debtor gets the stand-in debtor "owner-of:<parcel_uid>":
   lien_names_parcel         the lien itself names the parcel (instrument_parcel, or the one
@@ -175,6 +181,10 @@ RULES = (
     ("person_at_owner_occupied_property", "review", 15),
     ("person_at_property", "review", 16),
     ("person_at_org_owner_mailing", "review", 17),
+    ("org_name_loose_address", "auto", 18),
+    ("org_name_loose_zip", "review", 19),
+    ("person_name_street_city", "review", 20),
+    ("org_name_street_city", "review", 21),
 )
 
 
@@ -956,6 +966,42 @@ WHERE d.party_kind = 'org' AND o.party_kind = 'org' AND d.org_name_norm <> ''
   AND d.town_key IS NOT NULL AND d.town_key IN (o.mail_town, o.situs_town);
 """
 
+# Company names one way: AND / & / THE, spaces and punctuation dropped.
+ORG_LOOSE_MACRO = r"""
+CREATE OR REPLACE MACRO org_loose(n) AS regexp_replace(regexp_replace(
+    ' ' || upper(coalesce(n, '')) || ' ', '\b(AND|THE)\b|&', ' ', 'g'), '[^A-Z0-9]+', '', 'g');
+"""
+ORG_LOOSE_SQL = """
+INSERT INTO candidates
+SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
+       CASE WHEN aa.k2 IN (o.mail_key, o.situs_key) THEN 'org_name_loose_address'
+            ELSE 'org_name_loose_zip' END, d.org_name_norm
+FROM debtors d JOIN owners o ON org_loose(o.org_name_norm) = org_loose(d.org_name_norm)
+LEFT JOIN addr_alias aa ON aa.k = d.addr_key AND aa.k2 IN (o.mail_key, o.situs_key)
+WHERE d.party_kind = 'org' AND o.party_kind = 'org' AND d.org_name_norm <> o.org_name_norm
+  AND org_loose(d.org_name_norm) <> ''
+  AND (aa.k2 IS NOT NULL OR (d.zip5 IS NOT NULL AND d.zip5 IN (o.mail_zip, o.situs_zip)));
+"""
+# A debtor or owner address with no ZIP has no address key: compare street line and city.
+CITY_SQL = """
+INSERT INTO candidates
+SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
+       'person_name_street_city', d.name_key
+FROM debtors d JOIN owners o ON o.name_key = d.name_key
+WHERE d.party_kind <> 'org' AND o.party_kind <> 'org' AND name_words(d.name_key) >= 2
+  AND NOT suffix_conflict(d.suffix_key, o.suffix_key) AND d.town_key IS NOT NULL
+  AND ((d.town_key = o.mail_town AND (d.addr_key IS NULL OR o.mail_key IS NULL))
+       OR (d.town_key = o.situs_town AND (d.addr_key IS NULL OR o.situs_key IS NULL)))
+UNION ALL
+SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
+       'org_name_street_city', d.org_name_norm
+FROM debtors d JOIN owners o ON o.org_name_norm = d.org_name_norm
+WHERE d.party_kind = 'org' AND o.party_kind = 'org' AND d.org_name_norm <> ''
+  AND d.town_key IS NOT NULL
+  AND ((d.town_key = o.mail_town AND (d.addr_key IS NULL OR o.mail_key IS NULL))
+       OR (d.town_key = o.situs_town AND (d.addr_key IS NULL OR o.situs_key IS NULL)));
+"""
+
 # Parcels no source names an owner for (California rolls publish none): a debtor whose own
 # address is the lot's property address may own it or may rent it, so these are review only.
 # The roll's homeowner (owner-occupied) exemption for the latest year says an owner lives
@@ -1047,6 +1093,9 @@ def match(
     con.execute(TYPO_SQL)
     con.execute(MIDDLE_SQL)
     con.execute(SPACING_SQL)
+    con.execute(ORG_LOOSE_MACRO)
+    con.execute(ORG_LOOSE_SQL)
+    con.execute(CITY_SQL)
     con.execute(UNIT_SQL)
     if parcel_on_lien:
         con.execute(PARCEL_ON_LIEN_SQL)

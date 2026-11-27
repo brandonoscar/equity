@@ -42,15 +42,24 @@ WORDS = {
     "NORTH": "N", "SOUTH": "S", "EAST": "E", "WEST": "W",
     "NORTHEAST": "NE", "NORTHWEST": "NW", "SOUTHEAST": "SE", "SOUTHWEST": "SW",
     "APARTMENT": "APT", "FLOOR": "FL", "SUITE": "STE",
+    # Numbered streets one way (FIFTH AVE / 5TH AVE), and SAINT / MOUNT / FORT in names.
+    "FIRST": "1ST", "SECOND": "2ND", "THIRD": "3RD", "FOURTH": "4TH", "FIFTH": "5TH",
+    "SIXTH": "6TH", "SEVENTH": "7TH", "EIGHTH": "8TH", "NINTH": "9TH", "TENTH": "10TH",
+    "ELEVENTH": "11TH", "TWELFTH": "12TH",
+    "SAINT": "ST", "MOUNT": "MT", "FORT": "FT",
 }  # fmt: skip
 
 
 def street_macro(con: duckdb.DuckDBPyConnection) -> None:
     pairs = ", ".join(f"'{k}': '{v}'" for k, v in sorted(WORDS.items()))
     con.execute(f"""
+        -- A post office box spelled one way: P.O. BOX 12, P O BOX 12, POST OFFICE BOX 12,
+        -- POB 12 and BOX 12 are all PO BOX 12.
+        CREATE OR REPLACE MACRO po_box(s) AS regexp_replace(s,
+            '^\\s*(P\\s*O\\s*B(OX)?|POST\\s+OFFICE\\s+BOX|BOX)\\b\\s*', 'PO BOX ');
         CREATE OR REPLACE MACRO street_norm(s) AS array_to_string(list_transform(
-            list_filter(string_split(trim(regexp_replace(upper(coalesce(s, '')),
-                '[^A-Z0-9 ]+', ' ', 'g')), ' '), lambda w: w <> ''),
+            list_filter(string_split(trim(po_box(regexp_replace(upper(coalesce(s, '')),
+                '[^A-Z0-9 ]+', ' ', 'g'))), ' '), lambda w: w <> ''),
             lambda w: coalesce(MAP {{{pairs}}}[w], w)), ' ');
         CREATE OR REPLACE MACRO house_no(s) AS regexp_extract(upper(coalesce(s, '')),
             '^\\s*([0-9]+[A-Z]?)\\b', 1);
