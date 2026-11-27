@@ -1089,3 +1089,62 @@ def test_a_company_whose_tax_bill_goes_to_a_debtors_home_is_a_review_lead(
         f"SELECT debtor_party_id, category FROM '{out.as_posix()}/review_queue.parquet'"
     ).fetchall())  # fmt: skip
     assert q == {"d1": "at_company_mailing"}
+
+
+def test_debtor_aliases_and_joint_debtors_match_by_each_name(tmp_path: Path) -> None:
+    """Liens print a sole proprietor with a trade name, a renamed company, or several
+    debtors in one string: each name is the debtor's own. An alias is the same debtor (auto
+    with the address, one person); one of several joint debtors is liable too, but stays a
+    separate person; a trust's settlor only reaches review."""
+    lk = tmp_path / "lake"
+    d, o = lk / "zz.debts", lk / "zz.parcels"
+    _write(d / "address" / "0.parquet", [
+        _addr("a1", "1 ELM ST", "10001"), _addr("a2", "2 OAK ST", "10001"),
+        _addr("a3", "3 PINE ST", "10001"), _addr("a5", "5 FIR ST", "10001")])  # fmt: skip
+    people = {
+        "d1": ("SMITH JOHN DBA SMITH PLUMBING", "a1", "unknown", None),
+        "d2": ("ACME LLC FKA ACME INC", "a2", "org", "ACME LLC FKA ACME"),
+        "d3": ("JOHN & MARY DOE", "a3", "unknown", None),
+        "d4": ("JOHN DOE", "a3", "unknown", None),
+        "d5": ("JANE ROE REVOCABLE TRUST", "a5", "org", "JANE ROE REVOCABLE TRUST"),
+    }
+    _write(d / "party" / "0.parquet", [
+        {"party_id": k, "raw_name": n, "party_kind": kind, "org_name_norm": norm,
+         "address_id": a} for k, (n, a, kind, norm) in people.items()])  # fmt: skip
+    _write(
+        d / "instrument_party" / "0.parquet",
+        [{"instrument_uid": f"i{k}", "party_id": k, "role": "debtor"} for k in people],
+    )
+    _write(d / "instrument" / "0.parquet", [
+        {"instrument_uid": f"i{k}", "source_id": "zz.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2026-01-01", "principal_amount": 10.0} for k in people])  # fmt: skip
+    _write(o / "address" / "0.parquet", [
+        _addr("m1", "1 Elm Street", "10001"), _addr("m2", "2 OAK ST", "10001"),
+        _addr("m3", "3 PINE ST", "10001"), _addr("m5", "5 FIR ST", "10001")])  # fmt: skip
+    owners = [("o1", "JOHN SMITH", "unknown", None, "m1", "p1"),
+              ("o2", "ACME INC", "org", "ACME", "m2", "p2"),
+              ("o3", "MARY DOE", "unknown", None, "m3", "p3"),
+              ("o5", "JANE ROE", "unknown", None, "m5", "p5")]  # fmt: skip
+    _write(o / "parcel" / "0.parquet", [{"parcel_uid": u} for *_, u in owners])
+    _write(o / "party" / "0.parquet", [
+        {"party_id": k, "raw_name": n, "party_kind": kind, "org_name_norm": norm,
+         "address_id": a} for k, n, kind, norm, a, _ in owners])  # fmt: skip
+    _write(o / "owner_snapshot" / "0.parquet",
+           [{"parcel_uid": u, "party_id": k} for k, *_, u in owners])  # fmt: skip
+    out = tmp_path / "out"
+    run(lk, out, ["zz.debts"], ["zz.parcels"])
+    con = duckdb.connect()
+    m = {(r[0], r[1]): r[2:] for r in con.execute(
+        f"SELECT debtor_party_id, owner_party_id, rule_id, decision, debtor_name_variant "
+        f"FROM '{out.as_posix()}/matches.parquet'").fetchall()}  # fmt: skip
+    assert m[("d1", "o1")] == ("person_name_address", "auto", "alias")
+    assert m[("d2", "o2")] == ("org_name_address", "auto", "alias")
+    assert m[("d3", "o3")] == ("person_name_address", "auto", "joint")
+    assert m[("d5", "o5")] == ("person_name_address", "review", "trust")
+    assert ("d4", "o3") not in m  # JOHN DOE is not MARY DOE
+    person = dict(
+        con.execute(
+            f"SELECT party_id, person_id FROM '{out.as_posix()}/person_of.parquet'"
+        ).fetchall()
+    )
+    assert person["d3"] != person["d4"]  # a joint debt does not make John and Mary one person

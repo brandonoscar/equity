@@ -72,6 +72,9 @@ Owner strings that print several people or a trust ("SMITH JOHN A & JANE B", "JO
 REVOCABLE TRUST") are split into the people they name (equity.matching.names): each is an
 extra owner name of the same party and parcel, so every rule above can meet it. Matches record
 owner_name_variant ('joint' or 'trust'); a trust's settlor only reaches review.
+Debtor strings are split the same way, plus aliases ("JOHN SMITH DBA SMITH PLUMBING", AKA,
+FKA, T/A): each name is an extra debtor name of the same party and instrument, a business
+alias with its org name. Matches record debtor_name_variant ('alias', 'joint' or 'trust').
 
 Output (Parquet under data/derived/<state>/, which is git-ignored: it names people):
   matches.parquet   debtor party, its instrument, owner party, parcel, rule, decision, keys
@@ -338,6 +341,7 @@ def connect(
                 SELECT 1 FROM d_ip ip WHERE ip.instrument_uid = i.instrument_uid
                   AND ip.role = 'debtor');
         """)
+    _debtor_name_variants(con)
     return con
 
 
@@ -441,6 +445,63 @@ def _owner_name_variants(con: duckdb.DuckDBPyConnection) -> None:
             [str(path)],
         )
     con.execute(VARIANT_INSERT_SQL)
+
+
+# Debtor strings that print aliases or several people ("JOHN SMITH DBA SMITH PLUMBING",
+# "JOHN SMITH AKA JACK SMITH", "JOHN & JANE SMITH"): each name joins the debtors as an extra
+# row of the same party and instrument (equity.matching.names.debtor_name_variants), so a
+# sole proprietor's trade-name lien reaches the person's house and the business's lots. A
+# business alias keeps its org name (orgs.classify), so the org rules can meet it.
+DEBTOR_VARIANT_MARK = (VARIANT_MARK + r"|\bD ?/? ?B ?/? ?A\b|\b[AFN] ?/? ?K ?/? ?A\b|\bT ?/ ?A\b"
+                       r"|KNOWN AS|BUSINESS AS|TRADING AS")  # fmt: skip
+DEBTOR_VARIANT_NAMES_SQL = """
+SELECT DISTINCT raw_name FROM debtors
+WHERE regexp_matches(upper(replace(coalesce(raw_name, ''), '.', '')), ?)
+ORDER BY raw_name
+"""
+DEBTOR_VARIANT_INSERT_SQL = """
+INSERT INTO debtors (party_id, raw_name, party_kind, org_name_norm, instrument_uid, source_id,
+                     doc_type, recorded_on, principal_amount, released, name_key, suffix_key,
+                     addr_key, town_key, zip5, county, name_variant)
+SELECT DISTINCT d.party_id, d.raw_name, v.party_kind, v.org_name_norm, d.instrument_uid,
+       d.source_id, d.doc_type, d.recorded_on, d.principal_amount, d.released,
+       name_key(v.variant), suffix_key(v.variant), d.addr_key, d.town_key, d.zip5, d.county,
+       v.kind
+FROM debtors d JOIN debtor_name_variant v ON v.raw_name = d.raw_name
+WHERE d.name_variant IS NULL
+  AND (v.party_kind = 'org' OR name_words(name_key(v.variant)) >= 2);
+"""
+
+
+def _debtor_name_variants(con: duckdb.DuckDBPyConnection) -> None:
+    import csv
+    import tempfile
+
+    from equity.matching.names import debtor_name_variants
+    from equity.matching.orgs import classify
+
+    con.execute("ALTER TABLE debtors ADD COLUMN name_variant VARCHAR")
+    names = [r[0] for r in con.execute(DEBTOR_VARIANT_NAMES_SQL,
+                                       [DEBTOR_VARIANT_MARK]).fetchall()]  # fmt: skip
+    with tempfile.TemporaryDirectory() as tmp:
+        path = Path(tmp) / "variants.csv"
+        with path.open("w", newline="", encoding="utf-8") as f:
+            w = csv.writer(f)
+            w.writerow(["raw_name", "variant", "kind", "party_kind", "org_name_norm"])
+            for raw in names:
+                for variant, kind in debtor_name_variants(raw):
+                    c = classify(variant) if kind == "alias" else None
+                    org = c is not None and c.party_kind == "org" and bool(c.org_name_norm)
+                    w.writerow([raw, variant, kind, "org" if org else "person",
+                                c.org_name_norm if org and c else ""])  # fmt: skip
+        con.execute(
+            "CREATE TEMP TABLE debtor_name_variant AS SELECT raw_name, variant, kind, "
+            "party_kind, nullif(org_name_norm, '') AS org_name_norm FROM read_csv(?, "
+            "header=true, columns={'raw_name': 'VARCHAR', 'variant': 'VARCHAR', "
+            "'kind': 'VARCHAR', 'party_kind': 'VARCHAR', 'org_name_norm': 'VARCHAR'})",
+            [str(path)],
+        )
+    con.execute(DEBTOR_VARIANT_INSERT_SQL)
 
 
 def _court_debtors(con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str]) -> None:
@@ -566,14 +627,18 @@ SELECT DISTINCT party_id,
             WHEN name_words(name_key) >= 2
             THEN 'person:' || name_key || '|' || coalesce(addr_key, zip5, '')
             ELSE 'party:' || party_id END AS identity
-FROM debtors;
+-- An alias names the same debtor; one of several joint debtors, or a trust's settlor, is
+-- someone else, so it does not merge the party with that person's other debts.
+FROM debtors WHERE coalesce(name_variant, 'alias') = 'alias';
 -- Each group (an identity key, or an auto-matched owner party) is a star around its smallest
 -- party id, both ways, so the edges grow with the parties, not with the square of a group.
 CREATE TEMP TABLE person_groups AS
 SELECT party_id, identity AS grp FROM debtor_identity
 UNION
 SELECT DISTINCT debtor_party_id, 'owner:' || owner_party_id FROM matches
-WHERE decision = 'auto' AND owner_party_id IS NOT NULL;
+WHERE decision = 'auto' AND owner_party_id IS NOT NULL
+  -- Two people who matched one joint owner string ("SMITH JOHN & JANE") are two people.
+  AND owner_name_variant IS NULL AND coalesce(debtor_name_variant, 'alias') = 'alias';
 CREATE TEMP TABLE person_edges AS
 WITH hub AS (SELECT grp, min(party_id) AS h FROM person_groups GROUP BY grp)
 SELECT DISTINCT * FROM (
@@ -767,6 +832,22 @@ def match(
           AND v.name_key = matches.key;
         UPDATE matches SET decision = 'review'
         WHERE decision = 'auto' AND owner_name_variant = 'trust';
+        -- The same for the debtor's name: NULL, 'alias' (a DBA/AKA name of the same debtor),
+        -- 'joint' or 'trust'. A trust's debt is not its settlor's own: review only.
+        ALTER TABLE matches ADD COLUMN debtor_name_variant VARCHAR;
+        UPDATE matches SET debtor_name_variant = v.variant
+        FROM (SELECT party_id, instrument_uid, k,
+                     CASE WHEN bool_or(name_variant IS NULL) THEN NULL
+                          ELSE min(name_variant) END AS variant
+              FROM (SELECT party_id, instrument_uid, name_key AS k, name_variant FROM debtors
+                    UNION ALL
+                    SELECT party_id, instrument_uid, org_name_norm, name_variant FROM debtors
+                    WHERE org_name_norm IS NOT NULL)
+              GROUP BY party_id, instrument_uid, k) v
+        WHERE v.party_id = matches.debtor_party_id AND v.instrument_uid = matches.instrument_uid
+          AND v.k = matches.key;
+        UPDATE matches SET decision = 'review'
+        WHERE decision = 'auto' AND debtor_name_variant = 'trust';
         CREATE TEMP TABLE parcel_value AS
         SELECT parcel_uid, arg_max(coalesce(appraised_total, assessed_value), tax_year) AS value
         FROM o_assess GROUP BY parcel_uid;
