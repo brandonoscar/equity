@@ -1056,6 +1056,25 @@ def test_arcgis_and_ckan_health_report_fields(tmp_path: Path) -> None:
     assert h.ok and h.shape == ("amt", "case_id") and h.rows is None
 
 
+def test_arcgis_health_counts_every_layer(tmp_path: Path) -> None:
+    """One layer per bill year: an old year's layer that has emptied out (every bill paid) does
+    not mark the source down; the count is over all layers, the fields from the newest."""
+    cfg = _cfg(tmp_path, api="arcgis", portal=None, dataset=None,
+               layer_urls=["https://g.test/y2009/FeatureServer/0",
+                           "https://g.test/y2024/FeatureServer/0"])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    h = cls(
+        _client(
+            {
+                "y2009/FeatureServer/0/query": b'{"count": 0}',
+                "y2024/FeatureServer/0/query": b'{"count": 5}',
+                "y2024/FeatureServer/0?f=json": b'{"fields": [{"name": "bill"}]}',
+            }
+        )
+    ).health()
+    assert h.ok and h.rows == 5 and h.shape == ("bill",)
+
+
 def test_epoch_milliseconds_before_1970_are_read() -> None:
     """ArcGIS dates before 1970 are negative epoch milliseconds (deed histories go back to 1880)."""
     from datetime import date

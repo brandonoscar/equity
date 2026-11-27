@@ -1143,13 +1143,16 @@ class LienAdapter(Adapter):
         """Up or not, with the field names (shape) and, where the API counts, the row count:
         equity.health_history compares both with the previous day."""
         now = datetime.now(UTC)
-        if self.api == "arcgis":  # a row count on the (first) layer, filtered like the fetch
-            layer = str(self.config.get("layer_url") or self.config["layer_urls"][0])
-            body = get_json(self.client, layer + "/query",
-                            {"where": self.config.get("where") or "1=1",
-                             "returnCountOnly": "true", "f": "json"})  # fmt: skip
-            n = int(body.get("count") or 0)
-            meta = get_json(self.client, layer, {"f": "json"})
+        if self.api == "arcgis":  # the row count over every layer, filtered like the fetch
+            # (one layer per year: an old year's layer can empty out once its bills are paid)
+            layers = [str(u) for u in self.config.get("layer_urls") or [self.config["layer_url"]]]
+            n = 0
+            for layer in layers:
+                body = get_json(self.client, layer + "/query",
+                                {"where": self.config.get("where") or "1=1",
+                                 "returnCountOnly": "true", "f": "json"})  # fmt: skip
+                n += int(body.get("count") or 0)
+            meta = get_json(self.client, layers[-1], {"f": "json"})  # newest layer's fields
             fields = tuple(sorted(str(f["name"]) for f in meta.get("fields") or []))
             return HealthReport(self.source_id, n > 0, now, f"{n} rows", fields, n)
         if self.api in FILE_APIS:
