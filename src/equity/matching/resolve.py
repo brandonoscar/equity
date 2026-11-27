@@ -905,9 +905,9 @@ def first_names(con: duckdb.DuckDBPyConnection) -> None:
     # of at least 2 letters (not only initials). The caller rules out two real first names.
     from equity.matching.nicknames import SAME_NAME_PAIRS
 
-    pairs = ", ".join(f"('{a}', '{b}'), ('{b}', '{a}')" for a, b in SAME_NAME_PAIRS)
-    con.execute(f"CREATE OR REPLACE TEMP TABLE same_name_pairs AS "
-                f"SELECT * FROM (VALUES {pairs}) t(a, b)")  # fmt: skip
+    con.execute("CREATE OR REPLACE TEMP TABLE same_name_pairs (a VARCHAR, b VARCHAR)")
+    con.executemany("INSERT INTO same_name_pairs VALUES (?, ?)",
+                    [p for a, b in SAME_NAME_PAIRS for p in ((a, b), (b, a))])  # fmt: skip
     # two_first_names(x, y): both words are real first names and not two spellings of one
     # (JOHN / JOAN: two people; JOHN / JON: one name).
     con.execute("""
