@@ -7,6 +7,8 @@ person (or a rule the project owner approves later) can work the queue in order:
                              initial on one side only (a parent and child can share both)
              nickname        matched by person_nickname_address: same address, a nickname
                              on one side (BOB / ROBERT)
+             one_letter      matched by person_name_typo_address: same address, one name
+                             word one letter off (SMITH / SMIHT)
              spelling_only   street lines agree once suffix and direction words are
                              spelled one way (ST/STREET, N/NORTH, ...) and punctuation dropped;
                              none now that address keys use that spelling (kept as a check)
@@ -79,6 +81,7 @@ SELECT q.debtor_party_id, d.raw_name AS debtor_name, d.line1 AS debtor_line1,
        CASE
          WHEN q.rule_id = 'person_name_initial_address' THEN 'middle_initial'
          WHEN q.rule_id = 'person_nickname_address' THEN 'nickname'
+         WHEN q.rule_id = 'person_name_typo_address' THEN 'one_letter'
          WHEN q.rule_id = 'person_at_owner_occupied_property' THEN 'at_owner_occupied_property'
          WHEN q.rule_id = 'person_at_property' THEN 'at_property'
          WHEN q.rule_id = 'person_at_org_owner_mailing' THEN 'at_company_mailing'
