@@ -1395,7 +1395,7 @@ STATES: dict[str, dict[str, Any]] = {
                                "az.la_paz.parcels", "az.navajo.parcels",
                                "az.santa_cruz.parcels"]},
     "GA": {"debtors": ["ga.albany.delinquent_taxes", "ga.gwinnett.delinquent_taxes",
-                       "ga.dekalb.delinquent_taxes"],
+                       "ga.dekalb.delinquent_taxes", "ga.richmond.delinquent_taxes"],
            "courts": FEDERAL_COURTS,
            "parcel_on_lien": True,
            "owners": ["ga.chatham.parcels", "ga.clayton.parcels", "ga.cobb.parcels",
