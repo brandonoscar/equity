@@ -25,6 +25,7 @@ Tables (every row keeps its source_id; full rows stay in the lake under the same
   instruments      recorded documents and debt-list items (doc_type, date, amount)
   instrument_parcels  which parcel a document is recorded against (deed, mortgage, lien)
   instrument_parties, cases, case_parties, judgments, businesses, business_roles
+  debtor_owner_candidates  v_debtor_owner_candidates stored by compact (fast to filter)
 
 name_key is the matcher's key (equity.matching.resolve): upper-case name words, letters and
 digits only, without JR/SR/AND/TR/..., de-duplicated and sorted. street_key is the matcher's
@@ -659,6 +660,9 @@ def compact(con: duckdb.DuckDBPyConnection) -> None:
     con.execute("INSERT INTO _ws SELECT * FROM word_sounds ORDER BY sound, word")
     con.execute("DROP TABLE word_sounds")
     con.execute("ALTER TABLE _ws RENAME TO word_sounds")
+    # The leads view, stored: computing it takes seconds, too slow for an MCP client.
+    con.execute("CREATE OR REPLACE TABLE debtor_owner_candidates AS "
+                "SELECT * FROM v_debtor_owner_candidates ORDER BY state, name_key")  # fmt: skip
     con.execute("CHECKPOINT")
 
 

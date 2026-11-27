@@ -185,6 +185,8 @@ def test_rebuild_only_reindexes_changed_sources(cat: duckdb.DuckDBPyConnection, 
 
 def test_compact_and_status(cat: duckdb.DuckDBPyConnection) -> None:
     compact(cat)
+    assert cat.execute("SELECT debtor_refs FROM debtor_owner_candidates").fetchall() == [
+        (["oh.cuyahoga.liens:d1"],)]  # fmt: skip
     text = status(cat)
     assert text.startswith("3 sources indexed")
     assert "names" in text and search(cat, "john a smith")
@@ -386,3 +388,28 @@ def test_initial_rule_does_not_reuse_a_query_initial(cat: duckdb.DuckDBPyConnect
     # own A already matches; the closer spelling decides the order instead.
     rules = {h.raw_name: h.rule for h in search(cat, "JOHN A SMOTH")}
     assert rules.get("SMITH, JOHN A") in {"sounds_like", "similar"}
+
+
+def test_network_does_not_walk_through_creditors(lake: Path, tmp_path: Path) -> None:
+    from equity.search import network
+
+    d = "oh.cuyahoga.liens"
+    _write(lake, d, "party", [_party("d1", "John A. Smith", "unknown", d, "a1"),
+                              _party("c1", "COUNTY TREASURER", "org", d),
+                              _party("d2", "MARY Q PUBLIC", "unknown", d)])  # fmt: skip
+    _write(lake, d, "instrument_party", [
+        {"instrument_uid": "i1", "party_id": "d1", "role": "debtor", "source_id": d,
+         "superseded_at": None},
+        {"instrument_uid": "i1", "party_id": "c1", "role": "creditor", "source_id": d,
+         "superseded_at": None},
+        {"instrument_uid": "i2", "party_id": "c1", "role": "creditor", "source_id": d,
+         "superseded_at": None},
+        {"instrument_uid": "i2", "party_id": "d2", "role": "debtor", "source_id": d,
+         "superseded_at": None},
+    ])  # fmt: skip
+    _finish(lake, d, {"party": 3, "v": 2})
+    con = connect(tmp_path / "n.duckdb")
+    build(con, FileSource(lake), log=lambda _m: None)
+    ids = {n["id"] for n in network(con, f"{d}:d1", hops=3)["nodes"]}
+    assert f"party:{d}:c1" in ids  # the creditor is shown
+    assert f"party:{d}:d2" not in ids  # but not walked through to its other debtors

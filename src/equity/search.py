@@ -53,6 +53,10 @@ DEBT_TYPES = (
     "STATUTORY_LIEN", "TAX_LIEN_STATE", "TAX_LIEN_FEDERAL", "COURT_ORDER",
 )  # fmt: skip
 SIMILAR_MIN = 0.90
+# network(): parties in these roles are shown but not walked through (a creditor such as a
+# county treasurer is on thousands of documents), nor names shared by more records than this.
+HUB_ROLES = frozenset({"creditor", "lender", "plaintiff", "trustee", "assignee"})
+MAX_SAME_NAME = 25
 MAX_CANDIDATES = 20000  # name_keys per candidate branch that are scored
 MAX_KEYS = 500  # best-scored name_keys whose parties are fetched
 
@@ -443,9 +447,11 @@ def network(
     """Walk the catalog's links outward from one party, breadth first, up to `hops` steps.
 
     Edges: owns (party-parcel), party_to (party-document), in_case (party-case),
-    role (party-business), same_address (parties with one address_id) and same_name
-    (parties in other sources with the same name_key). same_name and same_address are
-    name- or address-only: leads to check, not established identity."""
+    role (party-business), recorded_against (document-parcel), same_address (parties with
+    one address_id) and same_name (parties in other sources with the same name_key).
+    same_name and same_address are name- or address-only: leads to check, not established
+    identity. Creditors, lenders, plaintiffs, trustees and assignees are shown but not walked
+    through, and names held by more than MAX_SAME_NAME records are not followed."""
     source_id, _, party_id = ref.partition(":")
     nodes: dict[str, dict[str, Any]] = {}
     edges: set[tuple[str, str, str]] = set()
@@ -500,7 +506,8 @@ def network(
             ks = {r["k"] for r in mine}
             for r in _rows(con, f"SELECT source_id, party_id, {key} AS k, role FROM {table} "  # noqa: S608
                                 f"WHERE {key} IN {_in(ks)}", []) if ks else []:  # fmt: skip
-                nxt.add((r["source_id"], r["party_id"]))
+                if r["role"] not in HUB_ROLES:  # a county treasurer is on every lien
+                    nxt.add((r["source_id"], r["party_id"]))
                 edges.add((f"party:{r['source_id']}:{r['party_id']}",
                            f"{label}:{r['source_id']}:{r['k']}",
                            f"{kind}:{r['role']}"))  # fmt: skip
@@ -513,6 +520,11 @@ def network(
             edges.add((f"doc:{r['source_id']}:{r['instrument_uid']}", n, "recorded_against"))
         # same name elsewhere, same address
         keys = {r["name_key"] for r in me if r["name_key"] and " " in r["name_key"]}
+        if keys:  # a name shared by many records (JOHN SMITH) is no lead
+            common = con.execute(
+                f"SELECT name_key FROM names WHERE name_key IN {_in(keys)} "  # noqa: S608
+                f"GROUP BY name_key HAVING count(*) > {MAX_SAME_NAME}").fetchall()  # fmt: skip
+            keys -= {str(c[0]) for c in common}
         addrs = {r["address_id"] for r in me if r["address_id"]}
         # Every value in the SQL text is quoted by _in().
         near = f"""
