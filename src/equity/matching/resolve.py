@@ -676,6 +676,16 @@ FROM debtors d JOIN subjects s ON s.party_id = d.party_id
 -- trust's settlor is someone else and merges nothing.
 WHERE (s.name_key IS NULL AND coalesce(d.name_variant, 'alias') = 'alias')
    OR (s.name_key = d.name_key AND d.name_variant = 'joint');
+-- A person's liens at "12 MAIN ST APT 3" and at "12 MAIN ST" (same name) are one person:
+-- the unit row also takes the building row's identity, when there is one.
+INSERT INTO debtor_identity
+SELECT DISTINCT s.subject, 'person:' || d.name_key || '|' || b.base_key
+FROM debtors d JOIN subjects s ON s.party_id = d.party_id
+JOIN addr_base b ON b.addr_key = d.addr_key AND b.base_key <> d.addr_key
+WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2
+  AND ((s.name_key IS NULL AND coalesce(d.name_variant, 'alias') = 'alias')
+       OR (s.name_key = d.name_key AND d.name_variant = 'joint'))
+  AND 'person:' || d.name_key || '|' || b.base_key IN (SELECT identity FROM debtor_identity);
 -- The subject a match belongs to: one joint name's match is that person's; any other match
 -- of a split party (the whole string, an address) belongs to every name on it.
 CREATE TEMP TABLE match_subject AS
@@ -754,6 +764,20 @@ WHERE l.parcel_uid IN (SELECT parcel_uid FROM o_parcel)
   AND (NOT starts_with(d.party_id, 'owner-of:') OR d.party_id = 'owner-of:' || l.parcel_uid);
 """
 # One name key is the other plus exactly one single-letter word (a middle initial).
+# Every address and the addresses it counts as: itself, and, for a unit, its building
+# without the unit ("12 MAIN ST APT 3" <-> "12 MAIN ST"; two different units never pair).
+# Every address rule below joins through addr_alias, so a unit never hides a match.
+ADDR_ALIAS_SQL = """
+CREATE TEMP TABLE addr_base AS
+SELECT addr_key, min(base_key) AS base_key FROM addr
+WHERE addr_key IS NOT NULL AND base_key IS NOT NULL GROUP BY addr_key;
+CREATE TEMP TABLE unit_pair AS
+WITH u AS (SELECT addr_key, base_key FROM addr_base WHERE base_key <> addr_key)
+SELECT addr_key AS a, base_key AS b FROM u UNION SELECT base_key, addr_key FROM u;
+CREATE TEMP TABLE addr_alias AS
+SELECT DISTINCT addr_key AS k, addr_key AS k2 FROM addr WHERE addr_key IS NOT NULL
+UNION SELECT a, b FROM unit_pair;
+"""
 INITIAL_SQL = """
 CREATE TEMP TABLE o_by_addr AS
 SELECT party_id, parcel_uid, name_key, suffix_key, mail_key AS k FROM owners
@@ -764,7 +788,7 @@ WHERE party_kind <> 'org' AND situs_key IS NOT NULL AND name_words(name_key) >= 
 INSERT INTO candidates
 SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
        'person_name_initial_address', d.name_key
-FROM debtors d JOIN o_by_addr o ON o.k = d.addr_key
+FROM debtors d JOIN addr_alias aa ON aa.k = d.addr_key JOIN o_by_addr o ON o.k = aa.k2
 WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2
   AND NOT suffix_conflict(d.suffix_key, o.suffix_key)
   AND d.name_key <> o.name_key
@@ -780,10 +804,6 @@ WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2
 # Same name, and one address is the other without its unit ("12 MAIN ST APT 3" on the lien,
 # "12 MAIN ST" on the roll, or the reverse). Two different units of one building never pair.
 UNIT_SQL = """
-CREATE TEMP TABLE unit_pair AS
-WITH u AS (SELECT DISTINCT addr_key, base_key FROM addr
-           WHERE base_key IS NOT NULL AND addr_key IS NOT NULL AND base_key <> addr_key)
-SELECT addr_key AS a, base_key AS b FROM u UNION SELECT base_key, addr_key FROM u;
 INSERT INTO candidates
 SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
        'person_name_address_unit', d.name_key
@@ -804,7 +824,7 @@ NICK_SQL = """
 INSERT INTO candidates
 SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
        'person_nickname_address', d.name_key
-FROM debtors d JOIN o_by_addr o ON o.k = d.addr_key
+FROM debtors d JOIN addr_alias aa ON aa.k = d.addr_key JOIN o_by_addr o ON o.k = aa.k2
 WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2
   AND d.name_key <> o.name_key AND NOT suffix_conflict(d.suffix_key, o.suffix_key)
   AND nick_key(d.name_key) = nick_key(o.name_key);
@@ -817,18 +837,12 @@ TYPO_SQL = """
 INSERT INTO candidates
 SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
        'person_name_typo_address', d.name_key
-FROM debtors d JOIN o_by_addr o ON o.k = d.addr_key,
-LATERAL (SELECT string_split(d.name_key, ' ') AS a, string_split(o.name_key, ' ') AS b) w,
-LATERAL (SELECT list_filter(w.a, lambda x: NOT list_contains(w.b, x)) AS da,
-                list_filter(w.b, lambda x: NOT list_contains(w.a, x)) AS db,
-                list_filter(w.a, lambda x: list_contains(w.b, x)) AS same) x
+FROM debtors d JOIN addr_alias aa ON aa.k = d.addr_key JOIN o_by_addr o ON o.k = aa.k2
 WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2
-  AND d.name_key <> o.name_key AND NOT suffix_conflict(d.suffix_key, o.suffix_key)
-  AND len(w.a) = len(w.b) AND len(x.da) = 1 AND len(x.db) = 1
-  AND length(x.da[1]) >= 3 AND length(x.db[1]) >= 3
-  AND damerau_levenshtein(x.da[1], x.db[1]) = 1
-  AND len(list_filter(x.same, lambda y: length(y) >= 2)) >= 1
-  AND NOT (x.da[1] IN (SELECT name FROM first_names) AND x.db[1] IN (SELECT name FROM first_names));
+  AND NOT suffix_conflict(d.suffix_key, o.suffix_key)
+  AND name_typo(d.name_key, o.name_key)
+  AND NOT (name_only(d.name_key, o.name_key)[1] IN (SELECT name FROM first_names)
+           AND name_only(o.name_key, d.name_key)[1] IN (SELECT name FROM first_names));
 """
 
 
@@ -840,6 +854,21 @@ def first_names(con: duckdb.DuckDBPyConnection) -> None:
         "header=false, comment='#', columns={'name': 'VARCHAR'})",
         [str(path)],
     )
+    # name_only(a, b): the words of name key a that are not in b. name_typo(a, b): the same
+    # number of words, exactly one differing word on each side, those two words at least 3
+    # letters and one edit apart (added, dropped, changed or two swapped), and a shared word
+    # of at least 2 letters (not only initials). The caller rules out two real first names.
+    con.execute("""
+        CREATE OR REPLACE MACRO name_only(a, b) AS list_filter(string_split(a, ' '),
+            lambda x: NOT list_contains(string_split(b, ' '), x));
+        CREATE OR REPLACE MACRO name_typo(a, b) AS
+            a <> b AND name_words(a) = name_words(b)
+            AND len(name_only(a, b)) = 1 AND len(name_only(b, a)) = 1
+            AND length(name_only(a, b)[1]) >= 3 AND length(name_only(b, a)[1]) >= 3
+            AND damerau_levenshtein(name_only(a, b)[1], name_only(b, a)[1]) = 1
+            AND len(list_filter(string_split(a, ' '),
+                    lambda y: list_contains(string_split(b, ' '), y) AND length(y) >= 2)) >= 1;
+    """)
 
 
 def nick_macro(con: duckdb.DuckDBPyConnection) -> None:
@@ -890,12 +919,24 @@ WHERE a.addr_key IS NOT NULL
 CREATE TEMP TABLE nameless_one AS
 SELECT addr_key, min(parcel_uid) AS parcel_uid, bool_or(owner_occupied) AS owner_occupied
 FROM nameless_lots GROUP BY addr_key HAVING count(DISTINCT parcel_uid) = 1;
+-- Through addr_alias, a debtor in a unit reaches its building's lot and the reverse; an
+-- address that reaches more than one nameless lot that way (a condo building's units) is
+-- no lead, and a unit's homeowner exemption says nothing about its neighbour: a lot reached
+-- through its unit pair is person_at_property.
 INSERT INTO candidates
-SELECT DISTINCT d.party_id, d.instrument_uid, NULL, n.parcel_uid,
-       CASE WHEN n.owner_occupied THEN 'person_at_owner_occupied_property'
-            ELSE 'person_at_property' END, d.addr_key
-FROM debtors d JOIN nameless_one n ON n.addr_key = d.addr_key
-WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2;
+WITH hits AS (
+    SELECT DISTINCT d.party_id, d.instrument_uid, d.addr_key, n.parcel_uid,
+           n.owner_occupied AND aa.k = aa.k2 AS occupied
+    FROM debtors d JOIN addr_alias aa ON aa.k = d.addr_key
+    JOIN nameless_one n ON n.addr_key = aa.k2
+    WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2
+), one AS (
+    SELECT addr_key FROM hits GROUP BY addr_key HAVING count(DISTINCT parcel_uid) = 1
+)
+SELECT DISTINCT party_id, instrument_uid, NULL, parcel_uid,
+       CASE WHEN occupied THEN 'person_at_owner_occupied_property'
+            ELSE 'person_at_property' END, addr_key
+FROM hits WHERE addr_key IN (SELECT addr_key FROM one);
 """
 
 # A company owner whose tax bill goes to a person debtor's own address. An address that takes
@@ -908,6 +949,14 @@ WITH busy AS (
     SELECT mail_key FROM owners WHERE mail_key IS NOT NULL
     GROUP BY mail_key
     HAVING count(DISTINCT coalesce(nullif(org_name_norm, ''), name_key)) > {MAIL_SHARED_MAX}
+    -- An office building's suites each take few bills; the building takes many.
+    UNION
+    SELECT o.mail_key FROM owners o JOIN addr_base b ON b.addr_key = o.mail_key
+    WHERE b.base_key IN (
+        SELECT b2.base_key FROM owners o2 JOIN addr_base b2 ON b2.addr_key = o2.mail_key
+        GROUP BY b2.base_key
+        HAVING count(DISTINCT coalesce(nullif(o2.org_name_norm, ''), o2.name_key))
+               > {MAIL_SHARED_MAX})
 ), own_lot AS (  -- the company's own property: its tenants share the address
     SELECT DISTINCT org_name_norm, situs_key FROM owners
     WHERE party_kind = 'org' AND situs_key IS NOT NULL
@@ -920,7 +969,7 @@ WHERE o.party_kind = 'org' AND coalesce(o.org_name_norm, '') <> '' AND o.mail_ke
 INSERT INTO candidates
 SELECT DISTINCT d.party_id, d.instrument_uid, m.party_id, m.parcel_uid,
        'person_at_org_owner_mailing', d.addr_key
-FROM debtors d JOIN org_mail m ON m.mail_key = d.addr_key
+FROM debtors d JOIN addr_alias aa ON aa.k = d.addr_key JOIN org_mail m ON m.mail_key = aa.k2
 WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2;
 """  # noqa: S608 - the cap is a constant
 
@@ -931,6 +980,7 @@ def match(
     parcel_on_lien: bool = False,
     courts: bool = False,
 ) -> None:
+    con.execute(ADDR_ALIAS_SQL)
     con.execute(MATCH_SQL)
     con.execute(COURT_COUNTY_SQL)
     con.execute(INITIAL_SQL)

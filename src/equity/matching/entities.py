@@ -30,6 +30,10 @@ Outputs (Parquet in the state's derived folder, git-ignored: they name people):
                       person_officer_address person debtor, same name_key and address
                                              as a role holder                        auto
                       person_officer_zip     same name_key and ZIP                     review
+                      person_officer_nickname / person_officer_typo  at the officer's
+                                             address, a nickname or one-letter typo of the
+                                             officer's name                            review
+                    (an address also counts as its building without the unit)
                     (the same evidence levels as the debtor-owner rules)
   debtor_company_parcels  parcels owned by a debtor's registry entities
 """
@@ -101,6 +105,11 @@ SELECT DISTINCT r.sos_id, b.business_name, r.role, r.title, p.party_id, p.raw_na
        p.party_kind, name_key(p.raw_name) AS name_key, suffix_key(p.raw_name) AS suffix_key,
        CASE WHEN street_norm(a.line1) <> '' AND a.zip5 IS NOT NULL
             THEN street_norm(a.line1) || '|' || a.zip5 END AS addr_key,
+       -- The building without a unit (resolve.UNIT_MACRO), so "12 MAIN ST STE 4" on a filing
+       -- meets a debtor at "12 MAIN ST".
+       CASE WHEN len(string_split(street_norm(unit_strip(a.line1)), ' ')) >= 2
+                 AND a.zip5 IS NOT NULL
+            THEN street_norm(unit_strip(a.line1)) || '|' || a.zip5 END AS base_key,
        a.zip5, a.line1, a.city, a.state
 FROM r_role r JOIN biz b ON b.sos_id = r.sos_id
 JOIN r_party p ON p.party_id = r.party_id
@@ -119,17 +128,38 @@ FROM debtors d JOIN biz_by_key k ON k.org_key = d.org_name_norm
 JOIN biz b ON list_contains(k.ids, b.sos_id)
 WHERE d.party_kind = 'org' AND coalesce(d.org_name_norm, '') <> ''
 UNION
-SELECT DISTINCT d.party_id, d.raw_name, c.sos_id, c.business_name,
-       CASE WHEN d.addr_key IS NOT NULL AND d.addr_key = c.addr_key
-            THEN 'person_officer_address' ELSE 'person_officer_zip' END,
-       CASE WHEN d.addr_key IS NOT NULL AND d.addr_key = c.addr_key
-            THEN 'auto' ELSE 'review' END,
+SELECT DISTINCT party_id, raw_name, sos_id, business_name,
+       CASE WHEN same_place THEN 'person_officer_address' ELSE 'person_officer_zip' END,
+       CASE WHEN same_place THEN 'auto' ELSE 'review' END,
        false
-FROM debtors d JOIN company_people c ON c.name_key = d.name_key
+FROM (
+    SELECT d.party_id, d.raw_name, c.sos_id, c.business_name, d.zip5 AS d_zip, c.zip5 AS c_zip,
+           -- One address, or one of them is the other's building without the unit.
+           coalesce((d.addr_key IS NOT NULL AND d.addr_key = c.addr_key)
+                    OR (db.base_key IS NOT NULL AND db.base_key = c.base_key
+                        AND (d.addr_key = db.base_key OR c.addr_key = c.base_key)),
+                    false) AS same_place
+    FROM debtors d JOIN company_people c ON c.name_key = d.name_key
+    LEFT JOIN addr_base db ON db.addr_key = d.addr_key
+    WHERE d.party_kind <> 'org' AND c.party_kind <> 'org' AND name_words(d.name_key) >= 2
+      AND NOT suffix_conflict(d.suffix_key, c.suffix_key)
+)
+WHERE same_place OR (d_zip IS NOT NULL AND d_zip = c_zip)
+UNION
+-- At the officer's own address: a nickname ("BOB SMITH" / "ROBERT SMITH") or a one-letter
+-- typo of the officer's name (not two real first names) -> review.
+SELECT DISTINCT d.party_id, d.raw_name, c.sos_id, c.business_name,
+       CASE WHEN nick_key(d.name_key) = nick_key(c.name_key) THEN 'person_officer_nickname'
+            ELSE 'person_officer_typo' END,
+       'review', false
+FROM debtors d JOIN addr_alias aa ON aa.k = d.addr_key
+JOIN company_people c ON c.addr_key = aa.k2 OR c.base_key = aa.k2
 WHERE d.party_kind <> 'org' AND c.party_kind <> 'org' AND name_words(d.name_key) >= 2
-  AND NOT suffix_conflict(d.suffix_key, c.suffix_key)
-  AND ((d.addr_key IS NOT NULL AND d.addr_key = c.addr_key)
-       OR (d.zip5 IS NOT NULL AND d.zip5 = c.zip5));
+  AND d.name_key <> c.name_key AND NOT suffix_conflict(d.suffix_key, c.suffix_key)
+  AND (nick_key(d.name_key) = nick_key(c.name_key)
+       OR (name_typo(d.name_key, c.name_key)
+           AND NOT (name_only(d.name_key, c.name_key)[1] IN (SELECT name FROM first_names)
+                    AND name_only(c.name_key, d.name_key)[1] IN (SELECT name FROM first_names))));
 CREATE TEMP TABLE debtor_company_parcels AS
 SELECT DISTINCT dc.debtor_party_id, dc.debtor_name, dc.sos_id, dc.business_name, dc.rule_id,
        dc.decision, oc.parcel_uid, oc.owner_name, v.value AS parcel_value

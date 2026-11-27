@@ -1295,3 +1295,68 @@ def test_a_one_letter_typo_at_the_same_address_is_a_review_lead(tmp_path: Path) 
         f"SELECT debtor_party_id, category FROM '{out.as_posix()}/review_queue.parquet'"
     ).fetchall())  # fmt: skip
     assert q == {"d1": "one_letter"}
+
+
+def test_every_address_rule_sees_through_units(tmp_path: Path) -> None:
+    """A unit counts as its building in every address rule: middle initial, nickname, a
+    nameless lot (but not a building of several nameless units, and a unit says nothing
+    about the building's homeowner exemption), a company's mailing address, and one person
+    across their liens at the unit and at the building."""
+    lk = tmp_path / "lake"
+    d, o = lk / "zz.debts", lk / "zz.parcels"
+    _write(d / "address" / "0.parquet", [
+        _addr("a1", "1 ELM ST APT 2", "10001"), _addr("a2", "2 OAK ST #4", "10001"),
+        _addr("a3", "3 PINE ST APT 1", "10001"), _addr("a4", "4 FIR ST", "10001"),
+        _addr("a5", "5 ASH ST STE 3", "10001"), _addr("a6", "6 BAY ST APT 9", "10001"),
+        _addr("a7", "6 BAY ST", "10001")])  # fmt: skip
+    people = {"d1": "JOHN A SMITH", "d2": "BOB JONES", "d3": "ANN LEE", "d4": "CY DOE",
+              "d5": "EVE FOX", "d6": "GUS HALE", "d7": "GUS HALE"}  # fmt: skip
+    _write(d / "party" / "0.parquet", [
+        {"party_id": k, "raw_name": n, "party_kind": "unknown", "org_name_norm": None,
+         "address_id": "a" + k[1]} for k, n in people.items()])  # fmt: skip
+    _write(
+        d / "instrument_party" / "0.parquet",
+        [{"instrument_uid": f"i{k}", "party_id": k, "role": "debtor"} for k in people],
+    )
+    _write(d / "instrument" / "0.parquet", [
+        {"instrument_uid": f"i{k}", "source_id": "zz.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2026-01-01", "principal_amount": 10.0} for k in people])  # fmt: skip
+    _write(o / "address" / "0.parquet", [
+        _addr("m1", "1 ELM ST", "10001"), _addr("m2", "2 OAK ST", "10001"),
+        _addr("s3", "3 PINE ST", "10001"), _addr("s4a", "4 FIR ST UNIT 1", "10001"),
+        _addr("s4b", "4 FIR ST UNIT 2", "10001"), _addr("m5", "5 ASH ST", "10001"),
+        _addr("s5", "50 LOT RD", "10001")])  # fmt: skip
+    _write(o / "parcel" / "0.parquet", [
+        {"parcel_uid": "p1"}, {"parcel_uid": "p2"}, {"parcel_uid": "p3", "situs_address_id": "s3"},
+        {"parcel_uid": "p4a", "situs_address_id": "s4a"},
+        {"parcel_uid": "p4b", "situs_address_id": "s4b"},
+        {"parcel_uid": "p5", "situs_address_id": "s5"}])  # fmt: skip
+    _write(
+        o / "parcel_assessment" / "0.parquet",
+        [{"parcel_uid": "p3", "tax_year": 2026, "appraised_total": 1.0, "homestead": True}],
+    )
+    owners = [("o1", "JOHN SMITH", "unknown", None, "m1", "p1"),
+              ("o2", "ROBERT JONES", "unknown", None, "m2", "p2"),
+              ("o5", "FOX HOLDINGS LLC", "org", "FOX HOLDINGS", "m5", "p5")]  # fmt: skip
+    _write(o / "party" / "0.parquet", [
+        {"party_id": k, "raw_name": n, "party_kind": kind, "org_name_norm": norm,
+         "address_id": a} for k, n, kind, norm, a, _ in owners])  # fmt: skip
+    _write(o / "owner_snapshot" / "0.parquet",
+           [{"parcel_uid": u, "party_id": k} for k, *_, u in owners])  # fmt: skip
+    out = tmp_path / "out"
+    run(lk, out, ["zz.debts"], ["zz.parcels"])
+    con = duckdb.connect()
+    m = {r[0]: r[1:] for r in con.execute(
+        f"SELECT debtor_party_id, parcel_uid, rule_id FROM '{out.as_posix()}/matches.parquet'"
+    ).fetchall()}  # fmt: skip
+    assert m["d1"] == ("p1", "person_name_initial_address")
+    assert m["d2"] == ("p2", "person_nickname_address")
+    assert m["d3"] == ("p3", "person_at_property")  # the exemption is the building's
+    assert "d4" not in m  # two nameless units at that building: which one is unknown
+    assert m["d5"] == ("p5", "person_at_org_owner_mailing")
+    person = dict(
+        con.execute(
+            f"SELECT party_id, person_id FROM '{out.as_posix()}/person_of.parquet'"
+        ).fetchall()
+    )
+    assert person["d6"] == person["d7"]  # GUS HALE at the unit and at the building
