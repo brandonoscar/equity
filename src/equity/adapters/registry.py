@@ -84,6 +84,7 @@ from equity.adapters.tx.dallas_trw import DallasTaxRollDelinquent
 from equity.adapters.tx.harris_district import HarrisDistrictCivilJudgments
 from equity.adapters.tx.harris_jp import HarrisJPCivilJudgments
 from equity.adapters.tx.stratmap import TexasStratMapParcels
+from equity.adapters.tx.tarrant_taxroll import TarrantTaxRollDelinquent
 from equity.adapters.tx_harris_jp import HarrisJPJudgments
 from equity.adapters.tx_travis_delinquent import TravisTaxDelinquent
 from equity.adapters.voter_files import BoulderCountyVoterFile, NorthCarolinaVoterFile
@@ -126,6 +127,7 @@ _ALL: tuple[type[Adapter], ...] = (
     HarrisJPJudgments,
     TravisTaxDelinquent,
     DallasTaxRollDelinquent,
+    TarrantTaxRollDelinquent,
     VermontTransferArchive,
     NYResidentialAssessmentRatios,
     NYEqualizationRates,

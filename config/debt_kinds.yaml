@@ -102,6 +102,7 @@ sources:
   ga.dekalb.delinquent_taxes: tax_delinquency
   ga.richmond.delinquent_taxes: tax_delinquency
   tx.dallas.tax_roll_delinquent: tax_delinquency
+  tx.tarrant.tax_roll_delinquent: tax_delinquency
   nc.buncombe.unpaid_bills: tax_delinquency
   nc.charlotte.municipal_liens: code_enforcement_lien
   oh.clermont.tax_delinquent: tax_delinquency

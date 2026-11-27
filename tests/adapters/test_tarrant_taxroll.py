@@ -58,4 +58,5 @@ def test_past_due_receivables_are_summed_for_real_property() -> None:
         date(2025, 6, 30),
         "150.50",
     )
-    assert [x["parcel_uid"] for t, x in out if t == "instrument_parcel"] == ["48439-00012345"]
+    assert not [x for t, x in out if t == "instrument_parcel"]  # cad id is not the PROP_ID
+    assert {x["raw_name"] for t, x in out if t == "party"} >= {"ANN LEE"}

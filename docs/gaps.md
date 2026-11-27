@@ -65,7 +65,7 @@ Federal sources (FJC civil judgments, EPA judicial cases, SBA charge-offs, HUD R
 | SC | 13 of 46 counties | owner, address, value, homestead, land use, zoning | — | tax_delinquency (3) | `us.scb.rss` | — | `SC` | 3 local layers | — |
 | SD | 6 of 66 counties | owner, address, value, homestead, land use | — | tax_lien (1) | `us.sdb.rss` | — | `SD` | none | — |
 | TN | statewide | owner, address, value, land use, zoning | — | — | `us.tneb.rss`<br>`us.tnmb.rss`<br>`us.tnwb.rss` | — | `TN` | 4 local layers | — |
-| TX | statewide | owner, address, value, land use | — | administrative_order (2)<br>court_judgment (5)<br>tax_delinquency (3) | `us.txeb.rss`<br>`us.txed.rss`<br>`us.txnb.rss`<br>`us.txsd.rss`<br>`us.txwb.rss`<br>`us.txwd.rss` | — | `TX-COUNTIES`<br>`TX-DALLAS`<br>`TX-HARRIS`<br>`TX-TRAVIS` | 11 local layers | — |
+| TX | statewide | owner, address, value, land use | — | administrative_order (2)<br>court_judgment (5)<br>tax_delinquency (4) | `us.txeb.rss`<br>`us.txed.rss`<br>`us.txnb.rss`<br>`us.txsd.rss`<br>`us.txwb.rss`<br>`us.txwd.rss` | — | `TX-COUNTIES`<br>`TX-DALLAS`<br>`TX-HARRIS`<br>`TX-TARRANT`<br>`TX-TRAVIS` | 11 local layers | — |
 | UT | statewide | owner, address, value, land use | — | tax_delinquency (1) | — | — | `UT` | 2 local layers | — |
 | VA | 22 of 133 counties | owner, address, value, land use, zoning | — | tax_delinquency (3) | `us.vaeb.rss`<br>`us.vawb.rss` | — | `VA-COUNTIES`<br>`VA-RICHMOND` | 16 local layers | — |
 | VT | statewide | owner, address, value, land use | — | tax_delinquency (2) | `us.vtb.rss` | — | `VT` | statewide + 8 local | — |

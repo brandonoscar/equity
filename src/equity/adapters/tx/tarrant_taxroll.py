@@ -14,8 +14,10 @@ summed per account, for real property accounts (roll code 01). Each is one instr
 the owner(s) named on the master record: COURT_ORDER (a tax-suit judgment) dated the latest
 judgment date when the county has one, otherwise TAX_LIEN_STATE (Texas property tax is a lien
 on the property, Tax Code 32.01) dated January 1 of the earliest delinquent year. The lawsuit
-and bankruptcy numbers and an installment agreement are kept in the raw type. The appraisal-
-district property id is the PROP_ID of tx.statewide.parcels for Tarrant (48439).
+and bankruptcy numbers and an installment agreement are kept in the raw type. The master's
+"appraisal district number" reads like a block and lot ('14437    11    1'), not the PROP_ID
+the statewide parcels carry, so no parcel link is made: owners are matched by name and mailing
+address, as for Travis (25,143 accounts, $78.6M base tax due on the 2026-11-25 roll).
 """
 
 from __future__ import annotations
@@ -209,11 +211,6 @@ class TarrantTaxRollDelinquent(Adapter):
                 max_secured_amount=None, maturity_date=None, amount_source="index",
                 legal_desc_raw=None,
             )  # fmt: skip
-            cad = re.sub(r"\s+", "", str(r.get("cad_id") or ""))
-            if cad:
-                yield ctx.fact("instrument_parcel", instrument_uid=uid,
-                               parcel_uid=f"{COUNTY}-{cad}", method="index_parcel_id",
-                               evidence={"cad_id": cad})  # fmt: skip
             z = str(r.get("zip") or "")[:5]
             line = " ".join(x for x in (r.get("addr1"), r.get("addr2")) if x) or None
             addr = normalized_address(line, r.get("city") or None, r.get("state") or None,

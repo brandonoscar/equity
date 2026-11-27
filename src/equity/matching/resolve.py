@@ -1380,6 +1380,10 @@ STATES: dict[str, dict[str, Any]] = {
     "TX-DALLAS": {"debtors": ["tx.dallas.tax_roll_delinquent"],
                   "owners": ["tx.dallas_city.parcels"], "parcel_on_lien": True,
                   "courts": FEDERAL_COURTS},
+    # Tarrant County Tax Office roll: delinquent accounts with owners and mailing addresses
+    # (no parcel id in the statewide form), matched by name and address, as for Travis.
+    "TX-TARRANT": {"debtors": ["tx.tarrant.tax_roll_delinquent"],
+                   "owners": ["tx.statewide.parcels"], "courts": FEDERAL_COURTS},
     "TX-TRAVIS": {"debtors": ["tx.travis.tax_delinquent"], "owners": ["tx.statewide.parcels"],
                   "courts": FEDERAL_COURTS},
     # Omaha: tax sale certificates (named taxpayers) and county-held liens (PIN only).
