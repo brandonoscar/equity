@@ -119,3 +119,21 @@ surplus real property beyond the HUD and BLM queries already loaded
 | Treasury, FDIC, others | Only HUD notices match "loan sale" since 2010. |
 
 HUD remains the only federal agency noticing loan sales in the Federal Register.
+
+## Discovery leads reviewed (2026-11-27)
+
+`equity.discovery` returned 90 candidates. 45 are land-bank inventories, Survey123 forms, or
+national and foreign layers (land banks are owned by the land bank, so they name no debtor);
+19 are the Brooklyn Borough President's 2024 tax-lien maps, one per community district (water
+debt by block and lot, no owner); the rest were read field by field:
+
+| Lead | Rows | Result |
+|---|---|---|
+| Pitt County NC "Delinquent Taxes" (gis.pittcountync.gov) | 8,573 | Not added: a log of payment transactions against bills (TXN_DATE, AMOUNT, BILLALLOCATION), keyed by Pitt's short parcel number, not a list of open balances. Needs a design (net payments per bill) before it can stand for a debt. |
+| "DC Tax Liens" (dcgis.org) | 380 | Not added: dcgis.org appears to be Douglas County NE's GIS, not the District's; Douglas County tax liens are already loaded (`ne.douglas.tax_liens`). |
+| Muncie IN Fall 2026 tax sale | 630 | Owner name, PIN, minimum bid. Publisher not confirmed (a personal ArcGIS account); held until the county's own list is found. |
+| Hammond IN 2027 tax sale | 142 | Deeded owner, mailing address, parcel. Published by a sanitary-district account; held for the same reason. |
+| Fulton GA "Tax Deed Activity" (Socrata) | 34,300 | Not a debt list: the assessor's internal deed-processing work queue. |
+| Frederick County, McPherson KS, other "tax sale" layers | 2-304 | Too small, no owner field, or a geocoded address list without parcel or owner. |
+| Cochise AZ 2026 tax deed layers | — | Already loaded (`az.cochise.tax_deed_auction`). |
+| WA candidate surplus funds, Massachusetts settlements | — | Campaign finance and state settlements, not property debts. |
