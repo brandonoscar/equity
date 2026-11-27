@@ -1210,7 +1210,8 @@ STATES: dict[str, dict[str, Any]] = {
     # Baltimore City: environmental citation liens name the parcel (block/lot), not a person.
     "MD-BALTIMORE": {"debtors": ["md.baltimore_city.citation_liens",
                                  "md.baltimore_city.in_rem_candidates",
-                                 "md.baltimore_city.tax_lien_certificate_sale"],
+                                 "md.baltimore_city.tax_lien_certificate_sale",
+                                 "md.baltimore_city.tax_sale_2026"],
                      "owners": ["md.baltimore_city.parcels"], "parcel_on_lien": True,
                      "deeds": ["md.sdat.transfers_1", "md.sdat.transfers_2",
                                "md.sdat.transfers_3"],

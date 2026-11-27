@@ -161,6 +161,7 @@ sources:
   # NY, MD, PA and MI county delinquent-tax, tax-sale and foreclosure lists (2026-11-25)
   md.baltimore_city.in_rem_candidates: tax_lien
   md.baltimore_city.tax_lien_certificate_sale: tax_lien
+  md.baltimore_city.tax_sale_2026: tax_lien
   md.prince_georges.foreclosures: foreclosure
   md.st_marys.tax_sale: tax_lien
   mi.kalamazoo.delinquent_2024: tax_delinquency

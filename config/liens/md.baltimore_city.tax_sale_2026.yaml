@@ -1,0 +1,35 @@
+source_id: md.baltimore_city.tax_sale_2026
+state: MD
+county_fips: "24510"   # Baltimore City
+# Baltimore City Department of Housing 'Tax Sale Properties' 2026 (the city's own GIS server,
+# baltegis.baltimorecity.gov, Housing/Tax_Sale_2026): 4,327 properties in the 2026 tax lien
+# certificate sale, each with the owner of record, the property address and the lien amount
+# ($239.1M). Delinquent real property taxes and other unpaid city charges are liens on the
+# property (MD Tax-Property 14-804). md.baltimore_city.tax_lien_certificate_sale covers the
+# 2019-2023 sales; the server's 2025 layer (15,686 properties, $168.9M) is not read: it shows
+# no redemptions, so liens paid since that sale would count as open. No date per row: the
+# fetch date stands in. Blocklot ('0001 007') is md.baltimore_city.parcels BLOCKLOT once
+# whitespace is removed. Debt kind: tax_lien.
+api: arcgis
+layer_url: https://baltegis.baltimorecity.gov/mapping/rest/services/Housing/Tax_Sale_2026/FeatureServer/0
+single_partition: true
+order_by: [ObjectID]
+select: [ObjectID, Blocklot, Address, Owner, LIEN_AMOUNT]
+listed_on: listed_on
+date_field: listed_on
+uid: Blocklot
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Baltimore City 2026 tax sale property
+amount: LIEN_AMOUNT
+parties:
+  - role: debtor
+    name: Owner
+    address: {line1: Address, city_const: BALTIMORE, state_const: MD}   # the property
+  - {role: creditor, const: Mayor and City Council of Baltimore, person_names: false}
+parcel: {kind: pin, field: Blocklot, county_fips: "24510"}
+terms:
+  url: https://baltegis.baltimorecity.gov/mapping/rest/services/Housing/Tax_Sale_2026/FeatureServer
+  summary: "Baltimore City Department of Housing and Community Development, on the city's own ArcGIS server (baltegis.baltimorecity.gov, robots.txt absent), public, no login or fee; no license or use restriction stated on the service."
+  checked_on: 2026-11-27
+  robots_checked_on: 2026-11-27
+  cost_model: free
