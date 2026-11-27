@@ -15,7 +15,10 @@ Config keys:
                       carto (+ carto: a Carto SQL API url, table; select and order_by are
                       columns, the date window is SQL on date_field) or
                       pdf (+ url, header: a text-based PDF list; the table starts at the line
-                      whose first cell begins with `header`, columns split at its x positions)
+                      whose first cell begins with `header`, columns split at its x positions;
+                      or, with pdf_columns: {names, cuts, require}, cut at fixed x positions
+                      (`cuts`: where each column after the first begins, for right-aligned or
+                      two-line headers) and kept when each `require` column matches its regex)
   caption_field       a 'Plaintiff vs Defendant' caption, split into the derived fields
                       caption_plaintiff and caption_defendant for use in parties
   enrich              arcgis: {carto: SQL API url, table, key, field, columns} or {arcgis:
@@ -60,7 +63,9 @@ Config keys:
   parties             list of {role, name: field|[fields] | const: text, split (optional
                                separator, or a list of them: one field holding several names,
                                e.g. ' | '), strip (optional characters trimmed from each
-                               name, e.g. '"' around '"DOE, JANE","ROE, JOHN"'),
+                               name, e.g. '"' around '"DOE, JANE","ROE, JOHN"'), cut_at
+                               (optional text: keep only what comes before it in each name,
+                               e.g. ',' for 'DOE LLC, 1 MAIN ST, CANTON OH;'),
                                address: {line1: field|[fields], city | city_const, state |
                                state_const, zip}, when (optional {field: value}: the party
                                is read only from rows whose field has that value, e.g. a
@@ -69,7 +74,10 @@ Config keys:
                       | {kind: pin, field (or a list of fields, one lot each), county_fips
                          (or none: the row's county from county_name_field), strip (optional
                          characters removed from the id, e.g. '-'), zfill (optional width:
-                         left-pad with zeros an id published as a number, e.g. 13)}
+                         left-pad with zeros an id published as a number, e.g. 13),
+                         split (optional separator: one field naming several lots, e.g.
+                         ', '), lstrip_zeros (true: drop leading zeros, as a roll that stores
+                         '02-24227' as '224227' does)}
   county_fips         jurisdiction when no parcel names a county (5 digits)
   county_name_field   optional field holding the county name (mapped to FIPS in `state`)
   county_aliases      optional {name in the data: county name}, e.g. {DADE: MIAMI-DADE}
@@ -124,6 +132,7 @@ from equity.adapters.arcgis import ArcGISQuery, get_json
 from equity.adapters.arcgis import fetch_all as arcgis_fetch_all
 from equity.adapters.base import Adapter, Fetched, FetchRequest, HealthReport, NormalizedRow
 from equity.adapters.http import USER_AGENT, PoliteClient
+from equity.adapters.pdf_lists import pdf_rows
 from equity.adapters.pdf_table import pdf_table, pdf_text
 from equity.adapters.rows import RecordContext, canonical_json
 from equity.adapters.socrata import SocrataQuery, fetch_all
@@ -810,7 +819,15 @@ class LienAdapter(Adapter):
             idx = int(cfg.get("table", 0))
             table = tables[idx] if idx < len(tables) else []
         elif self.api == "pdf":
-            table, banner = pdf_table(content, str(cfg["header"])), pdf_text(content)
+            cols = cfg.get("pdf_columns")
+            if cols:
+                names = [str(n) for n in cols["names"]]
+                found = pdf_rows(content, names, [float(c) for c in cols["cuts"]],
+                                 str(cfg["header"]), require=cols.get("require"))  # fmt: skip
+                table = [names, *([r[n] for n in names] for r in found)]
+            else:
+                table = pdf_table(content, str(cfg["header"]))
+            banner = pdf_text(content)
         elif self.api == "csv":
             table, banner = csv_table(content, str(cfg.get("delimiter", ","))), ""
         else:
@@ -897,6 +914,9 @@ class LienAdapter(Adapter):
         if spec.get("kind") == "pin" and isinstance(spec.get("field"), list):
             return [self._parcel({**row, "_pin": row.get(f)}, {**spec, "field": "_pin"})
                     for f in spec["field"]]  # fmt: skip
+        if spec.get("kind") == "pin" and spec.get("split"):
+            pins = str(row.get(spec["field"]) or "").split(str(spec["split"]))
+            return [self._parcel({**row, "_pin": p}, {**spec, "field": "_pin"}) for p in pins]
         return [self._parcel(row)]
 
     def _parcel(
@@ -923,6 +943,8 @@ class LienAdapter(Adapter):
                 pin = "".join(ch for ch in pin if ch not in str(spec["strip"])) or None
             if pin and spec.get("zfill"):  # a folio read as a number lost its leading zero
                 pin = pin.zfill(int(spec["zfill"]))
+            if pin and spec.get("lstrip_zeros"):
+                pin = pin.lstrip("0") or None
             if pin is None or not pin.strip("0-. "):  # blank or a zeros placeholder
                 return None, None
                 return None, None
@@ -1079,6 +1101,8 @@ class LienAdapter(Adapter):
                 names = [n.strip() for n in re.split(splitter, raw)] if raw and seps else [raw]
                 if p.get("strip"):  # quote marks around each name: '"DOE, JANE"'
                     names = [n.strip(str(p["strip"])).strip() if n else n for n in names]
+                if p.get("cut_at"):  # 'DOE LLC, 1 MAIN ST, CANTON OH' -> 'DOE LLC'
+                    names = [n.split(str(p["cut_at"]), 1)[0].strip() if n else n for n in names]
                 a = p.get("address") or {}
                 zipc = _text(row.get(a["zip"])) if a.get("zip") else None
                 zip5 = zipc[:5] if zipc and re.fullmatch(r"[0-9]{5}", zipc[:5]) else None
@@ -1119,13 +1143,16 @@ class LienAdapter(Adapter):
         """Up or not, with the field names (shape) and, where the API counts, the row count:
         equity.health_history compares both with the previous day."""
         now = datetime.now(UTC)
-        if self.api == "arcgis":  # a row count on the (first) layer, filtered like the fetch
-            layer = str(self.config.get("layer_url") or self.config["layer_urls"][0])
-            body = get_json(self.client, layer + "/query",
-                            {"where": self.config.get("where") or "1=1",
-                             "returnCountOnly": "true", "f": "json"})  # fmt: skip
-            n = int(body.get("count") or 0)
-            meta = get_json(self.client, layer, {"f": "json"})
+        if self.api == "arcgis":  # the row count over every layer, filtered like the fetch
+            # (one layer per year: an old year's layer can empty out once its bills are paid)
+            layers = [str(u) for u in self.config.get("layer_urls") or [self.config["layer_url"]]]
+            n = 0
+            for layer in layers:
+                body = get_json(self.client, layer + "/query",
+                                {"where": self.config.get("where") or "1=1",
+                                 "returnCountOnly": "true", "f": "json"})  # fmt: skip
+                n += int(body.get("count") or 0)
+            meta = get_json(self.client, layers[-1], {"f": "json"})  # newest layer's fields
             fields = tuple(sorted(str(f["name"]) for f in meta.get("fields") or []))
             return HealthReport(self.source_id, n > 0, now, f"{n} rows", fields, n)
         if self.api in FILE_APIS:

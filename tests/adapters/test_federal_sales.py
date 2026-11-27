@@ -77,3 +77,23 @@ def test_hud_loan_sale_notices_are_their_own_source() -> None:
     assert params["conditions[agencies][]"] == "housing-and-urban-development-department"
     assert a.source_row()["source_id"] == "us.federalregister.loan_sales"
     assert FederalRegisterRealty.queries is QUERIES  # the realty source is unchanged
+
+
+def test_loan_sale_health_queries_its_own_search() -> None:
+    """health() asks for the source's own query (hud_loan_sale), not the realty source's."""
+    from collections.abc import Mapping
+
+    from equity.adapters.federal.federal_register import FederalRegisterLoanSales
+    from equity.adapters.http import PoliteClient
+
+    seen: list[str] = []
+
+    def transport(url: str, headers: Mapping[str, str], timeout: float) -> tuple[int, bytes, str]:
+        if url.endswith("robots.txt"):
+            return 404, b"", ""
+        seen.append(url)
+        return 200, json.dumps({"count": 3, "results": [{"title": "t"}]}).encode(), ""
+
+    client = PoliteClient(min_interval_s=0, transport=transport, sleep=lambda s: None)
+    h = FederalRegisterLoanSales(client).health()
+    assert h.ok and h.rows == 3 and "housing-and-urban-development" in seen[0]

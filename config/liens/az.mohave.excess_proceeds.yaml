@@ -1,0 +1,28 @@
+source_id: az.mohave.excess_proceeds
+state: AZ
+county_fips: "04015"   # Mohave County
+# Mohave County Treasurer 'Excess Proceeds List' (HTML table, 25 rows on 2026-11-26): money a
+# trustee deposited with the treasurer after a trustee's sale brought more than the debt
+# (A.R.S. 33-812), held until claimed through Superior Court: case number, trustor (the former
+# owner and borrower), deposit date and amount, and the current balance. SURPLUS FUNDS, as
+# ga.dekalb.excess_funds: no doc type holds money owed back to a former owner, so each row is
+# OTHER with the current balance as amount; the trustor is the borrower. A judgment creditor of
+# the trustor may be able to claim from it (see reports/Judgment equity data and tasks.md).
+# No parcel is published. Refreshed daily as a listing, so claimed rows dropping off are seen.
+api: html
+url: https://www.mohave.gov/departments/treasurer/general-use/excess-proceeds-list/
+table: 0
+us_dates: [deposit_date]
+date_field: deposit_date
+uid: case_number
+doc_type: OTHER
+doc_type_raw: Mohave County trustee sale excess proceeds
+amount: current_balance
+parties:
+  - {role: other, const: Mohave County Treasurer}
+  - {role: borrower, name: trustor, split: [" AND ", " & "]}
+terms:
+  url: https://www.mohave.gov/departments/treasurer/general-use/excess-proceeds-list/
+  summary: "Mohave County AZ Treasurer public web page, free, no login; no license or use terms on the page (read 2026-11-26); mohave.gov/robots.txt disallows only /bin/, /config/, /install/, /umbraco/ and /views/."
+  checked_on: 2026-11-26
+  cost_model: free

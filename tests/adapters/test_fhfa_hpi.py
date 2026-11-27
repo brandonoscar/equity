@@ -119,3 +119,45 @@ def test_fetch_limit_health_and_errors() -> None:
     status[0] = 503
     with pytest.raises(RuntimeError, match="HTTP 503"):
         a.fetch(FetchRequest({}))
+
+
+def test_tract_csv_rows() -> None:
+    from equity.adapters.federal.fhfa_hpi import FhfaHpiTract
+
+    path = FIX.parent.parent / "us.fhfa.hpi_tract" / "limit-30.csv"
+    f = Fetched("us.fhfa.hpi_tract", "x", datetime(2026, 11, 26, tzinfo=UTC), 200,
+                path.read_bytes(), "text/csv")  # fmt: skip
+    facts = [r.row for r in FhfaHpiTract().normalize(f) if r.table == "house_price_index"]
+    assert len(facts) == 30 and {r["geo_level"] for r in facts} == {"tract"}
+    assert all(len(r["geo_id"]) == 11 for r in facts)
+    body = (b"tract,state_abbr,year,annual_change,hpi,hpi1990,hpi2000\n"
+            b"01001020100,AL,1999,-4.86,95.14,,95.21\n01001020100,AL,1999,x,1,,\n"
+            b"0100,AL,1999,,1,,\n01001020100,AL,yr,,1,,\n")  # fmt: skip
+    raw = Fetched("x", "x", f.retrieved_at, 200, body, "")
+    rows = [r.row for r in FhfaHpiTract().normalize(raw) if r.table == "house_price_index"]
+    assert [(r["year"], r["index_value"], r["index_1990_base"]) for r in rows] == [
+        (1999, 95.14, None)]  # duplicate, short tract and bad year dropped  # fmt: skip
+
+
+def test_tract_fetch_limit_and_health() -> None:
+    from equity.adapters.federal.fhfa_hpi import FhfaHpiTract
+
+    body = b"tract,state_abbr,year,annual_change,hpi,hpi1990,hpi2000\n" + b"".join(
+        f"0100102010{i},AL,2000,1,{100 + i},,\n".encode() for i in range(5)
+    )
+    status = [200]
+
+    def transport(url: str, headers: Mapping[str, str], timeout: float) -> tuple[int, bytes, str]:
+        if url.endswith("robots.txt"):
+            return 404, b"", ""
+        return status[0], body, "text/csv"
+
+    a = FhfaHpiTract(PoliteClient(min_interval_s=0, retries=0, transport=transport,
+                                  sleep=lambda s: None))  # fmt: skip
+    assert a.fetch(FetchRequest({"limit": "2"})).content.count(b"\n") == 3
+    assert a.source_row()["base_url"].endswith("hpi_at_tract.csv")
+    h = a.health()
+    assert h.ok and h.detail == "5 sample tract-years"
+    status[0] = 500
+    with pytest.raises(RuntimeError, match="HTTP 500"):
+        a.fetch(FetchRequest({}))

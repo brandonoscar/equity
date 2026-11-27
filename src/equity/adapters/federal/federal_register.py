@@ -153,7 +153,8 @@ class FederalRegisterRealty(Adapter):
 
     def health(self) -> HealthReport:
         try:
-            data, _ = self._get(self._params("realty", datetime.now(UTC).year, 1, 1))
+            query = next(iter(self.queries))  # the loan-sale source has no "realty" query
+            data, _ = self._get(self._params(query, datetime.now(UTC).year, 1, 1))
         except (RuntimeError, ValueError, OSError) as exc:
             return HealthReport(self.source_id, False, datetime.now(UTC), repr(exc))
         rows = data.get("results") or []

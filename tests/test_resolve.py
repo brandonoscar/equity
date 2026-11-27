@@ -829,6 +829,31 @@ def test_a_per_source_doc_type_filter_leaves_other_sources_alone(
     assert doc_type_filter(None) == "" and doc_type_filter([]) == ""
 
 
+def test_every_mortgage_source_yields_mortgages_on_parcels() -> None:
+    """A run's mortgage source must give MORTGAGE instruments linked to parcels, or equity
+    netting silently does nothing for that run (the reason the Florida official-records
+    indexes, which carry no parcel ids, are not mortgage sources)."""
+    from datetime import UTC, datetime
+    from pathlib import Path
+
+    from equity.adapters.base import Fetched
+    from equity.adapters.registry import by_source_id
+    from equity.matching.resolve import STATES
+
+    fixtures = Path(__file__).parent / "fixtures" / "adapters"
+    sources = sorted({s for spec in STATES.values() for s in spec.get("mortgages") or []})
+    assert "pa.philadelphia.rtt" in sources
+    for sid in sources:
+        cls = by_source_id(sid)
+        path = sorted((fixtures / sid).glob("*"))[0].resolve()
+        rows = list(cls().normalize(Fetched(sid, path.as_uri(), datetime(2025, 12, 31, tzinfo=UTC),
+                                            200, path.read_bytes(), "")))  # fmt: skip
+        mortgages = {r.row["instrument_uid"] for r in rows
+                     if r.table == "instrument" and r.row["doc_type"] == "MORTGAGE"}  # fmt: skip
+        linked = {r.row["instrument_uid"] for r in rows if r.table == "instrument_parcel"}
+        assert mortgages & linked, f"{sid}: no MORTGAGE linked to a parcel in its fixture"
+
+
 def test_records_that_name_an_owner_fill_parcels_without_roll_owners(tmp_path: Path) -> None:
     """A permit's owner or a deed's grantee names the owner of a lot whose roll has no owner
     names: the latest such record per parcel joins the owners. A roll owner is never displaced,

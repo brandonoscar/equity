@@ -2,6 +2,12 @@
 
 from __future__ import annotations
 
+from equity.adapters.assessment_ratios import (
+    CTEqualizedGrandList,
+    NYEqualizationRates,
+    NYResidentialAssessmentRatios,
+)
+
 # REGISTRY is re-exported: importing it from here guarantees every adapter below is registered.
 from equity.adapters.base import REGISTRY as REGISTRY
 from equity.adapters.base import Adapter, register
@@ -9,6 +15,12 @@ from equity.adapters.business_registry import all_registry_adapters
 from equity.adapters.co_ucc import ColoradoUCC
 from equity.adapters.code_links import NJMunicipalCodeLinks
 from equity.adapters.dc_business import DCBusiness
+from equity.adapters.death_records import (
+    CookBurials,
+    CookHeightsCrematory,
+    CookIndigentCremations,
+    CookUnclaimedPersons,
+)
 from equity.adapters.deeds import all_deed_adapters
 from equity.adapters.federal.cms_lists import CMSOptOutAffidavits, CMSRevokedProviders
 from equity.adapters.federal.cms_nppes import CMSNPPES
@@ -21,7 +33,7 @@ from equity.adapters.federal.fcc_uls import FCC_ULS_ADAPTERS
 from equity.adapters.federal.fda import FDADrugEstablishments
 from equity.adapters.federal.fdic import FDICInstitutions, FDICLocations
 from equity.adapters.federal.federal_register import FederalRegisterLoanSales, FederalRegisterRealty
-from equity.adapters.federal.fhfa_hpi import FhfaHpiZip5
+from equity.adapters.federal.fhfa_hpi import FhfaHpiTract, FhfaHpiZip5
 from equity.adapters.federal.fjc_idb import FJCCivilJudgments
 from equity.adapters.federal.fjc_idb_direct import FJCDirectCivilJudgments
 from equity.adapters.federal.fmcsa import FMCSACarrierCensus
@@ -73,6 +85,7 @@ from equity.adapters.tx.stratmap import TexasStratMapParcels
 from equity.adapters.tx_harris_jp import HarrisJPJudgments
 from equity.adapters.tx_travis_delinquent import TravisTaxDelinquent
 from equity.adapters.voter_files import BoulderCountyVoterFile, NorthCarolinaVoterFile
+from equity.adapters.vt_pttr_archive import VermontTransferArchive
 from equity.adapters.wv.delinquent import WVDelinquentProperties
 from equity.adapters.wv.parcelweb import MonongaliaParcelWeb
 from equity.adapters.wv.statewide_parcels import WVStatewideParcels
@@ -109,6 +122,14 @@ _ALL: tuple[type[Adapter], ...] = (
     ProvidenceTaxRoll,
     HarrisJPJudgments,
     TravisTaxDelinquent,
+    VermontTransferArchive,
+    NYResidentialAssessmentRatios,
+    NYEqualizationRates,
+    CTEqualizedGrandList,
+    CookUnclaimedPersons,
+    CookIndigentCremations,
+    CookBurials,
+    CookHeightsCrematory,
     HillsboroughOfficialRecords,
     HillsboroughCivilCases,
     HillsboroughCivilFilings,
@@ -124,6 +145,7 @@ _ALL: tuple[type[Adapter], ...] = (
     FederalRegisterRealty,
     FederalRegisterLoanSales,
     FhfaHpiZip5,
+    FhfaHpiTract,
     SBAChargeOffs,
     SBAPPPChargeOffs,
     SBAPPPLoans,

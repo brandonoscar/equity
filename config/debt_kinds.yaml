@@ -59,6 +59,7 @@ sources:
   pa.allegheny.tax_liens: tax_lien
   pa.dli.uc_liens: tax_lien
   ne.dor.delinquent_taxpayers: tax_lien
+  sd.dor.top_delinquent_business: tax_lien       # report states a lien was filed on each
   ca.ftb.top500_personal: tax_lien
   ca.ftb.top500_corporate: tax_lien
   ca.cdtfa.top500: tax_delinquency
@@ -135,6 +136,7 @@ sources:
   oh.lorain.forfeited_land_sale: tax_delinquency
   oh.medina.delinquent_taxes: tax_delinquency
   oh.stark.delinquent_taxes: tax_delinquency
+  oh.stark.civil_sales: foreclosure
   oh.stark.foreclosures: foreclosure
   sc.horry.delinquent_tax_sale: tax_delinquency
   sc.york.tax_sale: tax_delinquency

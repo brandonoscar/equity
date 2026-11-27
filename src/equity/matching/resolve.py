@@ -1020,7 +1020,9 @@ STATES: dict[str, dict[str, Any]] = {
                       "pa.washington.parcels", "pa.york.parcels", "pa.cumberland.parcels",
                       "pa.luzerne.parcels"],
            "parcel_on_lien": True, "courts": FEDERAL_COURTS, "street_town": True,
-           "deeds": ["pa.philadelphia.rtt"],
+           # Philadelphia RTT: mortgages and satisfactions on OPA lots (42101-<opa>), netted
+           # by the owner-approved paid rules in equity.py; also the deed source for transfers.
+           "deeds": ["pa.philadelphia.rtt"], "mortgages": ["pa.philadelphia.rtt"],
            "record_owners": ["pa.philadelphia.permits", "pa.philadelphia.violations",
                              "pa.philadelphia.appeals", "pa.philadelphia.clean_seal",
                              "pa.philadelphia.demolitions"]},
@@ -1028,7 +1030,7 @@ STATES: dict[str, dict[str, Any]] = {
     "VT": {"debtors": ["vt.tax.top100_individuals", "vt.tax.top100_businesses"],
            "owners": ["vt.statewide.parcels"], "courts": FEDERAL_COURTS,
            "street_town": True,
-           "deeds": ["vt.tax.property_transfers"]},
+           "deeds": ["vt.tax.property_transfers", "vt.tax.property_transfers_archive"]},
     # Chicago DOAH cites the property's street address with no ZIP: street + town rules.
     "IL-COOK": {"debtors": ["il.chicago.doah_judgments", "il.chicago.doe_judgments",
                             "il.chicago.vacant_building_judgments"], "owners": ["il.cook.parcels"],
@@ -1204,7 +1206,8 @@ STATES: dict[str, dict[str, Any]] = {
                       "sc.spartanburg.parcels", "sc.york.parcels", "sc.beaufort.parcels",
                       "sc.berkeley.parcels", "sc.dorchester.parcels", "sc.pickens.parcels",
                       "sc.sumter.parcels"]},
-    "SD": {"debtors": [], "courts": FEDERAL_COURTS,
+    # South Dakota's business-tax delinquents (a lien filed on each) against county owners.
+    "SD": {"debtors": ["sd.dor.top_delinquent_business"], "courts": FEDERAL_COURTS,
            "owners": ["sd.beadle.parcels", "sd.codington.parcels", "sd.lincoln.parcels",
                       "sd.miner.parcels", "sd.minnehaha.parcels", "sd.pennington.parcels"]},
     "TN": {"debtors": [], "courts": FEDERAL_COURTS,
@@ -1237,7 +1240,8 @@ STATES: dict[str, dict[str, Any]] = {
     "OH-COUNTIES": {"debtors": ["oh.cuyahoga.delinquent_taxes", "oh.cuyahoga.forfeited_land_sale",
                                 "oh.franklin.tax_lien_sale", "oh.greene.delinquent_taxes",
                                 "oh.lorain.delinquent_taxes", "oh.lorain.forfeited_land_sale",
-                                "oh.stark.delinquent_taxes", "oh.stark.foreclosures"],
+                                "oh.stark.delinquent_taxes", "oh.stark.foreclosures",
+                                "oh.stark.civil_sales"],
                     "courts": FEDERAL_COURTS,
                     "parcel_on_lien": True,
                     "owners": ["oh.clermont.parcels", "oh.cuyahoga.parcels",

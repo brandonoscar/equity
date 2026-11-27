@@ -431,9 +431,12 @@ EXTRA_SOURCES = ("wv.statewide.delinquent", "ny.nyc.acris.real", "ny.nyc.dof.con
                  "dc.dlcp.business", "pa.dos.business", "ny.sos.business", "ct.sos.business",
                  "co.sos.business", "or.sos.business", "ia.sos.business", "ri.sos.business",
                  "md.baltimore_city.citation_liens", "tx.harris.jp.judgments",
-                 "tx.travis.tax_delinquent", "mi.detroit.blight_judgments",
+                 "tx.travis.tax_delinquent", "vt.tax.property_transfers_archive",
+                 "mi.detroit.blight_judgments",
                  "ne.douglas.tax_liens", "us.hud.fha_reo", "us.federalregister.realty_notices",
-                 "us.federalregister.loan_sales", "us.fhfa.hpi_zip5",
+                 "us.federalregister.loan_sales", "us.fhfa.hpi_zip5", "us.fhfa.hpi_tract",
+                 "ny.orpts.residential_assessment_ratios", "ny.orpts.equalization_rates",
+                 "ct.opm.equalized_grand_list",
                  "us.sba.chargeoffs", "ny.sos.name_history")  # fmt: skip
 
 

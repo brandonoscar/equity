@@ -720,6 +720,43 @@ def test_pdf_source(tmp_path: Path) -> None:
         load_lien_config(_cfg(tmp_path, api="pdf", url="https://d.test/x.pdf"))
 
 
+def test_pdf_source_with_fixed_columns(tmp_path: Path) -> None:
+    """pdf_columns: a two-line header and right-aligned amounts (the amount starts left of its
+    header word) are cut at fixed x positions; a row needs a name and a dollar total, so the
+    second (DBA) line and the grand-total line are dropped."""
+    cfg = _cfg(
+        tmp_path,
+        api="pdf",
+        url="https://d.test/list.pdf",
+        header="Owner Name",
+        pdf_columns={
+            "names": ["owner", "city", "total"],
+            "cuts": [150, 300],
+            "require": {"owner": r"\S", "total": r"^\$[0-9,.]+$"},
+        },
+        portal=None,
+        dataset=None,
+        parcel=None,
+        county_fips="46",
+        state="SD",
+        released_on=None,
+        as_of={"field": "as_of", "after": "REPORT DATE"},
+        date_field="as_of",
+        uid=["owner", "total"],
+        amount="total",
+        parties=[{"role": "debtor", "name": "owner", "address": {"city": "city"}}],
+    )
+    cls = lien_adapter_for(load_lien_config(cfg))
+    pdf = _pdf([(300, 760, "REPORT DATE: 11/02/2026"), (36, 740, "Owner Name"),
+                (36, 728, "DBA Name"), (160, 728, "City"), (330, 728, "Total Due"),
+                (36, 712, "ACME LLC"), (160, 711, "PIERRE"), (310, 711, "$12,000.50"),
+                (36, 700, "ACME DINER"), (310, 680, "$12,000.50")])  # fmt: skip
+    out = _rows_of(cls, {"list.pdf": pdf})
+    (inst,) = [r for t, r in out if t == "instrument"]
+    assert (str(inst["recorded_on"]), str(inst["principal_amount"])) == ("2026-11-02", "12000.50")
+    assert [r["raw_name"] for t, r in out if t == "party"] == ["ACME LLC"]
+
+
 def test_one_field_can_hold_several_names_and_a_constant_city(tmp_path: Path) -> None:
     cfg = _cfg(tmp_path, parcel=None, county_fips="17031", released_on=None,
                parties=[{"role": "debtor", "name": "resp", "split": " | ",
@@ -1019,6 +1056,25 @@ def test_arcgis_and_ckan_health_report_fields(tmp_path: Path) -> None:
     assert h.ok and h.shape == ("amt", "case_id") and h.rows is None
 
 
+def test_arcgis_health_counts_every_layer(tmp_path: Path) -> None:
+    """One layer per bill year: an old year's layer that has emptied out (every bill paid) does
+    not mark the source down; the count is over all layers, the fields from the newest."""
+    cfg = _cfg(tmp_path, api="arcgis", portal=None, dataset=None,
+               layer_urls=["https://g.test/y2009/FeatureServer/0",
+                           "https://g.test/y2024/FeatureServer/0"])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    h = cls(
+        _client(
+            {
+                "y2009/FeatureServer/0/query": b'{"count": 0}',
+                "y2024/FeatureServer/0/query": b'{"count": 5}',
+                "y2024/FeatureServer/0?f=json": b'{"fields": [{"name": "bill"}]}',
+            }
+        )
+    ).health()
+    assert h.ok and h.rows == 5 and h.shape == ("bill",)
+
+
 def test_epoch_milliseconds_before_1970_are_read() -> None:
     """ArcGIS dates before 1970 are negative epoch milliseconds (deed histories go back to 1880)."""
     from datetime import date
@@ -1138,3 +1194,20 @@ def test_zero_pins_name_no_lot_and_restrictions_reach_the_source_row(tmp_path: P
     row = cls().source_row()
     assert row["terms_summary"] == "RESTRICTED[internal_use_only,no_redistribution] s"
     assert row["robots_checked_on"] == "2026-11-24"
+
+
+def test_cut_at_names_and_split_lots_without_leading_zeros(tmp_path: Path) -> None:
+    cfg = _cfg(tmp_path, released_on=None, uid="case", date_field="filed", amount="due",
+               parties=[{"role": "debtor", "name": "defendant", "split": ";", "cut_at": ","}],
+               parcel={"kind": "pin", "field": "lots", "county_fips": "39151", "split": ",",
+                       "strip": "- ", "lstrip_zeros": True})  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    row = {"case": "2026CV1", "filed": "2026-03-01", "due": "9282.42",
+           "defendant": "ACME LLC, 711 7TH ST NW, CANTON OH 44703; ANN LEE, ADDRESS UNKNOWN;",
+           "lots": "02-24227, 02-24228,00-0000"}  # fmt: skip
+    body = json.dumps({"rows": [row]}).encode()
+    out = [(r.table, dict(r.row)) for r in cls().normalize(Fetched(cls.source_id, "x", AT, 200,
+                                                                   body, ""))]  # fmt: skip
+    assert sorted(r["raw_name"] for t, r in out if t == "party") == ["ACME LLC", "ANN LEE"]
+    assert sorted(r["parcel_uid"] for t, r in out if t == "instrument_parcel") == [
+        "39151-224227", "39151-224228"]  # an all-zeros placeholder names no lot  # fmt: skip
