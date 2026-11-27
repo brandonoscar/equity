@@ -204,6 +204,7 @@ The catalog keeps `name_key()` and `street_norm()` as macros, plus these views:
 | `v_party_documents` | party → recorded document or debt-list item |
 | `v_party_cases` | party → court case → judgment |
 | `v_parcel_equity` / `parcel_equity` | net equity per parcel where recorder data exists |
+| `leads` | stored by `compact`: one ranked row per debtor_owner_candidates row with the identity grade (best debtor-owner pair by the matcher's rules: `lien_names_parcel`, `matcher_auto`, `name_address`, `matcher_review`, `name_zip`, `name_only`), net equity over owned parcels where recorder data exists, open mortgage principal, homestead, deeds recorded after the first debt, the matcher's bankruptcy flags and same-name bankruptcy cases, and the debt's age. Ranked by grade, known net equity, then debt amount |
 | `v_debtor_owner_candidates` | one row per name and state: debtor-side parties (debtor, borrower, grantor) on a judgment, lien or lis pendens whose exact name also owns parcels in the same state, with debts and parcels aggregated (name-only leads; on Ohio, Kentucky and Louisiana: 53,252 names, about 2 s) |
 
 ```sql

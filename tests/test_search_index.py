@@ -721,3 +721,19 @@ def test_parcel_shows_supplements(cat: duckdb.DuckDBPyConnection) -> None:
     assert [(v["appraised_land"], v["appraised_bldg"]) for v in p["value_parts"]] == [
         (40000, 140000)]  # fmt: skip
     assert p["parcel_links"] == [] and p["owner_types"] == []
+
+
+def test_leads_table_grades_and_ranks(cat: duckdb.DuckDBPyConnection) -> None:
+    compact(cat)
+    rows = cat.execute("""
+        SELECT state, grade, grade_rule, debts, debt_amount, owned_parcels, homestead_any,
+               deeds_after_debt, same_name_bankruptcies, first_debt_age_days > 0
+        FROM leads""").fetchall()  # fmt: skip
+    assert len(rows) == 1
+    state, grade, rule, debts, amount, owned, homestead, deeds, bk, aged = rows[0]
+    assert (state, debts, amount, owned, deeds, bk, aged) == ("OH", 1, 12500.0, 1, 0, 0, True)
+    from equity.search import grade_pair
+
+    pair = grade_pair(cat, "oh.cuyahoga.liens:d1", "oh.franklin.parcels:o1")
+    assert (grade, rule) == (pair["grade"], pair["rule"]) == ("A", "lien_names_parcel")
+    assert homestead in (True, False)

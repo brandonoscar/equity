@@ -1,28 +1,40 @@
 ---
 name: lead-scan
-description: Shortlist debtors who own property in a state from the stored debtor_owner_candidates table (search index), apply buyer criteria (debt size, parcel value, parcel count, debt type, age), drop rejects, and hand the shortlist to the verify-leads workflow or the debtor-dossier skill. Use when asked to find leads, prospects, or debtors with equity.
+description: Shortlist debtors who own property in a state from the stored, ranked leads table (search index: grade, net equity, homestead, bankruptcy, transfers, debt age), apply buyer criteria (debt size, parcel value, parcel count, debt type, age), drop rejects, and hand the shortlist to the verify-leads workflow or the debtor-dossier skill. Use when asked to find leads, prospects, or debtors with equity.
 ---
 
 # Lead scan
 
-1. **Query the stored table** through the `equity-search` MCP server (or
-   `duckdb data/search_index.duckdb` read-only). Start from:
+1. **Query the ranked `leads` table** through the `equity-search` MCP server (or
+   `duckdb data/search_index.duckdb` read-only). One row per name and state; the grade is the
+   best debtor-owner pair by the matcher's rules (same order as `--grade`), and rows are
+   already ranked by grade, then known net equity, then debt amount (facts, not a score):
 
    ```sql
-   SELECT state, debtor_name, name_key, debts, debt_amount, doc_types, first_debt_on,
-          last_debt_on, parcels, parcel_value, debtor_refs, owner_refs, parcel_uids
-   FROM debtor_owner_candidates
-   WHERE state = 'OH'
+   SELECT lead_id, state, debtor_name, grade, grade_rule, debts, debt_amount, doc_types,
+          first_debt_on, last_debt_age_days, owned_parcels, parcel_value, value_tax_year,
+          parcels_with_net_equity, net_equity_known, open_mortgage_principal, homestead_any,
+          deeds_after_debt, matcher_bankruptcy, same_name_bankruptcies,
+          debtor_refs, owner_refs, parcel_uids
+   FROM leads
+   WHERE state = 'OH' AND grade IN ('A', 'B')
      AND debt_amount >= 10000          -- buyer's minimum
      AND parcel_value >= 50000         -- gross, before mortgages
-     AND parcels <= 5                  -- big portfolios are usually creditors or agencies
-   ORDER BY debt_amount DESC NULLS LAST
+     AND owned_parcels <= 5            -- big portfolios are usually creditors or agencies
+     AND NOT homestead_any             -- homestead protection cuts reachable equity
+     AND matcher_bankruptcy IS NULL
+   ORDER BY grade, net_equity_known DESC NULLS LAST, debt_amount DESC NULLS LAST
    LIMIT 50;
    ```
 
-   If `debtor_owner_candidates` is missing, the index has not been compacted: run
-   `uv run python -m equity.search_index compact` (writes; MCP queries wait meanwhile).
-   Buyer criteria live in `config/private/queries/` when the owner has set them; use them.
+   Read the columns as they are: `net_equity_known` sums only the
+   `parcels_with_net_equity` parcels (counties with recorder data); elsewhere senior debt is
+   unknown, not zero. `deeds_after_debt` > 0 means a deed was recorded against an owned parcel
+   after the first debt: check it (`--parcel`) before counting the equity.
+   `same_name_bankruptcies` is the same name on a bankruptcy case in the state: a lead to
+   check, not a match. If `leads` is missing, run `uv run python -m equity.search_index
+   compact` (or `compact --only leads`). Buyer criteria live in `config/private/queries/`
+   when the owner has set them; use them.
 2. **Drop rejects before verifying:** governments and agencies (CITY OF, COUNTY, STATE OF,
    UNITED STATES, HOUSING AUTHORITY, UNIVERSITY, BOARD OF), placeholder names, "Name
    withheld", one-word names, names shared by more than ~25 records (check with

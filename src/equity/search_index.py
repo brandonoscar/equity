@@ -1122,6 +1122,119 @@ def _in_list(values: list[str]) -> str:
     return "(" + ", ".join("'" + v.replace("'", "''") + "'" for v in values) + ")"
 
 
+# One ranked row per debtor_owner_candidates row: the identity grade by the matcher's rules
+# (the same order as equity.search.grade_pair, best pair wins), net equity over the owned
+# parcels, homestead, bankruptcy, transfers after the debt, and the debt's age. Ranked by
+# grade, then known net equity, then debt amount: an ordering of facts, not a score.
+LEADS_SQL = """
+CREATE OR REPLACE TABLE leads AS
+WITH c AS (
+    SELECT row_number() OVER (ORDER BY state, name_key) AS lead_id, * FROM debtor_owner_candidates
+), dp AS (
+    SELECT lead_id, split_part(r, ':', 1) AS src, r[length(split_part(r, ':', 1)) + 2:] AS pid
+    FROM (SELECT lead_id, unnest(debtor_refs) AS r FROM c)
+), op AS (
+    SELECT lead_id, split_part(r, ':', 1) AS src, r[length(split_part(r, ':', 1)) + 2:] AS pid
+    FROM (SELECT lead_id, unnest(owner_refs) AS r FROM c)
+), owned AS (
+    SELECT DISTINCT op.lead_id, op.src, op.pid, o.parcel_uid
+    FROM op JOIN owners o ON o.source_id = op.src AND o.party_id = op.pid
+), lien AS (  -- A lien_names_parcel: a document of the debtor recorded against an owned parcel
+    SELECT DISTINCT dp.lead_id FROM dp
+    JOIN instrument_parties ip ON ip.source_id = dp.src AND ip.party_id = dp.pid
+    JOIN instrument_parcels x ON x.source_id = ip.source_id AND x.instrument_uid = ip.instrument_uid
+    JOIN owned ON owned.lead_id = dp.lead_id AND owned.parcel_uid = x.parcel_uid
+), mm AS (
+    SELECT dp.lead_id, bool_or(m.decision = 'auto') AS auto, bool_or(m.decision <> 'auto') AS review
+    FROM dp JOIN m_matches m ON m.debtor_party_id = dp.pid
+    JOIN op ON op.lead_id = dp.lead_id AND op.pid = m.owner_party_id
+    GROUP BY dp.lead_id
+), dn AS (
+    SELECT dp.lead_id, n.address_id, a.zip5
+    FROM dp JOIN names n ON n.source_id = dp.src AND n.party_id = dp.pid
+    LEFT JOIN addresses a ON a.address_id = n.address_id
+), oaddr AS (  -- owners' mailing addresses and owned parcels' property addresses
+    SELECT op.lead_id, n.address_id
+    FROM op JOIN names n ON n.source_id = op.src AND n.party_id = op.pid
+    WHERE n.address_id IS NOT NULL
+    UNION
+    SELECT owned.lead_id, p.situs_address_id FROM owned
+    JOIN parcels p ON p.source_id = owned.src AND p.parcel_uid = owned.parcel_uid
+    WHERE p.situs_address_id IS NOT NULL
+), addr AS (
+    SELECT DISTINCT dn.lead_id FROM dn JOIN oaddr USING (lead_id, address_id)
+), ozip AS (
+    SELECT DISTINCT oaddr.lead_id, a.zip5 FROM oaddr JOIN addresses a USING (address_id)
+    WHERE a.zip5 IS NOT NULL
+), zip AS (
+    SELECT DISTINCT dn.lead_id FROM dn JOIN ozip USING (lead_id, zip5)
+), eq AS (
+    SELECT owned.lead_id, count(DISTINCT owned.parcel_uid) AS owned_parcels,
+           count(DISTINCT pe.parcel_uid) FILTER (WHERE pe.equity_est IS NOT NULL) AS equity_known,
+           sum(DISTINCT pe.equity_est) AS net_equity_known,
+           sum(DISTINCT pe.open_principal) AS open_mortgage_principal,
+           bool_or(v.homestead) AS homestead_any,
+           max(v.tax_year) AS value_tax_year
+    FROM owned
+    LEFT JOIN parcel_equity pe ON pe.parcel_uid = owned.parcel_uid
+    LEFT JOIN parcel_values v ON v.source_id = owned.src AND v.parcel_uid = owned.parcel_uid
+    GROUP BY owned.lead_id
+), xfer AS (  -- deeds recorded against an owned parcel after the first debt
+    SELECT owned.lead_id, count(DISTINCT i.instrument_uid) AS deeds_after_debt,
+           max(i.recorded_on) AS last_deed_on
+    FROM owned JOIN c USING (lead_id)
+    JOIN instrument_parcels x ON x.parcel_uid = owned.parcel_uid
+    JOIN instruments i ON i.source_id = x.source_id AND i.instrument_uid = x.instrument_uid
+    WHERE i.doc_type = 'DEED' AND i.recorded_on > c.first_debt_on
+    GROUP BY owned.lead_id
+), bk AS (  -- the matcher's bankruptcy flags on a debtor record
+    SELECT dp.lead_id, list(DISTINCT b.chapter || ' ' || coalesce(b.status, '')) AS flags
+    FROM dp JOIN m_bankruptcy_flags b ON b.debtor_party_id = dp.pid
+    GROUP BY dp.lead_id
+), bkname AS (  -- the same name on a bankruptcy case in the state (a lead, not a match)
+    SELECT c.lead_id, count(DISTINCT bc.case_uid) AS cases,
+           max(bc.petition_on) AS last_petition_on,
+           bool_or(bc.discharge_on IS NOT NULL) AS any_discharge
+    FROM c JOIN names n ON n.name_key = c.name_key
+    JOIN sources s ON s.source_id = n.source_id AND s.state = c.state
+    JOIN case_parties cp ON cp.source_id = n.source_id AND cp.party_id = n.party_id
+    JOIN bankruptcies bc ON bc.source_id = cp.source_id AND bc.case_uid = cp.case_uid
+    GROUP BY c.lead_id
+)
+SELECT c.lead_id, c.state, c.debtor_name, c.name_key,
+       CASE WHEN lien.lead_id IS NOT NULL OR mm.auto OR addr.lead_id IS NOT NULL THEN 'A'
+            WHEN mm.review OR zip.lead_id IS NOT NULL THEN 'B' ELSE 'C' END AS grade,
+       CASE WHEN lien.lead_id IS NOT NULL THEN 'lien_names_parcel'
+            WHEN mm.auto THEN 'matcher_auto'
+            WHEN addr.lead_id IS NOT NULL THEN 'name_address'
+            WHEN mm.review THEN 'matcher_review'
+            WHEN zip.lead_id IS NOT NULL THEN 'name_zip' ELSE 'name_only' END AS grade_rule,
+       c.debts, c.debt_amount, c.doc_types, c.first_debt_on, c.last_debt_on,
+       date_diff('day', c.first_debt_on, current_date) AS first_debt_age_days,
+       date_diff('day', c.last_debt_on, current_date) AS last_debt_age_days,
+       c.parcels, c.parcel_value, eq.value_tax_year, eq.owned_parcels,
+       eq.equity_known AS parcels_with_net_equity, eq.net_equity_known,
+       eq.open_mortgage_principal, coalesce(eq.homestead_any, false) AS homestead_any,
+       coalesce(xfer.deeds_after_debt, 0) AS deeds_after_debt, xfer.last_deed_on,
+       bk.flags AS matcher_bankruptcy, coalesce(bkname.cases, 0) AS same_name_bankruptcies,
+       bkname.last_petition_on AS same_name_last_petition_on,
+       bkname.any_discharge AS same_name_any_discharge,
+       c.debtor_refs, c.owner_refs, c.parcel_uids
+FROM c
+LEFT JOIN lien USING (lead_id) LEFT JOIN mm USING (lead_id) LEFT JOIN addr USING (lead_id)
+LEFT JOIN zip USING (lead_id) LEFT JOIN eq USING (lead_id) LEFT JOIN xfer USING (lead_id)
+LEFT JOIN bk USING (lead_id) LEFT JOIN bkname USING (lead_id)
+ORDER BY state, grade, net_equity_known DESC NULLS LAST, debt_amount DESC NULLS LAST
+"""
+
+
+def store_leads(con: duckdb.DuckDBPyConnection) -> None:
+    """(Re)build the stored leads table (LEADS_SQL); needs debtor_owner_candidates and
+    parcel_equity, which compact stores first."""
+    con.execute(LEADS_SQL)
+    con.execute("CHECKPOINT")
+
+
 def compact(con: duckdb.DuckDBPyConnection, only: Iterable[str] | None = None) -> None:
     """Rewrite the search tables sorted by their lookup keys, so DuckDB's per-block min/max
     skips almost everything on an exact name or word lookup. `only` re-sorts just those
@@ -1131,6 +1244,9 @@ def compact(con: duckdb.DuckDBPyConnection, only: Iterable[str] | None = None) -
         for table in only:
             if table == "word_edits":
                 fill_word_edits(con)
+                continue
+            if table == "leads":
+                store_leads(con)
                 continue
             sort_table(con, table, keys[table], _sort_work(con))
         return
@@ -1148,6 +1264,7 @@ def compact(con: duckdb.DuckDBPyConnection, only: Iterable[str] | None = None) -
     con.execute("CREATE OR REPLACE TABLE parcel_equity AS "
                 "SELECT * FROM v_parcel_equity ORDER BY parcel_uid")  # fmt: skip
     con.execute("CHECKPOINT")
+    store_leads(con)
 
 
 SHARE_PREFIX = "_search_index"
@@ -1215,6 +1332,7 @@ def pull(store: Any, db: Path, work: Path, log: Any = print) -> int:
                         ("parcel_equity", "v_parcel_equity")):  # fmt: skip
         con.execute(f"CREATE OR REPLACE TABLE {table} AS SELECT * FROM {view}")  # noqa: S608
     con.execute("CHECKPOINT")
+    store_leads(con)
     con.close()
     tmp.replace(db)
     shutil.rmtree(work, ignore_errors=True)
