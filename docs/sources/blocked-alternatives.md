@@ -171,7 +171,7 @@ loaded. Not added:
 Every ArcGIS server and ArcGIS Online org already in config/ was listed for services and
 layers named delinquent, tax sale, tax lien, foreclosure, forfeit, redemption, surplus or
 excess. Added: `ga.dekalb.delinquent_taxes`, `md.baltimore_city.tax_sale_2026`,
-`oh.franklin.delinquent_taxes`; `nc.buncombe.unpaid_bills` now holds back the current roll.
+`oh.franklin.delinquent_taxes`, `ga.richmond.delinquent_taxes`; `nc.buncombe.unpaid_bills` now holds back the current roll.
 
 | Lead | Status |
 |---|---|
@@ -180,3 +180,6 @@ excess. Added: `ga.dekalb.delinquent_taxes`, `md.baltimore_city.tax_sale_2026`,
 | Douglas CO investor- and county-held tax liens (1,395) | Account number only (no parcel id, no owner): cannot be linked yet. |
 | Cuyahoga, Dakota MN, St. Mary's MD, Cochise, Kalamazoo, Bluefield layers | Already loaded under other names. |
 | Muncie and Hammond IN tax sale lists | Held: Indiana limits commercial use of name and address lists from public agencies (IC 5-14-3-3(f), docs/coverage.md); owner decision. |
+| Lexington SC "DelinquentTaxParcels_2023" (1,138) | A 2023 list; not current. |
+| Wyandotte KS Tax_Delinquent, Utah County UT May tax sale | The servers answer 403 and 401 (login required). |
+| Butler KS 2018 tax sale (7), Evansville IN tax sale layers | Stale or tiny; Indiana layers held for the IC 5-14-3-3(f) decision. |
