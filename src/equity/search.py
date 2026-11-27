@@ -39,6 +39,7 @@ import json
 import sys
 from collections.abc import Iterable
 from dataclasses import asdict, dataclass, field
+from datetime import date
 from pathlib import Path
 from typing import Any
 
@@ -80,6 +81,10 @@ class Hit:
     businesses: int = 0  # business roles this party holds
     officers: int = 0  # for a business hit: officer, agent and member rows
     name_key: str = ""
+    name_flag: str | None = None  # why this name cannot be a lead (search_index NAME_FLAGS)
+    matcher: str | None = None  # the matcher's strongest link for this party: decision rule
+    person_id: str | None = None  # the matcher's merged person (people.parquet)
+    bankruptcy: bool = False  # the matcher flagged a bankruptcy case for this party
 
     @property
     def ref(self) -> str:
@@ -97,6 +102,8 @@ class Entity:
     cases: list[dict[str, Any]] = field(default_factory=list)
     businesses: list[dict[str, Any]] = field(default_factory=list)
     same_name: list[dict[str, Any]] = field(default_factory=list)
+    name_flag: str | None = None
+    matcher: dict[str, Any] = field(default_factory=dict)
 
 
 def query_key(con: duckdb.DuckDBPyConnection, name: str) -> str:
@@ -132,6 +139,7 @@ scored AS (
 ), ruled AS (
     SELECT *, CASE
       WHEN name_key = $key THEN 'exact'
+      WHEN list_contains($alts::VARCHAR[], name_key) THEN 'nickname'
       WHEN list_has_all(w, $words::VARCHAR[]) AND len(w) - $n BETWEEN 1 AND 2 THEN 'all_words'
       -- every query word but one is in the name; that one is an initial of a name word (or
       -- the name has its initial); word counts within 1; no full name word unexplained
@@ -155,6 +163,7 @@ scored AS (
 SELECT name_key, rule, sim,
        CASE rule WHEN 'exact' THEN 1.0
                  WHEN 'all_words' THEN 1.0 - 0.05 * (len(w) - $n)
+                 WHEN 'nickname' THEN 0.9
                  WHEN 'initial' THEN 0.85
                  WHEN 'sounds_like' THEN 0.82
                  ELSE round(0.8 * sim, 4) END AS score
@@ -162,6 +171,22 @@ FROM ruled WHERE rule IS NOT NULL
 ORDER BY score DESC, sim DESC, name_key
 LIMIT {MAX_KEYS}
 """  # noqa: S608
+
+
+def nickname_keys(con: duckdb.DuckDBPyConnection, key: str, limit: int = 24) -> list[str]:
+    """The query's name_key with one word swapped for an equivalent given name (BOB <->
+    ROBERT, BILL <-> WILLIAM; equity/data/nicknames.csv), at most `limit` keys."""
+    words = key.split(" ")
+    alts = con.execute(
+        f"SELECT word, alt FROM nicknames WHERE word IN {_in(words)} ORDER BY word, alt"  # noqa: S608
+    ).fetchall()
+    out: list[str] = []
+    for w, alt in alts:
+        swapped = sorted({*(x for x in words if x != w), str(alt)})
+        k = " ".join(swapped)
+        if k != key and k not in out:
+            out.append(k)
+    return out[:limit]
 
 
 def candidate_keys(con: duckdb.DuckDBPyConnection, key: str) -> list[str]:
@@ -192,7 +217,7 @@ def candidate_keys(con: duckdb.DuckDBPyConnection, key: str) -> list[str]:
             out |= {str(r[0]) for r in con.execute(
                 f"SELECT DISTINCT name_key FROM name_words WHERE word IN {_in(alike)} "  # noqa: S608
                 f"LIMIT {MAX_CANDIDATES}").fetchall()}  # fmt: skip
-    return sorted(out)
+    return sorted(out | set(nickname_keys(con, key)))
 
 
 def search(
@@ -208,7 +233,8 @@ def search(
         return []
     words = key.split(" ")
     ranked = con.execute(RULES_SQL, {"keys": candidate_keys(con, key), "words": words,
-                                     "key": key, "n": len(words)}).fetchall()  # fmt: skip
+                                     "key": key, "n": len(words),
+                                     "alts": nickname_keys(con, key)}).fetchall()  # fmt: skip
     rule = {str(k): (str(r), float(sc)) for k, r, _sim, sc in ranked}
     closeness = {str(k): float(sim or 0) for k, _r, sim, _sc in ranked}
     if not rule:
@@ -220,13 +246,14 @@ def search(
         params.append(state.upper())
     parties = [] if kind == "business" else _rows(con, f"""
         SELECT n.source_id, n.party_id, n.raw_name, n.party_kind, n.address_id, n.name_key,
-               s.state
+               s.state, n.name_flag
         FROM names n JOIN sources s USING (source_id)
         WHERE n.name_key IN {_in(rule)} {cond} {"AND n.party_kind = ?" if kind else ""}
     """, params + ([kind] if kind else []))  # noqa: S608  # fmt: skip
     firms = [] if kind not in (None, "org", "business") else _rows(con, f"""
         SELECT b.source_id, 'business:' || b.sos_id AS party_id, b.name AS raw_name,
-               'business' AS party_kind, NULL AS address_id, b.name_key, s.state
+               'business' AS party_kind, NULL AS address_id, b.name_key, s.state,
+               name_flag(b.name) AS name_flag
         FROM businesses b JOIN sources s USING (source_id)
         WHERE b.name_key IN {_in(rule)} {cond}
     """, params)  # noqa: S608  # fmt: skip
@@ -234,6 +261,7 @@ def search(
         parties + firms,
         key=lambda r: (
             -rule[r["name_key"]][1],
+            r["name_flag"] is not None,  # flagged names after clean ones
             -closeness[r["name_key"]],
             r["raw_name"],
             r["source_id"],
@@ -250,6 +278,7 @@ def search(
             rule[r["name_key"]][1],
             r["state"],
             name_key=r["name_key"],
+            name_flag=r["name_flag"],
         )
         for r in rows
     ]
@@ -311,6 +340,37 @@ def _annotate(
         h.officers = staff.get((h.source_id, h.party_id), 0)
         a = addr.get((h.source_id, h.party_id))
         h.address = lines.get(a) if a else None
+    _annotate_matcher(con, hits)
+
+
+RANK = {"auto": 0, "review": 1}
+
+
+def _annotate_matcher(con: duckdb.DuckDBPyConnection, hits: list[Hit]) -> None:
+    """The matcher's verdict on each hit (m_* tables, empty when no state's output is loaded):
+    its strongest link as debtor or owner, its merged person, and any bankruptcy flag."""
+    ids = {h.party_id for h in hits}
+    links: dict[str, tuple[str, str]] = {}
+    for d, o, rule, decision in con.execute(
+        "SELECT debtor_party_id, owner_party_id, rule_id, decision FROM m_matches "  # noqa: S608
+        f"WHERE debtor_party_id IN {_in(ids)} OR owner_party_id IN {_in(ids)}"
+    ).fetchall():
+        for pid in (d, o):
+            if pid in ids:
+                best = links.get(pid)
+                if best is None or RANK.get(decision, 9) < RANK.get(best[0], 9):
+                    links[pid] = (str(decision), str(rule))
+    person = dict(con.execute(
+        f"SELECT party_id, person_id FROM m_person_of WHERE party_id IN {_in(ids)}"  # noqa: S608
+    ).fetchall())  # fmt: skip
+    bk = {str(r[0]) for r in con.execute(
+        "SELECT debtor_party_id FROM m_bankruptcy_flags "  # noqa: S608
+        f"WHERE debtor_party_id IN {_in(ids)}").fetchall()}  # fmt: skip
+    for h in hits:
+        if h.party_id in links:
+            h.matcher = " ".join(links[h.party_id])
+        h.person_id = person.get(h.party_id)
+        h.bankruptcy = h.party_id in bk
 
 
 def _addr_text(r: dict[str, Any]) -> str:
@@ -371,7 +431,51 @@ def show(con: duckdb.DuckDBPyConnection, ref: str) -> Entity | None:
         WHERE n.name_key = ? AND NOT (n.source_id = ? AND n.party_id = ?)
         ORDER BY n.source_id, n.party_id LIMIT 50
     """, [n["name_key"], source_id, party_id])  # fmt: skip
+    e.name_flag = n.get("name_flag")
+    eq = _equity_rows(con, {p["parcel_uid"] for p in e.parcels})
+    for p in e.parcels:
+        p["equity"] = eq.get(p["parcel_uid"])
+    e.matcher = matcher_view(con, party_id)
     return e
+
+
+def _equity_rows(con: duckdb.DuckDBPyConnection, uids: set[str]) -> dict[str, dict[str, Any]]:
+    """Net-equity rows for parcels (parcel_equity, stored by compact; else the view)."""
+    if not uids:
+        return {}
+    have = {str(r[0]) for r in con.execute("SELECT table_name FROM duckdb_tables()").fetchall()}
+    table = "parcel_equity" if "parcel_equity" in have else "v_parcel_equity"
+    return {r["parcel_uid"]: r for r in _rows(
+        con, f"SELECT * FROM {table} WHERE parcel_uid IN {_in(uids)}", [])}  # noqa: S608  # fmt: skip
+
+
+def matcher_view(con: duckdb.DuckDBPyConnection, party_id: str) -> dict[str, Any]:
+    """What the deterministic matcher concluded about one party: its links as debtor and as
+    owner (rule and decision), the debtor summary (open amount, parcels, equity when the
+    state's recorder data allows), the merged person, and bankruptcy and transfer flags."""
+    out: dict[str, Any] = {}
+    out["as_debtor"] = _rows(con, "SELECT state, instrument_uid, owner_party_id, parcel_uid, "
+                                  "rule_id, decision FROM m_matches WHERE debtor_party_id = ? "
+                                  "ORDER BY decision, rule_id, parcel_uid", [party_id])  # fmt: skip
+    out["as_owner"] = _rows(con, "SELECT state, debtor_party_id, instrument_uid, parcel_uid, "
+                                 "rule_id, decision FROM m_matches WHERE owner_party_id = ? "
+                                 "ORDER BY decision, rule_id, parcel_uid", [party_id])  # fmt: skip
+    out["summary"] = _rows(con, "SELECT * FROM m_debtor_summary WHERE debtor_party_id = ?",
+                           [party_id])  # fmt: skip
+    pid = con.execute("SELECT person_id FROM m_person_of WHERE party_id = ? LIMIT 1",
+                      [party_id]).fetchone()  # fmt: skip
+    out["person"] = (
+        _rows(con, "SELECT * FROM m_people WHERE person_id = ?", [pid[0]]) if pid else []
+    )
+    out["bankruptcy"] = _rows(con, "SELECT * FROM m_bankruptcy_flags WHERE debtor_party_id = ?",
+                              [party_id])  # fmt: skip
+    cols = {str(r[0]) for r in con.execute(
+        "SELECT column_name FROM information_schema.columns WHERE table_name = 'm_transfer_flags'"
+    ).fetchall()}  # fmt: skip
+    key = next((c for c in ("debtor_party_id", "party_id") if c in cols), None)
+    out["transfers"] = _rows(con, f"SELECT * FROM m_transfer_flags WHERE {key} = ?",  # noqa: S608
+                             [party_id]) if key else []  # fmt: skip
+    return {k: v for k, v in out.items() if v}
 
 
 def show_business(con: duckdb.DuckDBPyConnection, ref: str) -> dict[str, Any] | None:
@@ -400,13 +504,25 @@ def show_business(con: duckdb.DuckDBPyConnection, ref: str) -> dict[str, Any] | 
     owned = {r["name_key"]: int(r["parcels"]) for r in owners}
     for p in people:
         p["parcels_under_same_name"] = owned.get(p.pop("name_key"), 0)
-    return {"ref": ref, **head[0], "people": people}
+    # Every other name filed under this id, in any registry source (former and assumed names
+    # from ny.sos.name_history; the active name from ny.sos.business).
+    aka = _rows(con, """
+        SELECT source_id, name, status, formed_on FROM businesses
+        WHERE sos_id = ? AND NOT (source_id = ? AND name = ?)
+          AND split_part(source_id, '.', 1) = split_part(?, '.', 1)
+        ORDER BY formed_on NULLS LAST, name
+    """, [sos_id, source_id, head[0]["name"], source_id])  # fmt: skip
+    return {"ref": ref, **head[0], "aka": aka, "people": people}
 
 
-def show_parcel(con: duckdb.DuckDBPyConnection, parcel: str) -> list[dict[str, Any]]:
+def show_parcel(
+    con: duckdb.DuckDBPyConnection, parcel: str, as_of: date | None = None
+) -> list[dict[str, Any]]:
     """A parcel by parcel_uid ("39049-010-1") or the id as the county prints it: each source's
-    record with situs and latest value, its owners, and the documents recorded against it
-    with their parties (deeds, mortgages, liens, lis pendens)."""
+    record with situs and latest value, its owners, the documents recorded against it with
+    their parties and whether a recorded release points at them, the value history, and net
+    equity where recorder data exists. With as_of, also who owned it on that date: the
+    owner snapshots in force then, and the grantees of the last deed recorded by then."""
     found = _rows(con, """
         SELECT p.source_id, p.parcel_uid, p.parid_raw, p.land_use_desc, p.zoning,
                a.line1 AS situs_line1, a.city AS situs_city, a.zip5 AS situs_zip,
@@ -427,6 +543,9 @@ def show_parcel(con: duckdb.DuckDBPyConnection, parcel: str) -> list[dict[str, A
     docs = _rows(con, f"""
         SELECT x.parcel_uid, i.source_id, i.instrument_uid, i.doc_type, i.doc_type_raw,
                i.recorded_on, i.amount, i.consideration,
+               EXISTS (SELECT 1 FROM instrument_refs r WHERE r.source_id = i.source_id
+                       AND r.to_uid = i.instrument_uid
+                       AND r.ref_type IN ('releases', 'satisfies_judgment')) AS released,
                (SELECT list(n.raw_name || ' (' || ip.role || ')' ORDER BY ip.role, n.raw_name)
                   FROM instrument_parties ip JOIN names n USING (source_id, party_id)
                  WHERE ip.source_id = i.source_id AND ip.instrument_uid = i.instrument_uid)
@@ -435,10 +554,60 @@ def show_parcel(con: duckdb.DuckDBPyConnection, parcel: str) -> list[dict[str, A
         WHERE x.parcel_uid IN {_in(uids)}
         ORDER BY i.recorded_on DESC NULLS LAST, i.instrument_uid
     """, []) if uids else []  # noqa: S608  # fmt: skip
+    values = _rows(con, f"""
+        SELECT parcel_uid, source_id, tax_year, appraised_total, assessed_value, valid_from
+        FROM value_history WHERE parcel_uid IN {_in(uids)} ORDER BY tax_year DESC, source_id
+    """, []) if uids else []  # noqa: S608  # fmt: skip
+    equity = _equity_rows(con, uids)
+    past = owners_as_of(con, uids, as_of) if as_of and uids else {}
     for r in found:
-        r["owners"] = [o for o in owners if o["parcel_uid"] == r["parcel_uid"]]
-        r["documents"] = [d for d in docs if d["parcel_uid"] == r["parcel_uid"]]
+        uid = r["parcel_uid"]
+        r["owners"] = [o for o in owners if o["parcel_uid"] == uid]
+        r["documents"] = [d for d in docs if d["parcel_uid"] == uid]
+        r["value_history"] = [v for v in values if v["parcel_uid"] == uid
+                              and v["source_id"] == r["source_id"]]  # fmt: skip
+        r["equity"] = equity.get(uid)
+        if as_of:
+            r["as_of"] = {"date": as_of.isoformat(), **past.get(uid, {})}
     return found
+
+
+def owners_as_of(
+    con: duckdb.DuckDBPyConnection, uids: set[str], when: date
+) -> dict[str, dict[str, Any]]:
+    """Per parcel, who the data says owned it on `when`: snapshot owners observed on or before
+    that date and not superseded by then (owners + owner_history), and the grantees of the
+    last DEED recorded on or before it. A snapshot first observed after `when` says nothing
+    about that date; when neither applies the answer is empty, not a guess."""
+    snaps = _rows(con, f"""
+        SELECT o.parcel_uid, o.source_id || ':' || o.party_id AS ref, n.raw_name,
+               o.observed_on, NULL::TIMESTAMPTZ AS superseded_at
+        FROM owners o JOIN names n USING (source_id, party_id)
+        WHERE o.parcel_uid IN {_in(uids)} AND o.observed_on <= ?
+        UNION ALL
+        SELECT h.parcel_uid, h.source_id || ':' || h.party_id, n.raw_name, h.observed_on,
+               h.superseded_at
+        FROM owner_history h JOIN names n USING (source_id, party_id)
+        WHERE h.parcel_uid IN {_in(uids)} AND h.observed_on <= ? AND h.superseded_at::DATE > ?
+        ORDER BY 1, 4 DESC, 3
+    """, [when, when, when])  # noqa: S608  # fmt: skip
+    deeds = _rows(con, f"""
+        SELECT x.parcel_uid, i.instrument_uid, i.recorded_on, i.consideration,
+               (SELECT list(n.raw_name ORDER BY n.raw_name) FROM instrument_parties ip
+                  JOIN names n USING (source_id, party_id)
+                 WHERE ip.source_id = i.source_id AND ip.instrument_uid = i.instrument_uid
+                   AND ip.role = 'grantee') AS grantees
+        FROM instrument_parcels x JOIN instruments i USING (source_id, instrument_uid)
+        WHERE x.parcel_uid IN {_in(uids)} AND i.doc_type = 'DEED' AND i.recorded_on <= ?
+        QUALIFY row_number() OVER (PARTITION BY x.parcel_uid
+                                   ORDER BY i.recorded_on DESC, i.instrument_uid) = 1
+    """, [when])  # noqa: S608  # fmt: skip
+    out: dict[str, dict[str, Any]] = {}
+    for r in snaps:
+        out.setdefault(r.pop("parcel_uid"), {}).setdefault("snapshot_owners", []).append(r)
+    for r in deeds:
+        out.setdefault(r.pop("parcel_uid"), {})["last_deed"] = r
+    return out
 
 
 def network(
@@ -673,6 +842,7 @@ def main(argv: list[str] | None = None) -> int:  # pragma: no cover - CLI
     ap.add_argument("--show", help="source_id:party_id from a search hit")
     ap.add_argument("--network", help="source_id:party_id: walk its links outward")
     ap.add_argument("--parcel", help="parcel_uid, or the parcel id as the county prints it")
+    ap.add_argument("--as-of", type=date.fromisoformat, help="with --parcel: owners on this date")
     ap.add_argument("--hops", type=int, default=2)
     ap.add_argument("--json", action="store_true")
     ap.add_argument("--bench", type=int, metavar="N", help="recall and latency on N names")
@@ -680,7 +850,7 @@ def main(argv: list[str] | None = None) -> int:  # pragma: no cover - CLI
     con = connect(args.db, read_only=True)
     out: Any
     if args.parcel:
-        out = show_parcel(con, args.parcel)
+        out = show_parcel(con, args.parcel, args.as_of)
     elif args.bench:
         out = benchmark(con, args.bench)
     elif args.network:

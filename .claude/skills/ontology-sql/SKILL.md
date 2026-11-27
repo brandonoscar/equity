@@ -28,6 +28,12 @@ source record (never merged); identity between parties comes only from evidenced
 | `instrument_parcels` | instrument_uid, parcel_uid, method | parcel_uid |
 | `cases`, `case_parties`, `judgments` | case_uid, court_id, role, entered_on, principal | case_uid / party_id |
 | `businesses`, `business_roles` | sos_id, name, name_key / party_id, role, title | name_key / party_id |
+| `owner_history` | superseded owner snapshots: party_id, parcel_uid, observed_on, superseded_at | parcel_uid |
+| `value_history` | every assessment year per parcel | parcel_uid |
+| `instrument_refs` | from_uid -> to_uid, ref_type (releases, satisfies_judgment, assigns...) | to_uid |
+| `parcel_equity` | value, mortgages, open_mortgages, open_principal, equity_est (recorder counties only) | parcel_uid |
+| `m_matches`, `m_debtor_summary`, `m_people`, `m_person_of`, `m_bankruptcy_flags`, `m_transfer_flags`, `m_mortgage_status` | the matcher's output per state (`state` column) | (none) |
+| `nicknames` | word -> alt (equivalent given names) | (none) |
 | `debtor_owner_candidates` | one row per name and state: debts, debt_amount, parcels, parcel_value, refs | state, name_key |
 
 Views (recompute; slower over MCP): `v_party`, `v_owner_parcels`, `v_party_documents`,
@@ -36,7 +42,9 @@ Views (recompute; slower over MCP): `v_party`, `v_owner_parcels`, `v_party_docum
 ## Macros
 
 `name_key('Smith, John A.')` -> `'A JOHN SMITH'` (the matcher's key), `street_norm('12 Main
-Street')` -> `'12 MAIN ST'`, `soundex('SMYTHE')` -> `'S530'`.
+Street')` -> `'12 MAIN ST'`, `soundex('SMYTHE')` -> `'S530'`, `name_flag('CITY OF X')` ->
+`'government'` (NULL for a usable name). `names.name_flag` is stored; filter
+`name_flag IS NULL` for leads.
 
 ## Keep it fast
 

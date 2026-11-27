@@ -38,6 +38,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import sys
 from collections.abc import Iterable
 from datetime import UTC, datetime
@@ -53,7 +54,7 @@ DEFAULT_DB = Path("data/search_index.duckdb")
 STORAGE_VERSION = "v1.5.0"
 # Part of every source's version: bump it when the index layout changes, so the next build
 # re-indexes every source into the new layout.
-INDEX_VERSION = "3"
+INDEX_VERSION = "4"
 LAKE = Path("data/lake")
 
 SCHEMA = """
@@ -62,17 +63,24 @@ CREATE TABLE IF NOT EXISTS sources (
     indexed_at TIMESTAMPTZ NOT NULL, rows VARCHAR);
 CREATE TABLE IF NOT EXISTS names (
     source_id VARCHAR, party_id VARCHAR, raw_name VARCHAR, party_kind VARCHAR,
-    org_form VARCHAR, name_key VARCHAR, jurisdiction VARCHAR, address_id VARCHAR);
+    org_form VARCHAR, name_key VARCHAR, jurisdiction VARCHAR, address_id VARCHAR,
+    name_flag VARCHAR);
 CREATE TABLE IF NOT EXISTS name_words (word VARCHAR, name_key VARCHAR, source_id VARCHAR);
 CREATE TABLE IF NOT EXISTS word_sounds (word VARCHAR PRIMARY KEY, sound VARCHAR);
 CREATE TABLE IF NOT EXISTS owners (
     source_id VARCHAR, party_id VARCHAR, parcel_uid VARCHAR, observed_on DATE);
+CREATE TABLE IF NOT EXISTS owner_history (
+    source_id VARCHAR, party_id VARCHAR, parcel_uid VARCHAR, observed_on DATE,
+    superseded_at TIMESTAMPTZ);
 CREATE TABLE IF NOT EXISTS parcels (
     source_id VARCHAR, parcel_uid VARCHAR, jurisdiction VARCHAR, parid_raw VARCHAR,
     situs_address_id VARCHAR, land_use_desc VARCHAR, zoning VARCHAR);
 CREATE TABLE IF NOT EXISTS parcel_values (
     source_id VARCHAR, parcel_uid VARCHAR, tax_year INTEGER, appraised_total DOUBLE,
     assessed_value DOUBLE, homestead BOOLEAN);
+CREATE TABLE IF NOT EXISTS value_history (
+    source_id VARCHAR, parcel_uid VARCHAR, tax_year INTEGER, appraised_total DOUBLE,
+    assessed_value DOUBLE, valid_from DATE);
 CREATE TABLE IF NOT EXISTS addresses (
     address_id VARCHAR, line1 VARCHAR, city VARCHAR, state VARCHAR, zip5 VARCHAR,
     street_key VARCHAR);
@@ -81,6 +89,8 @@ CREATE TABLE IF NOT EXISTS instruments (
     recorded_on DATE, amount DOUBLE, consideration DOUBLE);
 CREATE TABLE IF NOT EXISTS instrument_parcels (
     source_id VARCHAR, instrument_uid VARCHAR, parcel_uid VARCHAR, method VARCHAR);
+CREATE TABLE IF NOT EXISTS instrument_refs (
+    source_id VARCHAR, from_uid VARCHAR, to_uid VARCHAR, ref_type VARCHAR);
 CREATE TABLE IF NOT EXISTS instrument_parties (
     source_id VARCHAR, instrument_uid VARCHAR, party_id VARCHAR, role VARCHAR);
 CREATE TABLE IF NOT EXISTS cases (
@@ -96,6 +106,25 @@ CREATE TABLE IF NOT EXISTS businesses (
     status VARCHAR, formed_on DATE);
 CREATE TABLE IF NOT EXISTS business_roles (
     source_id VARCHAR, sos_id VARCHAR, party_id VARCHAR, role VARCHAR, title VARCHAR);
+-- The matcher's output per state (equity.matching.resolve, data/derived/<state>/). These core
+-- columns are the ones search reads; a state's files may carry more (added on load).
+CREATE TABLE IF NOT EXISTS matcher_runs (state VARCHAR PRIMARY KEY, version VARCHAR,
+    indexed_at TIMESTAMPTZ, files VARCHAR);
+CREATE TABLE IF NOT EXISTS m_matches (state VARCHAR, debtor_party_id VARCHAR,
+    instrument_uid VARCHAR, owner_party_id VARCHAR, parcel_uid VARCHAR, rule_id VARCHAR,
+    decision VARCHAR, key VARCHAR);
+CREATE TABLE IF NOT EXISTS m_debtor_summary (state VARCHAR, debtor_party_id VARCHAR,
+    debtor_name VARCHAR, liens BIGINT, open_amount DOUBLE, parcels BIGINT,
+    parcel_value DOUBLE, has_auto BOOLEAN);
+CREATE TABLE IF NOT EXISTS m_people (state VARCHAR, person_id VARCHAR, name VARCHAR,
+    open_amount DOUBLE, parcels BIGINT, parcel_value DOUBLE);
+CREATE TABLE IF NOT EXISTS m_person_of (state VARCHAR, party_id VARCHAR, person_id VARCHAR);
+CREATE TABLE IF NOT EXISTS m_bankruptcy_flags (state VARCHAR, person_id VARCHAR,
+    debtor_party_id VARCHAR, case_uid VARCHAR, court_id VARCHAR, chapter VARCHAR,
+    status VARCHAR, decision VARCHAR);
+CREATE TABLE IF NOT EXISTS m_transfer_flags (state VARCHAR);
+CREATE TABLE IF NOT EXISTS m_mortgage_status (state VARCHAR);
+CREATE TABLE IF NOT EXISTS nicknames (word VARCHAR, alt VARCHAR);
 """
 
 # Ready-made joins for SQL clients. Name-only links between sources are candidates, not
@@ -135,16 +164,19 @@ WITH debt AS (
            count(*) AS debts, sum(i.amount) AS debt_amount,
            min(i.recorded_on) AS first_debt_on, max(i.recorded_on) AS last_debt_on,
            list(DISTINCT i.doc_type ORDER BY i.doc_type) AS doc_types,
-           list(DISTINCT ip.source_id || ':' || ip.party_id)[1:20] AS debtor_refs
+           list(DISTINCT ip.source_id || ':' || ip.party_id)[1:20] AS debtor_refs,
+           count(DISTINCT m.debtor_party_id) AS matcher_auto_debtors,
+           list(DISTINCT m.rule_id) FILTER (WHERE m.rule_id IS NOT NULL) AS matcher_rules
     FROM instrument_parties ip
     JOIN instruments i USING (source_id, instrument_uid)
     JOIN names n USING (source_id, party_id)
     JOIN sources s USING (source_id)
+    LEFT JOIN m_matches m ON m.debtor_party_id = ip.party_id AND m.decision = 'auto'
     WHERE i.doc_type IN ('JUDGMENT_LIEN', 'ABSTRACT_OF_JUDGMENT', 'EXECUTION', 'LIS_PENDENS',
                          'MECHANICS_LIEN', 'STATUTORY_LIEN', 'TAX_LIEN_STATE',
                          'TAX_LIEN_FEDERAL', 'COURT_ORDER')
       AND ip.role IN ('debtor', 'borrower', 'grantor')  -- the party that owes, not the creditor
-      AND len(string_split(n.name_key, ' ')) >= 2 AND regexp_matches(n.name_key, '[A-Z]{2}')
+      AND len(string_split(n.name_key, ' ')) >= 2 AND n.name_flag IS NULL
     GROUP BY n.name_key, s.state
 ), own AS (
     SELECT n.name_key, s.state, count(DISTINCT o.parcel_uid) AS parcels,
@@ -156,15 +188,58 @@ WITH debt AS (
     JOIN sources s ON s.source_id = n.source_id AND s.state = d.state
     JOIN owners o ON o.source_id = n.source_id AND o.party_id = n.party_id
     LEFT JOIN parcel_values v ON v.source_id = o.source_id AND v.parcel_uid = o.parcel_uid
+    WHERE n.name_flag IS NULL
     GROUP BY n.name_key, s.state
 )
 SELECT d.state, d.debtor_name, d.name_key, d.debts, d.debt_amount, d.doc_types,
        d.first_debt_on, d.last_debt_on, o.parcels, o.parcel_value, d.debtor_refs,
-       o.owner_refs, o.parcel_uids
+       o.owner_refs, o.parcel_uids, d.matcher_auto_debtors, d.matcher_rules
 FROM debt d JOIN own o USING (name_key, state);
+-- Net equity per parcel where recorder data exists: the latest value minus mortgages and
+-- deeds of trust recorded against the parcel that no recorded release points at. Only
+-- counties with recorded mortgages or releases in the index get a row: elsewhere senior
+-- debt is unknown, not zero.
+CREATE OR REPLACE VIEW v_parcel_equity AS
+WITH covered AS (
+    SELECT DISTINCT left(x.parcel_uid, 5) AS fips
+    FROM instrument_parcels x JOIN instruments i USING (source_id, instrument_uid)
+    WHERE i.doc_type IN ('MORTGAGE', 'DEED_OF_TRUST', 'RELEASE')
+), mort AS (
+    SELECT x.parcel_uid, i.source_id, i.instrument_uid, i.amount, i.recorded_on
+    FROM instrument_parcels x JOIN instruments i USING (source_id, instrument_uid)
+    WHERE i.doc_type IN ('MORTGAGE', 'DEED_OF_TRUST')
+), released AS (
+    SELECT DISTINCT source_id, to_uid FROM instrument_refs
+    WHERE ref_type IN ('releases', 'satisfies_judgment')
+), open AS (
+    SELECT m.* FROM mort m
+    ANTI JOIN released r ON r.source_id = m.source_id AND r.to_uid = m.instrument_uid
+), val AS (
+    SELECT parcel_uid, max(coalesce(appraised_total, assessed_value)) AS value,
+           max(tax_year) AS tax_year
+    FROM parcel_values GROUP BY parcel_uid
+), mstat AS (
+    SELECT m.parcel_uid, count(*) AS mortgages,
+           count(*) FILTER (WHERE o.instrument_uid IS NOT NULL) AS open_mortgages,
+           sum(o.amount) AS open_principal,
+           count(*) FILTER (WHERE o.instrument_uid IS NOT NULL AND o.amount IS NULL)
+             AS open_without_amount,
+           min(o.recorded_on) AS oldest_open_on
+    FROM mort m LEFT JOIN open o USING (source_id, instrument_uid)
+    GROUP BY m.parcel_uid
+)
+SELECT v.parcel_uid, v.value, v.tax_year, coalesce(s.mortgages, 0) AS mortgages,
+       coalesce(s.open_mortgages, 0) AS open_mortgages, coalesce(s.open_principal, 0)
+         AS open_principal, s.oldest_open_on,
+       CASE WHEN coalesce(s.open_without_amount, 0) = 0
+            THEN v.value - coalesce(s.open_principal, 0) END AS equity_est,
+       coalesce(s.open_without_amount, 0) > 0 AS principal_unknown
+FROM val v JOIN covered c ON c.fips = left(v.parcel_uid, 5)
+LEFT JOIN mstat s USING (parcel_uid);
 """
 
-# Catalog table -> (lake table, {catalog column: SQL over the lake row}, current-rows filter).
+# Catalog table -> (lake table, {catalog column: SQL over the lake row}, current): current=True
+# keeps rows not superseded, False keeps only superseded ones (history).
 # Columns a source's Parquet lacks (older builds) become NULL.
 INDEXED: dict[str, tuple[str, dict[str, str], bool]] = {
     "names": (
@@ -178,6 +253,40 @@ INDEXED: dict[str, tuple[str, dict[str, str], bool]] = {
             "name_key": "name_key(raw_name)",
             "jurisdiction": "jurisdiction",
             "address_id": "address_id",
+            "name_flag": "name_flag(raw_name)",
+        },
+        True,
+    ),
+    "owner_history": (
+        "owner_snapshot",
+        {
+            "source_id": "source_id",
+            "party_id": "party_id",
+            "parcel_uid": "parcel_uid",
+            "observed_on": "observed_on",
+            "superseded_at": "superseded_at",
+        },
+        False,  # superseded rows only: who the snapshots used to list
+    ),
+    "value_history": (
+        "parcel_assessment",
+        {
+            "source_id": "source_id",
+            "parcel_uid": "parcel_uid",
+            "tax_year": "tax_year",
+            "appraised_total": "appraised_total",
+            "assessed_value": "assessed_value",
+            "valid_from": "valid_from",
+        },
+        True,
+    ),
+    "instrument_refs": (
+        "instrument_ref",
+        {
+            "source_id": "source_id",
+            "from_uid": "from_uid",
+            "to_uid": "to_uid",
+            "ref_type": "ref_type",
         },
         True,
     ),
@@ -301,11 +410,15 @@ SORT_KEYS = (("names", "name_key"), ("name_words", "word"), ("owners", "party_id
              ("business_roles", "party_id"), ("businesses", "name_key"),
              ("parcels", "parcel_uid"), ("parcel_values", "parcel_uid"),
              ("instruments", "instrument_uid"),
-    ("instrument_parcels", "parcel_uid"), ("cases", "case_uid"),
+    ("instrument_parcels", "parcel_uid"),
+    ("instrument_refs", "to_uid"),
+    ("owner_history", "parcel_uid"),
+    ("value_history", "parcel_uid"), ("cases", "case_uid"),
              ("judgments", "case_uid"))  # fmt: skip
 LAKE_TABLES = ("party", "owner_snapshot", "parcel", "parcel_assessment", "address", "instrument",
                "instrument_party",
-    "instrument_parcel", "court_case", "case_party", "judgment", "business",
+    "instrument_parcel",
+    "instrument_ref", "court_case", "case_party", "judgment", "business",
                "business_role")  # fmt: skip
 
 
@@ -358,11 +471,62 @@ def connect(db: Path | str = DEFAULT_DB, read_only: bool = False) -> duckdb.Duck
                 ''), 3, '0'), 3)
             ELSE sx_w END;
     """)
+    con.execute(f"""
+        -- Why a printed name cannot be a lead (NULL when it can): see NAME_FLAGS.
+        CREATE OR REPLACE {kind} name_flag(nf_n) AS CASE
+            WHEN NOT regexp_matches(name_key(nf_n), '[A-Z]{{2}}') THEN 'placeholder'
+            WHEN regexp_matches(upper(nf_n), '{WITHHELD}') THEN 'withheld'
+            WHEN regexp_matches(upper(nf_n), '{CONTINUED}') THEN 'continued'
+            WHEN regexp_matches(upper(nf_n), '{GOVERNMENT}') THEN 'government'
+            WHEN len(string_split(name_key(nf_n), ' ')) = 1 THEN 'one_word'
+        END;
+    """)
     if not read_only:
         _migrate(con)
         con.execute(SCHEMA)
+        con.execute("ALTER TABLE names ADD COLUMN IF NOT EXISTS name_flag VARCHAR")
+        _load_nicknames(con)
         con.execute(VIEWS)
     return con
+
+
+# Name flags (fixed patterns on the printed name, upper-cased). A flagged name stays in the
+# index and in search results (ranked after clean names) but is never a lead.
+#   placeholder  no two-letter word ("39005 | A01-001-0-0001-00": Ohio's statewide view)
+#   withheld     the source withholds or lacks the owner ("Name withheld by request.")
+#   continued    a name split across records ("... INC (CONT'D #1 OF #4)")
+#   government   a public body: usually the creditor, or tax-exempt property
+#   one_word     a single word: a surname alone is never a match
+WITHHELD = ("WITHHELD|CONFIDENTIAL|REDACTED|NOT AVAILABLE|UNKNOWN OWNER|OWNER UNKNOWN|"
+            "CURRENT OWNER|\\bOCCUPANT\\b|NAME NOT|NO NAME")  # fmt: skip
+CONTINUED = "CONT''?D\\b|\\bCONTINUED\\b|#\\s*[0-9]+\\s+OF\\s+#?\\s*[0-9]+"
+GOVERNMENT = (
+    "^(THE )?(CITY|COUNTY|STATE|VILLAGE|TOWN|TOWNSHIP|PARISH|BOROUGH|COMMONWEALTH) OF\\b|"
+    "\\bTREASURER\\b|\\bUNITED STATES\\b|\\bHOUSING AUTHORITY\\b|\\bLAND BANK\\b|"
+    "\\bBOARD OF (EDUCATION|COMMISSIONERS|TRUSTEES)\\b|\\bSCHOOL DISTRICT\\b|"
+    "\\bDEPARTMENT OF\\b|\\bREDEVELOPMENT AUTHORITY\\b|\\bPORT AUTHORITY\\b"
+)  # fmt: skip
+
+
+def _load_nicknames(con: duckdb.DuckDBPyConnection) -> None:
+    """Fill the nicknames table once from equity/data/nicknames.csv (see equity/data/README):
+    every pair of given names that share a canonical name, both ways (BOB <-> ROBERT, and
+    BOB <-> ROB through ROBERT), upper case."""
+    if con.execute("SELECT count(*) FROM nicknames").fetchone() != (0,):
+        return
+    from importlib import resources
+
+    path = resources.files("equity.data").joinpath("nicknames.csv")
+    with resources.as_file(path) as csv:
+        con.execute("""
+            INSERT INTO nicknames
+            WITH t AS (SELECT upper(name1) AS canon, upper(name2) AS nick
+                       FROM read_csv(?, header = true) WHERE relationship = 'has_nickname'),
+            groups AS (SELECT canon, canon AS word FROM t UNION SELECT canon, nick FROM t)
+            SELECT DISTINCT a.word, b.word FROM groups a JOIN groups b USING (canon)
+            WHERE a.word <> b.word AND regexp_full_match(a.word, '[A-Z]+')
+              AND regexp_full_match(b.word, '[A-Z]+')
+        """, [str(csv)])  # fmt: skip
 
 
 def _migrate(con: duckdb.DuckDBPyConnection) -> None:
@@ -405,6 +569,24 @@ class FileSource:
 
     def files(self, source_id: str, table: str) -> list[str]:
         return sorted(str(p) for p in (self.lake / source_id / table).glob("*.parquet"))
+
+    # The matcher's output lives beside the lake: data/derived/<state>/<file>.parquet.
+    def derived(self) -> dict[str, dict[str, str]]:
+        """{state: {file stem: path}} for every state with matcher output."""
+        root = self.lake.parent / "derived"
+        out: dict[str, dict[str, str]] = {}
+        for d in sorted(p for p in root.glob("*") if p.is_dir() and len(p.name) <= 3):
+            files = {f.stem: str(f) for f in sorted(d.glob("*.parquet")) if f.stem in MATCHER}
+            if files:
+                out[d.name.upper()] = files
+        return out
+
+    def derived_version(self, state: str, files: dict[str, str]) -> str:
+        h = hashlib.sha256(INDEX_VERSION.encode())
+        for stem, path in sorted(files.items()):
+            st = Path(path).stat()
+            h.update(f"{stem}:{st.st_size}:{st.st_mtime_ns}".encode())
+        return h.hexdigest()[:16]
 
 
 class RemoteSource:
@@ -452,6 +634,76 @@ class RemoteSource:
         base = f"{self.store.base_url}/object/{self.store.bucket}/{source_id}/{table}"
         return [f"{base}/{n}" for n in sorted(files) if n.endswith(".parquet")]
 
+    def derived(self) -> dict[str, dict[str, str]]:
+        """{state: {file stem: url}} for every state whose matcher output is in the bucket."""
+        _, states = self.store.list_dir("derived/")
+        out: dict[str, dict[str, str]] = {}
+        self._derived_sizes: dict[str, dict[str, int]] = {}
+        for st in sorted(x for x in states if len(x) <= 3):
+            listed, _ = self.store.list_dir(f"derived/{st}/")
+            base = f"{self.store.base_url}/object/{self.store.bucket}/derived/{st}"
+            files = {n[: -len(".parquet")]: f"{base}/{n}" for n in sorted(listed)
+                     if n.endswith(".parquet") and n[: -len(".parquet")] in MATCHER}  # fmt: skip
+            if files:
+                out[st.upper()] = files
+                self._derived_sizes[st.upper()] = {n: int(v) for n, v in listed.items()}
+        return out
+
+    def derived_version(self, state: str, files: dict[str, str]) -> str:
+        sizes = getattr(self, "_derived_sizes", {}).get(state, {})
+        text = INDEX_VERSION + json.dumps(sorted(sizes.items()))
+        return hashlib.sha256(text.encode()).hexdigest()[:16]
+
+
+# Matcher output files loaded per state as m_<stem> tables (equity.matching.resolve,
+# .bankruptcy, .transfers, .equity). Columns beyond the core ones in SCHEMA are added on load.
+MATCHER = ("matches", "debtor_summary", "people", "person_of", "bankruptcy_flags",
+           "transfer_flags", "mortgage_status")  # fmt: skip
+
+
+def index_matcher(
+    con: duckdb.DuckDBPyConnection, source: Any, force: bool = False, log: Any = print
+) -> list[str]:
+    """Load each state's matcher output into m_* tables (replacing that state's rows) when
+    its files changed. Returns the states loaded."""
+    known = dict(con.execute("SELECT state, version FROM matcher_runs").fetchall())
+    done = []
+    for state, files in source.derived().items():
+        version = source.derived_version(state, files)
+        if not force and known.get(state) == version:
+            continue
+        con.execute("BEGIN TRANSACTION")
+        try:
+            counts = {}
+            for stem in MATCHER:
+                table = f"m_{stem}"
+                con.execute(f"DELETE FROM {table} WHERE state = ?", [state])  # noqa: S608
+                if stem not in files:
+                    continue
+                have = {r[0] for r in con.execute(
+                    "SELECT column_name FROM information_schema.columns WHERE table_name = ?",
+                    [table]).fetchall()}  # fmt: skip
+                desc = con.execute("DESCRIBE SELECT * FROM read_parquet(?)", [files[stem]]
+                                   ).fetchall()  # fmt: skip
+                for name, typ, *_ in desc:
+                    if name not in have:
+                        con.execute(f'ALTER TABLE {table} ADD COLUMN "{name}" {typ}')
+                con.execute(f"INSERT INTO {table} BY NAME SELECT ? AS state, * "  # noqa: S608
+                            "FROM read_parquet(?)", [state, files[stem]])  # fmt: skip
+                counts[stem] = int(con.execute(
+                    f"SELECT count(*) FROM {table} WHERE state = ?", [state]  # noqa: S608
+                ).fetchone()[0])  # type: ignore[index]  # fmt: skip
+            con.execute("DELETE FROM matcher_runs WHERE state = ?", [state])
+            con.execute("INSERT INTO matcher_runs VALUES (?, ?, ?, ?)",
+                        [state, version, datetime.now(UTC), json.dumps(counts)])  # fmt: skip
+            con.execute("COMMIT")
+        except Exception:
+            con.execute("ROLLBACK")
+            raise
+        done.append(state)
+        log(f"matcher {state}: " + ", ".join(f"{k} {v:,}" for k, v in counts.items()))
+    return done
+
 
 def _state_of(source_id: str) -> str:
     head = source_id.split(".")
@@ -474,7 +726,8 @@ def _expr(sql: str, have: set[str]) -> str:
         args = [a.strip() for a in sql[len("coalesce(") : -1].split(",")]
         kept = [a for a in args if a in have]
         return f"coalesce({', '.join(kept)})" if kept else "NULL"
-    col = sql[len("name_key(") : -1] if sql.startswith("name_key(") else sql
+    m = re.fullmatch(r"(name_key|name_flag)\((\w+)\)", sql)
+    col = m.group(2) if m else sql
     return sql if col in have else "NULL"
 
 
@@ -489,7 +742,12 @@ def index_source(con: duckdb.DuckDBPyConnection, source: Any, source_id: str) ->
             continue
         have = _columns(con, files)
         select = ", ".join(_expr(sql, have) for sql in cols.values())
-        where = " WHERE superseded_at IS NULL" if current and "superseded_at" in have else ""
+        if "superseded_at" not in have:
+            if not current:
+                continue  # no history kept by this source
+            where = ""
+        else:
+            where = f" WHERE superseded_at IS {'' if current else 'NOT '}NULL"
         con.execute(f"INSERT INTO {table} ({', '.join(cols)}) SELECT {select} "  # noqa: S608
                     f"FROM read_parquet(?, union_by_name = true){where}", [files])  # fmt: skip
         counts[table] = int(con.execute(
@@ -531,7 +789,9 @@ def index_source(con: duckdb.DuckDBPyConnection, source: Any, source_id: str) ->
         -- Initials find nothing useful on their own; a name with no 2-letter word is a
         -- placeholder (Ohio's statewide view: "39005 | A01-001-0-0001-00"), not a name.
         WHERE length(word) >= 2 AND regexp_matches(name_key, '[A-Z]{2}')
-    """, [source_id, source_id])  # fmt: skip
+          AND name_key NOT IN (SELECT name_key FROM names WHERE source_id = ?
+                               AND name_flag IN ('placeholder', 'withheld'))
+    """, [source_id, source_id, source_id])  # fmt: skip
     con.execute("""
         INSERT OR IGNORE INTO word_sounds
         SELECT DISTINCT word, soundex(word) FROM name_words WHERE source_id = ?
@@ -553,6 +813,7 @@ NEEDED: dict[str, set[str]] = {
                    "principal_amount", "max_secured_amount", "consideration", "superseded_at"},
     "instrument_party": {"source_id", "instrument_uid", "party_id", "role", "superseded_at"},
     "instrument_parcel": {"source_id", "instrument_uid", "parcel_uid", "method", "superseded_at"},
+    "instrument_ref": {"source_id", "from_uid", "to_uid", "ref_type", "superseded_at"},
     "court_case": {"source_id", "case_uid", "court_id", "case_number_raw", "case_type",
                    "nature_of_suit", "filed_on", "closed_on", "status", "superseded_at"},
     "case_party": {"source_id", "case_uid", "party_id", "role", "superseded_at"},
@@ -663,6 +924,8 @@ def compact(con: duckdb.DuckDBPyConnection) -> None:
     # The leads view, stored: computing it takes seconds, too slow for an MCP client.
     con.execute("CREATE OR REPLACE TABLE debtor_owner_candidates AS "
                 "SELECT * FROM v_debtor_owner_candidates ORDER BY state, name_key")  # fmt: skip
+    con.execute("CREATE OR REPLACE TABLE parcel_equity AS "
+                "SELECT * FROM v_parcel_equity ORDER BY parcel_uid")  # fmt: skip
     con.execute("CHECKPOINT")
 
 
@@ -774,6 +1037,7 @@ def main(argv: list[str] | None = None) -> int:  # pragma: no cover - CLI
         done = build(con, source, args.only, args.states, args.force,
                      workers=args.workers, remote=args.remote)  # fmt: skip
         print(f"{len(done)} sources (re)indexed")
+        print(f"{len(index_matcher(con, source, args.force))} states' matcher output loaded")
     elif args.cmd == "compact":
         compact(con)
     elif args.cmd == "export":

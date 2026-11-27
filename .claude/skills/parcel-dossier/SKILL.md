@@ -12,9 +12,14 @@ description: Everything the search index holds on one parcel - every source's re
 2. **Chain:** sort the documents by `recorded_on`. Pair each mortgage with a later release that
    references it when the data has `instrument_ref`; otherwise say "no release recorded" (an
    absent release is not proof the loan is open: many counties have no recorder data here).
-3. **Owners:** list owner names with refs; for each, `--show <ref>` reveals other parcels and
+3. **Equity and history:** `equity` is the net-equity row (value minus unreleased mortgages)
+   where the county has recorder data; with none, say senior debt is unknown. `value_history`
+   lists every year. For "who owned it on <date>", add `--as-of YYYY-MM-DD`: snapshot owners
+   in force then and the last deed's grantees by then; empty means the data does not reach
+   back that far.
+4. **Owners:** list owner names with refs; for each, `--show <ref>` reveals other parcels and
    debts under that record.
-4. **Value:** state the basis (appraised/market vs assessed and the state's ratio if known
+5. **Value:** state the basis (appraised/market vs assessed and the state's ratio if known
    from `value_basis` in the source config) and the tax year. `tax_year` from an
    `as_retrieved` source is the retrieval year, not a roll year.
 

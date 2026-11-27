@@ -110,6 +110,32 @@ On Ohio, Kentucky and Louisiana (81 sources, 13.5M names, 2.7 GB), 80 sampled na
 Record recall is lower than name recall when many records share one name (a common name
 can have hundreds): the right name comes back, and `--state` or `--kind` narrows it.
 
+## What the index adds on top of names
+
+- **The matcher's verdicts.** `build` also loads each state's matcher output
+  (`data/derived/<state>/` or `derived/<state>/` in the bucket: matches, debtor_summary,
+  people, person_of, bankruptcy_flags, transfer_flags, mortgage_status) into `m_*` tables. A
+  hit then shows `matcher: auto lien_names_parcel` (decision and rule), its merged person and
+  any bankruptcy flag; `--show` lists the links, the debtor summary (open amount, equity when
+  the state's recorder data allows) and transfer flags. Name-only leads are still name-only.
+- **Name flags.** Each printed name gets `name_flag`: `placeholder` (no real word: Ohio's
+  statewide `39005 | <parcel id>`), `withheld`, `continued` (`... (CONT'D #1 OF #4)`),
+  `government` (cities, counties, treasurers: usually the creditor) or `one_word`. Flagged
+  names still come back in search (after clean ones) but never as leads.
+- **Nicknames.** A query word is also tried as each equivalent given name (BOB <-> ROBERT;
+  `equity/data/nicknames.csv`, Apache-2.0): rule `nickname`, score 0.90.
+- **Business aliases.** `--show` on a business lists every other name filed under its id
+  (former and assumed names from `ny.sos.name_history`).
+- **History.** `value_history` keeps every tax year; `owner_history` keeps superseded owner
+  snapshots. `--parcel <id> --as-of 2024-06-30` adds who owned it then: snapshot owners in
+  force on that date and the grantees of the last deed recorded by then. Before the first
+  snapshot and the first deed the answer is empty, not a guess.
+- **Net equity.** Where the county has recorder data in the index, `parcel_equity` (stored
+  by `compact`) is the latest value minus mortgages and deeds of trust recorded against the
+  parcel that no recorded release points at (`instrument_refs`). A mortgage with no amount
+  makes `equity_est` NULL (`principal_unknown`). Counties without recorder data get no row:
+  senior debt there is unknown, not zero.
+
 ## SQL (CLI, notebooks, or the MCP server)
 
 The catalog keeps `name_key()` and `street_norm()` as macros, plus these views:
@@ -120,6 +146,7 @@ The catalog keeps `name_key()` and `street_norm()` as macros, plus these views:
 | `v_owner_parcels` | owner → parcel → latest value and situs |
 | `v_party_documents` | party → recorded document or debt-list item |
 | `v_party_cases` | party → court case → judgment |
+| `v_parcel_equity` / `parcel_equity` | net equity per parcel where recorder data exists |
 | `v_debtor_owner_candidates` | one row per name and state: debtor-side parties (debtor, borrower, grantor) on a judgment, lien or lis pendens whose exact name also owns parcels in the same state, with debts and parcels aggregated (name-only leads; on Ohio, Kentucky and Louisiana: 53,252 names, about 2 s) |
 
 ```sql

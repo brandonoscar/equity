@@ -208,6 +208,13 @@ def test_remote_source_lists_built_sources_and_part_urls() -> None:
     def transport(method: str, url: str, data: bytes | None, headers: dict[str, str]) -> bytes:
         if url.endswith("/object/list/lake"):
             prefix = json.loads(data or b"{}")["prefix"]
+            if prefix == "derived/":
+                dirs = [{"name": n, "metadata": None} for n in ("oh", "sale_listings")]
+                return json.dumps(dirs).encode()
+            if prefix == "derived/oh/":
+                files = [{"name": "matches.parquet", "metadata": {"size": 5}},
+                         {"name": "summary.json", "metadata": {"size": 9}}]  # fmt: skip
+                return json.dumps(files).encode()
             if prefix == "":
                 return json.dumps([{"name": k, "metadata": None} for k in
                                    (*bundles, "archive")]).encode()  # fmt: skip
@@ -224,6 +231,9 @@ def test_remote_source_lists_built_sources_and_part_urls() -> None:
     assert src.sources() == ["a.b.parcels"]  # unfinished and non-source folders skipped
     assert src.sources(["a.b.parcels", "zz.none"]) == ["a.b.parcels"]
     assert len(src.version("a.b.parcels")) == 16
+    assert src.derived() == {"OH": {
+        "matches": "https://x.test/storage/v1/object/lake/derived/oh/matches.parquet"}}  # fmt: skip
+    assert len(src.derived_version("OH", {})) == 16
     assert src.files("a.b.parcels", "party") == [
         "https://x.test/storage/v1/object/lake/a.b.parcels/party/00000.parquet"]  # fmt: skip
 
@@ -413,3 +423,147 @@ def test_network_does_not_walk_through_creditors(lake: Path, tmp_path: Path) -> 
     ids = {n["id"] for n in network(con, f"{d}:d1", hops=3)["nodes"]}
     assert f"party:{d}:c1" in ids  # the creditor is shown
     assert f"party:{d}:d2" not in ids  # but not walked through to its other debtors
+
+
+# --- matcher output, history, equity, nicknames, flags, aliases -------------------------
+
+
+@pytest.fixture
+def rich(lake: Path, tmp_path: Path) -> duckdb.DuckDBPyConnection:
+    p = "oh.franklin.parcels"
+    _write(lake, p, "party", [
+        _party("o1", "SMITH, JOHN A", "unknown", p, "a1"),
+        _party("o2", "ACME HOLDINGS LLC", "org", p),
+        _party("o6", "DOE, JANE", "unknown", p),
+        _party("o7", "SMITH, ROBERT", "unknown", p),
+        _party("o8", "CITY OF COLUMBUS", "org", p),
+    ])  # fmt: skip
+    _write(lake, p, "owner_snapshot", [
+        {"party_id": "o1", "parcel_uid": "39049-010-1", "observed_on": "2026-11-01",
+         "source_id": p, "superseded_at": None},
+        {"party_id": "o6", "parcel_uid": "39049-010-1", "observed_on": "2025-01-01",
+         "source_id": p, "superseded_at": "2026-01-01T00:00:00Z"},
+        {"party_id": "o8", "parcel_uid": "39049-010-2", "observed_on": "2026-11-01",
+         "source_id": p, "superseded_at": None},
+    ])  # fmt: skip
+    _finish(lake, p, {"party": 5, "v": 2})
+    r = "oh.franklin.recorder"
+    _write(lake, r, "party", [_party("g1", "SMITH, JOHN A", "unknown", r)])
+    _write(lake, r, "instrument", [
+        {"instrument_uid": "m1", "doc_type": "MORTGAGE", "doc_type_raw": "MTG",
+         "recorded_on": "2020-05-01", "principal_amount": 100000.0, "source_id": r,
+         "superseded_at": None},
+        {"instrument_uid": "m2", "doc_type": "MORTGAGE", "doc_type_raw": "MTG",
+         "recorded_on": "2010-05-01", "principal_amount": 50000.0, "source_id": r,
+         "superseded_at": None},
+        {"instrument_uid": "r1", "doc_type": "RELEASE", "doc_type_raw": "SAT",
+         "recorded_on": "2019-01-01", "principal_amount": None, "source_id": r,
+         "superseded_at": None},
+        {"instrument_uid": "d9", "doc_type": "DEED", "doc_type_raw": "DEED",
+         "recorded_on": "2025-06-01", "principal_amount": None, "source_id": r,
+         "superseded_at": None},
+    ])  # fmt: skip
+    _write(lake, r, "instrument_parcel", [
+        {"instrument_uid": u, "parcel_uid": "39049-010-1", "method": "index_parcel_id",
+         "source_id": r, "superseded_at": None} for u in ("m1", "m2", "r1", "d9")
+    ])  # fmt: skip
+    _write(lake, r, "instrument_ref", [
+        {"from_uid": "r1", "to_uid": "m2", "ref_type": "releases", "source_id": r,
+         "superseded_at": None},
+    ])  # fmt: skip
+    _write(lake, r, "instrument_party", [
+        {"instrument_uid": "d9", "party_id": "g1", "role": "grantee", "source_id": r,
+         "superseded_at": None},
+    ])  # fmt: skip
+    _finish(lake, r, {"instrument": 4})
+    h = "oh.sos.name_history"
+    _write(lake, h, "business", [
+        {"sos_id": "B7", "name": "OLD ACME LLC", "org_form": "LLC", "status": "former name",
+         "formed_on": "2015-01-01", "source_id": h, "superseded_at": None},
+    ])  # fmt: skip
+    _finish(lake, h, {"business": 1})
+    derived = lake.parent / "derived" / "oh"
+    derived.mkdir(parents=True)
+    c = duckdb.connect()
+    c.execute(f"""COPY (SELECT 'd1' AS debtor_party_id, 'i1' AS instrument_uid,
+        'o1' AS owner_party_id, '39049-010-1' AS parcel_uid, 'lien_names_parcel' AS rule_id,
+        'auto' AS decision, '39049-010-1' AS key) TO '{derived / "matches.parquet"}'""")
+    c.execute(f"""COPY (SELECT 'd1' AS debtor_party_id, 'John A. Smith' AS debtor_name,
+        1::BIGINT AS liens, 12500.0 AS open_amount, 1::BIGINT AS parcels,
+        180000.0 AS parcel_value, true AS has_auto, 70000.0 AS equity_est)
+        TO '{derived / "debtor_summary.parquet"}'""")
+    c.execute(f"""COPY (SELECT * FROM (VALUES ('d1', 'P1'), ('o1', 'P1')) t(party_id, person_id))
+        TO '{derived / "person_of.parquet"}'""")
+    c.execute(f"""COPY (SELECT 'P1' AS person_id, 'JOHN A SMITH' AS name, 12500.0 AS open_amount,
+        1::BIGINT AS parcels, 180000.0 AS parcel_value) TO '{derived / "people.parquet"}'""")
+    con = connect(tmp_path / "rich.duckdb")
+    build(con, FileSource(lake), log=lambda _m: None)
+    from equity.search_index import index_matcher
+
+    assert index_matcher(con, FileSource(lake), log=lambda _m: None) == ["OH"]
+    assert index_matcher(con, FileSource(lake), log=lambda _m: None) == []  # unchanged
+    compact(con)
+    return con
+
+
+def test_matcher_grade_person_and_equity_on_hits(rich: duckdb.DuckDBPyConnection) -> None:
+    hits = {h.ref: h for h in search(rich, "john a smith")}
+    debtor, owner = hits["oh.cuyahoga.liens:d1"], hits["oh.franklin.parcels:o1"]
+    assert (debtor.matcher, debtor.person_id) == ("auto lien_names_parcel", "P1")
+    assert (owner.matcher, owner.person_id) == ("auto lien_names_parcel", "P1")
+    m = show(rich, "oh.cuyahoga.liens:d1").matcher  # type: ignore[union-attr]
+    assert m["as_debtor"][0]["parcel_uid"] == "39049-010-1"
+    assert m["summary"][0]["equity_est"] == 70000.0  # columns beyond the core ones are kept
+    assert m["person"][0]["name"] == "JOHN A SMITH"
+    assert rich.execute("SELECT matcher_auto_debtors, matcher_rules FROM debtor_owner_candidates"
+                        ).fetchall() == [(1, ["lien_names_parcel"])]  # fmt: skip
+
+
+def test_net_equity_pairs_mortgages_with_releases(rich: duckdb.DuckDBPyConnection) -> None:
+    from equity.search import show_parcel
+
+    (p,) = [r for r in show_parcel(rich, "39049-010-1") if r["source_id"] == "oh.franklin.parcels"]
+    eq = p["equity"]
+    assert (eq["value"], eq["mortgages"], eq["open_mortgages"], eq["open_principal"],
+            eq["equity_est"]) == (180000.0, 2, 1, 100000.0, 80000.0)  # fmt: skip
+    released = {d["instrument_uid"]: d["released"] for d in p["documents"]}
+    assert released["m2"] is True and released["m1"] is False
+    # no value for 39049-010-2, so no equity row; and only counties with recorder data get rows
+    assert show_parcel(rich, "39049-010-2")[0]["equity"] is None
+    assert rich.execute("SELECT count(*) FROM parcel_equity WHERE left(parcel_uid, 5) <> '39049'"
+                        ).fetchone() == (0,)  # fmt: skip
+
+
+def test_owners_as_of_a_date_and_value_history(rich: duckdb.DuckDBPyConnection) -> None:
+    from datetime import date
+
+    from equity.search import show_parcel
+
+    def owner(when: str) -> dict[str, Any]:
+        (p,) = [r for r in show_parcel(rich, "39049-010-1", date.fromisoformat(when))
+                if r["source_id"] == "oh.franklin.parcels"]  # fmt: skip
+        out: dict[str, Any] = p["as_of"]
+        return out
+
+    early = owner("2025-03-01")
+    assert [o["raw_name"] for o in early["snapshot_owners"]] == ["DOE, JANE"]
+    assert "last_deed" not in early
+    later = owner("2025-07-01")
+    assert later["last_deed"]["grantees"] == ["SMITH, JOHN A"]
+    assert owner("2024-01-01") == {"date": "2024-01-01"}  # nothing known then: no guess
+    (p,) = [r for r in show_parcel(rich, "39049-010-1") if r["source_id"] == "oh.franklin.parcels"]
+    assert [v["tax_year"] for v in p["value_history"]] == [2025, 2024]
+
+
+def test_nicknames_flags_and_aliases(rich: duckdb.DuckDBPyConnection) -> None:
+    from equity.search import show_business
+
+    rules = {h.raw_name: h.rule for h in search(rich, "BOB SMITH")}
+    assert rules["SMITH, ROBERT"] == "nickname"
+    city = [h for h in search(rich, "City of Columbus")]
+    assert city[0].name_flag == "government"
+    assert rich.execute("SELECT count(*) FROM debtor_owner_candidates "
+                        "WHERE debtor_name ILIKE 'city%'").fetchone() == (0,)  # fmt: skip
+    b = show_business(rich, "oh.sos.business:business:B7")
+    assert b is not None and [(a["name"], a["status"]) for a in b["aka"]] == [
+        ("OLD ACME LLC", "former name")]  # fmt: skip

@@ -16,7 +16,13 @@ dossier cites a ref (`source_id:party_id`, `parcel_uid`, `instrument_uid`).
 2. **Pull each plausible record.** `uv run python -m equity.search --show <ref> --json` for
    the debtor record(s) and the owner record(s). For a business ref
    (`<source>:business:<sos_id>`) `--show` lists its officers and members.
-3. **Grade identity per debtor-owner pair** (same tiers as `equity.matching.resolve`):
+3. **Read the matcher first.** `--show` output has `matcher` when the state's matcher
+   output is loaded: `as_debtor` / `as_owner` links with rule and decision (`auto` or
+   `review`), `summary` (open amount, parcels, equity when recorder data allows), `person`,
+   `bankruptcy`, `transfers`. An `auto` link is the deterministic system's own grade A; say
+   so and cite the rule. Hits also carry `name_flag`: a flagged name is never a lead.
+   Then grade any pair the matcher did not link yourself.
+4. **Grade identity per debtor-owner pair** (same tiers as `equity.matching.resolve`):
    - **A**: a debt document lists the owned parcel (`documents[].parcels` contains the
      `parcel_uid`), or same name_key and the debtor's address equals the owner's mailing
      address or the parcel's situs.
@@ -25,13 +31,14 @@ dossier cites a ref (`source_id:party_id`, `parcel_uid`, `instrument_uid`).
    - **C**: same name in the state, nothing else (say how many records share the name).
    - **Reject**: placeholder names (digits and `|`), surname only, different JR/SR, or the
      name is the creditor (county treasurer, city, state).
-4. **Each owned parcel:** `uv run python -m equity.search --parcel <parcel_uid> --json`.
-   Record situs, latest value (appraised vs assessed, tax year), homestead flag, and every
-   document recorded against it: mortgages / deeds of trust (senior debt), releases, liens,
+5. **Each owned parcel:** `uv run python -m equity.search --parcel <parcel_uid> --json`.
+   Record situs, latest value (appraised vs assessed, tax year), homestead flag, `equity`
+   (net of unreleased mortgages, only where recorder data exists), and every document
+   recorded against it (`released` says whether a recorded release points at it): mortgages / deeds of trust (senior debt), releases, liens,
    lis pendens, and deeds recorded after the debt date (possible transfer away).
-5. **Wider links (optional):** `uv run python -m equity.search --network <ref> --hops 2`.
+6. **Wider links (optional):** `uv run python -m equity.search --network <ref> --hops 2`.
    Same-name and same-address edges are leads; follow them only to a document or parcel.
-6. **Bankruptcy and cases:** `--show` lists cases; a court id ending in `b` is a bankruptcy
+7. **Bankruptcy and cases:** `--show` lists cases; a court id ending in `b` is a bankruptcy
    court. An open bankruptcy stays collection (automatic stay): flag it first.
 
 ## Output
