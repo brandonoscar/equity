@@ -39,8 +39,10 @@ description: Shortlist debtors who own property in a state from the stored, rank
    UNITED STATES, HOUSING AUTHORITY, UNIVERSITY, BOARD OF), placeholder names, "Name
    withheld", one-word names, names shared by more than ~25 records (check with
    `SELECT count(*) FROM names WHERE name_key = '<key>'`).
-3. **Say what the table is:** name-only matches per state, aggregated (up to 20 refs per
-   side). Every row still needs the identity grading in `debtor-dossier`.
+3. **Say what the table is:** one row per exact name and state, aggregated (up to 20 refs
+   per side), graded by its best debtor-owner pair. A grade here is a shortlist grade over
+   up to 20 records a side: confirm it on the specific records with `--grade` (the
+   `debtor-dossier` skill does) before reporting a lead as A or B.
 4. **Hand off:** for up to ~5 leads, run `debtor-dossier` on each. For more, run the saved
    workflow `verify-leads` with the shortlist (one `lead-verifier` agent per lead, then a
    skeptic pass on the strong ones). Report the shortlist with the criteria used and how many
