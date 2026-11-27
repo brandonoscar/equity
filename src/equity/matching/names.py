@@ -17,12 +17,23 @@ name's words, so "SMITH JOHN A & JANE B" (words A B JANE JOHN SMITH) never equal
 
 Tenancy and marital tags (ET UX, ET VIR, ET AL, JTWROS, JT TEN, TEN COM, H/W, L/E, LIFE
 ESTATE, C/O) are dropped first. A part keeps only if it has at least two words. Names that
-split into nothing new give no variants. Pure string rules, no lookup tables of people.
+split into nothing new give no variants. A business name (one that ends in an entity form
+such as LLC or INC, or carries an organization word other than a trust's) is never split:
+"SMITH & JONES LLC" names no person. Pure string rules, no lookup tables of people.
+
+Debtor names (debtor_name_variants) also print aliases, each the same debtor:
+
+  alias   "JOHN SMITH DBA SMITH PLUMBING"  -> "JOHN SMITH", "SMITH PLUMBING"
+          "JOHN SMITH AKA JACK SMITH", "ACME INC FKA ACME LLC", "T/A", "D/B/A", "N/K/A"
+          A sole proprietor's trade name is the person's own debt; each part is then split
+          like an owner string ("JOHN & JANE SMITH DBA ..." -> both people, kind 'joint').
 """
 
 from __future__ import annotations
 
 import re
+
+from equity.matching.orgs import _ORG_WORDS, classify
 
 TAGS = re.compile(
     r"\b(ET\s*UX|ETUX|ET\s*VIR|ETVIR|ET\s*AL|ETAL|JTWROS|JT\s*TEN|JTRS|TEN\s*COM|TEN\s*ENT|"
@@ -39,6 +50,15 @@ TRUST_WORDS = {
 TRUST_MARK = re.compile(r"\b(TRUST|TR|TRS|TRUSTEE|TRUSTEES|TTEE|TTEES|TRST)\b")
 SPLIT = re.compile(r"\s*(?:&|\bAND\b|/|;|\+)\s*")
 SUFFIX = {"JR", "SR", "II", "III", "IV", "V", "2ND", "3RD"}
+# Organization words that make a name a business; a trust's or an estate's words do not
+# (they name the settlor or the deceased).
+BUSINESS_WORDS = _ORG_WORDS - {"TRUST", "TRUSTEE", "TRUSTEES", "ESTATE", "ESTATES"}
+# Alias markers between two names of one debtor (D.B.A. is read as DBA).
+ALIAS = re.compile(
+    r"\s*\b(?:D\s*/\s*B\s*/\s*A|DBA|A\s*/\s*K\s*/\s*A|AKA|F\s*/\s*K\s*/\s*A|FKA|"
+    r"N\s*/\s*K\s*/\s*A|NKA|T\s*/\s*A|DOING\s+BUSINESS\s+AS|ALSO\s+KNOWN\s+AS|"
+    r"FORMERLY\s+KNOWN\s+AS|NOW\s+KNOWN\s+AS|TRADING\s+AS)\b\s*"
+)
 
 
 def _clean(raw: str) -> str:
@@ -93,7 +113,7 @@ def owner_name_variants(raw: str | None) -> list[tuple[str, str]]:
     if not raw:
         return []
     name = _clean(raw)
-    if not name:
+    if not name or _business(name):
         return []
     found: list[tuple[str, str]] = []
     settlors = _trust(name)
@@ -107,6 +127,43 @@ def owner_name_variants(raw: str | None) -> list[tuple[str, str]]:
     for n, kind in found:
         key = " ".join(sorted(set(n.split())))
         if n and n != plain and key not in seen:
+            seen.add(key)
+            out.append((n, kind))
+    return out
+
+
+def _business(name: str) -> bool:
+    """An entity-form name (LLC, INC, ...) or one with an organization word, unless that word
+    is a trust's: a trust names its settlor."""
+    c = classify(name)
+    return c.org_form is not None or bool(set(name.split()) & BUSINESS_WORDS)
+
+
+def debtor_name_variants(raw: str | None) -> list[tuple[str, str]]:
+    """(name, kind) for each name inside a debtor string: kind 'alias' (a DBA, AKA or FKA
+    name of the same debtor, a person or a business) or, as for owners, 'joint' and 'trust'.
+    Empty when the string is one plain name."""
+    if not raw:
+        return []
+    # D.B.A. / A.K.A. -> DBA / AKA; any other period separates words ("J.SMITH").
+    text = re.sub(r"\b([A-Z])\.\s?([A-Z])\.\s?([A-Z])\b\.?", r"\1\2\3", raw.upper())
+    text = text.replace(".", " ")
+    parts = [p for p in (_clean(x) for x in ALIAS.split(text)) if p]
+    if len(parts) < 2:
+        return owner_name_variants(raw)
+    found: list[tuple[str, str]] = []
+    for part in parts:
+        split = owner_name_variants(part)
+        if split:
+            found += split
+        elif not SPLIT.search(part):
+            found.append((part, "alias"))
+    whole = _clean(text)
+    seen: set[str] = set()
+    out = []
+    for n, kind in found:
+        key = " ".join(sorted(set(n.split())))
+        if n != whole and key not in seen:
             seen.add(key)
             out.append((n, kind))
     return out
