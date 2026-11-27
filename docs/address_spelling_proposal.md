@@ -1,6 +1,6 @@
 # Proposal: two address-spelling rules for NY review pairs
 
-Status: **proposal for the owner**. Nothing here changes a matching rule. The counts come from
+Status: **ordinal rule approved by the owner 2026-11-27** and added to `review.street_norm`; the hyphen rule was not needed. The counts come from
 `data/derived/ny/review_geo.parquet` (the NY review queue run through the Census geocoder,
 `equity.matching.review_geo`), measured 2026-11-27.
 

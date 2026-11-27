@@ -19,7 +19,8 @@ same keys, computed in SQL so every match can be re-derived:
   addr_key   street line + ZIP 5 of a normalized address. The street line is compared with
              suffix and direction words spelled one way (USPS: STREET=ST, NORTH=N, ...) and
              punctuation dropped (review.street_norm; approved by the project owner
-             2026-11-22), so "12 Main Street" and "12 MAIN ST." are one address.
+             2026-11-22), so "12 Main Street" and "12 MAIN ST." are one address; a numbered
+             street's ordinal is dropped too, "88TH ST" = "88 ST" (approved 2026-11-27).
   town_key   street line + city, for states whose parcel data carries no owner ZIP (CT).
 
 Rules, strongest first (a debtor-owner pair keeps its strongest rule):
