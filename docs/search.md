@@ -236,6 +236,12 @@ SELECT raw_name, line1, city, zip5 FROM v_party
 WHERE street_norm(line1) = street_norm('123 Main Street') AND zip5 = '43215';
 ```
 
+A second project server, `equity-tools` (`uv run python -m equity.mcp_server`), offers the
+search functions themselves as tools: `search`, `show`, `parcel`, `grade`, `network`, `leads`,
+`facts` and `address`, each returning the same JSON as the CLI. It implements MCP's
+JSON-RPC over stdio directly (no MCP library, no new dependency) and opens the index read-only
+per call.
+
 The MCP server starts from `.mcp.json` (Claude Code asks before using a project server). It is
 read-only by default, caps results at 500 rows and 120 seconds, and opens a fresh connection per
 query (`--ephemeral-connections`), so it holds no lock between queries. DuckDB allows one

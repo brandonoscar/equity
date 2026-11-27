@@ -17,6 +17,8 @@ say so.
 1. **Search, don't scan.** Use the search index (`docs/search.md`), not raw lake Parquet:
    - CLI (fast, explained hits): `uv run python -m equity.search "NAME" --state OH`,
      `--show <ref>`, `--parcel <id>`, `--network <ref>`, `--address "..." --zip 12345`
+   - Tools through the `equity-tools` MCP server: `search`, `show`, `parcel`, `grade`,
+     `network`, `leads`, `facts`, `address` (same JSON as the CLI, read-only).
    - SQL through the `equity-search` MCP server (read-only DuckDB). Small, keyed queries
      only: filter on `name_key = name_key('...')`, `party_id`, `parcel_uid`, `state`. The
      stored table `debtor_owner_candidates` is fast; the `v_*` views recompute and can time

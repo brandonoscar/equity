@@ -761,7 +761,7 @@ def test_fact_sheet_for_a_lead(cat: duckdb.DuckDBPyConnection) -> None:
 
 
 def test_watchlist_reports_what_is_new(cat: duckdb.DuckDBPyConnection, tmp_path: Path) -> None:
-    from datetime import datetime
+    from datetime import UTC, datetime
 
     from equity import watch
 
@@ -787,6 +787,47 @@ def test_watchlist_reports_what_is_new(cat: duckdb.DuckDBPyConnection, tmp_path:
     again = watch.check(cat, entries, state)
     assert again[0]["new"] == ["LIS_PENDENS recorded 2026-05-01 against 39049-010-1 ($90,000)"]
     assert again[2]["new"] == ["LIS_PENDENS recorded 2026-05-01 (debtor) $90,000"]
-    assert "NEW: LIS_PENDENS" in watch.report(again, datetime(2026, 5, 2))
+    assert "NEW: LIS_PENDENS" in watch.report(again, datetime(2026, 5, 2, tzinfo=UTC))
     many = watch.observe(cat, {"name": "NOBODY HERE", "state": "OH"})
     assert many["items"] == {} and many["note"] == "no record found"
+
+
+def test_mcp_server_speaks_json_rpc_and_runs_tools(
+    cat: duckdb.DuckDBPyConnection, tmp_path: Path
+) -> None:
+    import io
+
+    from equity.mcp_server import serve
+
+    compact(cat)
+    cat.close()  # the server opens the file read-only per call
+    msgs = [
+        {"jsonrpc": "2.0", "id": 1, "method": "initialize",
+         "params": {"protocolVersion": "2025-03-26", "capabilities": {}}},
+        {"jsonrpc": "2.0", "method": "notifications/initialized"},
+        {"jsonrpc": "2.0", "id": 2, "method": "tools/list"},
+        {"jsonrpc": "2.0", "id": 3, "method": "tools/call",
+         "params": {"name": "search", "arguments": {"name": "john a smith", "state": "OH"}}},
+        {"jsonrpc": "2.0", "id": 4, "method": "tools/call",
+         "params": {"name": "leads", "arguments": {"state": "oh", "grades": ["A"]}}},
+        {"jsonrpc": "2.0", "id": 5, "method": "tools/call",
+         "params": {"name": "grade", "arguments": {"debtor_ref": "oh.cuyahoga.liens:d1",
+                                                   "owner_ref": "oh.franklin.parcels:o1"}}},
+        {"jsonrpc": "2.0", "id": 6, "method": "tools/call",
+         "params": {"name": "nope", "arguments": {}}},
+        {"jsonrpc": "2.0", "id": 7, "method": "bogus"},
+    ]  # fmt: skip
+    out = io.StringIO()
+    serve(io.StringIO("\n".join(json.dumps(m) for m in msgs) + "\nnot json\n"), out,
+          tmp_path / "c.duckdb")  # fmt: skip
+    replies = [json.loads(line) for line in out.getvalue().splitlines()]
+    assert [r["id"] for r in replies] == [1, 2, 3, 4, 5, 6, 7, None]  # no reply to the notice
+    assert replies[0]["result"]["protocolVersion"] == "2025-03-26"
+    names = {t["name"] for t in replies[1]["result"]["tools"]}
+    assert {"search", "show", "parcel", "grade", "network", "leads", "facts"} <= names
+    hits = json.loads(replies[2]["result"]["content"][0]["text"])
+    assert "oh.franklin.parcels:o1" in {h["ref"] for h in hits}
+    assert len(json.loads(replies[3]["result"]["content"][0]["text"])) == 1
+    assert json.loads(replies[4]["result"]["content"][0]["text"])["grade"] == "A"
+    assert replies[5]["result"]["isError"] is True
+    assert replies[6]["error"]["code"] == -32601 and replies[7]["error"]["code"] == -32700
