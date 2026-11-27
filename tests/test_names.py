@@ -60,3 +60,13 @@ def test_business_names_are_not_split_into_people() -> None:
     assert owner_name_variants("SMITH & JONES LLC") == []
     assert owner_name_variants("FIRST BANK & TRUST") == []
     assert owner_name_variants("JOHN A SMITH REVOCABLE TRUST") == [("JOHN A SMITH", "trust")]
+
+
+def test_every_nickname_names_one_formal_name() -> None:
+    from equity.matching.nicknames import GROUPS, nickname_map
+
+    m = nickname_map()
+    assert m["BOB"] == "ROBERT" and m["BILL"] == "WILLIAM" and m["PEGGY"] == "MARGARET"
+    assert not set(m) & set(GROUPS)  # no nickname is also a formal name
+    for ambiguous in ("CHRIS", "PAT", "SAM", "ALEX", "TED", "HARRY", "AL"):
+        assert ambiguous not in m

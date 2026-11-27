@@ -1205,3 +1205,48 @@ def test_an_address_matches_its_building_without_the_unit(tmp_path: Path) -> Non
     assert m["d2"] == ("o2", "person_name_address_unit", "auto")
     assert m["d3"] == ("o3", "person_name_zip", "review")
     assert m["d4"] == ("o4", "org_name_address_unit", "auto")
+
+
+def test_a_nickname_at_the_same_address_is_a_review_lead(tmp_path: Path) -> None:
+    """ "BOB SMITH" on a lien and "SMITH ROBERT" on the roll at one address: one person to
+    review. Another address, a different formal name, or a different surname gives nothing."""
+    lk = tmp_path / "lake"
+    d, o = lk / "zz.debts", lk / "zz.parcels"
+    _write(d / "address" / "0.parquet", [
+        _addr("a1", "1 ELM ST", "10001"), _addr("a2", "2 OAK ST", "10001"),
+        _addr("a3", "3 PINE ST", "10001")])  # fmt: skip
+    people = {"d1": ("BOB SMITH", "a1"), "d2": ("BILL JONES", "a2"),
+              "d3": ("MIKE ROE", "a3")}  # fmt: skip
+    _write(d / "party" / "0.parquet", [
+        {"party_id": k, "raw_name": n, "party_kind": "unknown", "org_name_norm": None,
+         "address_id": a} for k, (n, a) in people.items()])  # fmt: skip
+    _write(
+        d / "instrument_party" / "0.parquet",
+        [{"instrument_uid": f"i{k}", "party_id": k, "role": "debtor"} for k in people],
+    )
+    _write(d / "instrument" / "0.parquet", [
+        {"instrument_uid": f"i{k}", "source_id": "zz.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2026-01-01", "principal_amount": 10.0} for k in people])  # fmt: skip
+    _write(o / "address" / "0.parquet", [
+        _addr("m1", "1 Elm Street", "10001"), _addr("m2", "2 OAK ST", "10001"),
+        _addr("m3", "3 PINE ST", "10001")])  # fmt: skip
+    owners = [("o1", "SMITH ROBERT", "m1", "p1"), ("o2", "JONES ROBERT", "m2", "p2"),
+              ("o3", "DOE MICHAEL", "m3", "p3")]  # fmt: skip
+    _write(o / "parcel" / "0.parquet", [{"parcel_uid": u} for *_, u in owners])
+    _write(o / "party" / "0.parquet", [
+        {"party_id": k, "raw_name": n, "party_kind": "unknown", "org_name_norm": None,
+         "address_id": a} for k, n, a, _ in owners])  # fmt: skip
+    _write(o / "owner_snapshot" / "0.parquet",
+           [{"parcel_uid": u, "party_id": k} for k, *_, u in owners])  # fmt: skip
+    out = tmp_path / "out"
+    run(lk, out, ["zz.debts"], ["zz.parcels"])
+    con = duckdb.connect()
+    m = con.execute(
+        f"SELECT debtor_party_id, owner_party_id, rule_id, decision "
+        f"FROM '{out.as_posix()}/matches.parquet' ORDER BY ALL").fetchall()  # fmt: skip
+    # BILL is WILLIAM, not ROBERT; MIKE ROE is not MICHAEL DOE.
+    assert m == [("d1", "o1", "person_nickname_address", "review")]
+    q = dict(con.execute(
+        f"SELECT debtor_party_id, category FROM '{out.as_posix()}/review_queue.parquet'"
+    ).fetchall())  # fmt: skip
+    assert q == {"d1": "nickname"}

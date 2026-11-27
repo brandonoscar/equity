@@ -35,6 +35,9 @@ Rules, strongest first (a debtor-owner pair keeps its strongest rule):
                         has one extra single-letter middle initial ("JOHN SMITH" / "SMITH JOHN
                         A"); a parent and child can share both, so -> review (approved by the
                         project owner 2026-11-22)
+  person_nickname_address  same address, and the names are the same once each common
+                        nickname is read as its formal name ("BOB SMITH" / "ROBERT SMITH",
+                        equity.matching.nicknames; ambiguous nicknames left out) -> review
   person_at_owner_occupied_property  a lot no source names an owner for (California rolls)
                         whose property address is the debtor's own address, and the roll's
                         latest homeowner exemption says an owner lives there       -> review
@@ -152,9 +155,10 @@ RULES = (
     ("org_name_street_town", "auto", 8),
     ("org_name_county", "review", 9),
     ("person_name_initial_address", "review", 10),
-    ("person_at_owner_occupied_property", "review", 11),
-    ("person_at_property", "review", 12),
-    ("person_at_org_owner_mailing", "review", 13),
+    ("person_nickname_address", "review", 11),
+    ("person_at_owner_occupied_property", "review", 12),
+    ("person_at_property", "review", 13),
+    ("person_at_org_owner_mailing", "review", 14),
 )
 
 
@@ -789,6 +793,31 @@ FROM debtors d JOIN unit_pair u ON u.a = d.addr_key
 JOIN owners o ON o.org_name_norm = d.org_name_norm AND u.b IN (o.mail_key, o.situs_key)
 WHERE d.party_kind = 'org' AND o.party_kind = 'org' AND d.org_name_norm <> '';
 """
+# Same address, and the same name once nicknames are read as formal names (o_by_addr is
+# INITIAL_SQL's owners-by-address table).
+NICK_SQL = """
+INSERT INTO candidates
+SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
+       'person_nickname_address', d.name_key
+FROM debtors d JOIN o_by_addr o ON o.k = d.addr_key
+WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2
+  AND d.name_key <> o.name_key AND NOT suffix_conflict(d.suffix_key, o.suffix_key)
+  AND nick_key(d.name_key) = nick_key(o.name_key);
+"""
+
+
+def nick_macro(con: duckdb.DuckDBPyConnection) -> None:
+    """nick_key(k): a name key with each nickname replaced by its formal name, re-sorted."""
+    from equity.matching.nicknames import nickname_map
+
+    pairs = ", ".join(f"'{k}': '{v}'" for k, v in sorted(nickname_map().items()))
+    con.execute(f"""
+        CREATE OR REPLACE MACRO nick_key(k) AS array_to_string(list_sort(list_distinct(
+            list_transform(string_split(k, ' '), lambda w: coalesce(MAP {{{pairs}}}[w], w)))),
+            ' ');
+    """)
+
+
 STREET_TOWN_SQL = """
 INSERT INTO candidates
 SELECT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid, 'person_name_street_town',
@@ -869,6 +898,8 @@ def match(
     con.execute(MATCH_SQL)
     con.execute(COURT_COUNTY_SQL)
     con.execute(INITIAL_SQL)
+    nick_macro(con)
+    con.execute(NICK_SQL)
     con.execute(UNIT_SQL)
     if parcel_on_lien:
         con.execute(PARCEL_ON_LIEN_SQL)
