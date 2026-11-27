@@ -398,7 +398,8 @@ def test_initial_rule_does_not_reuse_a_query_initial(cat: duckdb.DuckDBPyConnect
     # "JOHN A SMOTH": SMOTH may not be explained by the name's initial A, which the query's
     # own A already matches; the closer spelling decides the order instead.
     rules = {h.raw_name: h.rule for h in search(cat, "JOHN A SMOTH")}
-    assert rules.get("SMITH, JOHN A") in {"sounds_like", "similar"}
+    assert rules.get("SMITH, JOHN A") == "typo"  # SMOTH is one letter from SMITH
+    assert rules.get("SMYTH JOHN A") == "typo"
 
 
 def test_network_does_not_walk_through_creditors(lake: Path, tmp_path: Path) -> None:
@@ -613,15 +614,23 @@ def test_golden_harness_scores_cases(rich: duckdb.DuckDBPyConnection, tmp_path: 
         load_cases(tmp_path)
 
 
-def test_extra_word_ranks_below_the_sound_alike(cat: duckdb.DuckDBPyConnection) -> None:
-    from equity.search import RULES_SQL, strict_keys
+def test_one_edit_neighbours() -> None:
+    from equity.search import _one_edit
 
-    rows = cat.execute(RULES_SQL, {"keys": ["JOHNSON MARY", "ADAM JOHNSON MARY"],
-                                   "words": ["JOHNSN", "MARY"], "key": "JOHNSN MARY",
-                                   "n": 2, "alts": []}).fetchall()  # fmt: skip
-    assert [(r[0], r[1]) for r in rows] == [("JOHNSON MARY", "sounds_like"),
+    assert [_one_edit("MARIA", w) for w in ("MAIA", "MARIAS", "MARTA", "MAIRA", "MRAIA")] == [
+        True, True, True, True, True]  # fmt: skip
+    assert not _one_edit("MARIA", "MIRA") and not _one_edit("MARIA", "MARIA S")
+
+
+def test_extra_word_ranks_below_the_sound_alike(cat: duckdb.DuckDBPyConnection) -> None:
+    from equity.search import rank, strict_keys
+
+    rows = rank(cat, "JOHNSN MARY", ["JOHNSON MARY", "ADAM JOHNSON MARY"])
+    assert [(r[0], r[1]) for r in rows] == [("JOHNSON MARY", "typo"),
                                             ("ADAM JOHNSON MARY", "sounds_like")]  # fmt: skip
     assert rows[0][3] > rows[1][3]
     # every query word in some form (here a dropped letter in each): no cap, no rare-word luck
     assert "A JOHN SMITH" in strict_keys(cat, "JOHN SMTH")
+    # one edit finds a word even when the dropped letter changes its Soundex code
+    assert "A JOHN SMITH" in strict_keys(cat, "JOHN SITH")
     assert strict_keys(cat, "JOHN") == set()  # one word: the capped lists handle it

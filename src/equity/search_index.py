@@ -18,6 +18,8 @@ Tables (every row keeps its source_id; full rows stay in the lake under the same
   names            party names: party_id, raw_name, party_kind, name_key, address_id
   name_words       inverted index: word -> name_key, per source (search candidates)
   word_sounds      every indexed word with its Soundex code (typo-tolerant candidates)
+  word_edits       each indexed word (4+ letters) under itself and every one-letter deletion
+                   of it: a query word's deletions meet it here at one edit (symmetric delete)
   owners           party_id -> parcel_uid (owner_snapshot)
   parcels          parcel_uid, situs_address_id, land use, zoning
   parcel_values    latest assessment per parcel and source
@@ -67,6 +69,7 @@ CREATE TABLE IF NOT EXISTS names (
     name_flag VARCHAR);
 CREATE TABLE IF NOT EXISTS name_words (word VARCHAR, name_key VARCHAR, source_id VARCHAR);
 CREATE TABLE IF NOT EXISTS word_sounds (word VARCHAR PRIMARY KEY, sound VARCHAR);
+CREATE TABLE IF NOT EXISTS word_edits (del VARCHAR, word VARCHAR);
 CREATE TABLE IF NOT EXISTS owners (
     source_id VARCHAR, party_id VARCHAR, parcel_uid VARCHAR, observed_on DATE);
 CREATE TABLE IF NOT EXISTS owner_history (
@@ -792,11 +795,33 @@ def index_source(con: duckdb.DuckDBPyConnection, source: Any, source_id: str) ->
           AND name_key NOT IN (SELECT name_key FROM names WHERE source_id = ?
                                AND name_flag IN ('placeholder', 'withheld'))
     """, [source_id, source_id, source_id])  # fmt: skip
+    con.execute(f"""
+        INSERT INTO word_edits {EDITS_SQL.format(words=
+            "SELECT DISTINCT word FROM name_words WHERE source_id = ? "
+            "AND word NOT IN (SELECT word FROM word_sounds)")}
+    """, [source_id])  # noqa: S608  # fmt: skip
     con.execute("""
         INSERT OR IGNORE INTO word_sounds
         SELECT DISTINCT word, soundex(word) FROM name_words WHERE source_id = ?
     """, [source_id])  # fmt: skip
     return counts
+
+
+# word_edits rows for a set of words: (the word, the word) and (word minus one letter, word),
+# alphabetic words of 4+ letters (shorter ones have too many one-edit neighbours to help).
+EDITS_SQL = """
+    SELECT DISTINCT del, word FROM (
+        SELECT word, unnest(list_append(list_transform(range(1, length(word) + 1),
+            lambda i: left(word, i - 1) || substr(word, i + 1)), word)) AS del
+        FROM ({words}) WHERE length(word) >= 4 AND regexp_full_match(word, '[A-Z]+'))
+"""
+
+
+def fill_word_edits(con: duckdb.DuckDBPyConnection) -> None:
+    """Rebuild word_edits from word_sounds (every indexed word), sorted for lookup."""
+    edits = EDITS_SQL.format(words="SELECT word FROM word_sounds")
+    con.execute(f"CREATE OR REPLACE TABLE word_edits AS {edits} ORDER BY del")
+    con.execute("CHECKPOINT")
 
 
 # Lake columns the index reads, per lake table (extract() fetches only these).
@@ -923,6 +948,9 @@ def compact(con: duckdb.DuckDBPyConnection, only: Iterable[str] | None = None) -
     if only is not None:
         keys = dict(SORT_KEYS)
         for table in only:
+            if table == "word_edits":
+                fill_word_edits(con)
+                continue
             con.execute(f"CREATE OR REPLACE TABLE {table} AS "  # noqa: S608
                         f"SELECT * FROM {table} ORDER BY {keys[table]}")  # fmt: skip
             con.execute("CHECKPOINT")
@@ -937,6 +965,7 @@ def compact(con: duckdb.DuckDBPyConnection, only: Iterable[str] | None = None) -
     con.execute("INSERT INTO _ws SELECT * FROM word_sounds ORDER BY sound, word")
     con.execute("DROP TABLE word_sounds")
     con.execute("ALTER TABLE _ws RENAME TO word_sounds")
+    fill_word_edits(con)
     # The leads view, stored: computing it takes seconds, too slow for an MCP client.
     con.execute("CREATE OR REPLACE TABLE debtor_owner_candidates AS "
                 "SELECT * FROM v_debtor_owner_candidates ORDER BY state, name_key")  # fmt: skip
@@ -947,7 +976,7 @@ def compact(con: duckdb.DuckDBPyConnection, only: Iterable[str] | None = None) -
 
 SHARE_PREFIX = "_search_index"
 PART_BYTES = 40_000_000  # object storage takes 50 MB per object; stay well under it
-TABLES = ("sources", *PER_SOURCE, "addresses", "word_sounds", "matcher_runs",
+TABLES = ("sources", *PER_SOURCE, "addresses", "word_sounds", "word_edits", "matcher_runs",
           *(f"m_{t}" for t in MATCHER))  # fmt: skip
 
 
@@ -956,7 +985,7 @@ def export(con: duckdb.DuckDBPyConnection, store: Any, work: Path, log: Any = pr
     machines can pull it instead of rebuilding. Returns the number of files uploaded."""
     import shutil
 
-    sort = dict(SORT_KEYS) | {"sources": "source_id", "word_sounds": "sound"}
+    sort = dict(SORT_KEYS) | {"sources": "source_id", "word_sounds": "sound", "word_edits": "del"}
     shutil.rmtree(work, ignore_errors=True)
     manifest: dict[str, Any] = {"exported_at": datetime.now(UTC).isoformat(), "tables": {}}
     sent = 0
@@ -1018,7 +1047,7 @@ def pull(store: Any, db: Path, work: Path, log: Any = print) -> int:
 def status(con: duckdb.DuckDBPyConnection) -> str:
     n = con.execute("SELECT count(*), max(indexed_at) FROM sources").fetchone()
     lines = [f"{n[0] if n else 0} sources indexed, last at {n[1] if n else None}"]
-    for t in (*PER_SOURCE, "addresses", "word_sounds"):
+    for t in (*PER_SOURCE, "addresses", "word_sounds", "word_edits"):
         c = con.execute(f"SELECT count(*) FROM {t}").fetchone()  # noqa: S608
         lines.append(f"  {t:20} {c[0] if c else 0:>14,}")
     return "\n".join(lines)

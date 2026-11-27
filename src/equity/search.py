@@ -61,6 +61,7 @@ MAX_SAME_NAME = 25
 MAX_CANDIDATES = 20000  # name_keys per candidate branch that are scored
 MAX_KEYS = 500  # best-scored name_keys whose parties are fetched
 STRICT_ENOUGH = 50  # strict candidates that make the capped fallback unnecessary
+SOUNDS_JW = 0.80  # sounds_like also needs the words to look alike (Soundex alone is loose)
 ALIKE = 0.85  # Jaro-Winkler floor for a same-Soundex word to count as a form of a query word
 
 
@@ -143,6 +144,14 @@ scored AS (
       WHEN name_key = $key THEN 'exact'
       WHEN list_contains($alts::VARCHAR[], name_key) THEN 'nickname'
       WHEN list_has_all(w, $words::VARCHAR[]) AND len(w) - $n BETWEEN 1 AND 2 THEN 'all_words'
+      -- same word count, every query word but one is in the name, and that one is one edit
+      -- (a letter dropped, added, changed or two swapped) from a name word; 4+ letters
+      WHEN len(w) = $n
+           AND len(list_filter($words::VARCHAR[], lambda q: NOT list_contains(w, q))) = 1
+           AND len(list_filter($words::VARCHAR[], lambda q: NOT list_contains(w, q)
+             AND length(q) >= 4 AND len(list_filter(w, lambda x: length(x) >= 4
+               AND NOT list_contains($words::VARCHAR[], x)
+               AND damerau_levenshtein(q, x) = 1)) > 0)) = 1 THEN 'typo'
       -- every query word but one is in the name; that one is an initial of a name word (or
       -- the name has its initial); word counts within 1; no full name word unexplained
       WHEN len(list_filter($words::VARCHAR[], lambda q: list_contains(w, q))) = $n - 1
@@ -155,8 +164,10 @@ scored AS (
                AND NOT list_contains($words::VARCHAR[], x[1]))) = 0
            AND abs(len(w) - $n) <= 1 THEN 'initial'
       -- every query word is in the name or sounds like a name word (Soundex, 3+ letters)
-      WHEN len(list_filter($words::VARCHAR[], lambda q: list_contains(w, q)
-             OR (length(q) >= 3 AND list_contains(ws, soundex(q))))) = $n
+      WHEN len(list_filter(range(1, $n + 1), lambda j: list_contains(w, $words[j])
+             OR (length($words[j]) >= 3 AND len(list_filter(range(1, len(w) + 1),
+               lambda i: ws[i] = $sounds[j]
+                 AND jaro_winkler_similarity($words[j], w[i]) >= {SOUNDS_JW})) > 0))) = $n
            AND abs(len(w) - $n) <= 1 THEN 'sounds_like'
       WHEN sim >= {SIMILAR_MIN} AND abs(len(w) - $n) <= 1 THEN 'similar'
     END AS rule
@@ -166,6 +177,7 @@ SELECT name_key, rule, sim,
        CASE rule WHEN 'exact' THEN 1.0
                  WHEN 'all_words' THEN 1.0 - 0.05 * (len(w) - $n)
                  WHEN 'nickname' THEN 0.9
+                 WHEN 'typo' THEN 0.88
                  WHEN 'initial' THEN 0.85
                  WHEN 'sounds_like' THEN 0.82 - 0.03 * greatest(len(w) - $n, 0)
                  ELSE round(0.8 * sim, 4) END AS score
@@ -173,6 +185,22 @@ FROM ruled WHERE rule IS NOT NULL
 ORDER BY score DESC, sim DESC, name_key
 LIMIT {MAX_KEYS}
 """  # noqa: S608
+
+
+def rank(con: duckdb.DuckDBPyConnection, key: str, keys: list[str]) -> list[tuple[Any, ...]]:
+    """Score candidate name_keys against the query's key: (name_key, rule, sim, score), best
+    first, at most MAX_KEYS."""
+    words = key.split(" ")
+    return con.execute(RULES_SQL, {"keys": keys, "words": words, "key": key, "n": len(words),
+                                   "sounds": _sounds_of(con, words),
+                                   "alts": nickname_keys(con, key)}).fetchall()  # fmt: skip
+
+
+def _sounds_of(con: duckdb.DuckDBPyConnection, words: list[str]) -> list[str]:
+    """Each word's Soundex code, in order."""
+    rows = con.execute("SELECT list_transform(?::VARCHAR[], lambda x: soundex(x))", [words])
+    got = rows.fetchone()
+    return [str(x) for x in got[0]] if got else []
 
 
 def nickname_keys(con: duckdb.DuckDBPyConnection, key: str, limit: int = 24) -> list[str]:
@@ -208,7 +236,31 @@ def word_forms(con: duckdb.DuckDBPyConnection, words: list[str]) -> dict[str, se
               AND jaro_winkler_similarity(q.w, s.word) >= {ALIKE}
         """, [long_words]).fetchall():  # noqa: S608  # fmt: skip
             forms[str(w)].add(str(alike))
+    edit_words = [w for w in long_words if len(w) >= 4]
+    if edit_words:
+        dels = {w: {w, *(w[:i] + w[i + 1 :] for i in range(len(w)))} for w in edit_words}
+        found = con.execute(
+            f"SELECT DISTINCT word FROM word_edits WHERE del IN {_in(set().union(*dels.values()))}"  # noqa: S608
+        ).fetchall()
+        for (word,) in found:
+            for w in edit_words:
+                if _one_edit(w, str(word)):
+                    forms[w].add(str(word))
     return forms
+
+
+def _one_edit(a: str, b: str) -> bool:
+    """True when b is a with one letter dropped, added, changed, or two neighbours swapped."""
+    if a == b or abs(len(a) - len(b)) > 1:
+        return a == b
+    if len(a) == len(b):
+        diff = [i for i in range(len(a)) if a[i] != b[i]]
+        if len(diff) == 1:
+            return True
+        i, j = [*diff, 0, 0][:2]
+        return len(diff) == 2 and j == i + 1 and a[i] == b[j] and a[j] == b[i]
+    short, long_ = (a, b) if len(a) < len(b) else (b, a)
+    return any(long_[:i] + long_[i + 1 :] == short for i in range(len(long_)))
 
 
 def _sounds(con: duckdb.DuckDBPyConnection, words: list[str]) -> list[str]:
@@ -280,10 +332,7 @@ def search(
     key = query_key(con, name)
     if not key:
         return []
-    words = key.split(" ")
-    ranked = con.execute(RULES_SQL, {"keys": candidate_keys(con, key), "words": words,
-                                     "key": key, "n": len(words),
-                                     "alts": nickname_keys(con, key)}).fetchall()  # fmt: skip
+    ranked = rank(con, key, candidate_keys(con, key))
     rule = {str(k): (str(r), float(sc)) for k, r, _sim, sc in ranked}
     closeness = {str(k): float(sim or 0) for k, _r, sim, _sc in ranked}
     if not rule:
@@ -293,21 +342,24 @@ def search(
     if state:
         cond += " AND s.state = ?"
         params.append(state.upper())
-    parties = [] if kind == "business" else _rows(con, f"""
-        SELECT n.source_id, n.party_id, n.raw_name, n.party_kind, n.address_id, n.name_key,
-               s.state, n.name_flag
-        FROM names n JOIN sources s USING (source_id)
-        WHERE n.name_key IN {_in(rule)} {cond} {"AND n.party_kind = ?" if kind else ""}
-    """, params + ([kind] if kind else []))  # noqa: S608  # fmt: skip
-    firms = [] if kind not in (None, "org", "business") else _rows(con, f"""
-        SELECT b.source_id, 'business:' || b.sos_id AS party_id, b.name AS raw_name,
-               'business' AS party_kind, NULL AS address_id, b.name_key, s.state,
-               name_flag(b.name) AS name_flag
-        FROM businesses b JOIN sources s USING (source_id)
-        WHERE b.name_key IN {_in(rule)} {cond}
-    """, params)  # noqa: S608  # fmt: skip
+    # Records sort by score first, so fetch whole score tiers, best first, and stop once the
+    # limit is filled: a common name's 500 scored keys can hold thousands of records. Each
+    # fetch waits for twice as many keys as the last (1, 2, 4, ...), so a page of rare names
+    # takes a handful of queries, not one per score.
+    found: list[dict[str, Any]] = []
+    tier: list[str] = []
+    batch = 1
+    scores = sorted({sc for _r, sc in rule.values()}, reverse=True)
+    for i, score in enumerate(scores):
+        tier += [k for k, (_r, sc) in rule.items() if sc == score]
+        if len(tier) < batch and i < len(scores) - 1:
+            continue
+        found += _records(con, tier, cond, params, kind)
+        tier, batch = [], batch * 2
+        if len(found) >= limit:
+            break
     rows = sorted(
-        parties + firms,
+        found,
         key=lambda r: (
             -rule[r["name_key"]][1],
             r["name_flag"] is not None,  # flagged names after clean ones
@@ -333,6 +385,30 @@ def search(
     ]
     _annotate(con, hits, {(r["source_id"], r["party_id"]): r["address_id"] for r in rows})
     return hits
+
+
+def _records(
+    con: duckdb.DuckDBPyConnection,
+    keys: list[str],
+    cond: str,
+    params: list[Any],
+    kind: str | None,
+) -> list[dict[str, Any]]:
+    """Parties and registered businesses under these name_keys."""
+    parties = [] if kind == "business" else _rows(con, f"""
+        SELECT n.source_id, n.party_id, n.raw_name, n.party_kind, n.address_id, n.name_key,
+               s.state, n.name_flag
+        FROM names n JOIN sources s USING (source_id)
+        WHERE n.name_key IN {_in(keys)} {cond} {"AND n.party_kind = ?" if kind else ""}
+    """, params + ([kind] if kind else []))  # noqa: S608  # fmt: skip
+    firms = [] if kind not in (None, "org", "business") else _rows(con, f"""
+        SELECT b.source_id, 'business:' || b.sos_id AS party_id, b.name AS raw_name,
+               'business' AS party_kind, NULL AS address_id, b.name_key, s.state,
+               name_flag(b.name) AS name_flag
+        FROM businesses b JOIN sources s USING (source_id)
+        WHERE b.name_key IN {_in(keys)} {cond}
+    """, params)  # noqa: S608  # fmt: skip
+    return parties + firms
 
 
 def _annotate(

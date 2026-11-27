@@ -73,13 +73,18 @@ same key. Rules, best first:
 |---|---|---|
 | `exact` | same name_key | 1.00 |
 | `all_words` | every query word is in the name, plus 1–2 more | 0.95 / 0.90 |
+| `typo` | same word count, every query word but one is in the name, and that one is one edit (a letter dropped, added, changed, or two swapped) from a name word; 4+ letters | 0.88 |
 | `initial` | all query words but one are in the name, that one is an initial of a name word (or the reverse), and every full name word is accounted for | 0.85 |
-| `sounds_like` | every query word is in the name or has the same Soundex code as a name word (3+ letters), word counts within one | 0.82, less 0.03 for an extra name word |
+| `sounds_like` | every query word is in the name or has the same Soundex code and Jaro-Winkler similarity of at least 0.80 with a name word (3+ letters), word counts within one | 0.82, less 0.03 for an extra name word |
 | `similar` | each query word's best Jaro-Winkler match among the name's words, averaged, is at least 0.90, and the word counts differ by at most one | 0.80 × similarity |
 
 Candidates come first from every name holding all the query's words in some form: the word,
-an equivalent given name, or an indexed word with the same Soundex code and Jaro-Winkler
-similarity of at least 0.85 (`name_words` and `word_sounds`; American Soundex as a SQL macro).
+an equivalent given name, an indexed word with the same Soundex code and Jaro-Winkler
+similarity of at least 0.85 (`word_sounds`; American Soundex as a SQL macro), or an indexed word
+one edit away (`word_edits`: every word of 4+ letters stored under itself and each one-letter
+deletion of it, so a query word's own deletions meet it there; the symmetric-delete method,
+implemented here in SQL). A dropped letter that changes the Soundex code (MAIA for MARIA) is
+still found.
 That list is not capped, so a typo in "ROBINSON" among 111,000 Robinsons still finds the right
 one. Only when it finds fewer than 50 names does search add the capped lists: names with one of
 the query's two rarest words, or a word that sounds like one of its two longest.
@@ -112,6 +117,19 @@ On Ohio, Kentucky and Louisiana (81 sources, 13.5M names, 2.7 GB), 80 sampled na
 |---|---|---|---|---|
 | as written | 1.00 | 0.79 | 0.62 s | 1.18 s |
 | one typo | 0.94 | 0.75 | 0.65 s | 1.15 s |
+
+On 16 states (OH KY LA FL TX PA NC IL MI WI MN GA MD VA AZ CO: 457 sources, 152M names,
+48.7 GB after `compact`), 60 sampled names:
+
+| Query | Name in top 10 | Record in top 10 | Median | 95th percentile |
+|---|---|---|---|---|
+| as written | 1.00 | 0.82 | 1.00 s | 1.61 s |
+| one typo | 0.98 | 0.78 | 0.83 s | 1.56 s |
+
+Before the uncapped all-words candidates and `word_edits`, one-typo name recall at this size was
+0.68 (a typo in a surname held by 100,000 names fell outside the capped lists), and fetching
+every record of all 500 scored names put the median at 3.4 s; records are now fetched one score
+tier at a time until the page is full.
 
 Record recall is lower than name recall when many records share one name (a common name
 can have hundreds): the right name comes back, and `--state` or `--kind` narrows it.
