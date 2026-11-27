@@ -37,6 +37,12 @@ Rules, strongest first (a debtor-owner pair keeps its strongest rule):
                         latest homeowner exemption says an owner lives there       -> review
   person_at_property    the same without the exemption (owner or tenant: unknown)   -> review
                         (an address shared by several nameless lots gives no lead)
+  person_at_org_owner_mailing  a company (LLC, corp) that owns a lot has its tax bill sent
+                        to the debtor's own address: the debtor likely runs the company, which
+                        the registries often do not say (an LLC need list no members) -> review.
+                        Not when that address takes bills for more than MAIL_SHARED_MAX owner
+                        names (a manager, lawyer or bank), or is the company's own property
+                        (a tenant there shares the address).
 With parcel_on_lien (liens recorded against a parcel id, e.g. Allegheny PINs), first; a lien
 that names a parcel but no debtor gets the stand-in debtor "owner-of:<parcel_uid>":
   lien_names_parcel         the lien itself names the parcel (instrument_parcel, or the one
@@ -138,6 +144,7 @@ RULES = (
     ("person_name_initial_address", "review", 8),
     ("person_at_owner_occupied_property", "review", 9),
     ("person_at_property", "review", 10),
+    ("person_at_org_owner_mailing", "review", 11),
 )
 
 
@@ -686,6 +693,32 @@ FROM debtors d JOIN nameless_one n ON n.addr_key = d.addr_key
 WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2;
 """
 
+# A company owner whose tax bill goes to a person debtor's own address. An address that takes
+# bills for more owner names than this is an office (a property manager, a law firm, a bank's
+# escrow desk), not someone's home. TODO(Brandon): confirm 10.
+MAIL_SHARED_MAX = 10
+ORG_MAILING_SQL = f"""
+CREATE TEMP TABLE org_mail AS
+WITH busy AS (
+    SELECT mail_key FROM owners WHERE mail_key IS NOT NULL
+    GROUP BY mail_key
+    HAVING count(DISTINCT coalesce(nullif(org_name_norm, ''), name_key)) > {MAIL_SHARED_MAX}
+), own_lot AS (  -- the company's own property: its tenants share the address
+    SELECT DISTINCT org_name_norm, situs_key FROM owners
+    WHERE party_kind = 'org' AND situs_key IS NOT NULL
+)
+SELECT DISTINCT o.party_id, o.parcel_uid, o.mail_key FROM owners o
+WHERE o.party_kind = 'org' AND coalesce(o.org_name_norm, '') <> '' AND o.mail_key IS NOT NULL
+  AND o.mail_key NOT IN (SELECT mail_key FROM busy)
+  AND NOT EXISTS (SELECT 1 FROM own_lot l
+                  WHERE l.org_name_norm = o.org_name_norm AND l.situs_key = o.mail_key);
+INSERT INTO candidates
+SELECT DISTINCT d.party_id, d.instrument_uid, m.party_id, m.parcel_uid,
+       'person_at_org_owner_mailing', d.addr_key
+FROM debtors d JOIN org_mail m ON m.mail_key = d.addr_key
+WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2;
+"""  # noqa: S608 - the cap is a constant
+
 
 def match(
     con: duckdb.DuckDBPyConnection,
@@ -701,6 +734,7 @@ def match(
     if street_town:
         con.execute(STREET_TOWN_SQL)
     con.execute(NAMELESS_SQL)
+    con.execute(ORG_MAILING_SQL)
     ranks = " ".join(f"WHEN '{r}' THEN {n}" for r, _, n in RULES)
     decisions = " ".join(f"WHEN '{r}' THEN '{d}'" for r, d, _ in RULES)
     con.execute(f"""

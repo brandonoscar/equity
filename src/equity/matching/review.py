@@ -13,6 +13,7 @@ person (or a rule the project owner approves later) can work the queue in order:
              at_owner_occupied_property  the debtor lives at a lot no source names an owner
                              for, and the roll's homeowner exemption says an owner lives there
              at_property     the debtor lives at a nameless lot (owner or tenant: unknown)
+             at_company_mailing  a company owner's tax bill goes to the debtor's address
              different       anything else
   owners_with_name_in_zip    owner parties in that ZIP with the same name key (1 = unique)
   rule_id                    the review rule that proposed the pair
@@ -77,6 +78,7 @@ SELECT q.debtor_party_id, d.raw_name AS debtor_name, d.line1 AS debtor_line1,
          WHEN q.rule_id = 'person_name_initial_address' THEN 'middle_initial'
          WHEN q.rule_id = 'person_at_owner_occupied_property' THEN 'at_owner_occupied_property'
          WHEN q.rule_id = 'person_at_property' THEN 'at_property'
+         WHEN q.rule_id = 'person_at_org_owner_mailing' THEN 'at_company_mailing'
          WHEN regexp_matches(street_norm(d.line1), '^(P ?O ?BOX|POB|BOX) ')
            THEN 'po_box'
          WHEN street_norm(d.line1) <> '' AND street_norm(d.line1)

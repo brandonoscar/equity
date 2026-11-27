@@ -1036,3 +1036,56 @@ def test_joint_owners_and_trust_settlors_are_matched_by_their_own_names(tmp_path
     # JANE SMITH at the same address lacks JANE B SMITH's middle initial: the existing
     # middle-initial rule, review only.
     assert m["d3"] == ("o1", "person_name_initial_address", "review", None)
+
+
+def test_a_company_whose_tax_bill_goes_to_a_debtors_home_is_a_review_lead(
+    tmp_path: Path,
+) -> None:
+    """An LLC need name no members, but the roll says where its tax bill goes: a person debtor
+    at that address likely runs it, so the company's lots are review leads. Not when the
+    address is the company's own lot (a tenant), an office that takes bills for many owners,
+    or when the debtor is itself a business."""
+    lk = tmp_path / "lake"
+    d, o = lk / "zz.debts", lk / "zz.parcels"
+    _write(d / "address" / "0.parquet", [
+        _addr("a1", "1 HOME ST", "10001"), _addr("a2", "7 FLAT ST", "10001"),
+        _addr("a3", "100 MGR PLZ", "10001")])  # fmt: skip
+    people = {"d1": ("ANN LEE", "a1", "person"), "d2": ("BO RAY", "a2", "person"),
+              "d3": ("CY DOE", "a3", "person"), "d4": ("HOME CORP", "a1", "org")}  # fmt: skip
+    _write(d / "party" / "0.parquet", [
+        {"party_id": k, "raw_name": n, "party_kind": kind,
+         "org_name_norm": "HOME" if kind == "org" else None, "address_id": a}
+        for k, (n, a, kind) in people.items()])  # fmt: skip
+    _write(
+        d / "instrument_party" / "0.parquet",
+        [{"instrument_uid": f"i{k}", "party_id": k, "role": "debtor"} for k in people],
+    )
+    _write(d / "instrument" / "0.parquet", [
+        {"instrument_uid": f"i{k}", "source_id": "zz.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2026-01-01", "principal_amount": 10.0} for k in people])  # fmt: skip
+    _write(o / "address" / "0.parquet", [
+        _addr("m1", "1 Home Street", "10001"), _addr("s1", "5 RENTAL AVE", "10001"),
+        _addr("s2", "7 FLAT ST", "10001"), _addr("m3", "100 MGR PLZ", "10001"),
+        *[_addr(f"s3{i}", f"{i} LOT RD", "10001") for i in range(11)]])  # fmt: skip
+    lots = [("p1", "s1"), ("p2", "s2"), *[(f"p3{i}", f"s3{i}") for i in range(11)]]
+    _write(o / "parcel" / "0.parquet", [{"parcel_uid": u, "situs_address_id": a} for u, a in lots])
+    owners = [("o1", "LEE HOLDINGS LLC", "LEE HOLDINGS", "m1", "p1"),
+              ("o2", "FLAT CO LLC", "FLAT CO", "s2", "p2"),
+              *[(f"o3{i}", f"CLIENT {i} LLC", f"CLIENT {i}", "m3", f"p3{i}")
+                for i in range(11)]]  # fmt: skip
+    _write(o / "party" / "0.parquet", [
+        {"party_id": k, "raw_name": n, "party_kind": "org", "org_name_norm": norm,
+         "address_id": a} for k, n, norm, a, _ in owners])  # fmt: skip
+    _write(o / "owner_snapshot" / "0.parquet",
+           [{"parcel_uid": u, "party_id": k} for k, _, _, _, u in owners])  # fmt: skip
+    out = tmp_path / "out"
+    run(lk, out, ["zz.debts"], ["zz.parcels"])
+    con = duckdb.connect()
+    m = con.execute(
+        f"SELECT debtor_party_id, owner_party_id, parcel_uid, rule_id, decision "
+        f"FROM '{out.as_posix()}/matches.parquet' ORDER BY ALL").fetchall()  # fmt: skip
+    assert m == [("d1", "o1", "p1", "person_at_org_owner_mailing", "review")]
+    q = dict(con.execute(
+        f"SELECT debtor_party_id, category FROM '{out.as_posix()}/review_queue.parquet'"
+    ).fetchall())  # fmt: skip
+    assert q == {"d1": "at_company_mailing"}
