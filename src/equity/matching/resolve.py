@@ -42,6 +42,14 @@ Rules, strongest first (a debtor-owner pair keeps its strongest rule):
                         (added, dropped, changed or two swapped: SMITH / SMIHT), unless both
                         words are real first names (JOHN / JOAN: two people; 1990 Census
                         first-name lists)                                       -> review
+  person_middle_name_address  same address, and one name is the other plus a full middle
+                        name or second surname ("JOHN SMITH" / "JOHN MICHAEL SMITH", "MARIA
+                        GARCIA" / "MARIA GARCIA LOPEZ"), or a middle initial on one side
+                        and that middle name on the other ("JOHN A SMITH" / "JOHN ALAN
+                        SMITH")                                                  -> review
+  person_name_spacing_address  same address, and the same letters once spaces and
+                        punctuation are dropped ("O'BRIEN" / "OBRIEN", "DE LA CRUZ" /
+                        "DELACRUZ", "MC DONALD" / "MCDONALD")                  -> review
   person_at_owner_occupied_property  a lot no source names an owner for (California rolls)
                         whose property address is the debtor's own address, and the roll's
                         latest homeowner exemption says an owner lives there       -> review
@@ -162,9 +170,11 @@ RULES = (
     ("person_name_initial_address", "review", 10),
     ("person_nickname_address", "review", 11),
     ("person_name_typo_address", "review", 12),
-    ("person_at_owner_occupied_property", "review", 13),
-    ("person_at_property", "review", 14),
-    ("person_at_org_owner_mailing", "review", 15),
+    ("person_middle_name_address", "review", 13),
+    ("person_name_spacing_address", "review", 14),
+    ("person_at_owner_occupied_property", "review", 15),
+    ("person_at_property", "review", 16),
+    ("person_at_org_owner_mailing", "review", 17),
 )
 
 
@@ -832,8 +842,52 @@ FROM debtors d JOIN addr_alias aa ON aa.k = d.addr_key JOIN o_by_addr o ON o.k =
 WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2
   AND NOT suffix_conflict(d.suffix_key, o.suffix_key)
   AND name_typo(d.name_key, o.name_key)
-  AND NOT (name_only(d.name_key, o.name_key)[1] IN (SELECT name FROM first_names)
-           AND name_only(o.name_key, d.name_key)[1] IN (SELECT name FROM first_names));
+  AND NOT two_first_names(name_only(d.name_key, o.name_key)[1],
+                          name_only(o.name_key, d.name_key)[1]);
+"""
+# Same address; one name is the other plus one full word (a middle name, a second surname),
+# or the two differ only in a middle initial against a middle name that starts with it.
+MIDDLE_SQL = """
+INSERT INTO candidates
+SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
+       'person_middle_name_address', d.name_key
+FROM debtors d JOIN addr_alias aa ON aa.k = d.addr_key JOIN o_by_addr o ON o.k = aa.k2
+WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2 AND name_words(o.name_key) >= 2
+  AND d.name_key <> o.name_key AND NOT suffix_conflict(d.suffix_key, o.suffix_key)
+  AND (
+    -- one extra full word on one side, every other word shared
+    (abs(name_words(d.name_key) - name_words(o.name_key)) = 1
+     AND least(name_words(d.name_key), name_words(o.name_key)) >= 2
+     AND ((len(name_only(d.name_key, o.name_key)) = 0
+           AND len(name_only(o.name_key, d.name_key)) = 1
+           AND length(name_only(o.name_key, d.name_key)[1]) >= 2)
+          OR (len(name_only(o.name_key, d.name_key)) = 0
+              AND len(name_only(d.name_key, o.name_key)) = 1
+              AND length(name_only(d.name_key, o.name_key)[1]) >= 2)))
+    -- an initial against a full word that starts with it
+    OR (name_words(d.name_key) = name_words(o.name_key)
+        AND len(name_only(d.name_key, o.name_key)) = 1
+        AND len(name_only(o.name_key, d.name_key)) = 1
+        AND least(length(name_only(d.name_key, o.name_key)[1]),
+                  length(name_only(o.name_key, d.name_key)[1])) = 1
+        AND greatest(length(name_only(d.name_key, o.name_key)[1]),
+                     length(name_only(o.name_key, d.name_key)[1])) >= 2
+        AND left(name_only(d.name_key, o.name_key)[1], 1)
+            = left(name_only(o.name_key, d.name_key)[1], 1)));
+"""
+# Same address and the same letters once spaces are dropped (name keys keep apostrophes as
+# word breaks: O'BRIEN is "O BRIEN"; a source that prints OBRIEN, DELACRUZ or MCDONALD is
+# the same name).
+SPACING_SQL = """
+INSERT INTO candidates
+SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
+       'person_name_spacing_address', d.name_key
+FROM debtors d JOIN addr_alias aa ON aa.k = d.addr_key JOIN o_by_addr o ON o.k = aa.k2
+WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2
+  AND d.name_key <> o.name_key AND name_words(d.name_key) <> name_words(o.name_key)
+  AND NOT suffix_conflict(d.suffix_key, o.suffix_key)
+  AND list_sort(string_split(replace(d.name_key, ' ', ''), ''))
+      = list_sort(string_split(replace(o.name_key, ' ', ''), ''));
 """
 
 
@@ -849,6 +903,18 @@ def first_names(con: duckdb.DuckDBPyConnection) -> None:
     # number of words, exactly one differing word on each side, those two words at least 3
     # letters and one edit apart (added, dropped, changed or two swapped), and a shared word
     # of at least 2 letters (not only initials). The caller rules out two real first names.
+    from equity.matching.nicknames import SAME_NAME_PAIRS
+
+    pairs = ", ".join(f"('{a}', '{b}'), ('{b}', '{a}')" for a, b in SAME_NAME_PAIRS)
+    con.execute(f"CREATE OR REPLACE TEMP TABLE same_name_pairs AS "
+                f"SELECT * FROM (VALUES {pairs}) t(a, b)")  # fmt: skip
+    # two_first_names(x, y): both words are real first names and not two spellings of one
+    # (JOHN / JOAN: two people; JOHN / JON: one name).
+    con.execute("""
+        CREATE OR REPLACE MACRO two_first_names(x, y) AS
+            x IN (SELECT name FROM first_names) AND y IN (SELECT name FROM first_names)
+            AND (x, y) NOT IN (SELECT (a, b) FROM same_name_pairs);
+    """)
     con.execute("""
         CREATE OR REPLACE MACRO name_only(a, b) AS list_filter(string_split(a, ' '),
             lambda x: NOT list_contains(string_split(b, ' '), x));
@@ -979,6 +1045,8 @@ def match(
     con.execute(NICK_SQL)
     first_names(con)
     con.execute(TYPO_SQL)
+    con.execute(MIDDLE_SQL)
+    con.execute(SPACING_SQL)
     con.execute(UNIT_SQL)
     if parcel_on_lien:
         con.execute(PARCEL_ON_LIEN_SQL)

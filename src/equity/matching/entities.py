@@ -160,8 +160,8 @@ WHERE d.party_kind <> 'org' AND c.party_kind <> 'org' AND name_words(d.name_key)
   AND d.name_key <> c.name_key AND NOT suffix_conflict(d.suffix_key, c.suffix_key)
   AND (nick_key(d.name_key) = nick_key(c.name_key)
        OR (name_typo(d.name_key, c.name_key)
-           AND NOT (name_only(d.name_key, c.name_key)[1] IN (SELECT name FROM first_names)
-                    AND name_only(c.name_key, d.name_key)[1] IN (SELECT name FROM first_names))));
+           AND NOT two_first_names(name_only(d.name_key, c.name_key)[1],
+                                   name_only(c.name_key, d.name_key)[1])));
 CREATE TEMP TABLE debtor_company_parcels AS
 SELECT DISTINCT dc.debtor_party_id, dc.debtor_name, dc.sos_id, dc.business_name, dc.rule_id,
        dc.decision, oc.parcel_uid, oc.owner_name, v.value AS parcel_value
