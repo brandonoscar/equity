@@ -111,6 +111,7 @@ sources:
   ks.wyandotte.tax_sale: tax_delinquency
   ca.sonoma.defaulted_tax: tax_delinquency
   ny.nyc.tax_lien_sale: tax_delinquency
+  ny.nyc.dof.past_due_charges: tax_delinquency
   az.cochise.tax_deed_auction: tax_delinquency    # deeded to the State; previous owner named
   # federal loans (gap report rank 9)
   us.sba.chargeoffs: charged_off_loan

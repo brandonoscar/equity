@@ -72,6 +72,7 @@ from equity.adapters.md_prince_georges import PrinceGeorgesProperty
 from equity.adapters.ne_douglas_tax_liens import DouglasTaxLiens
 from equity.adapters.ny.acris import AcrisPersonalProperty, AcrisRealProperty
 from equity.adapters.ny.condo_units import NycCondoUnits
+from equity.adapters.ny.dof_charges import NYCPastDueCharges
 from equity.adapters.ny.name_history import NYNameHistory
 from equity.adapters.pa.allegheny_assessments import AlleghenyAssessments
 from equity.adapters.pa.philadelphia_rtt import PhiladelphiaRTT
@@ -114,6 +115,7 @@ _ALL: tuple[type[Adapter], ...] = (
     CookCountyParcels,
     AcrisRealProperty,
     NycCondoUnits,
+    NYCPastDueCharges,
     HonoluluOwners,
     AcrisPersonalProperty,
     PhiladelphiaRTT,

@@ -1073,9 +1073,9 @@ STATES: dict[str, dict[str, Any]] = {
                 "courts": FEDERAL_COURTS},
     "PA-WASHINGTON": {"debtors": ["pa.washington.sheriff_sales"],
                       "owners": ["pa.washington.parcels"], "parcel_on_lien": True},
-    # NYC lien sale notices name no one: each is owed by the noticed parcel's owner. A run
-    # of its own, so the NY run's ACRIS instruments do not take on parcel_on_lien.
-    "NY-NYC-LIENSALE": {"debtors": ["ny.nyc.tax_lien_sale"],
+    # NYC lien sale notices and DOF past-due charges name no one: each is owed by the lot's
+    # owner. A run of its own, so the NY run's ACRIS instruments do not take on parcel_on_lien.
+    "NY-NYC-LIENSALE": {"debtors": ["ny.nyc.tax_lien_sale", "ny.nyc.dof.past_due_charges"],
                         "owners": ["ny.statewide.parcels", "ny.nyc.parcels"],
                         "parcel_on_lien": True},
     # St. Joseph IN tax sale: named owners and state parcel numbers. Indiana's statewide layer

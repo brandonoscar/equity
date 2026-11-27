@@ -98,7 +98,7 @@ rules:
             "*_fines", "*lot_abatement", "*unpaid_bills", "*noncompliance", "*wage_watchlist",
             "*.wall", "*administrative_orders", "*hpd_litigation", "*evictions",
             "*foreclosures", "*.civil", "*.civil.cases", "*.garnishment", "*.ucc",
-            "*final_orders", "il.cook.me_*"]
+            "*final_orders", "il.cook.me_*", "ny.nyc.dof.past_due_charges"]
     exclude: ["*.parcels", "*.zoning", "*.business", "ny.nyc.acris.*", "us.fjc.*"]
     every_hours: 168
     mode: rebuild
