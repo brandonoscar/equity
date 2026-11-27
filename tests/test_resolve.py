@@ -1142,12 +1142,18 @@ def test_debtor_aliases_and_joint_debtors_match_by_each_name(tmp_path: Path) -> 
     assert m[("d3", "o3")] == ("person_name_address", "auto", "joint")
     assert m[("d5", "o5")] == ("person_name_address", "review", "trust")
     assert ("d4", "o3") not in m  # JOHN DOE is not MARY DOE
-    person = dict(
-        con.execute(
-            f"SELECT party_id, person_id FROM '{out.as_posix()}/person_of.parquet'"
-        ).fetchall()
-    )
-    assert person["d3"] != person["d4"]  # a joint debt does not make John and Mary one person
+    # "JOHN & MARY DOE" is two people rows, each with the lien; John's row is also the
+    # JOHN DOE debtor at the same address (d4), so it holds both liens.
+    rows = {r[0]: r[1:] for r in con.execute(
+        f"SELECT name, judgments_and_liens, parcels "
+        f"FROM '{out.as_posix()}/people.parquet'").fetchall()}  # fmt: skip
+    assert rows["MARY DOE"] == (1, 1)  # her own lot, through her own name
+    assert rows["JOHN DOE"] == (2, 0)  # the joint lien and his own; Mary's lot is not his
+    assert "JOHN & MARY DOE" not in rows
+    of = con.execute(
+        f"SELECT party_id, count(*) FROM '{out.as_posix()}/person_of.parquet' GROUP BY 1"
+    ).fetchall()
+    assert dict(of)["d3"] == 2
 
 
 def test_an_address_matches_its_building_without_the_unit(tmp_path: Path) -> None:

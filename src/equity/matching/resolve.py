@@ -84,7 +84,9 @@ Output (Parquet under data/derived/<state>/, which is git-ignored: it names peop
   debtor_summary.parquet   per matched debtor: liens, open amount, parcels, total parcel value,
                     and with recorder sources open mortgages and equity_est (see .equity)
   people.parquet    one row per debtor person or business (parties merged across liens and
-                    sources, see PEOPLE_SQL): open judgments, open amount, matched parcels
+                    sources, see PEOPLE_SQL): open judgments, open amount, matched parcels.
+                    A lien naming several people ("JOHN & MARY DOE") is in each one's row.
+  person_of.parquet debtor party -> person (several rows for a party that names several people)
   mortgage_status.parquet  each mortgage on a matched lot: open or which rule marked it paid
   review_queue.parquet     evidence and labels for review-only matches (see .review)
 and a summary with counts only, printed and written to summary.json.
@@ -481,11 +483,11 @@ ORDER BY raw_name
 DEBTOR_VARIANT_INSERT_SQL = """
 INSERT INTO debtors (party_id, raw_name, party_kind, org_name_norm, instrument_uid, source_id,
                      doc_type, recorded_on, principal_amount, released, name_key, suffix_key,
-                     addr_key, town_key, zip5, county, name_variant)
+                     addr_key, town_key, zip5, county, name_variant, variant_name)
 SELECT DISTINCT d.party_id, d.raw_name, v.party_kind, v.org_name_norm, d.instrument_uid,
        d.source_id, d.doc_type, d.recorded_on, d.principal_amount, d.released,
        name_key(v.variant), suffix_key(v.variant), d.addr_key, d.town_key, d.zip5, d.county,
-       v.kind
+       v.kind, v.variant
 FROM debtors d JOIN debtor_name_variant v ON v.raw_name = d.raw_name
 WHERE d.name_variant IS NULL
   AND (v.party_kind = 'org' OR name_words(name_key(v.variant)) >= 2);
@@ -499,7 +501,10 @@ def _debtor_name_variants(con: duckdb.DuckDBPyConnection) -> None:
     from equity.matching.names import debtor_name_variants
     from equity.matching.orgs import classify
 
-    con.execute("ALTER TABLE debtors ADD COLUMN name_variant VARCHAR")
+    con.execute(
+        "ALTER TABLE debtors ADD COLUMN name_variant VARCHAR;"
+        "ALTER TABLE debtors ADD COLUMN variant_name VARCHAR"
+    )
     names = [r[0] for r in con.execute(DEBTOR_VARIANT_NAMES_SQL,
                                        [DEBTOR_VARIANT_MARK]).fetchall()]  # fmt: skip
     with tempfile.TemporaryDirectory() as tmp:
@@ -638,53 +643,83 @@ WHERE d.party_kind <> 'org' AND o.party_kind <> 'org' AND name_words(d.name_key)
 # groups are merged with a fixed number of label-propagation passes (min party id wins),
 # which is deterministic. Parcel value is counted once per distinct parcel.
 PEOPLE_SQL = """
+-- Who a people row is. A debtor party is one subject, except a lien that names several
+-- people in one string ("JOHN & MARY DOE"): each of them is a subject of their own, and the
+-- lien counts in each one's row (each is liable for it).
+CREATE TEMP TABLE subjects AS
+WITH split AS (SELECT DISTINCT party_id FROM debtors WHERE name_variant = 'joint')
+SELECT DISTINCT party_id || '#' || name_key AS subject, party_id, name_key,
+       variant_name AS name
+FROM debtors WHERE name_variant = 'joint'
+UNION ALL
+SELECT DISTINCT party_id, party_id, NULL, NULL FROM debtors
+WHERE party_id NOT IN (SELECT party_id FROM split);
 CREATE TEMP TABLE debtor_identity AS
-SELECT DISTINCT party_id,
-       CASE WHEN starts_with(party_id, 'owner-of:') THEN party_id
-            WHEN party_kind = 'org' AND coalesce(org_name_norm, '') <> ''
-            THEN 'org:' || org_name_norm || '|' || coalesce(addr_key, zip5, '')
-            WHEN name_words(name_key) >= 2
-            THEN 'person:' || name_key || '|' || coalesce(addr_key, zip5, '')
-            ELSE 'party:' || party_id END AS identity
--- An alias names the same debtor; one of several joint debtors, or a trust's settlor, is
--- someone else, so it does not merge the party with that person's other debts.
-FROM debtors WHERE coalesce(name_variant, 'alias') = 'alias';
+SELECT DISTINCT s.subject,
+       CASE WHEN starts_with(d.party_id, 'owner-of:') THEN d.party_id
+            WHEN d.party_kind = 'org' AND coalesce(d.org_name_norm, '') <> ''
+            THEN 'org:' || d.org_name_norm || '|' || coalesce(d.addr_key, d.zip5, '')
+            WHEN name_words(d.name_key) >= 2
+            THEN 'person:' || d.name_key || '|' || coalesce(d.addr_key, d.zip5, '')
+            ELSE 'party:' || d.party_id END AS identity
+FROM debtors d JOIN subjects s ON s.party_id = d.party_id
+-- A party's own name and its aliases name it; each joint name names its own subject; a
+-- trust's settlor is someone else and merges nothing.
+WHERE (s.name_key IS NULL AND coalesce(d.name_variant, 'alias') = 'alias')
+   OR (s.name_key = d.name_key AND d.name_variant = 'joint');
+-- The subject a match belongs to: one joint name's match is that person's; any other match
+-- of a split party (the whole string, an address) belongs to every name on it.
+CREATE TEMP TABLE match_subject AS
+SELECT DISTINCT s.subject, m.debtor_party_id, m.instrument_uid, m.owner_party_id,
+       m.parcel_uid, m.decision, m.owner_name_variant, m.debtor_name_variant
+FROM matches m JOIN subjects s ON s.party_id = m.debtor_party_id
+WHERE s.name_key IS NULL OR m.debtor_name_variant IS DISTINCT FROM 'joint'
+   OR s.name_key = m.key;
 -- Each group (an identity key, or an auto-matched owner party) is a star around its smallest
--- party id, both ways, so the edges grow with the parties, not with the square of a group.
+-- subject, both ways, so the edges grow with the subjects, not with the square of a group.
 CREATE TEMP TABLE person_groups AS
-SELECT party_id, identity AS grp FROM debtor_identity
+SELECT subject, identity AS grp FROM debtor_identity
 UNION
-SELECT DISTINCT debtor_party_id, 'owner:' || owner_party_id FROM matches
+SELECT DISTINCT subject, 'owner:' || owner_party_id FROM match_subject
 WHERE decision = 'auto' AND owner_party_id IS NOT NULL
-  -- Two people who matched one joint owner string ("SMITH JOHN & JANE") are two people.
-  AND owner_name_variant IS NULL AND coalesce(debtor_name_variant, 'alias') = 'alias';
+  -- Two people who matched one joint owner string ("SMITH JOHN & JANE") are two people,
+  -- and a split party's whole-string match is every name's, so it merges no one.
+  AND owner_name_variant IS NULL AND coalesce(debtor_name_variant, 'alias') IN ('alias', 'joint')
+  AND (debtor_name_variant = 'joint'
+       OR debtor_party_id NOT IN (SELECT party_id FROM subjects WHERE name_key IS NOT NULL));
 CREATE TEMP TABLE person_edges AS
-WITH hub AS (SELECT grp, min(party_id) AS h FROM person_groups GROUP BY grp)
+WITH hub AS (SELECT grp, min(subject) AS h FROM person_groups GROUP BY grp)
 SELECT DISTINCT * FROM (
-    SELECT g.party_id AS x, hub.h AS y FROM person_groups g JOIN hub USING (grp)
+    SELECT g.subject AS x, hub.h AS y FROM person_groups g JOIN hub USING (grp)
     UNION ALL
-    SELECT hub.h, g.party_id FROM person_groups g JOIN hub USING (grp)
+    SELECT hub.h, g.subject FROM person_groups g JOIN hub USING (grp)
     UNION ALL
-    SELECT party_id, party_id FROM person_groups);
-CREATE TEMP TABLE person_of AS
-SELECT x AS party_id, min(y) AS person_id FROM person_edges GROUP BY x;
+    SELECT subject, subject FROM person_groups);
+CREATE TEMP TABLE subject_of AS
+SELECT x AS subject, min(y) AS person_id FROM person_edges GROUP BY x;
 """
 PEOPLE_MERGE_STEP_SQL = """
-CREATE OR REPLACE TEMP TABLE person_of AS
-SELECT e.x AS party_id, min(p.person_id) AS person_id
-FROM person_edges e JOIN person_of p ON p.party_id = e.y GROUP BY e.x;
+CREATE OR REPLACE TEMP TABLE subject_of AS
+SELECT e.x AS subject, min(p.person_id) AS person_id
+FROM person_edges e JOIN subject_of p ON p.subject = e.y GROUP BY e.x;
 """
 PEOPLE_SUMMARY_SQL = """
+-- party -> person (a split party maps to each of its people).
+CREATE TEMP TABLE person_of AS
+SELECT DISTINCT s.party_id, so.person_id
+FROM subject_of so JOIN subjects s USING (subject);
 CREATE TEMP TABLE people AS
 WITH j AS (
-    SELECT po.person_id, d.instrument_uid, any_value(d.source_id) AS source_id,
+    SELECT so.person_id, d.instrument_uid, any_value(d.source_id) AS source_id,
            any_value(d.doc_type) AS doc_type, bool_or(d.released) AS released,
-           any_value(d.principal_amount) AS amount, any_value(d.raw_name) AS raw_name
-    FROM debtors d JOIN person_of po ON po.party_id = d.party_id
-    GROUP BY po.person_id, d.instrument_uid
+           any_value(d.principal_amount) AS amount,
+           any_value(coalesce(s.name, d.raw_name)) AS raw_name
+    FROM debtors d JOIN subjects s ON s.party_id = d.party_id
+    JOIN subject_of so ON so.subject = s.subject
+    GROUP BY so.person_id, d.instrument_uid
 ), lots AS (
-    SELECT DISTINCT po.person_id, m.parcel_uid
-    FROM matches m JOIN person_of po ON po.party_id = m.debtor_party_id
+    SELECT DISTINCT so.person_id, m.parcel_uid
+    FROM match_subject m JOIN subject_of so ON so.subject = m.subject
     WHERE m.decision = 'auto'
 )
 SELECT j.person_id, mode(j.raw_name) AS name,
