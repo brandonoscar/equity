@@ -900,10 +900,16 @@ def build(
             index(sid, version, source)
         return done
     tmp = scratch or Path("data/work/search_index")
+    queue = list(todo)
+    ahead = 2 * workers  # fetched-but-not-indexed sources kept on disk at most
     with ThreadPoolExecutor(workers) as ex:
-        futures = {ex.submit(extract, source, sid, tmp, remote): (sid, v) for sid, v in todo}
-        for fut in as_completed(futures):
-            sid, version = futures[fut]
+        futures: dict[Any, tuple[str, str]] = {}
+        while queue or futures:
+            while queue and len(futures) < ahead:
+                sid, v = queue.pop(0)
+                futures[ex.submit(extract, source, sid, tmp, remote)] = (sid, v)
+            fut = next(as_completed(futures))
+            sid, version = futures.pop(fut)
             index(sid, version, fut.result())
             shutil.rmtree(tmp / sid, ignore_errors=True)
     done.sort()
@@ -916,6 +922,8 @@ def compact(con: duckdb.DuckDBPyConnection) -> None:
     for table, key in SORT_KEYS:
         con.execute(f"CREATE OR REPLACE TABLE {table} AS "  # noqa: S608
                     f"SELECT * FROM {table} ORDER BY {key}")  # fmt: skip
+        # Free the old copy's blocks now, so peak disk is one table, not all of them.
+        con.execute("CHECKPOINT")
     # word_sounds keeps its primary key (INSERT OR IGNORE relies on it).
     con.execute("CREATE OR REPLACE TABLE _ws (word VARCHAR PRIMARY KEY, sound VARCHAR)")
     con.execute("INSERT INTO _ws SELECT * FROM word_sounds ORDER BY sound, word")
