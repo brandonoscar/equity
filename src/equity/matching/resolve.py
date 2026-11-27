@@ -26,12 +26,18 @@ Rules, strongest first (a debtor-owner pair keeps its strongest rule):
   person_name_address   same person name_key, and the debtor's address equals the owner's
                         mailing address or the parcel's property address       -> auto
   org_name_address      same org_name and address                              -> auto
+  person_name_address_unit / org_name_address_unit  the same, where one address is the
+                        other without its unit ("12 MAIN ST APT 3" / "12 MAIN ST"; two
+                        different units never pair)                            -> auto
   org_name_zip          same org_name and ZIP                                  -> auto
   person_name_zip       same person name_key and ZIP                           -> review
   person_name_initial_address  same address, and the names are the same except that one side
                         has one extra single-letter middle initial ("JOHN SMITH" / "SMITH JOHN
                         A"); a parent and child can share both, so -> review (approved by the
                         project owner 2026-11-22)
+  person_nickname_address  same address, and the names are the same once each common
+                        nickname is read as its formal name ("BOB SMITH" / "ROBERT SMITH",
+                        equity.matching.nicknames; ambiguous nicknames left out) -> review
   person_at_owner_occupied_property  a lot no source names an owner for (California rolls)
                         whose property address is the debtor's own address, and the roll's
                         latest homeowner exemption says an owner lives there       -> review
@@ -72,13 +78,18 @@ Owner strings that print several people or a trust ("SMITH JOHN A & JANE B", "JO
 REVOCABLE TRUST") are split into the people they name (equity.matching.names): each is an
 extra owner name of the same party and parcel, so every rule above can meet it. Matches record
 owner_name_variant ('joint' or 'trust'); a trust's settlor only reaches review.
+Debtor strings are split the same way, plus aliases ("JOHN SMITH DBA SMITH PLUMBING", AKA,
+FKA, T/A): each name is an extra debtor name of the same party and instrument, a business
+alias with its org name. Matches record debtor_name_variant ('alias', 'joint' or 'trust').
 
 Output (Parquet under data/derived/<state>/, which is git-ignored: it names people):
   matches.parquet   debtor party, its instrument, owner party, parcel, rule, decision, keys
   debtor_summary.parquet   per matched debtor: liens, open amount, parcels, total parcel value,
                     and with recorder sources open mortgages and equity_est (see .equity)
   people.parquet    one row per debtor person or business (parties merged across liens and
-                    sources, see PEOPLE_SQL): open judgments, open amount, matched parcels
+                    sources, see PEOPLE_SQL): open judgments, open amount, matched parcels.
+                    A lien naming several people ("JOHN & MARY DOE") is in each one's row.
+  person_of.parquet debtor party -> person (several rows for a party that names several people)
   mortgage_status.parquet  each mortgage on a matched lot: open or which rule marked it paid
   review_queue.parquet     evidence and labels for review-only matches (see .review)
 and a summary with counts only, printed and written to summary.json.
@@ -136,15 +147,18 @@ RULES = (
     ("lien_names_parcel", "auto", 0),
     ("person_name_address", "auto", 1),
     ("org_name_address", "auto", 2),
-    ("org_name_zip", "auto", 3),
-    ("person_name_zip", "review", 4),
-    ("person_name_street_town", "auto", 5),
-    ("org_name_street_town", "auto", 6),
-    ("org_name_county", "review", 7),
-    ("person_name_initial_address", "review", 8),
-    ("person_at_owner_occupied_property", "review", 9),
-    ("person_at_property", "review", 10),
-    ("person_at_org_owner_mailing", "review", 11),
+    ("person_name_address_unit", "auto", 3),
+    ("org_name_address_unit", "auto", 4),
+    ("org_name_zip", "auto", 5),
+    ("person_name_zip", "review", 6),
+    ("person_name_street_town", "auto", 7),
+    ("org_name_street_town", "auto", 8),
+    ("org_name_county", "review", 9),
+    ("person_name_initial_address", "review", 10),
+    ("person_nickname_address", "review", 11),
+    ("person_at_owner_occupied_property", "review", 12),
+    ("person_at_property", "review", 13),
+    ("person_at_org_owner_mailing", "review", 14),
 )
 
 
@@ -222,6 +236,14 @@ def doc_type_filter(spec: list[str] | dict[str, list[str]] | None) -> str:
     return f"AND (i.doc_type IN ({types}) OR i.source_id IN ({fed}))"
 
 
+# A unit designator and its number at the end of a street line.
+UNIT_MACRO = r"""
+CREATE OR REPLACE MACRO unit_strip(s) AS regexp_replace(upper(coalesce(s, '')),
+    '\s*(#\s*[A-Z0-9-]+|\b(APT|APARTMENT|UNIT|STE|SUITE|FL|FLOOR|RM|ROOM|SPC|SPACE|TRLR|LOT)'
+    '\b\.?\s*#?\s*([A-Z]?-?[0-9][A-Z0-9-]*|[A-Z]))\s*$', '');
+"""
+
+
 def connect(
     lake: Path,
     debtor_sources: list[str],
@@ -271,6 +293,7 @@ def connect(
     from equity.matching.review import street_macro
 
     street_macro(con)
+    con.execute(UNIT_MACRO)
     con.execute(f"""
         CREATE TEMP TABLE addr AS
         SELECT DISTINCT address_id,
@@ -278,7 +301,12 @@ def connect(
                     THEN street_norm(line1) || '|' || zip5 END AS addr_key,
                CASE WHEN street_norm(line1) <> '' AND city IS NOT NULL
                     THEN street_norm(line1) || '|' || upper(trim(city)) END AS town_key,
-               zip5
+               zip5,
+               -- The building's address: the street line without a trailing unit
+               -- ("12 MAIN ST APT 3B", "12 MAIN ST #3", "... STE 200", "... LOT 14").
+               CASE WHEN len(string_split(street_norm(unit_strip(line1)), ' ')) >= 2
+                         AND zip5 IS NOT NULL
+                    THEN street_norm(unit_strip(line1)) || '|' || zip5 END AS base_key
         FROM addr_all;
         CREATE TEMP TABLE debtors AS
         SELECT DISTINCT p.party_id, p.raw_name, p.party_kind, p.org_name_norm,
@@ -338,6 +366,7 @@ def connect(
                 SELECT 1 FROM d_ip ip WHERE ip.instrument_uid = i.instrument_uid
                   AND ip.role = 'debtor');
         """)
+    _debtor_name_variants(con)
     return con
 
 
@@ -441,6 +470,66 @@ def _owner_name_variants(con: duckdb.DuckDBPyConnection) -> None:
             [str(path)],
         )
     con.execute(VARIANT_INSERT_SQL)
+
+
+# Debtor strings that print aliases or several people ("JOHN SMITH DBA SMITH PLUMBING",
+# "JOHN SMITH AKA JACK SMITH", "JOHN & JANE SMITH"): each name joins the debtors as an extra
+# row of the same party and instrument (equity.matching.names.debtor_name_variants), so a
+# sole proprietor's trade-name lien reaches the person's house and the business's lots. A
+# business alias keeps its org name (orgs.classify), so the org rules can meet it.
+DEBTOR_VARIANT_MARK = (VARIANT_MARK + r"|\bD ?/? ?B ?/? ?A\b|\b[AFN] ?/? ?K ?/? ?A\b|\bT ?/ ?A\b"
+                       r"|KNOWN AS|BUSINESS AS|TRADING AS")  # fmt: skip
+DEBTOR_VARIANT_NAMES_SQL = """
+SELECT DISTINCT raw_name FROM debtors
+WHERE regexp_matches(upper(replace(coalesce(raw_name, ''), '.', '')), ?)
+ORDER BY raw_name
+"""
+DEBTOR_VARIANT_INSERT_SQL = """
+INSERT INTO debtors (party_id, raw_name, party_kind, org_name_norm, instrument_uid, source_id,
+                     doc_type, recorded_on, principal_amount, released, name_key, suffix_key,
+                     addr_key, town_key, zip5, county, name_variant, variant_name)
+SELECT DISTINCT d.party_id, d.raw_name, v.party_kind, v.org_name_norm, d.instrument_uid,
+       d.source_id, d.doc_type, d.recorded_on, d.principal_amount, d.released,
+       name_key(v.variant), suffix_key(v.variant), d.addr_key, d.town_key, d.zip5, d.county,
+       v.kind, v.variant
+FROM debtors d JOIN debtor_name_variant v ON v.raw_name = d.raw_name
+WHERE d.name_variant IS NULL
+  AND (v.party_kind = 'org' OR name_words(name_key(v.variant)) >= 2);
+"""
+
+
+def _debtor_name_variants(con: duckdb.DuckDBPyConnection) -> None:
+    import csv
+    import tempfile
+
+    from equity.matching.names import debtor_name_variants
+    from equity.matching.orgs import classify
+
+    con.execute(
+        "ALTER TABLE debtors ADD COLUMN name_variant VARCHAR;"
+        "ALTER TABLE debtors ADD COLUMN variant_name VARCHAR"
+    )
+    names = [r[0] for r in con.execute(DEBTOR_VARIANT_NAMES_SQL,
+                                       [DEBTOR_VARIANT_MARK]).fetchall()]  # fmt: skip
+    with tempfile.TemporaryDirectory() as tmp:
+        path = Path(tmp) / "variants.csv"
+        with path.open("w", newline="", encoding="utf-8") as f:
+            w = csv.writer(f)
+            w.writerow(["raw_name", "variant", "kind", "party_kind", "org_name_norm"])
+            for raw in names:
+                for variant, kind in debtor_name_variants(raw):
+                    c = classify(variant) if kind == "alias" else None
+                    org = c is not None and c.party_kind == "org" and bool(c.org_name_norm)
+                    w.writerow([raw, variant, kind, "org" if org else "person",
+                                c.org_name_norm if org and c else ""])  # fmt: skip
+        con.execute(
+            "CREATE TEMP TABLE debtor_name_variant AS SELECT raw_name, variant, kind, "
+            "party_kind, nullif(org_name_norm, '') AS org_name_norm FROM read_csv(?, "
+            "header=true, columns={'raw_name': 'VARCHAR', 'variant': 'VARCHAR', "
+            "'kind': 'VARCHAR', 'party_kind': 'VARCHAR', 'org_name_norm': 'VARCHAR'})",
+            [str(path)],
+        )
+    con.execute(DEBTOR_VARIANT_INSERT_SQL)
 
 
 def _court_debtors(con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str]) -> None:
@@ -558,49 +647,83 @@ WHERE d.party_kind <> 'org' AND o.party_kind <> 'org' AND name_words(d.name_key)
 # groups are merged with a fixed number of label-propagation passes (min party id wins),
 # which is deterministic. Parcel value is counted once per distinct parcel.
 PEOPLE_SQL = """
+-- Who a people row is. A debtor party is one subject, except a lien that names several
+-- people in one string ("JOHN & MARY DOE"): each of them is a subject of their own, and the
+-- lien counts in each one's row (each is liable for it).
+CREATE TEMP TABLE subjects AS
+WITH split AS (SELECT DISTINCT party_id FROM debtors WHERE name_variant = 'joint')
+SELECT DISTINCT party_id || '#' || name_key AS subject, party_id, name_key,
+       variant_name AS name
+FROM debtors WHERE name_variant = 'joint'
+UNION ALL
+SELECT DISTINCT party_id, party_id, NULL, NULL FROM debtors
+WHERE party_id NOT IN (SELECT party_id FROM split);
 CREATE TEMP TABLE debtor_identity AS
-SELECT DISTINCT party_id,
-       CASE WHEN starts_with(party_id, 'owner-of:') THEN party_id
-            WHEN party_kind = 'org' AND coalesce(org_name_norm, '') <> ''
-            THEN 'org:' || org_name_norm || '|' || coalesce(addr_key, zip5, '')
-            WHEN name_words(name_key) >= 2
-            THEN 'person:' || name_key || '|' || coalesce(addr_key, zip5, '')
-            ELSE 'party:' || party_id END AS identity
-FROM debtors;
+SELECT DISTINCT s.subject,
+       CASE WHEN starts_with(d.party_id, 'owner-of:') THEN d.party_id
+            WHEN d.party_kind = 'org' AND coalesce(d.org_name_norm, '') <> ''
+            THEN 'org:' || d.org_name_norm || '|' || coalesce(d.addr_key, d.zip5, '')
+            WHEN name_words(d.name_key) >= 2
+            THEN 'person:' || d.name_key || '|' || coalesce(d.addr_key, d.zip5, '')
+            ELSE 'party:' || d.party_id END AS identity
+FROM debtors d JOIN subjects s ON s.party_id = d.party_id
+-- A party's own name and its aliases name it; each joint name names its own subject; a
+-- trust's settlor is someone else and merges nothing.
+WHERE (s.name_key IS NULL AND coalesce(d.name_variant, 'alias') = 'alias')
+   OR (s.name_key = d.name_key AND d.name_variant = 'joint');
+-- The subject a match belongs to: one joint name's match is that person's; any other match
+-- of a split party (the whole string, an address) belongs to every name on it.
+CREATE TEMP TABLE match_subject AS
+SELECT DISTINCT s.subject, m.debtor_party_id, m.instrument_uid, m.owner_party_id,
+       m.parcel_uid, m.decision, m.owner_name_variant, m.debtor_name_variant
+FROM matches m JOIN subjects s ON s.party_id = m.debtor_party_id
+WHERE s.name_key IS NULL OR m.debtor_name_variant IS DISTINCT FROM 'joint'
+   OR s.name_key = m.key;
 -- Each group (an identity key, or an auto-matched owner party) is a star around its smallest
--- party id, both ways, so the edges grow with the parties, not with the square of a group.
+-- subject, both ways, so the edges grow with the subjects, not with the square of a group.
 CREATE TEMP TABLE person_groups AS
-SELECT party_id, identity AS grp FROM debtor_identity
+SELECT subject, identity AS grp FROM debtor_identity
 UNION
-SELECT DISTINCT debtor_party_id, 'owner:' || owner_party_id FROM matches
-WHERE decision = 'auto' AND owner_party_id IS NOT NULL;
+SELECT DISTINCT subject, 'owner:' || owner_party_id FROM match_subject
+WHERE decision = 'auto' AND owner_party_id IS NOT NULL
+  -- Two people who matched one joint owner string ("SMITH JOHN & JANE") are two people,
+  -- and a split party's whole-string match is every name's, so it merges no one.
+  AND owner_name_variant IS NULL AND coalesce(debtor_name_variant, 'alias') IN ('alias', 'joint')
+  AND (debtor_name_variant = 'joint'
+       OR debtor_party_id NOT IN (SELECT party_id FROM subjects WHERE name_key IS NOT NULL));
 CREATE TEMP TABLE person_edges AS
-WITH hub AS (SELECT grp, min(party_id) AS h FROM person_groups GROUP BY grp)
+WITH hub AS (SELECT grp, min(subject) AS h FROM person_groups GROUP BY grp)
 SELECT DISTINCT * FROM (
-    SELECT g.party_id AS x, hub.h AS y FROM person_groups g JOIN hub USING (grp)
+    SELECT g.subject AS x, hub.h AS y FROM person_groups g JOIN hub USING (grp)
     UNION ALL
-    SELECT hub.h, g.party_id FROM person_groups g JOIN hub USING (grp)
+    SELECT hub.h, g.subject FROM person_groups g JOIN hub USING (grp)
     UNION ALL
-    SELECT party_id, party_id FROM person_groups);
-CREATE TEMP TABLE person_of AS
-SELECT x AS party_id, min(y) AS person_id FROM person_edges GROUP BY x;
+    SELECT subject, subject FROM person_groups);
+CREATE TEMP TABLE subject_of AS
+SELECT x AS subject, min(y) AS person_id FROM person_edges GROUP BY x;
 """
 PEOPLE_MERGE_STEP_SQL = """
-CREATE OR REPLACE TEMP TABLE person_of AS
-SELECT e.x AS party_id, min(p.person_id) AS person_id
-FROM person_edges e JOIN person_of p ON p.party_id = e.y GROUP BY e.x;
+CREATE OR REPLACE TEMP TABLE subject_of AS
+SELECT e.x AS subject, min(p.person_id) AS person_id
+FROM person_edges e JOIN subject_of p ON p.subject = e.y GROUP BY e.x;
 """
 PEOPLE_SUMMARY_SQL = """
+-- party -> person (a split party maps to each of its people).
+CREATE TEMP TABLE person_of AS
+SELECT DISTINCT s.party_id, so.person_id
+FROM subject_of so JOIN subjects s USING (subject);
 CREATE TEMP TABLE people AS
 WITH j AS (
-    SELECT po.person_id, d.instrument_uid, any_value(d.source_id) AS source_id,
+    SELECT so.person_id, d.instrument_uid, any_value(d.source_id) AS source_id,
            any_value(d.doc_type) AS doc_type, bool_or(d.released) AS released,
-           any_value(d.principal_amount) AS amount, any_value(d.raw_name) AS raw_name
-    FROM debtors d JOIN person_of po ON po.party_id = d.party_id
-    GROUP BY po.person_id, d.instrument_uid
+           any_value(d.principal_amount) AS amount,
+           any_value(coalesce(s.name, d.raw_name)) AS raw_name
+    FROM debtors d JOIN subjects s ON s.party_id = d.party_id
+    JOIN subject_of so ON so.subject = s.subject
+    GROUP BY so.person_id, d.instrument_uid
 ), lots AS (
-    SELECT DISTINCT po.person_id, m.parcel_uid
-    FROM matches m JOIN person_of po ON po.party_id = m.debtor_party_id
+    SELECT DISTINCT so.person_id, m.parcel_uid
+    FROM match_subject m JOIN subject_of so ON so.subject = m.subject
     WHERE m.decision = 'auto'
 )
 SELECT j.person_id, mode(j.raw_name) AS name,
@@ -649,6 +772,52 @@ WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2
         lambda w: NOT list_contains(string_split(CASE WHEN name_words(o.name_key) >
             name_words(d.name_key) THEN d.name_key ELSE o.name_key END, ' '), w))[1]) = 1;
 """
+# Same name, and one address is the other without its unit ("12 MAIN ST APT 3" on the lien,
+# "12 MAIN ST" on the roll, or the reverse). Two different units of one building never pair.
+UNIT_SQL = """
+CREATE TEMP TABLE unit_pair AS
+WITH u AS (SELECT DISTINCT addr_key, base_key FROM addr
+           WHERE base_key IS NOT NULL AND addr_key IS NOT NULL AND base_key <> addr_key)
+SELECT addr_key AS a, base_key AS b FROM u UNION SELECT base_key, addr_key FROM u;
+INSERT INTO candidates
+SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
+       'person_name_address_unit', d.name_key
+FROM debtors d JOIN unit_pair u ON u.a = d.addr_key
+JOIN owners o ON o.name_key = d.name_key AND u.b IN (o.mail_key, o.situs_key)
+WHERE d.party_kind <> 'org' AND o.party_kind <> 'org' AND name_words(d.name_key) >= 2
+  AND NOT suffix_conflict(d.suffix_key, o.suffix_key)
+UNION ALL
+SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
+       'org_name_address_unit', d.org_name_norm
+FROM debtors d JOIN unit_pair u ON u.a = d.addr_key
+JOIN owners o ON o.org_name_norm = d.org_name_norm AND u.b IN (o.mail_key, o.situs_key)
+WHERE d.party_kind = 'org' AND o.party_kind = 'org' AND d.org_name_norm <> '';
+"""
+# Same address, and the same name once nicknames are read as formal names (o_by_addr is
+# INITIAL_SQL's owners-by-address table).
+NICK_SQL = """
+INSERT INTO candidates
+SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
+       'person_nickname_address', d.name_key
+FROM debtors d JOIN o_by_addr o ON o.k = d.addr_key
+WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2
+  AND d.name_key <> o.name_key AND NOT suffix_conflict(d.suffix_key, o.suffix_key)
+  AND nick_key(d.name_key) = nick_key(o.name_key);
+"""
+
+
+def nick_macro(con: duckdb.DuckDBPyConnection) -> None:
+    """nick_key(k): a name key with each nickname replaced by its formal name, re-sorted."""
+    from equity.matching.nicknames import nickname_map
+
+    pairs = ", ".join(f"'{k}': '{v}'" for k, v in sorted(nickname_map().items()))
+    con.execute(f"""
+        CREATE OR REPLACE MACRO nick_key(k) AS array_to_string(list_sort(list_distinct(
+            list_transform(string_split(k, ' '), lambda w: coalesce(MAP {{{pairs}}}[w], w)))),
+            ' ');
+    """)
+
+
 STREET_TOWN_SQL = """
 INSERT INTO candidates
 SELECT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid, 'person_name_street_town',
@@ -729,6 +898,9 @@ def match(
     con.execute(MATCH_SQL)
     con.execute(COURT_COUNTY_SQL)
     con.execute(INITIAL_SQL)
+    nick_macro(con)
+    con.execute(NICK_SQL)
+    con.execute(UNIT_SQL)
     if parcel_on_lien:
         con.execute(PARCEL_ON_LIEN_SQL)
     if street_town:
@@ -767,6 +939,22 @@ def match(
           AND v.name_key = matches.key;
         UPDATE matches SET decision = 'review'
         WHERE decision = 'auto' AND owner_name_variant = 'trust';
+        -- The same for the debtor's name: NULL, 'alias' (a DBA/AKA name of the same debtor),
+        -- 'joint' or 'trust'. A trust's debt is not its settlor's own: review only.
+        ALTER TABLE matches ADD COLUMN debtor_name_variant VARCHAR;
+        UPDATE matches SET debtor_name_variant = v.variant
+        FROM (SELECT party_id, instrument_uid, k,
+                     CASE WHEN bool_or(name_variant IS NULL) THEN NULL
+                          ELSE min(name_variant) END AS variant
+              FROM (SELECT party_id, instrument_uid, name_key AS k, name_variant FROM debtors
+                    UNION ALL
+                    SELECT party_id, instrument_uid, org_name_norm, name_variant FROM debtors
+                    WHERE org_name_norm IS NOT NULL)
+              GROUP BY party_id, instrument_uid, k) v
+        WHERE v.party_id = matches.debtor_party_id AND v.instrument_uid = matches.instrument_uid
+          AND v.k = matches.key;
+        UPDATE matches SET decision = 'review'
+        WHERE decision = 'auto' AND debtor_name_variant = 'trust';
         CREATE TEMP TABLE parcel_value AS
         SELECT parcel_uid, arg_max(coalesce(appraised_total, assessed_value), tax_year) AS value
         FROM o_assess GROUP BY parcel_uid;
