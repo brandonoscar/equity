@@ -737,3 +737,24 @@ def test_leads_table_grades_and_ranks(cat: duckdb.DuckDBPyConnection) -> None:
     pair = grade_pair(cat, "oh.cuyahoga.liens:d1", "oh.franklin.parcels:o1")
     assert (grade, rule) == (pair["grade"], pair["rule"]) == ("A", "lien_names_parcel")
     assert homestead in (True, False)
+
+
+def test_fact_sheet_for_a_lead(cat: duckdb.DuckDBPyConnection) -> None:
+    from datetime import date
+
+    from equity.facts import fact_sheet
+
+    compact(cat)
+    lead_id = cat.execute("SELECT lead_id FROM leads").fetchone()[0]  # type: ignore[index]
+    sheet = fact_sheet(cat, lead_id, as_of=date(2026, 1, 1))
+    assert sheet is not None and sheet["as_of"] == "2026-01-01"
+    assert sheet["identity"][0]["grade"] == "A"
+    assert [d["instrument_uid"] for d in sheet["debts"]] and all(
+        d["debtor_ref"] == "oh.cuyahoga.liens:d1" for d in sheet["debts"])  # fmt: skip
+    assert sheet["factors"]["open_amount"] == 12500.0
+    assert sheet["factors"]["charged_off_loan"] is None  # unknown here, not zero
+    assert any("not confirmed in config/sol.yaml" in g for g in sheet["gaps"])
+    assert [p["parcel_uid"] for p in sheet["parcels"]] == ["39049-010-1"]
+    assert fact_sheet(cat, 10**9) is None
+    again = fact_sheet(cat, lead_id, as_of=date(2026, 1, 1))
+    assert again is not None and again["sheet_sha256"] == sheet["sheet_sha256"]  # repeatable

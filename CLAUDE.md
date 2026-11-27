@@ -37,6 +37,14 @@ say so.
 4. **Cite every fact** by ref (`source_id:party_id`, `parcel_uid`, `instrument_uid`) so it
    can be re-derived.
 
+## Scoring
+
+Scores are Claude applying the owner's rubric (`config/scoring_rubric.yaml`) by hand to a
+deterministic fact sheet, never code and never a number Claude made up. While the rubric's
+`status` is `draft`, label every score DRAFT. Scores rank recovery of debts the business holds
+or may buy; never produce them for credit, insurance, employment or housing decisions, or as
+a consumer report for anyone else (FCRA).
+
 ## Privacy
 
 The repository is public. Never commit a real person's name, address or a dossier. Write
@@ -52,6 +60,8 @@ research output under `data/derived/` (git-ignored). Test fixtures are pseudonym
 | "What's on parcel <id>?" | skill `parcel-dossier` |
 | "Write SQL for ..." | skill `ontology-sql` |
 | "Build / refresh / share the index" | skill `search-index-ops` |
+| "Score / rank <lead> for recovery" | `uv run python -m equity.facts <lead_id>` (fact sheet), then skill `score-rubric` |
+| "Score the top N leads in <state>" | saved workflow `score-people` (blind second scorer, private ledger) |
 | Verify one lead independently | subagent `lead-verifier` |
 | "Did a search change break anything?" | `uv run python -m equity.search_golden` (owner's private cases) |
 
