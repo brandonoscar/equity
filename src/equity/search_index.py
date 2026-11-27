@@ -941,6 +941,58 @@ def build(
     return done
 
 
+SORT_CHUNK_ROWS = 15_000_000  # rows sorted at once while compacting (bounds the sort's spill)
+
+
+def sort_table(con: duckdb.DuckDBPyConnection, table: str, key: str, work: Path) -> None:
+    """Rewrite table sorted by key with little spare disk: write it as sorted Parquet one key
+    range at a time (ranges of two-letter key prefixes, about SORT_CHUNK_ROWS rows each, so
+    no sort spills much), drop the table, and load it back from the files in order. Peak
+    extra disk is one compressed copy, not two uncompressed ones plus the sort's spill."""
+    import shutil
+
+    shutil.rmtree(work, ignore_errors=True)
+    work.mkdir(parents=True)
+    prefixes = con.execute(f"SELECT left({key}, 2) AS p, count(*) FROM {table} "  # noqa: S608
+                           f"WHERE {key} IS NOT NULL GROUP BY 1 ORDER BY 1").fetchall()  # fmt: skip
+    chunks: list[list[str]] = [[]]
+    rows = 0
+    for prefix, n in prefixes:
+        if rows and rows + int(n) > SORT_CHUNK_ROWS:
+            chunks.append([])
+            rows = 0
+        chunks[-1].append(str(prefix))
+        rows += int(n)
+    conds = [f"left({key}, 2) IN {_in_list(c)}" for c in chunks if c] + [f"{key} IS NULL"]
+    files = []
+    for i, cond in enumerate(conds):
+        f = work / f"{i:04d}.parquet"
+        con.execute(f"COPY (SELECT * FROM {table} WHERE {cond} ORDER BY {key}) TO '{f}' "  # noqa: S608
+                    "(FORMAT parquet, COMPRESSION zstd, ROW_GROUP_SIZE 122880)")  # fmt: skip
+        files.append(str(f))
+    expected = con.execute(f"SELECT count(*) FROM {table}").fetchone()  # noqa: S608
+    got = con.execute("SELECT count(*) FROM read_parquet(?)", [files]).fetchone()
+    if expected != got:
+        raise RuntimeError(f"sorting {table}: wrote {got} rows of {expected}; table untouched")
+    con.execute(f"DROP TABLE {table}")
+    con.execute("CHECKPOINT")
+    # preserve_insertion_order (the default) keeps the files' order: the table stays sorted.
+    con.execute(f"CREATE TABLE {table} AS SELECT * FROM read_parquet(?)", [files])  # noqa: S608
+    con.execute("CHECKPOINT")
+    shutil.rmtree(work, ignore_errors=True)
+
+
+def _sort_work(con: duckdb.DuckDBPyConnection) -> Path:
+    """Scratch for sort_table, next to the index file (same disk, removed after)."""
+    row = con.execute("SELECT path FROM duckdb_databases() "
+                      "WHERE database_name = current_database()").fetchone()  # fmt: skip
+    return Path(str(row[0])).with_suffix(".sort") if row and row[0] else Path("data/work/sort")
+
+
+def _in_list(values: list[str]) -> str:
+    return "(" + ", ".join("'" + v.replace("'", "''") + "'" for v in values) + ")"
+
+
 def compact(con: duckdb.DuckDBPyConnection, only: Iterable[str] | None = None) -> None:
     """Rewrite the search tables sorted by their lookup keys, so DuckDB's per-block min/max
     skips almost everything on an exact name or word lookup. `only` re-sorts just those
@@ -951,15 +1003,10 @@ def compact(con: duckdb.DuckDBPyConnection, only: Iterable[str] | None = None) -
             if table == "word_edits":
                 fill_word_edits(con)
                 continue
-            con.execute(f"CREATE OR REPLACE TABLE {table} AS "  # noqa: S608
-                        f"SELECT * FROM {table} ORDER BY {keys[table]}")  # fmt: skip
-            con.execute("CHECKPOINT")
+            sort_table(con, table, keys[table], _sort_work(con))
         return
     for table, key in SORT_KEYS:
-        con.execute(f"CREATE OR REPLACE TABLE {table} AS "  # noqa: S608
-                    f"SELECT * FROM {table} ORDER BY {key}")  # fmt: skip
-        # Free the old copy's blocks now, so peak disk is one table, not all of them.
-        con.execute("CHECKPOINT")
+        sort_table(con, table, key, _sort_work(con))
     # word_sounds keeps its primary key (INSERT OR IGNORE relies on it).
     con.execute("CREATE OR REPLACE TABLE _ws (word VARCHAR PRIMARY KEY, sound VARCHAR)")
     con.execute("INSERT INTO _ws SELECT * FROM word_sounds ORDER BY sound, word")

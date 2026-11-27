@@ -634,3 +634,17 @@ def test_extra_word_ranks_below_the_sound_alike(cat: duckdb.DuckDBPyConnection) 
     # one edit finds a word even when the dropped letter changes its Soundex code
     assert "A JOHN SMITH" in strict_keys(cat, "JOHN SITH")
     assert strict_keys(cat, "JOHN") == set()  # one word: the capped lists handle it
+
+
+def test_sort_table_in_chunks_keeps_every_row_in_order(
+    cat: duckdb.DuckDBPyConnection, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    import equity.search_index as si
+
+    cat.execute("CREATE TABLE t AS SELECT * FROM (VALUES ('BB', 1), ('AA', 2), (NULL, 3), "
+                "('AB', 4), ('BA', 5), ('AA', 6)) v(k, n)")  # fmt: skip
+    monkeypatch.setattr(si, "SORT_CHUNK_ROWS", 2)  # several chunks of two-letter prefixes
+    si.sort_table(cat, "t", "k", tmp_path / "sort")
+    keys = [r[0] for r in cat.execute("SELECT k FROM t").fetchall()]
+    assert keys == ["AA", "AA", "AB", "BA", "BB", None]
+    assert not (tmp_path / "sort").exists()

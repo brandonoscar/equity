@@ -17,6 +17,8 @@ description: Build, refresh, compact, benchmark, export and pull the equity sear
 
 - One writer at a time (DuckDB): while build/compact runs, MCP queries wait or fail on the
   lock. Run builds when nobody is querying.
+- `compact` sorts each table through Parquet in key-range chunks (`sort_table`): peak extra
+  disk is one compressed copy of the largest table (`names`, about 5 GB at 173M names).
 - Disk: check `df -h .` first. `export` frees each table's Parquet after upload and `pull` loads
   one table at a time, so neither needs twice the index. The whole lake (~197M names) is ~50 GB: build by state.
 - A layout change bumps `INDEX_VERSION` in `src/equity/search_index.py`; the next build then
