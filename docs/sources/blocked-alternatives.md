@@ -153,3 +153,15 @@ rows of Pitt's table, owner joined from its parcel table) and `sc.beaufort.delin
 | Gregg TX delinquent accounts (403), Tyler TX delinquent properties (468) | City copies of county lists (Longview, Tyler), small; Tyler's has no owner. Not in any run's counties. |
 | Harrison MS, Midland, Elgin/Shorb, Tax_Delinquent (MSIDesign, Censeo) and similar | Student, consultant or planning copies; or already loaded (Harrison). |
 | Brooklyn 2024 tax lien maps | Borough President's maps of the 2024 NYC lien sale (water debt by block and lot, no owner). |
+
+### Reachable-portal ranked list, status (2026-11-27)
+
+From `research_notes/More free judgment sources/reachable_portals_sweep.md`: #1 NYC DOF Property
+Charges Balance is now built (`ny.nyc.dof.past_due_charges`); #2, #5, #9 and #12 were already
+loaded. Not added:
+
+| # | Dataset | Why not |
+|---|---|---|
+| 7 | NYC Law Dept civil litigation `pjgc-h7uv` | Its Tax & Bankruptcy cases are mostly owners' assessment challenges against the City, not debts; 136 City-plaintiff judgments only. |
+| 10 | NYC LL159 vacate relocation charges `3bkg-usya` | Unpaid charges are billed through the DOF statement of account, so they are in the DOF past-due charges. |
+| 4 | NOLA adjudication fines and fees `f5zm-xkyr` | `la.nola.code_hearing_judgments` already carries each case's unpaid fees. |
