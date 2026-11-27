@@ -1375,6 +1375,11 @@ STATES: dict[str, dict[str, Any]] = {
                                "md.sdat.transfers_3"],
                      "courts": FEDERAL_COURTS},
     # Travis: delinquent property tax accounts and tax-suit judgments, by owner name.
+    # Dallas County Tax Office TRW roll: delinquent accounts by Dallas CAD account, the key of
+    # the city's copy of the certified roll (Dallas and a one-mile buffer).
+    "TX-DALLAS": {"debtors": ["tx.dallas.tax_roll_delinquent"],
+                  "owners": ["tx.dallas_city.parcels"], "parcel_on_lien": True,
+                  "courts": FEDERAL_COURTS},
     "TX-TRAVIS": {"debtors": ["tx.travis.tax_delinquent"], "owners": ["tx.statewide.parcels"],
                   "courts": FEDERAL_COURTS},
     # Omaha: tax sale certificates (named taxpayers) and county-held liens (PIN only).

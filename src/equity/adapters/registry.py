@@ -80,6 +80,7 @@ from equity.adapters.person_lists import all_person_list_adapters
 from equity.adapters.ri_providence import ProvidenceTaxRoll
 from equity.adapters.socrata_parcels import all_api_parcel_adapters
 from equity.adapters.state_parcels import all_state_adapters
+from equity.adapters.tx.dallas_trw import DallasTaxRollDelinquent
 from equity.adapters.tx.harris_district import HarrisDistrictCivilJudgments
 from equity.adapters.tx.harris_jp import HarrisJPCivilJudgments
 from equity.adapters.tx.stratmap import TexasStratMapParcels
@@ -124,6 +125,7 @@ _ALL: tuple[type[Adapter], ...] = (
     ProvidenceTaxRoll,
     HarrisJPJudgments,
     TravisTaxDelinquent,
+    DallasTaxRollDelinquent,
     VermontTransferArchive,
     NYResidentialAssessmentRatios,
     NYEqualizationRates,
