@@ -1,0 +1,13 @@
+name: search_extra_word_ranks_lower
+doc: 'An extra name word ranks below the closer match (MARY JOHNSN: JOHNSON MARY before ADAM JOHNSON MARY).'
+sources:
+  oh.testsearch.parcels:
+    party:
+    - party_id: p0
+      raw_name: TESTOWNER ADAM JOHNSON MARY
+    - party_id: p1
+      raw_name: TESTOWNER JOHNSON MARY
+expect:
+- search:
+    query: TESTOWNER MARY JOHNSN
+    top: oh.testsearch.parcels:p1

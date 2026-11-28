@@ -1,0 +1,12 @@
+name: search_typo_changes_soundex
+doc: A dropped letter that changes the Soundex code (MAIA for MARIA) is still found.
+sources:
+  oh.testsearch.parcels:
+    party:
+    - party_id: p0
+      raw_name: TESTOWNER MARIA PEREZ
+expect:
+- search:
+    query: TESTOWNER MAIA PEREZ
+    includes:
+    - oh.testsearch.parcels:p0

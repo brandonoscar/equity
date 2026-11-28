@@ -1,0 +1,205 @@
+{
+ "rows": [
+  {
+   "account_balance": "$160.52",
+   "bill_number": "2025000010265",
+   "name": "TESTOWNER B8E173",
+   "parcel_id": "24105104560009",
+   "property_address": "1718 TEST ST",
+   "tax_year": "2025"
+  },
+  {
+   "account_balance": "$1,623.51",
+   "bill_number": "2025000006365",
+   "name": "TESTOWNER 14ACE9",
+   "parcel_id": "12059M00140000",
+   "property_address": "6648 TEST ST",
+   "tax_year": "2025"
+  },
+  {
+   "account_balance": "$276.66",
+   "bill_number": "2025000009180",
+   "name": "TESTOWNER 031DBD",
+   "parcel_id": "24105904640471",
+   "property_address": "3499 TEST ST",
+   "tax_year": "2025"
+  },
+  {
+   "account_balance": "$225.22",
+   "bill_number": "2025000007133",
+   "name": "TESTOWNER AC4C2E",
+   "parcel_id": "2510080132F024",
+   "property_address": "1363 TEST ST",
+   "tax_year": "2025"
+  },
+  {
+   "account_balance": "$3,497.15",
+   "bill_number": "2025000002664",
+   "name": "TESTOWNER DB1596",
+   "parcel_id": "09027C00950000",
+   "property_address": "4858 TEST ST",
+   "tax_year": "2025"
+  },
+  {
+   "account_balance": "$4,599.55",
+   "bill_number": "2025000006363",
+   "name": "TESTOWNER 82944C LLC",
+   "parcel_id": "10075E00120000",
+   "property_address": "5317 TEST ST",
+   "tax_year": "2025"
+  },
+  {
+   "account_balance": "$40,113.75",
+   "bill_number": "2025000006364",
+   "name": "TESTOWNER 82944C LLC",
+   "parcel_id": "10075E00130000",
+   "property_address": "4590 TEST ST",
+   "tax_year": "2025"
+  },
+  {
+   "account_balance": "$5,817.11",
+   "bill_number": "2025000010263",
+   "name": "TESTOWNER A869A3",
+   "parcel_id": "24105100190000",
+   "property_address": "9071 TEST ST",
+   "tax_year": "2025"
+  },
+  {
+   "account_balance": "$1,090.48",
+   "bill_number": "2025000009178",
+   "name": "TESTOWNER 56620C LLC",
+   "parcel_id": "24105103290003",
+   "property_address": "8555 TEST ST",
+   "tax_year": "2025"
+  },
+  {
+   "account_balance": "$71.20",
+   "bill_number": "2025000010262",
+   "name": "TESTOWNER 00FF91",
+   "parcel_id": "21026300240004",
+   "property_address": "1302 TEST ST",
+   "tax_year": "2025"
+  },
+  {
+   "account_balance": "$2,905.90",
+   "bill_number": "2025000007132",
+   "name": "TESTOWNER 0C6C63",
+   "parcel_id": "25112802810000",
+   "property_address": "5612 TEST ST",
+   "tax_year": "2025"
+  },
+  {
+   "account_balance": "$40.40",
+   "bill_number": "2025000005803",
+   "name": "TESTOWNER 402883",
+   "parcel_id": "03014F00960000",
+   "property_address": "6417 TEST ST",
+   "tax_year": "2025"
+  },
+  {
+   "account_balance": "$63.24",
+   "bill_number": "2025000005804",
+   "name": "TESTOWNER 402883",
+   "parcel_id": "03014F01420000",
+   "property_address": "4733 TEST ST",
+   "tax_year": "2025"
+  },
+  {
+   "account_balance": "$11,800.02",
+   "bill_number": "2025000009168",
+   "name": "TESTOWNER 89FBBF LLC",
+   "parcel_id": "22053500260000",
+   "property_address": "8966 TEST ST",
+   "tax_year": "2025"
+  },
+  {
+   "account_balance": "$1,591.53",
+   "bill_number": "2025000005275",
+   "name": "TESTOWNER 880207",
+   "parcel_id": "12055F00450000",
+   "property_address": "644 TEST ST",
+   "tax_year": "2025"
+  },
+  {
+   "account_balance": "$68.40",
+   "bill_number": "2025000001730",
+   "name": "TESTOWNER 69D893",
+   "parcel_id": "25101300640102",
+   "property_address": "3304 TEST ST",
+   "tax_year": "2025"
+  },
+  {
+   "account_balance": "$68.76",
+   "bill_number": "2025000008089",
+   "name": "TESTOWNER C0ED6C",
+   "parcel_id": "251023P0020124",
+   "property_address": "2264 TEST ST",
+   "tax_year": "2025"
+  },
+  {
+   "account_balance": "$241.41",
+   "bill_number": "2025000007130",
+   "name": "TESTOWNER A08C7D",
+   "parcel_id": "251023P0020120",
+   "property_address": "6916 TEST ST",
+   "tax_year": "2025"
+  },
+  {
+   "account_balance": "$2,032.13",
+   "bill_number": "2025000006361",
+   "name": "TESTOWNER E8414E",
+   "parcel_id": "2223810002002A",
+   "property_address": "8733 TEST ST",
+   "tax_year": "2025"
+  },
+  {
+   "account_balance": "$1,310.82",
+   "bill_number": "2025000002883",
+   "name": "TESTOWNER 074ECC",
+   "parcel_id": "11051B00310000",
+   "property_address": "6383 TEST ST",
+   "tax_year": "2025"
+  },
+  {
+   "account_balance": "$380.97",
+   "bill_number": "2025000000509",
+   "name": "TESTOWNER 0395A4",
+   "parcel_id": "22004505230000",
+   "property_address": "1623 TEST ST",
+   "tax_year": "2025"
+  },
+  {
+   "account_balance": "$834.61",
+   "bill_number": "2025000003167",
+   "name": "TESTOWNER 0395A4",
+   "parcel_id": "21156503520000",
+   "property_address": "2045 TEST ST",
+   "tax_year": "2025"
+  },
+  {
+   "account_balance": "$646.85",
+   "bill_number": "2025000010258",
+   "name": "TESTOWNER 755BF8",
+   "parcel_id": "24111300150022",
+   "property_address": "7444 TEST ST",
+   "tax_year": "2025"
+  },
+  {
+   "account_balance": "$1,497.47",
+   "bill_number": "2025000010257",
+   "name": "TESTOWNER 545F0D LLC",
+   "parcel_id": "23069000180018",
+   "property_address": "8544 TEST ST",
+   "tax_year": "2025"
+  },
+  {
+   "account_balance": "$2,655.20",
+   "bill_number": "2025000004744",
+   "name": "TESTOWNER 960067",
+   "parcel_id": "25130900850000",
+   "property_address": "2956 TEST ST",
+   "tax_year": "2025"
+  }
+ ],
+ "url": "https://www.jeffersoncountyclerk.org/files/assets/clerk/v/2/legal-records/documents/jefferson-tax-sale-eligible-bills-real-estate.pdf"
+}

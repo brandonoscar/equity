@@ -1,0 +1,281 @@
+{
+ "attributes": [
+  {
+   "MAIL_ADD1": "TESTOWNER 99E8D9",
+   "MAIL_ADD2": " ",
+   "MAIL_CITY": "CEDAR CITY",
+   "MAIL_ST": "UT",
+   "MAIL_ZIP": null,
+   "OBJECTID": 548379,
+   "OWNER": "TESTOWNER 51A9EB",
+   "SERIAL": "B-1151-0001-0004-223",
+   "SITUS": "TESTOWNER 9747AF"
+  },
+  {
+   "MAIL_ADD1": " ",
+   "MAIL_ADD2": " ",
+   "MAIL_CITY": " ",
+   "MAIL_ST": " ",
+   "MAIL_ZIP": null,
+   "OBJECTID": 548380,
+   "OWNER": " ",
+   "SERIAL": " ",
+   "SITUS": " "
+  },
+  {
+   "MAIL_ADD1": "TESTOWNER 83CF5C",
+   "MAIL_ADD2": " ",
+   "MAIL_CITY": "SAINT GEORGE",
+   "MAIL_ST": "UT",
+   "MAIL_ZIP": null,
+   "OBJECTID": 548381,
+   "OWNER": "TESTOWNER 1AA3BD",
+   "SERIAL": "A-1173-0057-0000",
+   "SITUS": "TESTOWNER F5F398"
+  },
+  {
+   "MAIL_ADD1": "TESTOWNER 921488",
+   "MAIL_ADD2": " ",
+   "MAIL_CITY": "WASHINGTON",
+   "MAIL_ST": "UT",
+   "MAIL_ZIP": null,
+   "OBJECTID": 548382,
+   "OWNER": "TESTOWNER D3F5F8",
+   "SERIAL": "B-1151-0001-0004-122",
+   "SITUS": "TESTOWNER F1B573"
+  },
+  {
+   "MAIL_ADD1": "TESTOWNER AE31CE",
+   "MAIL_ADD2": " ",
+   "MAIL_CITY": "OGDEN",
+   "MAIL_ST": "UT",
+   "MAIL_ZIP": null,
+   "OBJECTID": 548383,
+   "OWNER": "TESTOWNER F9A343",
+   "SERIAL": "A-1197-000B-0100",
+   "SITUS": "TESTOWNER 0125F8"
+  },
+  {
+   "MAIL_ADD1": "TESTOWNER 48978F",
+   "MAIL_ADD2": " ",
+   "MAIL_CITY": "KANSAS CITY",
+   "MAIL_ST": "MO",
+   "MAIL_ZIP": null,
+   "OBJECTID": 548384,
+   "OWNER": "TESTOWNER 67124A",
+   "SERIAL": "A-1173-0056-0000",
+   "SITUS": "TESTOWNER 559DE4"
+  },
+  {
+   "MAIL_ADD1": " ",
+   "MAIL_ADD2": " ",
+   "MAIL_CITY": " ",
+   "MAIL_ST": " ",
+   "MAIL_ZIP": null,
+   "OBJECTID": 548385,
+   "OWNER": " ",
+   "SERIAL": " ",
+   "SITUS": " "
+  },
+  {
+   "MAIL_ADD1": "TESTOWNER A33C8E",
+   "MAIL_ADD2": " ",
+   "MAIL_CITY": "LAS VEGAS",
+   "MAIL_ST": "NV",
+   "MAIL_ZIP": null,
+   "OBJECTID": 548386,
+   "OWNER": "TESTOWNER 2B0FB3",
+   "SERIAL": "A-1197-000B-0101",
+   "SITUS": "TESTOWNER 34F163"
+  },
+  {
+   "MAIL_ADD1": "TESTOWNER A33C8E",
+   "MAIL_ADD2": " ",
+   "MAIL_CITY": "LAS VEGAS",
+   "MAIL_ST": "NV",
+   "MAIL_ZIP": null,
+   "OBJECTID": 548387,
+   "OWNER": "TESTOWNER 2B0FB3",
+   "SERIAL": "A-1197-000B-0102",
+   "SITUS": "TESTOWNER 5C73C1"
+  },
+  {
+   "MAIL_ADD1": "TESTOWNER 2F6E3B",
+   "MAIL_ADD2": " ",
+   "MAIL_CITY": "ST GEORGE",
+   "MAIL_ST": "UT",
+   "MAIL_ZIP": null,
+   "OBJECTID": 548388,
+   "OWNER": "TESTOWNER C7F800",
+   "SERIAL": "A-1197-000B-0200",
+   "SITUS": "TESTOWNER CF77EC"
+  },
+  {
+   "MAIL_ADD1": "TESTOWNER 719763",
+   "MAIL_ADD2": " ",
+   "MAIL_CITY": "HENDERSON",
+   "MAIL_ST": "NV",
+   "MAIL_ZIP": null,
+   "OBJECTID": 548389,
+   "OWNER": "TESTOWNER 63448C",
+   "SERIAL": "A-1181-0210-0000",
+   "SITUS": "TESTOWNER 14596F"
+  },
+  {
+   "MAIL_ADD1": "TESTOWNER A33C8E",
+   "MAIL_ADD2": " ",
+   "MAIL_CITY": "LAS VEGAS",
+   "MAIL_ST": "NV",
+   "MAIL_ZIP": null,
+   "OBJECTID": 548390,
+   "OWNER": "TESTOWNER 2B0FB3",
+   "SERIAL": "A-1197-000B-0105",
+   "SITUS": "TESTOWNER 982B1D"
+  },
+  {
+   "MAIL_ADD1": "TESTOWNER A33C8E",
+   "MAIL_ADD2": " ",
+   "MAIL_CITY": "LAS VEGAS",
+   "MAIL_ST": "NV",
+   "MAIL_ZIP": null,
+   "OBJECTID": 548391,
+   "OWNER": "TESTOWNER 2B0FB3",
+   "SERIAL": "A-1197-000B-0106",
+   "SITUS": "TESTOWNER 5E9A96"
+  },
+  {
+   "MAIL_ADD1": "TESTOWNER A33C8E",
+   "MAIL_ADD2": " ",
+   "MAIL_CITY": "LAS VEGAS",
+   "MAIL_ST": "NV",
+   "MAIL_ZIP": null,
+   "OBJECTID": 548392,
+   "OWNER": "TESTOWNER 2B0FB3",
+   "SERIAL": "A-1197-000B-0201",
+   "SITUS": "TESTOWNER 6AFF4D"
+  },
+  {
+   "MAIL_ADD1": "TESTOWNER 31BE96",
+   "MAIL_ADD2": " ",
+   "MAIL_CITY": "OGDEN",
+   "MAIL_ST": "UT",
+   "MAIL_ZIP": null,
+   "OBJECTID": 548393,
+   "OWNER": "TESTOWNER 7A593E",
+   "SERIAL": "A-1197-000B-0107",
+   "SITUS": "TESTOWNER FFCC8B"
+  },
+  {
+   "MAIL_ADD1": "TESTOWNER A33C8E",
+   "MAIL_ADD2": " ",
+   "MAIL_CITY": "LAS VEGAS",
+   "MAIL_ST": "NV",
+   "MAIL_ZIP": null,
+   "OBJECTID": 548394,
+   "OWNER": "TESTOWNER 2B0FB3",
+   "SERIAL": "A-1197-000B-0204",
+   "SITUS": "TESTOWNER 6A863F"
+  },
+  {
+   "MAIL_ADD1": "TESTOWNER B71C39",
+   "MAIL_ADD2": " ",
+   "MAIL_CITY": "WASHINGTON",
+   "MAIL_ST": "UT",
+   "MAIL_ZIP": null,
+   "OBJECTID": 548395,
+   "OWNER": "TESTOWNER 96AB50",
+   "SERIAL": "A-1197-000B-0109",
+   "SITUS": "TESTOWNER 7F6CC1"
+  },
+  {
+   "MAIL_ADD1": "TESTOWNER A33C8E",
+   "MAIL_ADD2": " ",
+   "MAIL_CITY": "LAS VEGAS",
+   "MAIL_ST": "NV",
+   "MAIL_ZIP": null,
+   "OBJECTID": 548396,
+   "OWNER": "TESTOWNER 2B0FB3",
+   "SERIAL": "A-1197-000B-0300",
+   "SITUS": "TESTOWNER 02D32F"
+  },
+  {
+   "MAIL_ADD1": "TESTOWNER A33C8E",
+   "MAIL_ADD2": " ",
+   "MAIL_CITY": "LAS VEGAS",
+   "MAIL_ST": "NV",
+   "MAIL_ZIP": null,
+   "OBJECTID": 548397,
+   "OWNER": "TESTOWNER 2B0FB3",
+   "SERIAL": "A-1197-000B-0110",
+   "SITUS": "TESTOWNER 8D082C"
+  },
+  {
+   "MAIL_ADD1": "TESTOWNER A33C8E",
+   "MAIL_ADD2": " ",
+   "MAIL_CITY": "LAS VEGAS",
+   "MAIL_ST": "NV",
+   "MAIL_ZIP": null,
+   "OBJECTID": 548398,
+   "OWNER": "TESTOWNER 2B0FB3",
+   "SERIAL": "A-1197-000B-0205",
+   "SITUS": "TESTOWNER A4387E"
+  },
+  {
+   "MAIL_ADD1": "TESTOWNER A33C8E",
+   "MAIL_ADD2": " ",
+   "MAIL_CITY": "LAS VEGAS",
+   "MAIL_ST": "NV",
+   "MAIL_ZIP": null,
+   "OBJECTID": 548399,
+   "OWNER": "TESTOWNER 2B0FB3",
+   "SERIAL": "A-1197-000B-0111",
+   "SITUS": "TESTOWNER D8E187"
+  },
+  {
+   "MAIL_ADD1": "TESTOWNER A33C8E",
+   "MAIL_ADD2": " ",
+   "MAIL_CITY": "LAS VEGAS",
+   "MAIL_ST": "NV",
+   "MAIL_ZIP": null,
+   "OBJECTID": 548400,
+   "OWNER": "TESTOWNER D4EE48",
+   "SERIAL": "A-1197-000B-0206",
+   "SITUS": "TESTOWNER A12655"
+  },
+  {
+   "MAIL_ADD1": "TESTOWNER A33C8E",
+   "MAIL_ADD2": " ",
+   "MAIL_CITY": "LAS VEGAS",
+   "MAIL_ST": "NV",
+   "MAIL_ZIP": null,
+   "OBJECTID": 548401,
+   "OWNER": "TESTOWNER 2B0FB3",
+   "SERIAL": "A-1197-000B-0207",
+   "SITUS": "TESTOWNER A4387E"
+  },
+  {
+   "MAIL_ADD1": "TESTOWNER 9BC4AB",
+   "MAIL_ADD2": " ",
+   "MAIL_CITY": "ALHAMBRA",
+   "MAIL_ST": "CA",
+   "MAIL_ZIP": null,
+   "OBJECTID": 548402,
+   "OWNER": "TESTOWNER 719216",
+   "SERIAL": "A-1197-000B-0301",
+   "SITUS": "TESTOWNER C26DDC"
+  },
+  {
+   "MAIL_ADD1": "TESTOWNER A33C8E",
+   "MAIL_ADD2": " ",
+   "MAIL_CITY": "LAS VEGAS",
+   "MAIL_ST": "NV",
+   "MAIL_ZIP": null,
+   "OBJECTID": 548403,
+   "OWNER": "TESTOWNER 2B0FB3",
+   "SERIAL": "A-1197-000B-0113",
+   "SITUS": "TESTOWNER 64C6D1"
+  }
+ ],
+ "layer": "https://services.arcgis.com/xGNWaeXY0POVazgT/arcgis/rest/services/Parcels_Public/FeatureServer/0",
+ "where": "1=1"
+}

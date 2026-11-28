@@ -1,0 +1,33 @@
+source_id: mn.carver.parcels
+state: MN
+# Carver County, Minnesota ArcGIS Online item 'Open_Data_Parcels' (MetroGIS parcel standard,
+# data last edited 2026-11-15): taxpayer name and address, situs, EMV, use class, homestead.
+# 48,131 rows on 2026-11-25. OWNER_NAME / OWN_ADD_* are null on every row (0 filled), so the
+# taxpayer (TAX_NAME, on 47,841 rows) is the only name; mn.metro.parcels has no Carver names.
+layer_url: https://services.arcgis.com/wMZT8kNwa6tOxhKg/arcgis/rest/services/Open_Data_Parcels/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "019"}
+fields:
+  parcel_id: COUNTY_PIN   # same key as mn.statewide.parcels / mn.metro.parcels (county_pin)
+  owner1: TAX_NAME        # taxpayer name (OWNER_NAME is empty); see value_basis
+  mail_line1: TAX_ADD_L1
+  mail_city_state_zip: TAX_ADD_L2   # 'GATES MILLS OH 44040'; TAX_ADD_L3/L4 are null on every row
+  situs_line1: [ANUMBER, ANUMBERSUF, ST_PRE_DIR, ST_PRE_TYP, ST_NAME, ST_POS_TYP, ST_POS_DIR, SUB_TYPE1, SUB_ID1]
+  situs_city: POSTCOMM
+  situs_state: STATE_CODE
+  situs_zip: ZIP
+  land_use_desc: USECLASS1
+  homestead: HOMESTEAD    # Yes / No
+  land_value: EMV_LAND
+  bldg_value: EMV_BLDG
+  total_value: EMV_TOTAL
+  tax_year: {as_retrieved: true}   # TAX_YEAR and MKT_YEAR are null on every row
+value_basis: "EMV_LAND / EMV_BLDG / EMV_TOTAL = county estimated market value per the MetroGIS / MN parcel standard. TAX_YEAR and MKT_YEAR are null on all 48,131 rows (2026-11-25), so tax_year is {as_retrieved: true}: values are recorded as observed on the retrieval date (tax_year = that year, valid_from = that date), not assigned to a roll year. owner1 is TAX_NAME, the taxpayer of record: OWNER_NAME is empty for Carver, and the taxpayer can differ from the fee owner (e.g. contract-for-deed buyers, mortgage escrow). TAX_CAPAC / TOTAL_TAX / SPEC_ASSES and the sale fields are not mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=e2458486f6324a22a61aa4f3f241dacc
+  summary: "Carver County, MN ArcGIS Online item 'Open_Data_Parcels' (owner CarverCounty, credit 'Carver County GIS'), public, tagged Open; 48,131 rows on 2026-11-25. Item licenseInfo is the Minnesota Statutes 466.03 subd. 21 disclaimer: reference purposes only, 'as is', no warranty, user waives claims and agrees to indemnify Carver County; no commercial-use, resale or mailing-list restriction. services.arcgis.com /robots.txt answers HTTP 403 'Invalid URL' (RFC 9309: 4xx = no rules, allowed; PoliteClient treats 4xx the same way)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,27 @@
+source_id: mn.goodhue.parcels
+state: MN
+# Goodhue County, Minnesota 'ParcelsAGOL' map service layer 0: owner names, owner mailing lines,
+# situs street parts, legal and last sale; no value fields. 29,289 rows on 2026-11-25 (owner on
+# 29,049). Goodhue is not in mn.statewide.parcels (no Goodhue rows on 2026-11-25).
+layer_url: https://publicmaps.co.goodhue.mn.us/arcgis/rest/services/GoodhueCounty/ParcelsAGOL/MapServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "049"}
+fields:
+  parcel_id: PIN
+  owner1: C0NAME1P
+  owner2: C0NAME2P
+  mail_line1: C0ADRLN1P
+  mail_line2: C0ADRLN2P
+  mail_city_state_zip: C0ADRLN3P   # 'GOODHUE MN 55027'
+  situs_line1: [C0HSENO1, C0STRNM, C0STRTP, C0STRDIR]   # direction is a post-direction ('390TH ST W')
+  situs_city: C0CITY
+  situs_zip: C0ZIP        # integer; 0 when there is no situs (no ZIP kept)
+value_basis: "No value fields in this layer (owner, mailing, situs, acreage, district, legal description and last sale only). C0SALEDT / C0SALPRC (last sale) and the LEGAL text are not mapped."
+terms:
+  url: https://publicmaps.co.goodhue.mn.us/arcgis/rest/services/GoodhueCounty/ParcelsAGOL/MapServer
+  summary: "Goodhue County, MN 'ParcelsAGOL' map service ('Goodhue Parcels'); free REST, no login; 29,289 rows on 2026-11-25. Service iteminfo has empty licenseInfo and accessInformation and no copyright text; no license, use restriction or mailing-list clause found. publicmaps.co.goodhue.mn.us /robots.txt answers 404 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -8,6 +8,7 @@ page_size: 2000          # maxRecordCount 2000
 min_interval_s: 1.0
 county: {constant: "091"}
 fields:
+  tax_year: {as_retrieved: true}   # no roll-year field: values as observed on retrieval
   parcel_id: ParcelID
   owner1: Owner1
   owner2: Owner2
@@ -28,7 +29,7 @@ fields:
   land_use_code: LandUse
   land_use_desc: LandUseDesc
 extra_pii: [Owner3, PreviousOwner, MailApt]
-value_basis: "AprLandVal / AprBldgVal / AprTotVal = appraised (market) values; TaxTotVal = taxable value after the 15% assessable transfer cap and ag credit; AsdTotVal = assessed value (4% owner-occupied legal residence, 6% other, S.C. Code 12-43-220). HOMESTEAD Y on 80,611 rows, blank on the rest (unknown, not False). TransferBook/TransferPage = recorder book/page of the last transfer."
+value_basis: "AprLandVal / AprBldgVal / AprTotVal = appraised (market) values; TaxTotVal = taxable value after the 15% assessable transfer cap and ag credit; AsdTotVal = assessed value (4% owner-occupied legal residence, 6% other, S.C. Code 12-43-220). HOMESTEAD Y on 80,611 rows, blank on the rest (unknown, not False). TransferBook/TransferPage = recorder book/page of the last transfer. With no roll-year field, tax_year is {as_retrieved: true}: values are recorded as observed on the retrieval date (tax_year = that year, valid_from = that date), not assigned to a guessed roll year."
 terms:
   url: https://www.arcgis.com/home/item.html?id=c27c00901daa4f0484c47a3719a8f03b
   summary: "Public hosted feature service owned by yorkcountysc_gisonline, no login, token or fee. licenseInfo (read 2026-11-23): York County and its mapping contractors disclaim warranty; 'THIS MAP IS NOT A LEGAL SURVEY'; no use restriction. services1.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."

@@ -1,0 +1,13 @@
+name: search_typo_beats_loose_sound
+doc: 'A one-edit typo outranks a loose sound-alike (ANREW BOHN: ANDREW BOHN before AMOR BEN).'
+sources:
+  oh.testsearch.parcels:
+    party:
+    - party_id: p0
+      raw_name: TESTOWNER AMOR BEN
+    - party_id: p1
+      raw_name: TESTOWNER ANDREW BOHN
+expect:
+- search:
+    query: TESTOWNER ANREW BOHN
+    top: oh.testsearch.parcels:p1

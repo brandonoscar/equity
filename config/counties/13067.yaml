@@ -7,6 +7,7 @@ min_interval_s: 1.0
 county: {constant: "067"}
 use_restrictions: [no_resale]
 fields:
+  tax_year: {as_retrieved: true}   # no roll-year field: values as observed on retrieval
   land_use_code: CLASS
   situs_line1: SITUS_ADDR
   parcel_id: PARID         # equals PIN on every sampled row
@@ -20,7 +21,7 @@ fields:
   bldg_value: FMV_BLDG
   total_value: FMV_TOTAL
   assessed_value: ASV_TOTAL
-value_basis: "FMV_LAND/FMV_BLDG/FMV_TOTAL = Board of Tax Assessors fair market value; ASV_TOTAL = assessed value (40% of FMV in Georgia; ASV_LAND/ASV_BLDG not mapped). tax_year is NOT mapped, so no assessment facts are emitted: the layer has no roll-year field, and it is the Assessors' daily CAMA extract (ParcelSales holds sales through 2026-11-05). In November it may already carry next year's working digest, as Fulton's layer does (TaxYear 2027), so a const 2026 would be a guess. No deed book/page in this layer (ParcelSales has sale history only)."
+value_basis: "FMV_LAND/FMV_BLDG/FMV_TOTAL = Board of Tax Assessors fair market value; ASV_TOTAL = assessed value (40% of FMV in Georgia; ASV_LAND/ASV_BLDG not mapped). The layer has no roll-year field, and it is the Assessors' daily CAMA extract (ParcelSales holds sales through 2026-11-05). In November it may already carry next year's working digest, as Fulton's layer does (TaxYear 2027), so a const 2026 would be a guess. No deed book/page in this layer (ParcelSales has sale history only). With no roll-year field, tax_year is {as_retrieved: true}: values are recorded as observed on the retrieval date (tax_year = that year, valid_from = that date), not assigned to a guessed roll year."
 terms:
   url: https://gis.cobbcounty.org/gisserver/rest/services/tax/taxassessorsdaily/MapServer
   summary: "Cobb County GA Tax Assessors' daily parcel layer (tax/taxassessorsdaily, 'CobbParcels'), public MapServer, no token. Free, no login, 280,021 rows on 2026-11-16. Service copyrightText: 'Copyright Cobb County. All rights reserved.' Item licenseInfo is empty. The county also sells the countywide parcel dataset (GIS data sales price list), so no_resale is recorded conservatively."

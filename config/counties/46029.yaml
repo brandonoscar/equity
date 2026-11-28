@@ -24,9 +24,10 @@ fields:
   land_value: ASSESSED_L
   bldg_value: ASSESSED_B
   assessed_value: ASSESSED_T
+  tax_year: {as_retrieved: true}   # no assessment-year field: values as observed on retrieval
   deed_book: BOOK
   deed_page: PAGE
-value_basis: "ASSESSED_L / ASSESSED_B / ASSESSED_T = county assessed land, building and total value (ASSESSED_L + ASSESSED_B = ASSESSED_T on sampled rows). The layer has no assessment-year field (YEAR_ varies by parcel, e.g. 2015 next to UP_DATE 7/29/2015 on sampled rows, so it reads as the year the parcel record was drawn), so no tax_year is mapped and no assessment facts are emitted; raw values stay in source records. SALE_PR / SALE_YEAR, INSTRUMENT and OWNER_OCCU are not mapped."
+value_basis: "ASSESSED_L / ASSESSED_B / ASSESSED_T = county assessed land, building and total value (ASSESSED_L + ASSESSED_B = ASSESSED_T on sampled rows). The layer has no assessment-year field (YEAR_ varies by parcel, e.g. 2015 next to UP_DATE 7/29/2015 on sampled rows, so it reads as the year the parcel record was drawn), so values are recorded as observed on retrieval (tax_year: as_retrieved). SALE_PR / SALE_YEAR, INSTRUMENT and OWNER_OCCU are not mapped."
 terms:
   url: https://www.1stdistrict.org/arcgis/rest/services/Codington/codingtonparcels/MapServer
   summary: "First District Association of Local Governments (Watertown, SD) public ArcGIS Server MapServer, 'Official GIS Application for Codington County & Watertown, SD'; no login, token or fee. iteminfo licenseInfo, accessInformation and copyrightText are empty (read 2026-11-25); no use-constraint text found. www.1stdistrict.org/robots.txt answers HTTP 404 (no rules)."

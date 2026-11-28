@@ -26,9 +26,10 @@ fields:
   bldg_value: imp_value
   total_value: total_market
   assessed_value: total_assess
+  tax_year: {as_retrieved: true}   # no assessment-year field: values as observed on retrieval
   deed_book: DEED_BOO_1
   deed_page: DEED_PAG_1
-value_basis: "land_market / imp_value / total_market = assessor market (appraised) land, improvement and total value; total_assess = assessed value (25% of market for residential in Tennessee, e.g. 224,600 -> 56,150). The layer has no tax-year field, so no tax_year is mapped and no assessment facts are emitted; raw values stay in source records. land_assess / imp_assess and Consideration (last sale price) are not mapped."
+value_basis: "land_market / imp_value / total_market = assessor market (appraised) land, improvement and total value; total_assess = assessed value (25% of market for residential in Tennessee, e.g. 224,600 -> 56,150). The layer has no tax-year field, so values are recorded as observed on retrieval (tax_year: as_retrieved). land_assess / imp_assess and Consideration (last sale price) are not mapped."
 terms:
   url: https://publicmaps.franklintn.gov/arcgis/rest/services/Maps/COFBase/MapServer
   summary: "City of Franklin (TN) GIS public MapServer 'COFBase' ('City of Franklin Base Map'), no login, token or fee; accessInformation 'City of Franklin GIS Dept.', layer copyright 'Williamson County Tennessee, City of Franklin Tennessee'. licenseInfo empty (read 2026-11-25); no use-constraint text found. publicmaps.franklintn.gov/robots.txt answers HTTP 404 (no rules)."

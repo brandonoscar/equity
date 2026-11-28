@@ -1,0 +1,110 @@
+# Recoverability rubric that Claude applies by hand to a fact sheet (equity.facts), in the
+# score-rubric skill and the score-people workflow. It is NOT code: no program reads these
+# numbers to score anyone. Every number below is a DRAFT proposed by Claude for Brandon to
+# accept or change. While status is draft, every score made with it is labelled
+# "rubric_status: draft" in the ledger and must not be used for decisions.
+#
+# To approve: review each band, edit what you disagree with, then set status: approved,
+# approved_by and approved_on, and bump version. A changed rubric is a new version; ledger
+# rows keep the version they were scored with.
+#
+# The deterministic scorer (equity.rules.score, config/scoring.yaml) is separate: once its
+# weights are set it scores without Claude; this rubric can then be calibrated against it.
+
+schema_version: 1
+version: draft-1
+status: draft            # draft | approved
+approved_by: null
+approved_on: null
+
+# What the score means: how likely the debt can be recovered from real property the debtor
+# owns, from 0 (not on these facts) to 100 (clear identity, ample equity behind a recorded
+# lien, time left). It is not a credit score and says nothing about a person's character.
+purpose: >-
+  Rank leads for recovery of debts the business holds or is evaluating to buy, using public
+  land and court records. Not for credit, insurance, employment or housing decisions, and not
+  to be sold or furnished to anyone as a consumer report.
+
+# Gates are checked first. A gate that fires sets the outcome and skips the points.
+gates:
+  - id: identity_not_established
+    when: best identity grade is C or reject
+    outcome: not_scored        # verify identity first (debtor-dossier)
+  - id: open_bankruptcy
+    when: a bankruptcy case of the debtor is open (no discharge, dismissal or conversion)
+    outcome: hold              # automatic stay: no collection action
+  - id: enforcement_expired
+    when: factors.sol_years_left is known and <= 0, with no renewal on record
+    outcome: score_zero
+
+# Points. Each factor names the fact sheet fields it reads. Unknown is its own band: never
+# read a missing value as zero or as the best case.
+factors:
+  identity:
+    max: 25
+    bands:
+      - {when: "best pair rule lien_names_parcel", points: 25}
+      - {when: "best pair rule matcher_auto or name_address", points: 20}
+      - {when: "best pair grade B", points: 10}
+  reachable_equity:
+    max: 35
+    reads: parcels[].equity.equity_est, parcels[].homestead, law.proposed_unverified.homestead, factors.open_amount
+    method: >-
+      net equity known = sum of equity_est over owned parcels with recorder data; subtract the
+      state's homestead exemption on a parcel flagged homestead (proposed amount, label it
+      unverified); ratio = that / open_amount.
+    bands:
+      - {when: "ratio >= 1.5", points: 35}
+      - {when: "ratio >= 1.0", points: 28}
+      - {when: "ratio >= 0.5", points: 18}
+      - {when: "ratio > 0", points: 8}
+      - {when: "ratio <= 0", points: 0}
+      - {when: "no parcel has known net equity (senior debt unknown)", points: 10, confidence: low}
+  lien_position:
+    max: 15
+    reads: debts[].recorded_against, parcels[].open_liens_recorded_against
+    bands:
+      - {when: "an open judgment or lien of the debtor is recorded against an owned parcel", points: 15}
+      - {when: "a court judgment exists but no lien is recorded against an owned parcel", points: 6}
+      - {when: "only a lis pendens", points: 3}
+  time_left:
+    max: 10
+    reads: factors.sol_years_left
+    bands:
+      - {when: "sol_years_left >= 5", points: 10}
+      - {when: "2 <= sol_years_left < 5", points: 6}
+      - {when: "0 < sol_years_left < 2", points: 2}
+      - {when: "unknown (sol.yaml not confirmed for the state)", points: 4, confidence: lower}
+  debt_size:
+    max: 15
+    reads: factors.open_amount
+    bands:
+      - {when: "open_amount >= 50000", points: 15}
+      - {when: "open_amount >= 20000", points: 10}
+      - {when: "open_amount >= 5000", points: 5}
+      - {when: "open_amount > 0", points: 2}
+      - {when: "no open debt has an amount", points: 3, confidence: lower}
+
+# Deductions, applied after the points (the total never goes below 0).
+deductions:
+  - {id: deed_after_debt, reads: parcels[].deeds_after_first_debt, points: -10, cap: -20,
+     note: "each deed out after the first debt; skip a deed whose grantee is the same name"}
+  - {id: tax_delinquent, reads: parcels[].tax_delinquency, points: -5,
+     note: "unpaid property tax outranks the lien"}
+  - {id: other_open_liens, reads: parcels[].open_liens_recorded_against, points: -5,
+     note: "two or more other creditors' open liens on the same parcel"}
+  - {id: entity_owner, reads: parcels[].owner_types, points: -5,
+     note: "owned through a trust, LLC or other entity: reachability needs review"}
+  - {id: bankruptcy_discharged, reads: cases[].discharge_on, points: -15,
+     note: "personal liability discharged; a lien recorded before the petition may survive: say so"}
+
+tiers:   # minimum total, highest first
+  - {name: "1", min: 70}
+  - {name: "2", min: 50}
+  - {name: "3", min: 30}
+  - {name: "4", min: 0}
+
+confidence:
+  high: identity A, net equity known on every owned parcel, and sol.yaml confirmed for the state
+  medium: one of those missing
+  low: two or more missing, or any factor scored in a confidence low band

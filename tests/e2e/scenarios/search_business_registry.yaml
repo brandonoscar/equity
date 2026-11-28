@@ -1,0 +1,15 @@
+name: search_business_registry
+doc: A registered business is searchable and its ref reads source:business:id.
+sources:
+  oh.testsos.business:
+    business:
+    - sos_id: B1
+      name: TESTOWNER HOLDINGS LLC
+      org_form: LLC
+      status: Active
+      formed_on: '2019-01-01'
+expect:
+- search:
+    query: TESTOWNER HOLDINGS LLC
+    kind: business
+    top: oh.testsos.business:business:B1

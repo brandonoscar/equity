@@ -1,0 +1,35 @@
+source_id: ky.jefferson.tax_sale_bills
+state: KY
+county_fips: "21111"   # Jefferson County (Louisville Metro)
+# Jefferson County KY Clerk "Tax Sale Eligible Bills - Real Estate": delinquent 2025 real
+# property tax bills eligible for the clerk's certificate-of-delinquency sale (KRS 134.122,
+# 134.430: a delinquent tax bill is a lien on the property), with the parcel id, bill
+# number, owner name, property address, tax year and account balance. ~3,570 bills on 100
+# pages (file Last-Modified 2026-07-28). A text PDF read with the project's PDF table reader
+# (header 'Parcel Id'). Known loss: the file's pages are drawn bottom-up, so the reader puts
+# each page's header last and drops the first page's ~34 bills (3,535 of 3,569 read). A
+# negative balance ('($159.94)', a credit) reads as no amount. The tax year is read as Jan 1
+# of that year. No Jefferson County KY parcel layer is registered yet; the parcel id is kept
+# as published ('24105104560009'). The host's firewall (Akamai) answers 403 to some
+# User-Agents but serves the project's default one. Debt kind: tax_delinquency.
+api: pdf
+url: https://www.jeffersoncountyclerk.org/files/assets/clerk/v/2/legal-records/documents/jefferson-tax-sale-eligible-bills-real-estate.pdf
+header: Parcel Id
+year_dates: [tax_year]
+date_field: tax_year
+uid: bill_number
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Jefferson County KY tax sale eligible bill (real estate)
+amount: account_balance
+parties:
+  - role: debtor
+    name: name
+    address: {line1: property_address, state_const: KY}   # the property
+  - {role: creditor, const: Jefferson County Clerk, person_names: false}
+parcel: {kind: pin, field: parcel_id, county_fips: "21111"}
+terms:
+  url: https://www.jeffersoncountyclerk.org/files/assets/clerk/v/2/legal-records/documents/jefferson-tax-sale-eligible-bills-real-estate.pdf
+  summary: "Jefferson County KY Clerk public PDF (legal records / delinquent taxes), free, no login. No license or reuse terms stated (a statutory tax sale publication). www.jeffersoncountyclerk.org/robots.txt (read with the project's User-Agent) disallows only a few /About, /Home, /Publications-and-Forms and /Training pages, not /files/."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

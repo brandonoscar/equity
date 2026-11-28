@@ -24,7 +24,8 @@ fields:
   land_value: LAND_TV
   bldg_value: BUILD_TV
   assessed_value: TOTAL_AV
-value_basis: "LAND_TV / BUILD_TV = land and building value, TOTAL_AV = total assessed value (LAND_TV + BUILD_TV = TOTAL_AV on sampled rows). YEAR_DUE (2026 on 14,042 rows) is the year the tax is due, not the assessment year, so no tax_year is mapped and no assessment facts are emitted; raw values stay in source records. BOOK / PAGE hold short codes ('1G', '1J') whose meaning the service does not give, so no deed is mapped. TOTAL_BILL, SALE_PR / SALE_DATE not mapped."
+  tax_year: {as_retrieved: true}   # no assessment-year field: values as observed on retrieval
+value_basis: "LAND_TV / BUILD_TV = land and building value, TOTAL_AV = total assessed value (LAND_TV + BUILD_TV = TOTAL_AV on sampled rows). YEAR_DUE (2026 on 14,042 rows) is the year the tax is due, not the assessment year, so values are recorded as observed on retrieval (tax_year: as_retrieved). BOOK / PAGE hold short codes ('1G', '1J') whose meaning the service does not give, so no deed is mapped. TOTAL_BILL, SALE_PR / SALE_DATE not mapped."
 terms:
   url: https://www.1stdistrict.org/arcgis/rest/services/Beadle/beadleparcels/MapServer
   summary: "First District Association of Local Governments (Watertown, SD) public ArcGIS Server MapServer for Beadle County; no login, token or fee. No licenseInfo, copyright or use-constraint text on the service (read 2026-11-25). www.1stdistrict.org/robots.txt answers HTTP 404 (no rules)."

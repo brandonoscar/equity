@@ -1,0 +1,12 @@
+name: search_messy_input
+doc: 'Case, commas and extra spaces do not change the name: an exact hit.'
+sources:
+  oh.testsearch.parcels:
+    party:
+    - party_id: p0
+      raw_name: TESTOWNER ALPHA SMITH
+expect:
+- search:
+    query: '  smith,   Testowner   alpha  '
+    top: oh.testsearch.parcels:p0
+    rule: exact

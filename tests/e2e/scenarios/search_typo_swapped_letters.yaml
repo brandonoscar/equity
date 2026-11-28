@@ -1,0 +1,12 @@
+name: search_typo_swapped_letters
+doc: 'Two swapped letters (ROBNISON) are one edit: rule typo.'
+sources:
+  oh.testsearch.parcels:
+    party:
+    - party_id: p0
+      raw_name: TESTOWNER GILBERT ROBINSON
+expect:
+- search:
+    query: TESTOWNER GILBERT ROBNISON
+    top: oh.testsearch.parcels:p0
+    rule: typo

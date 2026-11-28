@@ -9,6 +9,7 @@ min_interval_s: 1.0
 county: {constant: "013"}
 extra_pii: [CAREOFNAME, DEEDHOLDER, SITUSADDRS]
 fields:
+  tax_year: {as_retrieved: true}   # no roll-year field: values as observed on retrieval
   situs_line1: SITUSADDRS
   parcel_id: PARCELNUMBER
   owner1: OWNERNAME
@@ -19,7 +20,7 @@ fields:
   mail_zip: ZIP
   land_value: LANDVALUE
   bldg_value: BLDGVALUE
-value_basis: "LANDVALUE / BLDGVALUE = Assessor CAMA land and building values (NM full value, January 1 valuation date). The item description says both 'current for the 2024 Tax Year' and (snippet) '2026 valuations', so tax_year is not mapped. No total or taxable (1/3 of full value) field. ACCOUNTNUMBER (e.g. R1202791) is the tax account; MAP_CODE is the dashed form of PARCELNUMBER."
+value_basis: "LANDVALUE / BLDGVALUE = Assessor CAMA land and building values (NM full value, January 1 valuation date). The item description says both 'current for the 2024 Tax Year' and (snippet) '2026 valuations'. No total or taxable (1/3 of full value) field. ACCOUNTNUMBER (e.g. R1202791) is the tax account; MAP_CODE is the dashed form of PARCELNUMBER. With no roll-year field, tax_year is {as_retrieved: true}: values are recorded as observed on the retrieval date (tax_year = that year, valid_from = that date), not assigned to a guessed roll year."
 terms:
   url: https://www.arcgis.com/home/item.html?id=0bc04c9f958e47c0bc3096cd1b32828c
   summary: "Dona Ana County Assessor, public hosted FeatureServer, no token. Free, no login, 96,814 rows on 2026-11-18. Item licenseInfo empty; description disclaimer: provided 'as is', not a legal survey or title record, users 'agree to indemnify the County from any claims arising from data use'. No resale or use limit stated. robots.txt on services7.arcgis.com returns 403 (allowed)."

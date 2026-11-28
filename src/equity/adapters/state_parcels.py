@@ -11,7 +11,11 @@ Config keys (see config/states/README.md):
   fields: {parcel_id, owner1, owner2, mail_line1, mail_line2, mail_city, mail_state, mail_zip,
            land_value, bldg_value, total_value, assessed_value, tax_year, deed_book, deed_page}
            each value a source field name, {const: value}, {year_of: date field},
-           [key parts] (joined with '-') or {join: [fields]} (non-empty parts, space-joined)
+           [key parts] (joined with '-'), {join: [fields]} (non-empty parts, space-joined)
+           or {first_of: [fields]} (the first non-empty one);
+           tax_year may also be {as_retrieved: true}: the layer has no roll-year field and
+           publishes current values, so the values are recorded as observed on the retrieval
+           date (tax_year = that date's year, valid_from = that date, never a guessed Jan 1)
   value_basis: what the source's value fields mean (free text, recorded in source terms)
   assessment_valid_from: tax_year_jan1 | prior_july1
 """
@@ -48,6 +52,7 @@ CANONICAL = (
     "situs_line1", "situs_full", "situs_city", "situs_state", "situs_zip",
     "owner_type", "homestead", "land_use_code", "land_use_desc", "zoning",
 )  # fmt: skip
+VALUE_FIELDS = ("land_value", "bldg_value", "total_value", "assessed_value")
 # Situs addresses are often the owner's home: pseudonymized in fixtures like mailing addresses.
 PII_CANONICAL = ("owner1", "owner2", "mail_line1", "mail_line2", "mail_full",
                  "situs_line1", "situs_full")  # fmt: skip
@@ -233,6 +238,8 @@ class StateConfig:
                   if isinstance(v, dict) and "year_of" in v}  # fmt: skip
         names |= {str(x) for v in self.fields.values()
                   if isinstance(v, dict) and "join" in v for x in v["join"]}  # fmt: skip
+        names |= {str(x) for v in self.fields.values()
+                  if isinstance(v, dict) and "first_of" in v for x in v["first_of"]}  # fmt: skip
         names |= {str(v["nyc_bbl10"]) for v in self.fields.values()
                   if isinstance(v, dict) and "nyc_bbl10" in v}  # fmt: skip
         for i in range(self.layer_count):
@@ -276,6 +283,16 @@ def load_config(path: Path) -> StateConfig:
         raise StateConfigError(f"{path.name}: unknown canonical fields {sorted(unknown)}")
     if "parcel_id" not in data["fields"]:
         raise StateConfigError(f"{path.name}: fields.parcel_id is required")
+    # Values without a tax year are never written (no assessment row), so mapping them alone
+    # silently loses them; a layer with no year field says so with {as_retrieved: true}.
+    if set(data["fields"]) & set(VALUE_FIELDS) and "tax_year" not in data["fields"]:
+        raise StateConfigError(
+            f"{path.name}: value fields need fields.tax_year "
+            "(a field, {const: year}, {year_of: date} or {as_retrieved: true})"
+        )
+    ty = data["fields"].get("tax_year")
+    if isinstance(ty, dict) and "as_retrieved" in ty and ty["as_retrieved"] is not True:
+        raise StateConfigError(f"{path.name}: tax_year.as_retrieved must be true")
     pattern = data.get("deed_ref_pattern")
     if "deed_ref" in data["fields"]:
         if not pattern:
@@ -584,6 +601,11 @@ class StateParcelAdapter(ArcGISCountyAdapter):
         return matches[0] if matches else 0
 
     # -- normalization ------------------------------------------------------------------
+    @property
+    def _as_retrieved(self) -> bool:
+        spec = self.config.fields.get("tax_year")
+        return isinstance(spec, dict) and spec.get("as_retrieved") is True
+
     def _get(self, attrs: Mapping[str, Any], canonical: str) -> Any:
         spec = self.config.fields.get(canonical)
         if isinstance(spec, dict) and "const" in spec:
@@ -594,6 +616,10 @@ class StateParcelAdapter(ArcGISCountyAdapter):
             if ms is None:
                 return None
             return datetime.fromtimestamp(int(ms) / 1000, tz=UTC).year
+        if isinstance(spec, dict) and "first_of" in spec:
+            # Fallback columns: the first non-empty one (e.g. a district id that a compiled
+            # layer leaves blank in some counties and carries in another column).
+            return next((v for f in spec["first_of"] if _text(v := attrs.get(str(f)))), None)
         if isinstance(spec, dict) and "nyc_bbl10" in spec:
             return nyc_parcel_id(attrs.get(str(spec["nyc_bbl10"])))
         if isinstance(spec, dict) and "join" in spec:
@@ -656,7 +682,8 @@ class StateParcelAdapter(ArcGISCountyAdapter):
                 yield ctx.fact("owner_snapshot", parcel_uid=uid, owner_seq=seq,
                                party_id=party_id, deed_book=book, deed_page=page,
                                owner_type=owner_type, observed_on=observed)  # fmt: skip
-            year_raw = _text(self._get(a, "tax_year"))
+            as_retrieved = self._as_retrieved
+            year_raw = str(observed.year) if as_retrieved else _text(self._get(a, "tax_year"))
             values = {
                 "appraised_land": _money(self._get(a, "land_value")),
                 "appraised_bldg": _money(self._get(a, "bldg_value")),
@@ -666,8 +693,11 @@ class StateParcelAdapter(ArcGISCountyAdapter):
             if year_raw and year_raw.split(".")[0].isdigit() and any(values.values()):
                 year = int(year_raw.split(".")[0])
                 if 1800 <= year <= 2200:
+                    start = (
+                        observed if as_retrieved else _valid_from(year, cfg.assessment_valid_from)
+                    )
                     yield ctx.fact("parcel_assessment", parcel_uid=uid, tax_year=year,
-                                   valid_from=_valid_from(year, cfg.assessment_valid_from),
+                                   valid_from=start,
                                    homestead=parse_homestead(self._get(a, "homestead")),
                                    **values)  # fmt: skip
 

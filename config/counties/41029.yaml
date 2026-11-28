@@ -10,6 +10,7 @@ page_size: 2000          # maxRecordCount 2000; supportsPagination true
 min_interval_s: 1.0
 county: {constant: "029"}
 fields:
+  tax_year: {as_retrieved: true}   # no roll-year field: values as observed on retrieval
   land_use_code: PROPCLASS
   zoning: ZONECLASS
   situs_line1: SITEADD
@@ -23,7 +24,7 @@ fields:
   land_value: LANDRMV
   bldg_value: IMPRMV
   assessed_value: ASSESSEDVALUE
-value_basis: "LANDRMV/IMPRMV = real market value (land, improvements); no total RMV field, so total_value is not mapped. ASSESSEDVALUE = Measure 50 assessed value (LANDAV/IMPRAV not mapped). No tax-year or deed fields."
+value_basis: "LANDRMV/IMPRMV = real market value (land, improvements); no total RMV field, so total_value is not mapped. ASSESSEDVALUE = Measure 50 assessed value (LANDAV/IMPRAV not mapped). No tax-year or deed fields. With no roll-year field, tax_year is {as_retrieved: true}: values are recorded as observed on the retrieval date (tax_year = that year, valid_from = that date), not assigned to a guessed roll year."
 terms:
   url: https://jcportal.jacksoncountyor.gov/server/rest/services/Property/Taxlots2/FeatureServer
   summary: "Jackson County OR public FeatureServer (Query,Extract), no token. Free, no login, 103,660 rows on 2026-11-18. copyrightText/accessInformation: 'Jackson County Assessor's office. Jackson County GIS department'; licenseInfo only 'Spatial data should not be used to determine property boundaries.' No use-constraint text. jcportal.jacksoncountyor.gov /robots.txt 302-redirects to the portal home HTML page (no robots rules, allowed)."

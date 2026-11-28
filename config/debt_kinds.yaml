@@ -81,6 +81,7 @@ sources:
   pa.philadelphia.li_fines: code_enforcement_charge
   oh.cincinnati.lot_abatement: code_enforcement_charge
   az.tucson.code_liens: code_enforcement_lien
+  ky.louisville.code_liens: code_enforcement_lien
   fl.lee.nuisance_liens: code_enforcement_lien
   fl.miami_dade.code_liens: code_enforcement_lien
   fl.miami_dade.code_collections: code_enforcement_lien
@@ -201,3 +202,6 @@ sources:
   il.cook.recorder_foreclosures_2012: foreclosure
   il.chicago.building_scofflaws: housing_court_case
   oh.cleveland.civil_tickets: code_enforcement_charge
+  # this branch's debt lists with no successor on main (verified 2026-11-25)
+  al.shelby.tax_sale_parcels: tax_delinquency
+  ky.jefferson.tax_sale_bills: tax_delinquency

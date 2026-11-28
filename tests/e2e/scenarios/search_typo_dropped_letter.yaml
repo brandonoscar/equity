@@ -1,0 +1,12 @@
+name: search_typo_dropped_letter
+doc: 'A dropped letter (ROBINSN) finds ROBINSON: rule typo.'
+sources:
+  oh.testsearch.parcels:
+    party:
+    - party_id: p0
+      raw_name: TESTOWNER GILBERT ROBINSON
+expect:
+- search:
+    query: TESTOWNER GILBERT ROBINSN
+    top: oh.testsearch.parcels:p0
+    rule: typo

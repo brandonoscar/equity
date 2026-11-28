@@ -1,0 +1,31 @@
+source_id: mn.kandiyohi.parcels
+state: MN
+# Kandiyohi County, Minnesota 'PublicMailingKandi' feature service layer 0 ('Public Mailing'):
+# taxpayer name and mailing address, a separate fee-owner block, situs parts and one total
+# estimated market value. 29,766 rows on 2026-11-25 (TAXNAME on 29,572; OWNNAME on 1,374).
+# Kandiyohi is not in mn.statewide.parcels (no Kandiyohi rows on 2026-11-25).
+# The layer does not support paging (supportsPagination false): FID windows of <= 1,000 ids.
+layer_url: https://gis.kcmn.us/arcgis/rest/services/Kandiyohi/PublicMailingKandi/FeatureServer/0
+order_by: FID
+page_size: 1000          # maxRecordCount 1000
+paginate: false
+min_interval_s: 1.0
+county: {constant: "067"}
+fields:
+  parcel_id: PIN          # '10-001-0010'
+  owner1: TAXNAME         # taxpayer, 'LAST/FIRST' form; see value_basis
+  owner2: TAXNAME2
+  mail_line1: TAXADDRESS
+  mail_line2: TAXADD2
+  mail_city: TAXCITY
+  mail_state: TAXSTATE
+  mail_zip: TAXZIP
+  total_value: EMV
+  tax_year: {as_retrieved: true}   # no roll-year field: values as observed on retrieval
+value_basis: "EMV = total estimated market value (VALUE1..VALUE9 are its per-class parts and are not mapped). No roll-year field, so tax_year is {as_retrieved: true}: values are recorded as observed on the retrieval date (tax_year = that year, valid_from = that date), not assigned to a roll year. owner1/owner2 are the taxpayer (TAXNAME/TAXNAME2, filled on 29,572 rows); the separate owner block OWNNAME/OWNADDRESS... is filled on only 1,374 rows (where the fee owner differs from the taxpayer, e.g. contract for deed) and is not mapped. Situs is not mapped: PROPHSENUM is '0' on 8,127 rows (7,852 of them with no road), which would make one shared '0' address for thousands of parcels; PROPROAD/PROPDIR/PROPZIP stay in the source records."
+terms:
+  url: https://gis.kcmn.us/arcgis/rest/services/Kandiyohi/PublicMailingKandi/FeatureServer
+  summary: "Kandiyohi County, MN 'PublicMailingKandi' feature service ('Public Mailing'); free REST, no login; 29,766 rows on 2026-11-25. Service iteminfo has empty licenseInfo and accessInformation and no copyright text; no license, use restriction or mailing-list clause found. gis.kcmn.us /robots.txt answers 404 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

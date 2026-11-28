@@ -9,6 +9,7 @@ page_size: 2000
 min_interval_s: 1.0
 county: {constant: "037"}
 fields:
+  tax_year: {as_retrieved: true}   # no roll-year field: values as observed on retrieval
   parcel_id: STANPAR
   owner1: Owner
   mail_line1: OwnAddr1
@@ -25,7 +26,7 @@ fields:
   land_value: LandAppr
   bldg_value: ImprAppr
   total_value: TotlAppr
-value_basis: "LandAppr/ImprAppr/TotlAppr = Assessor of Property appraised values. The layer has no tax-year field, so no tax_year is mapped and no assessment facts are emitted (raw values stay in source records)."
+value_basis: "LandAppr/ImprAppr/TotlAppr = Assessor of Property appraised values. The layer has no tax-year field. With no roll-year field, tax_year is {as_retrieved: true}: values are recorded as observed on the retrieval date (tax_year = that year, valid_from = that date), not assigned to a guessed roll year."
 terms:
   url: https://www.nashville.gov/departments/metro-clerk/legal-resources/executive-orders/mayor-freddie-oconnell/fo018
   summary: "Metro Nashville 'Parcels_view' (Assessor of Property), 287,930 rows on 2026-11-22. licenseInfo points to Metro's Open Data Executive Order FO018 (page not readable from this environment); accessInformation 'Assessor of Property'; no commercial-use restriction in the service metadata. Used on the project owner's decision (2026-11-22)."

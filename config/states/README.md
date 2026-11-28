@@ -13,7 +13,8 @@ min_interval_s: 1.0                         # politeness
 county:                                     # how to get the county FIPS for each row
   field: countyfips
   format: fips3                             # fips3 | fips5 | int | name | code_map
-fields:                                     # canonical -> source field, {const: x} or {year_of: datefield}
+fields:                                     # canonical -> source field, {const: x}, {year_of: datefield}
+                                            # tax_year: {as_retrieved: true} when the layer has no roll year
   parcel_id: parcelid                       # required
   owner1: ownername
   total_value: totalvalue

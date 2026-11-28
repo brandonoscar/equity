@@ -30,7 +30,8 @@ fields:
   land_use_code: LUC
   land_value: TOTLAND
   bldg_value: TOTBLDG
-value_basis: "TOTLAND / TOTBLDG = assessor appraised (market) land and building value; TOTASDLAND / TOTASDBLDG = assessed value (19% of appraised for residential, e.g. 25,000 -> 4,750), not mapped as they are split land/building only. The layer has no tax-year field, so no tax_year is mapped and no assessment facts are emitted; raw values stay in source records. BOOK/PAGE hold the recording year and instrument number ('2021' / '04533921'), not a deed book and page, so they are not mapped. ADRNO is 0 on rows without a house number (PO boxes); kept as published. CAREOF (care-of line) not mapped."
+  tax_year: {as_retrieved: true}   # no assessment-year field: values as observed on retrieval
+value_basis: "TOTLAND / TOTBLDG = assessor appraised (market) land and building value; TOTASDLAND / TOTASDBLDG = assessed value (19% of appraised for residential, e.g. 25,000 -> 4,750), not mapped as they are split land/building only. The layer has no tax-year field, so values are recorded as observed on retrieval (tax_year: as_retrieved). BOOK/PAGE hold the recording year and instrument number ('2021' / '04533921'), not a deed book and page, so they are not mapped. ADRNO is 0 on rows without a house number (PO boxes); kept as published. CAREOF (care-of line) not mapped."
 terms:
   url: https://greenecountyassessor.org/arcgis/rest/services/ParcelPublicAccessAug242026/MapServer
   summary: "Greene County (MO) Assessor public ArcGIS Server MapServer, no login, token or fee. Service iteminfo licenseInfo, accessInformation and copyrightText are empty (read 2026-11-25); no use-constraint text found. greenecountyassessor.org/robots.txt redirects (307) to www.greenecountyassessor.org/assessor/robots.txt, which answers HTTP 404 (no rules)."

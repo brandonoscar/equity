@@ -1,0 +1,12 @@
+name: search_nickname
+doc: 'BOB finds ROBERT (nicknames.csv): rule nickname.'
+sources:
+  oh.testsearch.parcels:
+    party:
+    - party_id: p0
+      raw_name: TESTOWNER ROBERT SMITH
+expect:
+- search:
+    query: TESTOWNER BOB SMITH
+    top: oh.testsearch.parcels:p0
+    rule: nickname

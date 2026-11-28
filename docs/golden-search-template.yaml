@@ -1,0 +1,19 @@
+# Hand-verified search case. Copy to config/private/golden_search/<id>.yaml (git-ignored:
+# cases name real people) and fill it from the documents themselves, not from search output.
+# Run: uv run python -m equity.search_golden
+- id: "oh-cuyahoga-0001"
+  query: "TESTOWNER EXAMPLE LLC"        # as a person would type the debtor's name
+  state: OH
+  top: 10
+  expect:
+    refs:                               # records that are this debtor and must come back
+      - "oh.cuyahoga.delinquent_taxes:<party_id>"
+      - "oh.cuyahoga.parcels:<party_id>"
+    not_refs:                           # same-name records you confirmed are someone else
+      - "oh.franklin.parcels:<party_id>"
+    pairs:                              # the grade the evidence supports for each pair
+      - debtor: "oh.cuyahoga.delinquent_taxes:<party_id>"
+        owner: "oh.cuyahoga.parcels:<party_id>"
+        grade: A                        # A, B, C or reject (CLAUDE.md, identity grades)
+  checked_on: "YYYY-MM-DD"
+  source: "Cuyahoga County Auditor parcel card; Treasurer delinquent list (date read)"

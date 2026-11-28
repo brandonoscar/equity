@@ -9,6 +9,7 @@ min_interval_s: 1.0
 county: {constant: "122"}
 extra_pii: [ATTENTION, PHYSICAL_ADDRESSES]
 fields:
+  tax_year: {as_retrieved: true}   # no roll-year field: values as observed on retrieval
   land_use_desc: USE_TYPE_1
   situs_full: PHYSICAL_ADDRESSES
   owner_type: OWN_TYPE_1
@@ -21,7 +22,7 @@ fields:
   land_value: LAND_VALUE
   bldg_value: IMPROVEMENT_VALUE
   total_value: ASSESSED_VALUE
-value_basis: "LAND_VALUE / IMPROVEMENT_VALUE / ASSESSED_VALUE = KPB Assessing assessed (full) value; ASSESSED_VALUE = land + improvement on sampled rows. TAXABLE_VALUE (after exemptions) not mapped. No tax-year field, so tax_year is not mapped. Owner names on opted-out parcels are removed by the borough. No deed reference (PLAT is a plat-document URL)."
+value_basis: "LAND_VALUE / IMPROVEMENT_VALUE / ASSESSED_VALUE = KPB Assessing assessed (full) value; ASSESSED_VALUE = land + improvement on sampled rows. TAXABLE_VALUE (after exemptions) not mapped. No tax-year field. Owner names on opted-out parcels are removed by the borough. No deed reference (PLAT is a plat-document URL). With no roll-year field, tax_year is {as_retrieved: true}: values are recorded as observed on the retrieval date (tax_year = that year, valid_from = that date), not assigned to a guessed roll year."
 terms:
   url: https://www.arcgis.com/home/item.html?id=c9617081ff4f4b45939af5bb359f79b6
   summary: "Kenai Peninsula Borough, public hosted FeatureServer view, no token. Free, no login, 66,557 rows on 2026-11-18. licenseInfo: liability/warranty disclaimer plus indemnify-and-hold-harmless clause 'by accepting this material'; no resale or use limit stated. Borough removes owner info on request (opt-out). robots.txt on services.arcgis.com returns 403 (allowed)."

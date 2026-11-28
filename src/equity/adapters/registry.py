@@ -14,6 +14,7 @@ from equity.adapters.base import Adapter, register
 from equity.adapters.business_registry import all_registry_adapters
 from equity.adapters.co_ucc import ColoradoUCC
 from equity.adapters.code_links import NJMunicipalCodeLinks
+from equity.adapters.csv_parcels import all_csv_parcel_adapters
 from equity.adapters.dc_business import DCBusiness
 from equity.adapters.death_records import (
     CookBurials,
@@ -64,6 +65,7 @@ from equity.adapters.fl.hillsborough_or import HillsboroughOfficialRecords
 from equity.adapters.fl.putnam_or import PutnamOfficialRecords
 from equity.adapters.hi.honolulu_owners import HonoluluOwners
 from equity.adapters.il.cook_parcels import CookCountyParcels
+from equity.adapters.in_dlgf_parcels import IndianaDLGFParcels
 from equity.adapters.indiana_sdf import IndianaSalesDisclosures
 from equity.adapters.licenses import all_license_adapters
 from equity.adapters.liens import all_lien_adapters
@@ -104,6 +106,7 @@ _ALL: tuple[type[Adapter], ...] = (
     NDWVBankruptcyRSS,
     *all_state_adapters(),
     *all_api_parcel_adapters(),
+    *all_csv_parcel_adapters(),
     *all_zoning_adapters(),
     *all_lien_adapters(),
     *all_deed_adapters(),
@@ -115,6 +118,7 @@ _ALL: tuple[type[Adapter], ...] = (
     DouglasTaxLiens,
     TexasStratMapParcels,
     CookCountyParcels,
+    IndianaDLGFParcels,
     AcrisRealProperty,
     NycCondoUnits,
     NYCPastDueCharges,

@@ -45,14 +45,14 @@ states:
     renewal_keeps_priority: null
     statute: null
     confirmed_by: null
-  CA:  # TODO(Brandon)
-    judgment_enforceable_years: null
+  CA:  # promoted from sol_proposed.yaml (unverified research)
+    judgment_enforceable_years: 10
     lien_years: null
-    renewable: null
+    renewable: true
     renewal_years: null
     renewal_keeps_priority: null
-    statute: null
-    confirmed_by: null
+    statute: "Cal. CCP 683.020 (10 yrs), 683.110 (renewal); 697.310 (abstract)"
+    confirmed_by: "Brandon: accepted unverified research (config/sol_proposed.yaml, 2026-11-23) on 2026-11-28; check against the statute"
   CO:  # TODO(Brandon)
     judgment_enforceable_years: null
     lien_years: null
@@ -85,22 +85,22 @@ states:
     renewal_keeps_priority: null
     statute: null
     confirmed_by: null
-  FL:  # TODO(Brandon)
-    judgment_enforceable_years: null
+  FL:  # promoted from sol_proposed.yaml (unverified research)
+    judgment_enforceable_years: 20
+    lien_years: 10
+    renewable: true
+    renewal_years: 10
+    renewal_keeps_priority: null
+    statute: "Fla. Stat. 55.081 (20 yrs); 55.10 (lien 10 yrs, re-record)"
+    confirmed_by: "Brandon: accepted unverified research (config/sol_proposed.yaml, 2026-11-23) on 2026-11-28; check against the statute"
+  GA:  # promoted from sol_proposed.yaml (unverified research)
+    judgment_enforceable_years: 7
     lien_years: null
-    renewable: null
+    renewable: true
     renewal_years: null
     renewal_keeps_priority: null
-    statute: null
-    confirmed_by: null
-  GA:  # TODO(Brandon)
-    judgment_enforceable_years: null
-    lien_years: null
-    renewable: null
-    renewal_years: null
-    renewal_keeps_priority: null
-    statute: null
-    confirmed_by: null
+    statute: "O.C.G.A. 9-12-60 (dormancy, renewal); 9-12-81/86"
+    confirmed_by: "Brandon: accepted unverified research (config/sol_proposed.yaml, 2026-11-23) on 2026-11-28; check against the statute"
   HI:  # TODO(Brandon)
     judgment_enforceable_years: null
     lien_years: null
@@ -117,14 +117,14 @@ states:
     renewal_keeps_priority: null
     statute: null
     confirmed_by: null
-  IL:  # TODO(Brandon)
-    judgment_enforceable_years: null
-    lien_years: null
-    renewable: null
-    renewal_years: null
+  IL:  # promoted from sol_proposed.yaml (unverified research)
+    judgment_enforceable_years: 20
+    lien_years: 7
+    renewable: true
+    renewal_years: 7
     renewal_keeps_priority: null
-    statute: null
-    confirmed_by: null
+    statute: "735 ILCS 5/12-101 (lien 7 yrs from entry or revival); 13-218 (revive within 20)"
+    confirmed_by: "Brandon: accepted unverified research (config/sol_proposed.yaml, 2026-11-23) on 2026-11-28; check against the statute"
   IN:  # TODO(Brandon)
     judgment_enforceable_years: null
     lien_years: null
@@ -189,14 +189,14 @@ states:
     renewal_keeps_priority: null
     statute: null
     confirmed_by: null
-  MI:  # TODO(Brandon)
+  MI:  # promoted from sol_proposed.yaml (unverified research)
     judgment_enforceable_years: null
-    lien_years: null
-    renewable: null
-    renewal_years: null
+    lien_years: 5
+    renewable: true
+    renewal_years: 5
     renewal_keeps_priority: null
-    statute: null
-    confirmed_by: null
+    statute: "MCL 600.2809 (lien 5 yrs, re-record once for 5)"
+    confirmed_by: "Brandon: accepted unverified research (config/sol_proposed.yaml, 2026-11-23) on 2026-11-28; check against the statute"
   MN:  # TODO(Brandon)
     judgment_enforceable_years: null
     lien_years: null
@@ -269,22 +269,22 @@ states:
     renewal_keeps_priority: null
     statute: null
     confirmed_by: null
-  NY:  # TODO(Brandon)
+  NY:  # promoted from sol_proposed.yaml (unverified research)
+    judgment_enforceable_years: 20
+    lien_years: 10
+    renewable: true
+    renewal_years: null
+    renewal_keeps_priority: null
+    statute: "CPLR 5203, 5014 (lien 10 yrs, renewal); 211 (presumed paid at 20)"
+    confirmed_by: "Brandon: accepted unverified research (config/sol_proposed.yaml, 2026-11-23) on 2026-11-28; check against the statute"
+  NC:  # promoted from sol_proposed.yaml (unverified research)
     judgment_enforceable_years: null
-    lien_years: null
+    lien_years: 10
     renewable: null
     renewal_years: null
     renewal_keeps_priority: null
-    statute: null
-    confirmed_by: null
-  NC:  # TODO(Brandon)
-    judgment_enforceable_years: null
-    lien_years: null
-    renewable: null
-    renewal_years: null
-    renewal_keeps_priority: null
-    statute: null
-    confirmed_by: null
+    statute: "N.C.G.S. 1-234 (lien 10 yrs from entry); 1-233"
+    confirmed_by: "Brandon: accepted unverified research (config/sol_proposed.yaml, 2026-11-23) on 2026-11-28; check against the statute"
   ND:  # TODO(Brandon)
     judgment_enforceable_years: null
     lien_years: null
@@ -293,14 +293,14 @@ states:
     renewal_keeps_priority: null
     statute: null
     confirmed_by: null
-  OH:  # TODO(Brandon)
-    judgment_enforceable_years: null
+  OH:  # promoted from sol_proposed.yaml (unverified research)
+    judgment_enforceable_years: 5
     lien_years: null
-    renewable: null
+    renewable: true
     renewal_years: null
     renewal_keeps_priority: null
-    statute: null
-    confirmed_by: null
+    statute: "ORC 2329.07, 2325.18 (dormancy, revival); 2329.02 (certificate of judgment)"
+    confirmed_by: "Brandon: accepted unverified research (config/sol_proposed.yaml, 2026-11-23) on 2026-11-28; check against the statute"
   OK:  # TODO(Brandon)
     judgment_enforceable_years: null
     lien_years: null
@@ -317,14 +317,14 @@ states:
     renewal_keeps_priority: null
     statute: null
     confirmed_by: null
-  PA:  # TODO(Brandon)
+  PA:  # promoted from sol_proposed.yaml (unverified research)
     judgment_enforceable_years: null
-    lien_years: null
-    renewable: null
+    lien_years: 5
+    renewable: true
     renewal_years: null
     renewal_keeps_priority: null
-    statute: null
-    confirmed_by: null
+    statute: "Pa.R.C.P. 3023, 3031.1 (lien 5 yrs, revival); 42 Pa.C.S. 4303"
+    confirmed_by: "Brandon: accepted unverified research (config/sol_proposed.yaml, 2026-11-23) on 2026-11-28; check against the statute"
   RI:  # TODO(Brandon)
     judgment_enforceable_years: null
     lien_years: null
@@ -357,14 +357,14 @@ states:
     renewal_keeps_priority: null
     statute: null
     confirmed_by: null
-  TX:  # TODO(Brandon)
-    judgment_enforceable_years: null
+  TX:  # promoted from sol_proposed.yaml (unverified research)
+    judgment_enforceable_years: 10
     lien_years: null
-    renewable: null
+    renewable: true
     renewal_years: null
     renewal_keeps_priority: null
-    statute: null
-    confirmed_by: null
+    statute: "Tex. CPRC 34.001, 31.006 (dormancy, revival); Prop. Code 52.001 (abstract)"
+    confirmed_by: "Brandon: accepted unverified research (config/sol_proposed.yaml, 2026-11-23) on 2026-11-28; check against the statute"
   UT:  # TODO(Brandon)
     judgment_enforceable_years: null
     lien_years: null

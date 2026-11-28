@@ -1,0 +1,27 @@
+{
+  "mcpServers": {
+    "equity-search": {
+      "command": "uvx",
+      "args": [
+        "mcp-server-motherduck==1.1.1",
+        "--db-path",
+        "data/search_index.duckdb",
+        "--ephemeral-connections",
+        "--max-rows",
+        "500",
+        "--query-timeout",
+        "120"
+      ]
+    },
+    "equity-tools": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--quiet",
+        "python",
+        "-m",
+        "equity.mcp_server"
+      ]
+    }
+  }
+}

@@ -1,0 +1,27 @@
+source_id: ut.iron.parcels
+state: UT
+# Iron County, Utah ArcGIS Online item 'Parcels_Public' ('County parcels for public use', owner
+# IronGIS1, data last edited 2025-02-26): owner, mailing address and situs; no value fields.
+# 56,108 rows on 2026-11-25 (52,083 with a SERIAL and owner; the rest have blank ids, skipped).
+# ut.statewide.parcels (a draft, not installed) also covers Iron.
+layer_url: https://services.arcgis.com/xGNWaeXY0POVazgT/arcgis/rest/services/Parcels_Public/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "021"}
+fields:
+  parcel_id: SERIAL       # 'SERIAL (APN)', e.g. 'B-1151-0001-0004-223'; ACCOUNT is the tax account
+  owner1: OWNER           # may join several vestings with ';;;'
+  mail_line1: MAIL_ADD1
+  mail_line2: MAIL_ADD2
+  mail_city: MAIL_CITY
+  mail_state: MAIL_ST
+  mail_zip: MAIL_ZIP      # null on every row on 2026-11-25
+  situs_line1: SITUS
+value_basis: "No value fields in this layer (subdivision, block, lot, account, serial, owner, mailing address, acreage and situs only). MAIL_ZIP is null on every row, so mailing addresses carry no ZIP. The data was last edited 2025-02-26, so owners may be up to 21 months stale. ICO is not mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=eea3e6452a644f2c93b6fa31e376fabf
+  summary: "Iron County, UT ArcGIS Online item 'Parcels_Public' (owner IronGIS1; snippet 'County parcels for public use.'), public, no token; 56,108 rows on 2026-11-25. No licenseInfo, accessInformation or copyright text on the item or layer; no license, use restriction or mailing-list clause found. services.arcgis.com /robots.txt answers HTTP 403 'Invalid URL' (RFC 9309: 4xx = no rules, allowed; PoliteClient treats 4xx the same way)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,28 @@
+source_id: id.twin_falls.parcels
+state: ID
+# Twin Falls County, Idaho ArcGIS Online item 'TFCO Parcel Map' layer TFCO_Parcels_08_2025
+# (August 2025 extract, data last edited 2025-12-04): parcel id, owner/mailing name, mailing
+# address, situs street and ZIP; no value fields. 46,094 rows on 2026-11-25 (mail name on 45,947).
+layer_url: https://services3.arcgis.com/2lFfYsoBD697ZuE3/arcgis/rest/services/TFCO_Parcels_08_2025/FeatureServer/0
+order_by: FID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "083"}
+fields:
+  parcel_id: PARCEL_ID
+  owner1: PM_MAIL_NM      # mailing name of the owner of record ('TODD, RICKIE S', 'HURTADO FARMS, LLC')
+  mail_line1: PM_MAIL_A1
+  mail_line2: PM_MAIL_A2
+  mail_city: PM_MAIL_CT
+  mail_state: PM_MAIL_ST
+  mail_zip: PM_MAIL_ZP
+  situs_line1: PM_PROP_AD
+  situs_zip: PM_PROP_ZP
+value_basis: "No value fields in this layer (parcel id, mailing name and address, situs street and ZIP, acreage only). PM_CARE_OF holds only a flag character ('V' on 41,521 rows, '%' on 4,426), not a care-of name, and is not mapped; PM_PAR_15 (parcel id with a suffix letter) is not mapped. PM_MAIL_NM is the assessor's mailing name, mapped as owner1."
+use_restrictions: [no_mailing_list]
+terms:
+  url: https://www.arcgis.com/home/item.html?id=81448228d6b543da830f6502efb98e34
+  summary: "Twin Falls County, Idaho ArcGIS Online item 'TFCO Parcel Map' (owner publicworks13), public, no token, 46,094 rows on 2026-11-25. No licenseInfo, description or copyright text on the item or layer. Idaho Code 74-120 (applies to lists of persons prepared by any Idaho public agency): no such list may be used as a mailing list or telephone list unless Idaho law expressly permits it; recorded as no_mailing_list, as for id.statewide.parcels. services3.arcgis.com /robots.txt answers HTTP 403 'Invalid URL' (RFC 9309: 4xx = no rules, allowed; PoliteClient treats 4xx the same way)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

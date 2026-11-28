@@ -1,0 +1,33 @@
+source_id: ut.weber.parcels
+state: UT
+# Weber County, Utah 'gis/parcels_geogizmo2' map service layer 0 'Parcel Master': owner name,
+# owner mailing address, property address, total market and taxable value with TaxYear and
+# ASSESSED_YR, property type. 115,765 rows on 2026-11-25 (TaxYear 2026 on 112,996).
+# ut.statewide.parcels (a draft, not installed) also covers Weber, without values.
+layer_url: https://maps.webercountyutah.gov/arcgis/rest/services/gis/parcels_geogizmo2/MapServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "057"}
+fields:
+  parcel_id: PARCEL_ID    # 9-digit serial ('153040007'); 72+ ids repeat on multipart rows
+  owner1: NAME_ONE
+  mail_line1: STREET
+  # CITY_STATE holds 'TAYLOR UT' (city and state, no ZIP) and cannot be split by the adapter,
+  # so only the street line and ZIP of the mailing address are mapped.
+  mail_zip: ZIPCODE       # 5 or 9 digits without a dash; the first 5 are kept
+  situs_line1: PROP_STREET
+  situs_city: PROP_CITY
+  situs_zip: PROP_ZIP
+  land_use_code: PROP_TYPE
+  land_use_desc: PROP_DESC
+  total_value: TOT_MARKET
+  assessed_value: TOT_TAXABLE
+  tax_year: TaxYear
+value_basis: "TOT_MARKET = total market value; TOT_TAXABLE = total taxable value (Utah has no assessment ratio; taxable value is market value less the 45% primary-residential exemption where it applies), mapped as assessed_value. tax_year = TaxYear (2026 on 112,996 rows; ASSESSED_YR is 2026 in the rows sampled). No land / building split and no homestead flag (the primary-residential exemption shows only as TOT_TAXABLE < TOT_MARKET). Tax charges, payments, penalties and rates are not mapped."
+terms:
+  url: https://maps.webercountyutah.gov/arcgis/rest/services/gis/parcels_geogizmo2/MapServer
+  summary: "Weber County, UT 'parcels_geogizmo2' map service on the county ArcGIS server (feeds the county's public GeoGizmo parcel viewer); free REST, no login; 115,765 rows on 2026-11-25. Service iteminfo has empty licenseInfo, description and copyright text; no license, use restriction or mailing-list clause found (PRIVATE_FLAG is 0 on every row). maps.webercountyutah.gov /robots.txt answers 404 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

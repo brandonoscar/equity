@@ -19,7 +19,8 @@ fields:
   land_use_code: PROPCLASS   # 'R', 'C', 'A' ...
   land_value: LANDVALUE
   total_value: TOTALVALUE
-value_basis: "LANDVALUE / TOTALVALUE = assessor land and total (100% actual) value; building value is split into BLDGVALUE and DWELLVALUE (LANDVALUE + BLDGVALUE + DWELLVALUE = TOTALVALUE on sampled rows), so bldg_value is not mapped. The layer has no assessment-year field, so no tax_year is mapped and no assessment facts are emitted; raw values stay in source records. BOOK / PAGE mix recording year + document number ('2015' / '4433') with old book/page pairs, so no deed is mapped."
+  tax_year: {as_retrieved: true}   # no assessment-year field: values as observed on retrieval
+value_basis: "LANDVALUE / TOTALVALUE = assessor land and total (100% actual) value; building value is split into BLDGVALUE and DWELLVALUE (LANDVALUE + BLDGVALUE + DWELLVALUE = TOTALVALUE on sampled rows), so bldg_value is not mapped. The layer has no assessment-year field, so values are recorded as observed on retrieval (tax_year: as_retrieved). BOOK / PAGE mix recording year + document number ('2015' / '4433') with old book/page pairs, so no deed is mapped."
 terms:
   url: https://www.arcgis.com/home/item.html?id=05161ee013a84e4784072c8fc0dbe1d9
   summary: "Pottawattamie County GIS public FeatureServer (item owner PottawattamieGIS, accessInformation 'Pottawattamie County GIS'), no login, token or fee. licenseInfo (read 2026-11-25): users agree to indemnify and hold the county harmless; no accuracy claim; no liability; no resale, redistribution or mailing-list clause. gis.pottcounty-ia.gov/robots.txt redirects (302) to www.pottcounty-ia.gov/departments/gis, which answers HTTP 403 with a Cloudflare challenge page (RFC 9309: 4xx = no rules, allowed); the REST service itself answers queries without a challenge."

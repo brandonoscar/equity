@@ -1,0 +1,35 @@
+source_id: nc.swain.parcels
+state: NC
+# Swain County, North Carolina ArcGIS Online item 'Swain County Parcels' (owner
+# austinb_swaincountygis, data last edited 2026-11-25): owner names, mailing address, property
+# address, land / building / extra-feature values and total, last deed book/page.
+# 13,569 rows on 2026-11-25. nc.statewide.parcels has 12,669 Swain rows but parno is empty on all
+# of them (the 12-digit PIN is in altparno), so it yields no Swain parcels.
+layer_url: https://services3.arcgis.com/bAaHaqP9BvQhS7eE/arcgis/rest/services/Swain_County_Parcels/FeatureServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "173"}
+fields:
+  parcel_id: PARCEL_ID
+  owner1: Name__1
+  owner2: Name__2
+  mail_line1: Address_Line_1
+  mail_line2: Address_Line_2
+  mail_city: City
+  mail_state: State
+  mail_zip: Zip_Code      # integer
+  situs_line1: ParcelPropertyAddress
+  deed_book: Deed_Book
+  deed_page: Deed_Page
+  land_value: Land_Value_Parcel
+  bldg_value: Building_Value_Parcel
+  total_value: Total_Assessed_Value
+  tax_year: {as_retrieved: true}   # no roll-year field: values as observed on retrieval
+value_basis: "Land_Value_Parcel / Building_Value_Parcel / OBXF_Value_Parcel (outbuildings and extra features, not mapped) sum to Total_Assessed_Value; North Carolina assesses at 100% of market value as of the county's last general reappraisal, so the total is mapped as total_value. No roll-year field, so tax_year is {as_retrieved: true}: values are recorded as observed on the retrieval date (tax_year = that year, valid_from = that date), not assigned to a roll year. Deed_Book / Deed_Page are the last deed's book and page as the county keys them; some rows carry instrument codes instead ('DEAT'/'CERT' for a death certificate, 'WILL'/'00DC' for an estate file), which are kept as given. Address_Line_3, Plat_Book / Plat_Page and Deed_Date are not mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=c54162e603a64ac59f56de41e97ac8d8
+  summary: "Swain County, NC ArcGIS Online item 'Swain County Parcels' (Swain County GIS), public, no token; 13,569 rows on 2026-11-25. Item licenseInfo: provided for informational and general mapping purposes, no warranty of accuracy or suitability, boundaries approximate and not for determining legal boundaries, ownership, acreage or property rights; no commercial-use, resale or mailing-list restriction. services3.arcgis.com /robots.txt answers HTTP 403 'Invalid URL' (RFC 9309: 4xx = no rules, allowed; PoliteClient treats 4xx the same way)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

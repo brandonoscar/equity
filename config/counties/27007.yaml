@@ -1,0 +1,38 @@
+source_id: mn.beltrami.parcels
+state: MN
+# Beltrami County, Minnesota 'BeltramiOpenData' map service, layer 2 Tax Parcels: owner names,
+# owner mailing address, property address, estimated market values, use class and homestead.
+# 41,645 rows on 2026-11-25 (owner and PARCEL_YR 2026 on 36,554; the rest are non-tax polygons).
+# Beltrami is not in mn.statewide.parcels (no Beltrami rows on 2026-11-25).
+layer_url: https://arcgis.co.beltrami.mn.us/arcgis/rest/services/BeltramiData/BeltramiOpenData/MapServer/2
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "007"}
+fields:
+  parcel_id: PIN          # county PIN ('010008700'; FIPS_PIN = '27007-' + PIN)
+  owner1: OWNERNAME1
+  owner2: OWNERNAME2
+  mail_line1: OWNER1_ADD
+  mail_line2: OWNER1_ADD2
+  mail_city: OWNER_CITY
+  mail_state: OWNER_ST
+  mail_zip: OWNER_ZIP
+  situs_line1: PROP_ADD1
+  situs_city: PROP_CITY
+  situs_state: PROP_STATE
+  situs_zip: PROP_ZIP
+  land_use_code: USE1_CODE
+  land_use_desc: USE1_DESC
+  homestead: HOMESTEAD
+  land_value: EMV_LAND
+  bldg_value: EMV_BLDG
+  total_value: EMV_TTL
+  tax_year: PARCEL_YR
+value_basis: "EMV_LAND / EMV_BLDG / EMV_TTL = county estimated market value (MN parcel standard names); TTL_MV (total market value, equal to EMV_TTL in the rows sampled) and TAX_CAPAC / TOTAL_TAX are not mapped. tax_year = PARCEL_YR, the county's roll year for the row (2026 on every taxable row on 2026-11-25); the layer does not say whether it is the assessment year or the taxes-payable year, but TOTAL_TAX is filled, which fits taxes payable 2026. Only the first use class (USE1_*) is mapped. HOMESTEAD was blank in the rows sampled; blank reads as unknown."
+terms:
+  url: https://arcgis.co.beltrami.mn.us/arcgis/rest/services/BeltramiData/BeltramiOpenData/MapServer
+  summary: "Beltrami County, MN 'BeltramiOpenData' ('Beltrami County Open GIS Data Layers'), copyright 'Beltrami County, MN'; free REST, no login; 41,645 rows on 2026-11-25. Service iteminfo has empty licenseInfo; no license, use restriction or mailing-list clause found. arcgis.co.beltrami.mn.us /robots.txt answers 404 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free
