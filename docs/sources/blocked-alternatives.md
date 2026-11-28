@@ -253,3 +253,10 @@ The owner approved four held sources (API keys stay on hold):
 | Indiana tax sale lists | **Built:** `in.hammond.tax_sale_2027` (142 Lake County parcels with owner mailing addresses, parcel-linked to `in.lake.parcels`), tagged `no_commercial_name_address_lists`. The Muncie list is the same sale as `in.delaware.tax_sale`, already loaded. Vanderburgh's 2026 tax sale layer (maps.evansvillegis.com) did not answer from this environment; retry. |
 | Nassau County NY delinquent taxes | **Built:** `ny.nassau.delinquent_general_taxes` (6,592 parcels, $24.1M) and `ny.nassau.delinquent_school_taxes` (5,078 parcels, $47.6M) from the weekly DQ110 PDFs, tax year 2026, in the NY run. Nassau's towns are in `ny.local_rolls.parcels`, but the report's section/block/lot did not match the rolls' print keys in a spot check, so rows match by owner name. |
 | Florida Sunbiz bulk files | Not built yet. The HTTPS portal (sftp.floridados.gov) has `robots.txt: Disallow: /` for all agents, so it is not used. The state's own instructions invite "a secure FTP client of your choice" with the published Public account, which robots.txt does not govern, but port 22 is closed from this environment: it would run from a GitHub Actions runner and needs an SFTP client library added to `pyproject.toml` (CODEOWNERS). |
+
+### No-barrier pass (2026-11-28)
+
+| Source | Result |
+|---|---|
+| Hamilton TN Trustee delinquent file, business personal property bills | **Built:** `tn.hamilton.personal_property_taxes`, 40,509 bills owed by 14,652 businesses, $12.0M (same free CTRUDELQ file as `tn.hamilton.delinquent_taxes`), in the TN run, matched by name and mailing address. |
+| Summit OH Fiscal Office conveyances (SC719_CVPAR) | 624,878 conveyances with grantor, grantee, price, mortgage amount and book/page, but the export stops in 2023 (15,119 that year, none after), so it fails the freshness check. Not loaded. |

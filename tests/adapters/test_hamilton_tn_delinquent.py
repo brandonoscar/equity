@@ -80,3 +80,24 @@ def test_real_property_bills_become_liens_on_the_parcel() -> None:
     refetched = Fetched(a.source_id, URL, AT, 200, json.dumps(json.loads(fetched.content)).encode(),
                         "application/json")  # fmt: skip
     assert len(list(a.normalize(refetched))) == len(out)
+
+
+def test_personal_property_bills_are_the_per_map_records_with_no_parcel() -> None:
+    from equity.adapters.tn.hamilton_delinquent import HamiltonTNPersonalPropertyTaxes
+
+    lines = [
+        _bill("137A", "T", "016", "LEE ANN", "2023", "000010050"),
+        _bill("PER", "", "10046449", "BIZ INC", "2024", "000005000", "000000025"),
+    ]
+    assert [b["owner1"] for b in delinquent_bills(lines, personal=True)] == ["BIZ INC"]
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w") as z:
+        z.writestr("CTRUDELQ.TXT", "\r\n".join(lines) + "\r\n")
+    a = HamiltonTNPersonalPropertyTaxes(_Client(buf.getvalue()))  # type: ignore[arg-type]
+    out = [(t.table, dict(t.row)) for t in a.normalize(a.fetch(FetchRequest({})))]
+    (inst,) = [x for t, x in out if t == "instrument"]
+    assert (str(inst["principal_amount"]), inst["doc_type_raw"]) == (
+        "50.25", "Hamilton County delinquent business personal property tax, bill year 2024 "
+        "(back tax)")  # fmt: skip
+    assert not [x for t, x in out if t == "instrument_parcel"]
+    assert {x["raw_name"] for t, x in out if t == "party"} == {"BIZ INC", "Hamilton County Trustee"}

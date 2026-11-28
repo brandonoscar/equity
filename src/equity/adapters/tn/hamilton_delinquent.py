@@ -69,15 +69,16 @@ def gislink(map_: str, group: str, parcel: str) -> str | None:
     return STATE_COUNTY_NO + map_ + group + m.group(1).zfill(3) + (m.group(2) or "").ljust(2, "0")
 
 
-def delinquent_bills(lines: Iterable[str]) -> list[dict[str, Any]]:
-    """Real property bills with an amount owed, one row each, in file order."""
+def delinquent_bills(lines: Iterable[str], personal: bool = False) -> list[dict[str, Any]]:
+    """Real property bills (or, with personal, business personal property bills: map 'PER')
+    with an amount owed, one row each, in file order."""
     out = []
     for line in lines:
         if len(line) < RECORD - 1:
             continue
         r = parse_record(line)
         cents = sum(_cents(r[k]) for k in ("county_owed", "mun_owed", "stw_owed"))
-        if r["map"] == "PER" or not r["map"] or cents <= 0 or not r["year"].isdigit():
+        if (r["map"] == "PER") != personal or not r["map"] or cents <= 0 or not r["year"].isdigit():
             continue
         out.append({**{k: r[k] for k in ("map", "group", "parcel", "owner1", "owner2", "year",
                                          "bill", "mail1", "mail2", "mail3", "situs",
@@ -106,6 +107,8 @@ class HamiltonTNDelinquentTaxes(Adapter):
     access_method: ClassVar[str] = "bulk"
     pii_fields: ClassVar[tuple[str, ...]] = ("owner1", "owner2", "mail1", "mail2", "mail3",
                                              "situs")  # fmt: skip
+    personal: ClassVar[bool] = False  # True: the business personal property bills instead
+    tax_label: ClassVar[str] = "property tax"
 
     def __init__(self, client: PoliteClient | None = None) -> None:
         self.client = client or PoliteClient(min_interval_s=2.0, timeout_s=1800.0)
@@ -141,7 +144,7 @@ class HamiltonTNDelinquentTaxes(Adapter):
         if not names:
             raise RuntimeError(f"{self.source_id}: no .TXT file in {URL}")
         text = z.read(names[0]).decode("latin-1")
-        rows = delinquent_bills(text.replace("\r\n", "\n").split("\n"))
+        rows = delinquent_bills(text.replace("\r\n", "\n").split("\n"), self.personal)
         limit = request.params.get("limit")
         if limit:
             rows = rows[: int(limit)]
@@ -167,7 +170,7 @@ class HamiltonTNDelinquentTaxes(Adapter):
             yield ctx.fact(
                 "instrument", instrument_uid=uid, instrument_number=key, book_type=None,
                 book=None, page=None,
-                doc_type_raw=f"Hamilton County delinquent property tax, bill year {year}{back}",
+                doc_type_raw=f"Hamilton County delinquent {self.tax_label}, bill year {year}{back}",
                 doc_type="TAX_LIEN_STATE", recorded_on=date(int(year), 1, 1),
                 recorded_seq=None, executed_on=None, consideration=None,
                 principal_amount=Decimal(cents) / 100, max_secured_amount=None,
@@ -206,3 +209,16 @@ class HamiltonTNDelinquentTaxes(Adapter):
         return HealthReport(self.source_id, ok, datetime.now(UTC),
                             f"status={resp.status}; delinquent file link "
                             f"{'found' if ok else 'missing'}")  # fmt: skip
+
+
+class HamiltonTNPersonalPropertyTaxes(HamiltonTNDelinquentTaxes):
+    """The same Trustee file's business personal property bills (map 'PER': equipment,
+    furniture and inventory of businesses, assessed to the business). Unpaid personal property
+    tax is collected by distress warrant on the business's property (T.C.A. 67-5-2003); each
+    bill is a TAX_LIEN_STATE instrument owed by the business, with no parcel. Matched by name
+    and mailing address: a business that owes it and owns real estate shows up as an owner."""
+
+    source_id: ClassVar[str] = "tn.hamilton.personal_property_taxes"
+    adapter_version: ClassVar[str] = "1"
+    personal: ClassVar[bool] = True
+    tax_label: ClassVar[str] = "business personal property tax"

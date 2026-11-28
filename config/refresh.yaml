@@ -64,8 +64,8 @@ rules:
     every_hours: 24
     mode: listing
     listing_table: tax_delinquency_snapshot
-  # Miami-Dade code-enforcement collections: a current list of unpaid code liens; weekly.
-  - match: [fl.miami_dade.code_collections]
+  # Current debt lists whose names the patterns below miss: weekly, as the other debt lists.
+  - match: [fl.miami_dade.code_collections, tn.hamilton.personal_property_taxes]
     every_hours: 168
     mode: rebuild
   # FHFA ZIP5 house price index: a new year is published once a year; check monthly.
