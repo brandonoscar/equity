@@ -50,7 +50,8 @@ rules:
             pa.washington.repository_sales, pa.washington.upset_sales, pa.west_chester.upset_sale,
             dc.otr.vacant_blighted, pa.pittsburgh.condemned_properties,
             md.baltimore_city.vacant_building_notices, ny.syracuse.rental_registry,
-            ny.syracuse.vacant_properties, fl.orange.tax_deed_sales, oh.stark.civil_sales]
+            ny.syracuse.vacant_properties, fl.orange.tax_deed_sales, oh.stark.civil_sales,
+            ar.cosl.unsold_tax_parcels]
     every_hours: 24
     mode: listing
     listing_table: instrument

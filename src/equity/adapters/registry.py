@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from equity.adapters.ar.cosl_unsold import ArkansasUnsoldTaxParcels
 from equity.adapters.assessment_ratios import (
     CTEqualizedGrandList,
     NYEqualizationRates,
@@ -162,6 +163,7 @@ _ALL: tuple[type[Adapter], ...] = (
     DentonPersonalPropertyDelinquent,
     HamiltonTNDelinquentTaxes,
     HamiltonTNPersonalPropertyTaxes,
+    ArkansasUnsoldTaxParcels,
     VermontTransferArchive,
     NYResidentialAssessmentRatios,
     NYEqualizationRates,

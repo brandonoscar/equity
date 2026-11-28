@@ -1539,8 +1539,9 @@ STATES: dict[str, dict[str, Any]] = {
     "ID": {"debtors": ["id.canyon.sheriff_sales"], "owners": ["id.statewide.parcels"],
            "courts": FEDERAL_COURTS},
     # Pulaski adds the owner mailing addresses the statewide layer lacks.
-    "AR": {"debtors": [], "owners": ["ar.statewide.parcels", "ar.pulaski.parcels"],
-           "courts": FEDERAL_COURTS},
+    "AR": {"debtors": ["ar.cosl.unsold_tax_parcels"],
+           "owners": ["ar.statewide.parcels", "ar.pulaski.parcels"],
+           "courts": FEDERAL_COURTS, "parcel_on_lien": True},
     "ND": {"debtors": [], "owners": ["nd.statewide.parcels"], "courts": FEDERAL_COURTS},
     "WY": {"debtors": [], "owners": ["wy.statewide.parcels"], "courts": FEDERAL_COURTS},
     "ME": {"debtors": [], "owners": ["me.statewide.parcels"], "courts": FEDERAL_COURTS},
