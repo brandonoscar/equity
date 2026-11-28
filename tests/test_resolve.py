@@ -1788,3 +1788,31 @@ def test_two_independent_kinds_of_review_evidence_make_one_strong_link(tmp_path:
         f"FROM '{out.as_posix()}/matches.parquet'").fetchall()}  # fmt: skip
     assert m["d1"] == ("person_name_zip", "auto", ["former_address", "place"])
     assert m["d2"] == ("person_name_zip", "review", None)
+
+
+def test_an_estate_reaches_the_deceased_debtor_for_review(tmp_path: Path) -> None:
+    """The roll prints the parcel's owner as "ESTATE OF JOHN SMITH": a lien against JOHN SMITH
+    at its address is a review lead (the estate, not the person, holds title now)."""
+    lk = tmp_path / "lake"
+    d, o = lk / "zz.debts", lk / "zz.parcels"
+    _write(d / "address" / "0.parquet", [_addr("a1", "1 ELM ST", "10001")])
+    _write(d / "party" / "0.parquet", [
+        {"party_id": "d1", "raw_name": "JOHN SMITH", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": "a1"}])  # fmt: skip
+    _write(d / "instrument_party" / "0.parquet",
+           [{"instrument_uid": "i1", "party_id": "d1", "role": "debtor"}])  # fmt: skip
+    _write(d / "instrument" / "0.parquet", [
+        {"instrument_uid": "i1", "source_id": "zz.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2026-01-01", "principal_amount": 10.0}])  # fmt: skip
+    _write(o / "address" / "0.parquet", [_addr("m1", "1 Elm Street", "10001")])
+    _write(o / "party" / "0.parquet", [
+        {"party_id": "o1", "raw_name": "ESTATE OF JOHN SMITH", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": "m1"}])  # fmt: skip
+    _write(o / "owner_snapshot" / "0.parquet", [{"parcel_uid": "p1", "party_id": "o1"}])
+    _write(o / "parcel" / "0.parquet", [{"parcel_uid": "p1"}])
+    out = tmp_path / "out"
+    run(lk, out, ["zz.debts"], ["zz.parcels"])
+    assert duckdb.connect().execute(
+        f"SELECT rule_id, decision, owner_name_variant "
+        f"FROM '{out.as_posix()}/matches.parquet'").fetchall() == [
+        ("person_name_address", "review", "estate")]  # fmt: skip

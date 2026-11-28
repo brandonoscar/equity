@@ -47,6 +47,11 @@ TRUST_WORDS = {
     "THE", "OF", "FBO", "SURVIVORS", "SURVIVOR", "SEPARATE", "PROPERTY", "JOINT",
     "MARITAL", "BYPASS", "EXEMPT", "QTIP", "GST", "ESTATE", "EST", "NO", "NUMBER", "1", "2",
 }  # fmt: skip
+# An estate (a deceased owner or debtor): "ESTATE OF JOHN SMITH", "SMITH JOHN EST", "JOHN SMITH
+# DECEASED", "HEIRS OF JOHN SMITH". A life estate is a tenancy and REAL ESTATE a business word,
+# neither an estate.
+ESTATE_MARK = re.compile(r"\b(ESTATE|EST|DECEASED|DECD|DEC'D|HEIRS)\b")
+ESTATE_WORDS = {"ESTATE", "EST", "OF", "THE", "HEIRS", "UNKNOWN", "DECEASED", "DECD"}
 TRUST_MARK = re.compile(r"\b(TRUST|TR|TRS|TRUSTEE|TRUSTEES|TTEE|TTEES|TRST)\b")
 SPLIT = re.compile(r"\s*(?:&|\bAND\b|/|;|\+)\s*")
 SUFFIX = {"JR", "SR", "II", "III", "IV", "V", "2ND", "3RD"}
@@ -94,6 +99,19 @@ def _joint(name: str) -> list[str]:
     return names
 
 
+def _estate(raw: str) -> list[str] | None:
+    """The deceased named by an estate's string, or None when it is not an estate."""
+    text = re.sub(r"\bLIFE\s+EST(ATE)?\b|\bREAL\s+ESTATE\b", " ", raw.upper())
+    if not ESTATE_MARK.search(text):
+        return None
+    name = " ".join(w for w in _clean(text).split() if w not in ESTATE_WORDS)
+    joint = _joint(name)
+    if joint:
+        return joint
+    one = SPLIT.sub(" ", name).split()
+    return [" ".join(one)] if len([w for w in one if w not in SUFFIX]) >= 2 else []
+
+
 def _trust(name: str) -> list[str] | None:
     """The person names inside a trust's name, or None when the string is not a trust."""
     if not TRUST_MARK.search(name):
@@ -108,16 +126,19 @@ def _trust(name: str) -> list[str] | None:
 
 def owner_name_variants(raw: str | None) -> list[tuple[str, str]]:
     """(name, kind) for each person inside an owner string: kind 'joint' (one of several
-    owners printed together) or 'trust' (the settlor or trustee of a trust). Empty when the
-    string is one plain name or names no person."""
+    owners printed together), 'trust' (the settlor or trustee of a trust) or 'estate' (the
+    deceased of an estate). Empty when the string is one plain name or names no person."""
     if not raw:
         return []
     name = _clean(raw)
     if not name or _business(name):
         return []
     found: list[tuple[str, str]] = []
+    deceased = _estate(raw)
     settlors = _trust(name)
-    if settlors is not None:  # a trust: its settlors (both, for 'JOHN & JANE SMITH TRUST')
+    if deceased is not None:  # an estate: the deceased ('ESTATE OF JOHN SMITH')
+        found += [(n, "estate") for n in deceased]
+    elif settlors is not None:  # a trust: its settlors (both, for 'JOHN & JANE SMITH TRUST')
         found += [(n, "trust") for n in settlors]
     else:
         found += [(n, "joint") for n in _joint(name)]
@@ -126,7 +147,9 @@ def owner_name_variants(raw: str | None) -> list[tuple[str, str]]:
     out = []
     for n, kind in found:
         key = " ".join(sorted(set(n.split())))
-        if n and n != plain and key not in seen:
+        # An estate's deceased is kept even when the cleaned string is the bare name
+        # ("JOHN SMITH DECEASED"): the printed string's own key carries the marker.
+        if n and (n != plain or kind == "estate") and key not in seen:
             seen.add(key)
             out.append((n, kind))
     return out

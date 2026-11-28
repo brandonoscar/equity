@@ -199,7 +199,8 @@ SELECT DISTINCT c.sos_id, c.business_name, c.role, c.title, c.party_id, c.name, 
        name_key(v.variant), suffix_key(v.variant), c.addr_key, c.base_key, c.zip5, c.line1,
        c.city, c.state
 FROM company_people c JOIN officer_name_variant v ON v.raw_name = c.name
-WHERE v.party_kind <> 'org' AND v.kind <> 'trust' AND name_words(name_key(v.variant)) >= 2;
+WHERE v.party_kind <> 'org' AND v.kind NOT IN ('trust', 'estate')
+  AND name_words(name_key(v.variant)) >= 2;
 """
 
 

@@ -496,7 +496,8 @@ def _record_owners(con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str
 # same owner party and parcel (equity.matching.names). raw_name stays the printed string;
 # name_key is the person's. A joint owner's name is matched like any owner name; a trust's
 # settlor or trustee (name_variant 'trust') only reaches review.
-VARIANT_MARK = r"&|\bAND\b|/|;|\bTR\b|\bTRS\b|TRUST|\bTTEES?\b|\bET ?UX\b|\bET ?VIR\b"
+VARIANT_MARK = (r"&|\bAND\b|/|;|\bTR\b|\bTRS\b|TRUST|\bTTEES?\b|\bET ?UX\b|\bET ?VIR\b"
+                r"|\bESTATE\b|\bEST\b|\bDECEASED\b|\bDECD\b|\bDEC'D\b|\bHEIRS\b")  # fmt: skip
 # Alias markers ("JOHN SMITH DBA SMITH PLUMBING", AKA, FKA, NKA, T/A), read after periods
 # are dropped (D.B.A. -> DBA).
 ALIAS_MARK = (r"\bD ?/? ?B ?/? ?A\b|\b[AFN] ?/? ?K ?/? ?A\b|\bT ?/ ?A\b"
@@ -1282,7 +1283,8 @@ def match(
                OR starts_with(coalesce(owner_basis, ''), 'mortgage:'))
           AND owner_seen_on < current_date - INTERVAL {RECORD_OWNER_AUTO_DAYS} DAY;
         -- Which name of the owner string the match used: NULL (the whole string), 'joint'
-        -- (one of several owners printed together) or 'trust' (a trust's settlor/trustee).
+        -- (one of several owners printed together), 'trust' (a trust's settlor/trustee) or
+        -- 'estate' (the deceased of an estate): trusts and estates only reach review.
         ALTER TABLE matches ADD COLUMN owner_name_variant VARCHAR;
         UPDATE matches SET owner_name_variant = v.variant
         FROM (SELECT party_id, parcel_uid, name_key,
@@ -1292,7 +1294,7 @@ def match(
         WHERE v.party_id = matches.owner_party_id AND v.parcel_uid = matches.parcel_uid
           AND v.name_key = matches.key;
         UPDATE matches SET decision = 'review'
-        WHERE decision = 'auto' AND owner_name_variant = 'trust';
+        WHERE decision = 'auto' AND owner_name_variant IN ('trust', 'estate');
         -- The same for the debtor's name: NULL, 'alias' (a DBA/AKA name of the same debtor),
         -- 'joint' or 'trust'. A trust's debt is not its settlor's own: review only.
         ALTER TABLE matches ADD COLUMN debtor_name_variant VARCHAR;
@@ -1308,7 +1310,7 @@ def match(
         WHERE v.party_id = matches.debtor_party_id AND v.instrument_uid = matches.instrument_uid
           AND v.k = matches.key;
         UPDATE matches SET decision = 'review'
-        WHERE decision = 'auto' AND debtor_name_variant = 'trust';
+        WHERE decision = 'auto' AND debtor_name_variant IN ('trust', 'estate');
         -- Two or more independent kinds of review evidence for one pair: one stronger link.
         ALTER TABLE matches ADD COLUMN corroborated_by VARCHAR[];
         UPDATE matches SET corroborated_by = c.kinds, decision = 'auto'
@@ -1320,8 +1322,8 @@ def match(
           AND c.instrument_uid = matches.instrument_uid
           AND c.owner_party_id IS NOT DISTINCT FROM matches.owner_party_id
           AND c.parcel_uid = matches.parcel_uid AND matches.decision = 'review'
-          AND coalesce(matches.owner_name_variant, '') <> 'trust'
-          AND coalesce(matches.debtor_name_variant, '') <> 'trust';
+          AND coalesce(matches.owner_name_variant, '') NOT IN ('trust', 'estate')
+          AND coalesce(matches.debtor_name_variant, '') NOT IN ('trust', 'estate');
         CREATE TEMP TABLE parcel_value AS
         SELECT parcel_uid, arg_max(coalesce(appraised_total, assessed_value), tax_year) AS value
         FROM o_assess GROUP BY parcel_uid;
