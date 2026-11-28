@@ -41,8 +41,11 @@ description: Shortlist debtors who own property in a state from the stored, rank
    when the owner has set them; use them.
 2. **Drop rejects before verifying:** governments and agencies (CITY OF, COUNTY, STATE OF,
    UNITED STATES, HOUSING AUTHORITY, UNIVERSITY, BOARD OF), placeholder names, "Name
-   withheld", one-word names, names shared by more than ~25 records (check with
-   `SELECT count(*) FROM names WHERE name_key = '<key>'`).
+   withheld", one-word names, and names common in the state: more than ~25 distinct
+   addresses under the name (`SELECT count(DISTINCT n.address_id) FROM names n JOIN sources s
+   USING (source_id) WHERE n.name_key = '<key>' AND s.state = '<ST>'`). Count addresses, not
+   records: one business or person repeats across a city's sources (34 records, 3 addresses is
+   one entity), while a common name spreads over many addresses and counties.
 3. **Say what the table is:** one row per exact name and state, aggregated (up to 20 refs
    per side), graded by its best debtor-owner pair. A grade here is a shortlist grade over
    up to 20 records a side: confirm it on the specific records with `--grade` (the

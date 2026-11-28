@@ -3,7 +3,7 @@ export const meta = {
   description: 'Shortlist debtors who own property from the search index, verify each lead with an independent agent, try to refute the strong ones, and write a ranked, cited report',
   whenToUse: 'Many leads at once: "find and verify leads in OH with debts over $25k". args: {state, min_debt, min_value, max_parcels, limit, label} or {leads: [...]} from a lead-scan.',
   phases: [
-    { title: 'Shortlist', detail: 'query debtor_owner_candidates with the criteria, drop obvious rejects' },
+    { title: 'Shortlist', detail: 'query the ranked leads table with the criteria, drop obvious rejects' },
     { title: 'Verify', detail: 'one lead-verifier agent per lead' },
     { title: 'Refute', detail: 'a skeptic tries to break each A/B identity' },
     { title: 'Report', detail: 'ranked report under data/derived/leads/' },
@@ -78,13 +78,15 @@ if (Array.isArray(a.leads) && a.leads.length) {
   shortlist = { leads: a.leads.slice(0, LIMIT), dropped: [], query: 'leads passed in args' }
 } else {
   shortlist = await agent(
-    `Use the lead-scan skill's query on the stored table debtor_owner_candidates (equity-search ` +
-    `MCP server, or the read-only DuckDB file data/search_index.duckdb) for state '${STATE}' with ` +
-    `debt_amount >= ${a.min_debt || 10000}, parcel_value >= ${a.min_value || 50000}, ` +
-    `parcels <= ${a.max_parcels || 5}, ordered by debt_amount DESC, LIMIT ${LIMIT * 2}. Drop the ` +
-    `rejects the skill lists (governments and agencies, placeholders, withheld names, one-word ` +
-    `names, names held by more than 25 records) and return at most ${LIMIT} leads, plus the names ` +
-    `you dropped with the reason, and the SQL you ran.`,
+    `Use the lead-scan skill's query on the ranked leads table (equity-tools MCP server's leads ` +
+    `tool, equity-search SQL, or the read-only DuckDB file data/search_index.duckdb) for state ` +
+    `'${STATE}' with grade IN ('A', 'B'), debt_amount >= ${a.min_debt || 10000}, parcel_value >= ` +
+    `${a.min_value || 50000}, owned_parcels <= ${a.max_parcels || 5}, in the table's ranking ` +
+    `order, LIMIT ${LIMIT * 3}. Drop the rejects the skill lists (governments and agencies, ` +
+    `placeholders, withheld names, one-word names, a name common in the state: more than about ` +
+    `25 distinct addresses under it, not merely many records, since one business repeats across ` +
+    `a city's sources) and return at most ${LIMIT} leads, plus the names you dropped with the ` +
+    `reason, and the SQL you ran.`,
     { label: 'shortlist', schema: LEADS },
   )
 }
