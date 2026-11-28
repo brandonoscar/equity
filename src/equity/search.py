@@ -656,16 +656,7 @@ def show_parcel(
     their parties and whether a recorded release points at them, the value history, and net
     equity where recorder data exists. With as_of, also who owned it on that date: the
     owner snapshots in force then, and the grantees of the last deed recorded by then."""
-    found = _rows(con, """
-        SELECT p.source_id, p.parcel_uid, p.parid_raw, p.land_use_desc, p.zoning,
-               a.line1 AS situs_line1, a.city AS situs_city, a.zip5 AS situs_zip,
-               v.tax_year, v.appraised_total, v.assessed_value, v.homestead
-        FROM parcels p
-        LEFT JOIN addresses a ON a.address_id = p.situs_address_id
-        LEFT JOIN parcel_values v USING (source_id, parcel_uid)
-        WHERE p.parcel_uid = ? OR p.parid_raw = ?
-        ORDER BY p.parcel_uid, p.source_id
-    """, [parcel, parcel])  # fmt: skip
+    found = _parcel_records(con, parcel)
     uids = {r["parcel_uid"] for r in found}
     owners = _rows(con, f"""
         SELECT o.parcel_uid, o.source_id, o.source_id || ':' || o.party_id AS ref, n.raw_name,
@@ -785,6 +776,36 @@ def town_assessment_ratio(
     if not rows:
         return None
     return {**rows[0], "matched_on": "situs town name"}
+
+
+def _parcel_records(con: duckdb.DuckDBPyConnection, parcel: str) -> list[dict[str, Any]]:
+    """Each source's record of a parcel with situs and latest value. The parcel_uid is tried
+    first (sorted: a few blocks); the county's printed id only when that finds nothing (a
+    scan). Addresses and values are fetched by literal keys, so their sorted blocks prune."""
+    cols = "source_id, parcel_uid, parid_raw, land_use_desc, zoning, situs_address_id"
+    rows = _rows(con, f"SELECT {cols} FROM parcels WHERE parcel_uid = ?", [parcel])  # noqa: S608
+    if not rows:
+        rows = _rows(con, f"SELECT {cols} FROM parcels WHERE parid_raw = ?", [parcel])  # noqa: S608
+    if not rows:
+        return []
+    aids = {r["situs_address_id"] for r in rows if r["situs_address_id"]}
+    addr = {r["address_id"]: r for r in _rows(con, f"""
+        SELECT address_id, line1, city, zip5 FROM addresses WHERE address_id IN {_in(aids)}
+    """, [])} if aids else {}  # noqa: S608  # fmt: skip
+    uids = {r["parcel_uid"] for r in rows}
+    vals = {(r["source_id"], r["parcel_uid"]): r for r in _rows(con, f"""
+        SELECT source_id, parcel_uid, tax_year, appraised_total, assessed_value, homestead
+        FROM parcel_values WHERE parcel_uid IN {_in(uids)}""", [])}  # noqa: S608  # fmt: skip
+    out = []
+    for r in sorted(rows, key=lambda x: (x["parcel_uid"], x["source_id"])):
+        a = addr.get(r.pop("situs_address_id"), {})
+        v = vals.get((r["source_id"], r["parcel_uid"]), {})
+        out.append({**r, "situs_line1": a.get("line1"), "situs_city": a.get("city"),
+                    "situs_zip": a.get("zip5"), "tax_year": v.get("tax_year"),
+                    "appraised_total": v.get("appraised_total"),
+                    "assessed_value": v.get("assessed_value"),
+                    "homestead": v.get("homestead")})  # fmt: skip
+    return out
 
 
 def owners_as_of(
@@ -985,7 +1006,26 @@ def address_search(
     return {"parcels": parcels, "parties": parties}
 
 
-def grade_pair(con: duckdb.DuckDBPyConnection, debtor_ref: str, owner_ref: str) -> dict[str, Any]:
+def pair_names(con: duckdb.DuckDBPyConnection, refs: Iterable[str]
+               ) -> dict[tuple[str, str], dict[str, Any]]:  # fmt: skip
+    """The name rows grade_pair reads, for many records in one pass over names (which is
+    sorted by name_key, not party_id: each lookup by party scans it)."""
+    pairs = {tuple(r.partition(":")[::2]) for r in refs}
+    rows = _rows(con, f"""
+        SELECT n.source_id, n.party_id, n.name_key, n.name_flag, n.address_id, a.zip5,
+               name_suffix(n.raw_name) AS suffix
+        FROM names n LEFT JOIN addresses a USING (address_id)
+        WHERE n.party_id IN {_in(p for _s, p in pairs)}""", [])  # noqa: S608  # fmt: skip
+    return {(r["source_id"], r["party_id"]): r for r in rows
+            if (r["source_id"], r["party_id"]) in pairs}  # fmt: skip
+
+
+def grade_pair(
+    con: duckdb.DuckDBPyConnection,
+    debtor_ref: str,
+    owner_ref: str,
+    names: dict[tuple[str, str], dict[str, Any]] | None = None,
+) -> dict[str, Any]:
     """The identity grade for one debtor record and one owner record, by the matcher's rules
     in order (equity.matching.resolve; CLAUDE.md), with the evidence behind it:
 
@@ -1002,11 +1042,7 @@ def grade_pair(con: duckdb.DuckDBPyConnection, debtor_ref: str, owner_ref: str) 
                            name is flagged (name_flag)"""
     d_src, _, d_pid = debtor_ref.partition(":")
     o_src, _, o_pid = owner_ref.partition(":")
-    rows = {(r["source_id"], r["party_id"]): r for r in _rows(con, f"""
-        SELECT n.source_id, n.party_id, n.name_key, n.name_flag, n.address_id, a.zip5,
-               name_suffix(n.raw_name) AS suffix
-        FROM names n LEFT JOIN addresses a USING (address_id)
-        WHERE n.party_id IN {_in({d_pid, o_pid})}""", [])}  # noqa: S608  # fmt: skip
+    rows = names if names is not None else pair_names(con, (debtor_ref, owner_ref))
     d, o = rows.get((d_src, d_pid)), rows.get((o_src, o_pid))
     if d is None or o is None:
         return {"grade": "reject", "rule": "not_found", "evidence": []}

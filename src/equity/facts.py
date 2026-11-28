@@ -28,7 +28,7 @@ from typing import Any
 import duckdb
 
 from equity.config import _load
-from equity.search import DEBT_TYPES, _in, _rows, grade_pair, show, show_parcel
+from equity.search import DEBT_TYPES, _in, _rows, grade_pair, pair_names, show, show_parcel
 from equity.search_index import DEFAULT_DB, connect
 
 OUT = Path("data") / "derived" / "scores" / "facts"
@@ -75,8 +75,9 @@ def fact_sheet(
     gaps: list[str] = []
     debtors = list(lead["debtor_refs"] or [])
     owners = list(lead["owner_refs"] or [])
+    names = pair_names(con, debtors[:MAX_PAIRS] + owners[:MAX_PAIRS])
     pairs = [
-        {"debtor_ref": d, "owner_ref": o, **grade_pair(con, d, o)}
+        {"debtor_ref": d, "owner_ref": o, **grade_pair(con, d, o, names)}
         for d in debtors[:MAX_PAIRS] for o in owners[:MAX_PAIRS]
     ]  # fmt: skip
     order = {"A": 0, "B": 1, "C": 2, "reject": 3}
