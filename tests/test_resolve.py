@@ -1538,3 +1538,16 @@ def test_po_boxes_numbered_streets_company_and_and_no_zip_addresses(tmp_path: Pa
     assert m["d2"] == ("person_name_address", "auto")
     assert m["d3"] == ("org_name_loose_address", "auto")
     assert m["d4"] == ("person_name_street_city", "review")
+
+
+def test_list_states_prints_the_given_keys_or_all_for_the_weekly_match(
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    from equity.matching.resolve import STATES, main
+
+    assert main(["--list-states", "TX-DALLAS", "NV-COUNTIES", "TX-DALLAS"]) == 0
+    assert json.loads(capsys.readouterr().out) == ["NV-COUNTIES", "TX-DALLAS"]
+    assert main(["--list-states"]) == 0
+    assert json.loads(capsys.readouterr().out) == sorted(STATES)
+    with pytest.raises(SystemExit):
+        main(["--list-states", "NOT-A-STATE"])

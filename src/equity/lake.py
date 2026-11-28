@@ -440,14 +440,28 @@ EXTRA_SOURCES = ("wv.statewide.delinquent", "ny.nyc.acris.real", "ny.nyc.dof.con
                  "us.sba.chargeoffs", "ny.sos.name_history")  # fmt: skip
 
 
+def match_run_sources() -> set[str]:
+    """Every source a match run reads (equity.matching.resolve STATES, courts and writs
+    included), so a source wired into a run is built by the hosted loader without being listed
+    by hand. Court RSS feeds are left out: config/refresh polls them in append mode."""
+    from equity.matching.resolve import STATES, state_sources
+
+    found = {s for state, spec in STATES.items()
+             for s in [*state_sources(state), *(spec.get("courts") or []),
+                       *(spec.get("writs") or [])]}  # fmt: skip
+    return {s for s in found if not s.endswith(".rss")}
+
+
 def parcel_sources() -> list[str]:
-    """Every registered parcel source (what `run` builds when not given --only)."""
+    """Every registered parcel, zoning, lien-config and match-run source (what `run` builds
+    when not given --only)."""
     from equity.adapters.registry import REGISTRY
 
+    in_runs = match_run_sources()
     return [
         c.source_id for c in REGISTRY
         if c.source_id.endswith((".parcels", ".zoning")) or c.source_id in EXTRA_SOURCES
-        or c.__module__ == "equity.adapters.liens"
+        or c.__module__ == "equity.adapters.liens" or c.source_id in in_runs
     ]  # fmt: skip
 
 

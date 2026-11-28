@@ -51,6 +51,40 @@ def test_append_rules_name_polled_feeds_only() -> None:
     assert "or.sos.ucc" in {c.source_id for c in appended}
 
 
+# Debtor sources a match run reads that are loaded once on purpose: recorder indexes (big,
+# refreshed by hand) and closed lists of past years that no longer change.
+LOADED_ONCE = ("fl.hernando.or", "fl.hillsborough.or", "fl.putnam.or", "ny.nyc.acris.real",
+               "mi.kalamazoo.foreclosed_*", "mi.kalamazoo.forfeited_20*")  # fmt: skip
+
+
+def test_every_match_run_debtor_is_refreshed_or_loaded_once_on_purpose() -> None:
+    """The weekly sync: a debt list wired into a match run is fetched again on a schedule, so
+    a new source cannot sit at its first download unnoticed."""
+    import fnmatch
+
+    from equity.matching.resolve import STATES
+
+    rules = refresh.rules()
+    debtors = sorted({s for spec in STATES.values() for s in spec.get("debtors") or []})
+    stale = [s for s in debtors if refresh.rule_for(s, rules) is None
+             and not any(fnmatch.fnmatch(s, p) for p in LOADED_ONCE)]  # fmt: skip
+    assert stale == []
+
+
+def test_the_hosted_loader_builds_every_match_run_source() -> None:
+    """A source wired into a match run gets its first build from the lake workflow without
+    being listed by hand (court RSS feeds are polled by the refresh workflow instead)."""
+    from equity import lake
+    from equity.matching.resolve import STATES, state_sources
+
+    ids = {c.source_id for c in REGISTRY}
+    built = set(lake.parcel_sources())
+    wanted = {s for state in STATES for s in state_sources(state)
+              if s in ids and not s.endswith(".rss")}  # fmt: skip
+    assert sorted(wanted - built) == []
+    assert {"tx.dallas.tax_roll_delinquent", "tn.hamilton.delinquent_taxes"} <= built
+
+
 def test_every_source_named_in_refresh_yaml_is_registered() -> None:
     ids = {c.source_id for c in REGISTRY}
     named = {p for r in refresh.rules() for p in r.match if not any(ch in p for ch in "*?[")}

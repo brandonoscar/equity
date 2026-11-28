@@ -41,9 +41,13 @@ rules:
             mo.st_louis_county.post_third_sale, mi.genesee.land_bank, mo.kansas_city.land_bank,
             il.chicago.city_owned_land, wa.seattle.city_properties, fl.lee.surplus_lands,
             ca.los_angeles.defaulted_tax,
-            # CivilView sheriff sale listings (open sales only) and current vacant lists
-            "nj.*.sheriff_sales", de.new_castle.sheriff_sales, de.sussex.sheriff_sales,
-            pa.lehigh.sheriff_sales, pa.montgomery.sheriff_sales, pa.philadelphia.sheriff_sales,
+            # Sheriff and constable sale listings (CivilView and others: open sales only),
+            # judicial, upset and repository sale lists, and current vacant lists
+            "*.sheriff_sales", "*.constable_sales",
+            md.baltimore_city.in_rem_candidates, ny.tompkins.foreclosure_parcels,
+            pa.berks.upset_sale_unsold, pa.montgomery.judicial_sale, pa.montgomery.upset_sale,
+            pa.pittsburgh.treasury_sales, pa.washington.judicial_sales,
+            pa.washington.repository_sales, pa.washington.upset_sales, pa.west_chester.upset_sale,
             dc.otr.vacant_blighted, pa.pittsburgh.condemned_properties,
             md.baltimore_city.vacant_building_notices, ny.syracuse.rental_registry,
             ny.syracuse.vacant_properties, fl.orange.tax_deed_sales, oh.stark.civil_sales]
@@ -60,6 +64,10 @@ rules:
     every_hours: 24
     mode: listing
     listing_table: tax_delinquency_snapshot
+  # Miami-Dade code-enforcement collections: a current list of unpaid code liens; weekly.
+  - match: [fl.miami_dade.code_collections]
+    every_hours: 168
+    mode: rebuild
   # FHFA ZIP5 house price index: a new year is published once a year; check monthly.
   - match: [us.fhfa.hpi_zip5, us.fhfa.hpi_tract]
     every_hours: 720
