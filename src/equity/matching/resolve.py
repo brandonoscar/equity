@@ -66,6 +66,12 @@ Company names that differ only in AND / & / THE, spaces or punctuation ("SMITH A
 "SMITH & SONS", "THE SMITH SONS"; org_loose):
   org_name_loose_address    same address (or its building)                   -> auto
   org_name_loose_zip        same ZIP                                         -> review
+A debtor who has moved: a record that puts the debtor's name at the lien's address and at
+another one (a deed's seller at the house sold and at their mailing address, a buyer, a
+mortgage's borrower, the same owner name mailed at two addresses across roll years) links
+the two (addr_history); an owner of that name at the other address is a lead:
+  person_name_former_address  same name, the lien's address is a known former or later
+                            address of an owner at another address               -> review
 An address with no ZIP (on the lien or on the roll) is compared by street and city:
   person_name_street_city / org_name_street_city   same name, street line and city -> review
 With parcel_on_lien (liens recorded against a parcel id, e.g. Allegheny PINs), first; a lien
@@ -193,6 +199,7 @@ RULES = (
     ("org_name_loose_zip", "review", 19),
     ("person_name_street_city", "review", 20),
     ("org_name_street_city", "review", 21),
+    ("person_name_former_address", "review", 22),
 )
 
 
@@ -1021,6 +1028,41 @@ WHERE d.party_kind = 'org' AND o.party_kind = 'org' AND d.org_name_norm <> ''
        OR (d.town_key = o.situs_town AND (d.addr_key IS NULL OR o.situs_key IS NULL)));
 """
 
+# Two addresses one name is known at: a deed, mortgage or owner-role record's party at the
+# parcel's property address and at their own address; and one owner name at two mailing
+# addresses for one parcel (across roll years). Both directions are kept.
+HISTORY_FROM_RECORDS_SQL = """
+INSERT INTO addr_history
+SELECT DISTINCT name_key(p.raw_name), sa.addr_key, pa.addr_key
+FROM ro_ip ip JOIN ro_party p ON p.party_id = ip.party_id
+JOIN ro_lot l ON l.instrument_uid = ip.instrument_uid
+JOIN roll_lot rl ON rl.k = parcel_key(l.parcel_uid)
+JOIN o_parcel pc ON pc.parcel_uid = rl.parcel_uid
+JOIN addr sa ON sa.address_id = pc.situs_address_id
+JOIN addr pa ON pa.address_id = p.address_id
+WHERE ip.role IN ('grantor', 'grantee', 'borrower', 'owner')
+  AND coalesce(p.party_kind, '') <> 'org' AND name_words(name_key(p.raw_name)) >= 2
+  AND sa.addr_key IS NOT NULL AND pa.addr_key IS NOT NULL AND sa.addr_key <> pa.addr_key;
+"""
+FORMER_SQL = """
+INSERT INTO addr_history
+SELECT DISTINCT o1.name_key, o1.mail_key, o2.mail_key
+FROM owners o1 JOIN owners o2 ON o2.parcel_uid = o1.parcel_uid AND o2.name_key = o1.name_key
+WHERE o1.party_kind <> 'org' AND name_words(o1.name_key) >= 2
+  AND coalesce(o1.name_variant, 'alias') = 'alias'
+  AND o1.mail_key IS NOT NULL AND o2.mail_key IS NOT NULL AND o1.mail_key <> o2.mail_key;
+CREATE OR REPLACE TEMP TABLE addr_hist AS
+SELECT name_key, a, b FROM addr_history UNION SELECT name_key, b, a FROM addr_history;
+INSERT INTO candidates
+SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
+       'person_name_former_address', d.name_key
+FROM debtors d JOIN addr_alias aa ON aa.k = d.addr_key
+JOIN addr_hist h ON h.name_key = d.name_key AND h.a = aa.k2
+JOIN owners o ON o.name_key = d.name_key AND h.b IN (o.mail_key, o.situs_key)
+WHERE d.party_kind <> 'org' AND o.party_kind <> 'org' AND name_words(d.name_key) >= 2
+  AND NOT suffix_conflict(d.suffix_key, o.suffix_key) AND h.b <> d.addr_key;
+"""
+
 # Parcels no source names an owner for (California rolls publish none): a debtor whose own
 # address is the lot's property address may own it or may rent it, so these are review only.
 # The roll's homeowner (owner-occupied) exemption for the latest year says an owner lives
@@ -1096,6 +1138,13 @@ WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2;
 """  # noqa: S608 - the cap is a constant
 
 
+def _table_exists(con: duckdb.DuckDBPyConnection, name: str) -> bool:
+    row = con.execute(
+        "SELECT count(*) FROM information_schema.tables WHERE table_name = ?", [name]
+    ).fetchone()
+    return bool(row and row[0])
+
+
 def match(
     con: duckdb.DuckDBPyConnection,
     street_town: bool = False,
@@ -1115,6 +1164,11 @@ def match(
     con.execute(ORG_LOOSE_MACRO)
     con.execute(ORG_LOOSE_SQL)
     con.execute(CITY_SQL)
+    con.execute("CREATE OR REPLACE TEMP TABLE addr_history (name_key VARCHAR, a VARCHAR, "
+                "b VARCHAR)")  # fmt: skip
+    if _table_exists(con, "roll_lot"):
+        con.execute(HISTORY_FROM_RECORDS_SQL)
+    con.execute(FORMER_SQL)
     con.execute(UNIT_SQL)
     if parcel_on_lien:
         con.execute(PARCEL_ON_LIEN_SQL)

@@ -1592,3 +1592,68 @@ def test_a_mortgage_borrower_names_a_parcel_the_roll_does_not(tmp_path: Path) ->
         f"FROM '{out.as_posix()}/matches.parquet'").fetchall()}  # fmt: skip
     assert m_["d1"] == ("06037-1", "person_name_address", "auto", "mortgage:zz.mortgages")
     assert m_["d2"] == ("06037-2", "person_name_address", "review", "mortgage:zz.mortgages")
+
+
+def test_a_debtor_who_moved_reaches_the_new_home(tmp_path: Path) -> None:
+    """JOHN KING's lien is at 1 OLD RD, which he sold (the deed's seller, mailing 5 NEW ST):
+    KING JOHN who owns 5 NEW ST is a review lead. ANN LEE's lien is at 9 A ST; her rental's
+    roll mailed to 9 A ST one year and 8 B ST the next, so her home at 8 B ST is a lead too.
+    A same-named owner at an address no record ties to the lien's address is none."""
+    lk = tmp_path / "lake"
+    d, o, dd = lk / "zz.debts", lk / "zz.parcels", lk / "zz.deeds"
+    _write(d / "address" / "0.parquet", [_addr("a1", "1 OLD RD", "10001"),
+                                         _addr("a2", "9 A ST", "10001")])  # fmt: skip
+    _write(d / "party" / "0.parquet", [
+        {"party_id": f"d{n}", "raw_name": nm, "party_kind": "unknown", "org_name_norm": None,
+         "address_id": f"a{n}"} for n, nm in ((1, "JOHN KING"), (2, "ANN LEE"))])  # fmt: skip
+    _write(
+        d / "instrument_party" / "0.parquet",
+        [{"instrument_uid": f"i{n}", "party_id": f"d{n}", "role": "debtor"} for n in (1, 2)],
+    )
+    _write(d / "instrument" / "0.parquet", [
+        {"instrument_uid": f"i{n}", "source_id": "zz.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2026-01-01", "principal_amount": 10.0} for n in (1, 2)])  # fmt: skip
+    _write(o / "address" / "0.parquet", [
+        _addr("old", "1 OLD RD", "10001"), _addr("new", "5 NEW ST", "20002"),
+        _addr("buyer", "70 FAR AVE", "10009"), _addr("ra", "9 A ST", "10001"),
+        _addr("rb", "8 B ST", "20002"), _addr("rent", "3 RENT RD", "10001"),
+        _addr("other", "44 ELSE ST", "10001")])  # fmt: skip
+    rows = [
+        ("b1", "TESTOWNER BUYER", "buyer", "36001-1"),
+        ("k1", "KING JOHN", "new", "36001-2"),
+        ("l1", "LEE ANN", "ra", "36001-3"),
+        ("l2", "LEE ANN", "rb", "36001-3"),
+        ("l3", "LEE ANN", "rb", "36001-4"),
+        ("k2", "KING JOHN", "other", "36001-5"),
+    ]
+    _write(o / "party" / "0.parquet", [
+        {"party_id": k, "raw_name": n, "party_kind": "unknown", "org_name_norm": None,
+         "address_id": a} for k, n, a, _ in rows])  # fmt: skip
+    _write(o / "owner_snapshot" / "0.parquet",
+           [{"parcel_uid": u, "party_id": k} for k, _, _, u in rows])  # fmt: skip
+    _write(o / "parcel" / "0.parquet", [
+        {"parcel_uid": "36001-1", "situs_address_id": "old"},
+        {"parcel_uid": "36001-2", "situs_address_id": "new"},
+        {"parcel_uid": "36001-3", "situs_address_id": "rent"},
+        {"parcel_uid": "36001-4", "situs_address_id": "rb"},
+        {"parcel_uid": "36001-5", "situs_address_id": "other"}])  # fmt: skip
+    _write(dd / "address" / "0.parquet", [_addr("g", "5 New Street", "20002")])
+    _write(dd / "instrument" / "0.parquet", [
+        {"instrument_uid": "k9", "source_id": "zz.deeds", "doc_type": "DEED",
+         "recorded_on": "2025-06-01", "consideration": 300000.0}])  # fmt: skip
+    _write(dd / "instrument_parcel" / "0.parquet",
+           [{"instrument_uid": "k9", "parcel_uid": "36001-1"}])  # fmt: skip
+    _write(dd / "party" / "0.parquet", [
+        {"party_id": "g1", "raw_name": "KING JOHN", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": "g"}])  # fmt: skip
+    _write(dd / "instrument_party" / "0.parquet",
+           [{"instrument_uid": "k9", "party_id": "g1", "role": "grantor"}])  # fmt: skip
+    out = tmp_path / "out"
+    run(lk, out, ["zz.debts"], ["zz.parcels"], record_owner_sources=["zz.deeds"])
+    m = {(r[0], r[1]): r[2:] for r in duckdb.connect().execute(
+        f"SELECT debtor_party_id, owner_party_id, rule_id, decision "
+        f"FROM '{out.as_posix()}/matches.parquet'").fetchall()}  # fmt: skip
+    assert m[("d1", "k1")] == ("person_name_former_address", "review")  # 5 NEW ST
+    assert m[("d2", "l1")] == ("person_name_address", "auto")  # the rental's old-year record
+    assert m[("d2", "l3")] == ("person_name_former_address", "review")  # her home, 8 B ST
+    assert m[("d1", "k2")][0] != "person_name_former_address"  # no record ties 44 ELSE ST
