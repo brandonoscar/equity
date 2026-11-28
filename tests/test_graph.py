@@ -204,3 +204,36 @@ def test_a_shared_parcel_does_not_join_its_co_owners(tmp_path: Path) -> None:
 
     assert lots("d2") == {"p1", "p2"}
     assert lots("d1") == {"p1"}
+
+
+def test_a_household_member_is_linked_but_never_reached(tmp_path: Path) -> None:
+    """JOHN SMITH (d1) owns p1 at 1 ELM ST; MARY SMITH owns p2 there too: a household link
+    (a spouse or relative), not a parcel John reaches. A different surname is no household."""
+    lk = tmp_path / "lake"
+    d, o = lk / "s.debts", lk / "s.parcels"
+    _write(d / "address" / "0.parquet", [_addr("da", "1 ELM ST", "10001")])
+    _write(d / "party" / "0.parquet", [
+        {"party_id": "d1", "raw_name": "JOHN SMITH", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": "da"}])  # fmt: skip
+    _write(d / "instrument_party" / "0.parquet",
+           [{"instrument_uid": "i1", "party_id": "d1", "role": "debtor"}])  # fmt: skip
+    _write(d / "instrument" / "0.parquet", [
+        {"instrument_uid": "i1", "source_id": "s.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2025-01-01", "principal_amount": 10.0}])  # fmt: skip
+    _write(o / "address" / "0.parquet", [_addr("h", "1 ELM ST", "10001")])
+    rows = [("o1", "SMITH JOHN", "p1"), ("o2", "SMITH MARY", "p2"), ("o3", "JONES MARY", "p3")]
+    _write(o / "party" / "0.parquet", [
+        {"party_id": k, "raw_name": n, "party_kind": "unknown", "org_name_norm": None,
+         "address_id": "h"} for k, n, _ in rows])  # fmt: skip
+    _write(o / "owner_snapshot" / "0.parquet",
+           [{"parcel_uid": u, "party_id": k} for k, _, u in rows])  # fmt: skip
+    _write(o / "parcel" / "0.parquet", [{"parcel_uid": u} for *_, u in rows])
+    out = tmp_path / "out"
+    result = run(lk, out, ["s.debts"], ["s.parcels"])
+    con = duckdb.connect()
+    q = lambda sql: con.execute(sql.replace("OUT", out.as_posix())).fetchall()  # noqa: E731
+    assert q("SELECT owner_party_id, parcel_uid, surname FROM 'OUT/households.parquet'") == [
+        ("o2", "p2", "SMITH")]  # fmt: skip
+    assert {r[0] for r in q("SELECT parcel_uid FROM 'OUT/person_reach.parquet'")} == {"p1"}
+    g = result["graph"]
+    assert isinstance(g, dict) and g["household_links"] == 1

@@ -28,6 +28,8 @@ never pass through it, or one agent would join every company it serves.
 Outputs (Parquet in the state's derived folder, git-ignored: they name people):
   graph_edges   src, dst, link, rule_id, decision
   graph_nodes   node, kind, comp_auto, comp_any, hub
+  households    person_id, owner record and parcel of a likely spouse or relative at the
+                same address (same surname, another first name): not liable, never a reach
   person_reach  person_id, parcel_uid, strength ('auto' when the parcel is in the person's
                 comp_auto, else 'review'), direct (the person's own debtor-owner match)
 """
@@ -116,6 +118,31 @@ WITH hub AS (SELECT grp, rule_id, min(party_id) AS h FROM g_group GROUP BY grp, 
 SELECT DISTINCT 'owner:' || g.party_id, 'owner:' || hub.h, 'same_owner', g.rule_id, g.decision
 FROM g_group g JOIN hub USING (grp, rule_id)
 WHERE g.party_id <> hub.h;
+"""
+
+# Households: a debtor and an owner record at one address (or its building) whose names share
+# a full word (the surname) and differ only in a real first name on each side (JOHN SMITH /
+# MARY SMITH; first_names). A spouse or relative does not owe the debt and does not own for
+# the debtor: these edges have decision 'household' and join no set (comp_auto, comp_any).
+HOUSEHOLD_SQL = """
+CREATE OR REPLACE TEMP TABLE households AS
+SELECT DISTINCT po.person_id, o.party_id AS owner_party_id, o.parcel_uid, d.raw_name AS debtor_name,
+       o.name_key AS owner_name_key, aa.k2 AS addr_key,
+       list_filter(string_split(d.name_key, ' '),
+                   lambda w: list_contains(string_split(o.name_key, ' '), w))[1] AS surname
+FROM debtors d JOIN person_of po ON po.party_id = d.party_id
+JOIN addr_alias aa ON aa.k = d.addr_key JOIN o_by_addr o ON o.k = aa.k2
+WHERE d.party_kind <> 'org' AND name_words(d.name_key) = 2 AND name_words(o.name_key) = 2
+  AND len(name_only(d.name_key, o.name_key)) = 1 AND len(name_only(o.name_key, d.name_key)) = 1
+  AND length(list_filter(string_split(d.name_key, ' '),
+                         lambda w: list_contains(string_split(o.name_key, ' '), w))[1]) >= 2
+  AND name_only(d.name_key, o.name_key)[1] IN (SELECT name FROM first_names)
+  AND name_only(o.name_key, d.name_key)[1] IN (SELECT name FROM first_names)
+  AND nick_key(d.name_key) <> nick_key(o.name_key);
+INSERT INTO graph_edges
+SELECT DISTINCT 'person:' || person_id, 'owner:' || owner_party_id, 'household',
+       'same_surname_address', 'household'
+FROM households;
 """
 
 # Every owner record in the graph owns its parcel.
@@ -211,6 +238,12 @@ def compute(con: duckdb.DuckDBPyConnection) -> None:
             con.execute(f"INSERT INTO graph_edges SELECT DISTINCT * FROM ({select})")  # noqa: S608
     if _has(con, "owners") and _has(con, "addr_base"):
         con.execute(CLUSTER_SQL)
+    if _has(con, "o_by_addr") and _has(con, "first_names"):
+        con.execute(HOUSEHOLD_SQL)
+    else:
+        con.execute("CREATE OR REPLACE TEMP TABLE households (person_id VARCHAR, "
+                    "owner_party_id VARCHAR, parcel_uid VARCHAR, debtor_name VARCHAR, "
+                    "owner_name_key VARCHAR, addr_key VARCHAR, surname VARCHAR)")  # fmt: skip
     con.execute(OWNS_SQL)
     con.execute(NODES_SQL.format(hub_max=int(HUB_MAX_DEGREE)))
     passes_auto = _components(con, ("auto",), "comp_auto")
@@ -222,7 +255,7 @@ def compute(con: duckdb.DuckDBPyConnection) -> None:
     )
 
 
-TABLES = ("graph_edges", "graph_nodes", "person_reach")
+TABLES = ("graph_edges", "graph_nodes", "person_reach", "households")
 
 
 def summary(con: duckdb.DuckDBPyConnection) -> dict[str, object]:
@@ -248,6 +281,7 @@ def summary(con: duckdb.DuckDBPyConnection) -> dict[str, object]:
             "(SELECT person_id FROM person_reach WHERE direct)"),
         "parcels_reached_by_chain_auto": one(
             "SELECT count(*) FROM person_reach WHERE strength = 'auto' AND NOT direct"),
+        "household_links": one("SELECT count(*) FROM households"),
         "parcels_reached_review": one(
             "SELECT count(*) FROM person_reach WHERE strength = 'review'"),
         "passes_cap_reached": one(
