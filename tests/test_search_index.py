@@ -971,3 +971,31 @@ def test_leads_carry_equity_behind_the_lien(forensic: duckdb.DuckDBPyConnection)
     assert row is not None and (row[0], row[1]) == (1, 80000.0)
     # the owner record o1 is mailed at a1, the parcel's own situs address
     assert forensic.execute("SELECT owner_occupied_any FROM leads").fetchone() == (True,)
+
+
+def test_refresh_builds_compacts_and_exports_only_when_changed(lake: Path, tmp_path: Path) -> None:
+    from equity.search_index import refresh
+
+    class Store:
+        def __init__(self) -> None:
+            self.objects: dict[str, bytes] = {}
+
+        def upload(self, key: str, data: bytes) -> None:
+            self.objects[key] = data
+
+        def download(self, key: str) -> bytes:
+            return self.objects[key]
+
+    store, db, logs = Store(), tmp_path / "r.duckdb", []
+    assert refresh(db, workers=1, min_free_gb=0, log=logs.append,
+                   source=FileSource(lake), store=store) == 0  # fmt: skip
+    assert "_search_index/manifest.json" in store.objects  # changed: compacted and exported
+    con = connect(db, read_only=True)
+    assert con.execute("SELECT count(*) FROM leads").fetchone() == (1,)
+    con.close()
+    store.objects.clear()
+    assert refresh(db, workers=1, min_free_gb=0, log=logs.append,
+                   source=FileSource(lake), store=store) == 0  # fmt: skip
+    assert store.objects == {}  # nothing changed: no compact, no export
+    assert refresh(db, min_free_gb=10**9, log=logs.append, source=FileSource(lake)) == 1
+    assert "refresh stopped before build" in logs[-1]

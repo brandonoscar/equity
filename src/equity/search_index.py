@@ -1429,6 +1429,67 @@ def pull(store: Any, db: Path, work: Path, log: Any = print) -> int:
     return n
 
 
+def refresh(
+    db: Path,
+    workers: int = 6,
+    min_free_gb: float = 3.0,
+    log: Any = print,
+    source: Any = None,
+    store: Any = None,
+) -> int:
+    """The unattended cycle: pull the shared index if there is no local one, build from the
+    bucket (changed sources, matcher output, supplements, then the watchlist), and when
+    anything changed, compact and export. Stops before a step if free disk is under
+    min_free_gb. Returns 0, or 1 if it stopped."""
+    import shutil
+
+    from equity import watch
+
+    def room(step: str) -> bool:
+        free = shutil.disk_usage(db.parent if db.parent.exists() else Path(".")).free / 1e9
+        if free < min_free_gb:
+            log(f"refresh stopped before {step}: {free:.1f} GB free (< {min_free_gb})")
+            return False
+        return True
+
+    store = store if store is not None else (_store() if source is None else None)
+    if not db.exists() and store is not None:
+        if not room("pull"):
+            return 1
+        try:
+            log(f"pulled {pull(store, db, Path('data/work/search_index_pull'), log)} sources")
+        except Exception as exc:  # no shared export yet: build from scratch instead
+            log(f"no shared index to pull ({type(exc).__name__}); building from scratch")
+    if not room("build"):
+        return 1
+    con = connect(db)
+    remote = source is None
+    try:
+        if remote:
+            con.execute("LOAD httpfs")
+            source = RemoteSource(store)
+        done = build(con, source, workers=workers, remote=remote, log=log)
+        states = index_matcher(con, source, log=log)
+        supplements = index_supplements(con, source, log=log)
+        watch.run(db, watch.WATCHLIST, watch.OUT, log=log, con=con)
+        changed = bool(done or states or supplements)
+        log(f"{len(done)} sources, {len(states)} matcher states, "
+            f"{len(supplements)} supplement sources changed")  # fmt: skip
+        if changed:
+            if not room("compact"):
+                return 1
+            compact(con)
+    finally:
+        con.close()
+    if changed and store is not None:
+        ro = connect(db, read_only=True)
+        try:
+            log(f"exported {export(ro, store, db.parent / 'search_index_export', log)} files")
+        finally:
+            ro.close()
+    return 0
+
+
 def status(con: duckdb.DuckDBPyConnection) -> str:
     n = con.execute("SELECT count(*), max(indexed_at) FROM sources").fetchone()
     lines = [f"{n[0] if n else 0} sources indexed, last at {n[1] if n else None}"]
@@ -1461,7 +1522,12 @@ def main(argv: list[str] | None = None) -> int:  # pragma: no cover - CLI
     sub.add_parser("status")
     sub.add_parser("export", help="upload the index to object storage (for other machines)")
     sub.add_parser("pull", help="replace the local index with the exported one")
+    r = sub.add_parser("refresh", help="pull if missing, build, compact and export if changed")
+    r.add_argument("--workers", type=int, default=6)
+    r.add_argument("--min-free-gb", type=float, default=3.0)
     args = ap.parse_args(argv)
+    if args.cmd == "refresh":
+        return refresh(args.db, args.workers, args.min_free_gb)
     if args.cmd == "pull":
         n = pull(_store(), args.db, Path("data/work/search_index_pull"))
         print(f"pulled {n} sources into {args.db}")

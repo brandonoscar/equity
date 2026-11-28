@@ -7,6 +7,7 @@ description: Build, refresh, compact, benchmark, export and pull the equity sear
 
 | Goal | Command | Notes |
 |---|---|---|
+| Everything, unattended (for a scheduled task) | `uv run python -m equity.search_index refresh` | pulls if there is no local index, builds, loads matcher output and supplements, checks the watchlist, then compacts and exports only if something changed; stops below 3 GB free |
 | Get the shared index (fastest) | `uv run python -m equity.search_index pull` | ~3 min for OH/KY/LA; replaces the local file |
 | Index more states | `uv run python -m equity.search_index build --remote --states NY FL --workers 8` | re-indexes only changed sources; ~260 bytes per name of disk |
 | After any build | `uv run python -m equity.search_index compact` | sorts lookup tables (3x faster) and stores `debtor_owner_candidates` |

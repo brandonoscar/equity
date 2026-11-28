@@ -19,6 +19,8 @@ uv run python -m equity.search_index compact --only addresses # re-sort one tabl
 uv run python -m equity.search_index status
 uv run python -m equity.search_index export            # share: sorted Parquet parts in storage
 uv run python -m equity.search_index pull              # another machine: load the shared index
+uv run python -m equity.search_index refresh           # all of it, unattended: pull if missing,
+                                                       # build, compact and export when changed
 ```
 
 `export` writes every table, sorted by its lookup key, as zstd Parquet parts of at most 40 MB
@@ -163,8 +165,8 @@ can have hundreds): the right name comes back, and `--state` or `--kind` narrows
 ## Supplements: lake tables beside the core
 
 `build` then loads lake tables the core leaves out into their own tables, per source, under
-their own version (`supplement_runs`, `SUPPLEMENT_VERSION`): adding one never re-indexes the
-core tables.
+a version per table (`supplement_runs`, `SUPPLEMENT_VERSIONS`): adding or changing one reloads
+only that table, and never re-indexes the core tables.
 
 | Table | From | Shown in |
 |---|---|---|
