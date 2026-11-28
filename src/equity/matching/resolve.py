@@ -111,6 +111,8 @@ Output (Parquet under data/derived/<state>/, which is git-ignored: it names peop
   person_of.parquet debtor party -> person (several rows for a party that names several people)
   mortgage_status.parquet  each mortgage on a matched lot: open or which rule marked it paid
   review_queue.parquet     evidence and labels for review-only matches (see .review)
+  graph_edges / graph_nodes / person_reach.parquet  every link as one graph, its connected
+                    sets and the parcels each person reaches through chains (see .graph)
 and a summary with counts only, printed and written to summary.json.
 """
 
@@ -1292,7 +1294,7 @@ def run(
     record_owner_sources: list[str] | None = None,
     state_fips: str | None = None,
 ) -> dict[str, object]:
-    from equity.matching import bankruptcy, entities, equity, review, transfers
+    from equity.matching import bankruptcy, entities, equity, graph, review, transfers
 
     con = connect(lake, debtor_sources, owner_sources, parcel_on_lien, court_sources,
                   writ_sources, debtor_doc_types, record_owner_sources)  # fmt: skip
@@ -1311,6 +1313,8 @@ def run(
     if mortgage_sources:
         equity.compute(con, lake, mortgage_sources, link_sources or [])
         tables.append("mortgage_status")
+    graph.compute(con)  # last: it reads every step's links
+    tables.extend(graph.TABLES)
     out.mkdir(parents=True, exist_ok=True)
     for table in tables:
         con.execute(f"COPY {table} TO '{(out / (table + '.parquet')).as_posix()}' "
@@ -1325,6 +1329,7 @@ def run(
         result["transfers"] = transfers.summary(con)
     if mortgage_sources:
         result |= equity.summary(con)
+    result["graph"] = graph.summary(con)
     (out / "summary.json").write_text(json.dumps(result, indent=2, default=str))
     return result
 
