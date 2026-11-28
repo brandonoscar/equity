@@ -92,6 +92,10 @@ from equity.adapters.tx.dallas_trw import (
     DallasPersonalPropertyDelinquent,
     DallasTaxRollDelinquent,
 )
+from equity.adapters.tx.denton_taxroll import (
+    DentonPersonalPropertyDelinquent,
+    DentonTaxRollDelinquent,
+)
 from equity.adapters.tx.harris_district import HarrisDistrictCivilJudgments
 from equity.adapters.tx.harris_jp import HarrisJPCivilJudgments
 from equity.adapters.tx.stratmap import TexasStratMapParcels
@@ -146,6 +150,8 @@ _ALL: tuple[type[Adapter], ...] = (
     DallasPersonalPropertyDelinquent,
     CollinTaxRollDelinquent,
     CollinPersonalPropertyDelinquent,
+    DentonTaxRollDelinquent,
+    DentonPersonalPropertyDelinquent,
     HamiltonTNDelinquentTaxes,
     HamiltonTNPersonalPropertyTaxes,
     VermontTransferArchive,

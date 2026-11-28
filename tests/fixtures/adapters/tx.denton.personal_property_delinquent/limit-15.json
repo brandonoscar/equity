@@ -1,0 +1,326 @@
+{
+ "file": "Download.ashx?file=TaxRoll_V1_20261125_080840.zip",
+ "rows": [
+  {
+   "account": "08326215TAR",
+   "addr1": "TESTOWNER 31AADA",
+   "addr2": "",
+   "amount": "249.62",
+   "bankruptcies": [],
+   "cad_id": "40035603",
+   "city": "HASLET",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [
+    "153-D45642-25"
+   ],
+   "owner1": "TESTOWNER E960E2 CORP",
+   "owner2": "TESTOWNER A0D7A3",
+   "roll": "002",
+   "state": "TX",
+   "years": [
+    2023
+   ],
+   "zip": "760523864"
+  },
+  {
+   "account": "1002218DEN",
+   "addr1": "TESTOWNER A17641",
+   "addr2": "",
+   "amount": "749.98",
+   "bankruptcies": [],
+   "cad_id": "1002218DEN",
+   "city": "LEWISVILLE",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 56DDFC",
+   "owner2": "TESTOWNER 208426",
+   "roll": "002",
+   "state": "TX",
+   "years": [
+    2023,
+    2024
+   ],
+   "zip": "75067"
+  },
+  {
+   "account": "1002245DEN",
+   "addr1": "TESTOWNER BCE336",
+   "addr2": "TESTOWNER ECC6E6",
+   "amount": "68468.94",
+   "bankruptcies": [],
+   "cad_id": "1002245DEN",
+   "city": "DALLAS",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 4D4815",
+   "owner2": "",
+   "roll": "002",
+   "state": "TX",
+   "years": [
+    2023,
+    2024,
+    2025
+   ],
+   "zip": "75208"
+  },
+  {
+   "account": "1002318DEN",
+   "addr1": "TESTOWNER 35D9A0",
+   "addr2": "",
+   "amount": "12523.26",
+   "bankruptcies": [],
+   "cad_id": "1002318DEN",
+   "city": "LEWISVILLE",
+   "installment": false,
+   "judged": "2024-02-22",
+   "lawsuits": [
+    "23-8517-431"
+   ],
+   "owner1": "TESTOWNER 048DAE LLC",
+   "owner2": "",
+   "roll": "002",
+   "state": "TX",
+   "years": [
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+   ],
+   "zip": "75057"
+  },
+  {
+   "account": "1002344DEN",
+   "addr1": "TESTOWNER C87C9B",
+   "addr2": "",
+   "amount": "0.48",
+   "bankruptcies": [],
+   "cad_id": "1002344DEN",
+   "city": "AUSTIN",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER D17EB6 INC",
+   "owner2": "",
+   "roll": "002",
+   "state": "TX",
+   "years": [
+    2025
+   ],
+   "zip": "78717"
+  },
+  {
+   "account": "1002347DEN",
+   "addr1": "TESTOWNER C87C9B",
+   "addr2": "",
+   "amount": "1.15",
+   "bankruptcies": [],
+   "cad_id": "1002347DEN",
+   "city": "AUSTIN",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER D17EB6 INC",
+   "owner2": "",
+   "roll": "002",
+   "state": "TX",
+   "years": [
+    2025
+   ],
+   "zip": "78717"
+  },
+  {
+   "account": "1002350DEN",
+   "addr1": "TESTOWNER C87C9B",
+   "addr2": "",
+   "amount": "1.10",
+   "bankruptcies": [],
+   "cad_id": "1002350DEN",
+   "city": "AUSTIN",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER D17EB6 INC",
+   "owner2": "",
+   "roll": "002",
+   "state": "TX",
+   "years": [
+    2024,
+    2025
+   ],
+   "zip": "78717"
+  },
+  {
+   "account": "1002379DEN",
+   "addr1": "TESTOWNER 7103E1",
+   "addr2": "",
+   "amount": "8068.67",
+   "bankruptcies": [],
+   "cad_id": "1002379DEN",
+   "city": "ROANOKE",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 540B2F",
+   "owner2": "",
+   "roll": "002",
+   "state": "TX",
+   "years": [
+    2022,
+    2023
+   ],
+   "zip": "76262"
+  },
+  {
+   "account": "1002408DEN",
+   "addr1": "TESTOWNER 4A3707",
+   "addr2": "",
+   "amount": "241.42",
+   "bankruptcies": [],
+   "cad_id": "1002408DEN",
+   "city": "IRVING",
+   "installment": false,
+   "judged": "2024-11-14",
+   "lawsuits": [
+    "24-4467-367/CO"
+   ],
+   "owner1": "TESTOWNER 1977E0 CORP",
+   "owner2": "",
+   "roll": "002",
+   "state": "TX",
+   "years": [
+    2023
+   ],
+   "zip": "750634969"
+  },
+  {
+   "account": "1002439DEN",
+   "addr1": "TESTOWNER D7464A",
+   "addr2": "",
+   "amount": "5869.59",
+   "bankruptcies": [],
+   "cad_id": "1002439DEN",
+   "city": "DALLAS",
+   "installment": false,
+   "judged": "2025-10-28",
+   "lawsuits": [
+    "25-5840-362/CO"
+   ],
+   "owner1": "TESTOWNER 1F2ECF LLC",
+   "owner2": "",
+   "roll": "002",
+   "state": "TX",
+   "years": [
+    2022,
+    2023,
+    2024
+   ],
+   "zip": "75201"
+  },
+  {
+   "account": "1002710DEN",
+   "addr1": "TESTOWNER C625B9",
+   "addr2": "",
+   "amount": "1756.78",
+   "bankruptcies": [],
+   "cad_id": "1002710DEN",
+   "city": "LEWISVILLE",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 511F97 LLC",
+   "owner2": "",
+   "roll": "002",
+   "state": "TX",
+   "years": [
+    2022,
+    2023,
+    2024
+   ],
+   "zip": "75057"
+  },
+  {
+   "account": "1003118DEN",
+   "addr1": "TESTOWNER 6ED415",
+   "addr2": "",
+   "amount": "38.53",
+   "bankruptcies": [],
+   "cad_id": "1408930-103856-02450",
+   "city": "WILLS POINT",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 407D01 LLC",
+   "owner2": "",
+   "roll": "002",
+   "state": "TX",
+   "years": [
+    2025
+   ],
+   "zip": "75169"
+  },
+  {
+   "account": "1006631DEN",
+   "addr1": "TESTOWNER FDFAEF",
+   "addr2": "",
+   "amount": "67.78",
+   "bankruptcies": [],
+   "cad_id": "1006631DEN",
+   "city": "DESOTO",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER D65949 LLC",
+   "owner2": "",
+   "roll": "002",
+   "state": "TX",
+   "years": [
+    2023
+   ],
+   "zip": "75115"
+  },
+  {
+   "account": "1007533DEN",
+   "addr1": "TESTOWNER DC4C75",
+   "addr2": "",
+   "amount": "806.60",
+   "bankruptcies": [],
+   "cad_id": "1007533DEN",
+   "city": "LEWISVILLE",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER FAC23C INC",
+   "owner2": "",
+   "roll": "002",
+   "state": "TX",
+   "years": [
+    2023
+   ],
+   "zip": "75057"
+  },
+  {
+   "account": "1007541DEN",
+   "addr1": "TESTOWNER 7C66DD",
+   "addr2": "",
+   "amount": "127.22",
+   "bankruptcies": [],
+   "cad_id": "1007541DEN",
+   "city": "ROANOKE",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 29F698",
+   "owner2": "",
+   "roll": "002",
+   "state": "TX",
+   "years": [
+    2024
+   ],
+   "zip": "76262"
+  }
+ ]
+}

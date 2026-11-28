@@ -1391,6 +1391,10 @@ STATES: dict[str, dict[str, Any]] = {
                               "tx.collin.personal_property_delinquent"],
                   "owners": ["tx.statewide.parcels"],
                   "parcel_on_lien": True, "courts": FEDERAL_COURTS},
+    "TX-DENTON": {"debtors": ["tx.denton.tax_roll_delinquent",
+                              "tx.denton.personal_property_delinquent"],
+                  "owners": ["tx.statewide.parcels"], "parcel_on_lien": True,
+                  "courts": FEDERAL_COURTS},
     "TX-TRAVIS": {"debtors": ["tx.travis.tax_delinquent"], "owners": ["tx.statewide.parcels"],
                   "courts": FEDERAL_COURTS},
     # Omaha: tax sale certificates (named taxpayers) and county-held liens (PIN only).

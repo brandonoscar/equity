@@ -197,6 +197,12 @@ class TarrantTaxRollDelinquent(Adapter):
                        canonical_json({"file": url.rsplit("/", 1)[-1], "rows": rows}),
                        "application/json")  # fmt: skip
 
+    def parcel_key(self, row: Mapping[str, Any]) -> str | None:
+        """The tx.statewide.parcels PROP_ID the account's row names, when link_parcel is set:
+        the appraisal-district number as printed (Collin)."""
+        cad = str(row.get("cad_id") or "").strip()
+        return cad or None if self.link_parcel else None
+
     @staticmethod
     def _is(name: str, want: str) -> bool:
         """'master.dat' is that file; 'am*.dat' is any file of that prefix and extension."""
@@ -236,11 +242,12 @@ class TarrantTaxRollDelinquent(Adapter):
                 max_secured_amount=None, maturity_date=None, amount_source="index",
                 legal_desc_raw=None,
             )  # fmt: skip
-            cad = str(r.get("cad_id") or "").strip()
-            if self.link_parcel and cad:
+            cad = self.parcel_key(r)
+            if cad:
                 yield ctx.fact("instrument_parcel", instrument_uid=uid,
                                parcel_uid=f"{self.county}-{cad}", method="index_parcel_id",
-                               evidence={"cad_id": cad})  # fmt: skip
+                               evidence={"cad_id": r.get("cad_id"),
+                                         "account": account})  # fmt: skip
             z = str(r.get("zip") or "")[:5]
             line = " ".join(x for x in (r.get("addr1"), r.get("addr2")) if x) or None
             addr = normalized_address(line, r.get("city") or None, r.get("state") or None,
