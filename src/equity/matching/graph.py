@@ -13,7 +13,8 @@ made it and its decision ('auto' or 'review'), so every chain can be re-derived 
 with its weakest step.
 
 Company networks: one officer across companies, an officer's own property, and companies
-whose role holders share an address (see OFFICER_SQL).
+whose role holders share an address (see OFFICER_SQL); a role holder that is itself a
+company, and one company under several registry ids (COMPANY_SQL).
 
 Owner records that are one owner (same organization name in the state; same person name
 sharing an address; same person name in one ZIP for review) are joined (same_owner, see
@@ -160,6 +161,26 @@ SELECT DISTINCT 'company:' || c.sos_id, 'company:' || hub.h, 'shared_address',
 FROM g_officer c JOIN hub USING (place) WHERE c.sos_id <> hub.h;
 """
 
+# Companies owned by companies: a role holder that is itself an organization (an LLC whose
+# member is another LLC) is that organization's registry entity (member_company: auto when
+# one entity has the name, review when several do). Entities with one name under several
+# registry ids (a company in a state registry and a national list, or registered in more
+# than one state) are joined for review (same_company_name).
+COMPANY_SQL = """
+INSERT INTO graph_edges
+SELECT DISTINCT 'officer:' || c.party_id, 'company:' || b.sos_id, 'member_company',
+       'org_name_registry', CASE WHEN len(k.ids) > 1 THEN 'review' ELSE 'auto' END
+FROM company_people c JOIN biz_by_key k ON k.org_key = org_key(c.name)
+JOIN biz b ON list_contains(k.ids, b.sos_id)
+WHERE (c.party_kind = 'org' OR org_key(c.name) <> upper(trim(c.name)))
+  AND org_key(c.name) <> '' AND b.sos_id <> c.sos_id;
+INSERT INTO graph_edges
+SELECT DISTINCT 'company:' || x.id, 'company:' || k.ids[1], 'same_company_name',
+       'org_name_registry', 'review'
+FROM biz_by_key k, unnest(k.ids) AS x(id)
+WHERE len(k.ids) > 1 AND x.id <> k.ids[1];
+"""
+
 # Households: a debtor and an owner record at one address (or its building) whose names share
 # a full word (the surname) and differ only in a real first name on each side (JOHN SMITH /
 # MARY SMITH; first_names). A spouse or relative does not owe the debt and does not own for
@@ -280,6 +301,8 @@ def compute(con: duckdb.DuckDBPyConnection) -> None:
         con.execute(CLUSTER_SQL)
     if _has(con, "company_people") and _has(con, "addr_alias"):
         con.execute(OFFICER_SQL)
+    if _has(con, "company_people") and _has(con, "biz_by_key"):
+        con.execute(COMPANY_SQL)
     if _has(con, "o_by_addr") and _has(con, "first_names"):
         con.execute(HOUSEHOLD_SQL)
     else:

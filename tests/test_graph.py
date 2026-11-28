@@ -293,3 +293,42 @@ def test_company_networks_reach_officers_homes_and_sister_companies(tmp_path: Pa
         ).fetchall()
     )
     assert reach == {"p1": "auto", "p2": "auto", "p3": "review"}
+
+
+def test_a_company_owned_by_a_company_is_followed_to_its_property(tmp_path: Path) -> None:
+    """ACME LLC (d1) owes; its sole member is HOLDCO LLC, whose own entity (B2) owns p2 on
+    the roll: ACME reaches HOLDCO's parcel through the member company."""
+    lk = tmp_path / "lake"
+    d, o, r = lk / "s.debts", lk / "s.parcels", lk / "s.sos"
+    _write(d / "party" / "0.parquet", [
+        {"party_id": "d1", "raw_name": "ACME LLC", "party_kind": "org",
+         "org_name_norm": "ACME", "address_id": None}])  # fmt: skip
+    _write(d / "instrument_party" / "0.parquet",
+           [{"instrument_uid": "i1", "party_id": "d1", "role": "debtor"}])  # fmt: skip
+    _write(d / "instrument" / "0.parquet", [
+        {"instrument_uid": "i1", "source_id": "s.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2025-01-01", "principal_amount": 10.0}])  # fmt: skip
+    _write(o / "party" / "0.parquet", [
+        {"party_id": "o2", "raw_name": "HOLDCO LLC", "party_kind": "org",
+         "org_name_norm": "HOLDCO", "address_id": None}])  # fmt: skip
+    _write(o / "owner_snapshot" / "0.parquet", [{"parcel_uid": "p2", "party_id": "o2"}])
+    _write(o / "parcel" / "0.parquet", [{"parcel_uid": "p2"}])
+    _write(r / "business" / "0.parquet", [
+        {"sos_id": "B1", "name": "Acme LLC", "status": "Active"},
+        {"sos_id": "B2", "name": "Holdco, LLC", "status": "Active"}])  # fmt: skip
+    _write(r / "party" / "0.parquet", [
+        {"party_id": "h1", "raw_name": "HOLDCO LLC", "party_kind": "org",
+         "org_name_norm": "HOLDCO", "address_id": None}])  # fmt: skip
+    _write(
+        r / "business_role" / "0.parquet",
+        [{"sos_id": "B1", "party_id": "h1", "role": "member", "title": "MEMBER"}],
+    )
+    out = tmp_path / "out"
+    run(lk, out, ["s.debts"], ["s.parcels"], registry_sources=["s.sos"])
+    con = duckdb.connect()
+    reach = dict(
+        con.execute(
+            f"SELECT parcel_uid, strength FROM '{out.as_posix()}/person_reach.parquet'"
+        ).fetchall()
+    )
+    assert reach == {"p2": "auto"}
