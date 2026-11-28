@@ -103,6 +103,29 @@ sources:
   ga.richmond.delinquent_taxes: tax_delinquency
   tx.dallas.tax_roll_delinquent: tax_delinquency
   tx.tarrant.tax_roll_delinquent: tax_delinquency
+  tx.collin.tax_roll_delinquent: tax_delinquency
+  tn.hamilton.delinquent_taxes: tax_delinquency
+  nv.clark.delinquent_taxes_fy2026: tax_delinquency
+  ny.albany.delinquent_parcels: tax_delinquency
+  in.hammond.tax_sale_2027: tax_delinquency
+  ny.nassau.delinquent_general_taxes: tax_delinquency
+  ny.nassau.delinquent_school_taxes: tax_delinquency
+  il.lake.sheriff_sales: foreclosure
+  mn.stearns.sheriff_sales: foreclosure
+  mn.st_louis.sheriff_sales: foreclosure
+  oh.lorain.sheriff_sales: foreclosure
+  oh.medina.sheriff_sales: foreclosure
+  oh.allen.sheriff_sales: foreclosure
+  ia.pottawattamie.sheriff_sales: foreclosure
+  ia.story.sheriff_sales: foreclosure
+  ks.shawnee.sheriff_sales: foreclosure
+  or.deschutes.sheriff_sales: foreclosure
+  or.josephine.sheriff_sales: foreclosure
+  wa.snohomish.sheriff_sales: foreclosure
+  tx.guadalupe.constable_sales: foreclosure
+  id.canyon.sheriff_sales: foreclosure
+  la.orleans.sheriff_sales: foreclosure
+  la.ascension.sheriff_sales: foreclosure
   nc.buncombe.unpaid_bills: tax_delinquency
   nc.charlotte.municipal_liens: code_enforcement_lien
   oh.clermont.tax_delinquent: tax_delinquency
@@ -143,6 +166,7 @@ sources:
   oh.lorain.delinquent_taxes: tax_delinquency
   oh.lorain.forfeited_land_sale: tax_delinquency
   oh.medina.delinquent_taxes: tax_delinquency
+  oh.summit.delinquent_taxes: tax_delinquency
   oh.stark.delinquent_taxes: tax_delinquency
   oh.stark.civil_sales: foreclosure
   oh.stark.foreclosures: foreclosure

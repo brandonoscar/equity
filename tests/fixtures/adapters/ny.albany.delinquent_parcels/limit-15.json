@@ -1,0 +1,171 @@
+{
+ "layer": "https://services6.arcgis.com/mBzcjj7yrA6fBe9F/arcgis/rest/services/AC_DelinquentParcels/FeatureServer/0",
+ "rows": [
+  {
+   "OBJECTID": 1,
+   "OWNERNAME": "TESTOWNER ECEADE",
+   "PIN_SBL": "04001200020040400164",
+   "PRCLSTREET": "TESTOWNER E2AFD5",
+   "PROPCLSDES": "210 - One family year-round residence",
+   "PrclMuni": "City of Albany",
+   "PrintKey": "40.12-2-4.40-164",
+   "SWIS_CODE": "010100",
+   "TotAssess": 247000
+  },
+  {
+   "OBJECTID": 2,
+   "OWNERNAME": "TESTOWNER 7D85FD",
+   "PIN_SBL": "04001200020040400186",
+   "PRCLSTREET": "TESTOWNER E2AFD5",
+   "PROPCLSDES": "210 - One family year-round residence",
+   "PrclMuni": "City of Albany",
+   "PrintKey": "40.12-2-4.40-186",
+   "SWIS_CODE": "010100",
+   "TotAssess": 235000
+  },
+  {
+   "OBJECTID": 3,
+   "OWNERNAME": "TESTOWNER C84C9C",
+   "PIN_SBL": "04001200020040500219",
+   "PRCLSTREET": "TESTOWNER 51ABC0",
+   "PROPCLSDES": "210 - One family year-round residence",
+   "PrclMuni": "City of Albany",
+   "PrintKey": "40.12-2-4.50-219",
+   "SWIS_CODE": "010100",
+   "TotAssess": 235000
+  },
+  {
+   "OBJECTID": 4,
+   "OWNERNAME": "TESTOWNER 112ACB",
+   "PIN_SBL": "04001200020060000000",
+   "PRCLSTREET": "TESTOWNER 51ABC0",
+   "PROPCLSDES": "311 - Residential Vacant Land",
+   "PrclMuni": "City of Albany",
+   "PrintKey": "40.12-2-6",
+   "SWIS_CODE": "010100",
+   "TotAssess": 0
+  },
+  {
+   "OBJECTID": 5,
+   "OWNERNAME": "TESTOWNER A772FA",
+   "PIN_SBL": "04001200020060000033",
+   "PRCLSTREET": "TESTOWNER 51ABC0",
+   "PROPCLSDES": "210 - One family year-round residence",
+   "PrclMuni": "City of Albany",
+   "PrintKey": "40.12-2-6.-33",
+   "SWIS_CODE": "010100",
+   "TotAssess": 230000
+  },
+  {
+   "OBJECTID": 6,
+   "OWNERNAME": "TESTOWNER 7AF070",
+   "PIN_SBL": "04001200020060000058",
+   "PRCLSTREET": "TESTOWNER 51ABC0",
+   "PROPCLSDES": "210 - One family year-round residence",
+   "PrclMuni": "City of Albany",
+   "PrintKey": "40.12-2-6.-58",
+   "SWIS_CODE": "010100",
+   "TotAssess": 201000
+  },
+  {
+   "OBJECTID": 7,
+   "OWNERNAME": "TESTOWNER EE6ECC",
+   "PIN_SBL": "04001200030010000000",
+   "PRCLSTREET": "TESTOWNER F994CB",
+   "PROPCLSDES": "210 - One family year-round residence",
+   "PrclMuni": "City of Albany",
+   "PrintKey": "40.12-3-1",
+   "SWIS_CODE": "010100",
+   "TotAssess": 343000
+  },
+  {
+   "OBJECTID": 8,
+   "OWNERNAME": "TESTOWNER 7544CD",
+   "PIN_SBL": "04001200030170000000",
+   "PRCLSTREET": "TESTOWNER F994CB",
+   "PROPCLSDES": "210 - One family year-round residence",
+   "PrclMuni": "City of Albany",
+   "PrintKey": "40.12-3-17",
+   "SWIS_CODE": "010100",
+   "TotAssess": 349000
+  },
+  {
+   "OBJECTID": 9,
+   "OWNERNAME": "TESTOWNER 5AFA1B",
+   "PIN_SBL": "04100000020190000000",
+   "PRCLSTREET": "TESTOWNER 3AD153",
+   "PROPCLSDES": "411 - Apartmetnts",
+   "PrclMuni": "City of Albany",
+   "PrintKey": "41.00-2-19",
+   "SWIS_CODE": "010100",
+   "TotAssess": 3150000
+  },
+  {
+   "OBJECTID": 10,
+   "OWNERNAME": "TESTOWNER 5AFA1B",
+   "PIN_SBL": "04100000020200000000",
+   "PRCLSTREET": "TESTOWNER 3AD153",
+   "PROPCLSDES": "633 - Home For Aged",
+   "PrclMuni": "City of Albany",
+   "PrintKey": "41.00-2-20",
+   "SWIS_CODE": "010100",
+   "TotAssess": 14350000
+  },
+  {
+   "OBJECTID": 11,
+   "OWNERNAME": "TESTOWNER 7AF11D LLC",
+   "PIN_SBL": "04100000020630000000",
+   "PRCLSTREET": "TESTOWNER B9F390",
+   "PROPCLSDES": "449 - Other Storage. Warehouse & Distribution Facilities",
+   "PrclMuni": "City of Albany",
+   "PrintKey": "41.00-2-63",
+   "SWIS_CODE": "010100",
+   "TotAssess": 5200000
+  },
+  {
+   "OBJECTID": 12,
+   "OWNERNAME": "TESTOWNER 1CB050 INC",
+   "PIN_SBL": "04100000020770000000",
+   "PRCLSTREET": "TESTOWNER 77742D",
+   "PROPCLSDES": "620 - Religious",
+   "PrclMuni": "City of Albany",
+   "PrintKey": "41.00-2-77",
+   "SWIS_CODE": "010100",
+   "TotAssess": 1365115
+  },
+  {
+   "OBJECTID": 13,
+   "OWNERNAME": "TESTOWNER AF6AAE",
+   "PIN_SBL": "04100000020810000000",
+   "PRCLSTREET": "TESTOWNER 77742D",
+   "PROPCLSDES": "620 - Religious",
+   "PrclMuni": "City of Albany",
+   "PrintKey": "41.00-2-81",
+   "SWIS_CODE": "010100",
+   "TotAssess": 5089745
+  },
+  {
+   "OBJECTID": 14,
+   "OWNERNAME": "TESTOWNER 5D705C LLC",
+   "PIN_SBL": "05200200010160000000",
+   "PRCLSTREET": "TESTOWNER 77742D",
+   "PROPCLSDES": "311 - Residential Vacant Land",
+   "PrclMuni": "City of Albany",
+   "PrintKey": "52.2-1-16",
+   "SWIS_CODE": "010100",
+   "TotAssess": 0
+  },
+  {
+   "OBJECTID": 15,
+   "OWNERNAME": "TESTOWNER DCECEF",
+   "PIN_SBL": "05200600020040003215",
+   "PRCLSTREET": "TESTOWNER F33BB4",
+   "PROPCLSDES": "210 - One family year-round residence",
+   "PrclMuni": "City of Albany",
+   "PrintKey": "52.6-2-4.-3215",
+   "SWIS_CODE": "010100",
+   "TotAssess": 155000
+  }
+ ],
+ "where": "1=1"
+}

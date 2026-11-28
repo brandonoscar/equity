@@ -1,0 +1,170 @@
+{
+ "rows": [
+  {
+   "address": "1217 TEST ST",
+   "defendant": "TESTOWNER 16E96C",
+   "plaintiff": "TESTOWNER 540165",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 183218",
+   "prop_state": "MN",
+   "prop_zip": "55804",
+   "sales_date": "2026-12-02",
+   "sheriff": "26000053"
+  },
+  {
+   "address": "1681 TEST ST",
+   "defendant": "TESTOWNER 9C33E7",
+   "plaintiff": "TESTOWNER 177A04 LLC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER DC3748",
+   "prop_state": "MN",
+   "prop_zip": "55734",
+   "sales_date": "2026-12-09",
+   "sheriff": "26000037"
+  },
+  {
+   "address": "1680 TEST ST",
+   "defendant": "TESTOWNER B1DA29",
+   "plaintiff": "TESTOWNER 33AD29 INC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 20EE7F",
+   "prop_state": "MN",
+   "prop_zip": "55731",
+   "sales_date": "2026-12-09",
+   "sheriff": "26000214"
+  },
+  {
+   "address": "574 TEST ST",
+   "defendant": "TESTOWNER 847899",
+   "plaintiff": "TESTOWNER 33AD29 INC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 698EF2",
+   "prop_state": "MN",
+   "prop_zip": "55708",
+   "sales_date": "2026-12-16",
+   "sheriff": "26000180"
+  },
+  {
+   "address": "2228 TEST ST",
+   "defendant": "TESTOWNER 8F0C81",
+   "plaintiff": "TESTOWNER 33AD29 INC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER ADDBA3",
+   "prop_state": "MN",
+   "prop_zip": "55803",
+   "sales_date": "2026-12-23",
+   "sheriff": "26000201"
+  },
+  {
+   "address": "6290 TEST ST",
+   "defendant": "TESTOWNER D485E4",
+   "plaintiff": "TESTOWNER 4CF474 LLC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 362CF8",
+   "prop_state": "MN",
+   "prop_zip": "55705",
+   "sales_date": "2026-12-23",
+   "sheriff": "26000206"
+  },
+  {
+   "address": "",
+   "defendant": "TESTOWNER 454E06",
+   "plaintiff": "TESTOWNER 356C1F",
+   "prop_city": null,
+   "prop_line1": null,
+   "prop_state": null,
+   "prop_zip": null,
+   "sales_date": "2026-12-23",
+   "sheriff": "26000288"
+  },
+  {
+   "address": "",
+   "defendant": "TESTOWNER 87859E",
+   "plaintiff": "TESTOWNER 0CC7D1",
+   "prop_city": null,
+   "prop_line1": null,
+   "prop_state": null,
+   "prop_zip": null,
+   "sales_date": "2026-12-30",
+   "sheriff": "26000076"
+  },
+  {
+   "address": "657 TEST ST",
+   "defendant": "TESTOWNER C74914",
+   "plaintiff": "TESTOWNER 3A45F5 INC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER DC80E9",
+   "prop_state": "MN",
+   "prop_zip": "55806",
+   "sales_date": "2027-01-06",
+   "sheriff": "26000153"
+  },
+  {
+   "address": "7688 TEST ST",
+   "defendant": "TESTOWNER ED5263",
+   "plaintiff": "TESTOWNER 53A8DC INC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER DB5627",
+   "prop_state": "MN",
+   "prop_zip": "55792",
+   "sales_date": "2027-01-06",
+   "sheriff": "26000158"
+  },
+  {
+   "address": "8812 TEST ST",
+   "defendant": "TESTOWNER 68B843",
+   "plaintiff": "TESTOWNER 53A8DC INC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 0A4F7E",
+   "prop_state": "MN",
+   "prop_zip": "55705",
+   "sales_date": "2027-01-06",
+   "sheriff": "26000160"
+  },
+  {
+   "address": "2435 TEST ST",
+   "defendant": "TESTOWNER F009CA",
+   "plaintiff": "TESTOWNER 385685 LLC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 02F50F",
+   "prop_state": "MN",
+   "prop_zip": "55734",
+   "sales_date": "2027-01-06",
+   "sheriff": "26000175"
+  },
+  {
+   "address": "4407 TEST ST",
+   "defendant": "TESTOWNER 109F05",
+   "plaintiff": "TESTOWNER 737FB8",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER CC57AC",
+   "prop_state": "MN",
+   "prop_zip": "55792",
+   "sales_date": "2027-01-06",
+   "sheriff": "26000177"
+  },
+  {
+   "address": "4549 TEST ST",
+   "defendant": "TESTOWNER 77B139",
+   "plaintiff": "TESTOWNER B3402B",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER DC6AD4",
+   "prop_state": "MN",
+   "prop_zip": "55719",
+   "sales_date": "2027-01-06",
+   "sheriff": "26000262"
+  },
+  {
+   "address": "5841 TEST ST",
+   "defendant": "TESTOWNER A11F23",
+   "plaintiff": "TESTOWNER BA8EEF LLC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 3A1FA9",
+   "prop_state": "MN",
+   "prop_zip": "55808",
+   "sales_date": "2027-01-06",
+   "sheriff": "26000384"
+  }
+ ],
+ "url": "https://salesweb.civilview.com/Sales/SalesSearch?countyId=91"
+}

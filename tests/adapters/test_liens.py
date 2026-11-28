@@ -520,6 +520,72 @@ def test_csv_source_with_us_dates_and_city_only_addresses(tmp_path: Path) -> Non
     assert cls().source_row()["access_method"] == "bulk"
 
 
+def test_zipped_csv_drops_paid_off_rows(tmp_path: Path) -> None:
+    import io
+    import zipfile
+
+    cfg = _cfg(tmp_path, api="csv", url="https://s.test/DELQ_7.zip", zip_member="delq.CSV",
+               positive_amount=True, portal=None, dataset=None, county_fips="39153",
+               state="OH", released_on=None, listed_on="listed", date_field="listed",
+               uid="parcel", amount="dlq_amount",
+               parcel={"kind": "pin", "field": "parcel", "county_fips": "39153"},
+               parties=[{"role": "debtor", "name": "owner"}])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w") as z:
+        z.writestr("readme.txt", "x")
+        z.writestr(
+            "out/DELQ.csv",
+            '"PARCEL","OWNER","DLQ_AMOUNT"\n"0101379","ACME LLC","84.05"\n'
+            '"0104925","PAID UP","0.00"\n"0700425","",""\n',
+        )
+    out = _rows_of(cls, {"DELQ_7.zip": buf.getvalue()})
+    (inst,) = [r for t, r in out if t == "instrument"]
+    assert (inst["instrument_number"], str(inst["principal_amount"])) == ("0101379", "84.05")
+    assert [r["parcel_uid"] for t, r in out if t == "instrument_parcel"] == ["39153-0101379"]
+    bad = _cfg(tmp_path, api="csv", url="https://s.test/DELQ_7.zip", zip_member="nope.csv",
+               portal=None, dataset=None, county_fips="39153", state="OH", released_on=None,
+               date_field="d")  # fmt: skip
+    with pytest.raises(LienConfigError, match=r"nope\.csv not in the zip"):
+        _rows_of(lien_adapter_for(load_lien_config(bad)), {"DELQ_7.zip": buf.getvalue()})
+
+
+def test_list_date_stamps_an_annual_list_and_amounts_sum(tmp_path: Path) -> None:
+    import datetime as dt
+
+    cfg = _cfg(tmp_path, api="xlsx", url="https://c.test/FY26.xlsx", portal=None, dataset=None,
+               county_fips="32003", state="NV", released_on=None, listed_on="listed",
+               list_date=dt.date(2026, 5, 6), date_field="listed", uid="parcel",
+               amount=["taxes", "pen_int", "cost"],
+               parcel={"kind": "pin", "field": "parcel", "county_fips": "32003", "strip": "-"},
+               parties=[{"role": "debtor", "name": "name_of_owner"}])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    book = _xlsx([["Parcel", "Name of Owner", "Taxes", "Pen/Int", "Cost"],
+                  ["128-31-212-019", "ACME L L C", "1282.41", "141.06", "12"]])  # fmt: skip
+    out = _rows_of(cls, {"FY26.xlsx": book})
+    (inst,) = [r for t, r in out if t == "instrument"]
+    assert (str(inst["recorded_on"]), str(inst["principal_amount"])) == ("2026-05-06", "1435.47")
+    assert [r["parcel_uid"] for t, r in out if t == "instrument_parcel"] == ["32003-12831212019"]
+
+
+def test_join_fields_build_a_parcel_key_from_two_fields(tmp_path: Path) -> None:
+    cfg = _cfg(tmp_path, api="xlsx", url="https://a.test/l.xlsx", portal=None, dataset=None,
+               county_fips="36001", state="NY", released_on=None, listed_on="listed",
+               date_field="listed", uid="swis_sbl",
+               join_fields={"swis_sbl": {"fields": ["swis", "sbl"]},
+                            "swis_key": {"fields": ["swis", "print_key"], "sep": "-"}},
+               parcel={"kind": "pin", "field": ["swis_sbl", "swis_key"], "county_fips": "36001"},
+               parties=[{"role": "debtor", "name": "owner"}])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    book = _xlsx([["Swis", "Print Key", "Sbl", "Owner"],
+                  ["010100", "65.62-1-79", "06506200010790000000", "Sheldon, Gregory"],
+                  ["010100", "", "06506200010800000000", "Roe, Jo"]])  # fmt: skip
+    out = _rows_of(cls, {"l.xlsx": book})
+    lots = sorted(r["parcel_uid"] for t, r in out if t == "instrument_parcel")
+    assert lots == ["36001-010100-65.62-1-79", "36001-01010006506200010790000000",
+                    "36001-01010006506200010800000000"]  # fmt: skip
+
+
 HTML_PAGE = b"""<html><head><script>var x = "<table><tr><td>zqx</td></tr></table>";</script>
 <style>td {}</style></head><body><p>Delinquent Taxpayers (Updated November 16, 2026)</p>
 <table><tr><td>layout</td></tr></table>
@@ -566,6 +632,8 @@ def test_text_dates() -> None:
     assert text_date("as of 02/30/2026", "as of") is None
     assert text_date(None) is None
     assert us_date("8/2/2025") == "2025-08-02" and us_date("-") is None and us_date(None) is None
+    assert us_date("12/04/2026 10:00 AM") == "2026-12-04" == us_date("12/4/2026 23:30")
+    assert us_date("12/04/2026 or later") is None
     assert split_address("1 A ST / NOWHERE", "slash")["line1"] == "1 A ST / NOWHERE"
     assert split_address(", MA 01720", "city_state_zip")["line1"] == ", MA 01720"
     assert split_address("Acton MA 01720", "city_state_zip")["city"] is None

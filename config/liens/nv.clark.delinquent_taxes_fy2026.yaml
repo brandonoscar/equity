@@ -1,0 +1,34 @@
+source_id: nv.clark.delinquent_taxes_fy2026
+state: NV
+county_fips: "32003"   # Clark County (Las Vegas)
+# Clark County Treasurer "Notice of Delinquent Taxes on Real Property, Fiscal Year 2025-2026"
+# (NRS 361.565), the spreadsheet version linked from the published notice: every parcel on
+# which all or part of the fiscal-year taxes were still delinquent on 2026-05-06, with the owner
+# of record and the taxes, penalty/interest and costs due: 13,984 parcels, $49.2M ($40.8M tax).
+# Parcels not paid by 2026-06-01 were taken by certificate to the Treasurer as trustee, subject
+# to two years' redemption (one for abandoned property); the list also carries parcels with
+# prior-year delinquencies in redemption or deeded to the Treasurer. It is an annual list: a
+# parcel redeemed since May is still on it, so the date is the list's as-of date, not the day
+# read. Unpaid Nevada property tax is a perpetual lien on the property (NRS 361.450). APN
+# '128-31-212-019' without dashes is nv.clark.parcels PARCEL; that layer covers the Las Vegas
+# Valley only (about half the listed parcels). Debt kind: tax_delinquency.
+api: xlsx
+url: https://www.clarkcountynv.gov/adobe/assets/urn:aaid:aem:fb735729-434b-4b9f-8fe2-4228a6bfbe0b/original/as/FY26-Annual-Delinquency-Publication.xlsx
+listed_on: listed_on
+list_date: 2026-05-06
+date_field: listed_on
+uid: parcel
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Clark County delinquent real property tax, fiscal year 2025-2026
+amount: [taxes, pen_int, cost]
+parties:
+  - role: debtor
+    name: name_of_owner
+  - {role: creditor, const: Clark County Treasurer, person_names: false}
+parcel: {kind: pin, field: parcel, county_fips: "32003", strip: "-"}
+terms:
+  url: https://www.clarkcountynv.gov/government/elected_officials/county_treasurer/index.php
+  summary: "Clark County Treasurer annual delinquency publication (NRS 361.565), PDF and Excel versions linked from the published notice on clarkcountynv.gov, free, no login. No license or use restriction stated; the notice says it is published to meet statutory requirements. clarkcountynv.gov robots.txt allows all."
+  checked_on: 2026-11-28
+  robots_checked_on: 2026-11-28
+  cost_model: free

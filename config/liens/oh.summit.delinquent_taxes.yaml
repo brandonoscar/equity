@@ -1,0 +1,43 @@
+source_id: oh.summit.delinquent_taxes
+state: OH
+county_fips: "39153"   # Summit County (Akron)
+# County of Summit Fiscal Office CAMA export SC720_DELQ ("the most current delinquent
+# information exported from the Fiscal Office CAMA system", Data Downloads page): one row per
+# parcel on the delinquent list with the owner, the tax-bill mailing address, the property
+# address, the year first certified delinquent and the delinquent amount. The 2026-11-18 tape
+# has 27,387 parcels, of which 9,202 are listed at 0.00 (dropped: nothing owed), leaving 18,185
+# and $204.8M. CERTIFIED_YR is blank on 1,199 of those (delinquent, not yet certified), so the
+# date is the day the list was read and the certified year stays in the raw record. 2,753 rows
+# carry no owner name; the parcel link (7-digit parcel number, the parcelid of
+# oh.summit.parcels) names the owner of record. Suffixed numbers ('0106963T') are not real
+# property lots and link nowhere. Ohio property tax is a lien on the parcel (R.C. 5721.10); a
+# senior lien, not a judgment. The zip's name carries a revision number, so the link is read
+# from the page.
+api: csv
+url: https://fiscaloffice.summitoh.net/sites/default/files/assets/forms/SC720_DELQ_7.zip
+link_from:
+  page: https://fiscaloffice.summitoh.net/data-downloads
+  pattern: 'SC720_DELQ[^"/]*\.zip$'
+zip_member: SC720_DELQ.csv
+positive_amount: true
+single_partition: true
+listed_on: listed_on
+date_field: listed_on
+uid: parcel
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Summit County delinquent real estate tax
+amount: dlq_amount
+parties:
+  - role: debtor
+    name: owner
+    address: {line1: taxbill_address, city: taxbill_city, state: taxbill_state, zip: taxbill_zipcd1}
+  - role: creditor
+    const: Summit County Fiscal Office
+parcel: {kind: pin, field: parcel, county_fips: "39153"}
+extra_pii: [owner_address, property_address, legal_desc1, legal_desc2, legal_desc3]
+terms:
+  url: https://fiscaloffice.summitoh.net/data-downloads
+  summary: "County of Summit Fiscal Office Data Downloads page (fiscaloffice.summitoh.net): CAMA exports offered as free downloads, no login, no fee; no license, disclaimer or use restriction on the page. robots.txt is the Drupal default (disallows admin, search and user paths only). Rebuilt weekly (SC720_DELQ last modified 2026-11-23)."
+  checked_on: 2026-11-27
+  robots_checked_on: 2026-11-27
+  cost_model: free

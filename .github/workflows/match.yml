@@ -5,9 +5,12 @@ name: match
 # matcher reads from object storage, runs equity.matching.resolve, and uploads the results to
 # storage under derived/<state>/ (they name people, so they are never kept as an artifact or
 # printed). Only the counts-only summary.json goes to the job summary.
-# Needs the repository secret SUPABASE_SECRET_KEY. Manual only.
+# Needs the repository secret SUPABASE_SECRET_KEY. Weekly (every STATES key, one job each, after
+# the week's refreshes), or by hand for the states given.
 
 on:
+  schedule:
+    - cron: "13 10 * * 1"   # Mondays 10:13 UTC
   workflow_dispatch:
     inputs:
       states:
@@ -26,12 +29,40 @@ env:
   UV_VERSION: "0.11.32"
 
 jobs:
+  plan:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    outputs:
+      states: ${{ steps.states.outputs.states }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e # v6.8.0
+        with: { version: "${{ env.UV_VERSION }}" }
+      - run: make sync
+      - name: states to match
+        id: states
+        env:
+          REQUESTED: ${{ inputs.states }}
+        run: |
+          # By hand: the states given. Weekly: every STATES key, one matrix job each.
+          read -r -a requested <<< "$REQUESTED"
+          states=$(uv run --locked python -m equity.matching.resolve --list-states "${requested[@]}")
+          echo "$states"
+          echo "states=$states" >> "$GITHUB_OUTPUT"
+
   match:
+    needs: plan
+    if: needs.plan.outputs.states != '[]'
     runs-on: ubuntu-24.04
     timeout-minutes: 240
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        state: ${{ fromJSON(needs.plan.outputs.states) }}
     env:
       SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
-      STATES: ${{ inputs.states }}
+      STATES: ${{ matrix.state }}
     steps:
       - name: check inputs
         run: |

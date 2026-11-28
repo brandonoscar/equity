@@ -1,0 +1,29 @@
+{
+ "rows": [
+  {
+   "address": "7449 TEST ST",
+   "court_case": "25CV68184",
+   "defendant": "TESTOWNER 929992",
+   "plaintiff": "TESTOWNER E47BA6",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 6571A5",
+   "prop_state": "OR",
+   "prop_zip": "97527",
+   "sales_date": "2026-12-17",
+   "sheriff": "26001426"
+  },
+  {
+   "address": "",
+   "court_case": "26CV09078",
+   "defendant": "TESTOWNER 9EA8DE",
+   "plaintiff": "TESTOWNER CB4AF5",
+   "prop_city": null,
+   "prop_line1": null,
+   "prop_state": null,
+   "prop_zip": null,
+   "sales_date": "2026-12-17",
+   "sheriff": "26001710"
+  }
+ ],
+ "url": "https://salesweb.civilview.com/Sales/SalesSearch?countyId=54"
+}

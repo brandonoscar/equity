@@ -183,3 +183,73 @@ excess. Added: `ga.dekalb.delinquent_taxes`, `md.baltimore_city.tax_sale_2026`,
 | Lexington SC "DelinquentTaxParcels_2023" (1,138) | A 2023 list; not current. |
 | Wyandotte KS Tax_Delinquent, Utah County UT May tax sale | The servers answer 403 and 401 (login required). |
 | Butler KS 2018 tax sale (7), Evansville IN tax sale layers | Stale or tiny; Indiana layers held for the IC 5-14-3-3(f) decision. |
+
+### Free-data list: big counties (2026-11-27)
+
+Items from the 100-item free-data list, starting with the large counties already in runs.
+Liquor licenses and the HUD items are skipped at the owner's request.
+
+| County | Result |
+|---|---|
+| Dallas TX | **Built:** `tx.dallas.tax_roll_delinquent` (Tax Office TRW file, weekly, free): 24,715 delinquent real property accounts, $240.4M; new TX-DALLAS run, linked by CAD account. |
+| Tarrant TX | **Built:** `tx.tarrant.tax_roll_delinquent` (Tax Office roll export, weekly, free; crawl-delay 30 honored): 25,143 accounts, $78.6M base tax, 1,584 with a tax-suit judgment; new TX-TARRANT run, matched by name and address. |
+| Summit OH | **Built:** `oh.summit.delinquent_taxes` (Fiscal Office CAMA export SC720_DELQ, weekly, free): 18,185 parcels with an amount, $204.8M; parcel-linked in OH-COUNTIES. |
+| Collin TX | **Built:** `tx.collin.tax_roll_delinquent` (Tax Assessor delinquent tax roll zip, free; same collection-system file as Tarrant with Collin's layout): 8,707 delinquent real and commercial accounts, $28.8M base tax due, 152 with a tax-suit judgment; parcel-linked to `tx.statewide.parcels` (CAD id = PROP_ID) in a new TX-COLLIN run. |
+| Hamilton TN | **Built:** `tn.hamilton.delinquent_taxes` (Trustee delinquent file CTRUDELQ, monthly, free): 11,879 unpaid real property bills on 7,459 parcels, $12.9M owed (2026-11-01 file); each bill names its year's owner; 11,190 linked to `tn.hamilton.parcels` by GISLINK in the TN run. The file's 40,000 business personal property bills (map PER) are not read. |
+| Clark NV | **Built:** `nv.clark.delinquent_taxes_fy2026` (Treasurer's annual NRS 361.565 delinquency publication, Excel version): 13,984 parcels delinquent on 2026-05-06, $49.2M with penalties and costs; dated by that as-of date (an annual list: parcels redeemed since stay on it). In NV-COUNTIES, parcel-linked where `nv.clark.parcels` (Las Vegas Valley only) has the APN. |
+| Wake NC, Durham NC | Blocked: the file hosts' robots.txt (services.wake.gov, dconc.gov) disallow all crawlers. Wake's daily delinquent file was not downloaded. |
+| Pima AZ | The tax roll is sold ($50); the lien sale inventory is on the sale vendor's site. |
+| Fulton GA | Sheriff's tax sale list is a scanned PDF (no text layer); no OCR is used. No other free bulk list found. |
+| Wayne MI | Only the Treasurer's foreclosed-parcel PDF (parcel numbers, no owners); the auction site is the third-party sale platform. Not loaded. |
+| Hennepin MN | No bulk delinquent file; delinquency is shown per parcel in the property search only (no scraping). |
+| Palm Beach FL | Tax certificate and tax deed lists are on the vendor auction sites (login), not a county download. |
+| El Paso TX | The tax roll file is sold ($73.20); paid sources need owner approval. |
+| Bexar TX | No free tax roll export found; per-account search only. |
+| Montgomery OH | Search tool only, no export. |
+
+ArcGIS Online search for layers named delinquent, tax sale or tax lien that changed since
+2026-06 (2026-11-27): most were already loaded. New ones:
+
+| Layer | Status |
+|---|---|
+| Albany County NY "AC_DelinquentParcels_11_2026" (RPTSA, 5,174 parcels with owner and SWIS/print key, no amount) | **Owner decision:** the item's license reads "Not an Official Record. Not for use with Collection or Enforcement. Not a Legal Document." Not loaded. |
+| Pittsburgh city_tax_delinquent_3yr, DC Tax Liens (380), Harris tax-delinquent parcels | Already covered by `pa.pittsburgh.tax_delinquency`, `dc.otr.delinquent_taxes`, `tx.harris.delinquent_taxes`. |
+| Tyler TX Delinquent Properties (468, no owner), Washington Twp delinquencies (340), Dougherty GA 2026 tax sale (139), Shelby AL parcels to be bid (191), Blair PA judicial sale (30) | Small lists; left for a later pass. |
+| Nassau County NY weekly unpaid-tax and lien reports (DocumentCenter, 2026-11-20) | Readable: the DQ110 "Delinquent Taxes Unpaid" PDFs (general and school, 441 pages each) parse with the in-house PDF reader into parcel (section/block/lot), owner name, tax year, amount and class; the base-tax CSVs carry no owner. Held for now: no owner address is printed and Nassau is not among the counties in `ny.statewide.parcels` (only unofficial third-party copies of its parcel layer exist), so rows could be matched by name alone. The DQ106 lien summaries list lien numbers and status per parcel without owners. |
+
+### Sheriff and tax sale listings (2026-11-28)
+
+| Source | Result |
+|---|---|
+| CivilView sheriff and constable sales, 16 more counties | **Built:** Lake IL, Stearns and St. Louis MN, Lorain, Medina and Allen OH, Pottawattamie and Story IA, Shawnee KS, Deschutes and Josephine OR, Snohomish WA, Canyon ID, Guadalupe TX (Constable Pct. 1), Orleans and Ascension Parish LA (with the writ amount). Same page and terms as the NJ and PA configs; wired into their state runs as foreclosure debts and snapshotted daily. |
+| CivilView counties with no sales listed today | Palm Beach FL (2 rows, names cut off on the page), Maricopa AZ, Ocean NJ, Kent DE, Dallas County TX constables 1-5, McLennan, Rockwall and Guadalupe TX (other precincts), Champaign IL, Coweta GA, Pulaski AR, Richland OH, Santa Rosa FL, Scott IA: add when the pages carry sales. |
+| Tarrant County constable monthly tax-sale listings | About 30 accounts per precinct with cause and account numbers only; the accounts and lawsuits are already in `tx.tarrant.tax_roll_delinquent`. |
+| Harris County delinquent tax sale listing (hctax.net, 241 accounts for the 2026-12-01 sale) | Terms are disclaimers only; the accounts are judgments already in `tx.harris.tax_judgments`, so it would add only the sale date and minimum bid. Left for later. |
+| Arkansas Commissioner of State Lands auction | Post-auction sales on the vendor's site (registration) and a search tool; no list download. |
+
+### Free-only pass: parcels, state lists, business registries (2026-11-28)
+
+The owner set the rule on 2026-11-28: nothing paid, PACER included (`config/pacer.yaml` keeps
+`quarterly_ceiling: null`, which refuses every PACER request).
+
+| Source | Result |
+|---|---|
+| Kent County MI parcels | The public layer (ParcelsPublicView) has no owner names; the open-data parcel services now answer "Token Required". |
+| Will County IL parcels | The service's license bars redistribution or network use without the GIS Department's permission; owner fields not confirmed. Not loaded. |
+| Illinois statewide parcels database (ISGS) | Token required. |
+| Henrico VA tax parcels | The county's hosted copy is a 735-row 2022 extract. |
+| Kentucky and West Virginia SOS bulk business data | Subscription services for prepaid account holders (paid). |
+| Ohio SOS business reports (free, monthly) | The site answered with a maintenance page (HTTP 403) on 2026-11-28; retry. |
+| South Carolina DOR top delinquent taxpayers | Lists sit in the MyDORWAY web app; the connection was refused from this environment. |
+| Wyoming DOR excise delinquent taxpayer list | The page answers 404 (moved). |
+
+### Owner decisions of 2026-11-28
+
+The owner approved four held sources (API keys stay on hold):
+
+| Source | Result |
+|---|---|
+| Albany County NY delinquent parcels | **Built:** `ny.albany.delinquent_parcels`, 5,174 parcels, parcel-linked to `ny.statewide.parcels` (SWIS + SBL) and `ny.local_rolls.parcels` (SWIS + print key) in the NY run. Tagged `not_for_collection_or_enforcement` from the item's license. |
+| Indiana tax sale lists | **Built:** `in.hammond.tax_sale_2027` (142 Lake County parcels with owner mailing addresses, parcel-linked to `in.lake.parcels`), tagged `no_commercial_name_address_lists`. The Muncie list is the same sale as `in.delaware.tax_sale`, already loaded. Vanderburgh's 2026 tax sale layer (maps.evansvillegis.com) did not answer from this environment; retry. |
+| Nassau County NY delinquent taxes | **Built:** `ny.nassau.delinquent_general_taxes` (6,592 parcels, $24.1M) and `ny.nassau.delinquent_school_taxes` (5,078 parcels, $47.6M) from the weekly DQ110 PDFs, tax year 2026, in the NY run. Nassau's towns are in `ny.local_rolls.parcels`, but the report's section/block/lot did not match the rolls' print keys in a spot check, so rows match by owner name. |
+| Florida Sunbiz bulk files | Not built yet. The HTTPS portal (sftp.floridados.gov) has `robots.txt: Disallow: /` for all agents, so it is not used. The state's own instructions invite "a secure FTP client of your choice" with the published Public account, which robots.txt does not govern, but port 22 is closed from this environment: it would run from a GitHub Actions runner and needs an SFTP client library added to `pyproject.toml` (CODEOWNERS). |

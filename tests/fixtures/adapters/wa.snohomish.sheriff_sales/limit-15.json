@@ -1,0 +1,60 @@
+{
+ "rows": [
+  {
+   "address": "4757 TEST ST",
+   "defendant": "TESTOWNER FA7CD3",
+   "plaintiff": "TESTOWNER 324AE7 LLC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER D8E3FC",
+   "prop_state": "WA",
+   "prop_zip": "98201",
+   "sales_date": "2026-12-04",
+   "sheriff": "26002075"
+  },
+  {
+   "address": "5155 TEST ST",
+   "defendant": "TESTOWNER 590A86",
+   "plaintiff": "TESTOWNER FC3FEF",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 875CBE",
+   "prop_state": "WA",
+   "prop_zip": "98201",
+   "sales_date": "2026-12-04",
+   "sheriff": "26002577"
+  },
+  {
+   "address": "2046 TEST ST",
+   "defendant": "TESTOWNER A40E2F",
+   "plaintiff": "TESTOWNER DDB5D5 LP",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 5916DE",
+   "prop_state": "WA",
+   "prop_zip": "98201",
+   "sales_date": "2026-12-18",
+   "sheriff": "26002973"
+  },
+  {
+   "address": "1924 TEST ST",
+   "defendant": "TESTOWNER 8C245C",
+   "plaintiff": "TESTOWNER 7EBE8B LLC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 960864",
+   "prop_state": "WA",
+   "prop_zip": "98201",
+   "sales_date": "2027-01-08",
+   "sheriff": "26002971"
+  },
+  {
+   "address": "7705 TEST ST",
+   "defendant": "TESTOWNER 880018 INC",
+   "plaintiff": "TESTOWNER EFDAD1",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER DCEAE5",
+   "prop_state": "WA",
+   "prop_zip": "98201",
+   "sales_date": "2027-01-22",
+   "sheriff": "26002780"
+  }
+ ],
+ "url": "https://salesweb.civilview.com/Sales/SalesSearch?countyId=26"
+}

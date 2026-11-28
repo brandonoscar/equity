@@ -19,6 +19,9 @@ Config keys:
                       or, with pdf_columns: {names, cuts, require}, cut at fixed x positions
                       (`cuts`: where each column after the first begins, for right-aligned or
                       two-line headers) and kept when each `require` column matches its regex)
+  join_fields         {name: {fields: [...], sep: ''}}: a derived field made by joining other
+                      fields (blank when any part is blank), e.g. a parcel key that is a SWIS
+                      code plus an SBL
   caption_field       a 'Plaintiff vs Defendant' caption, split into the derived fields
                       caption_plaintiff and caption_defendant for use in parties
   enrich              arcgis: {carto: SQL API url, table, key, field, columns} or {arcgis:
@@ -36,6 +39,8 @@ Config keys:
   year_dates          fields holding a year (levy / tax year), read as Jan 1 of that year
   listed_on           a field name: set to the fetch date on every row (a current list with no
                       per-row date); use it as date_field
+  list_date           with listed_on: the list's own as-of date (YYYY-MM-DD) instead of the
+                      fetch date, for an annual list whose file carries no date
   single_partition    true: one fetch of the whole (filtered) dataset, no date windows
   past_due_days       N: keep only rows whose date_field is at least N days before the fetch
                       date (a list of open balances that also carries current bills not yet
@@ -45,6 +50,10 @@ Config keys:
                       "City, ST 12345", city_st_zip "CITY ST 12345" (no street), into
                       <prefix>line1/city/state/zip (the whole text stays line1 when it does
                       not split that way)
+  zip_member          file apis: the download is a zip; read this member (matched on its file
+                      name, any case) as the file
+  positive_amount     file apis: true drops rows whose amount is blank or zero (a list that
+                      keeps paid-off parcels at 0.00)
   as_of               xlsx/html/pdf: {field, after}: a list with no per-row date. The first
                       date after the text `after` in the title rows above header_row (xlsx) or
                       in the page or document text (html, pdf) is put in `field` on every row
@@ -452,10 +461,15 @@ def text_date(text: str | None, after: str = "") -> str | None:
     return None
 
 
+US_DATE_TIME = re.compile(r"(\d{1,2}/\d{1,2}/\d{4})(?:\s+\d{1,2}:\d{2}(?::\d{2})?\s*(?:[AP]M)?)?",
+                          re.IGNORECASE)  # fmt: skip
+
+
 def us_date(value: Any) -> str | None:
-    """'08/20/2025' -> '2025-08-20'; text that is not one such date -> None."""
-    s = _text(value) or ""
-    return text_date(s) if US_DATE.fullmatch(s) else None
+    """'08/20/2025' -> '2025-08-20', also with a time of day after it ('12/04/2026 10:00 AM',
+    as sheriff sale listings print the sale); text that is not one such date -> None."""
+    m = US_DATE_TIME.fullmatch(_text(value) or "")
+    return text_date(m.group(1)) if m else None
 
 
 def excel_date(value: Any) -> str | None:
@@ -821,6 +835,14 @@ class LienAdapter(Adapter):
         other source."""
         cfg = self.config
         head = int(cfg.get("header_row", 0))
+        member = cfg.get("zip_member")
+        if member:
+            with zipfile.ZipFile(io.BytesIO(content)) as z:
+                names = [n for n in z.namelist()
+                         if n.rsplit("/", 1)[-1].lower() == str(member).lower()]  # fmt: skip
+                if not names:
+                    raise LienConfigError(f"{self.source_id}: {member} not in the zip")
+                content = z.read(names[0])
         if self.api == "html":
             tables, banner = html_tables(content)
             idx = int(cfg.get("table", 0))
@@ -857,6 +879,8 @@ class LienAdapter(Adapter):
                     out[f"{split['prefix']}{k}"] = v
             if as_of:
                 out[as_of["field"]] = listed
+            if cfg.get("positive_amount") and not (self._row_amount(out) or 0) > 0:
+                continue  # paid off: listed at 0.00, nothing owed
             rows.append(out)
         return rows
 
@@ -998,7 +1022,8 @@ class LienAdapter(Adapter):
         for raw in json.loads(fetched.content).get("rows") or []:
             row = self._derive(raw)
             if cfg.get("listed_on"):  # a current list with no per-row date: the fetch date
-                row = {**row, cfg["listed_on"]: fetched.retrieved_at.date().isoformat()}
+                listed = cfg.get("list_date") or fetched.retrieved_at.date()
+                row = {**row, cfg["listed_on"]: str(listed)}
             uid_raw = self._uid(row)
             due = _date(row.get(cfg["date_field"]))
             grace = cfg.get("past_due_days")
@@ -1070,6 +1095,13 @@ class LienAdapter(Adapter):
         if split and self.api not in FILE_APIS:  # file apis split at fetch
             addr = split_address(row.get(split["field"]), str(split.get("form", "comma")))
             row = {**row, **{f"{split['prefix']}{k}": v for k, v in addr.items()}}
+        joins = self.config.get("join_fields") or {}
+        if joins:
+            row = dict(row)
+            for name, spec in joins.items():
+                parts = [p for p in (_text(row.get(f)) for f in spec["fields"]) if p]
+                full = len(parts) == len(spec["fields"])
+                row[name] = str(spec.get("sep", "")).join(parts) if full else None
         years = self.config.get("year_dates") or ()
         if years:
             row = dict(row)

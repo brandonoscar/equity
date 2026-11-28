@@ -1,0 +1,33 @@
+source_id: oh.medina.sheriff_sales
+state: OH
+county_fips: "39103"
+# Medina County, OH Sheriff's Office sales listing on CivilView (salesweb.civilview.com,
+# countyId=81; 18 open sales on 2026-11-28): each property set for sheriff's sale under a
+# foreclosure (or other) judgment, with the sheriff number, sale date, plaintiff (lender, lienholder),
+# defendants (the owners and other parties named) and the property address.
+# One EXECUTION instrument per sheriff number, dated by the scheduled sale date. The page lists
+# open sales only (sold and cancelled ones drop off), so it is refreshed whole and snapshotted
+# daily (config/refresh). Same page layout and terms as the NJ and PA CivilView configs.
+# The matcher finds the property by address. Debt kind: foreclosure.
+api: html
+url: https://salesweb.civilview.com/Sales/SalesSearch?countyId=81
+table: 1   # the second table on the page; the first is the page banner
+us_dates: [sales_date]
+address_split: {field: address, prefix: prop_, form: slash}   # 'NO STREET CITY ST ZIP'
+date_field: sales_date
+uid: sheriff
+doc_type: EXECUTION
+doc_type_raw: Sheriff's sale (foreclosure listing)
+parties:
+  - role: debtor
+    name: defendant
+    address: {line1: prop_line1, city: prop_city, state_const: OH, zip: prop_zip}
+  - role: creditor
+    name: plaintiff
+extra_pii: [address]
+terms:
+  url: https://salesweb.civilview.com/Sales/SalesSearch?countyId=81
+  summary: "Medina County, OH Sheriff's Office sales listing on CivilView (salesweb.civilview.com), public, no login, token, CAPTCHA or fee; the page says it is provided as a public service and the office does not warrant its accuracy, completeness or timeliness. No license or reuse terms stated; internal use only, not redistributed. salesweb.civilview.com/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-28
+  robots_checked_on: 2026-11-28
+  cost_model: free

@@ -1,0 +1,38 @@
+source_id: in.hammond.tax_sale_2027
+state: IN
+county_fips: "18089"   # Lake County, Indiana
+# Hammond, IN parcels in the Lake County 2027 tax sale ('2027 Tax Sale', a hosted layer of the
+# Hammond Sanitary District's ArcGIS account, edited 2026-11-12): 142 parcels with the deeded
+# owner, the owner's mailing address, the property address and the state parcel number, with
+# links to the county Treasurer's tax record for each. No amount is published and no per-row
+# date: the date is the day the list was read. Delinquent Indiana property taxes are a lien on
+# the parcel (IC 6-1.1-22-13); a senior lien, not a judgment. PARCELID
+# '45-07-06-277-009.000-023' is in.lake.parcels PARCELID. Debt kind: tax_delinquency.
+# Indiana limits commercial use of name and address lists from public agencies
+# (IC 5-14-3-3(f)); loaded on the owner's decision of 2026-11-28 and tagged as the Indiana
+# parcel sources are.
+api: arcgis
+layer_url: https://services3.arcgis.com/uKVv7l4ogd12ByTR/arcgis/rest/services/2027_Tax_Sale/FeatureServer/10
+single_partition: true
+order_by: [FID]
+select: [FID, PARCELID, mdeededOwn, Owner, LocstreetN, Locstree_1, LocstreetS, Loccity, Locstate,
+         LoczipCode, Mail_Add, mailcity, mailstate, mailzipCod, mpropertyc, mtaxsetdes]
+listed_on: listed_on
+date_field: listed_on
+uid: PARCELID
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Lake County 2027 tax sale parcel (Hammond)
+parties:
+  - role: debtor
+    name: mdeededOwn
+    address: {line1: Mail_Add, city: mailcity, state: mailstate, zip: mailzipCod}
+  - {role: creditor, const: Lake County Treasurer, person_names: false}
+parcel: {kind: pin, field: PARCELID, county_fips: "18089"}
+extra_pii: [Mail_Add, Owner, LocstreetN, Locstree_1]
+use_restrictions: [no_commercial_name_address_lists]
+terms:
+  url: https://services3.arcgis.com/uKVv7l4ogd12ByTR/arcgis/rest/services/2027_Tax_Sale/FeatureServer
+  summary: "Hammond Sanitary District ArcGIS Online hosted layer '2027 Tax Sale', public, no login, token or fee; no license, description or use terms on the item. Indiana IC 5-14-3-3(f) limits commercial use of agency name and address lists: loaded on the owner's decision (2026-11-28). services3.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-28
+  robots_checked_on: 2026-11-28
+  cost_model: free

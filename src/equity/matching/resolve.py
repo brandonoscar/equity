@@ -1358,7 +1358,8 @@ STATES: dict[str, dict[str, Any]] = {
     "NY": {
         "debtors": ["ny.dtf.child_support_warrants", "ny.dtf.tax_warrants", "ny.nyc.acris.real",
                     "ny.nyc.hpd_litigation", "ny.nyc.oath.judgments",
-                    "ny.tompkins.foreclosure_parcels"],
+                    "ny.tompkins.foreclosure_parcels", "ny.albany.delinquent_parcels",
+                    "ny.nassau.delinquent_general_taxes", "ny.nassau.delinquent_school_taxes"],
         "owners": ["ny.local_rolls.parcels", "ny.statewide.parcels", "ny.nyc.parcels"],
         "mortgages": ["ny.nyc.acris.real"],
         "links": ["ny.nyc.dof.condo_units"],
@@ -1401,6 +1402,8 @@ STATES: dict[str, dict[str, Any]] = {
     # (no parcel id in the statewide form), matched by name and address, as for Travis.
     "TX-TARRANT": {"debtors": ["tx.tarrant.tax_roll_delinquent"],
                    "owners": ["tx.statewide.parcels"], "courts": FEDERAL_COURTS},
+    "TX-COLLIN": {"debtors": ["tx.collin.tax_roll_delinquent"], "owners": ["tx.statewide.parcels"],
+                  "parcel_on_lien": True, "courts": FEDERAL_COURTS},
     "TX-TRAVIS": {"debtors": ["tx.travis.tax_delinquent"], "owners": ["tx.statewide.parcels"],
                   "courts": FEDERAL_COURTS},
     # Omaha: tax sale certificates (named taxpayers) and county-held liens (PIN only).
@@ -1483,7 +1486,8 @@ STATES: dict[str, dict[str, Any]] = {
                 "deeds": ["il.cook.sales", "il.ptax.transfers"],
                 "courts": FEDERAL_COURTS, "street_town": True},
     # New Orleans code judgments name the parcel (GeoPIN), not the owner.
-    "LA-NOLA": {"debtors": ["la.nola.code_hearing_judgments"], "owners": ["la.orleans.parcels"],
+    "LA-NOLA": {"debtors": ["la.orleans.sheriff_sales", "la.nola.code_hearing_judgments"],
+                "owners": ["la.orleans.parcels"],
                 "courts": FEDERAL_COURTS, "parcel_on_lien": True,
                 "record_owners": ["la.nola.permits"]},
     # Cincinnati lot abatement cites the property's address only: its parcel is found by
@@ -1535,14 +1539,16 @@ STATES: dict[str, dict[str, Any]] = {
     # States and counties whose parcel layers carry owner names and that have no county debt
     # list yet: federal court judgments and the national debt lists (SBA) against their owners.
     "MT": {"debtors": [], "owners": ["mt.statewide.parcels"], "courts": FEDERAL_COURTS},
-    "ID": {"debtors": [], "owners": ["id.statewide.parcels"], "courts": FEDERAL_COURTS},
+    "ID": {"debtors": ["id.canyon.sheriff_sales"], "owners": ["id.statewide.parcels"],
+           "courts": FEDERAL_COURTS},
     # Pulaski adds the owner mailing addresses the statewide layer lacks.
     "AR": {"debtors": [], "owners": ["ar.statewide.parcels", "ar.pulaski.parcels"],
            "courts": FEDERAL_COURTS},
     "ND": {"debtors": [], "owners": ["nd.statewide.parcels"], "courts": FEDERAL_COURTS},
     "WY": {"debtors": [], "owners": ["wy.statewide.parcels"], "courts": FEDERAL_COURTS},
     "ME": {"debtors": [], "owners": ["me.statewide.parcels"], "courts": FEDERAL_COURTS},
-    "MN": {"debtors": ["mn.carlton.tax_forfeited_land_sale", "mn.dakota.sheriff_sales",
+    "MN": {"debtors": ["mn.stearns.sheriff_sales", "mn.st_louis.sheriff_sales",
+                       "mn.carlton.tax_forfeited_land_sale", "mn.dakota.sheriff_sales",
                        "mn.mille_lacs.tax_forfeited_land", "mn.wright.tax_forfeited_land"],
            "owners": ["mn.statewide.parcels", "mn.metro.parcels"],
            "courts": FEDERAL_COURTS, "parcel_on_lien": True,
@@ -1550,7 +1556,8 @@ STATES: dict[str, dict[str, Any]] = {
     "MA": {"debtors": [], "owners": ["ma.statewide.parcels"], "courts": FEDERAL_COURTS},
     "NV-WASHOE": {"debtors": [], "owners": ["nv.washoe.parcels"], "courts": FEDERAL_COURTS},
     # Clark: the City of Las Vegas copy of the assessor roll (Las Vegas Valley only).
-    "NV-COUNTIES": {"debtors": [], "courts": FEDERAL_COURTS,
+    "NV-COUNTIES": {"debtors": ["nv.clark.delinquent_taxes_fy2026"], "courts": FEDERAL_COURTS,
+                    "parcel_on_lien": True,
                     "owners": ["nv.clark.parcels", "nv.lyon.parcels"],
                     "record_owners": ["nv.las_vegas.abandoned_property_registry"]},
     # County parcel layers with owner names in states (or counties) with no county debt list
@@ -1587,17 +1594,18 @@ STATES: dict[str, dict[str, Any]] = {
                       "ga.gwinnett.parcels", "ga.forsyth.parcels", "ga.cherokee.parcels",
                       "ga.clarke.parcels", "ga.bibb.parcels", "ga.richmond.parcels",
                       "ga.bartow.parcels", "ga.lowndes.parcels"]},
-    "IA": {"debtors": [], "courts": FEDERAL_COURTS, "registries": ["ia.sos.business"],
+    "IA": {"debtors": ["ia.pottawattamie.sheriff_sales", "ia.story.sheriff_sales"],
+           "courts": FEDERAL_COURTS, "registries": ["ia.sos.business"],
            "owners": ["ia.blackhawk.parcels", "ia.dubuque.parcels", "ia.johnson.parcels",
                       "ia.linn.parcels", "ia.pottawattamie.parcels", "ia.scott.parcels",
                       "ia.story.parcels", "ia.woodbury.parcels"]},
-    "IL-COLLAR": {"debtors": [], "courts": FEDERAL_COURTS,
+    "IL-COLLAR": {"debtors": ["il.lake.sheriff_sales"], "courts": FEDERAL_COURTS,
                   "owners": ["il.dupage.parcels", "il.kane.parcels", "il.lake.parcels",
                              "il.mchenry.parcels"]},
     "IL-COUNTIES": {"debtors": [], "courts": FEDERAL_COURTS,
                     "owners": ["il.adams.parcels", "il.madison.parcels", "il.peoria.parcels",
                                "il.whiteside.parcels", "il.winnebago.parcels"]},
-    "KS": {"debtors": [], "courts": FEDERAL_COURTS,
+    "KS": {"debtors": ["ks.shawnee.sheriff_sales"], "courts": FEDERAL_COURTS,
            "owners": ["ks.butler.parcels", "ks.douglas.parcels", "ks.shawnee.parcels",
                       "ks.wyandotte.parcels"]},
     "KY": {"debtors": [], "courts": FEDERAL_COURTS,
@@ -1605,7 +1613,7 @@ STATES: dict[str, dict[str, Any]] = {
                       "ky.pendleton.parcels"]},
     "LA-EBR": {"debtors": [], "courts": FEDERAL_COURTS, "owners": ["la.eastbatonrouge.parcels"]},
     "LA-LAFAYETTE": {"debtors": [], "courts": FEDERAL_COURTS, "owners": ["la.lafayette.parcels"]},
-    "LA-COUNTIES": {"debtors": [], "courts": FEDERAL_COURTS,
+    "LA-COUNTIES": {"debtors": ["la.ascension.sheriff_sales"], "courts": FEDERAL_COURTS,
                     "owners": ["la.ascension.parcels", "la.livingston.parcels",
                                "la.st_bernard.parcels", "la.tangipahoa.parcels"]},
     # California: the state's top-500 delinquent taxpayer lists (FTB personal and corporate,
@@ -1641,7 +1649,8 @@ STATES: dict[str, dict[str, Any]] = {
                       "nm.grant.parcels", "nm.sandoval.parcels"]},
     "OK": {"debtors": [], "courts": FEDERAL_COURTS,
            "owners": ["ok.canadian.parcels", "ok.oklahoma.parcels", "ok.tulsa.parcels"]},
-    "OR": {"debtors": [], "courts": FEDERAL_COURTS, "registries": ["or.sos.business"],
+    "OR": {"debtors": ["or.deschutes.sheriff_sales", "or.josephine.sheriff_sales"],
+           "courts": FEDERAL_COURTS, "registries": ["or.sos.business"],
            "owners": ["or.deschutes.parcels", "or.jackson.parcels", "or.lane.parcels",
                       "or.multnomah.parcels", "or.josephine.parcels", "or.yamhill.parcels",
                       "or.klamath.parcels", "or.umatilla.parcels"]},
@@ -1658,13 +1667,14 @@ STATES: dict[str, dict[str, Any]] = {
     "SD": {"debtors": ["sd.dor.top_delinquent_business"], "courts": FEDERAL_COURTS,
            "owners": ["sd.beadle.parcels", "sd.codington.parcels", "sd.lincoln.parcels",
                       "sd.miner.parcels", "sd.minnehaha.parcels", "sd.pennington.parcels"]},
-    "TN": {"debtors": [], "courts": FEDERAL_COURTS,
+    "TN": {"debtors": ["tn.hamilton.delinquent_taxes"], "courts": FEDERAL_COURTS,
+           "parcel_on_lien": True,
            "owners": ["tn.davidson.parcels", "tn.hamilton.parcels", "tn.rutherford.parcels",
                       "tn.washington.parcels", "tn.williamson.parcels", "tn.owners.parcels"],
            "deeds": ["tn.rutherford.last_sale"]},
     "UT": {"debtors": ["ut.box_elder.tax_sale"], "courts": FEDERAL_COURTS, "parcel_on_lien": True,
            "owners": ["ut.salt_lake.parcels", "ut.utah.parcels"]},
-    "WA": {"debtors": [], "courts": FEDERAL_COURTS,
+    "WA": {"debtors": ["wa.snohomish.sheriff_sales"], "courts": FEDERAL_COURTS,
            "owners": ["wa.snohomish.parcels", "wa.spokane.parcels", "wa.thurston.parcels",
                       "wa.whatcom.parcels", "wa.grant.parcels", "wa.island.parcels",
                       "wa.kitsap.parcels"]},
@@ -1685,12 +1695,14 @@ STATES: dict[str, dict[str, Any]] = {
                     "record_owners": ["va.lynchburg.building_permits",
                                       "va.lynchburg.code_violations"]},
     # Ohio's statewide Name field is a placeholder: county layers carry the owner names.
-    "OH-COUNTIES": {"debtors": ["oh.cuyahoga.delinquent_taxes", "oh.cuyahoga.forfeited_land_sale",
+    "OH-COUNTIES": {"debtors": ["oh.lorain.sheriff_sales", "oh.medina.sheriff_sales",
+                                "oh.allen.sheriff_sales",
+                                "oh.cuyahoga.delinquent_taxes", "oh.cuyahoga.forfeited_land_sale",
                                 "oh.franklin.tax_lien_sale", "oh.franklin.delinquent_taxes",
                                 "oh.greene.delinquent_taxes",
                                 "oh.lorain.delinquent_taxes", "oh.lorain.forfeited_land_sale",
                                 "oh.stark.delinquent_taxes", "oh.stark.foreclosures",
-                                "oh.stark.civil_sales"],
+                                "oh.stark.civil_sales", "oh.summit.delinquent_taxes"],
                     "courts": FEDERAL_COURTS,
                     "parcel_on_lien": True,
                     "owners": ["oh.clermont.parcels", "oh.cuyahoga.parcels",
@@ -1702,7 +1714,8 @@ STATES: dict[str, dict[str, Any]] = {
                                "oh.union.parcels"],
                     "deeds": ["oh.cuyahoga.last_transfer"],
                     "record_owners": ["oh.franklin.rental_contacts"]},
-    "TX-COUNTIES": {"debtors": ["tx.tabc.credit_law_delinquent"], "courts": FEDERAL_COURTS,
+    "TX-COUNTIES": {"debtors": ["tx.guadalupe.constable_sales", "tx.tabc.credit_law_delinquent"],
+                    "courts": FEDERAL_COURTS,
                     "owners": ["tx.collin.parcels", "tx.dallas_city.parcels",
                                "tx.montgomery.parcels", "tx.williamson.parcels",
                                "tx.travis.parcels"],
@@ -1732,7 +1745,7 @@ STATES: dict[str, dict[str, Any]] = {
                     "courts": FEDERAL_COURTS},
     # Indiana statewide owners plus Marion County's (Indianapolis) mailing addresses.
     "IN": {"debtors": ["in.delaware.tax_sale", "in.delaware.tax_sale_results",
-                       "in.st_joseph.tax_sale"],
+                       "in.st_joseph.tax_sale", "in.hammond.tax_sale_2027"],
            "owners": ["in.statewide.parcels", "in.marion.parcels", "in.vanderburgh.parcels",
                       "in.lake.parcels"],
            "parcel_on_lien": True,
@@ -1809,7 +1822,10 @@ def missing_sources(state: str, lake: Path = LAKE) -> list[str]:
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(prog="equity.matching.resolve")
-    ap.add_argument("--state", required=True, choices=sorted(STATES))
+    ap.add_argument("--state", choices=sorted(STATES))
+    ap.add_argument("--list-states", nargs="*", metavar="STATE",
+                    help="print the given STATES keys (all when none are given) as a JSON list "
+                         "for the weekly match workflow, then stop")  # fmt: skip
     ap.add_argument("--list-sources", action="store_true",
                     help="print the sources and tables this state reads, then stop")  # fmt: skip
     ap.add_argument("--lake", type=Path, default=LAKE)
@@ -1820,6 +1836,14 @@ def main(argv: list[str] | None = None) -> int:
         help="refuse to run if a source the state reads is not in the lake",
     )
     args = ap.parse_args(argv)
+    if args.list_states is not None:
+        unknown = sorted(set(args.list_states) - set(STATES))
+        if unknown:
+            ap.error(f"not STATES keys: {', '.join(unknown)}")
+        print(json.dumps(sorted(set(args.list_states)) or sorted(STATES)))
+        return 0
+    if args.state is None:
+        ap.error("--state is required")
     if args.list_sources:
         print(json.dumps({"sources": state_sources(args.state), "tables": list(TABLES_READ),
                           "optional_sources": optional_registries(args.state)}))  # fmt: skip

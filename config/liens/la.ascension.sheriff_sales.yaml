@@ -1,0 +1,35 @@
+source_id: la.ascension.sheriff_sales
+state: LA
+county_fips: "22005"
+# Ascension Parish, LA Sheriff's Office sales listing on CivilView (salesweb.civilview.com,
+# countyId=55; 16 sales on 2026-11-28): each property set for sheriff's sale under a writ
+# (mostly mortgage foreclosures by executory process), with the court case number, sale date,
+# sale status ('Scheduled - RE', 'Stopped', ...), the case title 'PLAINTIFF vs DEFENDANT', the
+# property address and the writ amount. One EXECUTION instrument per case, dated by the
+# scheduled sale date, with the writ amount as its amount and the status as its raw type. The
+# page lists current sales only, so it is refreshed whole and snapshotted daily (config/refresh).
+# Same page family and terms as the other CivilView configs. Debt kind: foreclosure.
+api: html
+url: https://salesweb.civilview.com/Sales/SalesSearch?countyId=55
+table: 1   # the second table on the page; the first is the page banner
+us_dates: [sales_date]
+address_split: {field: address_description, prefix: prop_, form: slash}
+caption_field: case_title
+date_field: sales_date
+uid: court_case
+doc_type: EXECUTION
+doc_type_raw: {field: property_status}
+amount: writ_amount
+parties:
+  - role: debtor
+    name: caption_defendant
+    address: {line1: prop_line1, city: prop_city, state_const: LA, zip: prop_zip}
+  - role: creditor
+    name: caption_plaintiff
+extra_pii: [address_description, case_title, attorney]
+terms:
+  url: https://salesweb.civilview.com/Sales/SalesSearch?countyId=55
+  summary: "Ascension Parish, LA Sheriff's Office sales listing on CivilView (salesweb.civilview.com), public, no login, token, CAPTCHA or fee; the page says it is provided as a public service and the office does not warrant its accuracy, completeness or timeliness. No license or reuse terms stated; internal use only, not redistributed. salesweb.civilview.com/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-28
+  robots_checked_on: 2026-11-28
+  cost_model: free

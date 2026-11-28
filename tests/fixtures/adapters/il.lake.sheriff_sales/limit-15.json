@@ -1,0 +1,170 @@
+{
+ "rows": [
+  {
+   "address": "6759 TEST ST",
+   "defendant": "TESTOWNER 935B83",
+   "plaintiff": "TESTOWNER 62C157 INC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 36387A",
+   "prop_state": "IL",
+   "prop_zip": "60031",
+   "sales_date": "2026-12-01",
+   "sheriff": "23006388"
+  },
+  {
+   "address": "1002 TEST ST",
+   "defendant": "TESTOWNER 0B2231",
+   "plaintiff": "TESTOWNER C63F7A",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 3B426D",
+   "prop_state": "IL",
+   "prop_zip": "60073",
+   "sales_date": "2026-12-01",
+   "sheriff": "24001992"
+  },
+  {
+   "address": "8694 TEST ST",
+   "defendant": "TESTOWNER 0B2231",
+   "plaintiff": "TESTOWNER C63F7A",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER ACA595",
+   "prop_state": "IL",
+   "prop_zip": "60073",
+   "sales_date": "2026-12-01",
+   "sheriff": "24001992"
+  },
+  {
+   "address": "1456 TEST ST",
+   "defendant": "TESTOWNER 235CC8",
+   "plaintiff": "TESTOWNER CC265C LLC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 3E8549",
+   "prop_state": "IL",
+   "prop_zip": "60015",
+   "sales_date": "2026-12-01",
+   "sheriff": "24005800"
+  },
+  {
+   "address": "3317 TEST ST",
+   "defendant": "TESTOWNER FA52BE",
+   "plaintiff": "TESTOWNER 571FC3 CORP",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 74B202",
+   "prop_state": "IL",
+   "prop_zip": "60046",
+   "sales_date": "2026-12-01",
+   "sheriff": "26000430"
+  },
+  {
+   "address": "5692 TEST ST",
+   "defendant": "TESTOWNER A60169",
+   "plaintiff": "TESTOWNER 992815 LLC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER B91E22",
+   "prop_state": "IL",
+   "prop_zip": "60085",
+   "sales_date": "2026-12-01",
+   "sheriff": "26002214"
+  },
+  {
+   "address": "1045 TEST ST",
+   "defendant": "TESTOWNER B1981D",
+   "plaintiff": "TESTOWNER E7A209 CORP",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 4BED12",
+   "prop_state": "IL",
+   "prop_zip": "60096",
+   "sales_date": "2026-12-01",
+   "sheriff": "26003486"
+  },
+  {
+   "address": "3768 TEST ST",
+   "defendant": "TESTOWNER F27410",
+   "plaintiff": "TESTOWNER D5B72C",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 13A4E3",
+   "prop_state": "IL",
+   "prop_zip": "60047",
+   "sales_date": "2026-12-01",
+   "sheriff": "26003592"
+  },
+  {
+   "address": "8388 TEST ST",
+   "defendant": "TESTOWNER 1E2027",
+   "plaintiff": "TESTOWNER E11186",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 98101F",
+   "prop_state": "IL",
+   "prop_zip": "60061",
+   "sales_date": "2026-12-01",
+   "sheriff": "26003593"
+  },
+  {
+   "address": "3674 TEST ST",
+   "defendant": "TESTOWNER A94895",
+   "plaintiff": "TESTOWNER C32224",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER FF9B6D",
+   "prop_state": "IL",
+   "prop_zip": "60002",
+   "sales_date": "2026-12-01",
+   "sheriff": "26003687"
+  },
+  {
+   "address": "7289 TEST ST",
+   "defendant": "TESTOWNER 6FDD0B",
+   "plaintiff": "TESTOWNER C91E1F",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 8F5315",
+   "prop_state": "IL",
+   "prop_zip": "60015",
+   "sales_date": "2026-12-01",
+   "sheriff": "26003691"
+  },
+  {
+   "address": "7035 TEST ST",
+   "defendant": "TESTOWNER EA1590",
+   "plaintiff": "TESTOWNER CF6C22",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 0E2D6C",
+   "prop_state": "IL",
+   "prop_zip": "60084",
+   "sales_date": "2026-12-01",
+   "sheriff": "26003839"
+  },
+  {
+   "address": "221 TEST ST",
+   "defendant": "TESTOWNER 7677AA",
+   "plaintiff": "TESTOWNER 009D6A",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 0CEF1A",
+   "prop_state": "IL",
+   "prop_zip": "60064",
+   "sales_date": "2026-12-01",
+   "sheriff": "26003934"
+  },
+  {
+   "address": "7494 TEST ST",
+   "defendant": "TESTOWNER 016243",
+   "plaintiff": "TESTOWNER E11186",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER EB1717",
+   "prop_state": "IL",
+   "prop_zip": "60002",
+   "sales_date": "2026-12-01",
+   "sheriff": "26003936"
+  },
+  {
+   "address": "3744 TEST ST",
+   "defendant": "TESTOWNER 6F795F",
+   "plaintiff": "TESTOWNER 097066 INC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 71D987",
+   "prop_state": "IL",
+   "prop_zip": "60002",
+   "sales_date": "2026-12-01",
+   "sheriff": "26003946"
+  }
+ ],
+ "url": "https://salesweb.civilview.com/Sales/SalesSearch?countyId=58"
+}

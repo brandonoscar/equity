@@ -1,0 +1,155 @@
+{
+ "rows": [
+  {
+   "amount": "3,005.51",
+   "class": "4",
+   "cycle": "S",
+   "half_or_full": "F",
+   "note": "",
+   "owner": "TESTOWNER D31BEE LLC",
+   "parcel": "1058001415",
+   "tax_year": "2026"
+  },
+  {
+   "amount": "3,140.47",
+   "class": "1",
+   "cycle": "",
+   "half_or_full": "",
+   "note": "",
+   "owner": "TESTOWNER 44FF31",
+   "parcel": "34 E 01530",
+   "tax_year": "2026"
+  },
+  {
+   "amount": "3,843.39",
+   "class": "1",
+   "cycle": "",
+   "half_or_full": "",
+   "note": "",
+   "owner": "TESTOWNER 11EF92 LLC",
+   "parcel": "34 E 03610",
+   "tax_year": "2026"
+  },
+  {
+   "amount": "113.37",
+   "class": "1",
+   "cycle": "",
+   "half_or_full": "",
+   "note": "MERGED",
+   "owner": "TESTOWNER B8D964",
+   "parcel": "34 E 07060",
+   "tax_year": "2026"
+  },
+  {
+   "amount": "4,149.51",
+   "class": "1",
+   "cycle": "",
+   "half_or_full": "",
+   "note": "",
+   "owner": "TESTOWNER 042CF6 LLC",
+   "parcel": "34 G 00170",
+   "tax_year": "2026"
+  },
+  {
+   "amount": "158.72",
+   "class": "1",
+   "cycle": "",
+   "half_or_full": "",
+   "note": "MERGED",
+   "owner": "TESTOWNER 90D13A",
+   "parcel": "34 G 02130",
+   "tax_year": "2026"
+  },
+  {
+   "amount": "3,095.12",
+   "class": "1",
+   "cycle": "",
+   "half_or_full": "",
+   "note": "",
+   "owner": "TESTOWNER 0EF3D6",
+   "parcel": "34 G 06430",
+   "tax_year": "2026"
+  },
+  {
+   "amount": "3,174.48",
+   "class": "1",
+   "cycle": "",
+   "half_or_full": "",
+   "note": "",
+   "owner": "TESTOWNER FA6D0E",
+   "parcel": "34 J 01870",
+   "tax_year": "2026"
+  },
+  {
+   "amount": "6,157.20",
+   "class": "4",
+   "cycle": "S",
+   "half_or_full": "H",
+   "note": "",
+   "owner": "TESTOWNER 1FC067",
+   "parcel": "34 J 05400",
+   "tax_year": "2026"
+  },
+  {
+   "amount": "1,574.87",
+   "class": "4",
+   "cycle": "S",
+   "half_or_full": "F",
+   "note": "MERGED",
+   "owner": "TESTOWNER 181F74",
+   "parcel": "34173 0012UCA008500218",
+   "tax_year": "2026"
+  },
+  {
+   "amount": "3,061.11",
+   "class": "1",
+   "cycle": "",
+   "half_or_full": "",
+   "note": "",
+   "owner": "TESTOWNER 8BEE54",
+   "parcel": "34173 0014UCA005800018",
+   "tax_year": "2026"
+  },
+  {
+   "amount": "6,638.63",
+   "class": "4",
+   "cycle": "S",
+   "half_or_full": "F",
+   "note": "MERGED",
+   "owner": "TESTOWNER C4325A",
+   "parcel": "34175 02100",
+   "tax_year": "2026"
+  },
+  {
+   "amount": "113.37",
+   "class": "1",
+   "cycle": "",
+   "half_or_full": "",
+   "note": "MERGED",
+   "owner": "TESTOWNER 63F65A",
+   "parcel": "34184 01580",
+   "tax_year": "2026"
+  },
+  {
+   "amount": "5,283.25",
+   "class": "1",
+   "cycle": "",
+   "half_or_full": "",
+   "note": "",
+   "owner": "TESTOWNER E1D151",
+   "parcel": "34188 02420",
+   "tax_year": "2026"
+  },
+  {
+   "amount": "9,998.88",
+   "class": "4",
+   "cycle": "S",
+   "half_or_full": "F",
+   "note": "",
+   "owner": "TESTOWNER 1586C8",
+   "parcel": "34189 00500",
+   "tax_year": "2026"
+  }
+ ],
+ "url": "https://www.nassaucountyny.gov/DocumentCenter/View/55224/DQ110NYNAS-DELINQUENT-TAXES_SCHOOL-11-20-26"
+}
