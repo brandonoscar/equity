@@ -136,7 +136,10 @@ names:
 | as written | 1.00 | 0.75 | 1.21 s | 2.64 s |
 | one typo | 0.97 | 0.70 | 1.18 s | 2.25 s |
 
-`--parcel` takes about 8 s at this size: `owners` is sorted by party (for name search), so a
+Read-only connections cap DuckDB's memory at 4 GB (`EQUITY_DUCKDB_MEMORY`), because agents run
+several searches at once and each DuckDB otherwise caches up to 80% of RAM. Point lookups read
+the big tables (names, addresses, instruments) by literal keys and never join them, which would
+make DuckDB build a hash table over all of one. `--parcel` takes about 8 s at this size: `owners` is sorted by party (for name search), so a
 parcel's owners are a scan; a fact sheet takes about 30 s.
 
 Before the uncapped all-words candidates and `word_edits`, one-typo name recall at this size was

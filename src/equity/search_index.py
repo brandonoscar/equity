@@ -497,6 +497,10 @@ def connect(db: Path | str = DEFAULT_DB, read_only: bool = False) -> duckdb.Duck
             new.execute(f"ATTACH '{db}' AS cat (STORAGE_VERSION '{STORAGE_VERSION}')")
             new.close()
     con = duckdb.connect(str(db), read_only=read_only)
+    if read_only:
+        # Readers (search, the MCP servers, agents) run several at once on one machine; each
+        # DuckDB caches up to 80% of RAM by default, so together they run it out of memory.
+        con.execute(f"SET memory_limit = '{os.environ.get('EQUITY_DUCKDB_MEMORY', '4GB')}'")
     # Saved in the file when writable, so SQL clients (the MCP server) can call them too.
     kind = "TEMP MACRO" if read_only else "MACRO"
     stop = ", ".join(f"'{w}'" for w in STOP)

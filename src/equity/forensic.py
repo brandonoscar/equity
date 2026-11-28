@@ -54,7 +54,7 @@ from typing import Any
 import duckdb
 
 from equity.config import _load
-from equity.search import DEBT_TYPES, _in, _rows
+from equity.search import DEBT_TYPES, _in, _rows, addresses_by_id
 from equity.search_index import DEFAULT_DB, connect
 
 ENCUMBRANCES = ("MORTGAGE", "DEED_OF_TRUST", *DEBT_TYPES)
@@ -83,11 +83,13 @@ def _party(con: duckdb.DuckDBPyConnection, ref: str) -> dict[str, Any] | None:
     src, pid = _split(ref)
     rows = _rows(con, """
         SELECT n.source_id, n.party_id, n.raw_name, n.name_key, n.party_kind, n.address_id,
-               s.state, a.line1, a.city, a.zip5, street_norm(a.line1) AS street
+               s.state
         FROM names n JOIN sources s USING (source_id)
-        LEFT JOIN addresses a ON a.address_id = n.address_id
         WHERE n.source_id = ? AND n.party_id = ?""", [src, pid])  # fmt: skip
-    return rows[0] if rows else None
+    if not rows:
+        return None
+    a = addresses_by_id(con, [rows[0]["address_id"]]).get(rows[0]["address_id"], {})
+    return {**rows[0], **{k: a.get(k) for k in ("line1", "city", "zip5", "street")}}
 
 
 def _same_name(con: duckdb.DuckDBPyConnection, key: str, state: str) -> list[tuple[str, str]]:
@@ -236,12 +238,14 @@ def transfer_badges(
     deeds = []
     for d in out_deeds:
         grantees = _rows(con, """
-            SELECT n.raw_name, n.name_key, n.party_kind, n.address_id, a.zip5,
-                   street_norm(a.line1) AS street
+            SELECT n.raw_name, n.name_key, n.party_kind, n.address_id
             FROM instrument_parties ip JOIN names n USING (source_id, party_id)
-            LEFT JOIN addresses a ON a.address_id = n.address_id
             WHERE ip.source_id = ? AND ip.instrument_uid = ? AND ip.role = 'grantee'
         """, [d["source_id"], d["instrument_uid"]])  # fmt: skip
+        gaddr = addresses_by_id(con, (g["address_id"] for g in grantees))
+        for g in grantees:
+            a = gaddr.get(g["address_id"], {})
+            g["zip5"], g["street"] = a.get("zip5"), a.get("street")
         parcels = [str(r[0]) for r in con.execute(
             "SELECT parcel_uid FROM instrument_parcels WHERE source_id = ? AND instrument_uid = ?",
             [d["source_id"], d["instrument_uid"]]).fetchall()]  # fmt: skip
@@ -472,15 +476,18 @@ def household(con: duckdb.DuckDBPyConnection, ref: str, limit: int = 100) -> dic
             WHERE a.zip5 = ? AND street_norm(a.line1) = ?
             LIMIT {int(limit)}""", [p["zip5"], p["street"]])]  # noqa: S608  # fmt: skip
     if p["zip5"]:
-        out["leads"] += [dict(r, link="same_name_other_state_same_mailing_zip") for r in _rows(
-            con, f"""
+        others = _rows(con, """
             SELECT DISTINCT n.source_id || ':' || n.party_id AS ref, n.raw_name, s.state,
-                   o.parcel_uid
+                   o.parcel_uid, n.address_id
             FROM names n JOIN sources s USING (source_id)
             JOIN owners o ON o.source_id = n.source_id AND o.party_id = n.party_id
-            JOIN addresses a ON a.address_id = n.address_id
-            WHERE n.name_key = ? AND s.state <> ? AND a.zip5 = ?
-            LIMIT {int(limit)}""", [p["name_key"], p["state"], p["zip5"]])]  # noqa: S608  # fmt: skip
+            WHERE n.name_key = ? AND s.state <> ? AND n.address_id IS NOT NULL
+            LIMIT 5000""", [p["name_key"], p["state"]])  # fmt: skip
+        zips = addresses_by_id(con, (r["address_id"] for r in others))
+        same = [r for r in others if zips.get(r["address_id"], {}).get("zip5") == p["zip5"]]
+        out["leads"] += [{k: v for k, v in r.items() if k != "address_id"}
+                         | {"link": "same_name_other_state_same_mailing_zip"}
+                         for r in same[:limit]]  # fmt: skip
     out["note"] = (
         "leads only: a shared address can be a relative, a tenant, a landlord or a "
         "mail drop; a same name elsewhere needs the matcher's evidence"

@@ -514,17 +514,19 @@ def show(con: duckdb.DuckDBPyConnection, ref: str) -> Entity | None:
     n = head[0]
     addr = _rows(con, "SELECT * FROM addresses WHERE address_id = ?", [n["address_id"]])
     e = Entity(ref, n["raw_name"], n["party_kind"], _addr_text(addr[0]) if addr else None)
-    e.parcels = _rows(con, """
-        SELECT o.parcel_uid, o.observed_on, p.land_use_desc, p.zoning,
-               v.tax_year, v.appraised_total, v.assessed_value, v.homestead,
-               a.line1 AS situs_line1, a.city AS situs_city, a.zip5 AS situs_zip
-        FROM owners o
-        LEFT JOIN parcels p ON p.source_id = o.source_id AND p.parcel_uid = o.parcel_uid
-        LEFT JOIN parcel_values v ON v.source_id = o.source_id AND v.parcel_uid = o.parcel_uid
-        LEFT JOIN addresses a ON a.address_id = p.situs_address_id
-        WHERE o.source_id = ? AND o.party_id = ?
-        ORDER BY o.parcel_uid
-    """, [source_id, party_id])  # fmt: skip
+    owned = _rows(con, "SELECT parcel_uid, observed_on FROM owners "
+                       "WHERE source_id = ? AND party_id = ? ORDER BY parcel_uid",
+                  [source_id, party_id])  # fmt: skip
+    e.parcels = []
+    for o in owned:
+        rec = next((r for r in _parcel_records(con, o["parcel_uid"])
+                    if r["source_id"] == source_id), None)  # fmt: skip
+        rec = rec or {}
+        e.parcels.append({"parcel_uid": o["parcel_uid"], "observed_on": o["observed_on"],
+                          **{k: rec.get(k) for k in (
+                              "land_use_desc", "zoning", "tax_year", "appraised_total",
+                              "assessed_value", "homestead", "situs_line1", "situs_city",
+                              "situs_zip")}})  # fmt: skip
     e.documents = _rows(con, """
         SELECT i.instrument_uid, i.doc_type, i.doc_type_raw, i.recorded_on, i.amount,
                i.consideration, ip.role,
@@ -658,26 +660,55 @@ def show_parcel(
     owner snapshots in force then, and the grantees of the last deed recorded by then."""
     found = _parcel_records(con, parcel)
     uids = {r["parcel_uid"] for r in found}
-    owners = _rows(con, f"""
-        SELECT o.parcel_uid, o.source_id, o.source_id || ':' || o.party_id AS ref, n.raw_name,
-               o.observed_on
-        FROM owners o JOIN names n USING (source_id, party_id)
-        WHERE o.parcel_uid IN {_in(uids)} ORDER BY n.raw_name
-    """, []) if uids else []  # noqa: S608  # fmt: skip
-    docs = _rows(con, f"""
-        SELECT x.parcel_uid, i.source_id, i.instrument_uid, i.doc_type, i.doc_type_raw,
-               i.recorded_on, i.amount, i.consideration,
-               EXISTS (SELECT 1 FROM instrument_refs r WHERE r.source_id = i.source_id
-                       AND r.to_uid = i.instrument_uid
-                       AND r.ref_type IN ('releases', 'satisfies_judgment')) AS released,
-               (SELECT list(n.raw_name || ' (' || ip.role || ')' ORDER BY ip.role, n.raw_name)
-                  FROM instrument_parties ip JOIN names n USING (source_id, party_id)
-                 WHERE ip.source_id = i.source_id AND ip.instrument_uid = i.instrument_uid)
-                 AS parties
-        FROM instrument_parcels x JOIN instruments i USING (source_id, instrument_uid)
-        WHERE x.parcel_uid IN {_in(uids)}
-        ORDER BY i.recorded_on DESC NULLS LAST, i.instrument_uid
-    """, []) if uids else []  # noqa: S608  # fmt: skip
+    # Each big table is read by literal keys only: a join against names (272M rows) or
+    # instruments in one query makes DuckDB build a hash table over all of it (gigabytes).
+    owner_rows = _rows(con, f"""
+        SELECT parcel_uid, source_id, party_id, observed_on FROM owners
+        WHERE parcel_uid IN {_in(uids)}""", []) if uids else []  # noqa: S608  # fmt: skip
+    links = _rows(con, f"""
+        SELECT parcel_uid, source_id, instrument_uid FROM instrument_parcels
+        WHERE parcel_uid IN {_in(uids)}""", []) if uids else []  # noqa: S608  # fmt: skip
+    iids = {r["instrument_uid"] for r in links}
+    icols = "source_id, instrument_uid, doc_type, doc_type_raw, recorded_on, amount, consideration"
+    isql = f"SELECT {icols} FROM instruments WHERE instrument_uid IN {_in(iids)}"  # noqa: S608
+    inst = {(r["source_id"], r["instrument_uid"]): r for r in _rows(con, isql, [])} if iids else {}
+    rsql = f"SELECT source_id, to_uid, ref_type FROM instrument_refs WHERE to_uid IN {_in(iids)}"  # noqa: S608
+    released = {(str(a), str(b)) for a, b, t in con.execute(rsql).fetchall()
+                if t in ("releases", "satisfies_judgment")} if iids else set()  # fmt: skip
+    roles = _rows(con, f"""
+        SELECT source_id, instrument_uid, party_id, role FROM instrument_parties
+        WHERE instrument_uid IN {_in(iids)}""", []) if iids else []  # noqa: S608  # fmt: skip
+    who = names_by_party(con, [(r["source_id"], r["party_id"]) for r in owner_rows + roles])
+    owners = sorted(({"parcel_uid": o["parcel_uid"], "source_id": o["source_id"],
+                      "ref": f"{o['source_id']}:{o['party_id']}",
+                      "raw_name": who.get((o["source_id"], o["party_id"])),
+                      "observed_on": o["observed_on"]} for o in owner_rows),
+                    key=lambda o: (str(o["raw_name"]), o["ref"]))  # fmt: skip
+    parties: dict[tuple[str, str], list[str]] = {}
+    for r in sorted(
+        roles, key=lambda r: (r["role"], str(who.get((r["source_id"], r["party_id"]))))
+    ):
+        name = who.get((r["source_id"], r["party_id"]))
+        if name is not None:
+            parties.setdefault((r["source_id"], r["instrument_uid"]), []).append(
+                f"{name} ({r['role']})"
+            )
+    docs = []
+    for x in links:
+        d = inst.get((x["source_id"], x["instrument_uid"]))
+        if d is None:
+            continue
+        key = (d["source_id"], d["instrument_uid"])
+        docs.append(
+            {
+                "parcel_uid": x["parcel_uid"],
+                **d,
+                "released": key in released,
+                "parties": parties.get(key, []),
+            }
+        )
+    docs.sort(key=lambda d: (d["recorded_on"] is None, -(d["recorded_on"].toordinal())
+                             if d["recorded_on"] else 0, d["instrument_uid"]))  # fmt: skip
     values = _rows(con, f"""
         SELECT parcel_uid, source_id, tax_year, appraised_total, assessed_value, valid_from
         FROM value_history WHERE parcel_uid IN {_in(uids)} ORDER BY tax_year DESC, source_id
@@ -1006,18 +1037,45 @@ def address_search(
     return {"parcels": parcels, "parties": parties}
 
 
+def names_by_party(con: duckdb.DuckDBPyConnection, records: Iterable[tuple[str, str]]
+                   ) -> dict[tuple[str, str], str]:  # fmt: skip
+    """Printed names of (source_id, party_id) records, by a literal party_id list (no join)."""
+    wanted = set(records)
+    if not wanted:
+        return {}
+    ids = _in(p for _s, p in wanted)
+    sql = f"SELECT source_id, party_id, raw_name FROM names WHERE party_id IN {ids}"  # noqa: S608
+    return {(str(a), str(b)): str(c) for a, b, c in con.execute(sql).fetchall()
+            if (str(a), str(b)) in wanted}  # fmt: skip
+
+
+def addresses_by_id(con: duckdb.DuckDBPyConnection, ids: Iterable[str | None]
+                    ) -> dict[str, dict[str, Any]]:  # fmt: skip
+    """Address rows by literal id (addresses is sorted by address_id: a few blocks). Point
+    lookups use this instead of joining addresses, which makes DuckDB build a hash table over
+    all of it (134M rows: gigabytes of memory)."""
+    keys = {i for i in ids if i}
+    if not keys:
+        return {}
+    cols = "address_id, line1, city, state, zip5, street_norm(line1) AS street"
+    sql = f"SELECT {cols} FROM addresses WHERE address_id IN {_in(keys)}"  # noqa: S608
+    rows = _rows(con, sql, [])
+    return {r["address_id"]: r for r in rows}
+
+
 def pair_names(con: duckdb.DuckDBPyConnection, refs: Iterable[str]
                ) -> dict[tuple[str, str], dict[str, Any]]:  # fmt: skip
     """The name rows grade_pair reads, for many records in one pass over names (which is
     sorted by name_key, not party_id: each lookup by party scans it)."""
     pairs = {tuple(r.partition(":")[::2]) for r in refs}
-    rows = _rows(con, f"""
-        SELECT n.source_id, n.party_id, n.name_key, n.name_flag, n.address_id, a.zip5,
-               name_suffix(n.raw_name) AS suffix
-        FROM names n LEFT JOIN addresses a USING (address_id)
-        WHERE n.party_id IN {_in(p for _s, p in pairs)}""", [])  # noqa: S608  # fmt: skip
-    return {(r["source_id"], r["party_id"]): r for r in rows
-            if (r["source_id"], r["party_id"]) in pairs}  # fmt: skip
+    ids = _in(p for _s, p in pairs)
+    cols = "source_id, party_id, name_key, name_flag, address_id, name_suffix(raw_name) AS suffix"
+    sql = f"SELECT {cols} FROM names WHERE party_id IN {ids}"  # noqa: S608
+    rows = [r for r in _rows(con, sql, []) if (r["source_id"], r["party_id"]) in pairs]
+    addr = addresses_by_id(con, (r["address_id"] for r in rows))
+    for r in rows:
+        r["zip5"] = addr.get(r["address_id"], {}).get("zip5")
+    return {(r["source_id"], r["party_id"]): r for r in rows}
 
 
 def grade_pair(
