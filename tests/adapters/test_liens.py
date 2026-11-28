@@ -597,6 +597,25 @@ def test_pin_suffix_is_appended_to_the_parcel_key(tmp_path: Path) -> None:
     assert [r["parcel_uid"] for t, r in out if t == "instrument_parcel"] == ["37081-8817881859-000"]
 
 
+def test_pin_rewrite_and_backslash_links(tmp_path: Path) -> None:
+    cfg = _cfg(tmp_path, api="xlsx", url="https://f.test/ad.aspx", portal=None, dataset=None,
+               county_fips="37067", state="NC", released_on=None, listed_on="listed",
+               date_field="listed", uid="pin",
+               link_from={"page": "https://f.test/Tax/ad.aspx",
+                          "pattern": "assets/documents/([A-Z]-[A-Z])\\.xlsx$", "all": True},
+               parcel={"kind": "pin", "field": "pin", "county_fips": "37067",
+                       "rewrite": {"pattern": "^(\\d{4}-\\d{2}-\\d{4}\\.\\d{2})\\d$",
+                                   "replace": "\\1"}},
+               parties=[{"role": "debtor", "name": "owner"}])  # fmt: skip
+    page = b'<a href="assets\\documents\\A-F.xlsx">A - F</a>'
+    book = _xlsx([["Pin", "Owner"], ["6835-96-8778.000", "A SMITH PROPERTIES LLC"]])
+    cls = lien_adapter_for(load_lien_config(cfg))
+    out = _rows_of(cls, {"Tax/ad.aspx": page, "Tax/assets/documents/A-F.xlsx": book})
+    assert [r["parcel_uid"] for t, r in out if t == "instrument_parcel"] == [
+        "37067-6835-96-8778.00"
+    ]
+
+
 HTML_PAGE = b"""<html><head><script>var x = "<table><tr><td>zqx</td></tr></table>";</script>
 <style>td {}</style></head><body><p>Delinquent Taxpayers (Updated November 16, 2026)</p>
 <table><tr><td>layout</td></tr></table>

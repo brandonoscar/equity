@@ -1,0 +1,33 @@
+source_id: nc.orange.tax_liens_2025
+state: NC
+county_fips: "37135"   # Orange County (Hillsborough, Chapel Hill)
+# Orange County Tax Administration '2025 Tax Liens' (Excel version of the G.S. 105-369 lien
+# advertisement, Tax Liens page): the 1,803 parcels whose 2025 taxes were still unpaid when the
+# liens were advertised in March 2026, with the owner names, the legal description, the parcel
+# number and the unpaid base tax (principal only; interest and costs not included). Unpaid NC
+# property tax is a lien on the parcel from January 1 of the tax year (G.S. 105-355), so that is
+# the date; parcels paid since the advertisement stay on the list. 'PARCEL #' '9778656581' is
+# nc.statewide.parcels parno for Orange. The file's DocumentCenter id changes with each year's
+# list (the health check flags a moved file). Debt kind: tax_delinquency.
+api: xlsx
+url: https://www.orangecountync.gov/DocumentCenter/View/27374
+listed_on: tax_year_start
+list_date: 2025-01-01
+date_field: tax_year_start
+uid: parcel
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Orange County 2025 tax lien (advertised March 2026)
+amount: base_tax_amt
+parties:
+  - role: debtor
+    name: name1
+  - role: debtor
+    name: name2
+  - {role: creditor, const: Orange County Tax Administration, person_names: false}
+parcel: {kind: pin, field: parcel, county_fips: "37135"}
+terms:
+  url: https://www.orangecountync.gov/3828/Tax-Liens
+  summary: "Orange County, NC Tax Administration Tax Liens page (orangecountync.gov), the lien advertisement as PDF and Excel, free, no login; no license or use restriction stated. robots.txt disallows only admin and search paths for general agents."
+  checked_on: 2026-11-28
+  robots_checked_on: 2026-11-28
+  cost_model: free

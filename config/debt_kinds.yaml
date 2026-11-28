@@ -119,6 +119,9 @@ sources:
   in.hammond.tax_sale_2027: tax_delinquency
   in.vanderburgh.tax_sale_2026: tax_delinquency
   nc.guilford.tax_foreclosures: tax_delinquency
+  nc.orange.tax_liens_2025: tax_delinquency
+  nc.forsyth.tax_liens_2025: tax_delinquency
+  nc.randolph.tax_liens_2025: tax_delinquency
   ny.nassau.delinquent_general_taxes: tax_delinquency
   ny.nassau.delinquent_school_taxes: tax_delinquency
   il.lake.sheriff_sales: foreclosure

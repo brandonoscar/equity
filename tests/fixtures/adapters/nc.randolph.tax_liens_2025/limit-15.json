@@ -1,0 +1,47 @@
+{
+ "rows": [
+  {
+   "owner": "TESTOWNER 8240E1 LLC",
+   "parcel": "8737317392",
+   "secondary_owner": "",
+   "tax_amount": "5,148.24"
+  },
+  {
+   "owner": "TESTOWNER 5457BD LLC",
+   "parcel": "7751826350",
+   "secondary_owner": "",
+   "tax_amount": "6,022.31"
+  },
+  {
+   "owner": "TESTOWNER C6AC59 LLC",
+   "parcel": "6795220471",
+   "secondary_owner": "",
+   "tax_amount": "653.63"
+  },
+  {
+   "owner": "TESTOWNER 4B3984 LLC",
+   "parcel": "8726889900",
+   "secondary_owner": "",
+   "tax_amount": "968.51"
+  },
+  {
+   "owner": "TESTOWNER 7C4AB1 LLC",
+   "parcel": "8616014009",
+   "secondary_owner": "",
+   "tax_amount": "91.94"
+  },
+  {
+   "owner": "TESTOWNER 7C4AB1 LLC",
+   "parcel": "8616016520",
+   "secondary_owner": "",
+   "tax_amount": "635.19"
+  },
+  {
+   "owner": "TESTOWNER 17567A LLC",
+   "parcel": "7708464997",
+   "secondary_owner": "",
+   "tax_amount": "3,666.79"
+  }
+ ],
+ "url": "https://www.randolphcountync.gov/DocumentCenter/View/557/0-9-2026-Tax-Liens-PDF"
+}

@@ -1504,7 +1504,8 @@ STATES: dict[str, dict[str, Any]] = {
     # North Carolina: Guilford and Buncombe unpaid property taxes, Charlotte municipal liens.
     "NC": {"debtors": ["nc.guilford.tax_foreclosures", "nc.guilford.tax_delinquent",
                        "nc.buncombe.unpaid_bills", "nc.charlotte.municipal_liens",
-                       "nc.pitt.delinquent_taxes"],
+                       "nc.pitt.delinquent_taxes", "nc.orange.tax_liens_2025",
+                       "nc.forsyth.tax_liens_2025", "nc.randolph.tax_liens_2025"],
                     "owners": ["nc.statewide.parcels"], "parcel_on_lien": True,
                     "courts": FEDERAL_COURTS,
            "record_owners": ["nc.raleigh.building_permits"]},

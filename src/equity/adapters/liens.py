@@ -89,7 +89,9 @@ Config keys:
                          split (optional separator: one field naming several lots, e.g.
                          ', '), lstrip_zeros (true: drop leading zeros, as a roll that stores
                          '02-24227' as '224227' does), suffix (optional text appended, e.g.
-                         '-000': NC OneMap's parno is the county PIN plus a sub-number)}
+                         '-000': NC OneMap's parno is the county PIN plus a sub-number),
+                         rewrite (optional {pattern, replace}: a regex substitution on the id,
+                         e.g. a list that prints '6835-96-8778.000' for the layer's '.00')}
   county_fips         jurisdiction when no parcel names a county (5 digits)
   county_name_field   optional field holding the county name (mapped to FIPS in `state`)
   county_aliases      optional {name in the data: county name}, e.g. {DADE: MIAMI-DADE}
@@ -703,7 +705,9 @@ class LienAdapter(Adapter):
         text = page.content.decode("utf-8", errors="replace")
         out: list[tuple[str, str]] = []
         for href in re.findall(r"""href\s*=\s*["']([^"']+)["']""", text, re.IGNORECASE):
-            href = html.unescape(href)
+            # A backslash in an http(s) href is a path separator, as browsers read it
+            # ('assets\documents\A-F.pdf').
+            href = html.unescape(href).replace("\\", "/")
             m = re.search(pattern, href)
             if m:
                 url = urllib.parse.urljoin(page_url, href)
@@ -979,6 +983,9 @@ class LienAdapter(Adapter):
                 pin = pin.lstrip("0") or None
             if pin and spec.get("suffix"):  # a PIN the owner layer keys with a suffix ('-000')
                 pin = pin + str(spec["suffix"])
+            if pin and spec.get("rewrite"):  # {pattern, replace}: re.sub, applied once
+                rw = spec["rewrite"]
+                pin = re.sub(str(rw["pattern"]), str(rw["replace"]), pin, count=1) or None
             if pin is None or not pin.strip("0-. "):  # blank or a zeros placeholder
                 return None, None
                 return None, None

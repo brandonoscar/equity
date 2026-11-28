@@ -49,7 +49,7 @@ Federal sources (FJC civil judgments, EPA judicial cases, SBA charge-offs, HUD R
 | MO | 5 of 115 counties | owner, address, value, land use, zoning | — | tax_delinquency (1) | `us.moeb.rss`<br>`us.mowb.rss` | — | `MO` | 1 local layers | — |
 | MS | statewide | owner, address, value, zoning | — | tax_delinquency (2) | `us.msnb.rss`<br>`us.mssb.rss` | — | `MS-HARRISON` | none | — |
 | MT | statewide | owner, address, value, land use | — | — | `us.mtb.rss` | — | `MT` | 1 local layers | — |
-| NC | statewide | owner, address, value, land use | — | code_enforcement_lien (1)<br>tax_delinquency (4) | `us.nced.rss`<br>`us.ncmb.rss`<br>`us.ncmd.rss`<br>`us.ncwb.rss`<br>`us.ncwd.rss` | — | `NC` | 5 local layers | — |
+| NC | statewide | owner, address, value, land use | — | code_enforcement_lien (1)<br>tax_delinquency (7) | `us.nced.rss`<br>`us.ncmb.rss`<br>`us.ncmd.rss`<br>`us.ncwb.rss`<br>`us.ncwd.rss` | — | `NC` | 5 local layers | — |
 | ND | statewide | owner, address, value | — | — | `us.ndb.rss` | — | `ND` | 1 local layers | — |
 | NE | statewide | owner, address, value, land use, zoning | — | tax_delinquency (1)<br>tax_lien (2) | `us.neb.rss` | — | `NE-COUNTIES`<br>`NE-DOUGLAS` | 2 local layers | — |
 | NH | statewide | owner, address, land use | — | — | `us.nhb.rss` | — | `NH` | statewide | — |

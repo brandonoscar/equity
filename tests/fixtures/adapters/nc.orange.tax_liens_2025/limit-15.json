@@ -1,0 +1,110 @@
+{
+ "rows": [
+  {
+   "base_tax_amt": "7430.54",
+   "legal_description": "S/S JONES FERRY RD P41/24",
+   "name1": "TESTOWNER 27CDD4 LLC",
+   "name2": "",
+   "parcel": "9778656581"
+  },
+  {
+   "base_tax_amt": "6820.15",
+   "legal_description": "282 BROOKGREEN AT SOUTHERN VILLAGE PH 5-B P79/66",
+   "name1": "TESTOWNER FCE730 LLC",
+   "name2": "",
+   "parcel": "9787063349"
+  },
+  {
+   "base_tax_amt": "41.65",
+   "legal_description": "1 JOSEPH A THOMPSON P111/19",
+   "name1": "TESTOWNER 1F97E5 LLC",
+   "name2": "",
+   "parcel": "9838359738"
+  },
+  {
+   "base_tax_amt": "5366.47",
+   "legal_description": "2 BL F RAMBLING HEIGHTS P21/79",
+   "name1": "TESTOWNER 4EF0CF LLC",
+   "name2": "",
+   "parcel": "9890088119"
+  },
+  {
+   "base_tax_amt": "20054.89",
+   "legal_description": "3 AIRPORT RD OFFICE PARK P75/92",
+   "name1": "TESTOWNER FAC055 LLC",
+   "name2": "",
+   "parcel": "9789348060"
+  },
+  {
+   "base_tax_amt": "3408.44",
+   "legal_description": "E/S SR 1751 AKA #4 LEWIS JOHNSON PROP",
+   "name1": "TESTOWNER 1F95F6",
+   "name2": "TESTOWNER 046007",
+   "parcel": "9789680930"
+  },
+  {
+   "base_tax_amt": "6994.36",
+   "legal_description": "8 MT BOLUS",
+   "name1": "TESTOWNER 0CF4C7",
+   "name2": "TESTOWNER 39A7FD",
+   "parcel": "9789520787"
+  },
+  {
+   "base_tax_amt": "219.12",
+   "legal_description": "18 GEORGE TATE JR P18/126",
+   "name1": "TESTOWNER 4E72D1",
+   "name2": "",
+   "parcel": "9866634017"
+  },
+  {
+   "base_tax_amt": "1277.43",
+   "legal_description": "1 LEROY JACOBS P54/41",
+   "name1": "TESTOWNER 4E72D1",
+   "name2": "",
+   "parcel": "9866631054"
+  },
+  {
+   "base_tax_amt": "367.76",
+   "legal_description": "MAJ 1 ROLLING HILLS P10/39",
+   "name1": "TESTOWNER BC9CCD",
+   "name2": "",
+   "parcel": "9787010667"
+  },
+  {
+   "base_tax_amt": "3999.13",
+   "legal_description": "203 MARKET LOFTS P90/52-58",
+   "name1": "TESTOWNER 24B029",
+   "name2": "",
+   "parcel": "9787053344.006"
+  },
+  {
+   "base_tax_amt": "1335.26",
+   "legal_description": "53 PH 2 LAUREL SPRINGS P45/137",
+   "name1": "TESTOWNER 018A98",
+   "name2": "",
+   "parcel": "9769389212"
+  },
+  {
+   "base_tax_amt": "647.23",
+   "legal_description": "N/S N DURHAM HILLSBORO RD",
+   "name1": "TESTOWNER AD2FE3 LLC",
+   "name2": "",
+   "parcel": "9893919541"
+  },
+  {
+   "base_tax_amt": "1633.57",
+   "legal_description": "A GLADYS MCLENNAN EST P84/129",
+   "name1": "TESTOWNER 6A4CD5",
+   "name2": "TESTOWNER 336D58",
+   "parcel": "9758927930"
+  },
+  {
+   "base_tax_amt": "1897.76",
+   "legal_description": "6 BL A SEC 2 EFLAND ESTATE P20/141",
+   "name1": "TESTOWNER DA7F40",
+   "name2": "TESTOWNER B4437A",
+   "parcel": "9845204155"
+  }
+ ],
+ "url": "https://www.orangecountync.gov/DocumentCenter/View/27374"
+}

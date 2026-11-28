@@ -1,0 +1,42 @@
+source_id: nc.randolph.tax_liens_2025
+state: NC
+county_fips: "37151"   # Randolph County (Asheboro)
+# Randolph County Tax Department "Advertisement of Tax Liens on Real Estate for Unpaid 2025
+# Taxes" (G.S. 105-369; the 13 PDFs by owner surname on the Tax Liens page, labeled '2026 Tax
+# Liens', made 2026-03-13): every parcel whose 2025 taxes were unpaid at the advertisement, one
+# line each with the parcel number, the owner, the tax amount and any secondary owner. A text
+# PDF read at fixed columns with the in-house reader (header line 'Parcel'). Unpaid NC
+# property tax is a lien on the parcel from January 1 of the tax year (G.S. 105-355), the date
+# used; parcels paid since stay on the list. Parcel '7750872678' is nc.statewide.parcels parno
+# for Randolph. Debt kind: tax_delinquency.
+api: pdf
+url: https://www.randolphcountync.gov/343/Tax-Liens
+link_from:
+  page: https://www.randolphcountync.gov/343/Tax-Liens
+  pattern: '/DocumentCenter/View/\d+/([0-9A-Z]+(?:-[0-9A-Z]+)?)-20\d\d-Tax-Liens-PDF$'
+  all: true
+header: Parcel
+pdf_columns:
+  names: [parcel, owner, tax_amount, secondary_owner]
+  cuts: [115, 305, 372]
+  require: {parcel: '^[0-9]{10}$', tax_amount: '^[0-9][0-9,]*\.[0-9]{2}$'}
+listed_on: tax_year_start
+list_date: 2025-01-01
+date_field: tax_year_start
+uid: parcel
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Randolph County 2025 tax lien (advertised March 2026)
+amount: tax_amount
+parties:
+  - role: debtor
+    name: owner
+  - role: debtor
+    name: secondary_owner
+  - {role: creditor, const: Randolph County Tax Department, person_names: false}
+parcel: {kind: pin, field: parcel, county_fips: "37151"}
+terms:
+  url: https://www.randolphcountync.gov/343/Tax-Liens
+  summary: "Randolph County, NC Tax Liens page (randolphcountync.gov), the published G.S. 105-369 lien advertisement as PDFs by surname, free, no login; no license or use restriction stated. robots.txt disallows only admin and search paths for general agents."
+  checked_on: 2026-11-28
+  robots_checked_on: 2026-11-28
+  cost_model: free
