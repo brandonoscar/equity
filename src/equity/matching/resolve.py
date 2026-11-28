@@ -51,6 +51,24 @@ Rules, strongest first (a debtor-owner pair keeps its strongest rule):
   person_name_spacing_address  same address, and the same letters once spaces and
                         punctuation are dropped ("O'BRIEN" / "OBRIEN", "DE LA CRUZ" /
                         "DELACRUZ", "MC DONALD" / "MCDONALD")                  -> review
+  person_loose_name_address  same address, and the names agree once nicknames are read as
+                        formal names, middle initials are dropped and spaces ignored, all at
+                        once ("BOB A SMITH" / "ROBERT SMITH", "BILL O BRIEN" / "WILLIAM
+                        OBRIEN"); two different middle initials never agree      -> review
+Ownership on the lien's date, from deed history: the grantee of a parcel's latest deed
+recorded on or before the lien is who owned it then, even if it was sold since (a lien
+recorded first can still reach it; see also .transfers):
+  person_owned_at_lien_address  the debtor's name, and the lien's address is the deed
+                            grantee's address or the parcel's (or its building)  -> review
+  person_owned_at_lien_zip  the same with only the ZIP in common                -> review
+(review, not auto: the debtor may no longer own it, so its value is not the debtor's now)
+Evidence adds up: a debtor-owner pair that review rules of two or more independent kinds
+support (EVIDENCE_KIND: place, former_address, company_mailing) is decision 'auto', its
+kinds in matches.corroborated_by.
+  person_name_change_address  same address, same first (and middle) name, another surname
+                        ("JANE SMITH" / "JANE DOE": a marriage or divorce); the two
+                        surnames are not both first names (that is a household) and not one
+                        letter apart (that is a typo)                            -> review
   person_at_owner_occupied_property  a lot no source names an owner for (California rolls)
                         whose property address is the debtor's own address, and the roll's
                         latest homeowner exemption says an owner lives there       -> review
@@ -66,6 +84,12 @@ Company names that differ only in AND / & / THE, spaces or punctuation ("SMITH A
 "SMITH & SONS", "THE SMITH SONS"; org_loose):
   org_name_loose_address    same address (or its building)                   -> auto
   org_name_loose_zip        same ZIP                                         -> review
+A debtor who has moved: a record that puts the debtor's name at the lien's address and at
+another one (a deed's seller at the house sold and at their mailing address, a buyer, a
+mortgage's borrower, the same owner name mailed at two addresses across roll years) links
+the two (addr_history); an owner of that name at the other address is a lead:
+  person_name_former_address  same name, the lien's address is a known former or later
+                            address of an owner at another address               -> review
 An address with no ZIP (on the lien or on the roll) is compared by street and city:
   person_name_street_city / org_name_street_city   same name, street line and city -> review
 With parcel_on_lien (liens recorded against a parcel id, e.g. Allegheny PINs), first; a lien
@@ -85,9 +109,17 @@ With street_town (CT only, approved by the project owner 2026-11-22), also:
   person_name_street_town   same person name_key, street line and town         -> auto
   org_name_street_town      same org_name, street line and town                -> auto
 
+Out-of-state owners: property in another state whose tax bill is mailed into this one
+(equity.matching.crossstate builds the national index; owner_basis 'out_of_state'). They
+are owners like any other, so every address rule meets them.
+
+Parcel id history: with link sources whose parcel_link rows say a parcel was renumbered,
+split or merged, a lien or record naming the old id also names today's parcel(s).
+
 With record_owners (and every run's deeds): owner names for parcels whose roll publishes none
 (California counties, Indiana's statewide layer), from records that name a lot's owner: the
-grantee of a DEED, or the 'owner' party of a permit, registration or code case. Per parcel the
+grantee of a DEED, the borrower of a MORTGAGE, or the 'owner' party of a permit,
+registration or code case. Per parcel the
 latest such record counts, only where the roll has no owner, matched to the roll parcel by
 county and parcel number letters and digits (punctuation ignored). Matches through them carry
 owner_basis ('deed:<source>' / 'record:<source>', 'roll' otherwise) and owner_seen_on; a
@@ -112,6 +144,8 @@ Output (Parquet under data/derived/<state>/, which is git-ignored: it names peop
   person_of.parquet debtor party -> person (several rows for a party that names several people)
   mortgage_status.parquet  each mortgage on a matched lot: open or which rule marked it paid
   review_queue.parquet     evidence and labels for review-only matches (see .review)
+  graph_edges / graph_nodes / person_reach.parquet  every link as one graph, its connected
+                    sets and the parcels each person reaches through chains (see .graph)
 and a summary with counts only, printed and written to summary.json.
 """
 
@@ -186,6 +220,11 @@ RULES = (
     ("org_name_loose_zip", "review", 19),
     ("person_name_street_city", "review", 20),
     ("org_name_street_city", "review", 21),
+    ("person_name_former_address", "review", 22),
+    ("person_loose_name_address", "review", 23),
+    ("person_name_change_address", "review", 24),
+    ("person_owned_at_lien_address", "review", 25),
+    ("person_owned_at_lien_zip", "review", 26),
 )
 
 
@@ -208,6 +247,8 @@ COLUMNS: dict[str, dict[str, str]] = {
     "instrument_ref": {"from_uid": V, "to_uid": V, "ref_type": V},
     "instrument_parcel": {"instrument_uid": V, "parcel_uid": V},
     "parcel_link": {"from_parcel_uid": V, "to_parcel_uid": V, "link_type": V},
+    "party_identifier": {"party_id": V, "sos_id": V, "id_type": V, "id_value": V,
+                         "issuer": V},
     "business": {"sos_id": V, "name": V, "status": V, "jurisdiction": V},
     "business_role": {"sos_id": V, "party_id": V, "role": V, "title": V},
     "owner_snapshot": {"parcel_uid": V, "party_id": V},
@@ -271,6 +312,27 @@ CREATE OR REPLACE MACRO unit_strip(s) AS regexp_replace(upper(coalesce(s, '')),
 """
 
 
+# Parcel id history (parcel_link renumbered_to / split_into / merged_into): every parcel id an
+# old one became, through chains (renumbered twice, split then merged). parcel_succ(a, b):
+# b is a successor of a.
+SUCCESSOR_PASSES = 20
+
+
+def _parcel_successors(con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str]) -> None:
+    _view(con, "pl_hist", lake, sources, "parcel_link")
+    con.execute("CREATE OR REPLACE TEMP TABLE parcel_succ AS SELECT DISTINCT from_parcel_uid "
+                "AS a, to_parcel_uid AS b FROM pl_hist WHERE link_type IN ('renumbered_to', "
+                "'split_into', 'merged_into') AND from_parcel_uid <> to_parcel_uid")  # fmt: skip
+    for _ in range(SUCCESSOR_PASSES):
+        before = con.execute("SELECT count(*) FROM parcel_succ").fetchone()
+        con.execute("INSERT INTO parcel_succ SELECT DISTINCT s.a, n.b FROM parcel_succ s "
+                    "JOIN parcel_succ n ON n.a = s.b WHERE s.a <> n.b EXCEPT "
+                    "SELECT a, b FROM parcel_succ")  # fmt: skip
+        after = con.execute("SELECT count(*) FROM parcel_succ").fetchone()
+        if before == after:
+            break
+
+
 def connect(
     lake: Path,
     debtor_sources: list[str],
@@ -280,6 +342,8 @@ def connect(
     writ_sources: list[str] | None = None,
     debtor_doc_types: list[str] | dict[str, list[str]] | None = None,
     record_owner_sources: list[str] | None = None,
+    out_of_state: tuple[Path, str] | None = None,
+    link_sources: list[str] | None = None,
 ) -> duckdb.DuckDBPyConnection:
     con = duckdb.connect()
     # Large runs (NY: ~5M debtors x ~5M owners) spill to disk; cap it so a run fails cleanly
@@ -312,7 +376,12 @@ def connect(
     _view(con, "d_ip", lake, debtor_sources, "instrument_party")
     _view(con, "d_inst", lake, debtor_sources, "instrument")
     _view(con, "d_ref", lake, debtor_sources, "instrument_ref")
-    _view(con, "d_lot", lake, debtor_sources, "instrument_parcel")
+    _view(con, "d_lot_raw", lake, debtor_sources, "instrument_parcel")
+    _parcel_successors(con, lake, link_sources or [])
+    # A lien that names an old parcel id (renumbered, split, merged) also names today's.
+    con.execute("CREATE TEMP VIEW d_lot AS SELECT instrument_uid, parcel_uid FROM d_lot_raw "
+                "UNION SELECT l.instrument_uid, s.b FROM d_lot_raw l "
+                "JOIN parcel_succ s ON s.a = l.parcel_uid")  # fmt: skip
     _view(con, "o_party", lake, owner_sources, "party")
     _view(con, "o_snap", lake, owner_sources, "owner_snapshot")
     _view(con, "o_parcel", lake, owner_sources, "parcel")
@@ -370,6 +439,11 @@ def connect(
     """)  # noqa: S608 - doc types come from STATES (repo config), quoted
     if record_owner_sources:
         _record_owners(con, lake, record_owner_sources)
+    if out_of_state and out_of_state[0].exists():
+        # Parcels in other states whose tax bill is mailed into this one (crossstate.INDEX).
+        from equity.matching import crossstate
+
+        crossstate.load(con, out_of_state[0], out_of_state[1])
     _owner_name_variants(con)
     if court_sources:
         _court_debtors(con, lake, court_sources)
@@ -399,10 +473,11 @@ def connect(
 
 # Owner names from records that are not owner rolls, for parcels whose roll publishes none
 # (California counties, Indiana's statewide layer): a deed's grantee, and the 'owner' party of
-# a permit, landlord or rental registration or code case. Per parcel only the latest dated
+# a permit, landlord or rental registration or code case, and the borrower of a mortgage (who
+# owned the lot when it was recorded). Per parcel only the latest dated
 # record counts (all its owner names), and only where no roll owner is known, so a roll owner
-# is never displaced. owner_basis says where the name came from: 'deed:<source>' or
-# 'record:<source>'; owner_seen_on is that record's date.
+# is never displaced. owner_basis says where the name came from: 'deed:<source>',
+# 'mortgage:<source>' or 'record:<source>'; owner_seen_on is that record's date.
 RECORD_OWNERS_SQL = """
 -- Records and rolls often print one parcel number differently ('49-02-19-107-055.000-800'
 -- in the roll, '490219107055000800' on a sales form): a record's lot is the roll parcel with
@@ -415,13 +490,16 @@ FROM o_parcel GROUP BY 1 HAVING count(DISTINCT parcel_uid) = 1;
 INSERT INTO owners
 WITH named AS (
     SELECT rl.parcel_uid, ip.party_id, i.recorded_on, i.source_id,
-           CASE WHEN ip.role = 'grantee' THEN 'deed:' ELSE 'record:' END || i.source_id
+           CASE WHEN ip.role = 'grantee' THEN 'deed:'
+                WHEN ip.role = 'borrower' THEN 'mortgage:' ELSE 'record:' END || i.source_id
                AS basis
     FROM ro_ip ip
     JOIN ro_inst i ON i.instrument_uid = ip.instrument_uid
     JOIN ro_lot l ON l.instrument_uid = ip.instrument_uid
     JOIN roll_lot rl ON rl.k = parcel_key(l.parcel_uid)
-    WHERE (ip.role = 'owner' OR (ip.role = 'grantee' AND i.doc_type = 'DEED'))
+    WHERE (ip.role = 'owner' OR (ip.role = 'grantee' AND i.doc_type = 'DEED')
+           -- a mortgage's borrower owned the lot when it was recorded
+           OR (ip.role = 'borrower' AND i.doc_type = 'MORTGAGE'))
       AND i.recorded_on IS NOT NULL
       AND rl.parcel_uid NOT IN (SELECT parcel_uid FROM o_snap)
 ), latest AS (
@@ -438,8 +516,9 @@ LEFT JOIN o_parcel pc ON pc.parcel_uid = n.parcel_uid
 LEFT JOIN addr ma ON ma.address_id = p.address_id
 LEFT JOIN addr sa ON sa.address_id = pc.situs_address_id;
 """
-# A 'record:' owner is who owned the lot on the record's date (a permit, a registration);
-# the lot may have been sold since. Its matches stay 'review' unless the record is recent.
+# A 'record:' or 'mortgage:' owner is who owned the lot on the record's date (a permit, a
+# registration, a mortgage); the lot may have been sold since. Its matches stay 'review'
+# unless the record is recent.
 # TODO(Brandon): confirm the two-year window (deeds are not capped: the latest recorded
 # grantee is the owner of record).
 RECORD_OWNER_AUTO_DAYS = 730
@@ -449,7 +528,10 @@ def _record_owners(con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str
     _view(con, "ro_party", lake, sources, "party")
     _view(con, "ro_ip", lake, sources, "instrument_party")
     _view(con, "ro_inst", lake, sources, "instrument")
-    _view(con, "ro_lot", lake, sources, "instrument_parcel")
+    _view(con, "ro_lot_raw", lake, sources, "instrument_parcel")
+    con.execute("CREATE TEMP VIEW ro_lot AS SELECT instrument_uid, parcel_uid FROM ro_lot_raw "
+                "UNION SELECT l.instrument_uid, s.b FROM ro_lot_raw l "
+                "JOIN parcel_succ s ON s.a = l.parcel_uid")  # fmt: skip
     con.execute(RECORD_OWNERS_SQL)
 
 
@@ -458,7 +540,8 @@ def _record_owners(con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str
 # same owner party and parcel (equity.matching.names). raw_name stays the printed string;
 # name_key is the person's. A joint owner's name is matched like any owner name; a trust's
 # settlor or trustee (name_variant 'trust') only reaches review.
-VARIANT_MARK = r"&|\bAND\b|/|;|\bTR\b|\bTRS\b|TRUST|\bTTEES?\b|\bET ?UX\b|\bET ?VIR\b"
+VARIANT_MARK = (r"&|\bAND\b|/|;|\bTR\b|\bTRS\b|TRUST|\bTTEES?\b|\bET ?UX\b|\bET ?VIR\b"
+                r"|\bESTATE\b|\bEST\b|\bDECEASED\b|\bDECD\b|\bDEC'D\b|\bHEIRS\b")  # fmt: skip
 # Alias markers ("JOHN SMITH DBA SMITH PLUMBING", AKA, FKA, NKA, T/A), read after periods
 # are dropped (D.B.A. -> DBA).
 ALIAS_MARK = (r"\bD ?/? ?B ?/? ?A\b|\b[AFN] ?/? ?K ?/? ?A\b|\bT ?/ ?A\b"
@@ -902,6 +985,56 @@ WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2
 """
 
 
+# Every name rule at once: loose_letters(k) is the sorted letters of a name key's full words
+# (2+ letters) with nicknames read as formal names, loose_letters_all(k) the same with every
+# word (an O of O BRIEN is a letter of the surname, not an initial); initials(k) its
+# single-letter words.
+LOOSE_SQL = """
+CREATE OR REPLACE MACRO initials(k) AS list_sort(list_filter(string_split(k, ' '),
+    lambda w: length(w) = 1));
+CREATE OR REPLACE MACRO loose_letters(k) AS array_to_string(list_sort(string_split(
+    array_to_string(list_filter(string_split(nick_key(k), ' '), lambda w: length(w) >= 2), ''),
+    '')), '');
+CREATE OR REPLACE MACRO loose_letters_all(k) AS array_to_string(list_sort(string_split(
+    replace(nick_key(k), ' ', ''), '')), '');
+INSERT INTO candidates
+SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
+       'person_loose_name_address', d.name_key
+FROM debtors d JOIN addr_alias aa ON aa.k = d.addr_key JOIN o_by_addr o ON o.k = aa.k2
+WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2
+  AND d.name_key <> o.name_key AND NOT suffix_conflict(d.suffix_key, o.suffix_key)
+  AND len(list_filter(string_split(d.name_key, ' '), lambda w: length(w) >= 2)) >= 2
+  AND len(list_filter(string_split(o.name_key, ' '), lambda w: length(w) >= 2)) >= 2
+  AND (loose_letters(d.name_key) = loose_letters(o.name_key)
+       OR loose_letters_all(d.name_key) = loose_letters_all(o.name_key))
+  AND (len(initials(d.name_key)) = 0 OR len(initials(o.name_key)) = 0
+       OR initials(d.name_key) = initials(o.name_key));
+"""
+
+
+NAME_CHANGE_SQL = """
+INSERT INTO candidates
+SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
+       'person_name_change_address', d.name_key
+FROM debtors d JOIN addr_alias aa ON aa.k = d.addr_key JOIN o_by_addr o ON o.k = aa.k2
+WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2
+  AND name_words(d.name_key) = name_words(o.name_key)
+  AND NOT suffix_conflict(d.suffix_key, o.suffix_key)
+  AND len(name_only(d.name_key, o.name_key)) = 1 AND len(name_only(o.name_key, d.name_key)) = 1
+  AND length(name_only(d.name_key, o.name_key)[1]) >= 2
+  AND length(name_only(o.name_key, d.name_key)[1]) >= 2
+  AND damerau_levenshtein(name_only(d.name_key, o.name_key)[1],
+                          name_only(o.name_key, d.name_key)[1]) > 1
+  AND NOT (name_only(d.name_key, o.name_key)[1] IN (SELECT name FROM first_names)
+           AND name_only(o.name_key, d.name_key)[1] IN (SELECT name FROM first_names))
+  -- the shared words hold the first name
+  AND EXISTS (SELECT 1 FROM unnest(string_split(d.name_key, ' ')) t(w)
+              WHERE list_contains(string_split(o.name_key, ' '), t.w)
+                AND t.w IN (SELECT name FROM first_names))
+  AND nick_key(d.name_key) <> nick_key(o.name_key);
+"""
+
+
 def first_names(con: duckdb.DuckDBPyConnection) -> None:
     """first_names(name): every first name in the 1990 Census lists (data/first_names_1990.txt)."""
     path = Path(__file__).parent / "data" / "first_names_1990.txt"
@@ -1003,6 +1136,83 @@ WHERE d.party_kind = 'org' AND o.party_kind = 'org' AND d.org_name_norm <> ''
        OR (d.town_key = o.situs_town AND (d.addr_key IS NULL OR o.situs_key IS NULL)));
 """
 
+# Two addresses one name is known at: a deed, mortgage or owner-role record's party at the
+# parcel's property address and at their own address; and one owner name at two mailing
+# addresses for one parcel (across roll years). Both directions are kept.
+HISTORY_FROM_RECORDS_SQL = """
+INSERT INTO addr_history
+SELECT DISTINCT name_key(p.raw_name), sa.addr_key, pa.addr_key
+FROM ro_ip ip JOIN ro_party p ON p.party_id = ip.party_id
+JOIN ro_lot l ON l.instrument_uid = ip.instrument_uid
+JOIN roll_lot rl ON rl.k = parcel_key(l.parcel_uid)
+JOIN o_parcel pc ON pc.parcel_uid = rl.parcel_uid
+JOIN addr sa ON sa.address_id = pc.situs_address_id
+JOIN addr pa ON pa.address_id = p.address_id
+WHERE ip.role IN ('grantor', 'grantee', 'borrower', 'owner')
+  AND coalesce(p.party_kind, '') <> 'org' AND name_words(name_key(p.raw_name)) >= 2
+  AND sa.addr_key IS NOT NULL AND pa.addr_key IS NOT NULL AND sa.addr_key <> pa.addr_key;
+"""
+# Who owned each parcel on a lien's date: the grantee(s) of the latest deed recorded on or
+# before it (roll_lot and the ro_* record views, see RECORD_OWNERS_SQL).
+AT_LIEN_SQL = """
+CREATE OR REPLACE TEMP TABLE deed_grantee AS
+WITH deeds AS (
+    SELECT DISTINCT rl.parcel_uid, i.instrument_uid, i.recorded_on
+    FROM ro_inst i JOIN ro_lot l ON l.instrument_uid = i.instrument_uid
+    JOIN roll_lot rl ON rl.k = parcel_key(l.parcel_uid)
+    WHERE i.doc_type = 'DEED' AND i.recorded_on IS NOT NULL
+)
+SELECT d.parcel_uid, d.instrument_uid, d.recorded_on, name_key(p.raw_name) AS name_key,
+       suffix_key(p.raw_name) AS suffix_key, a.addr_key, a.zip5
+FROM deeds d JOIN ro_ip ip ON ip.instrument_uid = d.instrument_uid AND ip.role = 'grantee'
+JOIN ro_party p ON p.party_id = ip.party_id
+LEFT JOIN addr a ON a.address_id = p.address_id
+WHERE coalesce(p.party_kind, '') <> 'org';
+CREATE OR REPLACE TEMP TABLE linked_lot AS
+SELECT DISTINCT debtor_party_id AS party_id, instrument_uid, parcel_uid FROM candidates;
+INSERT INTO candidates
+SELECT DISTINCT dt.party_id, dt.instrument_uid, NULL, g.parcel_uid,
+       CASE WHEN dt.addr_key IS NOT NULL AND EXISTS (
+                SELECT 1 FROM addr_alias aa WHERE aa.k = dt.addr_key
+                  AND aa.k2 IN (g.addr_key, sa.addr_key))
+            THEN 'person_owned_at_lien_address' ELSE 'person_owned_at_lien_zip' END,
+       dt.name_key
+FROM debtors dt JOIN deed_grantee g ON g.name_key = dt.name_key
+     AND g.recorded_on <= dt.recorded_on
+LEFT JOIN o_parcel pc ON pc.parcel_uid = g.parcel_uid
+LEFT JOIN addr sa ON sa.address_id = pc.situs_address_id
+WHERE dt.party_kind <> 'org' AND name_words(dt.name_key) >= 2
+  AND NOT suffix_conflict(dt.suffix_key, g.suffix_key)
+  -- the latest deed on the parcel on or before the lien
+  AND NOT EXISTS (SELECT 1 FROM deed_grantee g2 WHERE g2.parcel_uid = g.parcel_uid
+                  AND g2.recorded_on > g.recorded_on AND g2.recorded_on <= dt.recorded_on)
+  -- only parcels no other rule links the lien to (a current owner match says more)
+  AND NOT EXISTS (SELECT 1 FROM linked_lot k WHERE k.party_id = dt.party_id
+                  AND k.instrument_uid = dt.instrument_uid AND k.parcel_uid = g.parcel_uid)
+  AND ((dt.addr_key IS NOT NULL AND EXISTS (
+            SELECT 1 FROM addr_alias aa WHERE aa.k = dt.addr_key
+              AND aa.k2 IN (g.addr_key, sa.addr_key)))
+       OR (dt.zip5 IS NOT NULL AND dt.zip5 IN (g.zip5, sa.zip5)));
+"""
+FORMER_SQL = """
+INSERT INTO addr_history
+SELECT DISTINCT o1.name_key, o1.mail_key, o2.mail_key
+FROM owners o1 JOIN owners o2 ON o2.parcel_uid = o1.parcel_uid AND o2.name_key = o1.name_key
+WHERE o1.party_kind <> 'org' AND name_words(o1.name_key) >= 2
+  AND coalesce(o1.name_variant, 'alias') = 'alias'
+  AND o1.mail_key IS NOT NULL AND o2.mail_key IS NOT NULL AND o1.mail_key <> o2.mail_key;
+CREATE OR REPLACE TEMP TABLE addr_hist AS
+SELECT name_key, a, b FROM addr_history UNION SELECT name_key, b, a FROM addr_history;
+INSERT INTO candidates
+SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
+       'person_name_former_address', d.name_key
+FROM debtors d JOIN addr_alias aa ON aa.k = d.addr_key
+JOIN addr_hist h ON h.name_key = d.name_key AND h.a = aa.k2
+JOIN owners o ON o.name_key = d.name_key AND h.b IN (o.mail_key, o.situs_key)
+WHERE d.party_kind <> 'org' AND o.party_kind <> 'org' AND name_words(d.name_key) >= 2
+  AND NOT suffix_conflict(d.suffix_key, o.suffix_key) AND h.b <> d.addr_key;
+"""
+
 # Parcels no source names an owner for (California rolls publish none): a debtor whose own
 # address is the lot's property address may own it or may rent it, so these are review only.
 # The roll's homeowner (owner-occupied) exemption for the latest year says an owner lives
@@ -1078,6 +1288,29 @@ WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2;
 """  # noqa: S608 - the cap is a constant
 
 
+# Evidence adds up: review rules fall into independent kinds of evidence. Rules of one kind
+# are not independent (a name at the same address is also a name in the same ZIP), so they
+# count once. A debtor-owner pair that review rules of two or more kinds support is one
+# stronger link: decision 'auto', with the kinds in `corroborated_by`. A fixed rule, no
+# scores. Rules not listed here (automatic ones) never count.
+EVIDENCE_KIND = {
+    "place": ("person_name_zip", "person_name_initial_address", "person_nickname_address",
+              "person_name_typo_address", "person_middle_name_address",
+              "person_name_spacing_address", "person_loose_name_address",
+              "person_name_change_address", "person_name_street_city", "org_name_street_city",
+              "org_name_loose_zip", "org_name_county"),
+    "former_address": ("person_name_former_address",),
+    "company_mailing": ("person_at_org_owner_mailing",),
+}  # fmt: skip
+
+
+def _table_exists(con: duckdb.DuckDBPyConnection, name: str) -> bool:
+    row = con.execute(
+        "SELECT count(*) FROM information_schema.tables WHERE table_name = ?", [name]
+    ).fetchone()
+    return bool(row and row[0])
+
+
 def match(
     con: duckdb.DuckDBPyConnection,
     street_town: bool = False,
@@ -1097,6 +1330,14 @@ def match(
     con.execute(ORG_LOOSE_MACRO)
     con.execute(ORG_LOOSE_SQL)
     con.execute(CITY_SQL)
+    con.execute("CREATE OR REPLACE TEMP TABLE addr_history (name_key VARCHAR, a VARCHAR, "
+                "b VARCHAR)")  # fmt: skip
+    if _table_exists(con, "roll_lot"):
+        con.execute(HISTORY_FROM_RECORDS_SQL)
+        con.execute(AT_LIEN_SQL)
+    con.execute(FORMER_SQL)
+    con.execute(LOOSE_SQL)
+    con.execute(NAME_CHANGE_SQL)
     con.execute(UNIT_SQL)
     if parcel_on_lien:
         con.execute(PARCEL_ON_LIEN_SQL)
@@ -1106,6 +1347,8 @@ def match(
     con.execute(ORG_MAILING_SQL)
     ranks = " ".join(f"WHEN '{r}' THEN {n}" for r, _, n in RULES)
     decisions = " ".join(f"WHEN '{r}' THEN '{d}'" for r, d, _ in RULES)
+    evidence = " ".join(f"WHEN '{r}' THEN '{k}'" for k, rules in EVIDENCE_KIND.items()
+                        for r in rules)  # fmt: skip
     con.execute(f"""
         CREATE TEMP TABLE matches AS
         SELECT debtor_party_id, instrument_uid, owner_party_id, parcel_uid, rule_id,
@@ -1122,10 +1365,13 @@ def match(
               FROM owners GROUP BY party_id, parcel_uid) o
         WHERE o.party_id = matches.owner_party_id AND o.parcel_uid = matches.parcel_uid;
         UPDATE matches SET decision = 'review'
-        WHERE decision = 'auto' AND starts_with(coalesce(owner_basis, ''), 'record:')
+        WHERE decision = 'auto'
+          AND (starts_with(coalesce(owner_basis, ''), 'record:')
+               OR starts_with(coalesce(owner_basis, ''), 'mortgage:'))
           AND owner_seen_on < current_date - INTERVAL {RECORD_OWNER_AUTO_DAYS} DAY;
         -- Which name of the owner string the match used: NULL (the whole string), 'joint'
-        -- (one of several owners printed together) or 'trust' (a trust's settlor/trustee).
+        -- (one of several owners printed together), 'trust' (a trust's settlor/trustee) or
+        -- 'estate' (the deceased of an estate): trusts and estates only reach review.
         ALTER TABLE matches ADD COLUMN owner_name_variant VARCHAR;
         UPDATE matches SET owner_name_variant = v.variant
         FROM (SELECT party_id, parcel_uid, name_key,
@@ -1135,7 +1381,7 @@ def match(
         WHERE v.party_id = matches.owner_party_id AND v.parcel_uid = matches.parcel_uid
           AND v.name_key = matches.key;
         UPDATE matches SET decision = 'review'
-        WHERE decision = 'auto' AND owner_name_variant = 'trust';
+        WHERE decision = 'auto' AND owner_name_variant IN ('trust', 'estate');
         -- The same for the debtor's name: NULL, 'alias' (a DBA/AKA name of the same debtor),
         -- 'joint' or 'trust'. A trust's debt is not its settlor's own: review only.
         ALTER TABLE matches ADD COLUMN debtor_name_variant VARCHAR;
@@ -1151,7 +1397,20 @@ def match(
         WHERE v.party_id = matches.debtor_party_id AND v.instrument_uid = matches.instrument_uid
           AND v.k = matches.key;
         UPDATE matches SET decision = 'review'
-        WHERE decision = 'auto' AND debtor_name_variant = 'trust';
+        WHERE decision = 'auto' AND debtor_name_variant IN ('trust', 'estate');
+        -- Two or more independent kinds of review evidence for one pair: one stronger link.
+        ALTER TABLE matches ADD COLUMN corroborated_by VARCHAR[];
+        UPDATE matches SET corroborated_by = c.kinds, decision = 'auto'
+        FROM (SELECT debtor_party_id, instrument_uid, owner_party_id, parcel_uid,
+                     list_sort(list_distinct(list(CASE rule_id {evidence} END))) AS kinds
+              FROM candidates WHERE CASE rule_id {evidence} END IS NOT NULL
+              GROUP BY ALL HAVING count(DISTINCT CASE rule_id {evidence} END) >= 2) c
+        WHERE c.debtor_party_id = matches.debtor_party_id
+          AND c.instrument_uid = matches.instrument_uid
+          AND c.owner_party_id IS NOT DISTINCT FROM matches.owner_party_id
+          AND c.parcel_uid = matches.parcel_uid AND matches.decision = 'review'
+          AND coalesce(matches.owner_name_variant, '') NOT IN ('trust', 'estate')
+          AND coalesce(matches.debtor_name_variant, '') NOT IN ('trust', 'estate');
         CREATE TEMP TABLE parcel_value AS
         SELECT parcel_uid, arg_max(coalesce(appraised_total, assessed_value), tax_year) AS value
         FROM o_assess GROUP BY parcel_uid;
@@ -1292,11 +1551,13 @@ def run(
     deed_sources: list[str] | None = None,
     record_owner_sources: list[str] | None = None,
     state_fips: str | None = None,
+    out_of_state: tuple[Path, str] | None = None,
 ) -> dict[str, object]:
-    from equity.matching import bankruptcy, entities, equity, review, transfers
+    from equity.matching import bankruptcy, entities, equity, graph, review, transfers
 
     con = connect(lake, debtor_sources, owner_sources, parcel_on_lien, court_sources,
-                  writ_sources, debtor_doc_types, record_owner_sources)  # fmt: skip
+                  writ_sources, debtor_doc_types, record_owner_sources,
+                  out_of_state, link_sources)  # fmt: skip
     match(con, street_town, parcel_on_lien, bool(court_sources))
     review.build(con)
     tables = ["matches", "debtor_summary", "people", "person_of", "review_queue"]
@@ -1312,6 +1573,12 @@ def run(
     if mortgage_sources:
         equity.compute(con, lake, mortgage_sources, link_sources or [])
         tables.append("mortgage_status")
+    # last: it reads every step's links (and identifiers from every source the run reads)
+    graph.compute(con, lake, sorted({
+        *debtor_sources, *owner_sources, *(registry_sources or []), *(court_sources or []),
+        *(writ_sources or []), *(deed_sources or []), *(record_owner_sources or []),
+        *(mortgage_sources or [])}))  # fmt: skip
+    tables.extend(graph.TABLES)
     out.mkdir(parents=True, exist_ok=True)
     for table in tables:
         con.execute(f"COPY {table} TO '{(out / (table + '.parquet')).as_posix()}' "
@@ -1326,6 +1593,7 @@ def run(
         result["transfers"] = transfers.summary(con)
     if mortgage_sources:
         result |= equity.summary(con)
+    result["graph"] = graph.summary(con)
     (out / "summary.json").write_text(json.dumps(result, indent=2, default=str))
     return result
 
@@ -1744,7 +2012,7 @@ STATES: dict[str, dict[str, Any]] = {
 TABLES_READ = ("address", "party", "instrument", "instrument_party", "instrument_ref",
                "instrument_parcel", "owner_snapshot", "parcel", "parcel_assessment",
                "parcel_link", "business", "business_role", "judgment", "judgment_event",
-               "case_party", "court_case", "docket_entry")  # fmt: skip
+               "case_party", "court_case", "docket_entry", "party_identifier")  # fmt: skip
 
 
 # Lists that name the people behind businesses nationwide (carrier officers, NPI authorized
@@ -1833,8 +2101,11 @@ def main(argv: list[str] | None = None) -> int:
                  [*(spec.get("registries") or []), *optional_registries(args.state)],
                  spec.get("debtor_doc_types"), bankruptcy_sources(args.state),
                  spec.get("deeds"),
-                 [*(spec.get("deeds") or []), *(spec.get("record_owners") or [])],
-                 state_fips(run_state(args.state)))  # fmt: skip
+                 [*(spec.get("deeds") or []), *(spec.get("record_owners") or []),
+                  *(spec.get("mortgages") or [])],
+                 state_fips(run_state(args.state)),
+                 (args.out / "_national" / "out_of_state_owners.parquet",
+                  run_state(args.state)))  # fmt: skip
     result["missing_sources"] = missing
     summary = args.out / args.state.lower() / "summary.json"
     summary.write_text(json.dumps(result, indent=2, default=str))
