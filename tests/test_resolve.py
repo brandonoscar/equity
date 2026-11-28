@@ -1311,11 +1311,14 @@ def test_a_one_letter_typo_at_the_same_address_is_a_review_lead(tmp_path: Path) 
     m = con.execute(
         f"SELECT debtor_party_id, owner_party_id, rule_id, decision "
         f"FROM '{out.as_posix()}/matches.parquet' ORDER BY ALL").fetchall()  # fmt: skip
-    assert m == [("d1", "o1", "person_name_typo_address", "review")]
+    # GARCIA / GRACIAS is two letters off: never a typo, but a surname that differs at one
+    # address with the same first name is a name-change lead (person_name_change_address).
+    assert m == [("d1", "o1", "person_name_typo_address", "review"),
+                 ("d3", "o3", "person_name_change_address", "review")]  # fmt: skip
     q = dict(con.execute(
         f"SELECT debtor_party_id, category FROM '{out.as_posix()}/review_queue.parquet'"
     ).fetchall())  # fmt: skip
-    assert q == {"d1": "one_letter"}
+    assert q == {"d1": "one_letter", "d3": "name_change"}
 
 
 def test_every_address_rule_sees_through_units(tmp_path: Path) -> None:
@@ -1695,3 +1698,41 @@ def test_nickname_initials_and_spacing_together_are_a_review_lead(tmp_path: Path
         f"WHERE rule_id <> 'person_name_zip'").fetchall())  # fmt: skip
     for n, (_, _, rule) in pairs.items():
         assert m.get(f"d{n}") == rule, n
+
+
+def test_a_new_surname_at_the_same_address_is_a_review_lead(tmp_path: Path) -> None:
+    """JANE SMITH's lien and JANE DOE on the roll at one address: a name change (review).
+    MARY SMITH at JOHN SMITH's address is a household, not a name change."""
+    lk = tmp_path / "lake"
+    d, o = lk / "zz.debts", lk / "zz.parcels"
+    pairs = {"1": ("JANE SMITH", "DOE JANE", "person_name_change_address"),
+             "2": ("JOHN SMITH", "SMITH MARY", None)}  # fmt: skip
+    _write(d / "address" / "0.parquet",
+           [_addr(f"a{n}", f"{n} ELM ST", "10001") for n in pairs])  # fmt: skip
+    _write(d / "party" / "0.parquet", [
+        {"party_id": f"d{n}", "raw_name": dn, "party_kind": "unknown", "org_name_norm": None,
+         "address_id": f"a{n}"} for n, (dn, _, _) in pairs.items()])  # fmt: skip
+    _write(
+        d / "instrument_party" / "0.parquet",
+        [{"instrument_uid": f"i{n}", "party_id": f"d{n}", "role": "debtor"} for n in pairs],
+    )
+    _write(d / "instrument" / "0.parquet", [
+        {"instrument_uid": f"i{n}", "source_id": "zz.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2026-01-01", "principal_amount": 10.0} for n in pairs])  # fmt: skip
+    _write(o / "address" / "0.parquet",
+           [_addr(f"m{n}", f"{n} Elm Street", "10001") for n in pairs])  # fmt: skip
+    _write(o / "party" / "0.parquet", [
+        {"party_id": f"o{n}", "raw_name": on, "party_kind": "unknown", "org_name_norm": None,
+         "address_id": f"m{n}"} for n, (_, on, _) in pairs.items()])  # fmt: skip
+    _write(o / "owner_snapshot" / "0.parquet",
+           [{"parcel_uid": f"p{n}", "party_id": f"o{n}"} for n in pairs])  # fmt: skip
+    _write(o / "parcel" / "0.parquet", [{"parcel_uid": f"p{n}"} for n in pairs])
+    out = tmp_path / "out"
+    run(lk, out, ["zz.debts"], ["zz.parcels"])
+    m = dict(
+        duckdb.connect()
+        .execute(f"SELECT debtor_party_id, rule_id FROM '{out.as_posix()}/matches.parquet'")
+        .fetchall()
+    )
+    assert m.get("d1") == "person_name_change_address"
+    assert m.get("d2") is None

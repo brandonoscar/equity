@@ -55,6 +55,10 @@ Rules, strongest first (a debtor-owner pair keeps its strongest rule):
                         formal names, middle initials are dropped and spaces ignored, all at
                         once ("BOB A SMITH" / "ROBERT SMITH", "BILL O BRIEN" / "WILLIAM
                         OBRIEN"); two different middle initials never agree      -> review
+  person_name_change_address  same address, same first (and middle) name, another surname
+                        ("JANE SMITH" / "JANE DOE": a marriage or divorce); the two
+                        surnames are not both first names (that is a household) and not one
+                        letter apart (that is a typo)                            -> review
   person_at_owner_occupied_property  a lot no source names an owner for (California rolls)
                         whose property address is the debtor's own address, and the roll's
                         latest homeowner exemption says an owner lives there       -> review
@@ -205,6 +209,7 @@ RULES = (
     ("org_name_street_city", "review", 21),
     ("person_name_former_address", "review", 22),
     ("person_loose_name_address", "review", 23),
+    ("person_name_change_address", "review", 24),
 )
 
 
@@ -959,6 +964,29 @@ WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2
 """
 
 
+NAME_CHANGE_SQL = """
+INSERT INTO candidates
+SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
+       'person_name_change_address', d.name_key
+FROM debtors d JOIN addr_alias aa ON aa.k = d.addr_key JOIN o_by_addr o ON o.k = aa.k2
+WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2
+  AND name_words(d.name_key) = name_words(o.name_key)
+  AND NOT suffix_conflict(d.suffix_key, o.suffix_key)
+  AND len(name_only(d.name_key, o.name_key)) = 1 AND len(name_only(o.name_key, d.name_key)) = 1
+  AND length(name_only(d.name_key, o.name_key)[1]) >= 2
+  AND length(name_only(o.name_key, d.name_key)[1]) >= 2
+  AND damerau_levenshtein(name_only(d.name_key, o.name_key)[1],
+                          name_only(o.name_key, d.name_key)[1]) > 1
+  AND NOT (name_only(d.name_key, o.name_key)[1] IN (SELECT name FROM first_names)
+           AND name_only(o.name_key, d.name_key)[1] IN (SELECT name FROM first_names))
+  -- the shared words hold the first name
+  AND EXISTS (SELECT 1 FROM unnest(string_split(d.name_key, ' ')) t(w)
+              WHERE list_contains(string_split(o.name_key, ' '), t.w)
+                AND t.w IN (SELECT name FROM first_names))
+  AND nick_key(d.name_key) <> nick_key(o.name_key);
+"""
+
+
 def first_names(con: duckdb.DuckDBPyConnection) -> None:
     """first_names(name): every first name in the 1990 Census lists (data/first_names_1990.txt)."""
     path = Path(__file__).parent / "data" / "first_names_1990.txt"
@@ -1202,6 +1230,7 @@ def match(
         con.execute(HISTORY_FROM_RECORDS_SQL)
     con.execute(FORMER_SQL)
     con.execute(LOOSE_SQL)
+    con.execute(NAME_CHANGE_SQL)
     con.execute(UNIT_SQL)
     if parcel_on_lien:
         con.execute(PARCEL_ON_LIEN_SQL)
