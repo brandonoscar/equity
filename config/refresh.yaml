@@ -65,7 +65,8 @@ rules:
     mode: listing
     listing_table: tax_delinquency_snapshot
   # Current debt lists whose names the patterns below miss: weekly, as the other debt lists.
-  - match: [fl.miami_dade.code_collections, tn.hamilton.personal_property_taxes]
+  - match: [fl.miami_dade.code_collections, tn.hamilton.personal_property_taxes,
+            tx.tarrant.mineral_interests]
     every_hours: 168
     mode: rebuild
   # FHFA ZIP5 house price index: a new year is published once a year; check monthly.

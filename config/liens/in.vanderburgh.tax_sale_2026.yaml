@@ -1,0 +1,40 @@
+source_id: in.vanderburgh.tax_sale_2026
+state: IN
+county_fips: "18163"   # Vanderburgh County (Evansville)
+# Evansville-Vanderburgh GIS 'Tax Sale Property as of Aug 3, 2026' (SITE_PROJECTS/TAX_SALE
+# MapServer layer 0, behind the county's 'Vanderburgh County Tax Sale-New 2026' map): 513
+# parcels in the county's 2026 tax sale, with the owner, the property address, the legal
+# description, the amount due before the sale and the minimum bid. The list is the county's
+# as of 2026-08-03, so that is its date: a parcel redeemed or sold since stays on it.
+# Delinquent Indiana property taxes are a lien on the parcel (IC 6-1.1-22-13); a senior lien,
+# not a judgment. StatePIN is in.vanderburgh.parcels StatePIN. The earlier years' layers on
+# the same service (2020-2025) are past sales and not read. Indiana limits commercial use of
+# agency name and address lists (IC 5-14-3-3(f)): loaded on the owner's decision of
+# 2026-11-28 and tagged as the Indiana parcel sources are. Debt kind: tax_delinquency.
+api: arcgis
+layer_url: https://maps.evansvillegis.com/arcgis_server/rest/services/SITE_PROJECTS/TAX_SALE/MapServer/0
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, StatePIN, SALE_ID, PROPERTY__, OWNER_NAME, LOCATION_ADDRESS, prop_street,
+         AMT_DUE_BEFORE_SALE, MINIMUM_BID]
+listed_on: listed_on
+list_date: 2026-08-03
+date_field: listed_on
+uid: StatePIN
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Vanderburgh County 2026 tax sale parcel
+amount: AMT_DUE_BEFORE_SALE
+parties:
+  - role: debtor
+    name: OWNER_NAME
+    address: {line1: LOCATION_ADDRESS, state_const: IN}   # the property
+  - {role: creditor, const: Vanderburgh County Treasurer, person_names: false}
+parcel: {kind: pin, field: StatePIN, county_fips: "18163"}
+extra_pii: [LOCATION_ADDRESS, prop_street]
+use_restrictions: [no_commercial_name_address_lists]
+terms:
+  url: https://maps.evansvillegis.com/arcgis_server/rest/services/SITE_PROJECTS/TAX_SALE/MapServer
+  summary: "Evansville-Vanderburgh GIS public ArcGIS MapServer (the county's 2026 tax sale map), no login, token or fee; no license text. Indiana IC 5-14-3-3(f) limits commercial use of agency name and address lists: loaded on the owner's decision (2026-11-28), tagged no_commercial_name_address_lists. maps.evansvillegis.com/robots.txt: Crawl-delay 60; /arcgis_server/ allowed."
+  checked_on: 2026-11-28
+  robots_checked_on: 2026-11-28
+  cost_model: free

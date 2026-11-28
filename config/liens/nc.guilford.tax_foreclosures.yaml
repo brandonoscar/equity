@@ -1,0 +1,37 @@
+source_id: nc.guilford.tax_foreclosures
+state: NC
+county_fips: "37081"   # Guilford County (Greensboro)
+# Guilford County 'Parcel Foreclosure' (the county's own ArcGIS server, gcgis.guilfordcountync.gov,
+# Foreclosure/ForeclosuresPublic): 960 parcels in the Tax Department's foreclosure of its tax
+# lien ('FLAGMORTGAGE', the mortgage-style foreclosure of G.S. 105-374) on 2026-11-28, with the
+# status (Assigned To Attorney 931, Notice of Sale 8, Pending Confirmation 13, Upset Bid 7), the
+# owner, the owner's mailing address, the property and its assessed values, and the auction
+# place. No amount and no per-row date are published: the date is the day the list was read,
+# and the status is the raw type. Unpaid NC property tax is a lien on the parcel
+# (G.S. 105-355); a senior lien, foreclosed in court. PIN '8817881859' + '-000' is
+# nc.statewide.parcels parno. nc.guilford.tax_delinquent lists the unpaid bills themselves.
+# Debt kind: tax_delinquency.
+api: arcgis
+layer_url: https://gcgis.guilfordcountync.gov/arcgis/rest/services/Foreclosure/ForeclosuresPublic/FeatureServer/0
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, PARCEL_ID, REID, PIN, Owner, LOCATION_ADDR, Mail_Address, Mail_City,
+         Mail_State, Mail_Zip, FLAG_TYPE, FLAG_STATUS, Total_Assessed, Property_Type]
+listed_on: listed_on
+date_field: listed_on
+uid: REID
+doc_type: TAX_LIEN_STATE
+doc_type_raw: {field: FLAG_STATUS}
+parties:
+  - role: debtor
+    name: Owner
+    address: {line1: Mail_Address, city: Mail_City, state: Mail_State, zip: Mail_Zip}
+  - {role: creditor, const: Guilford County Tax Department, person_names: false}
+parcel: {kind: pin, field: PIN, county_fips: "37081", suffix: "-000"}
+extra_pii: [LOCATION_ADDR, Mail_Address]
+terms:
+  url: https://gcgis.guilfordcountync.gov/arcgis/rest/services/Foreclosure/ForeclosuresPublic/FeatureServer
+  summary: "Guilford County, NC GIS ArcGIS Server (gcgis.guilfordcountync.gov), public Foreclosure service, no login, token or fee; no license or use terms on the service. robots.txt redirects to the portal, which answers 404 (RFC 9309: no rules)."
+  checked_on: 2026-11-28
+  robots_checked_on: 2026-11-28
+  cost_model: free

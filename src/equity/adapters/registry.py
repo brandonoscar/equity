@@ -89,17 +89,21 @@ from equity.adapters.tx.collin_taxroll import (
     CollinTaxRollDelinquent,
 )
 from equity.adapters.tx.dallas_trw import (
+    DallasMineralTaxDelinquent,
     DallasPersonalPropertyDelinquent,
     DallasTaxRollDelinquent,
 )
 from equity.adapters.tx.denton_taxroll import (
+    DentonMineralTaxDelinquent,
     DentonPersonalPropertyDelinquent,
     DentonTaxRollDelinquent,
 )
 from equity.adapters.tx.harris_district import HarrisDistrictCivilJudgments
 from equity.adapters.tx.harris_jp import HarrisJPCivilJudgments
+from equity.adapters.tx.mineral_interests import TarrantMineralInterests
 from equity.adapters.tx.stratmap import TexasStratMapParcels
 from equity.adapters.tx.tarrant_taxroll import (
+    TarrantMineralTaxDelinquent,
     TarrantPersonalPropertyDelinquent,
     TarrantTaxRollDelinquent,
 )
@@ -147,6 +151,10 @@ _ALL: tuple[type[Adapter], ...] = (
     DallasTaxRollDelinquent,
     TarrantTaxRollDelinquent,
     TarrantPersonalPropertyDelinquent,
+    TarrantMineralInterests,
+    TarrantMineralTaxDelinquent,
+    DallasMineralTaxDelinquent,
+    DentonMineralTaxDelinquent,
     DallasPersonalPropertyDelinquent,
     CollinTaxRollDelinquent,
     CollinPersonalPropertyDelinquent,

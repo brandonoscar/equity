@@ -37,7 +37,7 @@ Federal sources (FJC civil judgments, EPA judicial cases, SBA charge-offs, HUD R
 | IA | 8 of 99 counties | owner, address, value, homestead, land use, zoning | — | foreclosure (2)<br>tax_lien (1) | `us.ianb.rss`<br>`us.iasb.rss` | `ia.sos.business` | `IA` | 1 local layers | — |
 | ID | statewide | owner, address, value, homestead | — | foreclosure (1) | `us.idb.rss` | — | `ID` | 1 local layers | — |
 | IL | 10 of 102 counties | owner, address, value, land use | `il.cook.recorder_foreclosures_2011`<br>`il.cook.recorder_foreclosures_2012`<br>`il.cook.recorder_mortgages_2011`<br>`il.cook.recorder_mortgages_2012`<br>`il.cook.recorder_mortgages_2013_2015`<br>`il.cook.recorder_quitclaims_2011`<br>`il.cook.recorder_quitclaims_2012`<br>`il.cook.recorder_quitclaims_2013_2015`<br>`il.cook.sales`<br>`il.ptax.transfers` | administrative_judgment (3)<br>foreclosure (3)<br>housing_court_case (1)<br>tax_lien (2) | `us.ilcb.rss`<br>`us.ilsb.rss` | — | `IL-COLLAR`<br>`IL-COOK`<br>`IL-COUNTIES` | 3 local layers | — |
-| IN | statewide | owner, address, value, land use | `in.dlgf.sales_disclosures` | tax_delinquency (4) | `us.innb.rss`<br>`us.innd.rss`<br>`us.insb.rss`<br>`us.insd.rss` | — | `IN`<br>`IN-STJOSEPH` | none | — |
+| IN | statewide | owner, address, value, land use | `in.dlgf.sales_disclosures` | tax_delinquency (5) | `us.innb.rss`<br>`us.innd.rss`<br>`us.insb.rss`<br>`us.insd.rss` | — | `IN`<br>`IN-STJOSEPH` | none | — |
 | KS | 4 of 105 counties | owner, address, land use | — | foreclosure (1)<br>tax_delinquency (1) | `us.ksb.rss` | — | `KS` | none | — |
 | KY | 4 of 120 counties | owner, address, value, land use, zoning | — | code_enforcement_charge (1)<br>foreclosure (1) | `us.kywb.rss` | — | `KY` | 3 local layers | — |
 | LA | 7 of 64 counties | owner, address, value, homestead, land use | — | administrative_judgment (1)<br>foreclosure (2) | `us.laeb.rss`<br>`us.laed.rss`<br>`us.lamb.rss`<br>`us.lamd.rss`<br>`us.lawb.rss`<br>`us.lawd.rss` | — | `LA-COUNTIES`<br>`LA-EBR`<br>`LA-LAFAYETTE`<br>`LA-NOLA` | 1 local layers | — |
@@ -49,7 +49,7 @@ Federal sources (FJC civil judgments, EPA judicial cases, SBA charge-offs, HUD R
 | MO | 5 of 115 counties | owner, address, value, land use, zoning | — | tax_delinquency (1) | `us.moeb.rss`<br>`us.mowb.rss` | — | `MO` | 1 local layers | — |
 | MS | statewide | owner, address, value, zoning | — | tax_delinquency (2) | `us.msnb.rss`<br>`us.mssb.rss` | — | `MS-HARRISON` | none | — |
 | MT | statewide | owner, address, value, land use | — | — | `us.mtb.rss` | — | `MT` | 1 local layers | — |
-| NC | statewide | owner, address, value, land use | — | code_enforcement_lien (1)<br>tax_delinquency (3) | `us.nced.rss`<br>`us.ncmb.rss`<br>`us.ncmd.rss`<br>`us.ncwb.rss`<br>`us.ncwd.rss` | — | `NC` | 5 local layers | — |
+| NC | statewide | owner, address, value, land use | — | code_enforcement_lien (1)<br>tax_delinquency (4) | `us.nced.rss`<br>`us.ncmb.rss`<br>`us.ncmd.rss`<br>`us.ncwb.rss`<br>`us.ncwd.rss` | — | `NC` | 5 local layers | — |
 | ND | statewide | owner, address, value | — | — | `us.ndb.rss` | — | `ND` | 1 local layers | — |
 | NE | statewide | owner, address, value, land use, zoning | — | tax_delinquency (1)<br>tax_lien (2) | `us.neb.rss` | — | `NE-COUNTIES`<br>`NE-DOUGLAS` | 2 local layers | — |
 | NH | statewide | owner, address, land use | — | — | `us.nhb.rss` | — | `NH` | statewide | — |
@@ -65,7 +65,7 @@ Federal sources (FJC civil judgments, EPA judicial cases, SBA charge-offs, HUD R
 | SC | 13 of 46 counties | owner, address, value, homestead, land use, zoning | — | tax_delinquency (3) | `us.scb.rss` | — | `SC` | 3 local layers | — |
 | SD | 6 of 66 counties | owner, address, value, homestead, land use | — | tax_lien (1) | `us.sdb.rss` | — | `SD` | none | — |
 | TN | statewide | owner, address, value, land use, zoning | — | tax_delinquency (2) | `us.tneb.rss`<br>`us.tnmb.rss`<br>`us.tnwb.rss` | — | `TN` | 4 local layers | — |
-| TX | statewide | owner, address, value, land use | — | administrative_order (2)<br>court_judgment (5)<br>foreclosure (1)<br>tax_delinquency (10) | `us.txeb.rss`<br>`us.txed.rss`<br>`us.txnb.rss`<br>`us.txsd.rss`<br>`us.txwb.rss`<br>`us.txwd.rss` | — | `TX-COLLIN`<br>`TX-COUNTIES`<br>`TX-DALLAS`<br>`TX-DENTON`<br>`TX-HARRIS`<br>`TX-TARRANT`<br>`TX-TRAVIS` | 11 local layers | — |
+| TX | statewide | owner, address, value, land use | — | administrative_order (2)<br>court_judgment (5)<br>foreclosure (1)<br>tax_delinquency (13) | `us.txeb.rss`<br>`us.txed.rss`<br>`us.txnb.rss`<br>`us.txsd.rss`<br>`us.txwb.rss`<br>`us.txwd.rss` | — | `TX-COLLIN`<br>`TX-COUNTIES`<br>`TX-DALLAS`<br>`TX-DENTON`<br>`TX-HARRIS`<br>`TX-TARRANT`<br>`TX-TRAVIS` | 11 local layers | — |
 | UT | statewide | owner, address, value, land use | — | tax_delinquency (1) | — | — | `UT` | 2 local layers | — |
 | VA | 22 of 133 counties | owner, address, value, land use, zoning | — | tax_delinquency (3) | `us.vaeb.rss`<br>`us.vawb.rss` | — | `VA-COUNTIES`<br>`VA-RICHMOND` | 16 local layers | — |
 | VT | statewide | owner, address, value, land use | — | tax_delinquency (2) | `us.vtb.rss` | — | `VT` | statewide + 8 local | — |

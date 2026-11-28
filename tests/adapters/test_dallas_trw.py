@@ -86,3 +86,17 @@ def test_commercial_is_real_property_and_personal_property_is_its_own_source() -
         == "Dallas County delinquent business personal property tax (year 2024)"
     )
     assert not [r for t, r in out if t == "instrument_parcel"]
+
+
+def test_mineral_records_are_their_own_source() -> None:
+    from equity.adapters.tx.dallas_trw import DallasMineralTaxDelinquent
+
+    lines = [_rec(cad_account="N1", year="2024", due_date="20250201", total_due="00000000300",
+                  roll="N", owner="ROYALTY LLC")]  # fmt: skip
+    rows = delinquent_accounts(iter(lines), date(2025, 12, 31), ("N",))
+    body = json.dumps({"file": "flat404.x", "rows": rows}).encode()
+    out = [(r.table, dict(r.row)) for r in DallasMineralTaxDelinquent().normalize(
+        Fetched("tx.dallas.mineral_tax_delinquent", "x", AT, 200, body, ""))]  # fmt: skip
+    (inst,) = [r for t, r in out if t == "instrument"]
+    assert inst["doc_type_raw"] == "Dallas County delinquent mineral interest tax (year 2024)"
+    assert not [r for t, r in out if t == "instrument_parcel"]

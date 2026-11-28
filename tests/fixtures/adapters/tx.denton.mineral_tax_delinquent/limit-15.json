@@ -1,0 +1,323 @@
+{
+ "file": "Download.ashx?file=TaxRoll_V1_20261125_080840.zip",
+ "rows": [
+  {
+   "account": "1000015DEN",
+   "addr1": "TESTOWNER ED2914",
+   "addr2": "",
+   "amount": "9.07",
+   "bankruptcies": [],
+   "cad_id": "0179161-0251827-RI",
+   "city": "GREENWOOD VILLAGE",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 456F63 LLC",
+   "owner2": "",
+   "roll": "003",
+   "state": "CO",
+   "years": [
+    2024
+   ],
+   "zip": "801114708"
+  },
+  {
+   "account": "1000018DEN",
+   "addr1": "TESTOWNER DBA2DF",
+   "addr2": "",
+   "amount": "18.29",
+   "bankruptcies": [],
+   "cad_id": "0179602-0251294-RI",
+   "city": "CUNNINGHAM",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 45FFA4",
+   "owner2": "",
+   "roll": "003",
+   "state": "TN",
+   "years": [
+    2023,
+    2024,
+    2025
+   ],
+   "zip": "37052"
+  },
+  {
+   "account": "1000033DEN",
+   "addr1": "TESTOWNER 0F04BD",
+   "addr2": "",
+   "amount": "42.61",
+   "bankruptcies": [],
+   "cad_id": "0179612-016808-RI",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 42D677",
+   "owner2": "",
+   "roll": "003",
+   "state": "TX",
+   "years": [
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "zip": "761373729"
+  },
+  {
+   "account": "1000045DEN",
+   "addr1": "TESTOWNER E8A05B",
+   "addr2": "",
+   "amount": "0.26",
+   "bankruptcies": [],
+   "cad_id": "0179612-0251229-RI",
+   "city": "JUSTIN",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 24BF5D",
+   "owner2": "",
+   "roll": "003",
+   "state": "TX",
+   "years": [
+    2024
+   ],
+   "zip": "76247"
+  },
+  {
+   "account": "1000058DEN",
+   "addr1": "TESTOWNER 0F04BD",
+   "addr2": "",
+   "amount": "16.32",
+   "bankruptcies": [],
+   "cad_id": "0180603-016808-RI",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 42D677",
+   "owner2": "",
+   "roll": "003",
+   "state": "TX",
+   "years": [
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "zip": "761373729"
+  },
+  {
+   "account": "1000070DEN",
+   "addr1": "TESTOWNER E8A05B",
+   "addr2": "",
+   "amount": "0.13",
+   "bankruptcies": [],
+   "cad_id": "0180603-0251229-RI",
+   "city": "JUSTIN",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 24BF5D",
+   "owner2": "",
+   "roll": "003",
+   "state": "TX",
+   "years": [
+    2024
+   ],
+   "zip": "76247"
+  },
+  {
+   "account": "1000090DEN",
+   "addr1": "TESTOWNER 0F04BD",
+   "addr2": "",
+   "amount": "2.66",
+   "bankruptcies": [],
+   "cad_id": "0181944-016808-RI",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 42D677",
+   "owner2": "",
+   "roll": "003",
+   "state": "TX",
+   "years": [
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "zip": "761373729"
+  },
+  {
+   "account": "1000106DEN",
+   "addr1": "TESTOWNER E8A05B",
+   "addr2": "",
+   "amount": "0.63",
+   "bankruptcies": [],
+   "cad_id": "0182144-0251229-RI",
+   "city": "JUSTIN",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 24BF5D",
+   "owner2": "",
+   "roll": "003",
+   "state": "TX",
+   "years": [
+    2024
+   ],
+   "zip": "76247"
+  },
+  {
+   "account": "1000107DEN",
+   "addr1": "TESTOWNER 26CB3A",
+   "addr2": "",
+   "amount": "1.41",
+   "bankruptcies": [],
+   "cad_id": "0182144-0251230-RI",
+   "city": "KRUM",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 21A0C3",
+   "owner2": "TESTOWNER E70774",
+   "roll": "003",
+   "state": "TX",
+   "years": [
+    2024
+   ],
+   "zip": "76249"
+  },
+  {
+   "account": "1000118DEN",
+   "addr1": "TESTOWNER 979B35",
+   "addr2": "",
+   "amount": "0.39",
+   "bankruptcies": [],
+   "cad_id": "0182297-016806-RI",
+   "city": "SAGINAW",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 4FEE98",
+   "owner2": "",
+   "roll": "003",
+   "state": "TX",
+   "years": [
+    2023
+   ],
+   "zip": "761796356"
+  },
+  {
+   "account": "1000119DEN",
+   "addr1": "TESTOWNER 0F04BD",
+   "addr2": "",
+   "amount": "1.43",
+   "bankruptcies": [],
+   "cad_id": "0182297-016808-RI",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 42D677",
+   "owner2": "",
+   "roll": "003",
+   "state": "TX",
+   "years": [
+    2022,
+    2023
+   ],
+   "zip": "761373729"
+  },
+  {
+   "account": "1000137DEN",
+   "addr1": "TESTOWNER DBA2DF",
+   "addr2": "",
+   "amount": "42.87",
+   "bankruptcies": [],
+   "cad_id": "0182305-0251294-RI",
+   "city": "CUNNINGHAM",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 45FFA4",
+   "owner2": "",
+   "roll": "003",
+   "state": "TN",
+   "years": [
+    2023,
+    2024,
+    2025
+   ],
+   "zip": "37052"
+  },
+  {
+   "account": "1000181DEN",
+   "addr1": "TESTOWNER 979B35",
+   "addr2": "",
+   "amount": "0.26",
+   "bankruptcies": [],
+   "cad_id": "0183435-016806-RI",
+   "city": "SAGINAW",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 4FEE98",
+   "owner2": "",
+   "roll": "003",
+   "state": "TX",
+   "years": [
+    2023
+   ],
+   "zip": "761796356"
+  },
+  {
+   "account": "1000182DEN",
+   "addr1": "TESTOWNER 0F04BD",
+   "addr2": "",
+   "amount": "0.41",
+   "bankruptcies": [],
+   "cad_id": "0183435-016808-RI",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 42D677",
+   "owner2": "",
+   "roll": "003",
+   "state": "TX",
+   "years": [
+    2022,
+    2023
+   ],
+   "zip": "761373729"
+  },
+  {
+   "account": "1000229DEN",
+   "addr1": "TESTOWNER 0F04BD",
+   "addr2": "",
+   "amount": "26.25",
+   "bankruptcies": [],
+   "cad_id": "0183572-016808-RI",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 42D677",
+   "owner2": "",
+   "roll": "003",
+   "state": "TX",
+   "years": [
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "zip": "761373729"
+  }
+ ]
+}

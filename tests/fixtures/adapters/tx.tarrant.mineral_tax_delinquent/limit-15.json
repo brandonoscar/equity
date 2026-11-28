@@ -1,0 +1,332 @@
+{
+ "file": "TaxRoll20261125.zip",
+ "rows": [
+  {
+   "account": "00010335536",
+   "addr1": "TESTOWNER 9F756D",
+   "addr2": "",
+   "amount": "0.50",
+   "bankruptcies": [],
+   "cad_id": "00010335536",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER FE20C2",
+   "owner2": "TESTOWNER 7F6BEA",
+   "roll": "03",
+   "state": "TX",
+   "years": [
+    2025
+   ],
+   "zip": "761073823"
+  },
+  {
+   "account": "00011015756",
+   "addr1": "TESTOWNER 22052F",
+   "addr2": "",
+   "amount": "0.36",
+   "bankruptcies": [],
+   "cad_id": "00011015756",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER F54FF1",
+   "owner2": "",
+   "roll": "03",
+   "state": "TX",
+   "years": [
+    2023
+   ],
+   "zip": "761261931"
+  },
+  {
+   "account": "00011015772",
+   "addr1": "TESTOWNER 9C92EA",
+   "addr2": "",
+   "amount": "0.36",
+   "bankruptcies": [],
+   "cad_id": "00011015772",
+   "city": "",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 1C46BB",
+   "owner2": "",
+   "roll": "03",
+   "state": "",
+   "years": [
+    2023
+   ],
+   "zip": ""
+  },
+  {
+   "account": "00011015780",
+   "addr1": "TESTOWNER 9F756D",
+   "addr2": "",
+   "amount": "36.42",
+   "bankruptcies": [],
+   "cad_id": "00011015780",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER FE20C2",
+   "owner2": "TESTOWNER 7F6BEA",
+   "roll": "03",
+   "state": "TX",
+   "years": [
+    2012,
+    2013,
+    2014,
+    2015,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2025
+   ],
+   "zip": "761073823"
+  },
+  {
+   "account": "00011015837",
+   "addr1": "TESTOWNER ABE56D",
+   "addr2": "",
+   "amount": "9.01",
+   "bankruptcies": [],
+   "cad_id": "000016300001101",
+   "city": "SAGINAW",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 70B192",
+   "owner2": "TESTOWNER 7A6E7D",
+   "roll": "03",
+   "state": "MI",
+   "years": [
+    2014,
+    2015,
+    2016,
+    2017
+   ],
+   "zip": "486386312"
+  },
+  {
+   "account": "00011015845",
+   "addr1": "TESTOWNER ABE56D",
+   "addr2": "",
+   "amount": "0.49",
+   "bankruptcies": [],
+   "cad_id": "00011015845",
+   "city": "SAGINAW",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 801012",
+   "owner2": "",
+   "roll": "03",
+   "state": "MI",
+   "years": [
+    2009,
+    2010,
+    2011
+   ],
+   "zip": "486386312"
+  },
+  {
+   "account": "00011015853",
+   "addr1": "TESTOWNER 80516C",
+   "addr2": "",
+   "amount": "0.36",
+   "bankruptcies": [],
+   "cad_id": "00011015853",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER B85C85",
+   "owner2": "",
+   "roll": "03",
+   "state": "TX",
+   "years": [
+    2023
+   ],
+   "zip": "761071730"
+  },
+  {
+   "account": "00011107618",
+   "addr1": "TESTOWNER 22052F",
+   "addr2": "",
+   "amount": "0.36",
+   "bankruptcies": [],
+   "cad_id": "00011107618",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER F54FF1",
+   "owner2": "",
+   "roll": "03",
+   "state": "TX",
+   "years": [
+    2023
+   ],
+   "zip": "761261931"
+  },
+  {
+   "account": "00011107669",
+   "addr1": "TESTOWNER 9C92EA",
+   "addr2": "",
+   "amount": "0.36",
+   "bankruptcies": [],
+   "cad_id": "00011107669",
+   "city": "",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 1C46BB",
+   "owner2": "",
+   "roll": "03",
+   "state": "",
+   "years": [
+    2023
+   ],
+   "zip": ""
+  },
+  {
+   "account": "00011107707",
+   "addr1": "TESTOWNER 5880E5",
+   "addr2": "",
+   "amount": "2.95",
+   "bankruptcies": [],
+   "cad_id": "00011107707",
+   "city": "SANTO",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER F17897",
+   "owner2": "",
+   "roll": "03",
+   "state": "TX",
+   "years": [
+    2025
+   ],
+   "zip": "764723837"
+  },
+  {
+   "account": "00011107790",
+   "addr1": "TESTOWNER 9F756D",
+   "addr2": "",
+   "amount": "0.51",
+   "bankruptcies": [],
+   "cad_id": "00011107790",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 10A793",
+   "owner2": "",
+   "roll": "03",
+   "state": "TX",
+   "years": [
+    2015,
+    2023
+   ],
+   "zip": "761073823"
+  },
+  {
+   "account": "00011107812",
+   "addr1": "TESTOWNER 9F756D",
+   "addr2": "",
+   "amount": "14.78",
+   "bankruptcies": [],
+   "cad_id": "00011107812",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER FE20C2",
+   "owner2": "TESTOWNER 7F6BEA",
+   "roll": "03",
+   "state": "TX",
+   "years": [
+    2013,
+    2014,
+    2015,
+    2018,
+    2022,
+    2023,
+    2025
+   ],
+   "zip": "761073823"
+  },
+  {
+   "account": "00011108215",
+   "addr1": "TESTOWNER ABE56D",
+   "addr2": "",
+   "amount": "5.61",
+   "bankruptcies": [],
+   "cad_id": "000016300001131",
+   "city": "SAGINAW",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 70B192",
+   "owner2": "TESTOWNER 7A6E7D",
+   "roll": "03",
+   "state": "MI",
+   "years": [
+    2014,
+    2015,
+    2016,
+    2017
+   ],
+   "zip": "486386312"
+  },
+  {
+   "account": "00011108274",
+   "addr1": "TESTOWNER ABE56D",
+   "addr2": "",
+   "amount": "0.49",
+   "bankruptcies": [],
+   "cad_id": "00011108274",
+   "city": "SAGINAW",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 801012",
+   "owner2": "",
+   "roll": "03",
+   "state": "MI",
+   "years": [
+    2009,
+    2010,
+    2011
+   ],
+   "zip": "486386312"
+  },
+  {
+   "account": "00011108355",
+   "addr1": "TESTOWNER 80516C",
+   "addr2": "",
+   "amount": "0.36",
+   "bankruptcies": [],
+   "cad_id": "00011108355",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER B85C85",
+   "owner2": "",
+   "roll": "03",
+   "state": "TX",
+   "years": [
+    2023
+   ],
+   "zip": "761071730"
+  }
+ ]
+}

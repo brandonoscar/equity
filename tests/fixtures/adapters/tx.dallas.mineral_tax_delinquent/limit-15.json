@@ -1,0 +1,307 @@
+{
+ "file": "flat404.DALLASCOUNTY.20261123.761953",
+ "rows": [
+  {
+   "addr2": "",
+   "addr3": "",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "279986",
+   "cents": 24092,
+   "city": "",
+   "owner": "TESTOWNER 73948A",
+   "state": "",
+   "suits": [],
+   "years": [
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+   ],
+   "zip": "00000"
+  },
+  {
+   "addr2": "",
+   "addr3": "",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "285146",
+   "cents": 22805,
+   "city": "",
+   "owner": "TESTOWNER 73948A",
+   "state": "",
+   "suits": [],
+   "years": [
+    2021,
+    2022,
+    2023,
+    2024
+   ],
+   "zip": "00000"
+  },
+  {
+   "addr2": "TESTOWNER BC5ACB",
+   "addr3": "TESTOWNER D77DF5",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "60172045",
+   "cents": 8455,
+   "city": "COMANCHE",
+   "owner": "TESTOWNER 104638",
+   "state": "OK",
+   "suits": [],
+   "years": [
+    2012,
+    2013,
+    2015,
+    2016,
+    2017,
+    2018,
+    2022,
+    2023
+   ],
+   "zip": "735294037"
+  },
+  {
+   "addr2": "TESTOWNER BC5ACB",
+   "addr3": "TESTOWNER D77DF5",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "60172061",
+   "cents": 6943,
+   "city": "COMANCHE",
+   "owner": "TESTOWNER 104638",
+   "state": "OK",
+   "suits": [],
+   "years": [
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2022,
+    2023
+   ],
+   "zip": "735294037"
+  },
+  {
+   "addr2": "TESTOWNER BC5ACB",
+   "addr3": "TESTOWNER D77DF5",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "60172088",
+   "cents": 7352,
+   "city": "COMANCHE",
+   "owner": "TESTOWNER 104638",
+   "state": "OK",
+   "suits": [],
+   "years": [
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2022,
+    2023
+   ],
+   "zip": "735294037"
+  },
+  {
+   "addr2": "TESTOWNER BC5ACB",
+   "addr3": "TESTOWNER D77DF5",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "60172096",
+   "cents": 5566,
+   "city": "COMANCHE",
+   "owner": "TESTOWNER 104638",
+   "state": "OK",
+   "suits": [],
+   "years": [
+    2013,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+   ],
+   "zip": "735294037"
+  },
+  {
+   "addr2": "",
+   "addr3": "TESTOWNER 6C40D6",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "60353104",
+   "cents": 514,
+   "city": "BURLESON",
+   "owner": "TESTOWNER D71AF5",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2012
+   ],
+   "zip": "760288407"
+  },
+  {
+   "addr2": "TESTOWNER 968C19",
+   "addr3": "TESTOWNER EAE034",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "60353864",
+   "cents": 470,
+   "city": "ST SIMONS IS",
+   "owner": "TESTOWNER 474596",
+   "state": "GA",
+   "suits": [],
+   "years": [
+    2012
+   ],
+   "zip": "315222516"
+  },
+  {
+   "addr2": "TESTOWNER 968C19",
+   "addr3": "TESTOWNER EAE034",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "60353872",
+   "cents": 470,
+   "city": "ST SIMONS IS",
+   "owner": "TESTOWNER 474596",
+   "state": "GA",
+   "suits": [],
+   "years": [
+    2012
+   ],
+   "zip": "315222516"
+  },
+  {
+   "addr2": "TESTOWNER 968C19",
+   "addr3": "TESTOWNER EAE034",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "60353880",
+   "cents": 356,
+   "city": "ST SIMONS IS",
+   "owner": "TESTOWNER 474596",
+   "state": "GA",
+   "suits": [],
+   "years": [
+    2012
+   ],
+   "zip": "315222516"
+  },
+  {
+   "addr2": "TESTOWNER 968C19",
+   "addr3": "TESTOWNER EAE034",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "60353899",
+   "cents": 448,
+   "city": "ST SIMONS IS",
+   "owner": "TESTOWNER 474596",
+   "state": "GA",
+   "suits": [],
+   "years": [
+    2012
+   ],
+   "zip": "315222516"
+  },
+  {
+   "addr2": "",
+   "addr3": "TESTOWNER 1FE742",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "60354607",
+   "cents": 15652,
+   "city": "ARLINGTON",
+   "owner": "TESTOWNER 9608A8",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2010,
+    2011,
+    2012
+   ],
+   "zip": "760101912"
+  },
+  {
+   "addr2": "",
+   "addr3": "TESTOWNER 1FE742",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "60354615",
+   "cents": 22179,
+   "city": "ARLINGTON",
+   "owner": "TESTOWNER 9608A8",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2010,
+    2011,
+    2012
+   ],
+   "zip": "760101912"
+  },
+  {
+   "addr2": "",
+   "addr3": "TESTOWNER 1FE742",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "60354623",
+   "cents": 23997,
+   "city": "ARLINGTON",
+   "owner": "TESTOWNER 9608A8",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2010,
+    2011,
+    2012
+   ],
+   "zip": "760101912"
+  },
+  {
+   "addr2": "",
+   "addr3": "TESTOWNER 1FE742",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "60354631",
+   "cents": 11566,
+   "city": "ARLINGTON",
+   "owner": "TESTOWNER 9608A8",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2010,
+    2011,
+    2012
+   ],
+   "zip": "760101912"
+  }
+ ]
+}

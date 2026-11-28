@@ -78,3 +78,19 @@ def test_personal_property_accounts_are_roll_02() -> None:
         inst["doc_type_raw"]
         == "Tarrant County delinquent business personal property tax (year 2024)"
     )
+
+
+def test_mineral_tax_debts_link_to_the_mineral_interest_parcel() -> None:
+    from equity.adapters.tx.tarrant_taxroll import MASTER, REC, TarrantMineralTaxDelinquent
+
+    master = [_master("00010335366", "03", "OLIVER TR"), _master("00000000001", "01", "ANN LEE")]
+    rec = [_rec("00010335366", "2024", "000000032.15", "02/01/2025"),
+           _rec("00000000001", "2024", "000000050.00", "02/01/2025")]  # fmt: skip
+    rows = delinquent_accounts(master, rec, date(2025, 12, 31), MASTER, REC, ("03",))
+    body = json.dumps({"file": "TaxRoll.zip", "rows": rows}).encode()
+    out = [(t.table, dict(t.row)) for t in TarrantMineralTaxDelinquent().normalize(
+        Fetched("tx.tarrant.mineral_tax_delinquent", "x", AT, 200, body, ""))]  # fmt: skip
+    (inst,) = [x for t, x in out if t == "instrument"]
+    assert inst["doc_type_raw"] == "Tarrant County delinquent mineral interest tax (year 2024)"
+    assert [x["parcel_uid"] for t, x in out if t == "instrument_parcel"] == [
+        "48439-MIN-00010335366"]  # fmt: skip

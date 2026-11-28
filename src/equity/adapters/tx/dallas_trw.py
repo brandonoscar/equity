@@ -244,3 +244,14 @@ class DallasPersonalPropertyDelinquent(DallasTaxRollDelinquent):
     rolls: ClassVar[tuple[str, ...]] = ("P",)
     tax_label: ClassVar[str] = "business personal property tax"
     link_parcel: ClassVar[bool] = False
+
+
+class DallasMineralTaxDelinquent(DallasTaxRollDelinquent):
+    """The TRW file's mineral records (roll code N) with past-due tax, owed by the interest's
+    owner; no parcel (a mineral account is not a CAD lot)."""
+
+    source_id: ClassVar[str] = "tx.dallas.mineral_tax_delinquent"
+    adapter_version: ClassVar[str] = "1"
+    rolls: ClassVar[tuple[str, ...]] = ("N",)
+    tax_label: ClassVar[str] = "mineral interest tax"
+    link_parcel: ClassVar[bool] = False

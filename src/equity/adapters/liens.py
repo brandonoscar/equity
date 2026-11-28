@@ -88,7 +88,8 @@ Config keys:
                          left-pad with zeros an id published as a number, e.g. 13),
                          split (optional separator: one field naming several lots, e.g.
                          ', '), lstrip_zeros (true: drop leading zeros, as a roll that stores
-                         '02-24227' as '224227' does)}
+                         '02-24227' as '224227' does), suffix (optional text appended, e.g.
+                         '-000': NC OneMap's parno is the county PIN plus a sub-number)}
   county_fips         jurisdiction when no parcel names a county (5 digits)
   county_name_field   optional field holding the county name (mapped to FIPS in `state`)
   county_aliases      optional {name in the data: county name}, e.g. {DADE: MIAMI-DADE}
@@ -976,6 +977,8 @@ class LienAdapter(Adapter):
                 pin = pin.zfill(int(spec["zfill"]))
             if pin and spec.get("lstrip_zeros"):
                 pin = pin.lstrip("0") or None
+            if pin and spec.get("suffix"):  # a PIN the owner layer keys with a suffix ('-000')
+                pin = pin + str(spec["suffix"])
             if pin is None or not pin.strip("0-. "):  # blank or a zeros placeholder
                 return None, None
                 return None, None

@@ -288,3 +288,22 @@ class TarrantPersonalPropertyDelinquent(TarrantTaxRollDelinquent):
     adapter_version: ClassVar[str] = "1"
     real: ClassVar[tuple[str, ...]] = ("02",)
     tax_label: ClassVar[str] = "business personal property tax"
+
+
+class TarrantMineralTaxDelinquent(TarrantTaxRollDelinquent):
+    """The same roll's mineral interest accounts (roll code 03) with past-due tax: owners of
+    oil and gas interests behind on their tax (243,044 accounts, $17.3M base tax, 466 with a
+    tax-suit judgment on the 2026-11-25 roll). The mineral estate is real property in Texas
+    and the tax a lien on it (Tax Code 32.01); each account is a TAX_LIEN_STATE (or, with a
+    judgment, COURT_ORDER) instrument on the interest's parcel in tx.tarrant.mineral_interests
+    ('48439-MIN-<account>'), which lists the interests that have an appraised value."""
+
+    source_id: ClassVar[str] = "tx.tarrant.mineral_tax_delinquent"
+    adapter_version: ClassVar[str] = "1"
+    real: ClassVar[tuple[str, ...]] = ("03",)
+    tax_label: ClassVar[str] = "mineral interest tax"
+    link_parcel: ClassVar[bool] = True
+
+    def parcel_key(self, row: Mapping[str, Any]) -> str | None:
+        account = str(row.get("account") or "").strip()
+        return f"MIN-{account}" if account else None

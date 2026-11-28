@@ -10,6 +10,7 @@ from equity.adapters.base import FetchRequest
 from equity.adapters.http import Response
 from equity.adapters.tx.denton_taxroll import (
     LISTING,
+    DentonMineralTaxDelinquent,
     DentonPersonalPropertyDelinquent,
     DentonTaxRollDelinquent,
     first_member,
@@ -39,11 +40,12 @@ MASTER = "\r\n".join([
                  (585, 604): "TX", (605, 622): "76201"}),
     _fixed(950, {(1, 30): "767116WIS", (34, 36): "001", (335, 384): "ROE JO"}),
     _fixed(950, {(1, 30): "900001DEN", (34, 36): "002", (335, 384): "BIZ INC"}),
+    _fixed(950, {(1, 30): "800001DEN", (34, 36): "003", (335, 384): "ROYALTY LLC"}),
 ])  # fmt: skip
 REC = "\r\n".join(
     _fixed(224, {(1, 30): acct, (31, 34): "2024", (35, 37): "001", (76, 87): "000000100.00",
                  (88, 97): "02/01/2025"})
-    for acct in ("295693DEN", "767116WIS", "900001DEN")
+    for acct in ("295693DEN", "767116WIS", "900001DEN", "800001DEN")
 )  # fmt: skip
 FULL = _zip({"MM112526.DAT": "x", "MR112526.DAT": "x"})
 DELQ = _zip({"AM112526.DAT": MASTER, "AR112526.DAT": REC})
@@ -82,3 +84,10 @@ def test_delinquent_roll_is_the_am_zip_and_own_accounts_link_to_their_parcel() -
     pout = [(t.table, dict(t.row)) for t in p.normalize(p.fetch(FetchRequest({})))]
     assert [x["instrument_number"] for t, x in pout if t == "instrument"] == ["900001DEN"]
     assert not [x for t, x in pout if t == "instrument_parcel"]
+
+
+def test_mineral_accounts_are_roll_003_with_no_parcel() -> None:
+    m = DentonMineralTaxDelinquent(_Client())  # type: ignore[arg-type]
+    out = [(t.table, dict(t.row)) for t in m.normalize(m.fetch(FetchRequest({})))]
+    assert [x["instrument_number"] for t, x in out if t == "instrument"] == ["800001DEN"]
+    assert not [x for t, x in out if t == "instrument_parcel"]

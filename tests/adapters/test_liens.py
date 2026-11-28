@@ -586,6 +586,17 @@ def test_join_fields_build_a_parcel_key_from_two_fields(tmp_path: Path) -> None:
                     "36001-01010006506200010800000000"]  # fmt: skip
 
 
+def test_pin_suffix_is_appended_to_the_parcel_key(tmp_path: Path) -> None:
+    cfg = _cfg(tmp_path, api="xlsx", url="https://g.test/l.xlsx", portal=None, dataset=None,
+               county_fips="37081", state="NC", released_on=None, listed_on="listed",
+               date_field="listed", uid="pin",
+               parcel={"kind": "pin", "field": "pin", "county_fips": "37081", "suffix": "-000"},
+               parties=[{"role": "debtor", "name": "owner"}])  # fmt: skip
+    book = _xlsx([["Pin", "Owner"], ["8817881859", "STEFANIE PROPERTIES LLC"]])
+    out = _rows_of(lien_adapter_for(load_lien_config(cfg)), {"l.xlsx": book})
+    assert [r["parcel_uid"] for t, r in out if t == "instrument_parcel"] == ["37081-8817881859-000"]
+
+
 HTML_PAGE = b"""<html><head><script>var x = "<table><tr><td>zqx</td></tr></table>";</script>
 <style>td {}</style></head><body><p>Delinquent Taxpayers (Updated November 16, 2026)</p>
 <table><tr><td>layout</td></tr></table>

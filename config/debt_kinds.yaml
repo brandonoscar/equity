@@ -109,11 +109,16 @@ sources:
   tx.tarrant.personal_property_delinquent: tax_delinquency
   tx.denton.tax_roll_delinquent: tax_delinquency
   tx.denton.personal_property_delinquent: tax_delinquency
+  tx.tarrant.mineral_tax_delinquent: tax_delinquency
+  tx.denton.mineral_tax_delinquent: tax_delinquency
+  tx.dallas.mineral_tax_delinquent: tax_delinquency
   tn.hamilton.delinquent_taxes: tax_delinquency
   tn.hamilton.personal_property_taxes: tax_delinquency
   nv.clark.delinquent_taxes_fy2026: tax_delinquency
   ny.albany.delinquent_parcels: tax_delinquency
   in.hammond.tax_sale_2027: tax_delinquency
+  in.vanderburgh.tax_sale_2026: tax_delinquency
+  nc.guilford.tax_foreclosures: tax_delinquency
   ny.nassau.delinquent_general_taxes: tax_delinquency
   ny.nassau.delinquent_school_taxes: tax_delinquency
   il.lake.sheriff_sales: foreclosure

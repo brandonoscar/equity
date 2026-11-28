@@ -118,3 +118,15 @@ class DentonPersonalPropertyDelinquent(DentonTaxRollDelinquent):
     real: ClassVar[tuple[str, ...]] = ("002",)
     link_parcel: ClassVar[bool] = False
     tax_label: ClassVar[str] = "business personal property tax"
+
+
+class DentonMineralTaxDelinquent(DentonTaxRollDelinquent):
+    """The same roll's mineral interest accounts (roll 003: 23,019 with past-due tax, $0.78M,
+    132 with a tax-suit judgment on the 2026-11-25 roll), owed by the interest's owner; no
+    parcel (Denton's mineral interests are not in a parcel source yet)."""
+
+    source_id: ClassVar[str] = "tx.denton.mineral_tax_delinquent"
+    adapter_version: ClassVar[str] = "1"
+    real: ClassVar[tuple[str, ...]] = ("003",)
+    link_parcel: ClassVar[bool] = False
+    tax_label: ClassVar[str] = "mineral interest tax"
