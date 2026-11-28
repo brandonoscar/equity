@@ -616,6 +616,20 @@ def test_pin_rewrite_and_backslash_links(tmp_path: Path) -> None:
     ]
 
 
+def test_links_resolve_against_the_page_base_href(tmp_path: Path) -> None:
+    cfg = _cfg(tmp_path, api="xlsx", url="https://c.test/p/d/index.php", portal=None,
+               dataset=None, county_fips="13067", state="GA", released_on=None,
+               listed_on="listed", date_field="listed", uid="parcel",
+               link_from={"page": "https://c.test/p/d/index.php",
+                          "pattern": "List [0-9.]+\\.xlsx$"},
+               parties=[{"role": "debtor", "name": "owner"}])  # fmt: skip
+    page = b'<base href="https://c.test/" /><a href="Delinquent List 11.09.2026.xlsx">List</a>'
+    cls = lien_adapter_for(load_lien_config(cfg))
+    assert cls(_client({"index.php": page})).file_url() == (
+        "https://c.test/Delinquent%20List%2011.09.2026.xlsx"
+    )
+
+
 HTML_PAGE = b"""<html><head><script>var x = "<table><tr><td>zqx</td></tr></table>";</script>
 <style>td {}</style></head><body><p>Delinquent Taxpayers (Updated November 16, 2026)</p>
 <table><tr><td>layout</td></tr></table>

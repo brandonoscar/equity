@@ -32,7 +32,7 @@ Federal sources (FJC civil judgments, EPA judicial cases, SBA charge-offs, HUD R
 | DC | statewide | owner, value, homestead, land use | — | tax_delinquency (1) | `us.dcb.rss` | `dc.dlcp.business` | `DC` | none | — |
 | DE | statewide | owner, address, land use | — | tax_delinquency (2) | `us.deb.rss` | — | `DE` | 1 local layers | — |
 | FL | statewide | owner, address, value, homestead, land use | `fl.hernando.or`<br>`fl.hillsborough.or`<br>`fl.putnam.or` | administrative_judgment (1)<br>code_enforcement_lien (4)<br>court_judgment (3)<br>recorded_judgment_or_lien (3)<br>tax_lien (1)<br>tax_warrant (1) | `us.flmb.rss`<br>`us.flmd.rss`<br>`us.flnb.rss`<br>`us.flsb.rss`<br>`us.flsd.rss` | — | `FL` | 44 local layers | — |
-| GA | 14 of 159 counties | owner, address, value, land use, zoning | — | tax_delinquency (4) | `us.gamb.rss`<br>`us.gamd.rss`<br>`us.ganb.rss`<br>`us.gasb.rss` | — | `GA` | 4 local layers | — |
+| GA | 14 of 159 counties | owner, address, value, land use, zoning | — | tax_delinquency (5) | `us.gamb.rss`<br>`us.gamd.rss`<br>`us.ganb.rss`<br>`us.gasb.rss` | — | `GA` | 4 local layers | — |
 | HI | statewide | zoning | — | — | `us.hib.rss` | — | — | none | — |
 | IA | 8 of 99 counties | owner, address, value, homestead, land use, zoning | — | foreclosure (2)<br>tax_lien (1) | `us.ianb.rss`<br>`us.iasb.rss` | `ia.sos.business` | `IA` | 1 local layers | — |
 | ID | statewide | owner, address, value, homestead | — | foreclosure (1) | `us.idb.rss` | — | `ID` | 1 local layers | — |

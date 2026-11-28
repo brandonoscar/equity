@@ -1,0 +1,110 @@
+{
+ "rows": [
+  {
+   "address": "4862 TEST ST",
+   "amount": "$224.94",
+   "owner": "TESTOWNER FE9C73",
+   "parcel": "01000100030",
+   "tax_year": "2026"
+  },
+  {
+   "address": "7434 TEST ST",
+   "amount": "$5,298.45",
+   "owner": "TESTOWNER F73901",
+   "parcel": "01000100290",
+   "tax_year": "2026"
+  },
+  {
+   "address": "6022 TEST ST",
+   "amount": "$18,614.36",
+   "owner": "TESTOWNER 614858",
+   "parcel": "01000200030",
+   "tax_year": "2026"
+  },
+  {
+   "address": "820 TEST ST",
+   "amount": "$19,301.16",
+   "owner": "TESTOWNER 9B115D LLC",
+   "parcel": "01000200110",
+   "tax_year": "2026"
+  },
+  {
+   "address": "6908 TEST ST",
+   "amount": "$3,260.27",
+   "owner": "TESTOWNER 08FBD1",
+   "parcel": "01000200170",
+   "tax_year": "2026"
+  },
+  {
+   "address": "2506 TEST ST",
+   "amount": "$28,022.95",
+   "owner": "TESTOWNER DD64C8",
+   "parcel": "01000200250",
+   "tax_year": "2026"
+  },
+  {
+   "address": "8793 TEST ST",
+   "amount": "$18,429.06",
+   "owner": "TESTOWNER 8144D3",
+   "parcel": "01000200390",
+   "tax_year": "2026"
+  },
+  {
+   "address": "2882 TEST ST",
+   "amount": "$6,718.56",
+   "owner": "TESTOWNER 208AD3 LLC",
+   "parcel": "01000300280",
+   "tax_year": "2026"
+  },
+  {
+   "address": "1564 TEST ST",
+   "amount": "$1,924.22",
+   "owner": "TESTOWNER 8B16FB",
+   "parcel": "01000300440",
+   "tax_year": "2026"
+  },
+  {
+   "address": "1966 TEST ST",
+   "amount": "$12,069.84",
+   "owner": "TESTOWNER 873571",
+   "parcel": "01000300710",
+   "tax_year": "2026"
+  },
+  {
+   "address": "7995 TEST ST",
+   "amount": "$1,651.69",
+   "owner": "TESTOWNER 2818C4",
+   "parcel": "01000300740",
+   "tax_year": "2026"
+  },
+  {
+   "address": "8988 TEST ST",
+   "amount": "$18,000.33",
+   "owner": "TESTOWNER 619224",
+   "parcel": "01000300790",
+   "tax_year": "2026"
+  },
+  {
+   "address": "7767 TEST ST",
+   "amount": "$2,065.83",
+   "owner": "TESTOWNER B5EEAF",
+   "parcel": "01000400240",
+   "tax_year": "2026"
+  },
+  {
+   "address": "1124 TEST ST",
+   "amount": "$12,497.17",
+   "owner": "TESTOWNER 614B88",
+   "parcel": "01000400300",
+   "tax_year": "2026"
+  },
+  {
+   "address": "2389 TEST ST",
+   "amount": "$1,493.37",
+   "owner": "TESTOWNER D85D22",
+   "parcel": "01000500320",
+   "tax_year": "2026"
+  }
+ ],
+ "url": "https://www.cobbtax.gov/Cobb%20County%20Tax%20Commissioner%20Delinquent%20Tax%20List%2011.09.2026.pdf"
+}

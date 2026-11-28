@@ -703,6 +703,10 @@ class LienAdapter(Adapter):
         if page.status != 200:
             raise LienConfigError(f"{self.source_id}: HTTP {page.status} from {page_url}")
         text = page.content.decode("utf-8", errors="replace")
+        # Relative links resolve against the page's <base href> when it has one, as browsers
+        # resolve them (Cobb County's page links its PDF relative to its base).
+        base_tag = re.search(r"""<base\s[^>]*href\s*=\s*["']([^"']+)["']""", text, re.IGNORECASE)
+        base = urllib.parse.urljoin(page_url, base_tag.group(1)) if base_tag else page_url
         out: list[tuple[str, str]] = []
         for href in re.findall(r"""href\s*=\s*["']([^"']+)["']""", text, re.IGNORECASE):
             # A backslash in an http(s) href is a path separator, as browsers read it
@@ -710,7 +714,7 @@ class LienAdapter(Adapter):
             href = html.unescape(href).replace("\\", "/")
             m = re.search(pattern, href)
             if m:
-                url = urllib.parse.urljoin(page_url, href)
+                url = urllib.parse.urljoin(base, href)
                 key = m.group(1) if m.groups() else m.group(0)
                 out.append((key, urllib.parse.quote(url, safe=":/?&=%#+,;@()~")))
         return out

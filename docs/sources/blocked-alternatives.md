@@ -280,3 +280,6 @@ The owner approved four held sources (API keys stay on hold):
 | NYC DOF Scofftow cases (qmh3-uvgq) | Booted/towed vehicles for parking judgments: plate only, no names. Not usable. |
 | New Orleans adjudication hearings, all departments (uzyk-jrck) | Address and fees, no parcel id or owner; code cases already in `la.nola.code_hearing_judgments`. |
 | SEC litigation releases, CFPB and FTC enforcement orders | Free-text announcements: defendants and amounts would have to be read out of prose. Not loaded. |
+| Cobb County GA Tax Commissioner delinquent tax list | **Built:** `ga.cobb.delinquent_taxes` (monthly PDF, 2026-11-09 list: 16,575 unpaid bills, $58.6M, tax years 2021-2026), parcel-linked to `ga.cobb.parcels`, in the GA run; the link finder now honors a page's `<base href>`. |
+| Greene County MO 2026 tax sale list (Collector, 8/21/2026) | **Owner decision:** the PDF says it "is provided for research purposes only" and use "for any purpose not explicitly authorized by the Greene County Collector is prohibited". About 100 parcels. Not loaded. |
+| Jefferson County CO lien-sale advertisement, Columbus GA tax sale list, Chatham NC delinquent lists, Saluda/Richland SC | Jefferson's notice answers 404; Columbus's list page is empty (no sale posted); Chatham answers 403; Richland SC links no list, Saluda is small. |

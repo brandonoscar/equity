@@ -122,6 +122,7 @@ sources:
   nc.orange.tax_liens_2025: tax_delinquency
   nc.forsyth.tax_liens_2025: tax_delinquency
   nc.randolph.tax_liens_2025: tax_delinquency
+  ga.cobb.delinquent_taxes: tax_delinquency
   ny.nassau.delinquent_general_taxes: tax_delinquency
   ny.nassau.delinquent_school_taxes: tax_delinquency
   il.lake.sheriff_sales: foreclosure
