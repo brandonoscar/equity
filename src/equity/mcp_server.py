@@ -19,6 +19,7 @@ from pathlib import Path
 from typing import Any, TextIO
 
 from equity import facts as facts_mod
+from equity import forensic as fx
 from equity import search as s
 from equity.search_index import DEFAULT_DB, connect
 
@@ -63,6 +64,28 @@ TOOLS: list[dict[str, Any]] = [
      "it is (USPS-standardized street).",
      "inputSchema": {"type": "object", "required": ["address"], "properties": {
          "address": _STR, "zip": _STR, "city": _STR, "limit": _INT}}},
+    {"name": "lien_stack", "description": "Every encumbrance on a parcel by recording date, "
+     "released or open; with lien (an instrument_uid), its rank, what is senior and junior, "
+     "and the equity behind it net of only senior debt.",
+     "inputSchema": {"type": "object", "required": ["parcel"], "properties": {
+         "parcel": _STR, "lien": _STR}}},
+    {"name": "transfer_badges", "description": "Deeds out by the debtor's name since 180 days "
+     "before the first debt, each with the badges the records show (grantee run by the "
+     "debtor, no consideration, quitclaim, debtor still listed...). Badges, not findings.",
+     "inputSchema": {"type": "object", "required": ["ref"], "properties": {"ref": _STR}}},
+    {"name": "entity_ring", "description": "Businesses the debtor's name holds a role in, "
+     "their parcels, formation after the debt, deeds from the debtor into them.",
+     "inputSchema": {"type": "object", "required": ["ref"], "properties": {"ref": _STR}}},
+    {"name": "timeline", "description": "The debtor's dated events: documents, cases, "
+     "judgments, bankruptcy, business formations, deeds and mortgages on owned parcels.",
+     "inputSchema": {"type": "object", "required": ["ref"], "properties": {"ref": _STR}}},
+    {"name": "household", "description": "Leads around the debtor's address: other owners "
+     "mailed there, parcels there, the same name owning in other states with the same ZIP.",
+     "inputSchema": {"type": "object", "required": ["ref"], "properties": {"ref": _STR}}},
+    {"name": "creditor_portfolios", "description": "Creditors holding open judgments "
+     "against graded (A/B) leads with equity in a state: portfolio-purchase prospects.",
+     "inputSchema": {"type": "object", "required": ["state"], "properties": {
+         "state": _STR, "min_leads": _INT}}},
 ]  # fmt: skip
 
 
@@ -111,6 +134,18 @@ def call(name: str, a: dict[str, Any], db: Path = DEFAULT_DB) -> Any:
         if name == "address":
             return s.address_search(con, str(a["address"]), a.get("zip"), a.get("city"),
                                     int(a.get("limit") or 25))  # fmt: skip
+        if name == "lien_stack":
+            return fx.priority_stack(con, str(a["parcel"]), a.get("lien"))
+        if name == "transfer_badges":
+            return fx.transfer_badges(con, str(a["ref"]))
+        if name == "entity_ring":
+            return fx.entity_ring(con, str(a["ref"]))
+        if name == "timeline":
+            return fx.timeline(con, str(a["ref"]))
+        if name == "household":
+            return fx.household(con, str(a["ref"]))
+        if name == "creditor_portfolios":
+            return fx.creditor_portfolios(con, str(a["state"]), int(a.get("min_leads") or 3))
         raise ValueError(f"unknown tool {name!r}")
     finally:
         con.close()

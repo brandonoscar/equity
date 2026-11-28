@@ -824,10 +824,113 @@ def test_mcp_server_speaks_json_rpc_and_runs_tools(
     assert [r["id"] for r in replies] == [1, 2, 3, 4, 5, 6, 7, None]  # no reply to the notice
     assert replies[0]["result"]["protocolVersion"] == "2025-03-26"
     names = {t["name"] for t in replies[1]["result"]["tools"]}
-    assert {"search", "show", "parcel", "grade", "network", "leads", "facts"} <= names
+    assert {
+        "search",
+        "show",
+        "parcel",
+        "grade",
+        "network",
+        "leads",
+        "facts",
+        "lien_stack",
+        "transfer_badges",
+        "entity_ring",
+        "timeline",
+        "household",
+        "creditor_portfolios",
+    } <= names
     hits = json.loads(replies[2]["result"]["content"][0]["text"])
     assert "oh.franklin.parcels:o1" in {h["ref"] for h in hits}
     assert len(json.loads(replies[3]["result"]["content"][0]["text"])) == 1
     assert json.loads(replies[4]["result"]["content"][0]["text"])["grade"] == "A"
     assert replies[5]["result"]["isError"] is True
     assert replies[6]["error"]["code"] == -32601 and replies[7]["error"]["code"] == -32700
+
+
+@pytest.fixture
+def forensic(cat: duckdb.DuckDBPyConnection) -> duckdb.DuckDBPyConnection:
+    """cat plus a senior and a junior mortgage on the liened parcel, a quitclaim from the
+    debtor's name to the LLC the debtor's name is a member of, and a creditor on the lien."""
+    d, p = "oh.cuyahoga.liens", "oh.franklin.parcels"
+    cat.execute(
+        """INSERT INTO instruments VALUES
+        (?, 'm0', 'MORTGAGE', 'MTG', DATE '2020-03-01', 100000, NULL),
+        (?, 'm2', 'MORTGAGE', 'MTG', DATE '2026-01-15', 30000, NULL),
+        (?, 'dd1', 'DEED', 'QUIT CLAIM DEED', DATE '2025-09-01', NULL, NULL)""",
+        [d, d, d],
+    )
+    cat.execute("""INSERT INTO instrument_parcels (source_id, instrument_uid, parcel_uid) VALUES
+        (?, 'm0', '39049-010-1'), (?, 'm2', '39049-010-1'), (?, 'dd1', '39049-010-1')""",
+                [d, d, d])  # fmt: skip
+    cat.execute("INSERT INTO names (source_id, party_id, raw_name, party_kind, name_key) VALUES "
+                "(?, 'g1', 'SMITH, JOHN A', 'unknown', name_key('SMITH, JOHN A')), "
+                "(?, 'g2', 'ACME HOLDINGS LLC', 'org', name_key('ACME HOLDINGS LLC')), "
+                "(?, 'c1', 'TESTCREDITOR FUNDING LLC', 'org', "
+                "name_key('TESTCREDITOR FUNDING LLC'))", [d, d, d])  # fmt: skip
+    cat.execute("""INSERT INTO instrument_parties VALUES
+        (?, 'dd1', 'g1', 'grantor'), (?, 'dd1', 'g2', 'grantee'), (?, 'i1', 'c1', 'creditor')""",
+                [d, d, d])  # fmt: skip
+    del p
+    return cat
+
+
+def test_priority_stack_ranks_the_lien(forensic: duckdb.DuckDBPyConnection) -> None:
+    from equity.forensic import priority_stack
+
+    s = priority_stack(forensic, "39049-010-1", "i1")
+    assert [e["instrument_uid"] for e in s["encumbrances"]] == ["m0", "i1", "m2"]
+    pos = s["position"]
+    assert (pos["rank"], pos["senior"], pos["junior"]) == (2, ["m0"], ["m2"])
+    assert pos["equity_behind_lien"] == 80000.0  # 180,000 value - the 100,000 senior mortgage
+    assert pos["junior_mortgages_after_lien"] == ["m2"]
+    assert "error" in priority_stack(forensic, "39049-010-1", "nope")["position"]
+
+
+def test_transfer_badges_and_entity_ring(forensic: duckdb.DuckDBPyConnection) -> None:
+    from equity.forensic import entity_ring, transfer_badges
+
+    b = transfer_badges(forensic, "oh.cuyahoga.liens:d1")
+    assert str(b["first_debt_on"]) == "2025-06-01" and len(b["deeds"]) == 1
+    deed = b["deeds"][0]
+    assert deed["days_after_first_debt"] == 92
+    assert set(deed["badges"]) == {
+        "grantee_org",
+        "grantee_run_by_debtor",
+        "no_consideration",
+        "quitclaim",
+        "debtor_still_listed",
+        "within_year_of_debt",
+    }
+    assert b["nominal_threshold"] is None and "unset" in b["note"]
+    ring = entity_ring(forensic, "oh.cuyahoga.liens:d1")["businesses"]
+    assert [(r["name"], r["debtor_role"], r["formed_after_first_debt"]) for r in ring] == [
+        ("Acme Holdings, L.L.C.", "member", False)]  # fmt: skip
+    assert [x["parcel_uid"] for x in ring[0]["parcels"]] == ["39049-010-2"]
+    assert [x["deed"] for x in ring[0]["deeds_from_debtor"]] == ["oh.cuyahoga.liens:dd1"]
+
+
+def test_timeline_household_and_portfolios(forensic: duckdb.DuckDBPyConnection) -> None:
+    from equity.forensic import creditor_portfolios, household, timeline
+
+    kinds = [e["kind"] for e in timeline(forensic, "oh.cuyahoga.liens:d1")["events"]]
+    assert kinds.index("BUSINESS_FORMED") < kinds.index("JUDGMENT_LIEN") < kinds.index("DEED")
+    assert "MORTGAGE_ON_OWNED_PARCEL" in kinds
+    h = household(forensic, "oh.cuyahoga.liens:d1")
+    assert {(x["link"], x.get("parcel_uid")) for x in h["leads"]} >= {
+        ("parcel_at_debtor_address", "39049-010-1")}  # fmt: skip
+    compact(forensic)
+    rows = creditor_portfolios(forensic, "OH", min_leads=1)
+    assert [(r["creditor"], r["leads"], r["judgments"]) for r in rows] == [
+        ("TESTCREDITOR FUNDING LLC", 1, 1)]  # fmt: skip
+
+
+def test_leads_carry_equity_behind_the_lien(forensic: duckdb.DuckDBPyConnection) -> None:
+    from equity.search import DEBT_TYPES as SEARCH_DEBT
+    from equity.search_index import DEBT_TYPES
+
+    assert DEBT_TYPES == SEARCH_DEBT  # one list, two homes
+    compact(forensic)
+    row = forensic.execute("SELECT liens_on_owned_parcels, equity_behind_lien, "
+                           "open_mortgage_principal FROM leads").fetchone()  # fmt: skip
+    # The 2026 mortgage is junior to the 2025 lien: only the 2020 mortgage counts against it.
+    assert row is not None and (row[0], row[1]) == (1, 80000.0)

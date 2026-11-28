@@ -457,6 +457,11 @@ LAKE_TABLES = ("party", "owner_snapshot", "parcel", "parcel_assessment", "addres
                "business_role")  # fmt: skip
 
 
+# Legal-form words org_key drops (with STOP), so a registry name and a deed party compare.
+ORG_FORMS = ("LLC", "L", "C", "INC", "CORP", "CORPORATION", "INCORPORATED", "CO", "COMPANY",
+             "LTD", "LIMITED", "LP", "LLP", "PLLC", "PC", "PA", "LC", "THE")  # fmt: skip
+
+
 def connect(db: Path | str = DEFAULT_DB, read_only: bool = False) -> duckdb.DuckDBPyConnection:
     """Open the catalog with the name and street macros the tables are keyed by."""
     if not read_only and isinstance(db, Path):
@@ -505,6 +510,15 @@ def connect(db: Path | str = DEFAULT_DB, read_only: bool = False) -> duckdb.Duck
                 sx_collapse(sx_noh(sx_codes(sx_w)))[2:], lambda sx_d: sx_d NOT IN ('0', 'h')),
                 ''), 3, '0'), 3)
             ELSE sx_w END;
+    """)
+    forms = ", ".join(f"'{w}'" for w in (*STOP, *ORG_FORMS))
+    con.execute(f"""
+        -- An organization's name without punctuation or its legal form, so "Acme Holdings,
+        -- L.L.C." and "ACME HOLDINGS LLC" compare equal (name_key splits L.L.C. into letters).
+        CREATE OR REPLACE {kind} org_key(ok_n) AS array_to_string(list_sort(list_distinct(
+            list_filter(string_split(trim(regexp_replace(regexp_replace(upper(coalesce(ok_n, '')),
+                '[.'']', '', 'g'), '[^A-Z0-9]+', ' ', 'g')), ' '),
+            lambda ok_w: length(ok_w) >= 1 AND ok_w NOT IN ({forms})))), ' ');
     """)
     con.execute(f"""
         -- Why a printed name cannot be a lead (NULL when it can): see NAME_FLAGS.
@@ -1122,6 +1136,10 @@ def _in_list(values: list[str]) -> str:
     return "(" + ", ".join("'" + v.replace("'", "''") + "'" for v in values) + ")"
 
 
+# Debt document types (equity.search.DEBT_TYPES; kept here so the index does not import search).
+DEBT_TYPES = ("JUDGMENT_LIEN", "ABSTRACT_OF_JUDGMENT", "EXECUTION", "LIS_PENDENS",
+              "MECHANICS_LIEN", "STATUTORY_LIEN", "TAX_LIEN_STATE", "TAX_LIEN_FEDERAL",
+              "COURT_ORDER")  # fmt: skip
 # One ranked row per debtor_owner_candidates row: the identity grade by the matcher's rules
 # (the same order as equity.search.grade_pair, best pair wins), net equity over the owned
 # parcels, homestead, bankruptcy, transfers after the debt, and the debt's age. Ranked by
@@ -1144,6 +1162,40 @@ WITH c AS (
     JOIN instrument_parties ip ON ip.source_id = dp.src AND ip.party_id = dp.pid
     JOIN instrument_parcels x ON x.source_id = ip.source_id AND x.instrument_uid = ip.instrument_uid
     JOIN owned ON owned.lead_id = dp.lead_id AND owned.parcel_uid = x.parcel_uid
+), lien_docs AS (  -- the debtor's own open debt documents recorded against owned parcels
+    SELECT DISTINCT dp.lead_id, x.parcel_uid, i.source_id, i.instrument_uid, i.recorded_on
+    FROM dp
+    JOIN instrument_parties ip ON ip.source_id = dp.src AND ip.party_id = dp.pid
+    JOIN instruments i ON i.source_id = ip.source_id AND i.instrument_uid = ip.instrument_uid
+    JOIN instrument_parcels x ON x.source_id = i.source_id AND x.instrument_uid = i.instrument_uid
+    JOIN owned ON owned.lead_id = dp.lead_id AND owned.parcel_uid = x.parcel_uid
+    WHERE i.doc_type IN (__DEBT__) AND i.recorded_on IS NOT NULL
+      AND NOT EXISTS (SELECT 1 FROM instrument_refs r WHERE r.source_id = i.source_id
+                      AND r.to_uid = i.instrument_uid
+                      AND r.ref_type IN ('releases', 'satisfies_judgment'))
+), senior AS (  -- open encumbrances ahead of it: recorded earlier, or a tax lien
+    SELECT ld.lead_id, ld.parcel_uid, ld.instrument_uid, sum(m.amount) AS known,
+           count(*) FILTER (WHERE m.amount IS NULL) AS unknown
+    FROM lien_docs ld
+    JOIN instrument_parcels mx ON mx.parcel_uid = ld.parcel_uid
+    JOIN instruments m ON m.source_id = mx.source_id AND m.instrument_uid = mx.instrument_uid
+    WHERE m.instrument_uid <> ld.instrument_uid
+      AND ((m.doc_type IN ('MORTGAGE', 'DEED_OF_TRUST', __DEBT__)
+            AND m.recorded_on < ld.recorded_on)
+           OR m.doc_type IN ('TAX_LIEN_STATE', 'TAX_LIEN_FEDERAL'))
+      AND NOT EXISTS (SELECT 1 FROM instrument_refs r WHERE r.source_id = m.source_id
+                      AND r.to_uid = m.instrument_uid
+                      AND r.ref_type IN ('releases', 'satisfies_judgment'))
+    GROUP BY ALL
+), behind AS (  -- the best lien's equity behind it, net of only what is senior
+    SELECT ld.lead_id, count(DISTINCT ld.instrument_uid) AS liens_on_owned_parcels,
+           max(CASE WHEN coalesce(s.unknown, 0) = 0
+                    THEN pv.value - coalesce(s.known, 0) END) AS equity_behind_lien
+    FROM lien_docs ld
+    LEFT JOIN senior s USING (lead_id, parcel_uid, instrument_uid)
+    LEFT JOIN (SELECT parcel_uid, max(coalesce(appraised_total, assessed_value)) AS value
+               FROM parcel_values GROUP BY parcel_uid) pv USING (parcel_uid)
+    GROUP BY ld.lead_id
 ), mm AS (
     SELECT dp.lead_id, bool_or(m.decision = 'auto') AS auto, bool_or(m.decision <> 'auto') AS review
     FROM dp JOIN m_matches m ON m.debtor_party_id = dp.pid
@@ -1214,7 +1266,9 @@ SELECT c.lead_id, c.state, c.debtor_name, c.name_key,
        date_diff('day', c.last_debt_on, current_date) AS last_debt_age_days,
        c.parcels, c.parcel_value, eq.value_tax_year, eq.owned_parcels,
        eq.equity_known AS parcels_with_net_equity, eq.net_equity_known,
-       eq.open_mortgage_principal, coalesce(eq.homestead_any, false) AS homestead_any,
+       eq.open_mortgage_principal, coalesce(behind.liens_on_owned_parcels, 0)
+         AS liens_on_owned_parcels, behind.equity_behind_lien,
+       coalesce(eq.homestead_any, false) AS homestead_any,
        coalesce(xfer.deeds_after_debt, 0) AS deeds_after_debt, xfer.last_deed_on,
        bk.flags AS matcher_bankruptcy, coalesce(bkname.cases, 0) AS same_name_bankruptcies,
        bkname.last_petition_on AS same_name_last_petition_on,
@@ -1223,9 +1277,10 @@ SELECT c.lead_id, c.state, c.debtor_name, c.name_key,
 FROM c
 LEFT JOIN lien USING (lead_id) LEFT JOIN mm USING (lead_id) LEFT JOIN addr USING (lead_id)
 LEFT JOIN zip USING (lead_id) LEFT JOIN eq USING (lead_id) LEFT JOIN xfer USING (lead_id)
-LEFT JOIN bk USING (lead_id) LEFT JOIN bkname USING (lead_id)
-ORDER BY state, grade, net_equity_known DESC NULLS LAST, debt_amount DESC NULLS LAST
-"""
+LEFT JOIN bk USING (lead_id) LEFT JOIN bkname USING (lead_id) LEFT JOIN behind USING (lead_id)
+ORDER BY state, grade, coalesce(equity_behind_lien, net_equity_known) DESC NULLS LAST,
+         debt_amount DESC NULLS LAST
+""".replace("__DEBT__", ", ".join(f"'{t}'" for t in DEBT_TYPES))
 
 
 def store_leads(con: duckdb.DuckDBPyConnection) -> None:

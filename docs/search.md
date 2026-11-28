@@ -178,6 +178,25 @@ core tables.
 | `house_prices` | FHFA house price index by ZIP and tract | `--parcel`: `house_price_index` scales the value from its tax year to the latest index year, labelled an estimate |
 | `assessment_ratios` | NY and CT published assessment ratios (assessed / market) | `--parcel` for NY and CT, matched on the situs town name (`matched_on` says so) |
 
+## Forensic tracing
+
+`equity.forensic` gathers what a judgment-recovery investigator assembles, by fixed rules; it
+lists facts and named signs and never concludes fraud, alter ego or identity:
+
+| Command | What |
+|---|---|
+| `--stack <parcel> [--lien <instrument_uid>]` | every encumbrance on a parcel by recording date, released or open; for a lien, its rank, senior and junior items, and the equity behind it net of only senior debt (tax liens counted senior) |
+| `--badges <ref>` | deeds out by the debtor's name from 180 days before the first debt, each with badges: same-name or name-word grantee, grantee organization, grantee run by the debtor (registry role), grantee at the debtor's address, no or nominal consideration (`rules.yaml` threshold, only when set), quitclaim, debtor still listed after, timing |
+| `--ring <ref>` | businesses the name holds a role in, their parcels, formation after the first debt, deeds from the debtor into them (organizations compared by `org_key`: punctuation and legal form ignored) |
+| `--timeline <ref>` | one dated list: documents, cases, judgments, bankruptcy events, business formations, deeds and mortgages on owned parcels |
+| `--household <ref>` | owners mailed at the debtor's address, parcels at it, the same name owning in other states with the same mailing ZIP (leads) |
+| `--portfolios <STATE>` | creditors holding open judgments against A/B leads with equity: portfolio-purchase prospects |
+
+The `leads` table carries `equity_behind_lien` (the debtor's own lien on an owned parcel:
+value minus only what is senior to it) and ranks on it where known. The `forensic-trace`
+skill and the `asset-trace` workflow (gather, investigate, a skeptic per finding, dossier
+under `data/derived/forensic/`) build on these; the `equity-tools` MCP server exposes them.
+
 ## Watchlists
 
 `uv run python -m equity.watch` checks `config/private/watchlist.yaml` (git-ignored; template

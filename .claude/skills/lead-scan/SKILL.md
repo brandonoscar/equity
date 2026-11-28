@@ -27,7 +27,9 @@ description: Shortlist debtors who own property in a state from the stored, rank
    LIMIT 50;
    ```
 
-   Read the columns as they are: `net_equity_known` sums only the
+   Where the debtor's own lien is recorded against an owned parcel, `equity_behind_lien` is
+   the value minus only what is senior to that lien (junior mortgages recorded after it do not
+   count against it) and rows rank on it. Read the columns as they are: `net_equity_known` sums only the
    `parcels_with_net_equity` parcels (counties with recorder data); elsewhere senior debt is
    unknown, not zero. `deeds_after_debt` > 0 means a deed was recorded against an owned parcel
    after the first debt: check it (`--parcel`) before counting the equity.
