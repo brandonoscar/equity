@@ -1736,3 +1736,55 @@ def test_a_new_surname_at_the_same_address_is_a_review_lead(tmp_path: Path) -> N
     )
     assert m.get("d1") == "person_name_change_address"
     assert m.get("d2") is None
+
+
+def test_two_independent_kinds_of_review_evidence_make_one_strong_link(tmp_path: Path) -> None:
+    """JOHN KING's lien is at 1 OLD RD (he sold it: the deed's seller mails at 5 NEW ST), and
+    KING JOHN owns 5 NEW ST in the same ZIP. Name + ZIP (place) and a former address are two
+    independent kinds of evidence: one automatic link. ANN LEE has only name + ZIP: review."""
+    lk = tmp_path / "lake"
+    d, o, dd = lk / "zz.debts", lk / "zz.parcels", lk / "zz.deeds"
+    _write(d / "address" / "0.parquet", [_addr("a1", "1 OLD RD", "10001"),
+                                         _addr("a2", "2 ANY RD", "10001")])  # fmt: skip
+    _write(d / "party" / "0.parquet", [
+        {"party_id": f"d{n}", "raw_name": nm, "party_kind": "unknown", "org_name_norm": None,
+         "address_id": f"a{n}"} for n, nm in ((1, "JOHN KING"), (2, "ANN LEE"))])  # fmt: skip
+    _write(
+        d / "instrument_party" / "0.parquet",
+        [{"instrument_uid": f"i{n}", "party_id": f"d{n}", "role": "debtor"} for n in (1, 2)],
+    )
+    _write(d / "instrument" / "0.parquet", [
+        {"instrument_uid": f"i{n}", "source_id": "zz.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2026-01-01", "principal_amount": 10.0} for n in (1, 2)])  # fmt: skip
+    _write(o / "address" / "0.parquet", [
+        _addr("old", "1 OLD RD", "10001"), _addr("new", "5 NEW ST", "10001"),
+        _addr("buyer", "70 FAR AVE", "10009"), _addr("ann", "9 ELSE ST", "10001")])  # fmt: skip
+    rows = [("b1", "TESTOWNER BUYER", "buyer", "36001-1"), ("k1", "KING JOHN", "new", "36001-2"),
+            ("l1", "LEE ANN", "ann", "36001-3")]  # fmt: skip
+    _write(o / "party" / "0.parquet", [
+        {"party_id": k, "raw_name": n, "party_kind": "unknown", "org_name_norm": None,
+         "address_id": a} for k, n, a, _ in rows])  # fmt: skip
+    _write(o / "owner_snapshot" / "0.parquet",
+           [{"parcel_uid": u, "party_id": k} for k, _, _, u in rows])  # fmt: skip
+    _write(o / "parcel" / "0.parquet", [
+        {"parcel_uid": "36001-1", "situs_address_id": "old"},
+        {"parcel_uid": "36001-2", "situs_address_id": "new"},
+        {"parcel_uid": "36001-3", "situs_address_id": "ann"}])  # fmt: skip
+    _write(dd / "address" / "0.parquet", [_addr("g", "5 New Street", "10001")])
+    _write(dd / "instrument" / "0.parquet", [
+        {"instrument_uid": "k9", "source_id": "zz.deeds", "doc_type": "DEED",
+         "recorded_on": "2025-06-01", "consideration": 300000.0}])  # fmt: skip
+    _write(dd / "instrument_parcel" / "0.parquet",
+           [{"instrument_uid": "k9", "parcel_uid": "36001-1"}])  # fmt: skip
+    _write(dd / "party" / "0.parquet", [
+        {"party_id": "g1", "raw_name": "KING JOHN", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": "g"}])  # fmt: skip
+    _write(dd / "instrument_party" / "0.parquet",
+           [{"instrument_uid": "k9", "party_id": "g1", "role": "grantor"}])  # fmt: skip
+    out = tmp_path / "out"
+    run(lk, out, ["zz.debts"], ["zz.parcels"], record_owner_sources=["zz.deeds"])
+    m = {r[0]: r[1:] for r in duckdb.connect().execute(
+        f"SELECT debtor_party_id, rule_id, decision, corroborated_by "
+        f"FROM '{out.as_posix()}/matches.parquet'").fetchall()}  # fmt: skip
+    assert m["d1"] == ("person_name_zip", "auto", ["former_address", "place"])
+    assert m["d2"] == ("person_name_zip", "review", None)

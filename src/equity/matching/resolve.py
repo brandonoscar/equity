@@ -55,6 +55,9 @@ Rules, strongest first (a debtor-owner pair keeps its strongest rule):
                         formal names, middle initials are dropped and spaces ignored, all at
                         once ("BOB A SMITH" / "ROBERT SMITH", "BILL O BRIEN" / "WILLIAM
                         OBRIEN"); two different middle initials never agree      -> review
+Evidence adds up: a debtor-owner pair that review rules of two or more independent kinds
+support (EVIDENCE_KIND: place, former_address, company_mailing) is decision 'auto', its
+kinds in matches.corroborated_by.
   person_name_change_address  same address, same first (and middle) name, another surname
                         ("JANE SMITH" / "JANE DOE": a marriage or divorce); the two
                         surnames are not both first names (that is a household) and not one
@@ -1198,6 +1201,22 @@ WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2;
 """  # noqa: S608 - the cap is a constant
 
 
+# Evidence adds up: review rules fall into independent kinds of evidence. Rules of one kind
+# are not independent (a name at the same address is also a name in the same ZIP), so they
+# count once. A debtor-owner pair that review rules of two or more kinds support is one
+# stronger link: decision 'auto', with the kinds in `corroborated_by`. A fixed rule, no
+# scores. Rules not listed here (automatic ones) never count.
+EVIDENCE_KIND = {
+    "place": ("person_name_zip", "person_name_initial_address", "person_nickname_address",
+              "person_name_typo_address", "person_middle_name_address",
+              "person_name_spacing_address", "person_loose_name_address",
+              "person_name_change_address", "person_name_street_city", "org_name_street_city",
+              "org_name_loose_zip", "org_name_county"),
+    "former_address": ("person_name_former_address",),
+    "company_mailing": ("person_at_org_owner_mailing",),
+}  # fmt: skip
+
+
 def _table_exists(con: duckdb.DuckDBPyConnection, name: str) -> bool:
     row = con.execute(
         "SELECT count(*) FROM information_schema.tables WHERE table_name = ?", [name]
@@ -1240,6 +1259,8 @@ def match(
     con.execute(ORG_MAILING_SQL)
     ranks = " ".join(f"WHEN '{r}' THEN {n}" for r, _, n in RULES)
     decisions = " ".join(f"WHEN '{r}' THEN '{d}'" for r, d, _ in RULES)
+    evidence = " ".join(f"WHEN '{r}' THEN '{k}'" for k, rules in EVIDENCE_KIND.items()
+                        for r in rules)  # fmt: skip
     con.execute(f"""
         CREATE TEMP TABLE matches AS
         SELECT debtor_party_id, instrument_uid, owner_party_id, parcel_uid, rule_id,
@@ -1288,6 +1309,19 @@ def match(
           AND v.k = matches.key;
         UPDATE matches SET decision = 'review'
         WHERE decision = 'auto' AND debtor_name_variant = 'trust';
+        -- Two or more independent kinds of review evidence for one pair: one stronger link.
+        ALTER TABLE matches ADD COLUMN corroborated_by VARCHAR[];
+        UPDATE matches SET corroborated_by = c.kinds, decision = 'auto'
+        FROM (SELECT debtor_party_id, instrument_uid, owner_party_id, parcel_uid,
+                     list_sort(list_distinct(list(CASE rule_id {evidence} END))) AS kinds
+              FROM candidates WHERE CASE rule_id {evidence} END IS NOT NULL
+              GROUP BY ALL HAVING count(DISTINCT CASE rule_id {evidence} END) >= 2) c
+        WHERE c.debtor_party_id = matches.debtor_party_id
+          AND c.instrument_uid = matches.instrument_uid
+          AND c.owner_party_id IS NOT DISTINCT FROM matches.owner_party_id
+          AND c.parcel_uid = matches.parcel_uid AND matches.decision = 'review'
+          AND coalesce(matches.owner_name_variant, '') <> 'trust'
+          AND coalesce(matches.debtor_name_variant, '') <> 'trust';
         CREATE TEMP TABLE parcel_value AS
         SELECT parcel_uid, arg_max(coalesce(appraised_total, assessed_value), tax_year) AS value
         FROM o_assess GROUP BY parcel_uid;
