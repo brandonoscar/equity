@@ -226,3 +226,19 @@ ArcGIS Online search for layers named delinquent, tax sale or tax lien that chan
 | Tarrant County constable monthly tax-sale listings | About 30 accounts per precinct with cause and account numbers only; the accounts and lawsuits are already in `tx.tarrant.tax_roll_delinquent`. |
 | Harris County delinquent tax sale listing (hctax.net, 241 accounts for the 2026-12-01 sale) | Terms are disclaimers only; the accounts are judgments already in `tx.harris.tax_judgments`, so it would add only the sale date and minimum bid. Left for later. |
 | Arkansas Commissioner of State Lands auction | Post-auction sales on the vendor's site (registration) and a search tool; no list download. |
+
+### Free-only pass: parcels, state lists, business registries (2026-11-28)
+
+The owner set the rule on 2026-11-28: nothing paid, PACER included (`config/pacer.yaml` keeps
+`quarterly_ceiling: null`, which refuses every PACER request).
+
+| Source | Result |
+|---|---|
+| Kent County MI parcels | The public layer (ParcelsPublicView) has no owner names; the open-data parcel services now answer "Token Required". |
+| Will County IL parcels | The service's license bars redistribution or network use without the GIS Department's permission; owner fields not confirmed. Not loaded. |
+| Illinois statewide parcels database (ISGS) | Token required. |
+| Henrico VA tax parcels | The county's hosted copy is a 735-row 2022 extract. |
+| Kentucky and West Virginia SOS bulk business data | Subscription services for prepaid account holders (paid). |
+| Ohio SOS business reports (free, monthly) | The site answered with a maintenance page (HTTP 403) on 2026-11-28; retry. |
+| South Carolina DOR top delinquent taxpayers | Lists sit in the MyDORWAY web app; the connection was refused from this environment. |
+| Wyoming DOR excise delinquent taxpayer list | The page answers 404 (moved). |
