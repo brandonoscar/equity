@@ -70,3 +70,15 @@ def test_every_nickname_names_one_formal_name() -> None:
     assert not set(m) & set(GROUPS)  # no nickname is also a formal name
     for ambiguous in ("CHRIS", "PAT", "SAM", "ALEX", "TED", "HARRY", "AL"):
         assert ambiguous not in m
+
+
+def test_an_estate_names_its_deceased() -> None:
+    assert owner_name_variants("ESTATE OF JOHN SMITH") == [("JOHN SMITH", "estate")]
+    assert owner_name_variants("SMITH JOHN EST") == [("SMITH JOHN", "estate")]
+    assert owner_name_variants("JOHN SMITH DECEASED") == [("JOHN SMITH", "estate")]
+    assert owner_name_variants("HEIRS OF JOHN SMITH") == [("JOHN SMITH", "estate")]
+    assert owner_name_variants("ESTATE OF JOHN & MARY SMITH") == [
+        ("JOHN SMITH", "estate"), ("MARY SMITH", "estate")]  # fmt: skip
+    # A life estate is a tenancy; REAL ESTATE is a business word.
+    assert owner_name_variants("SMITH JOHN L/E") == []
+    assert owner_name_variants("SMITH REAL ESTATE") == []

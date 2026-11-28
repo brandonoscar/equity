@@ -122,7 +122,8 @@ INSERT INTO bk_debtor
 SELECT DISTINCT b.case_uid, b.bk_party_id, b.raw_name, v.party_kind, v.org_name_norm,
        name_key(v.variant)
 FROM bk_debtor b JOIN bk_name_variant v ON v.raw_name = b.raw_name
-WHERE v.kind <> 'trust' AND (v.party_kind = 'org' OR name_words(name_key(v.variant)) >= 2);
+WHERE v.kind NOT IN ('trust', 'estate')
+  AND (v.party_kind = 'org' OR name_words(name_key(v.variant)) >= 2);
 """
 TABLES = ("bankruptcy_flags",)
 

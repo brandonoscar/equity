@@ -13,6 +13,14 @@ person (or a rule the project owner approves later) can work the queue in order:
                              second surname on one side only, or initial vs middle name
              spacing         matched by person_name_spacing_address: the same letters once
                              spaces are dropped (O BRIEN / OBRIEN, DE LA CRUZ / DELACRUZ)
+             loose_name      matched by person_loose_name_address: nickname, initials and
+                             spacing all at once (BOB A SMITH / ROBERT SMITH)
+             former_address  matched by person_name_former_address: the lien's address is
+                             a known other address of the owner (the debtor moved)
+             name_change     matched by person_name_change_address: same first name and
+                             address, another surname (a marriage or divorce)
+             owned_at_lien   the debtor was the parcel's owner by deed on the lien's date
+                             (it may have been sold since)
              spelling_only   street lines agree once suffix and direction words are
                              spelled one way (ST/STREET, N/NORTH, ...), ordinals dropped (88TH
                              = 88) and punctuation dropped;
@@ -104,6 +112,11 @@ SELECT q.debtor_party_id, d.raw_name AS debtor_name, d.line1 AS debtor_line1,
          WHEN q.rule_id = 'person_name_typo_address' THEN 'one_letter'
          WHEN q.rule_id = 'person_middle_name_address' THEN 'middle_name'
          WHEN q.rule_id = 'person_name_spacing_address' THEN 'spacing'
+         WHEN q.rule_id = 'person_loose_name_address' THEN 'loose_name'
+         WHEN q.rule_id = 'person_name_former_address' THEN 'former_address'
+         WHEN q.rule_id = 'person_name_change_address' THEN 'name_change'
+         WHEN q.rule_id IN ('person_owned_at_lien_address', 'person_owned_at_lien_zip')
+           THEN 'owned_at_lien'
          WHEN q.rule_id = 'person_at_owner_occupied_property' THEN 'at_owner_occupied_property'
          WHEN q.rule_id = 'person_at_property' THEN 'at_property'
          WHEN q.rule_id = 'person_at_org_owner_mailing' THEN 'at_company_mailing'

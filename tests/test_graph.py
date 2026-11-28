@@ -204,3 +204,205 @@ def test_a_shared_parcel_does_not_join_its_co_owners(tmp_path: Path) -> None:
 
     assert lots("d2") == {"p1", "p2"}
     assert lots("d1") == {"p1"}
+
+
+def test_a_household_member_is_linked_but_never_reached(tmp_path: Path) -> None:
+    """JOHN SMITH (d1) owns p1 at 1 ELM ST; MARY SMITH owns p2 there too: a household link
+    (a spouse or relative), not a parcel John reaches. A different surname is no household."""
+    lk = tmp_path / "lake"
+    d, o = lk / "s.debts", lk / "s.parcels"
+    _write(d / "address" / "0.parquet", [_addr("da", "1 ELM ST", "10001")])
+    _write(d / "party" / "0.parquet", [
+        {"party_id": "d1", "raw_name": "JOHN SMITH", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": "da"}])  # fmt: skip
+    _write(d / "instrument_party" / "0.parquet",
+           [{"instrument_uid": "i1", "party_id": "d1", "role": "debtor"}])  # fmt: skip
+    _write(d / "instrument" / "0.parquet", [
+        {"instrument_uid": "i1", "source_id": "s.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2025-01-01", "principal_amount": 10.0}])  # fmt: skip
+    _write(o / "address" / "0.parquet", [_addr("h", "1 ELM ST", "10001")])
+    rows = [("o1", "SMITH JOHN", "p1"), ("o2", "SMITH MARY", "p2"), ("o3", "JONES MARY", "p3")]
+    _write(o / "party" / "0.parquet", [
+        {"party_id": k, "raw_name": n, "party_kind": "unknown", "org_name_norm": None,
+         "address_id": "h"} for k, n, _ in rows])  # fmt: skip
+    _write(o / "owner_snapshot" / "0.parquet",
+           [{"parcel_uid": u, "party_id": k} for k, _, u in rows])  # fmt: skip
+    _write(o / "parcel" / "0.parquet", [{"parcel_uid": u} for *_, u in rows])
+    out = tmp_path / "out"
+    result = run(lk, out, ["s.debts"], ["s.parcels"])
+    con = duckdb.connect()
+    q = lambda sql: con.execute(sql.replace("OUT", out.as_posix())).fetchall()  # noqa: E731
+    assert q("SELECT owner_party_id, parcel_uid, surname FROM 'OUT/households.parquet'") == [
+        ("o2", "p2", "SMITH")]  # fmt: skip
+    assert {r[0] for r in q("SELECT parcel_uid FROM 'OUT/person_reach.parquet'")} == {"p1"}
+    g = result["graph"]
+    assert isinstance(g, dict) and g["household_links"] == 1
+
+
+def test_company_networks_reach_officers_homes_and_sister_companies(tmp_path: Path) -> None:
+    """ACME LLC (d1) owes; its manager ANN LEE files from 5 OAK LN, where she owns her home
+    (p1): the company reaches it. ANN LEE also manages BETA LLC (another filing, same
+    address), which owns p2: one officer, so ACME reaches BETA's parcel too. GAMMA LLC's
+    agent files from that address as well: a shared-address lead (review) to p3."""
+    lk = tmp_path / "lake"
+    d, o, r = lk / "s.debts", lk / "s.parcels", lk / "s.sos"
+    _write(d / "address" / "0.parquet", [_addr("da", "9 WORK ST", "10001")])
+    _write(d / "party" / "0.parquet", [
+        {"party_id": "d1", "raw_name": "ACME LLC", "party_kind": "org",
+         "org_name_norm": "ACME", "address_id": "da"}])  # fmt: skip
+    _write(d / "instrument_party" / "0.parquet",
+           [{"instrument_uid": "i1", "party_id": "d1", "role": "debtor"}])  # fmt: skip
+    _write(d / "instrument" / "0.parquet", [
+        {"instrument_uid": "i1", "source_id": "s.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2025-01-01", "principal_amount": 10.0}])  # fmt: skip
+    _write(o / "address" / "0.parquet", [_addr("h", "5 Oak Lane", "10001")])
+    rows = [("o1", "LEE ANN", "unknown", None, "h", "p1"),
+            ("o2", "BETA LLC", "org", "BETA", None, "p2"),
+            ("o3", "GAMMA LLC", "org", "GAMMA", None, "p3")]  # fmt: skip
+    _write(o / "party" / "0.parquet", [
+        {"party_id": k, "raw_name": n, "party_kind": kind, "org_name_norm": norm,
+         "address_id": a} for k, n, kind, norm, a, _ in rows])  # fmt: skip
+    _write(o / "owner_snapshot" / "0.parquet",
+           [{"parcel_uid": u, "party_id": k} for k, *_, u in rows])  # fmt: skip
+    _write(o / "parcel" / "0.parquet", [{"parcel_uid": u} for *_, u in rows])
+    _write(r / "business" / "0.parquet", [
+        {"sos_id": "B1", "name": "Acme LLC", "status": "Active"},
+        {"sos_id": "B2", "name": "Beta LLC", "status": "Active"},
+        {"sos_id": "B3", "name": "Gamma LLC", "status": "Active"}])  # fmt: skip
+    _write(r / "party" / "0.parquet", [
+        {"party_id": "h1", "raw_name": "ANN LEE", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": "ra"},
+        {"party_id": "h2", "raw_name": "LEE ANN", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": "ra"},
+        {"party_id": "h3", "raw_name": "CY DOE", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": "ra"}])  # fmt: skip
+    _write(
+        r / "address" / "0.parquet",
+        [{"address_id": "ra", "line1": "5 OAK LN", "city": "X", "state": "NY", "zip5": "10001"}],
+    )
+    _write(r / "business_role" / "0.parquet", [
+        {"sos_id": "B1", "party_id": "h1", "role": "manager", "title": "MANAGER"},
+        {"sos_id": "B2", "party_id": "h2", "role": "manager", "title": "MANAGER"},
+        {"sos_id": "B3", "party_id": "h3", "role": "agent", "title": "AGENT"}])  # fmt: skip
+    out = tmp_path / "out"
+    run(lk, out, ["s.debts"], ["s.parcels"], registry_sources=["s.sos"])
+    con = duckdb.connect()
+    reach = dict(
+        con.execute(
+            f"SELECT parcel_uid, strength FROM '{out.as_posix()}/person_reach.parquet'"
+        ).fetchall()
+    )
+    assert reach == {"p1": "auto", "p2": "auto", "p3": "review"}
+
+
+def test_a_company_owned_by_a_company_is_followed_to_its_property(tmp_path: Path) -> None:
+    """ACME LLC (d1) owes; its sole member is HOLDCO LLC, whose own entity (B2) owns p2 on
+    the roll: ACME reaches HOLDCO's parcel through the member company."""
+    lk = tmp_path / "lake"
+    d, o, r = lk / "s.debts", lk / "s.parcels", lk / "s.sos"
+    _write(d / "party" / "0.parquet", [
+        {"party_id": "d1", "raw_name": "ACME LLC", "party_kind": "org",
+         "org_name_norm": "ACME", "address_id": None}])  # fmt: skip
+    _write(d / "instrument_party" / "0.parquet",
+           [{"instrument_uid": "i1", "party_id": "d1", "role": "debtor"}])  # fmt: skip
+    _write(d / "instrument" / "0.parquet", [
+        {"instrument_uid": "i1", "source_id": "s.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2025-01-01", "principal_amount": 10.0}])  # fmt: skip
+    _write(o / "party" / "0.parquet", [
+        {"party_id": "o2", "raw_name": "HOLDCO LLC", "party_kind": "org",
+         "org_name_norm": "HOLDCO", "address_id": None}])  # fmt: skip
+    _write(o / "owner_snapshot" / "0.parquet", [{"parcel_uid": "p2", "party_id": "o2"}])
+    _write(o / "parcel" / "0.parquet", [{"parcel_uid": "p2"}])
+    _write(r / "business" / "0.parquet", [
+        {"sos_id": "B1", "name": "Acme LLC", "status": "Active"},
+        {"sos_id": "B2", "name": "Holdco, LLC", "status": "Active"}])  # fmt: skip
+    _write(r / "party" / "0.parquet", [
+        {"party_id": "h1", "raw_name": "HOLDCO LLC", "party_kind": "org",
+         "org_name_norm": "HOLDCO", "address_id": None}])  # fmt: skip
+    _write(
+        r / "business_role" / "0.parquet",
+        [{"sos_id": "B1", "party_id": "h1", "role": "member", "title": "MEMBER"}],
+    )
+    out = tmp_path / "out"
+    run(lk, out, ["s.debts"], ["s.parcels"], registry_sources=["s.sos"])
+    con = duckdb.connect()
+    reach = dict(
+        con.execute(
+            f"SELECT parcel_uid, strength FROM '{out.as_posix()}/person_reach.parquet'"
+        ).fetchall()
+    )
+    assert reach == {"p2": "auto"}
+
+
+def _ident(folder: Path, rows: list[tuple[str, str, str]]) -> None:
+    _write(folder / "party_identifier" / "0.parquet", [
+        {"party_id": p, "sos_id": None, "id_type": t, "id_value": v, "issuer": None}
+        for p, t, v in rows])  # fmt: skip
+
+
+def test_an_identifier_joins_records_whatever_their_names(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """ACME HOLDINGS LLC (d1) and the roll's A H L INC (o1) carry one EIN, printed two ways:
+    one party, so d1 reaches p1 though no name rule meets them. BO RAY (d2) and RAY ROBERT
+    (o2) share a phone: a review lead only (a household or office shares phones). An EIN
+    that more than ID_MAX_SHARED records carry (o3-o5, d3) joins nothing. CY DOE (d4) has no
+    identifier and still matches by name and address: an identifier never blocks a link."""
+    monkeypatch.setattr(graph, "ID_MAX_SHARED", 3)
+    lk = tmp_path / "lake"
+    d, o = lk / "s.debts", lk / "s.parcels"
+    _write(d / "address" / "0.parquet", [_addr("da", "1 ELM ST", "10001")])
+    debtors = [("d1", "ACME HOLDINGS LLC", "org", "ACME HOLDINGS", None),
+               ("d2", "BO RAY", "unknown", None, None),
+               ("d3", "ZED CO LLC", "org", "ZED CO", None),
+               ("d4", "CY DOE", "unknown", None, "da")]  # fmt: skip
+    _write(d / "party" / "0.parquet", [
+        {"party_id": k, "raw_name": n, "party_kind": kind, "org_name_norm": norm,
+         "address_id": a} for k, n, kind, norm, a in debtors])  # fmt: skip
+    _write(
+        d / "instrument_party" / "0.parquet",
+        [{"instrument_uid": f"i{k}", "party_id": k, "role": "debtor"} for k, *_ in debtors],
+    )
+    _write(
+        d / "instrument" / "0.parquet",
+        [
+            {
+                "instrument_uid": f"i{k}",
+                "source_id": "s.debts",
+                "doc_type": "TAX_LIEN_STATE",
+                "recorded_on": "2025-01-01",
+                "principal_amount": 10.0,
+            }
+            for k, *_ in debtors
+        ],
+    )
+    _ident(d, [("d1", "ein", "12-3456789"), ("d2", "phone", "(212) 555-0100"),
+               ("d3", "ein", "99-0000001")])  # fmt: skip
+    _write(o / "address" / "0.parquet", [_addr("h", "1 Elm Street", "10001")])
+    owners = [("o1", "A H L INC", "org", "A H L", None, "p1"),
+              ("o2", "RAY ROBERT", "unknown", None, None, "p2"),
+              ("o3", "X1 LLC", "org", "X1", None, "p3"), ("o4", "X2 LLC", "org", "X2", None, "p4"),
+              ("o5", "X3 LLC", "org", "X3", None, "p5"),
+              ("o6", "DOE CY", "unknown", None, "h", "p6")]  # fmt: skip
+    _write(o / "party" / "0.parquet", [
+        {"party_id": k, "raw_name": n, "party_kind": kind, "org_name_norm": norm,
+         "address_id": a} for k, n, kind, norm, a, _ in owners])  # fmt: skip
+    _write(o / "owner_snapshot" / "0.parquet",
+           [{"parcel_uid": u, "party_id": k} for k, *_, u in owners])  # fmt: skip
+    _write(o / "parcel" / "0.parquet", [{"parcel_uid": u} for *_, u in owners])
+    _ident(o, [("o1", "ein", "123456789"), ("o2", "phone", "1-212-555-0100"),
+               ("o3", "ein", "990000001"), ("o4", "ein", "990000001"),
+               ("o5", "ein", "990000001")])  # fmt: skip
+    out = tmp_path / "out"
+    run(lk, out, ["s.debts"], ["s.parcels"])
+    con = duckdb.connect()
+    q = lambda sql: con.execute(sql.replace("OUT", out.as_posix())).fetchall()  # noqa: E731
+    person = dict(q("SELECT party_id, person_id FROM 'OUT/person_of.parquet'"))
+    reach = {
+        (r[0], r[1]): r[2]
+        for r in q("SELECT person_id, parcel_uid, strength FROM 'OUT/person_reach.parquet'")
+    }
+    assert reach[(person["d1"], "p1")] == "auto"
+    assert reach[(person["d2"], "p2")] == "review"
+    assert not any(pid == person["d3"] for pid, _ in reach)
+    assert reach[(person["d4"], "p6")] == "auto"

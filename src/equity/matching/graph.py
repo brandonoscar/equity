@@ -12,6 +12,14 @@ company:<sos_id>, officer:<party>, case:<case_uid>. Edges carry the link type, t
 made it and its decision ('auto' or 'review'), so every chain can be re-derived and shown
 with its weakest step.
 
+Company networks: one officer across companies, an officer's own property, and companies
+whose role holders share an address (see OFFICER_SQL); a role holder that is itself a
+company, and one company under several registry ids (COMPANY_SQL).
+
+Identifiers (EIN, NPI, SEC CIK, FCC FRN, USDOT, licenses, parcel ids, phone, email) join
+the records that carry the same one (IDENT_SQL); records without one fall back to the name
+and address rules, so an identifier only adds links.
+
 Owner records that are one owner (same organization name in the state; same person name
 sharing an address; same person name in one ZIP for review) are joined (same_owner, see
 CLUSTER_SQL), so a debtor matched to one of a landlord's parcels reaches all of them.
@@ -28,17 +36,25 @@ never pass through it, or one agent would join every company it serves.
 Outputs (Parquet in the state's derived folder, git-ignored: they name people):
   graph_edges   src, dst, link, rule_id, decision
   graph_nodes   node, kind, comp_auto, comp_any, hub
+  households    person_id, owner record and parcel of a likely spouse or relative at the
+                same address (same surname, another first name): not liable, never a reach
   person_reach  person_id, parcel_uid, strength ('auto' when the parcel is in the person's
                 comp_auto, else 'review'), direct (the person's own debtor-owner match)
 """
 
 from __future__ import annotations
 
+from pathlib import Path
+
 import duckdb
 
 # Links a company or officer node may have before it is a hub that chains do not cross.
 # TODO(Brandon): confirm 50.
 HUB_MAX_DEGREE = 50
+# An identifier more records than this carry (a registered agent's EIN, a law firm's phone,
+# a placeholder like 000000000) identifies no one: its records are not joined by it.
+# TODO(Brandon): confirm 20.
+ID_MAX_SHARED = 20
 # Label propagation stops when nothing changes; this caps the passes (a chain longer than
 # this is cut, and the summary says the cap was reached).
 MAX_PASSES = 200
@@ -116,6 +132,134 @@ WITH hub AS (SELECT grp, rule_id, min(party_id) AS h FROM g_group GROUP BY grp, 
 SELECT DISTINCT 'owner:' || g.party_id, 'owner:' || hub.h, 'same_owner', g.rule_id, g.decision
 FROM g_group g JOIN hub USING (grp, rule_id)
 WHERE g.party_id <> hub.h;
+"""
+
+# Company networks, from the registries' role holders (company_people):
+#   same_officer      one person (same name and suffix, same address or its building) holding
+#                     roles in several companies: their officer records are one node (auto)
+#   officer_owner     an officer who owns property in their own name at their filing address
+#                     (or its building): a company debtor reaches its officers' homes (auto)
+#   shared_address    companies whose role holders file from one address (review); an
+#                     address many companies use (a registered agent, a law firm) makes its
+#                     star centre a hub, which chains do not cross
+OFFICER_SQL = """
+CREATE OR REPLACE TEMP TABLE g_officer AS
+SELECT DISTINCT party_id, sos_id, name_key, suffix_key, party_kind, addr_key,
+       coalesce(base_key, addr_key) AS place
+FROM company_people WHERE addr_key IS NOT NULL;
+INSERT INTO graph_edges
+WITH grp AS (
+    SELECT party_id, name_key || '|' || suffix_key || '|' || place AS g FROM g_officer
+    WHERE party_kind <> 'org' AND name_words(name_key) >= 2
+), hub AS (SELECT g, min(party_id) AS h FROM grp GROUP BY g)
+SELECT DISTINCT 'officer:' || grp.party_id, 'officer:' || hub.h, 'same_officer',
+       'officer_name_address', 'auto'
+FROM grp JOIN hub USING (g) WHERE grp.party_id <> hub.h;
+INSERT INTO graph_edges
+SELECT DISTINCT 'officer:' || c.party_id, 'owner:' || o.party_id, 'officer_owner',
+       'officer_name_address', 'auto'
+FROM g_officer c JOIN owners o ON o.name_key = c.name_key
+JOIN addr_alias aa ON aa.k = c.addr_key AND aa.k2 IN (o.mail_key, o.situs_key)
+WHERE c.party_kind <> 'org' AND o.party_kind <> 'org' AND name_words(c.name_key) >= 2
+  AND NOT suffix_conflict(c.suffix_key, o.suffix_key)
+  AND coalesce(o.name_variant, 'alias') = 'alias';
+INSERT INTO graph_edges
+WITH hub AS (SELECT place, min(sos_id) AS h FROM g_officer GROUP BY place
+             HAVING count(DISTINCT sos_id) > 1)
+SELECT DISTINCT 'company:' || c.sos_id, 'company:' || hub.h, 'shared_address',
+       'role_holder_address', 'review'
+FROM g_officer c JOIN hub USING (place) WHERE c.sos_id <> hub.h;
+"""
+
+# Companies owned by companies: a role holder that is itself an organization (an LLC whose
+# member is another LLC) is that organization's registry entity (member_company: auto when
+# one entity has the name, review when several do). Entities with one name under several
+# registry ids (a company in a state registry and a national list, or registered in more
+# than one state) are joined for review (same_company_name).
+COMPANY_SQL = """
+INSERT INTO graph_edges
+SELECT DISTINCT 'officer:' || c.party_id, 'company:' || b.sos_id, 'member_company',
+       'org_name_registry', CASE WHEN len(k.ids) > 1 THEN 'review' ELSE 'auto' END
+FROM company_people c JOIN biz_by_key k ON k.org_key = org_key(c.name)
+JOIN biz b ON list_contains(k.ids, b.sos_id)
+WHERE (c.party_kind = 'org' OR org_key(c.name) <> upper(trim(c.name)))
+  AND org_key(c.name) <> '' AND b.sos_id <> c.sos_id;
+INSERT INTO graph_edges
+SELECT DISTINCT 'company:' || x.id, 'company:' || k.ids[1], 'same_company_name',
+       'org_name_registry', 'review'
+FROM biz_by_key k, unnest(k.ids) AS x(id)
+WHERE len(k.ids) > 1 AND x.id <> k.ids[1];
+"""
+
+# Households: a debtor and an owner record at one address (or its building) whose names share
+# a full word (the surname) and differ only in a real first name on each side (JOHN SMITH /
+# MARY SMITH; first_names). A spouse or relative does not owe the debt and does not own for
+# the debtor: these edges have decision 'household' and join no set (comp_auto, comp_any).
+HOUSEHOLD_SQL = """
+CREATE OR REPLACE TEMP TABLE households AS
+SELECT DISTINCT po.person_id, o.party_id AS owner_party_id, o.parcel_uid, d.raw_name AS debtor_name,
+       o.name_key AS owner_name_key, aa.k2 AS addr_key,
+       list_filter(string_split(d.name_key, ' '),
+                   lambda w: list_contains(string_split(o.name_key, ' '), w))[1] AS surname
+FROM debtors d JOIN person_of po ON po.party_id = d.party_id
+JOIN addr_alias aa ON aa.k = d.addr_key JOIN o_by_addr o ON o.k = aa.k2
+WHERE d.party_kind <> 'org' AND name_words(d.name_key) = 2 AND name_words(o.name_key) = 2
+  AND len(name_only(d.name_key, o.name_key)) = 1 AND len(name_only(o.name_key, d.name_key)) = 1
+  AND length(list_filter(string_split(d.name_key, ' '),
+                         lambda w: list_contains(string_split(o.name_key, ' '), w))[1]) >= 2
+  AND name_only(d.name_key, o.name_key)[1] IN (SELECT name FROM first_names)
+  AND name_only(o.name_key, d.name_key)[1] IN (SELECT name FROM first_names)
+  AND nick_key(d.name_key) <> nick_key(o.name_key);
+INSERT INTO graph_edges
+SELECT DISTINCT 'person:' || person_id, 'owner:' || owner_party_id, 'household',
+       'same_surname_address', 'household'
+FROM households;
+"""
+
+# Identifiers (party_identifier): records that carry the same identifier are one party or
+# entity (same_id, rule 'id:<type>'): auto, except a phone, which a household or an office
+# shares (review). Values are compared normalized (digits for numbers, lower case for
+# email; a license with its issuer). A record without an identifier is untouched: it still
+# links by name and address, so an identifier only adds links and never blocks one. An
+# identifier more than ID_MAX_SHARED records carry joins nothing.
+IDENT_SQL = """
+CREATE OR REPLACE TEMP TABLE g_ident AS
+WITH v AS (
+    SELECT party_id, sos_id, lower(trim(id_type)) AS id_type, issuer,
+           CASE lower(trim(id_type))
+             WHEN 'email' THEN lower(trim(id_value))
+             WHEN 'license' THEN upper(regexp_replace(id_value, '[^0-9A-Za-z]', '', 'g'))
+             WHEN 'parcel' THEN upper(regexp_replace(id_value, '[^0-9A-Za-z]', '', 'g'))
+             WHEN 'other' THEN upper(trim(id_value))
+             WHEN 'phone' THEN regexp_replace(regexp_replace(id_value, '[^0-9]', '', 'g'),
+                                               '^1([0-9]{{10}})$', '\\1')
+             ELSE ltrim(regexp_replace(id_value, '[^0-9]', '', 'g'), '0') END AS norm
+    FROM g_party_identifier WHERE id_type IS NOT NULL AND id_value IS NOT NULL
+), ok AS (
+    SELECT *, id_type || ':' || CASE WHEN id_type = 'license'
+                                     THEN upper(coalesce(issuer, '')) || ':' ELSE '' END
+              || norm AS k
+    FROM v
+    WHERE norm <> ''
+      AND (id_type <> 'email' OR regexp_matches(norm, '^[^@ ]+@[^@ ]+[.][^@ ]+$'))
+      AND (id_type <> 'phone' OR length(norm) = 10)
+      AND (id_type <> 'ein' OR length(norm) BETWEEN 7 AND 9)
+      AND (id_type <> 'npi' OR length(norm) = 10)
+)
+SELECT DISTINCT n.node, ok.k, ok.id_type FROM ok, LATERAL (
+    SELECT 'debtor:' || ok.party_id AS node WHERE ok.party_id IN (SELECT party_id FROM debtors)
+    UNION ALL SELECT 'owner:' || ok.party_id WHERE ok.party_id IN (SELECT party_id FROM owners)
+    UNION ALL SELECT 'officer:' || ok.party_id WHERE {officers}
+    UNION ALL SELECT 'company:' || ok.sos_id WHERE ok.sos_id IS NOT NULL
+) n;
+INSERT INTO graph_edges
+WITH grp AS (
+    SELECT k, id_type, min(node) AS h FROM g_ident GROUP BY k, id_type
+    HAVING count(DISTINCT node) BETWEEN 2 AND {max_shared}
+)
+SELECT DISTINCT i.node, grp.h, 'same_id', 'id:' || i.id_type,
+       CASE WHEN i.id_type = 'phone' THEN 'review' ELSE 'auto' END
+FROM g_ident i JOIN grp USING (k, id_type) WHERE i.node <> grp.h;
 """
 
 # Every owner record in the graph owns its parcel.
@@ -203,14 +347,33 @@ GROUP BY p.node, e.lot;
 """
 
 
-def compute(con: duckdb.DuckDBPyConnection) -> None:
+def compute(
+    con: duckdb.DuckDBPyConnection, lake: Path | None = None, sources: list[str] | None = None
+) -> None:
     con.execute("CREATE OR REPLACE TEMP TABLE graph_edges (src VARCHAR, dst VARCHAR, "
                 "link VARCHAR, rule_id VARCHAR, decision VARCHAR)")  # fmt: skip
     for table, select in EDGES.items():
         if _has(con, table):
             con.execute(f"INSERT INTO graph_edges SELECT DISTINCT * FROM ({select})")  # noqa: S608
+    if lake is not None and sources:
+        from equity.matching.resolve import _view
+
+        _view(con, "g_party_identifier", lake, sources, "party_identifier")
+        officers = ("ok.party_id IN (SELECT party_id FROM company_people)"
+                    if _has(con, "company_people") else "false")  # fmt: skip
+        con.execute(IDENT_SQL.format(officers=officers, max_shared=int(ID_MAX_SHARED)))
     if _has(con, "owners") and _has(con, "addr_base"):
         con.execute(CLUSTER_SQL)
+    if _has(con, "company_people") and _has(con, "addr_alias"):
+        con.execute(OFFICER_SQL)
+    if _has(con, "company_people") and _has(con, "biz_by_key"):
+        con.execute(COMPANY_SQL)
+    if _has(con, "o_by_addr") and _has(con, "first_names"):
+        con.execute(HOUSEHOLD_SQL)
+    else:
+        con.execute("CREATE OR REPLACE TEMP TABLE households (person_id VARCHAR, "
+                    "owner_party_id VARCHAR, parcel_uid VARCHAR, debtor_name VARCHAR, "
+                    "owner_name_key VARCHAR, addr_key VARCHAR, surname VARCHAR)")  # fmt: skip
     con.execute(OWNS_SQL)
     con.execute(NODES_SQL.format(hub_max=int(HUB_MAX_DEGREE)))
     passes_auto = _components(con, ("auto",), "comp_auto")
@@ -222,7 +385,7 @@ def compute(con: duckdb.DuckDBPyConnection) -> None:
     )
 
 
-TABLES = ("graph_edges", "graph_nodes", "person_reach")
+TABLES = ("graph_edges", "graph_nodes", "person_reach", "households")
 
 
 def summary(con: duckdb.DuckDBPyConnection) -> dict[str, object]:
@@ -248,6 +411,7 @@ def summary(con: duckdb.DuckDBPyConnection) -> dict[str, object]:
             "(SELECT person_id FROM person_reach WHERE direct)"),
         "parcels_reached_by_chain_auto": one(
             "SELECT count(*) FROM person_reach WHERE strength = 'auto' AND NOT direct"),
+        "household_links": one("SELECT count(*) FROM households"),
         "parcels_reached_review": one(
             "SELECT count(*) FROM person_reach WHERE strength = 'review'"),
         "passes_cap_reached": one(
