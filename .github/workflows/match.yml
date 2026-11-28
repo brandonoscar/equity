@@ -45,7 +45,8 @@ jobs:
           REQUESTED: ${{ inputs.states }}
         run: |
           # By hand: the states given. Weekly: every STATES key, one matrix job each.
-          states=$(uv run --locked python -m equity.matching.resolve --list-states $REQUESTED)
+          read -r -a requested <<< "$REQUESTED"
+          states=$(uv run --locked python -m equity.matching.resolve --list-states "${requested[@]}")
           echo "$states"
           echo "states=$states" >> "$GITHUB_OUTPUT"
 
