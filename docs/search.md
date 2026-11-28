@@ -176,6 +176,7 @@ core tables.
 | `value_parts` | land and building value, tax class | `--parcel` |
 | `owner_types` | owner type where the source gives one (person, trust, LLC...) | `--parcel` |
 | `house_prices` | FHFA house price index by ZIP and tract | `--parcel`: `house_price_index` scales the value from its tax year to the latest index year, labelled an estimate |
+| `business_addresses` | a registered business's principal and mailing address ids | `--ring`: `registered_at_debtor_address` |
 | `assessment_ratios` | NY and CT published assessment ratios (assessed / market) | `--parcel` for NY and CT, matched on the situs town name (`matched_on` says so) |
 
 ## Forensic tracing

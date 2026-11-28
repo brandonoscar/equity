@@ -132,6 +132,8 @@ CREATE TABLE IF NOT EXISTS nicknames (word VARCHAR, alt VARCHAR);
 -- index_supplements under their own version, so adding one never re-indexes the core.
 CREATE TABLE IF NOT EXISTS supplement_runs (source_id VARCHAR PRIMARY KEY, version VARCHAR,
     loaded_at TIMESTAMPTZ, counts VARCHAR);
+CREATE TABLE IF NOT EXISTS business_addresses (source_id VARCHAR, sos_id VARCHAR,
+    principal_address_id VARCHAR, mailing_address_id VARCHAR);
 CREATE TABLE IF NOT EXISTS assessment_ratios (source_id VARCHAR, geo_level VARCHAR,
     geo_id VARCHAR, geo_name VARCHAR, year INTEGER, property_class VARCHAR,
     ratio_kind VARCHAR, ratio_pct DOUBLE);
@@ -449,7 +451,7 @@ SORT_KEYS = (("names", "name_key"), ("name_words", "word"), ("owners", "party_id
              ("docket_entries", "case_uid"), ("bankruptcies", "case_uid"),
              ("tax_delinquencies", "parcel_uid"), ("parcel_links", "from_parcel_uid"),
              ("judgment_terms", "case_uid"), ("house_prices", "geo_id"),
-             ("assessment_ratios", "geo_id"))  # fmt: skip
+             ("assessment_ratios", "geo_id"), ("business_addresses", "sos_id"))  # fmt: skip
 LAKE_TABLES = ("party", "owner_snapshot", "parcel", "parcel_assessment", "address", "instrument",
                "instrument_party",
     "instrument_parcel",
@@ -741,8 +743,14 @@ SUPPLEMENTS: dict[str, tuple[str, tuple[str, ...], tuple[str, ...]]] = {
     "value_parts": ("parcel_assessment", ("source_id", "parcel_uid", "tax_year",
                     "appraised_land", "appraised_bldg", "tax_class"),
                     ("appraised_land", "appraised_bldg", "tax_class")),
+    "business_addresses": ("business", ("source_id", "sos_id", "principal_address_id",
+                           "mailing_address_id"), ("principal_address_id", "mailing_address_id")),
 }  # fmt: skip
-SUPPLEMENT_VERSION = "1"
+LEGACY_SUPPLEMENTS = ("assessment_ratios", "house_prices", "bankruptcies", "tax_delinquencies",
+                      "docket_entries", "parcel_links", "judgment_terms", "owner_types",
+                      "value_parts")  # fmt: skip
+# Each table's own version: bump one and only that table reloads, for every source.
+SUPPLEMENT_VERSIONS = {t: "1" for t in SUPPLEMENTS}
 
 
 def index_supplements(
@@ -752,24 +760,38 @@ def index_supplements(
     force: bool = False,
     log: Any = print,
 ) -> list[str]:
-    """Load the supplement tables for every source whose version (or SUPPLEMENT_VERSION)
-    changed. A source's rows are replaced in one transaction. Returns the sources loaded."""
+    """Load the supplement tables for every source whose version changed (all its tables),
+    and for every source a table whose SUPPLEMENT_VERSIONS entry changed (that table only).
+    A source's rows are replaced in one transaction. Returns the sources loaded."""
     want = {s.upper() for s in states} if states else None
-    known = dict(con.execute("SELECT source_id, version FROM supplement_runs").fetchall())
+    known = {str(sid): (str(v), json.loads(c or "{}").get("_versions", {}))
+             for sid, v, c in con.execute(
+                 "SELECT source_id, version, counts FROM supplement_runs").fetchall()}  # fmt: skip
     lakes = {lake for lake, _c, _f in SUPPLEMENTS.values()}
     done = []
     for sid in source.sources():
         if want is not None and _state_of(sid) not in want:
             continue
-        version = hashlib.sha256(
-            (SUPPLEMENT_VERSION + source.version(sid)).encode()).hexdigest()[:16]  # fmt: skip
-        if not force and known.get(sid) == version:
+        version = source.version(sid)
+        before, versions = known.get(sid, ("", {}))
+        legacy = hashlib.sha256(("1" + version).encode()).hexdigest()[:16]
+        if before == legacy:  # written before per-table versions: the first nine tables at "1"
+            before, versions = version, {t: "1" for t in LEGACY_SUPPLEMENTS}
+        if force or before != version:
+            tables = list(SUPPLEMENTS)
+        else:
+            tables = [t for t in SUPPLEMENTS if versions.get(t) != SUPPLEMENT_VERSIONS[t]]
+        if not tables:
             continue
         has = source.tables(sid) & lakes
         con.execute("BEGIN TRANSACTION")
         try:
-            counts = {}
-            for table, (lake, cols, keep) in SUPPLEMENTS.items():
+            row = con.execute("SELECT counts FROM supplement_runs WHERE source_id = ?",
+                              [sid]).fetchone()  # fmt: skip
+            counts = {k: v for k, v in json.loads((row[0] if row else None) or "{}").items()
+                      if k not in tables and k != "_versions"}  # fmt: skip
+            for table in tables:
+                lake, cols, keep = SUPPLEMENTS[table]
                 con.execute(f"DELETE FROM {table} WHERE source_id = ?", [sid])  # noqa: S608
                 files = source.files(sid, lake) if lake in has else []
                 if not files:
@@ -792,14 +814,16 @@ def index_supplements(
                     counts[table] = int(n[0])
             con.execute("DELETE FROM supplement_runs WHERE source_id = ?", [sid])
             con.execute("INSERT INTO supplement_runs VALUES (?, ?, ?, ?)",
-                        [sid, version, datetime.now(UTC), json.dumps(counts)])  # fmt: skip
+                        [sid, version, datetime.now(UTC),
+                         json.dumps({**counts, "_versions": SUPPLEMENT_VERSIONS})])  # fmt: skip
             con.execute("COMMIT")
         except Exception:
             con.execute("ROLLBACK")
             raise
         done.append(sid)
-        if counts:
-            log(f"supplements {sid}: " + ", ".join(f"{k} {v:,}" for k, v in counts.items()))
+        loaded = {t: counts[t] for t in tables if t in counts}
+        if loaded:
+            log(f"supplements {sid}: " + ", ".join(f"{k} {v:,}" for k, v in loaded.items()))
     return done
 
 
@@ -1231,6 +1255,15 @@ WITH c AS (
     LEFT JOIN parcel_equity pe ON pe.parcel_uid = owned.parcel_uid
     LEFT JOIN parcel_values v ON v.source_id = owned.src AND v.parcel_uid = owned.parcel_uid
     GROUP BY owned.lead_id
+), occ AS (  -- an owner record mailed at the owned parcel's own address (owner-occupied)
+    SELECT owned.lead_id, bool_or(oa.address_id = sa.address_id OR (oa.zip5 = sa.zip5
+           AND street_norm(oa.line1) = street_norm(sa.line1))) AS owner_occupied_any
+    FROM owned
+    JOIN names n ON n.source_id = owned.src AND n.party_id = owned.pid
+    JOIN addresses oa ON oa.address_id = n.address_id
+    JOIN parcels p ON p.source_id = owned.src AND p.parcel_uid = owned.parcel_uid
+    JOIN addresses sa ON sa.address_id = p.situs_address_id
+    GROUP BY owned.lead_id
 ), xfer AS (  -- deeds recorded against an owned parcel after the first debt
     SELECT owned.lead_id, count(DISTINCT i.instrument_uid) AS deeds_after_debt,
            max(i.recorded_on) AS last_deed_on
@@ -1269,6 +1302,7 @@ SELECT c.lead_id, c.state, c.debtor_name, c.name_key,
        eq.open_mortgage_principal, coalesce(behind.liens_on_owned_parcels, 0)
          AS liens_on_owned_parcels, behind.equity_behind_lien,
        coalesce(eq.homestead_any, false) AS homestead_any,
+       coalesce(occ.owner_occupied_any, false) AS owner_occupied_any,
        coalesce(xfer.deeds_after_debt, 0) AS deeds_after_debt, xfer.last_deed_on,
        bk.flags AS matcher_bankruptcy, coalesce(bkname.cases, 0) AS same_name_bankruptcies,
        bkname.last_petition_on AS same_name_last_petition_on,
@@ -1278,6 +1312,7 @@ FROM c
 LEFT JOIN lien USING (lead_id) LEFT JOIN mm USING (lead_id) LEFT JOIN addr USING (lead_id)
 LEFT JOIN zip USING (lead_id) LEFT JOIN eq USING (lead_id) LEFT JOIN xfer USING (lead_id)
 LEFT JOIN bk USING (lead_id) LEFT JOIN bkname USING (lead_id) LEFT JOIN behind USING (lead_id)
+LEFT JOIN occ USING (lead_id)
 ORDER BY state, grade, coalesce(equity_behind_lien, net_equity_known) DESC NULLS LAST,
          debt_amount DESC NULLS LAST
 """.replace("__DEBT__", ", ".join(f"'{t}'" for t in DEBT_TYPES))

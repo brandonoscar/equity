@@ -22,6 +22,8 @@ description: Shortlist debtors who own property in a state from the stored, rank
      AND parcel_value >= 50000         -- gross, before mortgages
      AND owned_parcels <= 5            -- big portfolios are usually creditors or agencies
      AND NOT homestead_any             -- homestead protection cuts reachable equity
+     -- owner_occupied_any: an owner record is mailed at the parcel itself (a homestead
+     -- stand-in where the source has no homestead flag; check the state's exemption)
      AND matcher_bankruptcy IS NULL
    ORDER BY grade, net_equity_known DESC NULLS LAST, debt_amount DESC NULLS LAST
    LIMIT 50;

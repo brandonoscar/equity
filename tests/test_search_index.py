@@ -689,6 +689,18 @@ def test_supplements_load_by_their_own_version(lake: Path, tmp_path: Path) -> No
     assert con.execute("SELECT judgment_uid, rate::DOUBLE FROM judgment_terms").fetchall() == [
         ("j1", 0.0912)]  # fmt: skip
     assert index_supplements(con, src, log=lambda _m: None) == []  # unchanged: nothing to do
+    import equity.search_index as si
+
+    bumped = {**si.SUPPLEMENT_VERSIONS, "bankruptcies": "2"}
+    logs: list[str] = []
+    old = si.SUPPLEMENT_VERSIONS
+    si.SUPPLEMENT_VERSIONS = bumped
+    try:  # one table's version changed: every source reloads that table only
+        assert set(index_supplements(con, src, log=logs.append)) >= {bk, ct, fl}
+    finally:
+        si.SUPPLEMENT_VERSIONS = old
+    assert logs == [f"supplements {bk}: bankruptcies 1"]
+    assert con.execute("SELECT count(*) FROM assessment_ratios").fetchone() == (1,)  # kept
     assert index_supplements(con, src, states=["OH"], force=True, log=lambda _m: None) == [
         "oh.cuyahoga.liens", "oh.franklin.parcels", "oh.sos.business", bk]  # fmt: skip
 
@@ -739,14 +751,17 @@ def test_leads_table_grades_and_ranks(cat: duckdb.DuckDBPyConnection) -> None:
     assert homestead in (True, False)
 
 
-def test_fact_sheet_for_a_lead(cat: duckdb.DuckDBPyConnection) -> None:
+def test_fact_sheet_for_a_lead(cat: duckdb.DuckDBPyConnection, tmp_path: Path) -> None:
     from datetime import date
 
     from equity.facts import fact_sheet
 
     compact(cat)
     lead_id = cat.execute("SELECT lead_id FROM leads").fetchone()[0]  # type: ignore[index]
-    sheet = fact_sheet(cat, lead_id, as_of=date(2026, 1, 1))
+    cfg = tmp_path / "cfg"
+    cfg.mkdir()
+    (cfg / "sol.yaml").write_text("states:\n  OH: {judgment_enforceable_years: null}\n")
+    sheet = fact_sheet(cat, lead_id, config_dir=cfg, as_of=date(2026, 1, 1))
     assert sheet is not None and sheet["as_of"] == "2026-01-01"
     assert sheet["identity"][0]["grade"] == "A"
     assert [d["instrument_uid"] for d in sheet["debts"]] and all(
@@ -755,9 +770,16 @@ def test_fact_sheet_for_a_lead(cat: duckdb.DuckDBPyConnection) -> None:
     assert sheet["factors"]["charged_off_loan"] is None  # unknown here, not zero
     assert any("not confirmed in config/sol.yaml" in g for g in sheet["gaps"])
     assert [p["parcel_uid"] for p in sheet["parcels"]] == ["39049-010-1"]
-    assert fact_sheet(cat, 10**9) is None
-    again = fact_sheet(cat, lead_id, as_of=date(2026, 1, 1))
+    assert sheet["factors"]["sol_years_left"] is None
+    assert fact_sheet(cat, 10**9, config_dir=cfg) is None
+    again = fact_sheet(cat, lead_id, config_dir=cfg, as_of=date(2026, 1, 1))
     assert again is not None and again["sheet_sha256"] == sheet["sheet_sha256"]  # repeatable
+    (cfg / "sol.yaml").write_text(
+        "states:\n  OH: {judgment_enforceable_years: 5, statute: X, confirmed_by: Y}\n"
+    )
+    timed = fact_sheet(cat, lead_id, config_dir=cfg, as_of=date(2026, 1, 1))
+    # first debt 2025-06-01; 5 years from it, counted to 2026-01-01
+    assert timed is not None and timed["factors"]["sol_years_left"] == 4.41
 
 
 def test_watchlist_reports_what_is_new(cat: duckdb.DuckDBPyConnection, tmp_path: Path) -> None:
@@ -916,6 +938,10 @@ def test_transfer_badges_and_entity_ring(
         ("Acme Holdings, L.L.C.", "member", False)]  # fmt: skip
     assert [x["parcel_uid"] for x in ring[0]["parcels"]] == ["39049-010-2"]
     assert [x["deed"] for x in ring[0]["deeds_from_debtor"]] == ["oh.cuyahoga.liens:dd1"]
+    assert ring[0]["registered_at_debtor_address"] is False
+    forensic.execute("INSERT INTO business_addresses VALUES ('oh.sos.business', 'B7', 'a1', NULL)")
+    again = entity_ring(forensic, "oh.cuyahoga.liens:d1")["businesses"][0]
+    assert again["registered_at_debtor_address"] is True  # principal office = the debtor's
 
 
 def test_timeline_household_and_portfolios(forensic: duckdb.DuckDBPyConnection) -> None:
@@ -943,3 +969,5 @@ def test_leads_carry_equity_behind_the_lien(forensic: duckdb.DuckDBPyConnection)
                            "open_mortgage_principal FROM leads").fetchone()  # fmt: skip
     # The 2026 mortgage is junior to the 2025 lien: only the 2020 mortgage counts against it.
     assert row is not None and (row[0], row[1]) == (1, 80000.0)
+    # the owner record o1 is mailed at a1, the parcel's own situs address
+    assert forensic.execute("SELECT owner_occupied_any FROM leads").fetchone() == (True,)

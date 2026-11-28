@@ -349,17 +349,25 @@ def entity_ring(con: duckdb.DuckDBPyConnection, ref: str) -> dict[str, Any]:
                 if (r["g_src"], r["g_pid"]) in mine] if ids else []  # fmt: skip
         for r in into:
             del r["g_src"], r["g_pid"]
+        at_home = con.execute("""
+            SELECT a.line1, a.zip5 FROM business_addresses ba
+            JOIN addresses a ON a.address_id IN (ba.principal_address_id, ba.mailing_address_id)
+            WHERE ba.source_id = ? AND ba.sos_id = ?
+              AND (a.address_id = ? OR (a.zip5 = ? AND street_norm(a.line1) = ?))
+            LIMIT 1""", [f["source_id"], f["sos_id"], p["address_id"], p["zip5"],
+                         p["street"]]).fetchone()  # fmt: skip
         ring.append({
             "business": f"{f['source_id']}:business:{f['sos_id']}", "name": f["name"],
             "org_form": f["org_form"], "status": f["status"], "formed_on": f["formed_on"],
             "debtor_role": f["role"], "title": f["title"],
             "formed_after_first_debt": bool(first and f["formed_on"] and f["formed_on"] > first),
+            "registered_at_debtor_address": at_home is not None,
             "parcels": parcels, "deeds_from_debtor": into,
         })  # fmt: skip
     return {"debtor": ref, "name_key": p["name_key"], "state": p["state"],
             "first_debt_on": first, "businesses": ring,
             "note": "roles are matched on the exact name in the state's registry: a namesake "
-                    "can appear; the registry's addresses are not in the index"}  # fmt: skip
+                    "can appear"}  # fmt: skip
 
 
 # -- (5) timeline ------------------------------------------------------------------------------
