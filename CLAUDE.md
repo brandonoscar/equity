@@ -68,7 +68,8 @@ research output under `data/derived/` (git-ignored). Test fixtures are pseudonym
 | "Trace assets / hidden property / fraudulent transfer / forensic dossier on <debtor>" | skill `forensic-trace`; saved workflow `asset-trace` for a full dossier |
 | "Whose judgments should we buy in <state>?" | `uv run python -m equity.forensic --portfolios <STATE>` |
 | Verify one lead independently | subagent `lead-verifier` |
-| "Did a search change break anything?" | `uv run python -m equity.search_golden` (owner's private cases) |
+| "Golden cases" / "verify cases with the verifier" | skill `golden-session` (docs/golden-cases.md) |
+| "Did a search change break anything?" | `uv run pytest tests/e2e` (every rule, synthetic) and `uv run python -m equity.search_golden` (owner's private cases) |
 
 ## Sessions
 

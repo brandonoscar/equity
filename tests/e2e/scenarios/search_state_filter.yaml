@@ -1,0 +1,19 @@
+name: search_state_filter
+doc: --state keeps only that state's records.
+sources:
+  oh.testsearch.parcels:
+    party:
+    - party_id: p0
+      raw_name: TESTOWNER ALPHA SMITH
+  ky.testsearch.parcels:
+    party:
+    - party_id: p0
+      raw_name: TESTOWNER ALPHA SMITH
+expect:
+- search:
+    query: TESTOWNER ALPHA SMITH
+    state: KY
+    includes:
+    - ky.testsearch.parcels:p0
+    excludes:
+    - oh.testsearch.parcels:p0

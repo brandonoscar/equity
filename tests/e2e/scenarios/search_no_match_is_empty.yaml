@@ -1,0 +1,11 @@
+name: search_no_match_is_empty
+doc: A name nobody holds returns nothing, not the nearest stranger.
+sources:
+  oh.testsearch.parcels:
+    party:
+    - party_id: p0
+      raw_name: TESTOWNER ALPHA SMITH
+expect:
+- search:
+    query: TESTOWNER ZULU QUEBEC
+    count: 0

@@ -1,0 +1,61 @@
+name: name_order_and_punctuation
+doc: '''SMITH, TESTOWNER ALPHA'' and ''TESTOWNER ALPHA SMITH'' are the same name_key.'
+sources:
+  oh.testcounty.parcels:
+    party:
+    - party_id: o1
+      raw_name: SMITH, TESTOWNER ALPHA
+      address_id: a1
+    owner_snapshot:
+    - party_id: o1
+      parcel_uid: 39001-0001
+      observed_on: '2026-11-01'
+    parcel:
+    - parcel_uid: 39001-0001
+      jurisdiction: '39001'
+      situs_address_id: a2
+    parcel_assessment:
+    - parcel_uid: 39001-0001
+      tax_year: 2025
+      appraised_total: 200000
+      valid_from: '2025-01-01'
+      homestead: null
+    address:
+    - address_id: a1
+      line1: 1 ELM TEST ST
+      city: TESTVILLE
+      state: OH
+      zip5: '43001'
+    - address_id: a2
+      line1: 2 ELM TEST ST
+      city: TESTVILLE
+      state: OH
+      zip5: '43001'
+  oh.testcounty.liens:
+    party:
+    - party_id: d1
+      raw_name: TESTOWNER ALPHA SMITH
+      address_id: a1
+    instrument:
+    - instrument_uid: i1
+      doc_type: JUDGMENT_LIEN
+      recorded_on: '2025-01-15'
+      principal_amount: 25000
+    instrument_party:
+    - instrument_uid: i1
+      party_id: d1
+      role: debtor
+    address: []
+expect:
+- grade:
+    debtor: oh.testcounty.liens:d1
+    owner: oh.testcounty.parcels:o1
+    grade: A
+    rule: name_address
+- search:
+    query: Testowner Alpha Smith
+    state: OH
+    includes:
+    - oh.testcounty.parcels:o1
+    - oh.testcounty.liens:d1
+    rule: exact

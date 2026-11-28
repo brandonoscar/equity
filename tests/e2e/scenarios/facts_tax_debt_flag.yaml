@@ -1,0 +1,60 @@
+name: facts_tax_debt_flag
+doc: A state tax lien sets tax_debt and is not a court judgment.
+sources:
+  oh.testcounty.parcels:
+    party:
+    - party_id: o1
+      raw_name: TESTOWNER ALPHA SMITH
+      address_id: a1
+    owner_snapshot:
+    - party_id: o1
+      parcel_uid: 39001-0001
+      observed_on: '2026-11-01'
+    parcel:
+    - parcel_uid: 39001-0001
+      jurisdiction: '39001'
+      situs_address_id: a2
+    parcel_assessment:
+    - parcel_uid: 39001-0001
+      tax_year: 2025
+      appraised_total: 200000
+      valid_from: '2025-01-01'
+      homestead: null
+    address:
+    - address_id: a1
+      line1: 1 ELM TEST ST
+      city: TESTVILLE
+      state: OH
+      zip5: '43001'
+    - address_id: a2
+      line1: 2 ELM TEST ST
+      city: TESTVILLE
+      state: OH
+      zip5: '43001'
+  oh.testcounty.liens:
+    party:
+    - party_id: d1
+      raw_name: TESTOWNER ALPHA SMITH
+      address_id: a9
+    instrument:
+    - instrument_uid: i1
+      doc_type: TAX_LIEN_STATE
+      recorded_on: '2025-01-15'
+      principal_amount: 25000
+    instrument_party:
+    - instrument_uid: i1
+      party_id: d1
+      role: debtor
+    address:
+    - address_id: a9
+      line1: 9 ELM TEST ST
+      city: TESTVILLE
+      state: OH
+      zip5: '44999'
+expect:
+- facts:
+    name: TESTOWNER ALPHA SMITH
+    state: OH
+    factors:
+      tax_debt: 1
+      court_judgment: 0

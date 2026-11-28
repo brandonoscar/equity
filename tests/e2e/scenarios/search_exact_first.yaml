@@ -1,0 +1,14 @@
+name: search_exact_first
+doc: The exact name ranks first, ahead of names with extra words.
+sources:
+  oh.testsearch.parcels:
+    party:
+    - party_id: p0
+      raw_name: TESTOWNER ALPHA SMITH
+    - party_id: p1
+      raw_name: TESTOWNER ALPHA SMITH ZED
+expect:
+- search:
+    query: TESTOWNER ALPHA SMITH
+    top: oh.testsearch.parcels:p0
+    rule: exact

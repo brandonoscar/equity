@@ -513,6 +513,13 @@ def connect(db: Path | str = DEFAULT_DB, read_only: bool = False) -> duckdb.Duck
                 ''), 3, '0'), 3)
             ELSE sx_w END;
     """)
+    con.execute(f"""
+        -- Generational suffixes a printed name carries (name_key drops them): 'JR', 'SR II'...
+        -- Two records whose suffixes differ are different people (a father and a son).
+        CREATE OR REPLACE {kind} name_suffix(sf_n) AS nullif(array_to_string(list_sort(
+            list_distinct(regexp_extract_all(regexp_replace(upper(coalesce(sf_n, '')),
+                '[^A-Z0-9]+', ' ', 'g'), '\\b(JR|SR|II|III|IV)\\b'))), ' '), '');
+    """)
     forms = ", ".join(f"'{w}'" for w in (*STOP, *ORG_FORMS))
     con.execute(f"""
         -- An organization's name without punctuation or its legal form, so "Acme Holdings,
@@ -1220,30 +1227,46 @@ WITH c AS (
     LEFT JOIN (SELECT parcel_uid, max(coalesce(appraised_total, assessed_value)) AS value
                FROM parcel_values GROUP BY parcel_uid) pv USING (parcel_uid)
     GROUP BY ld.lead_id
+), dopen AS (  -- the debtor's debts that no recorded release or satisfaction points at
+    SELECT dp.lead_id, count(DISTINCT i.instrument_uid) AS open_debts,
+           sum(DISTINCT i.amount) AS open_debt_amount
+    FROM dp
+    JOIN instrument_parties ip ON ip.source_id = dp.src AND ip.party_id = dp.pid
+         AND ip.role IN ('debtor', 'borrower', 'grantor')
+    JOIN instruments i ON i.source_id = ip.source_id AND i.instrument_uid = ip.instrument_uid
+    WHERE i.doc_type IN (__DEBT__)
+      AND NOT EXISTS (SELECT 1 FROM instrument_refs r WHERE r.source_id = i.source_id
+                      AND r.to_uid = i.instrument_uid
+                      AND r.ref_type IN ('releases', 'satisfies_judgment'))
+    GROUP BY dp.lead_id
 ), mm AS (
     SELECT dp.lead_id, bool_or(m.decision = 'auto') AS auto, bool_or(m.decision <> 'auto') AS review
     FROM dp JOIN m_matches m ON m.debtor_party_id = dp.pid
     JOIN op ON op.lead_id = dp.lead_id AND op.pid = m.owner_party_id
     GROUP BY dp.lead_id
 ), dn AS (
-    SELECT dp.lead_id, n.address_id, a.zip5
+    SELECT dp.lead_id, n.address_id, a.zip5, name_suffix(n.raw_name) AS sfx
     FROM dp JOIN names n ON n.source_id = dp.src AND n.party_id = dp.pid
     LEFT JOIN addresses a ON a.address_id = n.address_id
 ), oaddr AS (  -- owners' mailing addresses and owned parcels' property addresses
-    SELECT op.lead_id, n.address_id
+    SELECT op.lead_id, n.address_id, name_suffix(n.raw_name) AS sfx
     FROM op JOIN names n ON n.source_id = op.src AND n.party_id = op.pid
     WHERE n.address_id IS NOT NULL
     UNION
-    SELECT owned.lead_id, p.situs_address_id FROM owned
+    SELECT owned.lead_id, p.situs_address_id, name_suffix(n.raw_name) FROM owned
     JOIN parcels p ON p.source_id = owned.src AND p.parcel_uid = owned.parcel_uid
+    JOIN names n ON n.source_id = owned.src AND n.party_id = owned.pid
     WHERE p.situs_address_id IS NOT NULL
-), addr AS (
+), addr AS (  -- a JR and a SR at one address are two people: conflicting suffixes never pair
     SELECT DISTINCT dn.lead_id FROM dn JOIN oaddr USING (lead_id, address_id)
+    WHERE dn.sfx IS NULL OR oaddr.sfx IS NULL OR dn.sfx = oaddr.sfx
 ), ozip AS (
-    SELECT DISTINCT oaddr.lead_id, a.zip5 FROM oaddr JOIN addresses a USING (address_id)
+    SELECT DISTINCT oaddr.lead_id, a.zip5, oaddr.sfx
+    FROM oaddr JOIN addresses a USING (address_id)
     WHERE a.zip5 IS NOT NULL
 ), zip AS (
     SELECT DISTINCT dn.lead_id FROM dn JOIN ozip USING (lead_id, zip5)
+    WHERE dn.sfx IS NULL OR ozip.sfx IS NULL OR dn.sfx = ozip.sfx
 ), eq AS (
     SELECT owned.lead_id, count(DISTINCT owned.parcel_uid) AS owned_parcels,
            count(DISTINCT pe.parcel_uid) FILTER (WHERE pe.equity_est IS NOT NULL) AS equity_known,
@@ -1294,7 +1317,8 @@ SELECT c.lead_id, c.state, c.debtor_name, c.name_key,
             WHEN addr.lead_id IS NOT NULL THEN 'name_address'
             WHEN mm.review THEN 'matcher_review'
             WHEN zip.lead_id IS NOT NULL THEN 'name_zip' ELSE 'name_only' END AS grade_rule,
-       c.debts, c.debt_amount, c.doc_types, c.first_debt_on, c.last_debt_on,
+       c.debts, c.debt_amount, coalesce(dopen.open_debts, 0) AS open_debts,
+       dopen.open_debt_amount, c.doc_types, c.first_debt_on, c.last_debt_on,
        date_diff('day', c.first_debt_on, current_date) AS first_debt_age_days,
        date_diff('day', c.last_debt_on, current_date) AS last_debt_age_days,
        c.parcels, c.parcel_value, eq.value_tax_year, eq.owned_parcels,
@@ -1312,7 +1336,7 @@ FROM c
 LEFT JOIN lien USING (lead_id) LEFT JOIN mm USING (lead_id) LEFT JOIN addr USING (lead_id)
 LEFT JOIN zip USING (lead_id) LEFT JOIN eq USING (lead_id) LEFT JOIN xfer USING (lead_id)
 LEFT JOIN bk USING (lead_id) LEFT JOIN bkname USING (lead_id) LEFT JOIN behind USING (lead_id)
-LEFT JOIN occ USING (lead_id)
+LEFT JOIN occ USING (lead_id) LEFT JOIN dopen USING (lead_id)
 ORDER BY state, grade, coalesce(equity_behind_lien, net_equity_known) DESC NULLS LAST,
          debt_amount DESC NULLS LAST
 """.replace("__DEBT__", ", ".join(f"'{t}'" for t in DEBT_TYPES))

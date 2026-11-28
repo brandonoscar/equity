@@ -997,11 +997,14 @@ def grade_pair(con: duckdb.DuckDBPyConnection, debtor_ref: str, owner_ref: str) 
       B matcher_review     the matcher linked them for review
       B name_zip           same name_key and ZIP
       C name_only          same name_key only
-      reject               different names, or either name is flagged (name_flag)"""
+      reject               different names, conflicting generational suffixes (JR vs SR:
+                           name_key drops them, so a father and a son share one), or either
+                           name is flagged (name_flag)"""
     d_src, _, d_pid = debtor_ref.partition(":")
     o_src, _, o_pid = owner_ref.partition(":")
     rows = {(r["source_id"], r["party_id"]): r for r in _rows(con, f"""
-        SELECT n.source_id, n.party_id, n.name_key, n.name_flag, n.address_id, a.zip5
+        SELECT n.source_id, n.party_id, n.name_key, n.name_flag, n.address_id, a.zip5,
+               name_suffix(n.raw_name) AS suffix
         FROM names n LEFT JOIN addresses a USING (address_id)
         WHERE n.party_id IN {_in({d_pid, o_pid})}""", [])}  # noqa: S608  # fmt: skip
     d, o = rows.get((d_src, d_pid)), rows.get((o_src, o_pid))
@@ -1029,6 +1032,9 @@ def grade_pair(con: duckdb.DuckDBPyConnection, debtor_ref: str, owner_ref: str) 
     for r in (d, o):
         if r["name_flag"]:
             return {"grade": "reject", "rule": f"flag_{r['name_flag']}", "evidence": []}
+    if d["suffix"] and o["suffix"] and d["suffix"] != o["suffix"]:
+        why = f"debtor suffix {d['suffix']}, owner suffix {o['suffix']}"
+        return {"grade": "reject", "rule": "suffix_conflict", "evidence": [why]}
     if d["name_key"] != o["name_key"]:
         if links:
             return {"grade": "B", "rule": "matcher_review", "evidence": [f"matcher {links[0][1]}"]}
