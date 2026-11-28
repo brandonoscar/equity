@@ -51,6 +51,10 @@ Rules, strongest first (a debtor-owner pair keeps its strongest rule):
   person_name_spacing_address  same address, and the same letters once spaces and
                         punctuation are dropped ("O'BRIEN" / "OBRIEN", "DE LA CRUZ" /
                         "DELACRUZ", "MC DONALD" / "MCDONALD")                  -> review
+  person_loose_name_address  same address, and the names agree once nicknames are read as
+                        formal names, middle initials are dropped and spaces ignored, all at
+                        once ("BOB A SMITH" / "ROBERT SMITH", "BILL O BRIEN" / "WILLIAM
+                        OBRIEN"); two different middle initials never agree      -> review
   person_at_owner_occupied_property  a lot no source names an owner for (California rolls)
                         whose property address is the debtor's own address, and the roll's
                         latest homeowner exemption says an owner lives there       -> review
@@ -200,6 +204,7 @@ RULES = (
     ("person_name_street_city", "review", 20),
     ("org_name_street_city", "review", 21),
     ("person_name_former_address", "review", 22),
+    ("person_loose_name_address", "review", 23),
 )
 
 
@@ -927,6 +932,33 @@ WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2
 """
 
 
+# Every name rule at once: loose_letters(k) is the sorted letters of a name key's full words
+# (2+ letters) with nicknames read as formal names, loose_letters_all(k) the same with every
+# word (an O of O BRIEN is a letter of the surname, not an initial); initials(k) its
+# single-letter words.
+LOOSE_SQL = """
+CREATE OR REPLACE MACRO initials(k) AS list_sort(list_filter(string_split(k, ' '),
+    lambda w: length(w) = 1));
+CREATE OR REPLACE MACRO loose_letters(k) AS array_to_string(list_sort(string_split(
+    array_to_string(list_filter(string_split(nick_key(k), ' '), lambda w: length(w) >= 2), ''),
+    '')), '');
+CREATE OR REPLACE MACRO loose_letters_all(k) AS array_to_string(list_sort(string_split(
+    replace(nick_key(k), ' ', ''), '')), '');
+INSERT INTO candidates
+SELECT DISTINCT d.party_id, d.instrument_uid, o.party_id, o.parcel_uid,
+       'person_loose_name_address', d.name_key
+FROM debtors d JOIN addr_alias aa ON aa.k = d.addr_key JOIN o_by_addr o ON o.k = aa.k2
+WHERE d.party_kind <> 'org' AND name_words(d.name_key) >= 2
+  AND d.name_key <> o.name_key AND NOT suffix_conflict(d.suffix_key, o.suffix_key)
+  AND len(list_filter(string_split(d.name_key, ' '), lambda w: length(w) >= 2)) >= 2
+  AND len(list_filter(string_split(o.name_key, ' '), lambda w: length(w) >= 2)) >= 2
+  AND (loose_letters(d.name_key) = loose_letters(o.name_key)
+       OR loose_letters_all(d.name_key) = loose_letters_all(o.name_key))
+  AND (len(initials(d.name_key)) = 0 OR len(initials(o.name_key)) = 0
+       OR initials(d.name_key) = initials(o.name_key));
+"""
+
+
 def first_names(con: duckdb.DuckDBPyConnection) -> None:
     """first_names(name): every first name in the 1990 Census lists (data/first_names_1990.txt)."""
     path = Path(__file__).parent / "data" / "first_names_1990.txt"
@@ -1169,6 +1201,7 @@ def match(
     if _table_exists(con, "roll_lot"):
         con.execute(HISTORY_FROM_RECORDS_SQL)
     con.execute(FORMER_SQL)
+    con.execute(LOOSE_SQL)
     con.execute(UNIT_SQL)
     if parcel_on_lien:
         con.execute(PARCEL_ON_LIEN_SQL)
