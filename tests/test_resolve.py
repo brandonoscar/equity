@@ -1538,3 +1538,57 @@ def test_po_boxes_numbered_streets_company_and_and_no_zip_addresses(tmp_path: Pa
     assert m["d2"] == ("person_name_address", "auto")
     assert m["d3"] == ("org_name_loose_address", "auto")
     assert m["d4"] == ("person_name_street_city", "review")
+
+
+def test_a_mortgage_borrower_names_a_parcel_the_roll_does_not(tmp_path: Path) -> None:
+    """A roll without owner names (06037-1, 06037-2): each mortgage's borrower owned the lot
+    when it was recorded. A recent one matches like a roll owner; one older than
+    RECORD_OWNER_AUTO_DAYS only reaches review (the lot may have been sold since)."""
+    import datetime as dt
+
+    lk = tmp_path / "lake"
+    d, o, m = lk / "zz.debts", lk / "zz.parcels", lk / "zz.mortgages"
+    _write(d / "address" / "0.parquet", [_addr("a1", "1 ELM ST", "90001"),
+                                         _addr("a2", "2 OAK ST", "90001")])  # fmt: skip
+    _write(d / "party" / "0.parquet", [
+        {"party_id": f"d{n}", "raw_name": nm, "party_kind": "unknown", "org_name_norm": None,
+         "address_id": f"a{n}"} for n, nm in ((1, "ANN LEE"), (2, "BO RAY"))])  # fmt: skip
+    _write(
+        d / "instrument_party" / "0.parquet",
+        [{"instrument_uid": f"i{n}", "party_id": f"d{n}", "role": "debtor"} for n in (1, 2)],
+    )
+    _write(d / "instrument" / "0.parquet", [
+        {"instrument_uid": f"i{n}", "source_id": "zz.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2026-01-01", "principal_amount": 10.0} for n in (1, 2)])  # fmt: skip
+    _write(o / "address" / "0.parquet", [_addr("s1", "1 Elm Street", "90001"),
+                                         _addr("s2", "2 OAK ST", "90001")])  # fmt: skip
+    _write(o / "parcel" / "0.parquet", [
+        {"parcel_uid": "06037-1", "situs_address_id": "s1"},
+        {"parcel_uid": "06037-2", "situs_address_id": "s2"}])  # fmt: skip
+    recent = (dt.datetime.now(dt.UTC).date() - dt.timedelta(days=30)).isoformat()
+    _write(m / "instrument" / "0.parquet", [
+        {"instrument_uid": "k1", "source_id": "zz.mortgages", "doc_type": "MORTGAGE",
+         "recorded_on": recent, "principal_amount": 100.0},
+        {"instrument_uid": "k2", "source_id": "zz.mortgages", "doc_type": "MORTGAGE",
+         "recorded_on": "2015-01-01", "principal_amount": 100.0}])  # fmt: skip
+    _write(m / "instrument_parcel" / "0.parquet", [
+        {"instrument_uid": "k1", "parcel_uid": "06037-1"},
+        {"instrument_uid": "k2", "parcel_uid": "06037-2"}])  # fmt: skip
+    _write(m / "party" / "0.parquet", [
+        {"party_id": "b1", "raw_name": "LEE ANN", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": None},
+        {"party_id": "b2", "raw_name": "RAY BO", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": None},
+        {"party_id": "l1", "raw_name": "TEST BANK NA", "party_kind": "org",
+         "org_name_norm": "TEST BANK", "address_id": None}])  # fmt: skip
+    _write(m / "instrument_party" / "0.parquet", [
+        {"instrument_uid": "k1", "party_id": "b1", "role": "borrower"},
+        {"instrument_uid": "k1", "party_id": "l1", "role": "lender"},
+        {"instrument_uid": "k2", "party_id": "b2", "role": "borrower"}])  # fmt: skip
+    out = tmp_path / "out"
+    run(lk, out, ["zz.debts"], ["zz.parcels"], record_owner_sources=["zz.mortgages"])
+    m_ = {r[0]: r[1:] for r in duckdb.connect().execute(
+        f"SELECT debtor_party_id, parcel_uid, rule_id, decision, owner_basis "
+        f"FROM '{out.as_posix()}/matches.parquet'").fetchall()}  # fmt: skip
+    assert m_["d1"] == ("06037-1", "person_name_address", "auto", "mortgage:zz.mortgages")
+    assert m_["d2"] == ("06037-2", "person_name_address", "review", "mortgage:zz.mortgages")

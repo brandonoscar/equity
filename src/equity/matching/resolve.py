@@ -91,7 +91,8 @@ are owners like any other, so every address rule meets them.
 
 With record_owners (and every run's deeds): owner names for parcels whose roll publishes none
 (California counties, Indiana's statewide layer), from records that name a lot's owner: the
-grantee of a DEED, or the 'owner' party of a permit, registration or code case. Per parcel the
+grantee of a DEED, the borrower of a MORTGAGE, or the 'owner' party of a permit,
+registration or code case. Per parcel the
 latest such record counts, only where the roll has no owner, matched to the roll parcel by
 county and parcel number letters and digits (punctuation ignored). Matches through them carry
 owner_basis ('deed:<source>' / 'record:<source>', 'roll' otherwise) and owner_seen_on; a
@@ -411,10 +412,11 @@ def connect(
 
 # Owner names from records that are not owner rolls, for parcels whose roll publishes none
 # (California counties, Indiana's statewide layer): a deed's grantee, and the 'owner' party of
-# a permit, landlord or rental registration or code case. Per parcel only the latest dated
+# a permit, landlord or rental registration or code case, and the borrower of a mortgage (who
+# owned the lot when it was recorded). Per parcel only the latest dated
 # record counts (all its owner names), and only where no roll owner is known, so a roll owner
-# is never displaced. owner_basis says where the name came from: 'deed:<source>' or
-# 'record:<source>'; owner_seen_on is that record's date.
+# is never displaced. owner_basis says where the name came from: 'deed:<source>',
+# 'mortgage:<source>' or 'record:<source>'; owner_seen_on is that record's date.
 RECORD_OWNERS_SQL = """
 -- Records and rolls often print one parcel number differently ('49-02-19-107-055.000-800'
 -- in the roll, '490219107055000800' on a sales form): a record's lot is the roll parcel with
@@ -427,13 +429,16 @@ FROM o_parcel GROUP BY 1 HAVING count(DISTINCT parcel_uid) = 1;
 INSERT INTO owners
 WITH named AS (
     SELECT rl.parcel_uid, ip.party_id, i.recorded_on, i.source_id,
-           CASE WHEN ip.role = 'grantee' THEN 'deed:' ELSE 'record:' END || i.source_id
+           CASE WHEN ip.role = 'grantee' THEN 'deed:'
+                WHEN ip.role = 'borrower' THEN 'mortgage:' ELSE 'record:' END || i.source_id
                AS basis
     FROM ro_ip ip
     JOIN ro_inst i ON i.instrument_uid = ip.instrument_uid
     JOIN ro_lot l ON l.instrument_uid = ip.instrument_uid
     JOIN roll_lot rl ON rl.k = parcel_key(l.parcel_uid)
-    WHERE (ip.role = 'owner' OR (ip.role = 'grantee' AND i.doc_type = 'DEED'))
+    WHERE (ip.role = 'owner' OR (ip.role = 'grantee' AND i.doc_type = 'DEED')
+           -- a mortgage's borrower owned the lot when it was recorded
+           OR (ip.role = 'borrower' AND i.doc_type = 'MORTGAGE'))
       AND i.recorded_on IS NOT NULL
       AND rl.parcel_uid NOT IN (SELECT parcel_uid FROM o_snap)
 ), latest AS (
@@ -450,8 +455,9 @@ LEFT JOIN o_parcel pc ON pc.parcel_uid = n.parcel_uid
 LEFT JOIN addr ma ON ma.address_id = p.address_id
 LEFT JOIN addr sa ON sa.address_id = pc.situs_address_id;
 """
-# A 'record:' owner is who owned the lot on the record's date (a permit, a registration);
-# the lot may have been sold since. Its matches stay 'review' unless the record is recent.
+# A 'record:' or 'mortgage:' owner is who owned the lot on the record's date (a permit, a
+# registration, a mortgage); the lot may have been sold since. Its matches stay 'review'
+# unless the record is recent.
 # TODO(Brandon): confirm the two-year window (deeds are not capped: the latest recorded
 # grantee is the owner of record).
 RECORD_OWNER_AUTO_DAYS = 730
@@ -1134,7 +1140,9 @@ def match(
               FROM owners GROUP BY party_id, parcel_uid) o
         WHERE o.party_id = matches.owner_party_id AND o.parcel_uid = matches.parcel_uid;
         UPDATE matches SET decision = 'review'
-        WHERE decision = 'auto' AND starts_with(coalesce(owner_basis, ''), 'record:')
+        WHERE decision = 'auto'
+          AND (starts_with(coalesce(owner_basis, ''), 'record:')
+               OR starts_with(coalesce(owner_basis, ''), 'mortgage:'))
           AND owner_seen_on < current_date - INTERVAL {RECORD_OWNER_AUTO_DAYS} DAY;
         -- Which name of the owner string the match used: NULL (the whole string), 'joint'
         -- (one of several owners printed together) or 'trust' (a trust's settlor/trustee).
@@ -1839,7 +1847,8 @@ def main(argv: list[str] | None = None) -> int:
                  [*(spec.get("registries") or []), *optional_registries(args.state)],
                  spec.get("debtor_doc_types"), bankruptcy_sources(args.state),
                  spec.get("deeds"),
-                 [*(spec.get("deeds") or []), *(spec.get("record_owners") or [])],
+                 [*(spec.get("deeds") or []), *(spec.get("record_owners") or []),
+                  *(spec.get("mortgages") or [])],
                  state_fips(run_state(args.state)),
                  (args.out / "_national" / "out_of_state_owners.parquet",
                   run_state(args.state)))  # fmt: skip
