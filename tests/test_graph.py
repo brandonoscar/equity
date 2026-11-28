@@ -197,11 +197,10 @@ def test_a_shared_parcel_does_not_join_its_co_owners(tmp_path: Path) -> None:
     con = duckdb.connect()
     q = lambda sql: con.execute(sql.replace("OUT", out.as_posix())).fetchall()  # noqa: E731
     person = dict(q("SELECT party_id, person_id FROM 'OUT/person_of.parquet'"))
-    lots = lambda d: {
-        r[0]
-        for r in q(  # noqa: E731
-            f"SELECT parcel_uid FROM 'OUT/person_reach.parquet' WHERE person_id = '{person[d]}'"
-        )
-    }
+
+    def lots(d: str) -> set[str]:
+        sql = f"SELECT parcel_uid FROM 'OUT/person_reach.parquet' WHERE person_id = '{person[d]}'"
+        return {r[0] for r in q(sql)}
+
     assert lots("d2") == {"p1", "p2"}
     assert lots("d1") == {"p1"}
