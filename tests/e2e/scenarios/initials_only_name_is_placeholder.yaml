@@ -1,0 +1,11 @@
+name: initials_only_name_is_placeholder
+doc: A name of initials only ('A B') names nobody.
+sources:
+  oh.testsearch.parcels:
+    party:
+    - party_id: p0
+      raw_name: TESTOWNER
+expect:
+- name_flag:
+    raw_name: A B
+    flag: placeholder

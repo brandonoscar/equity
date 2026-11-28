@@ -17,8 +17,15 @@ import pytest
 import yaml
 
 from equity import facts, forensic, search, watch
-from equity.search_index import FileSource, build, compact, connect, index_supplements
-from tests.e2e.world import write_sources
+from equity.search_index import (
+    FileSource,
+    build,
+    compact,
+    connect,
+    index_matcher,
+    index_supplements,
+)
+from tests.e2e.world import write_derived, write_sources
 
 SCENARIOS = sorted((Path(__file__).parent / "scenarios").glob("*.yaml"))
 AS_OF = date(2026, 11, 27)  # fixed, so ages and years left do not drift
@@ -64,6 +71,7 @@ def _index(lake: Path, db: Path) -> duckdb.DuckDBPyConnection:
     con = connect(db)
     src = FileSource(lake)
     build(con, src, workers=1, log=lambda _m: None)
+    index_matcher(con, src, log=lambda _m: None)
     index_supplements(con, src, log=lambda _m: None)
     compact(con)
     return con
@@ -211,6 +219,7 @@ def test_scenario(path: Path, tmp_path: Path) -> None:
     sc = _load(path)
     lake, db = tmp_path / "lake", tmp_path / "index.duckdb"
     write_sources(lake, sc["sources"])
+    write_derived(lake, sc.get("derived", {}))
     cfg = _config(tmp_path, sc.get("config", {}))
     con = _index(lake, db)
     baselines: dict[int, Path] = {}

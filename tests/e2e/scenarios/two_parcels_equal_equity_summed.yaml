@@ -1,0 +1,84 @@
+name: two_parcels_equal_equity_summed
+doc: 'Two parcels with the same net equity add up: 150,000 + 150,000 (no SUM DISTINCT).'
+sources:
+  oh.testcounty.parcels:
+    party:
+    - party_id: o1
+      raw_name: TESTOWNER ALPHA SMITH
+      address_id: a1
+    owner_snapshot:
+    - party_id: o1
+      parcel_uid: 39001-0001
+      observed_on: '2026-11-01'
+    - party_id: o1
+      parcel_uid: 39001-0002
+    parcel:
+    - parcel_uid: 39001-0001
+      jurisdiction: '39001'
+      situs_address_id: a2
+    - parcel_uid: 39001-0002
+      jurisdiction: '39001'
+      situs_address_id: a1
+    parcel_assessment:
+    - parcel_uid: 39001-0001
+      tax_year: 2025
+      appraised_total: 200000
+      valid_from: '2025-01-01'
+      homestead: null
+    - parcel_uid: 39001-0002
+      tax_year: 2025
+      appraised_total: 200000
+    address:
+    - address_id: a1
+      line1: 1 ELM TEST ST
+      city: TESTVILLE
+      state: OH
+      zip5: '43001'
+    - address_id: a2
+      line1: 2 ELM TEST ST
+      city: TESTVILLE
+      state: OH
+      zip5: '43001'
+  oh.testcounty.liens:
+    party:
+    - party_id: d1
+      raw_name: TESTOWNER ALPHA SMITH
+      address_id: a9
+    instrument:
+    - instrument_uid: i1
+      doc_type: JUDGMENT_LIEN
+      recorded_on: '2025-01-15'
+      principal_amount: 25000
+    - instrument_uid: m1
+      doc_type: MORTGAGE
+      recorded_on: '2018-01-01'
+      principal_amount: 50000
+    - instrument_uid: m2
+      doc_type: MORTGAGE
+      recorded_on: '2018-01-01'
+      principal_amount: 50000
+    instrument_party:
+    - instrument_uid: i1
+      party_id: d1
+      role: debtor
+    address:
+    - address_id: a9
+      line1: 9 ELM TEST ST
+      city: TESTVILLE
+      state: OH
+      zip5: '44999'
+    instrument_parcel:
+    - instrument_uid: m1
+      parcel_uid: 39001-0001
+    - instrument_uid: m2
+      parcel_uid: 39001-0002
+expect:
+- lead:
+    name: TESTOWNER ALPHA SMITH
+    state: OH
+    fields:
+      owned_parcels: 2
+      parcels_with_net_equity: 2
+      net_equity_known: 300000.0
+      open_mortgage_principal: 100000.0
+      parcel_value: 400000.0

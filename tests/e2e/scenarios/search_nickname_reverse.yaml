@@ -1,0 +1,12 @@
+name: search_nickname_reverse
+doc: ROBERT finds a record printed as BOB.
+sources:
+  oh.testsearch.parcels:
+    party:
+    - party_id: p0
+      raw_name: TESTOWNER BOB SMITH
+expect:
+- search:
+    query: TESTOWNER ROBERT SMITH
+    top: oh.testsearch.parcels:p0
+    rule: nickname

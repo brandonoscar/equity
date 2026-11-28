@@ -59,7 +59,9 @@ from equity.search_index import DEFAULT_DB, connect
 
 ENCUMBRANCES = ("MORTGAGE", "DEED_OF_TRUST", *DEBT_TYPES)
 MORTGAGES = ("MORTGAGE", "DEED_OF_TRUST")
-TAX_LIENS = ("TAX_LIEN_STATE", "TAX_LIEN_FEDERAL")
+# Senior whatever their recording date (property and state tax liens, by statute). A federal
+# tax lien ranks by its filing date against an earlier judgment lien (26 U.S.C. 6323(a)).
+TAX_LIENS = ("TAX_LIEN_STATE",)
 QUITCLAIM_WORDS = ("QUIT", "QCD", "Q/C", "Q C D")
 BEFORE_DAYS = 180
 AFTER_DAYS = 365
@@ -166,9 +168,11 @@ def priority_stack(
     out: dict[str, Any] = {
         "parcel_uid": parcel, "value": value[0] if value else None,
         "value_tax_year": value[1] if value else None, "encumbrances": docs,
-        "note": "priority here is recording order; property-tax liens are usually senior by "
-                "statute whatever their date, and a purchase-money mortgage can outrank an "
-                "earlier judgment lien: confirm the order with a title search",
+        "note": "priority here is recording order; state and property tax liens count as "
+                "senior whatever their date, federal tax liens by their filing date (26 U.S.C. "
+                "6323(a)), same-day recordings as senior (their order is unknown), and a "
+                "purchase-money mortgage can outrank an earlier judgment lien: confirm the "
+                "order with a title search",
     }  # fmt: skip
     if lien is None:
         return out
@@ -178,8 +182,10 @@ def priority_stack(
         return out
     when = mine["recorded_on"]
     open_docs = [d for d in docs if not d["released"] and d["instrument_uid"] != lien]
+    # Same-day recordings: their order is unknown, so they count as senior (conservative).
     senior = [d for d in open_docs if d["doc_type"] in TAX_LIENS
-              or (when and d["recorded_on"] and d["recorded_on"] < when)]  # fmt: skip
+              or (when and d["recorded_on"] and d["recorded_on"] <= when)]  # fmt: skip
+    same_day = [d["instrument_uid"] for d in senior if d["recorded_on"] == when]
     junior = [d for d in open_docs if d not in senior]
     senior_known = sum(float(d["amount"]) for d in senior if d["amount"] is not None)
     unknown = [d["instrument_uid"] for d in senior if d["amount"] is None]
@@ -191,6 +197,7 @@ def priority_stack(
         "senior": [d["instrument_uid"] for d in senior],
         "junior": [d["instrument_uid"] for d in junior],
         "senior_amount_known": senior_known, "senior_amount_unknown": unknown,
+        "same_day_as_lien": same_day,
         "equity_behind_lien": equity,
         "junior_mortgages_after_lien": [d["instrument_uid"] for d in junior
                                         if d["doc_type"] in MORTGAGES],

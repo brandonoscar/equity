@@ -141,3 +141,21 @@ def write_sources(lake: Path, sources: dict[str, dict[str, list[dict[str, Any]]]
         counts_path.parent.mkdir(parents=True, exist_ok=True)
         counts_path.write_text(json.dumps(counts))
     con.close()
+
+
+def write_derived(lake: Path, derived: dict[str, dict[str, list[dict[str, Any]]]]) -> None:
+    """The matcher's output beside the lake (data/derived/<state>/<file>.parquet), e.g.
+    {oh: {matches: [{debtor_party_id, owner_party_id, rule_id, decision, ...}]}}."""
+    con = duckdb.connect()
+    for state, files in derived.items():
+        d = lake.parent / "derived" / state.lower()
+        d.mkdir(parents=True, exist_ok=True)
+        for stem, rows in files.items():
+            cols = sorted({k for r in rows for k in r})
+            con.execute("CREATE OR REPLACE TABLE t (" + ", ".join(
+                f'"{c}" VARCHAR' for c in cols) + ")")  # fmt: skip
+            con.executemany(f"INSERT INTO t VALUES ({', '.join('?' for _ in cols)})",
+                            [[None if r.get(c) is None else str(r[c]) for c in cols]
+                             for r in rows])  # fmt: skip
+            con.execute(f"COPY t TO '{d / f'{stem}.parquet'}' (FORMAT parquet)")
+    con.close()

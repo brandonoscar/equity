@@ -295,3 +295,19 @@ bulk or statewide config), so check them before deleting anything.
   `outStatistics`, Carto `count(*) FILTER`, and dataset column listings. No rows were downloaded.
 - Raw downloads were not available for most sources (`data/raw` holds only `in.dlgf.parcels`
   and `us.wvnd.rss`).
+
+## Handoff to the cross-linking session: name_key gaps (from the search session)
+
+The search index uses the matcher's `name_key` and `STOP` (`src/equity/matching/resolve.py:164,297`)
+so both sides compare names the same way. These cases are wrong today in both; each is common in
+recorder and court records. A fix belongs in the matcher (the index follows it automatically):
+
+| Printed names | name_key today | Should be |
+|---|---|---|
+| `O'BRIEN, JOHN` vs `OBRIEN JOHN` | `BRIEN JOHN O` vs `JOHN OBRIEN` (different) | equal: drop apostrophes before splitting |
+| `ACME HOLDINGS, L.L.C.` vs `ACME HOLDINGS LLC` | `ACME C HOLDINGS L` vs `ACME HOLDINGS LLC` | equal: drop periods before splitting (the index's `org_key` does this for organizations only) |
+| `SMITH JOHN ET UX` / `ET VIR` | keeps `UX` / `VIR` | `UX`, `VIR` are "and wife / and husband": add to `STOP` like `ETAL` |
+| `ESTATE OF JOHN SMITH`, `JOHN SMITH DECEASED`, `HEIRS OF ...` | keeps `ESTATE`, `DECEASED`, `HEIRS` | a separate flag (the estate is the debtor), not a plain name match |
+| `AL SMITH` (a person named Al) | `SMITH` (one word: `AL` is a stop word for ET AL) | drop `AL` only after `ET` |
+| `JOHN V SMITH` | the matcher's `suffix_key` counts `V` as a suffix | `V` is usually a middle initial; keep `V` a suffix only as a last word after a full name |
+| `JOHN & MARY SMITH` (joint owners on one line) | `JOHN MARY SMITH` | split co-owners into one name each before matching a single debtor |

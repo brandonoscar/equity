@@ -191,42 +191,64 @@ JOIN names n USING (source_id, party_id) LEFT JOIN judgments j USING (source_id,
 -- aggregated before the join, so a common name cannot multiply rows. Name-only: these are
 -- leads to check against address and ZIP, not matches.
 CREATE OR REPLACE VIEW v_debtor_owner_candidates AS
-WITH debt AS (
-    SELECT n.name_key, s.state, any_value(n.raw_name) AS debtor_name,
-           count(*) AS debts, sum(i.amount) AS debt_amount,
-           min(i.recorded_on) AS first_debt_on, max(i.recorded_on) AS last_debt_on,
-           list(DISTINCT i.doc_type ORDER BY i.doc_type) AS doc_types,
-           list(DISTINCT ip.source_id || ':' || ip.party_id)[1:20] AS debtor_refs,
-           count(DISTINCT m.debtor_party_id) AS matcher_auto_debtors,
-           list(DISTINCT m.rule_id) FILTER (WHERE m.rule_id IS NOT NULL) AS matcher_rules
+WITH dr AS (  -- debtor-side parties on debt documents: one row per party and document
+    SELECT DISTINCT n.name_key, s.state, n.raw_name, ip.source_id, ip.party_id,
+           i.instrument_uid, i.amount, i.recorded_on, i.doc_type
     FROM instrument_parties ip
     JOIN instruments i USING (source_id, instrument_uid)
     JOIN names n USING (source_id, party_id)
     JOIN sources s USING (source_id)
-    LEFT JOIN m_matches m ON m.debtor_party_id = ip.party_id AND m.decision = 'auto'
     WHERE i.doc_type IN ('JUDGMENT_LIEN', 'ABSTRACT_OF_JUDGMENT', 'EXECUTION', 'LIS_PENDENS',
                          'MECHANICS_LIEN', 'STATUTORY_LIEN', 'TAX_LIEN_STATE',
                          'TAX_LIEN_FEDERAL', 'COURT_ORDER')
       AND ip.role IN ('debtor', 'borrower', 'grantor')  -- the party that owes, not the creditor
       AND len(string_split(n.name_key, ' ')) >= 2 AND n.name_flag IS NULL
-    GROUP BY n.name_key, s.state
-), own AS (
-    SELECT n.name_key, s.state, count(DISTINCT o.parcel_uid) AS parcels,
-           sum(coalesce(v.appraised_total, v.assessed_value)) AS parcel_value,
-           list(DISTINCT o.parcel_uid ORDER BY o.parcel_uid)[1:20] AS parcel_uids,
-           list(DISTINCT o.source_id || ':' || o.party_id)[1:20] AS owner_refs
-    FROM debt d
+), inst AS (  -- each document once, however many same-name parties it lists
+    SELECT name_key, state, source_id, instrument_uid, any_value(amount) AS amount,
+           any_value(recorded_on) AS recorded_on, any_value(doc_type) AS doc_type
+    FROM dr GROUP BY name_key, state, source_id, instrument_uid
+), debt AS (
+    SELECT name_key, state, count(*) AS debts, sum(amount) AS debt_amount,
+           min(recorded_on) AS first_debt_on, max(recorded_on) AS last_debt_on,
+           list(DISTINCT doc_type ORDER BY doc_type) AS doc_types
+    FROM inst GROUP BY name_key, state
+), dnames AS (
+    SELECT name_key, state, any_value(raw_name) AS debtor_name,
+           list(DISTINCT source_id || ':' || party_id ORDER BY source_id || ':' || party_id
+                )[1:20] AS debtor_refs
+    FROM dr GROUP BY name_key, state
+), mm AS (  -- the matcher's auto links, aggregated apart so they cannot multiply debts
+    SELECT p.name_key, p.state, count(DISTINCT m.debtor_party_id) AS matcher_auto_debtors,
+           list(DISTINCT m.rule_id) AS matcher_rules
+    FROM (SELECT DISTINCT name_key, state, party_id FROM dr) p
+    JOIN m_matches m ON m.debtor_party_id = p.party_id AND m.decision = 'auto'
+    GROUP BY p.name_key, p.state
+), op AS (  -- owner records of the same name in the same state, and their parcels
+    SELECT DISTINCT n.name_key, s.state, o.source_id, o.party_id, o.parcel_uid
+    FROM dnames d
     JOIN names n ON n.name_key = d.name_key
     JOIN sources s ON s.source_id = n.source_id AND s.state = d.state
     JOIN owners o ON o.source_id = n.source_id AND o.party_id = n.party_id
-    LEFT JOIN parcel_values v ON v.source_id = o.source_id AND v.parcel_uid = o.parcel_uid
     WHERE n.name_flag IS NULL
-    GROUP BY n.name_key, s.state
+), pval AS (  -- one value per parcel, however many sources list it
+    SELECT parcel_uid, max(coalesce(appraised_total, assessed_value)) AS value
+    FROM parcel_values WHERE parcel_uid IN (SELECT parcel_uid FROM op) GROUP BY parcel_uid
+), own AS (
+    SELECT op.name_key, op.state, count(DISTINCT op.parcel_uid) AS parcels,
+           (SELECT sum(pv.value) FROM pval pv WHERE pv.parcel_uid IN (
+               SELECT x.parcel_uid FROM op x
+               WHERE x.name_key = op.name_key AND x.state = op.state)) AS parcel_value,
+           list(DISTINCT op.parcel_uid ORDER BY op.parcel_uid)[1:20] AS parcel_uids,
+           list(DISTINCT op.source_id || ':' || op.party_id
+                ORDER BY op.source_id || ':' || op.party_id)[1:20] AS owner_refs
+    FROM op GROUP BY op.name_key, op.state
 )
-SELECT d.state, d.debtor_name, d.name_key, d.debts, d.debt_amount, d.doc_types,
-       d.first_debt_on, d.last_debt_on, o.parcels, o.parcel_value, d.debtor_refs,
-       o.owner_refs, o.parcel_uids, d.matcher_auto_debtors, d.matcher_rules
-FROM debt d JOIN own o USING (name_key, state);
+SELECT d.state, n.debtor_name, d.name_key, d.debts, d.debt_amount, d.doc_types,
+       d.first_debt_on, d.last_debt_on, o.parcels, o.parcel_value, n.debtor_refs,
+       o.owner_refs, o.parcel_uids, coalesce(mm.matcher_auto_debtors, 0) AS matcher_auto_debtors,
+       coalesce(mm.matcher_rules, []) AS matcher_rules
+FROM debt d JOIN dnames n USING (name_key, state) JOIN own o USING (name_key, state)
+LEFT JOIN mm USING (name_key, state);
 -- Net equity per parcel where recorder data exists: the latest value minus mortgages and
 -- deeds of trust recorded against the parcel that no recorded release points at. Only
 -- counties with recorded mortgages or releases in the index get a row: elsewhere senior
@@ -1212,8 +1234,8 @@ WITH c AS (
     JOIN instruments m ON m.source_id = mx.source_id AND m.instrument_uid = mx.instrument_uid
     WHERE m.instrument_uid <> ld.instrument_uid
       AND ((m.doc_type IN ('MORTGAGE', 'DEED_OF_TRUST', __DEBT__)
-            AND m.recorded_on < ld.recorded_on)
-           OR m.doc_type IN ('TAX_LIEN_STATE', 'TAX_LIEN_FEDERAL'))
+            AND m.recorded_on <= ld.recorded_on)  -- same day: order unknown, count it senior
+           OR m.doc_type = 'TAX_LIEN_STATE')  -- property and state tax liens: senior by statute
       AND NOT EXISTS (SELECT 1 FROM instrument_refs r WHERE r.source_id = m.source_id
                       AND r.to_uid = m.instrument_uid
                       AND r.ref_type IN ('releases', 'satisfies_judgment'))
@@ -1228,8 +1250,8 @@ WITH c AS (
                FROM parcel_values GROUP BY parcel_uid) pv USING (parcel_uid)
     GROUP BY ld.lead_id
 ), dopen AS (  -- the debtor's debts that no recorded release or satisfaction points at
-    SELECT dp.lead_id, count(DISTINCT i.instrument_uid) AS open_debts,
-           sum(DISTINCT i.amount) AS open_debt_amount
+    SELECT lead_id, count(*) AS open_debts, sum(amount) AS open_debt_amount FROM (
+    SELECT DISTINCT dp.lead_id, i.source_id, i.instrument_uid, i.amount
     FROM dp
     JOIN instrument_parties ip ON ip.source_id = dp.src AND ip.party_id = dp.pid
          AND ip.role IN ('debtor', 'borrower', 'grantor')
@@ -1237,8 +1259,8 @@ WITH c AS (
     WHERE i.doc_type IN (__DEBT__)
       AND NOT EXISTS (SELECT 1 FROM instrument_refs r WHERE r.source_id = i.source_id
                       AND r.to_uid = i.instrument_uid
-                      AND r.ref_type IN ('releases', 'satisfies_judgment'))
-    GROUP BY dp.lead_id
+                      AND r.ref_type IN ('releases', 'satisfies_judgment')))
+    GROUP BY lead_id
 ), mm AS (
     SELECT dp.lead_id, bool_or(m.decision = 'auto') AS auto, bool_or(m.decision <> 'auto') AS review
     FROM dp JOIN m_matches m ON m.debtor_party_id = dp.pid
@@ -1267,16 +1289,20 @@ WITH c AS (
 ), zip AS (
     SELECT DISTINCT dn.lead_id FROM dn JOIN ozip USING (lead_id, zip5)
     WHERE dn.sfx IS NULL OR ozip.sfx IS NULL OR dn.sfx = ozip.sfx
+), lp AS (  -- each owned parcel once per lead, however many owner records list it
+    SELECT DISTINCT lead_id, parcel_uid FROM owned
 ), eq AS (
-    SELECT owned.lead_id, count(DISTINCT owned.parcel_uid) AS owned_parcels,
-           count(DISTINCT pe.parcel_uid) FILTER (WHERE pe.equity_est IS NOT NULL) AS equity_known,
-           sum(DISTINCT pe.equity_est) AS net_equity_known,
-           sum(DISTINCT pe.open_principal) AS open_mortgage_principal,
-           bool_or(v.homestead) AS homestead_any,
+    SELECT lp.lead_id, count(*) AS owned_parcels,
+           count(pe.equity_est) AS equity_known,
+           sum(pe.equity_est) AS net_equity_known,
+           sum(pe.open_principal) AS open_mortgage_principal
+    FROM lp LEFT JOIN parcel_equity pe USING (parcel_uid)
+    GROUP BY lp.lead_id
+), hv AS (
+    SELECT owned.lead_id, bool_or(v.homestead) AS homestead_any,
            max(v.tax_year) AS value_tax_year
     FROM owned
-    LEFT JOIN parcel_equity pe ON pe.parcel_uid = owned.parcel_uid
-    LEFT JOIN parcel_values v ON v.source_id = owned.src AND v.parcel_uid = owned.parcel_uid
+    JOIN parcel_values v ON v.source_id = owned.src AND v.parcel_uid = owned.parcel_uid
     GROUP BY owned.lead_id
 ), occ AS (  -- an owner record mailed at the owned parcel's own address (owner-occupied)
     SELECT owned.lead_id, bool_or(oa.address_id = sa.address_id OR (oa.zip5 = sa.zip5
@@ -1294,6 +1320,9 @@ WITH c AS (
     JOIN instrument_parcels x ON x.parcel_uid = owned.parcel_uid
     JOIN instruments i ON i.source_id = x.source_id AND i.instrument_uid = x.instrument_uid
     WHERE i.doc_type = 'DEED' AND i.recorded_on > c.first_debt_on
+      AND EXISTS (SELECT 1 FROM instrument_parties g JOIN names gn USING (source_id, party_id)
+                  WHERE g.source_id = i.source_id AND g.instrument_uid = i.instrument_uid
+                    AND g.role = 'grantor' AND gn.name_key = c.name_key)  -- out, not in
     GROUP BY owned.lead_id
 ), bk AS (  -- the matcher's bankruptcy flags on a debtor record
     SELECT dp.lead_id, list(DISTINCT b.chapter || ' ' || coalesce(b.status, '')) AS flags
@@ -1321,20 +1350,21 @@ SELECT c.lead_id, c.state, c.debtor_name, c.name_key,
        dopen.open_debt_amount, c.doc_types, c.first_debt_on, c.last_debt_on,
        date_diff('day', c.first_debt_on, current_date) AS first_debt_age_days,
        date_diff('day', c.last_debt_on, current_date) AS last_debt_age_days,
-       c.parcels, c.parcel_value, eq.value_tax_year, eq.owned_parcels,
+       c.parcels, c.parcel_value, hv.value_tax_year, eq.owned_parcels,
        eq.equity_known AS parcels_with_net_equity, eq.net_equity_known,
        eq.open_mortgage_principal, coalesce(behind.liens_on_owned_parcels, 0)
          AS liens_on_owned_parcels, behind.equity_behind_lien,
-       coalesce(eq.homestead_any, false) AS homestead_any,
+       coalesce(hv.homestead_any, false) AS homestead_any,
        coalesce(occ.owner_occupied_any, false) AS owner_occupied_any,
        coalesce(xfer.deeds_after_debt, 0) AS deeds_after_debt, xfer.last_deed_on,
        bk.flags AS matcher_bankruptcy, coalesce(bkname.cases, 0) AS same_name_bankruptcies,
        bkname.last_petition_on AS same_name_last_petition_on,
        bkname.any_discharge AS same_name_any_discharge,
-       c.debtor_refs, c.owner_refs, c.parcel_uids
+       c.matcher_auto_debtors, c.matcher_rules, c.debtor_refs, c.owner_refs, c.parcel_uids
 FROM c
 LEFT JOIN lien USING (lead_id) LEFT JOIN mm USING (lead_id) LEFT JOIN addr USING (lead_id)
-LEFT JOIN zip USING (lead_id) LEFT JOIN eq USING (lead_id) LEFT JOIN xfer USING (lead_id)
+LEFT JOIN zip USING (lead_id) LEFT JOIN eq USING (lead_id) LEFT JOIN hv USING (lead_id)
+LEFT JOIN xfer USING (lead_id)
 LEFT JOIN bk USING (lead_id) LEFT JOIN bkname USING (lead_id) LEFT JOIN behind USING (lead_id)
 LEFT JOIN occ USING (lead_id) LEFT JOIN dopen USING (lead_id)
 ORDER BY state, grade, coalesce(equity_behind_lien, net_equity_known) DESC NULLS LAST,
@@ -1361,6 +1391,12 @@ def compact(con: duckdb.DuckDBPyConnection, only: Iterable[str] | None = None) -
                 continue
             if table == "leads":
                 store_leads(con)
+                continue
+            if table in ("debtor_owner_candidates", "parcel_equity"):
+                order = "state, name_key" if table == "debtor_owner_candidates" else "parcel_uid"
+                con.execute(f"CREATE OR REPLACE TABLE {table} AS "  # noqa: S608
+                            f"SELECT * FROM v_{table} ORDER BY {order}")  # fmt: skip
+                con.execute("CHECKPOINT")
                 continue
             sort_table(con, table, keys[table], _sort_work(con))
         return

@@ -94,4 +94,4 @@ def test_the_nominal_flag_stays_unknown_while_the_threshold_is_unset(tmp_path: P
     assert transfers.nominal_max(tmp_path) is None
     (tmp_path / "rules.yaml").write_text("transfer_flags:\n  nominal_consideration_max: 100\n")
     assert transfers.nominal_max(tmp_path) == 100.0
-    assert transfers.nominal_max() is None  # the repo's rules.yaml: Brandon has not set it
+    assert transfers.nominal_max() == 100.0  # the repo's rules.yaml: Brandon set it 2026-11-28
