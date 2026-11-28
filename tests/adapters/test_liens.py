@@ -568,6 +568,24 @@ def test_list_date_stamps_an_annual_list_and_amounts_sum(tmp_path: Path) -> None
     assert [r["parcel_uid"] for t, r in out if t == "instrument_parcel"] == ["32003-12831212019"]
 
 
+def test_join_fields_build_a_parcel_key_from_two_fields(tmp_path: Path) -> None:
+    cfg = _cfg(tmp_path, api="xlsx", url="https://a.test/l.xlsx", portal=None, dataset=None,
+               county_fips="36001", state="NY", released_on=None, listed_on="listed",
+               date_field="listed", uid="swis_sbl",
+               join_fields={"swis_sbl": {"fields": ["swis", "sbl"]},
+                            "swis_key": {"fields": ["swis", "print_key"], "sep": "-"}},
+               parcel={"kind": "pin", "field": ["swis_sbl", "swis_key"], "county_fips": "36001"},
+               parties=[{"role": "debtor", "name": "owner"}])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    book = _xlsx([["Swis", "Print Key", "Sbl", "Owner"],
+                  ["010100", "65.62-1-79", "06506200010790000000", "Sheldon, Gregory"],
+                  ["010100", "", "06506200010800000000", "Roe, Jo"]])  # fmt: skip
+    out = _rows_of(cls, {"l.xlsx": book})
+    lots = sorted(r["parcel_uid"] for t, r in out if t == "instrument_parcel")
+    assert lots == ["36001-010100-65.62-1-79", "36001-01010006506200010790000000",
+                    "36001-01010006506200010800000000"]  # fmt: skip
+
+
 HTML_PAGE = b"""<html><head><script>var x = "<table><tr><td>zqx</td></tr></table>";</script>
 <style>td {}</style></head><body><p>Delinquent Taxpayers (Updated November 16, 2026)</p>
 <table><tr><td>layout</td></tr></table>

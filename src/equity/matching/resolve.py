@@ -1341,7 +1341,8 @@ STATES: dict[str, dict[str, Any]] = {
     "NY": {
         "debtors": ["ny.dtf.child_support_warrants", "ny.dtf.tax_warrants", "ny.nyc.acris.real",
                     "ny.nyc.hpd_litigation", "ny.nyc.oath.judgments",
-                    "ny.tompkins.foreclosure_parcels"],
+                    "ny.tompkins.foreclosure_parcels", "ny.albany.delinquent_parcels",
+                    "ny.nassau.delinquent_general_taxes", "ny.nassau.delinquent_school_taxes"],
         "owners": ["ny.local_rolls.parcels", "ny.statewide.parcels", "ny.nyc.parcels"],
         "mortgages": ["ny.nyc.acris.real"],
         "links": ["ny.nyc.dof.condo_units"],
@@ -1727,7 +1728,7 @@ STATES: dict[str, dict[str, Any]] = {
                     "courts": FEDERAL_COURTS},
     # Indiana statewide owners plus Marion County's (Indianapolis) mailing addresses.
     "IN": {"debtors": ["in.delaware.tax_sale", "in.delaware.tax_sale_results",
-                       "in.st_joseph.tax_sale"],
+                       "in.st_joseph.tax_sale", "in.hammond.tax_sale_2027"],
            "owners": ["in.statewide.parcels", "in.marion.parcels", "in.vanderburgh.parcels",
                       "in.lake.parcels"],
            "parcel_on_lien": True,

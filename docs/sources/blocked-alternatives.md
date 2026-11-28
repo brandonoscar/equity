@@ -242,3 +242,14 @@ The owner set the rule on 2026-11-28: nothing paid, PACER included (`config/pace
 | Ohio SOS business reports (free, monthly) | The site answered with a maintenance page (HTTP 403) on 2026-11-28; retry. |
 | South Carolina DOR top delinquent taxpayers | Lists sit in the MyDORWAY web app; the connection was refused from this environment. |
 | Wyoming DOR excise delinquent taxpayer list | The page answers 404 (moved). |
+
+### Owner decisions of 2026-11-28
+
+The owner approved four held sources (API keys stay on hold):
+
+| Source | Result |
+|---|---|
+| Albany County NY delinquent parcels | **Built:** `ny.albany.delinquent_parcels`, 5,174 parcels, parcel-linked to `ny.statewide.parcels` (SWIS + SBL) and `ny.local_rolls.parcels` (SWIS + print key) in the NY run. Tagged `not_for_collection_or_enforcement` from the item's license. |
+| Indiana tax sale lists | **Built:** `in.hammond.tax_sale_2027` (142 Lake County parcels with owner mailing addresses, parcel-linked to `in.lake.parcels`), tagged `no_commercial_name_address_lists`. The Muncie list is the same sale as `in.delaware.tax_sale`, already loaded. Vanderburgh's 2026 tax sale layer (maps.evansvillegis.com) did not answer from this environment; retry. |
+| Nassau County NY delinquent taxes | **Built:** `ny.nassau.delinquent_general_taxes` (6,592 parcels, $24.1M) and `ny.nassau.delinquent_school_taxes` (5,078 parcels, $47.6M) from the weekly DQ110 PDFs, tax year 2026, in the NY run. Nassau's towns are in `ny.local_rolls.parcels`, but the report's section/block/lot did not match the rolls' print keys in a spot check, so rows match by owner name. |
+| Florida Sunbiz bulk files | Not built yet. The HTTPS portal (sftp.floridados.gov) has `robots.txt: Disallow: /` for all agents, so it is not used. The state's own instructions invite "a secure FTP client of your choice" with the published Public account, which robots.txt does not govern, but port 22 is closed from this environment: it would run from a GitHub Actions runner and needs an SFTP client library added to `pyproject.toml` (CODEOWNERS). |

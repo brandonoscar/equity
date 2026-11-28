@@ -106,6 +106,10 @@ sources:
   tx.collin.tax_roll_delinquent: tax_delinquency
   tn.hamilton.delinquent_taxes: tax_delinquency
   nv.clark.delinquent_taxes_fy2026: tax_delinquency
+  ny.albany.delinquent_parcels: tax_delinquency
+  in.hammond.tax_sale_2027: tax_delinquency
+  ny.nassau.delinquent_general_taxes: tax_delinquency
+  ny.nassau.delinquent_school_taxes: tax_delinquency
   il.lake.sheriff_sales: foreclosure
   mn.stearns.sheriff_sales: foreclosure
   mn.st_louis.sheriff_sales: foreclosure

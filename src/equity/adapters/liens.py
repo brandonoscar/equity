@@ -19,6 +19,9 @@ Config keys:
                       or, with pdf_columns: {names, cuts, require}, cut at fixed x positions
                       (`cuts`: where each column after the first begins, for right-aligned or
                       two-line headers) and kept when each `require` column matches its regex)
+  join_fields         {name: {fields: [...], sep: ''}}: a derived field made by joining other
+                      fields (blank when any part is blank), e.g. a parcel key that is a SWIS
+                      code plus an SBL
   caption_field       a 'Plaintiff vs Defendant' caption, split into the derived fields
                       caption_plaintiff and caption_defendant for use in parties
   enrich              arcgis: {carto: SQL API url, table, key, field, columns} or {arcgis:
@@ -1092,6 +1095,13 @@ class LienAdapter(Adapter):
         if split and self.api not in FILE_APIS:  # file apis split at fetch
             addr = split_address(row.get(split["field"]), str(split.get("form", "comma")))
             row = {**row, **{f"{split['prefix']}{k}": v for k, v in addr.items()}}
+        joins = self.config.get("join_fields") or {}
+        if joins:
+            row = dict(row)
+            for name, spec in joins.items():
+                parts = [p for p in (_text(row.get(f)) for f in spec["fields"]) if p]
+                full = len(parts) == len(spec["fields"])
+                row[name] = str(spec.get("sep", "")).join(parts) if full else None
         years = self.config.get("year_dates") or ()
         if years:
             row = dict(row)

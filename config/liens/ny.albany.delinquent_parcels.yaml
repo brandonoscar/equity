@@ -1,0 +1,41 @@
+source_id: ny.albany.delinquent_parcels
+state: NY
+county_fips: "36001"   # Albany County
+# Albany County Real Property Tax Service Agency 'AC_DelinquentParcels' (the layer behind the
+# county's Delinquent Tax Parcel application; the layer is renamed each month, e.g.
+# AC_DelinquentParcels_11_2026): 5,174 parcels with delinquent county-collected taxes on
+# 2026-11-28, each with the owner of record, the municipality, the street and the parcel's
+# print key and SBL. No amount and no per-row date are published: the date is the day the
+# list was read. Unpaid NY property tax is a lien on the parcel (RPTL 902). SWIS_CODE + PIN_SBL
+# is ny.statewide.parcels SWIS_SBL_ID; SWIS_CODE + '-' + PrintKey is ny.local_rolls.parcels
+# parcel_id (both checked on 2026-11-28). Debt kind: tax_delinquency.
+# The item's license reads "Not an Official Record. Not for use with Collection or Enforcement.
+# Not a Legal Document." Loaded on the owner's decision of 2026-11-28; the restriction is
+# carried as a use_restrictions tag into the source row.
+api: arcgis
+layer_url: https://services6.arcgis.com/mBzcjj7yrA6fBe9F/arcgis/rest/services/AC_DelinquentParcels/FeatureServer/0
+single_partition: true
+order_by: [OBJECTID]
+select: [OBJECTID, SWIS_CODE, PrintKey, PIN_SBL, OWNERNAME, PRCLSTREET, PrclMuni, PROPCLSDES,
+         TotAssess]
+join_fields:
+  swis_sbl: {fields: [SWIS_CODE, PIN_SBL]}
+  swis_print_key: {fields: [SWIS_CODE, PrintKey], sep: "-"}
+listed_on: listed_on
+date_field: listed_on
+uid: swis_sbl
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Albany County delinquent tax parcel
+parties:
+  - role: debtor
+    name: OWNERNAME
+  - {role: creditor, const: Albany County, person_names: false}
+parcel: {kind: pin, field: [swis_sbl, swis_print_key], county_fips: "36001"}
+extra_pii: [PRCLSTREET]
+use_restrictions: [not_for_collection_or_enforcement]
+terms:
+  url: https://www.arcgis.com/home/item.html?id=1ad9fa62e21c4a8ca7ea738f830dccae
+  summary: "Albany County NY RPTSA ArcGIS Online item 'AC_DelinquentParcels', public hosted layer, no login, token or fee. License: 'Not an Official Record. Not for use with Collection or Enforcement. Not a Legal Document.' Loaded on the owner's decision (2026-11-28). services6.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-28
+  robots_checked_on: 2026-11-28
+  cost_model: free
