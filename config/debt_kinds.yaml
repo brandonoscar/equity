@@ -103,6 +103,8 @@ sources:
   ga.richmond.delinquent_taxes: tax_delinquency
   tx.dallas.tax_roll_delinquent: tax_delinquency
   tx.tarrant.tax_roll_delinquent: tax_delinquency
+  tx.collin.tax_roll_delinquent: tax_delinquency
+  tn.hamilton.delinquent_taxes: tax_delinquency
   nc.buncombe.unpaid_bills: tax_delinquency
   nc.charlotte.municipal_liens: code_enforcement_lien
   oh.clermont.tax_delinquent: tax_delinquency
@@ -143,6 +145,7 @@ sources:
   oh.lorain.delinquent_taxes: tax_delinquency
   oh.lorain.forfeited_land_sale: tax_delinquency
   oh.medina.delinquent_taxes: tax_delinquency
+  oh.summit.delinquent_taxes: tax_delinquency
   oh.stark.delinquent_taxes: tax_delinquency
   oh.stark.civil_sales: foreclosure
   oh.stark.foreclosures: foreclosure

@@ -45,6 +45,10 @@ Config keys:
                       "City, ST 12345", city_st_zip "CITY ST 12345" (no street), into
                       <prefix>line1/city/state/zip (the whole text stays line1 when it does
                       not split that way)
+  zip_member          file apis: the download is a zip; read this member (matched on its file
+                      name, any case) as the file
+  positive_amount     file apis: true drops rows whose amount is blank or zero (a list that
+                      keeps paid-off parcels at 0.00)
   as_of               xlsx/html/pdf: {field, after}: a list with no per-row date. The first
                       date after the text `after` in the title rows above header_row (xlsx) or
                       in the page or document text (html, pdf) is put in `field` on every row
@@ -821,6 +825,14 @@ class LienAdapter(Adapter):
         other source."""
         cfg = self.config
         head = int(cfg.get("header_row", 0))
+        member = cfg.get("zip_member")
+        if member:
+            with zipfile.ZipFile(io.BytesIO(content)) as z:
+                names = [n for n in z.namelist()
+                         if n.rsplit("/", 1)[-1].lower() == str(member).lower()]  # fmt: skip
+                if not names:
+                    raise LienConfigError(f"{self.source_id}: {member} not in the zip")
+                content = z.read(names[0])
         if self.api == "html":
             tables, banner = html_tables(content)
             idx = int(cfg.get("table", 0))
@@ -857,6 +869,8 @@ class LienAdapter(Adapter):
                     out[f"{split['prefix']}{k}"] = v
             if as_of:
                 out[as_of["field"]] = listed
+            if cfg.get("positive_amount") and not (self._row_amount(out) or 0) > 0:
+                continue  # paid off: listed at 0.00, nothing owed
             rows.append(out)
         return rows
 

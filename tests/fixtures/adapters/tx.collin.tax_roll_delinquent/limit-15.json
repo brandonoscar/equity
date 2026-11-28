@@ -1,0 +1,322 @@
+{
+ "file": "delinquent-tax-roll.zip",
+ "rows": [
+  {
+   "account": "KAREN",
+   "addr1": "TESTOWNER 9B2516",
+   "addr2": "TESTOWNER 7136C7",
+   "amount": "8730.61",
+   "bankruptcies": [],
+   "cad_id": "2080563",
+   "city": "",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "",
+   "owner2": "TESTOWNER 3A58BC",
+   "roll": "001",
+   "state": "",
+   "years": [
+    2016
+   ],
+   "zip": "00000-0055"
+  },
+  {
+   "account": "L0856076101A1",
+   "addr1": "TESTOWNER E94BEA",
+   "addr2": "TESTOWNER 677D91",
+   "amount": "429.52",
+   "bankruptcies": [],
+   "cad_id": "2777166",
+   "city": "MCKINNEY",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 4319D1",
+   "owner2": "",
+   "roll": "001",
+   "state": "TX",
+   "years": [
+    2020
+   ],
+   "zip": "75069"
+  },
+  {
+   "account": "L085607610901",
+   "addr1": "TESTOWNER 0F283C",
+   "addr2": "",
+   "amount": "4681.92",
+   "bankruptcies": [
+    "2141564"
+   ],
+   "cad_id": "2777167",
+   "city": "MCKINNEY",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 6B015C LLC",
+   "owner2": "",
+   "roll": "001",
+   "state": "TX",
+   "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023
+   ],
+   "zip": "750693811"
+  },
+  {
+   "account": "L0856076109B1",
+   "addr1": "TESTOWNER 0F283C",
+   "addr2": "",
+   "amount": "1231.74",
+   "bankruptcies": [],
+   "cad_id": "2940740",
+   "city": "MCKINNEY",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER A01C48",
+   "owner2": "",
+   "roll": "001",
+   "state": "TX",
+   "years": [
+    2025
+   ],
+   "zip": "750693811"
+  },
+  {
+   "account": "L085607613201",
+   "addr1": "TESTOWNER 0F283C",
+   "addr2": "",
+   "amount": "978.05",
+   "bankruptcies": [
+    "2141564"
+   ],
+   "cad_id": "2777168",
+   "city": "MCKINNEY",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 6B015C LLC",
+   "owner2": "",
+   "roll": "001",
+   "state": "TX",
+   "years": [
+    2020,
+    2021,
+    2022,
+    2023
+   ],
+   "zip": "750693811"
+  },
+  {
+   "account": "L0856076248B1",
+   "addr1": "TESTOWNER 0F283C",
+   "addr2": "",
+   "amount": "1764.91",
+   "bankruptcies": [],
+   "cad_id": "2700505",
+   "city": "MCKINNEY",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER BF457B",
+   "owner2": "TESTOWNER EEFBFF",
+   "roll": "001",
+   "state": "TX",
+   "years": [
+    2015,
+    2016
+   ],
+   "zip": "75069"
+  },
+  {
+   "account": "L0856076490B1",
+   "addr1": "TESTOWNER 0F283C",
+   "addr2": "",
+   "amount": "2151.69",
+   "bankruptcies": [
+    "2141564"
+   ],
+   "cad_id": "2777172",
+   "city": "MCKINNEY",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 6B015C LLC",
+   "owner2": "",
+   "roll": "001",
+   "state": "TX",
+   "years": [
+    2020,
+    2021,
+    2022,
+    2023
+   ],
+   "zip": "750693811"
+  },
+  {
+   "account": "L0928007001A1",
+   "addr1": "TESTOWNER 0F0D0A",
+   "addr2": "",
+   "amount": "138.78",
+   "bankruptcies": [],
+   "cad_id": "2697063",
+   "city": "MCKINNEY",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 2FCE6C",
+   "owner2": "",
+   "roll": "001",
+   "state": "TX",
+   "years": [
+    2014
+   ],
+   "zip": "75069-5539"
+  },
+  {
+   "account": "L0928007001B1",
+   "addr1": "TESTOWNER 47D167",
+   "addr2": "",
+   "amount": "786.41",
+   "bankruptcies": [],
+   "cad_id": "2697064",
+   "city": "MCKINNEY",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 44FE48",
+   "owner2": "",
+   "roll": "001",
+   "state": "TX",
+   "years": [
+    2014
+   ],
+   "zip": "75069-5500"
+  },
+  {
+   "account": "L0928007001C1",
+   "addr1": "TESTOWNER F9F404",
+   "addr2": "",
+   "amount": "84.80",
+   "bankruptcies": [],
+   "cad_id": "2697065",
+   "city": "MCKINNEY",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 5A9541",
+   "owner2": "",
+   "roll": "001",
+   "state": "TX",
+   "years": [
+    2014
+   ],
+   "zip": "75069-5500"
+  },
+  {
+   "account": "L0928007001D1",
+   "addr1": "TESTOWNER F7AACF",
+   "addr2": "",
+   "amount": "123.35",
+   "bankruptcies": [],
+   "cad_id": "2697066",
+   "city": "MCKINNEY",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 1A52D8",
+   "owner2": "",
+   "roll": "001",
+   "state": "TX",
+   "years": [
+    2014
+   ],
+   "zip": "75069-5500"
+  },
+  {
+   "account": "L0928007001E1",
+   "addr1": "TESTOWNER 9C75B7",
+   "addr2": "",
+   "amount": "70.93",
+   "bankruptcies": [],
+   "cad_id": "2697067",
+   "city": "MCKINNEY",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 0012AC",
+   "owner2": "",
+   "roll": "001",
+   "state": "TX",
+   "years": [
+    2014
+   ],
+   "zip": "75069-5540"
+  },
+  {
+   "account": "L0928007001G1",
+   "addr1": "TESTOWNER EADA9D",
+   "addr2": "",
+   "amount": "123.35",
+   "bankruptcies": [],
+   "cad_id": "2697069",
+   "city": "MCKINNEY",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 271AC5",
+   "owner2": "",
+   "roll": "001",
+   "state": "TX",
+   "years": [
+    2014
+   ],
+   "zip": "75069-5540"
+  },
+  {
+   "account": "L0928007001H1",
+   "addr1": "TESTOWNER 0F6496",
+   "addr2": "",
+   "amount": "115.64",
+   "bankruptcies": [],
+   "cad_id": "2697070",
+   "city": "MCKINNEY",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 88C63A",
+   "owner2": "",
+   "roll": "001",
+   "state": "TX",
+   "years": [
+    2014
+   ],
+   "zip": "75069-5540"
+  },
+  {
+   "account": "L0928007001J1",
+   "addr1": "TESTOWNER D71F4E",
+   "addr2": "",
+   "amount": "84.80",
+   "bankruptcies": [],
+   "cad_id": "2697072",
+   "city": "MCKINNEY",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER A7EB05",
+   "owner2": "",
+   "roll": "001",
+   "state": "TX",
+   "years": [
+    2014
+   ],
+   "zip": "75069-5540"
+  }
+ ]
+}

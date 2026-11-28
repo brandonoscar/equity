@@ -520,6 +520,36 @@ def test_csv_source_with_us_dates_and_city_only_addresses(tmp_path: Path) -> Non
     assert cls().source_row()["access_method"] == "bulk"
 
 
+def test_zipped_csv_drops_paid_off_rows(tmp_path: Path) -> None:
+    import io
+    import zipfile
+
+    cfg = _cfg(tmp_path, api="csv", url="https://s.test/DELQ_7.zip", zip_member="delq.CSV",
+               positive_amount=True, portal=None, dataset=None, county_fips="39153",
+               state="OH", released_on=None, listed_on="listed", date_field="listed",
+               uid="parcel", amount="dlq_amount",
+               parcel={"kind": "pin", "field": "parcel", "county_fips": "39153"},
+               parties=[{"role": "debtor", "name": "owner"}])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w") as z:
+        z.writestr("readme.txt", "x")
+        z.writestr(
+            "out/DELQ.csv",
+            '"PARCEL","OWNER","DLQ_AMOUNT"\n"0101379","ACME LLC","84.05"\n'
+            '"0104925","PAID UP","0.00"\n"0700425","",""\n',
+        )
+    out = _rows_of(cls, {"DELQ_7.zip": buf.getvalue()})
+    (inst,) = [r for t, r in out if t == "instrument"]
+    assert (inst["instrument_number"], str(inst["principal_amount"])) == ("0101379", "84.05")
+    assert [r["parcel_uid"] for t, r in out if t == "instrument_parcel"] == ["39153-0101379"]
+    bad = _cfg(tmp_path, api="csv", url="https://s.test/DELQ_7.zip", zip_member="nope.csv",
+               portal=None, dataset=None, county_fips="39153", state="OH", released_on=None,
+               date_field="d")  # fmt: skip
+    with pytest.raises(LienConfigError, match=r"nope\.csv not in the zip"):
+        _rows_of(lien_adapter_for(load_lien_config(bad)), {"DELQ_7.zip": buf.getvalue()})
+
+
 HTML_PAGE = b"""<html><head><script>var x = "<table><tr><td>zqx</td></tr></table>";</script>
 <style>td {}</style></head><body><p>Delinquent Taxpayers (Updated November 16, 2026)</p>
 <table><tr><td>layout</td></tr></table>

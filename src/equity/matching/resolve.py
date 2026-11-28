@@ -1384,6 +1384,8 @@ STATES: dict[str, dict[str, Any]] = {
     # (no parcel id in the statewide form), matched by name and address, as for Travis.
     "TX-TARRANT": {"debtors": ["tx.tarrant.tax_roll_delinquent"],
                    "owners": ["tx.statewide.parcels"], "courts": FEDERAL_COURTS},
+    "TX-COLLIN": {"debtors": ["tx.collin.tax_roll_delinquent"], "owners": ["tx.statewide.parcels"],
+                  "parcel_on_lien": True, "courts": FEDERAL_COURTS},
     "TX-TRAVIS": {"debtors": ["tx.travis.tax_delinquent"], "owners": ["tx.statewide.parcels"],
                   "courts": FEDERAL_COURTS},
     # Omaha: tax sale certificates (named taxpayers) and county-held liens (PIN only).
@@ -1641,7 +1643,8 @@ STATES: dict[str, dict[str, Any]] = {
     "SD": {"debtors": ["sd.dor.top_delinquent_business"], "courts": FEDERAL_COURTS,
            "owners": ["sd.beadle.parcels", "sd.codington.parcels", "sd.lincoln.parcels",
                       "sd.miner.parcels", "sd.minnehaha.parcels", "sd.pennington.parcels"]},
-    "TN": {"debtors": [], "courts": FEDERAL_COURTS,
+    "TN": {"debtors": ["tn.hamilton.delinquent_taxes"], "courts": FEDERAL_COURTS,
+           "parcel_on_lien": True,
            "owners": ["tn.davidson.parcels", "tn.hamilton.parcels", "tn.rutherford.parcels",
                       "tn.washington.parcels", "tn.williamson.parcels", "tn.owners.parcels"],
            "deeds": ["tn.rutherford.last_sale"]},
@@ -1673,7 +1676,7 @@ STATES: dict[str, dict[str, Any]] = {
                                 "oh.greene.delinquent_taxes",
                                 "oh.lorain.delinquent_taxes", "oh.lorain.forfeited_land_sale",
                                 "oh.stark.delinquent_taxes", "oh.stark.foreclosures",
-                                "oh.stark.civil_sales"],
+                                "oh.stark.civil_sales", "oh.summit.delinquent_taxes"],
                     "courts": FEDERAL_COURTS,
                     "parcel_on_lien": True,
                     "owners": ["oh.clermont.parcels", "oh.cuyahoga.parcels",

@@ -43,16 +43,17 @@ HOST = "https://www.tarrantcountytx.gov"
 LINK = re.compile(r'href="([^"]*/tax-rolls/\d{4}/TaxRoll\d{8}\.zip)"', re.I)
 COUNTY = "48439"
 CREDITOR = "Tarrant County Tax Assessor-Collector"
-REAL = "01"
-MASTER = (("account", 1, 30), ("roll", 34, 35), ("cad_id", 169, 198), ("owner1", 327, 376),
+REAL = ("01",)
+Spec = tuple[tuple[str, int, int], ...]
+MASTER: Spec = (("account", 1, 30), ("roll", 34, 35), ("cad_id", 169, 198), ("owner1", 327, 376),
           ("owner2", 377, 426), ("addr1", 427, 456), ("addr2", 457, 486), ("city", 487, 516),
           ("state", 517, 536), ("zip", 537, 554))  # fmt: skip
-REC = (("account", 1, 30), ("year", 31, 34), ("unit", 35, 37), ("amount_due", 79, 90),
+REC: Spec = (("account", 1, 30), ("year", 31, 34), ("unit", 35, 37), ("amount_due", 79, 90),
        ("delinquent_on", 91, 100), ("judgment_on", 111, 120), ("lawsuit", 121, 138),
        ("bankruptcy", 149, 166), ("installment", 234, 234))  # fmt: skip
 
 
-def _slice(line: str, spec: tuple[tuple[str, int, int], ...]) -> dict[str, str]:
+def _slice(line: str, spec: Spec) -> dict[str, str]:
     return {name: line[a - 1 : b].strip() for name, a, b in spec}
 
 
@@ -74,11 +75,12 @@ def _money(v: str) -> Decimal:
     return d if d.is_finite() and d > 0 else Decimal(0)
 
 
-def delinquent_receivables(lines: Iterable[str], today: date) -> dict[str, dict[str, Any]]:
+def delinquent_receivables(lines: Iterable[str], today: date,
+                           spec: Spec = REC) -> dict[str, dict[str, Any]]:  # fmt: skip
     """Per account: past-due amount, years, latest judgment date, lawsuits, bankruptcies."""
     acc: dict[str, dict[str, Any]] = {}
     for line in lines:
-        r = _slice(line, REC)
+        r = _slice(line, spec)
         due, amount = _mdy(r["delinquent_on"]), _money(r["amount_due"])
         if not r["account"] or amount <= 0 or due is None or due >= today:
             continue
@@ -99,14 +101,15 @@ def delinquent_receivables(lines: Iterable[str], today: date) -> dict[str, dict[
     return acc
 
 
-def delinquent_accounts(master: Iterable[str], rec: Iterable[str],
-                        today: date) -> list[dict[str, Any]]:  # fmt: skip
-    owed = delinquent_receivables(rec, today)
+def delinquent_accounts(master: Iterable[str], rec: Iterable[str], today: date,
+                        master_spec: Spec = MASTER, rec_spec: Spec = REC,
+                        real: tuple[str, ...] = REAL) -> list[dict[str, Any]]:  # fmt: skip
+    owed = delinquent_receivables(rec, today, rec_spec)
     out = []
     for line in master:
-        m = _slice(line, MASTER)
+        m = _slice(line, master_spec)
         a = owed.get(m["account"])
-        if a is None or m["roll"] != REAL:
+        if a is None or m["roll"] not in real:
             continue
         out.append({**m, "amount": str(a["amount"]), "years": sorted(a["years"]),
                     "judged": a["judged"].isoformat() if a["judged"] else None,
@@ -120,6 +123,16 @@ class TarrantTaxRollDelinquent(Adapter):
     adapter_version: ClassVar[str] = "1"
     access_method: ClassVar[str] = "bulk"
     pii_fields: ClassVar[tuple[str, ...]] = ("owner1", "owner2", "addr1", "addr2")
+    # The layout, roll codes and files of this county's export; other tax offices on the same
+    # collection system publish the same two files with their own positions.
+    county: ClassVar[str] = COUNTY
+    creditor: ClassVar[str] = CREDITOR
+    label: ClassVar[str] = "Tarrant County"
+    master_spec: ClassVar[Spec] = MASTER
+    rec_spec: ClassVar[Spec] = REC
+    real: ClassVar[tuple[str, ...]] = REAL
+    files: ClassVar[tuple[str, str]] = ("master.dat", "rec.dat")
+    link_parcel: ClassVar[bool] = False  # the master's CAD number is a block/lot, not PROP_ID
 
     def __init__(self, client: PoliteClient | None = None) -> None:
         # robots.txt asks Crawl-delay: 30
@@ -163,22 +176,33 @@ class TarrantTaxRollDelinquent(Adapter):
             raise RuntimeError(f"{self.source_id}: HTTP {resp.status} for {url}")
         z = zipfile.ZipFile(io.BytesIO(resp.content))
         names = {n.rsplit("/", 1)[-1].lower(): n for n in z.namelist()}
-        if "master.dat" not in names or "rec.dat" not in names:
-            raise RuntimeError(f"{self.source_id}: Master.DAT or Rec.DAT missing in {url}")
+        found = [next((n for k, n in sorted(names.items()) if self._is(k, want)), None)
+                 for want in self.files]  # fmt: skip
+        master, rec = found
+        if master is None or rec is None:
+            raise RuntimeError(f"{self.source_id}: {' or '.join(self.files)} missing in {url}")
 
         def lines(name: str) -> Iterator[str]:
-            with z.open(names[name]) as raw:
+            with z.open(name) as raw:
                 for b in raw:
                     yield b.decode("latin-1").rstrip("\r\n")
 
-        rows = delinquent_accounts(lines("master.dat"), lines("rec.dat"),
-                                   resp.retrieved_at.date())  # fmt: skip
+        rows = delinquent_accounts(lines(master), lines(rec), resp.retrieved_at.date(),
+                                   self.master_spec, self.rec_spec, self.real)  # fmt: skip
         limit = request.params.get("limit")
         if limit:
             rows = rows[: int(limit)]
         return Fetched(self.source_id, url, resp.retrieved_at, 200,
                        canonical_json({"file": url.rsplit("/", 1)[-1], "rows": rows}),
                        "application/json")  # fmt: skip
+
+    @staticmethod
+    def _is(name: str, want: str) -> bool:
+        """'master.dat' is that file; 'am*.dat' is any file of that prefix and extension."""
+        if "*" not in want:
+            return name == want
+        head, tail = want.split("*", 1)
+        return name.startswith(head) and name.endswith(tail)
 
     def normalize(self, fetched: Fetched) -> Iterator[NormalizedRow]:
         for r in json.loads(fetched.content).get("rows") or []:
@@ -190,7 +214,7 @@ class TarrantTaxRollDelinquent(Adapter):
             if not (account and names and years and amount > 0):
                 continue
             judged = date.fromisoformat(r["judged"]) if r.get("judged") else None
-            ctx = RecordContext(fetched, COUNTY, account, "tax_account", r)
+            ctx = RecordContext(fetched, self.county, account, "tax_account", r)
             uid = stable_id(self.source_id, "account", account)
             notes = [f"years {years[0]}-{years[-1]}" if len(years) > 1 else f"year {years[0]}"]
             if r.get("lawsuits"):
@@ -204,13 +228,18 @@ class TarrantTaxRollDelinquent(Adapter):
             yield ctx.fact(
                 "instrument", instrument_uid=uid, instrument_number=account, book_type=None,
                 book=None, page=None,
-                doc_type_raw=f"Tarrant County {kind.lower()} (" + "; ".join(notes) + ")",
+                doc_type_raw=f"{self.label} {kind.lower()} (" + "; ".join(notes) + ")",
                 doc_type="COURT_ORDER" if judged else "TAX_LIEN_STATE",
                 recorded_on=judged or date(years[0], 1, 1), recorded_seq=None,
                 executed_on=None, consideration=None, principal_amount=amount,
                 max_secured_amount=None, maturity_date=None, amount_source="index",
                 legal_desc_raw=None,
             )  # fmt: skip
+            cad = str(r.get("cad_id") or "").strip()
+            if self.link_parcel and cad:
+                yield ctx.fact("instrument_parcel", instrument_uid=uid,
+                               parcel_uid=f"{self.county}-{cad}", method="index_parcel_id",
+                               evidence={"cad_id": cad})  # fmt: skip
             z = str(r.get("zip") or "")[:5]
             line = " ".join(x for x in (r.get("addr1"), r.get("addr2")) if x) or None
             addr = normalized_address(line, r.get("city") or None, r.get("state") or None,
@@ -225,9 +254,9 @@ class TarrantTaxRollDelinquent(Adapter):
                                address_id=addr["address_id"] if addr else None)  # fmt: skip
                 yield ctx.fact("instrument_party", instrument_uid=uid, party_id=pid,
                                role="debtor", seq=seq)  # fmt: skip
-            cr = classify(CREDITOR)
-            cid = stable_id(self.source_id, "creditor", clean(CREDITOR))
-            yield ctx.fact("party", party_id=cid, raw_name=CREDITOR, party_kind=cr.party_kind,
+            cr = classify(self.creditor)
+            cid = stable_id(self.source_id, "creditor", clean(self.creditor))
+            yield ctx.fact("party", party_id=cid, raw_name=self.creditor, party_kind=cr.party_kind,
                            org_form=cr.org_form, org_name_norm=cr.org_name_norm,
                            address_id=None)  # fmt: skip
             yield ctx.fact("instrument_party", instrument_uid=uid, party_id=cid,

@@ -183,3 +183,33 @@ excess. Added: `ga.dekalb.delinquent_taxes`, `md.baltimore_city.tax_sale_2026`,
 | Lexington SC "DelinquentTaxParcels_2023" (1,138) | A 2023 list; not current. |
 | Wyandotte KS Tax_Delinquent, Utah County UT May tax sale | The servers answer 403 and 401 (login required). |
 | Butler KS 2018 tax sale (7), Evansville IN tax sale layers | Stale or tiny; Indiana layers held for the IC 5-14-3-3(f) decision. |
+
+### Free-data list: big counties (2026-11-27)
+
+Items from the 100-item free-data list, starting with the large counties already in runs.
+Liquor licenses and the HUD items are skipped at the owner's request.
+
+| County | Result |
+|---|---|
+| Dallas TX | **Built:** `tx.dallas.tax_roll_delinquent` (Tax Office TRW file, weekly, free): 24,715 delinquent real property accounts, $240.4M; new TX-DALLAS run, linked by CAD account. |
+| Tarrant TX | **Built:** `tx.tarrant.tax_roll_delinquent` (Tax Office roll export, weekly, free; crawl-delay 30 honored): 25,143 accounts, $78.6M base tax, 1,584 with a tax-suit judgment; new TX-TARRANT run, matched by name and address. |
+| Summit OH | **Built:** `oh.summit.delinquent_taxes` (Fiscal Office CAMA export SC720_DELQ, weekly, free): 18,185 parcels with an amount, $204.8M; parcel-linked in OH-COUNTIES. |
+| Collin TX | **Built:** `tx.collin.tax_roll_delinquent` (Tax Assessor delinquent tax roll zip, free; same collection-system file as Tarrant with Collin's layout): 8,707 delinquent real and commercial accounts, $28.8M base tax due, 152 with a tax-suit judgment; parcel-linked to `tx.statewide.parcels` (CAD id = PROP_ID) in a new TX-COLLIN run. |
+| Hamilton TN | **Built:** `tn.hamilton.delinquent_taxes` (Trustee delinquent file CTRUDELQ, monthly, free): 11,879 unpaid real property bills on 7,459 parcels, $12.9M owed (2026-11-01 file); each bill names its year's owner; 11,190 linked to `tn.hamilton.parcels` by GISLINK in the TN run. The file's 40,000 business personal property bills (map PER) are not read. |
+| Fulton GA | Sheriff's tax sale list is a scanned PDF (no text layer); no OCR is used. No other free bulk list found. |
+| Wayne MI | Only the Treasurer's foreclosed-parcel PDF (parcel numbers, no owners); the auction site is the third-party sale platform. Not loaded. |
+| Hennepin MN | No bulk delinquent file; delinquency is shown per parcel in the property search only (no scraping). |
+| Palm Beach FL | Tax certificate and tax deed lists are on the vendor auction sites (login), not a county download. |
+| El Paso TX | The tax roll file is sold ($73.20); paid sources need owner approval. |
+| Bexar TX | No free tax roll export found; per-account search only. |
+| Montgomery OH | Search tool only, no export. |
+
+ArcGIS Online search for layers named delinquent, tax sale or tax lien that changed since
+2026-06 (2026-11-27): most were already loaded. New ones:
+
+| Layer | Status |
+|---|---|
+| Albany County NY "AC_DelinquentParcels_11_2026" (RPTSA, 5,174 parcels with owner and SWIS/print key, no amount) | **Owner decision:** the item's license reads "Not an Official Record. Not for use with Collection or Enforcement. Not a Legal Document." Not loaded. |
+| Pittsburgh city_tax_delinquent_3yr, DC Tax Liens (380), Harris tax-delinquent parcels | Already covered by `pa.pittsburgh.tax_delinquency`, `dc.otr.delinquent_taxes`, `tx.harris.delinquent_taxes`. |
+| Tyler TX Delinquent Properties (468, no owner), Washington Twp delinquencies (340), Dougherty GA 2026 tax sale (139), Shelby AL parcels to be bid (191), Blair PA judicial sale (30) | Small lists; left for a later pass. |
+| Nassau County NY weekly unpaid-tax and lien reports (DocumentCenter, 2026-11-20) | Readable: the DQ110 "Delinquent Taxes Unpaid" PDFs (general and school, 441 pages each) parse with the in-house PDF reader into parcel (section/block/lot), owner name, tax year, amount and class; the base-tax CSVs carry no owner. Held for now: no owner address is printed and Nassau is not among the counties in `ny.statewide.parcels` (only unofficial third-party copies of its parcel layer exist), so rows could be matched by name alone. The DQ106 lien summaries list lien numbers and status per parcel without owners. |
