@@ -237,3 +237,59 @@ def test_a_household_member_is_linked_but_never_reached(tmp_path: Path) -> None:
     assert {r[0] for r in q("SELECT parcel_uid FROM 'OUT/person_reach.parquet'")} == {"p1"}
     g = result["graph"]
     assert isinstance(g, dict) and g["household_links"] == 1
+
+
+def test_company_networks_reach_officers_homes_and_sister_companies(tmp_path: Path) -> None:
+    """ACME LLC (d1) owes; its manager ANN LEE files from 5 OAK LN, where she owns her home
+    (p1): the company reaches it. ANN LEE also manages BETA LLC (another filing, same
+    address), which owns p2: one officer, so ACME reaches BETA's parcel too. GAMMA LLC's
+    agent files from that address as well: a shared-address lead (review) to p3."""
+    lk = tmp_path / "lake"
+    d, o, r = lk / "s.debts", lk / "s.parcels", lk / "s.sos"
+    _write(d / "address" / "0.parquet", [_addr("da", "9 WORK ST", "10001")])
+    _write(d / "party" / "0.parquet", [
+        {"party_id": "d1", "raw_name": "ACME LLC", "party_kind": "org",
+         "org_name_norm": "ACME", "address_id": "da"}])  # fmt: skip
+    _write(d / "instrument_party" / "0.parquet",
+           [{"instrument_uid": "i1", "party_id": "d1", "role": "debtor"}])  # fmt: skip
+    _write(d / "instrument" / "0.parquet", [
+        {"instrument_uid": "i1", "source_id": "s.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2025-01-01", "principal_amount": 10.0}])  # fmt: skip
+    _write(o / "address" / "0.parquet", [_addr("h", "5 Oak Lane", "10001")])
+    rows = [("o1", "LEE ANN", "unknown", None, "h", "p1"),
+            ("o2", "BETA LLC", "org", "BETA", None, "p2"),
+            ("o3", "GAMMA LLC", "org", "GAMMA", None, "p3")]  # fmt: skip
+    _write(o / "party" / "0.parquet", [
+        {"party_id": k, "raw_name": n, "party_kind": kind, "org_name_norm": norm,
+         "address_id": a} for k, n, kind, norm, a, _ in rows])  # fmt: skip
+    _write(o / "owner_snapshot" / "0.parquet",
+           [{"parcel_uid": u, "party_id": k} for k, *_, u in rows])  # fmt: skip
+    _write(o / "parcel" / "0.parquet", [{"parcel_uid": u} for *_, u in rows])
+    _write(r / "business" / "0.parquet", [
+        {"sos_id": "B1", "name": "Acme LLC", "status": "Active"},
+        {"sos_id": "B2", "name": "Beta LLC", "status": "Active"},
+        {"sos_id": "B3", "name": "Gamma LLC", "status": "Active"}])  # fmt: skip
+    _write(r / "party" / "0.parquet", [
+        {"party_id": "h1", "raw_name": "ANN LEE", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": "ra"},
+        {"party_id": "h2", "raw_name": "LEE ANN", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": "ra"},
+        {"party_id": "h3", "raw_name": "CY DOE", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": "ra"}])  # fmt: skip
+    _write(
+        r / "address" / "0.parquet",
+        [{"address_id": "ra", "line1": "5 OAK LN", "city": "X", "state": "NY", "zip5": "10001"}],
+    )
+    _write(r / "business_role" / "0.parquet", [
+        {"sos_id": "B1", "party_id": "h1", "role": "manager", "title": "MANAGER"},
+        {"sos_id": "B2", "party_id": "h2", "role": "manager", "title": "MANAGER"},
+        {"sos_id": "B3", "party_id": "h3", "role": "agent", "title": "AGENT"}])  # fmt: skip
+    out = tmp_path / "out"
+    run(lk, out, ["s.debts"], ["s.parcels"], registry_sources=["s.sos"])
+    con = duckdb.connect()
+    reach = dict(
+        con.execute(
+            f"SELECT parcel_uid, strength FROM '{out.as_posix()}/person_reach.parquet'"
+        ).fetchall()
+    )
+    assert reach == {"p1": "auto", "p2": "auto", "p3": "review"}

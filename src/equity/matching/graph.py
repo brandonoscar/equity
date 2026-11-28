@@ -12,6 +12,9 @@ company:<sos_id>, officer:<party>, case:<case_uid>. Edges carry the link type, t
 made it and its decision ('auto' or 'review'), so every chain can be re-derived and shown
 with its weakest step.
 
+Company networks: one officer across companies, an officer's own property, and companies
+whose role holders share an address (see OFFICER_SQL).
+
 Owner records that are one owner (same organization name in the state; same person name
 sharing an address; same person name in one ZIP for review) are joined (same_owner, see
 CLUSTER_SQL), so a debtor matched to one of a landlord's parcels reaches all of them.
@@ -118,6 +121,43 @@ WITH hub AS (SELECT grp, rule_id, min(party_id) AS h FROM g_group GROUP BY grp, 
 SELECT DISTINCT 'owner:' || g.party_id, 'owner:' || hub.h, 'same_owner', g.rule_id, g.decision
 FROM g_group g JOIN hub USING (grp, rule_id)
 WHERE g.party_id <> hub.h;
+"""
+
+# Company networks, from the registries' role holders (company_people):
+#   same_officer      one person (same name and suffix, same address or its building) holding
+#                     roles in several companies: their officer records are one node (auto)
+#   officer_owner     an officer who owns property in their own name at their filing address
+#                     (or its building): a company debtor reaches its officers' homes (auto)
+#   shared_address    companies whose role holders file from one address (review); an
+#                     address many companies use (a registered agent, a law firm) makes its
+#                     star centre a hub, which chains do not cross
+OFFICER_SQL = """
+CREATE OR REPLACE TEMP TABLE g_officer AS
+SELECT DISTINCT party_id, sos_id, name_key, suffix_key, party_kind, addr_key,
+       coalesce(base_key, addr_key) AS place
+FROM company_people WHERE addr_key IS NOT NULL;
+INSERT INTO graph_edges
+WITH grp AS (
+    SELECT party_id, name_key || '|' || suffix_key || '|' || place AS g FROM g_officer
+    WHERE party_kind <> 'org' AND name_words(name_key) >= 2
+), hub AS (SELECT g, min(party_id) AS h FROM grp GROUP BY g)
+SELECT DISTINCT 'officer:' || grp.party_id, 'officer:' || hub.h, 'same_officer',
+       'officer_name_address', 'auto'
+FROM grp JOIN hub USING (g) WHERE grp.party_id <> hub.h;
+INSERT INTO graph_edges
+SELECT DISTINCT 'officer:' || c.party_id, 'owner:' || o.party_id, 'officer_owner',
+       'officer_name_address', 'auto'
+FROM g_officer c JOIN owners o ON o.name_key = c.name_key
+JOIN addr_alias aa ON aa.k = c.addr_key AND aa.k2 IN (o.mail_key, o.situs_key)
+WHERE c.party_kind <> 'org' AND o.party_kind <> 'org' AND name_words(c.name_key) >= 2
+  AND NOT suffix_conflict(c.suffix_key, o.suffix_key)
+  AND coalesce(o.name_variant, 'alias') = 'alias';
+INSERT INTO graph_edges
+WITH hub AS (SELECT place, min(sos_id) AS h FROM g_officer GROUP BY place
+             HAVING count(DISTINCT sos_id) > 1)
+SELECT DISTINCT 'company:' || c.sos_id, 'company:' || hub.h, 'shared_address',
+       'role_holder_address', 'review'
+FROM g_officer c JOIN hub USING (place) WHERE c.sos_id <> hub.h;
 """
 
 # Households: a debtor and an owner record at one address (or its building) whose names share
@@ -238,6 +278,8 @@ def compute(con: duckdb.DuckDBPyConnection) -> None:
             con.execute(f"INSERT INTO graph_edges SELECT DISTINCT * FROM ({select})")  # noqa: S608
     if _has(con, "owners") and _has(con, "addr_base"):
         con.execute(CLUSTER_SQL)
+    if _has(con, "company_people") and _has(con, "addr_alias"):
+        con.execute(OFFICER_SQL)
     if _has(con, "o_by_addr") and _has(con, "first_names"):
         con.execute(HOUSEHOLD_SQL)
     else:
