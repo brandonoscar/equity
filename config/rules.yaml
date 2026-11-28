@@ -11,7 +11,7 @@ matching:
 
 transfer_flags:
   # A conveyance at or below this consideration is "nominal".
-  nominal_consideration_max: null  # TODO(Brandon): e.g. 100.00
+  nominal_consideration_max: 100.00  # Brandon, 2026-11-28
   # Or below this fraction of the appraised value at the time.
   nominal_fraction_of_appraised: null  # TODO(Brandon): e.g. 0.10
   # Which related-party tests are on. Each is a separate deterministic rule.

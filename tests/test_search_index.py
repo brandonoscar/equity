@@ -886,10 +886,15 @@ def test_priority_stack_ranks_the_lien(forensic: duckdb.DuckDBPyConnection) -> N
     assert "error" in priority_stack(forensic, "39049-010-1", "nope")["position"]
 
 
-def test_transfer_badges_and_entity_ring(forensic: duckdb.DuckDBPyConnection) -> None:
+def test_transfer_badges_and_entity_ring(
+    forensic: duckdb.DuckDBPyConnection, tmp_path: Path
+) -> None:
     from equity.forensic import entity_ring, transfer_badges
 
-    b = transfer_badges(forensic, "oh.cuyahoga.liens:d1")
+    cfg = tmp_path / "cfg"
+    cfg.mkdir()
+    (cfg / "rules.yaml").write_text("transfer_flags:\n  nominal_consideration_max: null\n")
+    b = transfer_badges(forensic, "oh.cuyahoga.liens:d1", config_dir=cfg)
     assert str(b["first_debt_on"]) == "2025-06-01" and len(b["deeds"]) == 1
     deed = b["deeds"][0]
     assert deed["days_after_first_debt"] == 92
@@ -902,6 +907,10 @@ def test_transfer_badges_and_entity_ring(forensic: duckdb.DuckDBPyConnection) ->
         "within_year_of_debt",
     }
     assert b["nominal_threshold"] is None and "unset" in b["note"]
+    (cfg / "rules.yaml").write_text("transfer_flags:\n  nominal_consideration_max: 100\n")
+    forensic.execute("UPDATE instruments SET consideration = 10 WHERE instrument_uid = 'dd1'")
+    priced = transfer_badges(forensic, "oh.cuyahoga.liens:d1", config_dir=cfg)["deeds"][0]
+    assert "nominal" in priced["badges"] and "no_consideration" not in priced["badges"]
     ring = entity_ring(forensic, "oh.cuyahoga.liens:d1")["businesses"]
     assert [(r["name"], r["debtor_role"], r["formed_after_first_debt"]) for r in ring] == [
         ("Acme Holdings, L.L.C.", "member", False)]  # fmt: skip
