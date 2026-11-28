@@ -36,6 +36,8 @@ Config keys:
   year_dates          fields holding a year (levy / tax year), read as Jan 1 of that year
   listed_on           a field name: set to the fetch date on every row (a current list with no
                       per-row date); use it as date_field
+  list_date           with listed_on: the list's own as-of date (YYYY-MM-DD) instead of the
+                      fetch date, for an annual list whose file carries no date
   single_partition    true: one fetch of the whole (filtered) dataset, no date windows
   past_due_days       N: keep only rows whose date_field is at least N days before the fetch
                       date (a list of open balances that also carries current bills not yet
@@ -1012,7 +1014,8 @@ class LienAdapter(Adapter):
         for raw in json.loads(fetched.content).get("rows") or []:
             row = self._derive(raw)
             if cfg.get("listed_on"):  # a current list with no per-row date: the fetch date
-                row = {**row, cfg["listed_on"]: fetched.retrieved_at.date().isoformat()}
+                listed = cfg.get("list_date") or fetched.retrieved_at.date()
+                row = {**row, cfg["listed_on"]: str(listed)}
             uid_raw = self._uid(row)
             due = _date(row.get(cfg["date_field"]))
             grace = cfg.get("past_due_days")

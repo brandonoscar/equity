@@ -550,6 +550,24 @@ def test_zipped_csv_drops_paid_off_rows(tmp_path: Path) -> None:
         _rows_of(lien_adapter_for(load_lien_config(bad)), {"DELQ_7.zip": buf.getvalue()})
 
 
+def test_list_date_stamps_an_annual_list_and_amounts_sum(tmp_path: Path) -> None:
+    import datetime as dt
+
+    cfg = _cfg(tmp_path, api="xlsx", url="https://c.test/FY26.xlsx", portal=None, dataset=None,
+               county_fips="32003", state="NV", released_on=None, listed_on="listed",
+               list_date=dt.date(2026, 5, 6), date_field="listed", uid="parcel",
+               amount=["taxes", "pen_int", "cost"],
+               parcel={"kind": "pin", "field": "parcel", "county_fips": "32003", "strip": "-"},
+               parties=[{"role": "debtor", "name": "name_of_owner"}])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    book = _xlsx([["Parcel", "Name of Owner", "Taxes", "Pen/Int", "Cost"],
+                  ["128-31-212-019", "ACME L L C", "1282.41", "141.06", "12"]])  # fmt: skip
+    out = _rows_of(cls, {"FY26.xlsx": book})
+    (inst,) = [r for t, r in out if t == "instrument"]
+    assert (str(inst["recorded_on"]), str(inst["principal_amount"])) == ("2026-05-06", "1435.47")
+    assert [r["parcel_uid"] for t, r in out if t == "instrument_parcel"] == ["32003-12831212019"]
+
+
 HTML_PAGE = b"""<html><head><script>var x = "<table><tr><td>zqx</td></tr></table>";</script>
 <style>td {}</style></head><body><p>Delinquent Taxpayers (Updated November 16, 2026)</p>
 <table><tr><td>layout</td></tr></table>

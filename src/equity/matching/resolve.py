@@ -1535,7 +1535,8 @@ STATES: dict[str, dict[str, Any]] = {
     "MA": {"debtors": [], "owners": ["ma.statewide.parcels"], "courts": FEDERAL_COURTS},
     "NV-WASHOE": {"debtors": [], "owners": ["nv.washoe.parcels"], "courts": FEDERAL_COURTS},
     # Clark: the City of Las Vegas copy of the assessor roll (Las Vegas Valley only).
-    "NV-COUNTIES": {"debtors": [], "courts": FEDERAL_COURTS,
+    "NV-COUNTIES": {"debtors": ["nv.clark.delinquent_taxes_fy2026"], "courts": FEDERAL_COURTS,
+                    "parcel_on_lien": True,
                     "owners": ["nv.clark.parcels", "nv.lyon.parcels"],
                     "record_owners": ["nv.las_vegas.abandoned_property_registry"]},
     # County parcel layers with owner names in states (or counties) with no county debt list

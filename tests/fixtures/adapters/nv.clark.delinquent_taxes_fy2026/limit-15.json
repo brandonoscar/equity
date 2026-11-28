@@ -1,0 +1,110 @@
+{
+ "rows": [
+  {
+   "cost": "12",
+   "name_of_owner": "TESTOWNER 91F234",
+   "parcel": "128-31-212-019",
+   "pen_int": "141.06",
+   "taxes": "1282.4100000000001"
+  },
+  {
+   "cost": "12",
+   "name_of_owner": "TESTOWNER F645DD",
+   "parcel": "191-06-220-001",
+   "pen_int": "159.64000000000001",
+   "taxes": "1062.8600000000001"
+  },
+  {
+   "cost": "12",
+   "name_of_owner": "TESTOWNER B9D2B6",
+   "parcel": "161-29-522-001",
+   "pen_int": "42.24",
+   "taxes": "1056.1099999999999"
+  },
+  {
+   "cost": "12",
+   "name_of_owner": "TESTOWNER 85AE37",
+   "parcel": "002-13-701-002",
+   "pen_int": "44.51",
+   "taxes": "1112.74"
+  },
+  {
+   "cost": "12",
+   "name_of_owner": "TESTOWNER E564D6",
+   "parcel": "162-03-801-054",
+   "pen_int": "59.24",
+   "taxes": "1480.97"
+  },
+  {
+   "cost": "12",
+   "name_of_owner": "TESTOWNER 2AB607 LTD",
+   "parcel": "177-34-613-037",
+   "pen_int": "86.449999999999989",
+   "taxes": "1372.27"
+  },
+  {
+   "cost": "24",
+   "name_of_owner": "TESTOWNER B86BC7",
+   "parcel": "164-25-814-068",
+   "pen_int": "2773.8900000000003",
+   "taxes": "11931.689999999999"
+  },
+  {
+   "cost": "12",
+   "name_of_owner": "TESTOWNER 564129",
+   "parcel": "137-13-410-189",
+   "pen_int": "244.58999999999997",
+   "taxes": "2265.62"
+  },
+  {
+   "cost": "12",
+   "name_of_owner": "TESTOWNER 39F93D",
+   "parcel": "163-09-210-013",
+   "pen_int": "4.82",
+   "taxes": "120.39"
+  },
+  {
+   "cost": "12",
+   "name_of_owner": "TESTOWNER 39F93D",
+   "parcel": "162-20-312-075",
+   "pen_int": "17.14",
+   "taxes": "428.56"
+  },
+  {
+   "cost": "12",
+   "name_of_owner": "TESTOWNER 27B225",
+   "parcel": "164-23-710-003",
+   "pen_int": "9915.14",
+   "taxes": "66099.540000000008"
+  },
+  {
+   "cost": "12",
+   "name_of_owner": "TESTOWNER 3942F2",
+   "parcel": "162-28-101-002",
+   "pen_int": "7702.52",
+   "taxes": "110036.12"
+  },
+  {
+   "cost": "12",
+   "name_of_owner": "TESTOWNER BF1F54 LLC",
+   "parcel": "139-35-310-063",
+   "pen_int": "356.38",
+   "taxes": "5091.0600000000004"
+  },
+  {
+   "cost": "12",
+   "name_of_owner": "TESTOWNER EDCD69",
+   "parcel": "178-22-716-001",
+   "pen_int": "408.40000000000003",
+   "taxes": "2721.32"
+  },
+  {
+   "cost": "12",
+   "name_of_owner": "TESTOWNER D303CD",
+   "parcel": "162-20-613-340",
+   "pen_int": "40.25",
+   "taxes": "1006.31"
+  }
+ ],
+ "url": "https://www.clarkcountynv.gov/adobe/assets/urn:aaid:aem:fb735729-434b-4b9f-8fe2-4228a6bfbe0b/original/as/FY26-Annual-Delinquency-Publication.xlsx"
+}
