@@ -85,6 +85,10 @@ With street_town (CT only, approved by the project owner 2026-11-22), also:
   person_name_street_town   same person name_key, street line and town         -> auto
   org_name_street_town      same org_name, street line and town                -> auto
 
+Out-of-state owners: property in another state whose tax bill is mailed into this one
+(equity.matching.crossstate builds the national index; owner_basis 'out_of_state'). They
+are owners like any other, so every address rule meets them.
+
 With record_owners (and every run's deeds): owner names for parcels whose roll publishes none
 (California counties, Indiana's statewide layer), from records that name a lot's owner: the
 grantee of a DEED, or the 'owner' party of a permit, registration or code case. Per parcel the
@@ -282,6 +286,7 @@ def connect(
     writ_sources: list[str] | None = None,
     debtor_doc_types: list[str] | dict[str, list[str]] | None = None,
     record_owner_sources: list[str] | None = None,
+    out_of_state: tuple[Path, str] | None = None,
 ) -> duckdb.DuckDBPyConnection:
     con = duckdb.connect()
     # Large runs (NY: ~5M debtors x ~5M owners) spill to disk; cap it so a run fails cleanly
@@ -372,6 +377,11 @@ def connect(
     """)  # noqa: S608 - doc types come from STATES (repo config), quoted
     if record_owner_sources:
         _record_owners(con, lake, record_owner_sources)
+    if out_of_state and out_of_state[0].exists():
+        # Parcels in other states whose tax bill is mailed into this one (crossstate.INDEX).
+        from equity.matching import crossstate
+
+        crossstate.load(con, out_of_state[0], out_of_state[1])
     _owner_name_variants(con)
     if court_sources:
         _court_debtors(con, lake, court_sources)
@@ -1294,11 +1304,13 @@ def run(
     deed_sources: list[str] | None = None,
     record_owner_sources: list[str] | None = None,
     state_fips: str | None = None,
+    out_of_state: tuple[Path, str] | None = None,
 ) -> dict[str, object]:
     from equity.matching import bankruptcy, entities, equity, graph, review, transfers
 
     con = connect(lake, debtor_sources, owner_sources, parcel_on_lien, court_sources,
-                  writ_sources, debtor_doc_types, record_owner_sources)  # fmt: skip
+                  writ_sources, debtor_doc_types, record_owner_sources,
+                  out_of_state)  # fmt: skip
     match(con, street_town, parcel_on_lien, bool(court_sources))
     review.build(con)
     tables = ["matches", "debtor_summary", "people", "person_of", "review_queue"]
@@ -1828,7 +1840,9 @@ def main(argv: list[str] | None = None) -> int:
                  spec.get("debtor_doc_types"), bankruptcy_sources(args.state),
                  spec.get("deeds"),
                  [*(spec.get("deeds") or []), *(spec.get("record_owners") or [])],
-                 state_fips(run_state(args.state)))  # fmt: skip
+                 state_fips(run_state(args.state)),
+                 (args.out / "_national" / "out_of_state_owners.parquet",
+                  run_state(args.state)))  # fmt: skip
     result["missing_sources"] = missing
     summary = args.out / args.state.lower() / "summary.json"
     summary.write_text(json.dumps(result, indent=2, default=str))
