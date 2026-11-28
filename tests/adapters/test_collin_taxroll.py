@@ -71,3 +71,24 @@ def test_collin_layout_sums_real_and_commercial_accounts_and_links_the_parcel() 
         "48085-2728382", "48085-33546"]  # fmt: skip
     assert "Collin County Tax Assessor-Collector" in {x["raw_name"] for t, x in out
                                                       if t == "party"}  # fmt: skip
+
+
+def test_collin_personal_property_reads_roll_002_with_no_parcel() -> None:
+    from equity.adapters.tx.collin_taxroll import CollinPersonalPropertyDelinquent
+
+    master = [_master("R1", "001", "ANN LEE", "2728382"),
+              _master("P2", "002", "BIZ INC", "2656280")]  # fmt: skip
+    rec = [_rec("R1", "2023", "000000100.00", "02/01/2024"),
+           _rec("P2", "2024", "000000010.00", "02/01/2025")]  # fmt: skip
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w") as z:
+        z.writestr("AM112126.DAT", "\r\n".join(master))
+        z.writestr("AR112126.DAT", "\r\n".join(rec))
+    a = CollinPersonalPropertyDelinquent(_Client(buf.getvalue()))  # type: ignore[arg-type]
+    out = [(t.table, dict(t.row)) for t in a.normalize(a.fetch(FetchRequest({})))]
+    (inst,) = [x for t, x in out if t == "instrument"]
+    assert (inst["instrument_number"], str(inst["principal_amount"])) == ("P2", "10.00")
+    assert inst["doc_type_raw"] == (
+        "Collin County delinquent business personal property tax (year 2024; installment agreement)"
+    )
+    assert not [x for t, x in out if t == "instrument_parcel"]

@@ -128,6 +128,7 @@ class TarrantTaxRollDelinquent(Adapter):
     county: ClassVar[str] = COUNTY
     creditor: ClassVar[str] = CREDITOR
     label: ClassVar[str] = "Tarrant County"
+    tax_label: ClassVar[str] = "property tax"  # 'business personal property tax' for those rolls
     master_spec: ClassVar[Spec] = MASTER
     rec_spec: ClassVar[Spec] = REC
     real: ClassVar[tuple[str, ...]] = REAL
@@ -223,7 +224,7 @@ class TarrantTaxRollDelinquent(Adapter):
                 notes.append("bankruptcy " + ", ".join(r["bankruptcies"]))
             if r.get("installment"):
                 notes.append("installment agreement")
-            kind = "Tax suit judgment" if judged else "Delinquent property tax"
+            kind = "Tax suit judgment" if judged else f"Delinquent {self.tax_label}"
             yield ctx.source_record()
             yield ctx.fact(
                 "instrument", instrument_uid=uid, instrument_number=account, book_type=None,
@@ -268,3 +269,15 @@ class TarrantTaxRollDelinquent(Adapter):
         except RuntimeError as exc:
             return HealthReport(self.source_id, False, datetime.now(UTC), repr(exc))
         return HealthReport(self.source_id, True, datetime.now(UTC), f"tax roll {url}")
+
+
+class TarrantPersonalPropertyDelinquent(TarrantTaxRollDelinquent):
+    """The same roll's business personal property accounts (roll code 02, as in the
+    collection system's roll code list: 01 real, 02 personal, 03 mineral). Texas personal
+    property tax is a lien on that property (Tax Code 32.01); each account is a TAX_LIEN_STATE
+    (or, with a judgment, COURT_ORDER) instrument owed by the business, with no parcel."""
+
+    source_id: ClassVar[str] = "tx.tarrant.personal_property_delinquent"
+    adapter_version: ClassVar[str] = "1"
+    real: ClassVar[tuple[str, ...]] = ("02",)
+    tax_label: ClassVar[str] = "business personal property tax"

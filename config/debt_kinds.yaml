@@ -104,6 +104,9 @@ sources:
   tx.dallas.tax_roll_delinquent: tax_delinquency
   tx.tarrant.tax_roll_delinquent: tax_delinquency
   tx.collin.tax_roll_delinquent: tax_delinquency
+  tx.collin.personal_property_delinquent: tax_delinquency
+  tx.dallas.personal_property_delinquent: tax_delinquency
+  tx.tarrant.personal_property_delinquent: tax_delinquency
   tn.hamilton.delinquent_taxes: tax_delinquency
   tn.hamilton.personal_property_taxes: tax_delinquency
   nv.clark.delinquent_taxes_fy2026: tax_delinquency

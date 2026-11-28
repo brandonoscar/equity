@@ -84,3 +84,18 @@ class CollinTaxRollDelinquent(TarrantTaxRollDelinquent):
         return HealthReport(self.source_id, ok, datetime.now(UTC),
                             f"status={resp.status}; delinquent roll link "
                             f"{'found' if ok else 'missing'}")  # fmt: skip
+
+
+class CollinPersonalPropertyDelinquent(CollinTaxRollDelinquent):
+    """The same delinquent roll's business personal property accounts (roll code 002: the
+    equipment, furniture and inventory of businesses, assessed to the business; 11,935
+    accounts and $18.4M base tax on the 2026-11-21 roll). Texas personal property tax is a lien
+    on the business's personal property (Tax Code 32.01); each account is a TAX_LIEN_STATE (or,
+    with a judgment, COURT_ORDER) instrument owed by the business, with no parcel: the
+    appraisal number names the business personal property account, not a lot."""
+
+    source_id: ClassVar[str] = "tx.collin.personal_property_delinquent"
+    adapter_version: ClassVar[str] = "1"
+    real: ClassVar[tuple[str, ...]] = ("002",)
+    link_parcel: ClassVar[bool] = False
+    tax_label: ClassVar[str] = "business personal property tax"

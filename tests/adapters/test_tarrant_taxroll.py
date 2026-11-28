@@ -60,3 +60,21 @@ def test_past_due_receivables_are_summed_for_real_property() -> None:
     )
     assert not [x for t, x in out if t == "instrument_parcel"]  # cad id is not the PROP_ID
     assert {x["raw_name"] for t, x in out if t == "party"} >= {"ANN LEE"}
+
+
+def test_personal_property_accounts_are_roll_02() -> None:
+    from equity.adapters.tx.tarrant_taxroll import MASTER, REC, TarrantPersonalPropertyDelinquent
+
+    master = [_master("00000000001", "01", "ANN LEE"), _master("00000000002", "02", "BIZ INC")]
+    rec = [_rec("00000000001", "2024", "000000050.00", "02/01/2025"),
+           _rec("00000000002", "2024", "000000010.00", "02/01/2025")]  # fmt: skip
+    rows = delinquent_accounts(master, rec, date(2025, 12, 31), MASTER, REC, ("02",))
+    assert [r["account"] for r in rows] == ["00000000002"]
+    body = json.dumps({"file": "TaxRoll.zip", "rows": rows}).encode()
+    out = [(t.table, dict(t.row)) for t in TarrantPersonalPropertyDelinquent().normalize(
+        Fetched("tx.tarrant.personal_property_delinquent", "x", AT, 200, body, ""))]  # fmt: skip
+    (inst,) = [x for t, x in out if t == "instrument"]
+    assert (
+        inst["doc_type_raw"]
+        == "Tarrant County delinquent business personal property tax (year 2024)"
+    )

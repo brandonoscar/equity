@@ -1,0 +1,323 @@
+{
+ "file": "delinquent-tax-roll.zip",
+ "rows": [
+  {
+   "account": "H900021226631",
+   "addr1": "TESTOWNER 0E0441",
+   "addr2": "",
+   "amount": "0.80",
+   "bankruptcies": [],
+   "cad_id": "2678346",
+   "city": "FORT MILL",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 961157 INC",
+   "owner2": "",
+   "roll": "002",
+   "state": "SC",
+   "years": [
+    2024
+   ],
+   "zip": "297154556"
+  },
+  {
+   "account": "H900021312541",
+   "addr1": "TESTOWNER 00C3B7",
+   "addr2": "",
+   "amount": "1.70",
+   "bankruptcies": [],
+   "cad_id": "2683439",
+   "city": "SAN ANTONIO",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER BCC9A1 LLC",
+   "owner2": "",
+   "roll": "002",
+   "state": "TX",
+   "years": [
+    2021
+   ],
+   "zip": "782207916"
+  },
+  {
+   "account": "H900022010061",
+   "addr1": "TESTOWNER 297898",
+   "addr2": "",
+   "amount": "10.65",
+   "bankruptcies": [],
+   "cad_id": "2799940",
+   "city": "DALLAS",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 9DDD2E LLC",
+   "owner2": "",
+   "roll": "002",
+   "state": "TX",
+   "years": [
+    2024
+   ],
+   "zip": "752291003"
+  },
+  {
+   "account": "M4401000103B1",
+   "addr1": "TESTOWNER DFEDBC",
+   "addr2": "",
+   "amount": "115.55",
+   "bankruptcies": [],
+   "cad_id": "2623315",
+   "city": "PRINCETON",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 40B8D1",
+   "owner2": "TESTOWNER A45F8B",
+   "roll": "002",
+   "state": "TX",
+   "years": [
+    2016
+   ],
+   "zip": "75407-9501"
+  },
+  {
+   "account": "M4401000150C1",
+   "addr1": "TESTOWNER A3178D",
+   "addr2": "",
+   "amount": "2604.84",
+   "bankruptcies": [],
+   "cad_id": "2516250",
+   "city": "PRINCETON",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [
+    "219-00967-2012"
+   ],
+   "owner1": "TESTOWNER 060417",
+   "owner2": "",
+   "roll": "002",
+   "state": "TX",
+   "years": [
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009
+   ],
+   "zip": "75407-4469"
+  },
+  {
+   "account": "M4406000126C6",
+   "addr1": "TESTOWNER 1785F8",
+   "addr2": "TESTOWNER F56300",
+   "amount": "247.33",
+   "bankruptcies": [],
+   "cad_id": "6-44614",
+   "city": "WYLIE",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER A6B918",
+   "owner2": "",
+   "roll": "002",
+   "state": "TX",
+   "years": [
+    2020,
+    2021
+   ],
+   "zip": "750986511"
+  },
+  {
+   "account": "M444000000401",
+   "addr1": "TESTOWNER 0030E3",
+   "addr2": "",
+   "amount": "90.82",
+   "bankruptcies": [],
+   "cad_id": "2520864",
+   "city": "FARMERSVILLE",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 47D298",
+   "owner2": "",
+   "roll": "002",
+   "state": "TX",
+   "years": [
+    2016
+   ],
+   "zip": "75442-3109"
+  },
+  {
+   "account": "M446600002701",
+   "addr1": "TESTOWNER 054711",
+   "addr2": "",
+   "amount": "198.21",
+   "bankruptcies": [],
+   "cad_id": "2099575",
+   "city": "MCKINNEY",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 73B89B",
+   "owner2": "",
+   "roll": "002",
+   "state": "TX",
+   "years": [
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "zip": "75069"
+  },
+  {
+   "account": "M4495000077E1",
+   "addr1": "TESTOWNER 6B934D",
+   "addr2": "TESTOWNER CAA1E3",
+   "amount": "283.26",
+   "bankruptcies": [],
+   "cad_id": "2122947",
+   "city": "PLANO",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 506E91",
+   "owner2": "",
+   "roll": "002",
+   "state": "TX",
+   "years": [
+    2016,
+    2017,
+    2018
+   ],
+   "zip": "75074-2290"
+  },
+  {
+   "account": "P900000213081",
+   "addr1": "TESTOWNER 46A1DC",
+   "addr2": "",
+   "amount": "45.18",
+   "bankruptcies": [],
+   "cad_id": "375800",
+   "city": "PLANO",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 077F20 LLC",
+   "owner2": "",
+   "roll": "002",
+   "state": "TX",
+   "years": [
+    2025
+   ],
+   "zip": "750940447"
+  },
+  {
+   "account": "P900000301201",
+   "addr1": "TESTOWNER C74CA9",
+   "addr2": "",
+   "amount": "10410.50",
+   "bankruptcies": [],
+   "cad_id": "523044",
+   "city": "PLANO",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER DC85C0 INC",
+   "owner2": "TESTOWNER 789B97",
+   "roll": "002",
+   "state": "TX",
+   "years": [
+    2016,
+    2017
+   ],
+   "zip": "75074"
+  },
+  {
+   "account": "P900000408481",
+   "addr1": "TESTOWNER 7CDDF1",
+   "addr2": "",
+   "amount": "4812.48",
+   "bankruptcies": [],
+   "cad_id": "377675",
+   "city": "IRVING",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 9A2519 LLC",
+   "owner2": "",
+   "roll": "002",
+   "state": "TX",
+   "years": [
+    2024,
+    2025
+   ],
+   "zip": "750622787"
+  },
+  {
+   "account": "P900000408501",
+   "addr1": "TESTOWNER BF06AA",
+   "addr2": "TESTOWNER 287670",
+   "amount": "0.01",
+   "bankruptcies": [],
+   "cad_id": "377684",
+   "city": "CORINTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 6E2989",
+   "owner2": "",
+   "roll": "002",
+   "state": "TX",
+   "years": [
+    2023
+   ],
+   "zip": "76210"
+  },
+  {
+   "account": "P900000607711",
+   "addr1": "TESTOWNER 1C1225",
+   "addr2": "",
+   "amount": "3552.75",
+   "bankruptcies": [],
+   "cad_id": "378861",
+   "city": "PLANO",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER 7FC178 LLC",
+   "owner2": "TESTOWNER 44E864",
+   "roll": "002",
+   "state": "TX",
+   "years": [
+    2024
+   ],
+   "zip": "750745423"
+  },
+  {
+   "account": "P900000801401",
+   "addr1": "TESTOWNER F410B0",
+   "addr2": "",
+   "amount": "531.82",
+   "bankruptcies": [
+    "1610296"
+   ],
+   "cad_id": "524114",
+   "city": "OKLAHOMA CITY",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [],
+   "owner1": "TESTOWNER DA3018",
+   "owner2": "",
+   "roll": "002",
+   "state": "OK",
+   "years": [
+    2016
+   ],
+   "zip": "73123-1845"
+  }
+ ]
+}

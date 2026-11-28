@@ -1378,14 +1378,18 @@ STATES: dict[str, dict[str, Any]] = {
     # Travis: delinquent property tax accounts and tax-suit judgments, by owner name.
     # Dallas County Tax Office TRW roll: delinquent accounts by Dallas CAD account, the key of
     # the city's copy of the certified roll (Dallas and a one-mile buffer).
-    "TX-DALLAS": {"debtors": ["tx.dallas.tax_roll_delinquent"],
+    "TX-DALLAS": {"debtors": ["tx.dallas.tax_roll_delinquent",
+                              "tx.dallas.personal_property_delinquent"],
                   "owners": ["tx.dallas_city.parcels"], "parcel_on_lien": True,
                   "courts": FEDERAL_COURTS},
     # Tarrant County Tax Office roll: delinquent accounts with owners and mailing addresses
     # (no parcel id in the statewide form), matched by name and address, as for Travis.
-    "TX-TARRANT": {"debtors": ["tx.tarrant.tax_roll_delinquent"],
+    "TX-TARRANT": {"debtors": ["tx.tarrant.tax_roll_delinquent",
+                               "tx.tarrant.personal_property_delinquent"],
                    "owners": ["tx.statewide.parcels"], "courts": FEDERAL_COURTS},
-    "TX-COLLIN": {"debtors": ["tx.collin.tax_roll_delinquent"], "owners": ["tx.statewide.parcels"],
+    "TX-COLLIN": {"debtors": ["tx.collin.tax_roll_delinquent",
+                              "tx.collin.personal_property_delinquent"],
+                  "owners": ["tx.statewide.parcels"],
                   "parcel_on_lien": True, "courts": FEDERAL_COURTS},
     "TX-TRAVIS": {"debtors": ["tx.travis.tax_delinquent"], "owners": ["tx.statewide.parcels"],
                   "courts": FEDERAL_COURTS},

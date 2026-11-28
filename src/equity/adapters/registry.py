@@ -84,12 +84,21 @@ from equity.adapters.tn.hamilton_delinquent import (
     HamiltonTNDelinquentTaxes,
     HamiltonTNPersonalPropertyTaxes,
 )
-from equity.adapters.tx.collin_taxroll import CollinTaxRollDelinquent
-from equity.adapters.tx.dallas_trw import DallasTaxRollDelinquent
+from equity.adapters.tx.collin_taxroll import (
+    CollinPersonalPropertyDelinquent,
+    CollinTaxRollDelinquent,
+)
+from equity.adapters.tx.dallas_trw import (
+    DallasPersonalPropertyDelinquent,
+    DallasTaxRollDelinquent,
+)
 from equity.adapters.tx.harris_district import HarrisDistrictCivilJudgments
 from equity.adapters.tx.harris_jp import HarrisJPCivilJudgments
 from equity.adapters.tx.stratmap import TexasStratMapParcels
-from equity.adapters.tx.tarrant_taxroll import TarrantTaxRollDelinquent
+from equity.adapters.tx.tarrant_taxroll import (
+    TarrantPersonalPropertyDelinquent,
+    TarrantTaxRollDelinquent,
+)
 from equity.adapters.tx_harris_jp import HarrisJPJudgments
 from equity.adapters.tx_travis_delinquent import TravisTaxDelinquent
 from equity.adapters.voter_files import BoulderCountyVoterFile, NorthCarolinaVoterFile
@@ -133,7 +142,10 @@ _ALL: tuple[type[Adapter], ...] = (
     TravisTaxDelinquent,
     DallasTaxRollDelinquent,
     TarrantTaxRollDelinquent,
+    TarrantPersonalPropertyDelinquent,
+    DallasPersonalPropertyDelinquent,
     CollinTaxRollDelinquent,
+    CollinPersonalPropertyDelinquent,
     HamiltonTNDelinquentTaxes,
     HamiltonTNPersonalPropertyTaxes,
     VermontTransferArchive,

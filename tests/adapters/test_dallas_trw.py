@@ -65,3 +65,24 @@ def test_past_due_real_property_is_summed_per_account() -> None:
     )
     assert [r["parcel_uid"] for t, r in out if t == "instrument_parcel"] == ["48113-C1"]
     assert {r["role"] for t, r in out if t == "instrument_party"} == {"debtor", "creditor"}
+
+
+def test_commercial_is_real_property_and_personal_property_is_its_own_source() -> None:
+    from equity.adapters.tx.dallas_trw import DallasPersonalPropertyDelinquent
+
+    lines = [_rec(cad_account="C1", year="2024", due_date="20250201", total_due="00000001000",
+                  roll="C", owner="MALL LLC"),
+             _rec(cad_account="P1", year="2024", due_date="20250201", total_due="00000000500",
+                  roll="P", owner="BIZ INC")]  # fmt: skip
+    assert [r["cad_account"] for r in delinquent_accounts(iter(lines), date(2025, 12, 31))] == [
+        "C1"]  # fmt: skip
+    rows = delinquent_accounts(iter(lines), date(2025, 12, 31), ("P",))
+    body = json.dumps({"file": "flat404.x", "rows": rows}).encode()
+    out = [(r.table, dict(r.row)) for r in DallasPersonalPropertyDelinquent().normalize(
+        Fetched("tx.dallas.personal_property_delinquent", "x", AT, 200, body, ""))]  # fmt: skip
+    (inst,) = [r for t, r in out if t == "instrument"]
+    assert (
+        inst["doc_type_raw"]
+        == "Dallas County delinquent business personal property tax (year 2024)"
+    )
+    assert not [r for t, r in out if t == "instrument_parcel"]

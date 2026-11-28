@@ -1,0 +1,389 @@
+{
+ "file": "TaxRoll20261125.zip",
+ "rows": [
+  {
+   "account": "00003500079",
+   "addr1": "TESTOWNER D0B0D0",
+   "addr2": "",
+   "amount": "79.60",
+   "bankruptcies": [],
+   "cad_id": "P6900914S0350007",
+   "city": "BURLESON",
+   "installment": false,
+   "judged": "1985-08-05",
+   "lawsuits": [
+    "TC0962"
+   ],
+   "owner1": "TESTOWNER 414281 CO",
+   "owner2": "",
+   "roll": "02",
+   "state": "TX",
+   "years": [
+    1982,
+    1983
+   ],
+   "zip": "760280000"
+  },
+  {
+   "account": "00003700013",
+   "addr1": "TESTOWNER C1487A",
+   "addr2": "",
+   "amount": "97.39",
+   "bankruptcies": [],
+   "cad_id": "M7000914O0370001",
+   "city": "FT WORTH",
+   "installment": false,
+   "judged": "1990-07-16",
+   "lawsuits": [
+    "TC1425"
+   ],
+   "owner1": "TESTOWNER 5F09B8",
+   "owner2": "",
+   "roll": "02",
+   "state": "TX",
+   "years": [
+    1983
+   ],
+   "zip": "761190000"
+  },
+  {
+   "account": "00004894278",
+   "addr1": "TESTOWNER FE760B",
+   "addr2": "",
+   "amount": "216.22",
+   "bankruptcies": [],
+   "cad_id": "A917J 17      83",
+   "city": "ALVARADO",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [
+    "JC0000005-96"
+   ],
+   "owner1": "TESTOWNER BF7169",
+   "owner2": "",
+   "roll": "02",
+   "state": "TX",
+   "years": [
+    1987,
+    1988,
+    1989,
+    1990
+   ],
+   "zip": "760099619"
+  },
+  {
+   "account": "00005714397",
+   "addr1": "TESTOWNER 9BAAAC",
+   "addr2": "",
+   "amount": "93.08",
+   "bankruptcies": [],
+   "cad_id": "",
+   "city": "MANSFIELD",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [
+    "JCV006013-98"
+   ],
+   "owner1": "TESTOWNER 54D0BE",
+   "owner2": "",
+   "roll": "02",
+   "state": "TX",
+   "years": [
+    1988
+   ],
+   "zip": "760630000"
+  },
+  {
+   "account": "00007512430",
+   "addr1": "TESTOWNER 08AFFB",
+   "addr2": "",
+   "amount": "1185.53",
+   "bankruptcies": [],
+   "cad_id": "36958-20-80",
+   "city": "IRVING",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [
+    "03-T056"
+   ],
+   "owner1": "TESTOWNER 4F4C1E",
+   "owner2": "TESTOWNER 04A595",
+   "roll": "02",
+   "state": "TX",
+   "years": [
+    1997,
+    1998,
+    1999
+   ],
+   "zip": "75063"
+  },
+  {
+   "account": "00008005087",
+   "addr1": "TESTOWNER A292FB",
+   "addr2": "",
+   "amount": "229.91",
+   "bankruptcies": [],
+   "cad_id": "M",
+   "city": "ARLINGTON",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [
+    "C00001679-94"
+   ],
+   "owner1": "TESTOWNER 03B913",
+   "owner2": "",
+   "roll": "02",
+   "state": "TX",
+   "years": [
+    1992,
+    1993,
+    1994
+   ],
+   "zip": "760170000"
+  },
+  {
+   "account": "00008009910",
+   "addr1": "TESTOWNER 3E950A",
+   "addr2": "",
+   "amount": "195.83",
+   "bankruptcies": [],
+   "cad_id": "6T90-1L000-8400",
+   "city": "HOUSTON,",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [
+    "C00001213-93"
+   ],
+   "owner1": "TESTOWNER 9AF88A",
+   "owner2": "",
+   "roll": "02",
+   "state": "TX",
+   "years": [
+    1989,
+    1990
+   ],
+   "zip": "770640000"
+  },
+  {
+   "account": "00008010781",
+   "addr1": "TESTOWNER B38562",
+   "addr2": "",
+   "amount": "521.83",
+   "bankruptcies": [],
+   "cad_id": "M",
+   "city": "ARLINGTON",
+   "installment": false,
+   "judged": "1993-10-08",
+   "lawsuits": [
+    "C00001270-93"
+   ],
+   "owner1": "TESTOWNER 6ADB2C",
+   "owner2": "",
+   "roll": "02",
+   "state": "TX",
+   "years": [
+    1983,
+    1984,
+    1985,
+    1986,
+    1987,
+    1988,
+    1989,
+    1990,
+    1991,
+    1992,
+    1993,
+    1994,
+    1995,
+    1996,
+    1997,
+    1998,
+    1999
+   ],
+   "zip": "760065829"
+  },
+  {
+   "account": "00008015872",
+   "addr1": "TESTOWNER D016DE",
+   "addr2": "",
+   "amount": "691.22",
+   "bankruptcies": [],
+   "cad_id": "M",
+   "city": "ARLINGTON",
+   "installment": false,
+   "judged": "1992-07-20",
+   "lawsuits": [
+    "C00000481-90"
+   ],
+   "owner1": "TESTOWNER 29A918",
+   "owner2": "",
+   "roll": "02",
+   "state": "TX",
+   "years": [
+    1987,
+    1988,
+    1989,
+    1990,
+    1991,
+    1992,
+    1993,
+    1996,
+    1998
+   ],
+   "zip": "760116214"
+  },
+  {
+   "account": "00008017433",
+   "addr1": "TESTOWNER 275FD6",
+   "addr2": "",
+   "amount": "83.55",
+   "bankruptcies": [],
+   "cad_id": "M7000-V-901-1240",
+   "city": "GRANBURY,",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [
+    "C00001203-93"
+   ],
+   "owner1": "TESTOWNER 01274A",
+   "owner2": "",
+   "roll": "02",
+   "state": "TX",
+   "years": [
+    1991
+   ],
+   "zip": "760480000"
+  },
+  {
+   "account": "00008017948",
+   "addr1": "TESTOWNER 04F50A",
+   "addr2": "",
+   "amount": "274.98",
+   "bankruptcies": [],
+   "cad_id": "M",
+   "city": "HUNTINGTON",
+   "installment": false,
+   "judged": "1993-05-26",
+   "lawsuits": [
+    "C00001222-93"
+   ],
+   "owner1": "TESTOWNER 0A740B",
+   "owner2": "",
+   "roll": "02",
+   "state": "IN",
+   "years": [
+    1991,
+    1992,
+    1993
+   ],
+   "zip": "467503014"
+  },
+  {
+   "account": "00008019096",
+   "addr1": "TESTOWNER A39269",
+   "addr2": "",
+   "amount": "879.69",
+   "bankruptcies": [],
+   "cad_id": "M",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": "1997-08-15",
+   "lawsuits": [
+    "L00013572-96"
+   ],
+   "owner1": "TESTOWNER 2145F8",
+   "owner2": "",
+   "roll": "02",
+   "state": "TX",
+   "years": [
+    1986,
+    1987,
+    1988,
+    1989,
+    1990,
+    1991,
+    1992,
+    1993,
+    1994,
+    1995,
+    1996,
+    1997,
+    1998,
+    1999
+   ],
+   "zip": "761805507"
+  },
+  {
+   "account": "00008019673",
+   "addr1": "TESTOWNER DE385E",
+   "addr2": "",
+   "amount": "230.72",
+   "bankruptcies": [],
+   "cad_id": "6T90-2C002-1480",
+   "city": "FORT WORTH",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [
+    "L06754"
+   ],
+   "owner1": "TESTOWNER 8099E6",
+   "owner2": "",
+   "roll": "02",
+   "state": "TX",
+   "years": [
+    1988,
+    1989,
+    1990
+   ],
+   "zip": "761800000"
+  },
+  {
+   "account": "00008025584",
+   "addr1": "TESTOWNER DE5495",
+   "addr2": "",
+   "amount": "118.18",
+   "bankruptcies": [],
+   "cad_id": "6T90-5B000-8400",
+   "city": "FT WORTH,",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [
+    "E83987  --"
+   ],
+   "owner1": "TESTOWNER 055F8C",
+   "owner2": "",
+   "roll": "02",
+   "state": "TX",
+   "years": [
+    1984
+   ],
+   "zip": "761120000"
+  },
+  {
+   "account": "00008025843",
+   "addr1": "TESTOWNER C753C4",
+   "addr2": "",
+   "amount": "734.85",
+   "bankruptcies": [],
+   "cad_id": "6T90-5B001-2480",
+   "city": "FT WORTH,",
+   "installment": false,
+   "judged": null,
+   "lawsuits": [
+    "E90203"
+   ],
+   "owner1": "TESTOWNER 32F740",
+   "owner2": "",
+   "roll": "02",
+   "state": "TX",
+   "years": [
+    1982,
+    1983,
+    1984,
+    1985,
+    1986
+   ],
+   "zip": "761190000"
+  }
+ ]
+}

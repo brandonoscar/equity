@@ -1,0 +1,272 @@
+{
+ "file": "flat404.DALLASCOUNTY.20261123.761953",
+ "rows": [
+  {
+   "addr2": "TESTOWNER 73A6CA",
+   "addr3": "TESTOWNER 58134F",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "08106517",
+   "cents": 45628,
+   "city": "DALLAS",
+   "owner": "TESTOWNER FCA175",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2017,
+    2018,
+    2019,
+    2020,
+    2021
+   ],
+   "zip": "75208"
+  },
+  {
+   "addr2": "TESTOWNER 9589B0",
+   "addr3": "TESTOWNER 85C5BA",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "08407797",
+   "cents": 32192,
+   "city": "GRAND PRAIRIE",
+   "owner": "TESTOWNER B13597",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2020
+   ],
+   "zip": "750514510"
+  },
+  {
+   "addr2": "TESTOWNER 4DD9CE",
+   "addr3": "TESTOWNER 29AF1C",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "09262164",
+   "cents": 11187,
+   "city": "GRAND PRAIRIE",
+   "owner": "TESTOWNER D6F8A0",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2020,
+    2021,
+    2022
+   ],
+   "zip": "75051"
+  },
+  {
+   "addr2": "TESTOWNER 73A6CA",
+   "addr3": "TESTOWNER C3285C",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "09279512",
+   "cents": 21049,
+   "city": "MANSFIELD",
+   "owner": "TESTOWNER 7EBCEB",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2024
+   ],
+   "zip": "760636081"
+  },
+  {
+   "addr2": "TESTOWNER 8B7194",
+   "addr3": "",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "09507299",
+   "cents": 9245,
+   "city": "GRAND PRAIRIE",
+   "owner": "TESTOWNER 1C77B3",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2021
+   ],
+   "zip": "750522618"
+  },
+  {
+   "addr2": "TESTOWNER 21702F",
+   "addr3": "TESTOWNER 8322CD",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "09656766",
+   "cents": 46400,
+   "city": "NORTH RICHLAND HILLS",
+   "owner": "TESTOWNER B0E248 INC",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2014
+   ],
+   "zip": "761828639"
+  },
+  {
+   "addr2": "TESTOWNER 057492",
+   "addr3": "TESTOWNER 7A7131",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "09734805",
+   "cents": 99558,
+   "city": "GRAND PRAIRIE",
+   "owner": "TESTOWNER 1AC9AE LLC",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2019,
+    2020
+   ],
+   "zip": "75051"
+  },
+  {
+   "addr2": "TESTOWNER 0C5BB7",
+   "addr3": "TESTOWNER FABDB6",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "09755241",
+   "cents": 65506,
+   "city": "GRAND PRAIRIE",
+   "owner": "TESTOWNER 881A03",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2023
+   ],
+   "zip": "750528915"
+  },
+  {
+   "addr2": "TESTOWNER 3C3157",
+   "addr3": "TESTOWNER BB653A",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "09775234",
+   "cents": 651473,
+   "city": "NORTH RICHLAND HILLS",
+   "owner": "TESTOWNER 9BB12E INC",
+   "state": "TX",
+   "suits": [
+    "A:348-D38369-23"
+   ],
+   "years": [
+    2023
+   ],
+   "zip": "76182"
+  },
+  {
+   "addr2": "TESTOWNER 3C3157",
+   "addr3": "TESTOWNER DA0B49",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "09867112",
+   "cents": 158804,
+   "city": "ARLINGTON",
+   "owner": "TESTOWNER E5CDDF INC",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2020,
+    2021
+   ],
+   "zip": "760056217"
+  },
+  {
+   "addr2": "TESTOWNER 4DD9CE",
+   "addr3": "TESTOWNER 29AF1C",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "09960465",
+   "cents": 9613,
+   "city": "GRAND PRAIRIE",
+   "owner": "TESTOWNER D6F8A0",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2020,
+    2021
+   ],
+   "zip": "75051"
+  },
+  {
+   "addr2": "TESTOWNER EFCD59",
+   "addr3": "TESTOWNER DFF7FE",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "09961283",
+   "cents": 4474,
+   "city": "GRAND PRAIRIE",
+   "owner": "TESTOWNER D6F8A0",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2016
+   ],
+   "zip": "750504924"
+  },
+  {
+   "addr2": "",
+   "addr3": "TESTOWNER B97F1C",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "1009549",
+   "cents": 1547,
+   "city": "IRVING",
+   "owner": "TESTOWNER E37DEC LLC",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2023
+   ],
+   "zip": "750636075"
+  },
+  {
+   "addr2": "",
+   "addr3": "TESTOWNER B97F1C",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "1009863",
+   "cents": 1098,
+   "city": "IRVING",
+   "owner": "TESTOWNER E37DEC LLC",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2021
+   ],
+   "zip": "750636075"
+  },
+  {
+   "addr2": "TESTOWNER 5150F2",
+   "addr3": "TESTOWNER 6956AB",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "1010824",
+   "cents": 205164,
+   "city": "DALLAS",
+   "owner": "TESTOWNER 5D81D3",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2024,
+    2025
+   ],
+   "zip": "75287"
+  }
+ ]
+}
