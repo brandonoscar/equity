@@ -1,8 +1,9 @@
 """Text and simple tables from machine-generated PDFs, with the standard library only.
 
 Enough of PDF for a report printed straight to PDF (a state agency's list): the page content
-streams are inflated (FlateDecode), text-showing operators (Tj, TJ, ', ") are placed with the
-text matrix (Tm, Td, TD, T*, TL), and glyph codes are mapped through each font's ToUnicode
+streams are decoded (ASCII85Decode, as Oracle Reports writes them) and inflated (FlateDecode),
+text-showing operators (Tj, TJ, ', ") are placed with the text matrix (Tm, Td, TD, T*, TL),
+and glyph codes are mapped through each font's ToUnicode
 CMap when it has one (Latin-1 otherwise). Text is then grouped into lines by baseline and into
 columns by the x positions of a header line. No OCR, no layout inference beyond that: a
 scanned or unusual PDF yields nothing, and the caller treats it as an empty list.
@@ -13,6 +14,7 @@ only literal parsing is done.
 
 from __future__ import annotations
 
+import base64
 import re
 import zlib
 from dataclasses import dataclass
@@ -70,6 +72,16 @@ def _objects(pdf: bytes) -> dict[int, bytes]:
     return objs
 
 
+def _ascii85(raw: bytes) -> bytes:
+    """ASCII85Decode: whitespace ignored, an optional '<~' and the '~>' end marker dropped."""
+    s = re.sub(rb"\s+", b"", raw)
+    s = s[2:] if s.startswith(b"<~") else s
+    s = s[: s.find(b"~>")] if b"~>" in s else s
+    if len(s) > 2 * MAX_STREAM:
+        raise ValueError("PDF stream too large")
+    return base64.a85decode(s)
+
+
 def _split_stream(body: bytes) -> tuple[bytes, bytes | None]:
     """(dictionary text, inflated stream data or None)."""
     m = STREAM.match(body)
@@ -77,6 +89,11 @@ def _split_stream(body: bytes) -> tuple[bytes, bytes | None]:
         return body, None
     dic, raw = m[1], m[2]
     raw = raw[: raw.rfind(b"endstream")] if b"endstream" in raw else raw
+    if b"/ASCII85Decode" in dic or b"/A85" in dic:  # applied before Flate (Oracle Reports)
+        try:
+            raw = _ascii85(raw)
+        except ValueError:
+            return dic, None
     if b"/FlateDecode" in dic:
         try:
             return dic, _inflate(raw)

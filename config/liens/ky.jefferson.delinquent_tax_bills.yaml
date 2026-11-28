@@ -1,0 +1,43 @@
+source_id: ky.jefferson.delinquent_tax_bills
+state: KY
+county_fips: "21111"   # Jefferson County (Louisville Metro)
+# Jefferson County Clerk "Jefferson County Delinquent Property Listing" (Legal Records): the
+# real estate tax bills eligible for the Clerk's July 17, 2026 certificate-of-delinquency sale
+# (KRS 134.128; list printed 2026-06-17, 100 pages, 3,568 bills for tax year 2025, $9.64M):
+# parcel id, bill number, owner, property address, tax year and account balance. Read at
+# fixed columns with the in-house PDF reader. A bill sold at the sale became a certificate of
+# delinquency, "a lien upon the real estate described on the face of the tax bill" (the
+# listing page), held by the buyer; an unsold one stays with the county. Either way the owner
+# still owes it until redeemed. Kentucky property tax is a lien on the property from the
+# January 1 assessment date (KRS 134.420), so that is the date. The Clerk replaces the file
+# each June. Debt kind: tax_delinquency. The tangible (business personal property) bills are a
+# separate .xlsx whose name column also holds the bill number; not read here.
+api: pdf
+url: https://www.jeffersoncountyclerk.org/files/assets/clerk/v/2/legal-records/documents/jefferson-tax-sale-eligible-bills-real-estate.pdf
+# The file places text top-down (its y grows down the page), so a page's header line sorts
+# after its rows; the header is therefore matched to no line and every line is read, the
+# header and footer lines being dropped by `require`.
+header: (every line)
+pdf_columns:
+  names: [parcel, bill, owner, address, tax_year, amount]
+  cuts: [187, 284, 563, 788, 845]
+  require: {parcel: '^[0-9A-Z]{14}$', bill: '^[0-9]{13}$', amount: '^\$[0-9][0-9,]*\.[0-9]{2}$', tax_year: '^[0-9]{4}$'}
+year_dates: [tax_year]
+date_field: tax_year
+uid: bill
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Jefferson County KY delinquent real property tax bill (certificate of delinquency sale list)
+amount: amount
+parties:
+  - role: debtor
+    name: owner
+    address: {line1: address, state_const: KY}   # the property (city not printed)
+  - {role: creditor, const: Jefferson County Clerk (delinquent property tax), person_names: false}
+parcel: {kind: pin, field: parcel, county_fips: "21111"}   # the PVA parcel id (no Jefferson parcel layer loaded yet)
+extra_pii: [address]
+terms:
+  url: https://www.jeffersoncountyclerk.org/Legal-Records/Jefferson-County-Delinquent-Property-Listing
+  summary: "Jefferson County KY Clerk's published delinquent property listing (required notice, KRS 424.130), free PDF, no login; no license or use restriction stated. robots.txt disallows only a few draft and press-release pages, not this one."
+  checked_on: 2026-11-28
+  robots_checked_on: 2026-11-28
+  cost_model: free

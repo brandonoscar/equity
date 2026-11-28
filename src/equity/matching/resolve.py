@@ -1566,7 +1566,8 @@ STATES: dict[str, dict[str, Any]] = {
            "owners": ["ak.anchorage.parcels", "ak.fairbanks_north_star.parcels",
                       "ak.juneau.parcels", "ak.kenai_peninsula.parcels",
                       "ak.matanuska_susitna.parcels"]},
-    "AL": {"debtors": [], "courts": FEDERAL_COURTS,
+    "AL": {"debtors": ["al.dor.state_held_tax_land"], "courts": FEDERAL_COURTS,
+           "parcel_on_lien": True,
            "owners": ["al.blount.parcels", "al.cullman.parcels", "al.dekalb.parcels",
                       "al.houston.parcels", "al.jefferson.parcels", "al.lauderdale.parcels",
                       "al.madison.parcels", "al.marshall.parcels", "al.mobile.parcels",
@@ -1607,7 +1608,9 @@ STATES: dict[str, dict[str, Any]] = {
     "KS": {"debtors": ["ks.shawnee.sheriff_sales"], "courts": FEDERAL_COURTS,
            "owners": ["ks.butler.parcels", "ks.douglas.parcels", "ks.shawnee.parcels",
                       "ks.wyandotte.parcels"]},
-    "KY": {"debtors": [], "courts": FEDERAL_COURTS,
+    # Louisville's delinquent bills meet owners in the Northern Kentucky layers (no Jefferson
+    # County owner layer is loaded).
+    "KY": {"debtors": ["ky.jefferson.delinquent_tax_bills"], "courts": FEDERAL_COURTS,
            "owners": ["ky.boone.parcels", "ky.campbell.parcels", "ky.kenton.parcels",
                       "ky.pendleton.parcels"]},
     "LA-EBR": {"debtors": [], "courts": FEDERAL_COURTS, "owners": ["la.eastbatonrouge.parcels"]},

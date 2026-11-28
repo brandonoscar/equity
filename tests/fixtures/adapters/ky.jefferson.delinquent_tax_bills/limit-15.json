@@ -1,0 +1,125 @@
+{
+ "rows": [
+  {
+   "address": "3488 TEST ST",
+   "amount": "$3,812.52",
+   "bill": "2025000004354",
+   "owner": "TESTOWNER C6EB27",
+   "parcel": "23212400190000",
+   "tax_year": "2025"
+  },
+  {
+   "address": "3079 TEST ST",
+   "amount": "$3,661.85",
+   "bill": "2025000008085",
+   "owner": "TESTOWNER BAE8AF",
+   "parcel": "13085L01510100",
+   "tax_year": "2025"
+  },
+  {
+   "address": "5964 TEST ST",
+   "amount": "$31.87",
+   "bill": "2025000001642",
+   "owner": "TESTOWNER 20EBF8",
+   "parcel": "25101800330000",
+   "tax_year": "2025"
+  },
+  {
+   "address": "3487 TEST ST",
+   "amount": "$175.76",
+   "bill": "2025000003465",
+   "owner": "TESTOWNER C0C147",
+   "parcel": "24104503660093",
+   "tax_year": "2025"
+  },
+  {
+   "address": "3092 TEST ST",
+   "amount": "$12,800.57",
+   "bill": "2025000001073",
+   "owner": "TESTOWNER D7EEED",
+   "parcel": "08034B00230000",
+   "tax_year": "2025"
+  },
+  {
+   "address": "8579 TEST ST",
+   "amount": "$2,247.15",
+   "bill": "2025000008083",
+   "owner": "TESTOWNER 24F206",
+   "parcel": "24120300490051",
+   "tax_year": "2025"
+  },
+  {
+   "address": "8813 TEST ST",
+   "amount": "$63.93",
+   "bill": "2025000004742",
+   "owner": "TESTOWNER 621BE1 LLC",
+   "parcel": "21245501200000",
+   "tax_year": "2025"
+  },
+  {
+   "address": "4847 TEST ST",
+   "amount": "$591.97",
+   "bill": "2025000008079",
+   "owner": "TESTOWNER 450512",
+   "parcel": "24104909050000",
+   "tax_year": "2025"
+  },
+  {
+   "address": "5782 TEST ST",
+   "amount": "$57,080.66",
+   "bill": "2025000007113",
+   "owner": "TESTOWNER 8FBC1A LLC",
+   "parcel": "23065104490000",
+   "tax_year": "2025"
+  },
+  {
+   "address": "1025 TEST ST",
+   "amount": "$2,621.57",
+   "bill": "2025000010229",
+   "owner": "TESTOWNER 9AE35F",
+   "parcel": "08029E00260000",
+   "tax_year": "2025"
+  },
+  {
+   "address": "6650 TEST ST",
+   "amount": "$74.87",
+   "bill": "2025000004054",
+   "owner": "TESTOWNER 6932EF",
+   "parcel": "21173700060000",
+   "tax_year": "2025"
+  },
+  {
+   "address": "1550 TEST ST",
+   "amount": "$1,435.48",
+   "bill": "2025000012076",
+   "owner": "TESTOWNER 314B90 LLC",
+   "parcel": "03013E00310000",
+   "tax_year": "2025"
+  },
+  {
+   "address": "3366 TEST ST",
+   "amount": "$774.02",
+   "bill": "2025000012077",
+   "owner": "TESTOWNER 314B90 LLC",
+   "parcel": "03013E00320000",
+   "tax_year": "2025"
+  },
+  {
+   "address": "9068 TEST ST",
+   "amount": "$1,398.53",
+   "bill": "2025000012075",
+   "owner": "TESTOWNER 314B90 LLC",
+   "parcel": "03013E00300000",
+   "tax_year": "2025"
+  },
+  {
+   "address": "2401 TEST ST",
+   "amount": "$1,050.13",
+   "bill": "2025000012074",
+   "owner": "TESTOWNER 314B90 LLC",
+   "parcel": "03013E00290000",
+   "tax_year": "2025"
+  }
+ ],
+ "url": "https://www.jeffersoncountyclerk.org/files/assets/clerk/v/2/legal-records/documents/jefferson-tax-sale-eligible-bills-real-estate.pdf"
+}

@@ -748,9 +748,12 @@ def test_link_from_follows_hops_and_can_pick_the_last_link(tmp_path: Path) -> No
     )
 
 
-def _pdf(lines: list[tuple[float, float, str]], objstm: bool = False) -> bytes:
+def _pdf(lines: list[tuple[float, float, str]], objstm: bool = False,
+         ascii85: bool = False) -> bytes:  # fmt: skip
     """A one-page PDF: a font with a ToUnicode CMap (code 0x01 -> 'Z'), a deflated content
-    stream placing each (x, y, text) with Tm, and optionally the font inside an /ObjStm."""
+    stream placing each (x, y, text) with Tm, optionally the font inside an /ObjStm and
+    optionally the content stream ASCII85-encoded over the deflate (as Oracle Reports)."""
+    import base64
     import zlib
 
     ops = ["BT /F1 1 Tf"]
@@ -758,6 +761,10 @@ def _pdf(lines: list[tuple[float, float, str]], objstm: bool = False) -> bytes:
         ops.append(f"10 0 0 10 {x} {y} Tm [({text}) -20 ()] TJ")
     ops.append("ET")
     content = zlib.compress("\n".join(ops).encode("latin-1"))
+    filt = b"/FlateDecode"
+    if ascii85:
+        content = base64.a85encode(content, wrapcol=76) + b"~>"
+        filt = b"[/ASCII85Decode /FlateDecode]"
     cmap = (b"begincmap 1 beginbfchar <01> <005A> endbfchar 1 beginbfrange <02> <03> <0061>"
             b" endbfrange endcmap")  # fmt: skip
     font = b"<</Type/Font/Subtype/TrueType/ToUnicode 5 0 R>>"
@@ -766,8 +773,8 @@ def _pdf(lines: list[tuple[float, float, str]], objstm: bool = False) -> bytes:
         b"2 0 obj <</Type/Pages/Kids[3 0 R]/Count 1>> endobj",
         b"3 0 obj <</Type/Page/Resources<</Font<</F1 4 0 R>>>>/Contents[6 0 R]>> endobj",
         b"5 0 obj <</Length %d>>stream\n%s\nendstream endobj" % (len(cmap), cmap),
-        b"6 0 obj <</Filter/FlateDecode/Length %d>>stream\n%s\nendstream endobj"
-        % (len(content), content),
+        b"6 0 obj <</Filter%s/Length %d>>stream\n%s\nendstream endobj"
+        % (filt, len(content), content),
     ]
     if objstm:
         packed = zlib.compress(b"4 0 " + font)
@@ -796,6 +803,7 @@ def test_pdf_table_reader() -> None:
             ["ACME (DE) LLC Z", "1 MAIN ST", "$1,000.00"],
             ["BEE INC", "", "$5.00"]]  # fmt: skip
     assert pdf_text(_pdf(lines)).startswith("Balance as of 09/30/2026 Taxpayer Name")
+    assert pdf_table(_pdf(lines, ascii85=True), "Taxpayer Name") == pdf_table(pdf, "Taxpayer Name")
     assert pdf_table(_pdf(lines), "Nobody") == [] and pdf_table(b"not a pdf", "X") == []
     assert _literal(b"a\\nb\\\\(c)) tail", 0) == (b"a\nb\\(c)", 10)
     assert _literal(b"line\\\ncont)", 0)[0] == b"linecont"

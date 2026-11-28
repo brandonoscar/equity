@@ -1,0 +1,171 @@
+{
+ "as_of": "11/06/2026",
+ "code": "05",
+ "rows": [
+  {
+   "amount": "52.17",
+   "class": "2",
+   "co": "05",
+   "code": "08",
+   "cs": "05020231",
+   "legal": "3' X 200' WEST 3' OF LOT 169 CYPRESS PARK SUB SEC 8 T9S R4E (WD)",
+   "name": "TESTOWNER 393A81",
+   "parcel": "0566030820000840010000",
+   "yr": "02"
+  },
+  {
+   "amount": "56.35",
+   "class": "2",
+   "co": "05",
+   "code": "01",
+   "cs": "05020527",
+   "legal": "65' X 65' COM AT THE SE COR OF SE1/4 OF NW1/4 OF SEC 22 RUN TH W 1312.5', N 210'",
+   "name": "TESTOWNER 8C86AD",
+   "parcel": "0523052200000100050000",
+   "yr": "02"
+  },
+  {
+   "amount": "148.32",
+   "class": "2",
+   "co": "05",
+   "code": "03",
+   "cs": "05040064",
+   "legal": "60' X 120' LOT 7 BLK 2 RESUB OF PT FT MORGAN ADDN TO BAY MINETTE PB4 PG275 IN",
+   "name": "TESTOWNER 4B1342",
+   "parcel": "0523051610010380000000",
+   "yr": "04"
+  },
+  {
+   "amount": "71.31",
+   "class": "2",
+   "co": "05",
+   "code": "04",
+   "cs": "05080352",
+   "legal": "10'(S) X 167.1' IRR BEG AT THE NE COR OF LOT 90 UNIT 20 LAKE FOREST RUN TH NE",
+   "name": "TESTOWNER 3B1387",
+   "parcel": "0532093200040510010000",
+   "yr": "08"
+  },
+  {
+   "amount": "112.18",
+   "class": "2",
+   "co": "05",
+   "code": "04",
+   "cs": "05091619",
+   "legal": "44' X 109' IRR LAKE FOREST SUBD UNIT 18 LOT 40 PLAT BOOK 7 PAGE 155 (TAX DEED)",
+   "name": "TESTOWNER 6C547D",
+   "parcel": "0543030500040040000000",
+   "yr": "09"
+  },
+  {
+   "amount": "289.99",
+   "class": "2",
+   "co": "05",
+   "code": "04",
+   "cs": "05092191",
+   "legal": "60' X 225' IRR LAKE FOREST SUB UNIT 15 LOT 84 PB7 PG114 IN CITY OF DAPHNE SEC 5-",
+   "name": "TESTOWNER FBA580",
+   "parcel": "0543030500060250000000",
+   "yr": "09"
+  },
+  {
+   "amount": "619.52",
+   "class": "2",
+   "co": "05",
+   "code": "04",
+   "cs": "05111125",
+   "legal": "52' X 208' IRR LAKE FOREST SUB UNIT 10 LOT 78 MB7 PG105 IN THE CITY OF DAPHNE",
+   "name": "TESTOWNER 02EBB9",
+   "parcel": "054302040012143000",
+   "yr": "11"
+  },
+  {
+   "amount": "592.42",
+   "class": "2",
+   "co": "05",
+   "code": "04",
+   "cs": "05112991",
+   "legal": "81' X 123' IRR LAKE FOREST SUB UNIT 10 LOT 17 PB7 PG105 IN THE CITY OF DAPHNE",
+   "name": "TESTOWNER D0348B",
+   "parcel": "054302040012016000",
+   "yr": "11"
+  },
+  {
+   "amount": "14.01",
+   "class": "2",
+   "co": "05",
+   "code": "12",
+   "cs": "05860309",
+   "legal": "25X125 FACTORY ADDN BLK 24 LOT 24",
+   "name": "TESTOWNER 5F9B3E",
+   "parcel": "0548093220020450000000",
+   "yr": "86"
+  },
+  {
+   "amount": "19.54",
+   "class": "2",
+   "co": "05",
+   "code": "06",
+   "cs": "05871431",
+   "legal": "2.5' X 155' THE S2.5' OF LOT 4 OF WIIDLANDS SUB GR37-6-2 RP76 P703",
+   "name": "TESTOWNER F3CF4E",
+   "parcel": "0546033700110850000000",
+   "yr": "87"
+  },
+  {
+   "amount": "22.05",
+   "class": "2",
+   "co": "05",
+   "code": "10",
+   "cs": "05881257",
+   "legal": "9'SX50' IRR 1ST ADDN TO ROBERTSDALE PT LOTS 1 & 2 BLK 16 SEC 6-6-4",
+   "name": "TESTOWNER 6D3105",
+   "parcel": "0548030622010130000000",
+   "yr": "88"
+  },
+  {
+   "amount": "82.21",
+   "class": "2",
+   "co": "05",
+   "code": "04",
+   "cs": "05890109",
+   "legal": "34X37' IRR LAKE VIEW SUB PT LOT 19 DESC AS: BEG AT NE COR OFSD LOT 19 TH SE28'",
+   "name": "TESTOWNER DD9B98 INC",
+   "parcel": "0532093700020010270000",
+   "yr": "89"
+  },
+  {
+   "amount": "96.04",
+   "class": "2",
+   "co": "05",
+   "code": "04",
+   "cs": "05910867",
+   "legal": "59' X 190' LAKE FOREST SUB UNIT 19 LOT 63 PLAT BOOK 7 PG156 RP268 PG900",
+   "name": "TESTOWNER D08693 INC",
+   "parcel": "0543020400100620000000",
+   "yr": "91"
+  },
+  {
+   "amount": "42.45",
+   "class": "2",
+   "co": "05",
+   "code": "07",
+   "cs": "05920011",
+   "legal": "3'(S)X645'(S) FR SW COR OF LOT 1 THE PINES SUB RUN TH E 645'(S) S3'(S) W645'(S) TH",
+   "name": "TESTOWNER 51420C",
+   "parcel": "0554041740000080020000",
+   "yr": "92"
+  },
+  {
+   "amount": "48.31",
+   "class": "2",
+   "co": "05",
+   "code": "06",
+   "cs": "05920830",
+   "legal": "15'(S)X224.53' SEC 29-5-2 WB23 P885 FR INT. OF E LINE OF US HWY 98 WITH S LINE OF",
+   "name": "TESTOWNER D18EAA",
+   "parcel": "0543092900000500020000",
+   "yr": "92"
+  }
+ ]
+}

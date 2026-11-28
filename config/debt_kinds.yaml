@@ -115,6 +115,8 @@ sources:
   tn.hamilton.delinquent_taxes: tax_delinquency
   tn.hamilton.personal_property_taxes: tax_delinquency
   ar.cosl.unsold_tax_parcels: tax_delinquency        # certified to the State, still redeemable
+  al.dor.state_held_tax_land: tax_delinquency       # bid in to the State at tax sale
+  ky.jefferson.delinquent_tax_bills: tax_delinquency
   nv.clark.delinquent_taxes_fy2026: tax_delinquency
   ny.albany.delinquent_parcels: tax_delinquency
   in.hammond.tax_sale_2027: tax_delinquency
