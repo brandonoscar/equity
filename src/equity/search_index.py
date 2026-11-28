@@ -1198,9 +1198,9 @@ DEBT_TYPES = ("JUDGMENT_LIEN", "ABSTRACT_OF_JUDGMENT", "EXECUTION", "LIS_PENDENS
 # parcels, homestead, bankruptcy, transfers after the debt, and the debt's age. Ranked by
 # grade, then known net equity, then debt amount: an ordering of facts, not a score.
 LEADS_SQL = """
-CREATE OR REPLACE TABLE leads AS
-WITH c AS (
-    SELECT row_number() OVER (ORDER BY state, name_key) AS lead_id, * FROM debtor_owner_candidates
+WITH c AS (  -- one state at a time ($state); lead ids are global (numbered over every state)
+    SELECT * FROM (SELECT row_number() OVER (ORDER BY state, name_key) AS lead_id, *
+                   FROM debtor_owner_candidates) WHERE state = $state
 ), dp AS (
     SELECT lead_id, split_part(r, ':', 1) AS src, r[length(split_part(r, ':', 1)) + 2:] AS pid
     FROM (SELECT lead_id, unnest(debtor_refs) AS r FROM c)
@@ -1372,10 +1372,23 @@ ORDER BY state, grade, coalesce(equity_behind_lien, net_equity_known) DESC NULLS
 """.replace("__DEBT__", ", ".join(f"'{t}'" for t in DEBT_TYPES))
 
 
-def store_leads(con: duckdb.DuckDBPyConnection) -> None:
-    """(Re)build the stored leads table (LEADS_SQL); needs debtor_owner_candidates and
-    parcel_equity, which compact stores first."""
-    con.execute(LEADS_SQL)
+def store_leads(con: duckdb.DuckDBPyConnection, log: Any = lambda _m: None) -> None:
+    """(Re)build the stored leads table (LEADS_SQL) one state at a time, so no state's joins
+    spill much to disk, into a new table swapped in at the end: a failed run leaves the old
+    leads in place. It reads debtor_owner_candidates and parcel_equity (compact stores
+    them first)."""
+    states = [str(r[0]) for r in con.execute(
+        "SELECT DISTINCT state FROM debtor_owner_candidates ORDER BY state").fetchall()]  # fmt: skip
+    con.execute("DROP TABLE IF EXISTS _leads_new")
+    for i, state in enumerate(states):
+        head = "CREATE TABLE _leads_new AS " if i == 0 else "INSERT INTO _leads_new "
+        con.execute(head + LEADS_SQL, {"state": state})
+        con.execute("CHECKPOINT")
+        log(f"leads {state}")
+    if not states:  # no candidates: an empty table with the right columns
+        con.execute("CREATE TABLE _leads_new AS " + LEADS_SQL, {"state": ""})
+    con.execute("DROP TABLE IF EXISTS leads")
+    con.execute("ALTER TABLE _leads_new RENAME TO leads")
     con.execute("CHECKPOINT")
 
 
@@ -1390,7 +1403,7 @@ def compact(con: duckdb.DuckDBPyConnection, only: Iterable[str] | None = None) -
                 fill_word_edits(con)
                 continue
             if table == "leads":
-                store_leads(con)
+                store_leads(con, log=print)
                 continue
             if table in ("debtor_owner_candidates", "parcel_equity"):
                 order = "state, name_key" if table == "debtor_owner_candidates" else "parcel_uid"
