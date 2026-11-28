@@ -1377,8 +1377,8 @@ def store_leads(con: duckdb.DuckDBPyConnection, log: Any = lambda _m: None) -> N
     spill much to disk, into a new table swapped in at the end: a failed run leaves the old
     leads in place. It reads debtor_owner_candidates and parcel_equity (compact stores
     them first)."""
-    states = [str(r[0]) for r in con.execute(
-        "SELECT DISTINCT state FROM debtor_owner_candidates ORDER BY state").fetchall()]  # fmt: skip
+    sql = "SELECT DISTINCT state FROM debtor_owner_candidates ORDER BY state"
+    states = [str(r[0]) for r in con.execute(sql).fetchall()]
     con.execute("DROP TABLE IF EXISTS _leads_new")
     for i, state in enumerate(states):
         head = "CREATE TABLE _leads_new AS " if i == 0 else "INSERT INTO _leads_new "
