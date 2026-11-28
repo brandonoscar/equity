@@ -332,3 +332,77 @@ def test_a_company_owned_by_a_company_is_followed_to_its_property(tmp_path: Path
         ).fetchall()
     )
     assert reach == {"p2": "auto"}
+
+
+def _ident(folder: Path, rows: list[tuple[str, str, str]]) -> None:
+    _write(folder / "party_identifier" / "0.parquet", [
+        {"party_id": p, "sos_id": None, "id_type": t, "id_value": v, "issuer": None}
+        for p, t, v in rows])  # fmt: skip
+
+
+def test_an_identifier_joins_records_whatever_their_names(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """ACME HOLDINGS LLC (d1) and the roll's A H L INC (o1) carry one EIN, printed two ways:
+    one party, so d1 reaches p1 though no name rule meets them. BO RAY (d2) and RAY ROBERT
+    (o2) share a phone: a review lead only (a household or office shares phones). An EIN
+    that more than ID_MAX_SHARED records carry (o3-o5, d3) joins nothing. CY DOE (d4) has no
+    identifier and still matches by name and address: an identifier never blocks a link."""
+    monkeypatch.setattr(graph, "ID_MAX_SHARED", 3)
+    lk = tmp_path / "lake"
+    d, o = lk / "s.debts", lk / "s.parcels"
+    _write(d / "address" / "0.parquet", [_addr("da", "1 ELM ST", "10001")])
+    debtors = [("d1", "ACME HOLDINGS LLC", "org", "ACME HOLDINGS", None),
+               ("d2", "BO RAY", "unknown", None, None),
+               ("d3", "ZED CO LLC", "org", "ZED CO", None),
+               ("d4", "CY DOE", "unknown", None, "da")]  # fmt: skip
+    _write(d / "party" / "0.parquet", [
+        {"party_id": k, "raw_name": n, "party_kind": kind, "org_name_norm": norm,
+         "address_id": a} for k, n, kind, norm, a in debtors])  # fmt: skip
+    _write(
+        d / "instrument_party" / "0.parquet",
+        [{"instrument_uid": f"i{k}", "party_id": k, "role": "debtor"} for k, *_ in debtors],
+    )
+    _write(
+        d / "instrument" / "0.parquet",
+        [
+            {
+                "instrument_uid": f"i{k}",
+                "source_id": "s.debts",
+                "doc_type": "TAX_LIEN_STATE",
+                "recorded_on": "2025-01-01",
+                "principal_amount": 10.0,
+            }
+            for k, *_ in debtors
+        ],
+    )
+    _ident(d, [("d1", "ein", "12-3456789"), ("d2", "phone", "(212) 555-0100"),
+               ("d3", "ein", "99-0000001")])  # fmt: skip
+    _write(o / "address" / "0.parquet", [_addr("h", "1 Elm Street", "10001")])
+    owners = [("o1", "A H L INC", "org", "A H L", None, "p1"),
+              ("o2", "RAY ROBERT", "unknown", None, None, "p2"),
+              ("o3", "X1 LLC", "org", "X1", None, "p3"), ("o4", "X2 LLC", "org", "X2", None, "p4"),
+              ("o5", "X3 LLC", "org", "X3", None, "p5"),
+              ("o6", "DOE CY", "unknown", None, "h", "p6")]  # fmt: skip
+    _write(o / "party" / "0.parquet", [
+        {"party_id": k, "raw_name": n, "party_kind": kind, "org_name_norm": norm,
+         "address_id": a} for k, n, kind, norm, a, _ in owners])  # fmt: skip
+    _write(o / "owner_snapshot" / "0.parquet",
+           [{"parcel_uid": u, "party_id": k} for k, *_, u in owners])  # fmt: skip
+    _write(o / "parcel" / "0.parquet", [{"parcel_uid": u} for *_, u in owners])
+    _ident(o, [("o1", "ein", "123456789"), ("o2", "phone", "1-212-555-0100"),
+               ("o3", "ein", "990000001"), ("o4", "ein", "990000001"),
+               ("o5", "ein", "990000001")])  # fmt: skip
+    out = tmp_path / "out"
+    run(lk, out, ["s.debts"], ["s.parcels"])
+    con = duckdb.connect()
+    q = lambda sql: con.execute(sql.replace("OUT", out.as_posix())).fetchall()  # noqa: E731
+    person = dict(q("SELECT party_id, person_id FROM 'OUT/person_of.parquet'"))
+    reach = {
+        (r[0], r[1]): r[2]
+        for r in q("SELECT person_id, parcel_uid, strength FROM 'OUT/person_reach.parquet'")
+    }
+    assert reach[(person["d1"], "p1")] == "auto"
+    assert reach[(person["d2"], "p2")] == "review"
+    assert not any(pid == person["d3"] for pid, _ in reach)
+    assert reach[(person["d4"], "p6")] == "auto"

@@ -16,6 +16,10 @@ Company networks: one officer across companies, an officer's own property, and c
 whose role holders share an address (see OFFICER_SQL); a role holder that is itself a
 company, and one company under several registry ids (COMPANY_SQL).
 
+Identifiers (EIN, NPI, SEC CIK, FCC FRN, USDOT, licenses, parcel ids, phone, email) join
+the records that carry the same one (IDENT_SQL); records without one fall back to the name
+and address rules, so an identifier only adds links.
+
 Owner records that are one owner (same organization name in the state; same person name
 sharing an address; same person name in one ZIP for review) are joined (same_owner, see
 CLUSTER_SQL), so a debtor matched to one of a landlord's parcels reaches all of them.
@@ -40,11 +44,17 @@ Outputs (Parquet in the state's derived folder, git-ignored: they name people):
 
 from __future__ import annotations
 
+from pathlib import Path
+
 import duckdb
 
 # Links a company or officer node may have before it is a hub that chains do not cross.
 # TODO(Brandon): confirm 50.
 HUB_MAX_DEGREE = 50
+# An identifier more records than this carry (a registered agent's EIN, a law firm's phone,
+# a placeholder like 000000000) identifies no one: its records are not joined by it.
+# TODO(Brandon): confirm 20.
+ID_MAX_SHARED = 20
 # Label propagation stops when nothing changes; this caps the passes (a chain longer than
 # this is cut, and the summary says the cap was reached).
 MAX_PASSES = 200
@@ -206,6 +216,52 @@ SELECT DISTINCT 'person:' || person_id, 'owner:' || owner_party_id, 'household',
 FROM households;
 """
 
+# Identifiers (party_identifier): records that carry the same identifier are one party or
+# entity (same_id, rule 'id:<type>'): auto, except a phone, which a household or an office
+# shares (review). Values are compared normalized (digits for numbers, lower case for
+# email; a license with its issuer). A record without an identifier is untouched: it still
+# links by name and address, so an identifier only adds links and never blocks one. An
+# identifier more than ID_MAX_SHARED records carry joins nothing.
+IDENT_SQL = """
+CREATE OR REPLACE TEMP TABLE g_ident AS
+WITH v AS (
+    SELECT party_id, sos_id, lower(trim(id_type)) AS id_type, issuer,
+           CASE lower(trim(id_type))
+             WHEN 'email' THEN lower(trim(id_value))
+             WHEN 'license' THEN upper(regexp_replace(id_value, '[^0-9A-Za-z]', '', 'g'))
+             WHEN 'parcel' THEN upper(regexp_replace(id_value, '[^0-9A-Za-z]', '', 'g'))
+             WHEN 'other' THEN upper(trim(id_value))
+             WHEN 'phone' THEN regexp_replace(regexp_replace(id_value, '[^0-9]', '', 'g'),
+                                               '^1([0-9]{{10}})$', '\\1')
+             ELSE ltrim(regexp_replace(id_value, '[^0-9]', '', 'g'), '0') END AS norm
+    FROM g_party_identifier WHERE id_type IS NOT NULL AND id_value IS NOT NULL
+), ok AS (
+    SELECT *, id_type || ':' || CASE WHEN id_type = 'license'
+                                     THEN upper(coalesce(issuer, '')) || ':' ELSE '' END
+              || norm AS k
+    FROM v
+    WHERE norm <> ''
+      AND (id_type <> 'email' OR regexp_matches(norm, '^[^@ ]+@[^@ ]+[.][^@ ]+$'))
+      AND (id_type <> 'phone' OR length(norm) = 10)
+      AND (id_type <> 'ein' OR length(norm) BETWEEN 7 AND 9)
+      AND (id_type <> 'npi' OR length(norm) = 10)
+)
+SELECT DISTINCT n.node, ok.k, ok.id_type FROM ok, LATERAL (
+    SELECT 'debtor:' || ok.party_id AS node WHERE ok.party_id IN (SELECT party_id FROM debtors)
+    UNION ALL SELECT 'owner:' || ok.party_id WHERE ok.party_id IN (SELECT party_id FROM owners)
+    UNION ALL SELECT 'officer:' || ok.party_id WHERE {officers}
+    UNION ALL SELECT 'company:' || ok.sos_id WHERE ok.sos_id IS NOT NULL
+) n;
+INSERT INTO graph_edges
+WITH grp AS (
+    SELECT k, id_type, min(node) AS h FROM g_ident GROUP BY k, id_type
+    HAVING count(DISTINCT node) BETWEEN 2 AND {max_shared}
+)
+SELECT DISTINCT i.node, grp.h, 'same_id', 'id:' || i.id_type,
+       CASE WHEN i.id_type = 'phone' THEN 'review' ELSE 'auto' END
+FROM g_ident i JOIN grp USING (k, id_type) WHERE i.node <> grp.h;
+"""
+
 # Every owner record in the graph owns its parcel.
 OWNS_SQL = """
 INSERT INTO graph_edges
@@ -291,12 +347,21 @@ GROUP BY p.node, e.lot;
 """
 
 
-def compute(con: duckdb.DuckDBPyConnection) -> None:
+def compute(
+    con: duckdb.DuckDBPyConnection, lake: Path | None = None, sources: list[str] | None = None
+) -> None:
     con.execute("CREATE OR REPLACE TEMP TABLE graph_edges (src VARCHAR, dst VARCHAR, "
                 "link VARCHAR, rule_id VARCHAR, decision VARCHAR)")  # fmt: skip
     for table, select in EDGES.items():
         if _has(con, table):
             con.execute(f"INSERT INTO graph_edges SELECT DISTINCT * FROM ({select})")  # noqa: S608
+    if lake is not None and sources:
+        from equity.matching.resolve import _view
+
+        _view(con, "g_party_identifier", lake, sources, "party_identifier")
+        officers = ("ok.party_id IN (SELECT party_id FROM company_people)"
+                    if _has(con, "company_people") else "false")  # fmt: skip
+        con.execute(IDENT_SQL.format(officers=officers, max_shared=int(ID_MAX_SHARED)))
     if _has(con, "owners") and _has(con, "addr_base"):
         con.execute(CLUSTER_SQL)
     if _has(con, "company_people") and _has(con, "addr_alias"):

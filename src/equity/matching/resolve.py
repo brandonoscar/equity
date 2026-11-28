@@ -244,6 +244,8 @@ COLUMNS: dict[str, dict[str, str]] = {
     "instrument_ref": {"from_uid": V, "to_uid": V, "ref_type": V},
     "instrument_parcel": {"instrument_uid": V, "parcel_uid": V},
     "parcel_link": {"from_parcel_uid": V, "to_parcel_uid": V, "link_type": V},
+    "party_identifier": {"party_id": V, "sos_id": V, "id_type": V, "id_value": V,
+                         "issuer": V},
     "business": {"sos_id": V, "name": V, "status": V, "jurisdiction": V},
     "business_role": {"sos_id": V, "party_id": V, "role": V, "title": V},
     "owner_snapshot": {"parcel_uid": V, "party_id": V},
@@ -1538,7 +1540,11 @@ def run(
     if mortgage_sources:
         equity.compute(con, lake, mortgage_sources, link_sources or [])
         tables.append("mortgage_status")
-    graph.compute(con)  # last: it reads every step's links
+    # last: it reads every step's links (and identifiers from every source the run reads)
+    graph.compute(con, lake, sorted({
+        *debtor_sources, *owner_sources, *(registry_sources or []), *(court_sources or []),
+        *(writ_sources or []), *(deed_sources or []), *(record_owner_sources or []),
+        *(mortgage_sources or [])}))  # fmt: skip
     tables.extend(graph.TABLES)
     out.mkdir(parents=True, exist_ok=True)
     for table in tables:
@@ -1962,7 +1968,7 @@ STATES: dict[str, dict[str, Any]] = {
 TABLES_READ = ("address", "party", "instrument", "instrument_party", "instrument_ref",
                "instrument_parcel", "owner_snapshot", "parcel", "parcel_assessment",
                "parcel_link", "business", "business_role", "judgment", "judgment_event",
-               "case_party", "court_case", "docket_entry")  # fmt: skip
+               "case_party", "court_case", "docket_entry", "party_identifier")  # fmt: skip
 
 
 # Lists that name the people behind businesses nationwide (carrier officers, NPI authorized
