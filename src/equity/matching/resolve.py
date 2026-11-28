@@ -55,6 +55,13 @@ Rules, strongest first (a debtor-owner pair keeps its strongest rule):
                         formal names, middle initials are dropped and spaces ignored, all at
                         once ("BOB A SMITH" / "ROBERT SMITH", "BILL O BRIEN" / "WILLIAM
                         OBRIEN"); two different middle initials never agree      -> review
+Ownership on the lien's date, from deed history: the grantee of a parcel's latest deed
+recorded on or before the lien is who owned it then, even if it was sold since (a lien
+recorded first can still reach it; see also .transfers):
+  person_owned_at_lien_address  the debtor's name, and the lien's address is the deed
+                            grantee's address or the parcel's (or its building)  -> review
+  person_owned_at_lien_zip  the same with only the ZIP in common                -> review
+(review, not auto: the debtor may no longer own it, so its value is not the debtor's now)
 Evidence adds up: a debtor-owner pair that review rules of two or more independent kinds
 support (EVIDENCE_KIND: place, former_address, company_mailing) is decision 'auto', its
 kinds in matches.corroborated_by.
@@ -213,6 +220,8 @@ RULES = (
     ("person_name_former_address", "review", 22),
     ("person_loose_name_address", "review", 23),
     ("person_name_change_address", "review", 24),
+    ("person_owned_at_lien_address", "review", 25),
+    ("person_owned_at_lien_zip", "review", 26),
 )
 
 
@@ -1108,6 +1117,48 @@ WHERE ip.role IN ('grantor', 'grantee', 'borrower', 'owner')
   AND coalesce(p.party_kind, '') <> 'org' AND name_words(name_key(p.raw_name)) >= 2
   AND sa.addr_key IS NOT NULL AND pa.addr_key IS NOT NULL AND sa.addr_key <> pa.addr_key;
 """
+# Who owned each parcel on a lien's date: the grantee(s) of the latest deed recorded on or
+# before it (roll_lot and the ro_* record views, see RECORD_OWNERS_SQL).
+AT_LIEN_SQL = """
+CREATE OR REPLACE TEMP TABLE deed_grantee AS
+WITH deeds AS (
+    SELECT DISTINCT rl.parcel_uid, i.instrument_uid, i.recorded_on
+    FROM ro_inst i JOIN ro_lot l ON l.instrument_uid = i.instrument_uid
+    JOIN roll_lot rl ON rl.k = parcel_key(l.parcel_uid)
+    WHERE i.doc_type = 'DEED' AND i.recorded_on IS NOT NULL
+)
+SELECT d.parcel_uid, d.instrument_uid, d.recorded_on, name_key(p.raw_name) AS name_key,
+       suffix_key(p.raw_name) AS suffix_key, a.addr_key, a.zip5
+FROM deeds d JOIN ro_ip ip ON ip.instrument_uid = d.instrument_uid AND ip.role = 'grantee'
+JOIN ro_party p ON p.party_id = ip.party_id
+LEFT JOIN addr a ON a.address_id = p.address_id
+WHERE coalesce(p.party_kind, '') <> 'org';
+CREATE OR REPLACE TEMP TABLE linked_lot AS
+SELECT DISTINCT debtor_party_id AS party_id, instrument_uid, parcel_uid FROM candidates;
+INSERT INTO candidates
+SELECT DISTINCT dt.party_id, dt.instrument_uid, NULL, g.parcel_uid,
+       CASE WHEN dt.addr_key IS NOT NULL AND EXISTS (
+                SELECT 1 FROM addr_alias aa WHERE aa.k = dt.addr_key
+                  AND aa.k2 IN (g.addr_key, sa.addr_key))
+            THEN 'person_owned_at_lien_address' ELSE 'person_owned_at_lien_zip' END,
+       dt.name_key
+FROM debtors dt JOIN deed_grantee g ON g.name_key = dt.name_key
+     AND g.recorded_on <= dt.recorded_on
+LEFT JOIN o_parcel pc ON pc.parcel_uid = g.parcel_uid
+LEFT JOIN addr sa ON sa.address_id = pc.situs_address_id
+WHERE dt.party_kind <> 'org' AND name_words(dt.name_key) >= 2
+  AND NOT suffix_conflict(dt.suffix_key, g.suffix_key)
+  -- the latest deed on the parcel on or before the lien
+  AND NOT EXISTS (SELECT 1 FROM deed_grantee g2 WHERE g2.parcel_uid = g.parcel_uid
+                  AND g2.recorded_on > g.recorded_on AND g2.recorded_on <= dt.recorded_on)
+  -- only parcels no other rule links the lien to (a current owner match says more)
+  AND NOT EXISTS (SELECT 1 FROM linked_lot k WHERE k.party_id = dt.party_id
+                  AND k.instrument_uid = dt.instrument_uid AND k.parcel_uid = g.parcel_uid)
+  AND ((dt.addr_key IS NOT NULL AND EXISTS (
+            SELECT 1 FROM addr_alias aa WHERE aa.k = dt.addr_key
+              AND aa.k2 IN (g.addr_key, sa.addr_key)))
+       OR (dt.zip5 IS NOT NULL AND dt.zip5 IN (g.zip5, sa.zip5)));
+"""
 FORMER_SQL = """
 INSERT INTO addr_history
 SELECT DISTINCT o1.name_key, o1.mail_key, o2.mail_key
@@ -1248,6 +1299,7 @@ def match(
                 "b VARCHAR)")  # fmt: skip
     if _table_exists(con, "roll_lot"):
         con.execute(HISTORY_FROM_RECORDS_SQL)
+        con.execute(AT_LIEN_SQL)
     con.execute(FORMER_SQL)
     con.execute(LOOSE_SQL)
     con.execute(NAME_CHANGE_SQL)

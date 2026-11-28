@@ -19,6 +19,8 @@ person (or a rule the project owner approves later) can work the queue in order:
                              a known other address of the owner (the debtor moved)
              name_change     matched by person_name_change_address: same first name and
                              address, another surname (a marriage or divorce)
+             owned_at_lien   the debtor was the parcel's owner by deed on the lien's date
+                             (it may have been sold since)
              spelling_only   street lines agree once suffix and direction words are
                              spelled one way (ST/STREET, N/NORTH, ...), ordinals dropped (88TH
                              = 88) and punctuation dropped;
@@ -113,6 +115,8 @@ SELECT q.debtor_party_id, d.raw_name AS debtor_name, d.line1 AS debtor_line1,
          WHEN q.rule_id = 'person_loose_name_address' THEN 'loose_name'
          WHEN q.rule_id = 'person_name_former_address' THEN 'former_address'
          WHEN q.rule_id = 'person_name_change_address' THEN 'name_change'
+         WHEN q.rule_id IN ('person_owned_at_lien_address', 'person_owned_at_lien_zip')
+           THEN 'owned_at_lien'
          WHEN q.rule_id = 'person_at_owner_occupied_property' THEN 'at_owner_occupied_property'
          WHEN q.rule_id = 'person_at_property' THEN 'at_property'
          WHEN q.rule_id = 'person_at_org_owner_mailing' THEN 'at_company_mailing'

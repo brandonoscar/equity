@@ -1816,3 +1816,69 @@ def test_an_estate_reaches_the_deceased_debtor_for_review(tmp_path: Path) -> Non
         f"SELECT rule_id, decision, owner_name_variant "
         f"FROM '{out.as_posix()}/matches.parquet'").fetchall() == [
         ("person_name_address", "review", "estate")]  # fmt: skip
+
+
+def test_the_owner_on_the_lien_date_is_reached_after_a_sale(tmp_path: Path) -> None:
+    """JOHN KING bought 1 OLD RD (deed 2020) and sold it (deed 2025) to a buyer; his lien was
+    recorded in 2023, at 1 OLD RD: on that date he owned it (review: sold since). ANN LEE's
+    lien (2019) predates her deed (2020): she did not own it then."""
+    lk = tmp_path / "lake"
+    d, o, dd = lk / "zz.debts", lk / "zz.parcels", lk / "zz.deeds"
+    _write(d / "address" / "0.parquet", [_addr("a1", "1 OLD RD", "10001"),
+                                         _addr("a2", "2 NEW RD", "10001")])  # fmt: skip
+    _write(d / "party" / "0.parquet", [
+        {"party_id": f"d{n}", "raw_name": nm, "party_kind": "unknown", "org_name_norm": None,
+         "address_id": f"a{n}"} for n, nm in ((1, "JOHN KING"), (2, "ANN LEE"))])  # fmt: skip
+    _write(
+        d / "instrument_party" / "0.parquet",
+        [{"instrument_uid": f"i{n}", "party_id": f"d{n}", "role": "debtor"} for n in (1, 2)],
+    )
+    _write(d / "instrument" / "0.parquet", [
+        {"instrument_uid": "i1", "source_id": "zz.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2023-05-01", "principal_amount": 10.0},
+        {"instrument_uid": "i2", "source_id": "zz.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2019-05-01", "principal_amount": 10.0}])  # fmt: skip
+    _write(o / "address" / "0.parquet", [_addr("s1", "1 OLD RD", "10001"),
+                                         _addr("s2", "2 NEW RD", "10001"),
+                                         _addr("bm", "70 FAR AVE", "10009")])  # fmt: skip
+    _write(o / "party" / "0.parquet", [
+        {"party_id": "b1", "raw_name": "TESTOWNER BUYER", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": "bm"},
+        {"party_id": "b2", "raw_name": "TESTOWNER OTHER", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": "bm"}])  # fmt: skip
+    _write(
+        o / "owner_snapshot" / "0.parquet",
+        [{"parcel_uid": "36001-1", "party_id": "b1"}, {"parcel_uid": "36001-2", "party_id": "b2"}],
+    )
+    _write(
+        o / "parcel" / "0.parquet",
+        [
+            {"parcel_uid": "36001-1", "situs_address_id": "s1"},
+            {"parcel_uid": "36001-2", "situs_address_id": "s2"},
+        ],
+    )
+    deeds = [("k1", "2020-01-01", "36001-1", "g1"), ("k2", "2025-01-01", "36001-1", "g2"),
+             ("k3", "2020-01-01", "36001-2", "g3")]  # fmt: skip
+    _write(dd / "instrument" / "0.parquet", [
+        {"instrument_uid": k, "source_id": "zz.deeds", "doc_type": "DEED", "recorded_on": on,
+         "consideration": 1.0} for k, on, _, _ in deeds])  # fmt: skip
+    _write(dd / "instrument_parcel" / "0.parquet",
+           [{"instrument_uid": k, "parcel_uid": u} for k, _, u, _ in deeds])  # fmt: skip
+    _write(dd / "party" / "0.parquet", [
+        {"party_id": "g1", "raw_name": "KING JOHN", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": None},
+        {"party_id": "g2", "raw_name": "TESTOWNER BUYER", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": None},
+        {"party_id": "g3", "raw_name": "LEE ANN", "party_kind": "unknown",
+         "org_name_norm": None, "address_id": None}])  # fmt: skip
+    _write(
+        dd / "instrument_party" / "0.parquet",
+        [{"instrument_uid": k, "party_id": g, "role": "grantee"} for k, _, _, g in deeds],
+    )
+    out = tmp_path / "out"
+    run(lk, out, ["zz.debts"], ["zz.parcels"], record_owner_sources=["zz.deeds"])
+    m = {(r[0], r[1]): r[2:] for r in duckdb.connect().execute(
+        f"SELECT debtor_party_id, parcel_uid, rule_id, decision "
+        f"FROM '{out.as_posix()}/matches.parquet'").fetchall()}  # fmt: skip
+    assert m[("d1", "36001-1")] == ("person_owned_at_lien_address", "review")
+    assert ("d2", "36001-2") not in m
