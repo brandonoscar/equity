@@ -113,6 +113,9 @@ Out-of-state owners: property in another state whose tax bill is mailed into thi
 (equity.matching.crossstate builds the national index; owner_basis 'out_of_state'). They
 are owners like any other, so every address rule meets them.
 
+Parcel id history: with link sources whose parcel_link rows say a parcel was renumbered,
+split or merged, a lien or record naming the old id also names today's parcel(s).
+
 With record_owners (and every run's deeds): owner names for parcels whose roll publishes none
 (California counties, Indiana's statewide layer), from records that name a lot's owner: the
 grantee of a DEED, the borrower of a MORTGAGE, or the 'owner' party of a permit,
@@ -309,6 +312,27 @@ CREATE OR REPLACE MACRO unit_strip(s) AS regexp_replace(upper(coalesce(s, '')),
 """
 
 
+# Parcel id history (parcel_link renumbered_to / split_into / merged_into): every parcel id an
+# old one became, through chains (renumbered twice, split then merged). parcel_succ(a, b):
+# b is a successor of a.
+SUCCESSOR_PASSES = 20
+
+
+def _parcel_successors(con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str]) -> None:
+    _view(con, "pl_hist", lake, sources, "parcel_link")
+    con.execute("CREATE OR REPLACE TEMP TABLE parcel_succ AS SELECT DISTINCT from_parcel_uid "
+                "AS a, to_parcel_uid AS b FROM pl_hist WHERE link_type IN ('renumbered_to', "
+                "'split_into', 'merged_into') AND from_parcel_uid <> to_parcel_uid")  # fmt: skip
+    for _ in range(SUCCESSOR_PASSES):
+        before = con.execute("SELECT count(*) FROM parcel_succ").fetchone()
+        con.execute("INSERT INTO parcel_succ SELECT DISTINCT s.a, n.b FROM parcel_succ s "
+                    "JOIN parcel_succ n ON n.a = s.b WHERE s.a <> n.b EXCEPT "
+                    "SELECT a, b FROM parcel_succ")  # fmt: skip
+        after = con.execute("SELECT count(*) FROM parcel_succ").fetchone()
+        if before == after:
+            break
+
+
 def connect(
     lake: Path,
     debtor_sources: list[str],
@@ -319,6 +343,7 @@ def connect(
     debtor_doc_types: list[str] | dict[str, list[str]] | None = None,
     record_owner_sources: list[str] | None = None,
     out_of_state: tuple[Path, str] | None = None,
+    link_sources: list[str] | None = None,
 ) -> duckdb.DuckDBPyConnection:
     con = duckdb.connect()
     # Large runs (NY: ~5M debtors x ~5M owners) spill to disk; cap it so a run fails cleanly
@@ -351,7 +376,12 @@ def connect(
     _view(con, "d_ip", lake, debtor_sources, "instrument_party")
     _view(con, "d_inst", lake, debtor_sources, "instrument")
     _view(con, "d_ref", lake, debtor_sources, "instrument_ref")
-    _view(con, "d_lot", lake, debtor_sources, "instrument_parcel")
+    _view(con, "d_lot_raw", lake, debtor_sources, "instrument_parcel")
+    _parcel_successors(con, lake, link_sources or [])
+    # A lien that names an old parcel id (renumbered, split, merged) also names today's.
+    con.execute("CREATE TEMP VIEW d_lot AS SELECT instrument_uid, parcel_uid FROM d_lot_raw "
+                "UNION SELECT l.instrument_uid, s.b FROM d_lot_raw l "
+                "JOIN parcel_succ s ON s.a = l.parcel_uid")  # fmt: skip
     _view(con, "o_party", lake, owner_sources, "party")
     _view(con, "o_snap", lake, owner_sources, "owner_snapshot")
     _view(con, "o_parcel", lake, owner_sources, "parcel")
@@ -498,7 +528,10 @@ def _record_owners(con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str
     _view(con, "ro_party", lake, sources, "party")
     _view(con, "ro_ip", lake, sources, "instrument_party")
     _view(con, "ro_inst", lake, sources, "instrument")
-    _view(con, "ro_lot", lake, sources, "instrument_parcel")
+    _view(con, "ro_lot_raw", lake, sources, "instrument_parcel")
+    con.execute("CREATE TEMP VIEW ro_lot AS SELECT instrument_uid, parcel_uid FROM ro_lot_raw "
+                "UNION SELECT l.instrument_uid, s.b FROM ro_lot_raw l "
+                "JOIN parcel_succ s ON s.a = l.parcel_uid")  # fmt: skip
     con.execute(RECORD_OWNERS_SQL)
 
 
@@ -1524,7 +1557,7 @@ def run(
 
     con = connect(lake, debtor_sources, owner_sources, parcel_on_lien, court_sources,
                   writ_sources, debtor_doc_types, record_owner_sources,
-                  out_of_state)  # fmt: skip
+                  out_of_state, link_sources)  # fmt: skip
     match(con, street_town, parcel_on_lien, bool(court_sources))
     review.build(con)
     tables = ["matches", "debtor_summary", "people", "person_of", "review_queue"]

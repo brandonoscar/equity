@@ -1882,3 +1882,46 @@ def test_the_owner_on_the_lien_date_is_reached_after_a_sale(tmp_path: Path) -> N
         f"FROM '{out.as_posix()}/matches.parquet'").fetchall()}  # fmt: skip
     assert m[("d1", "36001-1")] == ("person_owned_at_lien_address", "review")
     assert ("d2", "36001-2") not in m
+
+
+def test_a_lien_naming_an_old_parcel_id_reaches_todays_parcels(tmp_path: Path) -> None:
+    """A lien names 36001-OLD, renumbered to 36001-MID and then to 36001-NEW; another names
+    36001-BIG, split into 36001-A and 36001-B. With the parcel id history (parcel_link), the
+    first lien is the owner's of 36001-NEW and the second reaches both halves."""
+    lk = tmp_path / "lake"
+    d, o, li = lk / "zz.debts", lk / "zz.parcels", lk / "zz.links"
+    _write(d / "instrument" / "0.parquet", [
+        {"instrument_uid": f"i{n}", "source_id": "zz.debts", "doc_type": "TAX_LIEN_STATE",
+         "recorded_on": "2026-01-01", "principal_amount": 10.0} for n in (1, 2)])  # fmt: skip
+    _write(d / "instrument_parcel" / "0.parquet", [
+        {"instrument_uid": "i1", "parcel_uid": "36001-OLD"},
+        {"instrument_uid": "i2", "parcel_uid": "36001-BIG"}])  # fmt: skip
+    _write(d / "party" / "0.parquet", [
+        {"party_id": "x", "raw_name": "NOBODY", "party_kind": "unknown", "org_name_norm": None,
+         "address_id": None}])  # fmt: skip
+    _write(d / "instrument_party" / "0.parquet", [
+        {"instrument_uid": "i0", "party_id": "x", "role": "debtor"}])  # fmt: skip
+    rows = [("o1", "TESTOWNER ONE", "36001-NEW"), ("o2", "TESTOWNER TWO", "36001-A"),
+            ("o3", "TESTOWNER THREE", "36001-B")]  # fmt: skip
+    _write(o / "party" / "0.parquet", [
+        {"party_id": k, "raw_name": n, "party_kind": "unknown", "org_name_norm": None,
+         "address_id": None} for k, n, _ in rows])  # fmt: skip
+    _write(o / "owner_snapshot" / "0.parquet",
+           [{"parcel_uid": u, "party_id": k} for k, _, u in rows])  # fmt: skip
+    _write(o / "parcel" / "0.parquet", [{"parcel_uid": u} for *_, u in rows])
+    _write(li / "parcel_link" / "0.parquet", [
+        {"from_parcel_uid": "36001-OLD", "to_parcel_uid": "36001-MID",
+         "link_type": "renumbered_to"},
+        {"from_parcel_uid": "36001-MID", "to_parcel_uid": "36001-NEW",
+         "link_type": "renumbered_to"},
+        {"from_parcel_uid": "36001-BIG", "to_parcel_uid": "36001-A", "link_type": "split_into"},
+        {"from_parcel_uid": "36001-BIG", "to_parcel_uid": "36001-B", "link_type": "split_into"},
+        {"from_parcel_uid": "36001-C9", "to_parcel_uid": "36001-NEW",
+         "link_type": "condo_unit_of"}])  # fmt: skip
+    out = tmp_path / "out"
+    run(lk, out, ["zz.debts"], ["zz.parcels"], link_sources=["zz.links"], parcel_on_lien=True)
+    m = sorted(duckdb.connect().execute(
+        f"SELECT instrument_uid, parcel_uid, rule_id FROM '{out.as_posix()}/matches.parquet'"
+    ).fetchall())  # fmt: skip
+    assert m == [("i1", "36001-NEW", "lien_names_parcel"), ("i2", "36001-A", "lien_names_parcel"),
+                 ("i2", "36001-B", "lien_names_parcel")]  # fmt: skip
