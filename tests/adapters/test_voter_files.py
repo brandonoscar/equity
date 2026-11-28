@@ -520,6 +520,35 @@ def test_co_ex003_and_score_export_names_read_alike() -> None:
     assert sample["rows"][0]["BIRTH_YEAR"] == "1970" and "VR_PHONE" not in sample["rows"][0]
 
 
+def test_boulder_county_file_is_downloaded_and_read_like_colorado() -> None:
+    """Boulder's free VR-011B zip is fetched directly, read through Colorado's SCORE aliases,
+    and its health is the data-access page still linking the zip."""
+    cls = voter_files.BoulderCountyVoterFile
+    row = {"COUNTY": "Boulder", "VOTER_ID": "600009", "LAST_NAME": "LEE", "FIRST_NAME": "ANN",
+           "YOB": "1970", "VR_PHONE": "3035550100", "RES_ADDRESS": "9 ELM ST",
+           "RES_CITY": "BOULDER", "RES_STATE": "CO", "RES_ZIP_CODE": "80302"}  # fmt: skip
+    body = _zip({"CE-VR011B_EXTERNAL_20261125.txt": _csv(BOCO_HEADER, [row], "|")})
+    page = f'<a href="{cls.download_url}">Download</a>'.encode()
+    client = _client({cls.download_url: (200, body, "application/x-zip-compressed"),
+                      cls.request_url: (200, page, "text/html")})  # fmt: skip
+    a = cls(client)
+    assert list(a.partitions()) == [{"county": "08013"}]
+    fetched = a.fetch(FetchRequest({"county": "08013"}))
+    out = [(r.table, dict(r.row)) for r in a.normalize(fetched)]
+    assert [(p["raw_name"], p["jurisdiction"]) for p in _rows(out, "party")] == [
+        ("LEE ANN", "08013")]  # fmt: skip
+    sample = json.loads(a.fetch(FetchRequest({"county": "08013", "limit": "5"})).content)
+    assert sample["rows"][0]["BIRTH_YEAR"] == "1970" and "VR_PHONE" not in sample["rows"][0]
+    assert a.health().ok
+    src = a.source_row()
+    assert (src["cost_model"], src["base_url"], src["jurisdiction"]) == (
+        "free", cls.download_url, "08013")  # fmt: skip
+    bad = cls(_client({cls.download_url: (200, b"<html>blocked</html>", "text/html")}))
+    with pytest.raises(RuntimeError, match="not the voter file zip"):
+        bad.fetch(FetchRequest({"county": "08013"}))
+    assert not bad.health().ok
+
+
 # -- Wisconsin: Badger Voters CSV ----------------------------------------------------------
 WI_HEADER = ["Voter Reg Number", "LastName", "FirstName", "MiddleName", "Suffix",
              "PhoneNumber", "EmailAddress", "Address1", "Address2", "MailingAddress1",

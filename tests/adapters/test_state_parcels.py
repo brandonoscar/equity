@@ -415,6 +415,7 @@ def test_state_health_respects_paging_mode(tmp_path: Path) -> None:
     [
         ("WASHINGTON DC 20001-1234", ("WASHINGTON", "DC", "20001")),
         ("Saint Paul, mn 55101", ("Saint Paul", "MN", "55101")),
+        ("CHALMETTE LA 70043-    ", ("CHALMETTE", "LA", "70043")),
         ("NOWHERE", (None, None, None)),
     ],
 )
@@ -695,3 +696,16 @@ def test_first_of_takes_the_first_non_empty_column(tmp_path: Path) -> None:
             {"OID": 2, "PROP": "P-8", "GEO": "G-8", "CO": "061", "OWN": "B"}]  # fmt: skip
     out = _rows(cls, rows)
     assert sorted(r["parcel_uid"] for t, r in out if t == "parcel") == ["54061-G-7", "54061-P-8"]
+
+
+def test_nyc_bbl10_builds_the_acris_parcel_key() -> None:
+    from equity.adapters.liens import BOROUGHS
+    from equity.adapters.state_parcels import NYC_SWIS, nyc_parcel_id
+
+    assert nyc_parcel_id("2044810081") == "6001002044810081"
+    assert nyc_parcel_id(1000010001) == "6201001000010001"
+    assert [nyc_parcel_id(v) for v in ("", None, "6044810081", "2000000081", "20448100")] == [
+        None
+    ] * 5
+    # the same borough -> SWIS prefixes the NYC lien and deed sources use
+    assert {b: BOROUGHS[b][1] for b in NYC_SWIS} == NYC_SWIS

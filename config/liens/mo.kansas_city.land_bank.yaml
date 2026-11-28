@@ -1,0 +1,36 @@
+source_id: mo.kansas_city.land_bank
+state: MO
+county_fips: "29095"
+# Land Bank of Kansas City, Missouri and Homesteading Authority inventory (data.kcmo.org
+# 4257-6mtc, 6,587 rows on 2026-11-25, updated 2026-09-21): every parcel the land bank or the
+# homesteading authority acquired since 2012, with acquisition date, foreclosure year, status
+# (Acquired, Acquired and Disposed, Reserved), disposition, asking price, availability and
+# the current owner (the buyer once disposed). A government holdings and sale list, no debt:
+# OTHER on the parcel, like the other land banks. county_parcel_number
+# ('63-422-08-01-00-0-00-000') without its dashes is the 17-digit PARID mo.jackson.parcels
+# keys; the 5 Clay County rows and the ~40 rows with no county parcel number are left out.
+# current_owners (a buyer can be a person) stays in the source record.
+portal: https://data.kcmo.org
+dataset: 4257-6mtc
+where: "county = 'Jackson' AND county_parcel_number IS NOT NULL"
+order_by: [parcel_number]
+select: [parcel_number, county_parcel_number, acquisition_date, status_simple, property_status,
+         disposition, foreclosure_year, property_class, market_value, market_value_year,
+         asking_price, available, quiet_title, address, zip_code, current_owners,
+         inventory_type, property_status_date]
+listed_on: listed_on
+date_field: listed_on
+single_partition: true
+uid: parcel_number
+doc_type: OTHER
+doc_type_raw: {field: status_simple}
+parties:
+  - {role: other, const: Land Bank of Kansas City Missouri}
+parcel: {kind: pin, field: county_parcel_number, strip: "-", county_fips: "29095"}   # = PARID
+extra_pii: [address, current_owners]
+terms:
+  url: https://data.kcmo.org/d/4257-6mtc
+  summary: "Kansas City MO Open Data (Socrata), Land Bank and Homesteading Authority Data, free, no login or app token. No license set on the dataset (read 2026-11-25); KCMO open data terms. Internal use, not redistributed. data.kcmo.org robots.txt allows /resource/."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

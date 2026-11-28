@@ -1,0 +1,28 @@
+source_id: ca.los_angeles.lahd_enforcement_cases
+state: CA
+county_fips: "06037"
+# City of Los Angeles Housing Department (LAHD) "LAHD Property Look-Up for Investigation and Enforcement Cases": tenant
+# complaints investigated by LAHD (reduction of services, illegal rent increase,
+# harassment...) with the APN, case type, filed and closed dates
+# (data.lacity.org eagk-wq48, 123,490 rows on 2026-11-25). Rental-housing enforcement history on the
+# parcel: OTHER instruments on 06037-<apn> (the 10-digit AIN of ca.losangeles.parcels), in no
+# match run.
+portal: https://data.lacity.org
+dataset: eagk-wq48
+where: "case_filed_date IS NOT NULL AND apn IS NOT NULL AND apn != 'No Record Found'"
+order_by: [":id"]
+date_field: case_filed_date
+partition: year
+first_year: 1990
+uid: [apn, casetype, case_filed_date]
+doc_type: OTHER
+doc_type_raw: {field: casetype}
+extra_pii: [officialaddress]
+parties: []
+parcel: {kind: pin, field: apn, county_fips: "06037"}   # = ca.losangeles.parcels AIN
+terms:
+  url: https://data.lacity.org/d/eagk-wq48
+  summary: "Los Angeles Open Data (data.lacity.org, Socrata), Los Angeles Housing Department, free, no login or app token. No license is set on the dataset (read 2026-11-25); City of Los Angeles open data terms of use (as-is, no warranty); no resale or redistribution clause found. data.lacity.org/robots.txt allows /resource/ (Crawl-delay: 1)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

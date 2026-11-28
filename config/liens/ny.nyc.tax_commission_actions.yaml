@@ -1,0 +1,32 @@
+source_id: ny.nyc.tax_commission_actions
+state: NY
+county_fips: "36061"
+# NYC Tax Commission "Assessment Actions" (data.cityofnewyork.us 4nft-bihw, 11,075 actions
+# for tax years 2024-2025 on 2026-11-25): every assessment reduction the Tax Commission
+# granted on an owner's application to correct, with the borough/block/lot, the owner named
+# on the application, the property address, tax class and the reduction in assessed value.
+# Assessment history keyed by lot, with a name: one OTHER instrument per lot and tax year,
+# dated January 1 of the tax year, in no match run. The reduction is assessed value, not money
+# owed, so no amount is loaded (it stays in the source record).
+portal: https://data.cityofnewyork.us
+dataset: 4nft-bihw
+order_by: [":id"]
+select: [borough_code, block_number, lot_number, tax_year, owner_name, property_address,
+         granted_reduction_amount, tax_class_code]
+year_dates: [tax_year]
+date_field: tax_year
+single_partition: true
+uid: [borough_code, block_number, lot_number, tax_year]
+doc_type: OTHER
+doc_type_raw: NYC Tax Commission granted assessment reduction
+parties:
+  - role: owner
+    name: owner_name
+parcel: {kind: nyc_bbl, borough: borough_code, block: block_number, lot: lot_number}
+extra_pii: [property_address]
+terms:
+  url: https://data.cityofnewyork.us/d/4nft-bihw
+  summary: "NYC Open Data (Socrata), NYC Tax Commission, free, no login; NYC Open Data terms of use (no license field on the dataset). robots.txt (Crawl-delay 1) allows /resource/."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

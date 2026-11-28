@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import json
+import urllib.parse
+from collections.abc import Mapping
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -193,7 +195,8 @@ def test_ckan_sources_page_by_sql_and_mark_satisfied(tmp_path: Path) -> None:
             return 404, b"", ""
         calls.append(url)
         recs = [{"_id": 1, "dtd": "DTD-1", "filing_date": "2020-02-03", "amount": 10.5,
-                 "pin": "0001A00100000000", "satisfied": True, "assignee": "TAX CO"}]  # fmt: skip
+                 "pin": "0001A00100000000", "satisfied": True, "assignee": "TAX CO",
+                 "_full_text": "'tax':1 'co':2"}]  # fmt: skip
         page = recs if len(calls) == 1 else []
         return 200, json.dumps({"success": True, "result": {"records": page}}).encode(), ""
 
@@ -209,10 +212,21 @@ def test_ckan_sources_page_by_sql_and_mark_satisfied(tmp_path: Path) -> None:
         "filing_date >= '2020-01-01' AND filing_date < '2021-01-01'")  # fmt: skip
     f = a.fetch(FetchRequest({"from": "2020-01-01", "to": "2021-01-01"}))
     assert len(calls) == 1  # a short page ends the paging
+    assert "_full_text" not in json.loads(f.content)["rows"][0]  # CKAN's index of every word
     assert "datastore_search_sql" in calls[0] and "res-1" in calls[0]
     (inst,) = [r.row for r in a.normalize(f) if r.table == "instrument"]
     assert inst["doc_type_raw"].endswith("(satisfied)")
     assert a.source_row()["base_url"] == "https://c.test/datastore/res-1"
+    upper = lien_adapter_for(load_lien_config(_cfg(
+        tmp_path, api="ckan", resource_id="res-1", portal="https://c.test",
+        date_field="SALEDATE", uid="dtd", parcel=None, county_fips="42003")))  # fmt: skip
+    assert upper(client).where({"from": "2020-01-01", "to": "2021-01-01"}) == (
+        "\"SALEDATE\" >= '2020-01-01' AND \"SALEDATE\" < '2021-01-01'")  # fmt: skip
+    cfg = _cfg(tmp_path, api="ckan", resource_id="res-1", portal="https://c.test",
+               date_field="filing_date", uid="dtd", amount="amount", released_on=None,
+               satisfied_flag="satisfied", parcel={"kind": "pin", "field": "pin",
+                                                   "county_fips": "42003"},
+               parties=[{"role": "creditor", "name": "assignee"}])  # fmt: skip
     bad = tmp_path / "ck.yaml"
     data = yaml.safe_load(cfg.read_text())
     del data["resource_id"]
@@ -575,6 +589,53 @@ def test_link_from_finds_the_current_file(tmp_path: Path) -> None:
         cls(_client({})).file_url()
 
 
+def test_link_from_all_makes_one_partition_per_file(tmp_path: Path) -> None:
+    cfg = _cfg(tmp_path, api="csv", url="https://d.test/old.csv", portal=None, dataset=None,
+               parcel=None, county_fips="39049", released_on=None, date_field="d", uid="n",
+               us_dates=["d"],
+               link_from={"page": "https://d.test/list/", "all": True,
+                          "pattern": r"List (\d{4}-\d{2})-01 to [\d-]+\.csv"},
+               parties=[{"role": "debtor", "name": "n"}])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    page = (b"<a href='/f/List 2026-10-01 to 2026-10-31.csv?83'>Oct</a>"
+            b"<a href='/f/List 2026-09-01 to 2026-09-30.csv?97'>Sep</a>"
+            b"<a href='/f/List 2026-10-01 to 2026-10-31.csv?84'>again</a>"
+            b"<a href='x.pdf'>")  # fmt: skip
+    files = {"d.test/list/": page,
+             "List%202026-09-01": b"n,d\nBee Co,09/02/2026\n",
+             "List%202026-10-01": b"n,d\nAcme,10/05/2026\n"}  # fmt: skip
+    a = cls(_client(files))
+    assert list(a.partitions()) == [{"file": "2026-10"}, {"file": "2026-09"}]
+    assert a.file_url("2026-09") == "https://d.test/f/List%202026-09-01%20to%202026-09-30.csv?97"
+    assert a.file_url() == a.file_url("2026-10") == a.file_url("all")
+    f = a.fetch(FetchRequest({"file": "2026-09"}))
+    assert json.loads(f.content)["rows"] == [{"n": "Bee Co", "d": "2026-09-02"}]
+    with pytest.raises(LienConfigError, match="no link"):
+        a.file_url("2025-01")
+
+
+def test_link_from_follows_hops_and_can_pick_the_last_link(tmp_path: Path) -> None:
+    # A folder per year, a dated folder per month in it, the file in that (Franklin County).
+    hops = {"page": "https://d.test/files/", "pattern": r"/\d{4}/$", "pick": "last",
+            "then": [{"pattern": r"Tax%20Accounting/$", "pick": "last"},
+                     {"pattern": r"Transfer010\.xlsx$"}]}  # fmt: skip
+    cfg = _cfg(tmp_path, api="csv", url="https://d.test/old.csv", portal=None, dataset=None,
+               parcel=None, county_fips="10", released_on=None, date_field="d", uid="n",
+               link_from=hops, parties=[{"role": "debtor", "name": "n"}])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    pages = {
+        "d.test/files/2026/2026-11-20%20Tax%20Accounting/": (
+            b"<A HREF='/files/2026/2026-11-20%20Tax%20Accounting/Transfer010.xlsx'>x</A>"),
+        "d.test/files/2026/": (b"<A HREF='/files/2026/2026-10-15%20Tax%20Accounting/'>a</A>"
+                               b"<A HREF='/files/2026/2026-11-20%20Tax%20Accounting/'>b</A>"
+                               b"<A HREF='/files/2026/2026-11-20%20Appraisal/'>c</A>"),
+        "d.test/files/": b"<A HREF='/files/2025/'>a</A> <A HREF='/files/2026/'>b</A>",
+    }  # fmt: skip
+    assert cls(_client(pages)).file_url() == (
+        "https://d.test/files/2026/2026-11-20%20Tax%20Accounting/Transfer010.xlsx"
+    )
+
+
 def _pdf(lines: list[tuple[float, float, str]], objstm: bool = False) -> bytes:
     """A one-page PDF: a font with a ToUnicode CMap (code 0x01 -> 'Z'), a deflated content
     stream placing each (x, y, text) with Tm, and optionally the font inside an /ObjStm."""
@@ -661,6 +722,43 @@ def test_pdf_source(tmp_path: Path) -> None:
         load_lien_config(_cfg(tmp_path, api="pdf", url="https://d.test/x.pdf"))
 
 
+def test_pdf_source_with_fixed_columns(tmp_path: Path) -> None:
+    """pdf_columns: a two-line header and right-aligned amounts (the amount starts left of its
+    header word) are cut at fixed x positions; a row needs a name and a dollar total, so the
+    second (DBA) line and the grand-total line are dropped."""
+    cfg = _cfg(
+        tmp_path,
+        api="pdf",
+        url="https://d.test/list.pdf",
+        header="Owner Name",
+        pdf_columns={
+            "names": ["owner", "city", "total"],
+            "cuts": [150, 300],
+            "require": {"owner": r"\S", "total": r"^\$[0-9,.]+$"},
+        },
+        portal=None,
+        dataset=None,
+        parcel=None,
+        county_fips="46",
+        state="SD",
+        released_on=None,
+        as_of={"field": "as_of", "after": "REPORT DATE"},
+        date_field="as_of",
+        uid=["owner", "total"],
+        amount="total",
+        parties=[{"role": "debtor", "name": "owner", "address": {"city": "city"}}],
+    )
+    cls = lien_adapter_for(load_lien_config(cfg))
+    pdf = _pdf([(300, 760, "REPORT DATE: 11/02/2026"), (36, 740, "Owner Name"),
+                (36, 728, "DBA Name"), (160, 728, "City"), (330, 728, "Total Due"),
+                (36, 712, "ACME LLC"), (160, 711, "PIERRE"), (310, 711, "$12,000.50"),
+                (36, 700, "ACME DINER"), (310, 680, "$12,000.50")])  # fmt: skip
+    out = _rows_of(cls, {"list.pdf": pdf})
+    (inst,) = [r for t, r in out if t == "instrument"]
+    assert (str(inst["recorded_on"]), str(inst["principal_amount"])) == ("2026-11-02", "12000.50")
+    assert [r["raw_name"] for t, r in out if t == "party"] == ["ACME LLC"]
+
+
 def test_one_field_can_hold_several_names_and_a_constant_city(tmp_path: Path) -> None:
     cfg = _cfg(tmp_path, parcel=None, county_fips="17031", released_on=None,
                parties=[{"role": "debtor", "name": "resp", "split": " | ",
@@ -681,6 +779,23 @@ def test_one_field_can_hold_several_names_and_a_constant_city(tmp_path: Path) ->
     assert sorted(r["raw_name"] for t, r in out if t == "party") == ["ACME LLC", "ANN LEE"]
     (addr,) = {r["city"] for t, r in out if t == "address"}
     assert addr == "CHICAGO"
+
+
+def test_names_split_on_any_of_several_separators_and_lose_quotes(tmp_path: Path) -> None:
+    cfg = _cfg(tmp_path, parcel=None, county_fips="42003", released_on=None,
+               parties=[{"role": "debtor", "name": "resp", "split": [";", '","'],
+                         "strip": '"'}])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    rows = [
+        {"ticket": "C1", "docketed": "2025-01-01", "resp": '"LEE, ANN","ACME LLC"'},
+        {"ticket": "C2", "docketed": "2025-01-01", "resp": "RAY, BO; ZED, AL"},
+        {"ticket": "C3", "docketed": "2025-01-01", "resp": '"ONE, SOLE"'},
+    ]
+    body = json.dumps({"rows": rows}).encode()
+    out = [(r.table, dict(r.row)) for r in cls().normalize(Fetched(cls.source_id, "x", AT, 200,
+                                                                   body, ""))]  # fmt: skip
+    names = sorted(r["raw_name"] for t, r in out if t == "party")
+    assert names == ["ACME LLC", "LEE, ANN", "ONE, SOLE", "RAY, BO", "ZED, AL"]
 
 
 def test_arcgis_rows_can_be_enriched_from_a_carto_table(tmp_path: Path) -> None:
@@ -943,6 +1058,25 @@ def test_arcgis_and_ckan_health_report_fields(tmp_path: Path) -> None:
     assert h.ok and h.shape == ("amt", "case_id") and h.rows is None
 
 
+def test_arcgis_health_counts_every_layer(tmp_path: Path) -> None:
+    """One layer per bill year: an old year's layer that has emptied out (every bill paid) does
+    not mark the source down; the count is over all layers, the fields from the newest."""
+    cfg = _cfg(tmp_path, api="arcgis", portal=None, dataset=None,
+               layer_urls=["https://g.test/y2009/FeatureServer/0",
+                           "https://g.test/y2024/FeatureServer/0"])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    h = cls(
+        _client(
+            {
+                "y2009/FeatureServer/0/query": b'{"count": 0}',
+                "y2024/FeatureServer/0/query": b'{"count": 5}',
+                "y2024/FeatureServer/0?f=json": b'{"fields": [{"name": "bill"}]}',
+            }
+        )
+    ).health()
+    assert h.ok and h.rows == 5 and h.shape == ("bill",)
+
+
 def test_epoch_milliseconds_before_1970_are_read() -> None:
     """ArcGIS dates before 1970 are negative epoch milliseconds (deed histories go back to 1880)."""
     from datetime import date
@@ -968,3 +1102,141 @@ def test_past_due_days_drops_current_bills(tmp_path: Path) -> None:
     at = datetime(2026, 11, 25, tzinfo=UTC)
     out = cls().normalize(Fetched(cls.source_id, "x", at, 200, body, ""))
     assert {r.row["instrument_number"] for r in out if r.table == "instrument"} == {"OLD"}
+
+
+def test_enrich_zfill_pads_the_lookup_key(tmp_path: Path) -> None:
+    """A bill list keyed '18359' joins a parcel table keyed '018359' with zfill: 6."""
+    cfg = _cfg(tmp_path, api="arcgis", layer_url="https://g.test/FeatureServer/0", portal=None,
+               dataset=None, released_on=None, date_field="jd", date_is_text=True,
+               enrich={"arcgis": "https://e.test/MapServer/1", "key": "ParcelNumber",
+                       "field": "pid", "zfill": 6, "columns": ["OwnerName"]},
+               parties=[{"role": "debtor", "name": "OwnerName"}])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    feats = {"features": [{"attributes": {"ticket": "B1", "jd": "2026-01-02", "pid": "18359"}}]}
+    other = {"features": [{"attributes": {"ParcelNumber": "018359", "OwnerName": "ANN LEE"}}]}
+    seen: list[str] = []
+
+    def transport(url: str, headers: Mapping[str, str], timeout: float) -> tuple[int, bytes, str]:
+        if url.endswith("robots.txt"):
+            return 404, b"", ""
+        seen.append(urllib.parse.unquote_plus(url))
+        body = other if "MapServer/1/query" in url else feats
+        return 200, json.dumps(body).encode(), ""
+
+    from equity.adapters.http import PoliteClient
+
+    a = cls(PoliteClient(min_interval_s=0, transport=transport, sleep=lambda s: None))
+    rows = json.loads(a.fetch(FetchRequest({"from": "2026-01-01", "to": "2027-01-01"})).content)
+    assert rows["rows"][0]["OwnerName"] == "ANN LEE"
+    assert any("'018359'" in u for u in seen if "MapServer/1" in u)
+
+
+def test_socrata_enrich_joins_every_match(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    import equity.adapters.liens as liens
+
+    enrich = [{"socrata": "https://e.test", "dataset": "buy-0001", "key": "decl",
+               "field": "ticket", "columns": ["buyer"]}]  # fmt: skip
+    cfg = _cfg(tmp_path, enrich=enrich, released_on=None, parcel=None, county_fips="17",
+               parties=[{"role": "grantee", "name": "buyer", "split": " | "}])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    main = [{"ticket": "T1", "docketed": "2026-01-05T00:00:00.000"},
+            {"ticket": "T2", "docketed": "2026-01-06T00:00:00.000"}]  # fmt: skip
+    extra = [{"decl": "T1", "buyer": "BO RAY"}, {"decl": "T1", "buyer": "ANN LEE"},
+             {"decl": "T1", "buyer": "ANN LEE"}, {"decl": "T9", "buyer": "NOBODY"}]  # fmt: skip
+    routes = {"buy-0001.json": json.dumps(extra).encode(),
+              "abcd-1234.json": json.dumps(main).encode()}  # fmt: skip
+    for lookup_max in (2_000, 1):  # IN queries, then the whole table read once
+        monkeypatch.setattr(liens, "ENRICH_LOOKUP_MAX", lookup_max)
+        liens._SOCRATA_TABLES.clear()
+        a = cls(_client(routes))
+        rows = json.loads(a.fetch(FetchRequest({"from": "2026-01-01", "to": "2026-02-01"})
+                                  ).content)["rows"]  # fmt: skip
+        assert [r.get("buyer") for r in rows] == ["ANN LEE | BO RAY", None]
+        names = {r.row["raw_name"] for r in a.normalize(
+            Fetched(cls.source_id, "x", AT, 200, json.dumps({"rows": rows}).encode(), "")
+        ) if r.table == "party"}  # fmt: skip
+        assert names == {"ANN LEE", "BO RAY"}
+    assert ("https://e.test", "buy-0001") in liens._SOCRATA_TABLES
+    liens._SOCRATA_TABLES.clear()
+
+
+def test_amount_in_text_and_use_restrictions(tmp_path: Path) -> None:
+    cfg = _cfg(tmp_path, amount="summary", amount_in_text=True, released_on=None,
+               use_restrictions=["no_redistribution", "internal_use_only"])  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    assert cls().source_row()["terms_summary"] == (
+        "RESTRICTED[internal_use_only,no_redistribution] s")  # fmt: skip
+    rows = [{"ticket": "T1", "docketed": "2026-01-05", "summary": "$12,882.50 Fund Award",
+             "last": "ACME LLC"},
+            {"ticket": "T2", "docketed": "2026-01-05", "summary": "claim dismissed",
+             "last": "BEE INC"}]  # fmt: skip
+    body = json.dumps({"rows": rows}).encode()
+    inst = {r.row["instrument_number"]: r.row for r in cls().normalize(
+        Fetched(cls.source_id, "x", AT, 200, body, "")) if r.table == "instrument"}  # fmt: skip
+    assert str(inst["T1"]["principal_amount"]) == "12882.50"
+    assert inst["T2"]["principal_amount"] is None
+    plain = lien_adapter_for(load_lien_config(_cfg(tmp_path)))
+    assert plain().source_row()["terms_summary"] == "s"
+
+
+def test_party_when_reads_a_party_only_from_its_rows_and_append_polls(tmp_path: Path) -> None:
+    """A list with one row per party (Oregon UCC: party_type DB or SP): `when` reads each
+    party spec only from its own rows. append_polls marks a rolling list for append polls."""
+    parties = [
+        {"role": "debtor", "name": "entity", "when": {"party_type": "DB"},
+         "address": {"line1": "addr", "city": "city", "state": "st", "zip": "zip"}},
+        {"role": "creditor", "name": "entity", "when": {"party_type": "sp"}},
+    ]  # fmt: skip
+    cfg = _cfg(tmp_path, parties=parties, parcel=None, county_fips="41", released_on=None,
+               amount=None, append_polls=True)  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    assert cls.append_polls is True
+    rows_in = [
+        {"ticket": "F1", "docketed": "2026-10-08", "party_type": "DB", "entity": "ACME LLC",
+         "addr": "1 MAIN ST", "city": "SALEM", "st": "OR", "zip": "97301"},
+        {"ticket": "F1", "docketed": "2026-10-08", "party_type": " SP", "entity": "BANK NA"},
+    ]  # fmt: skip
+    body = json.dumps({"rows": rows_in}).encode()
+    out = list(cls().normalize(Fetched(cls.source_id, "x", AT, 200, body, "")))
+    names = {r.row["party_id"]: r.row["raw_name"] for r in out if r.table == "party"}
+    roles = sorted((names[r.row["party_id"]], r.row["role"]) for r in out
+                   if r.table == "instrument_party")  # fmt: skip
+    assert roles == [("ACME LLC", "debtor"), ("BANK NA", "creditor")]
+    assert [r.row["line1"] for r in out if r.table == "address"] == ["1 MAIN ST"]
+    assert lien_adapter_for(load_lien_config(_cfg(tmp_path))).append_polls is False
+
+
+def test_zero_pins_name_no_lot_and_restrictions_reach_the_source_row(tmp_path: Path) -> None:
+    pin = {"kind": "pin", "field": "pin", "county_fips": "17031"}
+    terms = {"summary": "s", "checked_on": "2026-11-25", "cost_model": "free",
+             "robots_checked_on": "2026-11-24",
+             "use_restrictions": ["no_redistribution", "internal_use_only"]}  # fmt: skip
+    cfg = _cfg(tmp_path, released_on=None, parcel=pin, terms=terms)
+    cls = lien_adapter_for(load_lien_config(cfg))
+    rows = [{"ticket": t, "docketed": "2025-01-01T00:00:00", "pin": p, "last": "X"}
+            for t, p in (("B1", "0000000000"), ("B2", "17031000010000"), ("B3", None))]  # fmt: skip
+    body = json.dumps({"rows": rows}).encode()
+    out = list(cls().normalize(Fetched(cls.source_id, "x", AT, 200, body, "")))
+    lots = [r.row["parcel_uid"] for r in out if r.table == "instrument_parcel"]
+    assert lots == ["17031-17031000010000"]
+    assert sum(r.table == "instrument" for r in out) == 3
+    row = cls().source_row()
+    assert row["terms_summary"] == "RESTRICTED[internal_use_only,no_redistribution] s"
+    assert row["robots_checked_on"] == "2026-11-24"
+
+
+def test_cut_at_names_and_split_lots_without_leading_zeros(tmp_path: Path) -> None:
+    cfg = _cfg(tmp_path, released_on=None, uid="case", date_field="filed", amount="due",
+               parties=[{"role": "debtor", "name": "defendant", "split": ";", "cut_at": ","}],
+               parcel={"kind": "pin", "field": "lots", "county_fips": "39151", "split": ",",
+                       "strip": "- ", "lstrip_zeros": True})  # fmt: skip
+    cls = lien_adapter_for(load_lien_config(cfg))
+    row = {"case": "2026CV1", "filed": "2026-03-01", "due": "9282.42",
+           "defendant": "ACME LLC, 711 7TH ST NW, CANTON OH 44703; ANN LEE, ADDRESS UNKNOWN;",
+           "lots": "02-24227, 02-24228,00-0000"}  # fmt: skip
+    body = json.dumps({"rows": [row]}).encode()
+    out = [(r.table, dict(r.row)) for r in cls().normalize(Fetched(cls.source_id, "x", AT, 200,
+                                                                   body, ""))]  # fmt: skip
+    assert sorted(r["raw_name"] for t, r in out if t == "party") == ["ACME LLC", "ANN LEE"]
+    assert sorted(r["parcel_uid"] for t, r in out if t == "instrument_parcel") == [
+        "39151-224227", "39151-224228"]  # an all-zeros placeholder names no lot  # fmt: skip

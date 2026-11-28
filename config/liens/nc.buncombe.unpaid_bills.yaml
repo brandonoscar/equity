@@ -27,6 +27,10 @@ layer_urls:
 select: [OBJECTID, bill, pin, levy_year, total_due, owner1_first_name, owner1_third_name, owner1_last_name, owner1_suffix_name, owner2_first_name, owner2_third_name, owner2_last_name, owner2_suffix_name, address_line1, address_line2, city, state, postal_code]
 order_by: [OBJECTID]
 date_field: levy_year
+# A levy year's bills are due September 1 and delinquent after January 5 of the next year
+# (G.S. 105-360), 370 days after the January 1 the levy year is dated by. The 2026 layer is
+# the current roll (82,706 bills on 2026-11-27, not yet delinquent): kept out until 2027-01-07.
+past_due_days: 371
 uid: bill
 doc_type: TAX_LIEN_STATE
 doc_type_raw: "Unpaid property tax bill"

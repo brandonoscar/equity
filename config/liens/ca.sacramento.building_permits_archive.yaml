@@ -1,0 +1,31 @@
+source_id: ca.sacramento.building_permits_archive
+state: CA
+county_fips: "06067"
+# City of Sacramento Community Development Department "Issued Building Permits Archive" (ArcGIS Online table,
+# Publisher_SacCity; 200,914 rows on 2026-11-25): issued building permits with the application
+# number, type, category, status, valuation, square footage, work description, contractor
+# and the Sacramento County APN (14 digits, '01401610300000'). Status_Date is M/D/YYYY text, so
+# the table is read whole (one partition) and dated by that text. OTHER instruments on
+# 06067-<Parcel_No>, the contractor as an 'other' party, in no match run.
+api: arcgis
+layer_url: https://services5.arcgis.com/54falWtcpty3V47Z/arcgis/rest/services/BldgPermitIssued_Archive/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, Type, Sub_Type, Category, Application, Rpt_Status, Status_Date,
+         Current_Status, Parcel_No, Address, ZIP, House_Count, Project_Sq_Ft, Habitable_Sq_Ft,
+         Valuation, Contractor, Work_Desc, Project_Name]
+date_field: Status_Date
+single_partition: true
+uid: Application
+doc_type: OTHER
+doc_type_raw: {field: Category}
+consideration: Valuation
+extra_pii: [Address]
+parties:
+  - {role: other, name: Contractor, person_names: false}
+parcel: {kind: pin, field: Parcel_No, county_fips: "06067"}
+terms:
+  url: https://www.arcgis.com/home/item.html?id=ec9060482ef749899bb20f6dc8003530
+  summary: "City of Sacramento open data (ArcGIS Online, Publisher_SacCity), free, no login or token. The item carries no license or use constraint (read 2026-11-25); no resale or redistribution clause found. services5.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

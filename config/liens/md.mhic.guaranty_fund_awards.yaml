@@ -1,0 +1,39 @@
+source_id: md.mhic.guaranty_fund_awards
+state: MD
+county_fips: "24"   # statewide (Maryland Home Improvement Commission)
+# Maryland Department of Labor, Home Improvement Commission (MHIC) "Disciplinary Actions",
+# one HTML page per fiscal year (FY2009 to FY2025, 131 rows in FY2025): date, complaint
+# number, decree (proposed / final order), action summary and the contractor ("Name t/a
+# Business"). Most rows are Guaranty Fund awards: the Fund paid a homeowner for a contractor's
+# unworkmanlike, inadequate or incomplete work, and the contractor must repay the Fund (Bus.
+# Reg. 8-411: the license is suspended until it does), so each award names a proven non-payer
+# with the amount. Some rows are dismissed claims or civil penalties; the action summary is
+# kept as doc_type_raw. Each fiscal-year page is a partition (link_from.all on the index).
+# The alternative to the recovery-fund PDFs that were out of reach (NJ LFCP behind an
+# Imperva challenge; NV NSCB publishes press releases, not lists).
+api: html
+url: https://www.labor.maryland.gov/license/mhic/mhicdisc.shtml
+link_from:
+  page: https://www.labor.maryland.gov/license/mhic/mhicdisc.shtml
+  pattern: 'mhicdisc(\d{4})\.shtml$'
+  all: true
+table: 0
+us_dates: [date]
+date_field: date
+uid: [complaint_no, date, decree]
+doc_type: COURT_ORDER
+doc_type_raw: {field: action_summary}
+amount: action_summary
+amount_in_text: true
+parties:
+  - role: debtor   # the contractor and the business it trades as
+    name: case_name
+    split: " t/a "
+  - role: creditor
+    const: Maryland Home Improvement Guaranty Fund
+terms:
+  url: https://www.labor.maryland.gov/license/mhic/mhicdisc.shtml
+  summary: "Maryland Department of Labor public web pages, free, no login or fee; no license or reuse terms on the pages. robots.txt allows /license/ (it disallows forms and scripts only) and carries a Content-Signal 'ai-train=no, search=yes, ai-input=no' (no AI training or AI input; this project parses the table deterministically). Contractor names as published by the Commission."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

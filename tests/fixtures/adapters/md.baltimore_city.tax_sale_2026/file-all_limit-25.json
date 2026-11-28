@@ -1,0 +1,181 @@
+{
+ "layer": "https://baltegis.baltimorecity.gov/mapping/rest/services/Housing/Tax_Sale_2026/FeatureServer/0",
+ "rows": [
+  {
+   "Address": "8306 TEST ST",
+   "Blocklot": "0001 007",
+   "LIEN_AMOUNT": 169783.66,
+   "ObjectID": 7,
+   "Owner": "TESTOWNER DB6E89"
+  },
+  {
+   "Address": "3516 TEST ST",
+   "Blocklot": "0001 030",
+   "LIEN_AMOUNT": 3510.0,
+   "ObjectID": 28,
+   "Owner": "TESTOWNER 35F390"
+  },
+  {
+   "Address": "5141 TEST ST",
+   "Blocklot": "0001 031",
+   "LIEN_AMOUNT": 5510.0,
+   "ObjectID": 29,
+   "Owner": "TESTOWNER 35F390"
+  },
+  {
+   "Address": "1556 TEST ST",
+   "Blocklot": "0001 033D",
+   "LIEN_AMOUNT": 2622.8,
+   "ObjectID": 35,
+   "Owner": "TESTOWNER 5462A7"
+  },
+  {
+   "Address": "3296 TEST ST",
+   "Blocklot": "0001 035",
+   "LIEN_AMOUNT": 3307.81,
+   "ObjectID": 42,
+   "Owner": "TESTOWNER 7C851C"
+  },
+  {
+   "Address": "217 TEST ST",
+   "Blocklot": "0002 015",
+   "LIEN_AMOUNT": 2639.47,
+   "ObjectID": 69,
+   "Owner": "TESTOWNER 0C30E0 LLC"
+  },
+  {
+   "Address": "165 TEST ST",
+   "Blocklot": "0002 023",
+   "LIEN_AMOUNT": 59737.86,
+   "ObjectID": 76,
+   "Owner": "TESTOWNER 04581F LLC"
+  },
+  {
+   "Address": "2361 TEST ST",
+   "Blocklot": "0002 025",
+   "LIEN_AMOUNT": 9015.44,
+   "ObjectID": 78,
+   "Owner": "TESTOWNER 55167C LLC"
+  },
+  {
+   "Address": "8266 TEST ST",
+   "Blocklot": "0002 037",
+   "LIEN_AMOUNT": 55132.43,
+   "ObjectID": 90,
+   "Owner": "TESTOWNER 04581F LLC"
+  },
+  {
+   "Address": "8697 TEST ST",
+   "Blocklot": "0003 001",
+   "LIEN_AMOUNT": 27495.34,
+   "ObjectID": 135,
+   "Owner": "TESTOWNER 20E486"
+  },
+  {
+   "Address": "373 TEST ST",
+   "Blocklot": "0003 004",
+   "LIEN_AMOUNT": 4010.0,
+   "ObjectID": 138,
+   "Owner": "TESTOWNER 24F94C"
+  },
+  {
+   "Address": "2147 TEST ST",
+   "Blocklot": "0003 020",
+   "LIEN_AMOUNT": 1127.02,
+   "ObjectID": 154,
+   "Owner": "TESTOWNER 5EA517 LLC"
+  },
+  {
+   "Address": "841 TEST ST",
+   "Blocklot": "0003 039",
+   "LIEN_AMOUNT": 3738.96,
+   "ObjectID": 173,
+   "Owner": "TESTOWNER 54F894"
+  },
+  {
+   "Address": "3971 TEST ST",
+   "Blocklot": "0003 054",
+   "LIEN_AMOUNT": 6648.91,
+   "ObjectID": 188,
+   "Owner": "TESTOWNER 17799B"
+  },
+  {
+   "Address": "8377 TEST ST",
+   "Blocklot": "0003 067A",
+   "LIEN_AMOUNT": 80251.41,
+   "ObjectID": 201,
+   "Owner": "TESTOWNER 166F84"
+  },
+  {
+   "Address": "7035 TEST ST",
+   "Blocklot": "0004 013",
+   "LIEN_AMOUNT": 3510.0,
+   "ObjectID": 216,
+   "Owner": "TESTOWNER C092E5 LLC"
+  },
+  {
+   "Address": "2146 TEST ST",
+   "Blocklot": "0004 020",
+   "LIEN_AMOUNT": 6234.83,
+   "ObjectID": 223,
+   "Owner": "TESTOWNER 4A9A6C LLC"
+  },
+  {
+   "Address": "204 TEST ST",
+   "Blocklot": "0004 029",
+   "LIEN_AMOUNT": 1120.49,
+   "ObjectID": 232,
+   "Owner": "TESTOWNER 2A22A9"
+  },
+  {
+   "Address": "7375 TEST ST",
+   "Blocklot": "0004 046",
+   "LIEN_AMOUNT": 974.3,
+   "ObjectID": 249,
+   "Owner": "TESTOWNER 507B9C"
+  },
+  {
+   "Address": "2948 TEST ST",
+   "Blocklot": "0004 051",
+   "LIEN_AMOUNT": 25537.77,
+   "ObjectID": 254,
+   "Owner": "TESTOWNER 772B17"
+  },
+  {
+   "Address": "6658 TEST ST",
+   "Blocklot": "0005 010",
+   "LIEN_AMOUNT": 18981.25,
+   "ObjectID": 272,
+   "Owner": "TESTOWNER 34DAD7"
+  },
+  {
+   "Address": "4959 TEST ST",
+   "Blocklot": "0005 011",
+   "LIEN_AMOUNT": 173663.74,
+   "ObjectID": 273,
+   "Owner": "TESTOWNER 353ED9"
+  },
+  {
+   "Address": "9093 TEST ST",
+   "Blocklot": "0005 012",
+   "LIEN_AMOUNT": 2592.82,
+   "ObjectID": 274,
+   "Owner": "TESTOWNER 8AC9AE"
+  },
+  {
+   "Address": "4575 TEST ST",
+   "Blocklot": "0005 014",
+   "LIEN_AMOUNT": 808.01,
+   "ObjectID": 276,
+   "Owner": "TESTOWNER 912084 LLC"
+  },
+  {
+   "Address": "4968 TEST ST",
+   "Blocklot": "0005 015",
+   "LIEN_AMOUNT": 3011.75,
+   "ObjectID": 277,
+   "Owner": "TESTOWNER AFDC1A CO"
+  }
+ ],
+ "where": "1=1"
+}

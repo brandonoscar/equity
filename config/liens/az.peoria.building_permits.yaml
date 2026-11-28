@@ -1,0 +1,34 @@
+source_id: az.peoria.building_permits
+state: AZ
+county_fips: "04013"
+# City of Peoria AZ Accela "Building Permits" (gis.peoriaaz.gov Peoria_Building_Permit_All
+# FeatureServer/3; 3,834 permits on 2026-11-25): permit number, group, type and sub-type,
+# status, project name, description and address, filed / issued / completed / expiration
+# dates, the Maricopa County APN ('142-08-008B'), assessor use code, and the applicant's
+# name and organization (phone not read). OTHER instruments on 04013-<APN without dashes>
+# (the az.maricopa.parcels APN), applicant and organization as 'other' parties, in no match
+# run. Dated by the filed date.
+api: arcgis
+layer_url: https://gis.peoriaaz.gov/arcgis/rest/services/Accela/Peoria_Building_Permit_All/FeatureServer/3
+order_by: [OBJECTID]
+select: [OBJECTID, APN, PROP_USE, USAGE_DESC, B1_PER_GROUP, Permit_Type, B1_PER_SUB_TYPE,
+         B1_FILE_DD, Permit_Number, Project_Status, Project_Name, Project_Description,
+         Project_Address, Applicant_Contact_Name, Applicant_Contact_Organization, IssDate,
+         CmpDate, ExpDate]
+date_field: B1_FILE_DD
+partition: year
+first_year: 2000
+uid: Permit_Number
+doc_type: OTHER
+doc_type_raw: {field: B1_PER_SUB_TYPE}
+extra_pii: [Project_Address]
+parties:
+  - {role: other, name: Applicant_Contact_Name}
+  - {role: other, name: Applicant_Contact_Organization, person_names: false}
+parcel: {kind: pin, field: APN, county_fips: "04013", strip: "-"}   # = az.maricopa.parcels APN
+terms:
+  url: https://www.arcgis.com/home/item.html?id=d86b2d33049542b19b22e20a4319bc17
+  summary: "City of Peoria AZ public ArcGIS Server feature service (item owner GISAlerts_PeoriaAZGIS), free, no login or token. The item carries no license or use constraint (read 2026-11-25); no resale or redistribution clause found. gis.peoriaaz.gov/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

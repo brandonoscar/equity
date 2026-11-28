@@ -84,6 +84,18 @@ def test_windows_query_the_raw_date(tmp_path: Path) -> None:
     assert plain().where(window) == "rec >= DATE '2015-01-01' AND rec < DATE '2016-01-01'"
 
 
+def test_mdy_dates_need_no_window_when_the_source_is_read_whole(tmp_path: Path) -> None:
+    mdy = {"date_format": {"rec": "mdy"}}
+    for whole in ({"single_partition": True}, {"partition": "none"},
+                  {"api": "csv", "url": "https://f.test/permits.csv"}):  # fmt: skip
+        cls = deed_adapter_for(load_deed_config(_cfg(tmp_path, **mdy, **whole)))
+        assert [p for p in cls().partitions() if "from" in p] == []
+    cls = deed_adapter_for(load_deed_config(_cfg(tmp_path, **mdy, single_partition=True)))
+    rows = [{"doc": "D1", "rec": "4/10/2018 12:00:00 AM", "span": "78625010932", "seller": "A"}]
+    (inst,) = [r for t, r in _facts(cls, rows) if t == "instrument"]
+    assert inst["recorded_on"] == date(2018, 4, 10)
+
+
 def test_rows_get_iso_dates_and_rewritten_parcel_ids(tmp_path: Path) -> None:
     cls = deed_adapter_for(load_deed_config(_cfg(tmp_path)))
     rows = [
@@ -105,18 +117,21 @@ def test_real_deed_configs_load() -> None:
     assert {"ct.cama.sales", "vt.tax.property_transfers", "co.denver.property_sales"} <= ids
 
 
-def _walk(obj: object, fields: tuple[str, ...]) -> list[str]:
+def _walk(obj: object, fields: tuple[str, ...], keep: frozenset[str] = frozenset()) -> list[str]:
+    """Unscrubbed values in pii fields; a source's skip_names placeholders ('N/A') name nobody
+    and are kept as published, as in tests/test_fixture_privacy.py."""
     if isinstance(obj, dict):
         bad = []
         for k, v in obj.items():
             if k in fields and isinstance(v, str) and v.strip():
-                if not (v.startswith("TESTOWNER") or v.endswith(" TEST ST")):
+                ok = v.startswith("TESTOWNER") or v.endswith(" TEST ST")
+                if not ok and v.strip().upper() not in keep:
                     bad.append(f"{k}={v[:3]}...")
             else:
-                bad += _walk(v, fields)
+                bad += _walk(v, fields, keep)
         return bad
     if isinstance(obj, list):
-        return [b for v in obj for b in _walk(v, fields)]
+        return [b for v in obj for b in _walk(v, fields, keep)]
     return []
 
 
@@ -125,7 +140,8 @@ def test_deed_fixtures_are_pseudonymized_and_order_free() -> None:
     for cls in all_deed_adapters():
         for path in sorted((FIXTURES / cls.source_id).glob("*.json")):
             data = json.loads(path.read_text())
-            assert _walk(data, cls.pii_fields) == [], path
+            keep = frozenset(str(n).strip().upper() for n in cls.config.get("skip_names") or ())
+            assert _walk(data, cls.pii_fields, keep) == [], path
             rows = data["rows"]
             fwd = sorted(json.dumps(r, sort_keys=True, default=str) for r in _facts(cls, rows))
             back = sorted(json.dumps(r, sort_keys=True, default=str)

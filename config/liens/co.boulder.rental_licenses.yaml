@@ -1,0 +1,35 @@
+source_id: co.boulder.rental_licenses
+state: CO
+county_fips: "08013"
+# City of Boulder Planning "Rental Housing Licenses" (gis.bouldercolorado.gov plan
+# RentalHousingLicenses MapServer/0; 12,198 licenses on 2026-11-25): every rental housing
+# license with its number, status, applied / issued / expiration / last renewal dates, rental
+# and building type, dwelling and rooming units, address, the City PIN, Boulder County parcel
+# number (BOCOPIN) and tax account, and the licensee of record (PROFESSIONALLICENSEHOLDERNAME /
+# CMPNY: the owner's or manager's name on the license). One OTHER instrument per license on
+# 08013-<BOCOPIN> (the 12-digit Boulder County parcel number = co.statewide.parcels parcel_id),
+# the license holder as an 'other' party, in no match run.
+api: arcgis
+layer_url: https://gis.bouldercolorado.gov/ags_svr1/rest/services/plan/RentalHousingLicenses/MapServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, COBPIN, BOCOTAX, BOCOPIN, LICENSENUMBER, MAINADDRESS, LICENSESTATUS,
+         APPLIEDDATE, ISSUEDDATE, EXPIRATIONDATE, LASTRENEWALDATE, RENTALTYPE, COMPLEXNAME,
+         BUILDINGTYPE, DWELLINGUNITSONCASE, ROOMINGUNITSONCASE, PROFESSIONALLICENSEHOLDERNAME,
+         PROFESSIONALLICENSEHOLDERCMPNY]
+date_field: ISSUEDDATE
+partition: year
+first_year: 1990
+uid: LICENSENUMBER
+doc_type: OTHER
+doc_type_raw: {field: RENTALTYPE}
+extra_pii: [MAINADDRESS]
+parties:
+  - {role: other, name: PROFESSIONALLICENSEHOLDERNAME}
+  - {role: other, name: PROFESSIONALLICENSEHOLDERCMPNY, person_names: false}
+parcel: {kind: pin, field: BOCOPIN, county_fips: "08013"}   # = co.statewide.parcels parcel_id
+terms:
+  url: https://www.arcgis.com/home/item.html?id=92f70ea894ef47a582bb0d656aa4aa7d
+  summary: "City of Boulder (BoulderCO, Planning Dept.) public ArcGIS Server map service, free, no login or token. Item licenseInfo (read 2026-11-25): Creative Commons CC0 1.0. gis.bouldercolorado.gov/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

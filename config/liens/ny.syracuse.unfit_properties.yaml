@@ -1,0 +1,34 @@
+source_id: ny.syracuse.unfit_properties
+state: NY
+county_fips: "36067"   # Onondaga (City of Syracuse)
+# City of Syracuse "Unfit Properties" (Open Data Syracuse, ArcGIS Online Unfit_Properties, 462
+# violations on 2026-11-25): buildings or units declared unfit for human occupancy, with the
+# violation, dates, corrective action, the SBL, property address and the owner with the
+# owner's mailing address. One OTHER instrument per violation, dated by the violation, in no
+# match run. No parcel link (the SBL is the city's print key, not ny.statewide.parcels
+# SWIS_SBL_ID): the property is found by its address (CITED PROPERTY).
+api: arcgis
+layer_url: https://services6.arcgis.com/bdPqSfflsdgFRVVM/arcgis/rest/services/Unfit_Properties/FeatureServer/0
+order_by: [ObjectId]
+select: [ObjectId, complaint_number, violation_number, address, zip, SBL, violation,
+         violation_date, status_type_name, comp_status, owner_name, owner_address, owner_city,
+         owner_state, owner_zip_code]
+date_field: violation_date
+partition: year
+first_year: 2012
+uid: [complaint_number, violation_number]
+doc_type: OTHER
+doc_type_raw: Syracuse unfit property
+parties:
+  - role: other
+    name: owner_name
+    address: {line1: owner_address, city: owner_city, state: owner_state, zip: owner_zip_code}
+  - role: other                 # the unfit property; the matcher finds its parcel by address
+    const: CITED PROPERTY
+    address: {line1: address, city_const: SYRACUSE, state_const: NY, zip: zip}
+terms:
+  url: https://data.syr.gov/datasets/71525e1b176e4fcba2edee8c6a590f84
+  summary: "City of Syracuse (Open Data Syracuse, ArcGIS Online), free, no login. Terms of Use (data.syr.gov/pages/termsofuse, read 2026-11-25): informational, no warranty, not official records; reuse allowed with the City named as source and the access and publication dates, and work products must state 'The City of Syracuse makes no representation, warranty or guarantee relating to the data or analyses derived from these data.' services6.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

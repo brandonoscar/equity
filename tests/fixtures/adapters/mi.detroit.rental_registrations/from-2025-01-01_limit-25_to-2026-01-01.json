@@ -1,0 +1,256 @@
+{
+ "layer": "https://services2.arcgis.com/qvkbeam7Wirps6zC/arcgis/rest/services/bseed_rental_registrations/FeatureServer/0",
+ "rows": [
+  {
+   "ObjectId": 52,
+   "address": "9074 TEST ST",
+   "building_id": 71706,
+   "issued_date": "2025-11-21",
+   "parcel_id": "21069264.",
+   "record_id": "REG2022-04712",
+   "registration_type": "Rental Registration",
+   "zip_code": "48224"
+  },
+  {
+   "ObjectId": 53,
+   "address": "2466 TEST ST",
+   "building_id": 44283,
+   "issued_date": "2025-11-09",
+   "parcel_id": "15006368.",
+   "record_id": "REG2022-04713",
+   "registration_type": "Rental Registration",
+   "zip_code": "48234"
+  },
+  {
+   "ObjectId": 59,
+   "address": "3068 TEST ST",
+   "building_id": 170325,
+   "issued_date": "2025-06-07",
+   "parcel_id": "22123833.003L",
+   "record_id": "REG2025-02616",
+   "registration_type": "Rental Registration",
+   "zip_code": "48219"
+  },
+  {
+   "ObjectId": 60,
+   "address": "6921 TEST ST",
+   "building_id": 202751,
+   "issued_date": "2025-06-07",
+   "parcel_id": "22104598-0",
+   "record_id": "REG2025-02645",
+   "registration_type": "Rental Registration",
+   "zip_code": "48223"
+  },
+  {
+   "ObjectId": 61,
+   "address": "1223 TEST ST",
+   "building_id": 202729,
+   "issued_date": "2025-06-08",
+   "parcel_id": "22106427-8",
+   "record_id": "REG2025-02664",
+   "registration_type": "Rental Registration",
+   "zip_code": "48223"
+  },
+  {
+   "ObjectId": 62,
+   "address": "7231 TEST ST",
+   "building_id": 173660,
+   "issued_date": "2025-06-08",
+   "parcel_id": "22121108.",
+   "record_id": "REG2025-02686",
+   "registration_type": "Rental Registration",
+   "zip_code": "48219"
+  },
+  {
+   "ObjectId": 63,
+   "address": "4222 TEST ST",
+   "building_id": 226040,
+   "issued_date": "2025-06-07",
+   "parcel_id": "22091420.",
+   "record_id": "REG2025-02717",
+   "registration_type": "Rental Registration",
+   "zip_code": "48228"
+  },
+  {
+   "ObjectId": 65,
+   "address": "2855 TEST ST",
+   "building_id": 74154,
+   "issued_date": "2025-06-08",
+   "parcel_id": "21056954.",
+   "record_id": "REG2025-02754",
+   "registration_type": "Rental Registration",
+   "zip_code": "48224"
+  },
+  {
+   "ObjectId": 66,
+   "address": "8127 TEST ST",
+   "building_id": 174042,
+   "issued_date": "2025-06-07",
+   "parcel_id": "22112986.",
+   "record_id": "REG2025-02793",
+   "registration_type": "Rental Registration",
+   "zip_code": "48223"
+  },
+  {
+   "ObjectId": 67,
+   "address": "3657 TEST ST",
+   "building_id": 101258,
+   "issued_date": "2025-06-08",
+   "parcel_id": "20012191.",
+   "record_id": "REG2025-02835",
+   "registration_type": "Rental Registration",
+   "zip_code": "48217"
+  },
+  {
+   "ObjectId": 68,
+   "address": "7882 TEST ST",
+   "building_id": 17687,
+   "issued_date": "2025-06-06",
+   "parcel_id": "21026011.",
+   "record_id": "REG2025-02836",
+   "registration_type": "Rental Registration",
+   "zip_code": "48205"
+  },
+  {
+   "ObjectId": 105,
+   "address": "8696 TEST ST",
+   "building_id": 180124,
+   "issued_date": "2025-12-22",
+   "parcel_id": "22082395.",
+   "record_id": "REG2022-13542",
+   "registration_type": "Rental Registration",
+   "zip_code": "48219"
+  },
+  {
+   "ObjectId": 162,
+   "address": "2265 TEST ST",
+   "building_id": 681,
+   "issued_date": "2025-11-25",
+   "parcel_id": "15002576.",
+   "record_id": "REG2024-04587",
+   "registration_type": "Rental Registration",
+   "zip_code": "48234"
+  },
+  {
+   "ObjectId": 350,
+   "address": "5909 TEST ST",
+   "building_id": 67015,
+   "issued_date": "2025-07-28",
+   "parcel_id": "21074081.",
+   "record_id": "REG2023-02129",
+   "registration_type": "Rental Registration",
+   "zip_code": "48224"
+  },
+  {
+   "ObjectId": 408,
+   "address": "5307 TEST ST",
+   "building_id": 133036,
+   "issued_date": "2025-07-19",
+   "parcel_id": "12003686.000",
+   "record_id": "REG2022-14912",
+   "registration_type": "Rental Registration",
+   "zip_code": "48206"
+  },
+  {
+   "ObjectId": 845,
+   "address": "8225 TEST ST",
+   "building_id": 104397,
+   "issued_date": "2025-10-11",
+   "parcel_id": "21040670.",
+   "record_id": "REG2023-03225",
+   "registration_type": "Rental Registration",
+   "zip_code": "48214"
+  },
+  {
+   "ObjectId": 1017,
+   "address": "8739 TEST ST",
+   "building_id": 245507,
+   "issued_date": "2025-12-17",
+   "parcel_id": "22020632.",
+   "record_id": "REG2022-11093",
+   "registration_type": "Rental Registration",
+   "zip_code": "48228"
+  },
+  {
+   "ObjectId": 1026,
+   "address": "7432 TEST ST",
+   "building_id": 97191,
+   "issued_date": "2025-11-07",
+   "parcel_id": "01002616.",
+   "record_id": "REG2022-11791",
+   "registration_type": "Rental Registration",
+   "zip_code": "48202"
+  },
+  {
+   "ObjectId": 1027,
+   "address": "4993 TEST ST",
+   "building_id": 28814,
+   "issued_date": "2025-12-09",
+   "parcel_id": "21017534.",
+   "record_id": "REG2025-06346",
+   "registration_type": "Rental Registration",
+   "zip_code": "48205"
+  },
+  {
+   "ObjectId": 1028,
+   "address": "8522 TEST ST",
+   "building_id": 17627,
+   "issued_date": "2025-12-10",
+   "parcel_id": "21026365.",
+   "record_id": "REG2025-06361",
+   "registration_type": "Rental Registration",
+   "zip_code": "48205"
+  },
+  {
+   "ObjectId": 1029,
+   "address": "7959 TEST ST",
+   "building_id": 180671,
+   "issued_date": "2025-12-10",
+   "parcel_id": "22080021-2",
+   "record_id": "REG2025-06385",
+   "registration_type": "Rental Registration",
+   "zip_code": "48219"
+  },
+  {
+   "ObjectId": 1030,
+   "address": "504 TEST ST",
+   "building_id": 209452,
+   "issued_date": "2025-12-12",
+   "parcel_id": "22094917.",
+   "record_id": "REG2025-06418",
+   "registration_type": "Rental Registration",
+   "zip_code": "48228"
+  },
+  {
+   "ObjectId": 1031,
+   "address": "4602 TEST ST",
+   "building_id": 78209,
+   "issued_date": "2025-12-12",
+   "parcel_id": "21055417.",
+   "record_id": "REG2025-06427",
+   "registration_type": "Rental Registration",
+   "zip_code": "48213"
+  },
+  {
+   "ObjectId": 1032,
+   "address": "2293 TEST ST",
+   "building_id": 152394,
+   "issued_date": "2025-12-12",
+   "parcel_id": "22065481.",
+   "record_id": "REG2025-06429",
+   "registration_type": "Rental Registration",
+   "zip_code": "48235"
+  },
+  {
+   "ObjectId": 1033,
+   "address": "7724 TEST ST",
+   "building_id": 208130,
+   "issued_date": "2025-12-12",
+   "parcel_id": "16000583.001",
+   "record_id": "REG2025-06435",
+   "registration_type": "Rental Registration",
+   "zip_code": "48209"
+  }
+ ],
+ "where": "issued_date >= DATE '2025-01-01' AND issued_date < DATE '2026-01-01'"
+}

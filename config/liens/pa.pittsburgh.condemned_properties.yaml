@@ -1,0 +1,28 @@
+source_id: pa.pittsburgh.condemned_properties
+state: PA
+county_fips: "42003"   # Allegheny County (City of Pittsburgh)
+# City of Pittsburgh PLI "Condemned and Dead-End Properties" (WPRDC condemned-properties,
+# CKAN resource 0a963f26, 3,594 rows / 2,917 properties on 2026-11-25, updated daily):
+# buildings PLI has condemned as unsafe or unfit, with the parcel, the owner of record and the
+# date the record was opened; "dead-end" properties are condemned ones whose owner PLI cannot
+# find. A vacant / blighted building registry, not a debt: one OTHER instrument per record on
+# the parcel (16-character pa.allegheny.parcels PIN), in no match run.
+api: ckan
+portal: https://data.wprdc.org
+resource_id: 0a963f26-eb4b-4325-bbbc-3ddf6a871410   # Condemned Properties
+date_field: create_date
+single_partition: true
+uid: [record_number, property_type]
+doc_type: OTHER
+doc_type_raw: {field: property_type}
+parties:
+  - role: owner
+    name: owner
+parcel: {kind: pin, field: parcel_id, county_fips: "42003"}   # = pa.allegheny.parcels PIN
+extra_pii: [address]
+terms:
+  url: https://data.wprdc.org/dataset/condemned-properties
+  summary: "WPRDC (Western Pennsylvania Regional Data Center, University of Pittsburgh) dataset from the City of Pittsburgh PLI, license Creative Commons Attribution (read 2026-11-25; attribution required), CKAN DataStore API, free, no login. WPRDC robots.txt disallows /api/ for crawlers but states scripts and applications may use it (see equity.adapters.http SCRIPT_PERMISSIONS)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -9,9 +9,22 @@ schema_version: 1
 # wiwb and canb disallow it in robots.txt; meb, nceb, nyeb, miwb serve an empty feed; mob, txsb
 # do not answer; nywb titles use a case-number form the parser does not read. wvnd (us.wvnd.rss, registered separately)
 # returned HTTP 500 that day; nyeb, nyed, nceb, miwb, gand, mdd, pamd serve an empty feed.
-# 2026-11-25: ilcb, ilsb, wvsb (robots.txt 404, no rules) and meb (now lists entries) enabled;
-# ilnb's robots.txt disallows everything.
-enabled: [akb, almb, alnb, alsb, azb, cacb, caeb, casb, cob, ctb, dcb, deb, flmb, flnb, flsb, gamb, ganb, gasb, hib, ianb, iasb, idb, ilcb, ilsb, innb, insb, ksb, kywb, laeb, lamb, lawb, mab, meb, mieb, mnb, moeb, mowb, msnb, mssb, mtb, ncmb, ncwb, ndb, neb, nhb, njb, nvb, nynb, nysb, ohnb, ohsb, okeb, oknb, okwb, orb, paeb, pawb, rib, scb, sdb, tneb, tnmb, tnwb, txeb, txnb, txwb, vaeb, vawb, vtb, waeb, wieb, wvsb, wyb]  # pamb: robots.txt disallows the feed
+# 2026-11-25 (robots_checked_on): every mapped court not yet enabled, plus the IL bankruptcy
+# courts, rechecked. 27 district feeds and wvsb, meb, ilcb, ilsb enabled: robots.txt is absent
+# (404) and the feed lists entries. robots.txt disallows the feed for ohnd, nyed, txnd, scd,
+# canb, pamb, kyeb, wiwb, mdb, areb, arwb, utb, nmb and ilnb. wawb's robots.txt reads
+# "User-agent *" (no colon) then "Disallow: /cgi-bin/": a parser ignores the rule, but its
+# intent is to disallow the feed, so wawb stays off. txsd and txsb answer HTTP 404 for the feed
+# (no public RSS); mob's host did not answer. Empty feeds that day: flnd, nywd, nyeb, miwb,
+# gand, gasd, alnd, nceb, pamd, wvsd. nywb titles ("2-26-20977 Name") still do not parse.
+# 2026-11-26: flsb, alnb, ianb, dcb and wvnb (listed as failing in the 2026-11-25 gap report)
+# all answer and list entries. txsd now serves its feed (robots.txt absent) and is enabled;
+# txsb still answers 404, wvnd 500, and mob's host does not answer.
+# 2026-11-27: nywb enabled (robots.txt absent; its "2-26-20862- Name" titles now parse).
+# Rechecked every mapped court still off: robots.txt disallows areb, arwb, canb, ilnb, kyeb,
+# mdb, nmb, nyed, ohnd, pamb, scd, txnd, utb, wiwb; txsb answers 404; alnd, flnd, gand, gasd,
+# miwb, nceb, nyeb, nywd, pamd and wvsd served an empty feed (the day after Thanksgiving).
+enabled: [akb, almb, almd, alnb, alsb, alsd, azb, cacb, cacd, caeb, caed, cand, casb, casd, cob, ctb, dcb, deb, flmb, flmd, flnb, flsb, flsd, gamb, gamd, ganb, gasb, hib, ianb, iasb, idb, ilcb, ilsb, innb, innd, insb, insd, ksb, kywb, laeb, laed, lamb, lamd, lawb, lawd, mab, meb, mieb, mied, miwd, mnb, moeb, mowb, msnb, mssb, mtb, nced, ncmb, ncmd, ncwb, ncwd, ndb, neb, nhb, njb, njd, nvb, nynb, nynd, nysb, nysd, nywb, ohnb, ohsb, ohsd, okeb, oknb, okwb, orb, paeb, paed, pawb, pawd, rib, scb, sdb, tneb, tnmb, tnwb, txeb, txed, txnb, txsd, txwb, txwd, vaeb, vawb, vtb, waeb, wieb, wvsb, wyb]  # pamb: robots.txt disallows the feed
 courts:
   FL: [flnd, flmd, flsd, flnb, flmb, flsb]
   OH: [ohnd, ohsd, ohnb, ohsb]
@@ -28,6 +41,7 @@ courts:
   SC: [scd, scb]
   PA: [paed, pamd, pawd, paeb, pamb, pawb]
   WV: [wvnd, wvsd, wvnb, wvsb]
+  IL: [ilnb, ilcb, ilsb]
   MT: [mtb]
   ID: [idb]
   ND: [ndb]
@@ -62,5 +76,4 @@ courts:
   AR: [areb, arwb]
   UT: [utb]
   ME: [meb]
-  IL: [ilnd, ilcd, ilsd, ilnb, ilcb, ilsb]
   NM: [nmb]

@@ -1,0 +1,29 @@
+source_id: oh.cleveland.civil_tickets
+state: OH
+county_fips: "39035"
+# City of Cleveland "Civil Tickets" (Civil_Tickets/0, 21,466 tickets issued since 2025-01
+# on 2026-11-25; 91 without an issue date are not read): civil code-enforcement tickets
+# (fines, e.g. failure to register a vacant building) with the parcel, the code sections
+# cited and the status ('Sent to DAL' = sent to the Department of Law for collection). No
+# owner is named: OTHER instruments on the parcel, in no match run.
+api: arcgis
+layer_url: https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/Civil_Tickets/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, TICKET_ID, FILE_DATE, TICKET_STATUS, TICKET_STATUS_DATE, ISSUE_DATE, ADDRESS,
+         PARCEL_NUMBER, TICKET_CITATIONS]
+date_field: ISSUE_DATE
+partition: year
+first_year: 2025
+uid: TICKET_ID
+doc_type: OTHER
+doc_type_raw: {field: TICKET_STATUS}
+parties: []
+extra_pii: [ADDRESS]
+parcel: {kind: pin, field: PARCEL_NUMBER, county_fips: "39035"}   # = oh.cuyahoga.parcels parcel_id ('12829029')
+terms:
+  url: https://www.arcgis.com/home/item.html?id=aec7cde2885f4b56ad23a5166e4380c6
+  summary: "City of Cleveland Department of Building and Housing on the Cleveland Open Data Portal (ArcGIS Online, owner opendataCLE), public hosted layer, free, no login. Item licenseInfo (read 2026-11-25): Open Data Commons Open Database License (ODbL): attribute the City; a derived database that is shared publicly must be offered under the ODbL (internal use only here, not redistributed). services3.arcgis.com/robots.txt answers 4xx (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  use_restrictions: [attribution_required]
+  cost_model: free

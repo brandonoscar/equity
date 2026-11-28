@@ -1,0 +1,266 @@
+{
+ "entries": [
+  {
+   "addresses": [
+    {
+     "add_num": "12813",
+     "ent_num": "9640"
+    }
+   ],
+   "aliases": [
+    {
+     "alt_name": "TESTOWNER AB015E",
+     "alt_num": "9152",
+     "alt_type": "aka",
+     "ent_num": "9640"
+    },
+    {
+     "alt_name": "TESTOWNER 136F68",
+     "alt_num": "9153",
+     "alt_type": "aka",
+     "ent_num": "9640"
+    }
+   ],
+   "ent_num": "9640",
+   "name": "TESTOWNER D9E5DC",
+   "program": "NS-PLC",
+   "remarks": "TESTOWNER CCFCD1",
+   "type": "individual"
+  },
+  {
+   "addresses": [
+    {
+     "add_num": "12128",
+     "city_state_zip": "Gaza",
+     "country": "Palestinian",
+     "ent_num": "9641"
+    }
+   ],
+   "aliases": [
+    {
+     "alt_name": "TESTOWNER 52A239",
+     "alt_num": "9154",
+     "alt_type": "aka",
+     "ent_num": "9641"
+    },
+    {
+     "alt_name": "TESTOWNER DC3EAB",
+     "alt_num": "9155",
+     "alt_type": "aka",
+     "ent_num": "9641"
+    }
+   ],
+   "ent_num": "9641",
+   "name": "TESTOWNER 0554FC",
+   "program": "NS-PLC",
+   "remarks": "TESTOWNER EC6326",
+   "type": "individual"
+  },
+  {
+   "addresses": [
+    {
+     "add_num": "12129",
+     "city_state_zip": "Hebron, West Bank",
+     "country": "Palestinian",
+     "ent_num": "9642"
+    }
+   ],
+   "aliases": [
+    {
+     "alt_name": "TESTOWNER 94CAF0",
+     "alt_num": "9156",
+     "alt_type": "aka",
+     "ent_num": "9642"
+    },
+    {
+     "alt_name": "TESTOWNER 138B2E",
+     "alt_num": "9157",
+     "alt_type": "aka",
+     "ent_num": "9642"
+    }
+   ],
+   "ent_num": "9642",
+   "name": "TESTOWNER 5A1D5D",
+   "program": "NS-PLC",
+   "remarks": "TESTOWNER 136DEF",
+   "type": "individual"
+  },
+  {
+   "addresses": [
+    {
+     "add_num": "12814",
+     "ent_num": "9643"
+    }
+   ],
+   "aliases": [],
+   "ent_num": "9643",
+   "name": "TESTOWNER B74570",
+   "program": "NS-PLC",
+   "remarks": "TESTOWNER 699291",
+   "type": "individual"
+  },
+  {
+   "addresses": [
+    {
+     "add_num": "12815",
+     "ent_num": "9644"
+    }
+   ],
+   "aliases": [
+    {
+     "alt_name": "TESTOWNER DFAA40",
+     "alt_num": "9158",
+     "alt_type": "aka",
+     "ent_num": "9644"
+    }
+   ],
+   "ent_num": "9644",
+   "name": "TESTOWNER E54C21",
+   "program": "NS-PLC",
+   "remarks": "TESTOWNER 136DEF",
+   "type": "individual"
+  },
+  {
+   "addresses": [
+    {
+     "add_num": "12130",
+     "city_state_zip": "Gaza",
+     "country": "Palestinian",
+     "ent_num": "9645"
+    }
+   ],
+   "aliases": [
+    {
+     "alt_name": "TESTOWNER 635762",
+     "alt_num": "9159",
+     "alt_type": "aka",
+     "ent_num": "9645"
+    }
+   ],
+   "ent_num": "9645",
+   "name": "TESTOWNER B944CA",
+   "program": "NS-PLC",
+   "remarks": "TESTOWNER ECBED9",
+   "type": "individual"
+  },
+  {
+   "addresses": [
+    {
+     "add_num": "12131",
+     "city_state_zip": "Ramallah, West Bank",
+     "country": "Palestinian",
+     "ent_num": "9646"
+    }
+   ],
+   "aliases": [],
+   "ent_num": "9646",
+   "name": "TESTOWNER 309325",
+   "program": "NS-PLC",
+   "remarks": "TESTOWNER EB582A",
+   "type": "individual"
+  },
+  {
+   "addresses": [
+    {
+     "add_num": "68713",
+     "country": "Region: Gaza",
+     "ent_num": "9647"
+    }
+   ],
+   "aliases": [
+    {
+     "alt_name": "TESTOWNER CC28E4",
+     "alt_num": "9160",
+     "alt_type": "aka",
+     "ent_num": "9647"
+    }
+   ],
+   "ent_num": "9647",
+   "name": "TESTOWNER 7DF4AA",
+   "program": "SDGT] [NS-PLC",
+   "remarks": "TESTOWNER FC70ED",
+   "type": "individual"
+  },
+  {
+   "addresses": [
+    {
+     "add_num": "12817",
+     "ent_num": "9648"
+    }
+   ],
+   "aliases": [
+    {
+     "alt_name": "TESTOWNER D04BCD",
+     "alt_num": "9161",
+     "alt_type": "aka",
+     "ent_num": "9648"
+    }
+   ],
+   "ent_num": "9648",
+   "name": "TESTOWNER B80FD3",
+   "program": "NS-PLC",
+   "remarks": "TESTOWNER 06C027",
+   "type": "individual"
+  },
+  {
+   "addresses": [
+    {
+     "add_num": "12132",
+     "city_state_zip": "Jenin, West Bank",
+     "country": "Palestinian",
+     "ent_num": "9649"
+    }
+   ],
+   "aliases": [],
+   "ent_num": "9649",
+   "name": "TESTOWNER 36AAF0",
+   "program": "NS-PLC",
+   "remarks": "TESTOWNER 395E87",
+   "type": "individual"
+  },
+  {
+   "addresses": [
+    {
+     "add_num": "12133",
+     "city_state_zip": "Ramallah, West Bank",
+     "country": "Palestinian",
+     "ent_num": "9650"
+    }
+   ],
+   "aliases": [],
+   "ent_num": "9650",
+   "name": "TESTOWNER 1B0436",
+   "program": "NS-PLC",
+   "remarks": "TESTOWNER 9E6142",
+   "type": "individual"
+  },
+  {
+   "addresses": [
+    {
+     "add_num": "12134",
+     "city_state_zip": "Tulkarim, West Bank",
+     "country": "Palestinian",
+     "ent_num": "9651"
+    }
+   ],
+   "aliases": [
+    {
+     "alt_name": "TESTOWNER 1864A2",
+     "alt_num": "9162",
+     "alt_type": "aka",
+     "ent_num": "9651"
+    }
+   ],
+   "ent_num": "9651",
+   "name": "TESTOWNER 27BC5B",
+   "program": "NS-PLC",
+   "remarks": "TESTOWNER 49B2D7",
+   "type": "individual"
+  }
+ ],
+ "files": [
+  "https://sanctionslistservice.ofac.treas.gov/api/PublicationPreview/exports/CONS_PRIM.CSV",
+  "https://sanctionslistservice.ofac.treas.gov/api/PublicationPreview/exports/CONS_ADD.CSV",
+  "https://sanctionslistservice.ofac.treas.gov/api/PublicationPreview/exports/CONS_ALT.CSV"
+ ]
+}

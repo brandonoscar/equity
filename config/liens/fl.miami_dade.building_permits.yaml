@@ -1,0 +1,42 @@
+source_id: fl.miami_dade.building_permits
+state: FL
+county_fips: "12086"
+# Miami-Dade County Department of Regulatory and Economic Resources "Building Permits Issued
+# By Miami-Dade County - 2 Previous Years to Present" (ArcGIS Online miamidade_permit_data,
+# 493,091 permits with applications 2008-05 .. 2026-11 on 2026-11-25, daily): permit and
+# process number, type, residential / commercial, estimated value, proposed use, the folio,
+# the owner's name, legal description, the architect and the contractor (name and address).
+# The County's permits (unincorporated area and County-permitted work), not the
+# municipalities'. A signal that an owner is putting money into a property, not a debt:
+# OTHER instruments on the folio, in no match run. Contractor phone numbers are not fetched;
+# placeholder names (OWNER, NOT LISTED) are skipped.
+api: arcgis
+layer_url: https://services.arcgis.com/8Pc9XBTAsYuxx9Ny/arcgis/rest/services/miamidade_permit_data/FeatureServer/0
+order_by: [ObjectId]
+select: [ObjectId, PermitIssuedDate, ApplicationDate, PermitNumber, ProcessNumber,
+         MasterPermitNumber, PermitType, ResidentialCommercial, EstimatedValue,
+         ApplicationTypeDescription, ProposedUseDescription, FolioNumber, OwnerName,
+         LegalDescription1, PropertyAddress, ArchitectName, ContractorNumber, ContractorName,
+         ContractorAddress, ContractorCity, ContractorState, ContractorZip, SquareFootage,
+         StructureUnits, CoCcDate, PermitTotalFee, City]
+date_field: ApplicationDate   # PermitIssuedDate is a DateOnly field the layer will not window
+partition: year
+first_year: 2008
+uid: PermitNumber
+doc_type: OTHER
+doc_type_raw: {field: ApplicationTypeDescription}
+skip_names: [OWNER, NOT LISTED]
+extra_pii: [PropertyAddress, LegalDescription1]
+parties:
+  - {role: owner, name: OwnerName}
+  - role: other
+    name: ContractorName
+    address: {line1: ContractorAddress, city: ContractorCity, state: ContractorState, zip: ContractorZip}
+  - {role: other, name: ArchitectName}
+parcel: {kind: pin, field: FolioNumber, county_fips: "12086", zfill: 13}   # fl.statewide.parcels
+terms:
+  url: https://www.arcgis.com/home/item.html?id=6db5f56e886446df88313ca279e59120
+  summary: "Miami-Dade County Open Data Hub (ArcGIS Online, MDPublisher), free, no login. Item licenseInfo: provided 'as is', approximate, not for site-specific decisions; no licence restriction on reuse found. services.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

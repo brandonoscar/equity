@@ -1,0 +1,20 @@
+source_id: pa.luzerne.parcels
+state: PA
+# Luzerne County (PA) GIS 'Public Map' service, layer 1 'TAX PARCELS' (copyright 'Luzerne County,
+# PA'; 176,385 rows on 2026-11-25; PIN null or blank on 35, PUB_OWNER filled on 174,642):
+# public owner name and municipality.
+layer_url: https://gis.luzernecounty.org/server/rest/services/PublicMap/MapServer/1
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "079"}
+fields:
+  parcel_id: PIN         # '17A10   00A005000' (fixed-width; whitespace removed in the key)
+  owner1: PUB_OWNER      # 'SMITH JOHN   JANE' (co-owners run together, as published)
+value_basis: "Land_FAV / Building_FAV / TOTAL_FAV (text) are present but the layer has no tax-year field (Luzerne's assessment base year is not stated), so no values or tax_year are mapped and no assessment facts are emitted. The layer has no owner mailing or site address. PUB_CareOf (in-care-of line) is not mapped."
+terms:
+  url: https://gis.luzernecounty.org/server/rest/services/PublicMap/MapServer
+  summary: "Luzerne County (PA) GIS ArcGIS Server, PublicMap MapServer (description 'Luzerne County, PA Public Map', copyright and accessInformation 'Luzerne County, PA'), layer 1 TAX PARCELS; public, no login, token or fee. No licence or use-restriction text on the service or its item info (read 2026-11-25). gis.luzernecounty.org/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

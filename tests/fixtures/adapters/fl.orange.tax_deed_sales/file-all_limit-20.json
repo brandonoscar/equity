@@ -1,0 +1,146 @@
+{
+ "layer": "https://services1.arcgis.com/0U8EQ1FrumPeIqDb/arcgis/rest/services/Tax_Sale_Data/FeatureServer/0",
+ "rows": [
+  {
+   "ObjectID": 18213,
+   "USER_Deed_Status": "Active Sale",
+   "USER_PARCEL": "10-24-29-3055-17-060",
+   "USER_Sale_Date": "01/07/2027",
+   "USER_TDA_NUM": "2024-12942"
+  },
+  {
+   "ObjectID": 18214,
+   "USER_Deed_Status": "Active Sale",
+   "USER_PARCEL": "31-24-27-7007-00-108",
+   "USER_Sale_Date": "01/07/2027",
+   "USER_TDA_NUM": "2024-1691"
+  },
+  {
+   "ObjectID": 18215,
+   "USER_Deed_Status": "Active Sale",
+   "USER_PARCEL": "06-22-30-6821-00-260",
+   "USER_Sale_Date": "01/07/2027",
+   "USER_TDA_NUM": "2024-14026"
+  },
+  {
+   "ObjectID": 18216,
+   "USER_Deed_Status": "Active Sale",
+   "USER_PARCEL": "31-24-27-3000-07-250",
+   "USER_Sale_Date": "01/07/2027",
+   "USER_TDA_NUM": "2024-1615"
+  },
+  {
+   "ObjectID": 18217,
+   "USER_Deed_Status": "Active Sale",
+   "USER_PARCEL": "16-21-28-4715-00-410",
+   "USER_Sale_Date": "01/07/2027",
+   "USER_TDA_NUM": "2024-2893"
+  },
+  {
+   "ObjectID": 18218,
+   "USER_Deed_Status": "Active Sale",
+   "USER_PARCEL": "16-22-28-4739-00-490",
+   "USER_Sale_Date": "01/07/2027",
+   "USER_TDA_NUM": "2024-4096"
+  },
+  {
+   "ObjectID": 18219,
+   "USER_Deed_Status": "Active Sale",
+   "USER_PARCEL": "31-24-27-7007-00-220",
+   "USER_Sale_Date": "01/07/2027",
+   "USER_TDA_NUM": "2024-1712"
+  },
+  {
+   "ObjectID": 18220,
+   "USER_Deed_Status": "Active Sale",
+   "USER_PARCEL": "06-21-28-0161-01-001",
+   "USER_Sale_Date": "01/07/2027",
+   "USER_TDA_NUM": "2024-2276"
+  },
+  {
+   "ObjectID": 18221,
+   "USER_Deed_Status": "Active Sale",
+   "USER_PARCEL": "09-21-28-0196-70-260",
+   "USER_Sale_Date": "01/07/2027",
+   "USER_TDA_NUM": "2024-2361"
+  },
+  {
+   "ObjectID": 18222,
+   "USER_Deed_Status": "Active Sale",
+   "USER_PARCEL": "10-24-31-9015-00-180",
+   "USER_Sale_Date": "01/07/2027",
+   "USER_TDA_NUM": "2024-18140"
+  },
+  {
+   "ObjectID": 18223,
+   "USER_Deed_Status": "Active Sale",
+   "USER_PARCEL": "13-22-32-6213-01-740",
+   "USER_Sale_Date": "01/07/2027",
+   "USER_TDA_NUM": "2024-18374"
+  },
+  {
+   "ObjectID": 18224,
+   "USER_Deed_Status": "Active Sale",
+   "USER_PARCEL": "24-22-32-6214-03-960",
+   "USER_Sale_Date": "01/07/2027",
+   "USER_TDA_NUM": "2024-18929"
+  },
+  {
+   "ObjectID": 18225,
+   "USER_Deed_Status": "Active Sale",
+   "USER_PARCEL": "24-22-32-6214-01-430",
+   "USER_Sale_Date": "01/07/2027",
+   "USER_TDA_NUM": "2024-18895"
+  },
+  {
+   "ObjectID": 18226,
+   "USER_Deed_Status": "Active Sale",
+   "USER_PARCEL": "13-22-32-6213-00-340",
+   "USER_Sale_Date": "01/07/2027",
+   "USER_TDA_NUM": "2024-18363"
+  },
+  {
+   "ObjectID": 18227,
+   "USER_Deed_Status": "Active Sale",
+   "USER_PARCEL": "31-24-27-7007-00-214",
+   "USER_Sale_Date": "01/07/2027",
+   "USER_TDA_NUM": "2024-1708"
+  },
+  {
+   "ObjectID": 18228,
+   "USER_Deed_Status": "Active Sale",
+   "USER_PARCEL": "31-24-27-7007-00-111",
+   "USER_Sale_Date": "01/07/2027",
+   "USER_TDA_NUM": "2024-1693"
+  },
+  {
+   "ObjectID": 18229,
+   "USER_Deed_Status": "Active Sale",
+   "USER_PARCEL": "36-22-28-1209-30-301",
+   "USER_Sale_Date": "01/07/2027",
+   "USER_TDA_NUM": "2024-4927"
+  },
+  {
+   "ObjectID": 18230,
+   "USER_Deed_Status": "Active Sale",
+   "USER_PARCEL": "18-22-33-0000-00-029",
+   "USER_Sale_Date": "01/07/2027",
+   "USER_TDA_NUM": "2024-19584"
+  },
+  {
+   "ObjectID": 18231,
+   "USER_Deed_Status": "Active Sale",
+   "USER_PARCEL": "18-22-33-0000-00-047",
+   "USER_Sale_Date": "01/07/2027",
+   "USER_TDA_NUM": "2024-19587"
+  },
+  {
+   "ObjectID": 18232,
+   "USER_Deed_Status": "Active Sale",
+   "USER_PARCEL": "16-22-29-8056-01-040",
+   "USER_Sale_Date": "01/07/2027",
+   "USER_TDA_NUM": "2024-8186"
+  }
+ ],
+ "where": "1=1"
+}

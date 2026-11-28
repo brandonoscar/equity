@@ -1,0 +1,36 @@
+source_id: oh.cincinnati.building_permits
+state: OH
+county_fips: "39061"
+# City of Cincinnati "Cincinnati Building Permits" (data.cincinnati-oh.gov uhjb-xac9, 182,271
+# permits on 2026-11-25, issued 2010-01 on; 14,404 not yet issued are not read): building,
+# plumbing, HVAC, electrical and other permits with the Hamilton County parcel (pin), type,
+# work class, status, estimated project cost, square footage, units, fee and the company
+# (contractor) named on the permit. Like ny.nyc.dob_permits: a signal that an owner is
+# putting money into a property, not a debt: OTHER instruments on the parcel, in no match
+# run. pin and companyname are published in literal double quotes ('"014500010465"'): the
+# quotes are stripped from the pin (12 digits, the CAGIS PARCELID of oh.hamilton.*). The
+# owners named on permits are oh.cincinnati.permit_owner_contacts.
+portal: https://data.cincinnati-oh.gov
+dataset: uhjb-xac9
+where: "issueddate IS NOT NULL"
+order_by: [permitnum, ":id"]
+select: [permitnum, description, applieddate, issueddate, completeddate, originaladdress1,
+         originalcity, originalzip, permitclass, statuscurrent, workclassmapped,
+         permittypemapped, companyname, totalsqft, estprojectcostdec, units, pin, proposeduse,
+         fee]
+date_field: issueddate
+partition: year
+first_year: 2010
+uid: permitnum
+doc_type: OTHER
+doc_type_raw: {field: permittypemapped}
+parties:
+  - {role: other, name: companyname}
+extra_pii: [originaladdress1]
+parcel: {kind: pin, field: pin, county_fips: "39061", strip: "\""}   # = oh.hamilton.* PARCELID
+terms:
+  url: https://data.cincinnati-oh.gov/d/uhjb-xac9
+  summary: "City of Cincinnati Open Data (Socrata, data.cincinnati-oh.gov), Department of Buildings and Inspections, public, no login; dataset license Public Domain. data.cincinnati-oh.gov/robots.txt allows /resource/."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

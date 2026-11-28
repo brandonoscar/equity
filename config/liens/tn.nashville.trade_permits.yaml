@@ -1,0 +1,31 @@
+source_id: tn.nashville.trade_permits
+state: TN
+county_fips: "47037"   # Davidson County (Metro Nashville)
+# Metro Nashville Codes "Trade Permits" (ArcGIS Online Trade_Permits_View, 111,321
+# electrical, plumbing, gas / mechanical and other trade permits on 2026-11-25, entered over
+# a rolling window from 2023): permit number, trade, type and subtype, status, contract
+# value, purpose, the contact (the trade contractor) and the parcel (Davidson map-parcel id).
+# OTHER instruments on the parcel, in no match run.
+api: arcgis
+layer_url: https://services2.arcgis.com/HdTo6HJqh92wn4D8/arcgis/rest/services/Trade_Permits_View/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, PermitNumber, Permit_Type_Description, Permit_Subtype_Description, Trade,
+         Parcel, Address, City, State, Zip, Subdivision_Lot, Contact, Purpose, Case_Status,
+         Date_Entered, Date_Issued, Contract_Value]
+date_field: Date_Entered
+partition: year
+first_year: 2015
+uid: [PermitNumber, Parcel]
+doc_type: OTHER
+doc_type_raw: {field: Permit_Type_Description}
+skip_names: ["None"]
+extra_pii: [Address, Purpose]
+parties:
+  - {role: other, name: Contact}
+parcel: {kind: pin, field: Parcel, county_fips: "47037"}
+terms:
+  url: https://www.arcgis.com/home/item.html?id=c6843aba128b4297b4dd4ef20da40558
+  summary: "Metro Nashville Open Data (ArcGIS Online, NashvilleOpenData), free, no login. Item licenseInfo: Metro's Open Data Executive Order governs the portal; no commercial-use or redistribution restriction found. services2.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

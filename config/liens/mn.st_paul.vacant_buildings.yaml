@@ -1,0 +1,26 @@
+source_id: mn.st_paul.vacant_buildings
+state: MN
+county_fips: "27123"
+# City of Saint Paul Department of Safety and Inspections "Vacant Buildings" (ArcGIS Online
+# VacantBuildings/0, 384 registered vacant buildings on 2026-11-25; layer last refreshed
+# 2022-10): the Ramsey County PIN, vacant-as-of date, dwelling type and vacant building
+# category (1-3, Legislative Code 43). No owner is named: OTHER instruments on the parcel (a
+# vacancy signal), in no match run.
+api: arcgis
+layer_url: https://services1.arcgis.com/9meaaHE3uiba0zr8/arcgis/rest/services/VacantBuildings/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, ADDRESS, VACANT_AS_OF, DWELLING_TYPE, VB_CATEGORY, PIN]
+date_field: VACANT_AS_OF
+partition: none
+uid: [PIN, VACANT_AS_OF]
+doc_type: OTHER
+doc_type_raw: Saint Paul registered vacant building
+parties: []
+extra_pii: [ADDRESS]
+parcel: {kind: pin, field: PIN, county_fips: "27123"}   # = mn.metro.parcels county_pin
+terms:
+  url: https://www.arcgis.com/home/item.html?id=0e3324acd6af499b82ff99c115e02e10
+  summary: "City of Saint Paul open data (ArcGIS Online, owner CityofSaintPaul), public hosted layer, free, no login. Item licenseInfo (read 2026-11-25): 'Public Domain', provided as is; a copy passed to another user must carry the City's disclaimer. services1.arcgis.com/robots.txt answers 4xx (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,36 @@
+source_id: tx.williamson.cad_building_permits
+state: TX
+county_fips: "48491"   # Williamson County
+# Williamson Central Appraisal District "Building Permits" (data.wcad.org fqhf-gyjx, 302,883
+# rows on 2026-11-25: the permits the CAD tracks for appraisal, one copy per tax year
+# 2025 .. 2027, 101,530 distinct permits issued 1920 .. 2026): permit number, type, status,
+# the issuing agency (city or county), issue date, amount, description and the builder party
+# (name and address, 93k rows), on the WCAD quick-ref id (R686339). TODO(Brandon):
+# tx.williamson.parcels keys parcels by PropertyID and carries the quick-ref id as PARCELID,
+# so these links need that crosswalk to meet the parcel layer. Rows of the same permit and
+# property in several tax years are one instrument. OTHER instruments on the parcel, in no
+# match run.
+portal: https://data.wcad.org
+dataset: fqhf-gyjx
+order_by: [permitid, quickrefid, adhoctaxyear]
+select: [quickrefid, adhoctaxyear, situsaddress, permitid, permitnumber, amount, issuedate,
+         permitdesc, permitstatusdescription, permittypedescription,
+         issuingagencydescription, builderid, partyid, partyname, partyaddress]
+date_field: issuedate
+partition: year
+first_year: 1920
+uid: [permitid, quickrefid]
+doc_type: OTHER
+doc_type_raw: {field: permittypedescription}
+extra_pii: [situsaddress, permitdesc]
+parties:
+  - role: other
+    name: partyname
+    address: {line1: partyaddress}
+parcel: {kind: pin, field: quickrefid, county_fips: "48491"}   # WCAD quick-ref id (tx.williamson.parcels PARCELID, not its parcel_id)
+terms:
+  url: https://data.wcad.org/d/fqhf-gyjx
+  summary: "Williamson Central Appraisal District open data (data.wcad.org, Socrata), free, no login; no license set on the dataset. robots.txt allows /resource/ (Crawl-delay: 1)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

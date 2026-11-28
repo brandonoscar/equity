@@ -1379,6 +1379,70 @@ class ColoradoVoterFile(DeliveredVoterFile):
     )
 
 
+class BoulderCountyVoterFile(ColoradoVoterFile):
+    """Boulder County (CO) Clerk and Recorder 'Registered Voter Data (VR-011B)': active and
+    inactive registered voters of one county (confidential voters left out), one pipe-delimited
+    SCORE export in a zip, posted free with no login on the county's data-access page and
+    updated once a month (page text read 2026-11-25). Same columns as ColoradoVoterFile reads
+    through its SCORE aliases (YOB, RES_ADDRESS, MAIL_ADDR1, COUNTY_REGN_DATE...); phone,
+    gender and ballot address are dropped the same way. Downloaded directly: robots.txt of the
+    file host (election.boco.solutions) is absent (404) and bouldercounty.gov allows every
+    path (checked 2026-11-25). One partition: the county. path= reads a saved copy instead."""
+
+    source_id: ClassVar[str] = "co.boulder.voter_file"
+    access_method: ClassVar[str] = "bulk"
+    cost_model: ClassVar[str] = "free"
+    request_url: ClassVar[str] = "https://bouldercounty.gov/elections/maps-and-data/data-access/"
+    download_url: ClassVar[str] = (
+        "https://election.boco.solutions/ElectionDataPublicFiles/CE-VR011B_EXTERNAL.zip"
+    )
+    county_fips: ClassVar[str] = "08013"
+    terms_summary: ClassVar[str] = (
+        "Boulder County Clerk and Recorder, Registered Voter Data (VR-011B): free download, no "
+        "login, form or use certification (county data-access page, read 2026-11-25). "
+        "Colorado voter registration records are public (C.R.S. 1-2-227) and the SoS provides "
+        "them 'without regard to how these people might use the information': no use "
+        "restriction found (reports/Voter file access by state.md). Internal use only, not "
+        "redistributed."
+    )
+
+    def partitions(self) -> Iterator[dict[str, str]]:
+        yield {"county": self.county_fips}
+
+    def fetch(self, request: FetchRequest) -> Fetched:
+        """The county zip as published (or a JSON sample with limit=); path= reads a copy
+        saved by hand, as the statewide Colorado adapter does."""
+        p = request.params
+        if p.get("path"):
+            return super().fetch(request)
+        resp = self.client.get(self.download_url)
+        if resp.status != 200 or resp.content[:2] != b"PK":
+            raise RuntimeError(
+                f"{self.download_url}: HTTP {resp.status} ({resp.content_type}); not the voter "
+                f"file zip. Save it by hand from {self.request_url} and pass path=<file>."
+            )
+        content, ctype = resp.content, resp.content_type or "application/zip"
+        if "limit" in p:
+            content = self.sample(resp.url, self.raw_rows(resp.content), int(p["limit"]))
+            ctype = "application/json"
+        return Fetched(self.source_id, resp.url, resp.retrieved_at, resp.status, content, ctype)
+
+    def source_row(self) -> Mapping[str, Any]:
+        return {**super().source_row(), "jurisdiction": self.county_fips,
+                "base_url": self.download_url, "robots_checked_on": CHECKED_ON}  # fmt: skip
+
+    def health(self) -> HealthReport:
+        """The data-access page answers and still links the VR-011B zip (no 16 MB download)."""
+        now = datetime.now(UTC)
+        try:
+            resp = self.client.get(self.request_url)
+        except OSError as e:
+            return HealthReport(self.source_id, False, now, repr(e))
+        ok = resp.status == 200 and self.download_url.encode() in resp.content
+        detail = "ok" if ok else f"status={resp.status}; VR-011B link not found"
+        return HealthReport(self.source_id, ok, now, detail)
+
+
 class WisconsinVoterFile(DeliveredVoterFile):
     """Wisconsin Elections Commission WisVote voter list, bought through Badger Voters
     (https://badgervoters.wi.gov; My Wisconsin ID account with MFA since 2025-12-22; $25 +

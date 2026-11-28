@@ -1,0 +1,32 @@
+source_id: az.scottsdale.short_term_rentals
+state: AZ
+county_fips: "04013"
+# City of Scottsdale "Licensed Short-term Rental" (maps.scottsdaleaz.gov OpenData MapServer/32;
+# 3,024 licenses on 2026-11-25): each licensed short-term rental with the site address, the
+# property owner's name, the property management company and contact, the emergency contact,
+# license number, status and expiration date. No parcel id is published. One OTHER instrument
+# per license in Maricopa County, dated by the expiration date, with the owner, manager and
+# emergency contact as 'other' parties (phone numbers are not read), in no match run.
+api: arcgis
+layer_url: https://maps.scottsdaleaz.gov/arcgis/rest/services/OpenData/MapServer/32
+order_by: [OBJECTID_1]
+select: [OBJECTID_1, site_address, prop_owner_name, prop_mgmt_company, prop_mgmt_contact,
+         emerg_contact, PropertyScore, Scottsdale_License_Number, Status, ExpirationDate]
+date_field: ExpirationDate
+partition: year
+first_year: 2020
+uid: Scottsdale_License_Number
+doc_type: OTHER
+doc_type_raw: {field: Status}
+extra_pii: [site_address]
+parties:
+  - {role: other, name: prop_owner_name}
+  - {role: other, name: prop_mgmt_company, person_names: false}
+  - {role: other, name: prop_mgmt_contact}
+  - {role: other, name: emerg_contact}
+terms:
+  url: https://www.arcgis.com/home/item.html?id=0d8b44c10e56419887a24c788c4183b5
+  summary: "City of Scottsdale open data (public ArcGIS Server map service, item owner City_Of_Scottsdale), free, no login or token. Item licenseInfo (read 2026-11-25): City of Scottsdale Open Database License Agreement (open-database terms; no resale or redistribution prohibition read beyond attribution / share-alike). Internal use only, no redistribution. maps.scottsdaleaz.gov/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

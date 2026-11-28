@@ -1,0 +1,473 @@
+{
+ "file": "flat404.DALLASCOUNTY.20261123.761953",
+ "rows": [
+  {
+   "addr2": "TESTOWNER 63741B",
+   "addr3": "",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "00000112048000000",
+   "cents": 1374082,
+   "city": "CEDAR HILL",
+   "owner": "TESTOWNER 3CB7AB",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2024,
+    2025
+   ],
+   "zip": "751040000"
+  },
+  {
+   "addr2": "TESTOWNER 1B5EF6",
+   "addr3": "",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "00000113113000000",
+   "cents": 4387722,
+   "city": "DALLAS",
+   "owner": "TESTOWNER 633568",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2025
+   ],
+   "zip": "752010000"
+  },
+  {
+   "addr2": "TESTOWNER 95D6AC",
+   "addr3": "TESTOWNER 9E4422",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "00000113869000000",
+   "cents": 2702742,
+   "city": "DALLAS",
+   "owner": "TESTOWNER AAF22E",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2023,
+    2024,
+    2025
+   ],
+   "zip": "752040000"
+  },
+  {
+   "addr2": "TESTOWNER 812CD9",
+   "addr3": "",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "00000118234000000",
+   "cents": 548875,
+   "city": "DALLAS",
+   "owner": "TESTOWNER 68D514",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "zip": "752040000"
+  },
+  {
+   "addr2": "TESTOWNER 5056D8",
+   "addr3": "",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "00000118303000100",
+   "cents": 570485,
+   "city": "GARLAND",
+   "owner": "TESTOWNER 6BD9AF INC",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2025
+   ],
+   "zip": "750424660"
+  },
+  {
+   "addr2": "TESTOWNER 8E926E",
+   "addr3": "",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "00000118642000000",
+   "cents": 73200,
+   "city": "DALLAS",
+   "owner": "TESTOWNER 1441CC",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2024
+   ],
+   "zip": "752040000"
+  },
+  {
+   "addr2": "TESTOWNER FEEFDD",
+   "addr3": "",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "00000118663000000",
+   "cents": 997216,
+   "city": "DALLAS",
+   "owner": "TESTOWNER 236F55",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2023
+   ],
+   "zip": "752040000"
+  },
+  {
+   "addr2": "TESTOWNER 8B2549",
+   "addr3": "",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "00000118933000000",
+   "cents": 1601440,
+   "city": "FRISCO",
+   "owner": "TESTOWNER 83D9BF LLC",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2024,
+    2025
+   ],
+   "zip": "750340000"
+  },
+  {
+   "addr2": "TESTOWNER 0CF3C7",
+   "addr3": "",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "00000118960000000",
+   "cents": 2974563,
+   "city": "FRISCO",
+   "owner": "TESTOWNER C2F5F3 LLC",
+   "state": "TX",
+   "suits": [
+    "A:TX-26-00873"
+   ],
+   "years": [
+    2024,
+    2025
+   ],
+   "zip": "750340000"
+  },
+  {
+   "addr2": "TESTOWNER CD0723",
+   "addr3": "TESTOWNER E349BA",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "00000118999000000",
+   "cents": 1491014,
+   "city": "FRISCO",
+   "owner": "TESTOWNER 23537F LLC",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2025
+   ],
+   "zip": "750340000"
+  },
+  {
+   "addr2": "TESTOWNER E9F72F",
+   "addr3": "",
+   "addr4": "",
+   "agreement": true,
+   "bankruptcies": [],
+   "cad_account": "00000119002000000",
+   "cents": 890515,
+   "city": "DALLAS",
+   "owner": "TESTOWNER E7E33D",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2025
+   ],
+   "zip": "752040000"
+  },
+  {
+   "addr2": "TESTOWNER CF9E93",
+   "addr3": "",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "00000119908000000",
+   "cents": 7831800,
+   "city": "DALLAS",
+   "owner": "TESTOWNER 42AEB1",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2015,
+    2016,
+    2017,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "zip": "752140000"
+  },
+  {
+   "addr2": "TESTOWNER 8A4F61",
+   "addr3": "",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "00000120271000000",
+   "cents": 4534478,
+   "city": "DALLAS",
+   "owner": "TESTOWNER 64E306",
+   "state": "TX",
+   "suits": [
+    "J:TX-22-00783"
+   ],
+   "years": [
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "zip": "752060000"
+  },
+  {
+   "addr2": "TESTOWNER CD6877",
+   "addr3": "",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "00000120301000000",
+   "cents": 1388720,
+   "city": "SHERIDAN",
+   "owner": "TESTOWNER 48E28A LLC",
+   "state": "WY",
+   "suits": [],
+   "years": [
+    2025
+   ],
+   "zip": "828010000"
+  },
+  {
+   "addr2": "TESTOWNER AB0669",
+   "addr3": "TESTOWNER A77A75",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "00000121750000000",
+   "cents": 196137,
+   "city": "DALLAS",
+   "owner": "TESTOWNER 8CABFF",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2025
+   ],
+   "zip": "752140000"
+  },
+  {
+   "addr2": "TESTOWNER 379B8F",
+   "addr3": "",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "00000122170000000",
+   "cents": 1807064,
+   "city": "DALLAS",
+   "owner": "TESTOWNER 887B9F LLC",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2025
+   ],
+   "zip": "752090000"
+  },
+  {
+   "addr2": "TESTOWNER B3F762",
+   "addr3": "TESTOWNER 6CFEC1",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "00000122173000000",
+   "cents": 111311,
+   "city": "DALLAS",
+   "owner": "TESTOWNER 37E39D",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2025
+   ],
+   "zip": "752040000"
+  },
+  {
+   "addr2": "TESTOWNER ED48D4",
+   "addr3": "",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "00000123031500000",
+   "cents": 3000,
+   "city": "SAN ANTONIO",
+   "owner": "TESTOWNER 15A57A",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2025
+   ],
+   "zip": "782280000"
+  },
+  {
+   "addr2": "TESTOWNER 85E5B4",
+   "addr3": "",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "00000124657000000",
+   "cents": 9432641,
+   "city": "DALLAS",
+   "owner": "TESTOWNER CA706D",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2010,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "zip": "752460000"
+  },
+  {
+   "addr2": "TESTOWNER 397CBC",
+   "addr3": "",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "00000124732000000",
+   "cents": 2592732,
+   "city": "DALLAS",
+   "owner": "TESTOWNER 977C90 LLC",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2025
+   ],
+   "zip": "752060000"
+  },
+  {
+   "addr2": "TESTOWNER 3A9754",
+   "addr3": "TESTOWNER 763193",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "000001254700000RU",
+   "cents": 616452,
+   "city": "DALLAS",
+   "owner": "TESTOWNER 994A07",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2025
+   ],
+   "zip": "752461147"
+  },
+  {
+   "addr2": "TESTOWNER A7F70C",
+   "addr3": "TESTOWNER 9515B7",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "00000125557000000",
+   "cents": 2469,
+   "city": "DALLAS",
+   "owner": "TESTOWNER CB090B",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2022,
+    2023,
+    2024
+   ],
+   "zip": "752460000"
+  },
+  {
+   "addr2": "TESTOWNER 8EF8C0",
+   "addr3": "",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "00000126418000000",
+   "cents": 781659,
+   "city": "DALLAS",
+   "owner": "TESTOWNER A627DC",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2025
+   ],
+   "zip": "752260000"
+  },
+  {
+   "addr2": "TESTOWNER B1FC55",
+   "addr3": "",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "00000126445000000",
+   "cents": 1269704,
+   "city": "DALLAS",
+   "owner": "TESTOWNER CEA728",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "zip": "752260000"
+  },
+  {
+   "addr2": "TESTOWNER CAD4DE",
+   "addr3": "",
+   "addr4": "",
+   "agreement": false,
+   "bankruptcies": [],
+   "cad_account": "00000126772000000",
+   "cents": 147104,
+   "city": "DALLAS",
+   "owner": "TESTOWNER F9E5E9",
+   "state": "TX",
+   "suits": [],
+   "years": [
+    2025
+   ],
+   "zip": "752460000"
+  }
+ ]
+}

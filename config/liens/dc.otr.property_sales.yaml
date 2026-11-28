@@ -1,0 +1,30 @@
+source_id: dc.otr.property_sales
+state: DC
+county_fips: "11001"
+# DC Office of Tax and Revenue "Tax System Property Sales (CAMA)" (opendata.dc.gov, DC GIS
+# Property_and_Land table 57, 423,969 sales on 2026-11-25): the sale history OTR's CAMA system
+# keeps for each tax lot, with sale date, price, qualified flag and sale code. No buyer or
+# seller is published (SALE_CURR_OWNER is only a flag), so each sale is a DEED instrument with
+# a price and no parties, on the lot (SSL, the dc.statewide.parcels key once its spaces are
+# removed): the price history behind the owner of record. Rows of one lot on one day are one
+# sale. TODO(Brandon): sale codes (01, 03, 04 ...) are undocumented in the layer; all loaded
+# as DEED.
+api: arcgis
+layer_url: https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Property_and_Land_WebMercator/FeatureServer/57
+order_by: [OBJECTID]
+select: [OBJECTID, SSL, SALE_DATE, SALE_PRICE, QUALIFIED, SALE_CODE, SALE_CURR_OWNER]
+date_field: SALE_DATE
+partition: year
+first_year: 1900
+uid: [SSL, SALE_DATE]
+doc_type: DEED
+doc_type_raw: DC OTR CAMA sale
+consideration: SALE_PRICE
+parties: []
+parcel: {kind: pin, field: SSL, county_fips: "11001"}   # = dc.statewide.parcels SSL
+terms:
+  url: https://opendata.dc.gov/datasets/ee35b5aa5ca643679fb37c141c532a92
+  summary: "DC Office of the Chief Financial Officer (OTR CAMA) via DC GIS (opendata.dc.gov, public ArcGIS REST), free, no login. Item licenseInfo (read 2026-11-25): Creative Commons Attribution 4.0 International, with a disclaimer that the data were collected for real property assessment and no liability is assumed for other uses; no commercial-use or redistribution restriction. maps2.dcgis.dc.gov/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

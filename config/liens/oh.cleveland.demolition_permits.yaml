@@ -1,0 +1,28 @@
+source_id: oh.cleveland.demolition_permits
+state: OH
+county_fips: "39035"
+# City of Cleveland "Demolition Permits" (Demolition_Permits/0, 11,144 permits issued
+# since 2015-01 on 2026-11-25): demolitions with the parcel, job value and the demolition
+# contractor's business name. OTHER instruments on the parcel, in no match run.
+api: arcgis
+layer_url: https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/Demolition_Permits/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, PERMIT_ID, PERMIT_TYPE, PERMIT_SUBTYPE, PRIMARY_ADDRESS, PRIMARY_PARCEL,
+         FILE_DATE, ISSUED_DATE, CLOSED_DATE, Contrator_Business_Name, Job_Value]
+date_field: ISSUED_DATE
+partition: year
+first_year: 2015
+uid: PERMIT_ID
+doc_type: OTHER
+doc_type_raw: Cleveland demolition permit
+parties:
+  - {role: other, name: Contrator_Business_Name}
+extra_pii: [PRIMARY_ADDRESS]
+parcel: {kind: pin, field: PRIMARY_PARCEL, county_fips: "39035"}   # = oh.cuyahoga.parcels parcel_id ('12829029')
+terms:
+  url: https://www.arcgis.com/home/item.html?id=53a4e551102a42c1b4af8a17f863f509
+  summary: "City of Cleveland Department of Building and Housing on the Cleveland Open Data Portal (ArcGIS Online, owner opendataCLE), public hosted layer, free, no login. Item licenseInfo (read 2026-11-25): Open Data Commons Open Database License (ODbL): attribute the City; a derived database that is shared publicly must be offered under the ODbL (internal use only here, not redistributed). services3.arcgis.com/robots.txt answers 4xx (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  use_restrictions: [attribution_required]
+  cost_model: free

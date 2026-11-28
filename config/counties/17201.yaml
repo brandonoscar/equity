@@ -1,0 +1,30 @@
+source_id: il.winnebago.parcels
+state: IL
+# Winnebago County (IL) parcel ownership layer of the City of Rockford's 'Rockford Parcel Viewer'
+# (the replacement for the WinGIS Winnebago parcel viewer; countywide: 127,968 rows on
+# 2026-11-25 across all townships, ParcelYear 2026 on every row; OwnerLastName filled on all
+# but 14): owner name, owner mailing address, property location.
+layer_url: https://rockgis.rockfordil.gov/arcgissvr/rest/services/Rockford_Parcel_Viewer/MapServer/4
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "201"}
+fields:
+  parcel_id: PIN         # '1206328027' (DashPIN '12-06-328-027')
+  # The owner name comes in parts (entities fill OwnerLastName only); joined last-first.
+  owner1: {join: [OwnerLastName, OwnerFirstName, OwnerMiddleInit, OwnerSuffix]}
+  mail_line1: OwnerAddress1
+  mail_line2: OwnerAddress2
+  mail_city: OwnerCity
+  mail_state: OwnerState
+  mail_zip: OwnerZip
+  situs_line1: [LOPHouseNumber, LOPHouseNbrSuffix, LOPPrefixDirectional, LOPStreetName, LOPStreetSuffix, LOPPostDirectional]
+  situs_city: LOPCommunityName
+  situs_state: {const: IL}
+value_basis: "The layer has no value fields, so no assessment facts are emitted. The taxpayer (TaxpayerLastName ... TaxpayerZip, the tax-bill name and address) is not mapped; it equals the owner on sampled rows. OptOut is blank on every row (no opt-out filter needed); OwnerLastChange (date of the last ownership change, text) is not mapped."
+terms:
+  url: https://rockgis.rockfordil.gov/arcgissvr/rest/services/Rockford_Parcel_Viewer/MapServer/info/iteminfo
+  summary: "City of Rockford (IL) GIS ArcGIS Server, Rockford_Parcel_Viewer layer 4 'Parcel Ownership' (item snippet: 'Parcel viewer to replace WinGIS Winnebago parcel viewer'); public MapServer, no login, token or fee. No copyright, licence or use-restriction text on the service or its item info (read 2026-11-25). rockgis.rockfordil.gov/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

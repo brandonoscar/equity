@@ -1,0 +1,27 @@
+source_id: ca.los_angeles.lahd_violations
+state: CA
+county_fips: "06037"
+# City of Los Angeles Housing Department (LAHD) "LAHD Propery Look-Up for Violations": one row per violation type cited in a Code Enforcement (systematic or complaint) case, with the APN, case number and type, the date
+# cited and whether it was cleared
+# (data.lacity.org cr8f-uc4j, 94,399 rows on 2026-11-25). Rental-housing enforcement history on the
+# parcel: OTHER instruments on 06037-<apn> (the 10-digit AIN of ca.losangeles.parcels), in no
+# match run.
+portal: https://data.lacity.org
+dataset: cr8f-uc4j
+where: "violations_cited IS NOT NULL AND apn IS NOT NULL AND apn != 'No Record Found'"
+order_by: [":id"]
+date_field: violations_cited
+partition: year
+first_year: 1990
+uid: criscase
+doc_type: OTHER
+doc_type_raw: {field: violationtype}
+extra_pii: [address]
+parties: []
+parcel: {kind: pin, field: apn, county_fips: "06037"}   # = ca.losangeles.parcels AIN
+terms:
+  url: https://data.lacity.org/d/cr8f-uc4j
+  summary: "Los Angeles Open Data (data.lacity.org, Socrata), Los Angeles Housing Department, free, no login or app token. No license is set on the dataset (read 2026-11-25); City of Los Angeles open data terms of use (as-is, no warranty); no resale or redistribution clause found. data.lacity.org/robots.txt allows /resource/ (Crawl-delay: 1)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

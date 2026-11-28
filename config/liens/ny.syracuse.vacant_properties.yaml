@@ -1,0 +1,36 @@
+source_id: ny.syracuse.vacant_properties
+state: NY
+county_fips: "36067"   # Onondaga (City of Syracuse)
+# City of Syracuse Department of Neighborhood and Business Development "Vacant Properties"
+# (Open Data Syracuse, ArcGIS Online Vacant_Properties, 1,515 properties on 2026-11-25): the
+# city's vacant property registry, with the SBL, property address, the owner and the owner's
+# address, the vacancy type and registry status. A current list, so each property is one
+# OTHER instrument dated the day it was fetched (listed_on), in no match run. No parcel link
+# (the SBL is the city's print key, not ny.statewide.parcels SWIS_SBL_ID): the property is
+# found by its address (CITED PROPERTY). OwnerAddress is one string 'street city, ST zip'.
+api: arcgis
+layer_url: https://services6.arcgis.com/bdPqSfflsdgFRVVM/arcgis/rest/services/Vacant_Properties/FeatureServer/0
+order_by: [ObjectId]
+select: [ObjectId, SBL, PropertyAddress, Zip, Owner, OwnerAddress, Vacant, VPR_result,
+         completion_type_name, VPR_valid]
+listed_on: listed_on
+date_field: listed_on
+single_partition: true
+uid: SBL
+doc_type: OTHER
+doc_type_raw: {field: Vacant}
+address_split: {field: OwnerAddress, prefix: own_, form: slash}
+parties:
+  - role: other
+    name: Owner
+    address: {line1: own_line1, city: own_city, state: own_state, zip: own_zip}
+  - role: other                 # the vacant property; the matcher finds its parcel by address
+    const: CITED PROPERTY
+    address: {line1: PropertyAddress, city_const: SYRACUSE, state_const: NY, zip: Zip}
+extra_pii: [OwnerAddress, PropertyAddress]
+terms:
+  url: https://data.syr.gov/datasets/c23882a4f7904747ab7a4cab637d912d
+  summary: "City of Syracuse (Open Data Syracuse, ArcGIS Online), free, no login. Terms of Use (data.syr.gov/pages/termsofuse, read 2026-11-25): informational, no warranty, not official records; reuse allowed with the City named as source and the access and publication dates, and work products must state 'The City of Syracuse makes no representation, warranty or guarantee relating to the data or analyses derived from these data.' services6.arcgis.com/robots.txt answers 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,256 @@
+{
+ "attributes": [
+  {
+   "OBJECTID": 70308256,
+   "multiowner": null,
+   "own1": "TESTOWNER 1BBF27",
+   "owner_address1": "4525 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30907-3504",
+   "pin": "010-0-199-00-0",
+   "propdesc": "Residential Lots",
+   "siteaddress": "6757 TEST ST"
+  },
+  {
+   "OBJECTID": 70308257,
+   "multiowner": null,
+   "own1": "TESTOWNER A50738",
+   "owner_address1": "1046 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30907-3116",
+   "pin": "006-0-129-00-0",
+   "propdesc": "Residential Lots",
+   "siteaddress": "6409 TEST ST"
+  },
+  {
+   "OBJECTID": 70308258,
+   "multiowner": null,
+   "own1": "TESTOWNER 84DE63",
+   "owner_address1": "4235 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30904-3329",
+   "pin": "014-0-035-00-0",
+   "propdesc": "Residential Lots",
+   "siteaddress": "8967 TEST ST"
+  },
+  {
+   "OBJECTID": 70308259,
+   "multiowner": null,
+   "own1": "TESTOWNER C971AC",
+   "owner_address1": "4962 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30907-9218",
+   "pin": "006-0-250-00-0",
+   "propdesc": "Residential Lots",
+   "siteaddress": "777 TEST ST"
+  },
+  {
+   "OBJECTID": 70308260,
+   "multiowner": null,
+   "own1": "TESTOWNER F89097",
+   "owner_address1": "8188 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30907-3707",
+   "pin": "011-3-159-00-0",
+   "propdesc": "Residential Lots",
+   "siteaddress": "4973 TEST ST"
+  },
+  {
+   "OBJECTID": 70308261,
+   "multiowner": null,
+   "own1": "TESTOWNER E99488",
+   "owner_address1": "3139 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30907-3178",
+   "pin": "006-0-154-00-0",
+   "propdesc": "Residential Lots",
+   "siteaddress": "6368 TEST ST"
+  },
+  {
+   "OBJECTID": 70308262,
+   "multiowner": null,
+   "own1": "TESTOWNER DC7EED",
+   "owner_address1": "631 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30904-3331",
+   "pin": "013-0-035-00-0",
+   "propdesc": "Residential Lots",
+   "siteaddress": "3849 TEST ST"
+  },
+  {
+   "OBJECTID": 70308263,
+   "multiowner": null,
+   "own1": "TESTOWNER 33AAA3",
+   "owner_address1": "659 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30907",
+   "pin": "006-0-184-00-0",
+   "propdesc": "Residential Lots",
+   "siteaddress": "8787 TEST ST"
+  },
+  {
+   "OBJECTID": 70308264,
+   "multiowner": null,
+   "own1": "TESTOWNER A56167",
+   "owner_address1": "3146 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30907-3213",
+   "pin": "011-2-016-00-0",
+   "propdesc": "Residential Lots",
+   "siteaddress": "7632 TEST ST"
+  },
+  {
+   "OBJECTID": 70308265,
+   "multiowner": null,
+   "own1": "TESTOWNER DCBB7F",
+   "owner_address1": "1606 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30904",
+   "pin": "013-4-051-00-0",
+   "propdesc": "Residential Lots",
+   "siteaddress": "6409 TEST ST"
+  },
+  {
+   "OBJECTID": 70308266,
+   "multiowner": null,
+   "own1": "TESTOWNER EE14CE",
+   "owner_address1": "4550 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30917-1326",
+   "pin": "011-0-049-00-0",
+   "propdesc": "Residential Lots",
+   "siteaddress": "2054 TEST ST"
+  },
+  {
+   "OBJECTID": 70308267,
+   "multiowner": null,
+   "own1": "TESTOWNER 03880B",
+   "owner_address1": "2447 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30906",
+   "pin": "006-0-149-00-0",
+   "propdesc": "Residential Lots",
+   "siteaddress": "3040 TEST ST"
+  },
+  {
+   "OBJECTID": 70308268,
+   "multiowner": "TESTOWNER 097739",
+   "own1": "TESTOWNER D90D42",
+   "owner_address1": "1951 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30907-3181",
+   "pin": "006-0-185-00-0",
+   "propdesc": "Residential Lots",
+   "siteaddress": "218 TEST ST"
+  },
+  {
+   "OBJECTID": 70308269,
+   "multiowner": null,
+   "own1": "TESTOWNER 506C26",
+   "owner_address1": "2087 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30907",
+   "pin": "011-3-008-00-0",
+   "propdesc": "Residential Lots",
+   "siteaddress": "1942 TEST ST"
+  },
+  {
+   "OBJECTID": 70308270,
+   "multiowner": null,
+   "own1": "TESTOWNER 3D6392",
+   "owner_address1": "641 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30909",
+   "pin": "013-2-087-00-0",
+   "propdesc": "Residential Lots",
+   "siteaddress": "1481 TEST ST"
+  },
+  {
+   "OBJECTID": 70308271,
+   "multiowner": null,
+   "own1": "TESTOWNER C6E6C0 LLC",
+   "owner_address1": "7078 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30907-0821",
+   "pin": "011-0-278-01-0",
+   "propdesc": "Commercial Small Tracts",
+   "siteaddress": "7035 TEST ST"
+  },
+  {
+   "OBJECTID": 70308272,
+   "multiowner": "TESTOWNER E9D975",
+   "own1": "TESTOWNER 87D25F",
+   "owner_address1": "6660 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30904-3340",
+   "pin": "013-2-132-00-0",
+   "propdesc": "Residential Lots",
+   "siteaddress": "4230 TEST ST"
+  },
+  {
+   "OBJECTID": 70308273,
+   "multiowner": null,
+   "own1": "TESTOWNER AB5D88",
+   "owner_address1": "7644 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30907-3109",
+   "pin": "006-0-199-00-0",
+   "propdesc": "Residential Lots",
+   "siteaddress": "3011 TEST ST"
+  },
+  {
+   "OBJECTID": 70308274,
+   "multiowner": null,
+   "own1": "TESTOWNER 38F847",
+   "owner_address1": "8570 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30907-3109",
+   "pin": "006-0-210-00-0",
+   "propdesc": "Residential Lots",
+   "siteaddress": "8391 TEST ST"
+  },
+  {
+   "OBJECTID": 70308275,
+   "multiowner": "TESTOWNER 0008FB",
+   "own1": "TESTOWNER 96B1F3",
+   "owner_address1": "4681 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30904-3331",
+   "pin": "014-0-026-00-0",
+   "propdesc": "Residential Lots",
+   "siteaddress": "7287 TEST ST"
+  },
+  {
+   "OBJECTID": 70308276,
+   "multiowner": null,
+   "own1": "TESTOWNER 8EEB3B LLC",
+   "owner_address1": "6063 TEST ST",
+   "owner_citystatezip": "EVANS, GA 30809",
+   "pin": "011-0-022-00-0",
+   "propdesc": "Commercial Small Tracts",
+   "siteaddress": "7485 TEST ST"
+  },
+  {
+   "OBJECTID": 70308277,
+   "multiowner": "TESTOWNER 510387",
+   "own1": "TESTOWNER D5877B",
+   "owner_address1": "3030 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30904",
+   "pin": "013-4-062-00-0",
+   "propdesc": "Residential Lots",
+   "siteaddress": "4645 TEST ST"
+  },
+  {
+   "OBJECTID": 70308278,
+   "multiowner": null,
+   "own1": "TESTOWNER D3F409",
+   "owner_address1": "8916 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30906",
+   "pin": "011-0-130-00-0",
+   "propdesc": "Residential Lots",
+   "siteaddress": "4153 TEST ST"
+  },
+  {
+   "OBJECTID": 70308279,
+   "multiowner": null,
+   "own1": "TESTOWNER D95026",
+   "owner_address1": "1776 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30907-3763",
+   "pin": "011-3-073-00-0",
+   "propdesc": "Residential Lots",
+   "siteaddress": "8517 TEST ST"
+  },
+  {
+   "OBJECTID": 70308280,
+   "multiowner": "TESTOWNER 9BCDDC",
+   "own1": "TESTOWNER C6E324",
+   "owner_address1": "8447 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30917",
+   "pin": "011-3-040-00-0",
+   "propdesc": "Residential Lots",
+   "siteaddress": "266 TEST ST"
+  }
+ ],
+ "layer": "https://gismap.augustaga.gov/arcgis/rest/services/Map_LayersTS/MapServer/316",
+ "where": "1=1"
+}

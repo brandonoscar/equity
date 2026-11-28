@@ -49,7 +49,7 @@ jobs:
         run: |
           title="Source health alert $(date -u +%F)"
           if ! gh issue list --state open --search "in:title \"$title\"" --json number --jq '.[0].number' | grep -q .; then
-            { echo "Row counts fell more than 10%, fields changed, or a source went down:"; echo '```json'; cat alerts.json; echo '```'; } > body.md
+            { echo "Row counts fell more than 10%, fields changed, or a source went down:"; echo '```json'; head -c 60000 alerts.json; echo; echo '```'; } > body.md
             gh issue create --title "$title" --body-file body.md
           fi
       - if: steps.health.outputs.rc != '0'
@@ -58,7 +58,10 @@ jobs:
         run: |
           title="Adapter health failure $(date -u +%F)"
           if ! gh issue list --state open --search "in:title \"$title\"" --json number --jq '.[0].number' | grep -q .; then
-            { echo "A source changed format or went down. Report:"; echo '```json'; cat health.json; echo '```'; } > body.md
+            # Only the failing adapters, and capped: an issue body is limited to 65,536 characters
+            # (the full report of 1,000+ adapters is longer, and gh issue create then fails).
+            jq '{adapters, failed: [.results[] | select(.ok | not)]}' health.json | head -c 60000 > failed.json
+            { echo "A source changed format or went down. Failing adapters:"; echo '```json'; cat failed.json; echo; echo '```'; } > body.md
             gh issue create --title "$title" --body-file body.md
           fi
 

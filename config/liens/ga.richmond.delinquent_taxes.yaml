@@ -1,0 +1,36 @@
+source_id: ga.richmond.delinquent_taxes
+state: GA
+county_fips: "13245"   # Augusta-Richmond County
+# Augusta, GA "Delinquent Tax Parcels" (AGOL/CodeEnforcement_Map, layer 10, on the city's own
+# GIS server, gismap.augustaga.gov): 5,327 parcels with delinquent property tax, each with the
+# owner, the owner's mailing address, the delinquent bill amount and the number of years
+# delinquent, plus parcel value and features. PINs ('011-3-093-00-0') are the pin of
+# ga.richmond.parcels. No date per row (the layer is a live view of the tax system): the fetch
+# date stands in. Unpaid GA property tax is a lien on the parcel (O.C.G.A. 48-2-56); a senior
+# lien, not a judgment. City-owned parcels are left out.
+api: arcgis
+layer_url: https://gismap.augustaga.gov/arcgis/rest/services/AGOL/CodeEnforcement_Map/MapServer/10
+where: "city_owned <> 'Yes'"
+single_partition: true
+select: [OBJECTID, pin, own1, owner_address1, owner_citystatezip, siteaddress, delinq_bill_amt, delinq_yrs]
+order_by: [OBJECTID]
+listed_on: listed_on
+date_field: listed_on
+uid: pin
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Augusta-Richmond County delinquent property tax
+amount: delinq_bill_amt
+parties:
+  - role: debtor
+    name: own1
+    address: {line1: owner_address1, csz: owner_citystatezip}   # the tax-billing address
+  - role: creditor
+    const: Augusta-Richmond County Tax Commissioner
+parcel: {kind: pin, field: pin, county_fips: "13245"}
+extra_pii: [siteaddress]
+terms:
+  url: https://gismap.augustaga.gov/arcgis/rest/services/AGOL/CodeEnforcement_Map/MapServer
+  summary: "Augusta, GA GIS server (gismap.augustaga.gov, robots.txt absent), public, free, no login; no license or use restriction stated on the service. Same server as ga.richmond.parcels."
+  checked_on: 2026-11-27
+  robots_checked_on: 2026-11-27
+  cost_model: free

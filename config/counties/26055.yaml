@@ -1,0 +1,29 @@
+source_id: mi.grand_traverse.parcels
+state: MI
+# Grand Traverse County (MI) GIS public tax parcel service (Public_Services/Tax_Parcel_Public,
+# copyright 'GTC GIS'; 56,797 rows on 2026-11-25, LASTUPDATE through 2026-08): owner names,
+# owner mailing address, property address, property class.
+layer_url: https://gis.gtcountymi.gov/arcgis/rest/services/Public_Services/Tax_Parcel_Public/MapServer/0
+order_by: OBJECTID
+page_size: 1000          # maxRecordCount 1000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "055"}
+fields:
+  parcel_id: PARCELID    # '03-791-021-04'
+  owner1: OWNERNME1
+  owner2: OWNERNME2
+  mail_line1: PSTLADDRESS
+  mail_city: PSTLCITY
+  mail_state: PSTLSTATE
+  mail_zip: PSTLZIP5
+  situs_line1: SITEADDRESS   # SITECTSTZP ('TRAVERSE CITY, MI 49686') is not mapped
+  situs_state: {const: MI}
+  land_use_code: CLASSCD
+  land_use_desc: CLASSDSCRP
+value_basis: "LNDVALUE / IMPVALUE, CNTASSDVAL / PRVASSDVAL (assessed = 50% of true cash value) and CNTTXBLVAL / PRVTXBLVAL are present but the layer has no tax-year field, so no values or tax_year are mapped and no assessment facts are emitted. PRE (principal residence exemption percent) and the last-sale fields are not mapped."
+terms:
+  url: https://gis.gtcountymi.gov/arcgis/rest/services/Public_Services/Tax_Parcel_Public/MapServer
+  summary: "Grand Traverse County (MI) GIS ArcGIS Server, Public_Services/Tax_Parcel_Public (copyright and accessInformation 'GTC GIS'; 'intended to be used for public facing web maps and web applications'); public MapServer, no login, token or fee. No licence or use-restriction text (read 2026-11-25). gis.gtcountymi.gov/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

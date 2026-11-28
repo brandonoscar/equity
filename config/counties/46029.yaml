@@ -1,0 +1,36 @@
+source_id: sd.codington.parcels
+state: SD
+# Codington County (Watertown) parcels on the First District Association of Local Governments GIS
+# server ('Codington County MapNet', codingtonparcels MapServer layer 10 'Codington Parcels';
+# 18,479 rows on 2026-11-25, OWNER1 filled on 16,842, sales recorded through 2026): owner,
+# additional owner, mailing address, property street, assessed values and last deed.
+# RECORD (the county record number) is a double, so parcel ids read like '20206.0'.
+layer_url: https://www.1stdistrict.org/arcgis/rest/services/Codington/codingtonparcels/MapServer/10
+order_by: OBJECTID
+page_size: 1000
+min_interval_s: 1.0
+county: {constant: "029"}
+fields:
+  parcel_id: RECORD      # 23 rows have none and are skipped
+  owner1: OWNER1
+  owner2: ADD_L_OWNE     # 'additional owner'
+  mail_line1: OWNER_STRE
+  mail_city: OWNER_CITY
+  mail_state: OWNER_ST
+  mail_zip: OWNER_ZIP
+  situs_line1: PROP_STREE
+  situs_state: {const: SD}
+  land_use_code: LAND_CODE
+  land_value: ASSESSED_L
+  bldg_value: ASSESSED_B
+  assessed_value: ASSESSED_T
+  tax_year: {as_retrieved: true}   # no assessment-year field: values as observed on retrieval
+  deed_book: BOOK
+  deed_page: PAGE
+value_basis: "ASSESSED_L / ASSESSED_B / ASSESSED_T = county assessed land, building and total value (ASSESSED_L + ASSESSED_B = ASSESSED_T on sampled rows). The layer has no assessment-year field (YEAR_ varies by parcel, e.g. 2015 next to UP_DATE 7/29/2015 on sampled rows, so it reads as the year the parcel record was drawn), so values are recorded as observed on retrieval (tax_year: as_retrieved). SALE_PR / SALE_YEAR, INSTRUMENT and OWNER_OCCU are not mapped."
+terms:
+  url: https://www.1stdistrict.org/arcgis/rest/services/Codington/codingtonparcels/MapServer
+  summary: "First District Association of Local Governments (Watertown, SD) public ArcGIS Server MapServer, 'Official GIS Application for Codington County & Watertown, SD'; no login, token or fee. iteminfo licenseInfo, accessInformation and copyrightText are empty (read 2026-11-25); no use-constraint text found. www.1stdistrict.org/robots.txt answers HTTP 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

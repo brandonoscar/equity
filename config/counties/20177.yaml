@@ -1,0 +1,29 @@
+source_id: ks.shawnee.parcels
+state: KS
+# Shawnee County (Topeka) 'Parcels With CAMA' MapServer on the City of Topeka GIS host
+# (iteminfo summary 'Shawnee County Parcels With CAMA'; 76,998 rows on 2026-11-25, oname filled on
+# all, countywide incl. Tecumseh, Silver Lake, Auburn...). Owner name, owner mailing name and
+# address, property address and CAMA land/building/total values.
+# paddress2 is the site 'City, KS  ZIP' line (no canonical field takes a situs city/state/ZIP
+# string, so it is not mapped); mailaddress2 is the mailing 'CITY ST ZIP' line.
+layer_url: https://maps.topeka.gov/arcgis/rest/services/ParcelPublishing/ParcelsWithCAMA/MapServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "177"}
+use_restrictions: [no_mailing_list, no_resale]
+fields:
+  parcel_id: PIN         # Kansas PIN, '1361403002001004'; QuickRefID ('R42131') not mapped
+  owner1: oname
+  mail_line1: mailaddress
+  mail_city_state_zip: mailaddress2
+  situs_line1: paddress
+  situs_state: {const: KS}
+  land_use_desc: propertytype   # 'Residential', 'Commercial' ...
+value_basis: "ldval / bldgval / totval are the CAMA land, building and total values (Kansas appraised value; the service does not name the roll year), so no tax_year is mapped and no assessment facts are emitted; raw values stay in source records. mailname (the name on the tax mailing, usually the owner) and recordeddate (last recorded deed date) are not mapped."
+terms:
+  url: https://maps.topeka.gov/arcgis/rest/services/ParcelPublishing/ParcelsWithCAMA/MapServer
+  summary: "City of Topeka GIS public MapServer 'ParcelsWithCAMA' ('Shawnee County Parcels With CAMA'), no login, token or fee. iteminfo licenseInfo and accessInformation are empty (read 2026-11-25); no use-constraint text on the service. Kansas K.S.A. 45-230 bars using names and addresses from public records to sell or offer property or services: recorded as no_mailing_list and no_resale. maps.topeka.gov/robots.txt answers HTTP 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

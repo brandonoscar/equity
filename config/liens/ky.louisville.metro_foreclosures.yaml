@@ -1,0 +1,40 @@
+source_id: ky.louisville.metro_foreclosures
+state: KY
+county_fips: "21111"   # Louisville / Jefferson County Metro Government
+# Louisville Metro "Property Foreclosures" (3,624 rows on 2026-11-25, last edited 2026-09-24):
+# foreclosure actions brought in Jefferson Circuit Court on Metro's code-enforcement,
+# demolition and similar liens (research note: not every row verified as a lien
+# foreclosure), with the case number, caption ('CW vs ... ET AL'), filing date, sale date and
+# purchaser (often METRO). Loaded like the other foreclosure lists (debt kind foreclosure):
+# the caption's defendant is the debtor and the property address is its address.
+# Full_Parcel_ID is empty on every row today, so each row is OTHER (no parcel to tie a
+# LIS_PENDENS to); a row that gains a parcel id becomes LIS_PENDENS on that parcel. Rows with
+# no case number (1,737) or no filing date are skipped: there is no case to key them by.
+# The companion 2021_Present_Metro_Foreclosure layer (105 rows, with owner and parcel) repeats
+# these cases and is not loaded.
+api: arcgis
+layer_url: https://services1.arcgis.com/79kfd2K6fskCAkyg/arcgis/rest/services/Louisville_Metro_KY_Property_Foreclosures/FeatureServer/0
+single_partition: true
+order_by: [ObjectId]
+select: [ObjectId, House_Nr, Dir, Street_Name, St_Type, Post_Dir, Zip, Full_Parcel_ID,
+         Action_Filed, Case_, Case_Style, Sale_Date, Sale_Price, Purchaser]
+date_field: Action_Filed
+uid: Case_
+doc_type: {field: Full_Parcel_ID, map: {"": OTHER}, default: LIS_PENDENS}
+doc_type_raw: Louisville Metro lien foreclosure
+caption_field: Case_Style
+parties:
+  - role: creditor
+    name: caption_plaintiff
+  - role: debtor
+    name: caption_defendant
+    address: {line1: [House_Nr, Dir, Street_Name, St_Type, Post_Dir], city_const: LOUISVILLE,
+              state_const: KY, zip: Zip}   # the property
+parcel: {kind: pin, field: Full_Parcel_ID, county_fips: "21111"}
+extra_pii: [Case_Style, Purchaser]
+terms:
+  url: https://www.arcgis.com/home/item.html?id=62c648120ab44b7794f8b484884efaa9
+  summary: "Louisville Metro Government Open Data public ArcGIS Online table, free, no login. licenseInfo (read 2026-11-25): Louisville Metro Open Data Platform Terms of Use (https://louisville-metro-opendata-lojic.hub.arcgis.com/pages/terms-of-use-and-license). Internal use, not redistributed. services1.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,256 @@
+{
+ "layer": "https://gismap.augustaga.gov/arcgis/rest/services/AGOL/CodeEnforcement_Map/MapServer/10",
+ "rows": [
+  {
+   "OBJECTID": 70480276,
+   "delinq_bill_amt": "4059.31",
+   "delinq_yrs": 1,
+   "own1": "TESTOWNER 96344F",
+   "owner_address1": "4739 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30909-3215",
+   "pin": "011-3-093-00-0",
+   "siteaddress": "5330 TEST ST"
+  },
+  {
+   "OBJECTID": 70480344,
+   "delinq_bill_amt": "1185.77",
+   "delinq_yrs": 1,
+   "own1": "TESTOWNER AD6FCC",
+   "owner_address1": "3474 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30904-5927",
+   "pin": "013-4-169-00-0",
+   "siteaddress": "5222 TEST ST"
+  },
+  {
+   "OBJECTID": 70480353,
+   "delinq_bill_amt": "67.82",
+   "delinq_yrs": 1,
+   "own1": "TESTOWNER 6548B1",
+   "owner_address1": "3589 TEST ST",
+   "owner_citystatezip": "EVANS, GA 30809-5460",
+   "pin": "013-1-241-00-0",
+   "siteaddress": "7402 TEST ST"
+  },
+  {
+   "OBJECTID": 70480398,
+   "delinq_bill_amt": "42.72",
+   "delinq_yrs": 1,
+   "own1": "TESTOWNER CA2080",
+   "owner_address1": "7082 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30907-8976",
+   "pin": "013-1-116-00-0",
+   "siteaddress": "7199 TEST ST"
+  },
+  {
+   "OBJECTID": 70480402,
+   "delinq_bill_amt": "6420.37",
+   "delinq_yrs": 1,
+   "own1": "TESTOWNER 6A1EAB LLC",
+   "owner_address1": "8407 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30907-4732",
+   "pin": "011-0-077-00-0",
+   "siteaddress": "6891 TEST ST"
+  },
+  {
+   "OBJECTID": 70480493,
+   "delinq_bill_amt": "2240.28",
+   "delinq_yrs": 1,
+   "own1": "TESTOWNER A939F6 LLC",
+   "owner_address1": "8409 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30907-3505",
+   "pin": "016-2-137-00-0",
+   "siteaddress": "5206 TEST ST"
+  },
+  {
+   "OBJECTID": 70480525,
+   "delinq_bill_amt": "3345.01",
+   "delinq_yrs": 1,
+   "own1": "TESTOWNER 97D8BE",
+   "owner_address1": "3431 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30904-3329",
+   "pin": "014-0-031-00-0",
+   "siteaddress": "2568 TEST ST"
+  },
+  {
+   "OBJECTID": 70480540,
+   "delinq_bill_amt": "2851.51",
+   "delinq_yrs": 1,
+   "own1": "TESTOWNER EB985E",
+   "owner_address1": "7761 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30909-2248",
+   "pin": "013-1-137-00-0",
+   "siteaddress": "4032 TEST ST"
+  },
+  {
+   "OBJECTID": 70480587,
+   "delinq_bill_amt": "2935.96",
+   "delinq_yrs": 1,
+   "own1": "TESTOWNER 8B8733",
+   "owner_address1": "1896 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30904",
+   "pin": "013-4-184-00-0",
+   "siteaddress": "324 TEST ST"
+  },
+  {
+   "OBJECTID": 70480639,
+   "delinq_bill_amt": "4221.44",
+   "delinq_yrs": 2,
+   "own1": "TESTOWNER 85B794",
+   "owner_address1": "7308 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30907",
+   "pin": "011-0-045-00-0",
+   "siteaddress": "5687 TEST ST"
+  },
+  {
+   "OBJECTID": 70480647,
+   "delinq_bill_amt": "3770.76",
+   "delinq_yrs": 1,
+   "own1": "TESTOWNER 33AAA3",
+   "owner_address1": "659 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30907",
+   "pin": "006-0-184-00-0",
+   "siteaddress": "8787 TEST ST"
+  },
+  {
+   "OBJECTID": 70480706,
+   "delinq_bill_amt": "495.03",
+   "delinq_yrs": 1,
+   "own1": "TESTOWNER 51081C LLC",
+   "owner_address1": "3179 TEST ST",
+   "owner_citystatezip": "ATLANTA, GA 30328",
+   "pin": "013-4-102-00-0",
+   "siteaddress": "6900 TEST ST"
+  },
+  {
+   "OBJECTID": 70480818,
+   "delinq_bill_amt": "131.03",
+   "delinq_yrs": 1,
+   "own1": "TESTOWNER AA25F3",
+   "owner_address1": "196 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30907-4305",
+   "pin": "010-0-020-00-0",
+   "siteaddress": "6441 TEST ST"
+  },
+  {
+   "OBJECTID": 70481022,
+   "delinq_bill_amt": "1678.13",
+   "delinq_yrs": 1,
+   "own1": "TESTOWNER A67542",
+   "owner_address1": "5036 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30904-3375",
+   "pin": "014-0-043-00-0",
+   "siteaddress": "6874 TEST ST"
+  },
+  {
+   "OBJECTID": 70481034,
+   "delinq_bill_amt": "4070.81",
+   "delinq_yrs": 1,
+   "own1": "TESTOWNER 9FD5DC",
+   "owner_address1": "6114 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30904-3324",
+   "pin": "013-4-064-00-0",
+   "siteaddress": "6801 TEST ST"
+  },
+  {
+   "OBJECTID": 70481137,
+   "delinq_bill_amt": "1172.87",
+   "delinq_yrs": 1,
+   "own1": "TESTOWNER 87D25F",
+   "owner_address1": "6660 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30904-3340",
+   "pin": "013-2-132-00-0",
+   "siteaddress": "4230 TEST ST"
+  },
+  {
+   "OBJECTID": 70481255,
+   "delinq_bill_amt": "4170.95",
+   "delinq_yrs": 1,
+   "own1": "TESTOWNER 6D85D2 LLC",
+   "owner_address1": "2092 TEST ST",
+   "owner_citystatezip": "LITHIA SPRINGS, GA 30122",
+   "pin": "016-2-053-00-0",
+   "siteaddress": "942 TEST ST"
+  },
+  {
+   "OBJECTID": 70481283,
+   "delinq_bill_amt": "5565.00",
+   "delinq_yrs": 2,
+   "own1": "TESTOWNER 4B651A",
+   "owner_address1": "5892 TEST ST",
+   "owner_citystatezip": "INDIANAPOLIS, IN 46226",
+   "pin": "017-1-186-00-0",
+   "siteaddress": "151 TEST ST"
+  },
+  {
+   "OBJECTID": 70481344,
+   "delinq_bill_amt": "253.19",
+   "delinq_yrs": 1,
+   "own1": "TESTOWNER 35B39F",
+   "owner_address1": "3465 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30904-3141",
+   "pin": "020-3-190-00-0",
+   "siteaddress": "1926 TEST ST"
+  },
+  {
+   "OBJECTID": 70481348,
+   "delinq_bill_amt": "2730.55",
+   "delinq_yrs": 1,
+   "own1": "TESTOWNER F6DD95",
+   "owner_address1": "5647 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30907-3631",
+   "pin": "016-2-067-00-0",
+   "siteaddress": "8008 TEST ST"
+  },
+  {
+   "OBJECTID": 70481480,
+   "delinq_bill_amt": "3009.39",
+   "delinq_yrs": 3,
+   "own1": "TESTOWNER 20AF48 LLC",
+   "owner_address1": "6329 TEST ST",
+   "owner_citystatezip": "EVANS, GA 30809-3742",
+   "pin": "017-1-178-00-0",
+   "siteaddress": "6727 TEST ST"
+  },
+  {
+   "OBJECTID": 70481496,
+   "delinq_bill_amt": "3856.66",
+   "delinq_yrs": 1,
+   "own1": "TESTOWNER C4E29D",
+   "owner_address1": "4966 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30909-6024",
+   "pin": "017-2-013-00-0",
+   "siteaddress": "8876 TEST ST"
+  },
+  {
+   "OBJECTID": 70481498,
+   "delinq_bill_amt": "448.66",
+   "delinq_yrs": 1,
+   "own1": "TESTOWNER B5B06F",
+   "owner_address1": "3218 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30907-3750",
+   "pin": "016-0-120-00-0",
+   "siteaddress": "3378 TEST ST"
+  },
+  {
+   "OBJECTID": 70481551,
+   "delinq_bill_amt": "1466.77",
+   "delinq_yrs": 1,
+   "own1": "TESTOWNER CDDAC6",
+   "owner_address1": "8487 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30904-3143",
+   "pin": "020-1-187-00-0",
+   "siteaddress": "1983 TEST ST"
+  },
+  {
+   "OBJECTID": 70481558,
+   "delinq_bill_amt": "2200.17",
+   "delinq_yrs": 1,
+   "own1": "TESTOWNER F30052",
+   "owner_address1": "6932 TEST ST",
+   "owner_citystatezip": "AUGUSTA, GA 30909-2072",
+   "pin": "018-0-305-00-0",
+   "siteaddress": "7460 TEST ST"
+  }
+ ],
+ "where": "(city_owned <> 'Yes')"
+}

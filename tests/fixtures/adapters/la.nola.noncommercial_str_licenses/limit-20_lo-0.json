@@ -1,0 +1,746 @@
+{
+ "portal": "https://data.nola.gov",
+ "rows": [
+  {
+   "address": "7780 TEST ST",
+   "application_date": "2026-04-30T13:29:54.000",
+   "bedrooms_rented": "2",
+   "current_status": "Issued",
+   "current_status_date": "2026-06-09T12:38:27.000",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "issue_date": "2026-06-09T12:38:27.000",
+   "license_number": "24-NSTR-10773",
+   "licid": "375933",
+   "location": {
+    "coordinates": [
+     -90.12410634329285,
+     29.921862492082766
+    ],
+    "type": "Point"
+   },
+   "max_occupancy": "4",
+   "operator": "TESTOWNER 9F6716",
+   "operator_email": "TESTOWNER 0A4F78",
+   "operator_permit": "24-OSTR-10760",
+   "operator_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=GYRZFG"
+   },
+   "operator_phone": "TESTOWNER 59F20A",
+   "operator_type": "Owner",
+   "owner": "TESTOWNER 7066B8",
+   "owner_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=1PAT7D"
+   },
+   "partial_whole": "Whole Unit",
+   "reference_code": "1PAT7D",
+   "type": "Non-Commercial Short Term Rental",
+   "type_of_building": "Two-Family (Double)",
+   "x": "TESTOWNER 463982",
+   "y": "TESTOWNER 7DE3AE"
+  },
+  {
+   "address": "3731 TEST ST",
+   "application_date": "2026-04-24T14:15:30.000",
+   "bedrooms_rented": "3",
+   "current_status": "Issued",
+   "current_status_date": "2026-07-31T11:23:24.000",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "issue_date": "2026-07-31T11:23:24.000",
+   "license_number": "23-NSTR-15308",
+   "licid": "385195",
+   "location": {
+    "coordinates": [
+     -90.10545665668153,
+     29.94934756991262
+    ],
+    "type": "Point"
+   },
+   "max_occupancy": "6",
+   "operator": "TESTOWNER 857AE0",
+   "operator_email": "TESTOWNER 123DC5",
+   "operator_permit": "23-OSTR-07442",
+   "operator_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=GH51FB"
+   },
+   "operator_phone": "TESTOWNER 2065BE",
+   "operator_type": "Owner",
+   "owner": "TESTOWNER 51FB66",
+   "owner_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=BDA847"
+   },
+   "partial_whole": "Whole Unit",
+   "reference_code": "BDA847",
+   "type": "Non-Commercial Short Term Rental",
+   "type_of_building": "Two-Family (Double)",
+   "x": "TESTOWNER E38D6D",
+   "y": "TESTOWNER B8D0EE"
+  },
+  {
+   "address": "1060 TEST ST",
+   "application_date": "2026-07-23T16:26:13.000",
+   "bedrooms_rented": "2",
+   "current_status": "Issued",
+   "current_status_date": "2026-08-13T10:45:56.000",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "issue_date": "2026-08-13T10:45:56.000",
+   "license_number": "26-NSTR-04464",
+   "licid": "399578",
+   "location": {
+    "coordinates": [
+     -90.07117768808789,
+     29.980166788265326
+    ],
+    "type": "Point"
+   },
+   "max_occupancy": "4",
+   "operator": "TESTOWNER 81B460",
+   "operator_email": "TESTOWNER BD6F90",
+   "operator_permit": "23-OSTR-16007",
+   "operator_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=C3YN8L"
+   },
+   "operator_phone": "TESTOWNER 1A2002",
+   "operator_type": "Owner",
+   "owner": "TESTOWNER FD212F",
+   "owner_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=5PK3KT"
+   },
+   "partial_whole": "Partial Unit",
+   "reference_code": "5PK3KT",
+   "type": "Non-Commercial Short Term Rental",
+   "type_of_building": "Single Family Home",
+   "x": "TESTOWNER 43A1D3",
+   "y": "TESTOWNER 036CDD"
+  },
+  {
+   "address": "4167 TEST ST",
+   "application_date": "2026-03-13T15:41:01.000",
+   "bedrooms_rented": "3",
+   "current_status": "Issued",
+   "current_status_date": "2026-04-24T12:56:45.000",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "issue_date": "2026-04-24T12:56:45.000",
+   "license_number": "26-NSTR-04530",
+   "licid": "399646",
+   "location": {
+    "coordinates": [
+     -90.09041807448182,
+     29.94296685454897
+    ],
+    "type": "Point"
+   },
+   "max_occupancy": "6",
+   "operator": "TESTOWNER 5243DE",
+   "operator_email": "TESTOWNER 8859AE",
+   "operator_permit": "22-OSTR-08948",
+   "operator_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=183LEC"
+   },
+   "operator_phone": "TESTOWNER 9C4A48",
+   "operator_type": "Operator/Property Manager",
+   "owner": "TESTOWNER 97AA4F",
+   "owner_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=21QUNQ"
+   },
+   "partial_whole": "Whole Unit",
+   "reference_code": "21QUNQ",
+   "type": "Non-Commercial Short Term Rental",
+   "type_of_building": "Two-Family (Double)",
+   "x": "TESTOWNER F66292",
+   "y": "TESTOWNER 127E16"
+  },
+  {
+   "address": "7958 TEST ST",
+   "application_date": "2026-03-31T08:55:30.000",
+   "bedrooms_rented": "3",
+   "current_status": "Issued",
+   "current_status_date": "2026-05-01T09:28:53.000",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "issue_date": "2026-05-01T09:28:53.000",
+   "license_number": "23-NSTR-14445",
+   "licid": "401458",
+   "location": {
+    "coordinates": [
+     -90.09641759137614,
+     29.979306222023563
+    ],
+    "type": "Point"
+   },
+   "max_occupancy": "6",
+   "operator": "TESTOWNER 864920",
+   "operator_email": "TESTOWNER 13C1F1",
+   "operator_permit": "23-OSTR-19687",
+   "operator_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=F1NXT7"
+   },
+   "operator_phone": "TESTOWNER 5B94BD",
+   "operator_type": "Operator/Property Manager",
+   "owner": "TESTOWNER 196D70",
+   "owner_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=ZYS3E7"
+   },
+   "partial_whole": "Whole Unit",
+   "reference_code": "ZYS3E7",
+   "type": "Non-Commercial Short Term Rental",
+   "type_of_building": "Two-Family (Double)",
+   "x": "TESTOWNER 851413",
+   "y": "TESTOWNER 78A968"
+  },
+  {
+   "address": "8852 TEST ST",
+   "application_date": "2026-04-20T08:55:46.000",
+   "bedrooms_rented": "2",
+   "current_status": "Issued",
+   "current_status_date": "2026-05-14T13:19:27.000",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "issue_date": "2026-05-14T13:19:27.000",
+   "license_number": "23-NSTR-15880",
+   "licid": "401479",
+   "location": {
+    "coordinates": [
+     -90.04880689438093,
+     29.96642231377446
+    ],
+    "type": "Point"
+   },
+   "max_occupancy": "4",
+   "operator": "TESTOWNER 88C8D0",
+   "operator_email": "TESTOWNER FA805E",
+   "operator_permit": "24-OSTR-19576",
+   "operator_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=CU37SW"
+   },
+   "operator_phone": "TESTOWNER B221C3",
+   "operator_type": "Owner",
+   "owner": "TESTOWNER 038EC7",
+   "owner_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=14CHWX"
+   },
+   "partial_whole": "Whole Unit",
+   "reference_code": "14CHWX",
+   "type": "Non-Commercial Short Term Rental",
+   "type_of_building": "Two-Family (Double)",
+   "x": "TESTOWNER 717DC3",
+   "y": "TESTOWNER 815894"
+  },
+  {
+   "address": "8765 TEST ST",
+   "application_date": "2026-04-03T09:12:11.000",
+   "bedrooms_rented": "1",
+   "current_status": "Issued",
+   "current_status_date": "2026-05-12T11:58:39.000",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "issue_date": "2026-05-12T11:58:39.000",
+   "license_number": "23-NSTR-15265",
+   "licid": "401545",
+   "location": {
+    "coordinates": [
+     -90.126452958456,
+     29.95142345224794
+    ],
+    "type": "Point"
+   },
+   "max_occupancy": "2",
+   "operator": "TESTOWNER C3C7B2",
+   "operator_email": "TESTOWNER 0A8658",
+   "operator_permit": "24-OSTR-03242",
+   "operator_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=62BMY5"
+   },
+   "operator_phone": "TESTOWNER A73657",
+   "operator_type": "Owner",
+   "owner": "TESTOWNER D11418",
+   "owner_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=5V1E65"
+   },
+   "partial_whole": "Whole Unit",
+   "reference_code": "5V1E65",
+   "type": "Non-Commercial Short Term Rental",
+   "type_of_building": "Single Family Home",
+   "x": "TESTOWNER 85F3C1",
+   "y": "TESTOWNER F00B7C"
+  },
+  {
+   "address": "3382 TEST ST",
+   "application_date": "2026-03-31T15:32:21.000",
+   "bedrooms_rented": "1",
+   "current_status": "Issued",
+   "current_status_date": "2026-05-06T09:40:42.000",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "issue_date": "2026-05-06T09:40:42.000",
+   "license_number": "25-NSTR-00525",
+   "licid": "401584",
+   "location": {
+    "coordinates": [
+     -90.09780500050265,
+     29.920411846382194
+    ],
+    "type": "Point"
+   },
+   "max_occupancy": "2",
+   "operator": "TESTOWNER C56CA6",
+   "operator_email": "TESTOWNER 8736D9",
+   "operator_permit": "24-OSTR-20246",
+   "operator_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=4SEBKX"
+   },
+   "operator_phone": "TESTOWNER 985A0E",
+   "operator_type": "Owner",
+   "owner": "TESTOWNER 120A5D",
+   "owner_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=ZEFBM6"
+   },
+   "partial_whole": "Whole Unit",
+   "reference_code": "ZEFBM6",
+   "type": "Non-Commercial Short Term Rental",
+   "type_of_building": "Two-Family (Double)",
+   "x": "TESTOWNER F8C1DE",
+   "y": "TESTOWNER B61ED9"
+  },
+  {
+   "address": "978 TEST ST",
+   "application_date": "2026-03-31T20:05:13.000",
+   "bedrooms_rented": "2",
+   "current_status": "Issued",
+   "current_status_date": "2026-05-01T09:25:48.000",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "issue_date": "2026-05-01T09:25:48.000",
+   "license_number": "23-NSTR-14708",
+   "licid": "401614",
+   "location": {
+    "coordinates": [
+     -90.08114666314155,
+     29.940010418862496
+    ],
+    "type": "Point"
+   },
+   "max_occupancy": "4",
+   "operator": "TESTOWNER 87B673",
+   "operator_email": "TESTOWNER 8B733E",
+   "operator_permit": "23-OSTR-14669",
+   "operator_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=3BVK37"
+   },
+   "operator_phone": "TESTOWNER 354598",
+   "operator_type": "Owner",
+   "owner": "TESTOWNER 649432",
+   "owner_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=B6RCYD"
+   },
+   "partial_whole": "Whole Unit",
+   "reference_code": "B6RCYD",
+   "type": "Non-Commercial Short Term Rental",
+   "type_of_building": "Two-Family (Double)",
+   "x": "TESTOWNER 3981DC",
+   "y": "TESTOWNER 79B54D"
+  },
+  {
+   "address": "9034 TEST ST",
+   "application_date": "2026-03-31T19:00:51.000",
+   "bedrooms_rented": "3",
+   "current_status": "Issued",
+   "current_status_date": "2026-05-13T15:01:52.000",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "issue_date": "2026-05-13T15:01:52.000",
+   "license_number": "23-NSTR-14369",
+   "licid": "401616",
+   "location": {
+    "coordinates": [
+     -90.07999659467418,
+     29.99962804947537
+    ],
+    "type": "Point"
+   },
+   "max_occupancy": "6",
+   "operator": "TESTOWNER CA367B",
+   "operator_email": "TESTOWNER CAEFAF",
+   "operator_permit": "23-OSTR-05710",
+   "operator_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=VW58XU"
+   },
+   "operator_phone": "TESTOWNER BD7D00",
+   "operator_type": "Owner",
+   "owner": "TESTOWNER 726A3B",
+   "owner_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=RRBBZP"
+   },
+   "partial_whole": "Whole Unit",
+   "reference_code": "RRBBZP",
+   "type": "Non-Commercial Short Term Rental",
+   "type_of_building": "Two-Family (Double)",
+   "x": "TESTOWNER 8AB20F",
+   "y": "TESTOWNER 9214B2"
+  },
+  {
+   "address": "6419 TEST ST",
+   "application_date": "2026-04-29T11:29:15.000",
+   "bedrooms_rented": "3",
+   "current_status": "Issued",
+   "current_status_date": "2026-07-01T15:56:57.000",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "issue_date": "2026-07-01T15:56:57.000",
+   "license_number": "23-NSTR-15312",
+   "licid": "401617",
+   "location": {
+    "coordinates": [
+     -90.1122484419152,
+     29.961915890423747
+    ],
+    "type": "Point"
+   },
+   "max_occupancy": "6",
+   "operator": "TESTOWNER 8BBEDD",
+   "operator_email": "TESTOWNER 797C97",
+   "operator_permit": "23-OSTR-15307",
+   "operator_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=UFSBVP"
+   },
+   "operator_phone": "TESTOWNER 627D0F",
+   "operator_type": "Owner",
+   "owner": "TESTOWNER 391BFD",
+   "owner_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=XA1YLM"
+   },
+   "partial_whole": "Whole Unit",
+   "reference_code": "XA1YLM",
+   "type": "Non-Commercial Short Term Rental",
+   "type_of_building": "Two-Family (Double)",
+   "x": "TESTOWNER D2E364",
+   "y": "TESTOWNER A5F1D8"
+  },
+  {
+   "address": "7115 TEST ST",
+   "application_date": "2026-04-28T14:39:15.000",
+   "bedrooms_rented": "2",
+   "current_status": "Issued",
+   "current_status_date": "2026-07-08T13:30:21.000",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "issue_date": "2026-07-08T13:30:21.000",
+   "license_number": "23-NSTR-16358",
+   "licid": "401666",
+   "location": {
+    "coordinates": [
+     -90.11669015013621,
+     29.92696968047356
+    ],
+    "type": "Point"
+   },
+   "max_occupancy": "4",
+   "operator": "TESTOWNER 0888A0",
+   "operator_email": "TESTOWNER 3798B9",
+   "operator_permit": "25-OSTR-37771",
+   "operator_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=7VDJH5"
+   },
+   "operator_phone": "TESTOWNER CFDC92",
+   "operator_type": "Operator/Property Manager",
+   "owner": "TESTOWNER D797DF",
+   "owner_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=A76Q16"
+   },
+   "partial_whole": "Whole Unit",
+   "reference_code": "A76Q16",
+   "type": "Non-Commercial Short Term Rental",
+   "type_of_building": "Two-Family (Double)",
+   "x": "TESTOWNER 94FAF6",
+   "y": "TESTOWNER 98F988"
+  },
+  {
+   "address": "3455 TEST ST",
+   "application_date": "2026-04-21T13:02:47.000",
+   "bedrooms_rented": "2",
+   "current_status": "Issued",
+   "current_status_date": "2026-05-06T13:59:52.000",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "issue_date": "2026-05-06T13:59:52.000",
+   "license_number": "24-NSTR-10893",
+   "licid": "401667",
+   "location": {
+    "coordinates": [
+     -90.06258674577101,
+     30.01335273773532
+    ],
+    "type": "Point"
+   },
+   "max_occupancy": "4",
+   "operator": "TESTOWNER 46ED1C",
+   "operator_email": "TESTOWNER 0405E4",
+   "operator_permit": "24-OSTR-10881",
+   "operator_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=VHFBAH"
+   },
+   "operator_phone": "TESTOWNER 15B617",
+   "operator_type": "Owner",
+   "owner": "TESTOWNER 2181AF",
+   "owner_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=NYYJ2M"
+   },
+   "partial_whole": "Whole Unit",
+   "reference_code": "NYYJ2M",
+   "type": "Non-Commercial Short Term Rental",
+   "type_of_building": "Two-Family (Double)",
+   "x": "TESTOWNER 9E725D",
+   "y": "TESTOWNER AC2C57"
+  },
+  {
+   "address": "6164 TEST ST",
+   "application_date": "2026-04-27T14:00:00.000",
+   "bedrooms_rented": "1",
+   "current_status": "Issued",
+   "current_status_date": "2026-06-04T16:08:21.000",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "issue_date": "2026-06-04T16:08:21.000",
+   "license_number": "23-NSTR-15874",
+   "licid": "401668",
+   "location": {
+    "coordinates": [
+     -90.05900198354325,
+     29.969355905275044
+    ],
+    "type": "Point"
+   },
+   "max_occupancy": "2",
+   "operator": "TESTOWNER 875009",
+   "operator_email": "TESTOWNER 475155",
+   "operator_permit": "23-OSTR-15875",
+   "operator_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=EVNXV4"
+   },
+   "operator_phone": "TESTOWNER CCFE13",
+   "operator_type": "Owner",
+   "owner": "TESTOWNER 16756A",
+   "owner_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=FPY5E1"
+   },
+   "partial_whole": "Partial Unit",
+   "reference_code": "FPY5E1",
+   "type": "Non-Commercial Short Term Rental",
+   "type_of_building": "Single Family Home",
+   "x": "TESTOWNER 410411",
+   "y": "TESTOWNER 679DA0"
+  },
+  {
+   "address": "428 TEST ST",
+   "application_date": "2026-04-29T06:18:20.000",
+   "bedrooms_rented": "3",
+   "current_status": "Issued",
+   "current_status_date": "2026-06-16T14:24:26.000",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "issue_date": "2026-06-16T14:24:26.000",
+   "license_number": "24-NSTR-11005",
+   "licid": "401669",
+   "location": {
+    "coordinates": [
+     -90.05066021507675,
+     29.95043558496549
+    ],
+    "type": "Point"
+   },
+   "max_occupancy": "6",
+   "operator": "TESTOWNER 048782",
+   "operator_email": "TESTOWNER 162C58",
+   "operator_permit": "24-OSTR-11019",
+   "operator_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=V2LAFW"
+   },
+   "operator_phone": "TESTOWNER 3D0F23",
+   "operator_type": "Operator/Property Manager",
+   "owner": "TESTOWNER 2861A2",
+   "owner_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=5GD7VR"
+   },
+   "partial_whole": "Whole Unit",
+   "reference_code": "5GD7VR",
+   "type": "Non-Commercial Short Term Rental",
+   "type_of_building": "Two-Family (Double)",
+   "x": "TESTOWNER C51F18",
+   "y": "TESTOWNER BCC7C0"
+  },
+  {
+   "address": "2416 TEST ST",
+   "application_date": "2026-04-01T01:02:12.000",
+   "bedrooms_rented": "3",
+   "current_status": "Issued",
+   "current_status_date": "2026-05-18T17:01:09.000",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "issue_date": "2026-05-18T17:01:09.000",
+   "license_number": "25-NSTR-01918",
+   "licid": "401670",
+   "location": {
+    "coordinates": [
+     -90.09801693679512,
+     29.922818740048584
+    ],
+    "type": "Point"
+   },
+   "max_occupancy": "6",
+   "operator": "TESTOWNER 6EA641",
+   "operator_email": "TESTOWNER A2976C",
+   "operator_permit": "PPA6MK",
+   "operator_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=PPA6MK"
+   },
+   "operator_phone": "TESTOWNER AE6226",
+   "operator_type": "Owner",
+   "owner": "TESTOWNER C7346D",
+   "owner_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=GWK281"
+   },
+   "partial_whole": "Whole Unit",
+   "reference_code": "GWK281",
+   "type": "Non-Commercial Short Term Rental",
+   "type_of_building": "Two-Family (Double)",
+   "x": "TESTOWNER EF08A9",
+   "y": "TESTOWNER 9FFDBD"
+  },
+  {
+   "address": "3079 TEST ST",
+   "application_date": "2026-04-28T18:56:19.000",
+   "bedrooms_rented": "3",
+   "current_status": "Issued",
+   "current_status_date": "2026-06-29T12:27:43.000",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "issue_date": "2026-06-29T12:27:43.000",
+   "license_number": "25-NSTR-39953",
+   "licid": "401671",
+   "location": {
+    "coordinates": [
+     -90.08662052446662,
+     29.933132902479045
+    ],
+    "type": "Point"
+   },
+   "max_occupancy": "6",
+   "operator": "TESTOWNER BF5E9A",
+   "operator_email": "TESTOWNER 4C45C4",
+   "operator_permit": "24-OSTR-10297",
+   "operator_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=X7QV1P"
+   },
+   "operator_phone": "TESTOWNER 0E4E40",
+   "operator_type": "Operator/Property Manager",
+   "owner": "TESTOWNER F2CDE9",
+   "owner_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=V2DT1S"
+   },
+   "partial_whole": "Whole Unit",
+   "reference_code": "V2DT1S",
+   "type": "Non-Commercial Short Term Rental",
+   "type_of_building": "Two-Family (Double)",
+   "x": "TESTOWNER 4C1D50",
+   "y": "TESTOWNER 24DF75"
+  },
+  {
+   "address": "634 TEST ST",
+   "application_date": "2026-04-01T18:19:30.000",
+   "bedrooms_rented": "1",
+   "current_status": "Issued",
+   "current_status_date": "2026-05-08T09:11:50.000",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "issue_date": "2026-05-08T09:11:50.000",
+   "license_number": "23-NSTR-14209",
+   "licid": "401672",
+   "location": {
+    "coordinates": [
+     -90.11713904016425,
+     29.922087338101974
+    ],
+    "type": "Point"
+   },
+   "max_occupancy": "2",
+   "operator": "TESTOWNER 75FB40",
+   "operator_email": "TESTOWNER AAEECA",
+   "operator_permit": "26-OSTR-10363",
+   "operator_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=RU2LKL"
+   },
+   "operator_phone": "TESTOWNER B63CA2",
+   "operator_type": "Owner",
+   "owner": "TESTOWNER 07993D",
+   "owner_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=Y86TVA"
+   },
+   "partial_whole": "Whole Unit",
+   "reference_code": "Y86TVA",
+   "type": "Non-Commercial Short Term Rental",
+   "type_of_building": "Two-Family (Double)",
+   "x": "TESTOWNER 6CB802",
+   "y": "TESTOWNER 8C648C"
+  },
+  {
+   "address": "7222 TEST ST",
+   "application_date": "2026-04-14T17:34:37.000",
+   "bedrooms_rented": "3",
+   "current_status": "Issued",
+   "current_status_date": "2026-04-29T11:31:58.000",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "issue_date": "2026-04-29T11:31:58.000",
+   "license_number": "23-NSTR-13617",
+   "licid": "401673",
+   "location": {
+    "coordinates": [
+     -90.07099310452618,
+     29.93561576827201
+    ],
+    "type": "Point"
+   },
+   "max_occupancy": "6",
+   "operator": "TESTOWNER 9CED85",
+   "operator_email": "TESTOWNER D8C756",
+   "operator_permit": "22-OSTR-10483",
+   "operator_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=VU7E5X"
+   },
+   "operator_phone": "TESTOWNER 65A835",
+   "operator_type": "Operator/Property Manager",
+   "owner": "TESTOWNER 28D1B5",
+   "owner_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=S2HKV3"
+   },
+   "partial_whole": "Whole Unit",
+   "reference_code": "S2HKV3",
+   "type": "Non-Commercial Short Term Rental",
+   "type_of_building": "Two-Family (Double)",
+   "x": "TESTOWNER C359E4",
+   "y": "TESTOWNER 08CA08"
+  },
+  {
+   "address": "1519 TEST ST",
+   "application_date": "2026-04-01T01:35:25.000",
+   "bedrooms_rented": "2",
+   "current_status": "Issued",
+   "current_status_date": "2026-05-01T10:48:38.000",
+   "expiration_date": "2027-06-30T23:59:00.000",
+   "issue_date": "2026-05-01T10:48:38.000",
+   "license_number": "24-NSTR-11195",
+   "licid": "401674",
+   "location": {
+    "coordinates": [
+     -90.08917191597453,
+     29.969707119448483
+    ],
+    "type": "Point"
+   },
+   "max_occupancy": "4",
+   "operator": "TESTOWNER 58B424",
+   "operator_email": "TESTOWNER 399FD2",
+   "operator_permit": "24-OSTR-11208",
+   "operator_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=X611J7"
+   },
+   "operator_phone": "TESTOWNER FECC51",
+   "operator_type": "Operator/Property Manager",
+   "owner": "TESTOWNER C521CD",
+   "owner_permit_documents": {
+    "url": "https://onestopapp.nola.gov/Redirect.aspx?SearchString=Z1WWCY"
+   },
+   "partial_whole": "Whole Unit",
+   "reference_code": "Z1WWCY",
+   "type": "Non-Commercial Short Term Rental",
+   "type_of_building": "Two-Family (Double)",
+   "x": "TESTOWNER 1A6310",
+   "y": "TESTOWNER C1A1B8"
+  }
+ ],
+ "where": "licid >= '0'"
+}

@@ -286,3 +286,38 @@ def scrub_json(content: bytes, names: tuple[str, ...], streets: tuple[str, ...])
         return obj
 
     return canonical_json(walk(json.loads(content)))
+
+
+# --- named parties (a name on a list, with its address) ------------------------------------
+
+
+def emit_party(
+    ctx: RecordContext,
+    source_id: str,
+    role: str,
+    name: str,
+    addr: dict[str, Any] | None = None,
+    *,
+    person: bool = False,
+    parts: Mapping[str, str | None] | None = None,
+) -> Iterator[NormalizedRow]:
+    """address + party for one name on a list record (an excluded provider, a sanctioned
+    person, a filer, an alias), as equity.adapters.person_lists emits them. The party id is
+    stable per (record, role, name, address), so one name at two addresses is two parties.
+    `person`: the source says it is a natural person (an org-looking name stays an org);
+    `parts`: first_name / middle / last_name / suffix, used only for a person."""
+    nc = classify(name)
+    kind = nc.party_kind
+    if person and kind != "org":
+        kind = "person"
+    names = {k: (parts or {}).get(k) for k in NAME_PARTS}
+    if kind != "person" or not names.get("last_name"):
+        names = dict.fromkeys(NAME_PARTS)
+    aid = None if addr is None else addr["address_id"]
+    if addr is not None:
+        yield NormalizedRow("address", addr)
+    yield ctx.fact(
+        "party", party_id=stable_id(source_id, ctx.record_key, role, clean(name), aid or ""),
+        raw_name=name, party_kind=kind, org_form=nc.org_form, org_name_norm=nc.org_name_norm,
+        address_id=aid, **names,
+    )  # fmt: skip

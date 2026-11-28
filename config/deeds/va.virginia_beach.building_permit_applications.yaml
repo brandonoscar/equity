@@ -1,0 +1,35 @@
+source_id: va.virginia_beach.building_permit_applications
+state: VA
+county_fips: "51810"   # Virginia Beach city
+# City of Virginia Beach Planning "Building Permits Applications" (ArcGIS Online
+# Building_Permits_Applications_view, owner VBCGIS_OrgAcct1, 112,987 applications on
+# 2026-11-25, from 2023): permit number, type (building, electrical, mechanical, plumbing,
+# ...), construction and work type, application / issue / final dates, status, work
+# description, on the parcel (GPIN, = va.virginia_beach.property_sales and
+# va.virginia_beach_city.parcels). No owner or contractor name (CreatedBy is a portal user
+# id, not fetched). Dates are 'YYYY/MM/DD' text: windows compare the text (the slash sorts
+# after the dash, so each year's window holds exactly that year) and the application date is
+# rewritten to ISO before it is read. OTHER instruments on the parcel, in no match run.
+api: arcgis
+layer_url: https://services2.arcgis.com/CyVvlIiUfRBmMQuu/arcgis/rest/services/Building_Permits_Applications_view/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, PermitNumber, PermitType, ConstructionType, WorkType, ApplicationDate,
+         IssueDate, FinalDate, Status, WorkDesc, GPIN, StreetAddress, AddressUnit, City, Zip]
+date_field: ApplicationDate
+date_is_text: true
+rewrite:
+  ApplicationDate: {pattern: "^(\\d{4})/(\\d{2})/(\\d{2})$", replace: "\\1-\\2-\\3"}
+partition: year
+first_year: 2020
+uid: PermitNumber
+doc_type: OTHER
+doc_type_raw: {field: PermitType}
+extra_pii: [WorkDesc, StreetAddress, AddressUnit]
+parties: []   # no names in the layer
+parcel: {kind: pin, field: GPIN, county_fips: "51810"}
+terms:
+  url: https://www.arcgis.com/home/item.html?id=15292e05ab3a42d5984e6033b2f6a6d4
+  summary: "City of Virginia Beach Open GIS (ArcGIS Online, VBCGIS_OrgAcct1), free, no login; the City's no-warranty terms of use; no commercial-use or redistribution restriction found. services2.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

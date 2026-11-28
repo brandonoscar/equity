@@ -1,0 +1,324 @@
+{
+ "rows": [
+  {
+   "annual_change_pct": null,
+   "index_1990_base": 52.3,
+   "index_2000_base": 51.39,
+   "index_value": 100.0,
+   "year": 1984,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": 15.82,
+   "index_1990_base": 60.57,
+   "index_2000_base": 59.52,
+   "index_value": 115.82,
+   "year": 1985,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": 16.18,
+   "index_1990_base": 70.37,
+   "index_2000_base": 69.15,
+   "index_value": 134.56,
+   "year": 1986,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": 21.68,
+   "index_1990_base": 85.63,
+   "index_2000_base": 84.14,
+   "index_value": 163.72,
+   "year": 1987,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": 17.0,
+   "index_1990_base": 100.18,
+   "index_2000_base": 98.44,
+   "index_value": 191.56,
+   "year": 1988,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": 1.34,
+   "index_1990_base": 101.53,
+   "index_2000_base": 99.76,
+   "index_value": 194.13,
+   "year": 1989,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": -1.5,
+   "index_1990_base": 100.0,
+   "index_2000_base": 98.26,
+   "index_value": 191.21,
+   "year": 1990,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": -5.49,
+   "index_1990_base": 94.51,
+   "index_2000_base": 92.86,
+   "index_value": 180.71,
+   "year": 1991,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": -1.54,
+   "index_1990_base": 93.05,
+   "index_2000_base": 91.43,
+   "index_value": 177.92,
+   "year": 1992,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": 0.5,
+   "index_1990_base": 93.51,
+   "index_2000_base": 91.89,
+   "index_value": 178.81,
+   "year": 1993,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": -3.01,
+   "index_1990_base": 90.7,
+   "index_2000_base": 89.12,
+   "index_value": 173.43,
+   "year": 1994,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": 2.01,
+   "index_1990_base": 92.52,
+   "index_2000_base": 90.91,
+   "index_value": 176.91,
+   "year": 1995,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": 0.14,
+   "index_1990_base": 92.65,
+   "index_2000_base": 91.03,
+   "index_value": 177.15,
+   "year": 1996,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": -1.41,
+   "index_1990_base": 91.34,
+   "index_2000_base": 89.75,
+   "index_value": 174.64,
+   "year": 1997,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": 4.48,
+   "index_1990_base": 95.43,
+   "index_2000_base": 93.77,
+   "index_value": 182.48,
+   "year": 1998,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": 1.6,
+   "index_1990_base": 96.96,
+   "index_2000_base": 95.28,
+   "index_value": 185.4,
+   "year": 1999,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": 4.96,
+   "index_1990_base": 101.77,
+   "index_2000_base": 100.0,
+   "index_value": 194.6,
+   "year": 2000,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": 6.26,
+   "index_1990_base": 108.14,
+   "index_2000_base": 106.26,
+   "index_value": 206.77,
+   "year": 2001,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": 7.95,
+   "index_1990_base": 116.73,
+   "index_2000_base": 114.7,
+   "index_value": 223.2,
+   "year": 2002,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": 8.48,
+   "index_1990_base": 126.64,
+   "index_2000_base": 124.43,
+   "index_value": 242.14,
+   "year": 2003,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": 12.12,
+   "index_1990_base": 141.99,
+   "index_2000_base": 139.52,
+   "index_value": 271.49,
+   "year": 2004,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": 17.41,
+   "index_1990_base": 166.7,
+   "index_2000_base": 163.8,
+   "index_value": 318.75,
+   "year": 2005,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": 3.19,
+   "index_1990_base": 172.03,
+   "index_2000_base": 169.03,
+   "index_value": 328.93,
+   "year": 2006,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": -0.27,
+   "index_1990_base": 171.57,
+   "index_2000_base": 168.59,
+   "index_value": 328.06,
+   "year": 2007,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": -0.51,
+   "index_1990_base": 170.7,
+   "index_2000_base": 167.73,
+   "index_value": 326.39,
+   "year": 2008,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": -3.97,
+   "index_1990_base": 163.92,
+   "index_2000_base": 161.06,
+   "index_value": 313.42,
+   "year": 2009,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": -1.93,
+   "index_1990_base": 160.76,
+   "index_2000_base": 157.96,
+   "index_value": 307.38,
+   "year": 2010,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": -2.63,
+   "index_1990_base": 156.53,
+   "index_2000_base": 153.81,
+   "index_value": 299.31,
+   "year": 2011,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": -4.53,
+   "index_1990_base": 149.45,
+   "index_2000_base": 146.85,
+   "index_value": 285.77,
+   "year": 2012,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": 1.05,
+   "index_1990_base": 151.02,
+   "index_2000_base": 148.39,
+   "index_value": 288.76,
+   "year": 2013,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": 0.99,
+   "index_1990_base": 152.51,
+   "index_2000_base": 149.86,
+   "index_value": 291.61,
+   "year": 2014,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": 1.66,
+   "index_1990_base": 155.05,
+   "index_2000_base": 152.35,
+   "index_value": 296.47,
+   "year": 2015,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": 2.75,
+   "index_1990_base": 159.3,
+   "index_2000_base": 156.53,
+   "index_value": 304.6,
+   "year": 2016,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": 2.45,
+   "index_1990_base": 163.2,
+   "index_2000_base": 160.36,
+   "index_value": 312.05,
+   "year": 2017,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": 4.82,
+   "index_1990_base": 171.07,
+   "index_2000_base": 168.09,
+   "index_value": 327.1,
+   "year": 2018,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": 2.95,
+   "index_1990_base": 176.11,
+   "index_2000_base": 173.04,
+   "index_value": 336.73,
+   "year": 2019,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": 5.22,
+   "index_1990_base": 185.29,
+   "index_2000_base": 182.07,
+   "index_value": 354.3,
+   "year": 2020,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": 11.61,
+   "index_1990_base": 206.81,
+   "index_2000_base": 203.22,
+   "index_value": 395.45,
+   "year": 2021,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": 7.94,
+   "index_1990_base": 223.24,
+   "index_2000_base": 219.36,
+   "index_value": 426.86,
+   "year": 2022,
+   "zip5": "01001"
+  },
+  {
+   "annual_change_pct": 10.98,
+   "index_1990_base": 247.75,
+   "index_2000_base": 243.45,
+   "index_value": 473.73,
+   "year": 2023,
+   "zip5": "01001"
+  }
+ ]
+}

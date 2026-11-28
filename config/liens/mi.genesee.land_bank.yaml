@@ -1,0 +1,30 @@
+source_id: mi.genesee.land_bank
+state: MI
+county_fips: "26049"
+# Genesee County Land Bank Authority parcels (layer LandBankParcels_July2025b, 14,053 rows,
+# a July 2025 snapshot; Genesee County Land Records and GIS): parcels the land bank owns,
+# with class, exemption flag and the owner of record (the land bank). A holdings list with no former owner or amount: loaded like the other
+# land banks (OTHER), linking each lot by ParcelID ('25-53-35-580-031', the same form as
+# mi.genesee.parcels). A negative screen: a debtor's parcel the land bank holds carries no
+# reachable equity. Taxpayer name and address columns are blank on the layer and not fetched.
+api: arcgis
+layer_url: https://services2.arcgis.com/5ckbIY7K9TUKoseK/arcgis/rest/services/Land_Bank_Parcels/FeatureServer/0
+single_partition: true
+order_by: [FID]
+select: [FID, ParcelID, PropComb, PropCity, PropZip, ParcelType, PropClass, ClassType,
+         AcreCalcNM, OwnName, IsExempt, SEV]
+listed_on: listed_on
+date_field: listed_on
+uid: ParcelID
+doc_type: OTHER
+doc_type_raw: Genesee County Land Bank parcel
+parties:
+  - {role: other, const: Genesee County Land Bank Authority}
+parcel: {kind: pin, field: ParcelID, county_fips: "26049"}   # = mi.genesee.parcels ParcelID
+extra_pii: [PropComb, OwnName]
+terms:
+  url: https://services2.arcgis.com/5ckbIY7K9TUKoseK/arcgis/rest/services/Land_Bank_Parcels/FeatureServer/0
+  summary: "Genesee County MI public ArcGIS Online layer (copyright 'Genesee County Land Records and GIS'), free, no login; no licenseInfo or use restriction on the layer (read 2026-11-25). Internal use, not redistributed. services2.arcgis.com/robots.txt answers 403 (RFC 9309: no rules). Snapshot dated July 2025 (last edit 2025-07-10)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

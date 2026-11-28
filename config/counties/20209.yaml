@@ -1,0 +1,27 @@
+source_id: ks.wyandotte.parcels
+state: KS
+# Unified Government of Wyandotte County/Kansas City, KS GeoSpatial Services 'UGMAPS_4_V03_Owner_Names'
+# MapServer layer 0 (67,960 rows on 2026-11-25, OWNER_NAME filled on 67,958): seamless ownership
+# parcels with taxroll/CAMA owner name joined, the property's street address (NUMB/DIR/ST_NAME/SUFX,
+# CITY/STATE/ZIP, all KS), land use and delinquency/vacancy flags. No mailing address or values.
+layer_url: https://gisweb.wycokck.org/arcgis/rest/services/UGMAPS/UGMAPS_4_V03_Owner_Names/MapServer/0
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "209"}
+use_restrictions: [internal_use_only, no_mailing_list, no_redistribution, no_resale]
+fields:
+  parcel_id: PARCEL      # 6-digit county parcel number ('090427'); STATE_ID (Kansas PIN) not mapped
+  owner1: OWNER_NAME
+  situs_line1: [NUMB, ADDR_EXT, DIR, ST_NAME, SUFX, MISC]
+  situs_city: CITY
+  situs_state: STATE
+  situs_zip: ZIP
+  land_use_desc: LAND_USE  # 'Single family residence (detached)', 'Duplex' ...
+value_basis: "No value fields in this layer (owner name, site address, land use, DELQ_CODE and VACANT flags only). Right-of-way polygons carry ST_NAME 'ROW' and no house number; kept as published."
+terms:
+  url: https://gisweb.wycokck.org/arcgis/rest/services/UGMAPS/UGMAPS_4_V03_Owner_Names/MapServer
+  summary: "Unified Government of Wyandotte County/Kansas City, KS, GeoSpatial Services public MapServer, no login, token or fee. Service licenseInfo (read 2026-11-25): 'Use of certain datasets is subject to terms of GIS Data Transmittal and Confidentiality Agreement ... GSS asserts all rights under copyright (c) 2016 ... Unauthorized redistribution not permitted', plus accuracy disclaimers. Kansas K.S.A. 45-230 bars using names and addresses from public records to sell or offer property or services. Recorded as internal_use_only, no_redistribution, no_mailing_list, no_resale (the project keeps the data internal). gisweb.wycokck.org/robots.txt answers HTTP 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

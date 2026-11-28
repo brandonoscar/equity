@@ -1,0 +1,34 @@
+source_id: ca.marin.building_permits
+state: CA
+county_fips: "06041"
+# County of Marin Community Development Agency "Building Permit" (data.marincounty.gov
+# mkbn-caye, 51,777 permits on 2026-11-25, updated daily): permits for unincorporated Marin
+# and the towns it serves, with the received / issued dates, address, Marin APN
+# ('197-033-24'), construction value, description, permit type and work class, and the
+# contractor (name, address, license). OTHER instruments on 06041-<parcel_number> (dashes
+# kept), the contractor as an 'other' party, in no match run.
+portal: https://data.marincounty.gov
+dataset: mkbn-caye
+where: "received_date IS NOT NULL"
+order_by: [":id"]
+select: [permit_tracking_id, unique_id, permit_number, issued_date, received_date, address,
+         parcel_number, zipcode, city_town, construction_value, construction, description,
+         type_permit, permit_work_class, permit_category, contractor, contractor_address,
+         contractor_license]
+date_field: received_date
+partition: year
+first_year: 1990
+uid: unique_id
+doc_type: OTHER
+doc_type_raw: {field: type_permit}
+consideration: construction_value
+extra_pii: [address]
+parties:
+  - {role: other, name: contractor, person_names: false}
+parcel: {kind: pin, field: parcel_number, county_fips: "06041"}
+terms:
+  url: https://data.marincounty.gov/d/mkbn-caye
+  summary: "County of Marin open data (data.marincounty.gov, Socrata), free, no login or app token. Dataset license (read 2026-11-25): Open Data Commons Open Database License (ODbL). data.marincounty.gov/robots.txt allows /resource/ (Crawl-delay: 1)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

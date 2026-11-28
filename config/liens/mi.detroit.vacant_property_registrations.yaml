@@ -1,0 +1,28 @@
+source_id: mi.detroit.vacant_property_registrations
+state: MI
+county_fips: "26163"
+# City of Detroit BSEED "Vacant Property Registrations" (bseed_vacant_property_registrations/0,
+# 1,552 registrations issued since 2025-11 on 2026-11-25): vacant buildings registered by
+# their owners under the City's vacant property ordinance, with the parcel and the owner's
+# name. OTHER instruments on the parcel (a vacancy signal), in no match run.
+api: arcgis
+layer_url: https://services2.arcgis.com/qvkbeam7Wirps6zC/arcgis/rest/services/bseed_vacant_property_registrations/FeatureServer/0
+order_by: [ObjectId]
+select: [ObjectId, task_id, record_id, address, issued_date, owner_name, zip_code, parcel_id]
+date_field: issued_date
+partition: year
+first_year: 2025
+uid: record_id
+doc_type: OTHER
+doc_type_raw: Detroit vacant property registration
+parties:
+  - role: owner
+    name: owner_name
+extra_pii: [address]
+parcel: {kind: pin, field: parcel_id, county_fips: "26163"}   # same parcel_id as mi.wayne.parcels
+terms:
+  url: https://www.arcgis.com/home/item.html?id=85fccf67f3e44c4bb767b9e2b190d576
+  summary: "City of Detroit Buildings, Safety Engineering and Environmental Department (BSEED) on the Detroit Open Data Portal (ArcGIS Online, org of mi.wayne.parcels), public hosted layer, free, no login. No licenseInfo on the item (read 2026-11-25); no commercial-use or mailing-list restriction found. services2.arcgis.com/robots.txt answers 4xx (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

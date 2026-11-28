@@ -1,0 +1,256 @@
+{
+ "layer": "https://dcgis.dekalbcountyga.gov/hosted/rest/services/Hosted/Final_August_Delinquent_Report/FeatureServer/0",
+ "rows": [
+  {
+   "address": "2269 TEST ST",
+   "city": "LITHONIA",
+   "objectid": 1,
+   "owner": "TESTOWNER F91144",
+   "parcel_id": "11 248 03 013",
+   "property_class": "R3:RESIDENTIAL LOT",
+   "total_due": 1856.57,
+   "years_in_delinquency": 7
+  },
+  {
+   "address": "3689 TEST ST",
+   "city": "LITHONIA",
+   "objectid": 2,
+   "owner": "TESTOWNER D73386",
+   "parcel_id": "11 249 01 099",
+   "property_class": "R3:RESIDENTIAL LOT",
+   "total_due": 4300.68,
+   "years_in_delinquency": 7
+  },
+  {
+   "address": "990 TEST ST",
+   "city": "ELLENWOOD",
+   "objectid": 3,
+   "owner": "TESTOWNER 144E8A",
+   "parcel_id": "12 252 01 001",
+   "property_class": "R3:RESIDENTIAL LOT",
+   "total_due": 4267.09,
+   "years_in_delinquency": 7
+  },
+  {
+   "address": "4902 TEST ST",
+   "city": "ELLENWOOD",
+   "objectid": 4,
+   "owner": "TESTOWNER B1D98A",
+   "parcel_id": "15 001 01 020",
+   "property_class": "R3:RESIDENTIAL LOT",
+   "total_due": 6654.12,
+   "years_in_delinquency": 7
+  },
+  {
+   "address": "3523 TEST ST",
+   "city": "ELLENWOOD",
+   "objectid": 5,
+   "owner": "TESTOWNER 1F08CF LLC",
+   "parcel_id": "15 003 01 002",
+   "property_class": "R4:RESIDENTIAL SMALL TRACT",
+   "total_due": 3886.12,
+   "years_in_delinquency": 7
+  },
+  {
+   "address": "595 TEST ST",
+   "city": "ELLENWOOD",
+   "objectid": 6,
+   "owner": "TESTOWNER A1528A LLC",
+   "parcel_id": "15 003 01 012",
+   "property_class": "R4:RESIDENTIAL SMALL TRACT",
+   "total_due": 3886.12,
+   "years_in_delinquency": 7
+  },
+  {
+   "address": "7084 TEST ST",
+   "city": "ELLENWOOD",
+   "objectid": 7,
+   "owner": "TESTOWNER 48EEA6 LLC",
+   "parcel_id": "15 004 03 090",
+   "property_class": "R3:RESIDENTIAL LOT",
+   "total_due": 14908.44,
+   "years_in_delinquency": 7
+  },
+  {
+   "address": "803 TEST ST",
+   "city": "ELLENWOOD",
+   "objectid": 8,
+   "owner": "TESTOWNER 30D6F7",
+   "parcel_id": "15 005 03 003",
+   "property_class": "R3:RESIDENTIAL LOT",
+   "total_due": 2462.71,
+   "years_in_delinquency": 7
+  },
+  {
+   "address": "598 TEST ST",
+   "city": "ELLENWOOD",
+   "objectid": 9,
+   "owner": "TESTOWNER 9CD610",
+   "parcel_id": "15 006 01 040",
+   "property_class": "R3:RESIDENTIAL LOT",
+   "total_due": 2527.38,
+   "years_in_delinquency": 7
+  },
+  {
+   "address": "5628 TEST ST",
+   "city": "ELLENWOOD",
+   "objectid": 10,
+   "owner": "TESTOWNER 37BFE8 CORP",
+   "parcel_id": "15 006 03 050",
+   "property_class": "R3:RESIDENTIAL LOT",
+   "total_due": 1174.11,
+   "years_in_delinquency": 7
+  },
+  {
+   "address": "7876 TEST ST",
+   "city": "LITHONIA",
+   "objectid": 11,
+   "owner": "TESTOWNER 4396C3",
+   "parcel_id": "11 248 10 023",
+   "property_class": "R9:RESIDENTIAL OTHER",
+   "total_due": 2454.31,
+   "years_in_delinquency": 7
+  },
+  {
+   "address": "8028 TEST ST",
+   "city": "CONLEY",
+   "objectid": 12,
+   "owner": "TESTOWNER 1A2AB1 LLC",
+   "parcel_id": "15 012 01 002",
+   "property_class": "R4:RESIDENTIAL SMALL TRACT",
+   "total_due": 7995.7,
+   "years_in_delinquency": 7
+  },
+  {
+   "address": "888 TEST ST",
+   "city": "CONLEY",
+   "objectid": 13,
+   "owner": "TESTOWNER 58D56E INC",
+   "parcel_id": "15 020 02 056",
+   "property_class": "R4:RESIDENTIAL SMALL TRACT",
+   "total_due": 2918.72,
+   "years_in_delinquency": 7
+  },
+  {
+   "address": "1813 TEST ST",
+   "city": "CONLEY",
+   "objectid": 14,
+   "owner": "TESTOWNER 4A57F4",
+   "parcel_id": "15 012 01 003",
+   "property_class": "R4:RESIDENTIAL SMALL TRACT",
+   "total_due": 15647.32,
+   "years_in_delinquency": 7
+  },
+  {
+   "address": "5157 TEST ST",
+   "city": "LITHONIA",
+   "objectid": 15,
+   "owner": "TESTOWNER CB1A4E",
+   "parcel_id": "11 248 03 024",
+   "property_class": "R3:RESIDENTIAL LOT",
+   "total_due": 3649,
+   "years_in_delinquency": 7
+  },
+  {
+   "address": "6246 TEST ST",
+   "city": "ATLANTA",
+   "objectid": 16,
+   "owner": "TESTOWNER 87898D",
+   "parcel_id": "06 249 01 015",
+   "property_class": "C3:COMMERCIAL LOT",
+   "total_due": 17821.28,
+   "years_in_delinquency": 7
+  },
+  {
+   "address": "3071 TEST ST",
+   "city": "CONLEY",
+   "objectid": 17,
+   "owner": "TESTOWNER 2C9917",
+   "parcel_id": "15 020 11 075",
+   "property_class": "R3:RESIDENTIAL LOT",
+   "total_due": 13957.68,
+   "years_in_delinquency": 7
+  },
+  {
+   "address": "1995 TEST ST",
+   "city": "ELLENWOOD",
+   "objectid": 18,
+   "owner": "TESTOWNER 909A32 LLC",
+   "parcel_id": "15 023 01 179",
+   "property_class": "R9:RESIDENTIAL OTHER",
+   "total_due": 1679.1,
+   "years_in_delinquency": 7
+  },
+  {
+   "address": "7206 TEST ST",
+   "city": "ELLENWOOD",
+   "objectid": 19,
+   "owner": "TESTOWNER 909A32 LLC",
+   "parcel_id": "15 023 01 178",
+   "property_class": "R9:RESIDENTIAL OTHER",
+   "total_due": 1471.84,
+   "years_in_delinquency": 7
+  },
+  {
+   "address": "7677 TEST ST",
+   "city": "ELLENWOOD",
+   "objectid": 20,
+   "owner": "TESTOWNER 6995DA",
+   "parcel_id": "15 024 01 022",
+   "property_class": "R3:RESIDENTIAL LOT",
+   "total_due": 4443.28,
+   "years_in_delinquency": 7
+  },
+  {
+   "address": "924 TEST ST",
+   "city": "ELLENWOOD",
+   "objectid": 21,
+   "owner": "TESTOWNER 909A32 LLC",
+   "parcel_id": "15 023 01 180",
+   "property_class": "R9:RESIDENTIAL OTHER",
+   "total_due": 4015.04,
+   "years_in_delinquency": 7
+  },
+  {
+   "address": "1507 TEST ST",
+   "city": "ELLENWOOD",
+   "objectid": 22,
+   "owner": "TESTOWNER 551D8D",
+   "parcel_id": "15 028 05 005",
+   "property_class": "R3:RESIDENTIAL LOT",
+   "total_due": 3599.49,
+   "years_in_delinquency": 7
+  },
+  {
+   "address": "6846 TEST ST",
+   "city": "ELLENWOOD",
+   "objectid": 23,
+   "owner": "TESTOWNER 551D8D",
+   "parcel_id": "15 028 05 008",
+   "property_class": "R3:RESIDENTIAL LOT",
+   "total_due": 3373.26,
+   "years_in_delinquency": 7
+  },
+  {
+   "address": "6365 TEST ST",
+   "city": "ELLENWOOD",
+   "objectid": 24,
+   "owner": "TESTOWNER D3707B INC",
+   "parcel_id": "15 028 01 247",
+   "property_class": "R9:RESIDENTIAL OTHER",
+   "total_due": 5563.35,
+   "years_in_delinquency": 7
+  },
+  {
+   "address": "5722 TEST ST",
+   "city": "ELLENWOOD",
+   "objectid": 25,
+   "owner": "TESTOWNER B60C0D",
+   "parcel_id": "15 030 01 072",
+   "property_class": "R3:RESIDENTIAL LOT",
+   "total_due": 5276.54,
+   "years_in_delinquency": 7
+  }
+ ],
+ "where": "1=1"
+}

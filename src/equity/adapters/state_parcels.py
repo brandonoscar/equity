@@ -85,7 +85,8 @@ _FULL = re.compile(
 )
 
 
-_CSZ = re.compile(r"^(?P<city>.+?)[,\s]+(?P<st>[A-Za-z]{2})\s+(?P<zip>\d{5})(?:-?\d{4})?\s*$")
+# A ZIP+4 slot left empty ('70043-', St. Bernard Parish) still ends the ZIP.
+_CSZ = re.compile(r"^(?P<city>.+?)[,\s]+(?P<st>[A-Za-z]{2})\s+(?P<zip>\d{5})(?:-?\d{4}|-)?\s*$")
 
 
 def parse_city_state_zip(text: str) -> tuple[str | None, str | None, str | None]:
@@ -239,6 +240,8 @@ class StateConfig:
                   if isinstance(v, dict) and "join" in v for x in v["join"]}  # fmt: skip
         names |= {str(x) for v in self.fields.values()
                   if isinstance(v, dict) and "first_of" in v for x in v["first_of"]}  # fmt: skip
+        names |= {str(v["nyc_bbl10"]) for v in self.fields.values()
+                  if isinstance(v, dict) and "nyc_bbl10" in v}  # fmt: skip
         for i in range(self.layer_count):
             spec = self.county_spec(i)
             if "field" in spec:
@@ -345,6 +348,20 @@ def _money(value: Any) -> str | None:
     except ValueError:
         return None
     return None if amount < 0 else f"{amount:.2f}"
+
+
+# NYC borough digit -> NYS SWIS prefix (as ACRIS and every NYC lien source key lots).
+NYC_SWIS = {"1": "620100", "2": "600100", "3": "610100", "4": "630100", "5": "640100"}
+
+
+def nyc_parcel_id(bbl: Any) -> str | None:
+    """A 10-digit NYC BBL (borough, 5-digit block, 4-digit lot) as the local parcel id the NYC
+    sources share: the borough's SWIS prefix + the BBL, e.g. '2044810081' -> '6001002044810081'.
+    None for anything that is not a valid BBL."""
+    raw = re.sub(r"\D", "", str(bbl or ""))
+    if len(raw) != 10 or raw[0] not in NYC_SWIS or int(raw[1:6]) == 0 or int(raw[6:]) == 0:
+        return None
+    return NYC_SWIS[raw[0]] + raw
 
 
 def norm_parcel_id(raw: str) -> str:
@@ -603,6 +620,8 @@ class StateParcelAdapter(ArcGISCountyAdapter):
             # Fallback columns: the first non-empty one (e.g. a district id that a compiled
             # layer leaves blank in some counties and carries in another column).
             return next((v for f in spec["first_of"] if _text(v := attrs.get(str(f)))), None)
+        if isinstance(spec, dict) and "nyc_bbl10" in spec:
+            return nyc_parcel_id(attrs.get(str(spec["nyc_bbl10"])))
         if isinstance(spec, dict) and "join" in spec:
             # Name parts in separate fields (e.g. [LASTNAME, FIRSTNAME]): the non-empty ones,
             # space-joined; None when all are empty.

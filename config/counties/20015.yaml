@@ -1,0 +1,35 @@
+source_id: ks.butler.parcels
+state: KS
+# Butler County (El Dorado, Andover, Augusta) 'BuCoKsGIS_ParcelData_NC' MapServer layer 0
+# 'Parcel_Data' ('Butler County Kansas Property Ownership Real Estate Tax Parcels with ownership data
+# attached. This information is updated weekly'; 34,674 rows on 2026-11-25, Owner filled on all):
+# owner name, mailing address, site address and class. No values.
+# The layer refuses paged queries, statistics and ORDER BY (supportsPagination/supportsStatistics/
+# supportsOrderBy false); it answers returnIdsOnly, so FID windows of page_size ids are read whole.
+layer_url: https://ww1.bucoks.com/bucogis1/rest/services/BuCoKsGIS_ParcelData_NC/MapServer/0
+order_by: FID
+page_size: 1000          # maxRecordCount 40000
+paginate: false
+min_interval_s: 1.0
+county: {constant: "015"}
+use_restrictions: [no_mailing_list, no_resale]
+fields:
+  parcel_id: PID         # Kansas PIN, '3062303008001000'
+  owner1: Owner
+  mail_line1: Mail_Add1
+  mail_line2: Mail_Add2
+  mail_city: Mail_City
+  mail_state: Mail_St
+  mail_zip: Mail_Zip
+  situs_line1: [Situs_No, Situs_Dir, Situs_St, Situs_Type, Situs_Sfx]
+  situs_city: Situs_City
+  situs_state: {const: KS}
+  situs_zip: Situs_Zip
+  land_use_code: Class   # 'R', 'V', 'A', 'C' ...
+value_basis: "No value fields in this layer (owner, mailing and site address, tax unit, subdivision, class only). Mail_Add3 (a third mailing line, blank on sampled rows) is not mapped. Situs_No is zero-padded ('09727', '00000' for land without a house number); kept as published."
+terms:
+  url: https://ww1.bucoks.com/bucogis1/rest/services/BuCoKsGIS_ParcelData_NC/MapServer
+  summary: "Butler County (KS) GIS/Mapping Department public ArcGIS Server MapServer, no login, token or fee. iteminfo licenseInfo and accessInformation are empty and the layer has no copyright text (read 2026-11-25). Kansas K.S.A. 45-230 bars using names and addresses from public records to sell or offer property or services: recorded as no_mailing_list and no_resale. ww1.bucoks.com/robots.txt answers HTTP 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

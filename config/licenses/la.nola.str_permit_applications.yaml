@@ -1,0 +1,30 @@
+# City of New Orleans Department of Safety and Permits, "Short-Term Rental Permit
+# Applications" (data.nola.gov en36-xvxg, 39,176 rows on 2026-11-25, daily): every short-term
+# rental license and operator permit application since 2017 (15,205 license numbers; one row
+# per application or renewal), with the license holder (often the owner or an LLC), the
+# contact person, the operator permit number, address, type, status and dates. Active
+# licenses alone are la.nola.short_term_rentals; this is the full history, so expired and
+# denied licenses still tie a holder to an address. The latest application of a license
+# number is its record; holders come from every row.
+source_id: la.nola.str_permit_applications
+state: LA
+jurisdiction: "22071"
+portal: https://data.nola.gov
+dataset: en36-xvxg
+key: license_number
+id_prefix: "NOLA-STRAPP:"
+terms_url: https://data.nola.gov/d/en36-xvxg
+terms_summary: "New Orleans open data portal (Socrata), free, no login. Dataset license: Creative Commons 1.0 Universal (Public Domain Dedication). robots.txt allows /resource/. Contact phone and e-mail are in the raw record only; internal use."
+checked_on: 2026-11-25
+robots_checked_on: 2026-11-25
+license:
+  name: license_holder_name
+  type: license_type
+  status: current_status
+  issued_on: issue_date
+  latest_by: application_date
+  address: {street: address}  # street only: the city (New Orleans) is not a column
+holders:
+  - {role: other, title: LICENSE HOLDER, name: license_holder_name}
+  - {role: other, title: CONTACT, with_type: false, name: contact_name}
+pii_fields: [license_holder_name, contact_name, contact_phone, contact_email, address, x, y, location]

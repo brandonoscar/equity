@@ -1,0 +1,49 @@
+# Florida Fish and Wildlife Conservation Commission (FWC), "Recreational and Commercial License
+# Holders - Public Record", commercial files: current saltwater products, wholesale and
+# retail dealer, freshwater commercial fishing, freshwater fish and frog dealer, live shrimp,
+# sardine-like fish, spiny lobster and depredation licenses and permits (one tab-delimited
+# file per license type with a header row, 5.3 MB in all on 2026-11-23; saltwater products
+# 3.7 MB). Each row is one license: number, applicant id, residency, issued to (individual or
+# company), scope, begin and expiration dates, holder (company or last name, first, middle,
+# suffix), email, county, mailing street, city, state, ZIP and phone. Header-only files
+# (no current licenses of that type) give no rows. Email and phone stay in the raw record.
+source_id: fl.fwc.commercial_licenses
+state: FL
+jurisdiction: "12"
+fetch: csv
+urls:
+  - https://myfwc.com/media/licenses/saltwaterproductscurrlicenses.txt
+  - https://myfwc.com/media/licenses/wholesaledealercurrlicenses.txt
+  - https://myfwc.com/media/licenses/retailcentralcurrlicenses.txt
+  - https://myfwc.com/media/licenses/retailothercurrentlicenses.txt
+  - https://myfwc.com/media/licenses/freshwaterfishcurlicenses.txt
+  - https://myfwc.com/media/licenses/resfreshfishfrogdealerscurr.txt
+  - https://myfwc.com/media/licenses/nrfreshretaildealers.txt
+  - https://myfwc.com/media/licenses/nrfreshwholesaledealers.txt
+  - https://myfwc.com/media/licenses/nrfreshwholesalebuyers.txt
+  - https://myfwc.com/media/licenses/stjohnrivliveshrimpcurrlic.txt
+  - https://myfwc.com/media/licenses/sardinelikefishcurrentlicenses.txt
+  - https://myfwc.com/media/licenses/closedseasonspinylobster.txt
+  - https://myfwc.com/media/licenses/clsdseasspinylobsplaneves.txt
+  - https://myfwc.com/media/licenses/depredationpermitcurrent.txt
+delimiter: "\t"
+key: LicenseNumber
+record_key: [LicenseNumber, LicenseBeginDate]
+id_prefix: "FL-FWC-COM:"
+terms_url: https://myfwc.com/license/public-record/
+terms_summary: "FWC public web page offering the files as free downloads of 'public record compliant listings of recreational and commercial license holders' (Chapter 119, F.S.); no login, form, fee or license text; no use restriction stated. myfwc.com/robots.txt allows /media/."
+checked_on: 2026-11-25
+robots_checked_on: 2026-11-25
+license:
+  number: LicenseNumber
+  type: LicenseScope
+  status_value: Current
+  issued_on: LicenseBeginDate
+  expires_on: LicenseExpireDate
+  address: {street: [MailStreet1, MailStreet2], city: MailCity, state: MailState, zip: MailZipCode}
+holders:
+  - role: other
+    title: LICENSE HOLDER
+    parts: {first: FirstName, middle: MiddleInit, last: CompanyOrLastName, suffix: Suffix}
+    address: {street: [MailStreet1, MailStreet2], city: MailCity, state: MailState, zip: MailZipCode}
+pii_fields: [CompanyOrLastName, FirstName, MiddleInit, MailStreet1, MailStreet2, EmailAddress, ApplicantPhone]

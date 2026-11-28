@@ -50,6 +50,8 @@ sources:
   tx.tceq.administrative_orders: administrative_order
   pa.dli.bwc_noncompliance: administrative_order
   pa.dli.bllc_noncompliance: administrative_order
+  us.dol.msha_assessed_penalties: administrative_order  # unpaid MSHA civil penalties past due
+  md.mhic.guaranty_fund_awards: administrative_order   # contractor owes the Guaranty Fund
   # taxes
   ny.dtf.tax_warrants: tax_warrant
   ny.dtf.child_support_warrants: tax_warrant
@@ -57,6 +59,7 @@ sources:
   pa.allegheny.tax_liens: tax_lien
   pa.dli.uc_liens: tax_lien
   ne.dor.delinquent_taxpayers: tax_lien
+  sd.dor.top_delinquent_business: tax_lien       # report states a lien was filed on each
   ca.ftb.top500_personal: tax_lien
   ca.ftb.top500_corporate: tax_lien
   ca.cdtfa.top500: tax_delinquency
@@ -95,6 +98,12 @@ sources:
   co.sos.ucc: statutory_lien                       # federal tax and statutory liens (doc-type filtered)
   md.baltimore_city.citation_liens: code_enforcement_lien
   nc.guilford.tax_delinquent: tax_delinquency
+  nc.pitt.delinquent_taxes: tax_delinquency
+  sc.beaufort.delinquent_taxes: tax_delinquency
+  ga.dekalb.delinquent_taxes: tax_delinquency
+  ga.richmond.delinquent_taxes: tax_delinquency
+  tx.dallas.tax_roll_delinquent: tax_delinquency
+  tx.tarrant.tax_roll_delinquent: tax_delinquency
   nc.buncombe.unpaid_bills: tax_delinquency
   nc.charlotte.municipal_liens: code_enforcement_lien
   oh.clermont.tax_delinquent: tax_delinquency
@@ -107,6 +116,7 @@ sources:
   ks.wyandotte.tax_sale: tax_delinquency
   ca.sonoma.defaulted_tax: tax_delinquency
   ny.nyc.tax_lien_sale: tax_delinquency
+  ny.nyc.dof.past_due_charges: tax_delinquency
   az.cochise.tax_deed_auction: tax_delinquency    # deeded to the State; previous owner named
   # federal loans (gap report rank 9)
   us.sba.chargeoffs: charged_off_loan
@@ -129,11 +139,13 @@ sources:
   oh.cuyahoga.delinquent_taxes: tax_delinquency
   oh.cuyahoga.forfeited_land_sale: tax_delinquency
   oh.franklin.tax_lien_sale: tax_lien
+  oh.franklin.delinquent_taxes: tax_delinquency
   oh.greene.delinquent_taxes: tax_delinquency
   oh.lorain.delinquent_taxes: tax_delinquency
   oh.lorain.forfeited_land_sale: tax_delinquency
   oh.medina.delinquent_taxes: tax_delinquency
   oh.stark.delinquent_taxes: tax_delinquency
+  oh.stark.civil_sales: foreclosure
   oh.stark.foreclosures: foreclosure
   sc.horry.delinquent_tax_sale: tax_delinquency
   sc.york.tax_sale: tax_delinquency
@@ -154,6 +166,7 @@ sources:
   # NY, MD, PA and MI county delinquent-tax, tax-sale and foreclosure lists (2026-11-25)
   md.baltimore_city.in_rem_candidates: tax_lien
   md.baltimore_city.tax_lien_certificate_sale: tax_lien
+  md.baltimore_city.tax_sale_2026: tax_lien
   md.prince_georges.foreclosures: foreclosure
   md.st_marys.tax_sale: tax_lien
   mi.kalamazoo.delinquent_2024: tax_delinquency
@@ -174,8 +187,21 @@ sources:
   pa.washington.repository_sales: tax_delinquency
   pa.washington.upset_sales: tax_delinquency
   pa.west_chester.upset_sale: tax_delinquency
-  # free debt lists verified 2026-11-25 (reports/_debt_sources_verified.md)
-  la.east_baton_rouge.adjudicated: tax_delinquency
-  ky.louisville.foreclosures: foreclosure
+  # free open-data additions (2026-11-25)
+  ky.louisville.code_final_orders: code_enforcement_charge   # final order; lien if unpaid
+  ky.louisville.metro_foreclosures: foreclosure
+  ca.los_angeles.registered_foreclosures: foreclosure
+  ca.los_angeles.defaulted_tax: tax_delinquency
+  az.maricopa.delinquent_tax_parcels: tax_delinquency
+  or.sos.ucc: statutory_lien                       # UCC filings and federal tax liens
+  # Midwest tax sales, recorded foreclosure suits, scofflaws and code tickets (2026-11-25)
+  il.cook.annual_tax_sale: tax_lien                 # certificate of purchase sold (or forfeited)
+  il.cook.scavenger_sale: tax_lien
+  ia.linn.tax_sale_certificates: tax_lien
+  il.cook.recorder_foreclosures_2011: foreclosure   # lis pendens foreclosure, no parties
+  il.cook.recorder_foreclosures_2012: foreclosure
+  il.chicago.building_scofflaws: housing_court_case
+  oh.cleveland.civil_tickets: code_enforcement_charge
+  # this branch's debt lists with no successor on main (verified 2026-11-25)
   al.shelby.tax_sale_parcels: tax_delinquency
   ky.jefferson.tax_sale_bills: tax_delinquency

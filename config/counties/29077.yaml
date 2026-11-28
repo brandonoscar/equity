@@ -1,37 +1,40 @@
 source_id: mo.greene.parcels
 state: MO
-# Greene County, Missouri parcels as served by the City of Springfield GIS ('GisViewer' map
-# service layer 66 Parcels; county-wide, with Greene County Assessor attributes): owner names,
-# owner mailing address, property address, appraised and assessed values, land use, deed
-# book/page. 123,884 rows on 2026-11-25.
-layer_url: https://maps.springfieldmo.gov/arcgis/rest/services/Maps/GisViewer/MapServer/66
-order_by: OBJECTID
-page_size: 1000          # maxRecordCount 1000; supportsPagination true
+# Greene County (Springfield) Assessor public MapServer 'ParcelPublicAccessAug242026' (iasWorld
+# parcel snapshot published 2026-08-24), layer 10 'Parcels_1K' (124,022 rows on 2026-11-25):
+# owner names, owner mailing address (ADR*), property location (L_*, PropAdr), appraised and
+# assessed land/building values, class and land-use code. The county republishes the snapshot under
+# a new dated service name; when this one is retired, point layer_url at the newest
+# ParcelPublicAccess<date> service (same layer).
+# The layer refuses paged queries, statistics and ORDER BY (supportsPagination/supportsStatistics/
+# supportsOrderBy false); it answers returnIdsOnly, so FID windows of page_size ids are read whole.
+# ParcelPolygon2 on the same host has the same columns with paging, but its queries fail (HTTP 400).
+layer_url: https://greenecountyassessor.org/arcgis/rest/services/ParcelPublicAccessAug242026/MapServer/10
+order_by: FID
+page_size: 1000          # maxRecordCount 1000
+paginate: false
 min_interval_s: 1.0
 county: {constant: "077"}
 fields:
-  parcel_id: PIN          # 'Parcel Number' ('880113100001'; DPIN '01-13-100-001' is the dashed form)
+  parcel_id: PIN         # '881322113016'; PARID is the same number without the leading '88'
   owner1: OWN1
-  owner2: OWN2            # 'Alternate Owner Name'
-  mail_line1: Own_Addr
+  owner2: OWN2
+  mail_line1: {join: [ADRNO, ADRDIR, ADRSTR, ADRSUF, ADRSUF2]}
   mail_city: CITYNAME
   mail_state: STATECODE
   mail_zip: ZIP1
-  # Property address; L_CITYNAME is not mapped: it is the municipality, and 'GREENE COUNTY'
-  # for 45,290 unincorporated parcels, not a postal city. L_ZIP1 is blank in the rows sampled.
-  situs_line1: PropAdr
-  land_use_code: LUC      # 'GC Land Use Description' (a code, e.g. '512')
-  deed_book: BOOK
-  deed_page: PAGE
+  situs_line1: PropAdr   # '528 S LEXINGTON AVE'
+  situs_city: L_CITYNAME
+  situs_state: {const: MO}
+  situs_zip: L_ZIP1
+  land_use_code: LUC
   land_value: TOTLAND
   bldg_value: TOTBLDG
-  total_value: P_VALAPR3
-  assessed_value: P_VALASM3
-  tax_year: {as_retrieved: true}   # no roll-year field: values as observed on retrieval
-value_basis: "TOTLAND / TOTBLDG / P_VALAPR3 = Greene County Assessor appraised (market) value of land, buildings and their total; P_VALASM3 = total assessed value (Missouri assesses residential at 19%, agricultural at 12% and commercial at 32% of appraised value; the per-class RES*/AG*/COM* and *ASMT* columns are its parts and are not mapped). No roll-year field, so tax_year is {as_retrieved: true}: values are recorded as observed on the retrieval date (tax_year = that year, valid_from = that date), not assigned to a roll year. BOOK/PAGE = recorder book and page of the latest sale (SALEDT); CLASS (A/R/C use class), PLAN_DESCR / PLAN_ZONING_LU (City of Springfield planning land use, not zoning) and CAREOF are not mapped."
+  tax_year: {as_retrieved: true}   # no assessment-year field: values as observed on retrieval
+value_basis: "TOTLAND / TOTBLDG = assessor appraised (market) land and building value; TOTASDLAND / TOTASDBLDG = assessed value (19% of appraised for residential, e.g. 25,000 -> 4,750), not mapped as they are split land/building only. The layer has no tax-year field, so values are recorded as observed on retrieval (tax_year: as_retrieved). BOOK/PAGE hold the recording year and instrument number ('2021' / '04533921'), not a deed book and page, so they are not mapped. ADRNO is 0 on rows without a house number (PO boxes); kept as published. CAREOF (care-of line) not mapped."
 terms:
-  url: https://maps.springfieldmo.gov/arcgis/rest/services/Maps/GisViewer/MapServer
-  summary: "City of Springfield, MO GIS map service 'GisViewer' ('GIS layers for Springfield Missouri'), layer 66 Parcels covering all of Greene County with Greene County Assessor attributes and links to greenecountyassessor.org; free REST, no login; 123,884 rows on 2026-11-25. Service iteminfo has empty licenseInfo and accessInformation and no copyright text; no license, use restriction or mailing-list clause found. maps.springfieldmo.gov /robots.txt answers HTTP 200 with an HTML 'not found' page (no robots directives; PoliteClient parses it as no rules)."
+  url: https://greenecountyassessor.org/arcgis/rest/services/ParcelPublicAccessAug242026/MapServer
+  summary: "Greene County (MO) Assessor public ArcGIS Server MapServer, no login, token or fee. Service iteminfo licenseInfo, accessInformation and copyrightText are empty (read 2026-11-25); no use-constraint text found. greenecountyassessor.org/robots.txt redirects (307) to www.greenecountyassessor.org/assessor/robots.txt, which answers HTTP 404 (no rules)."
   checked_on: 2026-11-25
   robots_checked_on: 2026-11-25
   cost_model: free

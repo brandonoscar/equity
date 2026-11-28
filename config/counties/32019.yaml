@@ -1,0 +1,33 @@
+source_id: nv.lyon.parcels
+state: NV
+# Lyon County (NV) Assessor parcels joined to the assessor table, county GIS MapServer
+# 'Landbase/Parcels' layer 1 (35,510 rows on 2026-11-25; PANAME 'Assessed Owner' filled on 35,323;
+# copyright "Lyon County, NV Assessor's office"): assessed owner, mailing address, physical address,
+# land use and net assessed value for tax year YYEAR 2027.
+# PLNAME ('Legal Owner') equals PANAME on 31,533 rows and is not mapped; PPNAME is a property name.
+# PMCTST ('Mailing City/State', 'SILVER SPRINGS, NV') carries no ZIP, so it cannot go through
+# mail_city_state_zip and is not mapped; PZIP is the mailing ZIP.
+layer_url: https://gis.lyon-county.org/server/rest/services/Landbase/Parcels/MapServer/1
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "019"}
+fields:
+  parcel_id: APN         # '018-515-06'
+  owner1: PANAME
+  mail_line1: PMADD1
+  mail_line2: PMADD2
+  mail_zip: PZIP
+  situs_line1: PHY_ADDR
+  situs_city: PTOWN
+  situs_state: {const: NV}
+  land_use_code: YLDUSE
+  assessed_value: YNETV
+  tax_year: YYEAR
+value_basis: "YNETV = 'Net Assessed Value' (Nevada assessed value is 35% of taxable value, NRS 361.225; YLANDV 'Land Value' + YIMPRV 'Improvements Value' = YNETV on sampled rows, so those components are assessed values too and are not mapped as appraised). YYEAR is the roll year, aliased 'Tax Year (2016 = 2016-17)', 2027 on sampled rows; valid_from follows the project default (Jan 1 of that year), as for Washoe. Exemption, personal-property and deed columns are not mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=742b48acf5804dca9e58bcd318833116
+  summary: "Lyon County, NV public ArcGIS Server MapServer on gis.lyon-county.org (item 'Lyon County NV Parcels', accessInformation \"Lyon County, NV Assessor's office\"), no login, token or fee. No licenseInfo or use-constraint text on the item or service (read 2026-11-25). gis.lyon-county.org/robots.txt answers HTTP 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

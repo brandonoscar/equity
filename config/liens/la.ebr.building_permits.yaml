@@ -1,0 +1,38 @@
+source_id: la.ebr.building_permits
+state: LA
+county_fips: "22033"   # East Baton Rouge Parish
+# City of Baton Rouge / Parish of East Baton Rouge "EBR Building Permits" (data.brla.gov
+# 7fq7-8j7r, 145,323 construction and occupancy permits issued since 2011-10, 102,446 with an
+# owner name; updated daily): permit number and type, project value, the site address, lot
+# and subdivision, and the owner, applicant and contractor names (contractor with its
+# address). Like ny.nyc.dob_permits: a signal that an owner is putting money into a
+# property and who controls it, not a debt: OTHER instruments, in no match run. No parcel id
+# is published, so the owner is tied to the permit's site address (the property, not
+# necessarily where the owner lives). The project value stays in the source record.
+portal: https://data.brla.gov
+dataset: 7fq7-8j7r
+where: "issueddate IS NOT NULL"
+order_by: [":id"]
+select: [permitid, permitnumber, permittype, designation, projectvalue, issueddate,
+         streetaddress, city1, state1, zip, lotnumber, subdivision, ownername, applicantname,
+         contractorname, contractoraddress]
+date_field: issueddate
+partition: year
+first_year: 2011
+uid: permitnumber
+doc_type: OTHER
+doc_type_raw: {field: permittype}
+parties:
+  - role: other   # owner of the permitted property
+    name: ownername
+    address: {line1: streetaddress, city: city1, state: state1, zip: zip}
+  - {role: other, name: applicantname}
+  - {role: other, name: contractorname}
+skip_names: ["N/A", "NA", "NONE", "OWNER"]
+extra_pii: [contractoraddress]
+terms:
+  url: https://data.brla.gov/Housing-and-Development/EBR-Building-Permits/7fq7-8j7r
+  summary: "Open Data BR (City of Baton Rouge / Parish of East Baton Rouge), Socrata, free, no login; dataset license Public Domain. robots.txt allows /resource/."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

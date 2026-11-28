@@ -1,0 +1,38 @@
+source_id: fl.orlando.permit_applications
+state: FL
+county_fips: "12095"   # Orange County
+# City of Orlando "Permit Applications" (data.cityoforlando.net ryhf-m453, 1,116,624
+# building, trade, sign, impact-fee and right-of-way permit applications on 2026-11-25,
+# daily): permit number, type, the property owner named on the application (971k rows), the
+# parcel's owner of record as the City joins it (843k), the contractor and contractor's
+# address, estimated cost, processed / issue / CO dates and the 15-digit Orange County parcel
+# number. A signal that an owner is putting money into a property, not a debt: OTHER
+# instruments on the parcel, in no match run.
+portal: https://data.cityoforlando.net
+dataset: ryhf-m453
+where: "processed_date IS NOT NULL"
+order_by: [permit_number]
+select: [permit_number, application_type, worktype, plan_review_type, parcel_number,
+         permit_address, property_owner_name, parcel_owner_name, contractor_name,
+         contractor_address, estimated_cost, processed_date, issue_permit_date, final_date,
+         coo_date, application_status, project_name, square_footage]
+date_field: processed_date
+partition: year
+first_year: 1907
+uid: permit_number
+doc_type: OTHER
+doc_type_raw: {field: application_type}
+extra_pii: [permit_address, project_name]
+parties:
+  - {role: owner, name: property_owner_name}
+  - {role: owner, name: parcel_owner_name}
+  - role: other
+    name: contractor_name
+    address: {line1: contractor_address}
+parcel: {kind: pin, field: parcel_number, county_fips: "12095"}   # = fl.statewide.parcels PARCEL_ID
+terms:
+  url: https://data.cityoforlando.net/d/ryhf-m453
+  summary: "City of Orlando open data (data.cityoforlando.net, Socrata), Permitting Services, free, no login; no license set on the dataset. robots.txt allows /resource/. Internal use."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

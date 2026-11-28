@@ -1,0 +1,750 @@
+{
+ "cases": [
+  {
+   "assess_case_no": "410403505503",
+   "mine": {
+    "FIPS_CNTY_CD": "381",
+    "STATE": "TX"
+   },
+   "violations": [
+    {
+     "ASSESS_CASE_NO": "410403505503",
+     "ASSESS_CASE_STATUS_CD": "Closed",
+     "ASSESS_CASE_STATUS_DT": "10/28/2005",
+     "CITATION_TYPE_CD": "Citation",
+     "CURRENT_ASSESSMENT_AMT": "55.00",
+     "DELINQUENT_DT": "12/15/2000",
+     "EVENT_NBR": "0341257",
+     "EXLATE_INTEREST_AMT": "15.63",
+     "FINAL_ORDER_DT": "12/15/2000",
+     "ISSUE_DT": "07/18/2000",
+     "MINEACT_INTEREST_AMT": "20.88",
+     "MINE_ID": "4104035",
+     "PAID_EXLATE_INTEREST_AMT": "0.00",
+     "PAID_MINEACT_INTEREST_AMT": "0.00",
+     "PAID_PROPOSED_PENALTY_AMT": "0.00",
+     "PROPOSED_PENALTY_AMT": "55.00",
+     "VIOLATION_NO": "7894478",
+     "VIOLATOR_ID": "L16080",
+     "VIOLATOR_NAME": "TESTOWNER 502257 INC",
+     "VIOLATOR_TYPE_CD": "Operator"
+    },
+    {
+     "ASSESS_CASE_NO": "410403505503",
+     "ASSESS_CASE_STATUS_CD": "Closed",
+     "ASSESS_CASE_STATUS_DT": "10/28/2005",
+     "CITATION_TYPE_CD": "Citation",
+     "CURRENT_ASSESSMENT_AMT": "196.00",
+     "DELINQUENT_DT": "12/15/2000",
+     "EVENT_NBR": "0341257",
+     "EXLATE_INTEREST_AMT": "55.71",
+     "FINAL_ORDER_DT": "12/15/2000",
+     "ISSUE_DT": "07/18/2000",
+     "MINEACT_INTEREST_AMT": "74.40",
+     "MINE_ID": "4104035",
+     "PAID_EXLATE_INTEREST_AMT": "0.00",
+     "PAID_MINEACT_INTEREST_AMT": "0.00",
+     "PAID_PROPOSED_PENALTY_AMT": "0.00",
+     "PROPOSED_PENALTY_AMT": "196.00",
+     "VIOLATION_NO": "7894479",
+     "VIOLATOR_ID": "L16080",
+     "VIOLATOR_NAME": "TESTOWNER 502257 INC",
+     "VIOLATOR_TYPE_CD": "Operator"
+    }
+   ],
+   "violator_id": "L16080"
+  },
+  {
+   "assess_case_no": "410403505504",
+   "mine": {
+    "FIPS_CNTY_CD": "381",
+    "STATE": "TX"
+   },
+   "violations": [
+    {
+     "ASSESS_CASE_NO": "410403505504",
+     "ASSESS_CASE_STATUS_CD": "Closed",
+     "ASSESS_CASE_STATUS_DT": "10/28/2005",
+     "CITATION_TYPE_CD": "Citation",
+     "CURRENT_ASSESSMENT_AMT": "55.00",
+     "DELINQUENT_DT": "04/01/2001",
+     "EVENT_NBR": "0341257",
+     "EXLATE_INTEREST_AMT": "14.68",
+     "FINAL_ORDER_DT": "04/01/2001",
+     "ISSUE_DT": "07/19/2000",
+     "MINEACT_INTEREST_AMT": "19.59",
+     "MINE_ID": "4104035",
+     "PAID_EXLATE_INTEREST_AMT": "0.00",
+     "PAID_MINEACT_INTEREST_AMT": "0.00",
+     "PAID_PROPOSED_PENALTY_AMT": "0.00",
+     "PROPOSED_PENALTY_AMT": "55.00",
+     "VIOLATION_NO": "7894480",
+     "VIOLATOR_ID": "L16080",
+     "VIOLATOR_NAME": "TESTOWNER 502257 INC",
+     "VIOLATOR_TYPE_CD": "Operator"
+    },
+    {
+     "ASSESS_CASE_NO": "410403505504",
+     "ASSESS_CASE_STATUS_CD": "Closed",
+     "ASSESS_CASE_STATUS_DT": "10/28/2005",
+     "CITATION_TYPE_CD": "Citation",
+     "CURRENT_ASSESSMENT_AMT": "55.00",
+     "DELINQUENT_DT": "04/01/2001",
+     "EVENT_NBR": "0341264",
+     "EXLATE_INTEREST_AMT": "14.68",
+     "FINAL_ORDER_DT": "04/01/2001",
+     "ISSUE_DT": "08/07/2000",
+     "MINEACT_INTEREST_AMT": "19.59",
+     "MINE_ID": "4104035",
+     "PAID_EXLATE_INTEREST_AMT": "0.00",
+     "PAID_MINEACT_INTEREST_AMT": "0.00",
+     "PAID_PROPOSED_PENALTY_AMT": "0.00",
+     "PROPOSED_PENALTY_AMT": "55.00",
+     "VIOLATION_NO": "7894487",
+     "VIOLATOR_ID": "L16080",
+     "VIOLATOR_NAME": "TESTOWNER 502257 INC",
+     "VIOLATOR_TYPE_CD": "Operator"
+    },
+    {
+     "ASSESS_CASE_NO": "410403505504",
+     "ASSESS_CASE_STATUS_CD": "Closed",
+     "ASSESS_CASE_STATUS_DT": "10/28/2005",
+     "CITATION_TYPE_CD": "Citation",
+     "CURRENT_ASSESSMENT_AMT": "55.00",
+     "DELINQUENT_DT": "04/01/2001",
+     "EVENT_NBR": "0341264",
+     "EXLATE_INTEREST_AMT": "14.68",
+     "FINAL_ORDER_DT": "04/01/2001",
+     "ISSUE_DT": "08/08/2000",
+     "MINEACT_INTEREST_AMT": "19.59",
+     "MINE_ID": "4104035",
+     "PAID_EXLATE_INTEREST_AMT": "0.00",
+     "PAID_MINEACT_INTEREST_AMT": "0.00",
+     "PAID_PROPOSED_PENALTY_AMT": "0.00",
+     "PROPOSED_PENALTY_AMT": "55.00",
+     "VIOLATION_NO": "7894488",
+     "VIOLATOR_ID": "L16080",
+     "VIOLATOR_NAME": "TESTOWNER 502257 INC",
+     "VIOLATOR_TYPE_CD": "Operator"
+    }
+   ],
+   "violator_id": "L16080"
+  },
+  {
+   "assess_case_no": "410418705501",
+   "mine": {
+    "FIPS_CNTY_CD": "375",
+    "STATE": "TX"
+   },
+   "violations": [
+    {
+     "ASSESS_CASE_NO": "410418705501",
+     "ASSESS_CASE_STATUS_CD": "Closed",
+     "ASSESS_CASE_STATUS_DT": "08/06/2014",
+     "CITATION_TYPE_CD": "Citation",
+     "CURRENT_ASSESSMENT_AMT": "55.00",
+     "DELINQUENT_DT": "02/22/2001",
+     "EVENT_NBR": "0341269",
+     "EXLATE_INTEREST_AMT": "15.26",
+     "FINAL_ORDER_DT": "02/22/2001",
+     "ISSUE_DT": "08/10/2000",
+     "MINEACT_INTEREST_AMT": "20.40",
+     "MINE_ID": "4104187",
+     "PAID_EXLATE_INTEREST_AMT": "0.00",
+     "PAID_MINEACT_INTEREST_AMT": "0.00",
+     "PAID_PROPOSED_PENALTY_AMT": "0.00",
+     "PROPOSED_PENALTY_AMT": "55.00",
+     "VIOLATION_NO": "7894489",
+     "VIOLATOR_ID": "L17621",
+     "VIOLATOR_NAME": "TESTOWNER E4216C INC",
+     "VIOLATOR_TYPE_CD": "Operator"
+    }
+   ],
+   "violator_id": "L17621"
+  },
+  {
+   "assess_case_no": "410409705501",
+   "mine": {
+    "FIPS_CNTY_CD": "117",
+    "STATE": "TX"
+   },
+   "violations": [
+    {
+     "ASSESS_CASE_NO": "410409705501",
+     "ASSESS_CASE_STATUS_CD": "Closed",
+     "ASSESS_CASE_STATUS_DT": "07/25/2013",
+     "CITATION_TYPE_CD": "Citation",
+     "CURRENT_ASSESSMENT_AMT": "55.00",
+     "DELINQUENT_DT": "04/11/2001",
+     "EVENT_NBR": "0341274",
+     "EXLATE_INTEREST_AMT": "14.81",
+     "FINAL_ORDER_DT": "04/11/2001",
+     "ISSUE_DT": "08/29/2000",
+     "MINEACT_INTEREST_AMT": "19.89",
+     "MINE_ID": "4104097",
+     "PAID_EXLATE_INTEREST_AMT": "0.00",
+     "PAID_MINEACT_INTEREST_AMT": "0.00",
+     "PAID_PROPOSED_PENALTY_AMT": "0.00",
+     "PROPOSED_PENALTY_AMT": "55.00",
+     "VIOLATION_NO": "7894494",
+     "VIOLATOR_ID": "L16625",
+     "VIOLATOR_NAME": "TESTOWNER 7402DD",
+     "VIOLATOR_TYPE_CD": "Operator"
+    }
+   ],
+   "violator_id": "L16625"
+  },
+  {
+   "assess_case_no": "000009714",
+   "mine": {
+    "FIPS_CNTY_CD": "015",
+    "STATE": "AZ"
+   },
+   "violations": [
+    {
+     "ASSESS_CASE_NO": "000009714",
+     "ASSESS_CASE_STATUS_CD": "Closed",
+     "ASSESS_CASE_STATUS_DT": "06/18/2008",
+     "CITATION_TYPE_CD": "Citation",
+     "CURRENT_ASSESSMENT_AMT": "60.00",
+     "DELINQUENT_DT": "11/26/2003",
+     "EVENT_NBR": "0356661",
+     "EXLATE_INTEREST_AMT": "0.61",
+     "FINAL_ORDER_DT": "11/26/2003",
+     "ISSUE_DT": "07/16/2003",
+     "MINEACT_INTEREST_AMT": "11.24",
+     "MINE_ID": "0202991",
+     "PAID_EXLATE_INTEREST_AMT": "0.00",
+     "PAID_MINEACT_INTEREST_AMT": "0.00",
+     "PAID_PROPOSED_PENALTY_AMT": "0.00",
+     "PROPOSED_PENALTY_AMT": "60.00",
+     "VIOLATION_NO": "6293358",
+     "VIOLATOR_ID": "0050779",
+     "VIOLATOR_NAME": "TESTOWNER 36D14F LLC",
+     "VIOLATOR_TYPE_CD": "Operator"
+    }
+   ],
+   "violator_id": "0050779"
+  },
+  {
+   "assess_case_no": "000021440",
+   "mine": {
+    "FIPS_CNTY_CD": "015",
+    "STATE": "AZ"
+   },
+   "violations": [
+    {
+     "ASSESS_CASE_NO": "000021440",
+     "ASSESS_CASE_STATUS_CD": "Closed",
+     "ASSESS_CASE_STATUS_DT": "06/07/2005",
+     "CITATION_TYPE_CD": "Citation",
+     "CURRENT_ASSESSMENT_AMT": "60.00",
+     "DELINQUENT_DT": "04/24/2004",
+     "EVENT_NBR": "0356663",
+     "EXLATE_INTEREST_AMT": "0.00",
+     "FINAL_ORDER_DT": "04/24/2004",
+     "ISSUE_DT": "07/21/2003",
+     "MINEACT_INTEREST_AMT": "4.72",
+     "MINE_ACT_SECTION_CD": "103(h)",
+     "MINE_ID": "0202477",
+     "PAID_EXLATE_INTEREST_AMT": "0.00",
+     "PAID_MINEACT_INTEREST_AMT": "0.00",
+     "PAID_PROPOSED_PENALTY_AMT": "0.00",
+     "PROPOSED_PENALTY_AMT": "60.00",
+     "VIOLATION_NO": "6293361",
+     "VIOLATOR_ID": "L12578",
+     "VIOLATOR_NAME": "TESTOWNER 9A634C INC",
+     "VIOLATOR_TYPE_CD": "Operator"
+    }
+   ],
+   "violator_id": "L12578"
+  },
+  {
+   "assess_case_no": "000022803",
+   "mine": {
+    "FIPS_CNTY_CD": "015",
+    "STATE": "AZ"
+   },
+   "violations": [
+    {
+     "ASSESS_CASE_NO": "000022803",
+     "ASSESS_CASE_STATUS_CD": "Closed",
+     "ASSESS_CASE_STATUS_DT": "06/18/2008",
+     "CITATION_TYPE_CD": "Citation",
+     "CURRENT_ASSESSMENT_AMT": "723.00",
+     "DELINQUENT_DT": "05/19/2004",
+     "EVENT_NBR": "0356668",
+     "EXLATE_INTEREST_AMT": "6.30",
+     "FINAL_ORDER_DT": "05/19/2004",
+     "ISSUE_DT": "07/23/2003",
+     "MINEACT_INTEREST_AMT": "107.61",
+     "MINE_ID": "0202979",
+     "PAID_EXLATE_INTEREST_AMT": "0.00",
+     "PAID_MINEACT_INTEREST_AMT": "0.00",
+     "PAID_PROPOSED_PENALTY_AMT": "0.00",
+     "PROPOSED_PENALTY_AMT": "723.00",
+     "VIOLATION_NO": "6293365",
+     "VIOLATOR_ID": "0050358",
+     "VIOLATOR_NAME": "TESTOWNER 8858AC INC",
+     "VIOLATOR_TYPE_CD": "Operator"
+    }
+   ],
+   "violator_id": "0050358"
+  },
+  {
+   "assess_case_no": "000020427",
+   "mine": {
+    "FIPS_CNTY_CD": "015",
+    "STATE": "AZ"
+   },
+   "violations": [
+    {
+     "ASSESS_CASE_NO": "000020427",
+     "ASSESS_CASE_STATUS_CD": "Closed",
+     "ASSESS_CASE_STATUS_DT": "06/18/2008",
+     "CITATION_TYPE_CD": "Citation",
+     "CURRENT_ASSESSMENT_AMT": "177.00",
+     "DELINQUENT_DT": "04/14/2004",
+     "EVENT_NBR": "0356668",
+     "EXLATE_INTEREST_AMT": "1.54",
+     "FINAL_ORDER_DT": "04/14/2004",
+     "ISSUE_DT": "07/23/2003",
+     "MINEACT_INTEREST_AMT": "27.71",
+     "MINE_ID": "0202979",
+     "PAID_EXLATE_INTEREST_AMT": "0.00",
+     "PAID_MINEACT_INTEREST_AMT": "0.00",
+     "PAID_PROPOSED_PENALTY_AMT": "0.00",
+     "PROPOSED_PENALTY_AMT": "177.00",
+     "VIOLATION_NO": "6293366",
+     "VIOLATOR_ID": "0050358",
+     "VIOLATOR_NAME": "TESTOWNER 8858AC INC",
+     "VIOLATOR_TYPE_CD": "Operator"
+    }
+   ],
+   "violator_id": "0050358"
+  },
+  {
+   "assess_case_no": "000026206",
+   "mine": {
+    "FIPS_CNTY_CD": "015",
+    "STATE": "AZ"
+   },
+   "violations": [
+    {
+     "ASSESS_CASE_NO": "000026206",
+     "ASSESS_CASE_STATUS_CD": "Closed",
+     "ASSESS_CASE_STATUS_DT": "02/11/2009",
+     "CITATION_TYPE_CD": "Citation",
+     "CURRENT_ASSESSMENT_AMT": "165.00",
+     "DELINQUENT_DT": "06/17/2004",
+     "EVENT_NBR": "0356681",
+     "EXLATE_INTEREST_AMT": "1.55",
+     "FINAL_ORDER_DT": "06/17/2004",
+     "ISSUE_DT": "10/06/2003",
+     "MINEACT_INTEREST_AMT": "23.78",
+     "MINE_ID": "0202911",
+     "PAID_EXLATE_INTEREST_AMT": "0.00",
+     "PAID_MINEACT_INTEREST_AMT": "0.00",
+     "PAID_PROPOSED_PENALTY_AMT": "0.00",
+     "PROPOSED_PENALTY_AMT": "165.00",
+     "VIOLATION_NO": "6295109",
+     "VIOLATOR_ID": "L17874",
+     "VIOLATOR_NAME": "TESTOWNER 22CACF",
+     "VIOLATOR_TYPE_CD": "Operator"
+    }
+   ],
+   "violator_id": "L17874"
+  },
+  {
+   "assess_case_no": "000014664",
+   "mine": {
+    "FIPS_CNTY_CD": "019",
+    "STATE": "AZ"
+   },
+   "violations": [
+    {
+     "ASSESS_CASE_NO": "000014664",
+     "ASSESS_CASE_STATUS_CD": "Closed",
+     "ASSESS_CASE_STATUS_DT": "10/09/2008",
+     "CITATION_TYPE_CD": "Citation",
+     "CURRENT_ASSESSMENT_AMT": "60.00",
+     "DELINQUENT_DT": "01/22/2004",
+     "EVENT_NBR": "0356748",
+     "EXLATE_INTEREST_AMT": "0.00",
+     "FINAL_ORDER_DT": "01/22/2004",
+     "ISSUE_DT": "10/08/2003",
+     "MINEACT_INTEREST_AMT": "9.76",
+     "MINE_ID": "0200627",
+     "PAID_EXLATE_INTEREST_AMT": "0.00",
+     "PAID_MINEACT_INTEREST_AMT": "0.00",
+     "PAID_PROPOSED_PENALTY_AMT": "0.00",
+     "PROPOSED_PENALTY_AMT": "60.00",
+     "VIOLATION_NO": "6293626",
+     "VIOLATOR_ID": "L15631",
+     "VIOLATOR_NAME": "TESTOWNER 1E3664",
+     "VIOLATOR_TYPE_CD": "Operator"
+    },
+    {
+     "ASSESS_CASE_NO": "000014664",
+     "ASSESS_CASE_STATUS_CD": "Closed",
+     "ASSESS_CASE_STATUS_DT": "10/09/2008",
+     "CITATION_TYPE_CD": "Citation",
+     "CURRENT_ASSESSMENT_AMT": "60.00",
+     "DELINQUENT_DT": "01/22/2004",
+     "EVENT_NBR": "0356748",
+     "EXLATE_INTEREST_AMT": "0.00",
+     "FINAL_ORDER_DT": "01/22/2004",
+     "ISSUE_DT": "10/08/2003",
+     "MINEACT_INTEREST_AMT": "9.76",
+     "MINE_ID": "0200627",
+     "PAID_EXLATE_INTEREST_AMT": "0.00",
+     "PAID_MINEACT_INTEREST_AMT": "0.00",
+     "PAID_PROPOSED_PENALTY_AMT": "0.00",
+     "PROPOSED_PENALTY_AMT": "60.00",
+     "VIOLATION_NO": "6293627",
+     "VIOLATOR_ID": "L15631",
+     "VIOLATOR_NAME": "TESTOWNER 1E3664",
+     "VIOLATOR_TYPE_CD": "Operator"
+    },
+    {
+     "ASSESS_CASE_NO": "000014664",
+     "ASSESS_CASE_STATUS_CD": "Closed",
+     "ASSESS_CASE_STATUS_DT": "10/09/2008",
+     "CITATION_TYPE_CD": "Citation",
+     "CURRENT_ASSESSMENT_AMT": "60.00",
+     "DELINQUENT_DT": "01/22/2004",
+     "EVENT_NBR": "0356748",
+     "EXLATE_INTEREST_AMT": "0.00",
+     "FINAL_ORDER_DT": "01/22/2004",
+     "ISSUE_DT": "10/23/2003",
+     "MINEACT_INTEREST_AMT": "9.76",
+     "MINE_ID": "0200627",
+     "PAID_EXLATE_INTEREST_AMT": "0.00",
+     "PAID_MINEACT_INTEREST_AMT": "0.00",
+     "PAID_PROPOSED_PENALTY_AMT": "0.00",
+     "PROPOSED_PENALTY_AMT": "60.00",
+     "VIOLATION_NO": "6293644",
+     "VIOLATOR_ID": "L15631",
+     "VIOLATOR_NAME": "TESTOWNER 1E3664",
+     "VIOLATOR_TYPE_CD": "Operator"
+    }
+   ],
+   "violator_id": "L15631"
+  },
+  {
+   "assess_case_no": "020062705513",
+   "mine": {
+    "FIPS_CNTY_CD": "019",
+    "STATE": "AZ"
+   },
+   "violations": [
+    {
+     "ASSESS_CASE_NO": "020062705513",
+     "ASSESS_CASE_STATUS_CD": "Closed",
+     "ASSESS_CASE_STATUS_DT": "10/09/2008",
+     "CITATION_TYPE_CD": "Citation",
+     "CURRENT_ASSESSMENT_AMT": "143.00",
+     "DELINQUENT_DT": "01/03/2004",
+     "EVENT_NBR": "0356748",
+     "EXLATE_INTEREST_AMT": "0.00",
+     "FINAL_ORDER_DT": "01/03/2004",
+     "ISSUE_DT": "04/22/2003",
+     "MINEACT_INTEREST_AMT": "23.84",
+     "MINE_ID": "0200627",
+     "PAID_EXLATE_INTEREST_AMT": "0.00",
+     "PAID_MINEACT_INTEREST_AMT": "0.00",
+     "PAID_PROPOSED_PENALTY_AMT": "0.00",
+     "PROPOSED_PENALTY_AMT": "143.00",
+     "VIOLATION_NO": "6294102",
+     "VIOLATOR_ID": "L15631",
+     "VIOLATOR_NAME": "TESTOWNER 1E3664",
+     "VIOLATOR_TYPE_CD": "Operator"
+    },
+    {
+     "ASSESS_CASE_NO": "020062705513",
+     "ASSESS_CASE_STATUS_CD": "Closed",
+     "ASSESS_CASE_STATUS_DT": "10/09/2008",
+     "CITATION_TYPE_CD": "Citation",
+     "CURRENT_ASSESSMENT_AMT": "60.00",
+     "DELINQUENT_DT": "01/03/2004",
+     "EVENT_NBR": "0356748",
+     "EXLATE_INTEREST_AMT": "0.00",
+     "FINAL_ORDER_DT": "01/03/2004",
+     "ISSUE_DT": "04/22/2003",
+     "MINEACT_INTEREST_AMT": "10.01",
+     "MINE_ID": "0200627",
+     "PAID_EXLATE_INTEREST_AMT": "0.00",
+     "PAID_MINEACT_INTEREST_AMT": "0.00",
+     "PAID_PROPOSED_PENALTY_AMT": "0.00",
+     "PROPOSED_PENALTY_AMT": "60.00",
+     "VIOLATION_NO": "6294103",
+     "VIOLATOR_ID": "L15631",
+     "VIOLATOR_NAME": "TESTOWNER 1E3664",
+     "VIOLATOR_TYPE_CD": "Operator"
+    },
+    {
+     "ASSESS_CASE_NO": "020062705513",
+     "ASSESS_CASE_STATUS_CD": "Closed",
+     "ASSESS_CASE_STATUS_DT": "10/09/2008",
+     "CITATION_TYPE_CD": "Citation",
+     "CURRENT_ASSESSMENT_AMT": "60.00",
+     "DELINQUENT_DT": "01/03/2004",
+     "EVENT_NBR": "0356748",
+     "EXLATE_INTEREST_AMT": "0.00",
+     "FINAL_ORDER_DT": "01/03/2004",
+     "ISSUE_DT": "04/23/2003",
+     "MINEACT_INTEREST_AMT": "10.01",
+     "MINE_ID": "0200627",
+     "PAID_EXLATE_INTEREST_AMT": "0.00",
+     "PAID_MINEACT_INTEREST_AMT": "0.00",
+     "PAID_PROPOSED_PENALTY_AMT": "0.00",
+     "PROPOSED_PENALTY_AMT": "60.00",
+     "VIOLATION_NO": "6294104",
+     "VIOLATOR_ID": "L15631",
+     "VIOLATOR_NAME": "TESTOWNER 1E3664",
+     "VIOLATOR_TYPE_CD": "Operator"
+    },
+    {
+     "ASSESS_CASE_NO": "020062705513",
+     "ASSESS_CASE_STATUS_CD": "Closed",
+     "ASSESS_CASE_STATUS_DT": "10/09/2008",
+     "CITATION_TYPE_CD": "Citation",
+     "CURRENT_ASSESSMENT_AMT": "114.00",
+     "DELINQUENT_DT": "01/03/2004",
+     "EVENT_NBR": "0356748",
+     "EXLATE_INTEREST_AMT": "0.00",
+     "FINAL_ORDER_DT": "01/03/2004",
+     "ISSUE_DT": "04/23/2003",
+     "MINEACT_INTEREST_AMT": "18.98",
+     "MINE_ID": "0200627",
+     "PAID_EXLATE_INTEREST_AMT": "0.00",
+     "PAID_MINEACT_INTEREST_AMT": "0.00",
+     "PAID_PROPOSED_PENALTY_AMT": "0.00",
+     "PROPOSED_PENALTY_AMT": "114.00",
+     "VIOLATION_NO": "6294108",
+     "VIOLATOR_ID": "L15631",
+     "VIOLATOR_NAME": "TESTOWNER 1E3664",
+     "VIOLATOR_TYPE_CD": "Operator"
+    }
+   ],
+   "violator_id": "L15631"
+  },
+  {
+   "assess_case_no": "000003100",
+   "mine": {
+    "FIPS_CNTY_CD": "019",
+    "STATE": "AZ"
+   },
+   "violations": [
+    {
+     "ASSESS_CASE_NO": "000003100",
+     "ASSESS_CASE_STATUS_CD": "Closed",
+     "ASSESS_CASE_STATUS_DT": "10/09/2008",
+     "CITATION_TYPE_CD": "Citation",
+     "CURRENT_ASSESSMENT_AMT": "143.00",
+     "DELINQUENT_DT": "01/02/2004",
+     "EVENT_NBR": "0356748",
+     "EXLATE_INTEREST_AMT": "0.00",
+     "FINAL_ORDER_DT": "01/02/2004",
+     "ISSUE_DT": "04/23/2003",
+     "MINEACT_INTEREST_AMT": "23.87",
+     "MINE_ID": "0200627",
+     "PAID_EXLATE_INTEREST_AMT": "0.00",
+     "PAID_MINEACT_INTEREST_AMT": "0.00",
+     "PAID_PROPOSED_PENALTY_AMT": "0.00",
+     "PROPOSED_PENALTY_AMT": "143.00",
+     "VIOLATION_NO": "6294105",
+     "VIOLATOR_ID": "L15631",
+     "VIOLATOR_NAME": "TESTOWNER 1E3664",
+     "VIOLATOR_TYPE_CD": "Operator"
+    },
+    {
+     "ASSESS_CASE_NO": "000003100",
+     "ASSESS_CASE_STATUS_CD": "Closed",
+     "ASSESS_CASE_STATUS_DT": "10/09/2008",
+     "CITATION_TYPE_CD": "Citation",
+     "CURRENT_ASSESSMENT_AMT": "60.00",
+     "DELINQUENT_DT": "01/02/2004",
+     "EVENT_NBR": "0356748",
+     "EXLATE_INTEREST_AMT": "0.00",
+     "FINAL_ORDER_DT": "01/02/2004",
+     "ISSUE_DT": "04/23/2003",
+     "MINEACT_INTEREST_AMT": "10.03",
+     "MINE_ID": "0200627",
+     "PAID_EXLATE_INTEREST_AMT": "0.00",
+     "PAID_MINEACT_INTEREST_AMT": "0.00",
+     "PAID_PROPOSED_PENALTY_AMT": "0.00",
+     "PROPOSED_PENALTY_AMT": "60.00",
+     "VIOLATION_NO": "6294106",
+     "VIOLATOR_ID": "L15631",
+     "VIOLATOR_NAME": "TESTOWNER 1E3664",
+     "VIOLATOR_TYPE_CD": "Operator"
+    },
+    {
+     "ASSESS_CASE_NO": "000003100",
+     "ASSESS_CASE_STATUS_CD": "Closed",
+     "ASSESS_CASE_STATUS_DT": "10/09/2008",
+     "CITATION_TYPE_CD": "Citation",
+     "CURRENT_ASSESSMENT_AMT": "143.00",
+     "DELINQUENT_DT": "01/02/2004",
+     "EVENT_NBR": "0356748",
+     "EXLATE_INTEREST_AMT": "0.00",
+     "FINAL_ORDER_DT": "01/02/2004",
+     "ISSUE_DT": "04/23/2003",
+     "MINEACT_INTEREST_AMT": "23.87",
+     "MINE_ID": "0200627",
+     "PAID_EXLATE_INTEREST_AMT": "0.00",
+     "PAID_MINEACT_INTEREST_AMT": "0.00",
+     "PAID_PROPOSED_PENALTY_AMT": "0.00",
+     "PROPOSED_PENALTY_AMT": "143.00",
+     "VIOLATION_NO": "6294107",
+     "VIOLATOR_ID": "L15631",
+     "VIOLATOR_NAME": "TESTOWNER 1E3664",
+     "VIOLATOR_TYPE_CD": "Operator"
+    }
+   ],
+   "violator_id": "L15631"
+  },
+  {
+   "assess_case_no": "000014004",
+   "mine": {
+    "FIPS_CNTY_CD": "013",
+    "STATE": "AZ"
+   },
+   "violations": [
+    {
+     "ASSESS_CASE_NO": "000014004",
+     "ASSESS_CASE_STATUS_CD": "Closed",
+     "ASSESS_CASE_STATUS_DT": "07/29/2014",
+     "CITATION_TYPE_CD": "Citation",
+     "CURRENT_ASSESSMENT_AMT": "60.00",
+     "DELINQUENT_DT": "01/14/2004",
+     "EVENT_NBR": "0357490",
+     "EXLATE_INTEREST_AMT": "29.38",
+     "FINAL_ORDER_DT": "01/14/2004",
+     "ISSUE_DT": "10/21/2003",
+     "MINEACT_INTEREST_AMT": "50.16",
+     "MINE_ID": "0202755",
+     "PAID_EXLATE_INTEREST_AMT": "0.00",
+     "PAID_MINEACT_INTEREST_AMT": "0.00",
+     "PAID_PROPOSED_PENALTY_AMT": "0.00",
+     "PROPOSED_PENALTY_AMT": "60.00",
+     "VIOLATION_NO": "6292777",
+     "VIOLATOR_ID": "0050870",
+     "VIOLATOR_NAME": "TESTOWNER 58A879 LLC",
+     "VIOLATOR_TYPE_CD": "Operator"
+    }
+   ],
+   "violator_id": "0050870"
+  },
+  {
+   "assess_case_no": "000009433",
+   "mine": {
+    "FIPS_CNTY_CD": "013",
+    "STATE": "AZ"
+   },
+   "violations": [
+    {
+     "ASSESS_CASE_NO": "000009433",
+     "ASSESS_CASE_STATUS_CD": "Closed",
+     "ASSESS_CASE_STATUS_DT": "07/29/2014",
+     "CITATION_TYPE_CD": "Citation",
+     "CURRENT_ASSESSMENT_AMT": "60.00",
+     "DELINQUENT_DT": "11/17/2003",
+     "EVENT_NBR": "0357490",
+     "EXLATE_INTEREST_AMT": "4.90",
+     "FINAL_ORDER_DT": "11/17/2003",
+     "ISSUE_DT": "07/01/2003",
+     "MINEACT_INTEREST_AMT": "17.26",
+     "MINE_ID": "0202755",
+     "PAID_EXLATE_INTEREST_AMT": "0.00",
+     "PAID_MINEACT_INTEREST_AMT": "0.00",
+     "PAID_PROPOSED_PENALTY_AMT": "50.00",
+     "PROPOSED_PENALTY_AMT": "60.00",
+     "VIOLATION_NO": "7930078",
+     "VIOLATOR_ID": "0050870",
+     "VIOLATOR_NAME": "TESTOWNER 58A879 LLC",
+     "VIOLATOR_TYPE_CD": "Operator"
+    },
+    {
+     "ASSESS_CASE_NO": "000009433",
+     "ASSESS_CASE_STATUS_CD": "Closed",
+     "ASSESS_CASE_STATUS_DT": "07/29/2014",
+     "CITATION_TYPE_CD": "Citation",
+     "CURRENT_ASSESSMENT_AMT": "60.00",
+     "DELINQUENT_DT": "11/17/2003",
+     "EVENT_NBR": "0357490",
+     "EXLATE_INTEREST_AMT": "29.38",
+     "FINAL_ORDER_DT": "11/17/2003",
+     "ISSUE_DT": "07/01/2003",
+     "MINEACT_INTEREST_AMT": "50.92",
+     "MINE_ID": "0202755",
+     "PAID_EXLATE_INTEREST_AMT": "0.00",
+     "PAID_MINEACT_INTEREST_AMT": "0.00",
+     "PAID_PROPOSED_PENALTY_AMT": "0.00",
+     "PROPOSED_PENALTY_AMT": "60.00",
+     "VIOLATION_NO": "7930080",
+     "VIOLATOR_ID": "0050870",
+     "VIOLATOR_NAME": "TESTOWNER 58A879 LLC",
+     "VIOLATOR_TYPE_CD": "Operator"
+    },
+    {
+     "ASSESS_CASE_NO": "000009433",
+     "ASSESS_CASE_STATUS_CD": "Closed",
+     "ASSESS_CASE_STATUS_DT": "07/29/2014",
+     "CITATION_TYPE_CD": "Citation",
+     "CURRENT_ASSESSMENT_AMT": "60.00",
+     "DELINQUENT_DT": "11/17/2003",
+     "EVENT_NBR": "0357490",
+     "EXLATE_INTEREST_AMT": "29.38",
+     "FINAL_ORDER_DT": "11/17/2003",
+     "ISSUE_DT": "07/01/2003",
+     "MINEACT_INTEREST_AMT": "50.92",
+     "MINE_ID": "0202755",
+     "PAID_EXLATE_INTEREST_AMT": "0.00",
+     "PAID_MINEACT_INTEREST_AMT": "0.00",
+     "PAID_PROPOSED_PENALTY_AMT": "0.00",
+     "PROPOSED_PENALTY_AMT": "60.00",
+     "VIOLATION_NO": "7930081",
+     "VIOLATOR_ID": "0050870",
+     "VIOLATOR_NAME": "TESTOWNER 58A879 LLC",
+     "VIOLATOR_TYPE_CD": "Operator"
+    }
+   ],
+   "violator_id": "0050870"
+  },
+  {
+   "assess_case_no": "000014049",
+   "mine": {
+    "FIPS_CNTY_CD": "013",
+    "STATE": "AZ"
+   },
+   "violations": [
+    {
+     "ASSESS_CASE_NO": "000014049",
+     "ASSESS_CASE_STATUS_CD": "Closed",
+     "ASSESS_CASE_STATUS_DT": "07/29/2014",
+     "CITATION_TYPE_CD": "Citation",
+     "CURRENT_ASSESSMENT_AMT": "60.00",
+     "DELINQUENT_DT": "01/14/2004",
+     "EVENT_NBR": "0357494",
+     "EXLATE_INTEREST_AMT": "29.38",
+     "FINAL_ORDER_DT": "01/14/2004",
+     "ISSUE_DT": "10/09/2003",
+     "MINEACT_INTEREST_AMT": "50.16",
+     "MINE_ID": "0203008",
+     "PAID_EXLATE_INTEREST_AMT": "0.00",
+     "PAID_MINEACT_INTEREST_AMT": "0.00",
+     "PAID_PROPOSED_PENALTY_AMT": "0.00",
+     "PROPOSED_PENALTY_AMT": "60.00",
+     "VIOLATION_NO": "6292759",
+     "VIOLATOR_ID": "0050870",
+     "VIOLATOR_NAME": "TESTOWNER FF34DB LLC",
+     "VIOLATOR_TYPE_CD": "Operator"
+    }
+   ],
+   "violator_id": "0050870"
+  }
+ ],
+ "url": "https://arlweb.msha.gov/OpenGovernmentData/DataSets/AssessedViolations.zip"
+}

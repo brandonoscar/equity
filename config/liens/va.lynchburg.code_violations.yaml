@@ -1,0 +1,36 @@
+source_id: va.lynchburg.code_violations
+state: VA
+county_fips: "51680"   # Lynchburg city
+# City of Lynchburg "Violation Cases - Locations" (GIS Office open data, OpenData/ODPDynamic
+# MapServer/30, 20,732 code enforcement cases opened 2002 .. 2026 on 2026-11-25): record
+# number, case name, type and subtype (housing / property maintenance, zoning, nuisance, ...),
+# status, start / end / expiry dates, the owner named on the case and the parcel's owner of
+# record with the owner's mailing address, on the parcel (Parcel_ID, =
+# va.lynchburg_city.parcels parcel_id). The inspector (Contact) is not fetched. OTHER
+# instruments on the parcel, in no match run.
+api: arcgis
+layer_url: https://mapviewer.lynchburgva.gov/arcgis/rest/services/OpenData/ODPDynamic/MapServer/30
+order_by: [OBJECTID]
+select: [OBJECTID, Parcel_ID, Address, RecordNo, Name, Type, SubType, StartDate, EndDate,
+         Status, ExpireDate, Owner_TRAKiT, Owner1, MailingAddress, MailingCity, MailingState,
+         MailingZipCode]
+date_field: StartDate
+partition: year
+first_year: 1990
+uid: RecordNo
+doc_type: OTHER
+doc_type_raw: {field: SubType}
+extra_pii: [Address, Name]
+parties:
+  - role: owner
+    name: Owner1
+    address: {line1: MailingAddress, city: MailingCity, state: MailingState, zip: MailingZipCode}
+  - {role: owner, name: Owner_TRAKiT}
+  - {role: creditor, const: City of Lynchburg}
+parcel: {kind: pin, field: Parcel_ID, county_fips: "51680"}   # = va.lynchburg_city.parcels parcel_id
+terms:
+  url: https://www.arcgis.com/home/item.html?id=d48e0f44f80b44c7924118f0f0617f89
+  summary: "City of Lynchburg GIS Office public OpenData/ODPDynamic MapServer (as va.lynchburg_city.parcels), no login, token or fee; item licenseInfo: not a legal record or survey; it points to the City's GIS Data Sharing and Distribution Policy, which answered 404 (see va.lynchburg_city.parcels), so no restriction text could be read. mapviewer.lynchburgva.gov/robots.txt: 'User-agent: * Allow: /' with Content-Signal search=yes, ai-train=no, use=reference (no AI training; this is record linking)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

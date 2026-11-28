@@ -1,0 +1,31 @@
+source_id: va.fairfax.real_estate_sales
+state: VA
+county_fips: "51059"   # Fairfax County
+# Fairfax County Department of Tax Administration "Tax Administration Real Estate Sales
+# Data" (ArcGIS Online table, owner FX.AuthData, 1,448,305 sales on 2026-11-25, sale dates
+# 1867 .. 2026-11, refreshed weekly): every recorded sale of every parcel the assessor tracks
+# with the sale date, price, the Circuit Court deed book and page (from about 1990) and the
+# assessor's validity code (valid and verified sale, transfer of convenience, ...). No
+# grantor or grantee names in this table: each row is a DEED instrument on the parcel with
+# its consideration and no parties; the owner of record comes from the parcel layer. PARID
+# is the tax map number with its spaces ('0062 09  0010'), as the county's parcel layer
+# prints it.
+api: arcgis
+layer_url: https://services1.arcgis.com/ioennV6PpG5Xodq0/arcgis/rest/services/Tax_Administration_Real_Estate_Sales_Data/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, PARID, TAXYR, SALEDT, PRICE, BOOK, PAGE, SALEVAL_DESC]
+date_field: SALEDT
+partition: year
+first_year: 1867
+uid: [PARID, SALEDT, BOOK, PAGE, PRICE]
+doc_type: DEED
+doc_type_raw: {field: SALEVAL_DESC}
+consideration: PRICE
+parties: []   # no names in the table
+parcel: {kind: pin, field: PARID, county_fips: "51059"}
+terms:
+  url: https://www.arcgis.com/home/item.html?id=8be946f0995241be92212f04d55d531e
+  summary: "Fairfax County Open Geospatial Data (ArcGIS Online, FX.AuthData), Department of Tax Administration, free, no login. Item licenseInfo points to the Fairfax County GIS Division disclaimer (accuracy, no warranty); no commercial-use or redistribution restriction found. services1.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

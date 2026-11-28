@@ -1,0 +1,32 @@
+source_id: la.nola.code_enforcement_cases
+state: LA
+county_fips: "22071"   # Orleans Parish
+# City of New Orleans Code Enforcement "Code Enforcement All Cases" (data.nola.gov u6yx-v2tw,
+# 183,770 cases filed 2008 .. 2026-11 on 2026-11-25, daily): blight and property-maintenance
+# cases with the stage (inspection, hearing, judgment, lien, demolition, sale), key status,
+# hearing dates and the recordation date where a judgment was recorded, on the parcel
+# (geopin). No owner name: the case is against the property, so a match names its owner of
+# record. Hearing judgments are la.nola.code_hearing_judgments; this is every case, as OTHER
+# instruments in no match run.
+portal: https://data.nola.gov
+dataset: u6yx-v2tw
+order_by: [caseid]
+select: [caseid, caseno, o_c, stage, keystatus, statdate, casefiled, initinspection,
+         initinspresult, prevhearingdate, prevhearingresult, nexthearingdate, titleresearch,
+         recordationdate, location, geoaddress, city, state, zipcode, geopin]
+date_field: casefiled
+partition: year
+first_year: 2008
+uid: caseno   # 2 repeated case numbers of 183,770
+doc_type: OTHER
+doc_type_raw: {field: stage}
+extra_pii: [location, geoaddress]
+parties:
+  - {role: creditor, const: City of New Orleans}
+parcel: {kind: pin, field: geopin, county_fips: "22071"}
+terms:
+  url: https://data.nola.gov/d/u6yx-v2tw
+  summary: "City of New Orleans open data (data.nola.gov, Socrata), Code Enforcement, free, no login. Dataset license: Creative Commons 1.0 Universal (Public Domain Dedication). robots.txt allows /resource/."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

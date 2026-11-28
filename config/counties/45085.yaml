@@ -1,0 +1,29 @@
+source_id: sc.sumter.parcels
+state: SC
+# Sumter County (SC) 'Sumter County Parcel Information Layer' on the City of Sumter / Sumter
+# County GIS server (61,723 rows on 2026-11-25, ExtractDate 2026-11; owner_name filled on all
+# but 270): owner name, owner mailing address, property address, deed book/page.
+layer_url: https://gis.sumter-sc.com/server/rest/services/BaseMaps/Sumter_City_County/FeatureServer/7
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "085"}
+fields:
+  parcel_id: parcel_number   # '144-00-03-001' (parid is the same id undashed)
+  owner1: owner_name
+  mail_line1: owner_address_one
+  mail_line2: owner_address_two
+  mail_city: owner_city
+  mail_state: owner_state
+  mail_zip: owner_zip
+  situs_line1: parcel_address_one
+  situs_state: {const: SC}
+  deed_book: deed_book
+  deed_page: deed_page
+value_basis: "market_value_land / _building / _total and assessed_value_land / _building are present but the layer has no tax-year field (ExtractDate is the extract time), so no values or tax_year are mapped and no assessment facts are emitted."
+terms:
+  url: https://gis.sumter-sc.com/server/rest/services/BaseMaps/Sumter_City_County/FeatureServer
+  summary: "City of Sumter / Sumter County (SC) ArcGIS Server, BaseMaps/Sumter_City_County layer 7 'Parcel' (copyright 'City of Sumter, Sumter County'); public, no login, token or fee. No licence or use-restriction text on the service or its item info (read 2026-11-25). gis.sumter-sc.com/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

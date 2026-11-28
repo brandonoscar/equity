@@ -1,0 +1,181 @@
+{
+ "dataset": "eagk-wq48",
+ "rows": [
+  {
+   "apn": "2005021009",
+   "case_filed_date": "2025-07-03T00:00:00.000",
+   "casetype": "Unit Not Registered, Illegal Rent Increase, Failure To Post Notice, Required Online Payment/Electronic Fund Transfer",
+   "closed_date": "2025-09-24T00:00:00.000",
+   "officialaddress": "4675 TEST ST"
+  },
+  {
+   "apn": "2010004040",
+   "case_filed_date": "2025-07-02T00:00:00.000",
+   "casetype": "Reduction of Services, Failure To Post Notice, Required Online Payment/Electronic Fund Transfer, Harassment",
+   "closed_date": "2025-08-20T00:00:00.000",
+   "officialaddress": "7514 TEST ST"
+  },
+  {
+   "apn": "2012022018",
+   "case_filed_date": "2025-04-07T00:00:00.000",
+   "casetype": "Harassment",
+   "closed_date": "2025-08-13T00:00:00.000",
+   "officialaddress": "4779 TEST ST"
+  },
+  {
+   "apn": "2012022901",
+   "case_filed_date": "2025-08-12T00:00:00.000",
+   "casetype": "Harassment",
+   "closed_date": "2025-10-01T00:00:00.000",
+   "officialaddress": "2364 TEST ST"
+  },
+  {
+   "apn": "2012023008",
+   "case_filed_date": "2025-07-31T00:00:00.000",
+   "casetype": "Illegal Rent Increase, Reduction of Services",
+   "closed_date": "2025-12-03T00:00:00.000",
+   "officialaddress": "2137 TEST ST"
+  },
+  {
+   "apn": "2013012028",
+   "case_filed_date": "2025-04-23T00:00:00.000",
+   "casetype": "Illegal Eviction, Harassment",
+   "closed_date": "2025-05-29T00:00:00.000",
+   "officialaddress": "3279 TEST ST"
+  },
+  {
+   "apn": "2013014026",
+   "case_filed_date": "2025-01-16T00:00:00.000",
+   "casetype": "Illegal Eviction",
+   "closed_date": "2025-01-31T00:00:00.000",
+   "officialaddress": "1912 TEST ST"
+  },
+  {
+   "apn": "2014001003",
+   "case_filed_date": "2025-07-10T00:00:00.000",
+   "casetype": "Harassment",
+   "closed_date": "2025-08-20T00:00:00.000",
+   "officialaddress": "4132 TEST ST"
+  },
+  {
+   "apn": "2014001016",
+   "case_filed_date": "2025-02-27T00:00:00.000",
+   "casetype": "Illegal Rent Increase, Harassment",
+   "closed_date": "2025-05-15T00:00:00.000",
+   "officialaddress": "8517 TEST ST"
+  },
+  {
+   "apn": "2014010007",
+   "case_filed_date": "2025-08-23T00:00:00.000",
+   "casetype": "Illegal Eviction, Illegal Rent Increase, Reduction of Services, Required Online Payment/Electronic Fund Transfer, Harassment",
+   "closed_date": "2025-10-01T00:00:00.000",
+   "officialaddress": "3331 TEST ST"
+  },
+  {
+   "apn": "2020010022",
+   "case_filed_date": "2025-05-21T00:00:00.000",
+   "casetype": "Harassment",
+   "closed_date": "2025-07-16T00:00:00.000",
+   "officialaddress": "8941 TEST ST"
+  },
+  {
+   "apn": "2022011011",
+   "case_filed_date": "2025-02-27T00:00:00.000",
+   "casetype": "Reduction of Services",
+   "closed_date": "2025-03-10T00:00:00.000",
+   "officialaddress": "5188 TEST ST"
+  },
+  {
+   "apn": "2024013166",
+   "case_filed_date": "2025-09-03T00:00:00.000",
+   "casetype": "Harassment, Illegal Eviction",
+   "closed_date": "2025-10-08T00:00:00.000",
+   "officialaddress": "1154 TEST ST"
+  },
+  {
+   "apn": "2024013166",
+   "case_filed_date": "2025-09-03T00:00:00.000",
+   "casetype": "Reduction of Services",
+   "closed_date": "2025-09-04T00:00:00.000",
+   "officialaddress": "1154 TEST ST"
+  },
+  {
+   "apn": "2024016039",
+   "case_filed_date": "2025-01-22T00:00:00.000",
+   "casetype": "Unit Not Registered, Illegal Eviction, Non-Payment of Relocation Assistance for Tenant No-Fault Eviction, Reduction of Services, Harassment",
+   "closed_date": "2025-03-20T00:00:00.000",
+   "officialaddress": "660 TEST ST"
+  },
+  {
+   "apn": "2024016039",
+   "case_filed_date": "2025-02-17T00:00:00.000",
+   "casetype": "Unit Not Registered, Illegal Eviction, Non-Payment of Relocation Assistance for Tenant No-Fault Eviction, Reduction of Services, Failure To Post Notice, Harassment",
+   "closed_date": "2025-02-18T00:00:00.000",
+   "officialaddress": "660 TEST ST"
+  },
+  {
+   "apn": "2024016056",
+   "case_filed_date": "2025-07-22T00:00:00.000",
+   "casetype": "Illegal Eviction, Illegal Rent Increase",
+   "closed_date": "2025-07-24T00:00:00.000",
+   "officialaddress": "660 TEST ST"
+  },
+  {
+   "apn": "2024016056",
+   "case_filed_date": "2025-07-22T00:00:00.000",
+   "casetype": "Illegal Eviction, Illegal Rent Increase",
+   "closed_date": "2025-08-12T00:00:00.000",
+   "officialaddress": "660 TEST ST"
+  },
+  {
+   "apn": "2024039130",
+   "case_filed_date": "2025-09-04T00:00:00.000",
+   "casetype": "Illegal Rent Increase",
+   "closed_date": "2025-09-24T00:00:00.000",
+   "officialaddress": "6677 TEST ST"
+  },
+  {
+   "apn": "2026005013",
+   "case_filed_date": "2025-06-20T00:00:00.000",
+   "casetype": "Harassment",
+   "closed_date": "2025-08-27T00:00:00.000",
+   "officialaddress": "584 TEST ST"
+  },
+  {
+   "apn": "2026008027",
+   "case_filed_date": "2025-09-02T00:00:00.000",
+   "casetype": "Illegal Eviction",
+   "closed_date": "2025-09-18T00:00:00.000",
+   "officialaddress": "5088 TEST ST"
+  },
+  {
+   "apn": "2026008028",
+   "case_filed_date": "2025-05-29T00:00:00.000",
+   "casetype": "Reduction of Services, Harassment",
+   "closed_date": "2025-08-13T00:00:00.000",
+   "officialaddress": "4604 TEST ST"
+  },
+  {
+   "apn": "2026008028",
+   "case_filed_date": "2025-06-13T00:00:00.000",
+   "casetype": "Illegal Eviction, Illegal Rent Increase",
+   "closed_date": "2025-06-16T00:00:00.000",
+   "officialaddress": "4604 TEST ST"
+  },
+  {
+   "apn": "2026008028",
+   "case_filed_date": "2025-08-25T00:00:00.000",
+   "casetype": "Reduction of Services, Harassment",
+   "closed_date": "2025-10-01T00:00:00.000",
+   "officialaddress": "4604 TEST ST"
+  },
+  {
+   "apn": "2026008028",
+   "case_filed_date": "2025-10-15T00:00:00.000",
+   "casetype": "Harassment, Reduction of Services",
+   "closed_date": "2026-01-26T00:00:00.000",
+   "officialaddress": "4604 TEST ST"
+  }
+ ],
+ "where": "(case_filed_date IS NOT NULL AND apn IS NOT NULL AND apn != 'No Record Found') AND case_filed_date >= '2025-01-01T00:00:00' AND case_filed_date < '2026-01-01T00:00:00'"
+}

@@ -1,0 +1,32 @@
+source_id: wa.seattle.building_permits
+state: WA
+county_fips: "53033"   # King County (City of Seattle)
+# Seattle Department of Construction and Inspections "Building Permits" (data.seattle.gov
+# 76t5-zqzr, 194,473 permits issued or in progress; 32,145 name the contractor company):
+# permit number, class and type, estimated cost, the site address and the
+# contractor company. No owner or applicant names are published, so this only ties a
+# contracting business to the properties it works on: OTHER instruments, in no match run.
+# Rows without an issue date (applications in progress) are not loaded.
+portal: https://data.seattle.gov
+dataset: 76t5-zqzr
+where: "issueddate IS NOT NULL AND contractorcompanyname IS NOT NULL"
+order_by: [":id"]
+select: [permitnum, permitclass, permittypemapped, permittypedesc, estprojectcost,
+         issueddate, statuscurrent, originaladdress1, originalcity, originalstate,
+         originalzip, contractorcompanyname]
+date_field: issueddate
+partition: year
+first_year: 1990
+uid: permitnum
+doc_type: OTHER
+doc_type_raw: {field: permittypemapped}
+parties:
+  - {role: other, name: contractorcompanyname}   # sometimes a person (sole proprietor)
+extra_pii: [originaladdress1]
+use_restrictions: [no_commercial_name_address_lists]
+terms:
+  url: https://data.seattle.gov/Built-Environment/Building-Permits/76t5-zqzr
+  summary: "Seattle Open Data (Socrata), free, no login; dataset license Public Domain. robots.txt allows /resource/. Contractor names only; some are sole proprietors (persons), so RCW 42.56.070(9) (no lists of individuals for commercial purposes) applies to those (tagged no_commercial_name_address_lists, as wa.spokane.parcels)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

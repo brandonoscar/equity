@@ -1,0 +1,181 @@
+{
+ "borough": "5",
+ "extract": "2026-11-15",
+ "rows": [
+  {
+   "balance": "0.39",
+   "charges": "1",
+   "code": "CHG",
+   "first_due": "2026-07-01T00:00:00.000",
+   "parid": "5000010010"
+  },
+  {
+   "balance": "175.00",
+   "charges": "1",
+   "code": "SAF",
+   "first_due": "2026-07-01T00:00:00.000",
+   "parid": "5000010060"
+  },
+  {
+   "balance": "322.50",
+   "charges": "1",
+   "code": "SAC",
+   "first_due": "2020-07-01T00:00:00.000",
+   "parid": "5000010200"
+  },
+  {
+   "balance": "2478.01",
+   "charges": "1",
+   "code": "CHG",
+   "first_due": "2026-07-01T00:00:00.000",
+   "parid": "5000010220"
+  },
+  {
+   "balance": "2670.96",
+   "charges": "5",
+   "code": "CHG",
+   "first_due": "2025-07-01T00:00:00.000",
+   "parid": "5000011064"
+  },
+  {
+   "balance": "2901.48",
+   "charges": "5",
+   "code": "CHG",
+   "first_due": "2025-07-01T00:00:00.000",
+   "parid": "5000011078"
+  },
+  {
+   "balance": "2400.55",
+   "charges": "3",
+   "code": "CHG",
+   "first_due": "2026-01-01T00:00:00.000",
+   "parid": "5000011093"
+  },
+  {
+   "balance": "3944.42",
+   "charges": "4",
+   "code": "CHG",
+   "first_due": "2025-10-01T00:00:00.000",
+   "parid": "5000011098"
+  },
+  {
+   "balance": "2013.21",
+   "charges": "1",
+   "code": "CHG",
+   "first_due": "2026-07-01T00:00:00.000",
+   "parid": "5000011231"
+  },
+  {
+   "balance": "10931.02",
+   "charges": "6",
+   "code": "CHG",
+   "first_due": "2025-04-01T00:00:00.000",
+   "parid": "5000011258"
+  },
+  {
+   "balance": "1713.19",
+   "charges": "1",
+   "code": "CHG",
+   "first_due": "2026-07-01T00:00:00.000",
+   "parid": "5000011286"
+  },
+  {
+   "balance": "29.58",
+   "charges": "1",
+   "code": "CHG",
+   "first_due": "2026-07-01T00:00:00.000",
+   "parid": "5000011289"
+  },
+  {
+   "balance": "4655.41",
+   "charges": "4",
+   "code": "CHG",
+   "first_due": "2024-04-01T00:00:00.000",
+   "parid": "5000012003"
+  },
+  {
+   "balance": "8752.86",
+   "charges": "6",
+   "code": "CHG",
+   "first_due": "2025-04-01T00:00:00.000",
+   "parid": "5000012006"
+  },
+  {
+   "balance": "9449.21",
+   "charges": "8",
+   "code": "CHG",
+   "first_due": "2024-10-01T00:00:00.000",
+   "parid": "5000012015"
+  },
+  {
+   "balance": "8721.25",
+   "charges": "6",
+   "code": "CHG",
+   "first_due": "2025-04-01T00:00:00.000",
+   "parid": "5000012042"
+  },
+  {
+   "balance": "1381.16",
+   "charges": "2",
+   "code": "CHG",
+   "first_due": "2026-04-01T00:00:00.000",
+   "parid": "5000012043"
+  },
+  {
+   "balance": "970.60",
+   "charges": "11",
+   "code": "SAC",
+   "first_due": "2024-10-01T00:00:00.000",
+   "parid": "5000017504"
+  },
+  {
+   "balance": "13.00",
+   "charges": "1",
+   "code": "SAF",
+   "first_due": "2026-07-01T00:00:00.000",
+   "parid": "5000017504"
+  },
+  {
+   "balance": "5837.70",
+   "charges": "95",
+   "code": "SAC",
+   "first_due": "2026-07-01T00:00:00.000",
+   "parid": "5000020015"
+  },
+  {
+   "balance": "22114.46",
+   "charges": "14",
+   "code": "SAC",
+   "first_due": "2016-01-01T00:00:00.000",
+   "parid": "5000020020"
+  },
+  {
+   "balance": "148016.75",
+   "charges": "7",
+   "code": "CHG",
+   "first_due": "2023-07-01T00:00:00.000",
+   "parid": "5000020759"
+  },
+  {
+   "balance": "1641.24",
+   "charges": "1",
+   "code": "SAC",
+   "first_due": "2026-01-01T00:00:00.000",
+   "parid": "5000020759"
+  },
+  {
+   "balance": "34897.42",
+   "charges": "13",
+   "code": "CHG",
+   "first_due": "2023-07-01T00:00:00.000",
+   "parid": "5000020767"
+  },
+  {
+   "balance": "55427.76",
+   "charges": "37",
+   "code": "CHG",
+   "first_due": "2017-07-01T00:00:00.000",
+   "parid": "5000020830"
+  }
+ ]
+}

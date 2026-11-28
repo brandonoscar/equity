@@ -1,0 +1,39 @@
+source_id: ny.nyc.dob_electrical_permits
+state: NY
+county_fips: "36061"
+# NYC Department of Buildings "DOB NOW: Electrical Permit Applications" (data.cityofnewyork.us
+# dm9a-ab7w, 601,219 filings on 2026-11-25, 503,491 with a permit issued since 2017-12,
+# updated daily): electrical work filings with the owner's name, business name, type and
+# address, and the borough/block/lot. Like ny.nyc.dob_permits: a signal of who controls a lot
+# and is putting money into it, not a debt: OTHER instruments on the lot, in no match run.
+# Only filings with a permit issued are read. The electrical contractor (firm_name) is kept in
+# the raw row only (it is not the owner); the applicant electrician is not read.
+portal: https://data.cityofnewyork.us
+dataset: dm9a-ab7w
+where: "permit_issued_date IS NOT NULL"
+order_by: [":id"]
+select: [job_filing_number, filing_type, filing_status, job_status, borough, block, lot, bin,
+         building_use_type, firm_name, owner_first_name, owner_last_name, business_name,
+         owner_address, owner_city, owner_state, owner_zip, owner_type, permit_issued_date,
+         completion_date]
+date_field: permit_issued_date
+partition: year
+first_year: 2017
+uid: job_filing_number
+doc_type: OTHER
+doc_type_raw: DOB NOW electrical permit
+parties:
+  - role: owner
+    name: [owner_first_name, owner_last_name]
+    address: {line1: owner_address, city: owner_city, state: owner_state, zip: owner_zip}
+  - role: other
+    name: business_name
+    address: {line1: owner_address, city: owner_city, state: owner_state, zip: owner_zip}
+parcel: {kind: nyc_bbl, borough: borough, block: block, lot: lot}
+extra_pii: [firm_name]
+terms:
+  url: https://data.cityofnewyork.us/d/dm9a-ab7w
+  summary: "NYC Open Data (Socrata), Department of Buildings, free, no login; NYC Open Data terms of use (no license field on the dataset). robots.txt (Crawl-delay 1) allows /resource/."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

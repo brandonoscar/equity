@@ -1,0 +1,26 @@
+source_id: ca.san_diego.code_enforcement
+state: CA
+county_fips: "06073"
+# City of San Diego Development Services "Code Enforcement Violations" (data.sandiego.gov
+# code-enforcement-violations, code_enf_past_3_yr_datasd.csv, 6.3 MB on 2026-11-25): code
+# enforcement cases open in the past three years (some opened decades ago) with the case id,
+# APN, address, source (citizen complaint, other department...), description (often
+# quoting the owner of record), open / close dates and reason, workgroup, last action and
+# remedy. OTHER instruments on 06073-<apn> (the 10-digit APN of ca.sandiego.parcels), in no
+# match run; the description stays in the source record. The file is read whole.
+api: csv
+url: https://seshat.datasd.org/code_enforcement_violations/code_enf_past_3_yr_datasd.csv
+date_field: date_open
+uid: case_id
+doc_type: OTHER
+doc_type_raw: {field: workgroup}
+extra_pii: [address_street, description, close_note, investigator_name, investigator_phone_number,
+            investigator_email_address]
+parties: []
+parcel: {kind: pin, field: apn, county_fips: "06073"}   # = ca.sandiego.parcels apn
+terms:
+  url: https://data.sandiego.gov/datasets/code-enforcement-violations/
+  summary: "City of San Diego open data portal (data.sandiego.gov; files on seshat.datasd.org), free, no login or token. License (read 2026-11-25): Open Data Commons Public Domain Dedication and License (PDDL). data.sandiego.gov/robots.txt disallows only /preview/; seshat.datasd.org/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

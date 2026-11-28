@@ -1,0 +1,31 @@
+source_id: in.indianapolis.code_enforcement
+state: IN
+county_fips: "18097"
+# City of Indianapolis Business and Neighborhood Services "Code Enforcement Violations and
+# Investigations" (gis.indy.gov OpenData_NonSpatial/MapServer/1, 1,055,734 cases opened since
+# 2010-03 on 2026-11-25): case number, type (high weeds, trash, unsafe building, housing...),
+# status, open date, the property's street address and the property owner's name. No parcel
+# number is published: OTHER instruments in Marion County with the owner as a party of role
+# other (the property address stays in the source record), in no match run.
+api: arcgis
+layer_url: https://gis.indy.gov/server/rest/services/OpenData/OpenData_NonSpatial/MapServer/1
+order_by: [OBJECTID]
+select: [OBJECTID, city, state, zip, owner, township, casenumber, casetype, casestatus, opendate,
+         streetaddress]
+date_field: opendate
+partition: year
+first_year: 2010
+uid: casenumber
+doc_type: OTHER
+doc_type_raw: {field: casetype}
+parties:
+  - role: other
+    name: owner
+extra_pii: [streetaddress]
+terms:
+  url: https://www.arcgis.com/home/item.html?id=5d08eba2e9034bc88986af25afe12f5e
+  summary: "City of Indianapolis / Marion County (IndyGIS) public ArcGIS Server layer listed on data.indy.gov, free, no login. Item licenseInfo (read 2026-11-25): provided as is; 'There are no restrictions on the use of Data provided via data download, map or service; any data derived from the Data must acknowledge the City of Indianapolis/Marion County, IN.' gis.indy.gov/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  use_restrictions: [attribution_required]
+  cost_model: free

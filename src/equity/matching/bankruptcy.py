@@ -12,6 +12,8 @@ so matching is on the name alone, within the state:
 
   person_name   person debtor, same name_key (two or more words) as a bankruptcy debtor
   org_name      organization debtor, same org_name_norm as a bankruptcy debtor
+A caption that names several debtors or aliases ("JOHN DOE AND JANE DOE", "AKA") is split,
+each name a debtor of the case.
 
 Every flag is `review`: a common name in a large state is not proof. Status comes from the
 docket text seen so far: 'dismissed' (an order dismissing the case; a motion to dismiss is
@@ -31,7 +33,7 @@ import duckdb
 import yaml
 
 from equity.config import CONFIG_DIR
-from equity.matching.resolve import _glob
+from equity.matching.resolve import _glob, name_variant_table
 
 SQL = """
 CREATE TEMP TABLE bk_case AS
@@ -106,9 +108,22 @@ def compute(con: duckdb.DuckDBPyConnection, lake: Path, sources: list[str]) -> N
         else:
             con.execute(f"CREATE TEMP VIEW {view} AS SELECT {COLS[table]} "  # noqa: S608
                         f"FROM read_parquet({files}, union_by_name=true)")  # fmt: skip
-    con.execute(SQL)
+    first, flags = SQL.split("CREATE TEMP TABLE bankruptcy_flags", 1)
+    con.execute(first)
+    # Joint petitions and aliases in a caption ("JOHN DOE AND JANE DOE", "JOHN DOE AKA
+    # JACK DOE"): each name is a debtor of the case.
+    name_variant_table(con, "bk_name_variant", "SELECT raw_name FROM bk_debtor")
+    con.execute(BK_VARIANT_SQL)
+    con.execute("CREATE TEMP TABLE bankruptcy_flags" + flags)
 
 
+BK_VARIANT_SQL = """
+INSERT INTO bk_debtor
+SELECT DISTINCT b.case_uid, b.bk_party_id, b.raw_name, v.party_kind, v.org_name_norm,
+       name_key(v.variant)
+FROM bk_debtor b JOIN bk_name_variant v ON v.raw_name = b.raw_name
+WHERE v.kind <> 'trust' AND (v.party_kind = 'org' OR name_words(name_key(v.variant)) >= 2);
+"""
 TABLES = ("bankruptcy_flags",)
 
 

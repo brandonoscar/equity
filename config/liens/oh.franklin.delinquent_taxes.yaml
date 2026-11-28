@@ -1,0 +1,36 @@
+source_id: oh.franklin.delinquent_taxes
+state: OH
+county_fips: "39049"   # Franklin County (Columbus)
+# Franklin County Auditor GIS "Tax Delinquent" layer (RealEstate/Neighborhood_Detail, layer 2,
+# on the county's own server, gis.franklincountyohio.gov): every parcel on the certified
+# delinquent list with a balance, with the owner of record (CNVYNAME), the property address,
+# the year first certified delinquent (CdqYear), total owed, paid and balance: 7,693 parcels,
+# $56.1M (latest LASTUPDATE 2026-10-01). Dated January 1 of the certified-delinquent year.
+# The balance is the amount; a partly paid account keeps its remaining balance. Ohio's
+# property tax is a lien on the parcel (R.C. 5721.10); a senior lien, not a judgment.
+# oh.franklin.tax_lien_sale is the Treasurer's (smaller) list of certificates offered for sale.
+api: arcgis
+layer_url: https://gis.franklincountyohio.gov/hosting/rest/services/RealEstate/Neighborhood_Detail/FeatureServer/2
+where: "TotalBalance > 0"
+single_partition: true
+select: [OBJECTID, PARCELID, CNVYNAME, SITEADDRESS, ZIPCD, CdqYear, TotalOwed, TotalPaid, TotalBalance, LASTUPDATE]
+order_by: [OBJECTID]
+year_dates: [CdqYear]
+date_field: CdqYear
+uid: PARCELID
+doc_type: TAX_LIEN_STATE
+doc_type_raw: Franklin County certified delinquent property tax
+amount: TotalBalance
+parties:
+  - role: debtor
+    name: CNVYNAME
+    address: {line1: SITEADDRESS, state_const: OH, zip: ZIPCD}   # the property
+  - role: creditor
+    const: Franklin County Treasurer
+parcel: {kind: pin, field: PARCELID, county_fips: "39049"}
+terms:
+  url: https://gis.franklincountyohio.gov/hosting/rest/services/RealEstate/Neighborhood_Detail/FeatureServer
+  summary: "Franklin County Auditor's GIS server (gis.franklincountyohio.gov, robots.txt absent), public, free, no login; no license or use restriction stated on the service. Same server family as oh.franklin.parcels."
+  checked_on: 2026-11-27
+  robots_checked_on: 2026-11-27
+  cost_model: free

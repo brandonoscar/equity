@@ -1,0 +1,33 @@
+source_id: fl.miami_dade.building_violations
+state: FL
+county_fips: "12086"
+# Miami-Dade Regulatory and Economic Resources building code violations, open and closed
+# (ArcGIS Online BuildingViolation_gdb, 77,343 cases opened 1992 .. 2026-11 on 2026-11-25,
+# daily): case number and type (unsafe structure, work without permit, expired permit, ...),
+# the folio, the violator's name, the related permit, the unsafe-structure bill date and the
+# open and closed dates. fl.miami_dade.building_liens reads the lien-recorded subset and
+# looks names up here; this is every case, as OTHER instruments on the folio with the
+# violator as a party, in no match run. Rows marked PROTECTED (an exempt owner) are as
+# published.
+api: arcgis
+layer_url: https://services.arcgis.com/8Pc9XBTAsYuxx9Ny/arcgis/rest/services/BuildingViolation_gdb/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, CASE_NUM, CASE_TYPE, FOLIO, PROP_ADDR, USBILLDATE, VIOL_NAME, PERMIT_NUM,
+         OPEN_DATE, CLOSED_DATE, PROTECTED]
+date_field: OPEN_DATE
+partition: year
+first_year: 1992
+uid: CASE_NUM
+doc_type: OTHER
+doc_type_raw: {field: CASE_TYPE}
+extra_pii: [PROP_ADDR]
+parties:
+  - {role: other, name: VIOL_NAME}   # the violator: usually the owner
+  - {role: creditor, const: Miami-Dade County}
+parcel: {kind: pin, field: FOLIO, county_fips: "12086", zfill: 13}   # fl.statewide.parcels
+terms:
+  url: https://www.arcgis.com/home/item.html?id=7c21821b3c5c4fc8a606b763c2aae8fe
+  summary: "Miami-Dade County Open Data Hub (ArcGIS Online, BuildingViolation_gdb), free, no login. Provided 'as is'; no licence restriction on reuse found. services.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,227 @@
+{
+ "offset": 0,
+ "rows": [
+  {
+   "address_1": "438 TEST ST",
+   "address_2": "CINCINNATI OH",
+   "applied_date": "2026-07-02T00:00:00.000",
+   "name": "TESTOWNER 62388E",
+   "number_key": "2016P06260",
+   "relationship": "OWNER",
+   "zip": "45202"
+  },
+  {
+   "address_1": "6120 TEST ST",
+   "address_2": "CINCINNATI OH",
+   "applied_date": "2025-07-30T00:00:00.000",
+   "name": "TESTOWNER 83DE55",
+   "number_key": "2018P02061",
+   "relationship": "OWNER",
+   "zip": "45202"
+  },
+  {
+   "address_1": "2178 TEST ST",
+   "address_2": "CINCINNATI OH",
+   "applied_date": "2025-04-24T00:00:00.000",
+   "name": "TESTOWNER 52D567 LLC",
+   "number_key": "2016P07544",
+   "relationship": "OWNER",
+   "zip": "45236"
+  },
+  {
+   "address_1": "6138 TEST ST",
+   "address_2": "CINCINNATI OH 45258",
+   "applied_date": "2023-11-29T00:00:00.000",
+   "name": "TESTOWNER F988DB",
+   "number_key": "2019P00081",
+   "relationship": "OWNER"
+  },
+  {
+   "address_1": "6996 TEST ST",
+   "address_2": "CINCINNATI OH 45238",
+   "applied_date": "2023-06-23T00:00:00.000",
+   "name": "TESTOWNER 907C80",
+   "number_key": "2018P04209",
+   "relationship": "OWNER"
+  },
+  {
+   "address_1": "5221 TEST ST",
+   "address_2": "ORINDA CA",
+   "applied_date": "2023-06-15T00:00:00.000",
+   "name": "TESTOWNER 9D60DB LLC",
+   "number_key": "2019P01189",
+   "relationship": "OWNER",
+   "zip": "94563"
+  },
+  {
+   "address_1": "7363 TEST ST",
+   "address_2": "CINCINNATI OH 45211",
+   "applied_date": "2023-06-14T00:00:00.000",
+   "name": "TESTOWNER 1B15A0",
+   "number_key": "2018P05899",
+   "relationship": "OWNER"
+  },
+  {
+   "address_1": "4280 TEST ST",
+   "address_2": "CINCINNATI OH 45243",
+   "applied_date": "2023-06-09T00:00:00.000",
+   "name": "TESTOWNER 5A950F LLC",
+   "number_key": "2019P07506",
+   "relationship": "OWNER"
+  },
+  {
+   "address_1": "8676 TEST ST",
+   "address_2": "DAYTON OH 45414",
+   "applied_date": "2023-06-09T00:00:00.000",
+   "name": "TESTOWNER 96898B LLC",
+   "number_key": "2018P07814",
+   "relationship": "OWNER"
+  },
+  {
+   "applied_date": "2023-02-10T00:00:00.000",
+   "name": "TESTOWNER DECB2D",
+   "number_key": "2019P08520",
+   "relationship": "OWNER"
+  },
+  {
+   "address_1": "1656 TEST ST",
+   "address_2": "COVINGTON KY 41017",
+   "applied_date": "2023-02-02T00:00:00.000",
+   "name": "TESTOWNER 79280E LLC",
+   "number_key": "2018P08706",
+   "relationship": "OWNER"
+  },
+  {
+   "address_1": "1810 TEST ST",
+   "address_2": "CINCINNATI OHIO",
+   "applied_date": "2023-01-10T00:00:00.000",
+   "name": "TESTOWNER 6E8AB4 LLC",
+   "number_key": "2018P09741",
+   "relationship": "OWNER",
+   "zip": "45202"
+  },
+  {
+   "address_1": "7527 TEST ST",
+   "address_2": "4700 ASHWOOD DR SUITE 200",
+   "address_3": "2815 TEST ST",
+   "applied_date": "2022-07-06T00:00:00.000",
+   "name": "TESTOWNER FDA265 LLC",
+   "number_key": "2016P01785",
+   "relationship": "OWNER"
+  },
+  {
+   "applied_date": "2020-07-22T00:00:00.000",
+   "name": "TESTOWNER 80723E",
+   "number_key": "2019P10372",
+   "relationship": "OWNER"
+  },
+  {
+   "address_1": "5494 TEST ST",
+   "address_2": "RYE NY",
+   "applied_date": "2020-07-02T00:00:00.000",
+   "name": "TESTOWNER AE2E60",
+   "number_key": "2019P07415",
+   "relationship": "OWNER",
+   "zip": "10580"
+  },
+  {
+   "address_1": "6125 TEST ST",
+   "address_2": "CINCINNATI OH",
+   "applied_date": "2020-06-15T00:00:00.000",
+   "name": "TESTOWNER 400483 LLC",
+   "number_key": "2019P06365",
+   "relationship": "OWNER",
+   "zip": "45219"
+  },
+  {
+   "address_1": "2743 TEST ST",
+   "address_2": "CINCINNATI OH",
+   "applied_date": "2020-01-07T00:00:00.000",
+   "name": "TESTOWNER BDCF25 LTD",
+   "number_key": "2019P07781",
+   "relationship": "OWNER",
+   "zip": "45230"
+  },
+  {
+   "address_1": "319 TEST ST",
+   "address_2": "CINCINNATI OH",
+   "applied_date": "2020-03-06T00:00:00.000",
+   "name": "TESTOWNER A98208",
+   "number_key": "2019P10951",
+   "relationship": "OWNER",
+   "zip": "45223"
+  },
+  {
+   "address_1": "951 TEST ST",
+   "address_2": "CINCINNATI",
+   "address_3": "8505 TEST ST",
+   "applied_date": "2019-12-31T00:00:00.000",
+   "name": "TESTOWNER 5DC104",
+   "number_key": "2019P11537",
+   "relationship": "OWNER",
+   "zip": "45208-1933"
+  },
+  {
+   "address_1": "6613 TEST ST",
+   "address_2": "CINCINNATI",
+   "address_3": "8505 TEST ST",
+   "address_4": "1341 TEST ST",
+   "applied_date": "2019-12-31T00:00:00.000",
+   "name": "TESTOWNER AD209A",
+   "number_key": "2019P11536",
+   "relationship": "OWNER",
+   "zip": "45211"
+  },
+  {
+   "address_1": "1553 TEST ST",
+   "address_2": "CINCINNATI",
+   "address_3": "8505 TEST ST",
+   "address_4": "1793 TEST ST",
+   "applied_date": "2019-12-31T00:00:00.000",
+   "name": "TESTOWNER 816D9C",
+   "number_key": "2019P11535",
+   "relationship": "OWNER",
+   "zip": "45208-1008"
+  },
+  {
+   "address_1": "4126 TEST ST",
+   "address_2": "CINCINNATI",
+   "address_3": "8505 TEST ST",
+   "applied_date": "2019-12-31T00:00:00.000",
+   "name": "TESTOWNER 29D5BA",
+   "number_key": "2019P11534",
+   "relationship": "OWNER",
+   "zip": "45237-6023"
+  },
+  {
+   "address_1": "8582 TEST ST",
+   "address_2": "CINCINNATI",
+   "address_3": "8505 TEST ST",
+   "applied_date": "2019-12-31T00:00:00.000",
+   "name": "TESTOWNER 809778",
+   "number_key": "2019P11533",
+   "relationship": "OWNER",
+   "zip": "45213-2041"
+  },
+  {
+   "address_1": "6125 TEST ST",
+   "address_2": "CINCINNATI",
+   "address_3": "8505 TEST ST",
+   "applied_date": "2019-12-31T00:00:00.000",
+   "name": "TESTOWNER 6610A9 LLC",
+   "number_key": "2019P11532",
+   "relationship": "OWNER",
+   "zip": "45219"
+  },
+  {
+   "address_1": "6125 TEST ST",
+   "address_2": "CINCINNATI",
+   "address_3": "8505 TEST ST",
+   "applied_date": "2019-12-31T00:00:00.000",
+   "name": "TESTOWNER 6610A9 LLC",
+   "number_key": "2019P11382",
+   "relationship": "OWNER",
+   "zip": "45219"
+  }
+ ]
+}

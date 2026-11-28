@@ -1,0 +1,34 @@
+source_id: ca.san_jose.building_permits_active
+state: CA
+county_fips: "06085"
+# City of San Jose Planning, Building and Code Enforcement "Active Building Permits" (data.sanjoseca.gov
+# CKAN dataset active-building-permits, one CSV of 5.8 MB on 2026-11-25, CC0): active (issued, not finaled or expired) permits, with
+# the folder (permit) number and type, work and sub-type description, approvals, issue and
+# final dates, dwelling units, valuation, square feet, the Santa Clara County APN, and the
+# applicant, owner and contractor names. OTHER instruments on 06085-<APN> (the 8-digit APN
+# of ca.san_jose.parcels), with owner, applicant and contractor as 'other' parties, in no
+# match run. Santa Clara County publishes no owner names: this names the owner at permit time.
+# The file is read whole from the dataset's download link (a redirect to a presigned S3 URL):
+# data.sanjoseca.gov/robots.txt disallows /api/ and /datastore/, not /dataset/.
+# Lives in config/deeds only for the M/D/YYYY h:mm:ss AM date (DeedAdapter date_format).
+api: csv
+url: https://data.sanjoseca.gov/dataset/fd9ceb0c-75e0-402e-9fe3-3f6e04f2c23f/resource/761b7ae8-3be1-4ad6-923d-c7af6404a904/download/buildingpermitsactive.csv
+date_field: issuedate
+date_format: {issuedate: mdy}
+uid: foldernumber
+doc_type: OTHER
+doc_type_raw: {field: folderdesc}
+consideration: permitvaluation
+extra_pii: [gx_location, foldername]
+skip_names: [NONE]
+parties:
+  - {role: owner, name: ownername}
+  - {role: other, name: applicant}
+  - {role: other, name: contractor, person_names: false}
+parcel: {kind: pin, field: assessors_parcel_number, county_fips: "06085"}   # = ca.san_jose.parcels apn
+terms:
+  url: https://data.sanjoseca.gov/dataset/active-building-permits
+  summary: "City of San Jose open data portal (data.sanjoseca.gov, CKAN), free, no login or token. Dataset license (read 2026-11-25): Creative Commons CCZero. robots.txt disallows /api/ and /datastore/ but not /dataset/ downloads; the download redirects to the portal's S3 bucket (s3.amazonaws.com/robots.txt answers 403: RFC 9309, no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

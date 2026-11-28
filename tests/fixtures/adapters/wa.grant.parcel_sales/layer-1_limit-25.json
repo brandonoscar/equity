@@ -1,0 +1,256 @@
+{
+ "layer": "https://services2.arcgis.com/hQZvdtFxRzJpMtdS/arcgis/rest/services/Parcel_Sales/FeatureServer/1",
+ "rows": [
+  {
+   "DEEDTYPE": "SWD",
+   "ExciseAffidavitNumber": "263806",
+   "OBJECTID": 1,
+   "ORIGINALSALEPRICE": 319000,
+   "PARCELNUMBER": "090257712",
+   "SALEDATE": 1735603200000,
+   "SELLER": "TESTOWNER F233CA LLC",
+   "SaleYear": 2024
+  },
+  {
+   "DEEDTYPE": "SWD",
+   "ExciseAffidavitNumber": "263835",
+   "OBJECTID": 2,
+   "ORIGINALSALEPRICE": 364900,
+   "PARCELNUMBER": "091325905",
+   "SALEDATE": 1735603200000,
+   "SELLER": "TESTOWNER 93EF34",
+   "SaleYear": 2024
+  },
+  {
+   "DEEDTYPE": "SWD",
+   "ExciseAffidavitNumber": "263820",
+   "OBJECTID": 3,
+   "ORIGINALSALEPRICE": 418000,
+   "PARCELNUMBER": "110929335",
+   "SALEDATE": 1735603200000,
+   "SELLER": "TESTOWNER ED430E",
+   "SaleYear": 2024
+  },
+  {
+   "DEEDTYPE": "SWD",
+   "ExciseAffidavitNumber": "263803",
+   "OBJECTID": 4,
+   "ORIGINALSALEPRICE": 350000,
+   "PARCELNUMBER": "160905000",
+   "SALEDATE": 1735603200000,
+   "SELLER": "TESTOWNER 205B79",
+   "SaleYear": 2024
+  },
+  {
+   "DEEDTYPE": "SWD",
+   "ExciseAffidavitNumber": "263815",
+   "OBJECTID": 5,
+   "ORIGINALSALEPRICE": 373000,
+   "PARCELNUMBER": "101687000",
+   "SALEDATE": 1735516800000,
+   "SELLER": "TESTOWNER EBCE95",
+   "SaleYear": 2024
+  },
+  {
+   "DEEDTYPE": "SWD",
+   "ExciseAffidavitNumber": "263830",
+   "OBJECTID": 6,
+   "ORIGINALSALEPRICE": 585000,
+   "PARCELNUMBER": "120154439",
+   "SALEDATE": 1735516800000,
+   "SELLER": "TESTOWNER 4D6641",
+   "SaleYear": 2024
+  },
+  {
+   "DEEDTYPE": "SWD",
+   "ExciseAffidavitNumber": "263805",
+   "OBJECTID": 7,
+   "ORIGINALSALEPRICE": 360972,
+   "PARCELNUMBER": "140124812",
+   "SALEDATE": 1735516800000,
+   "SELLER": "TESTOWNER 25A3F4 LLC",
+   "SaleYear": 2024
+  },
+  {
+   "DEEDTYPE": "SWD",
+   "ExciseAffidavitNumber": "263783",
+   "OBJECTID": 8,
+   "ORIGINALSALEPRICE": 48700,
+   "PARCELNUMBER": "011940000",
+   "SALEDATE": 1735257600000,
+   "SELLER": "TESTOWNER E2A804",
+   "SaleYear": 2024
+  },
+  {
+   "DEEDTYPE": "SWD",
+   "ExciseAffidavitNumber": "263783",
+   "OBJECTID": 9,
+   "ORIGINALSALEPRICE": 48700,
+   "PARCELNUMBER": "011941002",
+   "SALEDATE": 1735257600000,
+   "SELLER": "TESTOWNER E2A804",
+   "SaleYear": 2024
+  },
+  {
+   "DEEDTYPE": "SWD",
+   "ExciseAffidavitNumber": "263782",
+   "OBJECTID": 10,
+   "ORIGINALSALEPRICE": 120000,
+   "PARCELNUMBER": "040327411",
+   "SALEDATE": 1735257600000,
+   "SELLER": "TESTOWNER 3954EF LLC",
+   "SaleYear": 2024
+  },
+  {
+   "DEEDTYPE": "SWD",
+   "ExciseAffidavitNumber": "263861",
+   "OBJECTID": 11,
+   "ORIGINALSALEPRICE": 550000,
+   "PARCELNUMBER": "050094000",
+   "SALEDATE": 1735257600000,
+   "SELLER": "TESTOWNER EBE669",
+   "SaleYear": 2024
+  },
+  {
+   "DEEDTYPE": "SWD",
+   "ExciseAffidavitNumber": "263768",
+   "OBJECTID": 12,
+   "ORIGINALSALEPRICE": 575000,
+   "PARCELNUMBER": "121960009",
+   "SALEDATE": 1735257600000,
+   "SELLER": "TESTOWNER F4E3BD",
+   "SaleYear": 2024
+  },
+  {
+   "DEEDTYPE": "SWD",
+   "ExciseAffidavitNumber": "263768",
+   "OBJECTID": 13,
+   "ORIGINALSALEPRICE": 575000,
+   "PARCELNUMBER": "121960010",
+   "SALEDATE": 1735257600000,
+   "SELLER": "TESTOWNER F4E3BD",
+   "SaleYear": 2024
+  },
+  {
+   "DEEDTYPE": "SWD",
+   "ExciseAffidavitNumber": "263761",
+   "OBJECTID": 14,
+   "ORIGINALSALEPRICE": 410000,
+   "PARCELNUMBER": "131624309",
+   "SALEDATE": 1735257600000,
+   "SELLER": "TESTOWNER D6F529",
+   "SaleYear": 2024
+  },
+  {
+   "DEEDTYPE": "SWD",
+   "ExciseAffidavitNumber": "263760",
+   "OBJECTID": 15,
+   "ORIGINALSALEPRICE": 405000,
+   "PARCELNUMBER": "140475051",
+   "SALEDATE": 1735257600000,
+   "SELLER": "TESTOWNER 409EDF LLC",
+   "SaleYear": 2024
+  },
+  {
+   "DEEDTYPE": "SWD",
+   "ExciseAffidavitNumber": "263759",
+   "OBJECTID": 16,
+   "ORIGINALSALEPRICE": 405000,
+   "PARCELNUMBER": "140475053",
+   "SALEDATE": 1735257600000,
+   "SELLER": "TESTOWNER 409EDF LLC",
+   "SaleYear": 2024
+  },
+  {
+   "DEEDTYPE": "SWD",
+   "ExciseAffidavitNumber": "263755",
+   "OBJECTID": 17,
+   "ORIGINALSALEPRICE": 527000,
+   "PARCELNUMBER": "040729000",
+   "SALEDATE": 1735171200000,
+   "SELLER": "TESTOWNER 9DD612 LLC",
+   "SaleYear": 2024
+  },
+  {
+   "DEEDTYPE": "SWD",
+   "ExciseAffidavitNumber": "263755",
+   "OBJECTID": 18,
+   "ORIGINALSALEPRICE": 527000,
+   "PARCELNUMBER": "040730000",
+   "SALEDATE": 1735171200000,
+   "SELLER": "TESTOWNER 9DD612 LLC",
+   "SaleYear": 2024
+  },
+  {
+   "DEEDTYPE": "SWD",
+   "ExciseAffidavitNumber": "263755",
+   "OBJECTID": 19,
+   "ORIGINALSALEPRICE": 527000,
+   "PARCELNUMBER": "040731000",
+   "SALEDATE": 1735171200000,
+   "SELLER": "TESTOWNER 9DD612 LLC",
+   "SaleYear": 2024
+  },
+  {
+   "DEEDTYPE": "SWD",
+   "ExciseAffidavitNumber": "263755",
+   "OBJECTID": 20,
+   "ORIGINALSALEPRICE": 527000,
+   "PARCELNUMBER": "040732000",
+   "SALEDATE": 1735171200000,
+   "SELLER": "TESTOWNER 9DD612 LLC",
+   "SaleYear": 2024
+  },
+  {
+   "DEEDTYPE": "SWD",
+   "ExciseAffidavitNumber": "263754",
+   "OBJECTID": 21,
+   "ORIGINALSALEPRICE": 265000,
+   "PARCELNUMBER": "040804000",
+   "SALEDATE": 1735171200000,
+   "SELLER": "TESTOWNER B035D2",
+   "SaleYear": 2024
+  },
+  {
+   "DEEDTYPE": "SWD",
+   "ExciseAffidavitNumber": "263747",
+   "OBJECTID": 22,
+   "ORIGINALSALEPRICE": 310000,
+   "PARCELNUMBER": "131249000",
+   "SALEDATE": 1735171200000,
+   "SELLER": "TESTOWNER DB0E88",
+   "SaleYear": 2024
+  },
+  {
+   "DEEDTYPE": "SWD",
+   "ExciseAffidavitNumber": "263763",
+   "OBJECTID": 23,
+   "ORIGINALSALEPRICE": 320000,
+   "PARCELNUMBER": "131321000",
+   "SALEDATE": 1735171200000,
+   "SELLER": "TESTOWNER DCC1BC",
+   "SaleYear": 2024
+  },
+  {
+   "DEEDTYPE": "SWD",
+   "ExciseAffidavitNumber": "263732",
+   "OBJECTID": 24,
+   "ORIGINALSALEPRICE": 30000,
+   "PARCELNUMBER": "081624000",
+   "SALEDATE": 1734912000000,
+   "SELLER": "TESTOWNER EF6BFC",
+   "SaleYear": 2024
+  },
+  {
+   "DEEDTYPE": "SWD",
+   "ExciseAffidavitNumber": "263790",
+   "OBJECTID": 25,
+   "ORIGINALSALEPRICE": 77000,
+   "PARCELNUMBER": "090640001",
+   "SALEDATE": 1734912000000,
+   "SELLER": "TESTOWNER 916785",
+   "SaleYear": 2024
+  }
+ ],
+ "where": "1=1"
+}

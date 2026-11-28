@@ -1,0 +1,281 @@
+{
+ "layer": "https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/Civil_Tickets/FeatureServer/0",
+ "rows": [
+  {
+   "ADDRESS": "4011 TEST ST",
+   "FILE_DATE": 1771218000000,
+   "ISSUE_DATE": 1771218000000,
+   "OBJECTID": 102,
+   "PARCEL_NUMBER": "10704074",
+   "TICKET_CITATIONS": "365.04   Lead-Safe Certification for Residential Rental Units Built Before 1978,\r\n",
+   "TICKET_ID": "CT26001859",
+   "TICKET_STATUS": "Sent to DAL",
+   "TICKET_STATUS_DATE": 1785729600000
+  },
+  {
+   "ADDRESS": "8031 TEST ST",
+   "FILE_DATE": 1789617600000,
+   "ISSUE_DATE": 1789617600000,
+   "OBJECTID": 105,
+   "PARCEL_NUMBER": "12919115",
+   "TICKET_CITATIONS": "365.02   Non-Owner-Occupied Residential Rental Unit Registration Required; \r\n",
+   "TICKET_ID": "CT26008554",
+   "TICKET_STATUS": "Awaiting Payment - Late",
+   "TICKET_STATUS_DATE": 1793073600000
+  },
+  {
+   "ADDRESS": "7755 TEST ST",
+   "FILE_DATE": 1767934800000,
+   "ISSUE_DATE": 1767934800000,
+   "OBJECTID": 117,
+   "PARCEL_NUMBER": "01716095",
+   "TICKET_CITATIONS": "365.02   Non-Owner-Occupied Residential Rental Unit Registration Required; \r\n",
+   "TICKET_ID": "CT26000351",
+   "TICKET_STATUS": "Sent to DAL",
+   "TICKET_STATUS_DATE": 1785729600000
+  },
+  {
+   "ADDRESS": "3397 TEST ST",
+   "FILE_DATE": 1790654400000,
+   "ISSUE_DATE": 1790654400000,
+   "OBJECTID": 310,
+   "PARCEL_NUMBER": "01732012",
+   "TICKET_CITATIONS": "365.02   Non-Owner-Occupied Residential Rental Unit Registration Required; \r\n",
+   "TICKET_ID": "CT26009898",
+   "TICKET_STATUS": "Awaiting Payment - Late",
+   "TICKET_STATUS_DATE": 1794114000000
+  },
+  {
+   "ADDRESS": "1177 TEST ST",
+   "FILE_DATE": 1780286400000,
+   "ISSUE_DATE": 1780286400000,
+   "OBJECTID": 319,
+   "PARCEL_NUMBER": "11004090",
+   "TICKET_CITATIONS": "365.02   Non-Owner-Occupied Residential Rental Unit Registration Required; \r\n",
+   "TICKET_ID": "CT26005207",
+   "TICKET_STATUS": "Admin Closed",
+   "TICKET_STATUS_DATE": 1781024717000
+  },
+  {
+   "ADDRESS": "4349 TEST ST",
+   "FILE_DATE": 1790913600000,
+   "ISSUE_DATE": 1790913600000,
+   "OBJECTID": 477,
+   "PARCEL_NUMBER": "01821020",
+   "TICKET_CITATIONS": "3103.25   Violations Generally",
+   "TICKET_ID": "CT26010202",
+   "TICKET_STATUS": "Awaiting Payment - Late",
+   "TICKET_STATUS_DATE": 1794373200000
+  },
+  {
+   "ADDRESS": "2768 TEST ST",
+   "FILE_DATE": 1791172800000,
+   "ISSUE_DATE": 1791172800000,
+   "OBJECTID": 517,
+   "PARCEL_NUMBER": "00734027",
+   "TICKET_CITATIONS": "369.13\u00a0\u00a0\u00a0General Maintenance Requirements",
+   "TICKET_ID": "CT26010205",
+   "TICKET_STATUS": "Awaiting Payment - Late",
+   "TICKET_STATUS_DATE": 1794632400000
+  },
+  {
+   "ADDRESS": "2500 TEST ST",
+   "FILE_DATE": 1773979200000,
+   "ISSUE_DATE": 1773979200000,
+   "OBJECTID": 524,
+   "PARCEL_NUMBER": "00612069",
+   "TICKET_CITATIONS": "369.18\u00a0\u00a0\u00a0Exterior Property Areas",
+   "TICKET_ID": "CT26003475",
+   "TICKET_STATUS": "Sent to DAL",
+   "TICKET_STATUS_DATE": 1785729600000
+  },
+  {
+   "ADDRESS": "1199 TEST ST",
+   "FILE_DATE": 1782273600000,
+   "ISSUE_DATE": 1782273600000,
+   "OBJECTID": 526,
+   "PARCEL_NUMBER": "12921044",
+   "TICKET_CITATIONS": "365.02   Non-Owner-Occupied Residential Rental Unit Registration Required; \r\n",
+   "TICKET_ID": "CT26006170",
+   "TICKET_STATUS": "Sent to DAL",
+   "TICKET_STATUS_DATE": 1785729600000
+  },
+  {
+   "ADDRESS": "1545 TEST ST",
+   "FILE_DATE": 1783569600000,
+   "ISSUE_DATE": 1783569600000,
+   "OBJECTID": 527,
+   "PARCEL_NUMBER": "13904087",
+   "TICKET_CITATIONS": "365.02   Non-Owner-Occupied Residential Rental Unit Registration Required; \r\n",
+   "TICKET_ID": "CT26006881",
+   "TICKET_STATUS": "Awaiting Payment - Late",
+   "TICKET_STATUS_DATE": 1787025600000
+  },
+  {
+   "ADDRESS": "6679 TEST ST",
+   "FILE_DATE": 1771218000000,
+   "ISSUE_DATE": 1771218000000,
+   "OBJECTID": 530,
+   "PARCEL_NUMBER": "11409014",
+   "TICKET_CITATIONS": "365.04   Lead-Safe Certification for Residential Rental Units Built Before 1978,\r\n",
+   "TICKET_ID": "CT26001892",
+   "TICKET_STATUS": "Sent to DAL",
+   "TICKET_STATUS_DATE": 1785729600000
+  },
+  {
+   "ADDRESS": "9055 TEST ST",
+   "FILE_DATE": 1790049600000,
+   "ISSUE_DATE": 1790049600000,
+   "OBJECTID": 531,
+   "PARCEL_NUMBER": "13815004",
+   "TICKET_CITATIONS": "365.02   Non-Owner-Occupied Residential Rental Unit Registration Required; \r\n",
+   "TICKET_ID": "CT26009366",
+   "TICKET_STATUS": "Awaiting Payment - Late",
+   "TICKET_STATUS_DATE": 1793505600000
+  },
+  {
+   "ADDRESS": "4760 TEST ST",
+   "FILE_DATE": 1767934800000,
+   "ISSUE_DATE": 1767934800000,
+   "OBJECTID": 533,
+   "PARCEL_NUMBER": "01719065",
+   "TICKET_CITATIONS": "365.02   Non-Owner-Occupied Residential Rental Unit Registration Required; \r\n",
+   "TICKET_ID": "CT26000352",
+   "TICKET_STATUS": "Sent to DAL",
+   "TICKET_STATUS_DATE": 1785729600000
+  },
+  {
+   "ADDRESS": "4978 TEST ST",
+   "FILE_DATE": 1790654400000,
+   "ISSUE_DATE": 1790654400000,
+   "OBJECTID": 535,
+   "PARCEL_NUMBER": "11420046",
+   "TICKET_CITATIONS": "365.02   Non-Owner-Occupied Residential Rental Unit Registration Required; \r\n",
+   "TICKET_ID": "CT26009902",
+   "TICKET_STATUS": "Awaiting Payment - Late",
+   "TICKET_STATUS_DATE": 1794114000000
+  },
+  {
+   "ADDRESS": "305 TEST ST",
+   "FILE_DATE": 1771218000000,
+   "ISSUE_DATE": 1771218000000,
+   "OBJECTID": 537,
+   "PARCEL_NUMBER": "00732060",
+   "TICKET_CITATIONS": "365.04   Lead-Safe Certification for Residential Rental Units Built Before 1978,\r\n",
+   "TICKET_ID": "CT26001861",
+   "TICKET_STATUS": "Sent to DAL",
+   "TICKET_STATUS_DATE": 1785729600000
+  },
+  {
+   "ADDRESS": "8589 TEST ST",
+   "FILE_DATE": 1789617600000,
+   "ISSUE_DATE": 1789617600000,
+   "OBJECTID": 539,
+   "PARCEL_NUMBER": "12926055",
+   "TICKET_CITATIONS": "365.02   Non-Owner-Occupied Residential Rental Unit Registration Required; \r\n",
+   "TICKET_ID": "CT26008562",
+   "TICKET_STATUS": "Awaiting Payment - Late",
+   "TICKET_STATUS_DATE": 1793073600000
+  },
+  {
+   "ADDRESS": "2273 TEST ST",
+   "FILE_DATE": 1780286400000,
+   "ISSUE_DATE": 1780286400000,
+   "OBJECTID": 541,
+   "PARCEL_NUMBER": "11008092",
+   "TICKET_CITATIONS": "365.02   Non-Owner-Occupied Residential Rental Unit Registration Required; \r\n",
+   "TICKET_ID": "CT26005215",
+   "TICKET_STATUS": "Admin Closed",
+   "TICKET_STATUS_DATE": 1781024718000
+  },
+  {
+   "ADDRESS": "4229 TEST ST",
+   "FILE_DATE": 1780286400000,
+   "ISSUE_DATE": 1780286400000,
+   "OBJECTID": 543,
+   "PARCEL_NUMBER": "11009111",
+   "TICKET_CITATIONS": "365.02   Non-Owner-Occupied Residential Rental Unit Registration Required; \r\n",
+   "TICKET_ID": "CT26005218",
+   "TICKET_STATUS": "Admin Closed",
+   "TICKET_STATUS_DATE": 1781024718000
+  },
+  {
+   "ADDRESS": "8050 TEST ST",
+   "FILE_DATE": 1789617600000,
+   "ISSUE_DATE": 1789617600000,
+   "OBJECTID": 546,
+   "PARCEL_NUMBER": "01802088",
+   "TICKET_CITATIONS": "365.02   Non-Owner-Occupied Residential Rental Unit Registration Required; \r\n",
+   "TICKET_ID": "CT26008270",
+   "TICKET_STATUS": "Awaiting Payment - Late",
+   "TICKET_STATUS_DATE": 1793073600000
+  },
+  {
+   "ADDRESS": "2618 TEST ST",
+   "FILE_DATE": 1767934800000,
+   "ISSUE_DATE": 1767934800000,
+   "OBJECTID": 548,
+   "PARCEL_NUMBER": "01733025",
+   "TICKET_CITATIONS": "365.02   Non-Owner-Occupied Residential Rental Unit Registration Required; \r\n",
+   "TICKET_ID": "CT26000358",
+   "TICKET_STATUS": "Sent to DAL",
+   "TICKET_STATUS_DATE": 1785729600000
+  },
+  {
+   "ADDRESS": "2780 TEST ST",
+   "FILE_DATE": 1790049600000,
+   "ISSUE_DATE": 1790049600000,
+   "OBJECTID": 549,
+   "PARCEL_NUMBER": "13815095",
+   "TICKET_CITATIONS": "365.02   Non-Owner-Occupied Residential Rental Unit Registration Required; \r\n",
+   "TICKET_ID": "CT26009367",
+   "TICKET_STATUS": "Awaiting Payment - Late",
+   "TICKET_STATUS_DATE": 1793505600000
+  },
+  {
+   "ADDRESS": "5524 TEST ST",
+   "FILE_DATE": 1789617600000,
+   "ISSUE_DATE": 1789617600000,
+   "OBJECTID": 550,
+   "PARCEL_NUMBER": "12928006",
+   "TICKET_CITATIONS": "365.02   Non-Owner-Occupied Residential Rental Unit Registration Required; \r\n",
+   "TICKET_ID": "CT26008563",
+   "TICKET_STATUS": "Awaiting Payment - Late",
+   "TICKET_STATUS_DATE": 1793073600000
+  },
+  {
+   "ADDRESS": "8545 TEST ST",
+   "FILE_DATE": 1783569600000,
+   "ISSUE_DATE": 1783569600000,
+   "OBJECTID": 552,
+   "PARCEL_NUMBER": "13904099",
+   "TICKET_CITATIONS": "365.02   Non-Owner-Occupied Residential Rental Unit Registration Required; \r\n",
+   "TICKET_ID": "CT26006882",
+   "TICKET_STATUS": "Awaiting Payment - Late",
+   "TICKET_STATUS_DATE": 1787025600000
+  },
+  {
+   "ADDRESS": "6955 TEST ST",
+   "FILE_DATE": 1791864000000,
+   "ISSUE_DATE": 1791864000000,
+   "OBJECTID": 553,
+   "PARCEL_NUMBER": "13216028",
+   "TICKET_CITATIONS": "365.02   Non-Owner-Occupied Residential Rental Unit Registration Required; \r\n",
+   "TICKET_ID": "CT26011490",
+   "TICKET_STATUS": "Awaiting Payment - Late",
+   "TICKET_STATUS_DATE": 1795323600000
+  },
+  {
+   "ADDRESS": "7556 TEST ST",
+   "FILE_DATE": 1768885200000,
+   "ISSUE_DATE": 1768885200000,
+   "OBJECTID": 556,
+   "PARCEL_NUMBER": "01702107",
+   "TICKET_CITATIONS": "365.02   Non-Owner-Occupied Residential Rental Unit Registration Required;",
+   "TICKET_ID": "CT26001146",
+   "TICKET_STATUS": "Sent to DAL",
+   "TICKET_STATUS_DATE": 1785729600000
+  }
+ ],
+ "where": "ISSUE_DATE >= DATE '2026-01-01' AND ISSUE_DATE < DATE '2027-01-01'"
+}

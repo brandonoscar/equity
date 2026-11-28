@@ -1,0 +1,29 @@
+source_id: tx.college_station.permits
+state: TX
+county_fips: "48041"   # Brazos County
+# City of College Station "Permits - Master Dataset" (data.cstx.gov hrbn-znt6, 203,857
+# building, trade and site permits issued 1989 .. 2026 on 2026-11-25, daily): permit number,
+# type and subtype, status, applied and issued dates, valuation, square footage and units,
+# with the site's Brazos CAD parcel number (site_apn, e.g. 362100-0102-0010). No owner or
+# contractor name in the table. OTHER instruments on the parcel, in no match run.
+portal: https://data.cstx.gov
+dataset: hrbn-znt6
+order_by: [permit_number]
+select: [permit_number, permit_type, permit_subtype, permit_description, applied_date,
+         issued_date, current_status, address_1, address_2, city, state, zip,
+         site_subdivision, total_sq_ft, heated_sq_ft, valuation, number_units, site_apn]
+date_field: issued_date
+partition: year
+first_year: 1989
+uid: permit_number
+doc_type: OTHER
+doc_type_raw: {field: permit_type}
+extra_pii: [address_1, address_2, permit_description]
+parties: []   # no names in the table
+parcel: {kind: pin, field: site_apn, county_fips: "48041"}
+terms:
+  url: https://data.cstx.gov/d/hrbn-znt6
+  summary: "City of College Station open data (data.cstx.gov, Socrata), free, no login; no license set on the dataset. robots.txt allows /resource/."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -62,6 +62,27 @@ Maricopa and Yavapai stay out unless we file their commercial-use statement and 
 | St. Charles MO, Minnehaha SD | A bot challenge or firewall blocks access. We don't work around those. |
 | Shawnee, KS | No data service found. |
 
+## State tax-delinquent lists in states with no debt list (checked 2026-11-26)
+
+Searched ArcGIS Online and the Socrata catalog by state for delinquent-tax, tax-sale, lien,
+foreclosure and code-enforcement layers in the 20 states with no debt list (AL, AR, HI, IA,
+ID, KY, MA, ME, MT, ND, NH, NM, NV, OK, OR, RI, SD, TN, WA, WY), then each state revenue
+department's published delinquent-taxpayer list. Code-violation layers were not counted: a
+violation is not a debt. Catalog hits were mostly aggregates (Cambridge MA foreclosure counts,
+Pierce County WA quarterly violation counts) or unrelated layers.
+
+| State | List | Result |
+|---|---|---|
+| SD | DOR Business Tax Delinquent Report (SDCL 10-59-46 to 51): about 200 businesses, a lien filed on each | **Built:** `sd.dor.top_delinquent_business`, in the `SD` run |
+| MA | DOR Public Disclosure Tax Delinquents (over $25,000, G.L. c. 62C s. 21) | Held back: only a search form (POST with an anti-forgery token), no published file. Getting it would mean scraping the form. |
+| OR | DOR Delinquent Taxpayer List (at least $50,000, ORS 305.806) | Held back: shown only inside the Revenue Online web app, no published file. |
+| RI | Division of Taxation Top 100 income and business tax delinquents | Held back: tax.ri.gov answers with a Cloudflare JavaScript challenge. We don't work around those. |
+| WY | DOR Excise Tax delinquent taxpayers and vendors (150+ days, monthly) | Held back: the files are on Google Drive, whose robots.txt disallows downloads (`/uc`, and all of drive.usercontent.google.com). |
+| WA | DOR delinquent taxpayer list (published from 2001) | Not found any more; tax warrants are filed with each county's Superior Court. |
+| AR | Commissioner of State Lands tax-delinquent auction catalog | Held back: the catalog is served by a vendor map app (datascoutpro.com) through encoded query links, and the post-auction list by an auction site; no published file. |
+
+The other 13 states showed no published state or county debt list on these catalogs.
+
 ## Blocked by the session's network allowlist (as first found)
 
 These hosts may serve free owner layers, but this session couldn't reach them. The biggest

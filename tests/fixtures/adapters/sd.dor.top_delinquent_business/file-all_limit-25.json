@@ -1,0 +1,280 @@
+{
+ "rows": [
+  {
+   "address": "3628 TEST ST",
+   "city": "LEWISVILLE",
+   "interest_due": "$548,130.84",
+   "owner_name": "TESTOWNER 5781F6 INC",
+   "penalty_due": "$79,822.76",
+   "report_date": "2026-11-02",
+   "state": "TX",
+   "tax_due": "$798,223.24",
+   "total_due": "$1,426,176.84"
+  },
+  {
+   "address": "5081 TEST ST",
+   "city": "EXTON",
+   "interest_due": "$227,384.60",
+   "owner_name": "TESTOWNER 475EA9 INC",
+   "penalty_due": "$33,611.40",
+   "report_date": "2026-11-02",
+   "state": "PA",
+   "tax_due": "$336,254.00",
+   "total_due": "$597,250.00"
+  },
+  {
+   "address": "6646 TEST ST",
+   "city": "NORRIS",
+   "interest_due": "$448,046.56",
+   "owner_name": "TESTOWNER 89294D INC",
+   "penalty_due": "$10,753.99",
+   "report_date": "2026-11-02",
+   "state": "SD",
+   "tax_due": "$92,944.97",
+   "total_due": "$551,745.52"
+  },
+  {
+   "address": "2796 TEST ST",
+   "city": "ORTLEY",
+   "interest_due": "$244,740.03",
+   "owner_name": "TESTOWNER 1896CB LLC",
+   "penalty_due": "$24,983.37",
+   "report_date": "2026-11-02",
+   "state": "SD",
+   "tax_due": "$249,833.24",
+   "total_due": "$519,556.64"
+  },
+  {
+   "address": "6493 TEST ST",
+   "city": "BOONE",
+   "interest_due": "$342,417.79",
+   "owner_name": "TESTOWNER CDF976 LLC",
+   "penalty_due": "$0.00",
+   "report_date": "2026-11-02",
+   "state": "IA",
+   "tax_due": "$143,775.98",
+   "total_due": "$486,193.77"
+  },
+  {
+   "address": "7882 TEST ST",
+   "city": "SIOUX FALLS",
+   "interest_due": "$270,405.08",
+   "owner_name": "TESTOWNER B0762B LLC",
+   "penalty_due": "$11,737.49",
+   "report_date": "2026-11-02",
+   "state": "SD",
+   "tax_due": "$169,078.85",
+   "total_due": "$451,221.42"
+  },
+  {
+   "address": "743 TEST ST",
+   "city": "ERIE",
+   "interest_due": "$101,433.20",
+   "owner_name": "TESTOWNER C9E090 CO",
+   "penalty_due": "$24,080.00",
+   "report_date": "2026-11-02",
+   "state": "PA",
+   "tax_due": "$249,030.00",
+   "total_due": "$374,543.20"
+  },
+  {
+   "address": "6596 TEST ST",
+   "city": "CLARK",
+   "interest_due": "$82,472.19",
+   "owner_name": "TESTOWNER 1EC216",
+   "penalty_due": "$18,837.82",
+   "report_date": "2026-11-02",
+   "state": "SD",
+   "tax_due": "$188,378.34",
+   "total_due": "$289,688.35"
+  },
+  {
+   "address": "6994 TEST ST",
+   "city": "AURORA",
+   "interest_due": "$159,280.94",
+   "owner_name": "TESTOWNER 2E2EE7 LLC",
+   "penalty_due": "$4,149.60",
+   "report_date": "2026-11-02",
+   "state": "SD",
+   "tax_due": "$124,439.16",
+   "total_due": "$287,869.70"
+  },
+  {
+   "address": "4348 TEST ST",
+   "city": "SIOUX FALLS",
+   "interest_due": "$198,789.57",
+   "owner_name": "TESTOWNER 1B7159",
+   "penalty_due": "$5,924.82",
+   "report_date": "2026-11-02",
+   "state": "SD",
+   "tax_due": "$58,534.05",
+   "total_due": "$263,248.44"
+  },
+  {
+   "address": "2796 TEST ST",
+   "city": "ORTLEY",
+   "interest_due": "$121,776.07",
+   "owner_name": "TESTOWNER 0A8EAE INC",
+   "penalty_due": "$12,230.56",
+   "report_date": "2026-11-02",
+   "state": "SD",
+   "tax_due": "$122,305.23",
+   "total_due": "$256,311.86"
+  },
+  {
+   "address": "4373 TEST ST",
+   "city": "WEBSTER",
+   "interest_due": "$206,008.70",
+   "owner_name": "TESTOWNER 064CAC INC",
+   "penalty_due": "$0.00",
+   "report_date": "2026-11-02",
+   "state": "SD",
+   "tax_due": "$49,399.14",
+   "total_due": "$255,407.84"
+  },
+  {
+   "address": "1295 TEST ST",
+   "city": "WHITEWOOD",
+   "interest_due": "$185,177.89",
+   "owner_name": "TESTOWNER 63C07D LLC",
+   "penalty_due": "$5,769.99",
+   "report_date": "2026-11-02",
+   "state": "SD",
+   "tax_due": "$57,700.04",
+   "total_due": "$248,647.92"
+  },
+  {
+   "address": "3882 TEST ST",
+   "city": "GILBERT",
+   "interest_due": "$169,097.50",
+   "owner_name": "TESTOWNER CE96D7 INC",
+   "penalty_due": "$7,160.00",
+   "report_date": "2026-11-02",
+   "state": "AZ",
+   "tax_due": "$71,000.00",
+   "total_due": "$247,257.50"
+  },
+  {
+   "address": "7922 TEST ST",
+   "city": "RAPID CITY",
+   "interest_due": "$195,847.98",
+   "owner_name": "TESTOWNER D2BF9F",
+   "penalty_due": "$3,770.00",
+   "report_date": "2026-11-02",
+   "state": "SD",
+   "tax_due": "$39,000.00",
+   "total_due": "$238,617.98"
+  },
+  {
+   "address": "6590 TEST ST",
+   "city": "PRIOR LAKE",
+   "interest_due": "$181,882.47",
+   "owner_name": "TESTOWNER 8F0542",
+   "penalty_due": "$623.43",
+   "report_date": "2026-11-02",
+   "state": "MN",
+   "tax_due": "$51,573.72",
+   "total_due": "$234,079.62"
+  },
+  {
+   "address": "7299 TEST ST",
+   "city": "TEA",
+   "interest_due": "$15,680.58",
+   "owner_name": "TESTOWNER 5F1FF1 LLC",
+   "penalty_due": "$11,166.40",
+   "report_date": "2026-11-02",
+   "state": "SD",
+   "tax_due": "$205,054.79",
+   "total_due": "$231,901.77"
+  },
+  {
+   "address": "5796 TEST ST",
+   "city": "GREENDALE",
+   "interest_due": "$149,907.50",
+   "owner_name": "TESTOWNER C7AD48 LLC",
+   "penalty_due": "$5,490.00",
+   "report_date": "2026-11-02",
+   "state": "WI",
+   "tax_due": "$61,000.00",
+   "total_due": "$216,397.50"
+  },
+  {
+   "address": "3776 TEST ST",
+   "city": "DELANO",
+   "interest_due": "$136,066.58",
+   "owner_name": "TESTOWNER DD91DB LLC",
+   "penalty_due": "$5,833.50",
+   "report_date": "2026-11-02",
+   "state": "MN",
+   "tax_due": "$58,335.00",
+   "total_due": "$200,235.08"
+  },
+  {
+   "address": "4661 TEST ST",
+   "city": "OMAHA",
+   "interest_due": "$19,797.36",
+   "owner_name": "TESTOWNER 36DB0F LLC",
+   "penalty_due": "$11,998.40",
+   "report_date": "2026-11-02",
+   "state": "NE",
+   "tax_due": "$164,978.00",
+   "total_due": "$196,773.76"
+  },
+  {
+   "address": "2666 TEST ST",
+   "city": "MADISON",
+   "interest_due": "$67,651.76",
+   "owner_name": "TESTOWNER 1129A6 LLC",
+   "penalty_due": "$11,468.29",
+   "report_date": "2026-11-02",
+   "state": "SD",
+   "tax_due": "$113,932.93",
+   "total_due": "$193,052.98"
+  },
+  {
+   "address": "8639 TEST ST",
+   "city": "NEBRASKA CITY",
+   "interest_due": "$131,346.20",
+   "owner_name": "TESTOWNER C25623 CORP",
+   "penalty_due": "$5,542.00",
+   "report_date": "2026-11-02",
+   "state": "NE",
+   "tax_due": "$55,420.00",
+   "total_due": "$192,308.20"
+  },
+  {
+   "address": "2573 TEST ST",
+   "city": "GUTHRIE",
+   "interest_due": "$52,428.10",
+   "owner_name": "TESTOWNER CA40AF LLC",
+   "penalty_due": "$11,475.45",
+   "report_date": "2026-11-02",
+   "state": "OK",
+   "tax_due": "$114,754.46",
+   "total_due": "$178,658.01"
+  },
+  {
+   "address": "5973 TEST ST",
+   "city": "LARGO",
+   "interest_due": "$119,644.25",
+   "owner_name": "TESTOWNER 2AA4B9 INC",
+   "penalty_due": "$0.00",
+   "report_date": "2026-11-02",
+   "state": "FL",
+   "tax_due": "$58,900.00",
+   "total_due": "$178,544.25"
+  },
+  {
+   "address": "5832 TEST ST",
+   "city": "WATERTOWN",
+   "interest_due": "$153,765.90",
+   "owner_name": "TESTOWNER 2501F3",
+   "penalty_due": "$0.00",
+   "report_date": "2026-11-02",
+   "state": "SD",
+   "tax_due": "$22,633.00",
+   "total_due": "$176,398.90"
+  }
+ ],
+ "url": "https://dor.sd.gov/media/05oddt20/11-2-2026-100-top-delinquent-report.pdf"
+}

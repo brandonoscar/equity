@@ -1,0 +1,35 @@
+source_id: ca.san_francisco.building_permits
+state: CA
+county_fips: "06075"
+# City and County of San Francisco Department of Building Inspection "Building Permits"
+# (data.sf.gov i98e-djp9, 1,298,843 permits on 2026-11-25, updated daily): every building
+# permit filed since 1980s with the Assessor block and lot, address, permit type, work
+# description, estimated and revised cost, existing and proposed use and units, and the
+# filed / issued / completed dates. No owner or applicant names. A signal that money is going
+# into the parcel, not a debt: OTHER instruments on 06075-<block><lot> (the 7-character
+# Assessor parcel number, e.g. '6256008', as in ca.san_francisco.dbi_complaints), in no match
+# run. The parcel is computed in the query (block || lot).
+portal: https://data.sf.gov
+dataset: i98e-djp9
+where: "filed_date IS NOT NULL"
+order_by: [":id"]
+select: [permit_number, permit_type, permit_type_definition, "block || lot AS parcel", block, lot,
+         street_number, street_name, street_suffix, unit, description, status, filed_date,
+         issued_date, completed_date, estimated_cost, revised_cost, existing_use,
+         existing_units, proposed_use, proposed_units, zipcode]
+date_field: filed_date
+partition: year
+first_year: 1900
+uid: permit_number
+doc_type: OTHER
+doc_type_raw: {field: permit_type_definition}
+consideration: revised_cost
+extra_pii: [street_number, street_name]
+parties: []
+parcel: {kind: pin, field: parcel, county_fips: "06075"}
+terms:
+  url: https://data.sf.gov/d/i98e-djp9
+  summary: "DataSF (data.sf.gov, Socrata; data.sfgov.org now redirects here), Department of Building Inspection, free, no login or app token. Dataset license (read 2026-11-25): Open Data Commons Public Domain Dedication and License (PDDL). data.sf.gov/robots.txt allows /resource/ (Crawl-delay: 1)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,281 @@
+{
+ "layer": "https://baltegis.baltimorecity.gov/mapping/rest/services/Housing/DHCD_Open_Baltimore_Datasets/FeatureServer/1",
+ "rows": [
+  {
+   "Address": "2025 WILKENS AVE",
+   "BLOCKLOT": "0703 013",
+   "DateAbate": null,
+   "DateCancel": null,
+   "DateNotice": 1737048780000,
+   "NT": "Vacant",
+   "NoticeNum": "2471895A",
+   "OBJECTID": 27,
+   "OWNER_ABBR": null
+  },
+  {
+   "Address": "1927 WILKENS AVE",
+   "BLOCKLOT": "0704 014",
+   "DateAbate": null,
+   "DateCancel": null,
+   "DateNotice": 1737127800000,
+   "NT": "Vacant",
+   "NoticeNum": "2470904A",
+   "OBJECTID": 75,
+   "OWNER_ABBR": null
+  },
+  {
+   "Address": "124 S CARLTON ST",
+   "BLOCKLOT": "0250 093",
+   "DateAbate": null,
+   "DateCancel": null,
+   "DateNotice": 1755672300000,
+   "NT": "Vacant",
+   "NoticeNum": "2554925A",
+   "OBJECTID": 444,
+   "OWNER_ABBR": null
+  },
+  {
+   "Address": "427 FURROW ST",
+   "BLOCKLOT": "0288 036",
+   "DateAbate": null,
+   "DateCancel": null,
+   "DateNotice": 1762534440000,
+   "NT": "Vacant",
+   "NoticeNum": "2587149A",
+   "OBJECTID": 521,
+   "OWNER_ABBR": null
+  },
+  {
+   "Address": "308 S GILMOR ST",
+   "BLOCKLOT": "0277 005",
+   "DateAbate": null,
+   "DateCancel": null,
+   "DateNotice": 1765303740000,
+   "NT": "Vacant",
+   "NoticeNum": "2588476A",
+   "OBJECTID": 672,
+   "OWNER_ABBR": null
+  },
+  {
+   "Address": "308 S CALHOUN ST",
+   "BLOCKLOT": "0280 005",
+   "DateAbate": null,
+   "DateCancel": null,
+   "DateNotice": 1744044900000,
+   "NT": "Vacant",
+   "NoticeNum": "2492622A",
+   "OBJECTID": 761,
+   "OWNER_ABBR": null
+  },
+  {
+   "Address": "314 S CALHOUN ST",
+   "BLOCKLOT": "0280 008",
+   "DateAbate": null,
+   "DateCancel": null,
+   "DateNotice": 1757964960000,
+   "NT": "Vacant",
+   "NoticeNum": "2565839A",
+   "OBJECTID": 764,
+   "OWNER_ABBR": null
+  },
+  {
+   "Address": "346 S CALHOUN ST",
+   "BLOCKLOT": "0280 024",
+   "DateAbate": null,
+   "DateCancel": null,
+   "DateNotice": 1745724540000,
+   "NT": "Vacant",
+   "NoticeNum": "2499887A",
+   "OBJECTID": 783,
+   "OWNER_ABBR": null
+  },
+  {
+   "Address": "418 S GILMOR ST",
+   "BLOCKLOT": "0707 010",
+   "DateAbate": null,
+   "DateCancel": null,
+   "DateNotice": 1751304120000,
+   "NT": "Vacant",
+   "NoticeNum": "2530331A",
+   "OBJECTID": 931,
+   "OWNER_ABBR": null
+  },
+  {
+   "Address": "420 S GILMOR ST",
+   "BLOCKLOT": "0707 011",
+   "DateAbate": null,
+   "DateCancel": null,
+   "DateNotice": 1765394880000,
+   "NT": "Vacant",
+   "NoticeNum": "2595912A",
+   "OBJECTID": 932,
+   "OWNER_ABBR": null
+  },
+  {
+   "Address": "1621 RAMSAY ST",
+   "BLOCKLOT": "0707 056",
+   "DateAbate": null,
+   "DateCancel": null,
+   "DateNotice": 1763493720000,
+   "NT": "Vacant",
+   "NoticeNum": "2590088A",
+   "OBJECTID": 978,
+   "OWNER_ABBR": null
+  },
+  {
+   "Address": "1519 RAMSAY ST",
+   "BLOCKLOT": "0708 010",
+   "DateAbate": null,
+   "DateCancel": null,
+   "DateNotice": 1741575960000,
+   "NT": "Vacant",
+   "NoticeNum": "2484115A",
+   "OBJECTID": 1024,
+   "OWNER_ABBR": null
+  },
+  {
+   "Address": "413 S GILMOR ST",
+   "BLOCKLOT": "0708 031",
+   "DateAbate": null,
+   "DateCancel": null,
+   "DateNotice": 1751254320000,
+   "NT": "Vacant",
+   "NoticeNum": "2529561A",
+   "OBJECTID": 1053,
+   "OWNER_ABBR": null
+  },
+  {
+   "Address": "421 E BALTIMORE ST",
+   "BLOCKLOT": "1350 005",
+   "DateAbate": null,
+   "DateCancel": null,
+   "DateNotice": 1763063760000,
+   "NT": "Vacant",
+   "NoticeNum": "2589502A",
+   "OBJECTID": 1326,
+   "OWNER_ABBR": null
+  },
+  {
+   "Address": "314 S BROADWAY ",
+   "BLOCKLOT": "1428 036",
+   "DateAbate": null,
+   "DateCancel": null,
+   "DateNotice": 1758610140000,
+   "NT": "Vacant",
+   "NoticeNum": "2569961A",
+   "OBJECTID": 1501,
+   "OWNER_ABBR": null
+  },
+  {
+   "Address": "1824 N CHAPEL ST",
+   "BLOCKLOT": "1448 091",
+   "DateAbate": null,
+   "DateCancel": null,
+   "DateNotice": 1765900860000,
+   "NT": "Vacant",
+   "NoticeNum": "2597247A",
+   "OBJECTID": 1747,
+   "OWNER_ABBR": null
+  },
+  {
+   "Address": "456 PITMAN PL",
+   "BLOCKLOT": "1111 091",
+   "DateAbate": null,
+   "DateCancel": null,
+   "DateNotice": 1755706260000,
+   "NT": "Vacant",
+   "NoticeNum": "2547085A",
+   "OBJECTID": 1788,
+   "OWNER_ABBR": null
+  },
+  {
+   "Address": "1811 N CHAPEL ST",
+   "BLOCKLOT": "1448 105",
+   "DateAbate": null,
+   "DateCancel": null,
+   "DateNotice": 1751384340000,
+   "NT": "Vacant",
+   "NoticeNum": "2526950A",
+   "OBJECTID": 1890,
+   "OWNER_ABBR": null
+  },
+  {
+   "Address": "1827 N CHAPEL ST",
+   "BLOCKLOT": "1448 113",
+   "DateAbate": null,
+   "DateCancel": null,
+   "DateNotice": 1753368060000,
+   "NT": "Vacant",
+   "NoticeNum": "2534389A",
+   "OBJECTID": 1901,
+   "OWNER_ABBR": null
+  },
+  {
+   "Address": "2225 PRENTISS PL",
+   "BLOCKLOT": "1570 081",
+   "DateAbate": null,
+   "DateCancel": null,
+   "DateNotice": 1740757140000,
+   "NT": "Vacant",
+   "NoticeNum": "2477408A",
+   "OBJECTID": 2042,
+   "OWNER_ABBR": null
+  },
+  {
+   "Address": "725 N PORT ST",
+   "BLOCKLOT": "1624 077",
+   "DateAbate": null,
+   "DateCancel": null,
+   "DateNotice": 1748454120000,
+   "NT": "Vacant",
+   "NoticeNum": "2509257A",
+   "OBJECTID": 2060,
+   "OWNER_ABBR": null
+  },
+  {
+   "Address": "613 ARCHER ST",
+   "BLOCKLOT": "0856A062",
+   "DateAbate": null,
+   "DateCancel": null,
+   "DateNotice": 1737487080000,
+   "NT": "Vacant",
+   "NoticeNum": "2473055A",
+   "OBJECTID": 2343,
+   "OWNER_ABBR": null
+  },
+  {
+   "Address": "2310 E LAFAYETTE AVE",
+   "BLOCKLOT": "1453 031",
+   "DateAbate": null,
+   "DateCancel": null,
+   "DateNotice": 1765839960000,
+   "NT": "Vacant",
+   "NoticeNum": "2597970A",
+   "OBJECTID": 2610,
+   "OWNER_ABBR": null
+  },
+  {
+   "Address": "1914 E OLIVER ST",
+   "BLOCKLOT": "1479 053",
+   "DateAbate": null,
+   "DateCancel": null,
+   "DateNotice": 1760674260000,
+   "NT": "Vacant",
+   "NoticeNum": "2515040A",
+   "OBJECTID": 2642,
+   "OWNER_ABBR": null
+  },
+  {
+   "Address": "25 N WHEELER AVE",
+   "BLOCKLOT": "2153 013",
+   "DateAbate": null,
+   "DateCancel": null,
+   "DateNotice": 1764960120000,
+   "NT": "Vacant",
+   "NoticeNum": "2588025A",
+   "OBJECTID": 2689,
+   "OWNER_ABBR": null
+  }
+ ],
+ "where": "DateNotice >= DATE '2025-01-01' AND DateNotice < DATE '2026-01-01'"
+}

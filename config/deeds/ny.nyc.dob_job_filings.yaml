@@ -1,0 +1,44 @@
+source_id: ny.nyc.dob_job_filings
+state: NY
+county_fips: "36061"
+# NYC Department of Buildings "DOB Job Application Filings" (BIS, data.cityofnewyork.us
+# ic3t-wcy2, 3,093,375 filing documents on 2026-11-25, updated daily): every job filed in
+# the Buildings Information System since 1989 (new buildings, alterations, demolitions) with
+# the owner's name, business name, type and address, the borough/block/lot, job type and
+# initial cost. Like ny.nyc.dob_permits (DOB NOW), a signal of who controls a lot and is
+# putting money into it, not a debt: OTHER instruments on the lot, in no match run.
+# The published bbl column is not the lot (it repeats the BIN), so the lot comes from
+# borough, block and lot. pre__filing_date is M/D/YYYY text: windowed with LIKE
+# (config/deeds). The applicant (architect / engineer) is kept out of the select.
+# Not the "DOB Permit Issuance" dataset (ipu4-2q9a), which is loaded separately.
+portal: https://data.cityofnewyork.us
+dataset: ic3t-wcy2
+order_by: [":id"]
+select: [job__, doc__, borough, block, lot, bin__, job_type, job_status_descrp, building_type,
+         pre__filing_date, initial_cost, owner_type, non_profit, owner_s_first_name,
+         owner_s_last_name, owner_s_business_name, owner_s_house_number,
+         owner_shouse_street_name, city_, state, zip]
+date_field: pre__filing_date
+date_format: {pre__filing_date: mdy}
+partition: year
+first_year: 1987
+uid: [job__, doc__]
+doc_type: OTHER
+doc_type_raw: {field: job_type}
+skip_names: ["N/A", "NA", "NONE", "N A"]
+parties:
+  - role: owner
+    name: [owner_s_first_name, owner_s_last_name]
+    address: {line1: [owner_s_house_number, owner_shouse_street_name], city: city_, state: state,
+              zip: zip}
+  - role: owner
+    name: owner_s_business_name
+    address: {line1: [owner_s_house_number, owner_shouse_street_name], city: city_, state: state,
+              zip: zip}
+parcel: {kind: nyc_bbl, borough: borough, block: block, lot: lot}
+terms:
+  url: https://data.cityofnewyork.us/d/ic3t-wcy2
+  summary: "NYC Open Data (Socrata), Department of Buildings, free, no login; NYC Open Data terms of use (no license field on the dataset). robots.txt (Crawl-delay 1) allows /resource/."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

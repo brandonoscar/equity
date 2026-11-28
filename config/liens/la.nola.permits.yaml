@@ -1,0 +1,33 @@
+source_id: la.nola.permits
+state: LA
+county_fips: "22071"   # Orleans Parish
+# City of New Orleans Department of Safety and Permits "Permits" (data.nola.gov rcm3-fn58,
+# 350,892 permits filed 2012-01 .. 2026-11 on 2026-11-25, daily): building, trade, demolition
+# and other permits with the property owner (258k rows), the applicant, the contractor(s),
+# construction value and the parcel PIN. A signal that an owner is putting money into a
+# property, not a debt: OTHER instruments on the parcel, in no match run. (The BLDS-format
+# copy, 72f9-bi28, repeats these permits with contractor names only: not loaded.)
+portal: https://data.nola.gov
+dataset: rcm3-fn58
+order_by: [numstring]
+select: [numstring, type, code, division, filingdate, issuedate, currentstatus, landuse,
+         constrval, totalfees, unpaidfees, address, owner, applicant, contractors, pin,
+         subdivision, zoning]
+date_field: filingdate
+partition: year
+first_year: 2012
+uid: numstring
+doc_type: OTHER
+doc_type_raw: {field: type}
+extra_pii: [address]
+parties:
+  - {role: owner, name: owner}
+  - {role: other, name: applicant}
+  - {role: other, name: contractors}
+parcel: {kind: pin, field: pin, county_fips: "22071"}   # Orleans Parish assessor PIN
+terms:
+  url: https://data.nola.gov/d/rcm3-fn58
+  summary: "City of New Orleans open data (data.nola.gov, Socrata), Department of Safety and Permits, free, no login. Dataset license: Creative Commons 1.0 Universal (Public Domain Dedication). robots.txt allows /resource/."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

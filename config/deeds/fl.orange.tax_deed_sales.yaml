@@ -1,0 +1,35 @@
+source_id: fl.orange.tax_deed_sales
+state: FL
+county_fips: "12095"   # Orange County
+# Orange County Comptroller tax deed sales (ArcGIS Online 'Tax Sale Data', owner
+# Orange_County, managed by the BCC, updated weekly; 61 rows on 2026-11-25): each tax deed
+# application set for auction ('Active Sale', with the sale date) and each parcel struck off
+# unsold ('Lands Available'), with the tax deed application number and the parcel. A tax
+# certificate holder applied for the deed because the taxes went unpaid (Fla. Stat. 197.502).
+# Loaded as a tax sale record (TAX_LIEN_STATE) on the parcel, dated by the fetch (the list
+# is current; sale dates run months ahead and stay in the source record). No
+# owner name: a match names the parcel's owner of record. The parcel is printed
+# section-township-range ('10-24-29-3055-17-060'); the Property Appraiser's parcel id (as in
+# fl.statewide.parcels and fl.orlando.*) reverses the first three groups and drops the
+# dashes (292410305517060), so it is rewritten that way.
+api: arcgis
+layer_url: https://services1.arcgis.com/0U8EQ1FrumPeIqDb/arcgis/rest/services/Tax_Sale_Data/FeatureServer/0
+single_partition: true
+order_by: [ObjectID]
+select: [ObjectID, USER_TDA_NUM, USER_Sale_Date, USER_Deed_Status, USER_PARCEL]
+listed_on: listed_on
+date_field: listed_on
+rewrite:
+  USER_PARCEL: {pattern: "^(\\d\\d)-(\\d\\d)-(\\d\\d)-(\\d{4})-(\\d\\d)-(\\d{3})$", replace: "\\3\\2\\1\\4\\5\\6"}
+uid: USER_TDA_NUM
+doc_type: TAX_LIEN_STATE
+doc_type_raw: {field: USER_Deed_Status}
+parties:
+  - {role: creditor, const: Orange County Comptroller (tax deed sale)}
+parcel: {kind: pin, field: USER_PARCEL, county_fips: "12095"}   # = fl.statewide.parcels PARCEL_ID
+terms:
+  url: https://www.arcgis.com/home/item.html?id=ac5c8c5609c647a38d10958d3b6011f6
+  summary: "Orange County FL (ArcGIS Online, owner Orange_County) 'Orange County Comptroller Tax Sale Data', free, no login. Item licenseInfo: provided 'as is' without warranty; the requestor bears the burden of determining fitness for use; no commercial-use or redistribution restriction. services1.arcgis.com/robots.txt answers 403 (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

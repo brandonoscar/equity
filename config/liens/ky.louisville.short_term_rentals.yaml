@@ -1,0 +1,30 @@
+source_id: ky.louisville.short_term_rentals
+state: KY
+county_fips: "21111"   # Jefferson County (Louisville Metro)
+# Louisville Metro "Short-Term Rentals" (ArcGIS Online short_term_rental_registration, owner
+# LouisvilleMetro, 1,246 registered short-term rentals on 2026-11-25, daily): license number,
+# date opened, the host's name, the property owner's name, the address (block-level text),
+# zoning and districts. No parcel id: the registration is not linked to a parcel. A registry
+# tying an owner and a host to a rental property, not a debt: OTHER instruments, in no match
+# run. Host e-mail and phone are not fetched.
+api: arcgis
+layer_url: https://services1.arcgis.com/79kfd2K6fskCAkyg/arcgis/rest/services/short_term_rental_registration/FeatureServer/0
+order_by: [ObjectId]
+select: [ObjectId, LICENSE_NUMBER, DATEOPENED, HOSTNAME, OWNERNAME, ADDR_FULL_BLOCK,
+         ZONINGCODE, COUNCILDISTRICT]
+date_field: DATEOPENED
+partition: year
+first_year: 2025   # registrations open from 2025-06
+uid: LICENSE_NUMBER
+doc_type: OTHER
+doc_type_raw: Louisville Metro short-term rental registration
+extra_pii: [ADDR_FULL_BLOCK]
+parties:
+  - {role: other, name: OWNERNAME}
+  - {role: other, name: HOSTNAME}
+terms:
+  url: https://www.arcgis.com/home/item.html?id=7fe3c3cc41234c2aadd4ad257d2d3d64
+  summary: "Louisville Metro Open Data (ArcGIS Online, LouisvilleMetro), free, no login. Item licenseInfo: the Louisville Metro Open Data Platform terms of use (open data, no warranty); no commercial-use or redistribution restriction found. services1.arcgis.com/robots.txt answers 403 (RFC 9309: no rules). Internal use."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

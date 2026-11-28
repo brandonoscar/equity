@@ -1,0 +1,39 @@
+source_id: pa.philadelphia.violations
+state: PA
+county_fips: "42101"   # Philadelphia
+# City of Philadelphia Licenses & Inspections code violations (OpenDataPhilly "L&I Code
+# Violations", Carto table `violations`, 2,043,779 violations on 2026-11-25, updated daily):
+# every violation L&I has cited since 2007, from the current Eclipse system (2012 on, 670k)
+# and the legacy Hansen system (2007-2020, 1.37M; the older li_violations table holds the
+# same Hansen cases and is not read): case and violation numbers, code and title (high weeds,
+# unsafe structure, imminently dangerous, rental without licence ...), dates, status, the OPA
+# account (parcel) and the owner of record as the city joins it (opa_owner: the owner today,
+# not always the owner when cited). The `unsafe` and `imm_dang` tables are current subsets
+# of this one and are not read separately. Loaded as OTHER instruments on the parcel, in no
+# match run: a violation is not a debt (its unpaid fines are pa.philadelphia.li_fines).
+api: carto
+carto: https://phl.carto.com/api/v2/sql
+table: violations
+where: "violationdate IS NOT NULL"
+order_by: [cartodb_id]
+select: [violationnumber, casenumber, casetype, casestatus, caseresponsibility,
+         casecreateddate, violationdate, violationcode, violationcodetitle, violationstatus,
+         violationresolutiondate, systemofrecord, opa_account_num, address, zip, opa_owner]
+date_field: violationdate
+partition: month   # ~12,000 violations a month keeps each query under Carto's time limit
+first_year: 2007
+uid: violationnumber
+doc_type: OTHER
+doc_type_raw: {field: violationcodetitle}
+parties:
+  - role: owner
+    name: opa_owner            # 'A, B' for joint owners
+    split: ","
+parcel: {kind: pin, field: opa_account_num, county_fips: "42101"}   # same key as pa.philadelphia.parcels
+extra_pii: [address]
+terms:
+  url: https://opendataphilly.org/datasets/licenses-and-inspections-code-violations/
+  summary: "OpenDataPhilly, City of Philadelphia L&I, Carto SQL API, free, no login. City of Philadelphia terms of use (as read for pa.philadelphia.business_licenses): the City keeps all rights in the database, data as-is, user indemnifies the City; treated as internal use only, no redistribution. phl.carto.com robots.txt disallows /api/ only for named search crawlers, not other agents."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

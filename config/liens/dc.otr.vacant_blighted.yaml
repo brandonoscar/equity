@@ -1,0 +1,36 @@
+source_id: dc.otr.vacant_blighted
+state: DC
+county_fips: "11001"
+# DC Office of Tax and Revenue "Integrated Tax System Public Extract Vacant and Blighted"
+# (opendata.dc.gov, DC GIS Property_and_Land MapServer table 80, 2,018 lots on 2026-11-25):
+# the tax lots DOB has classified as vacant or blighted (taxed at the Class 3 / Class 4 rates),
+# with the owner of record and the tax-billing address. A current list with no per-row
+# classification date, so each lot is one OTHER instrument dated the day it was fetched
+# (listed_on): who holds a vacant or blighted building, in no match run. The higher tax
+# itself shows up in dc.otr.delinquent_taxes when it goes unpaid.
+api: arcgis
+layer_url: https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Property_and_Land_WebMercator/MapServer/80
+order_by: [SSL]
+select: [SSL, PREMISEADD, PROPTYPE, USECODE, CLASSTYPE, OWNERNAME, CAREOFNAME, ADDRESS1,
+         ADDRESS2, CITYSTZIP, ASSESSMENT, EXTRACTDAT]
+listed_on: listed_on
+date_field: listed_on
+single_partition: true
+uid: SSL
+doc_type: OTHER
+doc_type_raw: DC vacant (tax class 3) or blighted (class 4) building   # CLASSTYPE in the row
+parties:
+  - role: owner
+    name: OWNERNAME
+    address: {line1: [ADDRESS1, ADDRESS2], csz: CITYSTZIP}   # the tax-billing address
+  - role: other
+    name: CAREOFNAME
+    address: {line1: [ADDRESS1, ADDRESS2], csz: CITYSTZIP}
+parcel: {kind: pin, field: SSL, county_fips: "11001"}   # = dc.statewide.parcels SSL
+extra_pii: [PREMISEADD]
+terms:
+  url: https://opendata.dc.gov/datasets/acf4305c684e45df86b5ea83ba2d9f80
+  summary: "DC Office of the Chief Financial Officer (OTR) via DC GIS (opendata.dc.gov, public ArcGIS REST), free, no login; the same Integrated Tax System extract as dc.statewide.parcels, whose layer metadata says Creative Commons Attribution 4.0 International (attribution required; no commercial-use or redistribution restriction). maps2.dcgis.dc.gov/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

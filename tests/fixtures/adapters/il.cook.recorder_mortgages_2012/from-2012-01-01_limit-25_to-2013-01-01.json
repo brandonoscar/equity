@@ -1,0 +1,206 @@
+{
+ "dataset": "myuk-usmm",
+ "rows": [
+  {
+   "consideration_amount": "265900.00",
+   "doc_number": "1200308020",
+   "doc_type": "MORTGAGE",
+   "execution_date": "2011-12-22T00:00:00.000",
+   "pin": "06-32-304-018-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "consideration_amount": "100000.00",
+   "doc_number": "1200308054",
+   "doc_type": "MORTGAGE",
+   "execution_date": "2011-12-21T00:00:00.000",
+   "pin": "04-21-408-009-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "consideration_amount": "100000.00",
+   "doc_number": "1200308122",
+   "doc_type": "MORTGAGE",
+   "execution_date": "2011-12-16T00:00:00.000",
+   "pin": "28-30-205-048-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "consideration_amount": "269543.00",
+   "doc_number": "1200308253",
+   "doc_type": "MORTGAGE",
+   "execution_date": "2011-12-01T00:00:00.000",
+   "pin": "10-31-402-006-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "consideration_amount": "104000.00",
+   "doc_number": "1200308261",
+   "doc_type": "MORTGAGE",
+   "execution_date": "2011-12-15T00:00:00.000",
+   "pin": "19-32-119-005-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "consideration_amount": "200000.00",
+   "doc_number": "1200308262",
+   "doc_type": "MORTGAGE",
+   "execution_date": "2011-11-09T00:00:00.000",
+   "pin": "20-04-124-018-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "consideration_amount": "335000.00",
+   "doc_number": "1200308263",
+   "doc_type": "MORTGAGE",
+   "execution_date": "2011-11-14T00:00:00.000",
+   "pin": "03-31-112-003-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "consideration_amount": "232400.00",
+   "doc_number": "1200308277",
+   "doc_type": "MORTGAGE",
+   "execution_date": "2011-12-22T00:00:00.000",
+   "pin": "07-27-303-008-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "consideration_amount": "360000.00",
+   "doc_number": "1200308278",
+   "doc_type": "MORTGAGE",
+   "execution_date": "2011-11-14T00:00:00.000",
+   "pin": "09-36-212-011-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "consideration_amount": "310200.00",
+   "doc_number": "1200308280",
+   "doc_type": "MORTGAGE",
+   "execution_date": "2011-12-22T00:00:00.000",
+   "pin": "13-08-206-061-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "consideration_amount": "75000.00",
+   "doc_number": "1200308281",
+   "doc_type": "MORTGAGE",
+   "execution_date": "2011-12-13T00:00:00.000",
+   "pin": "05-22-100-056-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "consideration_amount": "75000.00",
+   "doc_number": "1200308281",
+   "doc_type": "MORTGAGE",
+   "execution_date": "2011-12-13T00:00:00.000",
+   "pin": "05-27-115-001-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "consideration_amount": "50000.00",
+   "doc_number": "1200308282",
+   "doc_type": "MORTGAGE",
+   "execution_date": "2011-12-20T00:00:00.000",
+   "pin": "24-08-100-048-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "consideration_amount": "380000.00",
+   "doc_number": "1200308283",
+   "doc_type": "MORTGAGE",
+   "execution_date": "2011-11-15T00:00:00.000",
+   "pin": "08-15-200-067-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "consideration_amount": "324000.00",
+   "doc_number": "1200308285",
+   "doc_type": "MORTGAGE",
+   "execution_date": "2011-11-21T00:00:00.000",
+   "pin": "04-06-406-012-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "consideration_amount": "206500.00",
+   "doc_number": "1200308288",
+   "doc_type": "MORTGAGE",
+   "execution_date": "2011-11-22T00:00:00.000",
+   "pin": "06-34-303-030-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "consideration_amount": "150800.00",
+   "doc_number": "1200308300",
+   "doc_type": "MORTGAGE",
+   "execution_date": "2011-12-01T00:00:00.000",
+   "pin": "17-21-210-139-1072",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "consideration_amount": "150800.00",
+   "doc_number": "1200308300",
+   "doc_type": "MORTGAGE",
+   "execution_date": "2011-12-01T00:00:00.000",
+   "pin": "17-21-210-139-1076",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "consideration_amount": "198800.00",
+   "doc_number": "1200308301",
+   "doc_type": "MORTGAGE",
+   "execution_date": "2011-12-01T00:00:00.000",
+   "pin": "24-13-413-002-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "consideration_amount": "242200.00",
+   "doc_number": "1200308308",
+   "doc_type": "MORTGAGE",
+   "execution_date": "2011-12-02T00:00:00.000",
+   "pin": "24-13-202-023-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "consideration_amount": "99000.00",
+   "doc_number": "1200308309",
+   "doc_type": "MORTGAGE",
+   "execution_date": "2011-12-07T00:00:00.000",
+   "pin": "28-29-114-006-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "consideration_amount": "179000.00",
+   "doc_number": "1200308311",
+   "doc_type": "MORTGAGE",
+   "execution_date": "2011-12-07T00:00:00.000",
+   "pin": "24-05-403-022-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "consideration_amount": "10000.00",
+   "doc_number": "1200308312",
+   "doc_type": "MORTGAGE",
+   "execution_date": "2011-12-13T00:00:00.000",
+   "pin": "06-07-313-045-1065",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "consideration_amount": "128500.00",
+   "doc_number": "1200308313",
+   "doc_type": "MORTGAGE",
+   "execution_date": "2011-12-09T00:00:00.000",
+   "pin": "28-17-112-017-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "consideration_amount": "30000.00",
+   "doc_number": "1200308333",
+   "doc_type": "MORTGAGE",
+   "execution_date": "2011-12-16T00:00:00.000",
+   "pin": "07-16-304-009-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  }
+ ],
+ "where": "(pin IS NOT NULL) AND recorded_date >= '2012-01-01T00:00:00' AND recorded_date < '2013-01-01T00:00:00'"
+}

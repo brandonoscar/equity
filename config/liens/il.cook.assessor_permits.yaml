@@ -1,0 +1,35 @@
+source_id: il.cook.assessor_permits
+state: IL
+county_fips: "17031"
+# Cook County Assessor "Permits" (datacatalog.cookcountyil.gov 6yjf-dfxs, 759,224 rows on
+# 2026-11-25, updated monthly): building permits that the 130-odd municipalities of Cook
+# County send to the Assessor (the City of Chicago's own permits are il.chicago.building_permits),
+# with the 14-digit PIN, permit numbers, issue date, amount, whether the work is assessable,
+# the applicant's name and the mailing address on the permit. Like ny.nyc.dob_permits: a
+# signal that an owner is putting money into a property, not a debt: OTHER instruments on
+# the parcel, in no match run. The applicant is a party of role other (often the owner,
+# sometimes a contractor).
+portal: https://datacatalog.cookcountyil.gov
+dataset: 6yjf-dfxs
+where: "date_issued IS NOT NULL"
+order_by: [row_id]
+select: [row_id, pin, year, permit_number, local_permit_number, date_issued, status, assessable,
+         amount, municipality, township, property_address, mailing_address, applicant_name,
+         job_code_primary, work_description, improvement_code_1]
+date_field: date_issued
+partition: year
+first_year: 2000   # 93 rows dated before 2000 (to 1906) and a few after today (to 2210) are data errors, not read
+uid: row_id
+doc_type: OTHER
+doc_type_raw: {field: job_code_primary}
+parties:
+  - role: other
+    name: applicant_name
+extra_pii: [property_address, mailing_address]
+parcel: {kind: pin, field: pin, county_fips: "17031"}   # = il.cook.parcels pin
+terms:
+  url: https://datacatalog.cookcountyil.gov/d/6yjf-dfxs
+  summary: "Cook County Assessor on the Cook County open data portal (Socrata), free, no login; no license tag on the dataset (Cook County open data terms: disclaimers of liability and warranty, no commercial-use restriction). datacatalog.cookcountyil.gov/robots.txt allows /resource/ (Crawl-delay: 1)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

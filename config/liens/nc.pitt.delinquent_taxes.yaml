@@ -1,0 +1,42 @@
+source_id: nc.pitt.delinquent_taxes
+state: NC
+county_fips: "37147"   # Pitt County
+# Pitt County Tax Administration delinquent taxes (PittOpenData "DelinquentTaxesPOD", the table
+# behind the county public data portal's delinquent tax download). The table mixes each unpaid
+# bill (no transaction type) with the payments and corrections posted to it; only the bill
+# rows are read, with BILL_DUE_AMT (the balance still due) as the amount: 5,074 bills for tax
+# years 2015-2025 on 2026-11-27. NC property taxes are delinquent after January 5 of the year
+# after the levy, so every listed year is past due. The table names no owner: the owner name
+# and mailing address come from the county parcel table (PittParcelsPOD) by parcel number,
+# which keeps the leading zeros the bill table drops ('18359' -> '018359'). Unpaid NC property
+# tax is a lien on the parcel (G.S. 105-355); a senior lien, not a judgment. The bill's parcel
+# number is Pitt's own account key, not the NC OneMap PIN, so no parcel link is made; owners
+# are matched by name and address, as for Guilford.
+api: arcgis
+layer_url: https://gis.pittcountync.gov/gis/rest/services/PittOpenData/Tables/MapServer/9
+where: "(TRANSACTION_TYPE IS NULL OR TRANSACTION_TYPE = '') AND BILL_DUE_AMT NOT IN ('0', '0.00', '')"
+single_partition: true
+select: [OBJECTID, TAX_YEAR, BASE_NUM, PARCEL_ID, BILL_AMT, BILL_DUE_AMT]
+order_by: [OBJECTID]
+date_field: TAX_YEAR
+uid: [BASE_NUM, TAX_YEAR]
+doc_type: TAX_LIEN_STATE
+doc_type_raw: "Pitt County delinquent property tax bill"
+amount: BILL_DUE_AMT
+enrich:
+  arcgis: https://gis.pittcountync.gov/gis/rest/services/PittOpenData/Tables/MapServer/1
+  key: ParcelNumber
+  field: PARCEL_ID
+  zfill: 6
+  columns: [OwnerName, OwnerAddress, CityStateZip]
+parties:
+  - role: debtor
+    name: OwnerName
+    address: {line1: OwnerAddress, csz: CityStateZip}
+  - role: creditor
+    const: Pitt County Tax Administration
+terms:
+  url: https://apps.pittcountync.gov/apps/publicdataportal
+  summary: "Pitt County, NC open data tables on the county's own ArcGIS server (gis.pittcountync.gov, robots.txt absent), free, no login; the public data portal offers the same delinquent tax download. Terms: accuracy disclaimers only (no license, commercial-use or redistribution restriction found)."
+  checked_on: 2026-11-27
+  cost_model: free

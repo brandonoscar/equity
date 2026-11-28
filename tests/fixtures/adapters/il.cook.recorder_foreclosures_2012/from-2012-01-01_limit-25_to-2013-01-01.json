@@ -1,0 +1,181 @@
+{
+ "dataset": "9br9-dhca",
+ "rows": [
+  {
+   "doc_number": "1200310089",
+   "doc_type": "LIS PENDENS FORECLOSURE",
+   "execution_date": "2012-01-03T00:00:00.000",
+   "pin": "21-31-216-017-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "doc_number": "1200310089",
+   "doc_type": "LIS PENDENS FORECLOSURE",
+   "execution_date": "2012-01-03T00:00:00.000",
+   "pin": "21-31-216-018-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "doc_number": "1200310090",
+   "doc_type": "LIS PENDENS FORECLOSURE",
+   "execution_date": "2012-01-03T00:00:00.000",
+   "pin": "21-31-216-015-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "doc_number": "1200312000",
+   "doc_type": "AMENDED LIS PENDENS FORECLOSURE",
+   "execution_date": "2011-12-16T00:00:00.000",
+   "pin": "28-14-404-042-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "doc_number": "1200312001",
+   "doc_type": "LIS PENDENS FORECLOSURE",
+   "execution_date": "2011-12-28T00:00:00.000",
+   "pin": "21-30-104-042-1088",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "doc_number": "1200312002",
+   "doc_type": "LIS PENDENS FORECLOSURE",
+   "execution_date": "2011-12-28T00:00:00.000",
+   "pin": "02-12-103-004-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "doc_number": "1200312003",
+   "doc_type": "LIS PENDENS FORECLOSURE",
+   "execution_date": "2011-12-28T00:00:00.000",
+   "pin": "29-15-302-044-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "doc_number": "1200312004",
+   "doc_type": "LIS PENDENS FORECLOSURE",
+   "execution_date": "2011-12-28T00:00:00.000",
+   "pin": "17-04-222-063-1050",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "doc_number": "1200312004",
+   "doc_type": "LIS PENDENS FORECLOSURE",
+   "execution_date": "2011-12-28T00:00:00.000",
+   "pin": "17-04-222-063-1088",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "doc_number": "1200312005",
+   "doc_type": "LIS PENDENS FORECLOSURE",
+   "execution_date": "2011-12-28T00:00:00.000",
+   "pin": "06-07-123-018-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "doc_number": "1200312006",
+   "doc_type": "LIS PENDENS FORECLOSURE",
+   "execution_date": "2011-12-28T00:00:00.000",
+   "pin": "16-02-326-051-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "doc_number": "1200312007",
+   "doc_type": "LIS PENDENS FORECLOSURE",
+   "execution_date": "2011-12-28T00:00:00.000",
+   "pin": "19-25-209-013-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "doc_number": "1200312008",
+   "doc_type": "LIS PENDENS FORECLOSURE",
+   "execution_date": "2011-12-28T00:00:00.000",
+   "pin": "18-07-212-054-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "doc_number": "1200312008",
+   "doc_type": "LIS PENDENS FORECLOSURE",
+   "execution_date": "2011-12-28T00:00:00.000",
+   "pin": "18-07-212-055-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "doc_number": "1200312009",
+   "doc_type": "LIS PENDENS FORECLOSURE",
+   "execution_date": "2011-12-28T00:00:00.000",
+   "pin": "06-06-112-007-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "doc_number": "1200312010",
+   "doc_type": "LIS PENDENS FORECLOSURE",
+   "execution_date": "2011-12-28T00:00:00.000",
+   "pin": "13-32-317-002-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "doc_number": "1200312011",
+   "doc_type": "LIS PENDENS FORECLOSURE",
+   "execution_date": "2011-12-28T00:00:00.000",
+   "pin": "13-21-217-003-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "doc_number": "1200312012",
+   "doc_type": "LIS PENDENS FORECLOSURE",
+   "execution_date": "2011-12-28T00:00:00.000",
+   "pin": "29-18-216-052-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "doc_number": "1200312013",
+   "doc_type": "LIS PENDENS FORECLOSURE",
+   "execution_date": "2011-12-28T00:00:00.000",
+   "pin": "16-09-416-021-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "doc_number": "1200312014",
+   "doc_type": "LIS PENDENS FORECLOSURE",
+   "execution_date": "2011-12-28T00:00:00.000",
+   "pin": "28-15-200-022-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "doc_number": "1200312015",
+   "doc_type": "LIS PENDENS FORECLOSURE",
+   "execution_date": "2011-12-28T00:00:00.000",
+   "pin": "20-03-408-001-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "doc_number": "1200312016",
+   "doc_type": "LIS PENDENS FORECLOSURE",
+   "execution_date": "2011-12-28T00:00:00.000",
+   "pin": "08-33-110-006-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "doc_number": "1200312017",
+   "doc_type": "LIS PENDENS FORECLOSURE",
+   "execution_date": "2011-12-28T00:00:00.000",
+   "pin": "25-11-120-039-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "doc_number": "1200312018",
+   "doc_type": "LIS PENDENS FORECLOSURE",
+   "execution_date": "2011-12-28T00:00:00.000",
+   "pin": "15-01-201-018-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  },
+  {
+   "doc_number": "1200312019",
+   "doc_type": "LIS PENDENS FORECLOSURE",
+   "execution_date": "2011-12-28T00:00:00.000",
+   "pin": "13-20-314-003-0000",
+   "recorded_date": "2012-01-03T00:00:00.000"
+  }
+ ],
+ "where": "(pin IS NOT NULL) AND recorded_date >= '2012-01-01T00:00:00' AND recorded_date < '2013-01-01T00:00:00'"
+}

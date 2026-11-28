@@ -1,0 +1,30 @@
+source_id: sc.pickens.parcels
+state: SC
+# Pickens County (SC) GIS ArcGIS Online item 'ArcReaderData', layer 'Parcels' (owner GISpickens;
+# 66,814 rows on 2026-11-25, edited 2026-11; TAXYEAR 2027 on assessed rows; NAME1 filled on
+# all but 46): owner names, owner mailing address, property address and city, zoning.
+layer_url: https://services1.arcgis.com/59960rq18IxUcAVI/arcgis/rest/services/ArcReaderData/FeatureServer/2
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "077"}
+fields:
+  parcel_id: PIN         # blank (' ') on one unassessed polygon, which is skipped
+  owner1: NAME1
+  owner2: NAME2
+  mail_line1: ADD1
+  mail_city: CITY
+  mail_state: STATE
+  mail_zip: ZIP          # an integer: out-of-state ZIPs with a leading zero lose it and are left empty
+  situs_line1: LOCADD
+  situs_city: LOCCITY
+  situs_zip: LOCZIP
+  situs_state: {const: SC}
+  zoning: ZONINGCODE
+value_basis: "ACTUALVAL is present with TAXYEAR (2027), but the layer does not say what ACTUALVAL measures (market, assessed or taxable), so no values or tax_year are mapped and no assessment facts are emitted. SALEDT / SALEP (last sale) are not mapped."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=0f81ecea144846aba811fb2668356a23
+  summary: "Pickens County (SC) GIS ArcGIS Online item 'ArcReaderData' (owner GISpickens, which also publishes the county's EnerGov and delinquent-tax layers); public hosted feature service, no login, token or fee. accessInformation and licenseInfo are empty (read 2026-11-25); no resale, redistribution or mailing-list clause. services1.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -29,6 +29,8 @@ from equity.schema.ids import stable_id
 #   26-31038- Caption           yy-number-[judge initials] (many bankruptcy courts)
 #   26-55830-pwb Caption / 26-23147 Caption / 26-35279-mvl7 Caption
 _CASE = re.compile(r"^(?:(\d+):)?(\d{2})-(?:([a-z]{2})-)?(\d{3,6})(?:-[A-Za-z0-9]*)*(?:\s+(.*))?$")
+# Western New York (nywb) writes office-year-number with dashes and no type: "2-26-20862- Name".
+_CASE_DASHED = re.compile(r"^(\d)-(\d{2})-(\d{3,6})-?(?:\s+(.*))?$")
 _BK = re.compile(
     r"Type:\s*(?P<type>\w+)\s+Office:\s*(?P<office>\d+)\s+Chapter:\s*(?P<chapter>\w+)"
     r"(?:\s+Trustee:\s*(?P<trustee>.*?))?\s*\[(?P<entry>[^\]]+)\]\s*\(?\s*(?P<doc>\d+)?",
@@ -55,10 +57,16 @@ def parse_case(title: str, bankruptcy_court: bool = False) -> tuple[str, str, st
     rule: in a bankruptcy court a caption of the form "A v. B" is an adversary proceeding
     ("ap"), anything else is the bankruptcy case ("bk"). Outside bankruptcy courts an untyped
     number is "cv"."""
-    m = _CASE.match(" ".join(title.split()))
-    if m is None:
-        return None
-    office, yy, ctype, num, caption = m.groups()
+    text = " ".join(title.split())
+    m = _CASE.match(text)
+    if m is not None:
+        office, yy, ctype, num, caption = m.groups()
+    else:
+        d = _CASE_DASHED.match(text)
+        if d is None:
+            return None
+        office, yy, num, caption = d.groups()
+        ctype = None
     caption = (caption or "").strip()
     if ctype is None:
         ctype = ("ap" if _VS.search(caption) else "bk") if bankruptcy_court else "cv"
@@ -115,6 +123,8 @@ class ECFRecentEntries(Adapter):
 
     def fetch(self, request: FetchRequest) -> Fetched:
         resp = self.client.get(self.url)
+        if resp.status != 200:  # a court's error page is HTML, not an empty feed
+            raise RuntimeError(f"{self.source_id}: HTTP {resp.status} from {self.url}")
         return Fetched(self.source_id, resp.url, resp.retrieved_at, resp.status, resp.content,
                        resp.content_type)  # fmt: skip
 
@@ -193,9 +203,12 @@ class ECFRecentEntries(Adapter):
     def health(self) -> HealthReport:
         try:
             resp = self.client.get(self.url)
+            if resp.status != 200:  # report the HTTP status, not a parse error on its page
+                return HealthReport(self.source_id, False, self.client.now(),
+                                    f"status={resp.status}", ("channel", "item"))  # fmt: skip
             root = ET.fromstring(resp.content)  # noqa: S314
-            ok = resp.status == 200 and root.find("channel") is not None
-            detail = "ok" if ok else f"status={resp.status}"
+            ok = root.find("channel") is not None
+            detail = "ok" if ok else "no channel"
         except (ET.ParseError, OSError) as exc:
             ok, detail = False, repr(exc)
         return HealthReport(self.source_id, ok, self.client.now(), detail, ("channel", "item"))

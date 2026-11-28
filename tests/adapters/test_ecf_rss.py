@@ -139,6 +139,21 @@ def test_fetch_and_health() -> None:
     assert f.request == "https://ecf.wvnb.uscourts.gov/cgi-bin/rss_outside.pl"
     assert NDWVBankruptcyRSS(client(FEED.encode())).health().ok
     assert not NDWVDistrictRSS(client(b"not xml")).health().ok
-    assert not NDWVDistrictRSS(client(b"<rss/>", status=500)).health().ok
+    down = NDWVDistrictRSS(client(b"<html>Internal Server Error</html>", status=500))
+    assert (down.health().ok, down.health().detail) == (False, "status=500")
+    with pytest.raises(RuntimeError, match="HTTP 500"):  # an error page is not an empty feed
+        down.fetch(FetchRequest())
     assert NDWVDistrictRSS().source_row()["kind"] == "court"
     assert NDWVBankruptcyRSS().source_row()["kind"] == "bankruptcy"
+
+
+def test_dashed_office_year_number_titles_parse() -> None:
+    """Western New York writes '2-26-20862- Name' (office-year-number, no type)."""
+    from equity.adapters.federal.ecf_rss import parse_case
+
+    assert parse_case("2-26-20862- Ann T. Lee and Bo L. Lee   ", bankruptcy_court=True) == (
+        "2", "26", "bk", "20862", "Ann T. Lee and Bo L. Lee")  # fmt: skip
+    assert parse_case("1-26-00055- Acme LLC v. Cy Dee", bankruptcy_court=True)[2:4] == (
+        "ap", "55")  # fmt: skip
+    assert parse_case("12-26-20862- X", bankruptcy_court=True) is None  # not that form
+    assert parse_case("2:26-bk-12345 Foo") == ("2", "26", "bk", "12345", "Foo")  # unchanged

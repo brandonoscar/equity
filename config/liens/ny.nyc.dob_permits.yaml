@@ -20,10 +20,10 @@ uid: [job_filing_number, work_permit, sequence_number]
 doc_type: OTHER
 doc_type_raw: {field: work_type}
 parties:
-  - role: other
+  - role: owner
     name: owner_name
     address: {line1: owner_street_address, city: owner_city, state: owner_state, zip: owner_zip_code}
-  - {role: other, name: owner_business_name, person_names: false}
+  - {role: owner, name: owner_business_name, person_names: false}
 parcel: {kind: nyc_bbl10, field: bbl}
 terms:
   url: https://data.cityofnewyork.us/d/rbx6-tga4

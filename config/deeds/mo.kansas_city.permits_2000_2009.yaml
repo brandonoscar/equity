@@ -1,0 +1,36 @@
+source_id: mo.kansas_city.permits_2000_2009
+state: MO
+county_fips: "29095"
+# City of Kansas City, Missouri "Building Permit Listing" (data.kcmo.org cvnj-fvgf): 50,586 permits of 2000-2009 (published 2013),
+# with permit number, issue year / month / day, residential or not, type, value, structure
+# class, subdivision, the county parcel number and the applicant (and its representative
+#). A signal that money went into a property, not a debt: OTHER
+# instruments, in no match run. The date is Jan 1 of the issue year (month and day stay in
+# the source record). parcel is the county prefix and the county parcel id: JA (Jackson)
+# ids ('JA46230010100000000') are rewritten to the 17-digit mo.jackson.parcels PARID;
+# Clay (CL) and Platte (PL) ids, which have no parcel layer here, give no lot. Here in
+# config/deeds only for that `rewrite`.
+portal: https://data.kcmo.org
+dataset: cvnj-fvgf
+order_by: [permit_number, ":id"]
+select: [permit_number, year, month, day, res_non, type, sf_mf, permit_value, structure_class,
+         class_description, subdivision, county, parcel, applicant_name,
+         applicant_representative]
+date_field: year
+year_dates: [year]
+single_partition: true
+uid: permit_number
+doc_type: OTHER
+doc_type_raw: {field: type}
+parties:
+  - {role: other, name: applicant_name}
+  - {role: other, name: applicant_representative}
+rewrite:
+  parcel: {pattern: "^\\s*(?:JA(\\d{17})|.*?)\\s*$", replace: "\\1"}
+parcel: {kind: pin, field: parcel, county_fips: "29095"}   # = mo.jackson.parcels PARID
+terms:
+  url: https://data.kcmo.org/d/cvnj-fvgf
+  summary: "City of Kansas City, Missouri Open Data (Socrata, data.kcmo.org), Department of City Planning and Development, public, no login; no license tag on the dataset (no commercial-use or redistribution restriction found). data.kcmo.org/robots.txt allows /resource/."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

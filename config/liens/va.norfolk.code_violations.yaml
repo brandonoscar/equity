@@ -1,0 +1,30 @@
+source_id: va.norfolk.code_violations
+state: VA
+county_fips: "51710"   # Norfolk city
+# City of Norfolk Departments of Neighborhood Services and City Planning "Violations"
+# (data.norfolk.gov agip-sqwc, 46,295 property-maintenance, zoning and building code
+# violations cited 2016-10 .. 2026-11 on 2026-11-25, daily): violation id, the ordinance
+# section, status (corrected / not corrected), created, corrected and abatement dates, on the
+# parcel (GPIN, 31,860 rows). No owner name: the violation is against the property, so a
+# match names its owner of record. OTHER instruments on the parcel, in no match run.
+portal: https://data.norfolk.gov
+dataset: agip-sqwc
+order_by: [violation_id]
+select: [violation_id, complaint_id, gpin, tax_account, address, created_date,
+         last_modified_date, corrected_date, abatement_date, status, ordinance, department]
+date_field: created_date
+partition: year
+first_year: 2016
+uid: violation_id
+doc_type: OTHER
+doc_type_raw: {field: ordinance}
+extra_pii: [address]
+parties:
+  - {role: creditor, const: City of Norfolk}
+parcel: {kind: pin, field: gpin, county_fips: "51710"}   # = va.norfolk_city.parcels PARCELID
+terms:
+  url: https://data.norfolk.gov/d/agip-sqwc
+  summary: "City of Norfolk, VA open data (data.norfolk.gov, Socrata), Department of Neighborhood Services; public, free, no login; no license set on the dataset. robots.txt allows /resource/."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

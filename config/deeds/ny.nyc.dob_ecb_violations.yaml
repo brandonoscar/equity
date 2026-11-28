@@ -1,0 +1,39 @@
+source_id: ny.nyc.dob_ecb_violations
+state: NY
+county_fips: "36061"
+# NYC Department of Buildings "DOB ECB Violations" (data.cityofnewyork.us 6bgk-3dad, 1,846,887
+# rows on 2026-11-25, updated daily): every Environmental Control Board violation DOB issued
+# (construction, boilers, elevators, illegal conversions ...) with the respondent (usually the
+# owner or its managing agent) and the respondent's address, the borough/block/lot, the
+# penalty imposed, the amount paid and the balance due. Loaded as OTHER instruments on the
+# lot (who answers for the building, and when), in no match run: the penalties a hearing
+# upholds are the OATH judgments already loaded as ny.nyc.oath.judgments, so this source is
+# not counted as a debt. principal_amount is the balance due as published.
+# issue_date is yyyymmdd text, compared as text in the year windows (config/deeds).
+portal: https://data.cityofnewyork.us
+dataset: 6bgk-3dad
+order_by: [":id"]
+select: [isn_dob_bis_extract, ecb_violation_number, ecb_violation_status, dob_violation_number,
+         bin, boro, block, lot, issue_date, severity, violation_type, respondent_name,
+         respondent_house_number, respondent_street, respondent_city, respondent_zip,
+         penality_imposed, amount_paid, balance_due, hearing_status, certification_status]
+date_field: issue_date
+date_format: {issue_date: ymd}
+date_is_text: true
+partition: year
+first_year: 1987           # earlier years hold under 100 mistyped dates
+uid: ecb_violation_number
+doc_type: OTHER
+doc_type_raw: {field: violation_type}
+amount: balance_due
+parties:
+  - role: other
+    name: respondent_name
+    address: {line1: [respondent_house_number, respondent_street], zip: respondent_zip}
+parcel: {kind: nyc_bbl, borough: boro, block: block, lot: lot}
+terms:
+  url: https://data.cityofnewyork.us/d/6bgk-3dad
+  summary: "NYC Open Data (Socrata), Department of Buildings, free, no login; NYC Open Data terms of use (no license field on the dataset). robots.txt (Crawl-delay 1) allows /resource/ and /api/views/."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

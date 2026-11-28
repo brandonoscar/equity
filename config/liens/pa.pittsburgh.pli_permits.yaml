@@ -1,0 +1,30 @@
+source_id: pa.pittsburgh.pli_permits
+state: PA
+county_fips: "42003"   # Allegheny County (City of Pittsburgh)
+# City of Pittsburgh Permits, Licenses and Inspections permits (WPRDC "PLI Permits", CKAN
+# resource f4d1177a, 67,252 permits issued 2019-06 on 2026-11-25, updated daily): building,
+# electrical, mechanical, demolition, sign and other permits with the owner's name (48,486
+# rows), the contractor (54,252; kept in the raw row only), the parcel (parcel_num, the
+# 16-character pa.allegheny.parcels PIN), work type and project value. A signal of who
+# controls a parcel and is putting money into it, not a debt: OTHER instruments on the
+# parcel, in no match run.
+api: ckan
+portal: https://data.wprdc.org
+resource_id: f4d1177a-f597-4c32-8cbf-7885f56253f6   # PLI Permits
+date_field: issue_date
+partition: year
+first_year: 2019
+uid: permit_id
+doc_type: OTHER
+doc_type_raw: {field: permit_type}
+parties:
+  - role: owner
+    name: owner_name
+parcel: {kind: pin, field: parcel_num, county_fips: "42003"}   # = pa.allegheny.parcels PIN
+extra_pii: [address, contractor_name]
+terms:
+  url: https://data.wprdc.org/dataset/pli-permits
+  summary: "WPRDC (Western Pennsylvania Regional Data Center, University of Pittsburgh) dataset from the City of Pittsburgh PLI, license Creative Commons Attribution (read 2026-11-25; attribution required), CKAN DataStore API, free, no login. WPRDC robots.txt disallows /api/ for crawlers but states scripts and applications may use it (see equity.adapters.http SCRIPT_PERMISSIONS)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

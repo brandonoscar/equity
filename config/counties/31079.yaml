@@ -1,0 +1,24 @@
+source_id: ne.hall.parcels
+state: NE
+# City of Grand Island GIS item 'Parcels in Hall County, Nebraska' (PV1_ParcelManagement
+# FeatureServer layer 1 'Parcel'; 28,622 rows on 2026-11-25, data last edited 2026-11-25;
+# accessInformation 'Hall County, Nebraska'): current owner name and property street line only.
+# The statewide layer (ne.statewide.parcels) has Hall County values but no owner names.
+layer_url: https://services3.arcgis.com/H1fomogcAqX4720J/ArcGIS/rest/services/PV1_ParcelManagement/FeatureServer/1
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "079"}
+use_restrictions: [internal_use_only, no_redistribution]
+fields:
+  parcel_id: PARCEL      # county parcel number, '400214458'
+  owner1: CURRENT_OWNER
+  situs_line1: SITUS     # '123 W 2ND ST' (no city or ZIP)
+  situs_state: {const: NE}
+value_basis: "No value, mailing-address or tax-year fields in this layer (owner name, legal description and site street only)."
+terms:
+  url: https://www.arcgis.com/home/item.html?id=2900aff247a54e6bae75649d56a8f3fd
+  summary: "City of Grand Island public hosted feature service (item owner City_of_Grand_Island, accessInformation 'Hall County, Nebraska'), no login, token or fee. licenseInfo (read 2026-11-25): the files 'are not the official government records'; 'Secondary dissemination of the data files is not licensed, approved, or authorized by the City of Grand Island or Hall County'; provided AS IS. Recorded as internal_use_only and no_redistribution (the project keeps the data internal). services3.arcgis.com/robots.txt answers HTTP 403 (RFC 9309: 4xx = no rules, allowed)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

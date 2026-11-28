@@ -1,0 +1,256 @@
+{
+ "dataset": "4nft-bihw",
+ "rows": [
+  {
+   "block_number": "1040",
+   "borough_code": "1",
+   "granted_reduction_amount": "9253600",
+   "lot_number": "29",
+   "owner_name": "TESTOWNER 1E4B37 LLC",
+   "property_address": "1057 TEST ST",
+   "tax_class_code": "4",
+   "tax_year": "2024"
+  },
+  {
+   "block_number": "7969",
+   "borough_code": "3",
+   "granted_reduction_amount": "566500",
+   "lot_number": "9",
+   "owner_name": "TESTOWNER 66D5D8",
+   "property_address": "8976 TEST ST",
+   "tax_class_code": "4",
+   "tax_year": "2024"
+  },
+  {
+   "block_number": "4837",
+   "borough_code": "3",
+   "granted_reduction_amount": "4929",
+   "lot_number": "1001",
+   "owner_name": "TESTOWNER 524891",
+   "property_address": "3927 TEST ST",
+   "tax_class_code": "2",
+   "tax_year": "2024"
+  },
+  {
+   "block_number": "1388",
+   "borough_code": "1",
+   "granted_reduction_amount": "170560",
+   "lot_number": "50",
+   "owner_name": "TESTOWNER 4D67B0 LLC",
+   "property_address": "1354 TEST ST",
+   "tax_class_code": "2A",
+   "tax_year": "2024"
+  },
+  {
+   "block_number": "2927",
+   "borough_code": "3",
+   "granted_reduction_amount": "46050",
+   "lot_number": "300",
+   "owner_name": "TESTOWNER FCBBA3 CORP",
+   "property_address": "7541 TEST ST",
+   "tax_class_code": "4",
+   "tax_year": "2024"
+  },
+  {
+   "block_number": "1931",
+   "borough_code": "1",
+   "granted_reduction_amount": "633600",
+   "lot_number": "6",
+   "owner_name": "TESTOWNER EE5B49 LLC",
+   "property_address": "5412 TEST ST",
+   "tax_class_code": "4",
+   "tax_year": "2024"
+  },
+  {
+   "block_number": "1590",
+   "borough_code": "1",
+   "granted_reduction_amount": "17285",
+   "lot_number": "48",
+   "owner_name": "TESTOWNER 64EFA3 LLC",
+   "property_address": "913 TEST ST",
+   "tax_class_code": "2B",
+   "tax_year": "2024"
+  },
+  {
+   "block_number": "846",
+   "borough_code": "1",
+   "granted_reduction_amount": "106100",
+   "lot_number": "5",
+   "owner_name": "TESTOWNER 057889",
+   "property_address": "6427 TEST ST",
+   "tax_class_code": "4",
+   "tax_year": "2024"
+  },
+  {
+   "block_number": "1250",
+   "borough_code": "1",
+   "granted_reduction_amount": "41000",
+   "lot_number": "24",
+   "owner_name": "TESTOWNER 49309C",
+   "property_address": "444 TEST ST",
+   "tax_class_code": "2B",
+   "tax_year": "2024"
+  },
+  {
+   "block_number": "7809",
+   "borough_code": "3",
+   "granted_reduction_amount": "45000",
+   "lot_number": "14",
+   "owner_name": "TESTOWNER 145F51 LLC",
+   "property_address": "6804 TEST ST",
+   "tax_class_code": "2",
+   "tax_year": "2024"
+  },
+  {
+   "block_number": "1557",
+   "borough_code": "1",
+   "granted_reduction_amount": "58800",
+   "lot_number": "31",
+   "owner_name": "TESTOWNER C3D351",
+   "property_address": "8246 TEST ST",
+   "tax_class_code": "4",
+   "tax_year": "2024"
+  },
+  {
+   "block_number": "2348",
+   "borough_code": "3",
+   "granted_reduction_amount": "159511",
+   "lot_number": "1001",
+   "owner_name": "TESTOWNER 421B9A LLC",
+   "property_address": "4897 TEST ST",
+   "tax_class_code": "4",
+   "tax_year": "2024"
+  },
+  {
+   "block_number": "846",
+   "borough_code": "1",
+   "granted_reduction_amount": "3269350",
+   "lot_number": "33",
+   "owner_name": "TESTOWNER 7C4DC4",
+   "property_address": "3885 TEST ST",
+   "tax_class_code": "4",
+   "tax_year": "2024"
+  },
+  {
+   "block_number": "5554",
+   "borough_code": "3",
+   "granted_reduction_amount": "69200",
+   "lot_number": "6",
+   "owner_name": "TESTOWNER 1AC209 LLC",
+   "property_address": "3060 TEST ST",
+   "tax_class_code": "4",
+   "tax_year": "2024"
+  },
+  {
+   "block_number": "1127",
+   "borough_code": "1",
+   "granted_reduction_amount": "392800",
+   "lot_number": "1",
+   "owner_name": "TESTOWNER 67B871 LLC",
+   "property_address": "1508 TEST ST",
+   "tax_class_code": "2",
+   "tax_year": "2024"
+  },
+  {
+   "block_number": "6369",
+   "borough_code": "3",
+   "granted_reduction_amount": "207400",
+   "lot_number": "17",
+   "owner_name": "TESTOWNER 401FB3 INC",
+   "property_address": "3301 TEST ST",
+   "tax_class_code": "4",
+   "tax_year": "2024"
+  },
+  {
+   "block_number": "3681",
+   "borough_code": "3",
+   "granted_reduction_amount": "107750",
+   "lot_number": "31",
+   "owner_name": "TESTOWNER 7D9153 LLC",
+   "property_address": "3134 TEST ST",
+   "tax_class_code": "4",
+   "tax_year": "2024"
+  },
+  {
+   "block_number": "1385",
+   "borough_code": "1",
+   "granted_reduction_amount": "1930550",
+   "lot_number": "17",
+   "owner_name": "TESTOWNER CCEE06 LLC",
+   "property_address": "2700 TEST ST",
+   "tax_class_code": "4",
+   "tax_year": "2024"
+  },
+  {
+   "block_number": "1171",
+   "borough_code": "1",
+   "granted_reduction_amount": "316800",
+   "lot_number": "1401",
+   "owner_name": "TESTOWNER 96DBF2",
+   "property_address": "9065 TEST ST",
+   "tax_class_code": "4",
+   "tax_year": "2024"
+  },
+  {
+   "block_number": "2294",
+   "borough_code": "2",
+   "granted_reduction_amount": "2622350",
+   "lot_number": "2",
+   "owner_name": "TESTOWNER 84969D",
+   "property_address": "6336 TEST ST",
+   "tax_class_code": "4",
+   "tax_year": "2024"
+  },
+  {
+   "block_number": "4946",
+   "borough_code": "4",
+   "granted_reduction_amount": "34237",
+   "lot_number": "1010",
+   "owner_name": "TESTOWNER 7C9CBE INC",
+   "property_address": "3008 TEST ST",
+   "tax_class_code": "4",
+   "tax_year": "2024"
+  },
+  {
+   "block_number": "691",
+   "borough_code": "1",
+   "granted_reduction_amount": "2507700",
+   "lot_number": "43",
+   "owner_name": "TESTOWNER 3E304B LLC",
+   "property_address": "530 TEST ST",
+   "tax_class_code": "4",
+   "tax_year": "2024"
+  },
+  {
+   "block_number": "203",
+   "borough_code": "1",
+   "granted_reduction_amount": "357300",
+   "lot_number": "5",
+   "owner_name": "TESTOWNER C71F1D LLC",
+   "property_address": "5534 TEST ST",
+   "tax_class_code": "4",
+   "tax_year": "2024"
+  },
+  {
+   "block_number": "3127",
+   "borough_code": "3",
+   "granted_reduction_amount": "13311",
+   "lot_number": "9",
+   "owner_name": "TESTOWNER 0504A3 LLC",
+   "property_address": "3818 TEST ST",
+   "tax_class_code": "1",
+   "tax_year": "2024"
+  },
+  {
+   "block_number": "5540",
+   "borough_code": "3",
+   "granted_reduction_amount": "36474",
+   "lot_number": "1",
+   "owner_name": "TESTOWNER B70BC6 LLC",
+   "property_address": "1554 TEST ST",
+   "tax_class_code": "4",
+   "tax_year": "2024"
+  }
+ ],
+ "where": "1=1"
+}

@@ -1,0 +1,27 @@
+source_id: ga.richmond.parcels
+state: GA
+# Augusta-Richmond County (GA) GIS 'Map_LayersTS' parcels layer (84,942 rows on 2026-11-25; pin on
+# every row, own1 filled on 84,570): owner, co-owners, owner mailing address, property
+# address, property class.
+layer_url: https://gismap.augustaga.gov/arcgis/rest/services/Map_LayersTS/MapServer/316
+order_by: OBJECTID
+page_size: 2000          # maxRecordCount 2000; supportsPagination true
+min_interval_s: 1.0
+county: {constant: "245"}
+use_restrictions: [no_redistribution, no_resale]
+fields:
+  parcel_id: pin                          # '010-0-199-00-0'
+  owner1: own1
+  owner2: multiowner                      # further owners, '~'-separated, kept as one string
+  mail_line1: owner_address1
+  mail_city_state_zip: owner_citystatezip # 'AUGUSTA, GA 30907-3504'
+  situs_line1: siteaddress                # site_citystzip ('Augusta, GA 30907') is not mapped
+  situs_state: {const: GA}
+  land_use_desc: propdesc                 # 'Residential Lots'
+value_basis: "curr_val (current value) is present but the layer has no tax-year field, so no values or tax_year are mapped and no assessment facts are emitted. homeexempt (Yes/No) is not mapped: homestead is only recorded with an assessment fact. deedpage ('60  1985') is not mapped: which part is the book and which the page is not stated."
+terms:
+  url: https://gismap.augustaga.gov/arcgis/rest/services/Map_LayersTS/MapServer/info/iteminfo
+  summary: "Augusta, GA (consolidated government) GIS ArcGIS Server, Map_LayersTS layer 316 'Parcels'; public MapServer, no login, token or fee. Service licence (read 2026-11-25): accuracy disclaimer and 'It is strictly forbidden to sell or reproduce these maps or data for any reason without the written consent of the Augusta-Richmond County Commission': recorded as no_resale and no_redistribution (the project keeps the data internal). gismap.augustaga.gov/robots.txt answers 404 (no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

@@ -1,0 +1,36 @@
+source_id: pa.philadelphia.clean_seal
+state: PA
+county_fips: "42101"   # Philadelphia
+# City of Philadelphia L&I Community Life Improvement Program (CLIP) clean-and-seal actions
+# (OpenDataPhilly "Clean and Seal", Carto table `li_clean_seal`, 98,660 actions on
+# 2026-11-25; Hansen-era cases, 2000-2020): vacant lots cleaned and vacant buildings sealed by
+# the city after the owner failed to, with the OPA account and the owner of record named in
+# the case (ownername, organization). The city bills the work to the owner and can lien the
+# property for it; this table carries no amount, so each action is an OTHER instrument on the
+# parcel, in no match run (the unpaid charges are not in it).
+api: carto
+carto: https://phl.carto.com/api/v2/sql
+table: li_clean_seal
+where: "actdate IS NOT NULL"
+order_by: [cartodb_id]
+select: [actnumber, casenumber, casegroup, caseprocessed, caseresolution, caseresdate, acttype,
+         actdate, reviewstatus, opa_account_num, address, zip, ownername, organization]
+date_field: actdate
+partition: year
+first_year: 2000
+uid: actnumber
+doc_type: OTHER
+doc_type_raw: {field: acttype}
+parties:
+  - role: owner
+    name: ownername
+  - role: other
+    name: organization
+parcel: {kind: pin, field: opa_account_num, county_fips: "42101"}   # same key as pa.philadelphia.parcels
+extra_pii: [address]
+terms:
+  url: https://opendataphilly.org/datasets/licenses-and-inspections-clean-and-seal/
+  summary: "OpenDataPhilly, City of Philadelphia L&I, Carto SQL API, free, no login. City of Philadelphia terms of use (as read for pa.philadelphia.business_licenses): the City keeps all rights in the database, data as-is, user indemnifies the City; treated as internal use only, no redistribution. phl.carto.com robots.txt disallows /api/ only for named search crawlers, not other agents."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

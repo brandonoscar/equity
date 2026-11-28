@@ -1,0 +1,181 @@
+{
+ "dataset": "vpax-89xu",
+ "rows": [
+  {
+   "apn": "2033008024",
+   "case_filed_date": "2025-06-18T00:00:00.000",
+   "casetype": "Landlord Occupancy Eviction",
+   "closed_date": "2025-09-15T00:00:00.000",
+   "officialaddress": "1301 TEST ST"
+  },
+  {
+   "apn": "2033016025",
+   "case_filed_date": "2025-12-20T00:00:00.000",
+   "casetype": "Landlord Occupancy Eviction",
+   "closed_date": "2025-12-24T00:00:00.000",
+   "officialaddress": "5448 TEST ST"
+  },
+  {
+   "apn": "2039018019",
+   "case_filed_date": "2025-05-28T00:00:00.000",
+   "casetype": "Government Agency\u2019s Order",
+   "closed_date": "2025-09-12T00:00:00.000",
+   "officialaddress": "1604 TEST ST"
+  },
+  {
+   "apn": "2044018001",
+   "case_filed_date": "2025-05-05T00:00:00.000",
+   "casetype": "Landlord Occupancy Eviction",
+   "closed_date": "2025-06-03T00:00:00.000",
+   "officialaddress": "7805 TEST ST"
+  },
+  {
+   "apn": "2102014032",
+   "case_filed_date": "2025-05-09T00:00:00.000",
+   "casetype": "Landlord Occupancy Eviction",
+   "closed_date": "2025-06-03T00:00:00.000",
+   "officialaddress": "4622 TEST ST"
+  },
+  {
+   "apn": "2103009036",
+   "case_filed_date": "2025-06-03T00:00:00.000",
+   "casetype": "Affordable Housing Exemption",
+   "closed_date": "2025-08-29T00:00:00.000",
+   "officialaddress": "3719 TEST ST"
+  },
+  {
+   "apn": "2108009013",
+   "case_filed_date": "2025-05-14T00:00:00.000",
+   "casetype": "Landlord Occupancy Eviction",
+   "closed_date": "2025-09-16T00:00:00.000",
+   "officialaddress": "7433 TEST ST"
+  },
+  {
+   "apn": "2120021005",
+   "case_filed_date": "2025-05-14T00:00:00.000",
+   "casetype": "Government Agency\u2019s Order",
+   "closed_date": "2025-07-07T00:00:00.000",
+   "officialaddress": "2761 TEST ST"
+  },
+  {
+   "apn": "2120025019",
+   "case_filed_date": "2025-04-16T00:00:00.000",
+   "casetype": "Government Agency\u2019s Order",
+   "closed_date": "2025-07-24T00:00:00.000",
+   "officialaddress": "5322 TEST ST"
+  },
+  {
+   "apn": "2126021009",
+   "case_filed_date": "2025-01-13T00:00:00.000",
+   "casetype": "Notice of Intent to Withdraw",
+   "closed_date": "2025-03-28T00:00:00.000",
+   "officialaddress": "7689 TEST ST"
+  },
+  {
+   "apn": "2126021009",
+   "case_filed_date": "2025-06-24T00:00:00.000",
+   "casetype": "Demolition and Conversion Clearance",
+   "closed_date": "2025-07-31T00:00:00.000",
+   "officialaddress": "7689 TEST ST"
+  },
+  {
+   "apn": "2132019002",
+   "case_filed_date": "2025-08-19T00:00:00.000",
+   "casetype": "Landlord Occupancy Eviction",
+   "closed_date": "2025-09-24T00:00:00.000",
+   "officialaddress": "7869 TEST ST"
+  },
+  {
+   "apn": "2134030015",
+   "case_filed_date": "2025-05-01T00:00:00.000",
+   "casetype": "Landlord Occupancy Eviction",
+   "closed_date": "2025-07-25T00:00:00.000",
+   "officialaddress": "8152 TEST ST"
+  },
+  {
+   "apn": "2134033015",
+   "case_filed_date": "2025-05-12T00:00:00.000",
+   "casetype": "Landlord Occupancy Eviction",
+   "closed_date": "2025-06-26T00:00:00.000",
+   "officialaddress": "6472 TEST ST"
+  },
+  {
+   "apn": "2134037001",
+   "case_filed_date": "2025-10-03T00:00:00.000",
+   "casetype": "Landlord Occupancy Eviction",
+   "closed_date": "2025-12-11T00:00:00.000",
+   "officialaddress": "4420 TEST ST"
+  },
+  {
+   "apn": "2138013006",
+   "case_filed_date": "2025-05-21T00:00:00.000",
+   "casetype": "Demolition and Conversion Clearance",
+   "closed_date": "2025-06-09T00:00:00.000",
+   "officialaddress": "8139 TEST ST"
+  },
+  {
+   "apn": "2138013006",
+   "case_filed_date": "2025-05-21T00:00:00.000",
+   "casetype": "Notice of Intent to Withdraw",
+   "closed_date": "2025-06-09T00:00:00.000",
+   "officialaddress": "8139 TEST ST"
+  },
+  {
+   "apn": "2146042129",
+   "case_filed_date": "2025-08-06T00:00:00.000",
+   "casetype": "Landlord Occupancy Eviction",
+   "closed_date": "2025-11-06T00:00:00.000",
+   "officialaddress": "851 TEST ST"
+  },
+  {
+   "apn": "2153028021",
+   "case_filed_date": "2025-01-24T00:00:00.000",
+   "casetype": "Government Agency\u2019s Order",
+   "closed_date": "2025-03-28T00:00:00.000",
+   "officialaddress": "4025 TEST ST"
+  },
+  {
+   "apn": "2159028012",
+   "case_filed_date": "2025-02-14T00:00:00.000",
+   "casetype": "Landlord Occupancy Eviction",
+   "closed_date": "2025-03-21T00:00:00.000",
+   "officialaddress": "3169 TEST ST"
+  },
+  {
+   "apn": "2161010014",
+   "case_filed_date": "2025-01-10T00:00:00.000",
+   "casetype": "Landlord Occupancy Eviction",
+   "closed_date": "2025-03-05T00:00:00.000",
+   "officialaddress": "2750 TEST ST"
+  },
+  {
+   "apn": "2167009024",
+   "case_filed_date": "2025-07-31T00:00:00.000",
+   "casetype": "Government Agency\u2019s Order",
+   "closed_date": "2025-10-16T00:00:00.000",
+   "officialaddress": "6715 TEST ST"
+  },
+  {
+   "apn": "2168001037",
+   "case_filed_date": "2025-02-05T00:00:00.000",
+   "casetype": "Notice of Intent to Withdraw",
+   "closed_date": "2025-04-28T00:00:00.000",
+   "officialaddress": "5585 TEST ST"
+  },
+  {
+   "apn": "2171017064",
+   "case_filed_date": "2025-08-02T00:00:00.000",
+   "casetype": "Landlord Occupancy Eviction",
+   "closed_date": "2025-09-25T00:00:00.000",
+   "officialaddress": "972 TEST ST"
+  },
+  {
+   "apn": "2182011025",
+   "case_filed_date": "2025-07-03T00:00:00.000",
+   "casetype": "Landlord Occupancy Eviction",
+   "closed_date": "2025-09-19T00:00:00.000",
+   "officialaddress": "2218 TEST ST"
+  }
+ ],
+ "where": "(case_filed_date IS NOT NULL AND apn IS NOT NULL AND apn != 'No Record Found') AND case_filed_date >= '2025-01-01T00:00:00' AND case_filed_date < '2026-01-01T00:00:00'"
+}

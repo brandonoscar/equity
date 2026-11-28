@@ -1,0 +1,32 @@
+source_id: mn.minneapolis.property_sales_2014_2015
+state: MN
+county_fips: "27053"
+# City of Minneapolis Assessor property sales, 2014 (10,143 rows) and 2015 (10,746) layers
+# (ArcGIS Online Sales2014_2, Sales2015_2, 2016-08, not extended): one row per CRV, PIN and
+# grantee, as mn.minneapolis.property_sales_2002_2016 but with the PIN as text in PIN_TEXT
+# (13-digit Hennepin county_pin). One partition per layer.
+api: arcgis
+layer_urls:
+  - https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Sales2014_2/FeatureServer/0
+  - https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Sales2015_2/FeatureServer/0
+order_by: [OBJECTID]
+select: [OBJECTID, CRV, PIN_TEXT, InRTOStudy, PropType, Address, Grantee, Grantor,
+         Adjusted_Sale_Price, Gross_Sale_Price, SaleDate, Downpayment]
+date_field: SaleDate
+uid: [CRV, PIN_TEXT]
+doc_type: DEED
+doc_type_raw: Minneapolis property sale (CRV)
+consideration: Gross_Sale_Price
+parties:
+  - role: grantor
+    name: Grantor
+  - role: grantee
+    name: Grantee
+extra_pii: [Address]
+parcel: {kind: pin, field: PIN_TEXT, county_fips: "27053"}   # = mn.metro.parcels county_pin
+terms:
+  url: https://www.arcgis.com/home/item.html?id=292171f6e5af4c37ad476ae959db299d
+  summary: "City of Minneapolis Open Data (ArcGIS Online, owner City_of_Minneapolis), public hosted layer, no login, token or fee. Item licenseInfo (read 2026-11-25): 'To the extent possible under law, City of Minneapolis has waived all copyright and related or neighboring rights to Open Data' (CC0-style public domain dedication), with a no-warranty / reference-use disclaimer. services.arcgis.com/robots.txt answers 4xx (RFC 9309: no rules)."
+  checked_on: 2026-11-25
+  robots_checked_on: 2026-11-25
+  cost_model: free

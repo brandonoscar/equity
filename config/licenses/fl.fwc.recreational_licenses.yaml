@@ -1,0 +1,39 @@
+# Florida Fish and Wildlife Conservation Commission (FWC), "Recreational and Commercial License
+# Holders - Public Record": RecAllCurrentLicenses.txt, every current recreational hunting and
+# fishing license and permit (2 to 2.5 million rows by FWC's count; 712 MB on 2026-11-23,
+# regenerated weekly), tab-delimited with a header row: holder's last, first and middle
+# name, street, city, state, ZIP, phone, email, gender, ethnicity, license type, start and
+# expiration dates, age at the time of the run and county. One row per license held, so a
+# person repeats once per license; each row is one license record here. The FWC file is
+# described as "public record compliant" (exempt holders are already removed). This is the
+# substitute the voter-file report names for Florida (current addresses of license holders):
+# FL voter data is request-only, and FL is one of the few states that publishes license
+# holders. Phone, email, gender, ethnicity and age stay in the raw record only. Read in
+# 16 MB byte windows, one partition each.
+source_id: fl.fwc.recreational_licenses
+state: FL
+jurisdiction: "12"
+fetch: csv
+urls:
+  - https://myfwc.com/media/licenses/recallcurrentlicenses.txt
+delimiter: "\t"
+chunk_bytes: 16000000  # about 90K rows per partition
+key: lastName
+record_key: [lastName, firstName, middleName, street1, zipCode, LicenseType, LicenseStartDate]
+id_prefix: "FL-FWC-REC:"
+terms_url: https://myfwc.com/license/public-record/
+terms_summary: "FWC public web page offering the files as free downloads of 'public record compliant listings of recreational and commercial license holders' (Chapter 119, F.S.); no login, form, fee or license text; no use restriction stated. myfwc.com/robots.txt allows /media/. Served through Cloudflare without a challenge; byte ranges supported."
+checked_on: 2026-11-25
+robots_checked_on: 2026-11-25
+license:
+  type: LicenseType
+  status_value: Current
+  issued_on: LicenseStartDate
+  expires_on: LicenseExpireDate
+  address: {street: street1, city: city, state: state, zip: zipCode}
+holders:
+  - role: other
+    title: LICENSE HOLDER
+    parts: {first: firstName, middle: middleName, last: lastName}
+    address: {street: street1, city: city, state: state, zip: zipCode}
+pii_fields: [lastName, firstName, middleName, street1, phoneNumber, emailAddress]
