@@ -614,6 +614,8 @@ def test_text_dates() -> None:
     assert text_date("as of 02/30/2026", "as of") is None
     assert text_date(None) is None
     assert us_date("8/2/2025") == "2025-08-02" and us_date("-") is None and us_date(None) is None
+    assert us_date("12/04/2026 10:00 AM") == "2026-12-04" == us_date("12/4/2026 23:30")
+    assert us_date("12/04/2026 or later") is None
     assert split_address("1 A ST / NOWHERE", "slash")["line1"] == "1 A ST / NOWHERE"
     assert split_address(", MA 01720", "city_state_zip")["line1"] == ", MA 01720"
     assert split_address("Acton MA 01720", "city_state_zip")["city"] is None

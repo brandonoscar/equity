@@ -1,0 +1,115 @@
+{
+ "rows": [
+  {
+   "address": "3961 TEST ST",
+   "defendant": "TESTOWNER 9F0699",
+   "plaintiff": "TESTOWNER AF38E5 CO",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER AA6195",
+   "prop_state": "KS",
+   "prop_zip": "66616",
+   "sales_date": "2026-12-01",
+   "sheriff": "26024629"
+  },
+  {
+   "address": "4186 TEST ST",
+   "defendant": "TESTOWNER 176BBC",
+   "plaintiff": "TESTOWNER 4EFB61",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER A73E6A",
+   "prop_state": "KS",
+   "prop_zip": "66614",
+   "sales_date": "2026-12-01",
+   "sheriff": "26024632"
+  },
+  {
+   "address": "423 TEST ST",
+   "defendant": "TESTOWNER 1E1A19 INC",
+   "plaintiff": "TESTOWNER 11C344 INC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER B708EA",
+   "prop_state": "KS",
+   "prop_zip": "66608",
+   "sales_date": "2026-12-01",
+   "sheriff": "26025006"
+  },
+  {
+   "address": "7950 TEST ST",
+   "defendant": "TESTOWNER BFA9B7",
+   "plaintiff": "TESTOWNER 27CC4E",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER EFB5F4",
+   "prop_state": "KS",
+   "prop_zip": "66611",
+   "sales_date": "2026-12-08",
+   "sheriff": "26024829"
+  },
+  {
+   "address": "8661 TEST ST",
+   "defendant": "TESTOWNER 5ADBD4",
+   "plaintiff": "TESTOWNER BE6C81 NA",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 5446F1",
+   "prop_state": "KS",
+   "prop_zip": "66533",
+   "sales_date": "2026-12-08",
+   "sheriff": "26024832"
+  },
+  {
+   "address": "7656 TEST ST",
+   "defendant": "TESTOWNER A3DBBA",
+   "plaintiff": "TESTOWNER BCF0A2 LLC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 7EDEF8",
+   "prop_state": "KS",
+   "prop_zip": "66604",
+   "sales_date": "2026-12-08",
+   "sheriff": "26025834"
+  },
+  {
+   "address": "7202 TEST ST",
+   "defendant": "TESTOWNER 06A47F",
+   "plaintiff": "TESTOWNER 2A0934",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER AF7762",
+   "prop_state": "KS",
+   "prop_zip": "66611",
+   "sales_date": "2026-12-15",
+   "sheriff": "26026214"
+  },
+  {
+   "address": "6146 TEST ST",
+   "defendant": "TESTOWNER F87B61",
+   "plaintiff": "TESTOWNER EC7CA5",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 0A6D4A",
+   "prop_state": "KS",
+   "prop_zip": "66606",
+   "sales_date": "2026-12-22",
+   "sheriff": "26026840"
+  },
+  {
+   "address": "4643 TEST ST",
+   "defendant": "TESTOWNER 6A58D8",
+   "plaintiff": "TESTOWNER EC7CA5",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER F324B0",
+   "prop_state": "KS",
+   "prop_zip": "66616",
+   "sales_date": "2026-12-22",
+   "sheriff": "26026841"
+  },
+  {
+   "address": "306 TEST ST",
+   "defendant": "TESTOWNER 21D810",
+   "plaintiff": "TESTOWNER 7211F4 INC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 39DAA2",
+   "prop_state": "KS",
+   "prop_zip": "66605",
+   "sales_date": "2026-12-22",
+   "sheriff": "26026846"
+  }
+ ],
+ "url": "https://salesweb.civilview.com/Sales/SalesSearch?countyId=56"
+}

@@ -458,10 +458,15 @@ def text_date(text: str | None, after: str = "") -> str | None:
     return None
 
 
+US_DATE_TIME = re.compile(r"(\d{1,2}/\d{1,2}/\d{4})(?:\s+\d{1,2}:\d{2}(?::\d{2})?\s*(?:[AP]M)?)?",
+                          re.IGNORECASE)  # fmt: skip
+
+
 def us_date(value: Any) -> str | None:
-    """'08/20/2025' -> '2025-08-20'; text that is not one such date -> None."""
-    s = _text(value) or ""
-    return text_date(s) if US_DATE.fullmatch(s) else None
+    """'08/20/2025' -> '2025-08-20', also with a time of day after it ('12/04/2026 10:00 AM',
+    as sheriff sale listings print the sale); text that is not one such date -> None."""
+    m = US_DATE_TIME.fullmatch(_text(value) or "")
+    return text_date(m.group(1)) if m else None
 
 
 def excel_date(value: Any) -> str | None:

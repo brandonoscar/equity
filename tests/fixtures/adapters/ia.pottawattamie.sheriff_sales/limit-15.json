@@ -1,0 +1,126 @@
+{
+ "rows": [
+  {
+   "address": "3710 TEST ST",
+   "defendant": "TESTOWNER 832752",
+   "plaintiff": "TESTOWNER 35DF30 LLC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 09020C",
+   "prop_state": "IA",
+   "prop_zip": "51503",
+   "sales_date": "2026-12-04",
+   "sheriff": "26010628"
+  },
+  {
+   "address": "7485 TEST ST",
+   "defendant": "TESTOWNER CD05BC",
+   "plaintiff": "TESTOWNER 422BE5",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 98D7A8",
+   "prop_state": "IA",
+   "prop_zip": "51501",
+   "sales_date": "2026-12-04",
+   "sheriff": "26012409"
+  },
+  {
+   "address": "774 TEST ST",
+   "defendant": "TESTOWNER BE32B5",
+   "plaintiff": "TESTOWNER CD3594 LLC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 16B45C",
+   "prop_state": "IA",
+   "prop_zip": "51526",
+   "sales_date": "2026-12-04",
+   "sheriff": "26013039"
+  },
+  {
+   "address": "3610 TEST ST",
+   "defendant": "TESTOWNER A518D4",
+   "plaintiff": "TESTOWNER 422BE5",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER B5D5CE",
+   "prop_state": "IA",
+   "prop_zip": "51501",
+   "sales_date": "2026-12-04",
+   "sheriff": "26013041"
+  },
+  {
+   "address": "5227 TEST ST",
+   "defendant": "TESTOWNER 550A6E",
+   "plaintiff": "TESTOWNER B1F3E4",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 7A50FF",
+   "prop_state": "IA",
+   "prop_zip": "51503",
+   "sales_date": "2027-01-08",
+   "sheriff": "26011966"
+  },
+  {
+   "address": "7717 TEST ST",
+   "defendant": "TESTOWNER 503384",
+   "plaintiff": "TESTOWNER EC8FFA",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 9CD369",
+   "prop_state": "IA",
+   "prop_zip": "51503",
+   "sales_date": "2027-01-08",
+   "sheriff": "26012035"
+  },
+  {
+   "address": "5260 TEST ST",
+   "defendant": "TESTOWNER 53C412",
+   "plaintiff": "TESTOWNER 70B11A CORP",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 83866A",
+   "prop_state": "IA",
+   "prop_zip": "51503",
+   "sales_date": "2027-01-08",
+   "sheriff": "26012731"
+  },
+  {
+   "address": "5169 TEST ST",
+   "defendant": "TESTOWNER 40892D",
+   "plaintiff": "TESTOWNER 146CDB INC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 6B7791",
+   "prop_state": "IA",
+   "prop_zip": "51560",
+   "sales_date": "2027-01-08",
+   "sheriff": "26013395"
+  },
+  {
+   "address": "8531 TEST ST",
+   "defendant": "TESTOWNER B6B6E5 INC",
+   "plaintiff": "TESTOWNER 3D5DF0",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 492EB2",
+   "prop_state": "IA",
+   "prop_zip": "51510",
+   "sales_date": "2027-01-08",
+   "sheriff": "26013408"
+  },
+  {
+   "address": "8597 TEST ST",
+   "defendant": "TESTOWNER E283ED",
+   "plaintiff": "TESTOWNER 7EBE8B LLC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 75A0AF",
+   "prop_state": "IA",
+   "prop_zip": "51501",
+   "sales_date": "2027-01-22",
+   "sheriff": "26014085"
+  },
+  {
+   "address": "2417 TEST ST",
+   "defendant": "TESTOWNER 57705B",
+   "plaintiff": "TESTOWNER 5E6961 LLC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 043545",
+   "prop_state": "IA",
+   "prop_zip": "51501",
+   "sales_date": "2027-01-22",
+   "sheriff": "26014088"
+  }
+ ],
+ "url": "https://salesweb.civilview.com/Sales/SalesSearch?countyId=11"
+}

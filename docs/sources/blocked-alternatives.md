@@ -216,3 +216,13 @@ ArcGIS Online search for layers named delinquent, tax sale or tax lien that chan
 | Pittsburgh city_tax_delinquent_3yr, DC Tax Liens (380), Harris tax-delinquent parcels | Already covered by `pa.pittsburgh.tax_delinquency`, `dc.otr.delinquent_taxes`, `tx.harris.delinquent_taxes`. |
 | Tyler TX Delinquent Properties (468, no owner), Washington Twp delinquencies (340), Dougherty GA 2026 tax sale (139), Shelby AL parcels to be bid (191), Blair PA judicial sale (30) | Small lists; left for a later pass. |
 | Nassau County NY weekly unpaid-tax and lien reports (DocumentCenter, 2026-11-20) | Readable: the DQ110 "Delinquent Taxes Unpaid" PDFs (general and school, 441 pages each) parse with the in-house PDF reader into parcel (section/block/lot), owner name, tax year, amount and class; the base-tax CSVs carry no owner. Held for now: no owner address is printed and Nassau is not among the counties in `ny.statewide.parcels` (only unofficial third-party copies of its parcel layer exist), so rows could be matched by name alone. The DQ106 lien summaries list lien numbers and status per parcel without owners. |
+
+### Sheriff and tax sale listings (2026-11-28)
+
+| Source | Result |
+|---|---|
+| CivilView sheriff and constable sales, 16 more counties | **Built:** Lake IL, Stearns and St. Louis MN, Lorain, Medina and Allen OH, Pottawattamie and Story IA, Shawnee KS, Deschutes and Josephine OR, Snohomish WA, Canyon ID, Guadalupe TX (Constable Pct. 1), Orleans and Ascension Parish LA (with the writ amount). Same page and terms as the NJ and PA configs; wired into their state runs as foreclosure debts and snapshotted daily. |
+| CivilView counties with no sales listed today | Palm Beach FL (2 rows, names cut off on the page), Maricopa AZ, Ocean NJ, Kent DE, Dallas County TX constables 1-5, McLennan, Rockwall and Guadalupe TX (other precincts), Champaign IL, Coweta GA, Pulaski AR, Richland OH, Santa Rosa FL, Scott IA: add when the pages carry sales. |
+| Tarrant County constable monthly tax-sale listings | About 30 accounts per precinct with cause and account numbers only; the accounts and lawsuits are already in `tx.tarrant.tax_roll_delinquent`. |
+| Harris County delinquent tax sale listing (hctax.net, 241 accounts for the 2026-12-01 sale) | Terms are disclaimers only; the accounts are judgments already in `tx.harris.tax_judgments`, so it would add only the sale date and minimum bid. Left for later. |
+| Arkansas Commissioner of State Lands auction | Post-auction sales on the vendor's site (registration) and a search tool; no list download. |

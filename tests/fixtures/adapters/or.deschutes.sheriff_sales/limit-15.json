@@ -1,0 +1,65 @@
+{
+ "rows": [
+  {
+   "address": "3131 TEST ST",
+   "attorney_name": "TESTOWNER 6A726A LLP",
+   "defendant": "TESTOWNER 50A9B4",
+   "plaintiff": "TESTOWNER D1C078 LLC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER C6D29F",
+   "prop_state": "OR",
+   "prop_zip": "97703",
+   "sales_date": "2026-12-10",
+   "sheriff": "26002588"
+  },
+  {
+   "address": "7113 TEST ST",
+   "attorney_name": "TESTOWNER 036092 LLP",
+   "defendant": "TESTOWNER 3CE87E",
+   "plaintiff": "TESTOWNER 655CE6 CORP",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER AF1E23",
+   "prop_state": "OR",
+   "prop_zip": "97707",
+   "sales_date": "2026-12-10",
+   "sheriff": "26002641"
+  },
+  {
+   "address": "",
+   "attorney_name": "TESTOWNER 6A726A LLP",
+   "defendant": "TESTOWNER 99EA79",
+   "plaintiff": "TESTOWNER D8FC0C",
+   "prop_city": null,
+   "prop_line1": null,
+   "prop_state": null,
+   "prop_zip": null,
+   "sales_date": "2026-12-17",
+   "sheriff": "25001327"
+  },
+  {
+   "address": "",
+   "attorney_name": "TESTOWNER 6A726A LLP",
+   "defendant": "TESTOWNER 99EA79",
+   "plaintiff": "TESTOWNER D8FC0C",
+   "prop_city": null,
+   "prop_line1": null,
+   "prop_state": null,
+   "prop_zip": null,
+   "sales_date": "2026-12-17",
+   "sheriff": "25001327"
+  },
+  {
+   "address": "",
+   "attorney_name": "TESTOWNER 036092 LLP",
+   "defendant": "TESTOWNER CE6C91",
+   "plaintiff": "TESTOWNER 92B1AF CORP",
+   "prop_city": null,
+   "prop_line1": null,
+   "prop_state": null,
+   "prop_zip": null,
+   "sales_date": "2027-01-07",
+   "sheriff": "26002741"
+  }
+ ],
+ "url": "https://salesweb.civilview.com/Sales/SalesSearch?countyId=30"
+}

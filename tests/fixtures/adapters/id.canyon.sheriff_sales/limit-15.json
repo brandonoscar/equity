@@ -1,0 +1,38 @@
+{
+ "rows": [
+  {
+   "address": "",
+   "defendant": "TESTOWNER 0B4883",
+   "plaintiff": "TESTOWNER 5915D4",
+   "prop_city": null,
+   "prop_line1": null,
+   "prop_state": null,
+   "prop_zip": null,
+   "sales_date": "2026-12-01",
+   "sheriff": "26-006418"
+  },
+  {
+   "address": "",
+   "defendant": "TESTOWNER B613AF",
+   "plaintiff": "TESTOWNER 9E9BDC",
+   "prop_city": null,
+   "prop_line1": null,
+   "prop_state": null,
+   "prop_zip": null,
+   "sales_date": "2026-12-02",
+   "sheriff": "26-007039"
+  },
+  {
+   "address": "",
+   "defendant": "TESTOWNER E164F1",
+   "plaintiff": "TESTOWNER 194E64",
+   "prop_city": null,
+   "prop_line1": null,
+   "prop_state": null,
+   "prop_zip": null,
+   "sales_date": "2027-01-13",
+   "sheriff": "26-007997"
+  }
+ ],
+ "url": "https://salesweb.civilview.com/Sales/SalesSearch?countyId=68"
+}

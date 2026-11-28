@@ -1,0 +1,83 @@
+{
+ "rows": [
+  {
+   "address": "4594 TEST ST",
+   "attorney_name": "TESTOWNER 4575F2",
+   "defendant": "TESTOWNER 15D5B5",
+   "parcel": "25-2000-02-004.002",
+   "plaintiff": "TESTOWNER 3BDDBE",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 45DE53",
+   "prop_state": "OH",
+   "prop_zip": "45833",
+   "sales_date": "2026-12-09",
+   "sheriff": "26002104"
+  },
+  {
+   "address": "7373 TEST ST",
+   "attorney_name": "TESTOWNER 322BC5",
+   "defendant": "TESTOWNER FC5279",
+   "parcel": "36-2506-02-019.000",
+   "plaintiff": "TESTOWNER 0182F3 LLC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 82DB9A",
+   "prop_state": "OH",
+   "prop_zip": "45801",
+   "sales_date": "2026-12-09",
+   "sheriff": "26002167"
+  },
+  {
+   "address": "5026 TEST ST",
+   "attorney_name": "TESTOWNER 79AA3E",
+   "defendant": "TESTOWNER 93C384",
+   "parcel": "47-0605-03-009.000",
+   "plaintiff": "TESTOWNER A05D8B INC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER C3CCFB",
+   "prop_state": "OH",
+   "prop_zip": "45804",
+   "sales_date": "2026-12-23",
+   "sheriff": "26002146"
+  },
+  {
+   "address": "7470 TEST ST",
+   "attorney_name": "TESTOWNER 1439D1",
+   "defendant": "TESTOWNER 3F9D43",
+   "parcel": "28-1205-08-003.000",
+   "plaintiff": "TESTOWNER 4DB9FC LLC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 886AE9",
+   "prop_state": "OH",
+   "prop_zip": "45817",
+   "sales_date": "2026-12-23",
+   "sheriff": "26002147"
+  },
+  {
+   "address": "2180 TEST ST",
+   "attorney_name": "TESTOWNER 795AD4",
+   "defendant": "TESTOWNER 876091",
+   "parcel": "27-0900-02-004.000",
+   "plaintiff": "TESTOWNER 832A7D LLC",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER AD7B35",
+   "prop_state": "OH",
+   "prop_zip": "45830",
+   "sales_date": "2026-12-23",
+   "sheriff": "26002148"
+  },
+  {
+   "address": "309 TEST ST",
+   "attorney_name": "TESTOWNER E98933",
+   "defendant": "TESTOWNER FB0053",
+   "parcel": "37-1601-04-006.000",
+   "plaintiff": "TESTOWNER 006837",
+   "prop_city": null,
+   "prop_line1": "TESTOWNER 221279",
+   "prop_state": "OH",
+   "prop_zip": "45801",
+   "sales_date": "2026-12-23",
+   "sheriff": "26002153"
+  }
+ ],
+ "url": "https://salesweb.civilview.com/Sales/SalesSearch?countyId=34"
+}
