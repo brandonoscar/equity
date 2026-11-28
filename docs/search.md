@@ -128,6 +128,17 @@ On 16 states (OH KY LA FL TX PA NC IL MI WI MN GA MD VA AZ CO: 457 sources, 152M
 | as written | 1.00 | 0.82 | 1.00 s | 1.61 s |
 | one typo | 0.98 | 0.78 | 0.83 s | 1.56 s |
 
+Every built source (864 sources, all states, 272.7M names; 48 GB after `compact`), 60 sampled
+names:
+
+| Query | Name in top 10 | Record in top 10 | Median | 95th percentile |
+|---|---|---|---|---|
+| as written | 1.00 | 0.75 | 1.21 s | 2.64 s |
+| one typo | 0.97 | 0.70 | 1.18 s | 2.25 s |
+
+`--parcel` takes about 8 s at this size: `owners` is sorted by party (for name search), so a
+parcel's owners are a scan; a fact sheet takes about 30 s.
+
 Before the uncapped all-words candidates and `word_edits`, one-typo name recall at this size was
 0.68 (a typo in a surname held by 100,000 names fell outside the capped lists), and fetching
 every record of all 500 scored names put the median at 3.4 s; records are now fetched one score
